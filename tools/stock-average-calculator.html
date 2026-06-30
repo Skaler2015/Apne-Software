@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/stock-average-calculator.html">
+<meta name="description" content="Free Stock Average Calculator — find your average buy price across multiple entries, plan target average, calculate sell P&L, SIP, brokerage & charges, taxes, position size, bonus/split and more. 100% in your browser.">
+<meta name="keywords" content="stock average calculator, share average calculator, average price calculator, target average, sip calculator, brokerage calculator, profit loss calculator, position size calculator, intraday delivery charges">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stock Average Calculator — Average Price, P&L, SIP, Brokerage | ApneSoftware">
+<meta property="og:description" content="Calculate your share average price, target average, sell profit/loss, SIP returns, brokerage, taxes and position size — free, private, browser-only.">
+<meta property="og:url" content="https://apnesoftware.com/tools/stock-average-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stock Average Calculator — Average Price, P&L, SIP, Brokerage | ApneSoftware">
+<meta name="twitter:description" content="Average price, target average, P&L, SIP, brokerage, tax and position size — free and private.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":["SoftwareApplication","WebApplication"],"name":"Stock Average Calculator","description":"Calculate average share price across multiple buys, plan a target average, work out sell profit/loss, SIP returns, brokerage, taxes and position size.","url":"https://apnesoftware.com/tools/stock-average-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://apnesoftware.com/category/calculator-tools.html"},{"@type":"ListItem","position":3,"name":"Stock Average Calculator","item":"https://apnesoftware.com/tools/stock-average-calculator.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to calculate stock average price","step":[{"@type":"HowToStep","position":1,"name":"Add your buys","text":"Enter the quantity and price of each purchase, or upload a CSV of your trades."},{"@type":"HowToStep","position":2,"name":"See your average","text":"The tool instantly shows your average buy price, total quantity and total investment."},{"@type":"HowToStep","position":3,"name":"Plan ahead","text":"Use Target Average, Sell P&L, SIP, brokerage and tax tabs to plan further."}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is stock average price calculated?","acceptedAnswer":{"@type":"Answer","text":"Average price = total amount invested ÷ total quantity bought. Add the (quantity × price) of every purchase, then divide by the total number of shares."}},{"@type":"Question","name":"How do I lower my average by buying more?","acceptedAnswer":{"@type":"Answer","text":"Use the Target Average tab: enter your current holding and the price you can buy at, set the average you want, and the tool tells you how many extra shares to buy."}},{"@type":"Question","name":"Is this stock calculator free and private?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is 100% free and runs entirely in your browser. No login, and none of your data is uploaded to any server."}},{"@type":"Question","name":"Does it show live market prices?","acceptedAnswer":{"@type":"Answer","text":"Not yet — live price, intraday, F&O and options need a real-time market-data feed and are marked Coming Soon. All calculation features work fully offline today."}}]}
+</script>
+
+<meta name="color-scheme" content="dark light">
+<title>Stock Average Calculator — Average Price, P&L, SIP, Brokerage | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* ════════ STOCK AVERAGE CALCULATOR — scoped (sac- prefix) ════════ */
+:root{
+  --sac-glass:rgba(255,255,255,.07);--sac-brd:rgba(255,255,255,.15);
+  --sac-text:#fff;--sac-dim:rgba(255,255,255,.62);--sac-accent:#A78BFA;
+  --sac-good:#16C079;--sac-bad:#ef4444;--sac-in:rgba(0,0,0,.25);
+}
+body.sac-light{
+  background:linear-gradient(135deg,#eef2ff 0%,#f5f3ff 45%,#ecfeff 100%)!important;background-attachment:fixed;
+  --sac-glass:rgba(255,255,255,.72);--sac-brd:rgba(0,0,0,.08);--sac-text:#1e1b34;--sac-dim:#55506e;--sac-accent:#6d28d9;--sac-in:#fff;
+}
+body.sac-light .tool-header h1,body.sac-light .info-block h2,body.sac-light .info-block h3,
+body.sac-light .info-block p,body.sac-light .info-block li{color:#1e1b34!important}
+body.sac-light .tool-header p{color:#55506e!important}
+
+.sac-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin:14px 0 4px}
+.sac-mini{font-size:.78rem;padding:7px 13px;border-radius:999px;cursor:pointer;background:var(--sac-glass);border:1px solid var(--sac-brd);color:var(--sac-dim);transition:.2s}
+.sac-mini:hover{color:var(--sac-text);border-color:var(--sac-accent)}
+.sac-mini:focus-visible{outline:2px solid var(--sac-accent);outline-offset:2px}
+
+/* tab bar */
+.sac-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 0}
+.sac-tab{position:relative;overflow:hidden;font:inherit;font-size:.84rem;font-weight:600;padding:9px 14px;border-radius:11px;cursor:pointer;color:var(--sac-text);background:var(--sac-glass);border:1px solid var(--sac-brd);transition:transform .15s,background .2s,box-shadow .2s}
+.sac-tab:hover{transform:translateY(-2px)}
+.sac-tab.active{background:linear-gradient(135deg,#7C5CFC,#5A3FE0);border-color:transparent;color:#fff;box-shadow:0 6px 18px rgba(124,92,252,.4)}
+.sac-tab:focus-visible{outline:2px solid var(--sac-accent);outline-offset:2px}
+.sac-ripple{position:absolute;border-radius:50%;transform:scale(0);background:rgba(255,255,255,.4);pointer-events:none;animation:sacRip .55s linear}
+@keyframes sacRip{to{transform:scale(2.6);opacity:0}}
+
+.sac-card{background:var(--sac-glass);border:1px solid var(--sac-brd);border-radius:16px;padding:18px;margin-top:14px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.sac-card h3{font-size:.82rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--sac-accent);margin:0 0 12px;display:flex;align-items:center;gap:8px}
+.sac-panel{display:none}
+.sac-panel.active{display:block;animation:sacIn .35s ease}
+@keyframes sacIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* inputs */
+.sac-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.sac-field label{display:block;font-size:.78rem;color:var(--sac-dim);margin-bottom:5px}
+.sac-field input,.sac-field select{width:100%;box-sizing:border-box;background:var(--sac-in);color:var(--sac-text);border:1px solid var(--sac-brd);border-radius:10px;padding:10px 12px;font:inherit;font-size:.95rem}
+.sac-field input:focus,.sac-field select:focus{outline:2px solid var(--sac-accent);outline-offset:1px;border-color:transparent}
+
+/* entry rows (multiple buys) */
+.sac-entries{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.sac-entry{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:center}
+.sac-entry input{background:var(--sac-in);color:var(--sac-text);border:1px solid var(--sac-brd);border-radius:9px;padding:9px 10px;font:inherit}
+.sac-del{border:1px solid var(--sac-brd);background:transparent;color:var(--sac-bad);border-radius:9px;width:38px;height:38px;cursor:pointer;font-size:1rem}
+.sac-del:hover{background:rgba(239,68,68,.15)}
+
+/* results */
+.sac-out{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:14px}
+.sac-stat{background:rgba(255,255,255,.04);border:1px solid var(--sac-brd);border-radius:12px;padding:13px;text-align:center}
+.sac-stat .v{font-size:1.25rem;font-weight:800;color:var(--sac-text);line-height:1.15;word-break:break-word}
+.sac-stat .l{font-size:.72rem;color:var(--sac-dim);margin-top:3px}
+.sac-stat.good .v{color:var(--sac-good)}.sac-stat.bad .v{color:var(--sac-bad)}
+
+.sac-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.sac-btn{font:inherit;font-weight:700;font-size:.86rem;padding:10px 16px;border-radius:11px;cursor:pointer;border:1px solid transparent;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;position:relative;overflow:hidden}
+.sac-btn:hover{box-shadow:0 8px 20px rgba(124,92,252,.4)}
+.sac-btn.ghost{background:var(--sac-glass);border-color:var(--sac-brd);color:var(--sac-text)}
+.sac-btn.ghost:hover{border-color:var(--sac-accent);box-shadow:none}
+.sac-note{font-size:.8rem;color:var(--sac-dim);margin-top:10px;line-height:1.6}
+canvas.sac-chart{width:100%;max-width:520px;height:auto;margin-top:12px;display:block}
+
+.sac-soon{text-align:center;padding:30px 14px;color:var(--sac-dim)}
+.sac-soon .big{font-size:2.4rem}
+.sac-soon h4{color:var(--sac-text);font-size:1.05rem;margin:10px 0 6px}
+
+/* related */
+.sac-related{max-width:1040px;margin:30px auto 0;padding:0 22px}
+.sac-related h2{color:var(--sac-text);font-size:1.15rem;font-weight:800;margin-bottom:14px}
+.sac-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:11px}
+.sac-link{display:flex;align-items:center;gap:9px;text-decoration:none;background:var(--sac-glass);border:1px solid var(--sac-brd);border-radius:13px;padding:12px 13px;color:var(--sac-text);transition:transform .15s,border-color .2s}
+.sac-link:hover{transform:translateY(-3px);border-color:var(--sac-accent)}
+.sac-crumb{display:flex;flex-wrap:wrap;gap:7px;align-items:center;font-size:.8rem;padding:18px 0 0;color:var(--sac-dim)}
+.sac-crumb a{color:var(--sac-accent);text-decoration:none}.sac-crumb a:hover{text-decoration:underline}
+.sac-crumb .sep{opacity:.5}
+.sac-disc{font-size:.76rem;color:var(--sac-dim);margin-top:16px;padding:10px 12px;border:1px dashed var(--sac-brd);border-radius:10px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="sac-crumb" aria-label="Breadcrumb">
+    <a href="../index.html">Home</a><span class="sep">›</span>
+    <a href="../category/calculator-tools.html">Calculators</a><span class="sep">›</span>
+    <span aria-current="page">Stock Average Calculator</span>
+  </nav>
+  <div class="tool-header">
+    <h1>📈 Stock Average Calculator</h1>
+    <p>Find your average share price across multiple buys, plan a target average, work out sell profit/loss, SIP, brokerage, taxes, position size and more — free, private and right in your browser.</p>
+  </div>
+
+  <div class="sac-bar">
+    <span class="sac-mini" style="cursor:default">💡 All maths runs in your browser — nothing is uploaded</span>
+    <button class="sac-mini" id="sacTheme" type="button" aria-label="Toggle theme">🌙 Dark</button>
+  </div>
+
+  <div class="sac-tabs" id="sacTabs" role="tablist"></div>
+
+  <!-- ───────── AVERAGE ───────── -->
+  <section class="sac-panel" data-panel="avg">
+    <div class="sac-card">
+      <h3>🧮 Average Buy Price — add every purchase</h3>
+      <div class="sac-entries" id="avgEntries"></div>
+      <div class="sac-btns">
+        <button class="sac-btn ghost" type="button" id="avgAdd">＋ Add Buy</button>
+        <button class="sac-btn ghost" type="button" id="avgCsv">📄 Upload CSV (qty,price)</button>
+        <input type="file" id="avgCsvFile" accept=".csv,.txt" hidden>
+        <button class="sac-btn ghost" type="button" id="avgClear">🗑️ Clear</button>
+      </div>
+      <div class="sac-out" id="avgOut"></div>
+      <canvas class="sac-chart" id="avgChart" width="520" height="170" aria-label="Average vs buy prices chart"></canvas>
+      <p class="sac-note">Average price = total amount invested ÷ total shares. Add as many buys as you like.</p>
+    </div>
+
+    <div class="sac-card">
+      <h3>🎯 Target Average — how much more to buy</h3>
+      <div class="sac-row">
+        <div class="sac-field"><label>Current shares</label><input type="number" id="taQty" placeholder="e.g. 100"></div>
+        <div class="sac-field"><label>Current average ₹</label><input type="number" id="taAvg" placeholder="e.g. 250"></div>
+        <div class="sac-field"><label>Buy more at price ₹</label><input type="number" id="taPrice" placeholder="e.g. 200"></div>
+        <div class="sac-field"><label>Average you want ₹</label><input type="number" id="taTarget" placeholder="e.g. 225"></div>
+      </div>
+      <div class="sac-out" id="taOut"></div>
+    </div>
+
+    <div class="sac-card">
+      <h3>🔁 Reverse Average — new average after a buy</h3>
+      <div class="sac-row">
+        <div class="sac-field"><label>Current shares</label><input type="number" id="raQty" placeholder="e.g. 100"></div>
+        <div class="sac-field"><label>Current average ₹</label><input type="number" id="raAvg" placeholder="e.g. 250"></div>
+        <div class="sac-field"><label>Extra shares to buy</label><input type="number" id="raAdd" placeholder="e.g. 50"></div>
+        <div class="sac-field"><label>At price ₹</label><input type="number" id="raPrice" placeholder="e.g. 200"></div>
+      </div>
+      <div class="sac-out" id="raOut"></div>
+    </div>
+  </section>
+
+  <!-- ───────── SELL / P&L ───────── -->
+  <section class="sac-panel" data-panel="sell">
+    <div class="sac-card">
+      <h3>💰 Sell — Profit / Loss</h3>
+      <div class="sac-row">
+        <div class="sac-field"><label>Shares to sell</label><input type="number" id="slQty" placeholder="e.g. 100"></div>
+        <div class="sac-field"><label>Buy / average price ₹</label><input type="number" id="slBuy" placeholder="e.g. 200"></div>
+        <div class="sac-field"><label>Sell price ₹</label><input type="number" id="slSell" placeholder="e.g. 250"></div>
+      </div>
+      <div class="sac-out" id="slOut"></div>
+      <p class="sac-note">Net of charges? Use the Brokerage tab to subtract real trading costs.</p>
+    </div>
+  </section>
+
+  <!-- ───────── SIP ───────── -->
+  <section class="sac-panel" data-panel="sip">
+    <div class="sac-card">
+      <h3>📅 SIP Calculator</h3>
+      <div class="sac-row">
+        <div class="sac-field"><label>Monthly investment ₹</label><input type="number" id="sipAmt" value="5000"></div>
+        <div class="sac-field"><label>Expected return % / yr</label><input type="number" id="sipRate" value="12"></div>
+        <div class="sac-field"><label>Duration (years)</label><input type="number" id="sipYears" value="10"></div>
+      </div>
+      <div class="sac-out" id="sipOut"></div>
+      <canvas class="sac-chart" id="sipChart" width="520" height="170" aria-label="SIP growth chart"></canvas>
+    </div>
+    <div class="sac-card">
+      <h3>🏦 Lumpsum / Future Planner</h3>
+      <div class="sac-row">
+        <div class="sac-field"><label>One-time invest ₹</label><input type="number" id="lsAmt" value="100000"></div>
+        <div class="sac-field"><label>Expected CAGR %</label><input type="number" id="lsRate" value="12"></div>
+        <div class="sac-field"><label>Years</label><input type="number" id="lsYears" value="10"></div>
+      </div>
+      <div class="sac-out" id="lsOut"></div>
+    </div>
+  </section>
+
+  <!-- ───────── CHARGES ───────── -->
+  <section class="sac-panel" data-panel="charges">
+    <div class="sac-card">
+      <h3>🧾 Brokerage &amp; Charges (India equity)</h3>
+      <div class="sac-row">
+        <div class="sac-field"><label>Trade type</label><select id="chType"><option value="delivery">Delivery (CNC)</option><option value="intraday">Intraday (MIS)</option></select></div>
+        <div class="sac-field"><label>Quantity</label><input type="number" id="chQty" placeholder="e.g. 100"></div>
+        <div class="sac-field"><label>Buy price ₹</label><input type="number" id="chBuy" placeholder="e.g. 200"></div>
+        <div class="sac-field"><label>Sell price ₹</label><input type="number" id="chSell" placeholder="e.g. 250"></div>
+        <div class="sac-field"><label>Brokerage / order ₹ (max)</label><input type="number" id="chBrok" value="20"></div>
+      </div>
+      <div class="sac-out" id="chOut"></div>
+      <p class="sac-disc">⚠️ Charges are approximate (STT, exchange txn, GST 18%, SEBI, stamp duty). Actual costs vary by broker, segment and state. Verify with your broker's contract note.</p>
+    </div>
+  </section>
+
+  <!-- ───────── RISK ───────── -->
+  <section class="sac-panel" data-panel="risk">
+    <div class="sac-card">
+      <h3>🛡️ Risk &amp; Position Size</h3>
+      <div class="sac-row">
+        <div class="sac-field"><label>Capital ₹</label><input type="number" id="rkCap" value="100000"></div>
+        <div class="sac-field"><label>Risk per trade %</label><input type="number" id="rkRisk" value="2"></div>
+        <div class="sac-field"><label>Entry price ₹</label><input type="number" id="rkEntry" placeholder="e.g. 250"></div>
+        <div class="sac-field"><label>Stop-loss price ₹</label><input type="number" id="rkSl" placeholder="e.g. 240"></div>
+        <div class="sac-field"><label>Reward : Risk</label><input type="number" id="rkRR" value="2"></div>
+      </div>
+      <div class="sac-out" id="rkOut"></div>
+    </div>
+  </section>
+
+  <!-- ───────── CORPORATE ───────── -->
+  <section class="sac-panel" data-panel="corp">
+    <div class="sac-card">
+      <h3>🎁 Bonus / Split — adjusted average</h3>
+      <div class="sac-row">
+        <div class="sac-field"><label>Current shares</label><input type="number" id="bsQty" placeholder="e.g. 100"></div>
+        <div class="sac-field"><label>Current average ₹</label><input type="number" id="bsAvg" placeholder="e.g. 250"></div>
+        <div class="sac-field"><label>Action</label><select id="bsType"><option value="bonus">Bonus (ratio A:B)</option><option value="split">Stock Split (old:new FV)</option></select></div>
+        <div class="sac-field"><label>Ratio A (get/old)</label><input type="number" id="bsA" value="1"></div>
+        <div class="sac-field"><label>Ratio B (for/new)</label><input type="number" id="bsB" value="1"></div>
+      </div>
+      <div class="sac-out" id="bsOut"></div>
+      <p class="sac-note">Bonus 1:1 → shares double, average halves. Split 10→1 (FV ₹10 to ₹1) → shares ×10, average ÷10.</p>
+    </div>
+    <div class="sac-card">
+      <h3>💵 Dividend</h3>
+      <div class="sac-row">
+        <div class="sac-field"><label>Shares held</label><input type="number" id="dvQty" placeholder="e.g. 100"></div>
+        <div class="sac-field"><label>Dividend / share ₹</label><input type="number" id="dvPer" placeholder="e.g. 5"></div>
+        <div class="sac-field"><label>Current price ₹ (for yield)</label><input type="number" id="dvPrice" placeholder="e.g. 250"></div>
+      </div>
+      <div class="sac-out" id="dvOut"></div>
+    </div>
+  </section>
+
+  <!-- ───────── TAX ───────── -->
+  <section class="sac-panel" data-panel="tax">
+    <div class="sac-card">
+      <h3>🧮 Capital Gains Tax (equity)</h3>
+      <div class="sac-row">
+        <div class="sac-field"><label>Total buy value ₹</label><input type="number" id="txBuy" placeholder="e.g. 100000"></div>
+        <div class="sac-field"><label>Total sell value ₹</label><input type="number" id="txSell" placeholder="e.g. 130000"></div>
+        <div class="sac-field"><label>Holding</label><select id="txTerm"><option value="short">Short-term (&lt; 1 yr)</option><option value="long">Long-term (≥ 1 yr)</option></select></div>
+      </div>
+      <div class="sac-out" id="txOut"></div>
+      <p class="sac-disc">⚠️ Indicative only. Listed-equity STT-paid rates used: STCG 20%, LTCG 12.5% on gains above ₹1.25 lakh exemption. Tax rules change — consult a professional.</p>
+    </div>
+  </section>
+
+  <!-- ───────── PORTFOLIO ───────── -->
+  <section class="sac-panel" data-panel="port">
+    <div class="sac-card">
+      <h3>📊 Portfolio — holdings &amp; allocation</h3>
+      <div class="sac-entries" id="pfEntries"></div>
+      <div class="sac-btns">
+        <button class="sac-btn ghost" type="button" id="pfAdd">＋ Add Stock</button>
+        <button class="sac-btn ghost" type="button" id="pfClear">🗑️ Clear</button>
+      </div>
+      <div class="sac-out" id="pfOut"></div>
+      <canvas class="sac-chart" id="pfChart" width="320" height="320" aria-label="Portfolio allocation chart"></canvas>
+      <p class="sac-note">Enter each stock's name, quantity, average and current price. (Live prices are Coming Soon — type the current price for now.)</p>
+    </div>
+  </section>
+
+  <!-- ───────── SCENARIO ───────── -->
+  <section class="sac-panel" data-panel="scn">
+    <div class="sac-card">
+      <h3>🔮 Scenario Simulator — what-if P&amp;L</h3>
+      <div class="sac-row">
+        <div class="sac-field"><label>Shares</label><input type="number" id="scQty" placeholder="e.g. 100"></div>
+        <div class="sac-field"><label>Average price ₹</label><input type="number" id="scAvg" placeholder="e.g. 250"></div>
+        <div class="sac-field"><label>Step %</label><input type="number" id="scStep" value="5"></div>
+      </div>
+      <div id="scTable" style="margin-top:14px;overflow-x:auto"></div>
+    </div>
+  </section>
+
+  <!-- ───────── COMING SOON ───────── -->
+  <section class="sac-panel" data-panel="live">
+    <div class="sac-card">
+      <div class="sac-soon">
+        <div class="big">🚧</div>
+        <h4>Live Price · Intraday · F&amp;O · Options · Alerts — Coming Soon</h4>
+        <p>These need a real-time market-data feed (NSE/BSE). They'll arrive once a data source is connected. Every calculator on this page already works fully offline.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="sac-btns" style="margin-top:18px">
+    <button class="sac-btn" type="button" id="sacPdf">⬇️ Export Summary PDF</button>
+    <button class="sac-btn ghost" type="button" id="sacCopy">📋 Copy Average Result</button>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="sac-related">
+  <h2>🔗 Related Calculators</h2>
+  <div class="sac-grid" id="sacRelated"></div>
+</div>
+
+<!-- SEO -->
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About the Stock Average Calculator</h2>
+      <p>Averaging is one of the most common things an investor does: you buy a share at one price, it falls, and you buy more to bring your <strong>average buy price</strong> down. This free Stock Average Calculator does that maths instantly and goes much further — letting you add unlimited buy entries (or upload a CSV of your trades), plan a <strong>target average</strong>, work out <strong>sell profit/loss</strong>, estimate <strong>SIP</strong> returns, real <strong>brokerage &amp; charges</strong>, <strong>capital-gains tax</strong>, <strong>position size</strong> for risk management, and adjust for <strong>bonus &amp; splits</strong>.</p>
+      <h3>✨ What you can do</h3>
+      <ul>
+        <li><b>Average price</b> across any number of buys, with a live chart.</li>
+        <li><b>Target average</b> — how many extra shares to buy to reach a chosen average.</li>
+        <li><b>Sell P&amp;L</b>, <b>SIP</b> &amp; lumpsum future value, <b>brokerage</b>, <b>tax</b>.</li>
+        <li><b>Risk &amp; position size</b>, <b>bonus/split</b> &amp; <b>dividend</b>, <b>scenario simulator</b>, <b>portfolio allocation</b>.</li>
+        <li><b>CSV upload</b> and <b>PDF export</b> of your summary.</li>
+      </ul>
+      <h3>📝 How to use</h3>
+      <ol>
+        <li>On the <em>Average</em> tab, add the quantity and price of every purchase.</li>
+        <li>Read your average buy price, total quantity and total investment instantly.</li>
+        <li>Switch tabs to plan a target average, sell P&amp;L, SIP, charges, tax and more.</li>
+        <li>Export a PDF summary or copy the result.</li>
+      </ol>
+      <h3>❓ FAQ</h3>
+      <p><strong>How is the average calculated?</strong> Total money invested ÷ total shares.</p>
+      <p><strong>Is it free &amp; private?</strong> Yes — free, no signup, everything stays in your browser.</p>
+      <p><strong>Live prices?</strong> Coming soon — all calculations work offline today.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ स्टॉक एवरेज कैलकुलेटर के बारे में</h2>
+      <p>Averaging हर निवेशक का आम काम है: आप कोई शेयर एक भाव पर खरीदते हैं, वो गिरता है, तो और खरीदकर अपना <strong>average buy price</strong> नीचे लाते हैं। यह मुफ़्त Stock Average Calculator यह हिसाब तुरंत करता है और इससे आगे भी — कितने भी buy entries जोड़ें (या trades की CSV upload करें), <strong>target average</strong> प्लान करें, <strong>sell profit/loss</strong> निकालें, <strong>SIP</strong>, असली <strong>brokerage व charges</strong>, <strong>capital-gains tax</strong>, risk के लिए <strong>position size</strong>, और <strong>bonus/split</strong> adjust करें।</p>
+      <h3>✨ आप क्या कर सकते हैं</h3>
+      <ul>
+        <li>कितने भी buys का <b>average price</b>, साथ में chart।</li>
+        <li><b>Target average</b> — मनचाहा average पाने के लिए कितने शेयर और खरीदें।</li>
+        <li><b>Sell P&amp;L</b>, <b>SIP</b> व lumpsum future value, <b>brokerage</b>, <b>tax</b>।</li>
+        <li><b>Risk व position size</b>, <b>bonus/split</b> व <b>dividend</b>, <b>scenario</b>, <b>portfolio</b>।</li>
+        <li><b>CSV upload</b> और <b>PDF export</b>।</li>
+      </ul>
+      <h3>📝 इस्तेमाल कैसे करें</h3>
+      <ol>
+        <li><em>Average</em> tab में हर खरीद की quantity और price डालें।</li>
+        <li>आपका average price, कुल shares और कुल निवेश तुरंत दिखेगा।</li>
+        <li>दूसरे tabs से target average, sell P&amp;L, SIP, charges, tax प्लान करें।</li>
+        <li>PDF summary export करें या result copy करें।</li>
+      </ol>
+      <h3>❓ सामान्य सवाल</h3>
+      <p><strong>Average कैसे निकलता है?</strong> कुल लगाया पैसा ÷ कुल shares।</p>
+      <p><strong>मुफ़्त व निजी?</strong> हाँ — मुफ़्त, बिना signup, सब browser में।</p>
+      <p><strong>Live price?</strong> जल्द आ रहा है — सारे calculations अभी offline चलते हैं।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com · Educational use only, not investment advice.</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+/* ════════ Stock Average Calculator — vanilla JS, modular ════════ */
+(function(){
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const num = v => { const n = parseFloat(v); return isFinite(n) ? n : 0; };
+  const toast = m => { try{ premToast(m); }catch(e){} };
+  const fmt = n => '₹' + (Math.round(n*100)/100).toLocaleString('en-IN', {maximumFractionDigits:2});
+  const fmtN = n => (Math.round(n*100)/100).toLocaleString('en-IN', {maximumFractionDigits:2});
+  const stat = (v, l, cls) => '<div class="sac-stat '+(cls||'')+'"><div class="v">'+v+'</div><div class="l">'+l+'</div></div>';
+
+  /* ---- Tabs ---- */
+  const TABS = [
+    ['avg','🧮 Average'],['sell','💰 Sell P&L'],['sip','📅 SIP'],['charges','🧾 Charges'],
+    ['risk','🛡️ Risk'],['corp','🎁 Bonus/Div'],['tax','🧾 Tax'],['port','📊 Portfolio'],
+    ['scn','🔮 Scenario'],['live','🚧 Live (soon)']
+  ];
+  const tabsEl = $('sacTabs');
+  TABS.forEach(([key,label],i) => {
+    const b = document.createElement('button');
+    b.className = 'sac-tab' + (i===0?' active':''); b.type='button'; b.dataset.go=key;
+    b.textContent = label; b.setAttribute('role','tab');
+    b.addEventListener('click', () => showTab(key));
+    tabsEl.appendChild(b);
+  });
+  function showTab(key){
+    [...tabsEl.children].forEach(c => c.classList.toggle('active', c.dataset.go===key));
+    document.querySelectorAll('.sac-panel').forEach(p => p.classList.toggle('active', p.dataset.panel===key));
+  }
+  showTab('avg');
+
+  /* ════ 1. AVERAGE (multiple buys) ════ */
+  const avgEntries = $('avgEntries');
+  function addBuyRow(qty='', price=''){
+    const row = document.createElement('div'); row.className='sac-entry';
+    row.innerHTML = '<input type="number" placeholder="Quantity" class="q" value="'+qty+'">'+
+                    '<input type="number" placeholder="Buy price ₹" class="p" value="'+price+'">'+
+                    '<button class="sac-del" type="button" aria-label="Remove">✕</button>';
+    row.querySelector('.q').addEventListener('input', calcAvg);
+    row.querySelector('.p').addEventListener('input', calcAvg);
+    row.querySelector('.sac-del').addEventListener('click', () => { row.remove(); calcAvg(); });
+    avgEntries.appendChild(row);
+  }
+  let lastAvg = null;
+  function calcAvg(){
+    let qty=0, amount=0; const prices=[];
+    avgEntries.querySelectorAll('.sac-entry').forEach(r => {
+      const q = num(r.querySelector('.q').value), p = num(r.querySelector('.p').value);
+      if(q>0 && p>0){ qty += q; amount += q*p; prices.push({q,p}); }
+    });
+    const avg = qty ? amount/qty : 0;
+    lastAvg = { qty, amount, avg };
+    $('avgOut').innerHTML = stat(fmt(avg),'Average Price','good') + stat(fmtN(qty),'Total Shares') +
+      stat(fmt(amount),'Total Invested') + stat(prices.length,'Buy Entries');
+    drawAvgChart(prices, avg);
+  }
+  $('avgAdd').addEventListener('click', () => { addBuyRow(); });
+  $('avgClear').addEventListener('click', () => { avgEntries.innerHTML=''; addBuyRow(); addBuyRow(); calcAvg(); });
+  // CSV upload
+  $('avgCsv').addEventListener('click', () => $('avgCsvFile').click());
+  $('avgCsvFile').addEventListener('change', e => {
+    const f = e.target.files[0]; if(!f) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const rows = String(reader.result).split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+      avgEntries.innerHTML=''; let added=0;
+      rows.forEach(line => {
+        const parts = line.split(/[,;\t]/).map(s=>s.trim());
+        const q = parseFloat(parts[0]), p = parseFloat(parts[1]);
+        if(isFinite(q) && isFinite(p)){ addBuyRow(q, p); added++; }
+      });
+      if(!added){ addBuyRow(); addBuyRow(); toast('No valid qty,price rows found'); }
+      else toast('📄 Loaded '+added+' rows');
+      calcAvg();
+    };
+    reader.readAsText(f);
+  });
+
+  /* Target average */
+  function calcTA(){
+    const qty=num($('taQty').value), avg=num($('taAvg').value), price=num($('taPrice').value), target=num($('taTarget').value);
+    const out=$('taOut');
+    if(!(qty>0&&avg>0&&price>0&&target>0)){ out.innerHTML=stat('—','Fill all fields'); return; }
+    // (qty*avg + x*price) / (qty+x) = target  →  x = qty*(avg-target)/(target-price)
+    const denom = target - price;
+    if(denom===0){ out.innerHTML=stat('∞','Buy price = target — impossible','bad'); return; }
+    const x = qty*(avg-target)/denom;
+    if(x<=0){ out.innerHTML=stat('Not possible','At ₹'+fmtN(price)+', target ₹'+fmtN(target)+' unreachable by buying','bad'); return; }
+    const newAmt = qty*avg + x*price, newQty = qty+x;
+    out.innerHTML = stat(Math.ceil(x).toLocaleString('en-IN'),'Shares to Buy','good') +
+      stat(fmt(x*price),'Extra Investment') + stat(fmt(newAmt/newQty),'New Average') + stat(fmtN(Math.round(newQty)),'Total Shares');
+  }
+  ['taQty','taAvg','taPrice','taTarget'].forEach(id=>$(id).addEventListener('input',calcTA));
+
+  /* Reverse average */
+  function calcRA(){
+    const qty=num($('raQty').value), avg=num($('raAvg').value), add=num($('raAdd').value), price=num($('raPrice').value);
+    const out=$('raOut');
+    if(!(qty>0&&avg>0&&add>0&&price>0)){ out.innerHTML=stat('—','Fill all fields'); return; }
+    const newQty=qty+add, newAmt=qty*avg+add*price, newAvg=newAmt/newQty;
+    const diff=newAvg-avg;
+    out.innerHTML = stat(fmt(newAvg),'New Average', diff<0?'good':'bad') + stat(fmtN(newQty),'Total Shares') +
+      stat(fmt(newAmt),'Total Invested') + stat((diff<0?'↓ ':'↑ ')+fmt(Math.abs(diff)),'Avg Change', diff<0?'good':'bad');
+  }
+  ['raQty','raAvg','raAdd','raPrice'].forEach(id=>$(id).addEventListener('input',calcRA));
+
+  /* ════ 2. SELL P&L ════ */
+  function calcSell(){
+    const qty=num($('slQty').value), buy=num($('slBuy').value), sell=num($('slSell').value);
+    const out=$('slOut');
+    if(!(qty>0&&buy>0&&sell>0)){ out.innerHTML=stat('—','Fill all fields'); return; }
+    const pl=(sell-buy)*qty, plPct=(sell-buy)/buy*100, cls=pl>=0?'good':'bad';
+    out.innerHTML = stat((pl>=0?'+':'')+fmt(pl),'Net P&L',cls) + stat((plPct>=0?'+':'')+fmtN(plPct)+'%','Return',cls) +
+      stat(fmt(buy*qty),'Buy Value') + stat(fmt(sell*qty),'Sell Value');
+  }
+  ['slQty','slBuy','slSell'].forEach(id=>$(id).addEventListener('input',calcSell));
+
+  /* ════ 3. SIP + Lumpsum ════ */
+  function calcSip(){
+    const amt=num($('sipAmt').value), rate=num($('sipRate').value), years=num($('sipYears').value);
+    const n=years*12, i=rate/100/12;
+    const fv = i>0 ? amt*((Math.pow(1+i,n)-1)/i)*(1+i) : amt*n;
+    const invested=amt*n, gain=fv-invested;
+    $('sipOut').innerHTML = stat(fmt(fv),'Future Value','good') + stat(fmt(invested),'Invested') +
+      stat(fmt(gain),'Est. Returns','good') + stat(fmtN(invested?gain/invested*100:0)+'%','Growth');
+    // yearly growth chart
+    const pts=[]; for(let y=1;y<=years;y++){ const m=y*12; pts.push(i>0?amt*((Math.pow(1+i,m)-1)/i)*(1+i):amt*m); }
+    drawBars($('sipChart'), pts, amt*12);
+  }
+  ['sipAmt','sipRate','sipYears'].forEach(id=>$(id).addEventListener('input',calcSip));
+  function calcLs(){
+    const amt=num($('lsAmt').value), rate=num($('lsRate').value), years=num($('lsYears').value);
+    const fv=amt*Math.pow(1+rate/100,years), gain=fv-amt;
+    $('lsOut').innerHTML = stat(fmt(fv),'Future Value','good') + stat(fmt(amt),'Invested') +
+      stat(fmt(gain),'Est. Gain','good') + stat(fmtN(amt?gain/amt*100:0)+'%','Total Growth');
+  }
+  ['lsAmt','lsRate','lsYears'].forEach(id=>$(id).addEventListener('input',calcLs));
+
+  /* ════ 4. CHARGES (India equity, approximate) ════ */
+  function calcCharges(){
+    const type=$('chType').value, qty=num($('chQty').value), buy=num($('chBuy').value), sell=num($('chSell').value), brokMax=num($('chBrok').value);
+    const out=$('chOut');
+    if(!(qty>0&&buy>0&&sell>0)){ out.innerHTML=stat('—','Fill all fields'); return; }
+    const buyVal=qty*buy, sellVal=qty*sell, turnover=buyVal+sellVal;
+    let brokerage, stt, stamp;
+    if(type==='delivery'){
+      brokerage = 0; // most discount brokers: 0 on delivery
+      stt = 0.001*(buyVal+sellVal);          // 0.1% both sides
+      stamp = 0.00015*buyVal;                 // 0.015% buy
+    } else {
+      brokerage = Math.min(brokMax, buyVal*0.0003) + Math.min(brokMax, sellVal*0.0003); // 0.03% or cap
+      stt = 0.00025*sellVal;                  // 0.025% sell side
+      stamp = 0.00003*buyVal;                 // 0.003% buy
+    }
+    const exch = 0.0000297*turnover;          // ~NSE 0.00297%
+    const sebi = 0.000001*turnover;           // ₹10/crore
+    const gst = 0.18*(brokerage+exch+sebi);
+    const total = brokerage+stt+exch+sebi+stamp+gst;
+    const gross = sellVal-buyVal, net = gross-total;
+    out.innerHTML = stat(fmt(total),'Total Charges','bad') + stat(fmt(brokerage),'Brokerage') +
+      stat(fmt(stt),'STT') + stat(fmt(gst),'GST') +
+      stat((net>=0?'+':'')+fmt(net),'Net P&L', net>=0?'good':'bad') +
+      stat(fmt(buy + total/qty),'Break-even Price');
+  }
+  ['chType','chQty','chBuy','chSell','chBrok'].forEach(id=>$(id).addEventListener('input',calcCharges));
+
+  /* ════ 5. RISK / POSITION ════ */
+  function calcRisk(){
+    const cap=num($('rkCap').value), risk=num($('rkRisk').value), entry=num($('rkEntry').value), sl=num($('rkSl').value), rr=num($('rkRR').value);
+    const out=$('rkOut');
+    if(!(cap>0&&risk>0&&entry>0&&sl>0&&entry!==sl)){ out.innerHTML=stat('—','Fill all fields'); return; }
+    const riskAmt=cap*risk/100, perShare=Math.abs(entry-sl), qty=Math.floor(riskAmt/perShare);
+    const target = entry + (entry>sl?1:-1)*perShare*rr;
+    out.innerHTML = stat(qty.toLocaleString('en-IN'),'Position Size (qty)','good') + stat(fmt(riskAmt),'Risk Amount','bad') +
+      stat(fmt(qty*entry),'Capital Used') + stat(fmt(target),'Target ('+fmtN(rr)+'R)','good') +
+      stat(fmt(qty*perShare*rr),'Potential Reward','good');
+  }
+  ['rkCap','rkRisk','rkEntry','rkSl','rkRR'].forEach(id=>$(id).addEventListener('input',calcRisk));
+
+  /* ════ 6. BONUS/SPLIT + DIVIDEND ════ */
+  function calcBs(){
+    const qty=num($('bsQty').value), avg=num($('bsAvg').value), type=$('bsType').value, a=num($('bsA').value), b=num($('bsB').value);
+    const out=$('bsOut');
+    if(!(qty>0&&avg>0&&a>0&&b>0)){ out.innerHTML=stat('—','Fill all fields'); return; }
+    let newQty, newAvg;
+    if(type==='bonus'){ newQty = qty + qty*(a/b); newAvg = (qty*avg)/newQty; }
+    else { const ratio=a/b; newQty=qty*ratio; newAvg=avg/ratio; } // split old FV:new FV
+    out.innerHTML = stat(fmtN(Math.round(newQty)),'New Shares','good') + stat(fmt(newAvg),'New Average') +
+      stat(fmt(qty*avg),'Investment (unchanged)');
+  }
+  ['bsQty','bsAvg','bsType','bsA','bsB'].forEach(id=>$(id).addEventListener('input',calcBs));
+  function calcDiv(){
+    const qty=num($('dvQty').value), per=num($('dvPer').value), price=num($('dvPrice').value);
+    const out=$('dvOut');
+    if(!(qty>0&&per>0)){ out.innerHTML=stat('—','Fill shares & dividend'); return; }
+    const total=qty*per, yield_=price>0?per/price*100:0;
+    out.innerHTML = stat(fmt(total),'Total Dividend','good') + (price>0?stat(fmtN(yield_)+'%','Dividend Yield'):'');
+  }
+  ['dvQty','dvPer','dvPrice'].forEach(id=>$(id).addEventListener('input',calcDiv));
+
+  /* ════ 7. TAX ════ */
+  function calcTax(){
+    const buy=num($('txBuy').value), sell=num($('txSell').value), term=$('txTerm').value;
+    const out=$('txOut');
+    if(!(buy>0&&sell>0)){ out.innerHTML=stat('—','Fill buy & sell value'); return; }
+    const gain=sell-buy;
+    if(gain<=0){ out.innerHTML=stat(fmt(gain),'No gain — no tax','good'); return; }
+    let tax, label;
+    if(term==='short'){ tax=gain*0.20; label='STCG @ 20%'; }
+    else { const taxable=Math.max(0, gain-125000); tax=taxable*0.125; label='LTCG @ 12.5% (>₹1.25L)'; }
+    out.innerHTML = stat(fmt(gain),'Capital Gain','good') + stat(fmt(tax),label,'bad') + stat(fmt(gain-tax),'After Tax','good');
+  }
+  ['txBuy','txSell','txTerm'].forEach(id=>$(id).addEventListener('input',calcTax));
+
+  /* ════ 8. PORTFOLIO ════ */
+  const pfEntries=$('pfEntries');
+  const PF_COLORS=['#7C5CFC','#16C079','#06B6D4','#f59e0b','#ef4444','#A78BFA','#ec4899','#10b981','#f97316','#3b82f6'];
+  function addPfRow(name='',qty='',avg='',price=''){
+    const row=document.createElement('div'); row.className='sac-entry'; row.style.gridTemplateColumns='1.4fr 1fr 1fr 1fr auto';
+    row.innerHTML='<input class="nm" placeholder="Stock" value="'+name+'"><input type="number" class="q" placeholder="Qty" value="'+qty+'">'+
+      '<input type="number" class="a" placeholder="Avg ₹" value="'+avg+'"><input type="number" class="c" placeholder="Price ₹" value="'+price+'">'+
+      '<button class="sac-del" type="button" aria-label="Remove">✕</button>';
+    row.querySelectorAll('input').forEach(inp=>inp.addEventListener('input',calcPf));
+    row.querySelector('.sac-del').addEventListener('click',()=>{row.remove();calcPf();});
+    pfEntries.appendChild(row);
+  }
+  function calcPf(){
+    let invested=0, value=0; const slices=[];
+    pfEntries.querySelectorAll('.sac-entry').forEach((r,i)=>{
+      const nm=r.querySelector('.nm').value||('Stock '+(i+1));
+      const q=num(r.querySelector('.q').value), a=num(r.querySelector('.a').value), c=num(r.querySelector('.c').value);
+      if(q>0){ invested+=q*a; const v=q*(c||a); value+=v; slices.push({nm,v}); }
+    });
+    const pl=value-invested, cls=pl>=0?'good':'bad';
+    $('pfOut').innerHTML = stat(fmt(value),'Current Value','good') + stat(fmt(invested),'Invested') +
+      stat((pl>=0?'+':'')+fmt(pl),'Total P&L',cls) + stat(fmtN(invested?pl/invested*100:0)+'%','Return',cls);
+    drawPie($('pfChart'), slices);
+  }
+  $('pfAdd').addEventListener('click',()=>addPfRow());
+  $('pfClear').addEventListener('click',()=>{pfEntries.innerHTML='';addPfRow();calcPf();});
+
+  /* ════ 9. SCENARIO ════ */
+  function calcScn(){
+    const qty=num($('scQty').value), avg=num($('scAvg').value), step=num($('scStep').value)||5;
+    const t=$('scTable');
+    if(!(qty>0&&avg>0)){ t.innerHTML='<p class="sac-note">Enter shares and average price.</p>'; return; }
+    let html='<table style="width:100%;border-collapse:collapse;font-size:.85rem;color:var(--sac-text)">'+
+      '<tr style="color:var(--sac-dim)"><th style="text-align:left;padding:6px">Price</th><th style="text-align:right;padding:6px">Change</th><th style="text-align:right;padding:6px">P&L</th><th style="text-align:right;padding:6px">Value</th></tr>';
+    for(let pct=-4*step; pct<=4*step; pct+=step){
+      const price=avg*(1+pct/100), pl=(price-avg)*qty, val=price*qty, c=pl>=0?'#16C079':'#ef4444';
+      html+='<tr style="border-top:1px solid var(--sac-brd)"><td style="padding:6px">'+fmt(price)+'</td>'+
+        '<td style="text-align:right;padding:6px;color:'+c+'">'+(pct>=0?'+':'')+pct+'%</td>'+
+        '<td style="text-align:right;padding:6px;color:'+c+'">'+(pl>=0?'+':'')+fmt(pl)+'</td>'+
+        '<td style="text-align:right;padding:6px">'+fmt(val)+'</td></tr>';
+    }
+    t.innerHTML=html+'</table>';
+  }
+  ['scQty','scAvg','scStep'].forEach(id=>$(id).addEventListener('input',calcScn));
+
+  /* ════ CHARTS (pure canvas) ════ */
+  function dpr(c){ const r=window.devicePixelRatio||1; const w=c.width, h=c.height; c.width=w*r; c.height=h*r; const ctx=c.getContext('2d'); ctx.scale(r,r); c.width=w; c.height=h; return c.getContext('2d'); }
+  function drawAvgChart(prices, avg){
+    const c=$('avgChart'), ctx=c.getContext('2d'), W=c.width, H=c.height; ctx.clearRect(0,0,W,H);
+    if(!prices.length) return;
+    const all=prices.map(p=>p.p).concat([avg]); const max=Math.max(...all)*1.1, min=Math.min(...all)*0.9, rng=max-min||1;
+    const y=v=>H-20-((v-min)/rng)*(H-40);
+    // average line
+    ctx.strokeStyle='#A78BFA'; ctx.setLineDash([5,4]); ctx.beginPath(); ctx.moveTo(40,y(avg)); ctx.lineTo(W-10,y(avg)); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle='#A78BFA'; ctx.font='11px sans-serif'; ctx.fillText('Avg '+fmt(avg), 42, y(avg)-4);
+    // bars per buy
+    const bw=(W-50)/prices.length;
+    prices.forEach((p,i)=>{ const x=40+i*bw+bw*0.2, bh=H-20-y(p.p); ctx.fillStyle=p.p<avg?'#16C079':'#ef4444'; ctx.fillRect(x, y(p.p), bw*0.6, bh); });
+  }
+  function drawBars(c, pts, base){
+    const ctx=c.getContext('2d'), W=c.width, H=c.height; ctx.clearRect(0,0,W,H);
+    if(!pts.length) return; const max=Math.max(...pts)*1.1||1; const bw=(W-20)/pts.length;
+    pts.forEach((v,i)=>{ const h=(v/max)*(H-30); const inv=base*(i+1); const ih=(inv/max)*(H-30);
+      ctx.fillStyle='rgba(124,92,252,.25)'; ctx.fillRect(10+i*bw+bw*0.15, H-20-h, bw*0.7, h);
+      ctx.fillStyle='#16C079'; ctx.fillRect(10+i*bw+bw*0.15, H-20-ih, bw*0.7, Math.min(ih,3)); });
+    ctx.fillStyle='rgba(150,150,170,.8)'; ctx.font='10px sans-serif'; ctx.fillText('Value (purple) vs invested', 12, 12);
+  }
+  function drawPie(c, slices){
+    const ctx=c.getContext('2d'), W=c.width, H=c.height, R=Math.min(W,H)/2-10, cx=W/2, cy=H/2; ctx.clearRect(0,0,W,H);
+    const total=slices.reduce((s,x)=>s+x.v,0); if(!total){ return; }
+    let a=-Math.PI/2;
+    slices.forEach((s,i)=>{ const ang=s.v/total*Math.PI*2; ctx.beginPath(); ctx.moveTo(cx,cy);
+      ctx.arc(cx,cy,R,a,a+ang); ctx.closePath(); ctx.fillStyle=PF_COLORS[i%PF_COLORS.length]; ctx.fill();
+      const mid=a+ang/2, lx=cx+Math.cos(mid)*(R*0.6), ly=cy+Math.sin(mid)*(R*0.6);
+      if(s.v/total>0.05){ ctx.fillStyle='#fff'; ctx.font='bold 11px sans-serif'; ctx.textAlign='center';
+        ctx.fillText(Math.round(s.v/total*100)+'%', lx, ly); }
+      a+=ang; });
+    ctx.textAlign='left';
+  }
+
+  /* ════ Export PDF (pure JS) + Copy ════ */
+  function buildSummaryText(){
+    const a=lastAvg||{qty:0,amount:0,avg:0};
+    const lines=['ApneSoftware - Stock Average Calculator','', 'Average buy price: '+fmt(a.avg),
+      'Total shares: '+fmtN(a.qty), 'Total invested: '+fmt(a.amount),'',
+      'Generated at apnesoftware.com/tools/stock-average-calculator.html'];
+    return lines;
+  }
+  $('sacCopy').addEventListener('click',()=>{
+    const txt=buildSummaryText().join('\n');
+    if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(()=>toast('📋 Copied')).catch(()=>toast('Copy failed')); }
+  });
+  $('sacPdf').addEventListener('click',()=>{
+    downloadBlob('stock-average-summary.pdf', textToPdfBlob(buildSummaryText()));
+  });
+  function textToPdfBlob(lines){
+    const esc=s=>s.replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');
+    const san=s=>String(s).replace(/[^\x20-\x7E]/g, c => c==='₹'?'Rs.':'?');
+    const fs=12, lead=18, left=56, topY=760;
+    const body=lines.map(san);
+    let stream='BT /F1 '+fs+' Tf '+lead+' TL '+left+' '+topY+' Td\n';
+    body.forEach(l=>{ stream+='('+esc(l)+') Tj T*\n'; }); stream+='ET';
+    const objs={};
+    objs[1]='<< /Type /Catalog /Pages 2 0 R >>';
+    objs[2]='<< /Type /Pages /Count 1 /Kids [4 0 R] >>';
+    objs[3]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>';
+    objs[4]='<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R >> >> /Contents 5 0 R >>';
+    objs[5]='<< /Length '+stream.length+' >>\nstream\n'+stream+'\nendstream';
+    let pdf='%PDF-1.4\n'; const off={};
+    for(let n=1;n<=5;n++){ off[n]=pdf.length; pdf+=n+' 0 obj\n'+objs[n]+'\nendobj\n'; }
+    const xref=pdf.length; pdf+='xref\n0 6\n0000000000 65535 f \n';
+    for(let n=1;n<=5;n++){ pdf+=String(off[n]).padStart(10,'0')+' 00000 n \n'; }
+    pdf+='trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n'+xref+'\n%%EOF';
+    return new Blob([pdf],{type:'application/pdf'});
+  }
+
+  /* ════ Theme + ripple ════ */
+  const themeBtn=$('sacTheme');
+  function applyTheme(light){ document.body.classList.toggle('sac-light',light); themeBtn.textContent=light?'☀️ Light':'🌙 Dark';
+    try{ localStorage.setItem('sac-theme', light?'light':'dark'); }catch(e){} }
+  themeBtn.addEventListener('click',()=>applyTheme(!document.body.classList.contains('sac-light')));
+  try{ applyTheme(localStorage.getItem('sac-theme')==='light'); }catch(e){}
+  document.addEventListener('click',e=>{ const b=e.target.closest('.sac-tab,.sac-btn'); if(!b) return;
+    const r=document.createElement('span'); const sz=Math.max(b.offsetWidth,b.offsetHeight); const rect=b.getBoundingClientRect();
+    r.className='sac-ripple'; r.style.width=r.style.height=sz+'px'; r.style.left=(e.clientX-rect.left-sz/2)+'px'; r.style.top=(e.clientY-rect.top-sz/2)+'px';
+    b.appendChild(r); setTimeout(()=>r.remove(),600); });
+
+  /* ════ Related ════ */
+  const RELATED=[['💰','EMI Calculator','emi-calculator.html'],['📈','SIP Calculator','sip-calculator.html'],
+    ['🧮','Average Calculator','average-calculator.html'],['💹','Compound Interest','compound-interest-calculator.html'],
+    ['🏦','FD Calculator','fd-calculator.html'],['📊','GST Calculator','gst-calculator.html'],
+    ['🔢','Percentage Calculator','percentage-calculator.html'],['💵','Income Tax','income-tax-calculator.html']];
+  (function(){ const g=$('sacRelated'); const f=document.createDocumentFragment();
+    RELATED.forEach(([ic,nm,href])=>{ const a=document.createElement('a'); a.className='sac-link'; a.href=href;
+      a.innerHTML='<span style="font-size:1.15rem">'+ic+'</span><span style="font-size:.82rem;font-weight:600">'+nm+'</span>'; f.appendChild(a); });
+    g.appendChild(f); })();
+
+  /* ════ Init ════ */
+  addBuyRow('100','250'); addBuyRow('50','200'); calcAvg();
+  addPfRow('',' ',' ',' '); // one empty portfolio row
+  calcSell();calcTA();calcRA();calcSip();calcLs();calcCharges();calcRisk();calcBs();calcDiv();calcTax();calcPf();calcScn();
+})();
+</script>
+</body>
+</html>
