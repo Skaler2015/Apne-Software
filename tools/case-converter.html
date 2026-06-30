@@ -5,22 +5,154 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://apnesoftware.com/tools/case-converter.html">
+<meta name="description" content="Free online Case Converter — convert text to UPPERCASE, lowercase, Title Case, Sentence case, camelCase, snake_case, kebab-case and 18+ formats. Clean text, count words, reverse & sort lines. No signup.">
+<meta name="keywords" content="case converter, uppercase to lowercase, title case, sentence case, camelCase, snake_case, kebab-case, text cleaner, word counter, convert case online">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Case Converter — UPPERCASE / lowercase | ApneSoftware">
-<meta property="og:description" content="Convert UPPERCASE / lowercase. Free online tool — no signup required.">
+<meta property="og:title" content="Case Converter — UPPERCASE, lowercase, Title, camelCase & more | ApneSoftware">
+<meta property="og:description" content="Convert text to 18+ letter cases, clean text, reverse/sort lines and count words instantly. Free online tool — no signup required.">
 <meta property="og:url" content="https://apnesoftware.com/tools/case-converter.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Case Converter — UPPERCASE / lowercase | ApneSoftware">
-<meta name="twitter:description" content="Convert UPPERCASE / lowercase. Free online tool — no signup required.">
+<meta name="twitter:title" content="Case Converter — UPPERCASE, lowercase, Title, camelCase & more | ApneSoftware">
+<meta name="twitter:description" content="Convert text to 18+ letter cases, clean text, reverse/sort lines and count words instantly. Free online tool — no signup required.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
+<!-- ===== Structured data: WebApplication ===== -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Case Converter","description":"Convert UPPERCASE / lowercase. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/case-converter.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"Case Converter","description":"Convert text to UPPERCASE, lowercase, Title Case, Sentence case, camelCase, snake_case, kebab-case and more. Clean, reverse, sort and count text online for free.","url":"https://apnesoftware.com/tools/case-converter.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
-<meta name="color-scheme" content="dark">
-<title>Case Converter — UPPERCASE / lowercase | ApneSoftware</title>
+<!-- ===== Structured data: Breadcrumb ===== -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Text Tools","item":"https://apnesoftware.com/category/text-tools.html"},{"@type":"ListItem","position":3,"name":"Case Converter","item":"https://apnesoftware.com/tools/case-converter.html"}]}
+</script>
+<!-- ===== Structured data: HowTo ===== -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to convert text case online","totalTime":"PT1M","step":[{"@type":"HowToStep","position":1,"name":"Enter text","text":"Type, paste or upload your text into the input box."},{"@type":"HowToStep","position":2,"name":"Choose a format","text":"Click a case button such as UPPERCASE, Title Case, camelCase or snake_case."},{"@type":"HowToStep","position":3,"name":"Copy or download","text":"Copy the converted result or download it as TXT, PDF or DOC."}]}
+</script>
+<!-- ===== Structured data: FAQ ===== -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a Case Converter?","acceptedAnswer":{"@type":"Answer","text":"A Case Converter is a free online tool that changes the letter case of your text — for example UPPERCASE, lowercase, Title Case, Sentence case, camelCase, snake_case and kebab-case — instantly in your browser."}},{"@type":"Question","name":"Is this Case Converter free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool is 100% free, needs no signup, and runs entirely in your browser. Your text never leaves your device."}},{"@type":"Question","name":"Can I convert text to camelCase or snake_case?","acceptedAnswer":{"@type":"Answer","text":"Yes. Besides the standard cases it supports camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, dot.case, path/case, Header-Case and Train-Case for developers."}},{"@type":"Question","name":"Does it work on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool has a responsive layout and works on phones, tablets and desktops, with light and dark themes."}},{"@type":"Question","name":"Is my data safe?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. All processing happens locally in your browser using JavaScript. No text is uploaded to any server."}}]}
+</script>
+
+<meta name="color-scheme" content="dark light">
+<title>Case Converter — UPPERCASE, lowercase, Title, camelCase & more | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
+<style>
+/* ════════════════════════════════════════════════
+   CASE CONVERTER — scoped enhancements (cc- prefix)
+   Reuses global .btn / .panel / .field classes and
+   only adds what's new, so the site theme stays intact.
+═══════════════════════════════════════════════════ */
+:root{
+  --cc-glass-bg:rgba(255,255,255,.08);
+  --cc-glass-brd:rgba(255,255,255,.16);
+  --cc-text:#fff;
+  --cc-text-dim:rgba(255,255,255,.62);
+  --cc-accent:#A78BFA;
+  --cc-input-bg:rgba(0,0,0,.22);
+}
+/* Light theme — scoped to the tool via body.cc-light */
+body.cc-light{
+  background:linear-gradient(135deg,#eef2ff 0%,#f5f3ff 40%,#ecfeff 100%)!important;
+  background-attachment:fixed;
+}
+body.cc-light{
+  --cc-glass-bg:rgba(255,255,255,.7);
+  --cc-glass-brd:rgba(0,0,0,.08);
+  --cc-text:#1e1b34;
+  --cc-text-dim:#55506e;
+  --cc-accent:#6d28d9;
+  --cc-input-bg:rgba(255,255,255,.85);
+}
+body.cc-light .tool-header h1,
+body.cc-light .info-block h2,
+body.cc-light .info-block h3,
+body.cc-light .info-block p,
+body.cc-light .info-block li,
+body.cc-light .cc-text{color:var(--cc-text)!important}
+body.cc-light .tool-header p{color:var(--cc-text-dim)!important}
+
+/* Toolbar above the panel */
+.cc-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:14px 0 4px}
+.cc-toggles{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.cc-switch{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;color:var(--cc-text-dim);cursor:pointer;user-select:none}
+.cc-switch input{position:absolute;opacity:0;width:0;height:0}
+.cc-track{width:40px;height:22px;border-radius:999px;background:var(--cc-input-bg);border:1px solid var(--cc-glass-brd);position:relative;transition:.25s;flex:none}
+.cc-track::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:.25s;box-shadow:0 1px 3px rgba(0,0,0,.4)}
+.cc-switch input:checked + .cc-track{background:linear-gradient(135deg,#7C5CFC,#16C079)}
+.cc-switch input:checked + .cc-track::after{transform:translateX(18px)}
+.cc-switch input:focus-visible + .cc-track{outline:2px solid var(--cc-accent);outline-offset:2px}
+
+/* Section label + button groups */
+.cc-group{margin-top:18px}
+.cc-group-label{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--cc-accent);margin:0 0 10px;display:flex;align-items:center;gap:7px}
+.cc-btns{display:flex;flex-wrap:wrap;gap:9px}
+/* Compact chip-style action buttons (build on global .btn look) */
+.cc-chip{
+  position:relative;overflow:hidden;
+  font:inherit;font-size:.84rem;font-weight:600;
+  padding:9px 15px;border-radius:999px;cursor:pointer;
+  color:var(--cc-text);background:var(--cc-glass-bg);
+  border:1px solid var(--cc-glass-brd);
+  transition:transform .15s ease,background .2s ease,box-shadow .2s ease;
+}
+.cc-chip:hover{transform:translateY(-2px);background:rgba(124,92,252,.22);box-shadow:0 6px 16px rgba(124,92,252,.28)}
+.cc-chip:active{transform:translateY(0) scale(.97)}
+.cc-chip:focus-visible{outline:2px solid var(--cc-accent);outline-offset:2px}
+.cc-chip.danger:hover{background:rgba(239,68,68,.25);box-shadow:0 6px 16px rgba(239,68,68,.3)}
+.cc-chip.accent{background:linear-gradient(135deg,#7C5CFC,#5A3FE0);border-color:transparent;color:#fff}
+.cc-chip.accent:hover{box-shadow:0 8px 20px rgba(124,92,252,.45)}
+/* Ripple */
+.cc-ripple{position:absolute;border-radius:50%;transform:scale(0);background:rgba(255,255,255,.45);pointer-events:none;animation:ccRipple .55s linear}
+@keyframes ccRipple{to{transform:scale(2.6);opacity:0}}
+
+/* Field tweaks */
+.cc-field-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+.cc-field-head label{font-weight:600;color:var(--cc-text);font-size:.92rem}
+.cc-mini-actions{display:flex;gap:6px;flex-wrap:wrap}
+.cc-mini{font-size:.76rem;padding:5px 11px;border-radius:999px;cursor:pointer;background:var(--cc-glass-bg);border:1px solid var(--cc-glass-brd);color:var(--cc-text-dim);transition:.2s}
+.cc-mini:hover{color:var(--cc-text);border-color:var(--cc-accent)}
+.cc-mini:focus-visible{outline:2px solid var(--cc-accent);outline-offset:2px}
+#inputText,#outputText{transition:border-color .2s ease,box-shadow .2s ease}
+.cc-drop{border:1px dashed var(--cc-glass-brd)!important}
+.cc-drop.drag{border-color:#16C079!important;box-shadow:0 0 0 3px rgba(22,192,121,.25) inset}
+
+/* Live stats grid */
+.cc-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:16px}
+.cc-stat{
+  background:var(--cc-glass-bg);border:1px solid var(--cc-glass-brd);
+  border-radius:14px;padding:12px 14px;text-align:center;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+.cc-stat .num{font-size:1.25rem;font-weight:800;color:var(--cc-text);line-height:1.1}
+.cc-stat .lbl{font-size:.72rem;color:var(--cc-text-dim);margin-top:3px}
+
+/* Loading bar */
+.cc-loader{height:3px;border-radius:3px;overflow:hidden;background:transparent;margin-top:8px}
+.cc-loader.show{background:rgba(124,92,252,.2)}
+.cc-loader.show::after{content:"";display:block;height:100%;width:40%;background:linear-gradient(90deg,#7C5CFC,#16C079);border-radius:3px;animation:ccLoad .8s infinite}
+@keyframes ccLoad{0%{margin-left:-40%}100%{margin-left:100%}}
+
+/* Related tools */
+.cc-related{max-width:1040px;margin:30px auto 0;padding:0 22px}
+.cc-related h2{color:var(--cc-text);font-size:1.15rem;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.cc-related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.cc-related-card{
+  display:flex;align-items:center;gap:10px;text-decoration:none;
+  background:var(--cc-glass-bg);border:1px solid var(--cc-glass-brd);
+  border-radius:14px;padding:13px 15px;color:var(--cc-text);
+  transition:transform .15s ease,box-shadow .2s ease,border-color .2s ease;
+}
+.cc-related-card:hover{transform:translateY(-3px);border-color:var(--cc-accent);box-shadow:0 8px 22px rgba(0,0,0,.25)}
+.cc-related-card .ico{font-size:1.25rem}
+.cc-related-card .nm{font-size:.88rem;font-weight:600}
+
+@media(max-width:560px){
+  .cc-toolbar{flex-direction:column;align-items:flex-start}
+  .cc-stat .num{font-size:1.1rem}
+}
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -33,58 +165,165 @@
 <div class="container">
   <div class="tool-header">
     <h1>🔠 Case Converter</h1>
-    <p>Convert text to UPPERCASE, lowercase, Title Case or Sentence case.</p>
+    <p>Convert text to UPPERCASE, lowercase, Title Case, Sentence case, camelCase, snake_case &amp; 18+ formats — plus clean, reverse, sort and count your text.</p>
+  </div>
+
+  <!-- Top toolbar: live mode + theme -->
+  <div class="cc-toolbar">
+    <div class="cc-toggles">
+      <label class="cc-switch" title="Re-apply the last conversion automatically as you type">
+        <input type="checkbox" id="autoConvert" aria-label="Auto convert / live mode">
+        <span class="cc-track"></span><span>⚡ Live / Auto Convert</span>
+      </label>
+    </div>
+    <button class="cc-mini" id="themeToggle" aria-label="Toggle dark and light theme" type="button">🌙 Dark</button>
   </div>
 
   <div class="panel">
+    <!-- INPUT -->
     <div class="field">
-      <label for="inputText">Your Text</label>
-      <textarea id="inputText" placeholder="Type or paste here..."></textarea>
+      <div class="cc-field-head">
+        <label for="inputText">Your Text</label>
+        <div class="cc-mini-actions">
+          <button class="cc-mini" type="button" id="pasteBtn" aria-label="Paste from clipboard">📥 Paste</button>
+          <button class="cc-mini" type="button" id="uploadBtn" aria-label="Upload a text file">📄 Upload</button>
+          <button class="cc-mini" type="button" id="clearInputBtn" aria-label="Clear input">🧹 Clear</button>
+          <input type="file" id="fileInput" accept=".txt,.md,.csv,.log,text/plain" hidden>
+        </div>
+      </div>
+      <textarea id="inputText" class="cc-drop" placeholder="Type, paste or drop a .txt file here..." aria-label="Input text"></textarea>
+      <div class="cc-loader" id="loader" aria-hidden="true"></div>
+    </div>
+
+    <!-- CASE CONVERSIONS (original buttons kept for compatibility) -->
+    <div class="cc-group">
+      <p class="cc-group-label">🔤 Convert Case</p>
+      <div class="btn-row" id="caseBtns">
+        <button class="btn" onclick="convertCase('upper')">UPPERCASE</button>
+        <button class="btn" onclick="convertCase('lower')">lowercase</button>
+        <button class="btn" onclick="convertCase('title')">Title Case</button>
+        <button class="btn" onclick="convertCase('sentence')">Sentence case</button>
+        <button class="btn" onclick="convertCase('alternate')">aLtErNaTe CaSe</button>
+      </div>
+      <!-- Extra case formats injected here by JS -->
+      <div class="cc-btns" id="caseExtra" style="margin-top:9px"></div>
+    </div>
+
+    <!-- TEXT CLEANING -->
+    <div class="cc-group">
+      <p class="cc-group-label">🧼 Clean Text</p>
+      <div class="cc-btns" id="cleanBtns"></div>
+    </div>
+
+    <!-- TEXT UTILITIES -->
+    <div class="cc-group">
+      <p class="cc-group-label">🧰 Text Utilities</p>
+      <div class="cc-btns" id="utilBtns"></div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="field" style="margin-top:20px">
+      <div class="cc-field-head">
+        <label for="outputText">Result</label>
+        <div class="cc-mini-actions">
+          <button class="cc-mini" type="button" id="swapBtn" aria-label="Swap input and output">🔁 Swap</button>
+          <button class="cc-mini" type="button" id="clearOutputBtn" aria-label="Clear output">🧹 Clear</button>
+        </div>
+      </div>
+      <textarea id="outputText" readonly placeholder="Result will appear here..." aria-label="Converted result"></textarea>
     </div>
 
     <div class="btn-row">
-      <button class="btn" onclick="convertCase('upper')">UPPERCASE</button>
-      <button class="btn" onclick="convertCase('lower')">lowercase</button>
-      <button class="btn" onclick="convertCase('title')">Title Case</button>
-      <button class="btn" onclick="convertCase('sentence')">Sentence case</button>
-      <button class="btn" onclick="convertCase('alternate')">aLtErNaTe CaSe</button>
+      <button class="btn" id="copyBtn">📋 Copy Result</button>
+      <button class="btn secondary" id="dlTxt">⬇️ TXT</button>
+      <button class="btn secondary" id="dlPdf">⬇️ PDF</button>
+      <button class="btn secondary" id="dlDoc">⬇️ DOC</button>
+      <button class="btn secondary danger" type="button"
+        onclick="document.getElementById('inputText').value='';document.getElementById('outputText').value='';ccUpdateStats();">🗑️ Clear All</button>
     </div>
+  </div>
 
-    <div class="field" style="margin-top:18px">
-      <label>Result</label>
-      <textarea id="outputText" readonly placeholder="Result will appear here..."></textarea>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn secondary" id="copyBtn">📋 Copy</button>
-      <button class="btn secondary" onclick="document.getElementById('inputText').value='';document.getElementById('outputText').value='';">🗑️ Clear</button>
-    </div>
+  <!-- LIVE STATISTICS -->
+  <div class="cc-stats" id="ccStats" aria-live="polite">
+    <div class="cc-stat"><div class="num" id="stChars">0</div><div class="lbl">Characters</div></div>
+    <div class="cc-stat"><div class="num" id="stCharsNs">0</div><div class="lbl">No Spaces</div></div>
+    <div class="cc-stat"><div class="num" id="stWords">0</div><div class="lbl">Words</div></div>
+    <div class="cc-stat"><div class="num" id="stSentences">0</div><div class="lbl">Sentences</div></div>
+    <div class="cc-stat"><div class="num" id="stParas">0</div><div class="lbl">Paragraphs</div></div>
+    <div class="cc-stat"><div class="num" id="stLines">0</div><div class="lbl">Lines</div></div>
+    <div class="cc-stat"><div class="num" id="stRead">0s</div><div class="lbl">Reading Time</div></div>
+    <div class="cc-stat"><div class="num" id="stSpeak">0s</div><div class="lbl">Speaking Time</div></div>
+    <div class="cc-stat"><div class="num" id="stType">0s</div><div class="lbl">Typing Time</div></div>
   </div>
 </div>
 
+<!-- RELATED TOOLS -->
+<div class="cc-related">
+  <h2>🔗 Related Tools</h2>
+  <div class="cc-related-grid" id="relatedGrid"></div>
+</div>
 
+<!-- SEO / INFO -->
 <div class="info-wrap">
   <div class="info-section">
+    <!-- English -->
     <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Convert your text between UPPERCASE, lowercase, Title Case and other letter cases instantly.</p>
-      <h3>How to use:</h3>
+      <h2>ℹ️ About Case Converter</h2>
+      <p>The ApneSoftware <strong>Case Converter</strong> is a free, fast and privacy-friendly online tool that transforms your text into any letter case you need. Whether you are writing a heading, formatting code, or cleaning up messy text, it does the job instantly — right in your browser, with no signup and nothing uploaded to a server.</p>
+
+      <h3>✨ Features</h3>
+      <ul>
+        <li><strong>18+ case formats:</strong> UPPERCASE, lowercase, Title Case, Sentence case, aLtErNaTe, Toggle, Inverse, Capitalize Words, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, dot.case, path/case, Header-Case and Train-Case.</li>
+        <li><strong>Text cleaning:</strong> remove extra spaces, empty/duplicate lines, tabs, special characters, numbers, letters, emojis and HTML tags.</li>
+        <li><strong>Text utilities:</strong> reverse text/words/lines, shuffle &amp; sort lines, number lines, duplicate lines, merge and split by delimiter.</li>
+        <li><strong>Live statistics:</strong> characters, words, sentences, paragraphs, lines plus reading, speaking and typing time.</li>
+        <li><strong>Export:</strong> copy, download as TXT, PDF or DOC, upload &amp; drag-and-drop files, dark/light theme and keyboard shortcuts.</li>
+      </ul>
+
+      <h3>📝 How to Use</h3>
       <ol>
-        <li>Paste or type your text.</li>
-        <li>Click the case option you want (UPPERCASE, lowercase, etc).</li>
-        <li>Copy the converted text using the Copy button.</li>
+        <li>Type, paste, upload or drag-and-drop your text into the input box.</li>
+        <li>Click any format — for example <em>UPPERCASE</em>, <em>Title Case</em> or <em>snake_case</em>.</li>
+        <li>Use the cleaning and utility buttons to refine the text further.</li>
+        <li>Copy the result or download it as TXT, PDF or DOC.</li>
+        <li>Turn on <em>Live / Auto Convert</em> to apply your last choice automatically as you type.</li>
       </ol>
+
+      <h3>❓ Frequently Asked Questions</h3>
+      <p><strong>Is it free?</strong> Yes — completely free with no signup.</p>
+      <p><strong>Is my text safe?</strong> Yes. Everything runs locally in your browser; your text is never uploaded.</p>
+      <p><strong>Does it support developer cases?</strong> Yes — camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE and more.</p>
+      <p><strong>Does it work on mobile?</strong> Yes, the layout is fully responsive with light and dark themes.</p>
     </div>
     <hr class="info-divider">
+    <!-- Hindi -->
     <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल आपके टेक्स्ट को UPPERCASE, lowercase, Title Case आदि में तुरंत बदल देता है।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
+      <h2>ℹ️ केस कन्वर्टर के बारे में</h2>
+      <p>ApneSoftware का <strong>Case Converter</strong> एक मुफ़्त, तेज़ और सुरक्षित ऑनलाइन टूल है जो आपके टेक्स्ट को किसी भी letter case में बदल देता है। चाहे आप heading लिख रहे हों, code format कर रहे हों, या बिखरा हुआ टेक्स्ट साफ़ कर रहे हों — यह सब कुछ आपके browser में ही तुरंत करता है, बिना signup और बिना किसी server पर भेजे।</p>
+
+      <h3>✨ विशेषताएँ</h3>
+      <ul>
+        <li><strong>18+ केस फ़ॉर्मेट:</strong> UPPERCASE, lowercase, Title Case, Sentence case, aLtErNaTe, Toggle, Inverse, Capitalize Words, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, dot.case, path/case, Header-Case और Train-Case।</li>
+        <li><strong>टेक्स्ट सफ़ाई:</strong> अतिरिक्त spaces, खाली/duplicate lines, tabs, special characters, numbers, letters, emojis और HTML tags हटाएँ।</li>
+        <li><strong>टेक्स्ट यूटिलिटी:</strong> text/words/lines उल्टा करें, lines shuffle व sort करें, line numbering, duplicate, merge और delimiter से split करें।</li>
+        <li><strong>लाइव आँकड़े:</strong> characters, words, sentences, paragraphs, lines के साथ reading, speaking और typing समय।</li>
+        <li><strong>एक्सपोर्ट:</strong> copy करें, TXT/PDF/DOC में download करें, file upload व drag-and-drop, dark/light theme और keyboard shortcuts।</li>
+      </ul>
+
+      <h3>📝 इस्तेमाल कैसे करें</h3>
       <ol>
-        <li>अपना टेक्स्ट पेस्ट करें या टाइप करें।</li>
-        <li>जो केस चाहिए वो बटन दबाएं।</li>
-        <li>बदला हुआ टेक्स्ट Copy बटन से कॉपी करें।</li>
+        <li>अपना टेक्स्ट input box में टाइप करें, paste करें, upload करें या drag-and-drop करें।</li>
+        <li>कोई भी format दबाएँ — जैसे <em>UPPERCASE</em>, <em>Title Case</em> या <em>snake_case</em>।</li>
+        <li>cleaning और utility बटनों से टेक्स्ट को और बेहतर बनाएँ।</li>
+        <li>नतीजा copy करें या TXT/PDF/DOC में download करें।</li>
+        <li><em>Live / Auto Convert</em> चालू करें ताकि टाइप करते ही आपका आख़िरी चुना हुआ format अपने-आप लग जाए।</li>
       </ol>
+
+      <h3>❓ अक्सर पूछे जाने वाले सवाल</h3>
+      <p><strong>क्या यह मुफ़्त है?</strong> हाँ — पूरी तरह मुफ़्त, बिना signup।</p>
+      <p><strong>क्या मेरा टेक्स्ट सुरक्षित है?</strong> हाँ। सब कुछ आपके browser में ही चलता है; आपका टेक्स्ट कहीं upload नहीं होता।</p>
+      <p><strong>क्या developer cases मिलते हैं?</strong> हाँ — camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE और भी बहुत कुछ।</p>
+      <p><strong>क्या यह mobile पर चलता है?</strong> हाँ, layout पूरी तरह responsive है, light और dark theme के साथ।</p>
     </div>
   </div>
 </div>
@@ -93,28 +332,321 @@
 
 <script src="../assets/common.js"></script>
 <script>
-function convertCase(type){
-  const input = document.getElementById('inputText').value;
-  let result = '';
+/* ════════════════════════════════════════════════════════════
+   CASE CONVERTER — clean, modular, framework-free logic.
+   Reuses common.js helpers: copyText, downloadText, downloadBlob,
+   setupDropzone, premToast.
+═══════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
 
-  if(type === 'upper') result = input.toUpperCase();
-  else if(type === 'lower') result = input.toLowerCase();
-  else if(type === 'title'){
-    result = input.toLowerCase().replace(/(^|\s)\S/g, c => c.toUpperCase());
+  // ---- Element refs (cached once) ----
+  const inEl   = document.getElementById('inputText');
+  const outEl  = document.getElementById('outputText');
+  const loader = document.getElementById('loader');
+
+  /* ---------- 1. Word tokenizer (shared by all *Case helpers) ---------- */
+  function toWords(str){
+    return str
+      .replace(/([a-z0-9])([A-Z])/g, '$1 $2')   // split camelCase boundaries
+      .replace(/[_\-\/.\\]+/g, ' ')             // separators → space
+      .replace(/[^A-Za-z0-9 ]+/g, ' ')          // drop other symbols
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
   }
-  else if(type === 'sentence'){
-    result = input.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+  const cap = w => w ? w.charAt(0).toUpperCase() + w.slice(1).toLowerCase() : w;
+
+  /* ---------- 2. Transform registry ---------- */
+  // Each transform is a pure function: (text) => newText
+  const T = {
+    /* --- Case --- */
+    upper:    t => t.toUpperCase(),
+    lower:    t => t.toLowerCase(),
+    title:    t => t.toLowerCase().replace(/(^|\s)\S/g, c => c.toUpperCase()),
+    sentence: t => t.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase()),
+    alternate:t => t.split('').map((c,i)=> i%2===0 ? c.toLowerCase() : c.toUpperCase()).join(''),
+    toggle:   t => t.replace(/[a-z]/gi, c => c === c.toLowerCase() ? c.toUpperCase() : c.toLowerCase()),
+    inverse:  t => t.split('').map((c,i)=> i%2===0 ? c.toUpperCase() : c.toLowerCase()).join(''),
+    capwords: t => t.replace(/(^|\s)(\S)/g, (m,s,c) => s + c.toUpperCase()), // keep rest as-is
+    capfirst: t => t.replace(/^(\s*)(\S)/, (m,s,c) => s + c.toUpperCase()),
+    camel:    t => { const w = toWords(t); return w.map((x,i)=> i===0 ? x.toLowerCase() : cap(x)).join(''); },
+    pascal:   t => toWords(t).map(cap).join(''),
+    snake:    t => toWords(t).map(x=>x.toLowerCase()).join('_'),
+    kebab:    t => toWords(t).map(x=>x.toLowerCase()).join('-'),
+    constant: t => toWords(t).map(x=>x.toUpperCase()).join('_'),
+    dot:      t => toWords(t).map(x=>x.toLowerCase()).join('.'),
+    path:     t => toWords(t).map(x=>x.toLowerCase()).join('/'),
+    header:   t => toWords(t).map(cap).join('-'),
+    train:    t => toWords(t).map(cap).join('-'),
+
+    /* --- Clean --- */
+    cleanSpaces:   t => t.replace(/[^\S\r\n]+/g, ' ').replace(/ *\n */g, '\n'),
+    cleanEmpty:    t => t.split('\n').filter(l => l.trim() !== '').join('\n'),
+    cleanDupLines: t => { const seen = new Set(); return t.split('\n').filter(l => !seen.has(l) && (seen.add(l), true)).join('\n'); },
+    trim:          t => t.split('\n').map(l => l.trim()).join('\n').trim(),
+    cleanTabs:     t => t.replace(/\t/g, ''),
+    cleanAllSpace: t => t.replace(/[ \t]+/g, ''),
+    cleanSpecial:  t => t.replace(/[^A-Za-z0-9\s]/g, ''),
+    cleanNumbers:  t => t.replace(/[0-9]/g, ''),
+    cleanLetters:  t => t.replace(/[A-Za-z]/g, ''),
+    cleanEmoji:    t => t.replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}\u{1F1E6}-\u{1F1FF}\u{200D}]/gu, ''),
+    cleanHtml:     t => t.replace(/<\/?[^>]+>/g, ''),
+
+    /* --- Utilities --- */
+    revText:   t => t.split('').reverse().join(''),
+    revWords:  t => t.split(/\s+/).reverse().join(' '),
+    revLines:  t => t.split('\n').reverse().join('\n'),
+    shuffle:   t => { const a = t.split('\n'); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a.join('\n'); },
+    sortAZ:    t => t.split('\n').sort((a,b)=>a.localeCompare(b)).join('\n'),
+    sortZA:    t => t.split('\n').sort((a,b)=>b.localeCompare(a)).join('\n'),
+    randCase:  t => t.replace(/[a-z]/gi, c => Math.random()<0.5 ? c.toLowerCase() : c.toUpperCase()),
+    numbering: t => t.split('\n').map((l,i)=> (i+1) + '. ' + l).join('\n'),
+    dupLines:  t => t.split('\n').map(l => l + '\n' + l).join('\n'),
+    mergeLines:t => t.split('\n').map(l=>l.trim()).filter(Boolean).join(' '),
+    splitDelim:t => { const d = prompt('Split text by which delimiter?', ','); if(d===null) return t; return t.split(d).join('\n'); }
+  };
+  // Backward-compatible global used by inline onclick="convertCase(...)"
+  window.convertCase = function(type){ run(type); };
+
+  /* ---------- 3. Core runner (single source of truth) ---------- */
+  let lastKey = 'upper';
+  function run(key){
+    if(!T[key]) return;
+    lastKey = key;
+    showLoader();
+    // micro async so the loader can paint on big inputs
+    requestAnimationFrame(() => {
+      try { outEl.value = T[key](inEl.value); }
+      catch(e){ premToast('⚠️ Could not process text'); }
+      hideLoader();
+    });
   }
-  else if(type === 'alternate'){
-    result = input.split('').map((c,i)=> i%2===0 ? c.toLowerCase() : c.toUpperCase()).join('');
+  let loadTimer;
+  function showLoader(){ if(inEl.value.length > 5000){ loader.classList.add('show'); } }
+  function hideLoader(){ clearTimeout(loadTimer); loadTimer = setTimeout(()=> loader.classList.remove('show'), 150); }
+
+  /* ---------- 4. Button definitions → rendered as chips ---------- */
+  const CASE_EXTRA = [
+    ['toggle','Toggle Case'],['inverse','InVeRsE'],['capwords','Capitalize Words'],
+    ['capfirst','Capitalize first'],['camel','camelCase'],['pascal','PascalCase'],
+    ['snake','snake_case'],['kebab','kebab-case'],['constant','CONSTANT_CASE'],
+    ['dot','dot.case'],['path','path/case'],['header','Header-Case'],['train','Train-Case']
+  ];
+  const CLEAN = [
+    ['cleanSpaces','Remove Extra Spaces'],['cleanEmpty','Remove Empty Lines'],
+    ['cleanDupLines','Remove Duplicate Lines'],['trim','Trim Text'],
+    ['cleanTabs','Remove Tabs'],['cleanAllSpace','Remove All Spaces'],
+    ['cleanSpecial','Remove Special Chars'],['cleanNumbers','Remove Numbers'],
+    ['cleanLetters','Remove Letters'],['cleanEmoji','Remove Emojis'],
+    ['cleanHtml','Remove HTML Tags']
+  ];
+  const UTIL = [
+    ['revText','Reverse Text'],['revWords','Reverse Words'],['revLines','Reverse Lines'],
+    ['shuffle','Shuffle Lines'],['sortAZ','Sort A→Z'],['sortZA','Sort Z→A'],
+    ['randCase','Randomize Case'],['numbering','Line Numbering'],['dupLines','Duplicate Lines'],
+    ['mergeLines','Merge Lines'],['splitDelim','Split by Delimiter']
+  ];
+  function renderChips(containerId, list){
+    const frag = document.createDocumentFragment();
+    list.forEach(([key,label])=>{
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'cc-chip';
+      b.textContent = label;
+      b.setAttribute('aria-label', label);
+      b.addEventListener('click', () => run(key));
+      frag.appendChild(b);
+    });
+    document.getElementById(containerId).appendChild(frag);
+  }
+  renderChips('caseExtra', CASE_EXTRA);
+  renderChips('cleanBtns', CLEAN);
+  renderChips('utilBtns',  UTIL);
+
+  /* ---------- 5. Live statistics (debounced) ---------- */
+  function updateStats(){
+    const t = inEl.value;
+    const chars = t.length;
+    const noSpace = t.replace(/\s/g,'').length;
+    const words = (t.match(/\S+/g) || []).length;
+    const sentences = (t.match(/[^.!?]+[.!?]+/g) || (t.trim() ? [t] : [])).length;
+    const paras = t.split(/\n\s*\n/).filter(p => p.trim() !== '').length;
+    const lines = t === '' ? 0 : t.split('\n').length;
+    set('stChars', chars); set('stCharsNs', noSpace); set('stWords', words);
+    set('stSentences', sentences); set('stParas', paras); set('stLines', lines);
+    set('stRead',  fmtTime(words / 200));   // ~200 wpm reading
+    set('stSpeak', fmtTime(words / 130));   // ~130 wpm speaking
+    set('stType',  fmtTime(words / 40));    // ~40 wpm typing
+  }
+  function set(id, v){ document.getElementById(id).textContent = typeof v === 'number' ? v.toLocaleString() : v; }
+  function fmtTime(min){
+    const s = Math.round(min * 60);
+    if(s < 60) return s + 's';
+    const m = Math.floor(s/60), r = s % 60;
+    return m + 'm' + (r ? ' ' + r + 's' : '');
+  }
+  // expose for inline Clear-All button
+  window.ccUpdateStats = updateStats;
+
+  // Debounce helper — one reusable util for live updates
+  function debounce(fn, wait){ let id; return function(){ clearTimeout(id); id = setTimeout(fn, wait); }; }
+  const onType = debounce(() => {
+    updateStats();
+    if(document.getElementById('autoConvert').checked) run(lastKey);
+  }, 180);
+  inEl.addEventListener('input', onType);
+
+  /* ---------- 6. Input/output actions ---------- */
+  document.getElementById('clearInputBtn').addEventListener('click', () => { inEl.value=''; updateStats(); inEl.focus(); });
+  document.getElementById('clearOutputBtn').addEventListener('click', () => { outEl.value=''; });
+  document.getElementById('swapBtn').addEventListener('click', () => {
+    const tmp = inEl.value; inEl.value = outEl.value; outEl.value = tmp; updateStats(); premToast('🔁 Swapped');
+  });
+  document.getElementById('copyBtn').addEventListener('click', (e) => {
+    if(!outEl.value){ premToast('Nothing to copy'); return; }
+    copyText(outEl.value, e.currentTarget);
+  });
+  document.getElementById('pasteBtn').addEventListener('click', async () => {
+    try { const txt = await navigator.clipboard.readText(); inEl.value = txt; updateStats(); premToast('📥 Pasted'); }
+    catch(err){ premToast('Clipboard blocked — paste manually (Ctrl+V)'); inEl.focus(); }
+  });
+
+  /* ---------- 7. File upload + drag & drop ---------- */
+  const fileInput = document.getElementById('fileInput');
+  document.getElementById('uploadBtn').addEventListener('click', () => fileInput.click());
+  function loadFiles(files){
+    const f = files && files[0];
+    if(!f) return;
+    const reader = new FileReader();
+    reader.onload = () => { inEl.value = reader.result; updateStats(); premToast('📄 Loaded ' + f.name); };
+    reader.readAsText(f);
+  }
+  // setupDropzone wires both click-to-pick and drop; we already have a button,
+  // so wire the textarea directly for drag & drop using the shared helper.
+  setupDropzone(inEl, fileInput, loadFiles);
+
+  /* ---------- 8. Downloads: TXT / PDF / DOC ---------- */
+  function outOrWarn(){ if(!outEl.value){ premToast('Nothing to download'); return null; } return outEl.value; }
+  document.getElementById('dlTxt').addEventListener('click', () => {
+    const v = outOrWarn(); if(v===null) return;
+    downloadText('case-converter.txt', v, 'text/plain');
+  });
+  document.getElementById('dlDoc').addEventListener('click', () => {
+    const v = outOrWarn(); if(v===null) return;
+    const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const html = '<html xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"></head>'
+      + '<body><pre style="font-family:Arial,sans-serif;white-space:pre-wrap">' + esc(v) + '</pre></body></html>';
+    downloadBlob('case-converter.doc', new Blob(['﻿' + html], {type:'application/msword'}));
+  });
+  document.getElementById('dlPdf').addEventListener('click', () => {
+    const v = outOrWarn(); if(v===null) return;
+    downloadBlob('case-converter.pdf', textToPdfBlob(v));
+  });
+
+  // Minimal, dependency-free PDF writer (Helvetica, multi-page, wrapped).
+  function textToPdfBlob(text){
+    const esc = s => s.replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');
+    const san = s => s.replace(/\t/g,'    ').replace(/[^\x20-\x7E]/g,'?'); // base fonts = Latin only
+    const fs = 11, lead = 15, left = 50, topY = 770, botY = 50, maxChars = 92;
+    const lines = [];
+    san(text).split('\n').forEach(l => {
+      if(l.length === 0){ lines.push(''); return; }
+      while(l.length > maxChars){ lines.push(l.slice(0, maxChars)); l = l.slice(maxChars); }
+      lines.push(l);
+    });
+    if(!lines.length) lines.push('');
+    const lpp = Math.floor((topY - botY) / lead), pages = [];
+    for(let i=0;i<lines.length;i+=lpp) pages.push(lines.slice(i, i+lpp));
+
+    const nPages = pages.length, firstPage = 4, firstContent = 4 + nPages, total = firstContent + nPages - 1;
+    const objs = {};
+    objs[1] = '<< /Type /Catalog /Pages 2 0 R >>';
+    objs[2] = '<< /Type /Pages /Count ' + nPages + ' /Kids [' +
+              pages.map((_,i)=>(firstPage+i)+' 0 R').join(' ') + '] >>';
+    objs[3] = '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>';
+    pages.forEach((_,i)=>{
+      objs[firstPage+i] = '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] '
+        + '/Resources << /Font << /F1 3 0 R >> >> /Contents ' + (firstContent+i) + ' 0 R >>';
+    });
+    pages.forEach((pg,i)=>{
+      let s = 'BT /F1 ' + fs + ' Tf ' + lead + ' TL ' + left + ' ' + topY + ' Td\n';
+      pg.forEach(ln => { s += '(' + esc(ln) + ') Tj T*\n'; });
+      s += 'ET';
+      objs[firstContent+i] = '<< /Length ' + s.length + ' >>\nstream\n' + s + '\nendstream';
+    });
+
+    let pdf = '%PDF-1.4\n'; const off = {};
+    for(let n=1;n<=total;n++){ off[n] = pdf.length; pdf += n + ' 0 obj\n' + objs[n] + '\nendobj\n'; }
+    const xref = pdf.length;
+    pdf += 'xref\n0 ' + (total+1) + '\n0000000000 65535 f \n';
+    for(let n=1;n<=total;n++){ pdf += String(off[n]).padStart(10,'0') + ' 00000 n \n'; }
+    pdf += 'trailer\n<< /Size ' + (total+1) + ' /Root 1 0 R >>\nstartxref\n' + xref + '\n%%EOF';
+    return new Blob([pdf], {type:'application/pdf'});
   }
 
-  document.getElementById('outputText').value = result;
-}
+  /* ---------- 9. Theme toggle (scoped, remembered) ---------- */
+  const themeBtn = document.getElementById('themeToggle');
+  function applyTheme(light){
+    document.body.classList.toggle('cc-light', light);
+    themeBtn.textContent = light ? '☀️ Light' : '🌙 Dark';
+    try { localStorage.setItem('cc-theme', light ? 'light' : 'dark'); } catch(e){}
+  }
+  themeBtn.addEventListener('click', () => applyTheme(!document.body.classList.contains('cc-light')));
+  try { applyTheme(localStorage.getItem('cc-theme') === 'light'); } catch(e){}
 
-document.getElementById('copyBtn').addEventListener('click', (e)=>{
-  copyText(document.getElementById('outputText').value, e.target);
-});
+  /* ---------- 10. Keyboard shortcuts ---------- */
+  document.addEventListener('keydown', (e) => {
+    if(!(e.ctrlKey && e.shiftKey)) return;
+    const k = e.key.toLowerCase();
+    const map = { u:'upper', l:'lower', t:'title', s:'sentence' };
+    if(map[k]){ e.preventDefault(); run(map[k]); premToast('✓ ' + map[k]); }
+    else if(k === 'c'){ e.preventDefault(); if(outEl.value){ copyText(outEl.value, document.getElementById('copyBtn')); } }
+  });
+
+  /* ---------- 11. Ripple effect on all buttons ---------- */
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.cc-chip, .btn');
+    if(!btn) return;
+    const r = document.createElement('span');
+    const size = Math.max(btn.offsetWidth, btn.offsetHeight);
+    const rect = btn.getBoundingClientRect();
+    r.className = 'cc-ripple';
+    r.style.width = r.style.height = size + 'px';
+    r.style.left = (e.clientX - rect.left - size/2) + 'px';
+    r.style.top  = (e.clientY - rect.top  - size/2) + 'px';
+    btn.appendChild(r);
+    setTimeout(() => r.remove(), 600);
+  });
+
+  /* ---------- 12. Related tools (only links that exist on the site) ---------- */
+  const RELATED = [
+    ['🔢','Word Counter','word-counter.html'],
+    ['🔠','Character Counter','word-counter.html'],
+    ['🔁','Text Reverser','reverse-text.html'],
+    ['🧹','Remove Duplicate Lines','duplicate-line-remover.html'],
+    ['🔗','Slug Generator','slug-generator.html'],
+    ['🔐','Base64 Encoder','base64-encoder-decoder.html'],
+    ['🌐','URL / HTML Encoder','url-html-encoder-decoder.html'],
+    ['{ }','JSON Formatter','json-formatter.html'],
+    ['📑','HTML Formatter','html-beautifier-minifier.html'],
+    ['📝','Markdown to HTML','markdown-to-html.html']
+  ];
+  (function renderRelated(){
+    const grid = document.getElementById('relatedGrid');
+    const frag = document.createDocumentFragment();
+    RELATED.forEach(([ico,nm,href])=>{
+      const a = document.createElement('a');
+      a.className = 'cc-related-card'; a.href = href;
+      a.innerHTML = '<span class="ico">' + ico + '</span><span class="nm">' + nm + '</span>';
+      frag.appendChild(a);
+    });
+    grid.appendChild(frag);
+  })();
+
+  /* ---------- 13. Init ---------- */
+  updateStats();
+})();
 </script>
 </body>
 </html>
