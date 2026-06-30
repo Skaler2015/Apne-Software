@@ -333,7 +333,7 @@ body.pdfc-light .pdfc-opt select,body.pdfc-light .pdfc-opt input[type=number]{ba
       <details class="pdfc-adv">
         <summary>🛠️ Advanced Options</summary>
         <div class="pdfc-opt"><label for="dpiSel">Image DPI (resolution)</label>
-          <select id="dpiSel"><option value="0">Auto (by mode)</option><option>72</option><option>96</option><option selected>150</option><option>200</option><option>300</option></select></div>
+          <select id="dpiSel"><option value="0" selected>Auto (by mode)</option><option>72</option><option>96</option><option>150</option><option>200</option><option>300</option></select></div>
         <div class="pdfc-opt"><label for="jpegQ">JPEG Quality</label>
           <select id="jpegQ"><option value="0">Auto (by mode)</option><option value="0.4">40%</option><option value="0.55">55%</option><option value="0.7">70%</option><option value="0.85">85%</option><option value="0.95">95%</option></select></div>
         <div class="pdfc-opt"><label for="grayscaleOpt">Convert to Grayscale</label>
@@ -1014,17 +1014,39 @@ body.pdfc-light .pdfc-opt select,body.pdfc-light .pdfc-opt input[type=number]{ba
     }};
   }
 
-  // Target-size: probe → pick quality → compress → one corrective pass
+  // Target-size: lowering JPEG quality alone often can't reach a small target
+  // (a scanned page stays large), so we walk DOWN a ladder of DPI scales and,
+  // at each, pick the best quality that fits — then compress for real. Returns
+  // the smallest result achieved, tagged with .hitTarget when the goal is met.
   async function compressToTarget(file, cfg, onProgress){
-    const model = await buildProbeModel(file, cfg.scale);
-    let q = model.qualityFor(cfg.target/Math.max(1,totalPages));
-    let res = await compressPDF(file, {...cfg, quality:q}, onProgress);
-    if(res.blob.size > cfg.target*1.12 && q > 0.22){
-      q = clamp(q * (cfg.target/res.blob.size), 0.2, q-0.05);
-      $('statusMsg').textContent = '🎯 Fine-tuning to hit target…';
-      res = await compressPDF(file, {...cfg, quality:q}, onProgress);
+    const target  = cfg.target;
+    const perPage = target / Math.max(1, totalPages);
+    // candidate scales: from the chosen DPI down to a low-DPI floor (descending, deduped)
+    const scales = [...new Set([cfg.scale, 1.5, 1.2, 1.0, 0.8, 0.6, 0.45])]
+      .filter(s => s <= cfg.scale + 0.001).sort((a,b) => b - a);
+    let best = null;
+    for(const scale of scales){
+      const isLast = scale === scales[scales.length - 1];
+      const model = await buildProbeModel(file, scale);
+      const q = model.qualityFor(perPage);
+      const estTotal = model.bytesAt(q) * (cfg.grayscale ? 0.8 : 1) * totalPages + 5000;
+      // Skip a (costly) full pass when even this scale's estimate overshoots —
+      // unless it's the smallest scale, where we take the best-effort result.
+      if(estTotal > target * 1.08 && !isLast) continue;
+      $('statusMsg').textContent = '🎯 Reaching target — trying ~' + Math.round(scale * 72) + ' DPI…';
+      let res = await compressPDF(file, {...cfg, scale, quality: q}, onProgress);
+      if(!best || res.blob.size < best.blob.size) best = res;
+      if(res.blob.size <= target * 1.1){ best.hitTarget = true; return best; }
+      // one corrective pass at lower quality on this scale
+      if(q > 0.21){
+        const q2 = clamp(q * (target / res.blob.size), 0.2, q - 0.05);
+        res = await compressPDF(file, {...cfg, scale, quality: q2}, onProgress);
+        if(!best || res.blob.size < best.blob.size) best = res;
+        if(res.blob.size <= target * 1.1){ best.hitTarget = true; return best; }
+      }
     }
-    return res;
+    if(best) best.hitTarget = best.blob.size <= target * 1.1;
+    return best;
   }
 
   /* ════════════ 8. PROGRESS UI ════════════ */
@@ -1069,9 +1091,17 @@ body.pdfc-light .pdfc-opt select,body.pdfc-light .pdfc-opt input[type=number]{ba
       // Auto-download immediately (button says "Compress & Download")
       downloadBlob(dlName(), res.blob);
       await buildComparison(currentFile, res.blob, cfg);
-      const note = res.stats.saved > 0
-        ? ' ('+res.stats.pct+'% smaller)'
-        : ' — already well-compressed; try Strong/Maximum mode or a target size for more reduction';
+      let note;
+      if(cfg.target > 0 && res.hitTarget === false){
+        note = ' — smallest readable size at lowest DPI. To go below ' + formatBytes(cfg.target) +
+               ', enable Grayscale in Advanced Options or remove some pages.';
+      } else if(cfg.target > 0){
+        note = ' 🎯 target ' + formatBytes(cfg.target) + ' reached';
+      } else if(res.stats.saved > 0){
+        note = ' (' + res.stats.pct + '% smaller)';
+      } else {
+        note = ' — already well-compressed; try Strong/Maximum mode or a target size for more reduction';
+      }
       $('statusMsg').textContent = '✅ Done — '+formatBytes(res.stats.original)+' → '+formatBytes(res.stats.compressed)+ note;
       toast(res.stats.saved>0 ? ('✅ Compressed '+res.stats.pct+'% smaller') : '✅ Saved (little to compress)');
     }catch(err){
