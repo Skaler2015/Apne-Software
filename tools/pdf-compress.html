@@ -574,9 +574,19 @@ body.pdfc-light .pdfc-opt select,body.pdfc-light .pdfc-opt input[type=number]{ba
   const folderInput= $('folderInput');
 
   setupDropzone(dropzone, fileInput, files => acceptFiles(files));
-  $('folderBtn').addEventListener('click', () => folderInput.click());
-  folderInput.addEventListener('change', e => acceptFiles(Array.from(e.target.files)));
-  dropzone.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); fileInput.click(); } });
+  // Folder upload is optional. Some privacy extensions strip webkitdirectory
+  // file inputs from the page, so guard against a missing element — otherwise
+  // a null reference here would abort the whole script and break Compress.
+  const folderBtn = $('folderBtn');
+  if(folderBtn && folderInput){
+    folderBtn.addEventListener('click', () => folderInput.click());
+    folderInput.addEventListener('change', e => acceptFiles(Array.from(e.target.files)));
+  } else if(folderBtn){
+    folderBtn.style.display = 'none'; // hide the button if folder upload isn't available
+  }
+  if(dropzone){
+    dropzone.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); fileInput.click(); } });
+  }
 
   function acceptFiles(files){
     const pdfs = (files||[]).filter(f => f && (f.type==='application/pdf' || /\.pdf$/i.test(f.name)));
