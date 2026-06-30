@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-extract-table.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Extract Table from PDF | ApneSoftware">
+<meta property="og:description" content="Pull a table out as CSV. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-extract-table.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Extract Table from PDF | ApneSoftware">
+<meta name="twitter:description" content="Pull a table out as CSV. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Extract Table from PDF","description":"Pull a table out as CSV. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-extract-table.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Extract Table from PDF | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .limit-note{
+    background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:8px;
+    padding:12px 14px;font-size:.85rem;color:#fbbf24;margin-top:14px;
+  }
+  .table-wrap{overflow-x:auto;margin-top:18px;border:1px solid var(--border);border-radius:8px}
+  table.extracted{border-collapse:collapse;width:100%;font-size:.82rem}
+  table.extracted td{border:1px solid var(--border);padding:6px 10px;color:var(--text);white-space:nowrap}
+  table.extracted tr:first-child td{background:var(--surface-2);font-weight:700}
+  .page-select{margin-top:14px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📋 Extract Table from PDF</h1>
+    <p>Pull a table out of a PDF page and review it, then copy or download as CSV.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div class="field page-select" id="pageSelectField" style="display:none">
+      <label for="pageSelect">Page</label>
+      <select id="pageSelect"></select>
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+    <div class="limit-note">⚠️ Note: this works best on simple, clearly-spaced tables. Complex tables (merged cells, multi-column page layouts) may not split into rows/columns perfectly — please review the result below before using it.</div>
+
+    <div class="btn-row" id="actionRow" style="display:none">
+      <button class="btn secondary" id="copyBtn">📋 Copy as Text</button>
+      <button class="btn secondary" id="csvBtn">⬇️ Download CSV</button>
+    </div>
+
+    <div class="table-wrap" id="tableWrap" style="display:none">
+      <table class="extracted" id="resultTable"></table>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool detects table-like rows and columns on a chosen page of a PDF by analyzing text position, shows you a preview, and lets you copy it or download it as a CSV file.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Pick the page that has the table you want.</li>
+        <li>Review the extracted table below.</li>
+        <li>Copy it or download as CSV.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल PDF के चुने हुए पेज पर टेक्स्ट की पोज़िशन देखकर टेबल जैसी रो और कॉलम पहचानता है, प्रीव्यू दिखाता है, और कॉपी या CSV फाइल के रूप में डाउनलोड करने देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>जिस पेज पर टेबल है वो चुनें।</li>
+        <li>नीचे निकाली गई टेबल चेक करें।</li>
+        <li>कॉपी करें या CSV डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let pdfDocJs = null;
+let currentRows = [];
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+function extractRows(items){
+  const sorted = [...items].sort((a,b) => b.transform[5] - a.transform[5]);
+  const rows = [];
+  let currentRow = [];
+  let lastY = null;
+
+  sorted.forEach(item => {
+    const y = item.transform[5];
+    if(lastY !== null && Math.abs(y - lastY) > 4){
+      if(currentRow.length) rows.push(currentRow);
+      currentRow = [];
+    }
+    currentRow.push(item);
+    lastY = y;
+  });
+  if(currentRow.length) rows.push(currentRow);
+
+  return rows.map(row => {
+    const sortedRow = [...row].sort((a,b) => a.transform[4] - b.transform[4]);
+    const cells = [];
+    let cellText = sortedRow[0].str;
+    let lastEndX = sortedRow[0].transform[4] + (sortedRow[0].width || sortedRow[0].str.length*5);
+
+    for(let i=1; i<sortedRow.length; i++){
+      const item = sortedRow[i];
+      const gap = item.transform[4] - lastEndX;
+      if(gap > 10){
+        cells.push(cellText.trim());
+        cellText = item.str;
+      } else {
+        cellText += item.str;
+      }
+      lastEndX = item.transform[4] + (item.width || item.str.length*5);
+    }
+    cells.push(cellText.trim());
+    return cells;
+  });
+}
+
+async function handleFile(file){
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Loading PDF...';
+  try{
+    const arrayBuf = await file.arrayBuffer();
+    pdfDocJs = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+
+    const sel = document.getElementById('pageSelect');
+    sel.innerHTML = '';
+    for(let i=1; i<=pdfDocJs.numPages; i++){
+      const opt = document.createElement('option');
+      opt.value = i;
+      opt.textContent = 'Page ' + i;
+      sel.appendChild(opt);
+    }
+    document.getElementById('pageSelectField').style.display = 'block';
+    status.textContent = '';
+    await extractFromPage(1);
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+}
+
+document.getElementById('pageSelect').addEventListener('change', e=>{
+  extractFromPage(parseInt(e.target.value));
+});
+
+async function extractFromPage(pageNum){
+  const status = document.getElementById('statusMsg');
+  status.textContent = `⏳ Extracting table from page ${pageNum}...`;
+  try{
+    const page = await pdfDocJs.getPage(pageNum);
+    const content = await page.getTextContent();
+    currentRows = content.items.length ? extractRows(content.items) : [];
+
+    if(!currentRows.length){
+      status.textContent = '⚠️ No selectable text/table found on this page.';
+      document.getElementById('tableWrap').style.display = 'none';
+      document.getElementById('actionRow').style.display = 'none';
+      return;
+    }
+
+    const table = document.getElementById('resultTable');
+    table.innerHTML = '';
+    currentRows.forEach(row => {
+      const tr = document.createElement('tr');
+      row.forEach(cell => {
+        const td = document.createElement('td');
+        td.textContent = cell;
+        tr.appendChild(td);
+      });
+      table.appendChild(tr);
+    });
+
+    document.getElementById('tableWrap').style.display = 'block';
+    document.getElementById('actionRow').style.display = 'flex';
+    status.textContent = `✅ Found ${currentRows.length} row(s) — please review before using.`;
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+}
+
+function rowsToCsv(rows){
+  return rows.map(row => row.map(cell => {
+    const escaped = String(cell).replace(/"/g,'""');
+    return /[",\n]/.test(escaped) ? `"${escaped}"` : escaped;
+  }).join(',')).join('\n');
+}
+
+document.getElementById('copyBtn').addEventListener('click', (e)=>{
+  copyText(rowsToCsv(currentRows), e.target);
+});
+document.getElementById('csvBtn').addEventListener('click', ()=>{
+  downloadText('extracted-table.csv', rowsToCsv(currentRows), 'text/csv');
+});
+</script>
+</body>
+</html>

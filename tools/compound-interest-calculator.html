@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/compound-interest-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Compound Interest Calculator | ApneSoftware">
+<meta property="og:description" content="See savings/investment growth over time. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/compound-interest-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Compound Interest Calculator | ApneSoftware">
+<meta name="twitter:description" content="See savings/investment growth over time. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Compound Interest Calculator","description":"See savings/investment growth over time. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/compound-interest-calculator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Compound Interest Calculator | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .bar-chart{display:flex;align-items:flex-end;gap:3px;height:160px;margin-top:18px;border-bottom:1px solid var(--border);padding-bottom:4px}
+  .bar-chart .bar{flex:1;background:var(--accent);border-radius:3px 3px 0 0;min-width:2px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📈 Compound Interest Calculator</h1>
+    <p>See how your savings or investment grows with compound interest over time.</p>
+  </div>
+
+  <div class="panel">
+    <div class="row">
+      <div class="field">
+        <label for="principal">Principal amount (₹)</label>
+        <input type="number" id="principal" value="100000" min="0">
+      </div>
+      <div class="field">
+        <label for="rate">Annual interest rate (%)</label>
+        <input type="number" id="rate" value="8" min="0" step="0.1">
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="years">Duration (years)</label>
+        <input type="number" id="years" value="10" min="1" max="50">
+      </div>
+      <div class="field">
+        <label for="frequency">Compounding frequency</label>
+        <select id="frequency">
+          <option value="1">Annually</option>
+          <option value="2">Semi-annually</option>
+          <option value="4">Quarterly</option>
+          <option value="12" selected>Monthly</option>
+          <option value="365">Daily</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label for="monthlyAdd">Additional monthly contribution (₹, optional)</label>
+      <input type="number" id="monthlyAdd" value="0" min="0">
+    </div>
+
+    <div class="stat-grid" style="margin-top:14px">
+      <div class="stat-box"><div class="num" id="investedVal">₹0</div><div class="lbl">Total Invested</div></div>
+      <div class="stat-box"><div class="num" id="interestVal">₹0</div><div class="lbl">Interest Earned</div></div>
+      <div class="stat-box"><div class="num" id="finalVal" style="color:var(--accent-2)">₹0</div><div class="lbl">Final Amount</div></div>
+    </div>
+
+    <div class="bar-chart" id="barChart"></div>
+    <p style="font-size:.78rem;color:var(--text-dim);margin-top:6px;text-align:center">Year-wise growth</p>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Compound interest is often described as one of the most powerful forces in personal finance, and the reason is simple: unlike simple interest, which only ever earns on your original principal, compound interest earns on your principal plus all the interest it has already accumulated, so your money grows faster the longer it stays invested. Calculating this by hand requires raising a number to a power based on how many compounding periods have passed, which gets genuinely unwieldy once you're dealing with monthly or daily compounding over several years — exactly the kind of calculation this tool is built to handle instantly.</p>
+      <p>You enter your principal amount, the annual interest rate, how many years you plan to let it grow, and how often the interest compounds — annually, semi-annually, quarterly, monthly, or daily. More frequent compounding means slightly faster growth for the same nominal rate, since interest starts earning interest sooner. The tool also lets you add an optional monthly contribution on top of your initial principal, which is realistic for most people who aren't just parking a lump sum but also adding to their savings or investment regularly.</p>
+      <p>The result breaks down your total invested amount versus the interest earned purely from growth, plus a year-by-year bar chart so you can visually see how the curve steepens over time — in the early years, growth looks almost linear, but by the later years the compounding effect becomes dramatically visible, often contributing more to the final total than all your contributions combined. This visual makes a genuinely abstract concept much easier to internalize than just looking at a single final number.</p>
+      <p>This calculator is useful for comparing different savings or investment options, planning how long you'd need to leave money invested to hit a target amount, or simply satisfying curiosity about how a fixed deposit, recurring deposit, or investment account might grow over time. Keep in mind that this assumes a constant rate of return throughout, which real-world fixed deposits, savings accounts, and investments rarely guarantee for very long periods — actual rates can change, and market-linked investments fluctuate. Use this as a planning estimate, and verify current rates with your bank or financial institution before making decisions. As with the rest of this site, everything is calculated directly in your browser — you can experiment with different principal amounts, rates, tenures, and contribution levels as many times as you like, with nothing ever stored or sent anywhere, making it easy to compare several what-if scenarios side by side before settling on a savings or investment plan.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Enter your principal amount, interest rate, and duration.</li>
+        <li>Pick a compounding frequency.</li>
+        <li>Optionally add a monthly contribution to see how regular top-ups boost your final amount.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>Compound interest को अक्सर personal finance की सबसे ताकतवर चीज़ों में से एक बताया जाता है, और वजह सीधी है: simple interest के उलट, जो हमेशा सिर्फ आपके original principal पर ही मिलता है, compound interest principal के साथ-साथ अब तक जमा हो चुके interest पर भी मिलता है, इसलिए आपका पैसा जितनी देर invested रहता है उतनी तेज़ी से बढ़ता है। इसे हाथ से calculate करने के लिए किसी नंबर को compounding periods की संख्या के आधार पर एक power तक उठाना पड़ता है, जो monthly या daily compounding के साथ कई सालों के हिसाब से सच में मुश्किल हो जाता है — बिल्कुल वैसी calculation जिसे यह टूल तुरंत handle करने के लिए बना है।</p>
+      <p>आप अपना principal amount, annual interest rate, कितने साल इसे बढ़ने देना है, और interest कितनी बार compound होता है — annually, semi-annually, quarterly, monthly, या daily — डालते हैं। ज़्यादा बार compounding का मतलब है उसी nominal rate पर थोड़ी तेज़ growth, क्योंकि interest जल्दी interest कमाना शुरू कर देता है। यह टूल आपको अपने शुरुआती principal के ऊपर एक optional monthly contribution जोड़ने भी देता है, जो ज़्यादातर लोगों के लिए असली स्थिति है जो सिर्फ एक lump sum नहीं रखते बल्कि नियमित रूप से अपनी savings या investment में जोड़ते भी रहते हैं।</p>
+      <p>Result आपका कुल invested amount बनाम सिर्फ growth से कमाया गया interest अलग-अलग दिखाता है, साथ ही एक साल-दर-साल bar chart भी देता है ताकि आप देख सकें कि समय के साथ curve कैसे तेज़ होता जाता है — शुरुआती सालों में growth लगभग linear दिखती है, पर बाद के सालों तक compounding का असर नाटकीय रूप से दिखने लगता है, अक्सर आपके सारे contributions मिलाकर जितना योगदान देते हैं उससे भी ज़्यादा final total में योगदान देता है। यह visual एक सच में abstract concept को सिर्फ एक final नंबर देखने से कहीं ज़्यादा आसानी से समझने लायक बना देता है।</p>
+      <p>यह calculator अलग-अलग savings या investment options compare करने, किसी target amount तक पहुंचने के लिए पैसा कितने समय invested रखना होगा यह planning करने, या बस यह जिज्ञासा शांत करने के लिए उपयोगी है कि कोई fixed deposit, recurring deposit, या investment account समय के साथ कैसे बढ़ सकता है। ध्यान रखें कि यह पूरे समय एक constant rate of return मान कर चलता है, जो असली दुनिया की fixed deposits, savings accounts, और investments बहुत लंबे समय तक शायद ही कभी guarantee करती हैं — असली rates बदल सकती हैं, और market-linked investments में उतार-चढ़ाव आता है। इसे एक planning estimate की तरह इस्तेमाल करें, और फैसला लेने से पहले अपने बैंक या financial institution से मौजूदा rates verify करें।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना principal amount, interest rate, और duration डालें।</li>
+        <li>compounding frequency चुनें।</li>
+        <li>चाहें तो monthly contribution जोड़ें ताकि देख सकें कि regular top-up से final amount कितना बढ़ता है।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+function formatRupee(n){
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+
+function compoundValue(principal, annualRatePct, freq, years, monthlyAdd){
+  const r = annualRatePct / 100;
+  const n = freq;
+  let amount = principal * Math.pow(1 + r/n, n*years);
+
+  if(monthlyAdd > 0){
+    // approximate monthly contributions compounded at the same nominal rate, using monthly compounding equivalent
+    const i = r/12;
+    const months = years*12;
+    const contribFV = i === 0 ? monthlyAdd*months : monthlyAdd * ((Math.pow(1+i, months)-1)/i);
+    amount += contribFV;
+  }
+  return amount;
+}
+
+function calculate(){
+  const principal = parseFloat(document.getElementById('principal').value) || 0;
+  const rate = parseFloat(document.getElementById('rate').value) || 0;
+  const years = Math.max(1, parseInt(document.getElementById('years').value) || 1);
+  const freq = parseInt(document.getElementById('frequency').value);
+  const monthlyAdd = parseFloat(document.getElementById('monthlyAdd').value) || 0;
+
+  const finalAmount = compoundValue(principal, rate, freq, years, monthlyAdd);
+  const totalInvested = principal + monthlyAdd*12*years;
+  const interest = finalAmount - totalInvested;
+
+  document.getElementById('investedVal').textContent = formatRupee(totalInvested);
+  document.getElementById('interestVal').textContent = formatRupee(interest);
+  document.getElementById('finalVal').textContent = formatRupee(finalAmount);
+
+  const chart = document.getElementById('barChart');
+  chart.innerHTML = '';
+  let maxVal = 0;
+  const yearVals = [];
+  for(let y=1; y<=years; y++){
+    const val = compoundValue(principal, rate, freq, y, monthlyAdd);
+    yearVals.push(val);
+    if(val > maxVal) maxVal = val;
+  }
+  yearVals.forEach((val, idx)=>{
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    bar.style.height = Math.max(2, (val/maxVal)*150) + 'px';
+    bar.title = 'Year ' + (idx+1) + ': ' + formatRupee(val);
+    chart.appendChild(bar);
+  });
+}
+
+['principal','rate','years','frequency','monthlyAdd'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', calculate);
+});
+
+calculate();
+</script>
+</body>
+</html>

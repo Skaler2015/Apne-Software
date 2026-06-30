@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-bates-numbering.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bates Numbering — Sequential Document Numbering | ApneSoftware">
+<meta property="og:description" content="Sequential numbering across documents. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-bates-numbering.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bates Numbering — Sequential Document Numbering | ApneSoftware">
+<meta name="twitter:description" content="Sequential numbering across documents. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Bates Numbering","description":"Sequential numbering across documents. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-bates-numbering.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Bates Numbering — Sequential Document Numbering | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔖 Bates Numbering</h1>
+    <p>Stamp a continuous, sequential number (e.g. RGHS-000001) across one or more PDF documents — used for legal, government, and claim paperwork.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag PDF files here or click to choose (multiple files allowed)</p>
+      <input type="file" id="fileInput" accept="application/pdf" multiple>
+    </div>
+
+    <div class="file-list" id="fileList"></div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <div class="row">
+        <div class="field">
+          <label for="prefixInput">Prefix text</label>
+          <input type="text" id="prefixInput" value="RGHS-" placeholder="e.g. RGHS-">
+        </div>
+        <div class="field">
+          <label for="suffixInput">Suffix text (optional)</label>
+          <input type="text" id="suffixInput" placeholder="e.g. -2026">
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="startNum">Starting number</label>
+          <input type="number" id="startNum" value="1" min="0">
+        </div>
+        <div class="field">
+          <label for="digitsInput">Number of digits (padding)</label>
+          <input type="number" id="digitsInput" value="6" min="1" max="12">
+        </div>
+        <div class="field">
+          <label for="fontSizeInput">Font size</label>
+          <input type="number" id="fontSizeInput" value="9" min="6" max="20">
+        </div>
+      </div>
+      <div class="field">
+        <label for="positionSelect">Position</label>
+        <select id="positionSelect">
+          <option value="bottom-right">Bottom — right</option>
+          <option value="bottom-center">Bottom — center</option>
+          <option value="bottom-left">Bottom — left</option>
+          <option value="top-right">Top — right</option>
+          <option value="top-center">Top — center</option>
+        </select>
+      </div>
+
+      <p class="muted" style="color:var(--text-dim);font-size:.85rem">Preview of first stamp: <b id="previewStamp" style="color:var(--text)">RGHS-000001</b></p>
+
+      <div class="btn-row">
+        <button class="btn" id="applyBtn">🔖 Apply Numbering and Download All</button>
+      </div>
+
+      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool stamps a continuous sequential number across one or more PDF files — the numbering carries on from one document to the next, exactly like Bates numbering used in legal, government, and insurance/claim paperwork.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload one or more PDF files, in the order you want them numbered.</li>
+        <li>Set a prefix/suffix, starting number, digit padding, and position.</li>
+        <li>Click Apply — each file downloads separately with continuous numbering.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल एक या कई PDF फाइलों पर लगातार चलने वाला क्रमवार नंबर लगाता है — नंबरिंग एक डॉक्यूमेंट से अगले डॉक्यूमेंट तक जारी रहती है, बिल्कुल वैसे ही जैसे लीगल, सरकारी और क्लेम के कागज़ात में Bates numbering इस्तेमाल होती है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक या कई PDF फाइलें उसी क्रम में अपलोड करें जिस क्रम में नंबर चाहिए।</li>
+        <li>प्रीफिक्स/सफिक्स, शुरुआती नंबर, डिजिट पैडिंग और पोज़िशन सेट करें।</li>
+        <li>Apply बटन दबाएं — हर फाइल लगातार नंबरिंग के साथ अलग-अलग डाउनलोड होगी।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const fileListEl = document.getElementById('fileList');
+let files = [];
+
+setupDropzone(dropzone, fileInput, newFiles => {
+  const pdfs = newFiles.filter(f => f.type === 'application/pdf');
+  files = files.concat(pdfs);
+  renderList();
+});
+
+function renderList(){
+  fileListEl.innerHTML = '';
+  files.forEach((f, i) => {
+    const div = document.createElement('div');
+    div.className = 'file-item';
+    div.innerHTML = `
+      <span>📄 ${f.name} <span style="color:var(--text-dim)">(${formatBytes(f.size)})</span></span>
+      <span>
+        <button onclick="moveFile(${i},-1)" title="Move up">⬆️</button>
+        <button onclick="moveFile(${i},1)" title="Move down">⬇️</button>
+        <button onclick="removeFile(${i})" title="Remove">✖</button>
+      </span>`;
+    fileListEl.appendChild(div);
+  });
+  document.getElementById('afterUpload').style.display = files.length ? 'block' : 'none';
+  updatePreview();
+}
+
+function moveFile(i, dir){
+  const j = i + dir;
+  if(j < 0 || j >= files.length) return;
+  [files[i], files[j]] = [files[j], files[i]];
+  renderList();
+}
+function removeFile(i){
+  files.splice(i, 1);
+  renderList();
+}
+
+function buildLabel(n){
+  const prefix = document.getElementById('prefixInput').value;
+  const suffix = document.getElementById('suffixInput').value;
+  const digits = parseInt(document.getElementById('digitsInput').value) || 6;
+  return prefix + String(n).padStart(digits, '0') + suffix;
+}
+
+function updatePreview(){
+  const start = parseInt(document.getElementById('startNum').value) || 0;
+  document.getElementById('previewStamp').textContent = buildLabel(start);
+}
+
+['prefixInput','suffixInput','startNum','digitsInput'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', updatePreview);
+});
+
+document.getElementById('applyBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  if(!files.length){ status.textContent = '⚠️ Please upload at least one PDF'; return; }
+
+  status.textContent = '⏳ Stamping...';
+  try{
+    const { PDFDocument, rgb, StandardFonts } = PDFLib;
+    const fontSize = parseInt(document.getElementById('fontSizeInput').value) || 9;
+    const position = document.getElementById('positionSelect').value;
+    const margin = 24;
+    let counter = parseInt(document.getElementById('startNum').value) || 0;
+
+    for(let fIdx=0; fIdx<files.length; fIdx++){
+      const file = files[fIdx];
+      status.textContent = `⏳ Stamping file ${fIdx+1}/${files.length}: ${file.name}...`;
+      const bytes = await file.arrayBuffer();
+      const pdfDoc = await PDFDocument.load(bytes);
+      const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+      const pages = pdfDoc.getPages();
+
+      pages.forEach(page => {
+        const { width, height } = page.getSize();
+        const label = buildLabel(counter);
+        counter++;
+        const tw = font.widthOfTextAtSize(label, fontSize);
+
+        let x, y;
+        if(position.startsWith('bottom')) y = margin;
+        else y = height - margin;
+
+        if(position.endsWith('center')) x = width/2 - tw/2;
+        else if(position.endsWith('right')) x = width - margin - tw;
+        else x = margin;
+
+        page.drawText(label, { x, y, size: fontSize, font, color: rgb(0.2,0.2,0.2) });
+      });
+
+      const newBytes = await pdfDoc.save();
+      const blob = new Blob([newBytes], {type:'application/pdf'});
+      const outName = file.name.replace(/\.pdf$/i, '') + '-bates.pdf';
+      downloadBlob(outName, blob);
+      await new Promise(r => setTimeout(r, 300));
+    }
+
+    status.textContent = `✅ Done! Stamped and downloaded ${files.length} file(s), numbers ${buildLabel(parseInt(document.getElementById('startNum').value)||0)} to ${buildLabel(counter-1)}.`;
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+});
+
+updatePreview();
+</script>
+</body>
+</html>

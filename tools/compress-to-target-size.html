@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/compress-to-target-size.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Compress Image to Target Size (KB) — ApneSoftware">
+<meta property="og:description" content="Compress a photo to a specific file size in KB — perfect for government forms, exam applications, and upload size limits. Free, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/compress-to-target-size.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Compress Image to Target Size (KB) — ApneSoftware">
+<meta name="twitter:description" content="Compress a photo to a specific file size in KB — perfect for government forms, exam applications, and upload size limits. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Compress Image to Target Size (KB)","description":"Compress a photo to a specific file size in KB — perfect for government forms, exam applications, and upload size limits. Free, no signup.","url":"https://apnesoftware.com/tools/compress-to-target-size.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Compress Image to Target Size (KB) — ApneSoftware</title>
+<meta name="description" content="Compress a photo to a specific file size in KB — perfect for government forms, exam applications, and upload size limits. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .result-box{
+    background:var(--surface-2);border:1px solid var(--border);border-radius:12px;
+    padding:16px;margin-top:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+  }
+  .result-box .size-num{font-size:1.3rem;font-weight:800;color:var(--accent)}
+  .preview-img{max-width:100%;border-radius:10px;border:1px solid var(--border);margin-top:14px}
+  .target-row{display:flex;gap:10px;align-items:flex-end}
+  .target-row .field{flex:1}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📏 Compress Image to Target Size (KB)</h1>
+    <p>Compress a photo down to a specific file size — perfect for forms and applications with a strict upload limit.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an image here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <div class="target-row">
+        <div class="field">
+          <label for="targetSize">Target size (KB)</label>
+          <input type="number" id="targetSize" value="100" min="5" max="5000">
+        </div>
+        <button class="btn" id="compressBtn">📏 Compress to Target</button>
+      </div>
+      <p style="font-size:.8rem;color:var(--text-dim);margin-top:8px">Common limits: 20–50 KB (exam forms), 100 KB (most government portals), 200 KB (general uploads).</p>
+
+      <div id="resultArea" style="display:none">
+        <img class="preview-img" id="previewImg" alt="Compressed preview">
+        <div class="result-box">
+          <div>
+            <div class="size-num" id="resultSize">—</div>
+            <div style="font-size:.78rem;color:var(--text-dim)">Original: <span id="originalSize">—</span></div>
+          </div>
+          <button class="btn" id="downloadBtn">⬇️ Download</button>
+        </div>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Plenty of online forms — government portals, competitive exam applications, visa and passport systems, job application uploads — don't just ask for a photo, they enforce a hard file size limit like "under 100 KB" or "20 to 50 KB," and reject anything larger outright. A regular compressor lets you choose a quality percentage, but you're left guessing how many KB that quality level will actually produce, often taking several tries to land under the limit. This tool flips the problem around: you tell it the exact size you need, and it works out the right compression level automatically.</p>
+      <p>Behind the scenes, the tool repeatedly tries different JPEG quality levels and checks the resulting file size, narrowing in efficiently until it finds the highest quality that still fits within your target KB — so you get the best possible image quality at exactly the size limit you were given, instead of over-compressing out of caution. The whole process runs in your browser in a few seconds, and you can see both the original size and the final result before downloading.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a photo.</li>
+        <li>Enter your target size in KB (check the form's requirement — common values are listed below the field).</li>
+        <li>Click "Compress to Target" and download the result once it's ready.</li>
+      </ol>
+      <h3>Why a target size is hard to hit manually</h3>
+      <p>JPEG compression doesn't shrink every photo by the same amount at a given quality setting — a busy, detailed photo compresses less efficiently than a simple, plain one, so the same "70% quality" setting might produce a 40 KB file for one photo and a 90 KB file for another. That's why simply picking a quality percentage and hoping is unreliable when a form has a strict size cap. By searching for the quality level automatically based on your actual photo, this tool removes that trial-and-error entirely, regardless of how complex or simple the original image is.</p>
+      <p>If a photo simply can't be compressed small enough to hit an extremely tight target — for example a very detailed, high-resolution image squeezed down to 20 KB — the tool will say so honestly and give you the smallest size it could reach rather than silently producing a blurry, unusable result. In that case, starting from a smaller or simpler photo, or cropping out unnecessary background detail before uploading, usually makes it much easier to land comfortably under the limit.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>कई online forms — सरकारी portals, competitive exam applications, visa-passport systems, job application uploads — सिर्फ़ फोटो नहीं मांगते, बल्कि एक सख्त file size limit भी लागू करते हैं जैसे "100 KB से कम" या "20 से 50 KB", और इससे बड़ी कोई भी file सीधे reject कर देते हैं। एक सामान्य compressor में quality percentage चुनना होता है, पर यह अंदाज़ा नहीं लगता कि उस quality पर असल में कितनी KB बनेगी, अक्सर limit के अंदर लाने के लिए कई बार कोशिश करनी पड़ती है। यह tool समस्या को उल्टा कर देता है: आप exact size बताएं जो चाहिए, और यह सही compression level खुद निकाल देता है।</p>
+      <p>पर्दे के पीछे, tool अलग-अलग JPEG quality levels बार-बार आज़माता है और हर बार resulting file size check करता है, धीरे-धीरे narrow करते हुए उस सबसे बेहतर quality तक पहुंचता है जो फिर भी आपकी target KB के अंदर फिट हो — तो आपको बताई गई size limit पर सबसे अच्छी मुमकिन quality मिलती है, ज़रूरत से ज़्यादा compress किए बिना। पूरी प्रक्रिया आपके browser में कुछ ही सेकंड में चलती है, और download करने से पहले original size और final result दोनों दिख जाते हैं।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक फोटो अपलोड करें।</li>
+        <li>अपनी target size KB में डालें (form की requirement देख लें — आम values नीचे field के पास दी हैं)।</li>
+        <li>"Compress to Target" दबाएं और तैयार होने पर result download करें।</li>
+      </ol>
+      <h3>Target size हाथ से सेट करना मुश्किल क्यों है</h3>
+      <p>JPEG compression हर फोटो को किसी एक quality setting पर बराबर मात्रा में नहीं घटाता — एक busy, detailed फोटो उतनी कुशलता से compress नहीं होती जितनी एक simple, plain फोटो, तो वही "70% quality" setting किसी फोटो के लिए 40 KB और किसी दूसरी के लिए 90 KB बना सकती है। इसीलिए सिर्फ़ एक quality percentage चुनकर उम्मीद करना तब भरोसेमंद नहीं रहता जब form में सख्त size cap हो। आपकी असली फोटो के हिसाब से quality level खुद ढूंढकर, यह tool पूरी तरह वह trial-and-error हटा देता है, चाहे original image कितनी भी जटिल या साधारण क्यों न हो।</p>
+      <p>अगर कोई फोटो किसी बहुत सख्त target तक compress नहीं हो पाती — जैसे बहुत detailed, high-resolution image को 20 KB तक लाना — तो tool ईमानदारी से यह बता देगा और जितनी छोटी size बना सका वह दे देगा, बजाय इसके कि चुपचाप एक धुंधला, बेकार result बना दे। ऐसी स्थिति में, किसी छोटी या साधारण फोटो से शुरू करना, या upload करने से पहले फालतू background detail crop कर देना, आमतौर पर limit के अंदर आराम से आना आसान बना देता है।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let img = new Image();
+let originalFileSize = 0;
+let resultBlob = null;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    originalFileSize = files[0].size;
+    img.onload = ()=>{
+      document.getElementById('afterUpload').style.display = 'block';
+      document.getElementById('resultArea').style.display = 'none';
+      document.getElementById('originalSize').textContent = formatBytes(originalFileSize);
+    };
+    img.src = URL.createObjectURL(files[0]);
+  }
+});
+
+function compressAtQuality(quality){
+  return new Promise(resolve => {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    canvas.toBlob(blob => resolve(blob), 'image/jpeg', quality);
+  });
+}
+
+async function compressToTarget(targetKB){
+  const targetBytes = targetKB * 1024;
+  let low = 0.02, high = 1.0;
+  let best = await compressAtQuality(high);
+
+  // If even max compression at lowest quality is still over target, just use the lowest quality result
+  let lowest = await compressAtQuality(low);
+  if(lowest.size > targetBytes){
+    return lowest;
+  }
+
+  // Binary search for the highest quality that still fits under the target
+  for(let i = 0; i < 8; i++){
+    const mid = (low + high) / 2;
+    const blob = await compressAtQuality(mid);
+    if(blob.size <= targetBytes){
+      best = blob;
+      low = mid;
+    } else {
+      high = mid;
+    }
+  }
+  return best;
+}
+
+document.getElementById('compressBtn').addEventListener('click', async ()=>{
+  const target = Math.max(5, parseInt(document.getElementById('targetSize').value) || 100);
+  const statusMsg = document.getElementById('statusMsg');
+  statusMsg.textContent = '⏳ Finding the best quality for your target size...';
+  document.getElementById('resultArea').style.display = 'none';
+
+  resultBlob = await compressToTarget(target);
+
+  const url = URL.createObjectURL(resultBlob);
+  document.getElementById('previewImg').src = url;
+  document.getElementById('resultSize').textContent = formatBytes(resultBlob.size);
+  document.getElementById('resultArea').style.display = 'block';
+
+  if(resultBlob.size > target * 1024){
+    statusMsg.textContent = `⚠️ Could not reach ${target} KB even at minimum quality — this is the smallest possible size for this photo. Try a smaller/simpler photo if you need it smaller.`;
+  } else {
+    statusMsg.textContent = '✅ Done — within your target size.';
+  }
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  if(resultBlob) downloadBlob('compressed-image.jpg', resultBlob);
+});
+</script>
+</body>
+</html>

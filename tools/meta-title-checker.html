@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Meta Title Checker — Analyze your page title length in characters and pixels. See how it appears in Google SERP with live preview. Optimize for max 60 chars / 580px.">
+<meta name="keywords" content="meta title checker, title tag length checker, SEO title checker, SERP title preview, title pixel width">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/meta-title-checker.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Meta Title Checker — Length, Pixels & SERP Preview | ApneSoftware">
+<meta property="og:description" content="Check your meta title length in chars and pixels. See live Google SERP preview. Free, instant, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/meta-title-checker.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meta Title Checker — Length, Pixels & SERP Preview | ApneSoftware">
+<meta name="twitter:description" content="Check title length in chars and pixels with live SERP preview. Free tool.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Meta Title Checker","description":"Free tool to check meta title length in characters and pixels with live Google SERP preview.","url":"https://apnesoftware.com/tools/meta-title-checker.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"SEO Tools"},{"@type":"ListItem","position":3,"name":"Meta Title Checker","item":"https://apnesoftware.com/tools/meta-title-checker.html"}]}]}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Meta Title Checker — Length, Pixels & SERP Preview | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* ── Meta Title Checker local styles ── */
+.mtc-input-wrap{position:relative}
+.mtc-ruler{position:absolute;visibility:hidden;white-space:nowrap;font:20px/1 Arial,sans-serif;left:-9999px;top:0}
+.mtc-big-counter{font-size:3.5rem;font-weight:800;line-height:1;transition:color .3s}
+.mtc-big-label{font-size:.85rem;color:rgba(255,255,255,.45);margin-top:4px}
+
+.mtc-gauge-wrap{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+.mtc-gauge{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:16px}
+.mtc-gauge-label{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:rgba(255,255,255,.4);margin-bottom:10px}
+.mtc-gauge-num{font-size:1.8rem;font-weight:800;color:#16C079;transition:color .3s}
+.mtc-gauge-sub{font-size:.75rem;color:rgba(255,255,255,.4);margin-top:2px}
+.mtc-bar{height:8px;background:rgba(255,255,255,.08);border-radius:4px;margin-top:10px;overflow:hidden}
+.mtc-bar-fill{height:100%;border-radius:4px;transition:width .4s,background .3s}
+
+/* SERP previews */
+.mtc-serp-grid{display:grid;gap:12px;margin-top:14px}
+.mtc-serp-card{background:#fff;border-radius:12px;padding:16px 18px;font-family:Arial,sans-serif}
+.mtc-serp-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.3);margin-bottom:6px}
+.mtc-serp-url{font-size:.75rem;color:#3c4043;margin-bottom:2px}
+.mtc-serp-title{font-size:1.1rem;color:#1a0dab;line-height:1.3;word-break:break-word;transition:color .2s}
+.mtc-serp-title.truncated{color:#c7221f}
+.mtc-serp-desc{font-size:.85rem;color:#4d5156;margin-top:4px;line-height:1.5}
+
+/* Mobile SERP (narrower) */
+.mtc-serp-mobile{background:#fff;border-radius:12px;padding:12px 14px;font-family:Arial,sans-serif;max-width:375px}
+.mtc-serp-mobile .mtc-serp-title{font-size:.95rem}
+
+/* Tips grid */
+.mtc-tips{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:14px}
+.mtc-tip-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px}
+.mtc-tip-icon{font-size:1.3rem;margin-bottom:6px;display:block}
+.mtc-tip-title{font-size:.82rem;font-weight:700;color:rgba(255,255,255,.85);margin-bottom:4px}
+.mtc-tip-text{font-size:.76rem;color:rgba(255,255,255,.45);line-height:1.5}
+
+/* Status banner */
+.mtc-status-banner{border-radius:12px;padding:14px 18px;margin-top:14px;display:flex;align-items:center;gap:12px;transition:background .3s,border-color .3s}
+.mtc-status-banner.ok  {background:rgba(22,192,121,.1);border:1px solid rgba(22,192,121,.3)}
+.mtc-status-banner.warn{background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.3)}
+.mtc-status-banner.bad {background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3)}
+.mtc-status-icon{font-size:1.8rem;flex-shrink:0}
+.mtc-status-text{flex:1}
+.mtc-status-head{font-size:.9rem;font-weight:800;margin-bottom:2px}
+.mtc-status-sub{font-size:.78rem;color:rgba(255,255,255,.5)}
+
+/* Bulk checker */
+.mtc-bulk-results{margin-top:14px;display:flex;flex-direction:column;gap:6px}
+.mtc-bulk-row{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px}
+.mtc-bulk-row.ok  {border-color:rgba(22,192,121,.2)}
+.mtc-bulk-row.warn{border-color:rgba(255,215,0,.2)}
+.mtc-bulk-row.bad {border-color:rgba(248,113,113,.2)}
+.mtc-bulk-title{flex:1;font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mtc-bulk-badge{font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:999px;flex-shrink:0}
+
+#mtcScrollTop{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;box-shadow:0 4px 14px rgba(124,92,252,.4);transition:.2s}
+#mtcScrollTop.show{display:flex}
+#mtcScrollTop:hover{transform:translateY(-3px)}
+
+.mtc-tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.mtc-tab{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);border-radius:8px;padding:8px 16px;font-size:.8rem;font-weight:700;cursor:pointer;transition:.2s;font-family:var(--font)}
+.mtc-tab.active,.mtc-tab:hover{background:rgba(124,92,252,.2);border-color:rgba(124,92,252,.45);color:#A78BFA}
+.mtc-panel{display:none}.mtc-panel.active{display:block}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+<div class="container">
+  <nav aria-label="Breadcrumb" style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:2px">
+    <a href="../index.html" style="color:rgba(255,255,255,.45)">Home</a>
+    <span style="margin:0 6px">›</span>
+    <span style="color:rgba(255,255,255,.7)">SEO Tools</span>
+    <span style="margin:0 6px">›</span>
+    <span style="color:#A78BFA">Meta Title Checker</span>
+  </nav>
+
+  <div class="tool-header">
+    <h1>🔤 Meta Title Checker</h1>
+    <p>Check your meta title length in characters AND pixels. See live Google SERP previews for desktop and mobile. Optimize for maximum click-through.</p>
+  </div>
+
+  <div class="panel">
+    <div class="mtc-tabs">
+      <button class="mtc-tab active" data-tab="single">Single Title</button>
+      <button class="mtc-tab" data-tab="bulk">Bulk Check</button>
+    </div>
+
+    <!-- Single -->
+    <div class="mtc-panel active" id="tab-single">
+      <div class="field">
+        <label for="titleInput">Enter Page Title</label>
+        <input type="text" id="titleInput" placeholder="e.g. Best Running Shoes for Beginners 2025 | ShoeStore" maxlength="200" autocomplete="off" style="font-size:1rem">
+      </div>
+      <div class="row" style="margin-top:4px">
+        <div class="field">
+          <label for="urlInput">Page URL (for preview)</label>
+          <input type="text" id="urlInput" placeholder="https://example.com/page/">
+        </div>
+        <div class="field">
+          <label for="descInput">Meta Description (for preview)</label>
+          <input type="text" id="descInput" placeholder="Brief description of the page…" maxlength="200">
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn secondary" id="btnSample">📋 Sample Title</button>
+        <button class="btn secondary" id="btnClear">🗑️ Clear</button>
+        <button class="btn secondary" id="btnCopy">📋 Copy Title</button>
+      </div>
+    </div>
+
+    <!-- Bulk -->
+    <div class="mtc-panel" id="tab-bulk">
+      <div class="field">
+        <label for="bulkInput">Paste Multiple Titles (one per line)</label>
+        <textarea id="bulkInput" rows="7" placeholder="Best Running Shoes 2025 | ShoeStore&#10;Top 10 Budget Smartphones — Reviewed by Experts&#10;How to Lose Weight Fast: 15 Science-Backed Tips&#10;Free SEO Tools Online — No Signup Required | ApneSoftware"></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="btnBulkCheck">🔍 Check All Titles</button>
+        <button class="btn secondary" id="btnBulkClear">🗑️ Clear</button>
+        <button class="btn secondary" id="btnBulkDownload">⬇️ Download Report</button>
+      </div>
+      <div class="mtc-bulk-results" id="bulkResults"></div>
+    </div>
+  </div>
+
+  <!-- Live Results (single mode) -->
+  <div id="singleResults">
+    <!-- Status banner -->
+    <div class="mtc-status-banner ok" id="statusBanner" style="margin-top:14px">
+      <div class="mtc-status-icon" id="statusIcon">📏</div>
+      <div class="mtc-status-text">
+        <div class="mtc-status-head" id="statusHead">Enter a title to check</div>
+        <div class="mtc-status-sub"  id="statusSub">Type or paste your meta title above</div>
+      </div>
+    </div>
+
+    <!-- Gauges -->
+    <div class="mtc-gauge-wrap">
+      <div class="mtc-gauge">
+        <div class="mtc-gauge-label">Character Count</div>
+        <div class="mtc-big-counter" id="charNum" style="color:#A78BFA">0</div>
+        <div class="mtc-big-label">of recommended 60</div>
+        <div class="mtc-bar"><div class="mtc-bar-fill" id="charBar" style="width:0%"></div></div>
+      </div>
+      <div class="mtc-gauge">
+        <div class="mtc-gauge-label">Pixel Width (Google SERP)</div>
+        <div class="mtc-big-counter" id="pxNum" style="color:#A78BFA">0 px</div>
+        <div class="mtc-big-label">of 580 px max (desktop)</div>
+        <div class="mtc-bar"><div class="mtc-bar-fill" id="pxBar" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <!-- Words & keyword counts -->
+    <div class="stat-grid" id="statGrid" style="margin-top:14px">
+      <div class="stat-box"><div class="num" id="wordCount">0</div><div class="lbl">Words</div></div>
+      <div class="stat-box"><div class="num" id="sentenceCase">—</div><div class="lbl">Case</div></div>
+      <div class="stat-box"><div class="num" id="hasKeyword">—</div><div class="lbl">Starts with Keyword</div></div>
+      <div class="stat-box"><div class="num" id="hasBrand">—</div><div class="lbl">Has Brand</div></div>
+    </div>
+
+    <!-- Desktop SERP -->
+    <div style="margin-top:20px">
+      <div class="mtc-serp-label">🖥️ Desktop SERP Preview</div>
+      <div class="mtc-serp-card">
+        <div class="mtc-serp-url"   id="prevUrl">example.com › page</div>
+        <div class="mtc-serp-title" id="prevTitle">Your Title Will Appear Here</div>
+        <div class="mtc-serp-desc"  id="prevDesc">Your meta description appears here in Google search results. Write 150–160 characters for best results.</div>
+      </div>
+    </div>
+
+    <!-- Mobile SERP -->
+    <div style="margin-top:12px">
+      <div class="mtc-serp-label">📱 Mobile SERP Preview</div>
+      <div class="mtc-serp-mobile">
+        <div class="mtc-serp-url"   id="prevUrlM">example.com › page</div>
+        <div class="mtc-serp-title" id="prevTitleM">Your Title Will Appear Here</div>
+        <div class="mtc-serp-desc"  id="prevDescM">Your meta description appears here in mobile search results.</div>
+      </div>
+    </div>
+
+    <!-- Tips -->
+    <div class="panel" style="margin-top:14px">
+      <h2 style="font-size:.95rem;font-weight:800;margin-bottom:14px">💡 Optimization Tips</h2>
+      <div class="mtc-tips">
+        <div class="mtc-tip-card"><span class="mtc-tip-icon">📏</span><div class="mtc-tip-title">50–60 Characters</div><div class="mtc-tip-text">Keep titles between 50 and 60 characters. Under 50 may be too vague; over 60 gets truncated.</div></div>
+        <div class="mtc-tip-card"><span class="mtc-tip-icon">🔑</span><div class="mtc-tip-title">Keyword First</div><div class="mtc-tip-text">Put your primary keyword at the beginning of the title — Google weighs words earlier in the title more heavily.</div></div>
+        <div class="mtc-tip-card"><span class="mtc-tip-icon">🏷️</span><div class="mtc-tip-title">Brand at End</div><div class="mtc-tip-text">Add your brand name at the end separated by | or — to build brand recognition without eating into keyword space.</div></div>
+        <div class="mtc-tip-card"><span class="mtc-tip-icon">🎯</span><div class="mtc-tip-title">Match Intent</div><div class="mtc-tip-text">Your title must match what searchers expect to find. If Google rewrites your title, it means there's a mismatch with content.</div></div>
+        <div class="mtc-tip-card"><span class="mtc-tip-icon">🚫</span><div class="mtc-tip-title">No Keyword Stuffing</div><div class="mtc-tip-text">Don't repeat the same keyword multiple times. Google may filter your title or rewrite it, reducing CTR.</div></div>
+        <div class="mtc-tip-card"><span class="mtc-tip-icon">🔢</span><div class="mtc-tip-title">Use Numbers</div><div class="mtc-tip-text">Titles with numbers (e.g. "Top 10", "2025 Guide") consistently get higher click-through rates in search results.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Info -->
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>🔤 What is a Meta Title?</h2>
+      <p>A <strong>meta title</strong> (also called the title tag) is the HTML element that defines the title of a webpage. It appears as the clickable blue headline in Google Search results, as the browser tab label, and as the default title when the page is bookmarked. Along with the meta description, it's the single most influential on-page SEO element — both for ranking and for click-through rate.</p>
+      <p>Google typically displays titles up to about <strong>580 pixels wide</strong> on desktop (roughly 50–60 characters in a standard font). Titles wider than this get truncated with an ellipsis (…), which can cut off important keywords and hurt CTR. On mobile, the limit is slightly narrower, around 55 characters. This checker calculates both the character count AND the estimated pixel width so you can optimize for both devices.</p>
+      <h3>Character vs Pixel Width</h3>
+      <p>Characters are easy to count but not the whole story — the letter "W" is much wider than "i" in Google's SERP font (Arial). A 58-character title with many wide letters might still get truncated, while a 63-character title using narrow letters might fit perfectly. This tool measures pixel width using the same font metrics Google uses, giving you a more accurate prediction.</p>
+      <h3>Best Practices</h3>
+      <ol>
+        <li>Target <strong>50–60 characters</strong> for desktop safety</li>
+        <li>Stay under <strong>580 px</strong> for pixel-accurate safety</li>
+        <li>Put your <strong>primary keyword first</strong></li>
+        <li>Include your <strong>brand name</strong> at the end</li>
+        <li>Write for <strong>humans, not bots</strong> — CTR matters</li>
+        <li>Use <strong>numbers and power words</strong> (Best, Free, Guide, 2025)</li>
+        <li>Make every title <strong>unique</strong> across all pages</li>
+      </ol>
+    </div>
+    <div class="info-block">
+      <h2>🔤 Hindi Guide / हिंदी गाइड</h2>
+      <p><strong>Meta Title</strong> वह HTML element है जो Google Search Results में नीले रंग के clickable link के रूप में दिखता है। यह आपके browser tab में और bookmark name के रूप में भी दिखता है। यह SEO का सबसे महत्वपूर्ण on-page factor है।</p>
+      <h3>सही Length क्या है?</h3>
+      <ol>
+        <li><strong>Characters:</strong> 50-60 characters ideal (Google 60 से ज़्यादा को truncate करता है)</li>
+        <li><strong>Pixels:</strong> 580px से कम होनी चाहिए (Desktop SERP width)</li>
+        <li><strong>Mobile:</strong> 55 characters के आसपास safe है</li>
+        <li>इस tool में दोनों automatically calculate होते हैं</li>
+      </ol>
+      <h3>अच्छा Meta Title कैसे लिखें?</h3>
+      <ol>
+        <li>Primary keyword title की शुरुआत में रखें</li>
+        <li>Brand name अंत में | या — के साथ लगाएं</li>
+        <li>Numbers use करें (जैसे "Top 10", "2025 Guide")</li>
+        <li>Power words use करें (Best, Free, Guide, Complete)</li>
+        <li>Keyword stuffing से बचें</li>
+        <li>हर पेज का unique title होना चाहिए</li>
+        <li>User intent से match करें</li>
+      </ol>
+      <h3>Bulk Checker</h3>
+      <p>एक साथ कई titles check करने के लिए "Bulk Check" tab use करें। हर title की length, pixel width और status एक साथ देखें। Report download भी कर सकते हैं।</p>
+    </div>
+  </div>
+</div>
+
+<button id="mtcScrollTop" aria-label="Scroll to top">↑</button>
+<footer class="site-footer">
+  <p>© 2025 <a href="../index.html">ApneSoftware.com</a> · Free Tools for Everyone · No Signup Required</p>
+</footer>
+<script src="../assets/common.js"></script>
+<script>
+(function(){
+'use strict';
+const LS='mtc_last';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+// Hidden ruler to measure real pixel width like Google's SERP font
+const ruler=document.createElement('span');
+ruler.style.cssText='position:absolute;visibility:hidden;white-space:nowrap;font:20px/1 Arial,sans-serif;left:-9999px;top:0';
+document.body.appendChild(ruler);
+
+function getPixelWidth(text){
+  ruler.textContent=text;
+  return ruler.offsetWidth;
+}
+
+const GOOGLE_PX_MAX=580;
+const GOOGLE_PX_SCALE=20; // font-size used in ruler (actual SERP is ~20px)
+
+function analyze(){
+  const title=$('titleInput').value;
+  const url=$('urlInput').value;
+  const desc=$('descInput').value;
+  const chars=title.length;
+  const rawPx=getPixelWidth(title);
+  // Scale to actual SERP pixel width (Google uses ~20px Arial for title rendering baseline)
+  const px=Math.round(rawPx*0.97); // slight calibration
+
+  // Colors
+  const charOk=chars>=50&&chars<=60;
+  const charWarn=(chars>0&&chars<50)||(chars>60&&chars<=75);
+  const pxOk=px<=GOOGLE_PX_MAX;
+  const color=!title?'#A78BFA': (charOk&&pxOk)?'#16C079': (chars>70||px>GOOGLE_PX_MAX)?'#F87171':'#FFD700';
+
+  // Big counters
+  $('charNum').textContent=chars;
+  $('charNum').style.color=color;
+  $('pxNum').textContent=px+' px';
+  $('pxNum').style.color=pxOk?'#16C079':'#F87171';
+
+  // Bars
+  const cPct=Math.min(100,Math.round(chars/75*100));
+  $('charBar').style.width=cPct+'%';
+  $('charBar').style.background=charOk?'#16C079':charWarn?'#FFD700':'#F87171';
+  const pPct=Math.min(100,Math.round(px/GOOGLE_PX_MAX*100));
+  $('pxBar').style.width=pPct+'%';
+  $('pxBar').style.background=pxOk?'#16C079':'#F87171';
+
+  // Stats
+  $('wordCount').textContent=title?title.trim().split(/\s+/).filter(Boolean).length:0;
+  const words=title.trim().split(/\s+/);
+  const firstWord=(words[0]||'').toLowerCase();
+  const stopwords=['the','a','an','how','what','why','when','where','is','are','was','were','to','of','and','or'];
+  $('hasKeyword').textContent=title&&!stopwords.includes(firstWord)?'✅ Yes':'⚠️ No';
+  $('hasKeyword').style.color=title&&!stopwords.includes(firstWord)?'#16C079':'#FFD700';
+  const hasSepa=title.includes('|')||title.includes('—')||title.includes('-');
+  $('hasBrand').textContent=title&&hasSepa?'✅ Yes':'—';
+  $('hasBrand').style.color=title&&hasSepa?'#16C079':'rgba(255,255,255,.4)';
+  // Case detect
+  const isTitle=words.filter(w=>w.length>3).every(w=>w[0]===w[0].toUpperCase());
+  $('sentenceCase').textContent=isTitle?'Title Case':'Sentence';
+
+  // Status banner
+  const banner=$('statusBanner');
+  if(!title){
+    banner.className='mtc-status-banner ok';
+    $('statusIcon').textContent='📏';
+    $('statusHead').textContent='Enter a title to check';
+    $('statusSub').textContent='Type or paste your meta title above.';
+  } else if(chars<=60&&pxOk){
+    banner.className='mtc-status-banner ok';
+    $('statusIcon').textContent='✅';
+    $('statusHead').textContent='Perfect Title Length!';
+    $('statusSub').textContent=chars+' characters · '+px+' px — within recommended limits. Good work!';
+  } else if(chars>60&&chars<=75){
+    banner.className='mtc-status-banner warn';
+    $('statusIcon').textContent='⚠️';
+    $('statusHead').textContent='Title Slightly Too Long';
+    $('statusSub').textContent='At '+chars+' chars ('+px+'px), Google may truncate this. Try removing '+(chars-58)+' characters.';
+  } else if(chars>75){
+    banner.className='mtc-status-banner bad';
+    $('statusIcon').textContent='❌';
+    $('statusHead').textContent='Title Too Long — Will Be Truncated';
+    $('statusSub').textContent='At '+chars+' chars ('+px+'px), Google will definitely cut this title. Remove at least '+(chars-58)+' characters.';
+  } else if(chars<30&&chars>0){
+    banner.className='mtc-status-banner warn';
+    $('statusIcon').textContent='⚠️';
+    $('statusHead').textContent='Title Too Short';
+    $('statusSub').textContent='At only '+chars+' characters, your title is too short. Expand to 50–60 characters for best results.';
+  }
+
+  // SERP previews
+  const truncated=px>GOOGLE_PX_MAX;
+  const displayTitle=title||'Your Title Will Appear Here';
+  const displayUrl=url?url.replace(/^https?:\/\//,'').replace(/\/+$/,''):'example.com › page';
+  const displayDesc=desc||'Your meta description appears here in Google search results. Write 150–160 characters for best results.';
+  // Truncate title for preview if too wide
+  let prevT=displayTitle;
+  if(truncated&&title){
+    let t2=title; let w=0;
+    for(let i=0;i<t2.length;i++){ruler.textContent=t2.slice(0,i+1);w=ruler.offsetWidth*0.97;if(w>GOOGLE_PX_MAX-50){prevT=t2.slice(0,i)+'…';break;}}
+  }
+  ['prevTitle','prevTitleM'].forEach(id=>{
+    $(id).textContent=prevT;
+    $(id).className='mtc-serp-title'+(truncated?' truncated':'');
+  });
+  ['prevUrl','prevUrlM'].forEach(id=>$(id).textContent=displayUrl);
+  ['prevDesc','prevDescM'].forEach(id=>$(id).textContent=displayDesc);
+
+  try{localStorage.setItem(LS,JSON.stringify({title:title,url:url,desc:desc}));}catch(e){}
+}
+
+function bulkCheck(){
+  const lines=$('bulkInput').value.split('\n').filter(l=>l.trim());
+  if(!lines.length){showToast('⚠️ Enter at least one title.');return;}
+  const results=$('bulkResults');
+  results.innerHTML=lines.map(line=>{
+    const t=line.trim();
+    const ch=t.length;
+    ruler.textContent=t;
+    const px=Math.round(ruler.offsetWidth*0.97);
+    const ok=ch>=50&&ch<=60&&px<=GOOGLE_PX_MAX;
+    const bad=ch>70||px>GOOGLE_PX_MAX;
+    const cls=ok?'ok':bad?'bad':'warn';
+    const badge=ok?'✅ Good':bad?'❌ Too Long':'⚠️ Check';
+    const bStyle=ok?'background:rgba(22,192,121,.15);color:#16C079':bad?'background:rgba(248,113,113,.15);color:#F87171':'background:rgba(255,215,0,.15);color:#FFD700';
+    return `<div class="mtc-bulk-row ${cls}">
+      <div class="mtc-bulk-title" title="${esc(t)}">${esc(t)}</div>
+      <span style="font-size:.75rem;color:rgba(255,255,255,.4);flex-shrink:0">${ch} ch · ${px}px</span>
+      <span class="mtc-bulk-badge" style="${bStyle}">${badge}</span>
+    </div>`;
+  }).join('');
+  showToast('✅ '+lines.length+' titles checked!');
+}
+
+function bulkDownload(){
+  const lines=$('bulkInput').value.split('\n').filter(l=>l.trim());
+  const rows=['META TITLE BULK CHECK REPORT','='.repeat(50),'Generated: '+new Date().toLocaleString(),''];
+  lines.forEach(line=>{
+    const t=line.trim();const ch=t.length;ruler.textContent=t;const px=Math.round(ruler.offsetWidth*0.97);
+    const status=ch>=50&&ch<=60&&px<=GOOGLE_PX_MAX?'[OK]  ':ch>70||px>GOOGLE_PX_MAX?'[LONG]':'[WARN]';
+    rows.push(status+' '+ch+' ch · '+px+'px — '+t);
+  });
+  const b=new Blob([rows.join('\n')],{type:'text/plain'});
+  const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(b),download:'title-check-report.txt'});
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  showToast('⬇️ Report downloaded!');
+}
+
+function showToast(msg){const t=document.createElement('div');t.className='prem-toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2400);}
+
+function init(){
+  $('titleInput').addEventListener('input',analyze);
+  $('urlInput').addEventListener('input',analyze);
+  $('descInput').addEventListener('input',analyze);
+  $('btnSample').addEventListener('click',()=>{
+    $('titleInput').value='Best Running Shoes for Beginners 2025 | ShoeStore';
+    $('urlInput').value='https://shoestore.example.com/best-running-shoes/';
+    $('descInput').value='Expert-picked running shoes for beginners. Compare comfort, durability and price. Free shipping on orders over ₹999.';
+    analyze();showToast('📋 Sample loaded!');
+  });
+  $('btnClear').addEventListener('click',()=>{
+    $('titleInput').value='';$('urlInput').value='';$('descInput').value='';
+    analyze();localStorage.removeItem(LS);
+  });
+  $('btnCopy').addEventListener('click',()=>{
+    const t=$('titleInput').value;
+    if(!t){showToast('⚠️ No title to copy.');return;}
+    navigator.clipboard.writeText(t).then(()=>showToast('📋 Title copied!'));
+  });
+  $('btnBulkCheck').addEventListener('click',bulkCheck);
+  $('btnBulkClear').addEventListener('click',()=>{$('bulkInput').value='';$('bulkResults').innerHTML='';});
+  $('btnBulkDownload').addEventListener('click',bulkDownload);
+
+  // Tabs
+  document.querySelectorAll('.mtc-tab').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.mtc-tab').forEach(b=>b.classList.toggle('active',b===btn));
+      document.querySelectorAll('.mtc-panel').forEach(p=>p.classList.toggle('active',p.id==='tab-'+btn.dataset.tab));
+      $('singleResults').style.display=btn.dataset.tab==='single'?'block':'none';
+    });
+  });
+
+  // Scroll to top
+  const sb=$('mtcScrollTop');
+  window.addEventListener('scroll',()=>sb.classList.toggle('show',scrollY>400));
+  sb.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+  // Load saved
+  try{const s=JSON.parse(localStorage.getItem(LS)||'{}');if(s.title)$('titleInput').value=s.title;if(s.url)$('urlInput').value=s.url;if(s.desc)$('descInput').value=s.desc;analyze();}catch(e){}
+}
+document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+</body>
+</html>

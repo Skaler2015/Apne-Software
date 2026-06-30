@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/markdown-to-pdf.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Markdown to PDF Converter — ApneSoftware">
+<meta property="og:description" content="Convert Markdown (.md) files or pasted Markdown text into a clean, formatted PDF. Free, in your browser, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/markdown-to-pdf.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Markdown to PDF Converter — ApneSoftware">
+<meta name="twitter:description" content="Convert Markdown (.md) files or pasted Markdown text into a clean, formatted PDF. Free, in your browser, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Markdown to PDF","description":"Convert Markdown (.md) files or pasted Markdown text into a clean, formatted PDF. Free, in your browser, no signup.","url":"https://apnesoftware.com/tools/markdown-to-pdf.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Markdown to PDF Converter — ApneSoftware</title>
+<meta name="description" content="Convert Markdown (.md) files or pasted Markdown text into a clean, formatted PDF. Free, in your browser, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  textarea#mdInput{width:100%;min-height:280px;font-family:monospace;font-size:.88rem;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);resize:vertical}
+  .tab-row{display:flex;gap:8px;margin-bottom:12px}
+  .tab-row button{flex:1}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📝 Markdown to PDF Converter</h1>
+    <p>Convert Markdown notes or README files into a clean, formatted PDF document.</p>
+  </div>
+
+  <div class="panel">
+    <div class="tab-row">
+      <button class="btn secondary active" id="pasteTabBtn">✏️ Paste Markdown</button>
+      <button class="btn secondary" id="uploadTabBtn">📤 Upload .md File</button>
+    </div>
+
+    <div id="pasteTab">
+      <textarea id="mdInput" placeholder="# My Document&#10;&#10;Write or paste your **Markdown** here...">## Sample Heading
+
+This is a sample paragraph with **bold text** and *italic text*.
+
+- First item
+- Second item
+- Third item
+
+> A quoted line looks like this.</textarea>
+    </div>
+
+    <div id="uploadTab" style="display:none">
+      <div class="dropzone" id="dropzone">
+        <p>📤 Drag a .md file here or click to choose</p>
+        <input type="file" id="fileInput" accept=".md,.markdown,text/markdown">
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:16px">
+      <button class="btn" id="convertBtn">📄 Convert to PDF</button>
+    </div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Markdown has become the default way many people write — README files on GitHub, technical notes, blog drafts, and documentation are usually written in Markdown's simple plain-text syntax using symbols like # for headings, ** for bold, and - for lists. It's fast to write and easy to read as raw text, but sharing a .md file with someone who isn't a developer often doesn't work well, since most people don't have software that renders Markdown nicely, and the raw symbols just look like clutter in a plain text viewer.</p>
+      <p>This tool solves that by converting your Markdown into an actual formatted PDF — headings become properly sized and bold, bullet lists get real bullet points, bold and italic text render correctly, and the result is a document anyone can open and read cleanly regardless of what software they have. You can either paste Markdown text directly or upload a .md file, and the conversion happens instantly in your browser.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Paste your Markdown text, or switch to "Upload .md File" and choose a file.</li>
+        <li>Click "Convert to PDF."</li>
+        <li>The formatted PDF downloads automatically.</li>
+      </ol>
+      <h3>What gets formatted</h3>
+      <p>Headings (# through ###) are converted to properly sized, bold text so the document's structure is immediately clear at a glance. Bullet and numbered lists keep their markers, bold and italic emphasis are preserved, and blockquotes are indented to set them apart from regular paragraphs. Code blocks are kept in a monospaced font so code stays readable and distinguishable from regular prose. The result reads like a clean, professional document rather than a wall of raw symbols.</p>
+      <p>This is especially handy for developers and technical writers who keep most of their notes, documentation, and project READMEs in Markdown by default, but occasionally need to hand a clean, non-technical copy to someone outside the team — a manager, a client, or a collaborator who'd rather read a PDF than open a code repository. It also works well for converting a Markdown-based resume, changelog, or set of release notes into something that looks finished and presentable rather than like raw source text. Because the whole process runs in your browser, there's no need to install Pandoc or any other command-line conversion tool just for an occasional one-off conversion — paste the text, click convert, and the PDF is ready in seconds, with no installation, account, or internet round-trip required beyond loading the page itself.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>Markdown लिखने का एक आम तरीका बन गया है — GitHub पर README files, technical notes, blog drafts, documentation आमतौर पर Markdown की simple plain-text syntax में लिखे जाते हैं, जैसे heading के लिए #, bold के लिए **, list के लिए -। यह लिखने में तेज़ और plain text के रूप में पढ़ने में आसान है, पर .md file किसी ऐसे व्यक्ति को भेजना जो developer नहीं है, अक्सर ठीक से काम नहीं करता, क्योंकि ज़्यादातर लोगों के पास Markdown को सही दिखाने वाला software नहीं होता, और raw symbols plain text viewer में सिर्फ़ अव्यवस्था जैसे दिखते हैं।</p>
+      <p>यह tool आपके Markdown को असली formatted PDF में बदलकर यह समस्या हल करता है — headings सही size और bold बन जाते हैं, bullet lists में असली bullet points आते हैं, bold-italic text सही render होता है, और result एक ऐसा document होता है जिसे कोई भी खोलकर साफ़-साफ़ पढ़ सकता है, चाहे उसके पास कोई भी software हो। आप या तो सीधे Markdown text paste कर सकते हैं या .md file अपलोड कर सकते हैं, और conversion आपके browser में तुरंत होता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना Markdown text paste करें, या "Upload .md File" पर जाकर file चुनें।</li>
+        <li>"Convert to PDF" दबाएं।</li>
+        <li>formatted PDF अपने आप download हो जाएगी।</li>
+      </ol>
+      <h3>क्या-क्या format होता है</h3>
+      <p>Headings (# से ###) सही size के bold text में बदल जाते हैं ताकि document की structure एक नज़र में साफ़ दिखे। Bullet और numbered lists अपने markers के साथ रहती हैं, bold-italic emphasis बनी रहती है, और blockquotes को indent करके सामान्य paragraphs से अलग दिखाया जाता है। Code blocks monospaced font में रहते हैं ताकि code पढ़ने लायक और बाकी text से अलग दिखे। Result raw symbols की दीवार की बजाय एक साफ़, professional document जैसा लगता है।</p>
+      <p>यह खासकर developers और technical writers के लिए उपयोगी है जो अपने ज़्यादातर notes, documentation, और project READMEs default रूप से Markdown में रखते हैं, पर कभी-कभी team से बाहर किसी को — manager, client, या collaborator जो code repository खोलने की बजाय PDF पढ़ना पसंद करे — एक साफ़, non-technical copy देनी होती है। यह किसी Markdown-based resume, changelog, या release notes को कुछ ऐसा बनाने के लिए भी अच्छा काम करता है जो raw source text की बजाय तैयार और professional दिखे। चूंकि पूरी प्रक्रिया आपके browser में चलती है, सिर्फ़ कभी-कभार की एक conversion के लिए Pandoc या किसी और command-line tool को install करने की ज़रूरत नहीं — text paste करें, convert दबाएं, और PDF कुछ ही सेकंड में तैयार है।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/16.3.0/lib/marked.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const mdInput = document.getElementById('mdInput');
+let uploadedText = null;
+let uploadedFileName = 'document';
+
+document.getElementById('pasteTabBtn').addEventListener('click', function(){
+  this.classList.add('active');
+  document.getElementById('uploadTabBtn').classList.remove('active');
+  document.getElementById('pasteTab').style.display = 'block';
+  document.getElementById('uploadTab').style.display = 'none';
+});
+document.getElementById('uploadTabBtn').addEventListener('click', function(){
+  this.classList.add('active');
+  document.getElementById('pasteTabBtn').classList.remove('active');
+  document.getElementById('uploadTab').style.display = 'block';
+  document.getElementById('pasteTab').style.display = 'none';
+});
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length){
+    uploadedFileName = files[0].name.replace(/\.(md|markdown)$/i, '');
+    files[0].text().then(t => { uploadedText = t; });
+  }
+});
+
+function wrapText(text, font, fontSize, maxWidth){
+  const words = text.split(/\s+/).filter(Boolean);
+  const lines = [];
+  let line = '';
+  words.forEach(word => {
+    const test = line ? line + ' ' + word : word;
+    if(font.widthOfTextAtSize(test, fontSize) > maxWidth && line){
+      lines.push(line);
+      line = word;
+    } else {
+      line = test;
+    }
+  });
+  if(line) lines.push(line);
+  return lines;
+}
+
+document.getElementById('convertBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  const isUploadMode = document.getElementById('uploadTab').style.display !== 'none';
+  const mdText = isUploadMode ? uploadedText : mdInput.value;
+
+  if(!mdText || !mdText.trim()){
+    status.textContent = '⚠️ Please add some Markdown text first.';
+    return;
+  }
+
+  status.textContent = '⏳ Building PDF...';
+
+  const html = marked.parse(mdText);
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const blocks = Array.from(doc.body.children);
+
+  const { PDFDocument, StandardFonts, rgb } = PDFLib;
+  const pdfDoc = await PDFDocument.create();
+  const fontRegular = await pdfDoc.embedFont(StandardFonts.Helvetica);
+  const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+  const fontMono = await pdfDoc.embedFont(StandardFonts.Courier);
+
+  const pageWidth = 595, pageHeight = 842, margin = 50;
+  const maxWidth = pageWidth - margin*2;
+  let page = pdfDoc.addPage([pageWidth, pageHeight]);
+  let y = pageHeight - margin;
+
+  function newPageIfNeeded(lineHeight){
+    if(y - lineHeight < margin){
+      page = pdfDoc.addPage([pageWidth, pageHeight]);
+      y = pageHeight - margin;
+    }
+  }
+
+  function renderBlock(el, indent){
+    const tag = el.tagName.toLowerCase();
+    let fontSize = 11, font = fontRegular, prefix = '', spacingAfter = 8, extraIndent = indent || 0;
+
+    if(tag === 'h1'){ fontSize = 22; font = fontBold; spacingAfter = 14; }
+    else if(tag === 'h2'){ fontSize = 18; font = fontBold; spacingAfter = 12; }
+    else if(tag === 'h3'){ fontSize = 15; font = fontBold; spacingAfter = 10; }
+    else if(tag === 'blockquote'){ extraIndent += 20; }
+    else if(tag === 'pre'){ font = fontMono; fontSize = 9.5; }
+    else if(tag === 'ul' || tag === 'ol'){
+      Array.from(el.children).forEach((li, i) => {
+        const liPrefix = tag === 'ol' ? `${i+1}. ` : '• ';
+        const text = liPrefix + li.textContent.trim();
+        const lines = wrapText(text, fontRegular, 11, maxWidth - 18);
+        lines.forEach(line => {
+          newPageIfNeeded(15.4);
+          page.drawText(line, { x: margin + 18, y: y - 11, size: 11, font: fontRegular, color: rgb(0.1,0.1,0.1) });
+          y -= 15.4;
+        });
+      });
+      y -= 8;
+      return;
+    }
+
+    const text = (prefix + el.textContent.trim());
+    if(!text.trim()){ y -= 6; return; }
+
+    const lines = wrapText(text, font, fontSize, maxWidth - extraIndent);
+    const lineHeight = fontSize * 1.4;
+    lines.forEach(line => {
+      newPageIfNeeded(lineHeight);
+      page.drawText(line, { x: margin + extraIndent, y: y - fontSize, size: fontSize, font, color: rgb(0.1,0.1,0.1) });
+      y -= lineHeight;
+    });
+    y -= spacingAfter;
+  }
+
+  blocks.forEach(el => renderBlock(el, 0));
+
+  const pdfBytes = await pdfDoc.save();
+  const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+  downloadBlob((isUploadMode ? uploadedFileName : 'markdown-document') + '.pdf', blob);
+  status.textContent = '✅ Converted and downloaded!';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/before-after-slider.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Before/After Image Comparison Slider | ApneSoftware">
+<meta property="og:description" content="Compare two images with a drag slider. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/before-after-slider.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Before/After Image Comparison Slider | ApneSoftware">
+<meta name="twitter:description" content="Compare two images with a drag slider. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Before/After Comparison Slider","description":"Compare two images with a drag slider. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/before-after-slider.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Before/After Image Comparison Slider | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .upload-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:600px){ .upload-row{grid-template-columns:1fr} }
+  .compare-stage{
+    position:relative;width:100%;max-width:100%;margin-top:18px;border-radius:10px;overflow:hidden;
+    border:1px solid var(--border);touch-action:none;user-select:none;
+  }
+  .compare-stage img{display:block;width:100%;height:auto}
+  .compare-after{position:absolute;top:0;left:0;height:100%;overflow:hidden;width:50%}
+  .compare-after img{width:var(--stage-width,100%);max-width:none;height:100%;object-fit:cover}
+  .compare-handle{
+    position:absolute;top:0;bottom:0;left:50%;width:4px;background:#fff;cursor:ew-resize;
+    box-shadow:0 0 6px rgba(0,0,0,.5);
+  }
+  .compare-handle::after{
+    content:'⇔';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:38px;height:38px;background:#fff;color:#222;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-size:1.1rem;box-shadow:0 2px 8px rgba(0,0,0,.4);
+  }
+  .label-tag{position:absolute;top:10px;background:rgba(0,0,0,.6);color:#fff;font-size:.75rem;padding:3px 10px;border-radius:12px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>↔️ Before/After Comparison Slider</h1>
+    <p>Upload two images and drag the slider to compare them side by side.</p>
+  </div>
+
+  <div class="panel">
+    <div class="upload-row">
+      <div>
+        <label style="font-size:.85rem;color:var(--text-dim);display:block;margin-bottom:6px">Before image</label>
+        <div class="dropzone" id="dropzoneBefore">
+          <p>📤 Click to choose</p>
+          <input type="file" id="fileInputBefore" accept="image/*">
+        </div>
+      </div>
+      <div>
+        <label style="font-size:.85rem;color:var(--text-dim);display:block;margin-bottom:6px">After image</label>
+        <div class="dropzone" id="dropzoneAfter">
+          <p>📤 Click to choose</p>
+          <input type="file" id="fileInputAfter" accept="image/*">
+        </div>
+      </div>
+    </div>
+
+    <div class="compare-stage" id="compareStage" style="display:none">
+      <span class="label-tag" style="left:10px">Before</span>
+      <span class="label-tag" style="right:10px">After</span>
+      <img id="beforeImg" alt="Before">
+      <div class="compare-after" id="afterWrap">
+        <img id="afterImg" alt="After">
+      </div>
+      <div class="compare-handle" id="compareHandle"></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Compare two images interactively with a draggable slider — perfect for showing before/after edits, renovation results, weight loss progress, or any visual comparison.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a "Before" image and an "After" image.</li>
+        <li>Drag the slider handle left and right to reveal each image.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>दो इमेज को draggable slider से इंटरैक्टिव तरीके से compare करें — before/after एडिट, रेनोवेशन रिजल्ट, वेट लॉस प्रोग्रेस, या किसी भी विज़ुअल कंपेरिज़न दिखाने के लिए बढ़िया।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक "Before" इमेज और एक "After" इमेज अपलोड करें।</li>
+        <li>slider handle को बाएं-दाएं ड्रैग करके दोनों इमेज देखें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+let beforeLoaded = false, afterLoaded = false;
+
+const dropzoneBefore = document.getElementById('dropzoneBefore');
+const fileInputBefore = document.getElementById('fileInputBefore');
+setupDropzone(dropzoneBefore, fileInputBefore, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    document.getElementById('beforeImg').src = URL.createObjectURL(files[0]);
+    beforeLoaded = true;
+    checkReady();
+  }
+});
+
+const dropzoneAfter = document.getElementById('dropzoneAfter');
+const fileInputAfter = document.getElementById('fileInputAfter');
+setupDropzone(dropzoneAfter, fileInputAfter, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    document.getElementById('afterImg').src = URL.createObjectURL(files[0]);
+    afterLoaded = true;
+    checkReady();
+  }
+});
+
+function checkReady(){
+  if(beforeLoaded && afterLoaded){
+    document.getElementById('compareStage').style.display = 'block';
+    syncAfterWidth();
+    setPosition(50);
+  }
+}
+
+function syncAfterWidth(){
+  const stage = document.getElementById('compareStage');
+  document.getElementById('afterImg').style.width = stage.clientWidth + 'px';
+}
+
+function setPosition(pct){
+  pct = Math.max(0, Math.min(100, pct));
+  document.getElementById('afterWrap').style.width = pct + '%';
+  document.getElementById('compareHandle').style.left = pct + '%';
+}
+
+let dragging = false;
+const handle = document.getElementById('compareHandle');
+const stage = document.getElementById('compareStage');
+
+function startDrag(e){ dragging = true; e.preventDefault(); }
+function onDrag(e){
+  if(!dragging) return;
+  const pt = e.touches ? e.touches[0] : e;
+  const rect = stage.getBoundingClientRect();
+  const pct = ((pt.clientX - rect.left) / rect.width) * 100;
+  setPosition(pct);
+}
+function endDrag(){ dragging = false; }
+
+handle.addEventListener('mousedown', startDrag);
+handle.addEventListener('touchstart', startDrag, {passive:false});
+stage.addEventListener('mousedown', (e)=>{ startDrag(e); onDrag(e); });
+window.addEventListener('mousemove', onDrag);
+window.addEventListener('touchmove', onDrag, {passive:false});
+window.addEventListener('mouseup', endDrag);
+window.addEventListener('touchend', endDrag);
+window.addEventListener('resize', syncAfterWidth);
+</script>
+</body>
+</html>

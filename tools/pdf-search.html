@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-search.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Search PDF | ApneSoftware">
+<meta property="og:description" content="Find a word or phrase across every page of a PDF. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-search.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Search PDF | ApneSoftware">
+<meta name="twitter:description" content="Find a word or phrase across every page of a PDF. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Search PDF","description":"Find a word or phrase across every page of a PDF. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-search.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Search PDF | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .search-row{display:flex;gap:10px;margin:16px 0}
+  .search-row input{flex:1;padding:11px 16px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);font-family:var(--font);font-size:.92rem}
+  .result-list{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+  .result-card{display:flex;gap:14px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;cursor:pointer;align-items:flex-start}
+  .result-card:hover{border-color:var(--accent)}
+  .result-page-badge{flex-shrink:0;background:var(--accent);color:#fff;font-weight:800;font-size:.78rem;border-radius:8px;padding:6px 10px;white-space:nowrap}
+  .result-snippet{font-size:.85rem;color:var(--text-dim);line-height:1.5}
+  .result-snippet mark{background:rgba(124,92,252,.25);color:var(--text);border-radius:3px;padding:0 2px}
+  .viewer-wrap{margin-top:18px;display:none;text-align:center}
+  .viewer-wrap canvas{max-width:100%;border:1px solid var(--border);border-radius:8px;box-shadow:0 4px 16px rgba(28,26,46,.08)}
+  .viewer-nav{margin-top:10px;display:flex;gap:10px;justify-content:center;align-items:center;font-size:.85rem;color:var(--text-dim)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔍 Search PDF</h1>
+    <p>Quickly find every single page that contains a word or phrase, with a handy preview snippet — click any result to view that page.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag & drop your PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+
+    <div class="search-row" id="searchRow" style="display:none">
+      <input type="text" id="searchInput" placeholder="Type a word or phrase to search...">
+    </div>
+
+    <div class="result-list" id="resultList"></div>
+
+    <div class="viewer-wrap" id="viewerWrap">
+      <canvas id="pageCanvas"></canvas>
+      <div class="viewer-nav">
+        <span id="viewerLabel"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Scrolling through a long PDF page by page to find one specific mention of a name, a clause, a date, or a figure is slow and genuinely easy to get wrong, especially in contracts, reports, or textbooks that run dozens or hundreds of pages long. This tool scans the entire text content of your PDF and instantly shows you every single page that contains your search term, with a short snippet of surrounding text so you can judge relevance before opening the full page.</p>
+      <p>After uploading your PDF, simply type any word or phrase you're looking for into the search box. Results update as you type, listing every matching page along with a highlighted snippet showing exactly where your term appears in context, so you can quickly scan past irrelevant matches and zero in on the one you actually meant. Click any result to render and view that specific page at full size, without needing to flip through the document manually to find it.</p>
+      <p>This is especially useful for long contracts where you need to find every mention of a specific clause or party name, research papers where you're hunting for a particular term or citation, manuals where you need to jump straight to instructions for one specific feature, or any large scanned-then-OCR'd document where you remember a phrase but not which page it's on, saving you from scrolling through dozens of pages by hand.</p>
+      <p>The entire search happens locally in your browser by reading the PDF's text layer directly — your document is never uploaded anywhere. Because everything runs client-side, you can search as many times as you like, refine your search term, and jump between results instantly with no waiting and no file size limits beyond what your browser can comfortably handle. Note that this searches the actual text layer of the PDF, so a purely scanned document without OCR applied won't have searchable text — running it through this site's OCR tool first will fix that.</p>
+      <p>Search is case-insensitive by default, so typing a name or term in any capitalization will still find every matching mention regardless of how it was originally written in the document. The snippet preview pulls text directly from the page, which occasionally includes minor spacing quirks carried over from the original PDF's layout — this doesn't affect the accuracy of the match, just the cosmetic appearance of the preview text.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Type a word or phrase in the search box.</li>
+        <li>Click any result to view that page.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी लंबी PDF में किसी एक नाम, clause, तारीख, या आंकड़े का ज़िक्र ढूंढने के लिए पन्ना-दर-पन्ना scroll करना धीमा है और इसमें गलती होना आसान है, खासकर दर्जनों या सैकड़ों पन्नों वाले contracts, reports, या textbooks में। यह टूल आपकी पूरी PDF का text content scan करके तुरंत हर वो पन्ना दिखाता है जिसमें आपका search term है, साथ में आसपास के text का एक छोटा snippet ताकि पूरा पन्ना खोलने से पहले relevance का अंदाज़ा लग सके।</p>
+      <p>अपनी PDF अपलोड करने के बाद, बस search box में कोई शब्द या phrase टाइप करें। टाइप करते ही results update होते हैं, हर matching पन्ने को एक highlighted snippet के साथ list करते हुए जो दिखाता है कि आपका term context में कहां दिख रहा है। किसी भी result पर क्लिक करके उस specific पन्ने को पूरे size में render और देख सकते हैं, बिना document हाथ से पलटे।</p>
+      <p>यह खासतौर पर तब उपयोगी है जब किसी लंबे contract में किसी specific clause या party के नाम का हर ज़िक्र ढूंढना हो, research papers में कोई खास term या citation ढूंढना हो, manuals में किसी एक feature की instructions पर सीधे पहुंचना हो, या किसी बड़े scan-करके-OCR किए गए document में आपको कोई phrase याद हो पर पन्ना नंबर नहीं, और दर्जनों पन्ने हाथ से खंगालने से बच जाते हैं।</p>
+      <p>पूरी search PDF की text layer को सीधे पढ़कर आपके browser में locally होती है — आपका document कभी कहीं अपलोड नहीं होता। चूंकि सब कुछ client-side चलता है, आप जितनी बार चाहें search कर सकते हैं, अपना search term बदल सकते हैं, और बिना किसी इंतज़ार के results के बीच तुरंत जा सकते हैं, आपके browser के handle करने की क्षमता से ऊपर कोई file size limit नहीं। ध्यान रखें कि यह PDF की असली text layer को search करता है, तो बिना OCR किए सिर्फ scan की गई document में searchable text नहीं होगा — पहले इसी साइट के OCR टूल से गुज़ारने पर यह ठीक हो जाएगा।</p>
+      <p>Search डिफ़ॉल्ट रूप से case-insensitive है, तो किसी नाम या term को किसी भी capitalization में टाइप करने पर भी document में उसका हर मेल खाता ज़िक्र मिल जाएगा, चाहे वह मूल रूप से जैसे भी लिखा गया हो। Snippet preview सीधे पन्ने से text खींचता है, जिसमें कभी-कभार original PDF के layout से आए मामूली spacing के अंतर शामिल हो सकते हैं — इससे match की सटीकता पर कोई फर्क नहीं पड़ता, सिर्फ preview text की दिखावट पर।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>search box में कोई शब्द या phrase टाइप करें।</li>
+        <li>किसी भी result पर क्लिक करके वह पन्ना देखें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let pdfDoc = null;
+let pageTexts = []; // [{pageNum, text}]
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+function escapeHtml(str){
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+function escapeRegex(str){
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+async function handleFile(file){
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Reading PDF...';
+  document.getElementById('resultList').innerHTML = '';
+  document.getElementById('viewerWrap').style.display = 'none';
+  pageTexts = [];
+
+  const arrayBuf = await file.arrayBuffer();
+  pdfDoc = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+
+  for(let i=1; i<=pdfDoc.numPages; i++){
+    const page = await pdfDoc.getPage(i);
+    const textContent = await page.getTextContent();
+    const text = textContent.items.map(it => it.str).join(' ');
+    pageTexts.push({ pageNum: i, text });
+  }
+
+  status.textContent = `✅ ${pdfDoc.numPages} page(s) indexed — type a search term below`;
+  document.getElementById('searchRow').style.display = 'flex';
+  document.getElementById('searchInput').value = '';
+  document.getElementById('searchInput').focus();
+}
+
+document.getElementById('searchInput').addEventListener('input', (e)=>{
+  const query = e.target.value.trim();
+  const resultList = document.getElementById('resultList');
+  if(!query){ resultList.innerHTML = ''; return; }
+
+  const re = new RegExp(escapeRegex(query), 'i');
+  const matches = pageTexts.filter(p => re.test(p.text));
+
+  if(!matches.length){
+    resultList.innerHTML = `<p style="color:var(--text-dim);font-size:.88rem">No matches found for "${escapeHtml(query)}"</p>`;
+    return;
+  }
+
+  resultList.innerHTML = matches.map(p => {
+    const idx = p.text.search(re);
+    const start = Math.max(0, idx - 60);
+    const end = Math.min(p.text.length, idx + query.length + 60);
+    let snippet = p.text.slice(start, end);
+    if(start > 0) snippet = '…' + snippet;
+    if(end < p.text.length) snippet += '…';
+    const highlighted = escapeHtml(snippet).replace(
+      new RegExp(escapeRegex(escapeHtml(query)), 'i'),
+      m => `<mark>${m}</mark>`
+    );
+    return `<div class="result-card" onclick="viewPage(${p.pageNum})">
+      <span class="result-page-badge">Page ${p.pageNum}</span>
+      <span class="result-snippet">${highlighted}</span>
+    </div>`;
+  }).join('');
+});
+
+async function viewPage(pageNum){
+  const page = await pdfDoc.getPage(pageNum);
+  const viewport = page.getViewport({ scale: 1.4 });
+  const canvas = document.getElementById('pageCanvas');
+  canvas.width = viewport.width;
+  canvas.height = viewport.height;
+  const ctx = canvas.getContext('2d');
+  await page.render({ canvasContext: ctx, viewport }).promise;
+
+  document.getElementById('viewerLabel').textContent = `Viewing page ${pageNum} of ${pdfDoc.numPages}`;
+  document.getElementById('viewerWrap').style.display = 'block';
+  document.getElementById('viewerWrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
+</body>
+</html>

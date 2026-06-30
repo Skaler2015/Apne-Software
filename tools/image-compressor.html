@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/image-compressor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image Compressor — Reduce Photo Size | ApneSoftware">
+<meta property="og:description" content="Reduce image file size. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/image-compressor.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Compressor — Reduce Photo Size | ApneSoftware">
+<meta name="twitter:description" content="Reduce image file size. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Compressor","description":"Reduce image file size. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/image-compressor.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Image Compressor — Reduce Photo Size | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .preview-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+  @media(max-width:560px){.preview-grid{grid-template-columns:1fr}}
+  .preview-box{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center}
+  .preview-box img{max-width:100%;border-radius:6px;margin-bottom:8px}
+  .preview-box .info{font-size:.85rem;color:var(--text-dim)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📉 Image Compressor</h1>
+    <p>Reduce an image's file size without losing much quality. Everything happens in your browser — your file is never uploaded anywhere.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an image here or click to choose one</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div class="field" style="margin-top:18px">
+      <label for="qualityRange">Quality: <span id="qualityVal">70</span>%</label>
+      <input type="range" id="qualityRange" min="10" max="100" value="70">
+    </div>
+
+    <div class="preview-grid" id="previewGrid" style="display:none">
+      <div class="preview-box">
+        <img id="originalImg">
+        <div class="info">Original: <span id="originalSize"></span></div>
+      </div>
+      <div class="preview-box">
+        <img id="compressedImg">
+        <div class="info">Compressed: <span id="compressedSize"></span></div>
+      </div>
+    </div>
+
+    <div class="btn-row" id="downloadRow" style="display:none">
+      <button class="btn" id="downloadBtn">⬇️ Download</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Reduce the file size of an image without losing too much quality — great for faster uploads.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Drag and drop or choose your image.</li>
+        <li>Adjust the quality/compression level.</li>
+        <li>Download the compressed image.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल इमेज की क्वालिटी ज़्यादा खराब किए बिना उसकी फाइल साइज़ कम करता है — तेज़ अपलोड के लिए बढ़िया।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी इमेज खींचकर लाएं या चुनें।</li>
+        <li>क्वालिटी/कंप्रेशन लेवल सेट करें।</li>
+        <li>कंप्रेस की गई इमेज डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const qualityRange = document.getElementById('qualityRange');
+let currentFile = null;
+let compressedBlob = null;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length) handleFile(files[0]);
+});
+
+function handleFile(file){
+  if(!file.type.startsWith('image/')) return;
+  currentFile = file;
+
+  const reader = new FileReader();
+  reader.onload = e => {
+    document.getElementById('originalImg').src = e.target.result;
+    document.getElementById('originalSize').textContent = formatBytes(file.size);
+    document.getElementById('previewGrid').style.display = 'grid';
+    compress();
+  };
+  reader.readAsDataURL(file);
+}
+
+function compress(){
+  if(!currentFile) return;
+  const img = new Image();
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+
+    const quality = parseInt(qualityRange.value) / 100;
+    canvas.toBlob(blob => {
+      compressedBlob = blob;
+      document.getElementById('compressedImg').src = URL.createObjectURL(blob);
+      document.getElementById('compressedSize').textContent = formatBytes(blob.size);
+      document.getElementById('downloadRow').style.display = 'flex';
+    }, 'image/jpeg', quality);
+  };
+  img.src = document.getElementById('originalImg').src;
+}
+
+qualityRange.addEventListener('input', e=>{
+  document.getElementById('qualityVal').textContent = e.target.value;
+  if(currentFile) compress();
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  if(compressedBlob) downloadBlob('compressed-' + (currentFile?.name?.replace(/\.[^.]+$/,'') || 'image') + '.jpg', compressedBlob);
+});
+</script>
+</body>
+</html>

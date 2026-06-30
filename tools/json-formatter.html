@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/json-formatter.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JSON Formatter & Validator | ApneSoftware">
+<meta property="og:description" content="Clean up and format JSON. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/json-formatter.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JSON Formatter & Validator | ApneSoftware">
+<meta name="twitter:description" content="Clean up and format JSON. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JSON Formatter","description":"Clean up and format JSON. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/json-formatter.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>JSON Formatter & Validator | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  #outputText{font-family:'Consolas','Courier New',monospace;font-size:.88rem}
+  .status-ok{color:var(--accent-2);font-weight:600}
+  .status-err{color:var(--danger);font-weight:600}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>{ } JSON Formatter</h1>
+    <p>Pretty-print your JSON, or minify it to one line. Invalid JSON errors are shown too.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="inputText">Paste your JSON</label>
+      <textarea id="inputText" placeholder='{"name":"Ravi","age":25,"city":"Jaipur"}'></textarea>
+    </div>
+
+    <div class="row" style="align-items:center">
+      <div class="field" style="max-width:160px">
+        <label for="indentSelect">Indent</label>
+        <select id="indentSelect">
+          <option value="2">2 spaces</option>
+          <option value="4">4 spaces</option>
+          <option value="tab">Tab</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" onclick="formatJSON()">✨ Format</button>
+      <button class="btn secondary" onclick="minifyJSON()">📦 Minify (one line)</button>
+      <button class="btn secondary" onclick="document.getElementById('inputText').value='';document.getElementById('outputText').value='';document.getElementById('status').textContent='';">🗑️ Clear</button>
+    </div>
+
+    <p id="status" style="margin-top:12px"></p>
+
+    <div class="field" style="margin-top:10px">
+      <label>Result</label>
+      <textarea id="outputText" readonly></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn secondary" id="copyBtn">📋 Copy</button>
+      <button class="btn secondary" onclick="downloadText('formatted.json', document.getElementById('outputText').value, 'application/json')">⬇️ Download</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Format and clean up messy JSON data so it's properly indented and easy to read.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Paste your JSON text.</li>
+        <li>Click the format/beautify button.</li>
+        <li>Copy the cleaned-up JSON.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल बिखरे हुए JSON डेटा को सही ढंग से इंडेंट करके पढ़ने लायक बना देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना JSON टेक्स्ट पेस्ट करें।</li>
+        <li>फॉर्मेट/ब्यूटीफाई बटन दबाएं।</li>
+        <li>साफ किया गया JSON कॉपी करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+function getIndent(){
+  const v = document.getElementById('indentSelect').value;
+  return v === 'tab' ? '\t' : parseInt(v);
+}
+
+function formatJSON(){
+  const raw = document.getElementById('inputText').value;
+  const status = document.getElementById('status');
+  try{
+    const parsed = JSON.parse(raw);
+    const formatted = JSON.stringify(parsed, null, getIndent());
+    document.getElementById('outputText').value = formatted;
+    status.textContent = '✅ Valid JSON';
+    status.className = 'status-ok';
+  }catch(err){
+    document.getElementById('outputText').value = '';
+    status.textContent = '❌ Invalid JSON: ' + err.message;
+    status.className = 'status-err';
+  }
+}
+
+function minifyJSON(){
+  const raw = document.getElementById('inputText').value;
+  const status = document.getElementById('status');
+  try{
+    const parsed = JSON.parse(raw);
+    document.getElementById('outputText').value = JSON.stringify(parsed);
+    status.textContent = '✅ Valid JSON (minified)';
+    status.className = 'status-ok';
+  }catch(err){
+    document.getElementById('outputText').value = '';
+    status.textContent = '❌ Invalid JSON: ' + err.message;
+    status.className = 'status-err';
+  }
+}
+
+document.getElementById('copyBtn').addEventListener('click', (e)=>{
+  copyText(document.getElementById('outputText').value, e.target);
+});
+</script>
+</body>
+</html>

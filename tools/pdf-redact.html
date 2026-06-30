@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-redact.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Redact — Hide Sensitive Info | ApneSoftware">
+<meta property="og:description" content="Hide sensitive info, truly removable. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-redact.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Redact — Hide Sensitive Info | ApneSoftware">
+<meta name="twitter:description" content="Hide sensitive info, truly removable. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Redact","description":"Hide sensitive info, truly removable. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-redact.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF Redact — Hide Sensitive Info | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .page-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px}
+  .page-nav span{color:var(--text-dim);font-size:.9rem;min-width:80px;text-align:center}
+
+  .redact-stage{position:relative;display:inline-block;margin-top:14px;max-width:100%;user-select:none;touch-action:none}
+  .redact-stage canvas{display:block;max-width:100%;border:1px solid var(--border);border-radius:6px}
+
+  .box{position:absolute;box-sizing:border-box;cursor:move;background:#000}
+  .box.selected{outline:2px solid var(--accent);outline-offset:1px}
+  .box-del{
+    position:absolute;top:-10px;right:-10px;width:20px;height:20px;border-radius:50%;
+    background:var(--danger);color:#fff;border:none;cursor:pointer;font-size:.7rem;
+    display:none;align-items:center;justify-content:center;z-index:5;
+  }
+  .box.selected .box-del{display:flex}
+  .box-resize{
+    position:absolute;width:14px;height:14px;right:-7px;bottom:-7px;
+    background:var(--accent);border-radius:50%;cursor:nwse-resize;border:2px solid #fff;
+  }
+  .lock-note{
+    background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:8px;
+    padding:12px 14px;font-size:.85rem;color:#86efac;margin-top:14px;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔒 PDF Redact</h1>
+    <p>Cover up sensitive information (names, account numbers, signatures) on a PDF before sharing it.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div id="editorArea" style="display:none">
+      <div class="btn-row">
+        <button class="btn secondary" id="addBoxBtn">⬛ Add Redaction Box</button>
+        <label style="display:flex;align-items:center;gap:6px;font-weight:400;color:var(--text);margin:0">
+          Color <input type="color" id="boxColor" value="#000000" style="width:36px;height:32px;padding:2px">
+        </label>
+      </div>
+
+      <div class="page-nav">
+        <button class="btn secondary" id="prevPageBtn">⬅️</button>
+        <span id="pageInfo">1 / 1</span>
+        <button class="btn secondary" id="nextPageBtn">➡️</button>
+      </div>
+
+      <div class="redact-stage" id="redactStage">
+        <canvas id="bgCanvas"></canvas>
+        <div id="overlayLayer" style="position:absolute;inset:0"></div>
+      </div>
+
+      <label style="display:flex;align-items:center;gap:8px;font-weight:400;color:var(--text);margin-top:18px">
+        <input type="checkbox" id="flattenCheck" style="width:auto" checked> 🔒 Also flatten to image (recommended — truly removes the hidden text/data, not just covers it visually)
+      </label>
+
+      <div class="btn-row">
+        <button class="btn" id="saveBtn">💾 Save Redacted PDF and Download</button>
+      </div>
+
+      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
+      <div class="lock-note" id="lockNote">🔒 When "flatten to image" is checked, each page is converted to a picture after redaction — the text/data underneath the black boxes is completely destroyed, so it can't be selected, copied, or recovered. This is genuine redaction, not just a visual cover.</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool lets you draw solid boxes over sensitive parts of a PDF (like account numbers, signatures, or personal details) before sharing it. With the "flatten to image" option turned on, the page is rebuilt as a picture so the hidden text underneath is genuinely destroyed — not just covered up.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Click "Add Redaction Box" and drag/resize it over the sensitive content.</li>
+        <li>Repeat for any other pages that need it (use the page arrows to navigate).</li>
+        <li>Keep "Also flatten to image" checked for true redaction, then save and download.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल PDF के संवेदनशील हिस्सों (जैसे अकाउंट नंबर, हस्ताक्षर या निजी जानकारी) पर ठोस बॉक्स खींचकर ढकने देता है, शेयर करने से पहले। "flatten to image" विकल्प चालू रखने पर पेज को एक तस्वीर में बदल दिया जाता है, जिससे नीचे छुपा टेक्स्ट सच में मिट जाता है — सिर्फ ऊपर से ढका नहीं रहता।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>"Add Redaction Box" दबाएं और उसे संवेदनशील कंटेंट पर खींचें/साइज़ करें।</li>
+        <li>ज़रूरत हो तो दूसरे पेजों पर भी यही करें (पेज तीर से आगे-पीछे जाएं)।</li>
+        <li>असली रिडेक्शन के लिए "Also flatten to image" चालू रखें, फिर सेव करें और डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const redactStage = document.getElementById('redactStage');
+const overlayLayer = document.getElementById('overlayLayer');
+const bgCanvas = document.getElementById('bgCanvas');
+
+let currentFile = null;
+let pdfDocJs = null;
+let totalPages = 0;
+let currentPageIndex = 0;
+let renderScale = 1;
+
+let boxes = []; // {id, page, xPdf, yPdfTop, wPdf, hPdf, color}
+let idCounter = 1;
+let selectedId = null;
+let dragState = null;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+async function handleFile(file){
+  currentFile = file;
+  boxes = [];
+  selectedId = null;
+  const arrayBuf = await file.arrayBuffer();
+  pdfDocJs = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+  totalPages = pdfDocJs.numPages;
+  currentPageIndex = 0;
+
+  const firstPage = await pdfDocJs.getPage(1);
+  const vp = firstPage.getViewport({ scale: 1 });
+  renderScale = Math.min(560 / vp.width, 1.4);
+
+  document.getElementById('editorArea').style.display = 'block';
+  await renderCurrentPage();
+}
+
+async function renderCurrentPage(){
+  const page = await pdfDocJs.getPage(currentPageIndex + 1);
+  const viewport = page.getViewport({ scale: renderScale });
+  bgCanvas.width = viewport.width;
+  bgCanvas.height = viewport.height;
+  const ctx = bgCanvas.getContext('2d');
+  await page.render({ canvasContext: ctx, viewport }).promise;
+
+  redactStage.style.width = viewport.width + 'px';
+  overlayLayer.style.width = viewport.width + 'px';
+  overlayLayer.style.height = viewport.height + 'px';
+
+  document.getElementById('pageInfo').textContent = `${currentPageIndex+1} / ${totalPages}`;
+  renderBoxes();
+  deselectAll();
+}
+
+document.getElementById('prevPageBtn').addEventListener('click', async ()=>{
+  if(currentPageIndex > 0){ currentPageIndex--; await renderCurrentPage(); }
+});
+document.getElementById('nextPageBtn').addEventListener('click', async ()=>{
+  if(currentPageIndex < totalPages - 1){ currentPageIndex++; await renderCurrentPage(); }
+});
+
+function renderBoxes(){
+  overlayLayer.innerHTML = '';
+  boxes.filter(b => b.page === currentPageIndex).forEach(b => buildBoxDom(b));
+}
+
+function buildBoxDom(b){
+  const box = document.createElement('div');
+  box.className = 'box';
+  box.dataset.id = b.id;
+  box.style.left = (b.xPdf * renderScale) + 'px';
+  box.style.top = (b.yPdfTop * renderScale) + 'px';
+  box.style.width = (b.wPdf * renderScale) + 'px';
+  box.style.height = (b.hPdf * renderScale) + 'px';
+  box.style.background = b.color;
+  if(selectedId === b.id) box.classList.add('selected');
+
+  const delBtn = document.createElement('button');
+  delBtn.className = 'box-del';
+  delBtn.textContent = '✕';
+  delBtn.addEventListener('mousedown', e=> e.stopPropagation());
+  delBtn.addEventListener('click', (e)=>{ e.stopPropagation(); deleteBox(b.id); });
+  box.appendChild(delBtn);
+
+  box.addEventListener('mousedown', e=> startDrag(e, b, box));
+  box.addEventListener('touchstart', e=> startDrag(e, b, box));
+
+  const resize = document.createElement('div');
+  resize.className = 'box-resize';
+  resize.addEventListener('mousedown', e=> startResize(e, b, box));
+  resize.addEventListener('touchstart', e=> startResize(e, b, box));
+  box.appendChild(resize);
+
+  overlayLayer.appendChild(box);
+}
+
+function startDrag(e, b, box){
+  const point = e.touches ? e.touches[0] : e;
+  dragState = { type:'move', b, box, startX: point.clientX, startY: point.clientY, origLeft: box.offsetLeft, origTop: box.offsetTop };
+  selectElement(b.id);
+  e.stopPropagation();
+  if(e.cancelable) e.preventDefault();
+}
+function startResize(e, b, box){
+  const point = e.touches ? e.touches[0] : e;
+  dragState = { type:'resize', b, box, startX: point.clientX, startY: point.clientY, startW: box.offsetWidth, startH: box.offsetHeight };
+  e.stopPropagation();
+  if(e.cancelable) e.preventDefault();
+}
+
+function onPointerMove(e){
+  if(!dragState) return;
+  const point = e.touches ? e.touches[0] : e;
+  const dx = point.clientX - dragState.startX;
+  const dy = point.clientY - dragState.startY;
+  const { b, box, type } = dragState;
+
+  if(type === 'move'){
+    let newLeft = dragState.origLeft + dx;
+    let newTop = dragState.origTop + dy;
+    newLeft = Math.max(0, Math.min(newLeft, overlayLayer.clientWidth - box.offsetWidth));
+    newTop = Math.max(0, Math.min(newTop, overlayLayer.clientHeight - box.offsetHeight));
+    box.style.left = newLeft + 'px';
+    box.style.top = newTop + 'px';
+    b.xPdf = newLeft / renderScale;
+    b.yPdfTop = newTop / renderScale;
+  } else if(type === 'resize'){
+    const newW = Math.max(10, dragState.startW + dx);
+    const newH = Math.max(10, dragState.startH + dy);
+    box.style.width = newW + 'px';
+    box.style.height = newH + 'px';
+    b.wPdf = newW / renderScale;
+    b.hPdf = newH / renderScale;
+  }
+  if(e.cancelable) e.preventDefault();
+}
+function onPointerUp(){ dragState = null; }
+
+document.addEventListener('mousemove', onPointerMove);
+document.addEventListener('mouseup', onPointerUp);
+document.addEventListener('touchmove', onPointerMove, { passive:false });
+document.addEventListener('touchend', onPointerUp);
+
+redactStage.addEventListener('mousedown', e=>{
+  if(e.target === bgCanvas) deselectAll();
+});
+
+function selectElement(id){
+  selectedId = id;
+  document.querySelectorAll('.box').forEach(el=>{
+    el.classList.toggle('selected', el.dataset.id == id);
+  });
+}
+function deselectAll(){
+  selectedId = null;
+  document.querySelectorAll('.box').forEach(el => el.classList.remove('selected'));
+}
+function deleteBox(id){
+  boxes = boxes.filter(b => b.id != id);
+  if(selectedId == id) deselectAll();
+  renderBoxes();
+}
+
+document.getElementById('addBoxBtn').addEventListener('click', ()=>{
+  const color = document.getElementById('boxColor').value;
+  const b = { id: idCounter++, page: currentPageIndex, xPdf:40, yPdfTop:40, wPdf:160, hPdf:30, color };
+  boxes.push(b);
+  renderBoxes();
+  selectElement(b.id);
+});
+
+document.getElementById('boxColor').addEventListener('input', e=>{
+  const b = boxes.find(x => x.id == selectedId);
+  if(b){
+    b.color = e.target.value;
+    renderBoxes();
+    selectElement(selectedId);
+  }
+});
+
+function hexToRgb01(hex){
+  hex = hex.replace('#','');
+  const bigint = parseInt(hex, 16);
+  return { r: ((bigint>>16)&255)/255, g: ((bigint>>8)&255)/255, b: (bigint&255)/255 };
+}
+
+document.getElementById('saveBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  if(boxes.length === 0){ status.textContent = '⚠️ Add at least one redaction box first'; return; }
+
+  status.textContent = '⏳ Building PDF...';
+  try{
+    const { PDFDocument, rgb } = PDFLib;
+    const bytes = await currentFile.arrayBuffer();
+    const flatten = document.getElementById('flattenCheck').checked;
+
+    if(!flatten){
+      // simple overlay mode: draw opaque boxes on top of vector PDF (text underneath still extractable)
+      const pdfDoc = await PDFDocument.load(bytes);
+      const pages = pdfDoc.getPages();
+      boxes.forEach(b => {
+        const page = pages[b.page];
+        if(!page) return;
+        const pageHeight = page.getHeight();
+        const color = hexToRgb01(b.color);
+        const y = pageHeight - b.yPdfTop - b.hPdf;
+        page.drawRectangle({ x: b.xPdf, y, width: b.wPdf, height: b.hPdf, color: rgb(color.r,color.g,color.b) });
+      });
+      const newBytes = await pdfDoc.save();
+      const blob = new Blob([newBytes], {type:'application/pdf'});
+      downloadBlob('redacted.pdf', blob);
+      status.textContent = '✅ Redacted (visual cover only) and downloaded!';
+    } else {
+      // true redaction: rasterize every page (with boxes burned in) so underlying text is destroyed
+      const pdf = await pdfjsLib.getDocument({data: bytes.slice(0)}).promise;
+      const newPdf = await PDFDocument.create();
+
+      for(let i=1; i<=pdf.numPages; i++){
+        status.textContent = `⏳ Flattening page ${i}/${pdf.numPages}...`;
+        const page = await pdf.getPage(i);
+        const viewport = page.getViewport({ scale: 2 });
+        const canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        await page.render({ canvasContext: ctx, viewport }).promise;
+
+        // draw this page's redaction boxes directly onto the canvas (scale = 2x of our renderScale-based coords)
+        const pageBoxes = boxes.filter(b => b.page === i-1);
+        pageBoxes.forEach(b => {
+          const sx = b.xPdf * 2; // xPdf/yPdf are in PDF points (scale 1); canvas is rendered at scale 2
+          const sy = b.yPdfTop * 2;
+          const sw = b.wPdf * 2;
+          const sh = b.hPdf * 2;
+          ctx.fillStyle = b.color;
+          ctx.fillRect(sx, sy, sw, sh);
+        });
+
+        const jpgDataUrl = canvas.toDataURL('image/jpeg', 0.9);
+        const jpgBytes = await fetch(jpgDataUrl).then(r => r.arrayBuffer());
+        const embeddedImg = await newPdf.embedJpg(jpgBytes);
+        const newPage = newPdf.addPage([viewport.width, viewport.height]);
+        newPage.drawImage(embeddedImg, { x:0, y:0, width: viewport.width, height: viewport.height });
+      }
+
+      status.textContent = '⏳ Saving...';
+      const finalBytes = await newPdf.save();
+      const blob = new Blob([finalBytes], {type:'application/pdf'});
+      downloadBlob('redacted.pdf', blob);
+      status.textContent = '✅ Truly redacted (flattened to image) and downloaded!';
+    }
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

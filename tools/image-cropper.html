@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/image-cropper.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image Cropper | ApneSoftware">
+<meta property="og:description" content="Crop images freely or to a fixed ratio. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/image-cropper.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Cropper | ApneSoftware">
+<meta name="twitter:description" content="Crop images freely or to a fixed ratio. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Cropper","description":"Crop images freely or to a fixed ratio. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/image-cropper.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Image Cropper | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .crop-stage{position:relative;display:inline-block;max-width:100%;touch-action:none;margin-top:14px}
+  .crop-stage img{display:block;max-width:100%;border-radius:4px;-webkit-user-drag:none;user-select:none}
+  .crop-box{
+    position:absolute;border:2px solid #7C5CFC;box-shadow:0 0 0 9999px rgba(0,0,0,.55);cursor:move;
+  }
+  .crop-handle{
+    position:absolute;width:16px;height:16px;background:#7C5CFC;border:2px solid #fff;border-radius:50%;
+    right:-9px;bottom:-9px;cursor:nwse-resize;
+  }
+  .ratio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .ratio-btn{padding:6px 14px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-size:.85rem;cursor:pointer}
+  .ratio-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>✂️ Image Cropper</h1>
+    <p>Drag the box to position, drag the corner handle to resize, then crop.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an image here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div id="afterUpload" style="display:none">
+      <div class="ratio-row">
+        <button class="ratio-btn active" data-ratio="free">Free</button>
+        <button class="ratio-btn" data-ratio="1:1">1:1 Square</button>
+        <button class="ratio-btn" data-ratio="4:3">4:3</button>
+        <button class="ratio-btn" data-ratio="16:9">16:9</button>
+        <button class="ratio-btn" data-ratio="3:2">3:2</button>
+      </div>
+
+      <div class="crop-stage" id="cropStage">
+        <img id="sourceImg" alt="Source">
+        <div class="crop-box" id="cropBox"><div class="crop-handle" id="cropHandle"></div></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="cropBtn">✂️ Crop & Download</button>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Crop any image to exactly the area you need, freely or to a fixed aspect ratio like square, 4:3, or 16:9 — useful for profile pictures, thumbnails, or trimming unwanted edges.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload an image.</li>
+        <li>Drag the box to position it, and drag the corner handle to resize it. Pick an aspect ratio if you want a fixed shape.</li>
+        <li>Click Crop & Download to save the cropped result.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी भी इमेज को बिल्कुल अपनी ज़रूरत के हिसाब से क्रॉप करें, फ्री-फॉर्म या स्क्वायर, 4:3, 16:9 जैसे फिक्स्ड अनुपात में — प्रोफाइल पिक्चर, थंबनेल या अनचाहे किनारे हटाने के लिए उपयोगी।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक इमेज अपलोड करें।</li>
+        <li>बॉक्स को पोजीशन करने के लिए ड्रैग करें, और साइज़ बदलने के लिए कॉर्नर हैंडल ड्रैग करें। फिक्स्ड अनुपात चाहिए तो चुनें।</li>
+        <li>Crop & Download दबाकर क्रॉप की हुई इमेज सेव करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const stage = document.getElementById('cropStage');
+const img = document.getElementById('sourceImg');
+const box = document.getElementById('cropBox');
+const handle = document.getElementById('cropHandle');
+let currentFile = null;
+let ratio = null; // null = free, else {w,h}
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    currentFile = files[0];
+    img.onload = ()=>{
+      document.getElementById('afterUpload').style.display = 'block';
+      initBox();
+    };
+    img.src = URL.createObjectURL(currentFile);
+  }
+});
+
+function initBox(){
+  const w = stage.clientWidth, h = img.clientHeight;
+  const bw = w * 0.6, bh = h * 0.6;
+  box.style.left = (w-bw)/2 + 'px';
+  box.style.top = (h-bh)/2 + 'px';
+  box.style.width = bw + 'px';
+  box.style.height = bh + 'px';
+}
+
+document.querySelectorAll('.ratio-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.ratio-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const r = btn.dataset.ratio;
+    if(r === 'free'){ ratio = null; return; }
+    const [rw, rh] = r.split(':').map(Number);
+    ratio = { w: rw, h: rh };
+    // resize current box to match ratio, keep top-left
+    const curW = box.offsetWidth;
+    const newH = curW * (ratio.h/ratio.w);
+    box.style.height = Math.min(newH, img.clientHeight - box.offsetTop) + 'px';
+  });
+});
+
+// Dragging the box (move)
+let dragging = false, dragOffsetX = 0, dragOffsetY = 0;
+function startDrag(e){
+  if(e.target === handle) return;
+  dragging = true;
+  const pt = e.touches ? e.touches[0] : e;
+  const rect = box.getBoundingClientRect();
+  dragOffsetX = pt.clientX - rect.left;
+  dragOffsetY = pt.clientY - rect.top;
+  e.preventDefault();
+}
+function onDrag(e){
+  if(!dragging) return;
+  const pt = e.touches ? e.touches[0] : e;
+  const stageRect = stage.getBoundingClientRect();
+  let x = pt.clientX - stageRect.left - dragOffsetX;
+  let y = pt.clientY - stageRect.top - dragOffsetY;
+  x = Math.max(0, Math.min(x, stage.clientWidth - box.offsetWidth));
+  y = Math.max(0, Math.min(y, img.clientHeight - box.offsetHeight));
+  box.style.left = x + 'px';
+  box.style.top = y + 'px';
+}
+function endDrag(){ dragging = false; }
+
+box.addEventListener('mousedown', startDrag);
+box.addEventListener('touchstart', startDrag, {passive:false});
+window.addEventListener('mousemove', onDrag);
+window.addEventListener('touchmove', onDrag, {passive:false});
+window.addEventListener('mouseup', endDrag);
+window.addEventListener('touchend', endDrag);
+
+// Resizing via handle
+let resizing = false;
+function startResize(e){
+  resizing = true;
+  e.stopPropagation();
+  e.preventDefault();
+}
+function onResize(e){
+  if(!resizing) return;
+  const pt = e.touches ? e.touches[0] : e;
+  const stageRect = stage.getBoundingClientRect();
+  let newW = pt.clientX - stageRect.left - box.offsetLeft;
+  let newH;
+  if(ratio){
+    newH = newW * (ratio.h/ratio.w);
+  } else {
+    newH = pt.clientY - stageRect.top - box.offsetTop;
+  }
+  newW = Math.max(20, Math.min(newW, stage.clientWidth - box.offsetLeft));
+  newH = Math.max(20, Math.min(newH, img.clientHeight - box.offsetTop));
+  if(ratio){
+    // re-derive width from clamped height to keep ratio exact
+    newW = newH * (ratio.w/ratio.h);
+  }
+  box.style.width = newW + 'px';
+  box.style.height = newH + 'px';
+}
+function endResize(){ resizing = false; }
+
+handle.addEventListener('mousedown', startResize);
+handle.addEventListener('touchstart', startResize, {passive:false});
+window.addEventListener('mousemove', onResize);
+window.addEventListener('touchmove', onResize, {passive:false});
+window.addEventListener('mouseup', endResize);
+window.addEventListener('touchend', endResize);
+
+document.getElementById('cropBtn').addEventListener('click', ()=>{
+  const scaleX = img.naturalWidth / img.clientWidth;
+  const scaleY = img.naturalHeight / img.clientHeight;
+
+  const sx = box.offsetLeft * scaleX;
+  const sy = box.offsetTop * scaleY;
+  const sw = box.offsetWidth * scaleX;
+  const sh = box.offsetHeight * scaleY;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = sw; canvas.height = sh;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
+
+  canvas.toBlob((blob)=>{
+    const ext = (currentFile.type === 'image/png') ? 'png' : 'jpg';
+    downloadBlob('cropped.' + ext, blob);
+    document.getElementById('statusMsg').textContent = '✅ Downloaded!';
+  }, currentFile.type === 'image/png' ? 'image/png' : 'image/jpeg', 0.95);
+});
+
+window.addEventListener('resize', ()=>{ if(currentFile) initBox(); });
+</script>
+</body>
+</html>

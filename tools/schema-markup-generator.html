@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Schema Markup Generator — Generate JSON-LD structured data for FAQ, Article, Product, LocalBusiness, BreadcrumbList and more. Valid schema for rich results in Google.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/schema-markup-generator.html">
+<meta property="og:title" content="Schema Markup Generator — JSON-LD Structured Data | ApneSoftware">
+<meta property="og:description" content="Generate JSON-LD schema for FAQ, Article, Product, LocalBusiness, Breadcrumb and more. Free, instant.">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="dark">
+<title>Schema Markup Generator — JSON-LD Structured Data | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.smg-type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:16px}
+.smg-type-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 10px;cursor:pointer;text-align:center;transition:.2s;font-family:var(--font)}
+.smg-type-btn:hover,.smg-type-btn.active{background:rgba(124,92,252,.15);border-color:rgba(124,92,252,.4)}
+.smg-type-icon{font-size:1.4rem;display:block;margin-bottom:4px}
+.smg-type-name{font-size:.77rem;font-weight:700;color:rgba(255,255,255,.8)}
+.smg-form{display:none}.smg-form.active{display:block}
+.smg-faq-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px;margin-bottom:10px;position:relative}
+.smg-faq-del{position:absolute;top:10px;right:10px;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.2);color:#F87171;border-radius:6px;padding:3px 8px;cursor:pointer;font-size:.75rem;font-family:var(--font)}
+.smg-code{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;font-family:'Courier New',monospace;font-size:.78rem;line-height:1.7;color:#e0e0e0;white-space:pre-wrap;max-height:500px;overflow-y:auto;margin-top:12px}
+.smg-key{color:#79C0FF}.smg-str{color:#A5D6FF}.smg-num{color:#FFA657}.smg-bool{color:#FF7B72}.smg-punc{color:rgba(255,255,255,.4)}
+#smgScrollTop{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;box-shadow:0 4px 14px rgba(124,92,252,.4);transition:.2s}
+#smgScrollTop.show{display:flex}
+#smgScrollTop:hover{transform:translateY(-3px)}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="inner"><a class="brand" href="../index.html">Apne<span>Software</span></a><a class="back-link" href="../index.html">← All Tools</a></div></header>
+<div class="container">
+  <nav style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:2px">
+    <a href="../index.html" style="color:rgba(255,255,255,.45)">Home</a> › <span style="color:rgba(255,255,255,.7)">SEO Tools</span> › <span style="color:#A78BFA">Schema Markup Generator</span>
+  </nav>
+
+  <div class="tool-header"><h1>📊 Schema Markup Generator</h1><p>Generate valid JSON-LD structured data for rich results in Google. Supports FAQ, Article, Product, LocalBusiness, BreadcrumbList, Event, Review, Person and more.</p></div>
+
+  <div class="panel">
+    <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin-bottom:10px">Select Schema Type</div>
+    <div class="smg-type-grid" id="typeGrid"></div>
+
+    <!-- FAQ -->
+    <div class="smg-form" id="form-faq">
+      <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin-bottom:10px">❓ FAQ Questions</div>
+      <div id="faqItems"></div>
+      <button class="btn secondary" id="btnAddFaq" style="margin-top:8px">+ Add Question</button>
+    </div>
+
+    <!-- Article -->
+    <div class="smg-form" id="form-article">
+      <div class="row"><div class="field"><label>Article Title</label><input type="text" id="art-title" placeholder="Best Running Shoes 2025"></div><div class="field"><label>Author Name</label><input type="text" id="art-author" placeholder="John Doe"></div></div>
+      <div class="row"><div class="field"><label>Published Date</label><input type="date" id="art-pub"></div><div class="field"><label>Modified Date</label><input type="date" id="art-mod"></div></div>
+      <div class="row"><div class="field"><label>Publisher Name</label><input type="text" id="art-pub-name" placeholder="My Blog"></div><div class="field"><label>Publisher Logo URL</label><input type="text" id="art-logo" placeholder="https://example.com/logo.png"></div></div>
+      <div class="row"><div class="field"><label>Article URL</label><input type="text" id="art-url" placeholder="https://example.com/article/"></div><div class="field"><label>Image URL</label><input type="text" id="art-image" placeholder="https://example.com/img.jpg"></div></div>
+      <div class="field"><label>Description</label><textarea id="art-desc" rows="2" placeholder="Brief article description…"></textarea></div>
+    </div>
+
+    <!-- Product -->
+    <div class="smg-form" id="form-product">
+      <div class="row"><div class="field"><label>Product Name</label><input type="text" id="prod-name" placeholder="Running Shoe Model X"></div><div class="field"><label>Brand</label><input type="text" id="prod-brand" placeholder="Nike"></div></div>
+      <div class="row"><div class="field"><label>Price</label><input type="text" id="prod-price" placeholder="2999"></div><div class="field"><label>Currency</label><select id="prod-currency"><option value="INR">INR (₹)</option><option value="USD">USD ($)</option><option value="EUR">EUR (€)</option><option value="GBP">GBP (£)</option></select></div></div>
+      <div class="row"><div class="field"><label>Availability</label><select id="prod-avail"><option value="InStock">In Stock</option><option value="OutOfStock">Out of Stock</option><option value="PreOrder">Pre-order</option></select></div><div class="field"><label>SKU / Product ID</label><input type="text" id="prod-sku" placeholder="SKU-12345"></div></div>
+      <div class="row"><div class="field"><label>Rating (1–5)</label><input type="number" id="prod-rating" min="1" max="5" step="0.1" placeholder="4.5"></div><div class="field"><label>Review Count</label><input type="number" id="prod-reviews" placeholder="128"></div></div>
+      <div class="row"><div class="field"><label>Product URL</label><input type="text" id="prod-url" placeholder="https://example.com/product/"></div><div class="field"><label>Product Image URL</label><input type="text" id="prod-image" placeholder="https://example.com/product.jpg"></div></div>
+      <div class="field"><label>Description</label><textarea id="prod-desc" rows="2" placeholder="Product description…"></textarea></div>
+    </div>
+
+    <!-- LocalBusiness -->
+    <div class="smg-form" id="form-localbusiness">
+      <div class="row"><div class="field"><label>Business Name</label><input type="text" id="lb-name" placeholder="My Shop"></div><div class="field"><label>Business Type</label><select id="lb-type"><option value="LocalBusiness">LocalBusiness</option><option value="Restaurant">Restaurant</option><option value="Hospital">Hospital</option><option value="Store">Store</option><option value="Hotel">Hotel</option><option value="MedicalClinic">Medical Clinic</option><option value="Pharmacy">Pharmacy</option><option value="GymOrFitnessCenter">Gym</option></select></div></div>
+      <div class="row"><div class="field"><label>Street Address</label><input type="text" id="lb-street" placeholder="123 MG Road"></div><div class="field"><label>City</label><input type="text" id="lb-city" placeholder="Jaipur"></div></div>
+      <div class="row"><div class="field"><label>State / Region</label><input type="text" id="lb-state" placeholder="Rajasthan"></div><div class="field"><label>Postal Code</label><input type="text" id="lb-zip" placeholder="302001"></div></div>
+      <div class="row"><div class="field"><label>Country Code</label><input type="text" id="lb-country" placeholder="IN" maxlength="2"></div><div class="field"><label>Phone</label><input type="text" id="lb-phone" placeholder="+91-141-1234567"></div></div>
+      <div class="row"><div class="field"><label>Website URL</label><input type="text" id="lb-url" placeholder="https://mybusiness.example.com"></div><div class="field"><label>Opening Hours</label><input type="text" id="lb-hours" placeholder="Mo-Sa 09:00-19:00"></div></div>
+      <div class="row"><div class="field"><label>Rating (1–5)</label><input type="number" id="lb-rating" min="1" max="5" step="0.1" placeholder="4.3"></div><div class="field"><label>Review Count</label><input type="number" id="lb-reviews" placeholder="87"></div></div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="smg-form" id="form-breadcrumb">
+      <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin-bottom:10px">🍞 Breadcrumb Items</div>
+      <div id="bcItems"></div>
+      <button class="btn secondary" id="btnAddBc" style="margin-top:8px">+ Add Item</button>
+    </div>
+
+    <!-- Event -->
+    <div class="smg-form" id="form-event">
+      <div class="row"><div class="field"><label>Event Name</label><input type="text" id="ev-name" placeholder="Tech Conference 2025"></div><div class="field"><label>Event Type</label><select id="ev-type"><option value="Event">Event</option><option value="SocialEvent">Social Event</option><option value="EducationEvent">Education Event</option><option value="BusinessEvent">Business Event</option><option value="MusicEvent">Music Event</option><option value="SportsEvent">Sports Event</option></select></div></div>
+      <div class="row"><div class="field"><label>Start Date & Time</label><input type="datetime-local" id="ev-start"></div><div class="field"><label>End Date & Time</label><input type="datetime-local" id="ev-end"></div></div>
+      <div class="row"><div class="field"><label>Venue Name</label><input type="text" id="ev-venue" placeholder="City Convention Center"></div><div class="field"><label>Venue Address</label><input type="text" id="ev-addr" placeholder="123 Main St, City"></div></div>
+      <div class="row"><div class="field"><label>Ticket URL</label><input type="text" id="ev-url" placeholder="https://example.com/tickets/"></div><div class="field"><label>Ticket Price</label><input type="text" id="ev-price" placeholder="500"></div></div>
+      <div class="field"><label>Description</label><textarea id="ev-desc" rows="2" placeholder="Event description…"></textarea></div>
+    </div>
+
+    <div class="btn-row" style="margin-top:16px">
+      <button class="btn" id="btnGenerate">⚡ Generate Schema</button>
+      <button class="btn secondary" id="btnCopy">📋 Copy</button>
+      <button class="btn secondary" id="btnDownload">⬇️ Download</button>
+    </div>
+  </div>
+
+  <div class="panel" id="outputPanel" style="display:none;margin-top:14px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+      <h2 style="font-size:1rem;font-weight:800;margin:0">📄 Generated JSON-LD</h2>
+      <span style="font-size:.75rem;color:rgba(255,255,255,.4)">Paste inside &lt;head&gt; of your page</span>
+    </div>
+    <div class="smg-code" id="outputCode"></div>
+  </div>
+</div>
+
+<div class="info-wrap"><div class="info-section">
+  <div class="info-block">
+    <h2>📊 What is Schema Markup?</h2>
+    <p><strong>Schema markup</strong> (structured data) is code you add to your HTML that helps search engines understand your content better. It enables <strong>rich results</strong> in Google — star ratings, FAQ dropdowns, event dates, price information, and more directly in search results — increasing visibility and CTR dramatically.</p>
+    <p>JSON-LD (the format this tool generates) is the recommended format by Google. You simply paste the generated code inside your page's <code>&lt;head&gt;</code> section. No HTML modification needed — it's completely separate from your visible content.</p>
+    <h3>Schema Types Explained</h3>
+    <ol>
+      <li><strong>FAQ</strong> — Accordion-style questions appear directly in Google</li>
+      <li><strong>Article</strong> — Author, date and publisher in search results</li>
+      <li><strong>Product</strong> — Price, ratings and availability in results</li>
+      <li><strong>LocalBusiness</strong> — Address, hours, phone in knowledge panel</li>
+      <li><strong>BreadcrumbList</strong> — Navigation trail shown below title</li>
+      <li><strong>Event</strong> — Date, venue and ticket info in results</li>
+    </ol>
+  </div>
+  <div class="info-block">
+    <h2>📊 Hindi Guide / हिंदी गाइड</h2>
+    <p><strong>Schema Markup</strong> structured data code है जो Google को आपके content को better समझने में मदद करता है। इससे search results में <strong>rich results</strong> show होते हैं — जैसे star ratings, FAQ accordion, event dates, product price।</p>
+    <h3>Schema Types और उनके Uses</h3>
+    <ol>
+      <li><strong>FAQ:</strong> Google में directly questions-answers दिखते हैं। Blog posts के लिए best।</li>
+      <li><strong>Article:</strong> Author, date, publisher SERP में दिखता है।</li>
+      <li><strong>Product:</strong> Price, rating, availability दिखती है। E-commerce के लिए।</li>
+      <li><strong>LocalBusiness:</strong> Address, phone, hours knowledge panel में।</li>
+      <li><strong>BreadcrumbList:</strong> Navigation path URL के नीचे दिखती है।</li>
+      <li><strong>Event:</strong> Date, venue, ticket price search results में।</li>
+    </ol>
+    <h3>कैसे Install करें?</h3>
+    <ol>
+      <li>Schema type select करें और form fill करें</li>
+      <li>Generate Schema click करें</li>
+      <li>Generated code copy करें</li>
+      <li>अपने page की &lt;head&gt; section में paste करें</li>
+      <li>Google Rich Results Test से validate करें</li>
+    </ol>
+  </div>
+</div></div>
+
+<button id="smgScrollTop">↑</button>
+<footer class="site-footer"><p>© 2025 <a href="../index.html">ApneSoftware.com</a> · Free Tools for Everyone</p></footer>
+<script src="../assets/common.js"></script>
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+const TYPES=[
+  {id:'faq',name:'FAQ',icon:'❓'},{id:'article',name:'Article',icon:'📰'},
+  {id:'product',name:'Product',icon:'🛒'},{id:'localbusiness',name:'LocalBusiness',icon:'🏪'},
+  {id:'breadcrumb',name:'Breadcrumb',icon:'🍞'},{id:'event',name:'Event',icon:'📅'},
+];
+
+let activeType='faq';
+let faqItems=[{q:'',a:''}];
+let bcItems=[{name:'Home',url:''},{name:'Category',url:''},{name:'Page',url:''}];
+
+function buildTypeGrid(){
+  $('typeGrid').innerHTML=TYPES.map(t=>`
+    <button class="smg-type-btn${t.id===activeType?' active':''}" data-type="${t.id}">
+      <span class="smg-type-icon">${t.icon}</span>
+      <div class="smg-type-name">${t.name}</div>
+    </button>`).join('');
+  document.querySelectorAll('.smg-type-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      activeType=btn.dataset.type;
+      document.querySelectorAll('.smg-type-btn').forEach(b=>b.classList.toggle('active',b===btn));
+      document.querySelectorAll('.smg-form').forEach(f=>f.classList.toggle('active',f.id==='form-'+activeType));
+    });
+  });
+}
+
+function buildFaqItems(){
+  $('faqItems').innerHTML=faqItems.map((item,i)=>`
+    <div class="smg-faq-item">
+      <button class="smg-faq-del" data-idx="${i}">✕</button>
+      <div class="field" style="margin-bottom:8px"><label>Question ${i+1}</label><input type="text" data-fi="${i}" class="faq-q" value="${item.q}" placeholder="What is…?"></div>
+      <div class="field"><label>Answer</label><textarea data-fi="${i}" class="faq-a" rows="2" placeholder="The answer is…">${item.a}</textarea></div>
+    </div>`).join('');
+  $('faqItems').querySelectorAll('.faq-q').forEach(el=>el.addEventListener('input',e=>{faqItems[+e.target.dataset.fi].q=e.target.value;}));
+  $('faqItems').querySelectorAll('.faq-a').forEach(el=>el.addEventListener('input',e=>{faqItems[+e.target.dataset.fi].a=e.target.value;}));
+  $('faqItems').querySelectorAll('.smg-faq-del').forEach(btn=>btn.addEventListener('click',e=>{if(faqItems.length>1){faqItems.splice(+e.target.dataset.idx,1);buildFaqItems();}}));
+}
+
+function buildBcItems(){
+  $('bcItems').innerHTML=bcItems.map((item,i)=>`
+    <div style="display:flex;gap:8px;margin-bottom:8px;align-items:center">
+      <input type="text" data-bi="${i}" class="bc-name" value="${item.name}" placeholder="Page name" style="flex:1">
+      <input type="text" data-bi="${i}" class="bc-url"  value="${item.url}"  placeholder="https://example.com/page/" style="flex:2">
+      <button class="smg-faq-del" data-idx="${i}">✕</button>
+    </div>`).join('');
+  $('bcItems').querySelectorAll('.bc-name').forEach(el=>el.addEventListener('input',e=>{bcItems[+e.target.dataset.bi].name=e.target.value;}));
+  $('bcItems').querySelectorAll('.bc-url').forEach(el=>el.addEventListener('input',e=>{bcItems[+e.target.dataset.bi].url=e.target.value;}));
+  $('bcItems').querySelectorAll('.smg-faq-del').forEach(btn=>btn.addEventListener('click',e=>{if(bcItems.length>1){bcItems.splice(+e.target.dataset.idx,1);buildBcItems();}}));
+}
+
+function getSchema(){
+  const g=id=>($(id)||{}).value||'';
+  switch(activeType){
+    case 'faq': return {"@context":"https://schema.org","@type":"FAQPage","mainEntity":faqItems.filter(i=>i.q&&i.a).map(i=>({
+      "@type":"Question","name":i.q,"acceptedAnswer":{"@type":"Answer","text":i.a}}))};
+    case 'article': return {"@context":"https://schema.org","@type":"Article","headline":g('art-title'),"description":g('art-desc'),"image":g('art-image'),"url":g('art-url'),"datePublished":g('art-pub'),"dateModified":g('art-mod'),"author":{"@type":"Person","name":g('art-author')},"publisher":{"@type":"Organization","name":g('art-pub-name'),"logo":{"@type":"ImageObject","url":g('art-logo')}}};
+    case 'product': {
+      const r=g('prod-rating'),rc=g('prod-reviews');
+      const obj={"@context":"https://schema.org","@type":"Product","name":g('prod-name'),"description":g('prod-desc'),"image":g('prod-image'),"url":g('prod-url'),"sku":g('prod-sku'),"brand":{"@type":"Brand","name":g('prod-brand')},"offers":{"@type":"Offer","price":g('prod-price'),"priceCurrency":g('prod-currency'),"availability":"https://schema.org/"+g('prod-avail'),"url":g('prod-url')}};
+      if(r&&rc) obj.aggregateRating={"@type":"AggregateRating","ratingValue":r,"reviewCount":rc};
+      return obj;
+    }
+    case 'localbusiness': {
+      const r=g('lb-rating'),rc=g('lb-reviews');
+      const obj={"@context":"https://schema.org","@type":g('lb-type')||'LocalBusiness',"name":g('lb-name'),"url":g('lb-url'),"telephone":g('lb-phone'),"openingHours":g('lb-hours'),"address":{"@type":"PostalAddress","streetAddress":g('lb-street'),"addressLocality":g('lb-city'),"addressRegion":g('lb-state'),"postalCode":g('lb-zip'),"addressCountry":g('lb-country')}};
+      if(r&&rc) obj.aggregateRating={"@type":"AggregateRating","ratingValue":r,"reviewCount":rc};
+      return obj;
+    }
+    case 'breadcrumb': return {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":bcItems.filter(i=>i.name).map((i,idx)=>({
+      "@type":"ListItem","position":idx+1,"name":i.name,...(i.url?{"item":i.url}:{})}))};
+    case 'event': return {"@context":"https://schema.org","@type":g('ev-type')||'Event',"name":g('ev-name'),"description":g('ev-desc'),"startDate":g('ev-start'),"endDate":g('ev-end'),"location":{"@type":"Place","name":g('ev-venue'),"address":g('ev-addr')},"offers":{"@type":"Offer","url":g('ev-url'),"price":g('ev-price')}};
+    default: return {};
+  }
+}
+
+function syntaxHL(json){
+  return json
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"([^"]+)":/g,'"<span class="smg-key">$1</span>":')
+    .replace(/: "([^"]*)"/g,': "<span class="smg-str">$1</span>"')
+    .replace(/: (\d+\.?\d*)/g,': <span class="smg-num">$1</span>')
+    .replace(/: (true|false)/g,': <span class="smg-bool">$1</span>');
+}
+
+function generate(){
+  const schema=getSchema();
+  const json=JSON.stringify(schema,null,2);
+  const wrapped=`<script type="application/ld+json">\n${json}\n<\/script>`;
+  $('outputCode').innerHTML=syntaxHL(esc(wrapped));
+  $('outputPanel').style.display='block';
+  $('outputPanel').scrollIntoView({behavior:'smooth',block:'start'});
+  showToast('✅ Schema generated!');
+  $('btnCopy').onclick=()=>navigator.clipboard.writeText(wrapped).then(()=>showToast('📋 Copied!'));
+  $('btnDownload').onclick=()=>{
+    const b=new Blob([wrapped],{type:'application/ld+json'});
+    const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(b),download:'schema.jsonld'});
+    document.body.appendChild(a);a.click();document.body.removeChild(a);showToast('⬇️ Downloaded!');
+  };
+}
+
+function showToast(msg){const t=document.createElement('div');t.className='prem-toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2400);}
+
+function init(){
+  buildTypeGrid();
+  document.querySelectorAll('.smg-form')[0].classList.add('active');
+  buildFaqItems();buildBcItems();
+  $('btnAddFaq').addEventListener('click',()=>{faqItems.push({q:'',a:''});buildFaqItems();});
+  $('btnAddBc').addEventListener('click',()=>{bcItems.push({name:'',url:''});buildBcItems();});
+  $('btnGenerate').addEventListener('click',generate);
+  const today=new Date().toISOString().split('T')[0];
+  try{$('art-pub').value=today;$('art-mod').value=today;}catch(e){}
+  const sb=$('smgScrollTop');
+  window.addEventListener('scroll',()=>sb.classList.toggle('show',scrollY>400));
+  sb.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+}
+document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+</body>
+</html>

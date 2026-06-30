@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/ratio-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ratio Calculator — Simplify and Solve Ratios | ApneSoftware">
+<meta property="og:description" content="Simplify ratios, solve for a missing ratio value, and scale ratios. Free online ratio calculator.">
+<meta property="og:url" content="https://apnesoftware.com/tools/ratio-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ratio Calculator — Simplify and Solve Ratios | ApneSoftware">
+<meta name="twitter:description" content="Simplify ratios, solve for a missing ratio value, and scale ratios. Free online ratio calculator.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Ratio Calculator","description":"Simplify ratios, solve for a missing ratio value, and scale ratios. Free online ratio calculator.","url":"https://apnesoftware.com/tools/ratio-calculator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Ratio Calculator — Simplify and Solve Ratios | ApneSoftware</title>
+<meta name="description" content="Simplify ratios, solve for a missing ratio value, and scale ratios. Free online ratio calculator.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .ratio-display{font-size:1.8rem;font-weight:800;color:var(--accent);text-align:center;padding:20px;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;margin-top:16px}
+  .tab-row{display:flex;gap:8px;margin-bottom:16px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+<div class="container">
+  <div class="tool-header">
+    <h1>⚖️ Ratio Calculator</h1>
+    <p>Simplify ratios, find missing ratio values, and divide quantities in a given ratio.</p>
+  </div>
+  <div class="panel">
+    <div class="tab-row">
+      <button class="btn secondary active" id="tab1Btn">Simplify Ratio</button>
+      <button class="btn secondary" id="tab2Btn">Solve Missing Value</button>
+      <button class="btn secondary" id="tab3Btn">Divide by Ratio</button>
+    </div>
+
+    <!-- Tab 1: Simplify -->
+    <div id="tab1">
+      <div class="row">
+        <div class="field"><label for="r1a">A</label><input type="number" id="r1a" value="24" min="1"></div>
+        <div class="field"><label for="r1b">B</label><input type="number" id="r1b" value="36" min="1"></div>
+      </div>
+      <div class="btn-row"><button class="btn" id="simplifyBtn">Simplify</button></div>
+      <div class="ratio-display" id="simplifyResult">—</div>
+    </div>
+
+    <!-- Tab 2: Missing value A:B = C:? -->
+    <div id="tab2" style="display:none">
+      <p style="font-size:.85rem;color:var(--text-dim);margin-bottom:12px">Solve: A : B = C : ? (or A : ? = C : D)</p>
+      <div class="row">
+        <div class="field"><label for="r2a">A</label><input type="number" id="r2a" value="3"></div>
+        <div class="field"><label for="r2b">B</label><input type="number" id="r2b" value="4"></div>
+        <div class="field"><label for="r2c">C</label><input type="number" id="r2c" value="9"></div>
+        <div class="field"><label for="r2d">D (missing = ?)</label><input type="number" id="r2d" value="" placeholder="?"></div>
+      </div>
+      <div class="btn-row"><button class="btn" id="solveBtn">Find Missing Value</button></div>
+      <div class="ratio-display" id="solveResult">—</div>
+    </div>
+
+    <!-- Tab 3: Divide total by ratio -->
+    <div id="tab3" style="display:none">
+      <div class="row">
+        <div class="field"><label for="r3total">Total Amount</label><input type="number" id="r3total" value="1000" min="1"></div>
+        <div class="field"><label for="r3a">Ratio A</label><input type="number" id="r3a" value="2" min="1"></div>
+        <div class="field"><label for="r3b">Ratio B</label><input type="number" id="r3b" value="3" min="1"></div>
+      </div>
+      <div class="btn-row"><button class="btn" id="divideBtn">Divide</button></div>
+      <div class="ratio-display" id="divideResult">—</div>
+    </div>
+
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Ratios describe the relationship between two quantities and come up constantly in everyday life — recipes scale up or down by ratio, map scales are ratios, financial ratios describe company performance, aspect ratios define screen proportions, and dividing profits or inheritance "in the ratio 2:3" requires ratio arithmetic. This tool handles three common ratio tasks: simplifying a ratio to its lowest terms, solving for a missing value in a proportion, and dividing a total amount in a given ratio.</p>
+      <p>Simplifying a ratio works exactly like simplifying a fraction — both numbers are divided by their greatest common divisor (GCD) to find the simplest equivalent form. The proportion solver (A:B = C:?) uses cross-multiplication to find the missing value. The ratio divider splits any total into parts proportional to the given ratio, showing the exact share for each part.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Choose the mode you need using the tabs at the top.</li>
+        <li>Fill in the known values.</li>
+        <li>Click the action button to get your result instantly.</li>
+      </ol>
+      <h3>Real-world examples</h3>
+      <p>Simplify 24:36 → 2:3. Solve: if a recipe uses 3 cups flour for 4 servings, how much for 12 servings? (Answer: 9 cups — use the proportion solver with A=3, B=4, C=9). Divide ₹10,000 between partners in ratio 3:2 → Partner A gets ₹6,000, Partner B gets ₹4,000. These calculations appear in school math, business negotiations, cooking, map reading, and many other everyday situations requiring proportional reasoning.</p>
+      <p>Ratios are also central to financial analysis — the price-to-earnings (P/E) ratio, debt-to-equity ratio, and current ratio are all used by investors to evaluate company health. In chemistry, mixing solutions in specific ratios is essential for experiments. In photography and design, aspect ratios (16:9, 4:3) define how images are composed and displayed. Wherever two quantities need to be maintained in a specific proportional relationship, ratio arithmetic becomes an essential everyday skill across professional and academic contexts alike.</p>
+      <p>In the context of competitive exams and school curricula in India, ratio and proportion problems are consistently high-weight topics in mathematics sections of SSC, UPSC, CAT, and other standardized tests. The ability to quickly simplify ratios, solve proportion problems, and divide quantities in a given ratio is tested in time-pressured settings where manual calculation must be fast and accurate. This tool lets students verify their manual working, practice with different values, and build intuitive understanding of how ratios behave before relying solely on them in an exam setting.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>Ratios दो quantities के बीच relationship describe करते हैं और रोज़मर्रा की ज़िंदगी में लगातार काम आते हैं — recipes ratio से बढ़ती या घटती हैं, map scales ratios होते हैं, financial ratios company performance describe करते हैं, aspect ratios screen proportions define करते हैं, और "2:3 के ratio में" profit या inheritance divide करने के लिए ratio arithmetic चाहिए। यह tool तीन common ratio tasks handle करता है: ratio को lowest terms में simplify करना, proportion में missing value solve करना, और दिए गए ratio में कुल amount divide करना।</p>
+      <p>Ratio simplify करना fraction simplify करने जैसा ही है — सबसे simple equivalent form पाने के लिए दोनों numbers को उनके greatest common divisor (GCD) से divide किया जाता है। Proportion solver (A:B = C:?) missing value पाने के लिए cross-multiplication इस्तेमाल करता है। Ratio divider किसी total को दिए गए ratio के proportional parts में split करता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>ऊपर tabs से जो mode चाहिए वह चुनें।</li>
+        <li>Known values भरें।</li>
+        <li>तुरंत result पाने के लिए action बटन दबाएं।</li>
+      </ol>
+      <h3>Real-world examples</h3>
+      <p>24:36 simplify करें → 2:3। Solve: अगर कोई recipe 4 servings के लिए 3 cups flour इस्तेमाल करती है, तो 12 servings के लिए कितना? (जवाब: 9 cups — A=3, B=4, C=9 के साथ proportion solver इस्तेमाल करें)। ₹10,000 को 3:2 ratio में partners के बीच divide करें → Partner A को ₹6,000, Partner B को ₹4,000 मिलता है। ये calculations school math, business negotiations, cooking, map reading, और proportional reasoning की ज़रूरत वाली कई रोज़मर्रा की स्थितियों में दिखती हैं।</p>
+      <p>Ratios financial analysis में भी central हैं — P/E ratio, debt-to-equity ratio, और current ratio सभी investors द्वारा company health evaluate करने के लिए इस्तेमाल होते हैं। Chemistry में specific ratios में solutions मिलाना और photography में 16:9, 4:3 जैसे aspect ratios भी ratio arithmetic के examples हैं। SSC, UPSC, CAT जैसे competitive exams में ratio और proportion problems consistently high-weight topics होते हैं — यह tool students को manual working verify करने और fast, accurate calculation practice करने में मदद करता है।</p>
+      <p>Ratios financial analysis में भी central हैं — price-to-earnings (P/E) ratio, debt-to-equity ratio, और current ratio सभी investors द्वारा company health evaluate करने के लिए इस्तेमाल होते हैं। Chemistry में, experiments के लिए specific ratios में solutions मिलाना essential है। Photography और design में, aspect ratios (16:9, 4:3) define करते हैं कि images कैसे compose और display होती हैं। जहाँ भी दो quantities को किसी specific proportional relationship में maintain करना हो, ratio arithmetic एक essential everyday skill बन जाती है।</p>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<script src="../assets/common.js"></script>
+<script>
+function gcd(a, b){ return b === 0 ? a : gcd(b, a % b); }
+
+// Tab switching
+['tab1Btn','tab2Btn','tab3Btn'].forEach((id, i) => {
+  document.getElementById(id).addEventListener('click', function(){
+    ['tab1Btn','tab2Btn','tab3Btn'].forEach(tid => document.getElementById(tid).classList.remove('active'));
+    this.classList.add('active');
+    ['tab1','tab2','tab3'].forEach((tid, j) => document.getElementById(tid).style.display = (i===j) ? 'block' : 'none');
+  });
+});
+
+document.getElementById('simplifyBtn').addEventListener('click', ()=>{
+  const a = parseInt(document.getElementById('r1a').value) || 0;
+  const b = parseInt(document.getElementById('r1b').value) || 0;
+  if(a <= 0 || b <= 0){ document.getElementById('simplifyResult').textContent = 'Enter positive numbers'; return; }
+  const g = gcd(a, b);
+  document.getElementById('simplifyResult').textContent = `${a/g} : ${b/g}`;
+});
+
+document.getElementById('solveBtn').addEventListener('click', ()=>{
+  const a = parseFloat(document.getElementById('r2a').value) || 0;
+  const b = parseFloat(document.getElementById('r2b').value) || 0;
+  const c = parseFloat(document.getElementById('r2c').value) || 0;
+  if(a <= 0){ document.getElementById('solveResult').textContent = 'Invalid input'; return; }
+  const d = (b * c) / a;
+  document.getElementById('solveResult').textContent = `D = ${Math.round(d * 1000)/1000}`;
+  document.getElementById('r2d').value = Math.round(d * 1000)/1000;
+});
+
+document.getElementById('divideBtn').addEventListener('click', ()=>{
+  const total = parseFloat(document.getElementById('r3total').value) || 0;
+  const ra = parseFloat(document.getElementById('r3a').value) || 0;
+  const rb = parseFloat(document.getElementById('r3b').value) || 0;
+  if(total <= 0 || ra <= 0 || rb <= 0){ document.getElementById('divideResult').textContent = 'Invalid input'; return; }
+  const partA = (total * ra) / (ra + rb);
+  const partB = total - partA;
+  document.getElementById('divideResult').textContent = `A = ${Math.round(partA*100)/100}  |  B = ${Math.round(partB*100)/100}`;
+});
+</script>
+</body>
+</html>

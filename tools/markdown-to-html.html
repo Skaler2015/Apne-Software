@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/markdown-to-html.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Markdown to HTML Converter | ApneSoftware">
+<meta property="og:description" content="Convert Markdown to clean HTML. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/markdown-to-html.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Markdown to HTML Converter | ApneSoftware">
+<meta name="twitter:description" content="Convert Markdown to clean HTML. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Markdown to HTML","description":"Convert Markdown to clean HTML. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/markdown-to-html.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Markdown to HTML Converter | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  #htmlOutput{font-family:'Consolas','Courier New',monospace;font-size:.85rem}
+  .preview-box{
+    background:#fff;color:#1a1a1a;border:1px solid var(--border);border-radius:10px;
+    padding:18px;margin-top:10px;max-height:420px;overflow-y:auto;font-size:.92rem;line-height:1.6;
+  }
+  .preview-box h1,.preview-box h2,.preview-box h3{margin:.6em 0 .3em}
+  .preview-box pre{background:#f4f4f4;padding:10px;border-radius:6px;overflow-x:auto}
+  .preview-box code{background:#f4f4f4;padding:1px 5px;border-radius:4px}
+  .preview-box blockquote{border-left:3px solid #ccc;padding-left:12px;color:#555}
+  .preview-box table{border-collapse:collapse}
+  .preview-box th,.preview-box td{border:1px solid #ddd;padding:6px 10px}
+  .tab-row{display:flex;gap:8px;margin:14px 0 8px}
+  .tab-btn{padding:7px 14px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-size:.85rem;cursor:pointer}
+  .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📑 Markdown to HTML Converter</h1>
+    <p>Convert Markdown into clean HTML, with a live preview as you type.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="mdInput">Markdown source</label>
+      <textarea id="mdInput" style="min-height:220px" placeholder="# Hello World
+
+This is **bold**, this is *italic*, and here's a [link](https://example.com).
+
+- item one
+- item two"></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="convertBtn">✨ Convert</button>
+      <button class="btn secondary" id="clearBtn">🗑️ Clear</button>
+    </div>
+
+    <div class="tab-row">
+      <button class="tab-btn active" data-tab="preview">👁️ Preview</button>
+      <button class="tab-btn" data-tab="html">{ } HTML Source</button>
+    </div>
+
+    <div id="previewTab"><div class="preview-box" id="previewBox">Your rendered HTML will appear here.</div></div>
+    <div id="htmlTab" style="display:none">
+      <textarea id="htmlOutput" readonly style="min-height:220px"></textarea>
+      <div class="btn-row">
+        <button class="btn secondary" id="copyBtn">📋 Copy HTML</button>
+        <button class="btn secondary" id="downloadBtn">⬇️ Download .html</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool converts Markdown syntax into HTML — useful for blog posts, README files, or anywhere you need to publish Markdown content as a web page. The output HTML is sanitized to remove unsafe scripts.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Type or paste your Markdown into the box.</li>
+        <li>Click Convert to see a live preview.</li>
+        <li>Switch to the HTML Source tab to copy or download the generated HTML.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल Markdown सिंटैक्स को HTML में बदल देता है — ब्लॉग पोस्ट, README फाइल या कहीं भी Markdown कंटेंट को वेब पेज की तरह पब्लिश करने के लिए उपयोगी। आउटपुट HTML को सुरक्षित बनाने के लिए सैनिटाइज़ किया जाता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना Markdown टाइप या पेस्ट करें।</li>
+        <li>Convert बटन दबाकर लाइव प्रीव्यू देखें।</li>
+        <li>HTML Source टैब में जाकर HTML कॉपी या डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/16.3.0/lib/marked.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.4/purify.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+function render(){
+  const md = document.getElementById('mdInput').value;
+  const rawHtml = marked.parse(md || '');
+  const clean = DOMPurify.sanitize(rawHtml);
+  document.getElementById('previewBox').innerHTML = clean || 'Your rendered HTML will appear here.';
+  document.getElementById('htmlOutput').value = clean;
+}
+
+document.getElementById('convertBtn').addEventListener('click', render);
+
+document.getElementById('clearBtn').addEventListener('click', ()=>{
+  document.getElementById('mdInput').value = '';
+  document.getElementById('previewBox').innerHTML = 'Your rendered HTML will appear here.';
+  document.getElementById('htmlOutput').value = '';
+});
+
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const tab = btn.dataset.tab;
+    document.getElementById('previewTab').style.display = tab === 'preview' ? 'block' : 'none';
+    document.getElementById('htmlTab').style.display = tab === 'html' ? 'block' : 'none';
+  });
+});
+
+document.getElementById('copyBtn').addEventListener('click', (e)=>{
+  copyText(document.getElementById('htmlOutput').value, e.target);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  downloadText('converted.html', document.getElementById('htmlOutput').value, 'text/html');
+});
+
+// auto-render on input (debounced)
+let debounceTimer;
+document.getElementById('mdInput').addEventListener('input', ()=>{
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(render, 400);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/color-picker.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Color Picker — HEX and RGB Codes | ApneSoftware">
+<meta property="og:description" content="Get HEX/RGB color codes. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/color-picker.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Color Picker — HEX and RGB Codes | ApneSoftware">
+<meta name="twitter:description" content="Get HEX/RGB color codes. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Color Picker","description":"Get HEX/RGB color codes. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/color-picker.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Color Picker — HEX and RGB Codes | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .color-preview{width:100%;height:140px;border-radius:12px;border:1px solid var(--border);margin-bottom:18px;transition:.2s}
+  .code-row{display:flex;align-items:center;gap:10px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:10px}
+  .code-row .label{font-size:.8rem;color:var(--text-dim);min-width:50px}
+  .code-row .value{font-family:'Consolas','Courier New',monospace;flex:1}
+  .code-row button{background:none;border:none;color:var(--accent);cursor:pointer;font-size:.85rem}
+  input[type=color]{width:60px;height:44px;padding:2px;cursor:pointer}
+  .palette{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:14px}
+  .palette div{height:50px;border-radius:6px;border:1px solid var(--border);cursor:pointer}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🎨 Color Picker</h1>
+    <p>Pick any color and get its HEX, RGB, and HSL codes.</p>
+  </div>
+
+  <div class="panel">
+    <div class="color-preview" id="colorPreview"></div>
+
+    <div class="row" style="align-items:center;margin-bottom:18px">
+      <input type="color" id="colorInput" value="#7C5CFC">
+      <div class="field" style="margin:0">
+        <label for="hexInput">Type a HEX code</label>
+        <input type="text" id="hexInput" value="#7C5CFC">
+      </div>
+    </div>
+
+    <div class="code-row">
+      <span class="label">HEX</span>
+      <span class="value" id="hexVal">#4F8CFF</span>
+      <button onclick="copyVal('hexVal')">📋</button>
+    </div>
+    <div class="code-row">
+      <span class="label">RGB</span>
+      <span class="value" id="rgbVal">rgb(79, 140, 255)</span>
+      <button onclick="copyVal('rgbVal')">📋</button>
+    </div>
+    <div class="code-row">
+      <span class="label">HSL</span>
+      <span class="value" id="hslVal">hsl(217, 100%, 65%)</span>
+      <button onclick="copyVal('hslVal')">📋</button>
+    </div>
+
+    <p style="margin-top:18px;font-size:.85rem;color:var(--text-dim)">Quick palette:</p>
+    <div class="palette" id="palette"></div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Pick any color and instantly get its HEX, RGB, and HSL codes.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Pick a color using the color wheel or type a HEX code.</li>
+        <li>Or click one of the quick palette colors.</li>
+        <li>Copy the HEX, RGB, or HSL code you need.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल कोई भी रंग चुनकर उसका HEX, RGB और HSL कोड तुरंत देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>कलर व्हील से रंग चुनें या HEX कोड टाइप करें।</li>
+        <li>या क्विक पैलेट में से कोई रंग चुनें।</li>
+        <li>जो कोड चाहिए (HEX, RGB या HSL) उसे कॉपी करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const colorInput = document.getElementById('colorInput');
+const hexInput = document.getElementById('hexInput');
+const preview = document.getElementById('colorPreview');
+
+function hexToRgb(hex){
+  hex = hex.replace('#','');
+  if(hex.length===3) hex = hex.split('').map(c=>c+c).join('');
+  const bigint = parseInt(hex, 16);
+  return { r: (bigint>>16)&255, g: (bigint>>8)&255, b: bigint&255 };
+}
+
+function rgbToHsl(r,g,b){
+  r/=255; g/=255; b/=255;
+  const max=Math.max(r,g,b), min=Math.min(r,g,b);
+  let h,s,l=(max+min)/2;
+  if(max===min){ h=s=0; }
+  else {
+    const d = max-min;
+    s = l>0.5 ? d/(2-max-min) : d/(max+min);
+    switch(max){
+      case r: h=(g-b)/d + (g<b?6:0); break;
+      case g: h=(b-r)/d + 2; break;
+      case b: h=(r-g)/d + 4; break;
+    }
+    h /= 6;
+  }
+  return { h: Math.round(h*360), s: Math.round(s*100), l: Math.round(l*100) };
+}
+
+function update(hex){
+  if(!/^#[0-9A-Fa-f]{6}$/.test(hex)) return;
+  const rgb = hexToRgb(hex);
+  const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+
+  preview.style.background = hex;
+  colorInput.value = hex;
+  hexInput.value = hex;
+
+  document.getElementById('hexVal').textContent = hex.toUpperCase();
+  document.getElementById('rgbVal').textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+  document.getElementById('hslVal').textContent = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+}
+
+colorInput.addEventListener('input', e => update(e.target.value));
+hexInput.addEventListener('input', e => {
+  let val = e.target.value.trim();
+  if(!val.startsWith('#')) val = '#'+val;
+  if(/^#[0-9A-Fa-f]{6}$/.test(val)) update(val);
+});
+
+function copyVal(id){
+  copyText(document.getElementById(id).textContent);
+}
+
+const paletteColors = ['#ef4444','#f97316','#eab308','#22c55e','#06b6d4','#3b82f6','#6366f1','#a855f7','#ec4899','#64748b'];
+const paletteEl = document.getElementById('palette');
+paletteColors.forEach(c => {
+  const div = document.createElement('div');
+  div.style.background = c;
+  div.addEventListener('click', ()=> update(c));
+  paletteEl.appendChild(div);
+});
+
+update('#7C5CFC');
+</script>
+</body>
+</html>

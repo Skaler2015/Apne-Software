@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/image-rotate-flip.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image Rotate & Flip | ApneSoftware">
+<meta property="og:description" content="Rotate 90° or flip horizontally/vertically. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/image-rotate-flip.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Rotate & Flip | ApneSoftware">
+<meta name="twitter:description" content="Rotate 90° or flip horizontally/vertically. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Rotate & Flip","description":"Rotate 90° or flip horizontally/vertically. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/image-rotate-flip.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Image Rotate & Flip | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  #previewCanvas{max-width:100%;border-radius:10px;border:1px solid var(--border)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔄 Image Rotate & Flip</h1>
+    <p>Rotate your image in 90° steps or flip it horizontally/vertically.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an image here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <canvas id="previewCanvas"></canvas>
+
+      <div class="btn-row">
+        <button class="btn secondary" id="rotateLeftBtn">↺ Rotate Left 90°</button>
+        <button class="btn secondary" id="rotateRightBtn">↻ Rotate Right 90°</button>
+        <button class="btn secondary" id="flipHBtn">⇋ Flip Horizontal</button>
+        <button class="btn secondary" id="flipVBtn">⇕ Flip Vertical</button>
+        <button class="btn secondary" id="resetBtn">↩️ Reset</button>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="downloadBtn">⬇️ Download</button>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Quickly rotate a sideways or upside-down photo, or flip it like a mirror image — common fixes needed after scanning documents or taking photos at an angle.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload an image.</li>
+        <li>Use the rotate and flip buttons — you can combine them as needed.</li>
+        <li>Click Download to save the result.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>तिरछी या उल्टी फोटो को तुरंत घुमाएं, या उसे मिरर इमेज की तरह फ्लिप करें — स्कैन किए गए डॉक्यूमेंट या एंगल से ली गई फोटो में आम तौर पर ज़रूरी फिक्स।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक इमेज अपलोड करें।</li>
+        <li>रोटेट और फ्लिप बटन इस्तेमाल करें — ज़रूरत के हिसाब से दोनों मिला भी सकते हैं।</li>
+        <li>Download दबाकर रिजल्ट सेव करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const canvas = document.getElementById('previewCanvas');
+const ctx = canvas.getContext('2d');
+let img = new Image();
+let currentFile = null;
+let rotation = 0; // 0, 90, 180, 270
+let flipH = false, flipV = false;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    currentFile = files[0];
+    img.onload = ()=>{
+      rotation = 0; flipH = false; flipV = false;
+      document.getElementById('afterUpload').style.display = 'block';
+      draw();
+    };
+    img.src = URL.createObjectURL(currentFile);
+  }
+});
+
+function draw(){
+  const rad = rotation * Math.PI / 180;
+  const swapped = (rotation === 90 || rotation === 270);
+  canvas.width = swapped ? img.naturalHeight : img.naturalWidth;
+  canvas.height = swapped ? img.naturalWidth : img.naturalHeight;
+
+  ctx.save();
+  ctx.translate(canvas.width/2, canvas.height/2);
+  ctx.rotate(rad);
+  ctx.scale(flipH ? -1 : 1, flipV ? -1 : 1);
+  ctx.drawImage(img, -img.naturalWidth/2, -img.naturalHeight/2);
+  ctx.restore();
+}
+
+document.getElementById('rotateLeftBtn').addEventListener('click', ()=>{
+  rotation = (rotation - 90 + 360) % 360; draw();
+});
+document.getElementById('rotateRightBtn').addEventListener('click', ()=>{
+  rotation = (rotation + 90) % 360; draw();
+});
+document.getElementById('flipHBtn').addEventListener('click', ()=>{ flipH = !flipH; draw(); });
+document.getElementById('flipVBtn').addEventListener('click', ()=>{ flipV = !flipV; draw(); });
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  rotation = 0; flipH = false; flipV = false; draw();
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  canvas.toBlob((blob)=>{
+    const ext = (currentFile.type === 'image/png') ? 'png' : 'jpg';
+    downloadBlob('rotated.' + ext, blob);
+    document.getElementById('statusMsg').textContent = '✅ Downloaded!';
+  }, currentFile.type === 'image/png' ? 'image/png' : 'image/jpeg', 0.95);
+});
+</script>
+</body>
+</html>

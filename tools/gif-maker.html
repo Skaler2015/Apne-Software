@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/gif-maker.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="GIF Maker — Combine Images into an Animated GIF | ApneSoftware">
+<meta property="og:description" content="Combine images into an animated GIF. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/gif-maker.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GIF Maker — Combine Images into an Animated GIF | ApneSoftware">
+<meta name="twitter:description" content="Combine images into an animated GIF. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"GIF Maker","description":"Combine images into an animated GIF. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/gif-maker.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>GIF Maker — Combine Images into an Animated GIF | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .frame-item{
+    display:flex;align-items:center;gap:10px;background:var(--surface-2);border:1px solid var(--border);
+    border-radius:8px;padding:8px 10px;margin-bottom:8px;
+  }
+  .frame-item img{width:48px;height:48px;object-fit:cover;border-radius:4px}
+  .frame-item .name{flex:1;font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .frame-item button{background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);cursor:pointer;padding:4px 8px;font-size:.8rem}
+  #resultPreview{max-width:100%;border-radius:10px;border:1px solid var(--border);margin-top:14px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🎞️ GIF Maker</h1>
+    <p>Combine multiple images into an animated GIF, right in your browser.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag images here or click to choose (select multiple, in the order you want)</p>
+      <input type="file" id="fileInput" accept="image/*" multiple>
+    </div>
+
+    <div id="frameListWrap" style="display:none;margin-top:14px">
+      <h3 style="font-size:.9rem;margin-bottom:8px">🖼️ Frames (use ↑↓ to reorder)</h3>
+      <div id="frameList"></div>
+
+      <div class="field" style="margin-top:14px">
+        <label for="delaySlider">Frame delay: <span id="delayVal">400</span>ms</label>
+        <input type="range" id="delaySlider" min="50" max="2000" step="50" value="400">
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="generateBtn">🎞️ Generate GIF</button>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+      <img id="resultPreview" style="display:none">
+      <div class="btn-row" id="downloadRow" style="display:none">
+        <button class="btn secondary" id="downloadBtn">⬇️ Download GIF</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Turn a sequence of photos into a looping animated GIF — great for quick before/after sequences, simple animations, or photo-burst highlights. Reorder frames and set how long each one displays.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Select multiple images, in the order you want them to play.</li>
+        <li>Reorder frames if needed, and set the delay between frames.</li>
+        <li>Click Generate GIF, then download the result.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>कई फोटो को एक लूप होने वाली एनिमेटेड GIF में बदलें — क्विक before/after सीक्वेंस, सिंपल एनिमेशन या फोटो-बर्स्ट हाईलाइट के लिए बढ़िया। फ्रेम्स को रीऑर्डर करें और हर फ्रेम कितनी देर दिखे वो सेट करें।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>जिस क्रम में चलानी हैं उस क्रम में कई इमेज चुनें।</li>
+        <li>ज़रूरत हो तो फ्रेम रीऑर्डर करें, और फ्रेम के बीच डिले सेट करें।</li>
+        <li>Generate GIF दबाएं, फिर रिजल्ट डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let frames = []; // { file, url, img }
+let gifBlob = null;
+
+setupDropzone(dropzone, fileInput, files => {
+  const imgFiles = files.filter(f => f.type.startsWith('image/'));
+  if(!imgFiles.length) return;
+  imgFiles.forEach(file=>{
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.src = url;
+    frames.push({ file, url, img });
+  });
+  document.getElementById('frameListWrap').style.display = 'block';
+  renderFrameList();
+});
+
+function renderFrameList(){
+  const list = document.getElementById('frameList');
+  list.innerHTML = '';
+  frames.forEach((f, i)=>{
+    const item = document.createElement('div');
+    item.className = 'frame-item';
+    item.innerHTML = `
+      <img src="${f.url}">
+      <span class="name">${i+1}. ${f.file.name}</span>
+      <button data-action="up" data-i="${i}">↑</button>
+      <button data-action="down" data-i="${i}">↓</button>
+      <button data-action="remove" data-i="${i}">✕</button>
+    `;
+    list.appendChild(item);
+  });
+
+  list.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const i = parseInt(btn.dataset.i);
+      const action = btn.dataset.action;
+      if(action === 'up' && i > 0){ [frames[i-1], frames[i]] = [frames[i], frames[i-1]]; }
+      if(action === 'down' && i < frames.length-1){ [frames[i+1], frames[i]] = [frames[i], frames[i+1]]; }
+      if(action === 'remove'){ frames.splice(i,1); }
+      renderFrameList();
+    });
+  });
+}
+
+document.getElementById('delaySlider').addEventListener('input', ()=>{
+  document.getElementById('delayVal').textContent = document.getElementById('delaySlider').value;
+});
+
+document.getElementById('generateBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  if(frames.length < 2){ status.textContent = '⚠️ Please add at least 2 images.'; return; }
+
+  status.textContent = '⏳ Preparing GIF engine...';
+  document.getElementById('generateBtn').disabled = true;
+
+  try{
+    const workerResp = await fetch('https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.worker.js');
+    const workerBlob = await workerResp.blob();
+    const workerUrl = URL.createObjectURL(workerBlob);
+
+    // determine common size (use first frame's size, scale others to fit)
+    const baseW = frames[0].img.naturalWidth;
+    const baseH = frames[0].img.naturalHeight;
+
+    const gif = new GIF({ workers: 2, quality: 10, width: baseW, height: baseH, workerScript: workerUrl });
+    const delay = parseInt(document.getElementById('delaySlider').value);
+
+    frames.forEach(f=>{
+      const canvas = document.createElement('canvas');
+      canvas.width = baseW; canvas.height = baseH;
+      const ctx = canvas.getContext('2d');
+      const scale = Math.max(baseW/f.img.naturalWidth, baseH/f.img.naturalHeight);
+      const sw = baseW/scale, sh = baseH/scale;
+      const sx = (f.img.naturalWidth - sw)/2, sy = (f.img.naturalHeight - sh)/2;
+      ctx.drawImage(f.img, sx, sy, sw, sh, 0, 0, baseW, baseH);
+      gif.addFrame(canvas, { delay });
+    });
+
+    status.textContent = '⏳ Rendering frames into GIF (this can take a moment)...';
+
+    gif.on('finished', (blob)=>{
+      gifBlob = blob;
+      const url = URL.createObjectURL(blob);
+      const preview = document.getElementById('resultPreview');
+      preview.src = url;
+      preview.style.display = 'block';
+      document.getElementById('downloadRow').style.display = 'flex';
+      status.textContent = '✅ GIF generated!';
+      document.getElementById('generateBtn').disabled = false;
+    });
+
+    gif.render();
+  }catch(err){
+    status.textContent = '❌ Error: ' + (err && err.message ? err.message : String(err));
+    document.getElementById('generateBtn').disabled = false;
+  }
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  if(gifBlob) downloadBlob('animated.gif', gifBlob);
+});
+</script>
+</body>
+</html>

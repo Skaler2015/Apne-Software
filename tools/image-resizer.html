@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/image-resizer.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image Resizer — Resize a Photo | ApneSoftware">
+<meta property="og:description" content="Resize an image. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/image-resizer.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Resizer — Resize a Photo | ApneSoftware">
+<meta name="twitter:description" content="Resize an image. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Resizer","description":"Resize an image. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/image-resizer.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Image Resizer — Resize a Photo | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .preview-box{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;margin-top:16px}
+  .preview-box img{max-width:100%;max-height:300px;border-radius:6px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📐 Image Resizer</h1>
+    <p>Change the width and height (in pixels) of an image.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag & drop your image here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div class="row" style="margin-top:18px">
+      <div class="field">
+        <label for="widthInput">Width (px)</label>
+        <input type="number" id="widthInput" min="1">
+      </div>
+      <div class="field">
+        <label for="heightInput">Height (px)</label>
+        <input type="number" id="heightInput" min="1">
+      </div>
+    </div>
+
+    <label style="display:flex;align-items:center;gap:8px;font-weight:400;color:var(--text);margin-bottom:14px">
+      <input type="checkbox" id="lockRatio" style="width:auto" checked> Lock aspect ratio
+    </label>
+
+    <div class="preview-box" id="previewBox" style="display:none">
+      <img id="previewImg">
+      <p style="margin-top:8px;color:var(--text-dim);font-size:.85rem" id="finalDims"></p>
+    </div>
+
+    <div class="btn-row" id="downloadRow" style="display:none">
+      <button class="btn" id="downloadBtn">⬇️ Download</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Change the width and height (in pixels) of an image to fit your needs.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your image.</li>
+        <li>Enter the new width and/or height (lock aspect ratio if needed).</li>
+        <li>Download the resized image.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल इमेज की चौड़ाई और ऊंचाई (पिक्सल में) आपकी ज़रूरत के अनुसार बदलता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी इमेज अपलोड करें।</li>
+        <li>नई चौड़ाई और/या ऊंचाई डालें (ज़रूरत हो तो aspect ratio लॉक रखें)।</li>
+        <li>रीसाइज़ की गई इमेज डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const widthInput = document.getElementById('widthInput');
+const heightInput = document.getElementById('heightInput');
+const lockRatio = document.getElementById('lockRatio');
+
+let img = new Image();
+let originalRatio = 1;
+let fileName = 'resized';
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length) handleFile(files[0]);
+});
+
+function handleFile(file){
+  if(!file.type.startsWith('image/')) return;
+  fileName = file.name.replace(/\.[^.]+$/, '');
+  const reader = new FileReader();
+  reader.onload = e => {
+    img = new Image();
+    img.onload = () => {
+      originalRatio = img.width / img.height;
+      widthInput.value = img.width;
+      heightInput.value = img.height;
+      render();
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+widthInput.addEventListener('input', () => {
+  if(lockRatio.checked && widthInput.value){
+    heightInput.value = Math.round(widthInput.value / originalRatio);
+  }
+  render();
+});
+heightInput.addEventListener('input', () => {
+  if(lockRatio.checked && heightInput.value){
+    widthInput.value = Math.round(heightInput.value * originalRatio);
+  }
+  render();
+});
+
+function render(){
+  if(!img.src || !widthInput.value || !heightInput.value) return;
+  const w = parseInt(widthInput.value);
+  const h = parseInt(heightInput.value);
+  if(w<=0 || h<=0) return;
+
+  const canvas = document.createElement('canvas');
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0, w, h);
+
+  canvas.toBlob(blob => {
+    document.getElementById('previewImg').src = URL.createObjectURL(blob);
+    document.getElementById('previewBox').style.display = 'block';
+    document.getElementById('downloadRow').style.display = 'flex';
+    document.getElementById('finalDims').textContent = `${w} × ${h} px`;
+    window.currentBlob = blob;
+  }, 'image/png');
+}
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  if(window.currentBlob) downloadBlob(`${fileName}-resized.png`, window.currentBlob);
+});
+</script>
+</body>
+</html>

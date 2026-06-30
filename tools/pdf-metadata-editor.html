@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-metadata-editor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Metadata Editor | ApneSoftware">
+<meta property="og:description" content="Edit title, author, subject, keywords. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-metadata-editor.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Metadata Editor | ApneSoftware">
+<meta name="twitter:description" content="Edit title, author, subject, keywords. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Metadata Editor","description":"Edit title, author, subject, keywords. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-metadata-editor.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF Metadata Editor | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🏷️ PDF Metadata Editor</h1>
+    <p>Edit a PDF's title, author, subject, and keywords.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <div class="field">
+        <label for="titleInput">Title</label>
+        <input type="text" id="titleInput">
+      </div>
+      <div class="field">
+        <label for="authorInput">Author</label>
+        <input type="text" id="authorInput">
+      </div>
+      <div class="field">
+        <label for="subjectInput">Subject</label>
+        <input type="text" id="subjectInput">
+      </div>
+      <div class="field">
+        <label for="keywordsInput">Keywords (comma separated)</label>
+        <input type="text" id="keywordsInput" placeholder="e.g. invoice, 2026, claim">
+      </div>
+      <div class="field">
+        <label for="creatorInput">Creator (application name)</label>
+        <input type="text" id="creatorInput">
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="saveBtn">💾 Save and Download</button>
+      </div>
+
+      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool lets you view and edit a PDF's hidden document properties — title, author, subject, keywords, and creator application — and save them back into the file.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>The current metadata loads into the fields automatically — edit any you'd like to change.</li>
+        <li>Click Save and download the updated PDF.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल PDF की छुपी हुई डॉक्यूमेंट प्रॉपर्टीज़ — टाइटल, लेखक, विषय, कीवर्ड्स और बनाने वाला ऐप — देखने और बदलने देता है, फिर वापस फाइल में सेव कर देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>मौजूदा मेटाडेटा अपने आप फील्ड्स में आ जाएगा — जो बदलना है बदल दें।</li>
+        <li>Save बटन दबाएं और अपडेटेड PDF डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let currentFile = null;
+let pdfDoc = null;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+async function handleFile(file){
+  currentFile = file;
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Reading metadata...';
+  try{
+    const { PDFDocument } = PDFLib;
+    const bytes = await file.arrayBuffer();
+    pdfDoc = await PDFDocument.load(bytes, { updateMetadata: false });
+
+    document.getElementById('titleInput').value = pdfDoc.getTitle() || '';
+    document.getElementById('authorInput').value = pdfDoc.getAuthor() || '';
+    document.getElementById('subjectInput').value = pdfDoc.getSubject() || '';
+    document.getElementById('keywordsInput').value = (pdfDoc.getKeywords() || '');
+    document.getElementById('creatorInput').value = pdfDoc.getCreator() || '';
+
+    status.textContent = '';
+    document.getElementById('afterUpload').style.display = 'block';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+}
+
+document.getElementById('saveBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Saving...';
+  try{
+    pdfDoc.setTitle(document.getElementById('titleInput').value);
+    pdfDoc.setAuthor(document.getElementById('authorInput').value);
+    pdfDoc.setSubject(document.getElementById('subjectInput').value);
+    pdfDoc.setKeywords(document.getElementById('keywordsInput').value.split(',').map(s=>s.trim()).filter(Boolean));
+    pdfDoc.setCreator(document.getElementById('creatorInput').value);
+    pdfDoc.setModificationDate(new Date());
+
+    const newBytes = await pdfDoc.save();
+    const blob = new Blob([newBytes], {type:'application/pdf'});
+    downloadBlob('metadata-updated.pdf', blob);
+    status.textContent = '✅ Metadata updated and downloaded!';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

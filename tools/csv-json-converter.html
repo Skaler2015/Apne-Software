@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/csv-json-converter.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CSV ↔ JSON Converter | ApneSoftware">
+<meta property="og:description" content="Convert between CSV and JSON data. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/csv-json-converter.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSV ↔ JSON Converter | ApneSoftware">
+<meta name="twitter:description" content="Convert between CSV and JSON data. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSV ↔ JSON Converter","description":"Convert between CSV and JSON data. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/csv-json-converter.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>CSV ↔ JSON Converter | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  #outputText{font-family:'Consolas','Courier New',monospace;font-size:.85rem}
+  .tab-row{display:flex;gap:8px;margin-bottom:14px}
+  .tab-btn{padding:8px 16px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-size:.9rem;cursor:pointer}
+  .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .status-err{color:var(--danger);font-weight:600}
+  .status-ok{color:var(--accent-2);font-weight:600}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔁 CSV ↔ JSON Converter</h1>
+    <p>Convert CSV data to JSON, or JSON arrays back to CSV — paste text or upload a file.</p>
+  </div>
+
+  <div class="panel">
+    <div class="tab-row">
+      <button class="tab-btn active" data-tab="csv2json">CSV → JSON</button>
+      <button class="tab-btn" data-tab="json2csv">JSON → CSV</button>
+    </div>
+
+    <div id="csv2jsonTab">
+      <div class="dropzone" id="csvDropzone">
+        <p>📤 Drag a .csv file here or click to choose (or just paste below)</p>
+        <input type="file" id="csvFileInput" accept=".csv,text/csv">
+      </div>
+      <div class="field" style="margin-top:14px">
+        <label for="csvInput">CSV data</label>
+        <textarea id="csvInput" style="min-height:160px" placeholder="name,age,city
+Ravi,25,Jaipur
+Priya,30,Delhi"></textarea>
+      </div>
+      <div class="row" style="align-items:center">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.88rem">
+          <input type="checkbox" id="hasHeader" checked style="width:auto"> First row is header
+        </label>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="csvToJsonBtn">➡️ Convert to JSON</button>
+      </div>
+    </div>
+
+    <div id="json2csvTab" style="display:none">
+      <div class="field">
+        <label for="jsonInput">JSON array</label>
+        <textarea id="jsonInput" style="min-height:200px" placeholder='[{"name":"Ravi","age":25,"city":"Jaipur"},{"name":"Priya","age":30,"city":"Delhi"}]'></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="jsonToCsvBtn">➡️ Convert to CSV</button>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:16px">
+      <label>Result</label>
+      <textarea id="outputText" readonly style="min-height:200px"></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn secondary" id="copyBtn">📋 Copy</button>
+      <button class="btn secondary" id="downloadBtn">⬇️ Download</button>
+    </div>
+    <p id="statusMsg" style="margin-top:10px"></p>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Quickly convert between CSV (spreadsheet-style) data and JSON arrays of objects — useful when moving data between spreadsheets, databases, and code. Handles quoted fields and commas inside values correctly.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Pick a direction: CSV → JSON or JSON → CSV.</li>
+        <li>Paste your data or upload a CSV file.</li>
+        <li>Click Convert, then copy or download the result.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>CSV (स्प्रेडशीट-स्टाइल) डेटा और JSON ऑब्जेक्ट्स के बीच आसानी से कन्वर्ट करें — स्प्रेडशीट, डेटाबेस और कोड के बीच डेटा ले जाने के लिए उपयोगी। कोट किए गए फील्ड और वैल्यू के अंदर कॉमा को सही तरीके से हैंडल करता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>दिशा चुनें: CSV → JSON या JSON → CSV।</li>
+        <li>अपना डेटा पेस्ट करें या CSV फाइल अपलोड करें।</li>
+        <li>Convert दबाएं, फिर रिजल्ट कॉपी या डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const tab = btn.dataset.tab;
+    document.getElementById('csv2jsonTab').style.display = tab === 'csv2json' ? 'block' : 'none';
+    document.getElementById('json2csvTab').style.display = tab === 'json2csv' ? 'block' : 'none';
+    document.getElementById('outputText').value = '';
+    document.getElementById('statusMsg').textContent = '';
+  });
+});
+
+const csvDropzone = document.getElementById('csvDropzone');
+const csvFileInput = document.getElementById('csvFileInput');
+setupDropzone(csvDropzone, csvFileInput, files => {
+  if(files.length){
+    const reader = new FileReader();
+    reader.onload = (e)=> { document.getElementById('csvInput').value = e.target.result; };
+    reader.readAsText(files[0]);
+  }
+});
+
+document.getElementById('csvToJsonBtn').addEventListener('click', ()=>{
+  const status = document.getElementById('statusMsg');
+  const csv = document.getElementById('csvInput').value;
+  const hasHeader = document.getElementById('hasHeader').checked;
+
+  const result = Papa.parse(csv.trim(), { header: hasHeader, skipEmptyLines: true, dynamicTyping: true });
+
+  if(result.errors && result.errors.length){
+    status.textContent = '⚠️ Parsed with warnings: ' + result.errors[0].message;
+    status.className = 'status-err';
+  } else {
+    status.textContent = '✅ Converted ' + result.data.length + ' row(s)';
+    status.className = 'status-ok';
+  }
+  document.getElementById('outputText').value = JSON.stringify(result.data, null, 2);
+});
+
+document.getElementById('jsonToCsvBtn').addEventListener('click', ()=>{
+  const status = document.getElementById('statusMsg');
+  const raw = document.getElementById('jsonInput').value;
+  try{
+    const data = JSON.parse(raw);
+    const arr = Array.isArray(data) ? data : [data];
+    const csv = Papa.unparse(arr);
+    document.getElementById('outputText').value = csv;
+    status.textContent = '✅ Converted ' + arr.length + ' row(s)';
+    status.className = 'status-ok';
+  }catch(err){
+    document.getElementById('outputText').value = '';
+    status.textContent = '❌ Invalid JSON: ' + err.message;
+    status.className = 'status-err';
+  }
+});
+
+document.getElementById('copyBtn').addEventListener('click', (e)=>{
+  copyText(document.getElementById('outputText').value, e.target);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  const isJson = document.querySelector('.tab-btn.active').dataset.tab === 'csv2json';
+  downloadText(isJson ? 'converted.json' : 'converted.csv', document.getElementById('outputText').value, isJson ? 'application/json' : 'text/csv');
+});
+</script>
+</body>
+</html>

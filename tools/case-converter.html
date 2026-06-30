@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/case-converter.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Case Converter — UPPERCASE / lowercase | ApneSoftware">
+<meta property="og:description" content="Convert UPPERCASE / lowercase. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/case-converter.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Case Converter — UPPERCASE / lowercase | ApneSoftware">
+<meta name="twitter:description" content="Convert UPPERCASE / lowercase. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Case Converter","description":"Convert UPPERCASE / lowercase. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/case-converter.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Case Converter — UPPERCASE / lowercase | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔠 Case Converter</h1>
+    <p>Convert text to UPPERCASE, lowercase, Title Case or Sentence case.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="inputText">Your Text</label>
+      <textarea id="inputText" placeholder="Type or paste here..."></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" onclick="convertCase('upper')">UPPERCASE</button>
+      <button class="btn" onclick="convertCase('lower')">lowercase</button>
+      <button class="btn" onclick="convertCase('title')">Title Case</button>
+      <button class="btn" onclick="convertCase('sentence')">Sentence case</button>
+      <button class="btn" onclick="convertCase('alternate')">aLtErNaTe CaSe</button>
+    </div>
+
+    <div class="field" style="margin-top:18px">
+      <label>Result</label>
+      <textarea id="outputText" readonly placeholder="Result will appear here..."></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn secondary" id="copyBtn">📋 Copy</button>
+      <button class="btn secondary" onclick="document.getElementById('inputText').value='';document.getElementById('outputText').value='';">🗑️ Clear</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Convert your text between UPPERCASE, lowercase, Title Case and other letter cases instantly.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Paste or type your text.</li>
+        <li>Click the case option you want (UPPERCASE, lowercase, etc).</li>
+        <li>Copy the converted text using the Copy button.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल आपके टेक्स्ट को UPPERCASE, lowercase, Title Case आदि में तुरंत बदल देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना टेक्स्ट पेस्ट करें या टाइप करें।</li>
+        <li>जो केस चाहिए वो बटन दबाएं।</li>
+        <li>बदला हुआ टेक्स्ट Copy बटन से कॉपी करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+function convertCase(type){
+  const input = document.getElementById('inputText').value;
+  let result = '';
+
+  if(type === 'upper') result = input.toUpperCase();
+  else if(type === 'lower') result = input.toLowerCase();
+  else if(type === 'title'){
+    result = input.toLowerCase().replace(/(^|\s)\S/g, c => c.toUpperCase());
+  }
+  else if(type === 'sentence'){
+    result = input.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+  }
+  else if(type === 'alternate'){
+    result = input.split('').map((c,i)=> i%2===0 ? c.toLowerCase() : c.toUpperCase()).join('');
+  }
+
+  document.getElementById('outputText').value = result;
+}
+
+document.getElementById('copyBtn').addEventListener('click', (e)=>{
+  copyText(document.getElementById('outputText').value, e.target);
+});
+</script>
+</body>
+</html>

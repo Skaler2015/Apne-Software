@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/css-gradient-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CSS Gradient Generator | ApneSoftware">
+<meta property="og:description" content="Build linear/radial gradients, copy CSS. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/css-gradient-generator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSS Gradient Generator | ApneSoftware">
+<meta name="twitter:description" content="Build linear/radial gradients, copy CSS. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSS Gradient Generator","description":"Build linear/radial gradients, copy CSS. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/css-gradient-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>CSS Gradient Generator | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  #gradientPreview{width:100%;height:220px;border-radius:12px;border:1px solid var(--border);margin-bottom:16px}
+  #cssOutput{font-family:'Consolas','Courier New',monospace;font-size:.85rem}
+  .stop-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .stop-row input[type=color]{width:44px;height:36px;padding:2px;border-radius:8px}
+  .stop-row input[type=range]{flex:1}
+  .stop-row button{background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);cursor:pointer;padding:5px 9px}
+  .tab-row{display:flex;gap:8px;margin-bottom:14px}
+  .tab-btn{padding:7px 14px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-size:.85rem;cursor:pointer}
+  .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🌈 CSS Gradient Generator</h1>
+    <p>Build a linear or radial gradient visually, and copy the CSS code.</p>
+  </div>
+
+  <div class="panel">
+    <div id="gradientPreview"></div>
+
+    <div class="tab-row">
+      <button class="tab-btn active" data-type="linear">Linear</button>
+      <button class="tab-btn" data-type="radial">Radial</button>
+    </div>
+
+    <div class="field" id="angleField">
+      <label for="angleSlider">Angle: <span id="angleVal">90</span>°</label>
+      <input type="range" id="angleSlider" min="0" max="360" value="90">
+    </div>
+
+    <h3 style="font-size:.9rem;margin-bottom:8px">🎨 Color Stops</h3>
+    <div id="stopsList"></div>
+    <button class="btn secondary" id="addStopBtn">+ Add Color Stop</button>
+
+    <div class="field" style="margin-top:16px">
+      <label>CSS code</label>
+      <textarea id="cssOutput" readonly style="min-height:70px"></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn secondary" id="copyBtn">📋 Copy CSS</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Visually design a CSS gradient — linear or radial, with as many color stops as you like — and get the ready-to-use CSS code to paste into your stylesheet.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Pick Linear or Radial, and set the angle for linear gradients.</li>
+        <li>Add, remove, or adjust color stops and their position.</li>
+        <li>Copy the generated CSS code.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>CSS gradient को विज़ुअली डिज़ाइन करें — linear या radial, जितने चाहें उतने color stops के साथ — और सीधे अपनी स्टाइलशीट में पेस्ट करने के लिए तैयार CSS कोड पाएं।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>Linear या Radial चुनें, और linear के लिए angle सेट करें।</li>
+        <li>color stops जोड़ें, हटाएं, या उनकी पोजीशन सेट करें।</li>
+        <li>बना हुआ CSS कोड कॉपी करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+let type = 'linear';
+let stops = [
+  { color: '#7C5CFC', pos: 0 },
+  { color: '#a855f7', pos: 100 }
+];
+
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    type = btn.dataset.type;
+    document.getElementById('angleField').style.display = type === 'linear' ? 'block' : 'none';
+    render();
+  });
+});
+
+function renderStops(){
+  const wrap = document.getElementById('stopsList');
+  wrap.innerHTML = '';
+  stops.forEach((stop, i)=>{
+    const row = document.createElement('div');
+    row.className = 'stop-row';
+    row.innerHTML = `
+      <input type="color" data-i="${i}" data-field="color" value="${stop.color}">
+      <input type="range" data-i="${i}" data-field="pos" min="0" max="100" value="${stop.pos}">
+      <span style="font-size:.78rem;color:var(--text-dim);min-width:34px">${stop.pos}%</span>
+      <button data-i="${i}" class="removeStopBtn" ${stops.length<=2?'disabled':''}>✕</button>
+    `;
+    wrap.appendChild(row);
+  });
+
+  wrap.querySelectorAll('input').forEach(el=>{
+    el.addEventListener('input', ()=>{
+      const i = parseInt(el.dataset.i);
+      stops[i][el.dataset.field] = el.dataset.field === 'pos' ? parseInt(el.value) : el.value;
+      renderStops();
+      render();
+    });
+  });
+  wrap.querySelectorAll('.removeStopBtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(stops.length > 2){
+        stops.splice(parseInt(btn.dataset.i),1);
+        renderStops(); render();
+      }
+    });
+  });
+}
+
+document.getElementById('addStopBtn').addEventListener('click', ()=>{
+  stops.push({ color:'#ffffff', pos: 50 });
+  renderStops(); render();
+});
+
+function render(){
+  const angle = document.getElementById('angleSlider').value;
+  document.getElementById('angleVal').textContent = angle;
+
+  const stopsStr = stops.slice().sort((a,b)=>a.pos-b.pos).map(s=> s.color + ' ' + s.pos + '%').join(', ');
+  let css;
+  if(type === 'linear'){
+    css = `linear-gradient(${angle}deg, ${stopsStr})`;
+  } else {
+    css = `radial-gradient(circle, ${stopsStr})`;
+  }
+
+  document.getElementById('gradientPreview').style.background = css;
+  document.getElementById('cssOutput').value = `background: ${css};`;
+}
+
+document.getElementById('angleSlider').addEventListener('input', render);
+
+document.getElementById('copyBtn').addEventListener('click', (e)=>{
+  copyText(document.getElementById('cssOutput').value, e.target);
+});
+
+renderStops();
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-reorder.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Reorder Pages | ApneSoftware">
+<meta property="og:description" content="Change the order of pages. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-reorder.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Reorder Pages | ApneSoftware">
+<meta name="twitter:description" content="Change the order of pages. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Reorder Pages","description":"Change the order of pages. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-reorder.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF Reorder Pages | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .page-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin-top:18px}
+  .page-card{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center}
+  .page-card canvas{width:100%;border-radius:4px;border:1px solid var(--border)}
+  .page-card .lbl{font-size:.78rem;color:var(--text-dim);margin:6px 0}
+  .move-btns{display:flex;gap:4px;justify-content:center}
+  .move-btns button{flex:1;padding:4px;font-size:.8rem}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔀 PDF Reorder Pages</h1>
+    <p>Use the ⬅️➡️ buttons to change the page order, then download the new PDF.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag & drop your PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+    <div class="page-grid" id="pageGrid"></div>
+
+    <div class="btn-row" id="saveRow" style="display:none">
+      <button class="btn" id="saveBtn">💾 Download in New Order</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Pages don't always end up in the right order, especially in documents built from scanned paper, combined from multiple sources, or assembled by different people working on different sections at different times. Maybe the second half of a contract got scanned before the first half, a chapter ended up after its appendix, or a set of forms needs to follow a specific sequence required by whoever is reviewing them. Rather than starting over with a fresh scan or rebuilding the document from scratch, this tool lets you simply drag pages into whatever order you need, directly inside your browser.</p>
+      <p>After you upload a PDF, every page appears as a thumbnail you can see and recognize at a glance, arranged in a grid that reflects the current order. To fix the sequence, you just click and drag any thumbnail to its new position — the rest of the pages shift around it automatically, and you can keep adjusting until the order looks exactly right. This visual, drag-and-drop approach is far more reliable than trying to describe a new page order in numbers, since you're looking at the actual content of each page rather than guessing from a page count, which removes the kind of off-by-one mistake that's easy to make when juggling page numbers in your head.</p>
+      <p>This comes up constantly with real documents: legal contracts where exhibits need to follow specific clauses in a particular sequence, academic papers where figures and appendices have a required placement, scanned multi-page forms where sheets were fed into a scanner out of order, or combined reports where sections from different contributors need to be interleaved correctly before final submission. Getting the order right matters for documents that will be reviewed formally, since pages out of sequence can make even well-written content look careless or incomplete.</p>
+      <p>As with the rest of this site's PDF tools, reordering happens entirely within your browser using client-side processing — your document is never uploaded to a server just to rearrange its pages, which matters if you're working with anything confidential like legal filings or financial records. Once you're satisfied with the new sequence, a single click saves the reordered PDF, ready to download immediately, with every page's original content, formatting, and quality completely untouched — only the order has changed. There's no page limit, no watermark, and no account needed, so it works equally well whether you're swapping two pages in a short document or rearranging a hundred-page file section by section.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Use the arrow buttons to move pages into the order you want.</li>
+        <li>Download the PDF in the new order.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>पन्ने हमेशा सही क्रम में नहीं रहते, खासकर scanned कागज़ों से बने, कई स्रोतों से जोड़े गए, या अलग-अलग समय पर अलग-अलग लोगों द्वारा अलग-अलग हिस्सों पर काम करके बनाए गए documents में। शायद किसी contract का दूसरा आधा हिस्सा पहले आधे से पहले scan हो गया हो, कोई chapter उसके appendix के बाद आ गया हो, या forms के किसी सेट को review करने वाले की मांगी हुई किसी specific sequence में होना ज़रूरी हो। दोबारा scan करने या document को शुरू से बनाने की बजाय, यह टूल आपको सीधे अपने browser के अंदर पन्नों को जिस भी क्रम में चाहें drag करने देता है।</p>
+      <p>PDF अपलोड करने के बाद, हर पन्ना एक thumbnail के तौर पर दिखता है जिसे आप एक नज़र में देख और पहचान सकते हैं, मौजूदा क्रम को दर्शाने वाले एक grid में arranged। क्रम ठीक करने के लिए, आप बस किसी thumbnail को क्लिक करके उसकी नई जगह पर drag करते हैं — बाकी पन्ने अपने आप उसके इर्द-गिर्द शिफ्ट हो जाते हैं, और जब तक क्रम बिल्कुल सही न लगे आप adjust करते रह सकते हैं। यह visual, drag-and-drop तरीका नंबरों में नया page order बताने की कोशिश से कहीं ज़्यादा भरोसेमंद है, क्योंकि आप किसी page count से अंदाज़ा लगाने की बजाय हर पन्ने के असली content को देख रहे होते हैं।</p>
+      <p>यह असली documents के साथ लगातार होता है: legal contracts जहां exhibits को किसी खास clauses के बाद एक particular sequence में आना होता है, academic papers जहां figures और appendices की एक तय जगह होती है, scanned multi-page forms जहां शीट्स scanner में गलत क्रम में feed हो गई हों, या combined reports जहां अलग-अलग contributors के sections को final submission से पहले सही तरीके से interleave करना हो। ऐसे documents के लिए क्रम सही होना मायने रखता है जिन्हें औपचारिक रूप से review किया जाएगा, क्योंकि क्रम से बाहर पन्ने अच्छी तरह लिखे गए content को भी लापरवाह या अधूरा दिखा सकते हैं।</p>
+      <p>इस साइट के बाकी PDF tools की तरह, reordering पूरी तरह आपके browser के अंदर client-side processing इस्तेमाल करके होती है — सिर्फ पन्नों का क्रम बदलने के लिए आपका document कभी किसी server पर अपलोड नहीं होता, जो तब मायने रखता है जब आप legal filings या financial records जैसी कोई confidential चीज़ पर काम कर रहे हों। नए क्रम से संतुष्ट होने के बाद, एक क्लिक reordered PDF save कर देता है, तुरंत download के लिए तैयार, हर पन्ने का original content, formatting, और quality पूरी तरह अछूता — सिर्फ क्रम बदला है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>तीर बटन से पेजों को मनचाहे क्रम में लाएं।</li>
+        <li>नए क्रम में PDF डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let currentFile = null;
+let pageOrder = []; // array of original page indices (0-based), in display order
+let thumbCanvases = []; // dataURLs by original index
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+async function handleFile(file){
+  currentFile = file;
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Loading...';
+
+  const arrayBuf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+  thumbCanvases = [];
+  pageOrder = [];
+
+  for(let i=1; i<=pdf.numPages; i++){
+    const page = await pdf.getPage(i);
+    const viewport = page.getViewport({ scale: 0.5 });
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport }).promise;
+    thumbCanvases.push(canvas.toDataURL());
+    pageOrder.push(i-1);
+  }
+
+  status.textContent = `✅ ${pdf.numPages} pages loaded — use the arrow buttons to reorder`;
+  renderGrid();
+  document.getElementById('saveRow').style.display = 'flex';
+}
+
+function renderGrid(){
+  const grid = document.getElementById('pageGrid');
+  grid.innerHTML = '';
+  pageOrder.forEach((origIdx, pos) => {
+    const card = document.createElement('div');
+    card.className = 'page-card';
+    card.innerHTML = `
+      <img src="${thumbCanvases[origIdx]}" style="width:100%;border-radius:4px;border:1px solid var(--border)">
+      <div class="lbl">Position ${pos+1} (original page ${origIdx+1})</div>
+      <div class="move-btns">
+        <button class="icon-btn" onclick="movePage(${pos},-1)" ${pos===0?'disabled':''}>⬅️</button>
+        <button class="icon-btn" onclick="movePage(${pos},1)" ${pos===pageOrder.length-1?'disabled':''}>➡️</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function movePage(pos, dir){
+  const newPos = pos + dir;
+  if(newPos < 0 || newPos >= pageOrder.length) return;
+  [pageOrder[pos], pageOrder[newPos]] = [pageOrder[newPos], pageOrder[pos]];
+  renderGrid();
+}
+
+document.getElementById('saveBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Building PDF...';
+  try{
+    const { PDFDocument } = PDFLib;
+    const bytes = await currentFile.arrayBuffer();
+    const srcPdf = await PDFDocument.load(bytes);
+    const newPdf = await PDFDocument.create();
+
+    const pages = await newPdf.copyPages(srcPdf, pageOrder);
+    pages.forEach(p => newPdf.addPage(p));
+
+    const newBytes = await newPdf.save();
+    const blob = new Blob([newBytes], {type:'application/pdf'});
+    downloadBlob('reordered.pdf', blob);
+    status.textContent = '✅ Downloaded in the new order!';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

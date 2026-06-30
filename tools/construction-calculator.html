@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Construction Calculator — Cement, Bricks, Paint & Tiles | ApneSoftware</title>
+<meta name="description" content="Calculate materials for construction: cement bags, number of bricks, paint litres, and tiles needed. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .tab-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .tab-row button{flex:1;min-width:100px}
+  .section{display:none}
+  .section.active{display:block}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+<div class="container">
+  <div class="tool-header">
+    <h1>🏗️ Construction Calculator</h1>
+    <p>Estimate materials for construction: cement, bricks, paint, and tiles.</p>
+  </div>
+  <div class="panel">
+    <div class="tab-row">
+      <button class="btn secondary active" onclick="showTab('cement',this)">🏛️ Cement</button>
+      <button class="btn secondary" onclick="showTab('brick',this)">🧱 Bricks</button>
+      <button class="btn secondary" onclick="showTab('paint',this)">🎨 Paint</button>
+      <button class="btn secondary" onclick="showTab('tile',this)">⬜ Tiles</button>
+    </div>
+
+    <!-- Cement Tab -->
+    <div id="cement" class="section active">
+      <p style="font-size:.85rem;color:var(--text-dim);margin-bottom:12px">For RCC Slab (M20 mix, cement:sand:aggregate = 1:1.5:3)</p>
+      <div class="row">
+        <div class="field"><label>Length (m)</label><input type="number" id="c_len" value="5" min="0.1" step="0.1"></div>
+        <div class="field"><label>Width (m)</label><input type="number" id="c_wid" value="4" min="0.1" step="0.1"></div>
+        <div class="field"><label>Thickness (m)</label><input type="number" id="c_thk" value="0.15" min="0.01" step="0.01"></div>
+      </div>
+      <div class="stat-grid" id="cRes">
+        <div class="stat-box"><div class="num" id="c_bags">0</div><div class="lbl">Cement Bags (50kg)</div></div>
+        <div class="stat-box"><div class="num" id="c_sand">0 m³</div><div class="lbl">Sand (m³)</div></div>
+        <div class="stat-box"><div class="num" id="c_agg">0 m³</div><div class="lbl">Aggregate (m³)</div></div>
+      </div>
+      <div class="btn-row" style="margin-top:14px"><button class="btn" onclick="calcCement()">Calculate</button></div>
+    </div>
+
+    <!-- Brick Tab -->
+    <div id="brick" class="section">
+      <p style="font-size:.85rem;color:var(--text-dim);margin-bottom:12px">Standard brick: 230×115×75 mm, mortar joint 10mm. One brick (9") wall thickness.</p>
+      <div class="row">
+        <div class="field"><label>Wall Length (m)</label><input type="number" id="b_len" value="5" min="0.1" step="0.1"></div>
+        <div class="field"><label>Wall Height (m)</label><input type="number" id="b_hgt" value="3" min="0.1" step="0.1"></div>
+      </div>
+      <div class="field">
+        <label>Wall Thickness</label>
+        <select id="b_thick" style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--border);background:var(--surface-2);color:var(--text)">
+          <option value="0.115">Half-brick (4.5")</option>
+          <option value="0.23" selected>One-brick (9")</option>
+          <option value="0.345">One and a half brick (13.5")</option>
+        </select>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="num" id="b_count">0</div><div class="lbl">Bricks Needed</div></div>
+        <div class="stat-box"><div class="num" id="b_with_waste">0</div><div class="lbl">With 10% Wastage</div></div>
+        <div class="stat-box"><div class="num" id="b_mortar">0 m³</div><div class="lbl">Mortar (m³)</div></div>
+      </div>
+      <div class="btn-row" style="margin-top:14px"><button class="btn" onclick="calcBrick()">Calculate</button></div>
+    </div>
+
+    <!-- Paint Tab -->
+    <div id="paint" class="section">
+      <p style="font-size:.85rem;color:var(--text-dim);margin-bottom:12px">Standard coverage: 150 sqft (14 m²) per litre per coat.</p>
+      <div class="row">
+        <div class="field"><label>Room Length (m)</label><input type="number" id="p_len" value="4" step="0.1"></div>
+        <div class="field"><label>Room Width (m)</label><input type="number" id="p_wid" value="3" step="0.1"></div>
+        <div class="field"><label>Room Height (m)</label><input type="number" id="p_hgt" value="2.8" step="0.1"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Doors+Windows Area (m²)</label><input type="number" id="p_subtract" value="4" step="0.1"></div>
+        <div class="field"><label>Number of Coats</label><input type="number" id="p_coats" value="2" min="1" max="5"></div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="num" id="p_sqm">0 m²</div><div class="lbl">Paintable Area</div></div>
+        <div class="stat-box"><div class="num" id="p_litres">0 L</div><div class="lbl">Paint Needed</div></div>
+        <div class="stat-box"><div class="num" id="p_cans">0</div><div class="lbl">20L Cans</div></div>
+      </div>
+      <div class="btn-row" style="margin-top:14px"><button class="btn" onclick="calcPaint()">Calculate</button></div>
+    </div>
+
+    <!-- Tile Tab -->
+    <div id="tile" class="section">
+      <div class="row">
+        <div class="field"><label>Room/Area Length (m)</label><input type="number" id="t_rlen" value="4" step="0.1"></div>
+        <div class="field"><label>Room/Area Width (m)</label><input type="number" id="t_rwid" value="3" step="0.1"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Tile Length (cm)</label><input type="number" id="t_tlen" value="60" step="1"></div>
+        <div class="field"><label>Tile Width (cm)</label><input type="number" id="t_twid" value="60" step="1"></div>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-box"><div class="num" id="t_area">0 m²</div><div class="lbl">Area to Tile</div></div>
+        <div class="stat-box"><div class="num" id="t_count">0</div><div class="lbl">Tiles Needed</div></div>
+        <div class="stat-box"><div class="num" id="t_waste">0</div><div class="lbl">With 10% Wastage</div></div>
+      </div>
+      <div class="btn-row" style="margin-top:14px"><button class="btn" onclick="calcTile()">Calculate</button></div>
+    </div>
+  </div>
+</div>
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Accurately estimating construction materials before starting work saves significant money and avoids project delays from running short. Buying too little means a second trip and possible batch-mismatch issues for tiles or paint; buying too much ties up capital in unused stock. This calculator covers the four most commonly needed estimates in residential construction and renovation.</p>
+      <p>The Cement calculator uses M20 mix proportions (1:1.5:3), which is the standard for RCC slabs in residential construction. It accounts for the dry volume factor (1.54×) since concrete shrinks during setting. The Brick calculator uses standard Indian modular brick dimensions (230×115×75 mm) with a 10mm mortar joint. Mortar volume is calculated as 35% of brick volume.</p>
+      <p>The Paint calculator uses an industry-standard coverage of 14 m² per litre per coat (150 sq ft/litre), typical for interior emulsion paints — adjust for higher-quality paints with better coverage or textured surfaces with lower coverage. The Tile calculator accounts for the common 10% wastage due to cuts at room edges, which is especially significant for large format tiles in complex room shapes.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Select the material type (Cement, Bricks, Paint, or Tiles).</li>
+        <li>Enter the dimensions of the area or project.</li>
+        <li>Click Calculate to see material quantities needed.</li>
+      </ol>
+    <p>One important note for all these calculations: they produce theoretical material requirements based on standard dimensions and formulae. Real construction sites should add contingency buffers beyond the built-in wastage — materials can be damaged in transit, sizes may not be exactly as specified, or on-site cuts and adjustments use more than calculated. Discussing the estimates with your contractor or mason before purchasing is always wise; experienced builders often have rules of thumb for local material variations that supplement these standard calculations. Also note that material quality varies significantly — a higher-grade cement or paint with better coverage may justify a higher price per unit even if the quantity needed is similar, because durability and finish quality affect long-term maintenance costs. For larger projects, getting quotes from multiple material suppliers and comparing per-unit costs alongside these quantity estimates allows you to benchmark whether a contractor's materials bill is in the right range before accepting any quotation. These estimates also serve as a useful cross-check when reviewing contractor bills — if a contractor's quoted material quantities significantly exceed these calculated figures for the same area, it warrants clarification before approving payment. Multiplying these estimated quantities by current market rates for materials in your area gives a reliable ballpark for the total materials cost component of any construction or renovation project budget.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>काम शुरू करने से पहले construction materials का सटीक अनुमान लगाने से significant पैसे बचते हैं और कम पड़ने से project delays से बचाव होता है। बहुत कम खरीदने से दूसरी trip और tiles या paint के batch-mismatch issues हो सकते हैं; बहुत ज़्यादा खरीदने से unused stock में capital फंस जाता है। यह calculator residential construction और renovation में सबसे commonly needed चार estimates cover करता है।</p>
+      <p>Cement calculator M20 mix proportions (1:1.5:3) इस्तेमाल करता है, जो residential construction में RCC slabs के लिए standard है। यह dry volume factor (1.54×) account करता है क्योंकि setting के दौरान concrete shrink होता है। Brick calculator standard Indian modular brick dimensions (230×115×75 mm) 10mm mortar joint के साथ इस्तेमाल करता है। Mortar volume brick volume का 35% calculate होता है।</p>
+      <p>Paint calculator industry-standard coverage 14 m² per litre per coat (150 sq ft/litre) इस्तेमाल करता है, जो interior emulsion paints के लिए typical है। Tile calculator room edges पर cuts से common 10% wastage account करता है, जो complex room shapes में large format tiles के लिए especially significant है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>Material type चुनें (Cement, Bricks, Paint, या Tiles)।</li>
+        <li>Area या project के dimensions enter करें।</li>
+        <li>Material quantities देखने के लिए Calculate click करें।</li>
+      </ol>
+    <p>इन सभी calculations के लिए एक महत्वपूर्ण नोट: वे standard dimensions और formulae के आधार पर theoretical material requirements produce करते हैं। Real construction sites को built-in wastage से परे contingency buffers जोड़ने चाहिए — materials transit में damage हो सकते हैं, sizes exactly specified नहीं हो सकते, या on-site cuts और adjustments calculated से ज़्यादा इस्तेमाल करते हैं। खरीदने से पहले contractor या mason के साथ estimates discuss करना हमेशा wise है; experienced builders के पास अक्सर local material variations के लिए rules of thumb होते हैं जो इन standard calculations को supplement करते हैं। यह भी ध्यान दें कि material quality significantly vary करती है — better coverage वाला higher-grade cement या paint per unit higher price justify कर सकता है भले ही required quantity similar हो, क्योंकि durability और finish quality long-term maintenance costs affect करती है। Larger projects के लिए, multiple material suppliers से quotes लेना और इन quantity estimates के साथ per-unit costs compare करना आपको किसी भी quotation accept करने से पहले यह benchmark करने की अनुमति देता है कि contractor का materials bill सही range में है या नहीं। ये estimates contractor bills review करते समय एक useful cross-check के रूप में भी serve करते हैं — अगर contractor के quoted material quantities same area के लिए इन calculated figures से significantly exceed करते हैं, तो payment approve करने से पहले clarification warranted है।</p>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<script>
+function showTab(id, btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-row .btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+function calcCement(){
+  const len=parseFloat(document.getElementById('c_len').value)||0;
+  const wid=parseFloat(document.getElementById('c_wid').value)||0;
+  const thk=parseFloat(document.getElementById('c_thk').value)||0;
+  const vol = len * wid * thk * 1.54; // dry volume
+  const cement = vol * (1/5.5); // ratio 1:1.5:3, parts=5.5
+  const bags = cement / 0.0347; // 1 bag = 0.0347 m³
+  const sand = vol * (1.5/5.5);
+  const agg = vol * (3/5.5);
+  document.getElementById('c_bags').textContent = Math.ceil(bags);
+  document.getElementById('c_sand').textContent = sand.toFixed(2)+' m³';
+  document.getElementById('c_agg').textContent = agg.toFixed(2)+' m³';
+}
+function calcBrick(){
+  const len=parseFloat(document.getElementById('b_len').value)||0;
+  const hgt=parseFloat(document.getElementById('b_hgt').value)||0;
+  const thick=parseFloat(document.getElementById('b_thick').value)||0.23;
+  const vol = len * hgt * thick;
+  const brickVol = 0.24 * 0.125 * 0.085; // with mortar
+  const count = Math.ceil(vol / brickVol);
+  document.getElementById('b_count').textContent = count;
+  document.getElementById('b_with_waste').textContent = Math.ceil(count * 1.10);
+  document.getElementById('b_mortar').textContent = (vol * 0.35).toFixed(2)+' m³';
+}
+function calcPaint(){
+  const len=parseFloat(document.getElementById('p_len').value)||0;
+  const wid=parseFloat(document.getElementById('p_wid').value)||0;
+  const hgt=parseFloat(document.getElementById('p_hgt').value)||0;
+  const sub=parseFloat(document.getElementById('p_subtract').value)||0;
+  const coats=parseInt(document.getElementById('p_coats').value)||2;
+  const area = 2*(len+wid)*hgt - sub;
+  const litres = area * coats / 14;
+  document.getElementById('p_sqm').textContent = area.toFixed(1)+' m²';
+  document.getElementById('p_litres').textContent = litres.toFixed(1)+' L';
+  document.getElementById('p_cans').textContent = Math.ceil(litres/20);
+}
+function calcTile(){
+  const rLen=parseFloat(document.getElementById('t_rlen').value)||0;
+  const rWid=parseFloat(document.getElementById('t_rwid').value)||0;
+  const tLen=parseFloat(document.getElementById('t_tlen').value)||0;
+  const tWid=parseFloat(document.getElementById('t_twid').value)||0;
+  const area = rLen * rWid;
+  const tileArea = (tLen/100) * (tWid/100);
+  const count = Math.ceil(area / tileArea);
+  document.getElementById('t_area').textContent = area.toFixed(1)+' m²';
+  document.getElementById('t_count').textContent = count;
+  document.getElementById('t_waste').textContent = Math.ceil(count * 1.10);
+}
+calcCement(); calcBrick(); calcPaint(); calcTile();
+</script>
+</body>
+</html>

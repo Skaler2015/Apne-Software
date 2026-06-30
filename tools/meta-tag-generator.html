@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Meta Tag Generator — Create perfect SEO meta tags instantly. Generate title, description, Open Graph, Twitter Card, robots, and JSON-LD tags with live preview. No signup required.">
+<meta name="keywords" content="meta tag generator, SEO meta tags, open graph generator, twitter card generator, meta description generator, meta title generator">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/meta-tag-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Meta Tag Generator — Create SEO Meta Tags Free | ApneSoftware">
+<meta property="og:description" content="Generate complete SEO meta tags including Open Graph, Twitter Card, robots and JSON-LD in seconds. Free, no signup, fully client-side.">
+<meta property="og:url" content="https://apnesoftware.com/tools/meta-tag-generator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meta Tag Generator — Create SEO Meta Tags Free | ApneSoftware">
+<meta name="twitter:description" content="Generate complete SEO meta tags including Open Graph, Twitter Card, robots and JSON-LD in seconds.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "name": "Meta Tag Generator",
+      "description": "Free online tool to generate complete SEO meta tags including Open Graph, Twitter Card, robots, canonical and JSON-LD structured data.",
+      "url": "https://apnesoftware.com/tools/meta-tag-generator.html",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "Any",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "INR"},
+      "provider": {"@type": "Organization", "name": "ApneSoftware", "url": "https://apnesoftware.com"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://apnesoftware.com/"},
+        {"@type": "ListItem", "position": 2, "name": "SEO Tools", "item": "https://apnesoftware.com/category/seo-tools.html"},
+        {"@type": "ListItem", "position": 3, "name": "Meta Tag Generator", "item": "https://apnesoftware.com/tools/meta-tag-generator.html"}
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What are meta tags?", "acceptedAnswer": {"@type": "Answer", "text": "Meta tags are HTML elements placed in the <head> section of a webpage that provide metadata about the page to search engines and social media platforms. They are not visible to regular visitors but influence how your page appears in search results and when shared on social media."}},
+        {"@type": "Question", "name": "Does this tool require any signup?", "acceptedAnswer": {"@type": "Answer", "text": "No. This Meta Tag Generator is completely free and runs entirely in your browser. No account, email, or payment is ever required."}},
+        {"@type": "Question", "name": "What is the ideal meta title length?", "acceptedAnswer": {"@type": "Answer", "text": "Google typically displays 50–60 characters for a page title. Keeping your title under 60 characters ensures it is not truncated in search results. This tool shows a live character counter and a pixel-width estimate so you can stay within the safe zone."}}
+      ]
+    }
+  ]
+}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Meta Tag Generator — Create SEO Meta Tags Free | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* ── Meta Tag Generator — local styles only ── */
+
+/* Tab navigation */
+.mtg-tabs {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.mtg-tab {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.6);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: .82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+  font-family: var(--font);
+  white-space: nowrap;
+}
+.mtg-tab.active,
+.mtg-tab:hover {
+  background: rgba(124,92,252,.2);
+  border-color: rgba(124,92,252,.5);
+  color: #A78BFA;
+}
+.mtg-tab-panel { display: none; }
+.mtg-tab-panel.active { display: block; }
+
+/* Character counter badges */
+.mtg-counter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+.mtg-count-badge {
+  font-size: .75rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+  transition: .2s;
+}
+.mtg-count-badge.ok   { background: rgba(22,192,121,.15); color: #16C079; }
+.mtg-count-badge.warn { background: rgba(255,200,0,.15);  color: #FFD700; }
+.mtg-count-badge.bad  { background: rgba(248,113,113,.15);color: #F87171; }
+
+/* Pixel bar (SERP title width) */
+.mtg-pixel-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255,255,255,.08);
+  margin-top: 4px;
+  overflow: hidden;
+}
+.mtg-pixel-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width .3s, background .3s;
+}
+
+/* SERP live preview */
+.mtg-serp-preview {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px 22px;
+  margin-top: 14px;
+  color: #202124;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 20px rgba(0,0,0,.25);
+}
+.serp-url { font-size: .8rem; color: #3c4043; margin-bottom: 2px; display: flex; align-items: center; gap: 6px; }
+.serp-url .sfavicon { width: 16px; height: 16px; border-radius: 2px; background: #e8eaed; display: inline-block; }
+.serp-title { font-size: 1.12rem; color: #1a0dab; font-weight: 400; line-height: 1.3; margin-bottom: 4px; word-break: break-word; }
+.serp-desc  { font-size: .88rem; color: #4d5156; line-height: 1.5; word-break: break-word; }
+
+/* Social preview cards */
+.mtg-social-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+@media(max-width:640px) { .mtg-social-row { grid-template-columns: 1fr; } }
+.og-card {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+}
+.og-card-img {
+  width: 100%;
+  aspect-ratio: 1.91/1;
+  background: linear-gradient(135deg,rgba(124,92,252,.3),rgba(22,192,121,.2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.5rem;
+  color: rgba(255,255,255,.3);
+  position: relative;
+  overflow: hidden;
+}
+.og-card-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.og-card-body { padding: 12px 14px; }
+.og-card-domain { font-size: .7rem; text-transform: uppercase; color: rgba(255,255,255,.35); letter-spacing: .5px; margin-bottom: 3px; }
+.og-card-title { font-size: .88rem; font-weight: 700; color: rgba(255,255,255,.9); line-height: 1.35; margin-bottom: 3px; }
+.og-card-desc  { font-size: .77rem; color: rgba(255,255,255,.5); line-height: 1.45; }
+.og-card-label { font-size: .68rem; font-weight: 700; letter-spacing: 1px; color: rgba(255,255,255,.3); text-transform: uppercase; text-align: center; padding: 5px 0 2px; }
+
+/* Twitter card — summary style */
+.tw-card {
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255,255,255,.04);
+  display: flex;
+}
+.tw-card-img {
+  width: 100px;
+  min-width: 100px;
+  background: linear-gradient(135deg,rgba(29,161,242,.3),rgba(22,192,121,.2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; color: rgba(255,255,255,.3);
+  position: relative; overflow: hidden;
+}
+.tw-card-img img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.tw-card-body { padding: 12px 14px; flex: 1; min-width: 0; }
+.tw-card-domain { font-size: .7rem; color: rgba(255,255,255,.35); margin-bottom: 3px; }
+.tw-card-title  { font-size: .85rem; font-weight: 700; color: rgba(255,255,255,.9); margin-bottom: 3px; word-break: break-word; }
+.tw-card-desc   { font-size: .76rem; color: rgba(255,255,255,.5); line-height: 1.45; }
+
+/* Code output */
+.mtg-code {
+  background: rgba(0,0,0,.35);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+  padding: 18px 20px;
+  font-family: 'Courier New', monospace;
+  font-size: .82rem;
+  line-height: 1.7;
+  color: #e0e0e0;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 420px;
+  overflow-y: auto;
+  margin-top: 14px;
+}
+.mtg-code::-webkit-scrollbar { width: 5px; }
+.mtg-code::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); border-radius: 3px; }
+
+/* Syntax highlight in code block */
+.mtg-code .hl-tag   { color: #FF7B72; }
+.mtg-code .hl-attr  { color: #79C0FF; }
+.mtg-code .hl-val   { color: #A5D6FF; }
+.mtg-code .hl-com   { color: #8B949E; }
+
+/* Status pills */
+.mtg-status-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+.mtg-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: .76rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.7);
+}
+.mtg-status-pill.ok   { border-color: rgba(22,192,121,.3); color: #16C079; }
+.mtg-status-pill.warn { border-color: rgba(255,200,0,.3);  color: #FFD700; }
+.mtg-status-pill.miss { border-color: rgba(248,113,113,.3);color: #F87171; }
+.mtg-status-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.ok   .mtg-status-dot { background: #16C079; }
+.warn .mtg-status-dot { background: #FFD700; }
+.miss .mtg-status-dot { background: #F87171; }
+
+/* Tooltip hint */
+.mtg-hint {
+  font-size: .75rem;
+  color: rgba(255,255,255,.38);
+  margin-top: 3px;
+  display: block;
+}
+
+/* Section sub-heading */
+.mtg-section-label {
+  font-size: .78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  color: rgba(255,255,255,.4);
+  margin: 20px 0 10px;
+}
+
+/* Robots checkboxes */
+.mtg-check-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 8px;
+}
+.mtg-check-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 8px;
+  padding: 9px 12px;
+  cursor: pointer;
+  font-size: .83rem;
+  font-weight: 600;
+  color: rgba(255,255,255,.75);
+  transition: .2s;
+  user-select: none;
+}
+.mtg-check-item:hover { background: rgba(124,92,252,.1); border-color: rgba(124,92,252,.3); }
+.mtg-check-item input { accent-color: #7C5CFC; width: auto !important; }
+
+/* Undo/Redo history strip */
+.mtg-history-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: .8rem;
+  color: rgba(255,255,255,.4);
+}
+.mtg-history-btn {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.6);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: .75rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font);
+  transition: .15s;
+}
+.mtg-history-btn:hover { background: rgba(124,92,252,.15); color: #A78BFA; }
+.mtg-history-btn:disabled { opacity: .3; cursor: default; }
+
+/* SEO score ring */
+.mtg-score-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin-top: 14px;
+}
+.mtg-score-ring {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+.mtg-score-info { flex: 1; }
+.mtg-score-num {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #16C079;
+  line-height: 1;
+}
+.mtg-score-lbl { font-size: .78rem; color: rgba(255,255,255,.45); margin-top: 2px; }
+.mtg-score-detail { font-size: .8rem; color: rgba(255,255,255,.6); margin-top: 4px; }
+
+/* Share strip */
+.mtg-share-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.mtg-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: .78rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: .2s;
+  font-family: var(--font);
+  color: #fff;
+}
+.mtg-share-btn.tw  { background: rgba(29,161,242,.25); }
+.mtg-share-btn.fb  { background: rgba(24,119,242,.25); }
+.mtg-share-btn.wa  { background: rgba(37,211,102,.25); }
+.mtg-share-btn.lnk { background: rgba(10,102,194,.25); }
+.mtg-share-btn:hover { filter: brightness(1.3); transform: translateY(-1px); }
+
+/* Scroll-to-top */
+#mtgScrollTop {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#7C5CFC,#5A3FE0);
+  color: #fff;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(124,92,252,.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  transition: .2s;
+}
+#mtgScrollTop.show { display: flex; }
+#mtgScrollTop:hover { transform: translateY(-3px); }
+
+/* Sticky CTA bar */
+.mtg-sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(13,6,33,.95);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 80;
+  transform: translateY(100%);
+  transition: transform .3s;
+}
+.mtg-sticky-cta.show { transform: translateY(0); }
+.mtg-sticky-text { font-size: .85rem; font-weight: 600; color: rgba(255,255,255,.75); }
+@media(max-width:560px) { .mtg-sticky-text { display: none; } }
+
+/* Print */
+@media print {
+  .site-header, .mtg-tabs, .btn-row, #mtgScrollTop, .mtg-sticky-cta, .mtg-share-row, .mtg-history-bar { display: none !important; }
+  .mtg-code { max-height: none; border: 1px solid #ccc; color: #000; background: #fff; }
+  body { background: #fff !important; color: #000 !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<!-- ── BREADCRUMB ── -->
+<div class="container" style="padding-bottom:0">
+  <nav aria-label="Breadcrumb" style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:2px">
+    <a href="../index.html" style="color:rgba(255,255,255,.45)">Home</a>
+    <span style="margin:0 6px">›</span>
+    <span style="color:rgba(255,255,255,.7)">SEO Tools</span>
+    <span style="margin:0 6px">›</span>
+    <span style="color:#A78BFA">Meta Tag Generator</span>
+  </nav>
+</div>
+
+<!-- ── HERO + TOOL ── -->
+<div class="container">
+
+  <!-- Hero -->
+  <div class="tool-header">
+    <h1>🏷️ Meta Tag Generator</h1>
+    <p>Generate complete, production-ready SEO meta tags — title, description, Open Graph, Twitter Card, robots, canonical and JSON-LD — with a live SERP preview.</p>
+  </div>
+
+  <!-- SEO Score Strip -->
+  <div class="mtg-score-wrap" id="mtgScoreWrap">
+    <svg class="mtg-score-ring" viewBox="0 0 64 64" aria-hidden="true">
+      <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="6"/>
+      <circle id="scoreArc" cx="32" cy="32" r="26" fill="none" stroke="#16C079" stroke-width="6"
+        stroke-dasharray="163.4" stroke-dashoffset="163.4"
+        stroke-linecap="round" transform="rotate(-90 32 32)" style="transition:stroke-dashoffset .6s,stroke .4s"/>
+    </svg>
+    <div class="mtg-score-info">
+      <div class="mtg-score-num" id="scoreNum">0<span style="font-size:.9rem;color:rgba(255,255,255,.3)">/100</span></div>
+      <div class="mtg-score-lbl">SEO Score</div>
+      <div class="mtg-score-detail" id="scoreDetail">Fill in the fields below to see your score.</div>
+    </div>
+  </div>
+
+  <!-- ── MAIN PANEL ── -->
+  <div class="panel">
+
+    <!-- Tab nav -->
+    <nav class="mtg-tabs" role="tablist" aria-label="Meta tag sections">
+      <button class="mtg-tab active" role="tab" aria-selected="true"  data-tab="basic"    >📝 Basic</button>
+      <button class="mtg-tab"        role="tab" aria-selected="false" data-tab="og"       >📘 Open Graph</button>
+      <button class="mtg-tab"        role="tab" aria-selected="false" data-tab="twitter"  >🐦 Twitter Card</button>
+      <button class="mtg-tab"        role="tab" aria-selected="false" data-tab="robots"   >🤖 Robots</button>
+      <button class="mtg-tab"        role="tab" aria-selected="false" data-tab="schema"   >🔧 Schema</button>
+      <button class="mtg-tab"        role="tab" aria-selected="false" data-tab="preview"  >👁️ Preview</button>
+    </nav>
+
+    <!-- ── TAB 1: BASIC ── -->
+    <div class="mtg-tab-panel active" id="tab-basic">
+
+      <div class="field">
+        <label for="inTitle">Page Title <span style="color:#F87171">*</span></label>
+        <input type="text" id="inTitle" placeholder="e.g. Best Running Shoes for Beginners | BrandName" maxlength="120" autocomplete="off">
+        <div class="mtg-counter">
+          <span class="mtg-hint">Recommended: 50–60 characters</span>
+          <span class="mtg-count-badge ok" id="titleCount">0 chars</span>
+        </div>
+        <div class="mtg-pixel-bar"><div class="mtg-pixel-fill" id="titlePxBar" style="width:0%;background:#16C079"></div></div>
+        <span class="mtg-hint" id="titlePxHint">≈ 0 px / 580 px max</span>
+      </div>
+
+      <div class="field">
+        <label for="inDesc">Meta Description <span style="color:#F87171">*</span></label>
+        <textarea id="inDesc" rows="3" placeholder="Write a compelling description of this page (150–160 characters)…" maxlength="320"></textarea>
+        <div class="mtg-counter">
+          <span class="mtg-hint">Recommended: 150–160 characters</span>
+          <span class="mtg-count-badge ok" id="descCount">0 chars</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="inKeywords">Meta Keywords <span class="mtg-hint" style="display:inline;font-style:italic">(optional, comma-separated)</span></label>
+        <input type="text" id="inKeywords" placeholder="running shoes, beginner shoes, comfortable sneakers">
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="inCanonical">Canonical URL</label>
+          <input type="text" id="inCanonical" placeholder="https://example.com/page/">
+        </div>
+        <div class="field">
+          <label for="inLang">Content Language</label>
+          <select id="inLang">
+            <option value="en">English (en)</option>
+            <option value="hi">Hindi (hi)</option>
+            <option value="es">Spanish (es)</option>
+            <option value="fr">French (fr)</option>
+            <option value="de">German (de)</option>
+            <option value="pt">Portuguese (pt)</option>
+            <option value="ar">Arabic (ar)</option>
+            <option value="zh">Chinese (zh)</option>
+            <option value="ja">Japanese (ja)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="inAuthor">Author Name</label>
+          <input type="text" id="inAuthor" placeholder="e.g. John Doe">
+        </div>
+        <div class="field">
+          <label for="inViewport">Viewport</label>
+          <select id="inViewport">
+            <option value="width=device-width, initial-scale=1.0">Standard (width=device-width)</option>
+            <option value="width=device-width, initial-scale=1.0, maximum-scale=1.0">No-zoom</option>
+            <option value="width=1024">Fixed 1024px</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="inCharset">Charset</label>
+          <select id="inCharset">
+            <option value="UTF-8">UTF-8 (recommended)</option>
+            <option value="ISO-8859-1">ISO-8859-1</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="inThemeColor">Theme Color</label>
+          <input type="color" id="inThemeColor" value="#7C5CFC" style="height:44px;padding:4px 6px;cursor:pointer">
+        </div>
+      </div>
+
+    </div><!-- /tab-basic -->
+
+    <!-- ── TAB 2: OPEN GRAPH ── -->
+    <div class="mtg-tab-panel" id="tab-og">
+
+      <div class="field">
+        <label for="ogTitle">OG Title</label>
+        <input type="text" id="ogTitle" placeholder="Leave blank to use Page Title">
+        <span class="mtg-hint">Facebook, LinkedIn, WhatsApp use this as the shared post title.</span>
+      </div>
+
+      <div class="field">
+        <label for="ogDesc">OG Description</label>
+        <textarea id="ogDesc" rows="3" placeholder="Leave blank to use Meta Description"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="ogImage">OG Image URL</label>
+        <input type="text" id="ogImage" placeholder="https://example.com/share-image.jpg">
+        <span class="mtg-hint">Recommended: 1200×630 px, JPG or PNG, under 8 MB.</span>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="ogUrl">OG URL</label>
+          <input type="text" id="ogUrl" placeholder="https://example.com/page/">
+        </div>
+        <div class="field">
+          <label for="ogType">OG Type</label>
+          <select id="ogType">
+            <option value="website">website</option>
+            <option value="article">article</option>
+            <option value="product">product</option>
+            <option value="video.movie">video.movie</option>
+            <option value="music.song">music.song</option>
+            <option value="book">book</option>
+            <option value="profile">profile</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="ogSiteName">Site Name</label>
+          <input type="text" id="ogSiteName" placeholder="e.g. BrandName">
+        </div>
+        <div class="field">
+          <label for="ogLocale">OG Locale</label>
+          <select id="ogLocale">
+            <option value="en_US">en_US</option>
+            <option value="hi_IN">hi_IN</option>
+            <option value="es_ES">es_ES</option>
+            <option value="fr_FR">fr_FR</option>
+            <option value="de_DE">de_DE</option>
+            <option value="pt_BR">pt_BR</option>
+            <option value="ar_AR">ar_AR</option>
+            <option value="zh_CN">zh_CN</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Article-specific (shown when ogType = article) -->
+      <div id="articleFields" style="display:none">
+        <div class="mtg-section-label">📰 Article Fields</div>
+        <div class="row">
+          <div class="field">
+            <label for="artPublished">Published Time</label>
+            <input type="datetime-local" id="artPublished">
+          </div>
+          <div class="field">
+            <label for="artModified">Modified Time</label>
+            <input type="datetime-local" id="artModified">
+          </div>
+        </div>
+        <div class="field">
+          <label for="artSection">Article Section</label>
+          <input type="text" id="artSection" placeholder="e.g. Technology, Health">
+        </div>
+      </div>
+
+    </div><!-- /tab-og -->
+
+    <!-- ── TAB 3: TWITTER CARD ── -->
+    <div class="mtg-tab-panel" id="tab-twitter">
+
+      <div class="field">
+        <label for="twCard">Card Type</label>
+        <select id="twCard">
+          <option value="summary_large_image">summary_large_image (large banner)</option>
+          <option value="summary">summary (small thumbnail)</option>
+          <option value="app">app</option>
+          <option value="player">player</option>
+        </select>
+        <span class="mtg-hint">summary_large_image is recommended for most pages.</span>
+      </div>
+
+      <div class="field">
+        <label for="twTitle">Twitter Title</label>
+        <input type="text" id="twTitle" placeholder="Leave blank to use Page Title">
+      </div>
+
+      <div class="field">
+        <label for="twDesc">Twitter Description</label>
+        <textarea id="twDesc" rows="2" placeholder="Leave blank to use Meta Description"></textarea>
+      </div>
+
+      <div class="field">
+        <label for="twImage">Twitter Image URL</label>
+        <input type="text" id="twImage" placeholder="https://example.com/twitter-card.jpg">
+        <span class="mtg-hint">Recommended: 800×418 px for summary_large_image, max 5 MB.</span>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="twSite">Twitter @site</label>
+          <input type="text" id="twSite" placeholder="@YourBrandHandle">
+        </div>
+        <div class="field">
+          <label for="twCreator">Twitter @creator</label>
+          <input type="text" id="twCreator" placeholder="@AuthorHandle">
+        </div>
+      </div>
+
+    </div><!-- /tab-twitter -->
+
+    <!-- ── TAB 4: ROBOTS ── -->
+    <div class="mtg-tab-panel" id="tab-robots">
+
+      <div class="mtg-section-label">Search Engine Directives</div>
+      <div class="mtg-check-grid" id="robotsGrid">
+        <label class="mtg-check-item"><input type="checkbox" id="rbIndex"   checked> index</label>
+        <label class="mtg-check-item"><input type="checkbox" id="rbFollow"  checked> follow</label>
+        <label class="mtg-check-item"><input type="checkbox" id="rbNoSnippet"> nosnippet</label>
+        <label class="mtg-check-item"><input type="checkbox" id="rbNoArchive"> noarchive</label>
+        <label class="mtg-check-item"><input type="checkbox" id="rbNoImageIndex"> noimageindex</label>
+        <label class="mtg-check-item"><input type="checkbox" id="rbMaxSnippet"> max-snippet</label>
+        <label class="mtg-check-item"><input type="checkbox" id="rbMaxImage"> max-image-preview</label>
+        <label class="mtg-check-item"><input type="checkbox" id="rbMaxVideo"> max-video-preview</label>
+      </div>
+
+      <div class="row" style="margin-top:14px">
+        <div class="field" id="maxSnippetField" style="display:none">
+          <label for="rbMaxSnippetVal">max-snippet value</label>
+          <input type="number" id="rbMaxSnippetVal" value="160" min="-1" max="1000">
+        </div>
+        <div class="field" id="maxImageField" style="display:none">
+          <label for="rbMaxImageVal">max-image-preview</label>
+          <select id="rbMaxImageVal">
+            <option value="none">none</option>
+            <option value="standard" selected>standard</option>
+            <option value="large">large</option>
+          </select>
+        </div>
+        <div class="field" id="maxVideoField" style="display:none">
+          <label for="rbMaxVideoVal">max-video-preview value</label>
+          <input type="number" id="rbMaxVideoVal" value="-1" min="-1" max="3600">
+        </div>
+      </div>
+
+      <div class="field" style="margin-top:4px">
+        <label for="robotsPreset">Quick Presets</label>
+        <select id="robotsPreset">
+          <option value="">— Choose preset —</option>
+          <option value="index,follow">✅ index, follow (default)</option>
+          <option value="noindex,nofollow">🚫 noindex, nofollow (block all)</option>
+          <option value="noindex,follow">👀 noindex, follow (crawl links only)</option>
+          <option value="index,nofollow">🔗 index, nofollow (no link juice)</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="googlebot">Googlebot-specific directive <span class="mtg-hint" style="display:inline">(optional)</span></label>
+        <input type="text" id="googlebot" placeholder="e.g. nosnippet, notranslate">
+      </div>
+
+      <div class="field">
+        <label for="bingbot">Bingbot-specific directive <span class="mtg-hint" style="display:inline">(optional)</span></label>
+        <input type="text" id="bingbot" placeholder="e.g. nosnippet">
+      </div>
+
+    </div><!-- /tab-robots -->
+
+    <!-- ── TAB 5: SCHEMA ── -->
+    <div class="mtg-tab-panel" id="tab-schema">
+
+      <div class="field">
+        <label for="schemaType">Schema Type</label>
+        <select id="schemaType">
+          <option value="WebPage">WebPage (generic)</option>
+          <option value="Article">Article / Blog Post</option>
+          <option value="Organization">Organization</option>
+          <option value="LocalBusiness">Local Business</option>
+          <option value="Product">Product</option>
+          <option value="FAQPage">FAQPage</option>
+          <option value="Person">Person</option>
+          <option value="SoftwareApplication">SoftwareApplication</option>
+        </select>
+      </div>
+
+      <div id="schemaFields">
+        <!-- Dynamic fields injected by JS -->
+      </div>
+
+    </div><!-- /tab-schema -->
+
+    <!-- ── TAB 6: PREVIEW ── -->
+    <div class="mtg-tab-panel" id="tab-preview">
+
+      <!-- SERP Preview -->
+      <div class="mtg-section-label">🔍 Google SERP Preview</div>
+      <div class="mtg-serp-preview" id="serpPreview">
+        <div class="serp-url"><span class="sfavicon"></span><span id="pUrl">example.com › page</span></div>
+        <div class="serp-title" id="pTitle">Your Page Title Will Appear Here</div>
+        <div class="serp-desc"  id="pDesc">Your meta description will appear here. Write 150–160 characters for best results in Google search results.</div>
+      </div>
+
+      <!-- Social previews -->
+      <div class="mtg-section-label" style="margin-top:22px">📱 Social Share Previews</div>
+      <div class="mtg-social-row">
+        <div>
+          <div class="og-card-label">Facebook / LinkedIn</div>
+          <div class="og-card" id="fbCard">
+            <div class="og-card-img" id="fbCardImg">🌐</div>
+            <div class="og-card-body">
+              <div class="og-card-domain" id="fbCardDomain">example.com</div>
+              <div class="og-card-title"  id="fbCardTitle">Your OG Title</div>
+              <div class="og-card-desc"   id="fbCardDesc">Your OG description text.</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="og-card-label">Twitter / X</div>
+          <div class="tw-card" id="twCardPreview">
+            <div class="tw-card-img" id="twCardImg">🐦</div>
+            <div class="tw-card-body">
+              <div class="tw-card-domain" id="twCardDomain">example.com</div>
+              <div class="tw-card-title"  id="twCardTitle">Your Twitter Card Title</div>
+              <div class="tw-card-desc"   id="twCardDesc">Twitter card description text here.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEO status checklist -->
+      <div class="mtg-section-label" style="margin-top:22px">✅ SEO Checklist</div>
+      <div class="mtg-status-row" id="seoChecklist">
+        <!-- Injected by JS -->
+      </div>
+
+    </div><!-- /tab-preview -->
+
+    <!-- ── ACTION BUTTONS ── -->
+    <div class="btn-row" style="margin-top:22px">
+      <button class="btn" id="btnGenerate">⚡ Generate Tags</button>
+      <button class="btn secondary" id="btnSample">📋 Sample</button>
+      <button class="btn secondary" id="btnUndo"   disabled>↩ Undo</button>
+      <button class="btn secondary" id="btnRedo"   disabled>↶ Redo</button>
+      <button class="btn secondary" id="btnReset">🗑️ Reset</button>
+    </div>
+    <div class="mtg-history-bar">
+      <span id="historyLabel">No history yet.</span>
+    </div>
+
+  </div><!-- /panel (inputs) -->
+
+  <!-- ── OUTPUT PANEL ── -->
+  <div class="panel" id="outputPanel" style="display:none">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px">
+      <h2 style="font-size:1.05rem;font-weight:800;margin:0">📄 Generated Meta Tags</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn"           id="btnCopy"    >📋 Copy All</button>
+        <button class="btn secondary" id="btnDownload">⬇️ Download</button>
+        <button class="btn secondary" id="btnPrint"   >🖨️ Print</button>
+      </div>
+    </div>
+
+    <!-- Segment filters -->
+    <div class="mtg-tabs" style="margin-bottom:10px" id="outputTabs">
+      <button class="mtg-tab active" data-out="all"    >All Tags</button>
+      <button class="mtg-tab"        data-out="basic"  >Basic</button>
+      <button class="mtg-tab"        data-out="og"     >Open Graph</button>
+      <button class="mtg-tab"        data-out="twitter">Twitter</button>
+      <button class="mtg-tab"        data-out="robots" >Robots</button>
+      <button class="mtg-tab"        data-out="schema" >JSON-LD</button>
+    </div>
+
+    <div class="mtg-code" id="outputCode" aria-label="Generated meta tags" tabindex="0"></div>
+
+    <!-- Share this tool -->
+    <div class="mtg-section-label" style="margin-top:18px">🔗 Share This Tool</div>
+    <div class="mtg-share-row">
+      <button class="mtg-share-btn tw"  id="shareTw">🐦 Twitter</button>
+      <button class="mtg-share-btn fb"  id="shareFb">📘 Facebook</button>
+      <button class="mtg-share-btn wa"  id="shareWa">💬 WhatsApp</button>
+      <button class="mtg-share-btn lnk" id="shareLn">💼 LinkedIn</button>
+    </div>
+
+  </div><!-- /outputPanel -->
+
+</div><!-- /container -->
+
+<!-- ── INFO / CONTENT ── -->
+<div class="info-wrap">
+  <div class="info-section">
+
+    <div class="info-block">
+      <h2>🏷️ What is a Meta Tag Generator?</h2>
+      <p>A <strong>Meta Tag Generator</strong> is a free online tool that helps website owners, SEO specialists, bloggers, and developers create the correct HTML meta tags for any webpage without writing code manually. Meta tags are invisible snippets of HTML placed inside the <code>&lt;head&gt;</code> section of a page. Search engines like Google and Bing read them to understand what a page is about, while social networks like Facebook, LinkedIn, Twitter, and WhatsApp use them to decide what image, title, and description to show when someone shares your link.</p>
+      <p>Getting meta tags right is one of the most cost-effective SEO improvements you can make. Studies consistently show that pages with well-crafted meta titles and descriptions earn significantly higher click-through rates in search results — sometimes 20–30 % higher than pages with auto-generated or missing tags. Yet writing them by hand means remembering dozens of attributes and their exact syntax, which is where this generator saves you time and eliminates typos.</p>
+      <p>This tool covers every meta tag category you need for modern SEO: <strong>basic HTML meta tags</strong> (title, description, keywords, charset, viewport, canonical), <strong>Open Graph tags</strong> for rich social sharing on Facebook and LinkedIn, <strong>Twitter Card tags</strong> for rich Twitter/X previews, <strong>robots directives</strong> to control crawler behaviour, and <strong>JSON-LD structured data</strong> (Schema.org) to power rich results in Google Search. Fill in your page details once and the tool produces a clean, copy-paste-ready block of HTML in seconds.</p>
+
+      <h3>Why Meta Tags Still Matter in 2025</h3>
+      <p>Despite years of speculation that meta keywords are "dead" (they are for Google, but the title and description absolutely are not), meta tags remain a foundational SEO task for every new page. Google uses your meta title as the default text in search result headlines, and while it may rewrite it, a well-crafted title that matches search intent reduces that rewriting significantly. The meta description is your free 160-character advertisement in the search results page — it does not directly affect rankings but it is the single biggest lever you have for improving organic click-through rates.</p>
+      <p>Beyond Google, every major content-sharing platform reads Open Graph and Twitter Card tags to build the preview card shown when users share your URL. A missing OG image means the platform chooses a random image (or none), a missing OG title means it uses the full URL, and a missing OG description means no summary is shown. A few minutes spent on meta tags can dramatically improve how every shared link looks across hundreds of millions of social feeds.</p>
+
+      <h3>How to Use This Tool</h3>
+      <ol>
+        <li>Fill in the <strong>Basic</strong> tab: title, description, canonical URL and optional author.</li>
+        <li>Switch to <strong>Open Graph</strong> and enter your social image URL and site name.</li>
+        <li>Configure <strong>Twitter Card</strong> type and handles.</li>
+        <li>Set <strong>Robots</strong> directives (index/noindex, follow/nofollow).</li>
+        <li>Pick a <strong>Schema</strong> type and fill in its fields for structured data.</li>
+        <li>Check the <strong>Preview</strong> tab to see how Google and social platforms will display your page.</li>
+        <li>Click <strong>Generate Tags</strong>, then <strong>Copy All</strong> or <strong>Download</strong>.</li>
+        <li>Paste the block inside the <code>&lt;head&gt;</code> section of your HTML page.</li>
+      </ol>
+    </div>
+
+    <div class="info-block">
+      <h2>🌐 Hindi Guide / हिंदी गाइड</h2>
+      <p><strong>Meta Tag Generator</strong> एक मुफ्त ऑनलाइन टूल है जो आपकी वेबसाइट के लिए सही HTML मेटा टैग्स बनाता है — बिना कोड लिखे। यह टूल SEO एक्सपर्ट्स, ब्लॉगर्स, डेवलपर्स और छोटे बिज़नेस के लिए बेहद उपयोगी है।</p>
+      <p>मेटा टैग्स HTML के वे हिस्से हैं जो वेबपेज की <code>&lt;head&gt;</code> section में लिखे जाते हैं। ये टैग्स सर्च इंजन और सोशल मीडिया प्लेटफॉर्म्स को बताते हैं कि आपका पेज किस बारे में है, इसका शीर्षक क्या है, और शेयर करने पर कौन सी इमेज दिखेगी।</p>
+
+      <h3>मुख्य फीचर्स</h3>
+      <ol>
+        <li><strong>Basic Meta Tags</strong> — Title, Description, Keywords, Canonical URL</li>
+        <li><strong>Open Graph Tags</strong> — Facebook, LinkedIn, WhatsApp पर सही प्रीव्यू</li>
+        <li><strong>Twitter Card Tags</strong> — Twitter/X पर बेहतर शेयरिंग</li>
+        <li><strong>Robots Tags</strong> — Google को बताएं क्या इंडेक्स करना है</li>
+        <li><strong>JSON-LD Schema</strong> — Google Rich Results के लिए</li>
+        <li><strong>Live SERP Preview</strong> — Google में पेज कैसा दिखेगा</li>
+        <li><strong>SEO Score</strong> — तुरंत पता चलेगा कितने टैग सही हैं</li>
+      </ol>
+
+      <h3>उपयोग कैसे करें</h3>
+      <ol>
+        <li>Basic tab में अपना Page Title और Description लिखें।</li>
+        <li>Open Graph tab में Social Image URL और Site Name डालें।</li>
+        <li>Twitter Card tab में Card Type और Handles सेट करें।</li>
+        <li>Robots tab में Index/NoIndex, Follow/NoFollow चुनें।</li>
+        <li>Schema tab में Structured Data Type चुनकर फील्ड भरें।</li>
+        <li>Preview tab में देखें Google और Social Media पर कैसा दिखेगा।</li>
+        <li>"Generate Tags" बटन दबाएं, फिर "Copy All" करें।</li>
+        <li>उस कोड को अपनी वेबसाइट के <code>&lt;head&gt;</code> में paste करें।</li>
+      </ol>
+
+      <h3>✅ SEO में मेटा टैग्स का महत्व</h3>
+      <p>सही मेटा टैग्स होने से Google Search में आपके पेज की Click-Through Rate (CTR) 20-30% तक बढ़ सकती है। यह एक ऐसा काम है जो एक बार करने से लंबे समय तक फायदा देता है। इस टूल से बिना किसी टेक्निकल नॉलेज के प्रोफेशनल मेटा टैग्स बनाएं।</p>
+
+      <!-- FAQ -->
+      <h3 style="margin-top:20px">❓ Frequently Asked Questions</h3>
+
+      <div id="faqList">
+        <!-- injected by JS -->
+      </div>
+
+    </div>
+
+  </div><!-- /info-section -->
+</div><!-- /info-wrap -->
+
+<!-- Scroll to top -->
+<button id="mtgScrollTop" aria-label="Scroll to top">↑</button>
+
+<!-- Sticky CTA -->
+<div class="mtg-sticky-cta" id="stickyCta">
+  <span class="mtg-sticky-text">🏷️ Generate your meta tags — free, instant, no signup</span>
+  <button class="btn" onclick="document.getElementById('inTitle').focus();document.getElementById('stickyCta').classList.remove('show')">Get Started ↑</button>
+</div>
+
+<!-- Site footer -->
+<footer class="site-footer">
+  <p>© 2025 <a href="../index.html">ApneSoftware.com</a> · Free Tools for Everyone · No Signup Required</p>
+</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+/* ════════════════════════════════════════════════════════
+   Meta Tag Generator — Main JavaScript
+   Fully modular, no inline JS, no console errors
+   ════════════════════════════════════════════════════════ */
+
+(function () {
+  'use strict';
+
+  /* ── CONSTANTS ─────────────────────────────────────── */
+  const LS_KEY      = 'mtg_lastInput';
+  const TITLE_MAX_PX = 580;
+  const AVG_CHAR_PX  = 6.5; // avg px per char in Google SERP (desktop)
+
+  /* ── STATE ─────────────────────────────────────────── */
+  const history = [];  // undo stack
+  const future  = [];  // redo stack
+  let generatedSegments = {}; // { all, basic, og, twitter, robots, schema }
+  let currentOutTab = 'all';
+
+  /* ── FAQ DATA ──────────────────────────────────────── */
+  const faqs = [
+    { q: 'What is a meta title and why does it matter?',
+      a: 'A meta title (title tag) is the HTML element that specifies the title of a webpage. It appears as the clickable headline in search results and as the browser tab label. Google uses it as a primary on-page SEO signal, and users decide whether to click based on it. Keeping it under 60 characters and including your target keyword near the beginning is best practice.' },
+    { q: 'How long should a meta description be?',
+      a: 'Google typically shows 150–160 characters on desktop. Mobile can show slightly less. Write descriptions that include a call to action and naturally contain your primary keyword. Avoid duplicate descriptions across pages — each page should have a unique description.' },
+    { q: 'Are meta keywords still used by Google?',
+      a: 'No. Google officially stopped using the meta keywords tag for ranking in 2009. However, Bing uses it as a minor signal. Some CMS platforms still generate it, which is harmless. This tool includes it as an optional field for completeness, but do not expect it to influence your Google rankings.' },
+    { q: 'What is a canonical URL?',
+      a: 'A canonical URL (rel="canonical") tells search engines which version of a page is the "master" version when you have duplicate or near-duplicate content at multiple URLs. For example, http, https, www and non-www versions of the same page should all point to a single canonical to avoid splitting your link equity.' },
+    { q: 'What is the difference between Open Graph and Twitter Card tags?',
+      a: 'Open Graph (og:) tags are used by Facebook, LinkedIn, WhatsApp, Telegram and most other social platforms. Twitter Card (twitter:) tags are specific to Twitter/X. If Twitter Card tags are missing, Twitter falls back to Open Graph tags. Both control the title, description and image shown when a URL is shared.' },
+    { q: 'What image size should I use for OG and Twitter images?',
+      a: 'For Open Graph (Facebook, LinkedIn): 1200×630 px, JPG or PNG, under 8 MB. For Twitter summary_large_image: 800×418 px, under 5 MB. Always use absolute URLs (starting with https://) for image properties.' },
+    { q: 'What does robots noindex mean?',
+      a: '"noindex" tells search engines not to include this page in their index, meaning it will not appear in search results. This is useful for thank-you pages, login pages, staging environments, or any page you do not want publicly discoverable. Pair it with "nofollow" to also prevent link-following.' },
+    { q: 'What is JSON-LD and why do I need it?',
+      a: 'JSON-LD (JavaScript Object Notation for Linked Data) is Google\'s preferred format for structured data / Schema.org markup. Adding JSON-LD to a page enables rich results in Google Search — things like star ratings, FAQ accordions, event cards, recipe snippets and more. It does not affect basic rankings but can dramatically increase visibility and click-through rates.' },
+    { q: 'Do I need to add all the tags this tool generates?',
+      a: 'At minimum, every page should have a unique title, unique meta description, and a canonical URL. Open Graph and Twitter Card tags matter only if your audience shares your pages on social media. JSON-LD structured data is optional but recommended for articles, products, local businesses and FAQs.' },
+    { q: 'Will this tool save my data?',
+      a: 'Yes — your last inputs are automatically saved to your browser\'s localStorage so you can continue where you left off. No data is ever sent to any server. Everything runs locally in your browser. You can clear your saved data by clicking Reset.' },
+  ];
+
+  /* ── SCHEMA FIELD TEMPLATES ────────────────────────── */
+  const schemaTemplates = {
+    WebPage: [
+      { id: 'scUrl',  label: 'Page URL',   type: 'text',   ph: 'https://example.com/page/' },
+      { id: 'scName', label: 'Page Name',  type: 'text',   ph: 'My Awesome Page' },
+      { id: 'scDesc', label: 'Description',type: 'text',   ph: 'Brief page description' },
+    ],
+    Article: [
+      { id: 'scUrl',       label: 'Article URL',      type: 'text', ph: 'https://example.com/article/' },
+      { id: 'scName',      label: 'Headline',          type: 'text', ph: 'Article Headline' },
+      { id: 'scAuthor',    label: 'Author Name',       type: 'text', ph: 'John Doe' },
+      { id: 'scPublisher', label: 'Publisher Name',    type: 'text', ph: 'My Brand' },
+      { id: 'scDatePub',   label: 'Date Published',    type: 'date', ph: '' },
+      { id: 'scDateMod',   label: 'Date Modified',     type: 'date', ph: '' },
+      { id: 'scImage',     label: 'Article Image URL', type: 'text', ph: 'https://example.com/img.jpg' },
+    ],
+    Organization: [
+      { id: 'scName',  label: 'Organization Name', type: 'text', ph: 'My Company Ltd.' },
+      { id: 'scUrl',   label: 'Website URL',        type: 'text', ph: 'https://example.com' },
+      { id: 'scLogo',  label: 'Logo URL',           type: 'text', ph: 'https://example.com/logo.png' },
+      { id: 'scPhone', label: 'Phone',              type: 'text', ph: '+91 98765 43210' },
+      { id: 'scEmail', label: 'Email',              type: 'text', ph: 'hello@example.com' },
+    ],
+    LocalBusiness: [
+      { id: 'scName',      label: 'Business Name',    type: 'text', ph: 'My Local Shop' },
+      { id: 'scUrl',       label: 'Website URL',       type: 'text', ph: 'https://example.com' },
+      { id: 'scPhone',     label: 'Phone',             type: 'text', ph: '+91 98765 43210' },
+      { id: 'scAddress',   label: 'Street Address',    type: 'text', ph: '123 Main St' },
+      { id: 'scCity',      label: 'City',              type: 'text', ph: 'Jaipur' },
+      { id: 'scState',     label: 'State',             type: 'text', ph: 'Rajasthan' },
+      { id: 'scPostal',    label: 'Postal Code',       type: 'text', ph: '302001' },
+      { id: 'scCountry',   label: 'Country Code',      type: 'text', ph: 'IN' },
+      { id: 'scPriceRange',label: 'Price Range',       type: 'text', ph: '₹₹' },
+    ],
+    Product: [
+      { id: 'scName',   label: 'Product Name',  type: 'text', ph: 'Awesome Product' },
+      { id: 'scDesc',   label: 'Description',   type: 'text', ph: 'Great product for everyone' },
+      { id: 'scImage',  label: 'Image URL',      type: 'text', ph: 'https://example.com/prod.jpg' },
+      { id: 'scBrand',  label: 'Brand',          type: 'text', ph: 'BrandName' },
+      { id: 'scSku',    label: 'SKU',            type: 'text', ph: 'PROD-001' },
+      { id: 'scPrice',  label: 'Price',          type: 'text', ph: '999' },
+      { id: 'scCurrency',label: 'Currency',      type: 'text', ph: 'INR' },
+      { id: 'scAvail',  label: 'Availability',   type: 'select', options: ['InStock','OutOfStock','PreOrder','Discontinued'] },
+    ],
+    FAQPage: [
+      { id: 'faqPairs', label: 'FAQ Pairs (Q|A, one per line)', type: 'textarea',
+        ph: 'What is this tool?|It helps you generate meta tags.\nIs it free?|Yes, completely free.' },
+    ],
+    Person: [
+      { id: 'scName',   label: 'Full Name',       type: 'text', ph: 'John Doe' },
+      { id: 'scUrl',    label: 'Profile URL',      type: 'text', ph: 'https://johndoe.com' },
+      { id: 'scJob',    label: 'Job Title',        type: 'text', ph: 'SEO Specialist' },
+      { id: 'scOrg',    label: 'Organization',     type: 'text', ph: 'My Company' },
+      { id: 'scImage',  label: 'Photo URL',         type: 'text', ph: 'https://example.com/john.jpg' },
+    ],
+    SoftwareApplication: [
+      { id: 'scName',    label: 'App Name',         type: 'text', ph: 'My Awesome App' },
+      { id: 'scUrl',     label: 'App URL',           type: 'text', ph: 'https://example.com/app' },
+      { id: 'scDesc',    label: 'Description',       type: 'text', ph: 'App description' },
+      { id: 'scOs',      label: 'Operating System',  type: 'text', ph: 'Windows, macOS, Android' },
+      { id: 'scCat',     label: 'App Category',      type: 'text', ph: 'WebApplication' },
+      { id: 'scPrice',   label: 'Price (0 = free)',  type: 'text', ph: '0' },
+      { id: 'scCurrency',label: 'Currency',           type: 'text', ph: 'INR' },
+    ],
+  };
+
+  /* ── SAMPLE DATA ───────────────────────────────────── */
+  const sampleData = {
+    inTitle:     'Best Free SEO Tools for Beginners — ApneSoftware',
+    inDesc:      'Discover 44+ free online SEO tools for keyword research, meta tag generation, sitemap creation and more. No signup required. Try them free now.',
+    inKeywords:  'SEO tools, free SEO, meta tag generator, keyword research, sitemap generator',
+    inCanonical: 'https://apnesoftware.com/tools/meta-tag-generator.html',
+    inAuthor:    'ApneSoftware Team',
+    ogTitle:     'Best Free SEO Tools — ApneSoftware.com',
+    ogDesc:      'Use 44+ free SEO tools without any signup. Meta tags, sitemaps, keyword tools and more — all in one place.',
+    ogImage:     'https://apnesoftware.com/assets/og-image.png',
+    ogUrl:       'https://apnesoftware.com/tools/meta-tag-generator.html',
+    ogSiteName:  'ApneSoftware',
+    twTitle:     'Free SEO Tools — No Signup | ApneSoftware',
+    twDesc:      '44+ free tools for SEO, images, PDFs and more. Try the Meta Tag Generator now.',
+    twSite:      '@ApneSoftware',
+  };
+
+  /* ── DOM REFS ──────────────────────────────────────── */
+  const $ = id => document.getElementById(id);
+  const fields = ['inTitle','inDesc','inKeywords','inCanonical','inLang','inAuthor','inViewport','inCharset','inThemeColor',
+                  'ogTitle','ogDesc','ogImage','ogUrl','ogType','ogSiteName','ogLocale','artPublished','artModified','artSection',
+                  'twCard','twTitle','twDesc','twImage','twSite','twCreator',
+                  'rbIndex','rbFollow','rbNoSnippet','rbNoArchive','rbNoImageIndex','rbMaxSnippet','rbMaxImage','rbMaxVideo',
+                  'rbMaxSnippetVal','rbMaxImageVal','rbMaxVideoVal','robotsPreset','googlebot','bingbot','schemaType'];
+
+  /* ── INIT ──────────────────────────────────────────── */
+  function init() {
+    buildFAQ();
+    buildSchemaFields($('schemaType').value);
+    loadFromStorage();
+    attachEvents();
+    updateCounters();
+    updatePreviews();
+    updateScore();
+    // Auto-generate on load if saved data exists
+    const saved = localStorage.getItem(LS_KEY);
+    if (saved) { generateTags(); }
+  }
+
+  /* ── FAQ BUILDER ───────────────────────────────────── */
+  function buildFAQ() {
+    const container = $('faqList');
+    if (!container) return;
+    container.innerHTML = faqs.map((f, i) => `
+      <div class="prem-faq-item" id="faq${i}">
+        <button class="prem-faq-q" aria-expanded="false" onclick="toggleFaq(${i})">
+          ${esc(f.q)} <span class="prem-faq-caret">▼</span>
+        </button>
+        <div class="prem-faq-a">${esc(f.a)}</div>
+      </div>`).join('');
+  }
+
+  window.toggleFaq = function(i) {
+    const item = $('faq' + i);
+    const isOpen = item.classList.toggle('open');
+    item.querySelector('.prem-faq-q').setAttribute('aria-expanded', isOpen);
+  };
+
+  /* ── SCHEMA FIELDS BUILDER ─────────────────────────── */
+  function buildSchemaFields(type) {
+    const container = $('schemaFields');
+    const defs = schemaTemplates[type] || [];
+    container.innerHTML = defs.map(f => {
+      if (f.type === 'select') {
+        return `<div class="field"><label for="${f.id}">${esc(f.label)}</label>
+          <select id="${f.id}">${f.options.map(o=>`<option value="${o}">${o}</option>`).join('')}</select></div>`;
+      }
+      if (f.type === 'textarea') {
+        return `<div class="field"><label for="${f.id}">${esc(f.label)}</label>
+          <textarea id="${f.id}" rows="5" placeholder="${esc(f.ph)}"></textarea></div>`;
+      }
+      return `<div class="field"><label for="${f.id}">${esc(f.label)}</label>
+        <input type="${f.type}" id="${f.id}" placeholder="${esc(f.ph)}"></div>`;
+    }).join('');
+  }
+
+  /* ── EVENT BINDING ──────────────────────────────────── */
+  function attachEvents() {
+    // Tab switching (input tabs)
+    document.querySelectorAll('.mtg-tabs:first-of-type .mtg-tab, [data-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+        if (!tab) return;
+        document.querySelectorAll('.mtg-tab[data-tab]').forEach(b => {
+          b.classList.toggle('active', b === btn);
+          b.setAttribute('aria-selected', b === btn);
+        });
+        document.querySelectorAll('.mtg-tab-panel').forEach(p => {
+          p.classList.toggle('active', p.id === 'tab-' + tab);
+        });
+      });
+    });
+
+    // Output segment tabs
+    document.querySelectorAll('#outputTabs .mtg-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#outputTabs .mtg-tab').forEach(b => b.classList.toggle('active', b === btn));
+        currentOutTab = btn.dataset.out;
+        renderOutput();
+      });
+    });
+
+    // Live updates on input
+    ['inTitle','inDesc','inCanonical','ogTitle','ogDesc','ogImage','ogUrl','ogSiteName',
+     'twTitle','twDesc','twImage','twSite','twCreator','inAuthor'].forEach(id => {
+      const el = $(id);
+      if (el) el.addEventListener('input', onLiveInput);
+    });
+    ['inLang','inViewport','inCharset','inThemeColor','ogType','ogLocale','twCard',
+     'rbIndex','rbFollow','rbNoSnippet','rbNoArchive','rbNoImageIndex',
+     'rbMaxSnippet','rbMaxImage','rbMaxVideo','robotsPreset','schemaType'].forEach(id => {
+      const el = $(id);
+      if (!el) return;
+      el.addEventListener('change', onLiveInput);
+    });
+
+    // OG type → article fields
+    $('ogType').addEventListener('change', () => {
+      $('articleFields').style.display = $('ogType').value === 'article' ? 'block' : 'none';
+    });
+
+    // Robots checkboxes → conditional fields
+    ['rbMaxSnippet','rbMaxImage','rbMaxVideo'].forEach(id => {
+      const el = $(id);
+      if (el) el.addEventListener('change', updateRobotsConditionals);
+    });
+
+    // Robots preset
+    $('robotsPreset').addEventListener('change', applyRobotsPreset);
+
+    // Schema type change
+    $('schemaType').addEventListener('change', () => buildSchemaFields($('schemaType').value));
+
+    // Action buttons
+    $('btnGenerate').addEventListener('click', () => { pushHistory(); generateTags(); });
+    $('btnSample').addEventListener('click',   loadSample);
+    $('btnReset').addEventListener('click',    resetAll);
+    $('btnUndo').addEventListener('click',     undo);
+    $('btnRedo').addEventListener('click',     redo);
+    $('btnCopy').addEventListener('click',     copyOutput);
+    $('btnDownload').addEventListener('click', downloadOutput);
+    $('btnPrint').addEventListener('click',    () => window.print());
+
+    // Share buttons
+    const toolUrl = encodeURIComponent(window.location.href);
+    const toolTitle = encodeURIComponent('Free Meta Tag Generator — ApneSoftware');
+    $('shareTw').addEventListener('click', () => window.open(`https://twitter.com/intent/tweet?url=${toolUrl}&text=${toolTitle}`,'_blank'));
+    $('shareFb').addEventListener('click', () => window.open(`https://www.facebook.com/sharer/sharer.php?u=${toolUrl}`,'_blank'));
+    $('shareWa').addEventListener('click', () => window.open(`https://wa.me/?text=${toolTitle}%20${toolUrl}`,'_blank'));
+    $('shareLn').addEventListener('click', () => window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${toolUrl}&title=${toolTitle}`,'_blank'));
+
+    // Scroll to top
+    const scrollBtn = $('mtgScrollTop');
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('show', window.scrollY > 400);
+      $('stickyCta').classList.toggle('show', window.scrollY > 600);
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); pushHistory(); generateTags(); }
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z')     { e.preventDefault(); undo(); }
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'Z') { e.preventDefault(); redo(); }
+    });
+  }
+
+  /* ── LIVE INPUT HANDLER ─────────────────────────────── */
+  function onLiveInput() {
+    updateCounters();
+    updatePreviews();
+    updateScore();
+    saveToStorage();
+  }
+
+  /* ── CHARACTER COUNTERS ────────────────────────────── */
+  function updateCounters() {
+    const titleVal = $('inTitle').value;
+    const titleLen = titleVal.length;
+    const badge = $('titleCount');
+    badge.textContent = titleLen + ' chars';
+    badge.className = 'mtg-count-badge ' + (titleLen < 30 ? 'warn' : titleLen <= 60 ? 'ok' : 'bad');
+
+    // Pixel width estimate
+    const pxEst = Math.round(titleLen * AVG_CHAR_PX);
+    const pct   = Math.min(100, Math.round(pxEst / TITLE_MAX_PX * 100));
+    $('titlePxBar').style.width = pct + '%';
+    $('titlePxBar').style.background = pxEst > TITLE_MAX_PX ? '#F87171' : pxEst > 500 ? '#FFD700' : '#16C079';
+    $('titlePxHint').textContent = '≈ ' + pxEst + ' px / ' + TITLE_MAX_PX + ' px max';
+
+    const descLen  = $('inDesc').value.length;
+    const descBadge = $('descCount');
+    descBadge.textContent = descLen + ' chars';
+    descBadge.className = 'mtg-count-badge ' + (descLen < 70 ? 'warn' : descLen <= 160 ? 'ok' : 'bad');
+  }
+
+  /* ── LIVE PREVIEWS ──────────────────────────────────── */
+  function updatePreviews() {
+    const title    = $('inTitle').value   || 'Your Page Title';
+    const desc     = $('inDesc').value    || 'Your meta description will appear here.';
+    const canonical= $('inCanonical').value;
+    const ogImg    = $('ogImage').value;
+    const twImg    = $('twImage').value;
+    const siteName = $('ogSiteName').value || 'example.com';
+
+    // SERP
+    $('pTitle').textContent = title;
+    $('pDesc').textContent  = desc;
+    $('pUrl').innerHTML     = '<span class="sfavicon"></span>' +
+      (canonical ? canonical.replace(/^https?:\/\//,'').replace(/\/+$/,'') : 'example.com › page');
+
+    // FB/LinkedIn
+    const fbTitle = $('ogTitle').value || title;
+    const fbDesc  = $('ogDesc').value  || desc;
+    $('fbCardTitle').textContent  = fbTitle;
+    $('fbCardDesc').textContent   = fbDesc;
+    $('fbCardDomain').textContent = canonical ? canonical.replace(/^https?:\/\//,'').split('/')[0] : 'example.com';
+    const fbImgEl = $('fbCardImg');
+    if (ogImg) {
+      fbImgEl.innerHTML = `<img src="${esc(ogImg)}" alt="OG preview" onerror="this.parentElement.innerHTML='🌐'">`;
+    } else { fbImgEl.innerHTML = '🌐'; }
+
+    // Twitter
+    const twTitle = $('twTitle').value || title;
+    const twDesc  = $('twDesc').value  || desc;
+    $('twCardTitle').textContent  = twTitle;
+    $('twCardDesc').textContent   = twDesc;
+    $('twCardDomain').textContent = canonical ? canonical.replace(/^https?:\/\//,'').split('/')[0] : 'example.com';
+    const twImgEl = $('twCardImg');
+    const twImgSrc = twImg || ogImg;
+    if (twImgSrc) {
+      twImgEl.innerHTML = `<img src="${esc(twImgSrc)}" alt="Twitter preview" onerror="this.parentElement.innerHTML='🐦'">`;
+    } else { twImgEl.innerHTML = '🐦'; }
+
+    // SEO Checklist
+    const checks = [
+      { label: 'Title set',          ok: !!$('inTitle').value,      warn: false },
+      { label: 'Title length OK',    ok: $('inTitle').value.length >= 30 && $('inTitle').value.length <= 60, warn: true },
+      { label: 'Description set',    ok: !!$('inDesc').value,       warn: false },
+      { label: 'Desc length OK',     ok: $('inDesc').value.length >= 70 && $('inDesc').value.length <= 160, warn: true },
+      { label: 'Canonical URL',      ok: !!$('inCanonical').value,  warn: false },
+      { label: 'OG Image',           ok: !!$('ogImage').value,      warn: false },
+      { label: 'OG Title',           ok: !!$('ogTitle').value || !!$('inTitle').value, warn: false },
+      { label: 'Twitter Card',       ok: true,                      warn: false },
+      { label: 'Robots set',         ok: $('rbIndex').checked,      warn: false },
+      { label: 'Lang set',           ok: !!$('inLang').value,       warn: false },
+    ];
+    const list = $('seoChecklist');
+    list.innerHTML = checks.map(c => `
+      <div class="mtg-status-pill ${c.ok ? 'ok' : c.warn ? 'warn' : 'miss'}">
+        <div class="mtg-status-dot"></div>${esc(c.label)}
+      </div>`).join('');
+  }
+
+  /* ── SEO SCORE ──────────────────────────────────────── */
+  function updateScore() {
+    let score = 0;
+    const title = $('inTitle').value;
+    const desc  = $('inDesc').value;
+    if (title.length >= 20)             score += 15;
+    if (title.length >= 30 && title.length <= 60) score += 10;
+    if (desc.length >= 50)              score += 15;
+    if (desc.length >= 70 && desc.length <= 160)  score += 10;
+    if ($('inCanonical').value)         score += 10;
+    if ($('ogImage').value)             score += 10;
+    if ($('ogSiteName').value)          score += 5;
+    if ($('ogTitle').value)             score += 5;
+    if ($('twSite').value)              score += 5;
+    if ($('inKeywords').value)          score += 5;
+    if ($('inAuthor').value)            score += 5;
+    if ($('inThemeColor').value)        score += 5;
+
+    $('scoreNum').innerHTML = score + '<span style="font-size:.9rem;color:rgba(255,255,255,.3)">/100</span>';
+    const color = score >= 70 ? '#16C079' : score >= 40 ? '#FFD700' : '#F87171';
+    $('scoreNum').style.color = color;
+    const arc = $('scoreArc');
+    const dash = 163.4;
+    arc.style.strokeDashoffset = dash - (dash * score / 100);
+    arc.style.stroke = color;
+    $('scoreDetail').textContent = score >= 80 ? '🎉 Excellent! Your meta tags are well optimized.' :
+      score >= 60 ? '👍 Good. Add OG image, author and Twitter handle for a perfect score.' :
+      score >= 30 ? '⚠️ Fair. Fill in more fields to improve.' :
+      '❌ Fill in Title and Description to get started.';
+  }
+
+  /* ── ROBOTS CONDITIONALS ─────────────────────────────── */
+  function updateRobotsConditionals() {
+    $('maxSnippetField').style.display = $('rbMaxSnippet').checked ? 'block' : 'none';
+    $('maxImageField').style.display   = $('rbMaxImage').checked   ? 'block' : 'none';
+    $('maxVideoField').style.display   = $('rbMaxVideo').checked   ? 'block' : 'none';
+  }
+
+  /* ── ROBOTS PRESET ──────────────────────────────────── */
+  function applyRobotsPreset() {
+    const val = $('robotsPreset').value;
+    if (!val) return;
+    const parts = val.split(',');
+    $('rbIndex').checked   = parts.includes('index');
+    $('rbFollow').checked  = parts.includes('follow');
+    $('rbNoSnippet').checked  = false;
+    $('rbNoArchive').checked  = false;
+    $('rbNoImageIndex').checked = false;
+  }
+
+  /* ── GENERATE TAGS ──────────────────────────────────── */
+  function generateTags() {
+    const title     = $('inTitle').value.trim();
+    const desc      = $('inDesc').value.trim();
+    const keywords  = $('inKeywords').value.trim();
+    const canonical = $('inCanonical').value.trim();
+    const lang      = $('inLang').value;
+    const author    = $('inAuthor').value.trim();
+    const viewport  = $('inViewport').value;
+    const charset   = $('inCharset').value;
+    const theme     = $('inThemeColor').value;
+
+    if (!title && !desc) {
+      showToast('⚠️ Please enter at least a Title or Description.');
+      return;
+    }
+
+    // ── BASIC tags
+    const basic = [
+      `<!-- ===== Basic Meta Tags ===== -->`,
+      `<meta charset="${esc(charset)}">`,
+      `<meta name="viewport" content="${esc(viewport)}">`,
+      title    ? `<title>${esc(title)}</title>` : '',
+      desc     ? `<meta name="description" content="${esc(desc)}">` : '',
+      keywords ? `<meta name="keywords" content="${esc(keywords)}">` : '',
+      author   ? `<meta name="author" content="${esc(author)}">` : '',
+      canonical? `<link rel="canonical" href="${esc(canonical)}">` : '',
+      theme    ? `<meta name="theme-color" content="${esc(theme)}">` : '',
+      lang     ? `<html lang="${esc(lang)}"><!-- (place on <html> tag) -->` : '',
+    ].filter(Boolean).join('\n');
+
+    // ── ROBOTS
+    const rbParts = [];
+    if ($('rbIndex').checked)        rbParts.push('index');
+    else                             rbParts.push('noindex');
+    if ($('rbFollow').checked)       rbParts.push('follow');
+    else                             rbParts.push('nofollow');
+    if ($('rbNoSnippet').checked)    rbParts.push('nosnippet');
+    if ($('rbNoArchive').checked)    rbParts.push('noarchive');
+    if ($('rbNoImageIndex').checked) rbParts.push('noimageindex');
+    if ($('rbMaxSnippet').checked)   rbParts.push('max-snippet:' + $('rbMaxSnippetVal').value);
+    if ($('rbMaxImage').checked)     rbParts.push('max-image-preview:' + $('rbMaxImageVal').value);
+    if ($('rbMaxVideo').checked)     rbParts.push('max-video-preview:' + $('rbMaxVideoVal').value);
+    const gbVal = $('googlebot').value.trim();
+    const bbVal = $('bingbot').value.trim();
+    const robots = [
+      `<!-- ===== Robots Meta Tags ===== -->`,
+      `<meta name="robots" content="${rbParts.join(', ')}">`,
+      gbVal ? `<meta name="googlebot" content="${esc(gbVal)}">` : '',
+      bbVal ? `<meta name="bingbot"   content="${esc(bbVal)}">` : '',
+    ].filter(Boolean).join('\n');
+
+    // ── OPEN GRAPH
+    const ogTitle    = $('ogTitle').value.trim()    || title;
+    const ogDesc     = $('ogDesc').value.trim()     || desc;
+    const ogImage    = $('ogImage').value.trim();
+    const ogUrl      = $('ogUrl').value.trim()      || canonical;
+    const ogType     = $('ogType').value;
+    const ogSiteName = $('ogSiteName').value.trim();
+    const ogLocale   = $('ogLocale').value;
+    const artPub     = $('artPublished').value;
+    const artMod     = $('artModified').value;
+    const artSec     = $('artSection').value.trim();
+    const ogLines = [
+      `<!-- ===== Open Graph / Facebook / LinkedIn ===== -->`,
+      `<meta property="og:type"        content="${esc(ogType)}">`,
+      ogTitle    ? `<meta property="og:title"       content="${esc(ogTitle)}">` : '',
+      ogDesc     ? `<meta property="og:description" content="${esc(ogDesc)}">` : '',
+      ogUrl      ? `<meta property="og:url"         content="${esc(ogUrl)}">` : '',
+      ogSiteName ? `<meta property="og:site_name"   content="${esc(ogSiteName)}">` : '',
+      ogLocale   ? `<meta property="og:locale"      content="${esc(ogLocale)}">` : '',
+      ogImage    ? `<meta property="og:image"        content="${esc(ogImage)}">` : '',
+      ogImage    ? `<meta property="og:image:type"   content="image/jpeg">` : '',
+      ogImage    ? `<meta property="og:image:width"  content="1200">` : '',
+      ogImage    ? `<meta property="og:image:height" content="630">` : '',
+      ogType === 'article' && artPub ? `<meta property="article:published_time" content="${esc(artPub)}">` : '',
+      ogType === 'article' && artMod ? `<meta property="article:modified_time"  content="${esc(artMod)}">` : '',
+      ogType === 'article' && artSec ? `<meta property="article:section"        content="${esc(artSec)}">` : '',
+    ].filter(Boolean).join('\n');
+
+    // ── TWITTER CARD
+    const twCard    = $('twCard').value;
+    const twTitle   = $('twTitle').value.trim()   || title;
+    const twDesc    = $('twDesc').value.trim()    || desc;
+    const twImage   = $('twImage').value.trim()   || ogImage;
+    const twSite    = $('twSite').value.trim();
+    const twCreator = $('twCreator').value.trim();
+    const twitter = [
+      `<!-- ===== Twitter / X Card ===== -->`,
+      `<meta name="twitter:card"        content="${esc(twCard)}">`,
+      twTitle   ? `<meta name="twitter:title"       content="${esc(twTitle)}">` : '',
+      twDesc    ? `<meta name="twitter:description" content="${esc(twDesc)}">` : '',
+      twImage   ? `<meta name="twitter:image"       content="${esc(twImage)}">` : '',
+      twSite    ? `<meta name="twitter:site"        content="${esc(twSite)}">` : '',
+      twCreator ? `<meta name="twitter:creator"     content="${esc(twCreator)}">` : '',
+    ].filter(Boolean).join('\n');
+
+    // ── JSON-LD SCHEMA
+    const schema = buildSchema();
+    const schemaBlock = schema
+      ? `<!-- ===== JSON-LD Structured Data ===== -->\n<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n<\/script>`
+      : '';
+
+    // ── ASSEMBLE SEGMENTS
+    generatedSegments = { basic, robots, og: ogLines, twitter, schema: schemaBlock };
+    generatedSegments.all = [basic, '\n', robots, '\n', ogLines, '\n', twitter, schemaBlock ? '\n' + schemaBlock : ''].join('\n').trim();
+
+    // Show output panel
+    $('outputPanel').style.display = 'block';
+    renderOutput();
+    $('outputPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    showToast('✅ Tags generated! Copy or download below.');
+    updateScore();
+  }
+
+  /* ── BUILD JSON-LD SCHEMA ───────────────────────────── */
+  function buildSchema() {
+    const type = $('schemaType').value;
+    const g = id => { const el = $(id); return el ? el.value.trim() : ''; };
+
+    const base = { '@context': 'https://schema.org', '@type': type };
+
+    if (type === 'WebPage') {
+      return { ...base, name: g('scName'), description: g('scDesc'), url: g('scUrl') };
+    }
+    if (type === 'Article') {
+      const s = { ...base, headline: g('scName'), url: g('scUrl') };
+      if (g('scAuthor'))    s.author    = { '@type': 'Person', name: g('scAuthor') };
+      if (g('scPublisher')) s.publisher = { '@type': 'Organization', name: g('scPublisher') };
+      if (g('scDatePub'))   s.datePublished = g('scDatePub');
+      if (g('scDateMod'))   s.dateModified  = g('scDateMod');
+      if (g('scImage'))     s.image = g('scImage');
+      return s;
+    }
+    if (type === 'Organization') {
+      return { ...base, name: g('scName'), url: g('scUrl'), logo: g('scLogo') || undefined,
+        contactPoint: { '@type': 'ContactPoint', telephone: g('scPhone'), email: g('scEmail') }
+      };
+    }
+    if (type === 'LocalBusiness') {
+      return { ...base, name: g('scName'), url: g('scUrl'), telephone: g('scPhone'),
+        address: { '@type': 'PostalAddress', streetAddress: g('scAddress'),
+          addressLocality: g('scCity'), addressRegion: g('scState'),
+          postalCode: g('scPostal'), addressCountry: g('scCountry') },
+        priceRange: g('scPriceRange')
+      };
+    }
+    if (type === 'Product') {
+      return { ...base, name: g('scName'), description: g('scDesc'), image: g('scImage'),
+        brand: { '@type': 'Brand', name: g('scBrand') }, sku: g('scSku'),
+        offers: { '@type': 'Offer', price: g('scPrice'), priceCurrency: g('scCurrency'),
+          availability: 'https://schema.org/' + (g('scAvail') || 'InStock') }
+      };
+    }
+    if (type === 'FAQPage') {
+      const raw = g('faqPairs');
+      if (!raw) return null;
+      const pairs = raw.split('\n').map(l => l.split('|')).filter(p => p.length === 2);
+      return { ...base, mainEntity: pairs.map(([q, a]) => ({
+        '@type': 'Question', name: q.trim(),
+        acceptedAnswer: { '@type': 'Answer', text: a.trim() }
+      })) };
+    }
+    if (type === 'Person') {
+      return { ...base, name: g('scName'), url: g('scUrl'), jobTitle: g('scJob'),
+        worksFor: { '@type': 'Organization', name: g('scOrg') }, image: g('scImage') };
+    }
+    if (type === 'SoftwareApplication') {
+      return { ...base, name: g('scName'), url: g('scUrl'), description: g('scDesc'),
+        operatingSystem: g('scOs'), applicationCategory: g('scCat'),
+        offers: { '@type': 'Offer', price: g('scPrice') || '0', priceCurrency: g('scCurrency') || 'INR' }
+      };
+    }
+    return null;
+  }
+
+  /* ── RENDER OUTPUT ──────────────────────────────────── */
+  function renderOutput() {
+    const seg = generatedSegments[currentOutTab] || generatedSegments.all || '';
+    $('outputCode').innerHTML = syntaxHighlight(seg);
+  }
+
+  /* ── SYNTAX HIGHLIGHT ───────────────────────────────── */
+  function syntaxHighlight(html) {
+    return html
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      // comments
+      .replace(/(&lt;!--.*?--&gt;)/g, '<span class="hl-com">$1</span>')
+      // tags
+      .replace(/(&lt;\/?[a-z][a-z0-9]*)/gi, '<span class="hl-tag">$1</span>')
+      .replace(/(&gt;)/g,                   '<span class="hl-tag">$1</span>')
+      // attr names
+      .replace(/ ([a-z][a-z0-9:_-]*)=/gi,  ' <span class="hl-attr">$1</span>=')
+      // attr values
+      .replace(/&quot;([^&]*)&quot;/g,      '&quot;<span class="hl-val">$1</span>&quot;');
+  }
+
+  /* ── COPY / DOWNLOAD ────────────────────────────────── */
+  function copyOutput() {
+    const text = generatedSegments[currentOutTab] || generatedSegments.all || '';
+    navigator.clipboard.writeText(text).then(() => showToast('📋 Copied to clipboard!'));
+  }
+
+  function downloadOutput() {
+    const text = generatedSegments.all || '';
+    const blob = new Blob([text], { type: 'text/html' });
+    const url  = URL.createObjectURL(blob);
+    const a    = Object.assign(document.createElement('a'), { href: url, download: 'meta-tags.html' });
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('⬇️ Downloaded meta-tags.html');
+  }
+
+  /* ── SAMPLE DATA ─────────────────────────────────────── */
+  function loadSample() {
+    pushHistory();
+    Object.entries(sampleData).forEach(([id, val]) => {
+      const el = $(id); if (el) el.value = val;
+    });
+    onLiveInput();
+    generateTags();
+    showToast('📋 Sample data loaded!');
+  }
+
+  /* ── RESET ───────────────────────────────────────────── */
+  function resetAll() {
+    if (!confirm('Reset all fields and clear saved data?')) return;
+    pushHistory();
+    fields.forEach(id => {
+      const el = $(id);
+      if (!el) return;
+      if (el.type === 'checkbox') el.checked = ['rbIndex','rbFollow'].includes(id);
+      else if (el.tagName === 'SELECT') el.selectedIndex = 0;
+      else el.value = '';
+    });
+    $('inThemeColor').value = '#7C5CFC';
+    $('outputPanel').style.display = 'none';
+    generatedSegments = {};
+    localStorage.removeItem(LS_KEY);
+    onLiveInput();
+    showToast('🗑️ All fields reset.');
+  }
+
+  /* ── UNDO / REDO ─────────────────────────────────────── */
+  function captureState() {
+    const state = {};
+    fields.forEach(id => {
+      const el = $(id);
+      if (!el) return;
+      state[id] = el.type === 'checkbox' ? el.checked : el.value;
+    });
+    return state;
+  }
+
+  function applyState(state) {
+    Object.entries(state).forEach(([id, val]) => {
+      const el = $(id);
+      if (!el) return;
+      if (el.type === 'checkbox') el.checked = val;
+      else el.value = val;
+    });
+    onLiveInput();
+  }
+
+  function pushHistory() {
+    history.push(captureState());
+    future.length = 0;
+    updateHistoryBtns();
+  }
+
+  function undo() {
+    if (!history.length) return;
+    future.push(captureState());
+    applyState(history.pop());
+    updateHistoryBtns();
+  }
+
+  function redo() {
+    if (!future.length) return;
+    history.push(captureState());
+    applyState(future.pop());
+    updateHistoryBtns();
+  }
+
+  function updateHistoryBtns() {
+    $('btnUndo').disabled = history.length === 0;
+    $('btnRedo').disabled = future.length === 0;
+    $('historyLabel').textContent = history.length
+      ? `${history.length} history step${history.length > 1 ? 's' : ''} saved.`
+      : 'No history yet.';
+  }
+
+  /* ── LOCAL STORAGE ───────────────────────────────────── */
+  function saveToStorage() {
+    try {
+      const state = captureState();
+      localStorage.setItem(LS_KEY, JSON.stringify(state));
+    } catch(e) { /* storage full */ }
+  }
+
+  function loadFromStorage() {
+    try {
+      const raw = localStorage.getItem(LS_KEY);
+      if (!raw) return;
+      const state = JSON.parse(raw);
+      applyState(state);
+    } catch(e) { /* corrupt */ }
+  }
+
+  /* ── TOAST ───────────────────────────────────────────── */
+  function showToast(msg) {
+    const t = document.createElement('div');
+    t.className = 'prem-toast';
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 2600);
+  }
+
+  /* ── ESCAPE HTML ─────────────────────────────────────── */
+  function esc(str) {
+    return String(str || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  /* ── RUN ─────────────────────────────────────────────── */
+  document.addEventListener('DOMContentLoaded', init);
+
+})();
+</script>
+</body>
+</html>

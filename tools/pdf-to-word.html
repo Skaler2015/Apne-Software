@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-to-word.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF to Word | ApneSoftware">
+<meta property="og:description" content="Convert PDF text to .docx. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-to-word.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF to Word | ApneSoftware">
+<meta name="twitter:description" content="Convert PDF text to .docx. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF to Word","description":"Convert PDF text to .docx. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-to-word.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF to Word | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .limit-note{
+    background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:8px;
+    padding:12px 14px;font-size:.85rem;color:#fbbf24;margin-top:14px;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📝 PDF to Word</h1>
+    <p>Convert a PDF's text content into an editable Word (.docx) file.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+    <div class="limit-note">⚠️ Note: this extracts the plain text content (it must be a PDF with selectable text, not a scan) into simple paragraphs. The original visual layout, fonts, images, and tables are not preserved — for scanned PDFs, try PDF OCR first.</div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool extracts the text from a PDF and builds it into a real, editable Word (.docx) document with paragraph breaks preserved.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF (it needs selectable text, not a scanned image).</li>
+        <li>It converts automatically and downloads as a .docx file.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल PDF का टेक्स्ट निकालकर एक असली, एडिट करने लायक Word (.docx) डॉक्यूमेंट बना देता है, पैराग्राफ ब्रेक के साथ।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें (इसमें चुनने लायक टेक्स्ट होना चाहिए, सिर्फ स्कैन की हुई इमेज नहीं)।</li>
+        <li>यह अपने आप बदलकर .docx फाइल के रूप में डाउनलोड हो जाएगी।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+function escapeXml(str){
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');
+}
+
+function buildDocx(paragraphs){
+  const zip = new JSZip();
+
+  zip.file('[Content_Types].xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+<Default Extension="xml" ContentType="application/xml"/>
+<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+</Types>`);
+
+  zip.folder('_rels').file('.rels', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+</Relationships>`);
+
+  const bodyXml = paragraphs.map(p => {
+    if(!p.trim()) return '<w:p/>';
+    return `<w:p><w:r><w:t xml:space="preserve">${escapeXml(p)}</w:t></w:r></w:p>`;
+  }).join('\n');
+
+  zip.folder('word').file('document.xml', `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+<w:body>
+${bodyXml}
+<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/></w:sectPr>
+</w:body>
+</w:document>`);
+
+  return zip.generateAsync({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+}
+
+async function handleFile(file){
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Extracting text...';
+  try{
+    const arrayBuf = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+    let paragraphs = [];
+
+    for(let i=1; i<=pdf.numPages; i++){
+      status.textContent = `⏳ Reading page ${i}/${pdf.numPages}...`;
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      let lastY = null;
+      let currentLine = '';
+
+      content.items.forEach(item => {
+        const y = item.transform[5];
+        if(lastY !== null && Math.abs(y - lastY) > 2){
+          if(currentLine.trim()) paragraphs.push(currentLine.trim());
+          currentLine = '';
+        }
+        currentLine += item.str + ' ';
+        lastY = y;
+      });
+      if(currentLine.trim()) paragraphs.push(currentLine.trim());
+      paragraphs.push('');
+    }
+
+    if(!paragraphs.some(p => p.trim())){
+      status.textContent = '⚠️ No selectable text found — this looks like a scanned PDF. Try the PDF OCR tool instead.';
+      return;
+    }
+
+    status.textContent = '⏳ Building Word document...';
+    const blob = await buildDocx(paragraphs);
+    const outName = file.name.replace(/\.pdf$/i, '') + '.docx';
+    downloadBlob(outName, blob);
+    status.textContent = '✅ Converted and downloaded!';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+}
+</script>
+</body>
+</html>

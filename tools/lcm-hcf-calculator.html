@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/lcm-hcf-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LCM & HCF Calculator — Step-by-Step Solution | ApneSoftware">
+<meta property="og:description" content="Calculate LCM and HCF/GCD for multiple numbers with step-by-step explanation. Free, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/lcm-hcf-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LCM & HCF Calculator — Step-by-Step Solution | ApneSoftware">
+<meta name="twitter:description" content="Calculate LCM and HCF/GCD for multiple numbers with step-by-step explanation. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"LCM & HCF Calculator","description":"Calculate LCM and HCF/GCD for multiple numbers with step-by-step explanation. Free, no signup.","url":"https://apnesoftware.com/tools/lcm-hcf-calculator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>LCM & HCF Calculator — Step-by-Step Solution | ApneSoftware</title>
+<meta name="description" content="Calculate LCM and HCF/GCD for multiple numbers with step-by-step explanation. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .steps{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-top:14px;font-size:.85rem;font-family:monospace;white-space:pre-wrap;max-height:300px;overflow-y:auto}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+<div class="container">
+  <div class="tool-header">
+    <h1>🔢 LCM & HCF Calculator</h1>
+    <p>Find the LCM and HCF (GCD) of two or more numbers, with step-by-step explanation.</p>
+  </div>
+  <div class="panel">
+    <div class="field"><label for="nums">Enter numbers (comma-separated)</label><input type="text" id="nums" value="12, 18, 24" placeholder="e.g. 12, 18, 24"></div>
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn" id="calcBtn">Calculate LCM & HCF</button>
+    </div>
+    <div class="stat-grid" id="results" style="display:none">
+      <div class="stat-box"><div class="num" id="lcm">0</div><div class="lbl">LCM</div></div>
+      <div class="stat-box"><div class="num" id="hcf">0</div><div class="lbl">HCF (GCD)</div></div>
+      <div class="stat-box"><div class="num" id="product">0</div><div class="lbl">LCM × HCF</div></div>
+    </div>
+    <div class="steps" id="steps" style="display:none"></div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>LCM (Least Common Multiple) and HCF (Highest Common Factor, also called GCD — Greatest Common Divisor) are fundamental concepts in number theory, taught from middle school through competitive exams and used constantly in fractions, scheduling problems, and gear-ratio calculations in engineering.</p>
+      <p>The HCF of a set of numbers is the largest number that divides all of them exactly. The LCM is the smallest number that is divisible by all of them. They're related by the identity: LCM × HCF = Product of the two numbers (for exactly two numbers). This calculator extends both to any number of inputs by computing them iteratively: HCF(a,b,c) = HCF(HCF(a,b),c), and similarly for LCM.</p>
+      <p>HCF is used to simplify fractions — the HCF of the numerator and denominator is the common factor you divide both by to get the simplest form. LCM is used to find a common denominator when adding fractions. In real life, LCM appears in problems like "two events repeat every X and Y days — when will they coincide again?" or scheduling that must align with two different cycles.</p>
+      <p>This calculator uses the Euclidean algorithm for HCF, which is efficient even for large numbers, and the relationship LCM(a,b) = a×b / GCD(a,b) for LCM. The step-by-step display shows the prime factorization for a clearer educational breakdown.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Enter two or more numbers separated by commas.</li>
+        <li>Click "Calculate LCM & HCF" to see results and the step-by-step explanation.</li>
+      </ol>
+    <p>Beyond fractions, LCM has surprising practical applications. Two gears with 18 and 24 teeth mesh together, and the LCM (72) tells you how many teeth pass the contact point before the same pair of teeth meet again — relevant for gear wear analysis. Similarly, if factory machine A needs maintenance every 12 days and machine B every 18 days, the LCM of 12 and 18 (which is 36) tells you when they'll both need maintenance simultaneously for planning shutdowns. Bus schedules, production planning, and even music theory (where LCM determines when different rhythmic cycles align) all use this concept. The step-by-step prime factorization shown here is exactly the method taught in school, making this equally useful for students wanting to verify their manual work. For very large numbers, the Euclidean algorithm used here remains efficient because it reduces the problem size quickly with each step, making it practical even for numbers with many digits unlike trial-division approaches that slow down significantly with larger inputs.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>LCM (Least Common Multiple) और HCF (Highest Common Factor, जिसे GCD — Greatest Common Divisor भी कहते हैं) number theory में fundamental concepts हैं, middle school से competitive exams तक पढ़ाए जाते हैं और fractions, scheduling problems, और engineering में gear-ratio calculations में लगातार इस्तेमाल होते हैं।</p>
+      <p>Numbers के एक set का HCF वह सबसे बड़ा number है जो उन सभी को exactly divide करता है। LCM वह सबसे छोटा number है जो उन सभी से divisible है। वे identity से संबंधित हैं: LCM × HCF = दो numbers का product (exactly दो numbers के लिए)। यह calculator दोनों को किसी भी number of inputs तक extend करता है iteratively calculate करके: HCF(a,b,c) = HCF(HCF(a,b),c), और LCM के लिए similarly।</p>
+      <p>HCF का इस्तेमाल fractions को simplify करने के लिए होता है — numerator और denominator का HCF वह common factor है जिससे आप दोनों को divide करके simplest form पाते हैं। LCM का इस्तेमाल fractions जोड़ते समय common denominator ढूंढने के लिए होता है। Real life में LCM इन problems में दिखता है: "दो events हर X और Y दिन में repeat होते हैं — वे दोबारा कब coincide करेंगे?" या scheduling जो दो अलग cycles के साथ align होनी चाहिए।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>दो या अधिक numbers commas से अलग करके enter करें।</li>
+        <li>Results और step-by-step explanation देखने के लिए "Calculate LCM & HCF" click करें।</li>
+      </ol>
+    <p>Fractions से परे, LCM के surprising practical applications हैं। 18 और 24 teeth वाले दो gears mesh होते हैं, और LCM (72) बताता है कि contact point से कितने teeth pass होंगे same pair of teeth दोबारा मिलने से पहले — gear wear analysis के लिए relevant। Similarly, अगर factory machine A को हर 12 दिन और machine B को हर 18 दिन maintenance चाहिए, तो 12 और 18 का LCM (36) बताता है कि shutdown planning के लिए दोनों को simultaneously कब maintenance की ज़रूरत होगी। Bus schedules, production planning, और यहां तक कि music theory (जहां LCM निर्धारित करता है कि विभिन्न rhythmic cycles कब align होते हैं) सब इस concept का इस्तेमाल करते हैं। यहां दिखाया गया step-by-step prime factorization बिल्कुल वही method है जो school में पढ़ाया जाता है, जो इसे manual काम verify करने वाले students के लिए बराबर उपयोगी बनाता है। बहुत large numbers के लिए, यहां इस्तेमाल किया गया Euclidean algorithm efficient रहता है क्योंकि यह हर step के साथ problem size को quickly reduce करता है, इसे बड़े inputs के साथ significantly slow होने वाले trial-division approaches के विपरीत, कई digits वाले numbers के लिए भी practical बनाता है।</p>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<script>
+function gcd(a, b){ while(b){ [a,b] = [b, a%b]; } return a; }
+function lcm(a, b){ return (a / gcd(a,b)) * b; }
+function primeFactors(n){
+  const factors = {};
+  for(let d = 2; d * d <= n; d++){
+    while(n % d === 0){ factors[d] = (factors[d]||0) + 1; n /= d; }
+  }
+  if(n > 1) factors[n] = (factors[n]||0) + 1;
+  return factors;
+}
+
+document.getElementById('calcBtn').addEventListener('click', ()=>{
+  const status = document.getElementById('statusMsg');
+  const raw = document.getElementById('nums').value.split(',').map(s => parseInt(s.trim())).filter(n => !isNaN(n) && n > 0);
+  if(raw.length < 2){ status.textContent = '⚠️ Enter at least 2 numbers.'; return; }
+  
+  let hcfResult = raw[0], lcmResult = raw[0];
+  for(let i = 1; i < raw.length; i++){
+    hcfResult = gcd(hcfResult, raw[i]);
+    lcmResult = lcm(lcmResult, raw[i]);
+  }
+
+  document.getElementById('lcm').textContent = lcmResult.toLocaleString('en-IN');
+  document.getElementById('hcf').textContent = hcfResult.toLocaleString('en-IN');
+  document.getElementById('product').textContent = (lcmResult * hcfResult).toLocaleString('en-IN');
+  document.getElementById('results').style.display = 'grid';
+
+  // Steps: prime factorizations
+  let stepsText = 'Prime Factorizations:\n';
+  const allFactors = {};
+  raw.forEach(n => {
+    const pf = primeFactors(n);
+    const pfStr = Object.entries(pf).map(([p,e]) => e>1 ? `${p}^${e}` : p).join(' × ');
+    stepsText += `  ${n} = ${pfStr || n}\n`;
+    Object.entries(pf).forEach(([p,e]) => {
+      allFactors[p] = Math.max(allFactors[p]||0, e);
+    });
+  });
+  stepsText += `\nLCM = product of highest powers of all prime factors\n`;
+  stepsText += `  = ${Object.entries(allFactors).map(([p,e]) => e>1?`${p}^${e}`:p).join(' × ')} = ${lcmResult}\n`;
+  stepsText += `\nHCF = product of common prime factors (lowest powers)\n`;
+  stepsText += `  HCF = ${hcfResult}`;
+
+  document.getElementById('steps').textContent = stepsText;
+  document.getElementById('steps').style.display = 'block';
+  status.textContent = `✅ LCM = ${lcmResult}, HCF = ${hcfResult}`;
+});
+</script>
+</body>
+</html>

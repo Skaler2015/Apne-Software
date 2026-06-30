@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-to-markdown.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF to Markdown Converter — ApneSoftware">
+<meta property="og:description" content="Extract text from a PDF and convert it to Markdown format. Free, in your browser, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-to-markdown.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF to Markdown Converter — ApneSoftware">
+<meta name="twitter:description" content="Extract text from a PDF and convert it to Markdown format. Free, in your browser, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF to Markdown","description":"Extract text from a PDF and convert it to Markdown format. Free, in your browser, no signup.","url":"https://apnesoftware.com/tools/pdf-to-markdown.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF to Markdown Converter — ApneSoftware</title>
+<meta name="description" content="Extract text from a PDF and convert it to Markdown format. Free, in your browser, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  #mdOutput{width:100%;min-height:320px;font-family:monospace;font-size:.85rem;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);resize:vertical}
+  .new-tech-note{background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;padding:12px 14px;font-size:.85rem;color:var(--text-dim);margin-top:14px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📄➡️📝 PDF to Markdown</h1>
+    <p>Extract text from a PDF and convert it to clean Markdown — useful for editing PDF content as plain text.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a PDF here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <textarea id="mdOutput" readonly></textarea>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn secondary" id="copyBtn">📋 Copy Markdown</button>
+        <button class="btn" id="downloadBtn">⬇️ Download .md File</button>
+      </div>
+      <div class="new-tech-note">ℹ️ Heading detection is based on font size, so results are approximate — always review the output before using it.</div>
+    </div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>A PDF locks its text into a fixed visual layout that's great for reading and printing but awkward to edit — there's no easy way to copy a PDF's content into a note-taking app, a GitHub README, or a blog draft without losing all the original formatting and ending up with a jumbled wall of text. This tool extracts a PDF's text and reconstructs it as Markdown, the simple plain-text format used by GitHub, most note apps, and many blogging platforms, so the content becomes editable again.</p>
+      <p>The tool reads through each page and looks at relative font sizes to make a reasonable guess at structure — text that's noticeably larger than the surrounding body text is treated as a heading and prefixed with # symbols, while normal-sized text becomes regular paragraphs. This kind of automatic detection is inherently approximate since a PDF doesn't store an explicit "this is a heading" tag the way a Word document or webpage might, so it's always worth skimming the output afterward and tidying up any headings or line breaks that weren't guessed correctly.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a PDF.</li>
+        <li>The extracted Markdown appears in the text box — review and edit it if needed.</li>
+        <li>Copy it directly, or download it as a .md file.</li>
+      </ol>
+      <h3>What to expect</h3>
+      <p>Plain paragraphs and simple structure convert cleanly in most cases, but PDFs with complex multi-column layouts, tables, or heavily styled text will need more manual cleanup afterward, since pdf.js extracts text in roughly reading order but cannot always know exactly how a sophisticated layout should map to simple Markdown. For straightforward documents like reports, articles, or notes that were originally just plain text exported to PDF, the conversion is usually very close to ready-to-use.</p>
+      <p>This tool is particularly useful when you've received a PDF report, an old document, or a printed-then-scanned-back-to-PDF file and want to bring its content into a note-taking app, a wiki, or a GitHub repository where Markdown is the expected format. Rather than retyping the whole document by hand, the extraction gives you a solid first draft that's usually faster to clean up than starting from a blank page. Since the output appears directly in an editable text box on this page, you can fix any misdetected headings, merge split paragraphs, or remove a stray page marker before copying or downloading the final Markdown file, all without leaving your browser.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>PDF अपने text को एक fixed visual layout में बंद कर देती है जो पढ़ने और print करने के लिए अच्छा है पर edit करने के लिए मुश्किल — किसी note-taking app, GitHub README, या blog draft में PDF का content copy करने का कोई आसान तरीका नहीं होता बिना original formatting खोए और text की गड़बड़ दीवार बने बिना। यह tool PDF के text को निकालकर उसे Markdown के रूप में दोबारा बनाता है, वह simple plain-text format जो GitHub, ज़्यादातर note apps, और कई blogging platforms इस्तेमाल करते हैं, ताकि content फिर से edit करने लायक बने।</p>
+      <p>Tool हर page को पढ़ता है और structure का सही अंदाज़ा लगाने के लिए relative font sizes देखता है — जो text आस-पास के body text से काफ़ी बड़ा होता है उसे heading मानकर # symbols लगा दिए जाते हैं, जबकि सामान्य size का text regular paragraphs बन जाता है। इस तरह की automatic detection स्वाभाविक रूप से approximate होती है क्योंकि PDF में Word document या webpage की तरह "यह एक heading है" जैसा कोई explicit tag नहीं होता, इसलिए बाद में output को एक बार देख लेना और गलत अंदाज़े वाले headings या line breaks को ठीक करना हमेशा बेहतर रहता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक PDF अपलोड करें।</li>
+        <li>निकाला हुआ Markdown text box में दिखेगा — ज़रूरत हो तो देखें और edit करें।</li>
+        <li>सीधे copy करें, या .md file के रूप में download करें।</li>
+      </ol>
+      <h3>क्या उम्मीद रखें</h3>
+      <p>Plain paragraphs और simple structure ज़्यादातर मामलों में साफ़ convert होते हैं, पर complex multi-column layouts, tables, या भारी styled text वाली PDFs को बाद में ज़्यादा हाथ से ठीक करना पड़ेगा, क्योंकि pdf.js text को लगभग reading order में निकालता है पर हमेशा यह नहीं जान सकता कि कोई जटिल layout simple Markdown में कैसे fit होना चाहिए। सीधे-सादे documents जैसे reports, articles, या notes जो शुरू में plain text थे और PDF में export किए गए, उनके लिए conversion आमतौर पर इस्तेमाल के लिए लगभग तैयार होता है।</p>
+      <p>यह tool खासकर तब उपयोगी है जब आपको कोई PDF report, पुराना document, या print करके फिर scan किया गया PDF मिला हो और उसके content को किसी note-taking app, wiki, या GitHub repository में लाना हो जहां Markdown ही expected format है। पूरे document को हाथ से दोबारा टाइप करने की बजाय, extraction एक ठोस पहला draft देता है जिसे शुरुआत से लिखने से ज़्यादा तेज़ी से ठीक किया जा सकता है। चूंकि output इसी page पर एक editable text box में दिखता है, copy या download करने से पहले किसी गलत पहचाने गए heading को ठीक कर सकते हैं, टूटे हुए paragraphs को जोड़ सकते हैं, या किसी अनचाहे page marker को हटा सकते हैं, वह भी बिना browser छोड़े।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let sourceFileName = 'document';
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length) handleFile(files[0]);
+});
+
+async function handleFile(file){
+  sourceFileName = file.name.replace(/\.pdf$/i, '');
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Extracting text...';
+
+  const arrayBuf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+
+  let mdLines = [];
+
+  for(let i=1; i<=pdf.numPages; i++){
+    const page = await pdf.getPage(i);
+    const textContent = await page.getTextContent();
+
+    // Group items into lines by y-position, tracking font size per line
+    let lines = [];
+    let lastY = null;
+    let currentLine = [];
+    let currentSizes = [];
+
+    textContent.items.forEach(item => {
+      const y = Math.round(item.transform[5]);
+      const size = Math.abs(item.transform[3]);
+      if(lastY !== null && Math.abs(y - lastY) > 2){
+        lines.push({ text: currentLine.join(' '), avgSize: currentSizes.reduce((a,b)=>a+b,0)/currentSizes.length });
+        currentLine = []; currentSizes = [];
+      }
+      currentLine.push(item.str);
+      currentSizes.push(size);
+      lastY = y;
+    });
+    if(currentLine.length) lines.push({ text: currentLine.join(' '), avgSize: currentSizes.reduce((a,b)=>a+b,0)/currentSizes.length });
+
+    const bodySizes = lines.map(l => l.avgSize).filter(s => s > 0);
+    const medianSize = bodySizes.length ? bodySizes.slice().sort((a,b)=>a-b)[Math.floor(bodySizes.length/2)] : 11;
+
+    if(pdf.numPages > 1) mdLines.push(`\n<!-- Page ${i} -->\n`);
+
+    lines.forEach(l => {
+      const text = l.text.trim();
+      if(!text) return;
+      const ratio = l.avgSize / medianSize;
+      if(ratio >= 1.5){ mdLines.push('# ' + text); }
+      else if(ratio >= 1.25){ mdLines.push('## ' + text); }
+      else if(ratio >= 1.1){ mdLines.push('### ' + text); }
+      else { mdLines.push(text); }
+      mdLines.push('');
+    });
+  }
+
+  document.getElementById('mdOutput').value = mdLines.join('\n').replace(/\n{3,}/g, '\n\n').trim();
+  document.getElementById('afterUpload').style.display = 'block';
+  status.textContent = '✅ Done — review the Markdown below.';
+}
+
+document.getElementById('copyBtn').addEventListener('click', function(){
+  copyText(document.getElementById('mdOutput').value, this);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  downloadText(sourceFileName + '.md', document.getElementById('mdOutput').value, 'text/markdown');
+});
+</script>
+</body>
+</html>

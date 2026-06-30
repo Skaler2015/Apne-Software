@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/text-encrypt-decrypt.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Text Encrypt & Decrypt — Password Protect Notes | ApneSoftware">
+<meta property="og:description" content="Password-protect a note with AES-256. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/text-encrypt-decrypt.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Text Encrypt & Decrypt — Password Protect Notes | ApneSoftware">
+<meta name="twitter:description" content="Password-protect a note with AES-256. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text Encrypt & Decrypt","description":"Password-protect a note with AES-256. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/text-encrypt-decrypt.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Text Encrypt & Decrypt — Password Protect Notes | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .tab-row{display:flex;gap:8px;margin-bottom:14px}
+  .tab-btn{padding:8px 16px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-size:.9rem;cursor:pointer}
+  .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .privacy-note{
+    background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;
+    padding:12px 14px;font-size:.85rem;color:var(--text-dim);margin-top:14px;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔒 Text Encrypt & Decrypt</h1>
+    <p>Password-protect a note or message with AES-256 encryption — share the encrypted text safely, only someone with the password can read it.</p>
+  </div>
+
+  <div class="panel">
+    <div class="tab-row">
+      <button class="tab-btn active" data-tab="encrypt">🔒 Encrypt</button>
+      <button class="tab-btn" data-tab="decrypt">🔓 Decrypt</button>
+    </div>
+
+    <div id="encryptTab">
+      <div class="field">
+        <label for="plainText">Text to encrypt</label>
+        <textarea id="plainText" style="min-height:140px" placeholder="Type or paste your secret message here..."></textarea>
+      </div>
+      <div class="field">
+        <label for="encPassword">Password</label>
+        <input type="text" id="encPassword" placeholder="Choose a strong password">
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="encryptBtn">🔒 Encrypt</button>
+      </div>
+      <div class="field" style="margin-top:14px" id="encResultWrap" style="display:none">
+        <label>Encrypted text (share this + the password separately)</label>
+        <textarea id="encResult" readonly style="min-height:100px"></textarea>
+        <div class="btn-row">
+          <button class="btn secondary" id="copyEncBtn">📋 Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="decryptTab" style="display:none">
+      <div class="field">
+        <label for="cipherText">Encrypted text</label>
+        <textarea id="cipherText" style="min-height:140px" placeholder="Paste the encrypted text here..."></textarea>
+      </div>
+      <div class="field">
+        <label for="decPassword">Password</label>
+        <input type="text" id="decPassword" placeholder="Enter the password used to encrypt">
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="decryptBtn">🔓 Decrypt</button>
+      </div>
+      <p id="decStatus" style="margin-top:10px"></p>
+      <div class="field" style="margin-top:10px">
+        <label>Decrypted text</label>
+        <textarea id="decResult" readonly style="min-height:100px"></textarea>
+        <div class="btn-row">
+          <button class="btn secondary" id="copyDecBtn">📋 Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="privacy-note">ℹ️ Uses AES-256-GCM with PBKDF2 password derivation, all done locally with your browser's built-in encryption (Web Crypto API). Nothing is uploaded — and if you lose the password, the text cannot be recovered.</div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool encrypts text with a password using strong AES-256 encryption, turning it into unreadable scrambled text. Anyone with the encrypted text and the correct password can decrypt it back — useful for sharing sensitive notes over email or chat.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>To encrypt: type your message, set a password, and click Encrypt.</li>
+        <li>Share the encrypted text and password through separate channels for safety.</li>
+        <li>To decrypt: paste the encrypted text, enter the matching password, and click Decrypt.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल पासवर्ड का इस्तेमाल करके टेक्स्ट को मजबूत AES-256 एन्क्रिप्शन से सुरक्षित करता है, उसे बिना पढ़ने लायक टेक्स्ट में बदल देता है। सही पासवर्ड वाला कोई भी उसे वापस डिक्रिप्ट कर सकता है — ईमेल या चैट पर संवेदनशील नोट्स शेयर करने के लिए उपयोगी।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एन्क्रिप्ट करने के लिए: मैसेज टाइप करें, पासवर्ड सेट करें और Encrypt दबाएं।</li>
+        <li>सुरक्षा के लिए एन्क्रिप्टेड टेक्स्ट और पासवर्ड अलग-अलग तरीके से शेयर करें।</li>
+        <li>डिक्रिप्ट करने के लिए: एन्क्रिप्टेड टेक्स्ट पेस्ट करें, सही पासवर्ड डालें और Decrypt दबाएं।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const tab = btn.dataset.tab;
+    document.getElementById('encryptTab').style.display = tab === 'encrypt' ? 'block' : 'none';
+    document.getElementById('decryptTab').style.display = tab === 'decrypt' ? 'block' : 'none';
+  });
+});
+
+async function deriveKey(password, salt){
+  const enc = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt, iterations: 150000, hash: 'SHA-256' },
+    keyMaterial,
+    { name: 'AES-GCM', length: 256 },
+    false,
+    ['encrypt','decrypt']
+  );
+}
+
+function bufToBase64(buf){
+  return btoa(String.fromCharCode(...new Uint8Array(buf)));
+}
+function base64ToBuf(b64){
+  const bin = atob(b64);
+  const arr = new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) arr[i] = bin.charCodeAt(i);
+  return arr;
+}
+
+document.getElementById('encryptBtn').addEventListener('click', async ()=>{
+  const text = document.getElementById('plainText').value;
+  const password = document.getElementById('encPassword').value;
+  if(!text || !password){ alert('Please enter both text and a password.'); return; }
+
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const key = await deriveKey(password, salt);
+  const enc = new TextEncoder();
+  const ciphertext = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, enc.encode(text));
+
+  // Pack salt + iv + ciphertext together
+  const combined = new Uint8Array(salt.length + iv.length + ciphertext.byteLength);
+  combined.set(salt, 0);
+  combined.set(iv, salt.length);
+  combined.set(new Uint8Array(ciphertext), salt.length + iv.length);
+
+  document.getElementById('encResult').value = bufToBase64(combined.buffer);
+  document.getElementById('encResultWrap').style.display = 'block';
+});
+
+document.getElementById('decryptBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('decStatus');
+  const b64 = document.getElementById('cipherText').value.trim();
+  const password = document.getElementById('decPassword').value;
+  if(!b64 || !password){ status.textContent = '⚠️ Please enter both the encrypted text and password.'; return; }
+
+  try{
+    const combined = base64ToBuf(b64);
+    const salt = combined.slice(0, 16);
+    const iv = combined.slice(16, 28);
+    const ciphertext = combined.slice(28);
+    const key = await deriveKey(password, salt);
+    const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ciphertext);
+    const dec = new TextDecoder();
+    document.getElementById('decResult').value = dec.decode(decrypted);
+    status.textContent = '✅ Decrypted successfully';
+    status.style.color = 'var(--accent-2)';
+  }catch(err){
+    document.getElementById('decResult').value = '';
+    status.textContent = '❌ Decryption failed — wrong password or corrupted text.';
+    status.style.color = 'var(--danger)';
+  }
+});
+
+document.getElementById('copyEncBtn').addEventListener('click', (e)=>{
+  copyText(document.getElementById('encResult').value, e.target);
+});
+document.getElementById('copyDecBtn').addEventListener('click', (e)=>{
+  copyText(document.getElementById('decResult').value, e.target);
+});
+</script>
+</body>
+</html>

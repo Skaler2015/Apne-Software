@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Twitter Card Generator — Create all 4 Twitter Card types with live preview. Generate summary, summary_large_image, app and player cards. No signup required.">
+<meta name="keywords" content="twitter card generator, twitter meta tags, X card generator, summary_large_image, twitter card preview">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/twitter-card-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Twitter Card Generator — Live Preview | ApneSoftware">
+<meta property="og:description" content="Generate all Twitter/X Card types with live preview. Free, instant, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/twitter-card-generator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Twitter Card Generator — Live Preview | ApneSoftware">
+<meta name="twitter:description" content="Generate all Twitter/X Card types with live preview. Free, instant, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Twitter Card Generator","description":"Free tool to generate Twitter/X Card meta tags with live preview for all 4 card types.","url":"https://apnesoftware.com/tools/twitter-card-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"SEO Tools"},{"@type":"ListItem","position":3,"name":"Twitter Card Generator","item":"https://apnesoftware.com/tools/twitter-card-generator.html"}]}]}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Twitter Card Generator — Live Preview | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* ── Twitter Card Generator local styles ── */
+.tcg-card-type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin-bottom:20px}
+.tcg-type-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px;cursor:pointer;text-align:center;transition:.2s;font-family:var(--font)}
+.tcg-type-btn:hover,.tcg-type-btn.active{background:rgba(29,161,242,.15);border-color:rgba(29,161,242,.4)}
+.tcg-type-icon{font-size:1.5rem;display:block;margin-bottom:4px}
+.tcg-type-name{font-size:.78rem;font-weight:700;color:rgba(255,255,255,.8)}
+.tcg-type-desc{font-size:.68rem;color:rgba(255,255,255,.4);margin-top:2px}
+
+/* Twitter feed simulator */
+.tcg-feed{background:#000;border-radius:16px;padding:16px;max-width:500px;margin:16px auto 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+.tcg-tweet{background:#16181c;border-radius:12px;padding:14px}
+.tcg-tweet-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.tcg-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#1da1f2,#4a9de5);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.tcg-name{font-size:.88rem;font-weight:700;color:#e7e9ea}
+.tcg-handle{font-size:.78rem;color:#71767b;margin-top:1px}
+.tcg-tweet-text{font-size:.9rem;color:#e7e9ea;line-height:1.5;margin-bottom:12px}
+.tcg-tweet-text a{color:#1da1f2}
+.tcg-card-summary-large{border:1px solid #2f3336;border-radius:14px;overflow:hidden}
+.tcg-card-img-large{width:100%;aspect-ratio:1.91;background:linear-gradient(135deg,rgba(29,161,242,.3),rgba(22,192,121,.2));display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.3);position:relative;overflow:hidden}
+.tcg-card-img-large img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tcg-card-body-large{padding:10px 12px;background:#16181c}
+.tcg-card-domain{font-size:.72rem;color:#71767b;margin-bottom:3px}
+.tcg-card-title-large{font-size:.9rem;font-weight:700;color:#e7e9ea;line-height:1.3}
+.tcg-card-desc-large{font-size:.78rem;color:#71767b;margin-top:3px}
+
+/* Summary (small) card */
+.tcg-card-summary{display:flex;gap:0;border:1px solid #2f3336;border-radius:14px;overflow:hidden}
+.tcg-card-img-sm{width:100px;min-width:100px;background:linear-gradient(135deg,rgba(29,161,242,.3),rgba(22,192,121,.2));display:flex;align-items:center;justify-content:center;font-size:2rem;color:rgba(255,255,255,.3);position:relative;overflow:hidden}
+.tcg-card-img-sm img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tcg-card-body-sm{padding:10px 12px;flex:1;min-width:0}
+.tcg-card-title-sm{font-size:.85rem;font-weight:700;color:#e7e9ea;margin-bottom:2px}
+.tcg-card-desc-sm{font-size:.76rem;color:#71767b}
+.tcg-card-domain-sm{font-size:.7rem;color:#71767b;margin-top:4px}
+
+/* Tweet actions bar */
+.tcg-actions{display:flex;gap:20px;margin-top:12px;color:#71767b;font-size:.8rem}
+.tcg-action{display:flex;align-items:center;gap:4px}
+
+/* App card preview */
+.tcg-app-card{border:1px solid #2f3336;border-radius:14px;overflow:hidden;background:#16181c}
+.tcg-app-header{padding:12px 14px;display:flex;gap:12px;align-items:center}
+.tcg-app-icon{width:50px;height:50px;border-radius:12px;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+.tcg-app-info{flex:1}
+.tcg-app-name{font-size:.9rem;font-weight:700;color:#e7e9ea}
+.tcg-app-store{font-size:.72rem;color:#1da1f2}
+.tcg-app-btn{margin:0 14px 14px;background:#1da1f2;color:#fff;border:none;border-radius:999px;padding:10px;font-size:.85rem;font-weight:700;width:calc(100% - 28px);cursor:pointer}
+
+/* Code output */
+.tcg-code{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;font-family:'Courier New',monospace;font-size:.8rem;line-height:1.7;color:#e0e0e0;white-space:pre-wrap;word-break:break-all;max-height:340px;overflow-y:auto;margin-top:14px}
+.tcg-code .hl-tag{color:#FF7B72}.tcg-code .hl-attr{color:#79C0FF}.tcg-code .hl-val{color:#A5D6FF}.tcg-code .hl-com{color:#8B949E}
+
+.char-c{font-size:.74rem;font-weight:700;padding:2px 8px;border-radius:999px}
+.cc-ok{background:rgba(22,192,121,.15);color:#16C079}
+.cc-warn{background:rgba(255,215,0,.15);color:#FFD700}
+.cc-bad{background:rgba(248,113,113,.15);color:#F87171}
+
+#tcgScrollTop{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#1da1f2,#0d8fd4);color:#fff;border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;box-shadow:0 4px 14px rgba(29,161,242,.4);transition:.2s}
+#tcgScrollTop.show{display:flex}
+#tcgScrollTop:hover{transform:translateY(-3px)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+<div class="container">
+  <nav aria-label="Breadcrumb" style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:2px">
+    <a href="../index.html" style="color:rgba(255,255,255,.45)">Home</a>
+    <span style="margin:0 6px">›</span>
+    <span style="color:rgba(255,255,255,.7)">SEO Tools</span>
+    <span style="margin:0 6px">›</span>
+    <span style="color:#A78BFA">Twitter Card Generator</span>
+  </nav>
+
+  <div class="tool-header">
+    <h1>🐦 Twitter Card Generator</h1>
+    <p>Generate all 4 Twitter/X Card types — summary, summary_large_image, app and player — with a realistic live tweet preview.</p>
+  </div>
+
+  <div class="panel">
+    <!-- Card type selector -->
+    <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin-bottom:12px">Select Card Type</div>
+    <div class="tcg-card-type-grid" id="cardTypeGrid">
+      <button class="tcg-type-btn active" data-type="summary_large_image">
+        <span class="tcg-type-icon">🖼️</span>
+        <div class="tcg-type-name">Large Image</div>
+        <div class="tcg-type-desc">summary_large_image</div>
+      </button>
+      <button class="tcg-type-btn" data-type="summary">
+        <span class="tcg-type-icon">📄</span>
+        <div class="tcg-type-name">Summary</div>
+        <div class="tcg-type-desc">Small thumbnail</div>
+      </button>
+      <button class="tcg-type-btn" data-type="app">
+        <span class="tcg-type-icon">📱</span>
+        <div class="tcg-type-name">App Card</div>
+        <div class="tcg-type-desc">Mobile app</div>
+      </button>
+      <button class="tcg-type-btn" data-type="player">
+        <span class="tcg-type-icon">▶️</span>
+        <div class="tcg-type-name">Player Card</div>
+        <div class="tcg-type-desc">Video/audio</div>
+      </button>
+    </div>
+
+    <!-- Common fields -->
+    <div id="commonFields">
+      <div class="field">
+        <label for="twTitle">Title <span style="color:#F87171">*</span></label>
+        <input type="text" id="twTitle" placeholder="Compelling headline for Twitter/X" maxlength="70">
+        <div style="display:flex;justify-content:space-between;margin-top:4px">
+          <span style="font-size:.75rem;color:rgba(255,255,255,.35)">Recommended: under 55 chars</span>
+          <span class="char-c cc-ok" id="twTitleCount">0</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="twDesc">Description</label>
+        <textarea id="twDesc" rows="2" placeholder="Summary shown below the title on the card (max 200 chars)…" maxlength="200"></textarea>
+        <div style="display:flex;justify-content:space-between;margin-top:4px">
+          <span style="font-size:.75rem;color:rgba(255,255,255,.35)">Recommended: under 150 chars</span>
+          <span class="char-c cc-ok" id="twDescCount">0</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="twImage">Image URL</label>
+        <input type="text" id="twImage" placeholder="https://example.com/twitter-card.jpg">
+        <span style="font-size:.75rem;color:rgba(255,255,255,.3)">summary_large_image: 800×418px · summary: 144×144px · max 5 MB · JPG/PNG/GIF/WebP</span>
+      </div>
+      <div class="field">
+        <label for="twImageAlt">Image Alt Text</label>
+        <input type="text" id="twImageAlt" placeholder="Describe the image for accessibility" maxlength="420">
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="twSite">@site handle</label>
+          <input type="text" id="twSite" placeholder="@YourBrand">
+        </div>
+        <div class="field">
+          <label for="twCreator">@creator handle</label>
+          <input type="text" id="twCreator" placeholder="@AuthorHandle">
+        </div>
+      </div>
+      <div class="field">
+        <label for="twUrl">Page URL (canonical)</label>
+        <input type="text" id="twUrl" placeholder="https://example.com/page/">
+      </div>
+    </div>
+
+    <!-- App card extras -->
+    <div id="appFields" style="display:none">
+      <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin:18px 0 10px">📱 App Details</div>
+      <div class="row">
+        <div class="field"><label for="appName">App Name</label><input type="text" id="appName" placeholder="My App"></div>
+        <div class="field"><label for="appId">App Store ID</label><input type="text" id="appId" placeholder="123456789"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="appGoogleId">Google Play ID</label><input type="text" id="appGoogleId" placeholder="com.example.app"></div>
+        <div class="field"><label for="appCountry">Country</label><input type="text" id="appCountry" placeholder="US"></div>
+      </div>
+    </div>
+
+    <!-- Player card extras -->
+    <div id="playerFields" style="display:none">
+      <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin:18px 0 10px">▶️ Player Details</div>
+      <div class="field"><label for="playerUrl">Player URL (iframe src)</label><input type="text" id="playerUrl" placeholder="https://example.com/player/video.html"></div>
+      <div class="row">
+        <div class="field"><label for="playerWidth">Width (px)</label><input type="number" id="playerWidth" value="480"></div>
+        <div class="field"><label for="playerHeight">Height (px)</label><input type="number" id="playerHeight" value="270"></div>
+      </div>
+    </div>
+
+    <!-- Tweet composer -->
+    <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin:18px 0 10px">🐦 Tweet Preview Text</div>
+    <div class="field">
+      <label for="tweetText">Tweet text (for preview)</label>
+      <input type="text" id="tweetText" placeholder="Check out this amazing page! 🚀 example.com/page" maxlength="280">
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="previewName">Display Name (preview)</label>
+        <input type="text" id="previewName" placeholder="Your Brand">
+      </div>
+      <div class="field">
+        <label for="previewHandle">@Handle (preview)</label>
+        <input type="text" id="previewHandle" placeholder="@yourbrand">
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="btnGenerate">⚡ Generate Tags</button>
+      <button class="btn secondary" id="btnSample">📋 Sample</button>
+      <button class="btn secondary" id="btnReset">🗑️ Reset</button>
+    </div>
+  </div>
+
+  <!-- Live Preview -->
+  <div class="panel" style="margin-top:14px">
+    <h2 style="font-size:1rem;font-weight:800;margin-bottom:4px">🐦 Live Tweet Preview</h2>
+    <p style="font-size:.82rem;color:rgba(255,255,255,.45);margin-bottom:4px">See how your link will look in a real tweet.</p>
+    <div class="tcg-feed">
+      <div class="tcg-tweet">
+        <div class="tcg-tweet-head">
+          <div class="tcg-avatar">🐦</div>
+          <div>
+            <div class="tcg-name" id="prevName">Your Brand</div>
+            <div class="tcg-handle" id="prevHandle">@yourbrand · now</div>
+          </div>
+        </div>
+        <div class="tcg-tweet-text" id="prevText">Check out this amazing page! 🚀 <a href="#">example.com</a></div>
+        <!-- Large image card -->
+        <div id="previewLarge" class="tcg-card-summary-large">
+          <div class="tcg-card-img-large" id="prevImgLarge">🖼️</div>
+          <div class="tcg-card-body-large">
+            <div class="tcg-card-domain" id="prevDomainLarge">example.com</div>
+            <div class="tcg-card-title-large" id="prevTitleLarge">Your Card Title</div>
+            <div class="tcg-card-desc-large"  id="prevDescLarge">Card description here.</div>
+          </div>
+        </div>
+        <!-- Summary card -->
+        <div id="previewSummary" class="tcg-card-summary" style="display:none">
+          <div class="tcg-card-img-sm" id="prevImgSm">📄</div>
+          <div class="tcg-card-body-sm">
+            <div class="tcg-card-title-sm" id="prevTitleSm">Card Title</div>
+            <div class="tcg-card-desc-sm"  id="prevDescSm">Description here.</div>
+            <div class="tcg-card-domain-sm" id="prevDomainSm">example.com</div>
+          </div>
+        </div>
+        <!-- App card -->
+        <div id="previewApp" class="tcg-app-card" style="display:none">
+          <div class="tcg-app-header">
+            <div class="tcg-app-icon">📱</div>
+            <div class="tcg-app-info">
+              <div class="tcg-app-name" id="prevAppName">My App</div>
+              <div class="tcg-app-store">On the App Store</div>
+            </div>
+          </div>
+          <button class="tcg-app-btn">View on App Store</button>
+        </div>
+        <!-- Player card -->
+        <div id="previewPlayer" class="tcg-card-summary-large" style="display:none">
+          <div class="tcg-card-img-large" style="position:relative">
+            <div id="prevImgPlayer" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem">▶️</div>
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+              <div style="width:60px;height:60px;border-radius:50%;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;font-size:1.5rem">▶</div>
+            </div>
+          </div>
+          <div class="tcg-card-body-large">
+            <div class="tcg-card-domain" id="prevDomainPlayer">example.com</div>
+            <div class="tcg-card-title-large" id="prevTitlePlayer">Video Title</div>
+          </div>
+        </div>
+        <div class="tcg-actions">
+          <div class="tcg-action">💬 <span>12</span></div>
+          <div class="tcg-action">🔁 <span>34</span></div>
+          <div class="tcg-action">❤️ <span>256</span></div>
+          <div class="tcg-action">📤</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Output -->
+  <div class="panel" id="outputPanel" style="display:none;margin-top:14px">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px">
+      <h2 style="font-size:1rem;font-weight:800;margin:0">📄 Generated Twitter Card Tags</h2>
+      <div style="display:flex;gap:8px">
+        <button class="btn" id="btnCopy">📋 Copy</button>
+        <button class="btn secondary" id="btnDownload">⬇️ Download</button>
+      </div>
+    </div>
+    <div class="tcg-code" id="outputCode"></div>
+  </div>
+</div>
+
+<!-- Info -->
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>🐦 What are Twitter Cards?</h2>
+      <p><strong>Twitter Cards</strong> are special meta tags that allow rich media to be attached to tweets. When someone shares a URL that has Twitter Card tags, the tweet automatically displays a card below the text — showing a title, description, image or even a video player.</p>
+      <p>There are 4 Twitter Card types: <strong>summary_large_image</strong> (a large banner image — most popular for blogs and news), <strong>summary</strong> (a compact card with a small thumbnail), <strong>app</strong> (for mobile app promotion linking directly to App Store / Play Store), and <strong>player</strong> (for embedded audio or video).</p>
+      <h3>Which Card Type Should I Use?</h3>
+      <ol>
+        <li><strong>summary_large_image</strong> — Blogs, news articles, product pages. Highest engagement.</li>
+        <li><strong>summary</strong> — Homepages, profile pages, pages without a hero image.</li>
+        <li><strong>app</strong> — Mobile app landing pages with App Store / Play Store links.</li>
+        <li><strong>player</strong> — Pages with embedded video or podcast audio.</li>
+      </ol>
+      <h3>How to Install</h3>
+      <ol>
+        <li>Fill in the form and click <strong>Generate Tags</strong>.</li>
+        <li>Copy the generated HTML.</li>
+        <li>Paste inside the <code>&lt;head&gt;</code> of your HTML page.</li>
+        <li>Test with Twitter Card Validator at <em>cards-dev.twitter.com/validator</em>.</li>
+        <li>Clear Twitter's cache if a URL was previously shared without cards.</li>
+      </ol>
+    </div>
+    <div class="info-block">
+      <h2>🐦 Hindi Guide / हिंदी गाइड</h2>
+      <p><strong>Twitter Cards</strong> वे meta tags हैं जो Twitter/X पर आपके shared link के साथ एक rich preview card दिखाते हैं। इनके बिना, Twitter बस plain text link दिखाता है। सही Twitter Card tags लगाने से आपके tweets में engagement बढ़ती है।</p>
+      <h3>4 Card Types क्या हैं?</h3>
+      <ol>
+        <li><strong>summary_large_image</strong> — बड़ी image के साथ card। Blogs और articles के लिए सबसे अच्छा। सबसे ज़्यादा engagement मिलती है।</li>
+        <li><strong>summary</strong> — छोटी thumbnail के साथ compact card। General pages के लिए।</li>
+        <li><strong>app</strong> — Mobile app promote करने के लिए। App Store / Play Store link।</li>
+        <li><strong>player</strong> — Video या podcast के लिए embedded player।</li>
+      </ol>
+      <h3>Image Requirements</h3>
+      <ol>
+        <li><strong>summary_large_image:</strong> 800×418 px minimum, 5 MB max</li>
+        <li><strong>summary:</strong> 144×144 px minimum, 5 MB max</li>
+        <li>Format: JPG, PNG, GIF, या WebP</li>
+        <li>URL: https:// से शुरू होनी चाहिए</li>
+      </ol>
+      <h3>Important Notes</h3>
+      <ol>
+        <li>Twitter Card tags og: tags से fallback करते हैं — अगर twitter:title नहीं है तो og:title use होगा।</li>
+        <li>पहली बार URL share होने के बाद Twitter cache करता है — बदलाव के लिए Card Validator से re-fetch करें।</li>
+        <li>Private accounts के tweets में cards नहीं दिखते।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<button id="tcgScrollTop" aria-label="Scroll to top">↑</button>
+<footer class="site-footer">
+  <p>© 2025 <a href="../index.html">ApneSoftware.com</a> · Free Tools for Everyone · No Signup Required</p>
+</footer>
+<script src="../assets/common.js"></script>
+<script>
+(function(){
+'use strict';
+const LS='tcg_last';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+let currentType='summary_large_image';
+
+const SAMPLE={
+  twTitle:'Best Running Shoes 2025 — Top Picks for Beginners',
+  twDesc:'Expert-picked running shoes. Comfort, durability and value compared.',
+  twImage:'https://apnesoftware.com/assets/og-image.png',
+  twImageAlt:'Collection of top running shoes for beginners in 2025',
+  twSite:'@ShoeStore',twCreator:'@ShoeStoreTeam',
+  twUrl:'https://shoestore.example.com/best-running-shoes/',
+  tweetText:'Just published: The best running shoes for beginners in 2025 🏃‍♂️👟',
+  previewName:'ShoeStore',previewHandle:'@shoestore',
+};
+
+function getDomain(url){try{return new URL(url).hostname;}catch{return 'example.com';}}
+
+function setImg(elId,url,fallback){
+  const el=$(elId); if(!el) return;
+  if(url){
+    const img=new Image();
+    img.onload=()=>{el.innerHTML=`<img src="${esc(url)}" alt="preview" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">`;};
+    img.onerror=()=>{el.innerHTML=fallback;};
+    img.src=url;
+  } else el.innerHTML=fallback;
+}
+
+function updatePreview(){
+  const t=$('twTitle').value||'Your Card Title';
+  const d=$('twDesc').value||'Card description here.';
+  const img=$('twImage').value;
+  const url=$('twUrl').value;
+  const dom=url?getDomain(url):'example.com';
+  const tl=$('twTitle').value.length;
+  const dl=$('twDesc').value.length;
+  $('twTitleCount').textContent=tl+' ch';
+  $('twTitleCount').className='char-c '+(tl<=55?'cc-ok':tl<=70?'cc-warn':'cc-bad');
+  $('twDescCount').textContent=dl+' ch';
+  $('twDescCount').className='char-c '+(dl<=150?'cc-ok':dl<=200?'cc-warn':'cc-bad');
+
+  $('prevName').textContent=$('previewName').value||'Your Brand';
+  $('prevHandle').textContent=($('previewHandle').value||'@yourbrand')+' · now';
+  $('prevText').innerHTML=($('tweetText').value||'Check out this page!')+` <a href="#" style="color:#1da1f2">${dom}</a>`;
+
+  // Toggle card types
+  ['previewLarge','previewSummary','previewApp','previewPlayer'].forEach(id=>$(id).style.display='none');
+  if(currentType==='summary_large_image'){
+    $('previewLarge').style.display='block';
+    $('prevTitleLarge').textContent=t;
+    $('prevDescLarge').textContent=d;
+    $('prevDomainLarge').textContent=dom;
+    setImg('prevImgLarge',img,'🖼️');
+  } else if(currentType==='summary'){
+    $('previewSummary').style.display='flex';
+    $('prevTitleSm').textContent=t;
+    $('prevDescSm').textContent=d;
+    $('prevDomainSm').textContent=dom;
+    setImg('prevImgSm',img,'📄');
+  } else if(currentType==='app'){
+    $('previewApp').style.display='block';
+    $('prevAppName').textContent=$('appName').value||'My App';
+  } else if(currentType==='player'){
+    $('previewPlayer').style.display='block';
+    $('prevTitlePlayer').textContent=t;
+    $('prevDomainPlayer').textContent=dom;
+    setImg('prevImgPlayer',img,'▶️');
+  }
+  save();
+}
+
+function generate(){
+  const t=$('twTitle').value.trim();
+  if(!t){showToast('⚠️ Please enter a title.');return;}
+  const lines=[
+    '<!-- ===== Twitter / X Card Meta Tags ===== -->',
+    `<meta name="twitter:card"        content="${esc(currentType)}">`,
+    t?`<meta name="twitter:title"       content="${esc(t)}">` :'',
+    $('twDesc').value?`<meta name="twitter:description" content="${esc($('twDesc').value)}">` :'',
+    $('twImage').value?`<meta name="twitter:image"       content="${esc($('twImage').value)}">` :'',
+    $('twImageAlt').value?`<meta name="twitter:image:alt"   content="${esc($('twImageAlt').value)}">` :'',
+    $('twSite').value?`<meta name="twitter:site"        content="${esc($('twSite').value)}">` :'',
+    $('twCreator').value?`<meta name="twitter:creator"     content="${esc($('twCreator').value)}">` :'',
+    currentType==='app'&&$('appId').value?`<meta name="twitter:app:id:iphone"  content="${esc($('appId').value)}">` :'',
+    currentType==='app'&&$('appId').value?`<meta name="twitter:app:id:ipad"    content="${esc($('appId').value)}">` :'',
+    currentType==='app'&&$('appGoogleId').value?`<meta name="twitter:app:id:googleplay" content="${esc($('appGoogleId').value)}">` :'',
+    currentType==='app'&&$('appCountry').value?`<meta name="twitter:app:country" content="${esc($('appCountry').value)}">` :'',
+    currentType==='player'&&$('playerUrl').value?`<meta name="twitter:player"       content="${esc($('playerUrl').value)}">` :'',
+    currentType==='player'&&$('playerWidth').value?`<meta name="twitter:player:width"  content="${esc($('playerWidth').value)}">` :'',
+    currentType==='player'&&$('playerHeight').value?`<meta name="twitter:player:height" content="${esc($('playerHeight').value)}">` :'',
+  ].filter(Boolean).join('\n');
+
+  $('outputCode').innerHTML=syntaxHL(lines);
+  $('outputPanel').style.display='block';
+  $('outputPanel').scrollIntoView({behavior:'smooth',block:'start'});
+  showToast('✅ Twitter Card tags generated!');
+  $('btnCopy').onclick=()=>navigator.clipboard.writeText(lines).then(()=>showToast('📋 Copied!'));
+  $('btnDownload').onclick=()=>{
+    const b=new Blob([lines],{type:'text/html'});
+    const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(b),download:'twitter-card-tags.html'});
+    document.body.appendChild(a);a.click();document.body.removeChild(a);showToast('⬇️ Downloaded!');
+  };
+}
+
+function syntaxHL(html){
+  return html
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(&lt;!--.*?--&gt;)/g,'<span class="hl-com">$1</span>')
+    .replace(/(&lt;\/?[a-z][a-z0-9]*)/gi,'<span class="hl-tag">$1</span>')
+    .replace(/(&gt;)/g,'<span class="hl-tag">$1</span>')
+    .replace(/ ([a-z][a-z0-9:_-]*)=/gi,' <span class="hl-attr">$1</span>=')
+    .replace(/&quot;([^&]*)&quot;/g,'&quot;<span class="hl-val">$1</span>&quot;');
+}
+
+function save(){
+  try{localStorage.setItem(LS,JSON.stringify({twTitle:$('twTitle').value,twDesc:$('twDesc').value,twImage:$('twImage').value,twSite:$('twSite').value,twUrl:$('twUrl').value,cardType:currentType}));}catch(e){}
+}
+function load(){
+  try{
+    const s=JSON.parse(localStorage.getItem(LS)||'{}');
+    ['twTitle','twDesc','twImage','twImageAlt','twSite','twCreator','twUrl','tweetText','previewName','previewHandle'].forEach(id=>{const el=$(id);if(el&&s[id])el.value=s[id];});
+    if(s.cardType){
+      currentType=s.cardType;
+      document.querySelectorAll('.tcg-type-btn').forEach(b=>b.classList.toggle('active',b.dataset.type===currentType));
+    }
+  }catch(e){}
+}
+
+function showToast(msg){const t=document.createElement('div');t.className='prem-toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2400);}
+
+function init(){
+  load();
+  // Card type buttons
+  document.querySelectorAll('.tcg-type-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      currentType=btn.dataset.type;
+      document.querySelectorAll('.tcg-type-btn').forEach(b=>b.classList.toggle('active',b===btn));
+      $('appFields').style.display=currentType==='app'?'block':'none';
+      $('playerFields').style.display=currentType==='player'?'block':'none';
+      updatePreview();
+    });
+  });
+  ['twTitle','twDesc','twImage','twImageAlt','twSite','twCreator','twUrl','tweetText','previewName','previewHandle','appName','appId','appGoogleId','appCountry','playerUrl','playerWidth','playerHeight'].forEach(id=>{
+    const el=$(id); if(el) el.addEventListener('input',updatePreview);
+  });
+  $('btnGenerate').addEventListener('click',generate);
+  $('btnSample').addEventListener('click',()=>{Object.entries(SAMPLE).forEach(([k,v])=>{const el=$(k);if(el)el.value=v;});updatePreview();showToast('📋 Sample loaded!');});
+  $('btnReset').addEventListener('click',()=>{
+    ['twTitle','twDesc','twImage','twImageAlt','twSite','twCreator','twUrl','tweetText','previewName','previewHandle'].forEach(id=>{const el=$(id);if(el)el.value='';});
+    currentType='summary_large_image';
+    document.querySelectorAll('.tcg-type-btn').forEach(b=>b.classList.toggle('active',b.dataset.type===currentType));
+    $('outputPanel').style.display='none';localStorage.removeItem(LS);updatePreview();showToast('🗑️ Reset!');
+  });
+  document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();generate();}});
+  const sb=$('tcgScrollTop');
+  window.addEventListener('scroll',()=>sb.classList.toggle('show',scrollY>400));
+  sb.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+  updatePreview();
+}
+document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+</body>
+</html>

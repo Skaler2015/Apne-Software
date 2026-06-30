@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/xml-viewer.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="XML Viewer — Format & View XML Online | ApneSoftware">
+<meta property="og:description" content="Paste or upload XML and view it as a clean, formatted, collapsible tree. Free, no signup, no upload to any server.">
+<meta property="og:url" content="https://apnesoftware.com/tools/xml-viewer.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="XML Viewer — Format & View XML Online | ApneSoftware">
+<meta name="twitter:description" content="Paste or upload XML and view it as a clean, formatted, collapsible tree. Free, no signup, no upload to any server.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"XML Viewer","description":"Paste or upload XML and view it as a clean, formatted, collapsible tree. Free, no signup, no upload to any server.","url":"https://apnesoftware.com/tools/xml-viewer.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>XML Viewer — Format & View XML Online | ApneSoftware</title>
+<meta name="description" content="Paste or upload XML and view it as a clean, formatted, collapsible tree. Free, no signup, no upload to any server.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  textarea#xmlInput{width:100%;min-height:200px;font-family:monospace;font-size:.85rem;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);resize:vertical}
+  .xml-tree{
+    background:var(--surface-2);border:1px solid var(--border);border-radius:10px;
+    padding:16px;margin-top:16px;font-family:monospace;font-size:.85rem;max-height:500px;overflow:auto;line-height:1.7;
+  }
+  .xml-node{margin-left:18px}
+  .xml-tag{color:#8B5CF6;font-weight:700;cursor:pointer}
+  .xml-attr{color:#EA580C}
+  .xml-text{color:var(--text)}
+  .xml-toggle{display:inline-block;width:14px;color:var(--text-dim)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🌳 XML Viewer</h1>
+    <p>Paste or upload XML and view it as a clean, collapsible, color-coded tree.</p>
+  </div>
+
+  <div class="panel">
+    <textarea id="xmlInput" placeholder="<root>&#10;  <item id=&quot;1&quot;>Hello</item>&#10;</root>"></textarea>
+
+    <div class="dropzone" id="dropzone" style="margin-top:12px">
+      <p>📤 Or drag an .xml file here</p>
+      <input type="file" id="fileInput" accept=".xml,text/xml,application/xml">
+    </div>
+
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn" id="viewBtn">🌳 View as Tree</button>
+      <button class="btn secondary" id="expandAllBtn">⬇️ Expand All</button>
+      <button class="btn secondary" id="collapseAllBtn">⬆️ Collapse All</button>
+    </div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+    <div class="xml-tree" id="xmlTree" style="display:none"></div>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>XML is used everywhere behind the scenes — configuration files, data feeds, RSS, SOAP APIs, Office document internals, and countless data export formats — but raw XML, especially when it's been minified onto a single line, is nearly impossible to read by eye. Finding a specific element buried inside a deeply nested structure means scanning through walls of angle brackets with no visual hierarchy to guide you.</p>
+      <p>This viewer parses your XML and displays it as a proper collapsible tree, with each element nested visually under its parent, attributes highlighted separately from tag names, and a toggle arrow next to every element that has children so you can collapse sections you don't need and focus on the part you're actually looking for. Expand All and Collapse All let you quickly jump between a full overview and a focused, simplified view.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Paste your XML into the box, or upload an .xml file.</li>
+        <li>Click "View as Tree."</li>
+        <li>Click any tag's toggle arrow to expand or collapse that branch, or use Expand All / Collapse All.</li>
+      </ol>
+      <h3>Why a tree view helps</h3>
+      <p>XML's whole structure is hierarchical — elements contain other elements, which contain still more elements — but plain text doesn't show that hierarchy at a glance, especially once indentation has been stripped out by minification. A tree view restores that visual structure instantly, making it far easier to understand how a document is organized, spot a missing or misplaced element, or simply confirm that a data feed or config file contains what you expect before using it elsewhere.</p>
+      <p>Developers and anyone working with APIs or data feeds run into this constantly: an XML response comes back from a server as one long unformatted string, and the only way to actually inspect it is to either run it through a command-line tool or paste it somewhere that can format it visually. This viewer handles that second option directly in the browser — no terminal, no extension to install, and no risk of accidentally sending the data to some third-party service just to look at its structure. Color-coded tags and attributes also make it easier to spot a typo or an unexpected attribute value at a glance, which is often the actual cause of a parsing error somewhere downstream, long before it would otherwise surface as a confusing runtime bug somewhere else in a pipeline that has nothing obviously to do with the original XML file.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>XML हर जगह पर्दे के पीछे इस्तेमाल होता है — configuration files, data feeds, RSS, SOAP APIs, Office document के अंदरूनी हिस्से, और अनगिनत data export formats — पर raw XML, खासकर जब वह एक ही line में minify किया गया हो, आंखों से पढ़ना लगभग नामुमकिन होता है। किसी गहराई में छुपे element को ढूंढना मतलब बिना किसी visual hierarchy के angle brackets की दीवार में से गुज़रना।</p>
+      <p>यह viewer आपके XML को parse करके एक सही collapsible tree के रूप में दिखाता है, हर element अपने parent के नीचे visually nested, attributes tag names से अलग highlighted, और हर element के पास जिसके children हों एक toggle arrow, ताकि जिन हिस्सों की ज़रूरत नहीं उन्हें collapse करके सिर्फ़ ज़रूरी हिस्से पर ध्यान दिया जा सके। Expand All और Collapse All से पूरे overview और focused, simplified view के बीच तुरंत आ-जा सकते हैं।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना XML box में paste करें, या .xml file अपलोड करें।</li>
+        <li>"View as Tree" दबाएं।</li>
+        <li>किसी tag का toggle arrow क्लिक करके उस हिस्से को expand या collapse करें, या Expand All / Collapse All इस्तेमाल करें।</li>
+      </ol>
+      <h3>Tree view क्यों मदद करता है</h3>
+      <p>XML की पूरी structure hierarchical होती है — elements के अंदर और elements होते हैं, जिनके अंदर और भी elements — पर plain text एक नज़र में वह hierarchy नहीं दिखाता, खासकर minification से indentation हटने के बाद। एक tree view उस visual structure को तुरंत वापस ला देता है, जिससे document कैसे organize है यह समझना, कोई missing या गलत जगह वाला element ढूंढना, या सिर्फ़ यह confirm करना कि किसी data feed या config file में वही है जो उम्मीद थी, कहीं और इस्तेमाल करने से पहले काफ़ी आसान हो जाता है।</p>
+      <p>Developers और API या data feeds के साथ काम करने वाले लोगों के लिए यह बार-बार होता है: कोई XML response किसी server से एक लंबी बिना formatted string के रूप में आता है, और उसे visually inspect करने का इकलौता तरीका या तो कोई command-line tool चलाना है या कहीं ऐसी जगह paste करना जो उसे visually format कर सके। यह viewer वह दूसरा विकल्प सीधे browser में संभाल लेता है — न terminal, न कोई extension install करना, न ही सिर्फ़ structure देखने के लिए data किसी third-party service पर भेजे जाने का खतरा। Color-coded tags और attributes से किसी typo या अनपेक्षित attribute value को एक नज़र में पकड़ना भी आसान हो जाता है, जो अक्सर आगे कहीं parsing error की असली वजह होती है।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const xmlInput = document.getElementById('xmlInput');
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length) files[0].text().then(t => { xmlInput.value = t; });
+});
+
+function escapeHtml(str){
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function buildNode(el){
+  const hasChildren = el.children.length > 0;
+  const attrs = Array.from(el.attributes || []).map(a => ` <span class="xml-attr">${a.name}="${escapeHtml(a.value)}"</span>`).join('');
+  const textContent = !hasChildren ? Array.from(el.childNodes).map(n => n.nodeType===3 ? n.textContent.trim() : '').join('') : '';
+
+  let html = `<div class="xml-node">`;
+  if(hasChildren){
+    html += `<span class="xml-toggle" data-toggle>▾</span><span class="xml-tag">&lt;${el.tagName}${attrs}&gt;</span>`;
+    html += `<div class="xml-children">`;
+    Array.from(el.children).forEach(child => { html += buildNode(child); });
+    html += `</div>`;
+    html += `<span class="xml-tag">&lt;/${el.tagName}&gt;</span>`;
+  } else {
+    html += `<span class="xml-toggle">·</span><span class="xml-tag">&lt;${el.tagName}${attrs}&gt;</span><span class="xml-text">${escapeHtml(textContent)}</span><span class="xml-tag">&lt;/${el.tagName}&gt;</span>`;
+  }
+  html += `</div>`;
+  return html;
+}
+
+document.getElementById('viewBtn').addEventListener('click', ()=>{
+  const status = document.getElementById('statusMsg');
+  const tree = document.getElementById('xmlTree');
+  const xmlText = xmlInput.value.trim();
+
+  if(!xmlText){ status.textContent = '⚠️ Please paste or upload some XML first.'; return; }
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(xmlText, 'application/xml');
+  const errorNode = doc.querySelector('parsererror');
+
+  if(errorNode){
+    status.textContent = '❌ This is not valid XML — check for unclosed tags or mismatched brackets.';
+    tree.style.display = 'none';
+    return;
+  }
+
+  tree.innerHTML = buildNode(doc.documentElement);
+  tree.style.display = 'block';
+  status.textContent = '✅ Valid XML — tree view below.';
+
+  tree.querySelectorAll('[data-toggle]').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const childrenDiv = toggle.parentElement.querySelector('.xml-children');
+      if(childrenDiv){
+        const collapsed = childrenDiv.style.display === 'none';
+        childrenDiv.style.display = collapsed ? 'block' : 'none';
+        toggle.textContent = collapsed ? '▾' : '▸';
+      }
+    });
+  });
+});
+
+document.getElementById('expandAllBtn').addEventListener('click', ()=>{
+  document.querySelectorAll('.xml-children').forEach(c => c.style.display = 'block');
+  document.querySelectorAll('[data-toggle]').forEach(t => t.textContent = '▾');
+});
+document.getElementById('collapseAllBtn').addEventListener('click', ()=>{
+  document.querySelectorAll('.xml-children').forEach(c => c.style.display = 'none');
+  document.querySelectorAll('[data-toggle]').forEach(t => t.textContent = '▸');
+});
+</script>
+</body>
+</html>

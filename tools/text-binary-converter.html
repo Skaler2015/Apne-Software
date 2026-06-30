@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/text-binary-converter.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Text to Binary Converter — ApneSoftware">
+<meta property="og:description" content="Convert text to binary code and binary back to text, instantly. Free, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/text-binary-converter.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Text to Binary Converter — ApneSoftware">
+<meta name="twitter:description" content="Convert text to binary code and binary back to text, instantly. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text to Binary Converter","description":"Convert text to binary code and binary back to text, instantly. Free, no signup.","url":"https://apnesoftware.com/tools/text-binary-converter.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Text to Binary Converter — ApneSoftware</title>
+<meta name="description" content="Convert text to binary code and binary back to text, instantly. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .tab-row{display:flex;gap:8px;margin-bottom:14px}
+  textarea{width:100%;min-height:200px;font-family:monospace;font-size:.85rem;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);resize:vertical}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>💾 Text to Binary Converter</h1>
+    <p>Convert plain text into binary code, or decode binary back into readable text.</p>
+  </div>
+
+  <div class="panel">
+    <div class="tab-row">
+      <button class="btn secondary active" id="encodeTabBtn">Text → Binary</button>
+      <button class="btn secondary" id="decodeTabBtn">Binary → Text</button>
+    </div>
+
+    <div class="field"><label id="inputLabel" for="inputText">Text</label><textarea id="inputText" placeholder="Type text here...">Hello</textarea></div>
+
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn" id="convertBtn">Convert</button>
+      <button class="btn secondary" id="copyBtn">📋 Copy Result</button>
+      <button class="btn secondary" id="resetBtn">🔄 Reset</button>
+    </div>
+
+    <div class="field" style="margin-top:16px"><label id="outputLabel">Binary</label><textarea id="outputText" readonly></textarea></div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Computers store every letter as a number under the hood, and that number is ultimately represented as binary — a sequence of 1s and 0s. Seeing text in this raw binary form is mostly a learning tool: students studying how computers represent characters, anyone curious about how "A" becomes "01000001," or someone working on a low-level programming exercise that expects binary input often need to go back and forth between readable text and its binary representation.</p>
+      <p>This tool converts in both directions — type or paste regular text and instantly get its binary representation (each character becomes an 8-bit binary byte, separated by spaces), or paste binary code and get the readable text back. It uses standard UTF-8 byte encoding, so the conversion handles ordinary English text reliably and predictably.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Choose "Text → Binary" or "Binary → Text" using the tabs.</li>
+        <li>Type or paste your input.</li>
+        <li>Click "Convert" and copy the result.</li>
+      </ol>
+      <h3>Format expected for Binary → Text</h3>
+      <p>When converting binary back to text, each character's binary code should be 8 digits (a full byte) separated by a space, matching the format this tool produces when converting text to binary in the first place — for example "01001000 01100101 01101100 01101100 01101111" decodes to "Hello." If you paste binary from somewhere else with a different spacing or grouping, try separating each 8-digit group with a single space before converting for the most reliable result.</p>
+      <p>Beyond classroom learning, this kind of conversion is occasionally useful for puzzle and escape-room style content where a binary code is meant to be decoded as part of a game, for hobbyist electronics projects where binary values map directly to pin states, or simply for satisfying curiosity about how a favorite word or name looks when broken down to its raw byte representation. Since the conversion uses standard UTF-8 encoding, it also handles a wider range of characters correctly, not just basic English letters, though the binary output naturally gets longer for characters that require more than one byte to represent.</p>
+      <p>Computer science courses commonly introduce binary representation through exercises just like this one, since seeing a familiar word broken down into its raw 1s and 0s makes an otherwise abstract concept concrete. Working through a few examples by hand and then checking the result against this tool's output is also a reliable way to confirm understanding before moving on to more advanced topics like binary arithmetic or bitwise operations.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>Computer अंदर ही अंदर हर letter को एक number के रूप में store करता है, और वह number आख़िरकार binary के रूप में represent होता है — 1s और 0s की एक सीरीज़। Text को इस raw binary रूप में देखना ज़्यादातर एक सीखने का tool है: यह समझने के इच्छुक students कि computer characters को कैसे represent करता है, यह जानने में उत्सुक कोई भी व्यक्ति कि "A" कैसे "01000001" बनता है, या किसी low-level programming exercise पर काम कर रहा कोई व्यक्ति जिसे binary input चाहिए, अक्सर readable text और उसके binary representation के बीच आगे-पीछे जाना पड़ता है।</p>
+      <p>यह tool दोनों दिशाओं में convert करता है — सामान्य text टाइप या paste करें और तुरंत उसका binary representation पाएं (हर character एक 8-bit binary byte बन जाता है, spaces से अलग), या binary code paste करें और readable text वापस पाएं। यह standard UTF-8 byte encoding इस्तेमाल करता है, तो conversion सामान्य English text को भरोसे से और predictably handle करता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>Tabs से "Text → Binary" या "Binary → Text" चुनें।</li>
+        <li>अपना input टाइप या paste करें।</li>
+        <li>"Convert" दबाएं और result copy करें।</li>
+      </ol>
+      <h3>Binary → Text के लिए expected format</h3>
+      <p>Binary को वापस text में convert करते वक्त, हर character का binary code 8 digits (एक पूरा byte) होना चाहिए, space से अलग, बिल्कुल वैसा format जैसा यह tool text को binary में बदलते वक्त बनाता है — जैसे "01001000 01100101 01101100 01101100 01101111" "Hello" में decode होता है। अगर कहीं और से अलग spacing या grouping वाला binary paste किया हो, तो convert करने से पहले हर 8-digit group को एक single space से अलग करने की कोशिश करें ताकि सबसे भरोसेमंद result मिले।</p>
+      <p>Classroom learning से आगे, इस तरह का conversion कभी-कभी puzzle और escape-room जैसे content के लिए उपयोगी होता है जहां किसी game के हिस्से के रूप में binary code decode करना हो, hobbyist electronics projects के लिए जहां binary values सीधे pin states पर map होती हैं, या बस यह जानने की उत्सुकता के लिए कि कोई पसंदीदा word या name उसके raw byte representation में टूटने पर कैसा दिखता है। चूंकि conversion standard UTF-8 encoding इस्तेमाल करता है, यह सिर्फ़ basic English letters ही नहीं बल्कि characters की एक wider range को भी सही तरीके से handle करता है, हालांकि एक से ज़्यादा byte चाहने वाले characters के लिए binary output स्वाभाविक रूप से लंबा हो जाता है।</p>
+      <p>Computer science courses आमतौर पर binary representation को बिल्कुल इसी तरह की exercises से introduce करते हैं, क्योंकि किसी जाने-पहचाने word को उसके raw 1s और 0s में टूटा हुआ देखना एक वरना abstract concept को concrete बना देता है। हाथ से कुछ examples करके फिर result को इस tool के output से जांचना भी binary arithmetic या bitwise operations जैसे advanced topics पर आगे बढ़ने से पहले समझ confirm करने का एक भरोसेमंद तरीका है।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+let mode = 'encode';
+
+document.getElementById('encodeTabBtn').addEventListener('click', function(){
+  mode = 'encode';
+  this.classList.add('active');
+  document.getElementById('decodeTabBtn').classList.remove('active');
+  document.getElementById('inputLabel').textContent = 'Text';
+  document.getElementById('outputLabel').textContent = 'Binary';
+  document.getElementById('inputText').value = 'Hello';
+  document.getElementById('outputText').value = '';
+});
+
+document.getElementById('decodeTabBtn').addEventListener('click', function(){
+  mode = 'decode';
+  this.classList.add('active');
+  document.getElementById('encodeTabBtn').classList.remove('active');
+  document.getElementById('inputLabel').textContent = 'Binary';
+  document.getElementById('outputLabel').textContent = 'Text';
+  document.getElementById('inputText').value = '01001000 01100101 01101100 01101100 01101111';
+  document.getElementById('outputText').value = '';
+});
+
+document.getElementById('convertBtn').addEventListener('click', ()=>{
+  const status = document.getElementById('statusMsg');
+  const input = document.getElementById('inputText').value;
+
+  if(mode === 'encode'){
+    const bytes = new TextEncoder().encode(input);
+    const binary = Array.from(bytes).map(b => b.toString(2).padStart(8, '0')).join(' ');
+    document.getElementById('outputText').value = binary;
+    status.textContent = '✅ Converted to binary.';
+  } else {
+    try{
+      const groups = input.trim().split(/\s+/).filter(Boolean);
+      const bytes = groups.map(g => {
+        if(!/^[01]{1,8}$/.test(g)) throw new Error('Invalid binary group: ' + g);
+        return parseInt(g, 2);
+      });
+      const text = new TextDecoder().decode(new Uint8Array(bytes));
+      document.getElementById('outputText').value = text;
+      status.textContent = '✅ Decoded to text.';
+    }catch(err){
+      document.getElementById('outputText').value = '';
+      status.textContent = '❌ ' + err.message + ' — make sure each group is 8 digits of 0s and 1s, separated by spaces.';
+    }
+  }
+});
+
+document.getElementById('copyBtn').addEventListener('click', function(){
+  copyText(document.getElementById('outputText').value, this);
+});
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  document.getElementById('inputText').value = '';
+  document.getElementById('outputText').value = '';
+  document.getElementById('statusMsg').textContent = '';
+});
+</script>
+</body>
+</html>

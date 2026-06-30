@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/excel-to-pdf.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Excel to PDF | ApneSoftware">
+<meta property="og:description" content="Convert spreadsheet to PDF table. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/excel-to-pdf.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Excel to PDF | ApneSoftware">
+<meta name="twitter:description" content="Convert spreadsheet to PDF table. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Excel to PDF","description":"Convert spreadsheet to PDF table. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/excel-to-pdf.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Excel to PDF | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .limit-note{
+    background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:8px;
+    padding:12px 14px;font-size:.85rem;color:#fbbf24;margin-top:14px;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📊 Excel to PDF</h1>
+    <p>Convert an Excel (.xlsx/.xls) sheet into a PDF table.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an Excel file here or click to choose</p>
+      <input type="file" id="fileInput" accept=".xlsx,.xls,.csv">
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+    <div class="limit-note">⚠️ Note: this lays out your data as a clean grid/table — cell colors, custom fonts, charts, and complex Excel formatting are not preserved.</div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool reads the first sheet of an Excel file and draws it as a table in a PDF, automatically wrapping across multiple pages if the data is large.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your Excel (.xlsx/.xls) or .csv file.</li>
+        <li>It converts automatically and downloads as a PDF.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल Excel फाइल की पहली शीट पढ़कर उसे PDF में एक टेबल के रूप में बना देता है, डेटा ज़्यादा होने पर अपने आप कई पेजों में फैल जाता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी Excel (.xlsx/.xls) या .csv फाइल अपलोड करें।</li>
+        <li>यह अपने आप बदलकर PDF के रूप में डाउनलोड हो जाएगी।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length) handleFile(files[0]);
+});
+
+async function handleFile(file){
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Reading spreadsheet...';
+  try{
+    const arrayBuf = await file.arrayBuffer();
+    const wb = XLSX.read(arrayBuf, { type: 'array' });
+    const sheetName = wb.SheetNames[0];
+    const sheet = wb.Sheets[sheetName];
+    const rows = XLSX.utils.sheet_to_json(sheet, { header: 1, raw: false, defval: '' });
+
+    if(!rows.length){
+      status.textContent = '⚠️ This sheet appears to be empty.';
+      return;
+    }
+
+    status.textContent = '⏳ Building PDF...';
+    const { PDFDocument, StandardFonts, rgb } = PDFLib;
+    const pdfDoc = await PDFDocument.create();
+    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+
+    const pageWidth = 842, pageHeight = 595; // landscape A4 for wide tables
+    const margin = 30;
+    const fontSize = 8;
+    const rowHeight = 18;
+
+    const maxCols = Math.max(...rows.map(r => r.length));
+    const colWidth = Math.min(100, (pageWidth - margin*2) / Math.max(1, Math.min(maxCols, 12)));
+    const colsPerPage = Math.max(1, Math.floor((pageWidth - margin*2) / colWidth));
+
+    for(let colStart = 0; colStart < maxCols; colStart += colsPerPage){
+      const colEnd = Math.min(colStart + colsPerPage, maxCols);
+      let page = pdfDoc.addPage([pageWidth, pageHeight]);
+      let y = pageHeight - margin;
+
+      rows.forEach((row, rIdx) => {
+        if(y - rowHeight < margin){
+          page = pdfDoc.addPage([pageWidth, pageHeight]);
+          y = pageHeight - margin;
+        }
+        const useFont = rIdx === 0 ? fontBold : font;
+        for(let c = colStart; c < colEnd; c++){
+          const x = margin + (c - colStart) * colWidth;
+          page.drawRectangle({ x, y: y - rowHeight, width: colWidth, height: rowHeight, borderColor: rgb(0.7,0.7,0.7), borderWidth: 0.5 });
+          let text = String(row[c] !== undefined ? row[c] : '');
+          const maxChars = Math.floor(colWidth / (fontSize*0.55));
+          if(text.length > maxChars) text = text.slice(0, maxChars-1) + '…';
+          page.drawText(text, { x: x+3, y: y - rowHeight + 5, size: fontSize, font: useFont, color: rgb(0.1,0.1,0.1) });
+        }
+        y -= rowHeight;
+      });
+    }
+
+    const pdfBytes = await pdfDoc.save();
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    const outName = file.name.replace(/\.(xlsx|xls|csv)$/i, '') + '.pdf';
+    downloadBlob(outName, blob);
+    status.textContent = '✅ Converted and downloaded!';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+}
+</script>
+</body>
+</html>

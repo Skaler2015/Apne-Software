@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/text-diff.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Text & Code Diff Checker | ApneSoftware">
+<meta property="og:description" content="Compare two texts and see what changed. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/text-diff.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Text & Code Diff Checker | ApneSoftware">
+<meta name="twitter:description" content="Compare two texts and see what changed. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text & Code Diff Checker","description":"Compare two texts and see what changed. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/text-diff.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Text & Code Diff Checker | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .diff-result{
+    background:var(--surface-2);border:1px solid var(--border);border-radius:10px;
+    padding:16px;font-family:'Consolas','Courier New',monospace;font-size:.85rem;
+    white-space:pre-wrap;word-break:break-word;line-height:1.6;margin-top:14px;max-height:480px;overflow-y:auto;
+  }
+  .diff-result ins{background:rgba(34,197,94,.25);color:#86efac;text-decoration:none;border-radius:3px;padding:0 2px}
+  .diff-result del{background:rgba(239,68,68,.25);color:#fca5a5;text-decoration:line-through;border-radius:3px;padding:0 2px}
+  .diff-legend{display:flex;gap:18px;margin-top:10px;font-size:.82rem;color:var(--text-dim)}
+  .diff-legend span{display:inline-flex;align-items:center;gap:6px}
+  .mode-tabs{display:flex;gap:8px;margin-bottom:14px}
+  .mode-tab{
+    padding:7px 14px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);
+    color:var(--text-dim);font-size:.85rem;cursor:pointer;
+  }
+  .mode-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔍 Text & Code Diff Checker</h1>
+    <p>Compare two pieces of text or code and instantly see what's added, removed, or changed.</p>
+  </div>
+
+  <div class="panel">
+    <div class="mode-tabs">
+      <button class="mode-tab active" data-mode="words">Word diff</button>
+      <button class="mode-tab" data-mode="lines">Line diff</button>
+      <button class="mode-tab" data-mode="chars">Character diff</button>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="textA">Original text</label>
+        <textarea id="textA" placeholder="Paste the original text or code here..." style="min-height:180px"></textarea>
+      </div>
+      <div class="field">
+        <label for="textB">Changed text</label>
+        <textarea id="textB" placeholder="Paste the changed/new version here..." style="min-height:180px"></textarea>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="compareBtn">🔍 Compare</button>
+      <button class="btn secondary" id="swapBtn">🔄 Swap</button>
+      <button class="btn secondary" id="clearBtn">🗑️ Clear</button>
+    </div>
+
+    <div id="resultWrap" style="display:none">
+      <div class="stat-grid">
+        <div class="stat-box"><div class="num" id="addedCount" style="color:#86efac">0</div><div class="lbl">Added</div></div>
+        <div class="stat-box"><div class="num" id="removedCount" style="color:#fca5a5">0</div><div class="lbl">Removed</div></div>
+      </div>
+      <div class="diff-legend">
+        <span>🟩 Added</span>
+        <span>🟥 Removed</span>
+      </div>
+      <div class="diff-result" id="diffResult"></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool compares two blocks of text or code and highlights the differences — additions in green, removals in red. Choose word, line, or character-level comparison depending on what you're checking.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Paste the original text in the left box and the changed version in the right box.</li>
+        <li>Pick a comparison mode: word, line, or character diff.</li>
+        <li>Click Compare to see the highlighted differences.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल दो टेक्स्ट या कोड को कंपेयर करता है और अंतर हाईलाइट करता है — हरे रंग में जोड़े गए हिस्से, लाल रंग में हटाए गए हिस्से। वर्ड, लाइन या कैरेक्टर लेवल पर कंपेयर कर सकते हैं।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>बाईं तरफ ओरिजिनल टेक्स्ट और दाईं तरफ बदला हुआ टेक्स्ट पेस्ट करें।</li>
+        <li>कंपेयर मोड चुनें: वर्ड, लाइन या कैरेक्टर डिफ।</li>
+        <li>Compare बटन दबाएं और हाईलाइट किया गया अंतर देखें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/8.0.2/diff.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+let mode = 'words';
+
+document.querySelectorAll('.mode-tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.mode-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    mode = tab.dataset.mode;
+  });
+});
+
+document.getElementById('compareBtn').addEventListener('click', ()=>{
+  const a = document.getElementById('textA').value;
+  const b = document.getElementById('textB').value;
+
+  let diff;
+  if(mode === 'words') diff = Diff.diffWords(a, b);
+  else if(mode === 'lines') diff = Diff.diffLines(a, b);
+  else diff = Diff.diffChars(a, b);
+
+  let added = 0, removed = 0;
+  const html = diff.map(part => {
+    const escaped = part.value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    if(part.added){ added += part.count || 1; return '<ins>' + escaped + '</ins>'; }
+    if(part.removed){ removed += part.count || 1; return '<del>' + escaped + '</del>'; }
+    return escaped;
+  }).join('');
+
+  document.getElementById('diffResult').innerHTML = html || 'No differences found — the two texts are identical.';
+  document.getElementById('addedCount').textContent = added;
+  document.getElementById('removedCount').textContent = removed;
+  document.getElementById('resultWrap').style.display = 'block';
+});
+
+document.getElementById('swapBtn').addEventListener('click', ()=>{
+  const a = document.getElementById('textA');
+  const b = document.getElementById('textB');
+  const tmp = a.value; a.value = b.value; b.value = tmp;
+});
+
+document.getElementById('clearBtn').addEventListener('click', ()=>{
+  document.getElementById('textA').value = '';
+  document.getElementById('textB').value = '';
+  document.getElementById('resultWrap').style.display = 'none';
+});
+</script>
+</body>
+</html>

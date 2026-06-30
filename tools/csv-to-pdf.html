@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/csv-to-pdf.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CSV to PDF Converter — ApneSoftware">
+<meta property="og:description" content="Convert a CSV file into a clean PDF table. Free, in your browser, no signup, no upload to any server.">
+<meta property="og:url" content="https://apnesoftware.com/tools/csv-to-pdf.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSV to PDF Converter — ApneSoftware">
+<meta name="twitter:description" content="Convert a CSV file into a clean PDF table. Free, in your browser, no signup, no upload to any server.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSV to PDF","description":"Convert a CSV file into a clean PDF table. Free, in your browser, no signup, no upload to any server.","url":"https://apnesoftware.com/tools/csv-to-pdf.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>CSV to PDF Converter — ApneSoftware</title>
+<meta name="description" content="Convert a CSV file into a clean PDF table. Free, in your browser, no signup, no upload to any server.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .preview-table-wrap{overflow-x:auto;margin-top:14px;border:1px solid var(--border);border-radius:10px;max-height:340px;overflow-y:auto}
+  table.preview-table{width:100%;border-collapse:collapse;font-size:.82rem}
+  table.preview-table th{background:var(--surface-2);padding:8px 10px;text-align:left;position:sticky;top:0;font-weight:700}
+  table.preview-table td{padding:7px 10px;border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📊➡️📄 CSV to PDF</h1>
+    <p>Convert a CSV spreadsheet into a clean, printable PDF table.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a CSV file here or click to choose</p>
+      <input type="file" id="fileInput" accept=".csv,text/csv">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <p style="font-size:.85rem;color:var(--text-dim)">Preview (<span id="rowCount">0</span> rows):</p>
+      <div class="preview-table-wrap"><table class="preview-table" id="previewTable"></table></div>
+
+      <div class="field" style="margin-top:14px">
+        <label><input type="checkbox" id="landscapeCheck" style="width:auto"> Landscape orientation (better for wide tables)</label>
+      </div>
+
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn" id="convertBtn">📄 Convert to PDF</button>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>CSV files are great for storing and exchanging data between spreadsheet programs and databases, but they're not built for sharing or printing — opening a raw .csv file in a text editor shows nothing but rows of values separated by commas, and not everyone has spreadsheet software handy or wants to import data just to glance at it. A PDF, on the other hand, is something anyone can open and read immediately on any device, and it prints cleanly without needing to fight with column widths and page breaks the way a spreadsheet does.</p>
+      <p>This tool reads your CSV and lays it out as a proper bordered table in a PDF — headers are bolded, columns are evenly spaced, and the table automatically continues onto new pages if the data is too long to fit on one. If your CSV has many columns and feels cramped on a normal page, the landscape orientation option gives the table more horizontal room to breathe.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a CSV file — a quick preview of the data appears.</li>
+        <li>Turn on landscape orientation if your table is wide.</li>
+        <li>Click "Convert to PDF" to download the result.</li>
+      </ol>
+      <h3>When this is useful</h3>
+      <p>This is handy for turning an exported report, a list of contacts, an inventory sheet, or any tabular data into something you can email, print, or attach to a document without requiring the recipient to open it in Excel or Google Sheets. It also works well for archiving a snapshot of data in a format that won't change even if the original spreadsheet is later edited, since a PDF is effectively a fixed, final copy of the table at the moment you convert it.</p>
+      <p>It's also a practical way to prepare data for situations where a spreadsheet file simply isn't accepted — many official submission portals, application forms, and printed reports require a PDF specifically rather than an Excel or CSV attachment. Rather than manually copying and reformatting a table inside a word processor, this tool preserves the exact rows and columns from your CSV and lays them out automatically, including pagination for longer datasets that don't fit on a single sheet. For anyone who regularly needs to turn raw exported data into something presentable, this removes a repetitive manual step entirely, whether the data comes from accounting software, a survey export, or a database query saved to CSV.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>CSV files spreadsheet programs और databases के बीच data रखने और भेजने के लिए बढ़िया हैं, पर शेयर करने या print करने के लिए नहीं बनी हैं — किसी raw .csv file को text editor में खोलने पर सिर्फ़ commas से अलग की गई values की पंक्तियां दिखती हैं, और हर किसी के पास spreadsheet software तैयार नहीं होता या सिर्फ़ देखने के लिए data import नहीं करना चाहता। दूसरी तरफ़ PDF कुछ ऐसा है जिसे कोई भी किसी भी device पर तुरंत खोलकर पढ़ सकता है, और column widths और page breaks से जूझे बिना साफ़-साफ़ print हो जाती है।</p>
+      <p>यह tool आपकी CSV को पढ़कर PDF में एक सही bordered table के रूप में सजाता है — headers bold होते हैं, columns बराबर फासले पर रहते हैं, और data ज़्यादा लंबा होने पर table अपने आप अगले pages पर जारी रहता है। अगर आपकी CSV में बहुत सारे columns हैं और normal page पर तंग लग रहा है, तो landscape orientation option table को ज़्यादा horizontal जगह देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक CSV file अपलोड करें — data का quick preview दिख जाएगा।</li>
+        <li>अगर table चौड़ी है तो landscape orientation चालू करें।</li>
+        <li>result download करने के लिए "Convert to PDF" दबाएं।</li>
+      </ol>
+      <h3>यह कब उपयोगी है</h3>
+      <p>यह किसी exported report, contacts की list, inventory sheet, या किसी भी tabular data को ऐसी चीज़ में बदलने के लिए सुविधाजनक है जो email कर सकें, print कर सकें, या किसी document के साथ attach कर सकें, बिना receiver को Excel या Google Sheets में खोलने की ज़रूरत के। यह data के किसी snapshot को ऐसे format में रखने के लिए भी अच्छा काम करता है जो बाद में original spreadsheet edit होने पर भी नहीं बदलेगा, क्योंकि PDF असल में convert करने के पल पर table की एक fixed, final copy होती है।</p>
+      <p>यह उन स्थितियों के लिए data तैयार करने का भी practical तरीका है जहां spreadsheet file बिल्कुल स्वीकार नहीं होती — कई official submission portals, application forms, और printed reports को specifically PDF चाहिए होती है, Excel या CSV attachment नहीं। किसी word processor में table को हाथ से copy करके दोबारा format करने की बजाय, यह tool आपकी CSV की exact rows और columns को बनाए रखता है और उन्हें अपने आप layout करता है, साथ ही लंबे datasets के लिए pagination भी जो एक sheet में नहीं समातीं। जिन्हें नियमित रूप से raw exported data को presentable बनाना पड़ता है, उनके लिए यह एक दोहराया जाने वाला manual step पूरी तरह हटा देता है।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let parsedData = null;
+let sourceFileName = 'data';
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length) handleFile(files[0]);
+});
+
+function handleFile(file){
+  sourceFileName = file.name.replace(/\.csv$/i, '');
+  Papa.parse(file, {
+    complete: (results) => {
+      parsedData = results.data.filter(row => row.some(cell => cell.trim() !== ''));
+      renderPreview();
+      document.getElementById('afterUpload').style.display = 'block';
+    }
+  });
+}
+
+function renderPreview(){
+  const table = document.getElementById('previewTable');
+  document.getElementById('rowCount').textContent = parsedData.length;
+  if(!parsedData.length) return;
+  const [header, ...rows] = parsedData;
+  table.innerHTML = `<thead><tr>${header.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+    <tbody>${rows.slice(0,50).map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody>`;
+}
+
+document.getElementById('convertBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Building PDF table...';
+
+  const landscape = document.getElementById('landscapeCheck').checked;
+  const { PDFDocument, StandardFonts, rgb } = PDFLib;
+  const pdfDoc = await PDFDocument.create();
+  const fontRegular = await pdfDoc.embedFont(StandardFonts.Helvetica);
+  const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+
+  const pageWidth = landscape ? 842 : 595;
+  const pageHeight = landscape ? 595 : 842;
+  const margin = 36;
+  const fontSize = 8.5;
+  const rowHeight = 20;
+
+  const [header, ...rows] = parsedData;
+  const colCount = header.length;
+  const tableWidth = pageWidth - margin*2;
+  const colWidth = tableWidth / colCount;
+
+  let page = pdfDoc.addPage([pageWidth, pageHeight]);
+  let y = pageHeight - margin;
+
+  function drawHeaderRow(){
+    page.drawRectangle({ x: margin, y: y - rowHeight, width: tableWidth, height: rowHeight, color: rgb(0.92,0.90,0.99) });
+    header.forEach((cell, i) => {
+      const text = truncateText(String(cell), fontBold, fontSize, colWidth - 8);
+      page.drawText(text, { x: margin + i*colWidth + 4, y: y - rowHeight + 6, size: fontSize, font: fontBold, color: rgb(0.1,0.1,0.1) });
+    });
+    y -= rowHeight;
+  }
+
+  function truncateText(text, font, size, maxWidth){
+    if(font.widthOfTextAtSize(text, size) <= maxWidth) return text;
+    while(text.length > 1 && font.widthOfTextAtSize(text + '…', size) > maxWidth){
+      text = text.slice(0, -1);
+    }
+    return text + '…';
+  }
+
+  drawHeaderRow();
+
+  rows.forEach(row => {
+    if(y - rowHeight < margin){
+      page = pdfDoc.addPage([pageWidth, pageHeight]);
+      y = pageHeight - margin;
+      drawHeaderRow();
+    }
+    row.forEach((cell, i) => {
+      if(i >= colCount) return;
+      const text = truncateText(String(cell ?? ''), fontRegular, fontSize, colWidth - 8);
+      page.drawText(text, { x: margin + i*colWidth + 4, y: y - rowHeight + 6, size: fontSize, font: fontRegular, color: rgb(0.2,0.2,0.2) });
+    });
+    page.drawLine({ start: {x: margin, y: y - rowHeight}, end: {x: margin + tableWidth, y: y - rowHeight}, thickness: 0.5, color: rgb(0.85,0.85,0.85) });
+    y -= rowHeight;
+  });
+
+  const pdfBytes = await pdfDoc.save();
+  const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+  downloadBlob(sourceFileName + '.pdf', blob);
+  status.textContent = '✅ Converted and downloaded!';
+});
+</script>
+</body>
+</html>

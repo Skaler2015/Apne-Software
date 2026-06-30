@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Robots.txt Analyzer — Paste your robots.txt to check for errors, analyze bot rules, test URL access and understand every directive. Instant analysis.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/robots-txt-analyzer.html">
+<meta property="og:title" content="Robots.txt Analyzer — Check Errors & Test URLs | ApneSoftware">
+<meta property="og:description" content="Analyze your robots.txt for errors. Test if any URL is blocked. Full directive analysis. Free.">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="dark">
+<title>Robots.txt Analyzer — Check Errors & Test URLs | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.rta-rule{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px 14px;margin-bottom:8px}
+.rta-rule-agent{font-size:.8rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:#A78BFA;margin-bottom:6px}
+.rta-directive-row{display:flex;align-items:center;gap:8px;font-size:.82rem;padding:3px 0}
+.rta-icon-allow{color:#16C079}.rta-icon-deny{color:#F87171}.rta-icon-info{color:#A78BFA}
+.rta-directive{color:rgba(255,255,255,.5);min-width:90px;font-size:.78rem}
+.rta-val{color:rgba(255,255,255,.8);word-break:break-all}
+.rta-error{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.2);border-radius:8px;padding:8px 12px;font-size:.8rem;color:#F87171;margin-bottom:6px;display:flex;gap:8px;align-items:flex-start}
+.rta-warn{background:rgba(255,215,0,.07);border:1px solid rgba(255,215,0,.2);border-radius:8px;padding:8px 12px;font-size:.8rem;color:#FFD700;margin-bottom:6px;display:flex;gap:8px;align-items:flex-start}
+.rta-ok{background:rgba(22,192,121,.07);border:1px solid rgba(22,192,121,.2);border-radius:8px;padding:8px 12px;font-size:.8rem;color:#16C079;margin-bottom:6px;display:flex;gap:8px}
+.rta-test-result{border-radius:12px;padding:14px 16px;margin-top:14px;font-size:.9rem;font-weight:700;display:flex;align-items:center;gap:10px}
+.rta-test-allow{background:rgba(22,192,121,.12);border:1px solid rgba(22,192,121,.3);color:#16C079}
+.rta-test-block{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);color:#F87171}
+.rta-line-num{color:rgba(255,255,255,.25);font-size:.75rem;user-select:none;min-width:30px;text-align:right}
+#rtaScrollTop{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;box-shadow:0 4px 14px rgba(124,92,252,.4);transition:.2s}
+#rtaScrollTop.show{display:flex}
+#rtaScrollTop:hover{transform:translateY(-3px)}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="inner"><a class="brand" href="../index.html">Apne<span>Software</span></a><a class="back-link" href="../index.html">← All Tools</a></div></header>
+<div class="container">
+  <nav style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:2px">
+    <a href="../index.html" style="color:rgba(255,255,255,.45)">Home</a> › <span style="color:rgba(255,255,255,.7)">SEO Tools</span> › <span style="color:#A78BFA">Robots.txt Analyzer</span>
+  </nav>
+
+  <div class="tool-header"><h1>🔎 Robots.txt Analyzer</h1><p>Paste your robots.txt file to check for errors, understand all directives, and test whether specific URLs are allowed or blocked for any bot.</p></div>
+
+  <div class="panel">
+    <div class="field"><label for="rtInput">Paste your robots.txt content <span style="color:#F87171">*</span></label>
+      <textarea id="rtInput" rows="10" placeholder="User-agent: *&#10;Disallow: /admin/&#10;Disallow: /private/&#10;Allow: /&#10;&#10;Sitemap: https://example.com/sitemap.xml"></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn" id="btnAnalyze">🔎 Analyze</button>
+      <button class="btn secondary" id="btnSample">📋 Sample</button>
+      <button class="btn secondary" id="btnClear">🗑️ Clear</button>
+    </div>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.3);margin-top:8px">⌨️ <kbd style="background:rgba(255,255,255,.08);padding:1px 6px;border-radius:4px">Ctrl+Enter</kbd> to analyze</p>
+  </div>
+
+  <div id="resultsArea" style="display:none">
+    <!-- Errors -->
+    <div class="panel" id="errorsPanel" style="margin-top:14px;display:none">
+      <h2 style="font-size:.9rem;font-weight:800;margin-bottom:10px">⚠️ Warnings & Errors</h2>
+      <div id="errorsList"></div>
+    </div>
+
+    <!-- URL tester -->
+    <div class="panel" style="margin-top:14px">
+      <h2 style="font-size:.9rem;font-weight:800;margin-bottom:10px">🧪 URL Access Tester</h2>
+      <div class="row">
+        <div class="field"><label for="testUrl">URL to test</label><input type="text" id="testUrl" placeholder="https://example.com/admin/users"></div>
+        <div class="field"><label for="testBot">Bot</label><select id="testBot"><option value="*">All Bots (*)</option><option value="Googlebot">Googlebot</option><option value="Bingbot">Bingbot</option></select></div>
+      </div>
+      <button class="btn" id="btnTest">🧪 Test URL</button>
+      <div id="testResult" style="display:none"></div>
+    </div>
+
+    <!-- Parsed rules -->
+    <div class="panel" style="margin-top:14px">
+      <h2 style="font-size:.9rem;font-weight:800;margin-bottom:10px">📋 Parsed Rules</h2>
+      <div id="parsedRules"></div>
+    </div>
+  </div>
+</div>
+
+<div class="info-wrap"><div class="info-section">
+  <div class="info-block">
+    <h2>🔎 How to Analyze Your Robots.txt</h2>
+    <p>This tool parses your robots.txt file and shows you every rule, grouped by User-agent. Use the URL tester to check if any specific URL would be crawled or blocked for a given bot.</p>
+    <h3>Common Robots.txt Mistakes</h3>
+    <ol>
+      <li>Accidentally blocking all bots with <code>Disallow: /</code></li>
+      <li>Blocking CSS/JS files (prevents Google from rendering pages)</li>
+      <li>Case-sensitive paths (robots.txt paths are case-sensitive)</li>
+      <li>Missing trailing slash on directory rules</li>
+      <li>Sitemap URL pointing to wrong path</li>
+    </ol>
+  </div>
+  <div class="info-block">
+    <h2>🔎 Hindi Guide / हिंदी गाइड</h2>
+    <p>यह tool आपकी robots.txt file को analyze करता है और सभी rules को समझकर बताता है। URL Tester से आप check कर सकते हैं कि कोई specific URL allow है या block।</p>
+    <h3>Common Mistakes</h3>
+    <ol>
+      <li><code>Disallow: /</code> — सभी pages block हो जाते हैं! बहुत common गलती।</li>
+      <li>CSS/JS files block करना — Google page render नहीं कर पाता</li>
+      <li>Sitemap URL wrong होना</li>
+      <li>Case-sensitive paths में गलती</li>
+    </ol>
+  </div>
+</div></div>
+
+<button id="rtaScrollTop">↑</button>
+<footer class="site-footer"><p>© 2025 <a href="../index.html">ApneSoftware.com</a> · Free Tools for Everyone</p></footer>
+<script src="../assets/common.js"></script>
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const SAMPLE=`# robots.txt for example.com
+User-agent: *
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /private/
+Disallow: /search?
+Allow: /
+Crawl-delay: 2
+
+User-agent: Googlebot
+Allow: /
+Disallow: /no-google/
+
+Sitemap: https://example.com/sitemap.xml
+Sitemap: https://example.com/news-sitemap.xml`;
+
+let parsedData=[];
+
+function parse(text){
+  const lines=text.split('\n');
+  const groups=[];
+  let current=null;
+  const errors=[];
+  const sitemaps=[];
+
+  lines.forEach((raw,i)=>{
+    const line=raw.trim();
+    if(!line||line.startsWith('#')) return;
+    const m=line.match(/^([A-Za-z-]+):\s*(.*)/);
+    if(!m){errors.push({line:i+1,msg:'Invalid syntax: "'+line.slice(0,50)+'"',type:'warn'});return;}
+    const [,dir,val]=m;
+    const d=dir.toLowerCase();
+    if(d==='user-agent'){
+      current={agent:val,rules:[],delay:null};
+      groups.push(current);
+    } else if(!current){
+      if(d==='sitemap') sitemaps.push(val);
+      return;
+    } else if(d==='disallow'){
+      if(val==='/')errors.push({line:i+1,msg:'Disallow: / blocks ALL pages for '+current.agent+'! Is this intentional?',type:'error'});
+      if(val.match(/\.(css|js)$/)) errors.push({line:i+1,msg:'Blocking '+val+' may prevent Google from rendering your pages.',type:'warn'});
+      current.rules.push({type:'disallow',path:val||'',line:i+1});
+    } else if(d==='allow'){
+      current.rules.push({type:'allow',path:val,line:i+1});
+    } else if(d==='crawl-delay'){
+      current.delay=val;
+    } else if(d==='sitemap'){
+      sitemaps.push(val);
+    } else {
+      errors.push({line:i+1,msg:'Unknown directive: "'+dir+'"',type:'warn'});
+    }
+  });
+
+  if(!groups.length) errors.push({line:0,msg:'No User-agent directive found.',type:'error'});
+  return {groups,errors,sitemaps};
+}
+
+function pathMatches(rulePath,urlPath){
+  if(!rulePath) return true; // empty disallow = allow all
+  const escaped=rulePath.replace(/[.+^${}()|[\]\\]/g,'\\$&').replace(/\*/g,'.*').replace(/\?/,'\\?');
+  return new RegExp('^'+escaped).test(urlPath);
+}
+
+function isAllowed(urlPath,agent,groups){
+  // Find matching groups (specific agent or *)
+  const matching=groups.filter(g=>g.agent===agent||g.agent==='*');
+  if(!matching.length) return true;
+  // Longest matching rule wins
+  let decision=true;
+  let longestMatch=0;
+  matching.forEach(g=>{
+    g.rules.forEach(r=>{
+      if(pathMatches(r.path,urlPath)&&r.path.length>=longestMatch){
+        longestMatch=r.path.length;
+        decision=r.type==='allow';
+      }
+    });
+  });
+  return decision;
+}
+
+function analyze(){
+  const txt=$('rtInput').value.trim();
+  if(!txt){showToast('⚠️ Paste a robots.txt first.');return;}
+  const {groups,errors,sitemaps}=parse(txt);
+  parsedData=groups;
+
+  // Errors panel
+  if(errors.length){
+    $('errorsPanel').style.display='block';
+    $('errorsList').innerHTML=errors.map(e=>`
+      <div class="${e.type==='error'?'rta-error':'rta-warn'}">
+        <span>${e.type==='error'?'❌':'⚠️'}</span>
+        <div>${e.line?`Line ${e.line}: `:''}${e.msg}</div>
+      </div>`).join('');
+  } else {
+    $('errorsPanel').style.display='block';
+    $('errorsList').innerHTML='<div class="rta-ok">✅ No errors found. Your robots.txt syntax looks valid.</div>';
+  }
+
+  // Sitemaps
+  if(sitemaps.length){
+    $('errorsList').innerHTML+=sitemaps.map(s=>`<div class="rta-ok">🗺️ Sitemap found: ${s}</div>`).join('');
+  } else {
+    $('errorsList').innerHTML+='<div class="rta-warn">⚠️ No Sitemap directive found. Add: Sitemap: https://example.com/sitemap.xml</div>';
+  }
+
+  // Parsed rules
+  $('parsedRules').innerHTML=groups.map(g=>`
+    <div class="rta-rule">
+      <div class="rta-rule-agent">User-agent: ${g.agent}${g.delay?' · Crawl-delay: '+g.delay:''}</div>
+      ${g.rules.length?g.rules.map(r=>`
+        <div class="rta-directive-row">
+          <span class="${r.type==='allow'?'rta-icon-allow':'rta-icon-deny'}">${r.type==='allow'?'✅':'🚫'}</span>
+          <span class="rta-directive">${r.type==='allow'?'Allow:':'Disallow:'}</span>
+          <span class="rta-val">${r.path||'(all)'}</span>
+          <span class="rta-line-num">L${r.line}</span>
+        </div>`).join(''):'<div style="font-size:.78rem;color:rgba(255,255,255,.35)">No specific rules (allows all)</div>'}
+    </div>`).join('')||'<div style="color:rgba(255,255,255,.35);font-size:.85rem">No groups parsed.</div>';
+
+  // Bot options
+  const allAgents=['*',...groups.map(g=>g.agent).filter(a=>a!=='*')];
+  $('testBot').innerHTML=allAgents.map(a=>`<option value="${a}">${a==='*'?'All Bots (*)':a}</option>`).join('');
+
+  $('resultsArea').style.display='block';
+  $('resultsArea').scrollIntoView({behavior:'smooth',block:'start'});
+  showToast('✅ Parsed '+groups.length+' user-agent groups!');
+}
+
+function testUrl(){
+  const url=$('testUrl').value.trim();
+  const bot=$('testBot').value;
+  if(!url){showToast('⚠️ Enter a URL to test.');return;}
+  let path;
+  try{path=new URL(url).pathname;}catch{path=url.startsWith('/')?url:'/'+url;}
+  const allowed=isAllowed(path,bot,parsedData);
+  const el=$('testResult');
+  el.style.display='block';
+  el.innerHTML=`<div class="rta-test-result ${allowed?'rta-test-allow':'rta-test-block'}">
+    <span style="font-size:1.5rem">${allowed?'✅':'🚫'}</span>
+    <div>
+      <div>${path} is <strong>${allowed?'ALLOWED':'BLOCKED'}</strong> for ${bot==='*'?'all bots':bot}</div>
+      <div style="font-size:.78rem;opacity:.7;margin-top:2px">${allowed?'This URL will be crawled normally.':'Crawlers will skip this URL.'}</div>
+    </div>
+  </div>`;
+}
+
+function showToast(msg){const t=document.createElement('div');t.className='prem-toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2400);}
+
+function init(){
+  $('btnAnalyze').addEventListener('click',analyze);
+  $('btnSample').addEventListener('click',()=>{$('rtInput').value=SAMPLE;showToast('📋 Sample loaded!');});
+  $('btnClear').addEventListener('click',()=>{$('rtInput').value='';$('resultsArea').style.display='none';parsedData=[];});
+  $('btnTest').addEventListener('click',testUrl);
+  document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();analyze();}});
+  const sb=$('rtaScrollTop');
+  window.addEventListener('scroll',()=>sb.classList.toggle('show',scrollY>400));
+  sb.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+}
+document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+</body>
+</html>

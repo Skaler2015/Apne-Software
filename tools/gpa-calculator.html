@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>GPA / CGPA Calculator — Grade Point Average | ApneSoftware</title>
+<meta name="description" content="Calculate your GPA, CGPA, and percentage from grades and credit hours. Free, instant, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .subject-row{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;margin-bottom:8px}
+  .subject-row input,select{width:100%;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font-size:.85rem}
+  .remove-btn{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:#EF4444;border-radius:8px;padding:8px 12px;cursor:pointer;font-size:.8rem}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+<div class="container">
+  <div class="tool-header">
+    <h1>🎓 GPA / CGPA Calculator</h1>
+    <p>Calculate your GPA, CGPA, and equivalent percentage from grades and credit hours.</p>
+  </div>
+  <div class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <strong>Subjects</strong>
+      <div style="display:flex;gap:8px;align-items:center;font-size:.82rem;color:var(--text-dim)">
+        <span>Grade Scale:</span>
+        <select id="gradeScale" style="padding:6px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font-size:.82rem">
+          <option value="10">10-point (UGC India)</option>
+          <option value="4">4-point (US)</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr auto auto;gap:8px;margin-bottom:4px">
+      <span style="font-size:.75rem;font-weight:700;color:var(--text-dim)">SUBJECT</span>
+      <span style="font-size:.75rem;font-weight:700;color:var(--text-dim);text-align:center">GRADE POINTS</span>
+      <span style="font-size:.75rem;font-weight:700;color:var(--text-dim);text-align:center">CREDITS</span>
+    </div>
+    <div id="subjectList"></div>
+
+    <div class="btn-row" style="margin-top:12px">
+      <button class="btn secondary" id="addBtn">+ Add Subject</button>
+      <button class="btn" id="calcBtn">Calculate GPA</button>
+    </div>
+
+    <div class="stat-grid" id="results" style="display:none;margin-top:14px">
+      <div class="stat-box"><div class="num" id="gpa">0</div><div class="lbl">GPA / CGPA</div></div>
+      <div class="stat-box"><div class="num" id="pct">0%</div><div class="lbl">Equivalent %</div></div>
+      <div class="stat-box"><div class="num" id="totalCredits">0</div><div class="lbl">Total Credits</div></div>
+    </div>
+  </div>
+</div>
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>GPA (Grade Point Average) and CGPA (Cumulative Grade Point Average) are weighted averages of your grade points across subjects, where the weight of each subject is its credit hours. The formula is: GPA = Sum(Grade Points × Credits) / Sum(Credits). A subject worth more credits contributes more to your overall GPA than a low-credit subject.</p>
+      <p>India uses the UGC-mandated 10-point scale where O (Outstanding) = 10, A+ = 9, A = 8, B+ = 7, B = 6, C = 5, and below 5 is failing (P = 4). To convert CGPA to percentage under UGC guidelines, multiply by 9.5. The US 4-point system is also included for students applying abroad or enrolled in US-affiliated programs.</p>
+      <p>CGPA is your overall GPA across all semesters combined. To calculate it using this tool, enter all your subjects from all semesters together — the weighted average handles the rest. If you want per-semester GPA separately, calculate each semester individually and note the results.</p>
+      <p>Many Indian universities, PSU recruiters, and graduate school admissions use CGPA cutoffs. A common threshold is 6.0 CGPA on the 10-point scale (equivalent to approximately 57%) for engineering college placements, and 7.0 or above for many PSU/government jobs. Top graduate programs typically require 7.5+ CGPA.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Select the grade scale (10-point for India, 4-point for US).</li>
+        <li>Add each subject with its grade points and credit hours.</li>
+        <li>Click "Calculate GPA" to see your GPA, equivalent percentage, and total credits.</li>
+      </ol>
+    <p>A common question is whether it's better to retake a course with a poor grade versus moving forward. This calculator helps answer that concretely: enter your current courses, then try a scenario where the poor-grade subject is replaced by a higher grade (keeping the same credits) and see the exact GPA impact. Given that credit hours weight the calculation, a poor grade in a high-credit core subject can drag down GPA significantly more than the same grade in a low-credit elective. Conversely, excelling in a high-credit subject can boost GPA disproportionately. This mathematical reality is useful when prioritizing study effort allocation — directing extra study time to high-credit subjects that you're borderline in yields greater GPA return than polishing already-high grades in low-credit courses. International university applications typically ask for transcripts in both letter grades and numeric GPA, so using the correct scale and conversion method for your target country's application portal avoids confusion during the application process.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>GPA (Grade Point Average) और CGPA (Cumulative Grade Point Average) subjects में grade points के weighted averages हैं, जहां हर subject का weight उसके credit hours हैं। Formula है: GPA = Sum(Grade Points × Credits) / Sum(Credits)। ज़्यादा credits वाला subject आपके overall GPA में कम-credit subject से ज़्यादा contribute करता है।</p>
+      <p>भारत में UGC-mandated 10-point scale इस्तेमाल होता है जहां O (Outstanding) = 10, A+ = 9, A = 8, B+ = 7, B = 6, C = 5, और 5 से कम failing है। UGC guidelines के तहत CGPA को percentage में convert करने के लिए 9.5 से multiply करें। US 4-point system भी शामिल है विदेश में apply करने वाले या US-affiliated programs में enrolled students के लिए।</p>
+      <p>CGPA सभी semesters में combine किया गया आपका overall GPA है। इसे इस tool से calculate करने के लिए, सभी semesters के सभी subjects एक साथ enter करें — weighted average बाकी काम कर लेगा। अगर आप प्रति semester GPA अलग-अलग चाहते हैं, तो हर semester अलग calculate करें।</p>
+      <p>कई Indian universities, PSU recruiters, और graduate school admissions CGPA cutoffs इस्तेमाल करते हैं। Engineering college placements के लिए common threshold 10-point scale पर 6.0 CGPA (लगभग 57% के equivalent) है, और कई PSU/government jobs के लिए 7.0 या उससे अधिक। Top graduate programs के लिए आमतौर पर 7.5+ CGPA चाहिए।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>Grade scale चुनें (India के लिए 10-point, US के लिए 4-point)।</li>
+        <li>हर subject grade points और credit hours के साथ add करें।</li>
+        <li>अपना GPA, equivalent percentage, और total credits देखने के लिए "Calculate GPA" click करें।</li>
+      </ol>
+    <p>एक common question यह है कि poor grade वाला course retake करना better है या आगे बढ़ना। यह calculator इसे concretely answer करने में मदद करता है: अपने current courses enter करें, फिर एक scenario try करें जहां poor-grade subject को higher grade से replace किया गया है (same credits रखते हुए) और exact GPA impact देखें। चूंकि credit hours calculation को weight करते हैं, high-credit core subject में poor grade GPA को low-credit elective में same grade की तुलना में significantly ज़्यादा drag down कर सकता है। Conversely, high-credit subject में excel करने से GPA disproportionately boost हो सकता है। यह mathematical reality study effort allocation prioritize करते समय useful है — borderline वाले high-credit subjects पर extra study time direct करना low-credit courses में already-high grades polish करने की तुलना में greater GPA return yield करता है। International university applications typically letter grades और numeric GPA दोनों में transcripts मांगती हैं, इसलिए application process के दौरान confusion avoid करने के लिए अपने target country के application portal के लिए सही scale और conversion method इस्तेमाल करना important है।</p>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<script>
+let subjectCount = 0;
+const defaultSubjects = [
+  {name:'Mathematics',gp:'8',cr:'4'},
+  {name:'Physics',gp:'7',cr:'3'},
+  {name:'Chemistry',gp:'9',cr:'3'},
+  {name:'English',gp:'8',cr:'2'},
+];
+
+function addSubject(name='', gp='', cr='3'){
+  subjectCount++;
+  const id = subjectCount;
+  const div = document.createElement('div');
+  div.className = 'subject-row';
+  div.id = `sub_${id}`;
+  div.innerHTML = `
+    <input type="text" placeholder="Subject name" value="${name}">
+    <input type="number" placeholder="GP" value="${gp}" min="0" step="0.1" style="width:80px">
+    <input type="number" placeholder="Credits" value="${cr}" min="1" style="width:70px">
+    <button class="remove-btn" onclick="document.getElementById('sub_${id}').remove()">✕</button>
+  `;
+  document.getElementById('subjectList').appendChild(div);
+}
+
+defaultSubjects.forEach(s => addSubject(s.name, s.gp, s.cr));
+
+document.getElementById('addBtn').addEventListener('click', () => addSubject());
+
+document.getElementById('calcBtn').addEventListener('click', ()=>{
+  const rows = document.querySelectorAll('.subject-row');
+  const scale = parseFloat(document.getElementById('gradeScale').value);
+  let sumGPxC = 0, sumC = 0;
+  rows.forEach(row => {
+    const inputs = row.querySelectorAll('input[type=number]');
+    const gp = parseFloat(inputs[0].value) || 0;
+    const cr = parseFloat(inputs[1].value) || 0;
+    sumGPxC += gp * cr;
+    sumC += cr;
+  });
+  if(!sumC) return;
+  const gpa = sumGPxC / sumC;
+  const pct = scale === 10 ? gpa * 9.5 : gpa * 25;
+  document.getElementById('gpa').textContent = gpa.toFixed(2);
+  document.getElementById('pct').textContent = pct.toFixed(1) + '%';
+  document.getElementById('totalCredits').textContent = sumC;
+  document.getElementById('results').style.display = 'grid';
+});
+</script>
+</body>
+</html>

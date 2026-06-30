@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/standard-deviation-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Standard Deviation Calculator — Variance & Stats | ApneSoftware">
+<meta property="og:description" content="Calculate standard deviation, variance, mean, and other statistics for any dataset. Shows both population and sample standard deviation. Free online tool.">
+<meta property="og:url" content="https://apnesoftware.com/tools/standard-deviation-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Standard Deviation Calculator — Variance & Stats | ApneSoftware">
+<meta name="twitter:description" content="Calculate standard deviation, variance, mean, and other statistics for any dataset. Shows both population and sample standard deviation. Free online tool.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Standard Deviation Calculator","description":"Calculate standard deviation, variance, mean, and other statistics for any dataset. Shows both population and sample standard deviation. Free online tool.","url":"https://apnesoftware.com/tools/standard-deviation-calculator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Standard Deviation Calculator — Variance & Stats | ApneSoftware</title>
+<meta name="description" content="Calculate standard deviation, variance, mean, and other statistics for any dataset. Shows both population and sample standard deviation. Free online tool.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  textarea#numInput{width:100%;min-height:100px;font-family:monospace;font-size:.95rem;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);resize:vertical}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+<div class="container">
+  <div class="tool-header">
+    <h1>📉 Standard Deviation Calculator</h1>
+    <p>Calculate standard deviation, variance, mean, and statistical spread for any dataset.</p>
+  </div>
+  <div class="panel">
+    <div class="field"><label for="numInput">Enter numbers (comma, space, or new line separated)</label><textarea id="numInput" placeholder="10, 20, 30, 40, 50">85, 90, 78, 92, 88, 76, 95, 83</textarea></div>
+    <div class="btn-row">
+      <button class="btn" id="calcBtn">Calculate</button>
+      <button class="btn secondary" id="resetBtn">🔄 Reset</button>
+    </div>
+    <div class="stat-grid" style="margin-top:20px">
+      <div class="stat-box"><div class="num" id="sdPop">0</div><div class="lbl">Population Std Dev (σ)</div></div>
+      <div class="stat-box"><div class="num" id="sdSamp">0</div><div class="lbl">Sample Std Dev (s)</div></div>
+      <div class="stat-box"><div class="num" id="variancePop">0</div><div class="lbl">Population Variance (σ²)</div></div>
+      <div class="stat-box"><div class="num" id="varianceSamp">0</div><div class="lbl">Sample Variance (s²)</div></div>
+      <div class="stat-box"><div class="num" id="meanVal">0</div><div class="lbl">Mean</div></div>
+      <div class="stat-box"><div class="num" id="countVal">0</div><div class="lbl">Count (n)</div></div>
+    </div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Standard deviation measures how spread out a set of numbers is around the mean. A low standard deviation means most values cluster closely around the average, while a high standard deviation means the values are widely scattered. It's one of the most fundamental concepts in statistics, used in finance, science, education, quality control, and almost every field that involves analyzing numerical data.</p>
+      <p>This calculator provides both population and sample standard deviation: population standard deviation (σ) is used when you have data for the entire group you're studying, while sample standard deviation (s) is used when your data is a sample drawn from a larger population. For most real-world datasets — test scores, survey responses, measurements from a subset of a factory's output — sample standard deviation is the appropriate calculation. The difference is in the denominator: population uses n, sample uses n−1 (called Bessel's correction).</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Enter your numbers separated by commas, spaces, or new lines.</li>
+        <li>Click "Calculate" to see all statistical measures at once.</li>
+      </ol>
+      <h3>Common real-world uses</h3>
+      <p>In investing, standard deviation of returns is used as a measure of risk — higher std dev means more volatile returns. In education, it shows how spread out exam scores are, with a low standard deviation indicating most students scored similarly, and a high one indicating a wide spread of abilities. In manufacturing, standard deviation of measurements indicates consistency — a very small standard deviation is essential in precision engineering or pharmaceutical dosing. Understanding it alongside the mean always gives a more complete and honest picture of any dataset than the mean alone.</p>
+      <p>One practical way to use standard deviation is the 68-95-99.7 rule (empirical rule): for normally distributed data, about 68% of values fall within one standard deviation of the mean, 95% within two, and 99.7% within three. This means if a class has a mean score of 70 and a standard deviation of 10, you can immediately know that roughly 68% of students scored between 60 and 80, and virtually all scored between 40 and 100 — giving far more insight than the mean score alone could provide.</p>
+      <p>Standard deviation also forms the mathematical basis for many more advanced statistical concepts: confidence intervals, hypothesis testing, normal distribution calculations, and control charts in quality management all build directly on it. Even if you don't need those advanced applications, understanding standard deviation at its most basic level — "how much do these values typically differ from the average?" — is one of the most practically useful pieces of statistical intuition for making sense of data in everyday professional and academic contexts.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>Standard deviation measure करती है कि numbers का एक set mean के आस-पास कितना spread है। Low standard deviation का मतलब है ज़्यादातर values average के करीब cluster होती हैं, जबकि high standard deviation का मतलब है values widely scattered हैं। यह statistics में सबसे fundamental concepts में से एक है, जो finance, science, education, quality control, और लगभग हर उस field में इस्तेमाल होती है जिसमें numerical data analyze करना शामिल है।</p>
+      <p>यह calculator population और sample standard deviation दोनों provide करता है: population standard deviation (σ) तब इस्तेमाल होती है जब आपके पास उस पूरे group का data हो जिसे आप study कर रहे हैं, जबकि sample standard deviation (s) तब इस्तेमाल होती है जब आपका data किसी बड़े population से लिया गया sample है। ज़्यादातर real-world datasets के लिए — test scores, survey responses, factory output के subset से measurements — sample standard deviation appropriate calculation है। अंतर denominator में है: population n इस्तेमाल करती है, sample n−1 (Bessel's correction कहते हैं)।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपने numbers commas, spaces, या new lines से अलग करके दर्ज करें।</li>
+        <li>एक साथ सभी statistical measures देखने के लिए "Calculate" दबाएं।</li>
+      </ol>
+      <h3>Common real-world uses</h3>
+      <p>Investing में, returns की standard deviation risk के measure के रूप में इस्तेमाल होती है — higher std dev का मतलब ज़्यादा volatile returns। Education में, यह दिखाती है कि exam scores कितने spread हैं — low standard deviation का मतलब ज़्यादातर students ने similarly score किया, high का मतलब abilities की wide spread। Manufacturing में, measurements की standard deviation consistency दर्शाती है — precision engineering या pharmaceutical dosing में बहुत small standard deviation essential है। Mean के साथ इसे समझना हमेशा किसी dataset की अकेले mean से कहीं ज़्यादा complete और honest picture देता है।</p>
+      <p>Standard deviation का एक practical उपयोग 68-95-99.7 rule है: normally distributed data के लिए, लगभग 68% values mean के एक standard deviation के भीतर, 95% दो के भीतर, और 99.7% तीन के भीतर। Mean score 70 और standard deviation 10 वाली class में, आप तुरंत जान सकते हैं कि 68% students ने 60-80 के बीच score किया। Standard deviation confidence intervals, hypothesis testing, और quality control में control charts जैसे advanced concepts का mathematical basis भी है।</p>
+      <p>Standard deviation इस्तेमाल करने का एक practical तरीका 68-95-99.7 rule (empirical rule) है: normally distributed data के लिए, लगभग 68% values mean के एक standard deviation के भीतर, 95% दो के भीतर, और 99.7% तीन के भीतर आती हैं। इसका मतलब है अगर किसी class का mean score 70 और standard deviation 10 है, तो आप तुरंत जान सकते हैं कि लगभग 68% students ने 60 और 80 के बीच score किया, और practically सभी ने 40 और 100 के बीच — जो अकेले mean score से कहीं ज़्यादा insight देता है।</p>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<script src="../assets/common.js"></script>
+<script>
+function round4(n){ return Math.round(n * 10000) / 10000; }
+document.getElementById('calcBtn').addEventListener('click', ()=>{
+  const raw = document.getElementById('numInput').value;
+  const nums = raw.split(/[\s,\n]+/).filter(Boolean).map(Number).filter(n => !isNaN(n));
+  const status = document.getElementById('statusMsg');
+  if(nums.length < 2){ status.textContent = '⚠️ Please enter at least 2 numbers.'; return; }
+  status.textContent = '';
+
+  const n = nums.length;
+  const mean = nums.reduce((a,b) => a+b, 0) / n;
+  const squaredDiffs = nums.map(x => Math.pow(x - mean, 2));
+  const sumSqDiff = squaredDiffs.reduce((a,b) => a+b, 0);
+  const varPop = sumSqDiff / n;
+  const varSamp = sumSqDiff / (n - 1);
+  const sdPop = Math.sqrt(varPop);
+  const sdSamp = Math.sqrt(varSamp);
+
+  document.getElementById('sdPop').textContent = round4(sdPop);
+  document.getElementById('sdSamp').textContent = round4(sdSamp);
+  document.getElementById('variancePop').textContent = round4(varPop);
+  document.getElementById('varianceSamp').textContent = round4(varSamp);
+  document.getElementById('meanVal').textContent = round4(mean);
+  document.getElementById('countVal').textContent = n;
+});
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  document.getElementById('numInput').value = '';
+  ['sdPop','sdSamp','variancePop','varianceSamp','meanVal','countVal'].forEach(id => document.getElementById(id).textContent = '0');
+  document.getElementById('statusMsg').textContent = '';
+});
+</script>
+</body>
+</html>

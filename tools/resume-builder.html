@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/resume-builder.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Resume Builder | ApneSoftware">
+<meta property="og:description" content="Build a resume with live preview, export as PDF. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/resume-builder.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Resume Builder | ApneSoftware">
+<meta name="twitter:description" content="Build a resume with live preview, export as PDF. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Resume Builder","description":"Build a resume with live preview, export as PDF. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/resume-builder.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Resume Builder | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .builder-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media (max-width:900px){ .builder-grid{grid-template-columns:1fr} }
+  .entry-block{
+    background:var(--surface-2);border:1px solid var(--border);border-radius:10px;
+    padding:14px;margin-bottom:12px;position:relative;
+  }
+  .entry-block .removeBtn{
+    position:absolute;top:10px;right:10px;background:none;border:1px solid var(--border);
+    border-radius:6px;color:var(--text-dim);cursor:pointer;padding:3px 8px;font-size:.78rem;
+  }
+  .skills-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+  .skills-tags span{background:var(--surface-2);border:1px solid var(--border);border-radius:20px;padding:3px 12px;font-size:.78rem;color:var(--text-dim)}
+  .color-row{display:flex;align-items:center;gap:10px}
+  .color-row input[type=color]{width:44px;height:36px;padding:2px;border-radius:8px}
+
+  /* Resume preview (this gets exported to PDF) */
+  #resumePreview{
+    background:#fff;color:#1a1a1a;border-radius:8px;padding:36px;font-family:'Helvetica Neue',Arial,sans-serif;
+    min-height:600px;box-shadow:0 4px 20px rgba(0,0,0,.3);
+  }
+  #resumePreview h1{font-size:1.7rem;margin-bottom:2px}
+  #resumePreview .headline{font-size:1rem;color:#555;margin-bottom:10px}
+  #resumePreview .contact-line{font-size:.82rem;color:#444;margin-bottom:18px}
+  #resumePreview .contact-line span{margin-right:14px}
+  #resumePreview .rsection-title{
+    font-size:.85rem;text-transform:uppercase;letter-spacing:.6px;font-weight:700;
+    border-bottom:2px solid var(--accent-color,#7C5CFC);padding-bottom:4px;margin:18px 0 10px;color:#222;
+  }
+  #resumePreview .entry-title{font-weight:700;font-size:.95rem;color:#222}
+  #resumePreview .entry-sub{font-size:.82rem;color:#555;margin-bottom:4px}
+  #resumePreview ul{margin:4px 0 10px 18px;font-size:.85rem;color:#333;line-height:1.6}
+  #resumePreview .skill-pill{
+    display:inline-block;background:#f0f2f5;color:#333;border-radius:14px;padding:3px 12px;
+    font-size:.78rem;margin:0 6px 6px 0;
+  }
+  #resumePreview .summary-text{font-size:.88rem;color:#333;line-height:1.6;margin-bottom:4px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📄 Resume Builder</h1>
+    <p>Fill in your details and watch your resume build itself — then download it as a polished PDF.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="accentColor">Accent color</label>
+      <div class="color-row"><input type="color" id="accentColor" value="#7C5CFC"></div>
+    </div>
+
+    <div class="builder-grid">
+      <div id="formSide">
+        <h3 style="font-size:.95rem;margin-bottom:8px">👤 Personal Details</h3>
+        <div class="row">
+          <div class="field"><label for="fullName">Full name</label><input type="text" id="fullName" placeholder="Ravi Sharma"></div>
+          <div class="field"><label for="headline">Headline / Title</label><input type="text" id="headline" placeholder="Senior Software Engineer"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="email">Email</label><input type="text" id="email" placeholder="ravi@example.com"></div>
+          <div class="field"><label for="phone">Phone</label><input type="text" id="phone" placeholder="+91 98765 43210"></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="location">Location</label><input type="text" id="location" placeholder="Jaipur, India"></div>
+          <div class="field"><label for="linkedin">LinkedIn / Website</label><input type="text" id="linkedin" placeholder="linkedin.com/in/ravisharma"></div>
+        </div>
+
+        <div class="field">
+          <label for="summary">Professional summary</label>
+          <textarea id="summary" style="min-height:90px" placeholder="A short 2-3 line summary of your experience and strengths..."></textarea>
+        </div>
+
+        <h3 style="font-size:.95rem;margin:18px 0 8px">💼 Work Experience</h3>
+        <div id="experienceList"></div>
+        <button class="btn secondary" id="addExperienceBtn">+ Add Experience</button>
+
+        <h3 style="font-size:.95rem;margin:18px 0 8px">🎓 Education</h3>
+        <div id="educationList"></div>
+        <button class="btn secondary" id="addEducationBtn">+ Add Education</button>
+
+        <h3 style="font-size:.95rem;margin:18px 0 8px">🛠️ Skills</h3>
+        <div class="field">
+          <label for="skillsInput">Skills (comma-separated)</label>
+          <input type="text" id="skillsInput" placeholder="JavaScript, Project Management, Excel, Communication">
+        </div>
+
+        <div class="btn-row" style="margin-top:18px">
+          <button class="btn" id="downloadBtn">⬇️ Download PDF</button>
+        </div>
+        <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+      </div>
+
+      <div id="previewSide">
+        <h3 style="font-size:.95rem;margin-bottom:8px">👁️ Live Preview</h3>
+        <div id="resumePreview"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Build a clean, professional one-page resume by filling out a simple form — no design skills needed. Add as many work experience and education entries as you need, and watch the preview update instantly before downloading as a PDF.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Fill in your personal details, summary, experience, education, and skills.</li>
+        <li>Use "+ Add Experience" or "+ Add Education" for multiple entries.</li>
+        <li>Pick an accent color, then click Download PDF.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>एक सिंपल फॉर्म भरकर साफ-सुथरा, प्रोफेशनल एक-पेज रिज्यूमे बनाएं — किसी डिज़ाइन स्किल की ज़रूरत नहीं। जितनी चाहें उतनी वर्क एक्सपीरियंस और एजुकेशन एंट्री जोड़ें, और PDF डाउनलोड करने से पहले प्रीव्यू तुरंत अपडेट होते देखें।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी पर्सनल डिटेल्स, समरी, एक्सपीरियंस, एजुकेशन और स्किल्स भरें।</li>
+        <li>कई एंट्री के लिए "+ Add Experience" या "+ Add Education" इस्तेमाल करें।</li>
+        <li>एक्सेंट कलर चुनें, फिर Download PDF दबाएं।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+let experiences = [{ company:'', role:'', dates:'', desc:'' }];
+let educations = [{ school:'', degree:'', dates:'' }];
+
+function renderExperienceForm(){
+  const wrap = document.getElementById('experienceList');
+  wrap.innerHTML = '';
+  experiences.forEach((exp, i)=>{
+    const block = document.createElement('div');
+    block.className = 'entry-block';
+    block.innerHTML = `
+      ${experiences.length > 1 ? '<button class="removeBtn" data-type="exp" data-i="'+i+'">✕ Remove</button>' : ''}
+      <div class="row">
+        <div class="field"><label>Company</label><input type="text" data-field="company" data-i="${i}" value="${escAttr(exp.company)}" placeholder="Company name"></div>
+        <div class="field"><label>Role</label><input type="text" data-field="role" data-i="${i}" value="${escAttr(exp.role)}" placeholder="Job title"></div>
+      </div>
+      <div class="field"><label>Dates</label><input type="text" data-field="dates" data-i="${i}" value="${escAttr(exp.dates)}" placeholder="Jan 2022 – Present"></div>
+      <div class="field"><label>Description (one bullet point per line)</label><textarea data-field="desc" data-i="${i}" style="min-height:70px" placeholder="Led a team of 5 engineers...&#10;Improved performance by 40%...">${exp.desc}</textarea></div>
+    `;
+    wrap.appendChild(block);
+  });
+  wireExperienceInputs();
+}
+
+function renderEducationForm(){
+  const wrap = document.getElementById('educationList');
+  wrap.innerHTML = '';
+  educations.forEach((edu, i)=>{
+    const block = document.createElement('div');
+    block.className = 'entry-block';
+    block.innerHTML = `
+      ${educations.length > 1 ? '<button class="removeBtn" data-type="edu" data-i="'+i+'">✕ Remove</button>' : ''}
+      <div class="row">
+        <div class="field"><label>School / University</label><input type="text" data-field="school" data-i="${i}" value="${escAttr(edu.school)}" placeholder="University name"></div>
+        <div class="field"><label>Degree</label><input type="text" data-field="degree" data-i="${i}" value="${escAttr(edu.degree)}" placeholder="B.Tech Computer Science"></div>
+      </div>
+      <div class="field"><label>Dates</label><input type="text" data-field="dates" data-i="${i}" value="${escAttr(edu.dates)}" placeholder="2018 – 2022"></div>
+    `;
+    wrap.appendChild(block);
+  });
+  wireEducationInputs();
+}
+
+function escAttr(s){ return (s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;'); }
+function escHtml(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function wireExperienceInputs(){
+  document.querySelectorAll('#experienceList [data-field]').forEach(el=>{
+    el.addEventListener('input', ()=>{
+      experiences[el.dataset.i][el.dataset.field] = el.value;
+      renderPreview();
+    });
+  });
+  document.querySelectorAll('#experienceList .removeBtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      experiences.splice(parseInt(btn.dataset.i),1);
+      renderExperienceForm(); renderPreview();
+    });
+  });
+}
+function wireEducationInputs(){
+  document.querySelectorAll('#educationList [data-field]').forEach(el=>{
+    el.addEventListener('input', ()=>{
+      educations[el.dataset.i][el.dataset.field] = el.value;
+      renderPreview();
+    });
+  });
+  document.querySelectorAll('#educationList .removeBtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      educations.splice(parseInt(btn.dataset.i),1);
+      renderEducationForm(); renderPreview();
+    });
+  });
+}
+
+document.getElementById('addExperienceBtn').addEventListener('click', ()=>{
+  experiences.push({ company:'', role:'', dates:'', desc:'' });
+  renderExperienceForm(); renderPreview();
+});
+document.getElementById('addEducationBtn').addEventListener('click', ()=>{
+  educations.push({ school:'', degree:'', dates:'' });
+  renderEducationForm(); renderPreview();
+});
+
+function renderPreview(){
+  const accent = document.getElementById('accentColor').value;
+  const name = document.getElementById('fullName').value || 'Your Name';
+  const headline = document.getElementById('headline').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const location = document.getElementById('location').value;
+  const linkedin = document.getElementById('linkedin').value;
+  const summary = document.getElementById('summary').value;
+  const skills = document.getElementById('skillsInput').value.split(',').map(s=>s.trim()).filter(Boolean);
+
+  let contactParts = [email, phone, location, linkedin].filter(Boolean).map(escHtml);
+  let html = `<h1 style="color:${accent}">${escHtml(name)}</h1>`;
+  if(headline) html += `<div class="headline">${escHtml(headline)}</div>`;
+  if(contactParts.length) html += `<div class="contact-line">${contactParts.map(p=>'<span>'+p+'</span>').join('')}</div>`;
+
+  if(summary){
+    html += `<div class="rsection-title" style="border-color:${accent}">Summary</div><div class="summary-text">${escHtml(summary)}</div>`;
+  }
+
+  const validExp = experiences.filter(e => e.company || e.role);
+  if(validExp.length){
+    html += `<div class="rsection-title" style="border-color:${accent}">Experience</div>`;
+    validExp.forEach(exp=>{
+      html += `<div class="entry-title">${escHtml(exp.role||'Role')}${exp.company? ' — '+escHtml(exp.company):''}</div>`;
+      if(exp.dates) html += `<div class="entry-sub">${escHtml(exp.dates)}</div>`;
+      const bullets = (exp.desc||'').split('\n').map(s=>s.trim()).filter(Boolean);
+      if(bullets.length) html += '<ul>' + bullets.map(b=>'<li>'+escHtml(b)+'</li>').join('') + '</ul>';
+    });
+  }
+
+  const validEdu = educations.filter(e => e.school || e.degree);
+  if(validEdu.length){
+    html += `<div class="rsection-title" style="border-color:${accent}">Education</div>`;
+    validEdu.forEach(edu=>{
+      html += `<div class="entry-title">${escHtml(edu.degree||'Degree')}</div>`;
+      html += `<div class="entry-sub">${escHtml(edu.school||'')}${edu.dates? ' — '+escHtml(edu.dates):''}</div>`;
+    });
+  }
+
+  if(skills.length){
+    html += `<div class="rsection-title" style="border-color:${accent}">Skills</div>`;
+    html += skills.map(s=>'<span class="skill-pill">'+escHtml(s)+'</span>').join('');
+  }
+
+  document.getElementById('resumePreview').innerHTML = html;
+}
+
+document.querySelectorAll('#fullName,#headline,#email,#phone,#location,#linkedin,#summary,#skillsInput,#accentColor').forEach(el=>{
+  el.addEventListener('input', renderPreview);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Generating PDF...';
+  const el = document.getElementById('resumePreview');
+  const name = (document.getElementById('fullName').value || 'resume').replace(/\s+/g,'-').toLowerCase();
+  html2pdf().set({
+    margin: 0,
+    filename: name + '.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' }
+  }).from(el).save().then(()=>{
+    status.textContent = '✅ PDF downloaded!';
+  }).catch((err)=>{
+    status.textContent = '❌ Error generating PDF: ' + (err && err.message ? err.message : String(err));
+  });
+});
+
+renderExperienceForm();
+renderEducationForm();
+renderPreview();
+</script>
+</body>
+</html>

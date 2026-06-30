@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Robots.txt Generator — Create a perfect robots.txt file with visual controls. Block/allow crawlers, set crawl delay, specify sitemap URL. Download instantly.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/robots-txt-generator.html">
+<meta property="og:title" content="Robots.txt Generator — Visual Controls | ApneSoftware">
+<meta property="og:description" content="Create a robots.txt file visually. Block bots, set crawl delays, add sitemap. Free, instant download.">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="dark">
+<title>Robots.txt Generator — Visual Controls | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.rtg-bot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px;margin-bottom:14px}
+.rtg-bot{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px;cursor:pointer;transition:.2s;user-select:none}
+.rtg-bot:hover,.rtg-bot.on{background:rgba(22,192,121,.1);border-color:rgba(22,192,121,.35)}
+.rtg-bot-head{display:flex;justify-content:space-between;align-items:center}
+.rtg-bot-name{font-size:.82rem;font-weight:700;color:rgba(255,255,255,.85)}
+.rtg-bot-sw{width:32px;height:18px;background:rgba(255,255,255,.12);border-radius:999px;position:relative;transition:.2s;flex-shrink:0}
+.rtg-bot.on .rtg-bot-sw{background:#16C079}
+.rtg-bot-sw::after{content:'';position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff;transition:.2s}
+.rtg-bot.on .rtg-bot-sw::after{left:calc(100%-16px)}
+.rtg-bot-desc{font-size:.69rem;color:rgba(255,255,255,.35);margin-top:4px}
+.rtg-rule-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.rtg-rule-row input{flex:1}
+.rtg-rule-row select{width:120px}
+.rtg-del-btn{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.2);color:#F87171;border-radius:6px;padding:6px 10px;cursor:pointer;font-size:.8rem;flex-shrink:0;font-family:var(--font)}
+.rtg-del-btn:hover{background:rgba(248,113,113,.2)}
+.rtg-code{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;font-family:'Courier New',monospace;font-size:.82rem;line-height:1.8;color:#e0e0e0;white-space:pre-wrap;max-height:420px;overflow-y:auto;margin-top:12px}
+.rtg-comment{color:#8B949E}.rtg-directive{color:#79C0FF}.rtg-value{color:#A5D6FF}.rtg-allow{color:#16C079}.rtg-disallow{color:#F87171}
+#rtgScrollTop{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;box-shadow:0 4px 14px rgba(124,92,252,.4);transition:.2s}
+#rtgScrollTop.show{display:flex}
+#rtgScrollTop:hover{transform:translateY(-3px)}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="inner"><a class="brand" href="../index.html">Apne<span>Software</span></a><a class="back-link" href="../index.html">← All Tools</a></div></header>
+<div class="container">
+  <nav style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:2px">
+    <a href="../index.html" style="color:rgba(255,255,255,.45)">Home</a> › <span style="color:rgba(255,255,255,.7)">SEO Tools</span> › <span style="color:#A78BFA">Robots.txt Generator</span>
+  </nav>
+
+  <div class="tool-header"><h1>🤖 Robots.txt Generator</h1><p>Create a perfect robots.txt file with visual controls — block specific bots, set crawl delays, define allow/disallow rules, and add your sitemap URL.</p></div>
+
+  <div class="panel">
+    <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin-bottom:10px">🌐 Search Engine Bots</div>
+    <div class="rtg-bot-grid" id="botGrid"></div>
+
+    <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin:16px 0 10px">📋 Allow / Disallow Rules</div>
+    <div id="rulesContainer"></div>
+    <div class="btn-row" style="margin-top:8px">
+      <button class="btn secondary" id="btnAddAllow">+ Add Allow</button>
+      <button class="btn secondary" id="btnAddDisallow">+ Add Disallow</button>
+    </div>
+
+    <div class="row" style="margin-top:16px">
+      <div class="field"><label for="crawlDelay">Crawl Delay (seconds)</label><input type="number" id="crawlDelay" placeholder="Leave blank to omit" min="0" max="86400"></div>
+      <div class="field"><label for="sitemapUrl">Sitemap URL</label><input type="text" id="sitemapUrl" placeholder="https://example.com/sitemap.xml"></div>
+    </div>
+
+    <div class="btn-row" style="margin-top:8px">
+      <button class="btn" id="btnGenerate">⚡ Generate robots.txt</button>
+      <button class="btn secondary" id="btnReset">🗑️ Reset</button>
+      <button class="btn secondary" id="btnCopy">📋 Copy</button>
+      <button class="btn secondary" id="btnDownload">⬇️ Download robots.txt</button>
+    </div>
+  </div>
+
+  <div class="panel" id="outputPanel" style="display:none;margin-top:14px">
+    <h2 style="font-size:1rem;font-weight:800;margin-bottom:8px">📄 Generated robots.txt</h2>
+    <div class="rtg-code" id="outputCode"></div>
+  </div>
+</div>
+
+<div class="info-wrap"><div class="info-section">
+  <div class="info-block">
+    <h2>🤖 What is robots.txt?</h2>
+    <p>The <strong>robots.txt</strong> file is a text file placed at the root of your website that tells search engine crawlers which pages they can and cannot access. It's the first file any crawler checks before visiting your site.</p>
+    <p>Important: robots.txt controls <em>crawling</em>, not indexing. A page blocked in robots.txt may still appear in search results if other pages link to it. To prevent indexing, use the noindex meta tag instead.</p>
+    <h3>Key Directives</h3>
+    <ol>
+      <li><strong>User-agent</strong> — Which bot the rules apply to (* = all)</li>
+      <li><strong>Disallow</strong> — Paths the bot cannot crawl</li>
+      <li><strong>Allow</strong> — Exceptions to disallow rules</li>
+      <li><strong>Crawl-delay</strong> — Seconds to wait between requests</li>
+      <li><strong>Sitemap</strong> — Location of your XML sitemap</li>
+    </ol>
+    <h3>Common Use Cases</h3>
+    <ol>
+      <li>Block /admin/ from all bots</li>
+      <li>Block /wp-admin/ and /wp-login.php</li>
+      <li>Block /search? query parameter pages</li>
+      <li>Block /cart/ and /checkout/ pages</li>
+      <li>Allow Googlebot but block others</li>
+    </ol>
+  </div>
+  <div class="info-block">
+    <h2>🤖 Hindi Guide / हिंदी गाइड</h2>
+    <p><strong>robots.txt</strong> एक text file है जो आपकी website की root पर रखी जाती है। यह search engine crawlers को बताती है कि किन pages को crawl करना है और किन्हें नहीं।</p>
+    <h3>Important Points</h3>
+    <ol>
+      <li>File का नाम exactly <strong>robots.txt</strong> होना चाहिए (lowercase)</li>
+      <li>यह file <strong>domain root</strong> पर होनी चाहिए: example.com/robots.txt</li>
+      <li>robots.txt crawling block करती है, indexing नहीं</li>
+      <li>Indexing रोकने के लिए noindex meta tag use करें</li>
+      <li>* (star) का मतलब सभी bots</li>
+      <li>Crawl-delay: Server load कम करने के लिए</li>
+    </ol>
+    <h3>Common Rules</h3>
+    <ol>
+      <li>Admin pages block करें: Disallow: /admin/</li>
+      <li>Search pages block करें: Disallow: /search?</li>
+      <li>Cart pages block करें: Disallow: /cart/</li>
+      <li>Sitemap add करें: Sitemap: https://example.com/sitemap.xml</li>
+    </ol>
+  </div>
+</div></div>
+
+<button id="rtgScrollTop">↑</button>
+<footer class="site-footer"><p>© 2025 <a href="../index.html">ApneSoftware.com</a> · Free Tools for Everyone</p></footer>
+<script src="../assets/common.js"></script>
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+
+const BOTS=[
+  {id:'all',name:'All Bots (*)',desc:'Applies to every crawler',on:true},
+  {id:'googlebot',name:'Googlebot',desc:'Google Search crawler',on:false},
+  {id:'bingbot',name:'Bingbot',desc:'Microsoft Bing crawler',on:false},
+  {id:'slurp',name:'Yahoo Slurp',desc:'Yahoo Search crawler',on:false},
+  {id:'duckduckbot',name:'DuckDuckBot',desc:'DuckDuckGo crawler',on:false},
+  {id:'baiduspider',name:'Baiduspider',desc:'Baidu Search crawler',on:false},
+  {id:'yandexbot',name:'YandexBot',desc:'Yandex Search crawler',on:false},
+  {id:'facebookexternalhit',name:'Facebook Bot',desc:'Facebook link preview',on:false},
+  {id:'twitterbot',name:'Twitterbot',desc:'Twitter/X card crawler',on:false},
+  {id:'semrushbot',name:'SemrushBot',desc:'SEMrush analytics bot',on:false},
+  {id:'ahrefsbot',name:'AhrefsBot',desc:'Ahrefs SEO crawler',on:false},
+  {id:'mj12bot',name:'MJ12bot',desc:'Majestic SEO crawler',on:false},
+];
+const botState={};
+BOTS.forEach(b=>botState[b.id]=b.on);
+
+let rules=[
+  {type:'disallow',path:'/admin/'},
+  {type:'disallow',path:'/wp-admin/'},
+  {type:'disallow',path:'/private/'},
+];
+
+function buildBots(){
+  $('botGrid').innerHTML=BOTS.map(b=>`
+    <div class="rtg-bot${botState[b.id]?' on':''}" id="bot_${b.id}" data-id="${b.id}">
+      <div class="rtg-bot-head"><span class="rtg-bot-name">${b.name}</span><div class="rtg-bot-sw"></div></div>
+      <div class="rtg-bot-desc">${b.desc}</div>
+    </div>`).join('');
+  document.querySelectorAll('.rtg-bot').forEach(el=>{
+    el.addEventListener('click',()=>{
+      const id=el.dataset.id;
+      botState[id]=!botState[id];
+      el.classList.toggle('on',botState[id]);
+    });
+  });
+}
+
+function buildRules(){
+  const c=$('rulesContainer');
+  c.innerHTML=rules.map((r,i)=>`
+    <div class="rtg-rule-row">
+      <select data-idx="${i}" class="rule-type">
+        <option value="allow"${r.type==='allow'?' selected':''}>Allow</option>
+        <option value="disallow"${r.type==='disallow'?' selected':''}>Disallow</option>
+      </select>
+      <input type="text" data-idx="${i}" class="rule-path" value="${r.path}" placeholder="/path/to/block/">
+      <button class="rtg-del-btn" data-idx="${i}">✕</button>
+    </div>`).join('');
+  c.querySelectorAll('.rule-type').forEach(s=>s.addEventListener('change',e=>{rules[+e.target.dataset.idx].type=e.target.value;}));
+  c.querySelectorAll('.rule-path').forEach(i=>i.addEventListener('input',e=>{rules[+e.target.dataset.idx].path=e.target.value;}));
+  c.querySelectorAll('.rtg-del-btn').forEach(b=>b.addEventListener('click',e=>{rules.splice(+e.target.dataset.idx,1);buildRules();}));
+}
+
+function generate(){
+  const activeBots=BOTS.filter(b=>botState[b.id]).map(b=>b.id==='all'?'*':b.id);
+  if(!activeBots.length){showToast('⚠️ Select at least one bot.');return;}
+  const lines=['# robots.txt — Generated by ApneSoftware.com','# Generated: '+new Date().toLocaleDateString(),''];
+  activeBots.forEach(bot=>{
+    lines.push('User-agent: '+bot);
+    rules.forEach(r=>{
+      if(r.path) lines.push((r.type==='allow'?'Allow: ':'Disallow: ')+r.path);
+    });
+    const cd=$('crawlDelay').value;
+    if(cd) lines.push('Crawl-delay: '+cd);
+    lines.push('');
+  });
+  const sm=$('sitemapUrl').value.trim();
+  if(sm) lines.push('Sitemap: '+sm);
+  const txt=lines.join('\n');
+  $('outputCode').innerHTML=syntaxHL(txt);
+  $('outputPanel').style.display='block';
+  $('outputPanel').scrollIntoView({behavior:'smooth',block:'start'});
+  showToast('✅ robots.txt generated!');
+  $('btnCopy').onclick=()=>navigator.clipboard.writeText(txt).then(()=>showToast('📋 Copied!'));
+  $('btnDownload').onclick=()=>{
+    const b=new Blob([txt],{type:'text/plain'});
+    const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(b),download:'robots.txt'});
+    document.body.appendChild(a);a.click();document.body.removeChild(a);showToast('⬇️ Downloaded!');
+  };
+}
+
+function syntaxHL(txt){
+  return txt.split('\n').map(line=>{
+    if(line.startsWith('#')) return `<span class="rtg-comment">${line}</span>`;
+    const m=line.match(/^([A-Za-z-]+):\s*(.*)/);
+    if(!m) return line;
+    const [,dir,val]=m;
+    const valClass=dir==='Allow'?'rtg-allow':dir==='Disallow'?'rtg-disallow':'rtg-value';
+    return `<span class="rtg-directive">${dir}:</span> <span class="${valClass}">${val}</span>`;
+  }).join('\n');
+}
+
+function showToast(msg){const t=document.createElement('div');t.className='prem-toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2400);}
+
+function init(){
+  buildBots();buildRules();
+  $('btnAddAllow').addEventListener('click',()=>{rules.push({type:'allow',path:'/'});buildRules();});
+  $('btnAddDisallow').addEventListener('click',()=>{rules.push({type:'disallow',path:'/'});buildRules();});
+  $('btnGenerate').addEventListener('click',generate);
+  $('btnReset').addEventListener('click',()=>{
+    BOTS.forEach(b=>botState[b.id]=b.on);
+    rules=[{type:'disallow',path:'/admin/'},{type:'disallow',path:'/wp-admin/'},{type:'disallow',path:'/private/'}];
+    $('crawlDelay').value='';$('sitemapUrl').value='';
+    buildBots();buildRules();$('outputPanel').style.display='none';showToast('🗑️ Reset!');
+  });
+  const sb=$('rtgScrollTop');
+  window.addEventListener('scroll',()=>sb.classList.toggle('show',scrollY>400));
+  sb.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+}
+document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+</body>
+</html>

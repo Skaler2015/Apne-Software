@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/html-viewer.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HTML Viewer — Preview HTML Online | ApneSoftware">
+<meta property="og:description" content="Paste or upload HTML and see a live rendered preview instantly. Free, no signup, no upload to any server.">
+<meta property="og:url" content="https://apnesoftware.com/tools/html-viewer.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HTML Viewer — Preview HTML Online | ApneSoftware">
+<meta name="twitter:description" content="Paste or upload HTML and see a live rendered preview instantly. Free, no signup, no upload to any server.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HTML Viewer","description":"Paste or upload HTML and see a live rendered preview instantly. Free, no signup, no upload to any server.","url":"https://apnesoftware.com/tools/html-viewer.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>HTML Viewer — Preview HTML Online | ApneSoftware</title>
+<meta name="description" content="Paste or upload HTML and see a live rendered preview instantly. Free, no signup, no upload to any server.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  textarea#htmlInput{width:100%;min-height:220px;font-family:monospace;font-size:.85rem;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);resize:vertical}
+  .preview-frame-wrap{margin-top:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .preview-frame-wrap .label{background:var(--surface-2);padding:8px 14px;font-size:.78rem;font-weight:700;color:var(--text-dim)}
+  iframe#previewFrame{width:100%;height:420px;border:none;background:#fff}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🖥️ HTML Viewer</h1>
+    <p>Paste or upload HTML and instantly see how it renders — no code editor or local server needed.</p>
+  </div>
+
+  <div class="panel">
+    <textarea id="htmlInput" placeholder="<h1>Hello World</h1>&#10;<p>Paste any HTML here...</p>"><h1>Hello World</h1>
+<p>This is a <strong>live preview</strong> of your HTML. Edit the code above and click Preview again.</p></textarea>
+
+    <div class="dropzone" id="dropzone" style="margin-top:12px">
+      <p>📤 Or drag an .html file here</p>
+      <input type="file" id="fileInput" accept=".html,.htm,text/html">
+    </div>
+
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn" id="previewBtn">👁️ Preview</button>
+      <button class="btn secondary" id="downloadBtn">⬇️ Download HTML File</button>
+    </div>
+
+    <div class="preview-frame-wrap">
+      <div class="label">LIVE PREVIEW</div>
+      <iframe id="previewFrame" sandbox="allow-same-origin"></iframe>
+    </div>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Checking how a snippet of HTML actually renders usually means saving it to a file, opening it in a browser, and repeating that cycle every time you make a small change — slow when all you want is a quick look. This tool skips all of that: paste or upload HTML and see the rendered result immediately in a live preview pane right on this page, without creating any files or setting up a local server.</p>
+      <p>This is useful for previewing an email template before sending it, checking a piece of HTML someone gave you before adding it to a website, testing a small layout idea, or just learning HTML by experimenting and seeing results instantly. The preview renders in a sandboxed frame for safety, and once you're happy with the result, the Download HTML File button saves your code as a standalone .html file.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Paste your HTML into the box, or upload an existing .html file.</li>
+        <li>Click "Preview" to see it rendered below.</li>
+        <li>Edit and preview again as many times as needed, or download the final file.</li>
+      </ol>
+      <h3>What's sandboxed</h3>
+      <p>The preview frame runs in a sandboxed mode for safety, which is standard practice any time unknown HTML is rendered — this means scripts that try to navigate away from the page, open pop-ups, or access the parent page are blocked, while everyday HTML and CSS still display exactly as intended. For checking layout, text, images, and styling, this works exactly like a normal browser tab.</p>
+      <p>It's also a handy way to quickly inspect HTML that arrived from an unfamiliar source — a code snippet shared in a forum, a template downloaded from somewhere, or markup generated by another tool — without committing to opening it in your main browser or text editor first. Because nothing is uploaded anywhere and the whole thing runs locally, this is also a reasonable way to do a first, cautious look at HTML before deciding whether it's worth using further, especially when you don't fully trust where it came from. Students and beginners learning HTML often find it useful too, since changes can be tested instantly without needing to set up any local development environment at all, which removes one of the biggest early hurdles to simply getting started, and it remains useful later on as a quick scratchpad for testing a small snippet without disturbing a real project.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी HTML snippet का असली render देखने के लिए आमतौर पर उसे file में save करना, browser में खोलना, और हर छोटे बदलाव पर यह चक्र दोहराना पड़ता है — जब बस एक तेज़ नज़र चाहिए हो तो यह धीमा है। यह tool यह सब छोड़ देता है: HTML paste करें या अपलोड करें और तुरंत इसी page पर live preview pane में रendered result देखें, बिना कोई file बनाए या local server चलाए।</p>
+      <p>यह किसी email template को भेजने से पहले preview करने, किसी और से मिले HTML को website में जोड़ने से पहले जांचने, किसी छोटे layout idea को test करने, या सिर्फ़ experiment करके तुरंत result देखकर HTML सीखने के लिए उपयोगी है। Preview सुरक्षा के लिए एक sandboxed frame में render होता है, और result पसंद आने पर, Download HTML File बटन आपके code को standalone .html file के रूप में save कर देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना HTML box में paste करें, या मौजूदा .html file अपलोड करें।</li>
+        <li>नीचे render देखने के लिए "Preview" दबाएं।</li>
+        <li>जितनी बार चाहें edit करके दोबारा preview करें, या final file download करें।</li>
+      </ol>
+      <h3>क्या sandboxed है</h3>
+      <p>Preview frame सुरक्षा के लिए sandboxed mode में चलता है, जो किसी भी अनजान HTML को render करते वक्त standard practice है — इसका मतलब है कि page से दूर navigate करने, pop-ups खोलने, या parent page तक पहुंचने की कोशिश करने वाले scripts block हो जाते हैं, जबकि रोज़मर्रा का HTML और CSS बिल्कुल वैसे ही दिखता है जैसे चाहिए। Layout, text, images, और styling जांचने के लिए, यह बिल्कुल एक सामान्य browser tab की तरह काम करता है।</p>
+      <p>यह किसी अनजान source से आए HTML को तुरंत inspect करने के लिए भी काम का है — किसी forum में शेयर किया गया code snippet, कहीं से download किया गया template, या किसी और tool से बना markup — बिना उसे पहले अपने main browser या text editor में खोलने की ज़िम्मेदारी लिए। चूंकि कुछ भी कहीं upload नहीं होता और सब कुछ locally चलता है, यह HTML पर पहली, सावधानी भरी नज़र डालने का एक उचित तरीका भी है, इससे पहले कि तय करें कि आगे इस्तेमाल करने लायक है या नहीं, खासकर जब उसका source पूरी तरह भरोसेमंद न हो। HTML सीख रहे students और beginners को भी यह उपयोगी लगता है, क्योंकि बदलावों को बिना किसी local development environment सेट किए तुरंत test किया जा सकता है।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const htmlInput = document.getElementById('htmlInput');
+const previewFrame = document.getElementById('previewFrame');
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length) files[0].text().then(t => { htmlInput.value = t; renderPreview(); });
+});
+
+function renderPreview(){
+  previewFrame.srcdoc = htmlInput.value;
+}
+
+document.getElementById('previewBtn').addEventListener('click', renderPreview);
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  downloadText('page.html', htmlInput.value, 'text/html');
+});
+
+renderPreview();
+</script>
+</body>
+</html>

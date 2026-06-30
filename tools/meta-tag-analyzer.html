@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Meta Tag Analyzer — Paste any HTML source or URL to instantly analyze all SEO meta tags. Check title, description, Open Graph, Twitter Card, robots, canonical and more.">
+<meta name="keywords" content="meta tag analyzer, SEO analyzer, check meta tags, open graph checker, twitter card checker, meta tag checker">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/meta-tag-analyzer.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Meta Tag Analyzer — Check Your SEO Tags Instantly | ApneSoftware">
+<meta property="og:description" content="Paste HTML source to analyze all SEO meta tags — title, description, OG, Twitter Card, robots, canonical. Free, instant, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/meta-tag-analyzer.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meta Tag Analyzer — Check Your SEO Tags Instantly | ApneSoftware">
+<meta name="twitter:description" content="Analyze all SEO meta tags from any HTML source. Free, instant, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Meta Tag Analyzer","description":"Free online tool to analyze all SEO meta tags from HTML source code.","url":"https://apnesoftware.com/tools/meta-tag-analyzer.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"SEO Tools","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":3,"name":"Meta Tag Analyzer","item":"https://apnesoftware.com/tools/meta-tag-analyzer.html"}]}]}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Meta Tag Analyzer — Check Your SEO Tags Instantly | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* ── Meta Tag Analyzer local styles ── */
+.mta-score-bar{height:8px;border-radius:4px;background:rgba(255,255,255,.08);overflow:hidden;margin:6px 0}
+.mta-score-fill{height:100%;border-radius:4px;transition:width .6s,background .4s}
+.mta-results-grid{display:grid;gap:10px;margin-top:16px}
+.mta-row{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start}
+.mta-row.ok  {border-color:rgba(22,192,121,.3)}
+.mta-row.warn{border-color:rgba(255,215,0,.3)}
+.mta-row.miss{border-color:rgba(248,113,113,.3)}
+.mta-row.info{border-color:rgba(124,92,252,.2)}
+.mta-icon{font-size:1.1rem;margin-top:1px}
+.mta-label{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:rgba(255,255,255,.4);margin-bottom:3px}
+.mta-value{font-size:.88rem;color:rgba(255,255,255,.85);word-break:break-word;line-height:1.5}
+.mta-value.empty{color:rgba(255,255,255,.25);font-style:italic}
+.mta-badge{flex-shrink:0;font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.badge-ok  {background:rgba(22,192,121,.15);color:#16C079}
+.badge-warn{background:rgba(255,215,0,.15);color:#FFD700}
+.badge-miss{background:rgba(248,113,113,.15);color:#F87171}
+.badge-info{background:rgba(124,92,252,.15);color:#A78BFA}
+.mta-tip{font-size:.75rem;color:rgba(255,255,255,.35);margin-top:4px;line-height:1.5}
+
+.mta-section-head{font-size:.75rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.35);margin:22px 0 8px;display:flex;align-items:center;gap:8px}
+.mta-section-head::before{content:'';flex:1;height:1px;background:rgba(255,255,255,.07)}
+.mta-section-head::after{content:'';flex:3;height:1px;background:rgba(255,255,255,.07)}
+
+.mta-overview{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:6px}
+.mta-ov-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px;text-align:center}
+.mta-ov-num{font-size:1.5rem;font-weight:800}
+.mta-ov-lbl{font-size:.7rem;color:rgba(255,255,255,.4);margin-top:2px}
+
+.serp-wrap{background:#fff;border-radius:12px;padding:18px 20px;margin-top:10px;color:#202124;font-family:Arial,sans-serif}
+.serp-url2{font-size:.78rem;color:#3c4043;margin-bottom:2px}
+.serp-title2{font-size:1.1rem;color:#1a0dab;line-height:1.3;margin-bottom:4px;word-break:break-word}
+.serp-desc2{font-size:.86rem;color:#4d5156;line-height:1.5}
+
+.og-preview2{border:1px solid rgba(255,255,255,.1);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.03);margin-top:10px}
+.og-img2{width:100%;aspect-ratio:1.91;background:linear-gradient(135deg,rgba(124,92,252,.25),rgba(22,192,121,.15));display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:rgba(255,255,255,.2);position:relative;overflow:hidden}
+.og-img2 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.og-body2{padding:12px 14px}
+.og-domain2{font-size:.7rem;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:2px}
+.og-title2{font-size:.9rem;font-weight:700;color:rgba(255,255,255,.9);margin-bottom:2px}
+.og-desc2{font-size:.78rem;color:rgba(255,255,255,.5);line-height:1.45}
+
+.mta-copy-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);border-radius:6px;padding:4px 10px;font-size:.72rem;font-weight:700;cursor:pointer;font-family:var(--font);transition:.15s;flex-shrink:0}
+.mta-copy-btn:hover{background:rgba(124,92,252,.2);color:#A78BFA}
+
+#mtaScrollTop{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;box-shadow:0 4px 14px rgba(124,92,252,.4);transition:.2s}
+#mtaScrollTop.show{display:flex}
+#mtaScrollTop:hover{transform:translateY(-3px)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <nav aria-label="Breadcrumb" style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:2px">
+    <a href="../index.html" style="color:rgba(255,255,255,.45)">Home</a>
+    <span style="margin:0 6px">›</span>
+    <span style="color:rgba(255,255,255,.7)">SEO Tools</span>
+    <span style="margin:0 6px">›</span>
+    <span style="color:#A78BFA">Meta Tag Analyzer</span>
+  </nav>
+
+  <div class="tool-header">
+    <h1>🔍 Meta Tag Analyzer</h1>
+    <p>Paste any webpage's HTML source code to instantly analyze all SEO meta tags — with scores, tips, and a live SERP preview.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="htmlInput">Paste HTML Source Code <span style="color:#F87171">*</span></label>
+      <textarea id="htmlInput" rows="7" placeholder="Paste the full HTML of any webpage here (Ctrl+U in browser → Select All → Paste)…&#10;&#10;Tip: You can paste just the &lt;head&gt; section for faster analysis."></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn" id="btnAnalyze">🔍 Analyze Tags</button>
+      <button class="btn secondary" id="btnSample">📋 Sample HTML</button>
+      <button class="btn secondary" id="btnClear">🗑️ Clear</button>
+      <button class="btn secondary" id="btnCopyReport">📄 Copy Report</button>
+      <button class="btn secondary" id="btnDownload">⬇️ Download</button>
+    </div>
+    <p style="font-size:.78rem;color:rgba(255,255,255,.3);margin-top:10px">⌨️ Shortcut: <kbd style="background:rgba(255,255,255,.08);padding:1px 6px;border-radius:4px">Ctrl+Enter</kbd> to analyze</p>
+  </div>
+
+  <!-- Results -->
+  <div id="resultsPanel" style="display:none">
+    <!-- Overview cards -->
+    <div class="panel" style="margin-top:14px">
+      <h2 style="font-size:1rem;font-weight:800;margin-bottom:14px">📊 Overview</h2>
+      <div class="mta-overview" id="overviewCards"></div>
+      <div style="margin-top:12px">
+        <div style="display:flex;justify-content:space-between;font-size:.82rem;color:rgba(255,255,255,.6);margin-bottom:4px">
+          <span>SEO Score</span><span id="scoreText">0/100</span>
+        </div>
+        <div class="mta-score-bar"><div class="mta-score-fill" id="scoreFill" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <!-- SERP Preview -->
+    <div class="panel" style="margin-top:14px">
+      <h2 style="font-size:1rem;font-weight:800;margin-bottom:10px">🔍 Google SERP Preview</h2>
+      <div class="serp-wrap">
+        <div class="serp-url2" id="rSerpUrl">example.com</div>
+        <div class="serp-title2" id="rSerpTitle">Page Title</div>
+        <div class="serp-desc2"  id="rSerpDesc">Meta description will appear here.</div>
+      </div>
+    </div>
+
+    <!-- OG Preview -->
+    <div class="panel" id="ogPreviewPanel" style="margin-top:14px;display:none">
+      <h2 style="font-size:1rem;font-weight:800;margin-bottom:10px">📘 Social Share Preview</h2>
+      <div class="og-preview2">
+        <div class="og-img2" id="rOgImg">🌐</div>
+        <div class="og-body2">
+          <div class="og-domain2" id="rOgDomain">example.com</div>
+          <div class="og-title2"  id="rOgTitle">OG Title</div>
+          <div class="og-desc2"   id="rOgDesc">OG Description</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detailed Results -->
+    <div class="panel" style="margin-top:14px">
+      <h2 style="font-size:1rem;font-weight:800;margin-bottom:4px">🏷️ Tag Details</h2>
+      <div class="mta-results-grid" id="tagDetails"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Info section -->
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>🔍 What is Meta Tag Analyzer?</h2>
+      <p>The <strong>Meta Tag Analyzer</strong> is a free SEO tool that reads any webpage's HTML source code and extracts every meta tag — then grades each one against Google's best practices. In one click, you get a full report covering your title tag, meta description, canonical URL, Open Graph tags, Twitter Card tags, robots directives, language, charset, viewport, author, theme color, and more.</p>
+      <p>Unlike tools that require a live URL (which often get blocked by CORS or server restrictions), this analyzer works entirely in your browser using the raw HTML you paste in. Just open any webpage, press <strong>Ctrl+U</strong> (View Source), select all, paste here, and hit Analyze. You get an instant, completely private report — nothing is sent to any server.</p>
+      <h3>What Does the Score Mean?</h3>
+      <p>The SEO score (0–100) is calculated based on the presence and quality of critical meta tags. A score above 80 means your page's meta tags are well-optimized. 50–79 means there are gaps to fix. Below 50 means important tags are missing or incorrectly formatted.</p>
+      <h3>How to Use</h3>
+      <ol>
+        <li>Open any webpage in your browser and press <strong>Ctrl+U</strong> to view source.</li>
+        <li>Press <strong>Ctrl+A</strong> to select all, then <strong>Ctrl+C</strong> to copy.</li>
+        <li>Paste the HTML into the box above and click <strong>Analyze Tags</strong>.</li>
+        <li>Review the score, SERP preview, OG preview, and each tag's status.</li>
+        <li>Fix any tags marked ❌ or ⚠️ and re-analyze to confirm.</li>
+        <li>Download the report as a text file to share with your team.</li>
+      </ol>
+    </div>
+    <div class="info-block">
+      <h2>🔍 Hindi Guide / हिंदी गाइड</h2>
+      <p><strong>Meta Tag Analyzer</strong> एक मुफ्त SEO टूल है जो किसी भी वेबपेज के HTML सोर्स को पढ़कर सभी मेटा टैग्स की जांच करता है। यह टूल आपको बताता है कि आपके पेज के SEO टैग्स Google की best practices के अनुसार सही हैं या नहीं।</p>
+      <p>यह टूल पूरी तरह आपके ब्राउज़र में काम करता है — कोई डेटा सर्वर पर नहीं जाता। बस किसी वेबपेज का HTML सोर्स पेस्ट करें और तुरंत रिपोर्ट पाएं।</p>
+      <h3>कैसे उपयोग करें</h3>
+      <ol>
+        <li>किसी वेबपेज को खोलें और <strong>Ctrl+U</strong> दबाएं (View Source)।</li>
+        <li><strong>Ctrl+A</strong> से सब कुछ चुनें, फिर <strong>Ctrl+C</strong> से कॉपी करें।</li>
+        <li>ऊपर के बॉक्स में पेस्ट करें और <strong>Analyze Tags</strong> क्लिक करें।</li>
+        <li>Score, SERP Preview और हर Tag की Status देखें।</li>
+        <li>❌ या ⚠️ वाले Tags को ठीक करें और दोबारा Analyze करें।</li>
+      </ol>
+      <h3>✅ क्या-क्या Check होता है?</h3>
+      <ol>
+        <li><strong>Title Tag</strong> — लंबाई और keyword presence</li>
+        <li><strong>Meta Description</strong> — 150-160 chars की जांच</li>
+        <li><strong>Canonical URL</strong> — duplicate content से बचाव</li>
+        <li><strong>Open Graph Tags</strong> — Social sharing के लिए</li>
+        <li><strong>Twitter Card Tags</strong> — Twitter preview</li>
+        <li><strong>Robots Directives</strong> — Index/noindex जांच</li>
+        <li><strong>Viewport</strong> — Mobile-friendly check</li>
+        <li><strong>Charset</strong> — Encoding सही है या नहीं</li>
+        <li><strong>Author, Language, Theme Color</strong></li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<button id="mtaScrollTop" aria-label="Scroll to top">↑</button>
+<footer class="site-footer">
+  <p>© 2025 <a href="../index.html">ApneSoftware.com</a> · Free Tools for Everyone · No Signup Required</p>
+</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+(function(){
+'use strict';
+
+const LS_KEY = 'mta_last';
+
+/* ── SAMPLE HTML ── */
+const SAMPLE = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Best Running Shoes 2025 — Top Picks for Beginners | ShoeStore</title>
+<meta name="description" content="Discover the best running shoes for beginners in 2025. Expert reviews, comfort ratings and price comparisons. Free shipping on orders over ₹999.">
+<meta name="keywords" content="running shoes, best running shoes, beginner running shoes 2025">
+<meta name="author" content="ShoeStore Team">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://shoestore.example.com/best-running-shoes/">
+<meta name="theme-color" content="#FF6B35">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Best Running Shoes 2025 — Top Picks | ShoeStore">
+<meta property="og:description" content="Expert-picked running shoes for beginners. Comfort, durability and value reviewed.">
+<meta property="og:url" content="https://shoestore.example.com/best-running-shoes/">
+<meta property="og:image" content="https://shoestore.example.com/img/running-shoes-og.jpg">
+<meta property="og:site_name" content="ShoeStore">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Best Running Shoes 2025 | ShoeStore">
+<meta name="twitter:description" content="Top picks for beginners — comfort, durability and value reviewed.">
+<meta name="twitter:image" content="https://shoestore.example.com/img/running-shoes-tw.jpg">
+<meta name="twitter:site" content="@ShoeStore">
+</head>
+<body><h1>Best Running Shoes</h1></body>
+</html>`;
+
+/* ── DOM helpers ── */
+const $  = id => document.getElementById(id);
+const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+/* ── TAG EXTRACTION ── */
+function extractMeta(html){
+  // Parse into DOM
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  const head = doc.head;
+  const get = sel => { const el = head.querySelector(sel); return el ? (el.getAttribute('content')||el.getAttribute('href')||el.textContent||'').trim() : ''; };
+  const getAttr = (sel,attr) => { const el = head.querySelector(sel); return el ? (el.getAttribute(attr)||'').trim() : ''; };
+
+  return {
+    title        : (head.querySelector('title')||{}).textContent?.trim()||'',
+    description  : get('meta[name="description"]'),
+    keywords     : get('meta[name="keywords"]'),
+    author       : get('meta[name="author"]'),
+    robots       : get('meta[name="robots"]'),
+    canonical    : getAttr('link[rel="canonical"]','href'),
+    charset      : getAttr('meta[charset]','charset') || get('meta[http-equiv="Content-Type"]'),
+    viewport     : get('meta[name="viewport"]'),
+    themeColor   : get('meta[name="theme-color"]'),
+    lang         : doc.documentElement.getAttribute('lang')||'',
+    // OG
+    ogType       : get('meta[property="og:type"]'),
+    ogTitle      : get('meta[property="og:title"]'),
+    ogDesc       : get('meta[property="og:description"]'),
+    ogUrl        : get('meta[property="og:url"]'),
+    ogImage      : get('meta[property="og:image"]'),
+    ogSiteName   : get('meta[property="og:site_name"]'),
+    ogLocale     : get('meta[property="og:locale"]'),
+    // Twitter
+    twCard       : get('meta[name="twitter:card"]'),
+    twTitle      : get('meta[name="twitter:title"]'),
+    twDesc       : get('meta[name="twitter:description"]'),
+    twImage      : get('meta[name="twitter:image"]'),
+    twSite       : get('meta[name="twitter:site"]'),
+    twCreator    : get('meta[name="twitter:creator"]'),
+    // H1
+    h1           : (doc.body.querySelector('h1')||{}).textContent?.trim()||'',
+  };
+}
+
+/* ── SCORE CALC ── */
+function calcScore(m){
+  let s=0;
+  if(m.title)                                    s+=10;
+  if(m.title.length>=30&&m.title.length<=60)     s+=8;
+  if(m.description)                              s+=10;
+  if(m.description.length>=70&&m.description.length<=160) s+=8;
+  if(m.canonical)                                s+=8;
+  if(m.ogImage)                                  s+=8;
+  if(m.ogTitle)                                  s+=5;
+  if(m.ogDesc)                                   s+=5;
+  if(m.twCard)                                   s+=5;
+  if(m.twTitle||m.ogTitle)                       s+=3;
+  if(m.robots&&m.robots.includes('index'))       s+=5;
+  if(m.viewport)                                 s+=8;
+  if(m.charset)                                  s+=5;
+  if(m.lang)                                     s+=5;
+  if(m.author)                                   s+=3;
+  return Math.min(100,s);
+}
+
+/* ── BUILD ROWS ── */
+function buildRows(m){
+  const rows=[];
+  // Title
+  const tLen=m.title.length;
+  const tPx=Math.round(tLen*6.5);
+  rows.push({
+    section:'Basic Meta Tags',
+    label:'Title Tag',
+    value: m.title || null,
+    status: !m.title?'miss': tLen<30?'warn': tLen>70?'warn':'ok',
+    badge : !m.title?'Missing': tLen>70?'Too Long ('+tLen+'ch)': tLen<30?'Too Short ('+tLen+'ch)':'Good ('+tLen+' ch / ~'+tPx+' px)',
+    tip   : !m.title?'Add a <title> tag — critical for SEO and click-through rate.': tLen>70?'Shorten to under 60 characters to avoid truncation in search results.': tLen<30?'Expand your title to 50–60 characters for best results.':'Great! Title length is within the recommended range.',
+  });
+  // Description
+  const dLen=m.description.length;
+  rows.push({
+    label:'Meta Description',
+    value: m.description||null,
+    status: !m.description?'miss': dLen<70?'warn': dLen>165?'warn':'ok',
+    badge : !m.description?'Missing': dLen>165?'Too Long ('+dLen+'ch)': dLen<70?'Too Short ('+dLen+'ch)':'Good ('+dLen+' ch)',
+    tip   : !m.description?'Missing meta description. Write 150–160 characters for best CTR.': dLen>165?'Trim to 155 chars — Google truncates longer descriptions.': dLen<70?'Too short. Expand to at least 120 characters.':'',
+  });
+  // Keywords
+  rows.push({label:'Meta Keywords',value:m.keywords||null,status:m.keywords?'info':'info',badge:m.keywords?'Present (Google ignores)':'Not Set',tip:'Google ignores meta keywords. Safe to omit. Bing uses it as a minor signal.'});
+  // Author
+  rows.push({label:'Author',value:m.author||null,status:m.author?'ok':'info',badge:m.author?'Present':'Not Set',tip:'Useful for E-E-A-T signals, especially for article pages.'});
+  // Charset
+  rows.push({label:'Charset',value:m.charset||null,status:m.charset?'ok':'warn',badge:m.charset||(m.charset==='UTF-8'?'Good':'Check'),tip:'Always use UTF-8 for maximum browser and search engine compatibility.'});
+  // Viewport
+  rows.push({label:'Viewport',value:m.viewport||null,status:m.viewport?'ok':'miss',badge:m.viewport?'Present':'Missing',tip:'Missing viewport meta tag. This page may not be mobile-friendly, which affects Google rankings.'});
+  // Canonical
+  rows.push({label:'Canonical URL',value:m.canonical||null,status:m.canonical?'ok':'warn',badge:m.canonical?'Set':'Not Set',tip:'Add rel="canonical" to prevent duplicate content issues and consolidate link equity.'});
+  // Robots
+  rows.push({label:'Robots',value:m.robots||null,status:!m.robots?'info': m.robots.includes('noindex')?'warn':'ok',badge:!m.robots?'Not Set': m.robots.includes('noindex')?'⚠️ Noindex':'Indexed',tip:m.robots?.includes('noindex')?'This page is set to noindex — it will NOT appear in search results. Intentional?':'Robots meta tag is set to index/follow. Good.'});
+  // Lang
+  rows.push({label:'Language (lang=)',value:m.lang||null,status:m.lang?'ok':'warn',badge:m.lang?m.lang:'Not Set',tip:'Add lang attribute to <html> tag for better accessibility and localization signals.'});
+  // Theme color
+  rows.push({label:'Theme Color',value:m.themeColor||null,status:m.themeColor?'ok':'info',badge:m.themeColor?m.themeColor:'Not Set',tip:'theme-color improves the browser chrome appearance on mobile.'});
+  // OG
+  rows.push({section:'Open Graph Tags',label:'og:type',value:m.ogType||null,status:m.ogType?'ok':'warn',badge:m.ogType||'Missing',tip:'Add og:type (e.g. website, article) for proper Facebook/LinkedIn rendering.'});
+  rows.push({label:'og:title',value:m.ogTitle||null,status:m.ogTitle?'ok':'warn',badge:m.ogTitle?'Present':'Missing',tip:'og:title controls the headline shown when your page is shared on social media.'});
+  rows.push({label:'og:description',value:m.ogDesc||null,status:m.ogDesc?'ok':'warn',badge:m.ogDesc?'Present':'Missing',tip:'og:description is the text shown in social share previews.'});
+  rows.push({label:'og:image',value:m.ogImage||null,status:m.ogImage?'ok':'miss',badge:m.ogImage?'Set':'Missing — Important!',tip:'og:image is critical for social sharing. Without it, platforms pick a random image. Use 1200×630px.'});
+  rows.push({label:'og:url',value:m.ogUrl||null,status:m.ogUrl?'ok':'info',badge:m.ogUrl?'Set':'Not Set',tip:'og:url should match the canonical URL of the page.'});
+  rows.push({label:'og:site_name',value:m.ogSiteName||null,status:m.ogSiteName?'ok':'info',badge:m.ogSiteName?m.ogSiteName:'Not Set',tip:'og:site_name appears as the brand label below the title in some social previews.'});
+  rows.push({label:'og:locale',value:m.ogLocale||null,status:m.ogLocale?'ok':'info',badge:m.ogLocale||'Not Set',tip:'og:locale specifies the language/region of the content (e.g. en_US, hi_IN).'});
+  // Twitter
+  rows.push({section:'Twitter / X Card',label:'twitter:card',value:m.twCard||null,status:m.twCard?'ok':'warn',badge:m.twCard||'Missing',tip:'twitter:card is required for rich Twitter previews. Use summary_large_image for best results.'});
+  rows.push({label:'twitter:title',value:m.twTitle||null,status:m.twTitle?'ok':'info',badge:m.twTitle?'Present':'Falls back to og:title',tip:'If missing, Twitter uses og:title. Set explicitly for best control.'});
+  rows.push({label:'twitter:description',value:m.twDesc||null,status:m.twDesc?'ok':'info',badge:m.twDesc?'Present':'Falls back to og:description',tip:'If missing, Twitter uses og:description as a fallback.'});
+  rows.push({label:'twitter:image',value:m.twImage||null,status:m.twImage?'ok':'info',badge:m.twImage?'Set':'Falls back to og:image',tip:'Use 800×418px for summary_large_image. Falls back to og:image if not set.'});
+  rows.push({label:'twitter:site',value:m.twSite||null,status:m.twSite?'ok':'info',badge:m.twSite?m.twSite:'Not Set',tip:'Add your Twitter/X @handle to increase brand credibility in shared posts.'});
+  return rows;
+}
+
+/* ── RENDER ── */
+function analyze(){
+  const html=$('htmlInput').value.trim();
+  if(!html){ showToast('⚠️ Please paste HTML source first.'); return; }
+
+  const m=extractMeta(html);
+  const score=calcScore(m);
+  localStorage.setItem(LS_KEY, html);
+
+  // Overview
+  const present=[m.title,m.description,m.canonical,m.ogImage,m.ogTitle,m.twCard,m.robots,m.viewport,m.charset,m.lang].filter(Boolean).length;
+  const missing=10-present;
+  $('overviewCards').innerHTML=[
+    {n:score, l:'SEO Score', c: score>=70?'#16C079':score>=40?'#FFD700':'#F87171'},
+    {n:present, l:'Tags Found', c:'#A78BFA'},
+    {n:missing, l:'Missing Tags', c: missing>3?'#F87171':'#16C079'},
+    {n:m.title.length||0, l:'Title Length', c: m.title.length>=30&&m.title.length<=60?'#16C079':'#FFD700'},
+    {n:m.description.length||0, l:'Desc Length', c: m.description.length>=70&&m.description.length<=160?'#16C079':'#FFD700'},
+  ].map(o=>`<div class="mta-ov-card"><div class="mta-ov-num" style="color:${o.c}">${o.n}</div><div class="mta-ov-lbl">${o.l}</div></div>`).join('');
+
+  // Score bar
+  const clr=score>=70?'#16C079':score>=40?'#FFD700':'#F87171';
+  $('scoreFill').style.width=score+'%';
+  $('scoreFill').style.background=clr;
+  $('scoreText').textContent=score+'/100';
+  $('scoreText').style.color=clr;
+
+  // SERP preview
+  $('rSerpTitle').textContent=m.title||'(No title found)';
+  $('rSerpDesc').textContent=m.description||'(No description found)';
+  $('rSerpUrl').textContent=m.canonical||m.ogUrl||'example.com';
+
+  // OG preview
+  if(m.ogTitle||m.ogDesc||m.ogImage){
+    $('ogPreviewPanel').style.display='block';
+    $('rOgTitle').textContent=m.ogTitle||m.title||'(No OG title)';
+    $('rOgDesc').textContent=m.ogDesc||m.description||'';
+    $('rOgDomain').textContent=m.canonical?m.canonical.replace(/^https?:\/\//,'').split('/')[0]:'example.com';
+    if(m.ogImage){
+      $('rOgImg').innerHTML=`<img src="${esc(m.ogImage)}" alt="OG image" onerror="this.parentElement.innerHTML='🌐'">`;
+    }
+  } else {
+    $('ogPreviewPanel').style.display='none';
+  }
+
+  // Tag rows
+  const rows=buildRows(m);
+  let lastSection='';
+  $('tagDetails').innerHTML=rows.map(r=>{
+    let html2='';
+    if(r.section&&r.section!==lastSection){
+      lastSection=r.section;
+      html2+=`<div class="mta-section-head">${esc(r.section)}</div>`;
+    }
+    const icon=r.status==='ok'?'✅':r.status==='warn'?'⚠️':r.status==='miss'?'❌':'ℹ️';
+    html2+=`<div class="mta-row ${r.status}">
+      <div class="mta-icon">${icon}</div>
+      <div>
+        <div class="mta-label">${esc(r.label)}</div>
+        <div class="mta-value ${r.value?'':'empty'}">${r.value?esc(r.value):'Not found'}</div>
+        ${r.tip?`<div class="mta-tip">${esc(r.tip)}</div>`:''}
+      </div>
+      <button class="mta-copy-btn" ${r.value?'':'disabled'} onclick="cpVal(this,'${(r.value||'').replace(/'/g,"\\'")}')">Copy</button>
+    </div>`;
+    return html2;
+  }).join('');
+
+  $('resultsPanel').style.display='block';
+  $('resultsPanel').scrollIntoView({behavior:'smooth',block:'start'});
+  showToast('✅ Analysis complete! Score: '+score+'/100');
+}
+
+window.cpVal=function(btn,val){
+  navigator.clipboard.writeText(val).then(()=>{
+    const old=btn.textContent; btn.textContent='✓'; setTimeout(()=>btn.textContent=old,1500);
+  });
+};
+
+/* ── COPY REPORT ── */
+function copyReport(){
+  const rows=buildRows(extractMeta($('htmlInput').value));
+  const lines=['META TAG ANALYZER REPORT','='.repeat(40),'Generated: '+new Date().toLocaleString(),'',''];
+  rows.forEach(r=>{
+    if(r.section) lines.push('\n── '+r.section+' ──');
+    lines.push((r.status==='ok'?'✅ ':r.status==='warn'?'⚠️ ':r.status==='miss'?'❌ ':'ℹ️ ')+r.label+': '+(r.value||'Not set'));
+    if(r.tip) lines.push('   Tip: '+r.tip);
+  });
+  navigator.clipboard.writeText(lines.join('\n')).then(()=>showToast('📄 Report copied!'));
+}
+
+/* ── DOWNLOAD ── */
+function downloadReport(){
+  const rows=buildRows(extractMeta($('htmlInput').value));
+  const lines=['META TAG ANALYZER REPORT','='.repeat(40),'Generated: '+new Date().toLocaleString(),''];
+  rows.forEach(r=>{
+    if(r.section) lines.push('\n── '+r.section+' ──');
+    lines.push((r.status==='ok'?'[OK]  ':r.status==='warn'?'[WARN]':r.status==='miss'?'[MISS]':'[INFO]')+' '+r.label+': '+(r.value||'Not set'));
+    if(r.tip) lines.push('       Tip: '+r.tip);
+  });
+  const blob=new Blob([lines.join('\n')],{type:'text/plain'});
+  const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(blob),download:'meta-tag-report.txt'});
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  showToast('⬇️ Report downloaded!');
+}
+
+function showToast(msg){
+  const t=document.createElement('div');
+  t.className='prem-toast'; t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),2500);
+}
+
+function init(){
+  $('btnAnalyze').addEventListener('click', analyze);
+  $('btnSample').addEventListener('click', ()=>{ $('htmlInput').value=SAMPLE; showToast('📋 Sample HTML loaded!'); });
+  $('btnClear').addEventListener('click', ()=>{ $('htmlInput').value=''; $('resultsPanel').style.display='none'; });
+  $('btnCopyReport').addEventListener('click', copyReport);
+  $('btnDownload').addEventListener('click', downloadReport);
+  document.addEventListener('keydown', e=>{ if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();analyze();} });
+  const saved=localStorage.getItem(LS_KEY);
+  if(saved) $('htmlInput').value=saved;
+  // scroll to top
+  const stBtn=$('mtaScrollTop');
+  window.addEventListener('scroll',()=>stBtn.classList.toggle('show',scrollY>400));
+  stBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+}
+
+document.addEventListener('DOMContentLoaded', init);
+})();
+</script>
+</body>
+</html>

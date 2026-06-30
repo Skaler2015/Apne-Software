@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/word-counter.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Word Counter — Count Words & Characters | ApneSoftware">
+<meta property="og:description" content="Count words, characters and lines. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/word-counter.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Word Counter — Count Words & Characters | ApneSoftware">
+<meta name="twitter:description" content="Count words, characters and lines. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Word Counter","description":"Count words, characters and lines. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/word-counter.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Word Counter — Count Words & Characters | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔢 Word Counter</h1>
+    <p>Type or paste your text below — word, character and line counts update instantly.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="inputText">Your Text</label>
+      <textarea id="inputText" placeholder="Type or paste here..."></textarea>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-box"><div class="num" id="wordCount">0</div><div class="lbl">Words</div></div>
+      <div class="stat-box"><div class="num" id="charCount">0</div><div class="lbl">Characters (with spaces)</div></div>
+      <div class="stat-box"><div class="num" id="charNoSpace">0</div><div class="lbl">Characters (no spaces)</div></div>
+      <div class="stat-box"><div class="num" id="sentenceCount">0</div><div class="lbl">Sentences</div></div>
+      <div class="stat-box"><div class="num" id="lineCount">0</div><div class="lbl">Lines</div></div>
+      <div class="stat-box"><div class="num" id="readTime">0</div><div class="lbl">Reading Time (min)</div></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn secondary" onclick="document.getElementById('inputText').value='';update();">🗑️ Clear</button>
+      <button class="btn" id="copyBtn">📋 Copy</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool counts the number of words, characters, and lines in your text instantly as you type.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Open the tool.</li>
+        <li>Type or paste your text into the box.</li>
+        <li>See the word, character, and line count update automatically.</li>
+        <li>No need to click any button — the count updates live.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल आपके टेक्स्ट में शब्दों, अक्षरों और लाइनों की गिनती तुरंत बताता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>टूल खोलें।</li>
+        <li>बॉक्स में अपना टेक्स्ट टाइप करें या पेस्ट करें।</li>
+        <li>शब्द, अक्षर और लाइन की गिनती अपने आप दिख जाएगी।</li>
+        <li>किसी बटन को दबाने की ज़रूरत नहीं, गिनती लाइव अपडेट होती है।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const ta = document.getElementById('inputText');
+
+function update(){
+  const text = ta.value;
+  const trimmed = text.trim();
+
+  const words = trimmed.length ? trimmed.split(/\s+/).length : 0;
+  const chars = text.length;
+  const charsNoSpace = text.replace(/\s/g,'').length;
+  const sentences = trimmed.length ? (trimmed.match(/[.!?]+/g) || []).length || (trimmed?1:0) : 0;
+  const lines = text.length ? text.split(/\n/).length : 0;
+  const readTime = Math.max(1, Math.ceil(words / 200));
+
+  document.getElementById('wordCount').textContent = words;
+  document.getElementById('charCount').textContent = chars;
+  document.getElementById('charNoSpace').textContent = charsNoSpace;
+  document.getElementById('sentenceCount').textContent = sentences;
+  document.getElementById('lineCount').textContent = lines;
+  document.getElementById('readTime').textContent = trimmed.length ? readTime : 0;
+}
+
+ta.addEventListener('input', update);
+document.getElementById('copyBtn').addEventListener('click', (e)=> copyText(ta.value, e.target));
+update();
+</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/image-rounded-corners.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rounded Corners & Circle Crop | ApneSoftware">
+<meta property="og:description" content="Round corners or crop into a circle. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/image-rounded-corners.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rounded Corners & Circle Crop | ApneSoftware">
+<meta name="twitter:description" content="Round corners or crop into a circle. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Rounded Corners & Circle Crop","description":"Round corners or crop into a circle. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/image-rounded-corners.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Rounded Corners & Circle Crop | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  #previewCanvas{max-width:100%;border-radius:10px;background:repeating-conic-gradient(#2a2a2a 0% 25%, #222 0% 50%) 50% / 20px 20px}
+  .mode-row{display:flex;gap:8px;margin-bottom:14px}
+  .mode-btn{padding:7px 14px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-size:.85rem;cursor:pointer}
+  .mode-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>⭕ Rounded Corners & Circle Crop</h1>
+    <p>Round the corners of an image, or crop it into a perfect circle — great for profile pictures and logos. Downloads as a transparent PNG.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an image here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <div class="mode-row">
+        <button class="mode-btn active" data-mode="rounded">Rounded Corners</button>
+        <button class="mode-btn" data-mode="circle">Circle</button>
+      </div>
+
+      <div class="field" id="radiusField">
+        <label for="radiusSlider">Corner radius: <span id="radiusVal">40</span>px</label>
+        <input type="range" id="radiusSlider" min="0" max="200" value="40">
+      </div>
+
+      <canvas id="previewCanvas"></canvas>
+
+      <div class="btn-row">
+        <button class="btn" id="downloadBtn">⬇️ Download PNG</button>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Turn any rectangular image into a softly rounded card-style image, or crop it into a perfect circle for avatars and profile pictures. The output is a transparent PNG so it blends into any background.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload an image.</li>
+        <li>Choose Rounded Corners or Circle, and adjust the corner radius if needed.</li>
+        <li>Click Download to save the transparent PNG.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी भी चौकोर इमेज को सॉफ्ट राउंडेड कार्ड-स्टाइल इमेज में बदलें, या उसे एवतार/प्रोफाइल पिक्चर के लिए परफेक्ट सर्कल में क्रॉप करें। आउटपुट ट्रांसपेरेंट PNG होता है जो किसी भी बैकग्राउंड में फिट हो जाता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक इमेज अपलोड करें।</li>
+        <li>Rounded Corners या Circle चुनें, और ज़रूरत हो तो कॉर्नर रेडियस सेट करें।</li>
+        <li>Download दबाकर ट्रांसपेरेंट PNG सेव करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const canvas = document.getElementById('previewCanvas');
+const ctx = canvas.getContext('2d');
+let img = new Image();
+let mode = 'rounded';
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    img.onload = ()=>{
+      document.getElementById('afterUpload').style.display = 'block';
+      draw();
+    };
+    img.src = URL.createObjectURL(files[0]);
+  }
+});
+
+document.querySelectorAll('.mode-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    document.getElementById('radiusField').style.display = mode === 'rounded' ? 'block' : 'none';
+    draw();
+  });
+});
+
+document.getElementById('radiusSlider').addEventListener('input', ()=>{
+  document.getElementById('radiusVal').textContent = document.getElementById('radiusSlider').value;
+  draw();
+});
+
+function draw(){
+  const w = img.naturalWidth, h = img.naturalHeight;
+  canvas.width = w; canvas.height = h;
+  ctx.clearRect(0,0,w,h);
+  ctx.save();
+
+  if(mode === 'circle'){
+    const r = Math.min(w,h)/2;
+    ctx.beginPath();
+    ctx.arc(w/2, h/2, r, 0, Math.PI*2);
+    ctx.closePath();
+    ctx.clip();
+  } else {
+    const radius = Math.min(parseInt(document.getElementById('radiusSlider').value), Math.min(w,h)/2);
+    ctx.beginPath();
+    ctx.moveTo(radius, 0);
+    ctx.lineTo(w - radius, 0);
+    ctx.arcTo(w, 0, w, radius, radius);
+    ctx.lineTo(w, h - radius);
+    ctx.arcTo(w, h, w - radius, h, radius);
+    ctx.lineTo(radius, h);
+    ctx.arcTo(0, h, 0, h - radius, radius);
+    ctx.lineTo(0, radius);
+    ctx.arcTo(0, 0, radius, 0, radius);
+    ctx.closePath();
+    ctx.clip();
+  }
+
+  ctx.drawImage(img, 0, 0);
+  ctx.restore();
+}
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  canvas.toBlob((blob)=>{
+    downloadBlob('rounded.png', blob);
+    document.getElementById('statusMsg').textContent = '✅ Downloaded!';
+  }, 'image/png');
+});
+</script>
+</body>
+</html>

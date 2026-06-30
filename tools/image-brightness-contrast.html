@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/image-brightness-contrast.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Brightness & Contrast Adjuster — Photo Editor | ApneSoftware">
+<meta property="og:description" content="Adjust brightness, contrast, and saturation of any photo with live sliders. Free online photo editor, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/image-brightness-contrast.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Brightness & Contrast Adjuster — Photo Editor | ApneSoftware">
+<meta name="twitter:description" content="Adjust brightness, contrast, and saturation of any photo with live sliders. Free online photo editor, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Brightness & Contrast Adjuster","description":"Adjust brightness, contrast, and saturation of any photo with live sliders. Free online photo editor, no signup.","url":"https://apnesoftware.com/tools/image-brightness-contrast.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Brightness & Contrast Adjuster — Photo Editor | ApneSoftware</title>
+<meta name="description" content="Adjust brightness, contrast, and saturation of any photo with live sliders. Free online photo editor, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .canvas-wrap{margin-top:14px}
+  #previewCanvas{max-width:100%;border-radius:10px;border:1px solid var(--border);display:block}
+  .slider-label{display:flex;justify-content:space-between;font-size:.88rem;font-weight:600;margin-bottom:4px}
+  .slider-label span{color:var(--accent)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🎚️ Brightness & Contrast Adjuster</h1>
+    <p>Fine-tune brightness, contrast, and saturation with live sliders — no photo editing software needed.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an image here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <div class="field">
+        <div class="slider-label"><label for="brightSlider">☀️ Brightness</label><span id="brightVal">100%</span></div>
+        <input type="range" id="brightSlider" min="0" max="200" value="100">
+      </div>
+      <div class="field">
+        <div class="slider-label"><label for="contrastSlider">◐ Contrast</label><span id="contrastVal">100%</span></div>
+        <input type="range" id="contrastSlider" min="0" max="200" value="100">
+      </div>
+      <div class="field">
+        <div class="slider-label"><label for="satSlider">🎨 Saturation</label><span id="satVal">100%</span></div>
+        <input type="range" id="satSlider" min="0" max="200" value="100">
+      </div>
+
+      <div class="canvas-wrap">
+        <canvas id="previewCanvas"></canvas>
+      </div>
+
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn secondary" id="resetBtn">🔄 Reset All</button>
+        <button class="btn" id="downloadBtn">⬇️ Download</button>
+      </div>
+      <p style="margin-top:10px;color:var(--text-dim);font-size:.9rem">ℹ️ Everything happens locally in your browser — the photo is never uploaded anywhere.</p>
+    </div>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Most photos benefit from a small adjustment before sharing — a dim indoor shot needs more brightness, a flat-looking photo needs more contrast to make it pop, or colors look washed out and need more saturation to feel vivid. Professional photo editors bury these adjustments in menus and panels; this tool puts the three most useful sliders front and center with a live preview, so you can see the exact effect of each change as you drag, rather than guessing and re-exporting repeatedly.</p>
+      <p>Brightness, contrast, and saturation each affect the photo independently and can be combined freely — for example you might raise brightness slightly while also boosting saturation to make a dull, underexposed photo look properly vivid. All three sliders apply instantly to the live preview canvas, and the Reset All button returns everything to the original values if you want to start over. Once it looks right, Download saves the adjusted photo as a PNG file.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a photo.</li>
+        <li>Drag the Brightness, Contrast, and Saturation sliders and watch the live preview.</li>
+        <li>Click Download when it looks right.</li>
+      </ol>
+      <h3>What each slider does</h3>
+      <p>Brightness shifts the overall lightness of every pixel up or down — pushed too high, an image starts to look washed out and white; too low, and detail disappears into shadow. Contrast controls the difference between the lightest and darkest parts of the photo — higher contrast makes blacks deeper and whites brighter for a punchier look, while lower contrast flattens everything toward gray. Saturation controls how vivid or muted the colors are — at 0% the image becomes fully grayscale, and pushed high, colors become intense and almost cartoonish. Small, careful adjustments to all three together usually look more natural than pushing any single slider to an extreme.</p>
+      <p>A typical workflow is to first correct brightness so the photo isn't too dark or too washed out, then nudge contrast up slightly to add some punch, and finally adjust saturation to taste depending on whether you want a natural look or something more vibrant for social media. Because all three sliders work on a live preview canvas rather than a static image, you can go back and forth between them as many times as you like before committing to a download, comparing each combination side by side until the photo looks exactly right, with no risk of losing your place or having to start the edit over from scratch.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>ज़्यादातर फोटो को शेयर करने से पहले थोड़ा adjustment चाहिए होता है — कोई धुंधली indoor फोटो में ज़्यादा brightness चाहिए, कोई flat दिखने वाली फोटो में contrast बढ़ाना है ताकि वह उभरे, या रंग फीके लग रहे हों और saturation बढ़ाकर vivid करना है। Professional photo editors में यह adjustments menus और panels में छिपे होते हैं; यह tool तीन सबसे उपयोगी sliders को सीधे सामने रखता है, live preview के साथ, ताकि हर बदलाव का असली असर drag करते ही दिखे, बार-बार अंदाज़ा लगाकर export न करना पड़े।</p>
+      <p>Brightness, contrast, और saturation तीनों फोटो को अलग-अलग प्रभावित करते हैं और साथ में भी इस्तेमाल किए जा सकते हैं — जैसे किसी dull, underexposed फोटो में brightness थोड़ी बढ़ाकर साथ में saturation भी बढ़ा सकते हैं ताकि वह सही मायने में vivid दिखे। तीनों sliders live preview canvas पर तुरंत लागू होते हैं, और Reset All बटन से सब कुछ शुरुआती values पर वापस आ जाता है अगर दोबारा शुरू करना हो। सही दिखने पर, Download adjusted फोटो को PNG file के रूप में save कर देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक फोटो अपलोड करें।</li>
+        <li>Brightness, Contrast, और Saturation sliders drag करें और live preview देखें।</li>
+        <li>सही दिखने पर Download दबाएं।</li>
+      </ol>
+      <h3>हर slider क्या करता है</h3>
+      <p>Brightness हर pixel की overall lightness को ऊपर-नीचे करता है — बहुत ज़्यादा बढ़ाने पर image धुली-धुली और सफ़ेद दिखने लगती है; बहुत कम करने पर detail अंधेरे में खो जाती है। Contrast फोटो के सबसे हल्के और सबसे गहरे हिस्सों के बीच का अंतर control करता है — ज़्यादा contrast से blacks गहरे और whites उजले होकर ज़्यादा punchy look मिलता है, कम contrast से सब कुछ grey की तरफ़ flat हो जाता है। Saturation रंगों की vividness control करता है — 0% पर image पूरी तरह grayscale हो जाती है, और बहुत बढ़ाने पर रंग तेज़ और लगभग cartoonish लगने लगते हैं। तीनों में छोटे, सावधानी भरे बदलाव आमतौर पर किसी एक slider को extreme तक ले जाने से ज़्यादा natural दिखते हैं।</p>
+      <p>एक सामान्य तरीका यह है कि पहले brightness ठीक करें ताकि फोटो न बहुत अंधेरी हो न बहुत धुली, फिर थोड़ा contrast बढ़ाएं ताकि कुछ punch आए, और आख़िर में saturation को अपनी पसंद अनुसार adjust करें — चाहे natural look चाहिए हो या social media के लिए कुछ ज़्यादा vibrant। चूंकि तीनों sliders एक live preview canvas पर काम करते हैं न कि किसी static image पर, download करने से पहले जितनी बार चाहें आगे-पीछे adjust कर सकते हैं।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const canvas = document.getElementById('previewCanvas');
+const ctx = canvas.getContext('2d');
+const brightSlider = document.getElementById('brightSlider');
+const contrastSlider = document.getElementById('contrastSlider');
+const satSlider = document.getElementById('satSlider');
+let img = new Image();
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    img.onload = ()=>{
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      document.getElementById('afterUpload').style.display = 'block';
+      draw();
+    };
+    img.src = URL.createObjectURL(files[0]);
+  }
+});
+
+function draw(){
+  const b = brightSlider.value, c = contrastSlider.value, s = satSlider.value;
+  document.getElementById('brightVal').textContent = b + '%';
+  document.getElementById('contrastVal').textContent = c + '%';
+  document.getElementById('satVal').textContent = s + '%';
+
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.filter = `brightness(${b}%) contrast(${c}%) saturate(${s}%)`;
+  ctx.drawImage(img, 0, 0);
+  ctx.filter = 'none';
+}
+
+[brightSlider, contrastSlider, satSlider].forEach(s => s.addEventListener('input', draw));
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  brightSlider.value = 100; contrastSlider.value = 100; satSlider.value = 100;
+  draw();
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  canvas.toBlob(blob => downloadBlob('adjusted-image.png', blob), 'image/png');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/letter-template-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Letter Template Generator — Formal Letter Maker | ApneSoftware">
+<meta property="og:description" content="Create a clean, professional formal letter and download it as a PDF. Free, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/letter-template-generator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Letter Template Generator — Formal Letter Maker | ApneSoftware">
+<meta name="twitter:description" content="Create a clean, professional formal letter and download it as a PDF. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Letter Template Generator","description":"Create a clean, professional formal letter and download it as a PDF. Free, no signup.","url":"https://apnesoftware.com/tools/letter-template-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Letter Template Generator — Formal Letter Maker | ApneSoftware</title>
+<meta name="description" content="Create a clean, professional formal letter and download it as a PDF. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .letter-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+  @media(max-width:900px){ .letter-layout{grid-template-columns:1fr} }
+  textarea#bodyInput{min-height:220px;font-family:inherit}
+  .letter-preview{
+    background:#fff;border:1px solid var(--border);border-radius:10px;padding:50px 46px;
+    font-family:'Georgia',serif;color:#1a1a1a;font-size:.92rem;line-height:1.7;min-height:600px;
+  }
+  .letter-preview .lp-date{margin-bottom:24px;color:#444}
+  .letter-preview .lp-sender{white-space:pre-line;margin-bottom:22px}
+  .letter-preview .lp-recipient{white-space:pre-line;margin-bottom:22px}
+  .letter-preview .lp-subject{font-weight:700;margin-bottom:18px}
+  .letter-preview .lp-greeting{margin-bottom:14px}
+  .letter-preview .lp-body{white-space:pre-line;margin-bottom:26px}
+  .letter-preview .lp-closing{margin-bottom:4px}
+  .letter-preview .lp-signature{margin-top:36px;font-weight:600}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>✉️ Letter Template Generator</h1>
+    <p>Fill in the details and get a clean, professionally formatted formal letter as a PDF.</p>
+  </div>
+
+  <div class="panel">
+    <div class="letter-layout">
+      <div>
+        <div class="field"><label for="senderInfo">Your Name & Address</label><textarea id="senderInfo" rows="3">Subhash Kaler
+123 Main Street
+Jaipur, Rajasthan</textarea></div>
+        <div class="field"><label for="letterDate">Date</label><input type="text" id="letterDate" value=""></div>
+        <div class="field"><label for="recipientInfo">Recipient's Name & Address</label><textarea id="recipientInfo" rows="3">The Manager
+ABC Company
+City, State</textarea></div>
+        <div class="field"><label for="subjectInput">Subject</label><input type="text" id="subjectInput" placeholder="Subject of the letter" value="Application for Leave"></div>
+        <div class="field"><label for="greetingInput">Greeting</label><input type="text" id="greetingInput" value="Dear Sir/Madam,"></div>
+        <div class="field"><label for="bodyInput">Letter Body</label><textarea id="bodyInput" placeholder="Write your letter here...">I am writing to formally request...</textarea></div>
+        <div class="field"><label for="closingInput">Closing</label><input type="text" id="closingInput" value="Yours sincerely,"></div>
+        <div class="field"><label for="signatureInput">Your Name (signature line)</label><input type="text" id="signatureInput" value="Subhash Kaler"></div>
+
+        <div class="btn-row" style="margin-top:16px">
+          <button class="btn" id="downloadBtn">⬇️ Download as PDF</button>
+        </div>
+        <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+      </div>
+
+      <div>
+        <div class="letter-preview" id="letterPreview">
+          <div class="lp-date" id="pDate"></div>
+          <div class="lp-sender" id="pSender"></div>
+          <div class="lp-recipient" id="pRecipient"></div>
+          <div class="lp-subject" id="pSubject"></div>
+          <div class="lp-greeting" id="pGreeting"></div>
+          <div class="lp-body" id="pBody"></div>
+          <div class="lp-closing" id="pClosing"></div>
+          <div class="lp-signature" id="pSignature"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>A formal letter — whether it's a leave application, a complaint to a company, a request to a government office, or a cover letter — follows a fairly fixed structure: sender's address, date, recipient's address, a subject line, a greeting, the body, and a formal closing with a signature line. Getting the spacing and order right by hand in a word processor takes longer than it should, and it's easy to forget a section or format it inconsistently.</p>
+      <p>This tool handles the structure for you — fill in each field on the left and watch the letter build itself in a properly formatted preview on the right, styled like a traditional typed letter. Once everything looks right, Download as PDF saves it as a clean, ready-to-print or ready-to-email document.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Fill in your address, the date, and the recipient's address.</li>
+        <li>Add a subject line, greeting, the main body of your letter, and a closing.</li>
+        <li>Check the live preview on the right, then click "Download as PDF."</li>
+      </ol>
+      <h3>Tips for a stronger formal letter</h3>
+      <p>Keep the subject line short and specific — it should tell the reader exactly what the letter is about before they read a single sentence of the body. In the body itself, state the purpose of the letter in the first sentence or two rather than building up to it, since formal letters are read for information, not suspense. Closing phrases like "Yours sincerely" are typically paired with a known recipient name, while "Yours faithfully" is more traditional when the letter opens with "Dear Sir/Madam" and the recipient's exact name isn't known.</p>
+      <p>This kind of letter comes up more often than people expect — applying for leave at work or school, formally requesting a document from a government office, writing to a landlord about a repair, lodging a complaint with a company's customer service department, or sending a cover letter alongside a job application. In many of these situations, especially with government and institutional offices, a properly formatted physical or PDF letter is taken more seriously than an informal email, which is exactly the gap this template is built to fill without requiring any design or word-processing skill, letting anyone produce a properly structured letter in a few minutes regardless of how often they write one, without having to remember the right spacing, salutation style, or sign-off convention each time from scratch.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>एक formal letter — चाहे वह leave application हो, किसी company को complaint हो, किसी सरकारी दफ़्तर को request हो, या cover letter हो — एक तय structure follow करता है: sender का address, date, recipient का address, एक subject line, greeting, body, और एक formal closing के साथ signature line। किसी word processor में हाथ से सही spacing और order बनाना ज़रूरत से ज़्यादा समय लेता है, और कोई हिस्सा भूल जाना या असंगत तरीके से format करना आसान है।</p>
+      <p>यह tool आपके लिए structure संभाल लेता है — बाएं तरफ़ हर field भरें और दाएं तरफ़ एक सही formatted preview में letter खुद बनता हुआ देखें, traditional typed letter जैसी styling में। सब कुछ सही दिखने पर, Download as PDF उसे एक साफ़, print या email करने के लिए तैयार document के रूप में save कर देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना address, date, और recipient का address भरें।</li>
+        <li>Subject line, greeting, letter का मुख्य body, और closing जोड़ें।</li>
+        <li>दाएं तरफ़ live preview देखें, फिर "Download as PDF" दबाएं।</li>
+      </ol>
+      <h3>बेहतर formal letter के लिए सुझाव</h3>
+      <p>Subject line को छोटा और स्पष्ट रखें — body की एक भी line पढ़ने से पहले ही reader को पता चल जाना चाहिए कि letter किस बारे में है। Body में, letter का मकसद पहली एक-दो lines में ही बता दें बजाय धीरे-धीरे उस तक पहुंचने के, क्योंकि formal letters जानकारी के लिए पढ़े जाते हैं, suspense के लिए नहीं। "Yours sincerely" जैसे closing phrases आमतौर पर किसी जाने-पहचाने recipient name के साथ इस्तेमाल होते हैं, जबकि "Yours faithfully" ज़्यादा traditional है जब letter "Dear Sir/Madam" से शुरू हो और recipient का exact नाम पता न हो।</p>
+      <p>इस तरह का letter जितना लगता है उससे ज़्यादा बार काम आता है — काम या स्कूल में leave के लिए apply करना, किसी सरकारी दफ़्तर से कोई document औपचारिक रूप से मांगना, landlord को किसी repair के बारे में लिखना, किसी company के customer service department में complaint दर्ज करना, या job application के साथ cover letter भेजना। इनमें से कई स्थितियों में, खासकर सरकारी और institutional दफ़्तरों के साथ, एक सही formatted physical या PDF letter किसी informal email से कहीं ज़्यादा गंभीरता से लिया जाता है — और यही वह जगह है जिसे भरने के लिए यह template बना है, बिना किसी design या word-processing skill की ज़रूरत के, ताकि हर बार सही spacing, salutation style, या sign-off तरीका याद रखने की चिंता न करनी पड़े।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const fields = ['senderInfo','letterDate','recipientInfo','subjectInput','greetingInput','bodyInput','closingInput','signatureInput'];
+
+function renderPreview(){
+  document.getElementById('pSender').textContent = document.getElementById('senderInfo').value;
+  document.getElementById('pDate').textContent = document.getElementById('letterDate').value;
+  document.getElementById('pRecipient').textContent = document.getElementById('recipientInfo').value;
+  document.getElementById('pSubject').textContent = 'Subject: ' + document.getElementById('subjectInput').value;
+  document.getElementById('pGreeting').textContent = document.getElementById('greetingInput').value;
+  document.getElementById('pBody').textContent = document.getElementById('bodyInput').value;
+  document.getElementById('pClosing').textContent = document.getElementById('closingInput').value;
+  document.getElementById('pSignature').textContent = document.getElementById('signatureInput').value;
+}
+
+fields.forEach(id => document.getElementById(id).addEventListener('input', renderPreview));
+
+// Default date to today
+const today = new Date();
+document.getElementById('letterDate').value = today.toLocaleDateString('en-IN', { day:'numeric', month:'long', year:'numeric' });
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Generating PDF...';
+  const el = document.getElementById('letterPreview');
+  html2pdf().set({
+    margin: 0,
+    filename: 'letter.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' }
+  }).from(el).save().then(()=>{
+    status.textContent = '✅ PDF downloaded!';
+  }).catch((err)=>{
+    status.textContent = '❌ Error generating PDF: ' + (err && err.message ? err.message : String(err));
+  });
+});
+
+renderPreview();
+</script>
+</body>
+</html>

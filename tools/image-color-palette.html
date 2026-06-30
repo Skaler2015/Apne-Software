@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/image-color-palette.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image Color Palette Extractor | ApneSoftware">
+<meta property="og:description" content="Extract dominant colors with hex codes. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/image-color-palette.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Color Palette Extractor | ApneSoftware">
+<meta name="twitter:description" content="Extract dominant colors with hex codes. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Color Palette Extractor","description":"Extract dominant colors with hex codes. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/image-color-palette.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Image Color Palette Extractor | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .preview-img{max-width:100%;max-height:280px;border-radius:10px;border:1px solid var(--border);margin-bottom:14px}
+  .palette-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin-top:14px}
+  .swatch-card{border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+  .swatch-card .swatch-color{height:70px;cursor:pointer}
+  .swatch-card .swatch-info{padding:8px;background:var(--surface-2);font-family:'Consolas','Courier New',monospace;font-size:.78rem;text-align:center}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🎨 Image Color Palette Extractor</h1>
+    <p>Pull out the dominant colors from any photo, with hex codes ready to copy.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an image here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <img class="preview-img" id="previewImg" alt="Preview">
+      <div class="field" style="max-width:200px">
+        <label for="colorCount">Number of colors</label>
+        <input type="number" id="colorCount" value="6" min="3" max="12">
+      </div>
+      <div class="palette-grid" id="paletteGrid"></div>
+      <p style="font-size:.8rem;color:var(--text-dim);margin-top:10px">Click any swatch to copy its hex code.</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Extracts the most dominant colors from any photo and presents them as a clean palette with hex codes — useful for matching brand colors, building a design palette, or picking complementary colors for a project.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload an image.</li>
+        <li>Adjust how many colors you want extracted.</li>
+        <li>Click any swatch to copy its hex code.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी भी फोटो से सबसे dominant colors निकालकर hex codes के साथ साफ पैलेट दिखाता है — brand colors मैच करने, डिज़ाइन पैलेट बनाने, या किसी प्रोजेक्ट के लिए कॉम्प्लीमेंटरी कलर चुनने के लिए उपयोगी।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक इमेज अपलोड करें।</li>
+        <li>कितने कलर चाहिए सेट करें।</li>
+        <li>किसी भी swatch पर क्लिक करके उसका hex code कॉपी करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    const img = document.getElementById('previewImg');
+    img.src = URL.createObjectURL(files[0]);
+    document.getElementById('afterUpload').style.display = 'block';
+    img.onload = extractPalette;
+  }
+});
+
+document.getElementById('colorCount').addEventListener('input', extractPalette);
+
+function rgbToHex(r,g,b){
+  return '#' + [r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+
+function extractPalette(){
+  const img = document.getElementById('previewImg');
+  if(!img.naturalWidth) return;
+
+  const canvas = document.createElement('canvas');
+  // downscale for speed
+  const scale = Math.min(1, 200/Math.max(img.naturalWidth, img.naturalHeight));
+  canvas.width = Math.max(1, Math.round(img.naturalWidth*scale));
+  canvas.height = Math.max(1, Math.round(img.naturalHeight*scale));
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+  const data = ctx.getImageData(0,0,canvas.width,canvas.height).data;
+
+  // quantize colors into buckets (reduce each channel to fewer levels)
+  const buckets = {};
+  const bucketSize = 24;
+  for(let i=0; i<data.length; i+=4){
+    const a = data[i+3];
+    if(a < 100) continue; // skip transparent
+    const r = Math.round(data[i]/bucketSize)*bucketSize;
+    const g = Math.round(data[i+1]/bucketSize)*bucketSize;
+    const b = Math.round(data[i+2]/bucketSize)*bucketSize;
+    const key = r+','+g+','+b;
+    if(!buckets[key]) buckets[key] = { r,g,b, count:0 };
+    buckets[key].count++;
+  }
+
+  const sorted = Object.values(buckets).sort((a,b)=> b.count - a.count);
+  const count = Math.max(3, Math.min(12, parseInt(document.getElementById('colorCount').value) || 6));
+
+  // pick top N, avoiding near-duplicate colors
+  const picked = [];
+  for(const c of sorted){
+    if(picked.length >= count) break;
+    const tooClose = picked.some(p => Math.abs(p.r-c.r)+Math.abs(p.g-c.g)+Math.abs(p.b-c.b) < 30);
+    if(!tooClose) picked.push(c);
+  }
+  // fill remaining if needed
+  for(const c of sorted){
+    if(picked.length >= count) break;
+    if(!picked.includes(c)) picked.push(c);
+  }
+
+  const grid = document.getElementById('paletteGrid');
+  grid.innerHTML = '';
+  picked.slice(0,count).forEach(c=>{
+    const hex = rgbToHex(Math.min(255,c.r), Math.min(255,c.g), Math.min(255,c.b));
+    const card = document.createElement('div');
+    card.className = 'swatch-card';
+    card.innerHTML = `<div class="swatch-color" style="background:${hex}"></div><div class="swatch-info">${hex}</div>`;
+    card.addEventListener('click', (e)=> copyText(hex, card.querySelector('.swatch-info')));
+    grid.appendChild(card);
+  });
+}
+</script>
+</body>
+</html>

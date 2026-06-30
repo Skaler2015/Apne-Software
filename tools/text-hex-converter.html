@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/text-hex-converter.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Text to Hex Converter — ApneSoftware">
+<meta property="og:description" content="Convert text to hexadecimal code and hex back to text, instantly. Free, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/text-hex-converter.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Text to Hex Converter — ApneSoftware">
+<meta name="twitter:description" content="Convert text to hexadecimal code and hex back to text, instantly. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text to Hex Converter","description":"Convert text to hexadecimal code and hex back to text, instantly. Free, no signup.","url":"https://apnesoftware.com/tools/text-hex-converter.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Text to Hex Converter — ApneSoftware</title>
+<meta name="description" content="Convert text to hexadecimal code and hex back to text, instantly. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .tab-row{display:flex;gap:8px;margin-bottom:14px}
+  textarea{width:100%;min-height:200px;font-family:monospace;font-size:.85rem;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);resize:vertical}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔣 Text to Hex Converter</h1>
+    <p>Convert plain text into hexadecimal code, or decode hex back into readable text.</p>
+  </div>
+
+  <div class="panel">
+    <div class="tab-row">
+      <button class="btn secondary active" id="encodeTabBtn">Text → Hex</button>
+      <button class="btn secondary" id="decodeTabBtn">Hex → Text</button>
+    </div>
+
+    <div class="field"><label id="inputLabel" for="inputText">Text</label><textarea id="inputText" placeholder="Type text here...">Hello</textarea></div>
+
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn" id="convertBtn">Convert</button>
+      <button class="btn secondary" id="copyBtn">📋 Copy Result</button>
+      <button class="btn secondary" id="resetBtn">🔄 Reset</button>
+    </div>
+
+    <div class="field" style="margin-top:16px"><label id="outputLabel">Hex</label><textarea id="outputText" readonly></textarea></div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Hexadecimal — base 16, using digits 0-9 and letters A-F — is a common way to represent raw byte data in programming, networking, and file formats, since it's more compact than binary while still mapping cleanly onto how computers store bytes. Developers run into hex constantly: reading memory dumps, working with color codes, inspecting network packets, or debugging encoded data that's been dumped as hex for readability.</p>
+      <p>This tool converts in both directions — type or paste regular text and get its hexadecimal byte representation, or paste hex code and get the readable text back. It uses standard UTF-8 byte encoding, so the conversion handles ordinary English text predictably and consistently in both directions.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Choose "Text → Hex" or "Hex → Text" using the tabs.</li>
+        <li>Type or paste your input.</li>
+        <li>Click "Convert" and copy the result.</li>
+      </ol>
+      <h3>Format expected for Hex → Text</h3>
+      <p>When converting hex back to text, each character's code should be exactly two hex digits, separated by a space, matching the format this tool produces when converting text to hex — for example "48 65 6c 6c 6f" decodes to "Hello." Hex digits can be uppercase or lowercase; both work the same way. If you paste hex from somewhere else with a different format (like no spaces, or grouped in fours), try adding a single space between every two characters before converting for a reliable result.</p>
+      <p>Hex shows up constantly in places developers and tech-curious people run into directly — CSS color codes like #7C5CFC are hexadecimal, MAC addresses and many hardware identifiers are written in hex, and debugging tools often dump raw data as hex precisely because it's more compact and easier to scan than binary while still showing the exact byte values. Being able to quickly flip between readable text and its hex representation is genuinely useful when verifying that a piece of encoded or transmitted data matches what was expected, or when working through a programming exercise that specifically asks for hex output.</p>
+      <p>Hex is also the standard way to write a single byte compactly, since exactly two hex digits represent any value from 0 to 255, which is why it shows up so often in technical documentation, file format specifications, and error codes alongside their decimal equivalents. Having this converter on hand removes the need to do that base-16 math manually whenever a quick translation between text and hex is all that's actually needed.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>Hexadecimal — base 16, digits 0-9 और letters A-F इस्तेमाल करके — programming, networking, और file formats में raw byte data represent करने का एक आम तरीका है, क्योंकि यह binary से ज़्यादा compact है जबकि फिर भी computer के bytes store करने के तरीके पर साफ़ तौर पर fit होता है। Developers को hex लगातार मिलता है: memory dumps पढ़ना, color codes के साथ काम करना, network packets inspect करना, या readability के लिए hex के रूप में dump किए गए encoded data को debug करना।</p>
+      <p>यह tool दोनों दिशाओं में convert करता है — सामान्य text टाइप या paste करें और उसका hexadecimal byte representation पाएं, या hex code paste करें और readable text वापस पाएं। यह standard UTF-8 byte encoding इस्तेमाल करता है, तो conversion दोनों दिशाओं में सामान्य English text को predictably और consistently handle करता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>Tabs से "Text → Hex" या "Hex → Text" चुनें।</li>
+        <li>अपना input टाइप या paste करें।</li>
+        <li>"Convert" दबाएं और result copy करें।</li>
+      </ol>
+      <h3>Hex → Text के लिए expected format</h3>
+      <p>Hex को वापस text में convert करते वक्त, हर character का code बिल्कुल दो hex digits होना चाहिए, space से अलग, बिल्कुल वैसा format जैसा यह tool text को hex में बदलते वक्त बनाता है — जैसे "48 65 6c 6c 6f" "Hello" में decode होता है। Hex digits uppercase या lowercase हो सकते हैं; दोनों एक जैसे काम करते हैं। अगर कहीं और से अलग format वाला hex paste किया हो (जैसे बिना spaces, या चार-चार में grouped), तो convert करने से पहले हर दो characters के बीच एक single space जोड़ने की कोशिश करें ताकि भरोसेमंद result मिले।</p>
+      <p>Hex developers और tech में दिलचस्पी रखने वाले लोगों को सीधे मिलने वाली जगहों पर लगातार दिखता है — #7C5CFC जैसे CSS color codes hexadecimal होते हैं, MAC addresses और कई hardware identifiers hex में लिखे जाते हैं, और debugging tools अक्सर raw data को hex के रूप में dump करते हैं ठीक इसलिए क्योंकि यह binary से ज़्यादा compact और स्कैन करने में आसान है जबकि फिर भी exact byte values दिखाता है। Readable text और उसके hex representation के बीच तेज़ी से जा-आ पाना तब genuinely उपयोगी है जब यह verify करना हो कि किसी encoded या transmitted data का टुकड़ा वही है जो उम्मीद थी, या किसी programming exercise पर काम करते वक्त जो specifically hex output मांगती है।</p>
+      <p>Hex किसी single byte को compactly लिखने का standard तरीका भी है, क्योंकि बिल्कुल दो hex digits 0 से 255 तक किसी भी value को represent कर सकते हैं, इसीलिए यह technical documentation, file format specifications, और error codes में उनके decimal equivalents के साथ इतनी बार दिखता है। यह converter हाथ में होने से जब भी text और hex के बीच सिर्फ़ एक तेज़ translation चाहिए हो तो base-16 math हाथ से करने की ज़रूरत नहीं पड़ती।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+let mode = 'encode';
+
+document.getElementById('encodeTabBtn').addEventListener('click', function(){
+  mode = 'encode';
+  this.classList.add('active');
+  document.getElementById('decodeTabBtn').classList.remove('active');
+  document.getElementById('inputLabel').textContent = 'Text';
+  document.getElementById('outputLabel').textContent = 'Hex';
+  document.getElementById('inputText').value = 'Hello';
+  document.getElementById('outputText').value = '';
+});
+
+document.getElementById('decodeTabBtn').addEventListener('click', function(){
+  mode = 'decode';
+  this.classList.add('active');
+  document.getElementById('encodeTabBtn').classList.remove('active');
+  document.getElementById('inputLabel').textContent = 'Hex';
+  document.getElementById('outputLabel').textContent = 'Text';
+  document.getElementById('inputText').value = '48 65 6c 6c 6f';
+  document.getElementById('outputText').value = '';
+});
+
+document.getElementById('convertBtn').addEventListener('click', ()=>{
+  const status = document.getElementById('statusMsg');
+  const input = document.getElementById('inputText').value;
+
+  if(mode === 'encode'){
+    const bytes = new TextEncoder().encode(input);
+    const hex = Array.from(bytes).map(b => b.toString(16).padStart(2, '0')).join(' ');
+    document.getElementById('outputText').value = hex;
+    status.textContent = '✅ Converted to hex.';
+  } else {
+    try{
+      const groups = input.trim().replace(/0x/gi, '').split(/\s+/).filter(Boolean);
+      const bytes = groups.map(g => {
+        if(!/^[0-9a-fA-F]{1,2}$/.test(g)) throw new Error('Invalid hex group: ' + g);
+        return parseInt(g, 16);
+      });
+      const text = new TextDecoder().decode(new Uint8Array(bytes));
+      document.getElementById('outputText').value = text;
+      status.textContent = '✅ Decoded to text.';
+    }catch(err){
+      document.getElementById('outputText').value = '';
+      status.textContent = '❌ ' + err.message + ' — make sure each group is 2 hex digits, separated by spaces.';
+    }
+  }
+});
+
+document.getElementById('copyBtn').addEventListener('click', function(){
+  copyText(document.getElementById('outputText').value, this);
+});
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  document.getElementById('inputText').value = '';
+  document.getElementById('outputText').value = '';
+  document.getElementById('statusMsg').textContent = '';
+});
+</script>
+</body>
+</html>

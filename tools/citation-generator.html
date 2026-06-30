@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/citation-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Citation Generator (APA/MLA) | ApneSoftware">
+<meta property="og:description" content="APA 7 & MLA 9 citations for sites/books. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/citation-generator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Citation Generator (APA/MLA) | ApneSoftware">
+<meta name="twitter:description" content="APA 7 & MLA 9 citations for sites/books. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Citation Generator","description":"APA 7 & MLA 9 citations for sites/books. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/citation-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Citation Generator (APA/MLA) | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .tab-row{display:flex;gap:8px;margin-bottom:14px}
+  .tab-btn{padding:8px 16px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-size:.9rem;cursor:pointer}
+  .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .citation-box{
+    background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;
+  }
+  .citation-box .citation-label{font-size:.78rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+  .citation-box .citation-text{font-family:Georgia,serif;font-size:.92rem;line-height:1.5}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📚 Citation Generator</h1>
+    <p>Generate APA 7 and MLA 9 style citations for websites or books.</p>
+  </div>
+
+  <div class="panel">
+    <div class="tab-row">
+      <button class="tab-btn active" data-type="website">🌐 Website</button>
+      <button class="tab-btn" data-type="book">📖 Book</button>
+    </div>
+
+    <div class="row">
+      <div class="field"><label for="authorLast">Author last name</label><input type="text" id="authorLast" placeholder="Sharma"></div>
+      <div class="field"><label for="authorFirst">Author first name</label><input type="text" id="authorFirst" placeholder="Ravi"></div>
+    </div>
+    <div class="field"><label for="titleInput">Title</label><input type="text" id="titleInput" placeholder="Title of the page or book"></div>
+    <div class="row">
+      <div class="field"><label for="yearInput">Year published</label><input type="number" id="yearInput" placeholder="2026"></div>
+      <div class="field" id="siteOrPublisherField"><label for="siteOrPublisher">Website/Site name</label><input type="text" id="siteOrPublisher" placeholder="e.g. BBC News"></div>
+    </div>
+    <div class="field" id="urlField"><label for="urlInput">URL</label><input type="text" id="urlInput" placeholder="https://..."></div>
+    <div class="field" id="accessDateField"><label for="accessDate">Date accessed</label><input type="date" id="accessDate"></div>
+
+    <div class="citation-box">
+      <div class="citation-label">APA 7</div>
+      <div class="citation-text" id="apaOutput"></div>
+    </div>
+    <div class="citation-box">
+      <div class="citation-label">MLA 9</div>
+      <div class="citation-text" id="mlaOutput"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn secondary" id="copyApaBtn">📋 Copy APA</button>
+      <button class="btn secondary" id="copyMlaBtn">📋 Copy MLA</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Generates properly formatted citations in both APA 7th edition and MLA 9th edition styles, for websites or books, based on the details you enter. Useful for essays, research papers, and bibliographies.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Choose Website or Book.</li>
+        <li>Fill in the author, title, year, and other details.</li>
+        <li>Copy the APA or MLA citation as needed.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>आपकी डाली गई डिटेल्स के आधार पर websites या books के लिए APA 7th edition और MLA 9th edition दोनों स्टाइल में सही फॉर्मेट की citations बनाता है। essays, research papers, और bibliographies के लिए उपयोगी।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>Website या Book चुनें।</li>
+        <li>author, title, year, और बाकी डिटेल्स भरें।</li>
+        <li>ज़रूरत के हिसाब से APA या MLA citation कॉपी करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+let type = 'website';
+
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    type = btn.dataset.type;
+    document.querySelector('#siteOrPublisherField label').textContent = type === 'website' ? 'Website/Site name' : 'Publisher';
+    document.getElementById('urlField').style.display = type === 'website' ? 'block' : 'none';
+    document.getElementById('accessDateField').style.display = type === 'website' ? 'block' : 'none';
+    generate();
+  });
+});
+
+function generate(){
+  const lastName = document.getElementById('authorLast').value.trim();
+  const firstName = document.getElementById('authorFirst').value.trim();
+  const title = document.getElementById('titleInput').value.trim() || 'Untitled';
+  const year = document.getElementById('yearInput').value.trim() || 'n.d.';
+  const siteOrPublisher = document.getElementById('siteOrPublisher').value.trim();
+  const url = document.getElementById('urlInput').value.trim();
+  const accessDate = document.getElementById('accessDate').value;
+
+  const apaInitial = firstName ? firstName.charAt(0).toUpperCase() + '.' : '';
+  const apaAuthor = lastName ? lastName + (apaInitial ? ', ' + apaInitial : '') : '';
+  const mlaAuthor = lastName ? lastName + (firstName ? ', ' + firstName : '') : '';
+
+  let apa = '', mla = '';
+
+  if(type === 'website'){
+    apa = `${apaAuthor ? apaAuthor + ' ' : ''}(${year}). ${title}. ${siteOrPublisher ? siteOrPublisher + '. ' : ''}${url}`;
+    mla = `${mlaAuthor ? mlaAuthor + '. ' : ''}"${title}." ${siteOrPublisher ? siteOrPublisher + ', ' : ''}${year}, ${url}.${accessDate ? ' Accessed ' + formatMlaDate(accessDate) + '.' : ''}`;
+  } else {
+    apa = `${apaAuthor ? apaAuthor + ' ' : ''}(${year}). ${title}. ${siteOrPublisher || 'Publisher'}.`;
+    mla = `${mlaAuthor ? mlaAuthor + '. ' : ''}${title}. ${siteOrPublisher || 'Publisher'}, ${year}.`;
+  }
+
+  document.getElementById('apaOutput').textContent = apa.replace(/\s+/g,' ').trim();
+  document.getElementById('mlaOutput').textContent = mla.replace(/\s+/g,' ').trim();
+}
+
+function formatMlaDate(dateStr){
+  const months = ['Jan.','Feb.','Mar.','Apr.','May','June','July','Aug.','Sept.','Oct.','Nov.','Dec.'];
+  const d = new Date(dateStr);
+  return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+}
+
+document.querySelectorAll('input').forEach(el=> el.addEventListener('input', generate));
+
+document.getElementById('copyApaBtn').addEventListener('click', (e)=> copyText(document.getElementById('apaOutput').textContent, e.target));
+document.getElementById('copyMlaBtn').addEventListener('click', (e)=> copyText(document.getElementById('mlaOutput').textContent, e.target));
+
+generate();
+</script>
+</body>
+</html>

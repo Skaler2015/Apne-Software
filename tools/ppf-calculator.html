@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/ppf-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PPF Calculator — Public Provident Fund Calculator | ApneSoftware">
+<meta property="og:description" content="Calculate your PPF maturity amount, total interest, and year-by-year growth. Free, instant, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/ppf-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PPF Calculator — Public Provident Fund Calculator | ApneSoftware">
+<meta name="twitter:description" content="Calculate your PPF maturity amount, total interest, and year-by-year growth. Free, instant, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PPF Calculator","description":"Calculate your PPF maturity amount, total interest, and year-by-year growth. Free, instant, no signup.","url":"https://apnesoftware.com/tools/ppf-calculator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PPF Calculator — Public Provident Fund Calculator | ApneSoftware</title>
+<meta name="description" content="Calculate your PPF maturity amount, total interest, and year-by-year growth. Free, instant, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:14px}
+  th{background:var(--surface-2);padding:8px 10px;text-align:right;font-weight:700}
+  th:first-child{text-align:left}
+  td{padding:7px 10px;border-top:1px solid var(--border);text-align:right}
+  td:first-child{text-align:left;font-weight:600}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+<div class="container">
+  <div class="tool-header">
+    <h1>🏛️ PPF Calculator</h1>
+    <p>Calculate your Public Provident Fund maturity amount with year-by-year growth breakdown.</p>
+  </div>
+  <div class="panel">
+    <div class="row">
+      <div class="field"><label for="yearly">Yearly Investment (₹)</label><input type="number" id="yearly" value="150000" min="500" max="150000"></div>
+      <div class="field"><label for="rate">Interest Rate (% p.a.)</label><input type="number" id="rate" value="7.1" step="0.1" min="1"></div>
+    </div>
+    <div class="field"><label for="tenure">Tenure (Years, min 15)</label><input type="number" id="tenure" value="15" min="15" max="50"></div>
+    <div class="stat-grid">
+      <div class="stat-box"><div class="num" id="maturity">₹0</div><div class="lbl">Maturity Amount</div></div>
+      <div class="stat-box"><div class="num" id="interest">₹0</div><div class="lbl">Interest Earned</div></div>
+      <div class="stat-box"><div class="num" id="invested">₹0</div><div class="lbl">Total Invested</div></div>
+    </div>
+    <details style="margin-top:16px">
+      <summary style="cursor:pointer;font-weight:700;color:var(--accent)">📊 Year-by-year breakdown</summary>
+      <div style="overflow-x:auto"><table id="breakdown">
+        <thead><tr><th>Year</th><th>Invested (₹)</th><th>Interest (₹)</th><th>Balance (₹)</th></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table></div>
+    </details>
+  </div>
+</div>
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>The Public Provident Fund (PPF) is a government-backed, tax-free long-term savings scheme that is one of the most powerful wealth-building tools available to Indian residents. It enjoys a triple tax exemption under the EEE category — contributions are deductible under Section 80C, the interest earned is tax-free, and the maturity amount is also completely tax-free. No other fixed-income instrument in India offers this combination.</p>
+      <p>PPF has a mandatory 15-year lock-in period, after which it can be extended in blocks of 5 years, either with or without fresh contributions. The minimum annual deposit is ₹500 and the maximum is ₹1.5 lakh. Deposits can be made in up to 12 installments per year. The government announces the interest rate quarterly, though it has remained at 7.1% for several years recently.</p>
+      <p>The compound interest in PPF is calculated on the lowest balance between the 5th and the end of the month, so it's best to deposit your annual contribution before the 5th of April each year to maximize interest for that year. This calculator assumes a constant interest rate throughout the tenure for simplicity — in reality, the rate is set quarterly by the government.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Enter your planned yearly contribution (up to ₹1.5 lakh).</li>
+        <li>Enter the current PPF interest rate.</li>
+        <li>Set your tenure (15 years minimum, can be extended in 5-year blocks).</li>
+        <li>View the maturity amount and expand the table for a year-by-year breakdown.</li>
+      </ol>
+    <p>The power of PPF becomes most apparent when you model extended periods with continued contributions. A person starting at age 25 and contributing ₹1.5 lakh annually until retirement at 60 would accumulate an enormous, completely tax-free corpus — far more than many comparable fixed-income instruments over the same period, thanks to the compounding on an already tax-advantaged base. Even relatively modest annual contributions started early become substantial over the 15-year minimum tenure and beyond. PPF also allows partial withdrawals from the 7th financial year onward (up to 50% of the balance at the end of the 4th year preceding the withdrawal year), and loans against PPF balance from the 3rd to 6th year, making it more liquid than it might initially appear despite the lock-in period. The government has never reduced the PPF interest rate below 7% historically, which combined with the EEE tax status makes it arguably the single most attractive risk-free investment available to any Indian individual investor. PPF also scores over other instruments because it cannot be attached by courts (it is legally protected from creditors), making it one of the few savings vehicles that offers both attractive returns and protection from financial liabilities.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>Public Provident Fund (PPF) एक government-backed, tax-free long-term savings scheme है जो भारतीय निवासियों के लिए उपलब्ध सबसे शक्तिशाली wealth-building tools में से एक है। यह EEE category के तहत triple tax exemption का आनंद लेता है — contributions Section 80C के तहत deductible हैं, earned interest tax-free है, और maturity amount भी पूरी तरह tax-free है। भारत में कोई अन्य fixed-income instrument यह combination नहीं देता।</p>
+      <p>PPF में अनिवार्य 15 साल की lock-in period होती है, जिसके बाद इसे 5 साल के blocks में बढ़ाया जा सकता है, fresh contributions के साथ या बिना। न्यूनतम वार्षिक deposit ₹500 और अधिकतम ₹1.5 लाख है। Deposits साल में 12 installments तक में किए जा सकते हैं। सरकार quarterly interest rate announce करती है, हालांकि यह हाल के कई सालों से 7.1% पर रहा है।</p>
+      <p>PPF में compound interest महीने के 5वें और आखिरी दिन के बीच न्यूनतम balance पर calculate होता है, इसलिए उस साल के interest को maximize करने के लिए हर साल 5 अप्रैल से पहले अपना वार्षिक contribution जमा करना सबसे अच्छा है। यह calculator सरलता के लिए tenure के दौरान constant interest rate मानता है — वास्तव में, rate quarterly सरकार द्वारा set किया जाता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना planned yearly contribution डालें (₹1.5 लाख तक)।</li>
+        <li>Current PPF interest rate डालें।</li>
+        <li>Tenure set करें (न्यूनतम 15 साल, 5-साल blocks में बढ़ाया जा सकता है)।</li>
+        <li>Maturity amount देखें और year-by-year breakdown के लिए table expand करें।</li>
+      </ol>
+    <p>PPF की शक्ति continued contributions के साथ extended periods model करने पर सबसे स्पष्ट होती है। 25 साल की उम्र में शुरू होकर 60 साल पर retirement तक सालाना ₹1.5 लाख contribute करने वाला व्यक्ति एक enormous, completely tax-free corpus जमा करेगा — same period में कई comparable fixed-income instruments से कहीं ज़्यादा, already tax-advantaged base पर compounding की वजह से। शुरुआत में relatively modest annual contributions भी 15-साल की minimum tenure और उससे आगे substantial हो जाते हैं। PPF 7वें financial year से partial withdrawals की भी अनुमति देता है (withdrawal year से पहले 4th साल के अंत में balance का 50% तक), और 3rd से 6th साल के बीच PPF balance पर loans भी, जो इसे lock-in period के बावजूद शुरुआती लगने से ज़्यादा liquid बनाता है। सरकार ने ऐतिहासिक रूप से PPF interest rate को 7% से कम कभी नहीं किया है, जो EEE tax status के साथ मिलकर इसे arguably किसी भी Indian individual investor के लिए उपलब्ध सबसे attractive risk-free investment बनाता है। PPF अन्य instruments से इसलिए भी बेहतर है क्योंकि इसे courts द्वारा attach नहीं किया जा सकता (यह legally creditors से protected है), इसे उन कुछ savings vehicles में से एक बनाता है जो attractive returns और financial liabilities से protection दोनों offer करते हैं।</p>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<script>
+function fmt(n){ return '₹' + Math.round(n).toLocaleString('en-IN'); }
+function calc(){
+  const yearly = parseFloat(document.getElementById('yearly').value) || 0;
+  const rate = (parseFloat(document.getElementById('rate').value) || 0) / 100;
+  const tenure = parseInt(document.getElementById('tenure').value) || 15;
+  if(yearly <= 0 || rate <= 0) return;
+  let balance = 0;
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = '';
+  let totalInterest = 0;
+  for(let y = 1; y <= tenure; y++){
+    balance += yearly;
+    const interest = balance * rate;
+    totalInterest += interest;
+    balance += interest;
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td>Year ${y}</td><td>${fmt(yearly*y)}</td><td>${fmt(interest)}</td><td>${fmt(balance)}</td>`;
+    tbody.appendChild(tr);
+  }
+  document.getElementById('maturity').textContent = fmt(balance);
+  document.getElementById('interest').textContent = fmt(totalInterest);
+  document.getElementById('invested').textContent = fmt(yearly * tenure);
+}
+document.querySelectorAll('input').forEach(el => el.addEventListener('input', calc));
+calc();
+</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/text-readability-score.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Text Readability Score | ApneSoftware">
+<meta property="og:description" content="Flesch Reading Ease & Grade Level scores. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/text-readability-score.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Text Readability Score | ApneSoftware">
+<meta name="twitter:description" content="Flesch Reading Ease & Grade Level scores. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text Readability Score","description":"Flesch Reading Ease & Grade Level scores. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/text-readability-score.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Text Readability Score | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .gauge-wrap{text-align:center;margin-top:14px}
+  .gauge-score{font-size:2.2rem;font-weight:800;color:var(--accent-2)}
+  .gauge-label{font-size:.95rem;color:var(--text-dim);margin-top:4px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📖 Text Readability Score</h1>
+    <p>Check how easy your writing is to read, using the Flesch Reading Ease and Flesch-Kincaid Grade Level scores.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="textInput">Paste your text</label>
+      <textarea id="textInput" style="min-height:200px" placeholder="Paste an article, essay, or any text here..."></textarea>
+    </div>
+
+    <div class="gauge-wrap">
+      <div class="gauge-score" id="easeScore">—</div>
+      <div class="gauge-label" id="easeLabel">Flesch Reading Ease</div>
+    </div>
+
+    <div class="stat-grid" style="margin-top:14px">
+      <div class="stat-box"><div class="num" id="gradeVal">—</div><div class="lbl">Flesch-Kincaid Grade Level</div></div>
+      <div class="stat-box"><div class="num" id="wordsVal">0</div><div class="lbl">Words</div></div>
+      <div class="stat-box"><div class="num" id="sentencesVal">0</div><div class="lbl">Sentences</div></div>
+      <div class="stat-box"><div class="num" id="syllablesVal">0</div><div class="lbl">Syllables</div></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Measures how easy your writing is to read using two well-known formulas: Flesch Reading Ease (higher score = easier to read, 0-100 scale) and Flesch-Kincaid Grade Level (the US school grade level needed to understand the text). Useful for blog posts, reports, or simplifying technical writing.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Paste your text into the box.</li>
+        <li>See your readability scores update instantly.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>आपकी writing पढ़ने में कितनी आसान है, यह दो जाने-माने फॉर्मूले से मापता है: Flesch Reading Ease (ज़्यादा स्कोर = पढ़ने में आसान, 0-100 स्केल) और Flesch-Kincaid Grade Level (टेक्स्ट समझने के लिए ज़रूरी ग्रेड लेवल)। ब्लॉग पोस्ट, रिपोर्ट, या टेक्निकल राइटिंग को आसान बनाने के लिए उपयोगी।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना टेक्स्ट बॉक्स में पेस्ट करें।</li>
+        <li>readability स्कोर तुरंत देखें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+function countSyllables(word){
+  word = word.toLowerCase().replace(/[^a-z]/g, '');
+  if(word.length === 0) return 0;
+  if(word.length <= 3) return 1;
+  word = word.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, '');
+  word = word.replace(/^y/, '');
+  const matches = word.match(/[aeiouy]{1,2}/g);
+  return matches ? matches.length : 1;
+}
+
+function easeLabel(score){
+  if(score >= 90) return 'Very Easy (5th grade)';
+  if(score >= 80) return 'Easy (6th grade)';
+  if(score >= 70) return 'Fairly Easy (7th grade)';
+  if(score >= 60) return 'Standard (8th-9th grade)';
+  if(score >= 50) return 'Fairly Difficult (10th-12th grade)';
+  if(score >= 30) return 'Difficult (College level)';
+  return 'Very Difficult (College graduate)';
+}
+
+function analyze(){
+  const text = document.getElementById('textInput').value;
+  const sentenceMatches = text.match(/[.!?]+/g);
+  const sentences = sentenceMatches ? sentenceMatches.length : (text.trim() ? 1 : 0);
+  const words = text.match(/\b[a-zA-Z']+\b/g) || [];
+  const wordCount = words.length;
+  const syllableCount = words.reduce((sum,w)=>sum+countSyllables(w),0);
+
+  document.getElementById('wordsVal').textContent = wordCount.toLocaleString('en-IN');
+  document.getElementById('sentencesVal').textContent = sentences.toLocaleString('en-IN');
+  document.getElementById('syllablesVal').textContent = syllableCount.toLocaleString('en-IN');
+
+  if(wordCount === 0 || sentences === 0){
+    document.getElementById('easeScore').textContent = '—';
+    document.getElementById('easeLabel').textContent = 'Flesch Reading Ease';
+    document.getElementById('gradeVal').textContent = '—';
+    return;
+  }
+
+  const ease = 206.835 - 1.015*(wordCount/sentences) - 84.6*(syllableCount/wordCount);
+  const grade = 0.39*(wordCount/sentences) + 11.8*(syllableCount/wordCount) - 15.59;
+
+  const clampedEase = Math.max(0, Math.min(100, ease));
+  document.getElementById('easeScore').textContent = Math.round(clampedEase);
+  document.getElementById('easeLabel').textContent = easeLabel(clampedEase);
+  document.getElementById('gradeVal').textContent = Math.max(0, grade).toFixed(1);
+}
+
+document.getElementById('textInput').addEventListener('input', analyze);
+analyze();
+</script>
+</body>
+</html>

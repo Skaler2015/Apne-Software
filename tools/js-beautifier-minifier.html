@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/js-beautifier-minifier.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JavaScript Beautifier & Minifier — ApneSoftware">
+<meta property="og:description" content="Format messy JavaScript into readable code, or minify JS safely to reduce file size. Free, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/js-beautifier-minifier.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JavaScript Beautifier & Minifier — ApneSoftware">
+<meta name="twitter:description" content="Format messy JavaScript into readable code, or minify JS safely to reduce file size. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"JavaScript Beautifier & Minifier","description":"Format messy JavaScript into readable code, or minify JS safely to reduce file size. Free, no signup.","url":"https://apnesoftware.com/tools/js-beautifier-minifier.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>JavaScript Beautifier & Minifier — ApneSoftware</title>
+<meta name="description" content="Format messy JavaScript into readable code, or minify JS safely to reduce file size. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .tab-row{display:flex;gap:8px;margin-bottom:14px}
+  textarea{width:100%;min-height:280px;font-family:monospace;font-size:.83rem;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);resize:vertical}
+  .text-area-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){ .text-area-pair{grid-template-columns:1fr} }
+  .col-label{font-size:.8rem;font-weight:700;color:var(--text-dim);margin-bottom:6px;display:flex;justify-content:space-between}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>⚙️ JavaScript Beautifier & Minifier</h1>
+    <p>Format messy JavaScript into readable code, or safely minify it using the same engine real build tools use.</p>
+  </div>
+
+  <div class="panel">
+    <div class="tab-row">
+      <button class="btn secondary active" id="beautifyTabBtn">✨ Beautify</button>
+      <button class="btn secondary" id="minifyTabBtn">📦 Minify</button>
+    </div>
+
+    <div class="text-area-pair">
+      <div>
+        <div class="col-label">INPUT JAVASCRIPT</div>
+        <textarea id="inputCode" placeholder="Paste your JavaScript here...">function greet(name){ if(name){ console.log("Hello, " + name); } else { console.log("Hello!"); } }</textarea>
+      </div>
+      <div>
+        <div class="col-label">OUTPUT <span id="sizeInfo"></span></div>
+        <textarea id="outputCode" readonly></textarea>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn" id="processBtn">✨ Beautify</button>
+      <button class="btn secondary" id="copyBtn">📋 Copy Result</button>
+      <button class="btn secondary" id="downloadBtn">⬇️ Download .js</button>
+      <button class="btn secondary" id="resetBtn">🔄 Reset</button>
+    </div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>JavaScript is unforgiving about how it's minified — unlike HTML or CSS, careless whitespace removal can genuinely break working code due to automatic semicolon insertion rules and other quirks of the language. This tool handles Beautify with straightforward, reliable reformatting, and handles Minify using Terser, the same actively maintained, open-source minification engine used by major build tools like Webpack and Vite, so the minified output is safe and behaves identically to the original code rather than risking subtle bugs from a naive find-and-replace approach.</p>
+      <p>Beautify is useful for making sense of someone else's minified script, debugging a third-party library's behavior, or tidying up your own code after a messy editing session. Minify is for the opposite situation — once a script is finished and tested, shrinking it reduces page load time, which matters more the more visitors a site gets.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Choose "Beautify" or "Minify" using the tabs.</li>
+        <li>Paste your JavaScript into the input box.</li>
+        <li>Click the action button, then copy or download the result.</li>
+      </ol>
+      <h3>Why JS minification needs a real engine</h3>
+      <p>A regex-based "find and replace whitespace" approach to JavaScript minification is genuinely risky, since JavaScript relies on exact syntax in ways HTML and CSS don't — removing a newline in the wrong place can silently change what the code does because of how the language automatically inserts semicolons. Terser actually parses the code into a proper syntax tree, safely removes anything truly unnecessary, and rewrites it back out, which is why it's trusted in production by large-scale projects rather than a simple text-shrinking trick.</p>
+      <p>This makes it safe to minify real, working scripts without the nagging worry that something subtle broke in the process — a concern that's entirely fair with naive minifiers but isn't an issue here, since Terser is the same tool millions of production websites already rely on every day. For learning purposes, beautifying a minified third-party library is also one of the more practical ways to understand how a piece of open-source code actually works internally, since reformatted code with sensible spacing is dramatically easier to read through line by line than the same logic squeezed onto a handful of dense lines.</p>
+      <p>The size comparison next to the output also gives a quick sense of how much a particular script shrinks after minification, which depends heavily on how verbose the original variable names and formatting were — scripts with long descriptive names and generous spacing tend to compress noticeably more than code that was already fairly tight to begin with.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>JavaScript minify करने में बहुत सख्त है — HTML या CSS के उलट, लापरवाही से whitespace हटाने पर असल में काम कर रहा code टूट सकता है, automatic semicolon insertion rules और language की दूसरी quirks की वजह से। यह tool Beautify को सीधे, भरोसेमंद reformatting से संभालता है, और Minify को Terser से संभालता है, वही actively maintained, open-source minification engine जो Webpack और Vite जैसे बड़े build tools इस्तेमाल करते हैं, तो minified output सुरक्षित रहता है और original code जैसा ही व्यवहार करता है, किसी naive find-and-replace approach से आने वाले subtle bugs के खतरे के बिना।</p>
+      <p>Beautify किसी और के minified script को समझने, किसी third-party library के व्यवहार को debug करने, या किसी गड़बड़ editing session के बाद अपने code को व्यवस्थित करने के लिए उपयोगी है। Minify उल्टी स्थिति के लिए है — जब script तैयार और tested हो, उसे छोटा करने से page load time घटता है, जो किसी site पर जितने ज़्यादा visitors आएं उतना ज़्यादा मायने रखता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>Tabs से "Beautify" या "Minify" चुनें।</li>
+        <li>अपना JavaScript input box में paste करें।</li>
+        <li>action बटन दबाएं, फिर result copy या download करें।</li>
+      </ol>
+      <h3>JS minification को असली engine क्यों चाहिए</h3>
+      <p>JavaScript minification के लिए regex-based "whitespace ढूंढो और हटाओ" approach असल में जोखिम भरा है, क्योंकि JavaScript exact syntax पर ऐसे निर्भर करता है जैसे HTML और CSS नहीं करते — गलत जगह पर एक newline हटाने से code का व्यवहार चुपचाप बदल सकता है, क्योंकि language automatic रूप से semicolons कैसे डालती है उसकी वजह से। Terser असल में code को एक सही syntax tree में parse करता है, सुरक्षित रूप से जो सच में फालतू है उसे हटाता है, और उसे दोबारा लिखता है, इसीलिए यह बड़े पैमाने के projects में production में भरोसे से इस्तेमाल होता है, किसी simple text-shrinking trick की बजाय।</p>
+      <p>इससे असली, काम कर रहे scripts को minify करना सुरक्षित हो जाता है बिना इस परेशान करने वाली चिंता के कि process में कुछ subtle टूट गया हो — यह चिंता naive minifiers के साथ बिल्कुल सही है पर यहां कोई मुद्दा नहीं, क्योंकि Terser वही tool है जिस पर लाखों production websites पहले से रोज़ भरोसा करती हैं। सीखने के मकसद से, किसी minified third-party library को beautify करना भी यह समझने के सबसे practical तरीकों में से एक है कि कोई open-source code का टुकड़ा अंदर से असल में कैसे काम करता है, क्योंकि सही spacing के साथ reformatted code को line-by-line पढ़ना उसी logic को मुट्ठी भर dense lines में दबे हुए पढ़ने से कहीं ज़्यादा आसान है।</p>
+      <p>Output के बगल में दिखने वाला size comparison भी तुरंत अंदाज़ा देता है कि minification के बाद कोई खास script कितनी छोटी होती है, जो इस बात पर काफ़ी depend करता है कि original variable names और formatting कितने verbose थे — लंबे descriptive names और खुली spacing वाली scripts आमतौर पर उन codes से कहीं ज़्यादा compress होती हैं जो शुरुआत में ही काफ़ी tight थे।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.1/beautify.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/terser@5.31.0/dist/bundle.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+let mode = 'beautify';
+
+document.getElementById('beautifyTabBtn').addEventListener('click', function(){
+  mode = 'beautify';
+  this.classList.add('active');
+  document.getElementById('minifyTabBtn').classList.remove('active');
+  document.getElementById('processBtn').textContent = '✨ Beautify';
+});
+document.getElementById('minifyTabBtn').addEventListener('click', function(){
+  mode = 'minify';
+  this.classList.add('active');
+  document.getElementById('beautifyTabBtn').classList.remove('active');
+  document.getElementById('processBtn').textContent = '📦 Minify';
+});
+
+document.getElementById('processBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  const input = document.getElementById('inputCode').value;
+  if(!input.trim()){ status.textContent = '⚠️ Please paste some JavaScript first.'; return; }
+
+  let output;
+  if(mode === 'beautify'){
+    output = js_beautify(input, { indent_size: 2 });
+    status.textContent = '✅ Done.';
+  } else {
+    status.textContent = '⏳ Minifying...';
+    try{
+      const result = await Terser.minify(input, { compress: true, mangle: true });
+      if(result.error) throw result.error;
+      output = result.code;
+      status.textContent = '✅ Done.';
+    }catch(err){
+      status.textContent = '❌ Could not minify — this usually means there is a syntax error in the code: ' + (err.message || err);
+      return;
+    }
+  }
+
+  document.getElementById('outputCode').value = output;
+  const originalSize = new Blob([input]).size;
+  const newSize = new Blob([output]).size;
+  document.getElementById('sizeInfo').textContent = `(${formatBytes(originalSize)} → ${formatBytes(newSize)})`;
+});
+
+document.getElementById('copyBtn').addEventListener('click', function(){
+  copyText(document.getElementById('outputCode').value, this);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  downloadText('output.js', document.getElementById('outputCode').value, 'text/javascript');
+});
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  document.getElementById('inputCode').value = '';
+  document.getElementById('outputCode').value = '';
+  document.getElementById('sizeInfo').textContent = '';
+  document.getElementById('statusMsg').textContent = '';
+});
+</script>
+</body>
+</html>

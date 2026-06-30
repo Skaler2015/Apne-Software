@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/text-line-sorter.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Text Line Sorter — Sort Lines A-Z, Z-A, or by Length | ApneSoftware">
+<meta property="og:description" content="Sort lines of text alphabetically, numerically, by length, or randomly. Free, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/text-line-sorter.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Text Line Sorter — Sort Lines A-Z, Z-A, or by Length | ApneSoftware">
+<meta name="twitter:description" content="Sort lines of text alphabetically, numerically, by length, or randomly. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text Line Sorter","description":"Sort lines of text alphabetically, numerically, by length, or randomly. Free, no signup.","url":"https://apnesoftware.com/tools/text-line-sorter.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Text Line Sorter — Sort Lines A-Z, Z-A, or by Length | ApneSoftware</title>
+<meta name="description" content="Sort lines of text alphabetically, numerically, by length, or randomly. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .text-area-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){ .text-area-pair{grid-template-columns:1fr} }
+  textarea{width:100%;min-height:260px;font-family:monospace;font-size:.85rem;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);resize:vertical}
+  .options-row{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0;align-items:center}
+  .options-row label{display:flex;align-items:center;gap:6px;font-size:.85rem;font-weight:600}
+  .options-row input[type=checkbox]{width:auto}
+  .col-label{font-size:.8rem;font-weight:700;color:var(--text-dim);margin-bottom:6px}
+  select{padding:9px 13px;border-radius:9px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font-size:.85rem}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔡 Text Line Sorter</h1>
+    <p>Sort a list of lines alphabetically, numerically, by length, or shuffle them randomly.</p>
+  </div>
+
+  <div class="panel">
+    <div class="options-row">
+      <select id="sortMode">
+        <option value="az">A → Z (alphabetical)</option>
+        <option value="za">Z → A (reverse alphabetical)</option>
+        <option value="numAsc">Numeric — smallest first</option>
+        <option value="numDesc">Numeric — largest first</option>
+        <option value="lenAsc">Shortest line first</option>
+        <option value="lenDesc">Longest line first</option>
+        <option value="random">Shuffle randomly</option>
+      </select>
+      <label><input type="checkbox" id="optCase"> Case-insensitive</label>
+      <label><input type="checkbox" id="optDedupe"> Remove duplicate lines</label>
+      <label><input type="checkbox" id="optTrim" checked> Trim blank lines</label>
+    </div>
+
+    <div class="text-area-pair">
+      <div>
+        <div class="col-label">INPUT (one item per line)</div>
+        <textarea id="inputText" placeholder="banana&#10;apple&#10;cherry"></textarea>
+      </div>
+      <div>
+        <div class="col-label">SORTED OUTPUT</div>
+        <textarea id="outputText" readonly></textarea>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn" id="sortBtn">🔡 Sort Lines</button>
+      <button class="btn secondary" id="copyBtn">📋 Copy Result</button>
+      <button class="btn secondary" id="downloadBtn">⬇️ Download .txt</button>
+    </div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Any list that grows over time — names, tasks, file names, product codes, survey responses — eventually needs sorting to be useful, whether that's alphabetizing a guest list, ranking items by length, putting numbers in order, or just shuffling a list into a random order for a fair draw or game. Doing this by hand for anything beyond a handful of lines is slow and error-prone, and spreadsheet software is overkill when all you have is a simple list of lines.</p>
+      <p>This tool sorts any block of text, one line at a time, using whichever method fits what you're doing: standard alphabetical order in either direction, numeric order when each line is a number, shortest-or-longest-first when line length matters, or a full random shuffle. The case-insensitive option treats "Apple" and "apple" as equivalent during sorting, and the duplicate removal option clears out any exact repeats so the final list contains only unique lines.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Paste your list, one item per line, into the input box.</li>
+        <li>Choose a sort method and any extra options.</li>
+        <li>Click "Sort Lines," then copy the result or download it as a .txt file.</li>
+      </ol>
+      <h3>A note on numeric sorting</h3>
+      <p>Numeric sort mode works by reading the number at the very start of each line — useful for lists like "23, Apple" or plain numbers like "150" — and falls back to treating a line as zero if no number is found at the start, so it's worth double-checking the output if your lines mix numbers and plain text. For lists that are purely names, words, or labels without numbers, the alphabetical sort options are the more reliable choice.</p>
+      <p>The random shuffle mode is genuinely useful beyond just games — teachers use it to randomize the order of student names for presentations or seating, event organizers use it for raffle draws or random group assignments, and developers sometimes use it to generate randomized test data orderings. Combined with the duplicate-removal option, it's also a quick way to take a messy, repeated list — like email addresses collected from multiple sign-up forms — and turn it into a clean, deduplicated, and properly ordered list in a single step, without needing a spreadsheet or any coding knowledge, making it a quick fix for messy lists collected from forms, surveys, or shared documents over time, and a habit worth building for anyone who regularly works with lists handed over by other people.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>समय के साथ बढ़ने वाली कोई भी list — names, tasks, file names, product codes, survey responses — आख़िरकार उपयोगी बनने के लिए sort करनी पड़ती है, चाहे वह guest list को alphabetize करना हो, items को length से रैंक करना हो, numbers को क्रम में लगाना हो, या किसी fair draw या game के लिए list को randomly shuffle करना हो। मुट्ठी भर lines से ज़्यादा कुछ भी हाथ से करना धीमा और गलतियों भरा है, और जब सिर्फ़ lines की एक simple list हो तो spreadsheet software ज़रूरत से ज़्यादा है।</p>
+      <p>यह tool किसी भी block of text को एक-एक line करके sort करता है, जो भी तरीका आपके काम के लिए सही हो उसी से: standard alphabetical order किसी भी दिशा में, numeric order जब हर line एक number हो, shortest-or-longest-first जब line की length मायने रखे, या पूरा random shuffle। Case-insensitive option "Apple" और "apple" को sorting के दौरान बराबर मानता है, और duplicate removal option किसी भी exact repeat को हटा देता है ताकि final list में सिर्फ़ unique lines रहें।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी list, हर item एक अलग line में, input box में paste करें।</li>
+        <li>कोई sort method और अतिरिक्त options चुनें।</li>
+        <li>"Sort Lines" दबाएं, फिर result copy करें या .txt file के रूप में download करें।</li>
+      </ol>
+      <h3>Numeric sorting पर एक नोट</h3>
+      <p>Numeric sort mode हर line की बिल्कुल शुरुआत में मौजूद number पढ़कर काम करता है — "23, Apple" जैसी lists या सीधे "150" जैसे numbers के लिए उपयोगी — और अगर शुरुआत में कोई number न मिले तो line को zero मानकर आगे बढ़ता है, तो अगर lines में numbers और plain text मिले-जुले हों तो output एक बार ज़रूर जांच लें। ऐसी lists के लिए जो सिर्फ़ names, words, या labels हों बिना numbers के, alphabetical sort options ज़्यादा भरोसेमंद विकल्प हैं।</p>
+      <p>Random shuffle mode सिर्फ़ games से कहीं आगे genuinely उपयोगी है — teachers इसका इस्तेमाल presentations या seating के लिए student names का क्रम randomize करने में करते हैं, event organizers raffle draws या random group assignments के लिए करते हैं, और developers कभी-कभी randomized test data orderings बनाने के लिए करते हैं। Duplicate-removal option के साथ मिलाकर, यह किसी गड़बड़, बार-बार आने वाली list — जैसे कई sign-up forms से इकट्ठे किए email addresses — को एक ही step में साफ़, duplicate-रहित, और सही क्रम वाली list में बदलने का तेज़ तरीका भी है, बिना किसी spreadsheet या coding knowledge की ज़रूरत के।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+document.getElementById('sortBtn').addEventListener('click', ()=>{
+  let lines = document.getElementById('inputText').value.split('\n');
+
+  if(document.getElementById('optTrim').checked){
+    lines = lines.filter(l => l.trim() !== '');
+  }
+
+  if(document.getElementById('optDedupe').checked){
+    const caseInsensitive = document.getElementById('optCase').checked;
+    const seen = new Set();
+    lines = lines.filter(l => {
+      const key = caseInsensitive ? l.toLowerCase() : l;
+      if(seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
+  const mode = document.getElementById('sortMode').value;
+  const caseInsensitive = document.getElementById('optCase').checked;
+
+  function getNum(line){
+    const m = line.match(/-?\d+(\.\d+)?/);
+    return m ? parseFloat(m[0]) : 0;
+  }
+
+  switch(mode){
+    case 'az':
+      lines.sort((a,b) => caseInsensitive ? a.toLowerCase().localeCompare(b.toLowerCase()) : a.localeCompare(b));
+      break;
+    case 'za':
+      lines.sort((a,b) => caseInsensitive ? b.toLowerCase().localeCompare(a.toLowerCase()) : b.localeCompare(a));
+      break;
+    case 'numAsc':
+      lines.sort((a,b) => getNum(a) - getNum(b));
+      break;
+    case 'numDesc':
+      lines.sort((a,b) => getNum(b) - getNum(a));
+      break;
+    case 'lenAsc':
+      lines.sort((a,b) => a.length - b.length);
+      break;
+    case 'lenDesc':
+      lines.sort((a,b) => b.length - a.length);
+      break;
+    case 'random':
+      for(let i = lines.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [lines[i], lines[j]] = [lines[j], lines[i]];
+      }
+      break;
+  }
+
+  document.getElementById('outputText').value = lines.join('\n');
+  document.getElementById('statusMsg').textContent = `✅ Sorted ${lines.length} lines.`;
+});
+
+document.getElementById('copyBtn').addEventListener('click', function(){
+  copyText(document.getElementById('outputText').value, this);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  downloadText('sorted-text.txt', document.getElementById('outputText').value, 'text/plain');
+});
+</script>
+</body>
+</html>

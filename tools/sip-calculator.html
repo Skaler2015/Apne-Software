@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/sip-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SIP Calculator | ApneSoftware">
+<meta property="og:description" content="Estimate mutual fund SIP maturity value. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/sip-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SIP Calculator | ApneSoftware">
+<meta name="twitter:description" content="Estimate mutual fund SIP maturity value. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SIP Calculator","description":"Estimate mutual fund SIP maturity value. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/sip-calculator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>SIP Calculator | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .bar-chart{display:flex;align-items:flex-end;gap:3px;height:160px;margin-top:18px;border-bottom:1px solid var(--border);padding-bottom:4px}
+  .bar-chart .bar{flex:1;background:var(--accent);border-radius:3px 3px 0 0;min-width:2px}
+  .new-tech-note{
+    background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;
+    padding:12px 14px;font-size:.85rem;color:var(--text-dim);margin-top:14px;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📈 SIP Calculator</h1>
+    <p>Estimate the maturity value of a monthly SIP (Systematic Investment Plan) in mutual funds.</p>
+  </div>
+
+  <div class="panel">
+    <div class="row">
+      <div class="field">
+        <label for="monthlyInvestment">Monthly investment (₹)</label>
+        <input type="number" id="monthlyInvestment" value="5000" min="0">
+      </div>
+      <div class="field">
+        <label for="annualReturn">Expected annual return (%)</label>
+        <input type="number" id="annualReturn" value="12" min="0" step="0.1">
+      </div>
+      <div class="field">
+        <label for="years">Investment duration (years)</label>
+        <input type="number" id="years" value="10" min="1" max="50">
+      </div>
+    </div>
+
+    <div class="stat-grid" style="margin-top:14px">
+      <div class="stat-box"><div class="num" id="investedVal">₹0</div><div class="lbl">Total Invested</div></div>
+      <div class="stat-box"><div class="num" id="returnsVal">₹0</div><div class="lbl">Estimated Returns</div></div>
+      <div class="stat-box"><div class="num" id="maturityVal" style="color:var(--accent-2)">₹0</div><div class="lbl">Maturity Value</div></div>
+    </div>
+
+    <div class="bar-chart" id="barChart"></div>
+    <p style="font-size:.78rem;color:var(--text-dim);margin-top:6px;text-align:center">Year-wise growth of your investment</p>
+
+    <div class="new-tech-note">ℹ️ This is an estimate based on a constant assumed annual return — actual mutual fund returns vary and are not guaranteed. Mutual fund investments are subject to market risk; consult a financial advisor before investing.</div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>A SIP, or Systematic Investment Plan, is one of the most popular ways Indians invest in mutual funds — instead of putting in a large lump sum at once, you commit to investing a fixed amount every month, and over years that disciplined habit, combined with the power of compounding, can grow into a substantial corpus. Figuring out exactly how much a SIP will be worth at the end of a chosen period involves a compound-growth formula that compounds monthly, which is genuinely awkward to calculate by hand or even on a basic calculator, since it involves raising a number to a power based on the total number of months invested.</p>
+      <p>This tool does that calculation for you instantly. You enter your planned monthly investment, the annual return rate you expect from the fund (a long-term equity mutual fund average is often used as a benchmark, though actual returns vary), and the number of years you plan to stay invested. The result shows your total amount invested, the estimated returns earned purely from growth, and the final maturity value, along with a simple year-by-year bar chart so you can visually see how the bulk of the growth tends to happen in the later years as compounding accelerates.</p>
+      <p>This is particularly useful for goal-based financial planning — figuring out how much you'd need to invest monthly to reach a target corpus for a child's education, a down payment, or retirement, by trying different monthly amounts and watching how the maturity value changes. It's also a good way to understand why starting early matters so much: because of how compounding works, someone who starts investing ten years earlier than another person, even with a smaller monthly amount, very often ends up with a larger final corpus, purely because their money has more time to grow.</p>
+      <p>It's important to remember that this is a projection based on an assumed constant rate of return, which real mutual funds never actually deliver — markets go through both good and bad years, and the assumed rate is simply meant to give you a reasonable estimate for planning purposes, not a guarantee. Mutual fund investments are subject to market risk, and past or assumed performance is not indicative of future results, so it's worth discussing your actual investment plan with a SEBI-registered financial advisor rather than relying solely on this or any calculator before committing real money.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Enter your monthly investment amount.</li>
+        <li>Enter the expected annual return rate and investment duration in years.</li>
+        <li>View your estimated maturity value and year-by-year growth instantly.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>SIP, यानी Systematic Investment Plan, mutual funds में निवेश करने के सबसे लोकप्रिय तरीकों में से एक है — एक बार में बड़ी lump sum डालने की बजाय, आप हर महीने एक तय रकम निवेश करने की आदत डालते हैं, और सालों में यह अनुशासन, compounding की ताकत के साथ मिलकर, एक बड़े corpus में बदल सकता है। यह ठीक-ठीक पता करना कि कोई SIP किसी चुनी हुई अवधि के अंत में कितनी value की होगी, एक ऐसे compound-growth formula से जुड़ा है जो हर महीने compound होता है — हाथ से या एक basic calculator पर भी इसे निकालना सच में मुश्किल है, क्योंकि इसमें किसी नंबर को निवेश किए गए कुल महीनों के आधार पर एक power तक उठाना पड़ता है।</p>
+      <p>यह टूल वह calculation आपके लिए तुरंत कर देता है। आप अपनी planned monthly investment, fund से उम्मीद की गई annual return rate (अक्सर long-term equity mutual fund के average को benchmark की तरह इस्तेमाल किया जाता है, हालांकि असली returns अलग हो सकते हैं), और आप कितने साल निवेशित रहने की योजना बना रहे हैं, यह डालते हैं। Result आपका कुल invested amount, सिर्फ growth से कमाए गए अनुमानित returns, और final maturity value दिखाता है, साथ ही एक साधारण साल-दर-साल bar chart भी देता है ताकि आप देख सकें कि compounding के तेज़ होने के साथ growth का बड़ा हिस्सा अक्सर बाद के सालों में कैसे होता है।</p>
+      <p>यह खासतौर पर goal-based financial planning के लिए उपयोगी है — यह पता करना कि किसी बच्चे की शिक्षा, down payment, या retirement के लिए target corpus तक पहुंचने के लिए आपको हर महीने कितना निवेश करना होगा, अलग-अलग monthly amounts आज़माकर और maturity value कैसे बदलती है यह देखकर। यह समझने का भी एक अच्छा तरीका है कि जल्दी शुरुआत करना इतना मायने क्यों रखता है — compounding जिस तरह काम करती है, उसकी वजह से जो व्यक्ति किसी दूसरे से दस साल पहले निवेश शुरू करता है, भले ही उसकी monthly रकम कम हो, अक्सर ज़्यादा बड़े final corpus के साथ खत्म करता है, सिर्फ इसलिए क्योंकि उसके पैसे को बढ़ने का ज़्यादा समय मिलता है।</p>
+      <p>यह याद रखना ज़रूरी है कि यह एक assumed constant rate of return पर आधारित projection है, जो असली mutual funds कभी भी वैसे नहीं देते — markets अच्छे और बुरे दोनों तरह के साल देखते हैं, और assumed rate सिर्फ planning के मकसद से एक उचित अनुमान देने के लिए है, कोई गारंटी नहीं। Mutual fund investments market risk के अधीन होते हैं, और past या assumed performance भविष्य के results की गारंटी नहीं देती, तो असली पैसा लगाने से पहले सिर्फ इस या किसी भी calculator पर भरोसा करने की बजाय अपनी असली investment plan किसी SEBI-registered financial advisor से discuss करना बेहतर है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी मासिक निवेश रकम डालें।</li>
+        <li>अनुमानित वार्षिक रिटर्न रेट और निवेश की अवधि (साल में) डालें।</li>
+        <li>अनुमानित मैच्योरिटी वैल्यू और साल-दर-साल ग्रोथ तुरंत देखें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+function formatRupee(n){
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+
+function sipMaturity(monthly, annualRatePct, months){
+  const i = annualRatePct / 100 / 12;
+  if(i === 0) return monthly * months;
+  return monthly * ((Math.pow(1+i, months) - 1) / i) * (1+i);
+}
+
+function calculate(){
+  const monthly = parseFloat(document.getElementById('monthlyInvestment').value) || 0;
+  const annualReturn = parseFloat(document.getElementById('annualReturn').value) || 0;
+  const years = Math.max(1, parseInt(document.getElementById('years').value) || 1);
+
+  const totalMonths = years * 12;
+  const invested = monthly * totalMonths;
+  const maturity = sipMaturity(monthly, annualReturn, totalMonths);
+  const returns = maturity - invested;
+
+  document.getElementById('investedVal').textContent = formatRupee(invested);
+  document.getElementById('returnsVal').textContent = formatRupee(returns);
+  document.getElementById('maturityVal').textContent = formatRupee(maturity);
+
+  // year-wise bar chart
+  const chart = document.getElementById('barChart');
+  chart.innerHTML = '';
+  let maxVal = 0;
+  const yearVals = [];
+  for(let y=1; y<=years; y++){
+    const val = sipMaturity(monthly, annualReturn, y*12);
+    yearVals.push(val);
+    if(val > maxVal) maxVal = val;
+  }
+  yearVals.forEach((val, idx)=>{
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    bar.style.height = Math.max(2, (val/maxVal)*150) + 'px';
+    bar.title = 'Year ' + (idx+1) + ': ' + formatRupee(val);
+    chart.appendChild(bar);
+  });
+}
+
+['monthlyInvestment','annualReturn','years'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', calculate);
+});
+
+calculate();
+</script>
+</body>
+</html>

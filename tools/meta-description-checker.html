@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Meta Description Checker — Check length, readability, keyword presence and CTR potential. Live Google SERP preview. Optimize your meta descriptions for maximum click-through rate.">
+<meta name="keywords" content="meta description checker, meta description length, SERP preview, CTR optimizer, meta description analyzer">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/meta-description-checker.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Meta Description Checker — CTR Optimizer & SERP Preview | ApneSoftware">
+<meta property="og:description" content="Check meta description length, readability and CTR potential with live SERP preview. Free, instant, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/meta-description-checker.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meta Description Checker — CTR Optimizer | ApneSoftware">
+<meta name="twitter:description" content="Check meta description length and CTR potential with live SERP preview. Free.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Meta Description Checker","description":"Free tool to analyze meta description length, readability, keyword density and CTR potential with live SERP preview.","url":"https://apnesoftware.com/tools/meta-description-checker.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"SEO Tools"},{"@type":"ListItem","position":3,"name":"Meta Description Checker","item":"https://apnesoftware.com/tools/meta-description-checker.html"}]}]}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Meta Description Checker — CTR Optimizer & SERP Preview | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* ── Meta Description Checker local styles ── */
+.mdc-big-count{font-size:4rem;font-weight:800;line-height:1;transition:color .3s}
+.mdc-arc-wrap{display:flex;align-items:center;gap:20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px;margin:14px 0}
+.mdc-arc-svg{width:80px;height:80px;flex-shrink:0}
+.mdc-arc-info{flex:1}
+
+.mdc-bar-row{height:12px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;margin:6px 0;position:relative}
+.mdc-bar-fill{height:100%;border-radius:6px;transition:width .4s,background .3s;position:relative}
+.mdc-bar-zone{position:absolute;top:0;bottom:0;background:rgba(22,192,121,.2);border-left:2px solid rgba(22,192,121,.5);border-right:2px solid rgba(22,192,121,.5)}
+.mdc-zone-label{font-size:.68rem;font-weight:700;color:rgba(22,192,121,.8);position:absolute;top:16px;left:0}
+
+.mdc-checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:12px}
+.mdc-check{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 12px;font-size:.8rem;color:rgba(255,255,255,.7)}
+.mdc-check.pass{border-color:rgba(22,192,121,.25);color:#16C079}
+.mdc-check.fail{border-color:rgba(248,113,113,.2);color:#F87171}
+.mdc-check.warn{border-color:rgba(255,215,0,.2);color:#FFD700}
+.mdc-check-icon{font-size:1rem;flex-shrink:0}
+
+.mdc-ctr-bar{height:10px;border-radius:5px;background:rgba(255,255,255,.06);overflow:hidden;margin-top:6px}
+.mdc-ctr-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,#7C5CFC,#16C079);transition:width .5s}
+
+.serp-wrap{background:#fff;border-radius:12px;padding:16px 18px;color:#202124;font-family:Arial,sans-serif}
+.serp-url{font-size:.75rem;color:#3c4043;margin-bottom:2px}
+.serp-title{font-size:1.1rem;color:#1a0dab;line-height:1.3;margin-bottom:4px}
+.serp-desc{font-size:.85rem;color:#4d5156;line-height:1.55}
+.serp-desc mark{background:rgba(255,150,0,.2);color:#202124;border-radius:2px;padding:0 2px}
+
+.mdc-keyword-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.mdc-kw-tag{background:rgba(124,92,252,.15);border:1px solid rgba(124,92,252,.3);color:#A78BFA;border-radius:6px;padding:3px 10px;font-size:.75rem;font-weight:700;cursor:pointer}
+.mdc-kw-tag:hover{background:rgba(124,92,252,.25)}
+
+.mdc-improvement{background:rgba(22,192,121,.07);border:1px solid rgba(22,192,121,.2);border-radius:12px;padding:14px 16px;margin-top:14px;font-size:.85rem;color:rgba(255,255,255,.8);line-height:1.7}
+
+#mdcScrollTop{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;box-shadow:0 4px 14px rgba(124,92,252,.4);transition:.2s}
+#mdcScrollTop.show{display:flex}
+#mdcScrollTop:hover{transform:translateY(-3px)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+<div class="container">
+  <nav aria-label="Breadcrumb" style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:2px">
+    <a href="../index.html" style="color:rgba(255,255,255,.45)">Home</a>
+    <span style="margin:0 6px">›</span>
+    <span style="color:rgba(255,255,255,.7)">SEO Tools</span>
+    <span style="margin:0 6px">›</span>
+    <span style="color:#A78BFA">Meta Description Checker</span>
+  </nav>
+
+  <div class="tool-header">
+    <h1>📝 Meta Description Checker</h1>
+    <p>Analyze your meta description for length, readability, keyword presence and CTR potential. See live SERP previews for desktop and mobile.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="descInput">Meta Description <span style="color:#F87171">*</span></label>
+      <textarea id="descInput" rows="4" placeholder="Paste or type your meta description here…&#10;&#10;Example: Discover the best running shoes for beginners in 2025. Expert reviews, comfort ratings and price comparisons. Free shipping on orders over ₹999." maxlength="400"></textarea>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="titleInput2">Page Title (for SERP preview)</label>
+        <input type="text" id="titleInput2" placeholder="Your page title here">
+      </div>
+      <div class="field">
+        <label for="urlInput2">Page URL (for SERP preview)</label>
+        <input type="text" id="urlInput2" placeholder="https://example.com/page/">
+      </div>
+    </div>
+    <div class="field">
+      <label for="kwInput">Target Keywords (comma-separated)</label>
+      <input type="text" id="kwInput" placeholder="running shoes, beginner shoes, 2025 running">
+      <span style="font-size:.75rem;color:rgba(255,255,255,.35)">Enter to check if these keywords appear in your description and get highlighted in the SERP preview.</span>
+    </div>
+    <div class="btn-row">
+      <button class="btn secondary" id="btnSample">📋 Sample</button>
+      <button class="btn secondary" id="btnClear">🗑️ Clear</button>
+      <button class="btn secondary" id="btnCopy">📋 Copy</button>
+      <button class="btn secondary" id="btnDownload">⬇️ Report</button>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div id="results">
+    <!-- Arc counter -->
+    <div class="mdc-arc-wrap">
+      <svg class="mdc-arc-svg" viewBox="0 0 80 80">
+        <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="7"/>
+        <circle id="arcFill" cx="40" cy="40" r="32" fill="none" stroke="#A78BFA" stroke-width="7"
+          stroke-dasharray="201" stroke-dashoffset="201" stroke-linecap="round"
+          transform="rotate(-90 40 40)" style="transition:stroke-dashoffset .6s,stroke .3s"/>
+      </svg>
+      <div class="mdc-arc-info">
+        <div class="mdc-big-count" id="charCount" style="color:#A78BFA">0</div>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.45)">characters · <span id="pxCount">0</span> px wide</div>
+        <div style="font-size:.78rem;margin-top:4px" id="charStatus">Type a description to begin analysis.</div>
+      </div>
+    </div>
+
+    <!-- Bar with zones -->
+    <div style="position:relative;margin-bottom:28px">
+      <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:6px">Length scale (0 → 200 chars)</div>
+      <div class="mdc-bar-row">
+        <div class="mdc-bar-fill" id="lenBar" style="width:0%"></div>
+        <div class="mdc-bar-zone" style="left:37.5%;width:40%"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:.68rem;color:rgba(255,255,255,.3);margin-top:4px">
+        <span>0</span><span>50</span><span style="color:rgba(22,192,121,.7);font-weight:700">75 ← ideal →</span><span>155</span><span style="color:rgba(22,192,121,.7);font-weight:700">160</span><span>200</span>
+      </div>
+    </div>
+
+    <!-- Checks grid -->
+    <h2 style="font-size:.9rem;font-weight:800;margin-bottom:10px">✅ Quality Checks</h2>
+    <div class="mdc-checks" id="checksGrid"></div>
+
+    <!-- CTR potential -->
+    <div class="panel" style="margin-top:14px">
+      <h2 style="font-size:.9rem;font-weight:800;margin-bottom:8px">📈 Estimated CTR Potential</h2>
+      <div style="display:flex;justify-content:space-between;font-size:.82rem;color:rgba(255,255,255,.6);margin-bottom:4px">
+        <span>CTR Score</span><span id="ctrScore">0%</span>
+      </div>
+      <div class="mdc-ctr-bar"><div class="mdc-ctr-fill" id="ctrFill" style="width:0%"></div></div>
+      <p style="font-size:.78rem;color:rgba(255,255,255,.4);margin-top:8px" id="ctrNote">Enter a description to estimate click-through rate potential.</p>
+    </div>
+
+    <!-- Keyword highlights -->
+    <div id="kwSection" style="display:none;margin-top:14px">
+      <h2 style="font-size:.9rem;font-weight:800;margin-bottom:8px">🔑 Keyword Presence</h2>
+      <div class="mdc-keyword-tags" id="kwTags"></div>
+    </div>
+
+    <!-- SERP Previews -->
+    <div style="margin-top:20px">
+      <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.3);margin-bottom:8px">🖥️ Desktop SERP Preview</div>
+      <div class="serp-wrap">
+        <div class="serp-url"   id="prevUrl">example.com › page</div>
+        <div class="serp-title" id="prevTitle">Your Page Title</div>
+        <div class="serp-desc"  id="prevDesc">Your meta description will appear here. Write 150–160 characters to avoid truncation in Google search results.</div>
+      </div>
+    </div>
+    <div style="margin-top:12px;max-width:400px">
+      <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.3);margin-bottom:8px">📱 Mobile SERP Preview</div>
+      <div class="serp-wrap" style="font-size:.9em">
+        <div class="serp-url"   id="prevUrlM">example.com › page</div>
+        <div class="serp-title" id="prevTitleM" style="font-size:.95rem">Your Page Title</div>
+        <div class="serp-desc"  id="prevDescM">Your meta description appears here on mobile. Shorter descriptions may get cut off differently.</div>
+      </div>
+    </div>
+
+    <!-- Improvement suggestion -->
+    <div class="mdc-improvement" id="improveTip" style="display:none">
+      💡 <strong>Suggestion:</strong> <span id="improveTipText"></span>
+    </div>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>📝 What is a Meta Description?</h2>
+      <p>A <strong>meta description</strong> is an HTML attribute that provides a brief summary of a webpage. In Google Search, it appears as the grey text beneath the blue title link, giving searchers a preview of what they'll find on the page. While Google doesn't use it as a direct ranking factor, a well-crafted description significantly increases click-through rate (CTR) — the percentage of people who click your result when they see it.</p>
+      <p>The recommended length is <strong>150–160 characters</strong> (or roughly 920–990 pixels wide in Google's rendering). Shorter descriptions leave empty space that Google often fills with random page content. Longer descriptions get truncated with an ellipsis, cutting off your call to action. This tool measures both character count and estimated pixel width so you can hit the sweet spot on both desktop and mobile.</p>
+      <h3>CTR Power Words</h3>
+      <p>Certain words and phrases consistently improve click-through rates: <em>free, instant, guide, step-by-step, proven, official, guaranteed, limited, exclusive, new, easy, fast, complete, best, top, how to, learn, discover, get, download, try, now, today, 2025</em>. This checker detects them and factors them into your CTR estimate.</p>
+      <h3>Best Practices</h3>
+      <ol>
+        <li>Target <strong>150–160 characters</strong> (or under 960px)</li>
+        <li>Include your <strong>primary keyword naturally</strong></li>
+        <li>Write a clear <strong>call to action</strong> (Try now, Learn more, Get started)</li>
+        <li>Make every description <strong>unique</strong> across all pages</li>
+        <li>Match the <strong>search intent</strong> of your target keyword</li>
+        <li>Avoid duplicate descriptions — Google may auto-generate them</li>
+        <li>Include a <strong>benefit or differentiator</strong> (Free, No signup, Instant)</li>
+      </ol>
+    </div>
+    <div class="info-block">
+      <h2>📝 Hindi Guide / हिंदी गाइड</h2>
+      <p><strong>Meta Description</strong> वह HTML attribute है जो Google Search Results में title के नीचे grey text के रूप में दिखता है। यह directly rankings को affect नहीं करता, लेकिन Click-Through Rate (CTR) पर बहुत बड़ा असर डालता है।</p>
+      <h3>सही Length क्या है?</h3>
+      <ol>
+        <li><strong>150-160 characters</strong> — Google Desktop पर ideal</li>
+        <li><strong>120-130 characters</strong> — Mobile पर safe</li>
+        <li>ज़्यादा लंबा = truncate हो जाएगा (… के साथ cut होगा)</li>
+        <li>ज़्यादा छोटा = Google खुद अपना description बना देगा</li>
+      </ol>
+      <h3>अच्छी Meta Description कैसे लिखें?</h3>
+      <ol>
+        <li>Primary keyword naturally include करें</li>
+        <li>Clear call-to-action लिखें (जैसे "अभी try करें", "Free में पाएं")</li>
+        <li>Benefit highlight करें (Free, No Signup, Instant)</li>
+        <li>हर पेज की unique description होनी चाहिए</li>
+        <li>Search intent से match करें</li>
+        <li>Numbers use करें (जैसे "44+ tools", "150+ templates")</li>
+      </ol>
+      <h3>CTR Potential क्या है?</h3>
+      <p>CTR Potential इस tool का एक feature है जो estimate करता है कि आपकी meta description कितने लोगों को click करने के लिए motivate करेगी। यह इन factors पर based है:</p>
+      <ol>
+        <li>Power words की मौजूदगी (Free, Best, Guide, etc.)</li>
+        <li>Call-to-action की presence</li>
+        <li>Length (150-160 chars = highest score)</li>
+        <li>Target keywords की presence</li>
+        <li>Question या benefit statement</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<button id="mdcScrollTop" aria-label="Scroll to top">↑</button>
+<footer class="site-footer">
+  <p>© 2025 <a href="../index.html">ApneSoftware.com</a> · Free Tools for Everyone · No Signup Required</p>
+</footer>
+<script src="../assets/common.js"></script>
+<script>
+(function(){
+'use strict';
+const LS='mdc_last';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+const POWER_WORDS=['free','instant','guide','step-by-step','proven','official','guaranteed','limited','exclusive','new','easy','fast','complete','best','top','how to','learn','discover','get','download','try','now','today','2025','2024','unique','ultimate','simple','quick'];
+const CTA_WORDS=['try','start','get','download','learn','discover','explore','read','find','check','see','view','shop','buy','sign up','register'];
+const ruler=document.createElement('span');
+ruler.style.cssText='position:absolute;visibility:hidden;white-space:nowrap;font:14px/1 Arial,sans-serif;left:-9999px;top:0';
+document.body.appendChild(ruler);
+
+function getPx(text){ruler.textContent=text;return ruler.offsetWidth;}
+
+function highlightKws(text,kws){
+  if(!kws.length) return esc(text);
+  let result=esc(text);
+  kws.forEach(kw=>{
+    const re=new RegExp('('+kw.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+    result=result.replace(re,'<mark>$1</mark>');
+  });
+  return result;
+}
+
+function analyze(){
+  const desc=$('descInput').value;
+  const title=$('titleInput2').value||'Your Page Title';
+  const url=$('urlInput2').value;
+  const kwRaw=$('kwInput').value;
+  const kws=kwRaw?kwRaw.split(',').map(k=>k.trim().toLowerCase()).filter(Boolean):[];
+  const chars=desc.length;
+  const px=getPx(desc);
+  const descLower=desc.toLowerCase();
+
+  // Arc
+  const pct=Math.min(100,Math.round(chars/200*100));
+  const arc=$('arcFill');
+  const circ=201;
+  arc.style.strokeDashoffset=circ-(circ*pct/100);
+  const color=chars>=150&&chars<=160?'#16C079':chars>=100&&chars<150?'#A78BFA':chars>160&&chars<=180?'#FFD700':chars>180||chars<50&&chars>0?'#F87171':'#A78BFA';
+  arc.style.stroke=color;
+  $('charCount').textContent=chars;
+  $('charCount').style.color=color;
+  $('pxCount').textContent=px;
+
+  // Status
+  const statusMap=[
+    [chars===0,'Type a description to begin analysis.'],
+    [chars>=150&&chars<=160,'✅ Perfect length! This description will display in full on desktop Google.'],
+    [chars>160&&chars<=180,'⚠️ Slightly long — Google may truncate at 160 characters.'],
+    [chars>180,'❌ Too long — Google will definitely truncate this description. Remove '+(chars-158)+' characters.'],
+    [chars>=100&&chars<150,'👍 Good length but could be slightly longer for maximum impact.'],
+    [chars>0&&chars<100,'⚠️ Too short — Google may auto-generate its own snippet instead.'],
+  ];
+  $('charStatus').textContent=(statusMap.find(([c])=>c)||[,''])[1];
+  $('charStatus').style.color=color;
+
+  // Length bar
+  const barPct=Math.min(100,chars/200*100);
+  $('lenBar').style.width=barPct+'%';
+  $('lenBar').style.background=color;
+
+  // Quality checks
+  const hasPower=POWER_WORDS.some(w=>descLower.includes(w));
+  const hasCTA=CTA_WORDS.some(w=>descLower.includes(w));
+  const hasNumber=/\d/.test(desc);
+  const hasQuestion=desc.includes('?');
+  const hasKws=kws.length&&kws.some(k=>descLower.includes(k));
+  const noDupe=true; // can't check cross-page here
+  const isUnique=chars>0;
+  const checks=[
+    {label:'Length 150–160 chars', pass:chars>=150&&chars<=160, icon:chars>=150&&chars<=160?'✅':'⚠️',cls:chars>=150&&chars<=160?'pass':chars>=100?'warn':'fail'},
+    {label:'Under 960px wide',      pass:px<=960,               icon:px<=960?'✅':'❌',          cls:px<=960?'pass':'fail'},
+    {label:'Has power word',         pass:hasPower,              icon:hasPower?'✅':'⚠️',         cls:hasPower?'pass':'warn'},
+    {label:'Has call-to-action',     pass:hasCTA,                icon:hasCTA?'✅':'⚠️',           cls:hasCTA?'pass':'warn'},
+    {label:'Contains a number',      pass:hasNumber,             icon:hasNumber?'✅':'ℹ️',         cls:hasNumber?'pass':''},
+    {label:'Not too short (>100)',   pass:chars>=100,            icon:chars>=100?'✅':'❌',        cls:chars>=100?'pass':'fail'},
+    {label:'Not too long (≤160)',    pass:chars<=160,            icon:chars<=160?'✅':'⚠️',        cls:chars<=160?'pass':'warn'},
+    {label:'Target keywords present',pass:!kws.length||hasKws,  icon:!kws.length?'ℹ️':hasKws?'✅':'❌', cls:!kws.length?'':'hasKws'?'pass':'fail'},
+  ];
+  $('checksGrid').innerHTML=checks.map(c=>`<div class="mdc-check ${c.cls}"><span class="mdc-check-icon">${c.icon}</span>${esc(c.label)}</div>`).join('');
+
+  // CTR score
+  let ctr=0;
+  if(chars>=150&&chars<=160) ctr+=30;
+  else if(chars>=120&&chars<150) ctr+=20;
+  else if(chars>=100&&chars<120) ctr+=10;
+  if(hasPower) ctr+=20;
+  if(hasCTA)   ctr+=20;
+  if(hasNumber) ctr+=10;
+  if(hasKws)   ctr+=15;
+  if(hasQuestion) ctr+=5;
+  ctr=Math.min(100,ctr);
+  $('ctrScore').textContent=ctr+'%';
+  $('ctrFill').style.width=ctr+'%';
+  $('ctrNote').textContent=ctr>=70?'🎉 High CTR potential! This description is likely to attract clicks.':ctr>=40?'👍 Moderate CTR potential. Add a call-to-action and a power word to improve.':'⚠️ Low CTR potential. Write a more compelling description with clear benefit and call-to-action.';
+
+  // Keywords
+  if(kws.length){
+    $('kwSection').style.display='block';
+    $('kwTags').innerHTML=kws.map(k=>{
+      const found=descLower.includes(k);
+      return `<span class="mdc-kw-tag" style="${found?'':'background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3);color:#F87171'}">${esc(k)} ${found?'✅':'❌'}</span>`;
+    }).join('');
+  } else {
+    $('kwSection').style.display='none';
+  }
+
+  // SERP previews
+  const displayUrl=url?url.replace(/^https?:\/\//,'').replace(/\/+$/,''):'example.com › page';
+  const displayDesc=desc||'Your meta description will appear here. Write 150–160 characters to avoid truncation in Google search results.';
+  const truncDesc=chars>160?desc.slice(0,157)+'…':displayDesc;
+  const highlighted=kws.length?highlightKws(truncDesc,kws):esc(truncDesc);
+  ['prevUrl','prevUrlM'].forEach(id=>$(id).textContent=displayUrl);
+  ['prevTitle','prevTitleM'].forEach(id=>$(id).textContent=title);
+  ['prevDesc','prevDescM'].forEach(id=>$(id).innerHTML=highlighted);
+
+  // Improvement tip
+  const tips=[];
+  if(!hasCTA) tips.push('Add a call-to-action like "Try free", "Learn more" or "Download now" to motivate clicks.');
+  if(!hasPower) tips.push('Include a power word like "free", "best", "complete" or "instant" to increase appeal.');
+  if(chars<150&&chars>0) tips.push('Expand to 150–160 characters to use Google\'s full snippet space and give searchers more context.');
+  if(chars>160) tips.push('Trim to under 160 characters. Currently '+(chars-160)+' characters over the limit.');
+  if(kws.length&&!hasKws) tips.push('Your target keyword "'+kws[0]+'" is not in the description. Add it naturally for better relevance signals.');
+  if(tips.length){
+    $('improveTip').style.display='block';
+    $('improveTipText').textContent=tips[0];
+  } else if(chars>0) {
+    $('improveTip').style.display='block';
+    $('improveTipText').textContent='Your description looks great! No critical issues found.';
+  } else {
+    $('improveTip').style.display='none';
+  }
+
+  try{localStorage.setItem(LS,JSON.stringify({desc:desc,title:title,url:url,kw:kwRaw}));}catch(e){}
+}
+
+function showToast(msg){const t=document.createElement('div');t.className='prem-toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2400);}
+
+function init(){
+  $('descInput').addEventListener('input',analyze);
+  $('titleInput2').addEventListener('input',analyze);
+  $('urlInput2').addEventListener('input',analyze);
+  $('kwInput').addEventListener('input',analyze);
+  $('btnSample').addEventListener('click',()=>{
+    $('descInput').value='Discover the best running shoes for beginners in 2025. Expert reviews, comfort ratings and price comparisons. Free shipping on orders over ₹999. Try now!';
+    $('titleInput2').value='Best Running Shoes for Beginners 2025 | ShoeStore';
+    $('urlInput2').value='https://shoestore.example.com/best-running-shoes/';
+    $('kwInput').value='running shoes, beginners, 2025';
+    analyze();showToast('📋 Sample loaded!');
+  });
+  $('btnClear').addEventListener('click',()=>{
+    ['descInput','titleInput2','urlInput2','kwInput'].forEach(id=>$(id).value='');
+    analyze();localStorage.removeItem(LS);
+  });
+  $('btnCopy').addEventListener('click',()=>{
+    const t=$('descInput').value;
+    if(!t){showToast('⚠️ Nothing to copy.');return;}
+    navigator.clipboard.writeText(t).then(()=>showToast('📋 Copied!'));
+  });
+  $('btnDownload').addEventListener('click',()=>{
+    const desc=$('descInput').value;
+    if(!desc){showToast('⚠️ Enter a description first.');return;}
+    const px=getPx(desc);
+    const report=[
+      'META DESCRIPTION REPORT','='.repeat(40),'Generated: '+new Date().toLocaleString(),'',
+      'Description: '+desc,'','Characters: '+desc.length,'Pixel Width: '+px,
+      'Length Status: '+(desc.length>=150&&desc.length<=160?'PERFECT':desc.length>160?'TOO LONG':'TOO SHORT'),
+      'CTR Assessment: '+(desc.length>=150&&desc.length<=160?'High potential':'Could be improved'),
+    ];
+    const b=new Blob([report.join('\n')],{type:'text/plain'});
+    const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(b),download:'meta-description-report.txt'});
+    document.body.appendChild(a);a.click();document.body.removeChild(a);showToast('⬇️ Report downloaded!');
+  });
+
+  const sb=$('mdcScrollTop');
+  window.addEventListener('scroll',()=>sb.classList.toggle('show',scrollY>400));
+  sb.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+  try{const s=JSON.parse(localStorage.getItem(LS)||'{}');if(s.desc)$('descInput').value=s.desc;if(s.title)$('titleInput2').value=s.title;if(s.url)$('urlInput2').value=s.url;if(s.kw)$('kwInput').value=s.kw;if(s.desc)analyze();}catch(e){}
+}
+document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+</body>
+</html>

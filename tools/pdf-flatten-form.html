@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-flatten-form.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Flatten Form | ApneSoftware">
+<meta property="og:description" content="Lock a filled PDF form as permanent text. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-flatten-form.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Flatten Form | ApneSoftware">
+<meta name="twitter:description" content="Lock a filled PDF form as permanent text. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Flatten Form","description":"Lock a filled PDF form as permanent text. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-flatten-form.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF Flatten Form | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔒 PDF Flatten Form</h1>
+    <p>Lock a filled-in PDF form so the field values become permanent, uneditable text.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag & drop a filled PDF form here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem;margin-top:14px"></p>
+
+    <div class="btn-row" id="downloadRow" style="display:none">
+      <button class="btn" id="downloadBtn">⬇️ Download Flattened PDF</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Takes a PDF with fillable form fields (text boxes, checkboxes, dropdowns) that have already been filled in, and "flattens" it — converting the entered values into permanent, non-editable content. This prevents the form from being accidentally changed after submission.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a PDF that has a filled-in form.</li>
+        <li>The tool flattens it automatically.</li>
+        <li>Download the locked PDF.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>ऐसी PDF लेता है जिसमें fillable form fields (text boxes, checkboxes, dropdowns) पहले से भरी हुई हों, और उसे "flatten" कर देता है — डाली गई वैल्यू को permanent, non-editable कंटेंट में बदल देता है। इससे form submission के बाद गलती से बदला नहीं जा सकता।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक भरी हुई form वाली PDF अपलोड करें।</li>
+        <li>टूल उसे अपने आप flatten कर देता है।</li>
+        <li>locked PDF डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let flattenedBytes = null;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf'){
+    processFile(files[0]);
+  }
+});
+
+async function processFile(file){
+  const status = document.getElementById('statusMsg');
+  document.getElementById('downloadRow').style.display = 'none';
+  status.textContent = '⏳ Loading PDF...';
+
+  try{
+    const { PDFDocument } = PDFLib;
+    const bytes = await file.arrayBuffer();
+    const pdfDoc = await PDFDocument.load(bytes);
+
+    const form = pdfDoc.getForm();
+    const fields = form.getFields();
+
+    if(fields.length === 0){
+      status.textContent = '⚠️ This PDF has no fillable form fields to flatten.';
+      return;
+    }
+
+    status.textContent = `⏳ Flattening ${fields.length} field(s)...`;
+
+    try{ form.updateFieldAppearances(); }catch(e){ /* continue even if appearance update fails for some fields */ }
+    form.flatten();
+
+    flattenedBytes = await pdfDoc.save();
+    document.getElementById('downloadRow').style.display = 'flex';
+    status.textContent = `✅ Flattened ${fields.length} field(s). The form is now locked.`;
+  }catch(err){
+    status.textContent = '❌ Error: ' + (err && err.message ? err.message : 'Could not process this PDF.');
+  }
+}
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  if(!flattenedBytes) return;
+  downloadBlob('flattened.pdf', new Blob([flattenedBytes], { type: 'application/pdf' }));
+});
+</script>
+</body>
+</html>

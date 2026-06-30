@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/rgb-hex-converter.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RGB to HEX Converter — Color Code Converter | ApneSoftware">
+<meta property="og:description" content="Convert colors between RGB, HEX, and HSL formats instantly. Free online color code converter with live preview.">
+<meta property="og:url" content="https://apnesoftware.com/tools/rgb-hex-converter.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="RGB to HEX Converter — Color Code Converter | ApneSoftware">
+<meta name="twitter:description" content="Convert colors between RGB, HEX, and HSL formats instantly. Free online color code converter with live preview.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"RGB to HEX Converter","description":"Convert colors between RGB, HEX, and HSL formats instantly. Free online color code converter with live preview.","url":"https://apnesoftware.com/tools/rgb-hex-converter.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>RGB to HEX Converter — Color Code Converter | ApneSoftware</title>
+<meta name="description" content="Convert colors between RGB, HEX, and HSL formats instantly. Free online color code converter with live preview.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .swatch{width:100%;height:120px;border-radius:14px;border:1px solid var(--border);margin-bottom:18px;transition:.15s}
+  .color-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px}
+  .color-row .field input{text-align:center;font-weight:700}
+  .hex-field{display:flex;gap:10px;align-items:flex-end;margin-bottom:14px}
+  .hex-field .field{flex:1}
+  .native-picker{width:52px;height:48px;border-radius:10px;border:1px solid var(--border);cursor:pointer;padding:2px}
+  .hsl-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🎨 RGB to HEX Converter</h1>
+    <p>Convert colors between RGB, HEX, and HSL — type in any field and the rest update instantly.</p>
+  </div>
+
+  <div class="panel">
+    <div class="swatch" id="swatch"></div>
+
+    <div class="hex-field">
+      <div class="field">
+        <label for="hexInput">HEX</label>
+        <input type="text" id="hexInput" value="#7C5CFC" maxlength="7">
+      </div>
+      <input type="color" class="native-picker" id="nativePicker" value="#7C5CFC" title="Pick a color">
+      <button class="btn secondary" id="copyHexBtn">📋 Copy</button>
+    </div>
+
+    <div class="field"><label>RGB</label></div>
+    <div class="color-row">
+      <input type="number" id="rInput" min="0" max="255" value="124">
+      <input type="number" id="gInput" min="0" max="255" value="92">
+      <input type="number" id="bInput" min="0" max="255" value="252">
+    </div>
+    <button class="btn secondary" id="copyRgbBtn" style="margin-bottom:18px">📋 Copy RGB</button>
+
+    <div class="field"><label>HSL</label></div>
+    <div class="hsl-row">
+      <input type="number" id="hInput" min="0" max="360" readonly>
+      <input type="number" id="sInput" min="0" max="100" readonly>
+      <input type="number" id="lInput" min="0" max="100" readonly>
+    </div>
+    <p style="font-size:.8rem;color:var(--text-dim);margin-top:6px">Hue / Saturation% / Lightness%</p>
+    <button class="btn secondary" id="copyHslBtn" style="margin-top:8px">📋 Copy HSL</button>
+
+    <p id="statusMsg" style="margin-top:14px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Every color on a screen can be written in more than one way, and different tools expect different formats. A web designer writing CSS usually needs a HEX code like #7C5CFC, a print or graphics program often works in RGB (red, green, blue values from 0 to 255), and some design tools prefer HSL (hue, saturation, lightness) because it's easier to reason about — for example, increasing lightness always makes a color closer to white, no matter what the base hue is. This converter keeps all three formats in sync at once, so you never have to do the math yourself or look up a conversion formula.</p>
+      <p>Type into any field — the HEX box, any of the three RGB number boxes, or use the native color picker swatch — and everything else updates immediately, including the live color preview at the top. This is useful when you've been given a color in one format (say, a brand HEX code from a designer) and need it in another format for a different tool, or when you're fine-tuning a color and want to see the RGB and HSL values shift as you adjust HEX, or vice versa.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Type a HEX code, RGB values, or click the color swatch picker to choose visually.</li>
+        <li>All other fields update automatically to match.</li>
+        <li>Click any "Copy" button to copy that format to your clipboard.</li>
+      </ol>
+      <h3>Why three formats matter</h3>
+      <p>HEX is the most common format in CSS and web design tools — it's compact and unambiguous. RGB is the format most image editing software and some APIs expect, and it maps directly to how screens actually produce color by mixing red, green, and blue light. HSL is often the easiest format for humans to adjust by hand, since the three values map cleanly to "what color" (hue), "how vivid" (saturation), and "how bright" (lightness) — which is why many color pickers in design software use HSL sliders even if the final output is saved as HEX or RGB.</p>
+      <p>This converter is handy in a lot of everyday situations: matching a brand's exact color across a website, a printed flyer, and a presentation slide; picking a color visually with the swatch picker and immediately getting its HEX code to paste into CSS; or checking what a designer's HEX code looks like in RGB before plugging it into software that only accepts that format. Since the swatch preview, HEX field, RGB fields, and HSL fields all stay perfectly in sync, there's never a risk of a typo causing the wrong color to end up in your final project.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>स्क्रीन पर हर रंग को एक से ज़्यादा तरीकों से लिखा जा सकता है, और अलग-अलग tools अलग-अलग format चाहते हैं। एक web designer को CSS में आमतौर पर HEX code चाहिए होता है जैसे #7C5CFC, print या graphics प्रोग्राम अक्सर RGB में काम करता है (red, green, blue की values 0 से 255 तक), और कुछ design tools HSL (hue, saturation, lightness) पसंद करते हैं क्योंकि इसे समझना आसान होता है — जैसे lightness बढ़ाने से कोई भी रंग हमेशा सफ़ेद के करीब हो जाता है, चाहे base hue कुछ भी हो। यह converter तीनों formats को हमेशा sync में रखता है, ताकि आपको खुद calculation करने या formula ढूंढने की ज़रूरत न पड़े।</p>
+      <p>किसी भी field में टाइप करें — HEX box, तीन RGB number boxes में से कोई भी, या ऊपर वाले color swatch picker से सीधे चुनें — बाकी सब तुरंत अपडेट हो जाएगा, साथ ही ऊपर live color preview भी। यह तब उपयोगी है जब आपको किसी एक format में रंग मिला हो (जैसे designer से एक brand HEX code) और किसी दूसरे tool के लिए दूसरे format में चाहिए हो, या जब आप कोई रंग ठीक कर रहे हों और HEX बदलने पर RGB-HSL में बदलाव देखना चाहते हों।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>कोई HEX code टाइप करें, RGB values डालें, या color swatch picker से visually चुनें।</li>
+        <li>बाकी सभी fields अपने आप match करते हुए अपडेट हो जाएंगे।</li>
+        <li>किसी भी "Copy" बटन से वह format clipboard में copy कर लें।</li>
+      </ol>
+      <h3>तीन formats क्यों ज़रूरी हैं</h3>
+      <p>HEX सबसे आम format है CSS और web design tools में — यह छोटा और स्पष्ट होता है। RGB वह format है जो ज़्यादातर image editing software और कुछ APIs चाहते हैं, और यह सीधे दिखाता है कि स्क्रीन कैसे red, green, blue light मिलाकर रंग बनाती है। HSL अक्सर हाथ से adjust करने के लिए सबसे आसान format होता है, क्योंकि तीनों values साफ़-साफ़ बताती हैं "कौन सा रंग" (hue), "कितना गहरा" (saturation), और "कितना उजला" (lightness) — इसीलिए कई design tools के color picker HSL sliders इस्तेमाल करते हैं, भले ही आख़िर में output HEX या RGB में save हो।</p>
+      <p>यह converter रोज़मर्रा की कई स्थितियों में काम आता है: किसी brand का exact color website, printed flyer, और presentation slide तीनों में मिलाना; swatch picker से visually कोई रंग चुनकर तुरंत उसका HEX code पाना ताकि CSS में paste किया जा सके; या किसी designer के HEX code का RGB में कैसा दिखता है यह जांचना, उस software में डालने से पहले जो सिर्फ़ वही format स्वीकार करता है। चूंकि swatch preview, HEX field, RGB fields, और HSL fields हमेशा बिल्कुल sync में रहते हैं, कभी कोई typo गलत रंग को आपके final project में पहुंचने का खतरा नहीं बनता।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const hexInput = document.getElementById('hexInput');
+const nativePicker = document.getElementById('nativePicker');
+const rInput = document.getElementById('rInput');
+const gInput = document.getElementById('gInput');
+const bInput = document.getElementById('bInput');
+const hInput = document.getElementById('hInput');
+const sInput = document.getElementById('sInput');
+const lInput = document.getElementById('lInput');
+const swatch = document.getElementById('swatch');
+const statusMsg = document.getElementById('statusMsg');
+
+function clamp(v, min, max){ return Math.max(min, Math.min(max, v)); }
+
+function rgbToHex(r,g,b){
+  return '#' + [r,g,b].map(v => clamp(Math.round(v),0,255).toString(16).padStart(2,'0')).join('').toUpperCase();
+}
+
+function hexToRgb(hex){
+  hex = hex.replace('#','').trim();
+  if(hex.length === 3) hex = hex.split('').map(c=>c+c).join('');
+  if(!/^[0-9a-fA-F]{6}$/.test(hex)) return null;
+  return {
+    r: parseInt(hex.slice(0,2),16),
+    g: parseInt(hex.slice(2,4),16),
+    b: parseInt(hex.slice(4,6),16)
+  };
+}
+
+function rgbToHsl(r,g,b){
+  r/=255; g/=255; b/=255;
+  const max = Math.max(r,g,b), min = Math.min(r,g,b);
+  let h,s,l = (max+min)/2;
+  if(max === min){ h = s = 0; }
+  else{
+    const d = max-min;
+    s = l > 0.5 ? d/(2-max-min) : d/(max+min);
+    switch(max){
+      case r: h = (g-b)/d + (g<b?6:0); break;
+      case g: h = (b-r)/d + 2; break;
+      case b: h = (r-g)/d + 4; break;
+    }
+    h /= 6;
+  }
+  return { h: Math.round(h*360), s: Math.round(s*100), l: Math.round(l*100) };
+}
+
+function updateFromRgb(r,g,b){
+  r = clamp(r,0,255); g = clamp(g,0,255); b = clamp(b,0,255);
+  const hex = rgbToHex(r,g,b);
+  hexInput.value = hex;
+  nativePicker.value = hex;
+  rInput.value = r; gInput.value = g; bInput.value = b;
+  const hsl = rgbToHsl(r,g,b);
+  hInput.value = hsl.h; sInput.value = hsl.s; lInput.value = hsl.l;
+  swatch.style.background = hex;
+}
+
+hexInput.addEventListener('input', ()=>{
+  const rgb = hexToRgb(hexInput.value);
+  if(rgb) updateFromRgb(rgb.r, rgb.g, rgb.b);
+});
+
+nativePicker.addEventListener('input', ()=>{
+  const rgb = hexToRgb(nativePicker.value);
+  if(rgb) updateFromRgb(rgb.r, rgb.g, rgb.b);
+});
+
+[rInput,gInput,bInput].forEach(inp=>{
+  inp.addEventListener('input', ()=>{
+    updateFromRgb(Number(rInput.value)||0, Number(gInput.value)||0, Number(bInput.value)||0);
+  });
+});
+
+function copyValue(text, btn){
+  copyText(text, btn);
+}
+
+document.getElementById('copyHexBtn').addEventListener('click', function(){ copyValue(hexInput.value, this); });
+document.getElementById('copyRgbBtn').addEventListener('click', function(){
+  copyValue(`rgb(${rInput.value}, ${gInput.value}, ${bInput.value})`, this);
+});
+document.getElementById('copyHslBtn').addEventListener('click', function(){
+  copyValue(`hsl(${hInput.value}, ${sInput.value}%, ${lInput.value}%)`, this);
+});
+
+updateFromRgb(124,92,252);
+</script>
+</body>
+</html>

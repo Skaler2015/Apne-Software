@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-extract-images.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Extract Images from PDF | ApneSoftware">
+<meta property="og:description" content="Pull out embedded photos as files. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-extract-images.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Extract Images from PDF | ApneSoftware">
+<meta name="twitter:description" content="Pull out embedded photos as files. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Extract Images from PDF","description":"Pull out embedded photos as files. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-extract-images.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Extract Images from PDF | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-top:18px}
+  .img-card{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center}
+  .img-card img{width:100%;height:100px;object-fit:contain;border-radius:4px;background:#fff}
+  .img-card .lbl{font-size:.72rem;color:var(--text-dim);margin:6px 0}
+  .img-card button{width:100%;padding:6px;font-size:.78rem}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🖼️ Extract Images from PDF</h1>
+    <p>Pull out every embedded photo or picture inside a PDF as separate image files.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+
+    <div class="btn-row" id="downloadAllRow" style="display:none">
+      <button class="btn" id="downloadAllBtn">⬇️ Download All Images</button>
+    </div>
+
+    <div class="img-grid" id="imgGrid"></div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool scans a PDF for every embedded image (photo, logo, scanned picture) and lets you download each one separately as a PNG file. It finds actual embedded images, not full rendered pages.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Every image found inside it appears below automatically.</li>
+        <li>Download images one at a time, or all at once.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल PDF के अंदर मौजूद हर इमेज (फोटो, लोगो, स्कैन की हुई तस्वीर) ढूंढकर अलग-अलग PNG फाइल के रूप में डाउनलोड करने देता है। यह असली embedded इमेज ढूंढता है, पूरे पेज की तस्वीर नहीं।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>उसमें मौजूद हर इमेज अपने आप नीचे दिख जाएगी।</li>
+        <li>एक-एक करके या सभी एक साथ डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let foundImages = []; // {blob, index}
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+function imageDataToCanvas(imgData){
+  const canvas = document.createElement('canvas');
+  canvas.width = imgData.width;
+  canvas.height = imgData.height;
+  const ctx = canvas.getContext('2d');
+  const idata = ctx.createImageData(imgData.width, imgData.height);
+  const src = imgData.data;
+  const dst = idata.data;
+
+  if(src.length === imgData.width * imgData.height * 4){
+    dst.set(src);
+  } else if(src.length === imgData.width * imgData.height * 3){
+    for(let i=0,j=0; i<src.length; i+=3, j+=4){
+      dst[j]=src[i]; dst[j+1]=src[i+1]; dst[j+2]=src[i+2]; dst[j+3]=255;
+    }
+  } else if(src.length === imgData.width * imgData.height){
+    for(let i=0,j=0; i<src.length; i++, j+=4){
+      dst[j]=src[i]; dst[j+1]=src[i]; dst[j+2]=src[i]; dst[j+3]=255;
+    }
+  } else {
+    return null;
+  }
+  ctx.putImageData(idata, 0, 0);
+  return canvas;
+}
+
+async function handleFile(file){
+  const status = document.getElementById('statusMsg');
+  const grid = document.getElementById('imgGrid');
+  grid.innerHTML = '';
+  foundImages = [];
+  status.textContent = '⏳ Scanning for images...';
+
+  try{
+    const arrayBuf = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+    let count = 0;
+
+    for(let i=1; i<=pdf.numPages; i++){
+      status.textContent = `⏳ Scanning page ${i}/${pdf.numPages}...`;
+      const page = await pdf.getPage(i);
+      const ops = await page.getOperatorList();
+      const fns = ops.fnArray;
+      const args = ops.argsArray;
+
+      for(let k=0; k<fns.length; k++){
+        if(fns[k] === pdfjsLib.OPS.paintImageXObject || fns[k] === pdfjsLib.OPS.paintImageXObjectRepeat){
+          const objId = args[k][0];
+          try{
+            const imgData = await new Promise((resolve, reject) => {
+              page.objs.get(objId, (data)=> resolve(data));
+              setTimeout(()=> reject(new Error('timeout')), 5000);
+            });
+            if(!imgData || !imgData.width) continue;
+            const canvas = imageDataToCanvas(imgData);
+            if(!canvas) continue;
+            await new Promise(resolve => {
+              canvas.toBlob(blob => {
+                if(blob && blob.size > 200){
+                  count++;
+                  foundImages.push({ blob, index: count });
+                  const card = document.createElement('div');
+                  card.className = 'img-card';
+                  card.innerHTML = `
+                    <img src="${URL.createObjectURL(blob)}">
+                    <div class="lbl">Image ${count} (page ${i})</div>
+                    <button class="btn secondary" onclick="downloadOne(${foundImages.length-1})">⬇️ Download</button>`;
+                  grid.appendChild(card);
+                }
+                resolve();
+              }, 'image/png');
+            });
+          }catch(e){ /* skip image that can't be read */ }
+        }
+      }
+    }
+
+    if(count === 0){
+      status.textContent = '⚠️ No embedded images found in this PDF.';
+    } else {
+      status.textContent = `✅ Found ${count} image(s)`;
+      document.getElementById('downloadAllRow').style.display = 'flex';
+    }
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+}
+
+function downloadOne(idx){
+  const item = foundImages[idx];
+  downloadBlob(`image-${item.index}.png`, item.blob);
+}
+
+document.getElementById('downloadAllBtn').addEventListener('click', ()=>{
+  foundImages.forEach((item, i) => {
+    setTimeout(()=> downloadBlob(`image-${item.index}.png`, item.blob), i * 300);
+  });
+});
+</script>
+</body>
+</html>

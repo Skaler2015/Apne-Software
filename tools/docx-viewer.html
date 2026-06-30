@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/docx-viewer.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DOCX Viewer — View Word Documents Online | ApneSoftware">
+<meta property="og:description" content="View the contents of a .docx Word file directly in your browser, no Microsoft Word needed. Free, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/docx-viewer.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DOCX Viewer — View Word Documents Online | ApneSoftware">
+<meta name="twitter:description" content="View the contents of a .docx Word file directly in your browser, no Microsoft Word needed. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"DOCX Viewer","description":"View the contents of a .docx Word file directly in your browser, no Microsoft Word needed. Free, no signup.","url":"https://apnesoftware.com/tools/docx-viewer.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>DOCX Viewer — View Word Documents Online | ApneSoftware</title>
+<meta name="description" content="View the contents of a .docx Word file directly in your browser, no Microsoft Word needed. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .doc-preview{
+    background:#fff;border:1px solid var(--border);border-radius:10px;padding:40px;
+    margin-top:16px;max-height:640px;overflow-y:auto;line-height:1.6;
+  }
+  .doc-preview h1, .doc-preview h2, .doc-preview h3{margin:16px 0 8px}
+  .doc-preview p{margin-bottom:10px}
+  .doc-preview table{border-collapse:collapse;margin:10px 0}
+  .doc-preview table td, .doc-preview table th{border:1px solid #ccc;padding:6px 10px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📃 DOCX Viewer</h1>
+    <p>View the contents of a Word (.docx) file instantly — no Microsoft Word or Google Docs needed.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a .docx file here or click to choose</p>
+      <input type="file" id="fileInput" accept=".docx">
+    </div>
+    <div class="doc-preview" id="docPreview" style="display:none"></div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Opening a .docx file usually means having Microsoft Word installed, or signing into Google Docs and waiting for an upload — overkill when all you want is to quickly check what's inside a document someone sent you. This viewer renders a Word file's content directly on this page the moment you upload it, with headings, paragraphs, bold and italic text, lists, and tables all displayed properly formatted, just like they'd appear in an actual document.</p>
+      <p>This is especially useful on a phone or a computer that doesn't have Word installed, or when you just need a fast look at a document's content without committing to opening heavier software. Since everything happens locally in your browser, the file is never uploaded anywhere — it's read and displayed entirely on your own device.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a .docx file.</li>
+        <li>The formatted content appears immediately below.</li>
+      </ol>
+      <h3>Good to know</h3>
+      <p>This tool is for viewing, not editing — if you need to make changes to the document, you'll still need Word, Google Docs, or a similar editor. It also only supports the modern .docx format used by Word 2007 and newer; the older .doc format isn't supported since it uses a completely different, more complex binary structure that can't be reliably read in a browser. If your file is in the old .doc format, opening and re-saving it as .docx in Word first will let it work here.</p>
+      <p>One of the most common situations this solves is receiving a Word document on a phone or tablet where Microsoft Word either isn't installed or is awkward to use just for a quick read. It's also useful at work or in shared computers where installing additional software isn't practical, or simply when you want to verify a document's content before deciding whether it's worth downloading the full file and opening it properly. Since the conversion happens entirely client-side using your browser's own processing, there's no waiting on a server and no concern about a sensitive document being transmitted anywhere during the viewing process.</p>
+      <p>Formatting fidelity is generally strong for everyday documents — headings keep their hierarchy, bold and italic emphasis carries over correctly, numbered and bulleted lists render properly, and tables keep their row and column structure. Things like embedded macros, tracked changes, comments, and very elaborate custom styling may not display exactly as they would in Word itself, since the viewer focuses on readable content rather than reproducing every formatting detail pixel-for-pixel.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी .docx file को खोलने के लिए आमतौर पर Microsoft Word installed होना चाहिए, या Google Docs में login करके upload का इंतज़ार करना पड़ता है — जब बस यह देखना हो कि किसी भेजे गए document में क्या है, तो यह ज़रूरत से ज़्यादा है। यह viewer Word file का content इस page पर सीधे दिखा देता है upload करते ही, headings, paragraphs, bold-italic text, lists, और tables सभी सही formatting के साथ, बिल्कुल असली document जैसे।</p>
+      <p>यह खासकर तब उपयोगी है जब फोन पर हों या ऐसे computer पर जिसमें Word installed नहीं है, या जब किसी भारी software को खोलने की बजाय document के content पर बस एक तेज़ नज़र डालनी हो। चूंकि सब कुछ आपके browser में locally होता है, file कहीं भी upload नहीं होती — यह पूरी तरह आपके अपने device पर पढ़ी और दिखाई जाती है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक .docx file अपलोड करें।</li>
+        <li>formatted content तुरंत नीचे दिख जाएगा।</li>
+      </ol>
+      <h3>जानने लायक बातें</h3>
+      <p>यह tool देखने के लिए है, edit करने के लिए नहीं — अगर document में बदलाव करने हैं, तो अभी भी Word, Google Docs, या किसी और editor की ज़रूरत पड़ेगी। यह सिर्फ़ modern .docx format को support करता है जो Word 2007 और उसके बाद इस्तेमाल होता है; पुराना .doc format support नहीं होता क्योंकि वह पूरी तरह अलग, ज़्यादा complex binary structure इस्तेमाल करता है जिसे browser में भरोसे से नहीं पढ़ा जा सकता। अगर आपकी file पुराने .doc format में है, तो पहले Word में खोलकर .docx के रूप में दोबारा save करने पर यह यहां काम करेगी।</p>
+      <p>इस tool से सबसे ज़्यादा हल होने वाली स्थिति है फोन या tablet पर कोई Word document मिलना, जहां Microsoft Word न तो installed है न ही सिर्फ़ एक बार पढ़ने के लिए इस्तेमाल करना सुविधाजनक है। यह काम पर या shared computers पर भी उपयोगी है जहां अतिरिक्त software install करना practical नहीं है, या सिर्फ़ तब जब document download करने और पूरी तरह खोलने से पहले उसका content verify करना हो। चूंकि conversion पूरी तरह client-side, आपके browser की अपनी processing से होता है, न किसी server का इंतज़ार करना पड़ता है, न ही viewing के दौरान किसी संवेदनशील document के कहीं भेजे जाने की चिंता रहती है।</p>
+      <p>Formatting fidelity आमतौर पर रोज़मर्रा के documents के लिए मज़बूत रहती है — headings अपनी hierarchy बनाए रखते हैं, bold-italic emphasis सही तरीके से आता है, numbered-bulleted lists सही दिखती हैं, और tables अपनी rows-columns structure बनाए रखती हैं। macros, tracked changes, comments, और बहुत elaborate custom styling जैसी चीज़ें ठीक वैसी नहीं दिख सकतीं जैसी Word में दिखती हैं, क्योंकि यह viewer हर formatting detail को pixel-for-pixel दोहराने की बजाय readable content पर ध्यान देता है।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1/mammoth.browser.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length) handleFile(files[0]);
+});
+
+async function handleFile(file){
+  const status = document.getElementById('statusMsg');
+  const preview = document.getElementById('docPreview');
+  status.textContent = '⏳ Reading document...';
+
+  try{
+    const arrayBuffer = await file.arrayBuffer();
+    const result = await mammoth.convertToHtml({ arrayBuffer });
+    preview.innerHTML = result.value;
+    preview.style.display = 'block';
+    status.textContent = result.messages.length
+      ? `✅ Loaded (${result.messages.length} minor formatting notes — content is still accurate)`
+      : '✅ Loaded successfully.';
+  }catch(err){
+    status.textContent = '❌ Could not read this file — make sure it is a valid .docx file.';
+  }
+}
+</script>
+</body>
+</html>

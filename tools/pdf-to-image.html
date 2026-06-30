@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-to-image.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF to JPG/PNG — Turn Pages into Images | ApneSoftware">
+<meta property="og:description" content="Turn pages into images. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-to-image.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF to JPG/PNG — Turn Pages into Images | ApneSoftware">
+<meta name="twitter:description" content="Turn pages into images. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF to JPG/PNG","description":"Turn pages into images. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-to-image.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF to JPG/PNG — Turn Pages into Images | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .page-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-top:18px}
+  .page-card{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center}
+  .page-card img{width:100%;border-radius:4px;margin-bottom:6px;border:1px solid var(--border)}
+  .page-card button{width:100%}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🖼️ PDF to JPG/PNG</h1>
+    <p>Turn every page of a PDF into a separate image and download it.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag & drop your PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div class="row" style="margin-top:18px">
+      <div class="field">
+        <label for="formatSelect">Format</label>
+        <select id="formatSelect">
+          <option value="image/jpeg">JPG</option>
+          <option value="image/png">PNG</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="scaleSelect">Quality</label>
+        <select id="scaleSelect">
+          <option value="1">Normal</option>
+          <option value="2" selected>High (HD)</option>
+          <option value="3">Very High</option>
+        </select>
+      </div>
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+
+    <div class="btn-row" id="downloadAllRow" style="display:none">
+      <button class="btn" id="downloadAllBtn">⬇️ Download All Pages</button>
+    </div>
+
+    <div class="page-grid" id="pageGrid"></div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>There are plenty of situations where you have a PDF but actually need its content as images instead — uploading a single page to a website that only accepts JPG or PNG, pulling a diagram or chart out of a report to drop into a presentation, sharing a quick visual of a document on social media or chat apps where PDFs don't preview nicely, or feeding a scanned page into an image-editing tool that doesn't understand PDF files at all. This tool converts every page of a PDF into a separate high-quality image file, in either JPG or PNG format, ready to use individually wherever images are needed instead of documents.</p>
+      <p>After uploading your PDF, the tool renders each page and displays it as a thumbnail so you can see exactly what you're about to get before downloading anything. You can choose the output quality, from a standard resolution suitable for screen viewing and quick sharing, up to a high-resolution setting better suited for printing or zooming in on fine detail like small text or technical diagrams. Each page can be downloaded individually with a single click, or you can grab every page at once as a convenient batch download if you need the whole document converted.</p>
+      <p>This is particularly handy for situations where the receiving system genuinely can't handle PDFs — certain government and school application portals, older content management systems, image-only social platforms, and a surprising number of online forms that only accept JPG or PNG uploads despite the source document obviously being a PDF. Rather than hunting for a workaround or taking a screenshot of your screen at a fixed, often blurry resolution, this gives you a clean, properly rendered image straight from the original PDF content at whatever resolution you choose.</p>
+      <p>The entire rendering process happens locally in your browser using a PDF rendering engine, so your document is never sent to a server just to be turned into images — everything you see and download was generated on your own device. This matters if the PDF you're converting contains anything personal or confidential, since there's no intermediate upload step where a copy could be stored or logged somewhere outside your control. The tool works the same way whether you're converting a single-page document or a hundred-page report, and because nothing about file count or page count is artificially limited, it scales naturally from a quick one-off conversion to processing an entire batch of scanned files in one sitting.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Choose the output format and quality.</li>
+        <li>Download individual pages or all pages at once.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>कई situations ऐसी होती हैं जहां आपके पास PDF है पर असल में आपको उसका content images के तौर पर चाहिए होता है — किसी ऐसी website पर एक पन्ना अपलोड करना जो सिर्फ JPG या PNG accept करती है, किसी report से कोई diagram या chart निकालकर presentation में डालना, social media या chat apps पर किसी document की quick visual शेयर करना जहां PDFs ठीक से preview नहीं होतीं, या किसी scanned पन्ने को किसी ऐसे image-editing tool में डालना जो PDF files को बिल्कुल नहीं समझता। यह टूल किसी PDF के हर पन्ने को एक अलग high-quality image file में, JPG या PNG फॉर्मेट में बदल देता है, जहां भी documents की बजाय images चाहिए वहां अलग-अलग इस्तेमाल के लिए तैयार।</p>
+      <p>अपनी PDF अपलोड करने के बाद, टूल हर पन्ने को render करके उसे एक thumbnail के तौर पर दिखाता है ताकि कुछ भी download करने से पहले आप ठीक-ठीक देख सकें कि आपको क्या मिलने वाला है। आप output quality चुन सकते हैं, screen पर देखने और जल्दी share करने के लिए सही एक standard resolution से लेकर, छोटे text या technical diagrams जैसी बारीक डिटेल पर print करने या zoom करने के लिए बेहतर एक high-resolution setting तक। हर पन्ना एक क्लिक से अलग-अलग download किया जा सकता है, या अगर पूरा document convert करना हो तो आप एक साथ सभी पन्ने एक सुविधाजनक batch download के तौर पर ले सकते हैं।</p>
+      <p>यह खासतौर पर उन स्थितियों में काम आता है जहां पाने वाला system सच में PDFs handle नहीं कर सकता — कुछ government और school के application portals, पुराने content management systems, सिर्फ image वाले social platforms, और हैरानी की बात नहीं कि कई online forms जो source document साफ तौर पर PDF होने के बावजूद सिर्फ JPG या PNG uploads accept करते हैं। किसी workaround की तलाश करने या अपनी screen का एक fixed, अक्सर धुंधले resolution वाला screenshot लेने की बजाय, यह आपको original PDF content से सीधे, आपकी चुनी resolution पर एक साफ, सही तरीके से render की गई image देता है।</p>
+      <p>पूरी rendering process एक PDF rendering engine इस्तेमाल करके आपके browser में locally होती है, तो सिर्फ images में बदलने के लिए आपका document कभी किसी server पर नहीं भेजा जाता — जो कुछ भी आप देखते और download करते हैं वह आपकी अपनी डिवाइस पर बना है। यह तब मायने रखता है जब आप जो PDF convert कर रहे हैं उसमें कुछ personal या confidential हो, क्योंकि बीच में कोई upload step नहीं होता जहां कोई copy आपके control से बाहर कहीं स्टोर या log हो सके। चाहे आप एक-पन्ने का document convert कर रहे हों या सौ-पन्नों की report, टूल बिल्कुल उसी तरह काम करता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>आउटपुट फॉर्मेट और क्वालिटी चुनें।</li>
+        <li>अलग-अलग पेज या सभी पेज एक साथ डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let pageBlobs = [];
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+async function handleFile(file){
+  const status = document.getElementById('statusMsg');
+  const grid = document.getElementById('pageGrid');
+  grid.innerHTML = '';
+  pageBlobs = [];
+  status.textContent = '⏳ Loading PDF...';
+
+  const arrayBuf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+  const format = document.getElementById('formatSelect').value;
+  const scale = parseFloat(document.getElementById('scaleSelect').value);
+  const ext = format === 'image/png' ? 'png' : 'jpg';
+
+  for(let i=1; i<=pdf.numPages; i++){
+    status.textContent = `⏳ Building page ${i}/${pdf.numPages}...`;
+    const page = await pdf.getPage(i);
+    const viewport = page.getViewport({ scale });
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    if(format === 'image/jpeg'){
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+    }
+    await page.render({ canvasContext: ctx, viewport }).promise;
+
+    await new Promise(resolve => {
+      canvas.toBlob(blob => {
+        pageBlobs.push({ blob, index: i });
+        const card = document.createElement('div');
+        card.className = 'page-card';
+        card.innerHTML = `
+          <img src="${URL.createObjectURL(blob)}">
+          <div style="font-size:.8rem;color:var(--text-dim);margin-bottom:6px">Page ${i}</div>
+          <button class="btn secondary" style="padding:6px 10px;font-size:.8rem" onclick="downloadOne(${pageBlobs.length-1}, '${ext}')">⬇️ Download</button>`;
+        grid.appendChild(card);
+        resolve();
+      }, format, 0.92);
+    });
+  }
+
+  status.textContent = `✅ ${pdf.numPages} pages ready`;
+  document.getElementById('downloadAllRow').style.display = 'flex';
+}
+
+function downloadOne(idx, ext){
+  const item = pageBlobs[idx];
+  downloadBlob(`page-${item.index}.${ext}`, item.blob);
+}
+
+document.getElementById('downloadAllBtn').addEventListener('click', ()=>{
+  pageBlobs.forEach((item, i) => {
+    setTimeout(()=>{
+      const ext = document.getElementById('formatSelect').value === 'image/png' ? 'png' : 'jpg';
+      downloadBlob(`page-${item.index}.${ext}`, item.blob);
+    }, i * 300);
+  });
+});
+
+['formatSelect','scaleSelect'].forEach(id=>{
+  document.getElementById(id).addEventListener('change', ()=>{
+    if(fileInput.files[0]) handleFile(fileInput.files[0]);
+  });
+});
+</script>
+</body>
+</html>

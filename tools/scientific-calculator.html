@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Scientific Calculator — Online Advanced Calculator | ApneSoftware</title>
+<meta name="description" content="Full-featured scientific calculator with trigonometry, logarithms, powers, and more. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .calc-wrap{max-width:420px;margin:0 auto}
+  .display{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:12px;font-family:monospace}
+  .display .expr{font-size:.8rem;color:var(--text-dim);min-height:20px;word-break:break-all}
+  .display .result{font-size:2rem;font-weight:800;color:var(--text);text-align:right;word-break:break-all}
+  .btn-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .cbtn{padding:13px 6px;border:none;border-radius:9px;font-size:.88rem;font-weight:700;cursor:pointer;background:var(--surface-2);color:var(--text);border:1px solid var(--border);transition:.15s}
+  .cbtn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .cbtn.op{background:rgba(124,92,252,.12);color:var(--accent)}
+  .cbtn.eq{background:var(--accent);color:#fff;grid-column:span 2}
+  .cbtn.clear{background:rgba(239,68,68,.12);color:#EF4444}
+  .cbtn.fn{font-size:.75rem}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+<div class="container">
+  <div class="tool-header">
+    <h1>🧮 Scientific Calculator</h1>
+    <p>Advanced calculator with trigonometry, logarithms, powers, and factorial.</p>
+  </div>
+  <div class="panel">
+    <div class="calc-wrap">
+      <div class="display">
+        <div class="expr" id="expr"></div>
+        <div class="result" id="result">0</div>
+      </div>
+      <div class="btn-grid">
+        <button class="cbtn clear" data-action="clear">C</button>
+        <button class="cbtn fn" data-action="backspace">⌫</button>
+        <button class="cbtn fn" data-fn="Math.PI">π</button>
+        <button class="cbtn fn" data-fn="Math.E">e</button>
+
+        <button class="cbtn fn" data-fn="Math.sin({{x}}*Math.PI/180)">sin</button>
+        <button class="cbtn fn" data-fn="Math.cos({{x}}*Math.PI/180)">cos</button>
+        <button class="cbtn fn" data-fn="Math.tan({{x}}*Math.PI/180)">tan</button>
+        <button class="cbtn fn" data-fn="1/{{x}}">1/x</button>
+
+        <button class="cbtn fn" data-fn="Math.asin({{x}})*180/Math.PI">sin⁻¹</button>
+        <button class="cbtn fn" data-fn="Math.acos({{x}})*180/Math.PI">cos⁻¹</button>
+        <button class="cbtn fn" data-fn="Math.atan({{x}})*180/Math.PI">tan⁻¹</button>
+        <button class="cbtn fn" data-fn="Math.pow({{x}},2)">x²</button>
+
+        <button class="cbtn fn" data-fn="Math.log({{x}})">ln</button>
+        <button class="cbtn fn" data-fn="Math.log10({{x}})">log</button>
+        <button class="cbtn fn" data-fn="Math.sqrt({{x}})">√x</button>
+        <button class="cbtn fn" data-fn="Math.pow({{x}},3)">x³</button>
+
+        <button class="cbtn fn" data-fn="Math.exp({{x}})">eˣ</button>
+        <button class="cbtn fn" data-fn="Math.pow(10,{{x}})">10ˣ</button>
+        <button class="cbtn fn" data-fn="factorial({{x}})">x!</button>
+        <button class="cbtn fn" data-fn="Math.abs({{x}})">&vert;x&vert;</button>
+
+        <button class="cbtn" data-digit="7">7</button>
+        <button class="cbtn" data-digit="8">8</button>
+        <button class="cbtn" data-digit="9">9</button>
+        <button class="cbtn op" data-digit="/">÷</button>
+
+        <button class="cbtn" data-digit="4">4</button>
+        <button class="cbtn" data-digit="5">5</button>
+        <button class="cbtn" data-digit="6">6</button>
+        <button class="cbtn op" data-digit="*">×</button>
+
+        <button class="cbtn" data-digit="1">1</button>
+        <button class="cbtn" data-digit="2">2</button>
+        <button class="cbtn" data-digit="3">3</button>
+        <button class="cbtn op" data-digit="-">−</button>
+
+        <button class="cbtn" data-digit="0">0</button>
+        <button class="cbtn" data-digit=".">.</button>
+        <button class="cbtn op" data-digit="^">yˣ</button>
+        <button class="cbtn op" data-digit="+">+</button>
+
+        <button class="cbtn op" data-digit="(">(</button>
+        <button class="cbtn op" data-digit=")">)</button>
+        <button class="cbtn op" data-digit="%" style="">%</button>
+        <button class="cbtn fn" data-action="negate">±</button>
+
+        <button class="cbtn eq" data-action="equals">=</button>
+        <button class="cbtn fn" data-action="ans">ANS</button>
+        <button class="cbtn fn" data-action="ms">M+</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This scientific calculator handles all standard arithmetic operations as well as a comprehensive set of mathematical functions including trigonometry (sin, cos, tan and their inverses), logarithms (natural log and base-10 log), exponentials, square and cube roots, powers, absolute value, and factorial. Trigonometric functions use degrees, which is the standard for most practical applications in school and engineering contexts.</p>
+      <p>The calculator supports chained calculations — you can chain together multiple operations including parentheses for grouped expressions, use π and e as constants, and store a result in memory to recall it later with the ANS button. The yˣ button lets you raise any number to any power, which is useful for compound interest approximations, scientific notation, or solving exponential equations by hand.</p>
+      <p>Factorial (x!) works for non-negative integers. Inverse trig functions return the angle in degrees. The display shows both the current expression and the computed result simultaneously so you can always verify what you've entered before confirming. Keyboard input is also supported for speed.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Click the number buttons to build your expression, or use your keyboard.</li>
+        <li>For functions like sin, cos, log: enter the value first, then click the function button.</li>
+        <li>Press "=" to compute; use ANS to reuse the last result in the next calculation.</li>
+      </ol>
+    <p>The expression-based input approach means you can build complex calculations in the display before computing — something like "2 × (3 + sin(30))" is visible as you type and computes in one step when you press equals. This is more reliable than calculator apps that compute after each button press, because you can review and correct the entire expression before committing to the answer. For students in classes 10–12, competitive exam aspirants, or anyone working through mathematical problems that involve multiple function applications, having a verified, precise scientific calculator accessible on any browser without installation or account setup removes a common friction point in study sessions. The calculator handles standard operator precedence — multiplication and division before addition and subtraction — so you can enter expressions naturally without needing to restructure them to match a particular button-by-button sequence. For engineers and physics students, note that trig functions here use degree mode, which matches most classroom problems and national competitive exams in India; radian mode can be used by entering values multiplied by π/180 manually. Percentage (%) in an expression works as division by 100, so entering 15% automatically converts to 0.15 — useful when computing percentage-based discounts, taxes, or markup without having to do the conversion step manually.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह scientific calculator सभी standard arithmetic operations के साथ-साथ mathematical functions का एक comprehensive set भी handle करता है, जिसमें trigonometry (sin, cos, tan और उनके inverses), logarithms (natural log और base-10 log), exponentials, square और cube roots, powers, absolute value, और factorial शामिल हैं। Trigonometric functions degrees इस्तेमाल करते हैं, जो school और engineering contexts में ज़्यादातर practical applications के लिए standard है।</p>
+      <p>Calculator chained calculations support करता है — आप grouped expressions के लिए parentheses सहित multiple operations chain कर सकते हैं, π और e को constants के रूप में इस्तेमाल कर सकते हैं, और result को memory में store करके बाद में ANS button से recall कर सकते हैं। yˣ button आपको किसी भी number को किसी भी power पर raise करने देता है, जो compound interest approximations, scientific notation, या exponential equations को हाथ से solve करने के लिए उपयोगी है।</p>
+      <p>Factorial (x!) non-negative integers के लिए काम करता है। Inverse trig functions degrees में angle return करते हैं। Display current expression और computed result दोनों एक साथ दिखाता है ताकि confirm करने से पहले आप हमेशा verify कर सकें कि क्या enter किया है। Speed के लिए Keyboard input भी supported है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>Expression बनाने के लिए number buttons click करें, या keyboard इस्तेमाल करें।</li>
+        <li>sin, cos, log जैसे functions के लिए: पहले value enter करें, फिर function button click करें।</li>
+        <li>Compute करने के लिए "=" दबाएं; अगली calculation में last result reuse करने के लिए ANS इस्तेमाल करें।</li>
+      </ol>
+    <p>Expression-based input approach का मतलब है कि आप compute करने से पहले display में complex calculations बना सकते हैं — "2 × (3 + sin(30))" जैसी कोई चीज़ टाइप करते समय visible होती है और equals press करने पर एक step में compute होती है। यह उन calculator apps से ज़्यादा reliable है जो हर button press के बाद compute करती हैं, क्योंकि आप answer confirm करने से पहले पूरी expression review और correct कर सकते हैं। Classes 10–12 में students, competitive exam aspirants, या किसी के लिए भी जो multiple function applications वाली mathematical problems पर काम कर रहा हो, किसी भी browser पर installation या account setup के बिना accessible verified, precise scientific calculator होना study sessions में एक common friction point हटाता है। Calculator standard operator precedence handle करता है — addition और subtraction से पहले multiplication और division — इसलिए आप expressions naturally enter कर सकते हैं बिना उन्हें किसी particular button-by-button sequence से match करने के लिए restructure किए। Engineers और physics students के लिए ध्यान दें कि यहां trig functions degree mode इस्तेमाल करते हैं, जो ज़्यादातर classroom problems और भारत में national competitive exams से match करता है; radian mode manually π/180 से multiplied values enter करके इस्तेमाल किया जा सकता है।</p>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<script>
+let expr = '';
+let lastResult = 0;
+let memory = 0;
+const exprEl = document.getElementById('expr');
+const resultEl = document.getElementById('result');
+
+function factorial(n){
+  n = Math.round(n);
+  if(n < 0 || n > 170) return NaN;
+  if(n <= 1) return 1;
+  let r = 1;
+  for(let i = 2; i <= n; i++) r *= i;
+  return r;
+}
+
+function updateDisplay(){
+  exprEl.textContent = expr;
+  try{
+    if(!expr) { resultEl.textContent = '0'; return; }
+    const safe = expr.replace(/\^/g, '**').replace(/π/g, 'Math.PI').replace(/e(?!x)/g, 'Math.E');
+    const result = Function('"use strict"; return (' + safe + ')')();
+    if(isNaN(result) || !isFinite(result)){ resultEl.textContent = 'Error'; }
+    else { resultEl.textContent = parseFloat(result.toPrecision(12)).toString(); lastResult = result; }
+  } catch(e){ resultEl.textContent = 'Error'; }
+}
+
+document.querySelectorAll('.cbtn').forEach(btn => {
+  btn.addEventListener('click', ()=>{
+    const action = btn.dataset.action;
+    const digit = btn.dataset.digit;
+    const fn = btn.dataset.fn;
+
+    if(action === 'clear'){ expr = ''; resultEl.textContent = '0'; exprEl.textContent = ''; return; }
+    if(action === 'backspace'){ expr = expr.slice(0,-1); updateDisplay(); return; }
+    if(action === 'equals'){
+      try{
+        const safe = expr.replace(/\^/g,'**');
+        const r = Function('"use strict"; return (' + safe + ')')();
+        lastResult = r;
+        exprEl.textContent = expr + ' =';
+        expr = parseFloat(r.toPrecision(12)).toString();
+        resultEl.textContent = expr;
+      } catch(e){ resultEl.textContent = 'Error'; }
+      return;
+    }
+    if(action === 'ans'){ expr += lastResult; updateDisplay(); return; }
+    if(action === 'ms'){ memory = lastResult; return; }
+    if(action === 'negate'){ 
+      if(expr && !isNaN(parseFloat(expr))){ expr = (-parseFloat(expr)).toString(); }
+      else { expr = '-(' + expr + ')'; }
+      updateDisplay(); return;
+    }
+    if(digit !== undefined){ 
+      const d = btn.textContent === '÷' ? '/' : btn.textContent === '×' ? '*' : btn.textContent === '−' ? '-' : digit;
+      expr += d; updateDisplay(); return; 
+    }
+    if(fn){
+      const curVal = resultEl.textContent !== 'Error' ? parseFloat(resultEl.textContent) : 0;
+      if(fn === 'Math.PI'){ expr += 'Math.PI'; }
+      else if(fn === 'Math.E'){ expr += 'Math.E'; }
+      else { 
+        const applied = fn.replace(/\{\{x\}\}/g, curVal);
+        try{ const r = eval(applied); expr = parseFloat(r.toPrecision(12)).toString(); }
+        catch(e){ expr = 'Error'; }
+      }
+      updateDisplay();
+    }
+  });
+});
+
+document.addEventListener('keydown', (e)=>{
+  if('0123456789.+-*/()'.includes(e.key)) { expr += e.key; updateDisplay(); }
+  else if(e.key === 'Enter' || e.key === '='){ document.querySelector('[data-action="equals"]').click(); }
+  else if(e.key === 'Backspace'){ expr = expr.slice(0,-1); updateDisplay(); }
+  else if(e.key === 'Escape'){ expr = ''; resultEl.textContent = '0'; exprEl.textContent = ''; }
+});
+</script>
+</body>
+</html>

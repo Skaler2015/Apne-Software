@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/css-beautifier-minifier.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CSS Beautifier & Minifier — ApneSoftware">
+<meta property="og:description" content="Format messy CSS into readable code, or minify CSS to reduce file size. Free, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/css-beautifier-minifier.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSS Beautifier & Minifier — ApneSoftware">
+<meta name="twitter:description" content="Format messy CSS into readable code, or minify CSS to reduce file size. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSS Beautifier & Minifier","description":"Format messy CSS into readable code, or minify CSS to reduce file size. Free, no signup.","url":"https://apnesoftware.com/tools/css-beautifier-minifier.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>CSS Beautifier & Minifier — ApneSoftware</title>
+<meta name="description" content="Format messy CSS into readable code, or minify CSS to reduce file size. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .tab-row{display:flex;gap:8px;margin-bottom:14px}
+  textarea{width:100%;min-height:280px;font-family:monospace;font-size:.83rem;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);resize:vertical}
+  .text-area-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){ .text-area-pair{grid-template-columns:1fr} }
+  .col-label{font-size:.8rem;font-weight:700;color:var(--text-dim);margin-bottom:6px;display:flex;justify-content:space-between}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🎨 CSS Beautifier & Minifier</h1>
+    <p>Format messy CSS into clean, readable code, or minify it to shrink the file size.</p>
+  </div>
+
+  <div class="panel">
+    <div class="tab-row">
+      <button class="btn secondary active" id="beautifyTabBtn">✨ Beautify</button>
+      <button class="btn secondary" id="minifyTabBtn">📦 Minify</button>
+    </div>
+
+    <div class="text-area-pair">
+      <div>
+        <div class="col-label">INPUT CSS</div>
+        <textarea id="inputCode" placeholder="Paste your CSS here...">.card{background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.1);}</textarea>
+      </div>
+      <div>
+        <div class="col-label">OUTPUT <span id="sizeInfo"></span></div>
+        <textarea id="outputCode" readonly></textarea>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn" id="processBtn">✨ Beautify</button>
+      <button class="btn secondary" id="copyBtn">📋 Copy Result</button>
+      <button class="btn secondary" id="downloadBtn">⬇️ Download .css</button>
+      <button class="btn secondary" id="resetBtn">🔄 Reset</button>
+    </div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>CSS, like HTML, often shows up either tightly minified from a production website with no spacing at all, or loosely written with inconsistent indentation that makes it hard to scan. This tool covers both directions: Beautify reformats CSS with consistent indentation, one property per line, and proper spacing around braces so the structure of every rule is immediately clear, while Minify strips comments and unnecessary whitespace to produce a smaller file ready for production.</p>
+      <p>Beautifying is the better choice when you're trying to read or edit someone else's stylesheet, debugging which rule is causing a layout issue, or cleaning up your own CSS after a long editing session left it inconsistent. Minifying makes sense once a stylesheet is finalized and ready to ship — a smaller CSS file loads marginally faster, which adds up across a busy website serving many visitors.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Choose "Beautify" or "Minify" using the tabs.</li>
+        <li>Paste your CSS into the input box.</li>
+        <li>Click the action button, then copy or download the result.</li>
+      </ol>
+      <h3>What Minify changes</h3>
+      <p>Minification here removes CSS comments, collapses all whitespace and line breaks, removes spaces around colons, braces, and commas, and drops the unnecessary trailing semicolon before a closing brace — all changes that reduce file size without altering how the styles actually render. The minified output is meant for production use; for actually working on the styles, switch back to the beautified version.</p>
+      <p>This pairs naturally with the HTML and JavaScript versions of the same idea, since a typical web page ships all three file types together, and keeping each one properly formatted during development while minifying all of them before deployment is standard practice across the industry. Beautifying is also genuinely helpful for learning — seeing someone else's well-organized stylesheet laid out clearly, with each property on its own line, makes it much easier to understand how a particular visual effect was achieved than trying to parse the same rules crammed onto a single minified line.</p>
+      <p>The size comparison shown beside the output is a handy gauge too, since it shows exactly how many bytes a given stylesheet saves after minification — useful for deciding whether the extra step is even worth it for a small file, versus a larger stylesheet where the savings genuinely add up across thousands of page loads on a busy site that serves a lot of visitors on slower mobile data connections.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>CSS भी HTML की तरह अक्सर या तो किसी production website से tightly minified, बिना किसी spacing के दिखती है, या असंगत indentation के साथ ढीली तरह लिखी होती है जो पढ़ना मुश्किल बना देती है। यह tool दोनों दिशाएं संभालता है: Beautify CSS को consistent indentation, हर line में एक property, और braces के आस-पास सही spacing के साथ दोबारा format करता है ताकि हर rule की structure तुरंत साफ़ दिखे, जबकि Minify production के लिए तैयार छोटी file बनाने के लिए comments और फालतू whitespace हटा देता है।</p>
+      <p>Beautify करना बेहतर विकल्प है जब किसी और का stylesheet पढ़ने या edit करने की कोशिश कर रहे हों, यह debug कर रहे हों कि कौन सा rule किसी layout issue की वजह बन रहा है, या किसी लंबे editing session के बाद असंगत हो गई अपनी CSS साफ़ कर रहे हों। Minify करना तब सही है जब stylesheet तैयार हो और ship करने के लिए ready हो — छोटी CSS file थोड़ी तेज़ load होती है, जो किसी busy website पर कई visitors तक scale होने पर मायने रखता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>Tabs से "Beautify" या "Minify" चुनें।</li>
+        <li>अपनी CSS input box में paste करें।</li>
+        <li>action बटन दबाएं, फिर result copy या download करें।</li>
+      </ol>
+      <h3>Minify क्या बदलता है</h3>
+      <p>यहां minification CSS comments हटाता है, सभी whitespace और line breaks collapse करता है, colons, braces, और commas के आस-पास spaces हटाता है, और closing brace से पहले फालतू trailing semicolon हटा देता है — यह सभी बदलाव file size घटाते हैं बिना styles के असली render होने के तरीके को बदले। Minified output production इस्तेमाल के लिए है; styles पर असल में काम करने के लिए, beautified version पर वापस जाएं।</p>
+      <p>यह स्वाभाविक रूप से HTML और JavaScript के उसी idea के versions के साथ मेल खाता है, क्योंकि एक typical web page तीनों file types को साथ में ship करता है, और development के दौरान हर एक को सही तरीके से formatted रखना और deployment से पहले सबको minify करना industry भर में standard practice है। Beautify करना सीखने के लिए भी genuinely मददगार है — किसी और की अच्छी तरह व्यवस्थित stylesheet को साफ़-साफ़ देखना, हर property अपनी अलग line में, यह समझना कहीं आसान बना देता है कि कोई खास visual effect कैसे हासिल किया गया, बजाय उन्हीं rules को एक single minified line में ठूंसा हुआ पढ़ने की कोशिश करने के।</p>
+      <p>Output के बगल में दिखने वाला size comparison भी एक काम का पैमाना है, क्योंकि यह बिल्कुल दिखाता है कि minification के बाद कोई stylesheet कितने bytes बचाती है — यह तय करने के लिए उपयोगी कि किसी छोटी file के लिए यह अतिरिक्त step वाकई worth है या नहीं, बनाम किसी बड़ी stylesheet के जहां हज़ारों page loads में बचत असल में काफ़ी जुड़ जाती है।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.1/beautify-css.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+let mode = 'beautify';
+
+document.getElementById('beautifyTabBtn').addEventListener('click', function(){
+  mode = 'beautify';
+  this.classList.add('active');
+  document.getElementById('minifyTabBtn').classList.remove('active');
+  document.getElementById('processBtn').textContent = '✨ Beautify';
+});
+document.getElementById('minifyTabBtn').addEventListener('click', function(){
+  mode = 'minify';
+  this.classList.add('active');
+  document.getElementById('beautifyTabBtn').classList.remove('active');
+  document.getElementById('processBtn').textContent = '📦 Minify';
+});
+
+function minifyCss(code){
+  return code
+    .replace(/\/\*[\s\S]*?\*\//g, '')      // remove comments
+    .replace(/\s+/g, ' ')                   // collapse whitespace
+    .replace(/\s*([{}:;,])\s*/g, '$1')      // remove space around symbols
+    .replace(/;}/g, '}')                    // remove trailing semicolon before }
+    .replace(/}(?!\n)/g, '}\n')             // newline after each rule for some readability
+    .trim();
+}
+
+document.getElementById('processBtn').addEventListener('click', ()=>{
+  const status = document.getElementById('statusMsg');
+  const input = document.getElementById('inputCode').value;
+  if(!input.trim()){ status.textContent = '⚠️ Please paste some CSS first.'; return; }
+
+  let output;
+  if(mode === 'beautify'){
+    output = css_beautify(input, { indent_size: 2 });
+  } else {
+    output = minifyCss(input);
+  }
+
+  document.getElementById('outputCode').value = output;
+  const originalSize = new Blob([input]).size;
+  const newSize = new Blob([output]).size;
+  document.getElementById('sizeInfo').textContent = `(${formatBytes(originalSize)} → ${formatBytes(newSize)})`;
+  status.textContent = '✅ Done.';
+});
+
+document.getElementById('copyBtn').addEventListener('click', function(){
+  copyText(document.getElementById('outputCode').value, this);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  downloadText('output.css', document.getElementById('outputCode').value, 'text/css');
+});
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  document.getElementById('inputCode').value = '';
+  document.getElementById('outputCode').value = '';
+  document.getElementById('sizeInfo').textContent = '';
+  document.getElementById('statusMsg').textContent = '';
+});
+</script>
+</body>
+</html>

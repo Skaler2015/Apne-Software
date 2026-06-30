@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-bookmark-editor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Bookmark / TOC Editor | ApneSoftware">
+<meta property="og:description" content="Add clickable bookmarks/outline to a PDF. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-bookmark-editor.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Bookmark / TOC Editor | ApneSoftware">
+<meta name="twitter:description" content="Add clickable bookmarks/outline to a PDF. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Bookmark / TOC Editor","description":"Add clickable bookmarks/outline to a PDF. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-bookmark-editor.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF Bookmark / TOC Editor | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .bookmark-row{display:grid;grid-template-columns:1fr 90px 32px;gap:8px;margin-bottom:8px;align-items:center}
+  .bookmark-row input{padding:8px 10px}
+  .bookmark-row button{background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);cursor:pointer;padding:6px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔖 PDF Bookmark / TOC Editor</h1>
+    <p>Add clickable bookmarks to a PDF so readers can jump straight to a section.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag & drop your PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <p id="pageCountMsg" style="color:var(--text-dim);font-size:.9rem;margin-bottom:10px"></p>
+
+      <div class="bookmark-row" style="font-size:.78rem;color:var(--text-dim)">
+        <span>Bookmark title</span><span>Page #</span><span></span>
+      </div>
+      <div id="bookmarksList"></div>
+      <button class="btn secondary" id="addBookmarkBtn">+ Add Bookmark</button>
+
+      <div class="btn-row" style="margin-top:16px">
+        <button class="btn" id="generateBtn">🔖 Add Bookmarks & Download</button>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Adds a clickable bookmark panel (also called an outline or table of contents) to a PDF, so readers using Adobe Acrobat, browser PDF viewers, or other readers can jump directly to any section. This version creates a flat, top-level list of bookmarks (no nested sub-sections).</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Add a bookmark for each section — give it a title and the page number it should jump to.</li>
+        <li>Click "Add Bookmarks & Download" to get your PDF with a working bookmark panel.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>PDF में एक clickable bookmark panel (इसे outline या table of contents भी कहते हैं) जोड़ता है, ताकि Adobe Acrobat, browser PDF viewer, या किसी भी reader में पाठक सीधे किसी भी सेक्शन पर जा सकें। यह वर्शन एक flat, top-level bookmark लिस्ट बनाता है (nested sub-sections नहीं)।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>हर सेक्शन के लिए एक bookmark जोड़ें — title और वो page number डालें जहां जाना है।</li>
+        <li>"Add Bookmarks & Download" दबाएं ताकि काम करने वाले bookmark panel के साथ आपकी PDF मिल जाए।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let selectedFile = null;
+let pageCount = 0;
+let bookmarks = [{ title: '', page: 1 }];
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf'){
+    selectedFile = files[0];
+    loadFile(selectedFile);
+  }
+});
+
+async function loadFile(file){
+  const { PDFDocument } = PDFLib;
+  const bytes = await file.arrayBuffer();
+  const pdfDoc = await PDFDocument.load(bytes);
+  pageCount = pdfDoc.getPageCount();
+  document.getElementById('pageCountMsg').textContent = `This PDF has ${pageCount} page(s).`;
+  document.getElementById('afterUpload').style.display = 'block';
+  bookmarks = [{ title: 'Introduction', page: 1 }];
+  renderBookmarks();
+}
+
+function renderBookmarks(){
+  const wrap = document.getElementById('bookmarksList');
+  wrap.innerHTML = '';
+  bookmarks.forEach((bm, i)=>{
+    const row = document.createElement('div');
+    row.className = 'bookmark-row';
+    row.innerHTML = `
+      <input type="text" data-field="title" data-i="${i}" value="${(bm.title||'').replace(/"/g,'&quot;')}" placeholder="Section title">
+      <input type="number" data-field="page" data-i="${i}" value="${bm.page}" min="1" max="${pageCount}">
+      <button class="removeBmBtn" data-i="${i}" ${bookmarks.length===1?'disabled':''}>✕</button>
+    `;
+    wrap.appendChild(row);
+  });
+  wrap.querySelectorAll('[data-field]').forEach(el=>{
+    el.addEventListener('input', ()=>{
+      const i = parseInt(el.dataset.i);
+      bookmarks[i][el.dataset.field] = el.dataset.field === 'page' ? (parseInt(el.value)||1) : el.value;
+    });
+  });
+  wrap.querySelectorAll('.removeBmBtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(bookmarks.length > 1){
+        bookmarks.splice(parseInt(btn.dataset.i),1);
+        renderBookmarks();
+      }
+    });
+  });
+}
+
+document.getElementById('addBookmarkBtn').addEventListener('click', ()=>{
+  bookmarks.push({ title: '', page: 1 });
+  renderBookmarks();
+});
+
+function addOutlineToPdf(pdfDoc, items){
+  const { PDFName, PDFString, PDFArray, PDFDict, PDFNumber, PDFNull } = PDFLib;
+  const context = pdfDoc.context;
+  const pages = pdfDoc.getPages();
+
+  const itemRefs = items.map(() => context.nextRef());
+  const outlineRootRef = context.nextRef();
+
+  items.forEach((item, i)=>{
+    const pageIndex = Math.max(0, Math.min(pages.length-1, item.page - 1));
+    const pageRef = pages[pageIndex].ref;
+
+    const dest = PDFArray.withContext(context);
+    dest.push(pageRef);
+    dest.push(PDFName.of('XYZ'));
+    dest.push(PDFNull);
+    dest.push(PDFNull);
+    dest.push(PDFNull);
+
+    const map = new Map();
+    map.set(PDFName.of('Title'), PDFString.of(item.title || ('Bookmark ' + (i+1))));
+    map.set(PDFName.of('Parent'), outlineRootRef);
+    map.set(PDFName.of('Dest'), dest);
+    if(i > 0) map.set(PDFName.of('Prev'), itemRefs[i-1]);
+    if(i < items.length - 1) map.set(PDFName.of('Next'), itemRefs[i+1]);
+
+    const dict = PDFDict.fromMapWithContext(map, context);
+    context.assign(itemRefs[i], dict);
+  });
+
+  const rootMap = new Map();
+  rootMap.set(PDFName.of('Type'), PDFName.of('Outlines'));
+  rootMap.set(PDFName.of('First'), itemRefs[0]);
+  rootMap.set(PDFName.of('Last'), itemRefs[itemRefs.length-1]);
+  rootMap.set(PDFName.of('Count'), PDFNumber.of(items.length));
+  const rootDict = PDFDict.fromMapWithContext(rootMap, context);
+  context.assign(outlineRootRef, rootDict);
+
+  pdfDoc.catalog.set(PDFName.of('Outlines'), outlineRootRef);
+}
+
+document.getElementById('generateBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  const validBookmarks = bookmarks.filter(b => b.title && b.title.trim());
+  if(validBookmarks.length === 0){
+    status.textContent = '⚠️ Please give at least one bookmark a title.';
+    return;
+  }
+
+  status.textContent = '⏳ Adding bookmarks...';
+  try{
+    const { PDFDocument } = PDFLib;
+    const bytes = await selectedFile.arrayBuffer();
+    const pdfDoc = await PDFDocument.load(bytes);
+
+    addOutlineToPdf(pdfDoc, validBookmarks);
+
+    const outBytes = await pdfDoc.save();
+    downloadBlob('bookmarked.pdf', new Blob([outBytes], { type: 'application/pdf' }));
+    status.textContent = `✅ Added ${validBookmarks.length} bookmark(s) and downloaded the PDF.`;
+  }catch(err){
+    status.textContent = '❌ Error: ' + (err && err.message ? err.message : 'Could not process this PDF.');
+  }
+});
+</script>
+</body>
+</html>

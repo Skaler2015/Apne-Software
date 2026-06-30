@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/html-to-pdf.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HTML to PDF | ApneSoftware">
+<meta property="og:description" content="Render HTML content and save it as a PDF. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/html-to-pdf.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HTML to PDF | ApneSoftware">
+<meta name="twitter:description" content="Render HTML content and save it as a PDF. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HTML to PDF","description":"Render HTML content and save it as a PDF. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/html-to-pdf.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>HTML to PDF | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  textarea#htmlInput{width:100%;min-height:220px;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);font-family:monospace;font-size:.85rem;resize:vertical}
+  .preview-frame-wrap{margin-top:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden;display:none}
+  .preview-frame-wrap .pf-lbl{background:var(--surface-2);padding:8px 14px;font-size:.78rem;color:var(--text-dim);font-weight:700;border-bottom:1px solid var(--border)}
+  iframe#previewFrame{width:100%;height:340px;border:none;background:#fff}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📃 HTML to PDF</h1>
+    <p>Paste your HTML code or upload an .html file, preview exactly how it looks, then download it as a PDF.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag & drop an .html file here or click to choose (optional — you can also paste HTML below)</p>
+      <input type="file" id="fileInput" accept=".html,.htm,text/html">
+    </div>
+
+    <textarea id="htmlInput" placeholder="&lt;h1&gt;Hello&lt;/h1&gt;&#10;&lt;p&gt;Paste your HTML here...&lt;/p&gt;"></textarea>
+
+    <div class="btn-row">
+      <button class="btn secondary" id="previewBtn">👁️ Preview</button>
+    </div>
+
+    <div class="preview-frame-wrap" id="previewWrap">
+      <div class="pf-lbl">Preview</div>
+      <iframe id="previewFrame"></iframe>
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem;margin-top:14px"></p>
+    <div class="btn-row">
+      <button class="btn" id="convertBtn">📃 Convert to PDF</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Turning a web page or any piece of raw HTML into a proper PDF is something people need surprisingly often — saving an email template as a shareable document, archiving a styled report originally built in HTML, turning a simple landing page mockup into something to print, or converting an HTML invoice or certificate template into an actual finished file you can send out right away. This tool renders your HTML exactly the way a real browser would, then captures that rendered output and carefully assembles it into a downloadable, ready-to-share PDF.</p>
+      <p>You can either paste raw HTML directly into the text box, or upload an existing .html file, and inline CSS styling (colors, fonts, layout) is respected since the tool genuinely renders the markup in a real browser context rather than just reading the text out of it. Use the Preview button first to check exactly how your content will look before converting — what you see in the preview is what ends up in the final PDF, so there's no need to download a test copy just to check your formatting.</p>
+      <p>Because this works by rendering and visually capturing your HTML, it's best suited for fairly self-contained content with inline or embedded styles. External stylesheets, custom web fonts loaded from another domain, or JavaScript-driven dynamic content may not always come through exactly as they would on a live, fully-loaded website, so for best results keep styling simple and inline where possible, and check the preview before downloading rather than assuming it will match perfectly on the first try.</p>
+      <p>The whole conversion happens locally in your browser — your HTML content is never uploaded anywhere. Once you're happy with the preview, one click produces a PDF ready to download, with no watermark, no page limit, and no account required. Long content automatically flows across as many pages as needed, so you don't have to manually figure out page breaks before converting.</p>
+      <p>If you're starting from the opposite direction — you already have a PDF and want its content as HTML instead — this site's PDF to HTML tool handles that conversion. And if your HTML references images, make sure they're either embedded as data URLs or hosted somewhere publicly accessible, since the preview and conversion both render your HTML in an isolated context that can't reach files on your local computer by a relative path alone.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Paste HTML into the box, or upload an .html file.</li>
+        <li>Click Preview to check how it looks.</li>
+        <li>Click Convert to PDF and download.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी web page या HTML के टुकड़े को PDF में बदलना लोगों को उम्मीद से कहीं ज़्यादा बार चाहिए होता है — किसी email template को shareable document के तौर पर save करना, HTML में बने styled report को archive करना, किसी simple landing page mockup को print लायक कुछ बनाना, या किसी HTML invoice या certificate template को असल भेजने लायक file में बदलना। यह टूल आपकी HTML को बिल्कुल वैसे render करता है जैसे कोई browser करता, फिर उस rendered output को capture करके एक downloadable PDF बना देता है।</p>
+      <p>आप या तो text box में सीधे raw HTML paste कर सकते हैं, या कोई मौजूदा .html file अपलोड कर सकते हैं, और inline CSS styling (colors, fonts, layout) पूरी तरह respect होती है क्योंकि टूल सिर्फ text नहीं पढ़ता बल्कि markup को सच में render करता है। Convert करने से पहले पहले Preview बटन इस्तेमाल करके देख लें कि content बिल्कुल कैसा दिखेगा — preview में जो दिखता है, वही final PDF में आता है।</p>
+      <p>चूंकि यह आपकी HTML को render करके visually capture करके काम करता है, यह inline या embedded styles वाले काफी self-contained content के लिए सबसे अच्छा है। External stylesheets, किसी और domain से load होने वाले custom web fonts, या JavaScript-driven dynamic content हमेशा बिल्कुल वैसे नहीं आ सकते जैसे किसी live, पूरी तरह loaded website पर दिखते हैं, तो बेहतर results के लिए styling को जितना हो सके simple और inline रखें, और download करने से पहले preview ज़रूर देख लें।</p>
+      <p>पूरा conversion आपके browser में locally होता है — आपका HTML content कहीं अपलोड नहीं होता। Preview से संतुष्ट होने के बाद, एक क्लिक download के लिए तैयार PDF बना देता है, कोई watermark नहीं, कोई page limit नहीं, और किसी account की ज़रूरत नहीं। लंबा content ज़रूरत के हिसाब से अपने आप जितने पन्नों में फैलना हो फैल जाता है, तो convert करने से पहले page breaks का हाथ से हिसाब नहीं लगाना पड़ता।</p>
+      <p>अगर आप उल्टी दिशा से शुरू कर रहे हैं — आपके पास पहले से एक PDF है और उसका content HTML में चाहिए — तो इसी साइट का PDF to HTML टूल वह conversion संभालता है। और अगर आपकी HTML में images का ज़िक्र है, तो पक्का करें कि वे या तो data URLs के तौर पर embedded हों या कहीं publicly accessible जगह पर hosted हों, क्योंकि preview और conversion दोनों आपकी HTML को एक isolated context में render करते हैं जो सिर्फ relative path से आपके local computer की files तक नहीं पहुंच सकता।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>Box में HTML paste करें, या .html file अपलोड करें।</li>
+        <li>कैसा दिखता है यह देखने के लिए Preview दबाएं।</li>
+        <li>Convert to PDF दबाएं और download करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const htmlInput = document.getElementById('htmlInput');
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length) handleFile(files[0]);
+});
+
+async function handleFile(file){
+  const text = await file.text();
+  htmlInput.value = text;
+  document.getElementById('statusMsg').textContent = `✅ Loaded "${file.name}" — click Preview to check it`;
+}
+
+document.getElementById('previewBtn').addEventListener('click', ()=>{
+  const html = htmlInput.value;
+  if(!html.trim()){ document.getElementById('statusMsg').textContent = '⚠️ Please paste or upload some HTML first'; return; }
+  const frame = document.getElementById('previewFrame');
+  frame.srcdoc = html;
+  document.getElementById('previewWrap').style.display = 'block';
+  document.getElementById('statusMsg').textContent = '';
+});
+
+document.getElementById('convertBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  const html = htmlInput.value;
+  if(!html.trim()){ status.textContent = '⚠️ Please paste or upload some HTML first'; return; }
+
+  status.textContent = '⏳ Rendering and building PDF...';
+  try{
+    // Render into an off-screen iframe so the page's own styles never leak into the user's HTML
+    const renderFrame = document.createElement('iframe');
+    renderFrame.style.position = 'fixed';
+    renderFrame.style.left = '-9999px';
+    renderFrame.style.width = '794px'; // ~A4 width at 96dpi
+    renderFrame.style.height = '1px';
+    renderFrame.style.border = 'none';
+    document.body.appendChild(renderFrame);
+
+    await new Promise(resolve => {
+      renderFrame.onload = resolve;
+      renderFrame.srcdoc = html;
+    });
+
+    const doc = renderFrame.contentDocument;
+    const bodyHeight = doc.body.scrollHeight;
+    renderFrame.style.height = bodyHeight + 'px';
+
+    const canvas = await html2canvas(doc.body, { scale: 2, useCORS: true, backgroundColor: '#ffffff' });
+    document.body.removeChild(renderFrame);
+
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF('p', 'pt', 'a4');
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    const imgWidth = pageWidth;
+    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+    const imgData = canvas.toDataURL('image/jpeg', 0.92);
+
+    let heightLeft = imgHeight;
+    let position = 0;
+    pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+    heightLeft -= pageHeight;
+
+    while(heightLeft > 0){
+      position = heightLeft - imgHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+    }
+
+    pdf.save('converted.pdf');
+    status.textContent = '✅ Converted and downloaded!';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

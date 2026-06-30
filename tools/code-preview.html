@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Code Preview Tool — Live HTML/CSS/JS Editor & Website ZIP Preview | ApneSoftware</title>
+<meta name="description" content="Free online code editor with live HTML/CSS/JS preview. Upload any website ZIP file to preview it in your browser. Dark mode, console, syntax highlighting — 100% free.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/code-preview.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Code Preview Tool — Live Code Editor & Website ZIP Preview">
+<meta property="og:description" content="Write HTML/CSS/JS with live preview. Upload website ZIP to preview. Free online tool.">
+<meta property="og:url" content="https://apnesoftware.com/tools/code-preview.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Code Preview Tool — Free Online Code Editor">
+<meta name="twitter:description" content="Live HTML/CSS/JS editor + Website ZIP preview. Free, no signup.">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Code Preview Tool","description":"Free live HTML/CSS/JS code editor with real-time preview and website ZIP upload preview.","url":"https://apnesoftware.com/tools/code-preview.html","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}</script>
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/code-preview-style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Override: integrate with ApneSoftware header */
+.app-header { display: none !important; }
+.app-footer { display: none !important; }
+.info-sections { background: transparent !important; }
+.module-tabs-wrap { top: 0 !important; }
+body.dark-mode { background: var(--bg, #0e1117) !important; }
+#module-editor { height: calc(100vh - 44px - 46px) !important; }
+#module-preview { height: calc(100vh - 44px) !important; }
+</style>
+</head>
+<body class="dark-mode" id="appBody">
+
+<!-- ApneSoftware Header (injected by common.js) -->
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="module-tabs-wrap">
+  <div class="module-tabs">
+    <button class="module-tab active" id="tab-editor" onclick="switchModule('editor')">
+      <i class="bi bi-code-slash"></i> HTML / CSS / JS Editor
+    </button>
+    <button class="module-tab" id="tab-preview" onclick="switchModule('preview')">
+      <i class="bi bi-window-fullscreen"></i> Website Preview
+    </button>
+    <div style="margin-left:auto;display:flex;align-items:center;padding-right:12px;gap:8px">
+      <button class="hbtn" id="themeToggle" title="Toggle theme" style="padding:5px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:7px;color:#fff;cursor:pointer;font-size:.85rem">
+        <i class="bi bi-sun-fill" id="themeIcon"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE 1: LIVE CODE EDITOR -->
+<main id="module-editor" class="module-panel active">
+  <div class="editor-toolbar">
+    <div class="toolbar-left">
+      <button class="tbtn tbtn-primary" id="runBtn" onclick="runCode()" title="Run (Ctrl+Enter)">
+        <i class="bi bi-play-fill"></i> Run
+      </button>
+      <button class="tbtn" onclick="clearAllCode()"><i class="bi bi-trash3"></i> Clear</button>
+      <button class="tbtn" onclick="formatCode()"><i class="bi bi-magic"></i> Format</button>
+      <div class="toolbar-sep"></div>
+      <button class="tbtn" onclick="copyAllCode()"><i class="bi bi-clipboard"></i> Copy</button>
+      <button class="tbtn" onclick="downloadHTML()"><i class="bi bi-download"></i> Download</button>
+    </div>
+    <div class="toolbar-right">
+      <div class="code-stats">
+        <span><i class="bi bi-file-code"></i> <span id="wordCount">0</span>w</span>
+        <span><i class="bi bi-fonts"></i> <span id="charCount">0</span>c</span>
+      </div>
+      <button class="tbtn" onclick="toggleFullscreenPreview()" title="Fullscreen"><i class="bi bi-fullscreen"></i></button>
+      <button class="tbtn" id="layoutToggle" onclick="toggleLayout()" title="Toggle layout"><i class="bi bi-layout-split"></i></button>
+    </div>
+  </div>
+
+  <div class="editor-area" id="editorArea">
+    <div class="editors-panel" id="editorsPanel">
+      <div class="editor-tabs">
+        <button class="etab active" data-tab="html" onclick="switchEditorTab('html')"><span class="etab-dot html-dot"></span> HTML</button>
+        <button class="etab" data-tab="css" onclick="switchEditorTab('css')"><span class="etab-dot css-dot"></span> CSS</button>
+        <button class="etab" data-tab="js" onclick="switchEditorTab('js')"><span class="etab-dot js-dot"></span> JS</button>
+        <button class="etab" data-tab="all" onclick="switchEditorTab('all')"><i class="bi bi-layout-three-columns"></i> Split</button>
+      </div>
+      <div class="editor-containers" id="editorContainers">
+        <div class="editor-wrap active" id="html-editor-wrap">
+          <div class="editor-label"><span class="etab-dot html-dot"></span> HTML</div>
+          <textarea id="htmlEditor"></textarea>
+        </div>
+        <div class="editor-wrap" id="css-editor-wrap">
+          <div class="editor-label"><span class="etab-dot css-dot"></span> CSS</div>
+          <textarea id="cssEditor"></textarea>
+        </div>
+        <div class="editor-wrap" id="js-editor-wrap">
+          <div class="editor-label"><span class="etab-dot js-dot"></span> JavaScript</div>
+          <textarea id="jsEditor"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="resize-handle" id="resizeHandle" title="Drag to resize">
+      <div class="resize-dots"><span></span><span></span><span></span></div>
+    </div>
+
+    <div class="preview-panel" id="previewPanel">
+      <div class="preview-header">
+        <div class="preview-label"><i class="bi bi-display"></i> Preview <span class="preview-status" id="previewStatus">Ready</span></div>
+        <div class="preview-actions">
+          <button class="tbtn tbtn-sm" onclick="refreshPreview()"><i class="bi bi-arrow-clockwise"></i></button>
+          <button class="tbtn tbtn-sm" onclick="openInNewTab()"><i class="bi bi-box-arrow-up-right"></i></button>
+          <button class="tbtn tbtn-sm" onclick="toggleFullscreenPreview()"><i class="bi bi-fullscreen"></i></button>
+        </div>
+      </div>
+      <iframe id="previewFrame" sandbox="allow-scripts allow-same-origin allow-forms allow-modals" title="Live preview"></iframe>
+    </div>
+  </div>
+
+  <div class="console-panel" id="consolePanel">
+    <div class="console-header">
+      <div class="console-title"><i class="bi bi-terminal"></i> Console <span class="console-badge" id="consoleBadge" style="display:none">0</span></div>
+      <div class="console-actions">
+        <button class="tbtn tbtn-sm" onclick="clearConsole()"><i class="bi bi-trash3"></i> Clear</button>
+        <button class="tbtn tbtn-sm" onclick="toggleConsole()"><i class="bi bi-chevron-up" id="consoleChevron"></i></button>
+      </div>
+    </div>
+    <div class="console-body" id="consoleBody">
+      <div class="console-welcome"><i class="bi bi-info-circle"></i> Console output appears here. Press <kbd>Ctrl+Enter</kbd> to run.</div>
+    </div>
+  </div>
+</main>
+
+<!-- MODULE 2: WEBSITE PREVIEW -->
+<main id="module-preview" class="module-panel" hidden>
+  <div class="wp-layout">
+    <aside class="wp-sidebar" id="wpSidebar">
+      <div class="wp-sidebar-header">
+        <span><i class="bi bi-folder2-open"></i> Files</span>
+        <button class="tbtn tbtn-sm" onclick="toggleSidebar()"><i class="bi bi-layout-sidebar-reverse"></i></button>
+      </div>
+      <div class="wp-search-wrap">
+        <div class="wp-search">
+          <i class="bi bi-search"></i>
+          <input type="text" id="fileSearch" placeholder="Search files..." oninput="searchFiles()">
+        </div>
+      </div>
+      <div class="wp-file-tree" id="fileTree">
+        <div class="wp-empty-state"><i class="bi bi-folder2"></i><p>No project loaded</p><small>Upload a ZIP or HTML file</small></div>
+      </div>
+      <div class="wp-sidebar-footer">
+        <div class="wp-project-info" id="wpProjectInfo" style="display:none">
+          <div class="wp-info-row"><i class="bi bi-file-zip"></i> <span id="wpFileName">—</span></div>
+          <div class="wp-info-row"><i class="bi bi-files"></i> <span id="wpFileCount">0 files</span></div>
+          <div class="wp-info-row"><i class="bi bi-hdd"></i> <span id="wpFileSize">0 KB</span></div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="wp-main">
+      <div class="wp-upload-area" id="wpUploadArea">
+        <div class="wp-upload-box" id="wpDropZone"
+          ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+          <div class="wp-upload-icon"><i class="bi bi-cloud-arrow-up"></i></div>
+          <h2 class="wp-upload-title">Preview Your Website</h2>
+          <p class="wp-upload-sub">Drag &amp; drop your website ZIP or HTML file here, or choose below</p>
+          <div class="wp-upload-methods">
+            <label class="wp-upload-btn wp-upload-btn-primary" for="zipUpload">
+              <i class="bi bi-file-zip"></i> Upload ZIP
+              <input type="file" id="zipUpload" accept=".zip" onchange="handleZipUpload(event)" style="display:none">
+            </label>
+            <label class="wp-upload-btn" for="htmlUpload">
+              <i class="bi bi-filetype-html"></i> Upload HTML
+              <input type="file" id="htmlUpload" accept=".html,.htm" onchange="handleHTMLUpload(event)" style="display:none">
+            </label>
+            <button class="wp-upload-btn" onclick="openPasteModal()" type="button">
+              <i class="bi bi-clipboard-code"></i> Paste Code
+            </button>
+          </div>
+          <div class="wp-upload-hint"><i class="bi bi-shield-check"></i> All processing in your browser — files never uploaded to any server</div>
+          <div class="wp-limitations-box">
+            <strong>⚠️ Preview Limitations:</strong>
+            <ul>
+              <li>✅ HTML, CSS, JavaScript, Images work perfectly</li>
+              <li>✅ Bootstrap, Tailwind CDN libraries work</li>
+              <li>✅ Multi-page navigation within ZIP works</li>
+              <li>❌ PHP / server-side code will not execute</li>
+              <li>❌ Database queries will not work</li>
+              <li>ℹ️ Backend API calls will fail silently</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="wp-preview-area" id="wpPreviewArea" style="display:none">
+        <div class="wp-preview-toolbar">
+          <div class="wp-toolbar-left">
+            <button class="tbtn tbtn-sm" onclick="reloadWebsite()"><i class="bi bi-arrow-clockwise"></i> Reload</button>
+            <button class="tbtn tbtn-sm" onclick="viewSource()"><i class="bi bi-code-slash"></i> Source</button>
+            <button class="tbtn tbtn-sm" onclick="copySource()"><i class="bi bi-clipboard"></i> Copy</button>
+            <button class="tbtn tbtn-sm" onclick="downloadProject()"><i class="bi bi-download"></i> Download</button>
+            <button class="tbtn tbtn-sm" onclick="openWebsiteNewTab()"><i class="bi bi-box-arrow-up-right"></i></button>
+          </div>
+          <div class="wp-viewport-controls">
+            <button class="vp-btn active" data-vp="desktop" onclick="setViewport('desktop')" title="Desktop"><i class="bi bi-display"></i></button>
+            <button class="vp-btn" data-vp="tablet" onclick="setViewport('tablet')" title="Tablet"><i class="bi bi-tablet"></i></button>
+            <button class="vp-btn" data-vp="mobile" onclick="setViewport('mobile')" title="Mobile"><i class="bi bi-phone"></i></button>
+            <button class="vp-btn" data-vp="fullscreen" onclick="setViewport('fullscreen')" title="Fullscreen"><i class="bi bi-fullscreen"></i></button>
+          </div>
+          <div class="wp-toolbar-right">
+            <button class="tbtn tbtn-sm tbtn-danger" onclick="clearProject()"><i class="bi bi-x-circle"></i> Clear</button>
+          </div>
+        </div>
+
+        <div class="wp-asset-bar" id="wpAssetBar" style="display:none">
+          <div class="asset-item" id="assetHTML"><i class="bi bi-filetype-html"></i> HTML</div>
+          <div class="asset-item" id="assetCSS"><i class="bi bi-filetype-css"></i> CSS</div>
+          <div class="asset-item" id="assetJS"><i class="bi bi-filetype-js"></i> JS</div>
+          <div class="asset-item" id="assetIMG"><i class="bi bi-image"></i> Images</div>
+          <div class="wp-error-list" id="wpErrorList"></div>
+        </div>
+
+        <div class="wp-iframe-container" id="wpIframeContainer">
+          <div class="wp-iframe-wrap vp-desktop" id="wpIframeWrap">
+            <iframe id="wpFrame" sandbox="allow-scripts allow-same-origin allow-forms allow-modals" title="Website preview"></iframe>
+          </div>
+          <div class="wp-viewport-label" id="wpViewportLabel">Desktop (100%)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- PASTE MODAL -->
+<div class="modal fade" id="pasteModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content modal-dark">
+      <div class="modal-header">
+        <h2 class="modal-title fs-6"><i class="bi bi-clipboard-code"></i> Paste HTML Source Code</h2>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p style="color:rgba(255,255,255,.5);font-size:.85rem;margin-bottom:10px">Paste complete HTML source. Multi-file projects may have missing styles from separate CSS files.</p>
+        <textarea id="pasteCodeInput" class="paste-input" placeholder="<!DOCTYPE html>&#10;<html>&#10;  <!-- Paste your HTML here -->&#10;</html>" rows="14"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="tbtn" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="tbtn tbtn-primary" onclick="loadPastedCode()"><i class="bi bi-play-fill"></i> Load Preview</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SOURCE MODAL -->
+<div class="modal fade" id="sourceModal" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content modal-dark">
+      <div class="modal-header">
+        <h2 class="modal-title fs-6"><i class="bi bi-code-slash"></i> <span id="sourceFileName"></span></h2>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="tbtn tbtn-sm" onclick="copyModalSource()"><i class="bi bi-clipboard"></i> Copy</button>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+      </div>
+      <div class="modal-body" style="padding:0">
+        <pre class="source-code-view" id="sourceCodeView"></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/xml/xml.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/htmlmixed/htmlmixed.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/css/css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/javascript/javascript.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/comment/comment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/selection/active-line.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="../assets/code-preview-script.js"></script>
+<script src="../assets/common.js"></script>
+</body>
+</html>

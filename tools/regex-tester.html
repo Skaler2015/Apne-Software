@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/regex-tester.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Regex Tester | ApneSoftware">
+<meta property="og:description" content="Test regular expressions live with highlights. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/regex-tester.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Regex Tester | ApneSoftware">
+<meta name="twitter:description" content="Test regular expressions live with highlights. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Regex Tester","description":"Test regular expressions live with highlights. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/regex-tester.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Regex Tester | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .regex-input-row{display:flex;align-items:center;gap:0;font-family:'Consolas','Courier New',monospace}
+  .regex-slash{color:var(--text-dim);font-size:1.1rem;padding:0 4px}
+  .regex-input-row input[type=text]{font-family:inherit}
+  .flags-row{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap}
+  .flags-row label{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--text-dim);cursor:pointer}
+  .flags-row input{width:auto}
+  .highlight-box{
+    background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:14px;
+    font-family:'Consolas','Courier New',monospace;font-size:.85rem;white-space:pre-wrap;word-break:break-word;
+    line-height:1.7;margin-top:10px;max-height:300px;overflow-y:auto;
+  }
+  .highlight-box mark{background:rgba(124,92,252,.35);color:#cfe0ff;border-radius:3px;padding:0 1px}
+  .match-item{
+    background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;
+    margin-bottom:8px;font-family:'Consolas','Courier New',monospace;font-size:.82rem;
+  }
+  .match-item .idx{color:var(--accent);font-weight:700;margin-right:8px}
+  .status-err{color:var(--danger);font-weight:600}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🧩 Regex Tester</h1>
+    <p>Test regular expressions live against your own text, with matches highlighted and listed.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="regexPattern">Regular expression</label>
+      <div class="regex-input-row">
+        <span class="regex-slash">/</span>
+        <input type="text" id="regexPattern" placeholder="e.g. \b\w+@\w+\.\w+\b" style="flex:1">
+        <span class="regex-slash">/</span>
+        <span id="flagsDisplay" class="regex-slash"></span>
+      </div>
+      <div class="flags-row">
+        <label><input type="checkbox" id="flagG" checked> g (global)</label>
+        <label><input type="checkbox" id="flagI"> i (case-insensitive)</label>
+        <label><input type="checkbox" id="flagM"> m (multiline)</label>
+        <label><input type="checkbox" id="flagS"> s (dotall)</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="testString">Test string</label>
+      <textarea id="testString" style="min-height:160px" placeholder="Paste the text you want to test your regex against..."></textarea>
+    </div>
+
+    <p id="status"></p>
+
+    <h3 style="font-size:.9rem;margin:14px 0 4px">👁️ Highlighted matches</h3>
+    <div class="highlight-box" id="highlightBox">Matches will be highlighted here.</div>
+
+    <h3 style="font-size:.9rem;margin:16px 0 4px">📋 Match list (<span id="matchCount">0</span>)</h3>
+    <div id="matchList"></div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Write and test regular expressions against real text, with instant visual feedback. Matches are highlighted directly in your text and listed below with their position and any captured groups.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Type your regular expression pattern.</li>
+        <li>Choose flags — global, case-insensitive, multiline, or dotall.</li>
+        <li>Paste your test text and see matches highlighted live.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>असली टेक्स्ट पर रेगुलर एक्सप्रेशन लिखें और टेस्ट करें, तुरंत विजुअल फीडबैक के साथ। मैच आपके टेक्स्ट में सीधे हाईलाइट होते हैं और नीचे उनकी पोजीशन और कैप्चर्ड ग्रुप्स के साथ लिस्ट किए जाते हैं।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना रेगुलर एक्सप्रेशन पैटर्न टाइप करें।</li>
+        <li>फ्लैग्स चुनें — global, case-insensitive, multiline, या dotall।</li>
+        <li>टेस्ट टेक्स्ट पेस्ट करें और लाइव हाईलाइट किए गए मैच देखें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+function escapeHtml(s){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function getFlags(){
+  let flags = '';
+  if(document.getElementById('flagG').checked) flags += 'g';
+  if(document.getElementById('flagI').checked) flags += 'i';
+  if(document.getElementById('flagM').checked) flags += 'm';
+  if(document.getElementById('flagS').checked) flags += 's';
+  return flags;
+}
+
+function runTest(){
+  const status = document.getElementById('status');
+  const pattern = document.getElementById('regexPattern').value;
+  const text = document.getElementById('testString').value;
+  const flags = getFlags();
+  document.getElementById('flagsDisplay').textContent = flags;
+
+  if(!pattern){
+    document.getElementById('highlightBox').textContent = 'Matches will be highlighted here.';
+    document.getElementById('matchList').innerHTML = '';
+    document.getElementById('matchCount').textContent = '0';
+    status.textContent = '';
+    return;
+  }
+
+  let regex;
+  try{
+    regex = new RegExp(pattern, flags.includes('g') ? flags : flags + 'g');
+    status.textContent = '✅ Valid regular expression';
+    status.className = '';
+  }catch(err){
+    status.textContent = '❌ Invalid regex: ' + err.message;
+    status.className = 'status-err';
+    document.getElementById('highlightBox').textContent = '';
+    document.getElementById('matchList').innerHTML = '';
+    document.getElementById('matchCount').textContent = '0';
+    return;
+  }
+
+  if(!text){
+    document.getElementById('highlightBox').textContent = 'Matches will be highlighted here.';
+    document.getElementById('matchList').innerHTML = '';
+    document.getElementById('matchCount').textContent = '0';
+    return;
+  }
+
+  let matches = [];
+  let lastIndex = 0;
+  let highlighted = '';
+  let m;
+  let safetyCounter = 0;
+
+  while((m = regex.exec(text)) !== null && safetyCounter < 5000){
+    safetyCounter++;
+    matches.push(m);
+    highlighted += escapeHtml(text.slice(lastIndex, m.index));
+    highlighted += '<mark>' + escapeHtml(m[0]) + '</mark>';
+    lastIndex = m.index + m[0].length;
+    if(m[0].length === 0) regex.lastIndex++; // avoid infinite loop on zero-length match
+    if(!flags.includes('g')) break;
+  }
+  highlighted += escapeHtml(text.slice(lastIndex));
+
+  document.getElementById('highlightBox').innerHTML = highlighted || '(empty)';
+  document.getElementById('matchCount').textContent = matches.length;
+
+  const listEl = document.getElementById('matchList');
+  listEl.innerHTML = '';
+  matches.slice(0, 200).forEach((mt, i)=>{
+    const div = document.createElement('div');
+    div.className = 'match-item';
+    let groupsTxt = '';
+    if(mt.length > 1){
+      groupsTxt = ' — groups: ' + mt.slice(1).map(g => g === undefined ? '(undefined)' : JSON.stringify(g)).join(', ');
+    }
+    div.innerHTML = '<span class="idx">#'+(i+1)+'</span>'+escapeHtml(JSON.stringify(mt[0]))+' at index '+mt.index + escapeHtml(groupsTxt);
+    listEl.appendChild(div);
+  });
+}
+
+['regexPattern','testString','flagG','flagI','flagM','flagS'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', runTest);
+});
+</script>
+</body>
+</html>

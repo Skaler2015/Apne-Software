@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-crop.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Crop | ApneSoftware">
+<meta property="og:description" content="Crop PDF pages. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-crop.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Crop | ApneSoftware">
+<meta name="twitter:description" content="Crop PDF pages. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Crop","description":"Crop PDF pages. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-crop.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF Crop | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .crop-wrap{position:relative;display:inline-block;margin-top:16px;max-width:100%}
+  .crop-wrap canvas{display:block;max-width:100%;border:1px solid var(--border);border-radius:6px}
+  .crop-box{position:absolute;border:2px dashed var(--accent);background:rgba(124,92,252,.15);cursor:move}
+  .crop-handle{position:absolute;width:14px;height:14px;background:var(--accent);border-radius:50%;right:-7px;bottom:-7px;cursor:nwse-resize}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>✂️ PDF Crop</h1>
+    <p>Drag the blue box to select the area to keep — the crop applies the same way to every page.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag & drop your PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div id="afterUpload" style="display:none">
+      <p class="muted" style="color:var(--text-dim);font-size:.85rem;margin-top:10px">Preview of the first page — drag the box to adjust</p>
+      <div class="crop-wrap" id="cropWrap">
+        <canvas id="previewCanvas"></canvas>
+        <div class="crop-box" id="cropBox"><div class="crop-handle" id="cropHandle"></div></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="applyBtn">✂️ Crop and Download</button>
+      </div>
+
+      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Trim the margins or unwanted areas of every page in a PDF.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Drag the blue box on the preview to select the area to keep.</li>
+        <li>Click crop and download the trimmed PDF.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल PDF के हर पेज के किनारे या बिना ज़रूरत वाला हिस्सा काट देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>प्रीव्यू पर नीला बॉक्स खींचकर रखने वाला हिस्सा चुनें।</li>
+        <li>क्रॉप बटन दबाएं और कटी हुई PDF डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const cropBox = document.getElementById('cropBox');
+const cropHandle = document.getElementById('cropHandle');
+const cropWrap = document.getElementById('cropWrap');
+let currentFile = null;
+let renderScale = 1;
+let pdfPageWidth = 0, pdfPageHeight = 0;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+async function handleFile(file){
+  currentFile = file;
+  const arrayBuf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+  const page = await pdf.getPage(1);
+  const viewport = page.getViewport({ scale: 1 });
+  pdfPageWidth = viewport.width;
+  pdfPageHeight = viewport.height;
+
+  // fit to max 500 width for display
+  renderScale = Math.min(500 / viewport.width, 1.5);
+  const dispViewport = page.getViewport({ scale: renderScale });
+
+  const canvas = document.getElementById('previewCanvas');
+  canvas.width = dispViewport.width;
+  canvas.height = dispViewport.height;
+  const ctx = canvas.getContext('2d');
+  await page.render({ canvasContext: ctx, viewport: dispViewport }).promise;
+
+  // init crop box to 80% centered
+  const boxW = dispViewport.width * 0.8;
+  const boxH = dispViewport.height * 0.8;
+  cropBox.style.left = (dispViewport.width*0.1) + 'px';
+  cropBox.style.top = (dispViewport.height*0.1) + 'px';
+  cropBox.style.width = boxW + 'px';
+  cropBox.style.height = boxH + 'px';
+
+  document.getElementById('afterUpload').style.display = 'block';
+}
+
+// drag to move
+let dragging = false, dragOffsetX = 0, dragOffsetY = 0;
+cropBox.addEventListener('mousedown', e => {
+  if(e.target === cropHandle) return;
+  dragging = true;
+  dragOffsetX = e.clientX - cropBox.offsetLeft;
+  dragOffsetY = e.clientY - cropBox.offsetTop;
+  e.preventDefault();
+});
+
+// resize via handle
+let resizing = false;
+cropHandle.addEventListener('mousedown', e => {
+  resizing = true;
+  e.preventDefault();
+  e.stopPropagation();
+});
+
+document.addEventListener('mousemove', e => {
+  const wrapRect = cropWrap.getBoundingClientRect();
+  if(dragging){
+    let newLeft = e.clientX - dragOffsetX;
+    let newTop = e.clientY - dragOffsetY;
+    newLeft = Math.max(0, Math.min(newLeft, wrapRect.width - cropBox.offsetWidth));
+    newTop = Math.max(0, Math.min(newTop, wrapRect.height - cropBox.offsetHeight));
+    cropBox.style.left = newLeft + 'px';
+    cropBox.style.top = newTop + 'px';
+  }
+  if(resizing){
+    let newW = e.clientX - wrapRect.left - cropBox.offsetLeft;
+    let newH = e.clientY - wrapRect.top - cropBox.offsetTop;
+    newW = Math.max(30, Math.min(newW, wrapRect.width - cropBox.offsetLeft));
+    newH = Math.max(30, Math.min(newH, wrapRect.height - cropBox.offsetTop));
+    cropBox.style.width = newW + 'px';
+    cropBox.style.height = newH + 'px';
+  }
+});
+document.addEventListener('mouseup', ()=>{ dragging = false; resizing = false; });
+
+// touch support
+cropBox.addEventListener('touchstart', e => {
+  if(e.target === cropHandle) return;
+  const t = e.touches[0];
+  dragging = true;
+  dragOffsetX = t.clientX - cropBox.offsetLeft;
+  dragOffsetY = t.clientY - cropBox.offsetTop;
+});
+cropHandle.addEventListener('touchstart', e => { resizing = true; e.stopPropagation(); });
+document.addEventListener('touchmove', e => {
+  if(!dragging && !resizing) return;
+  const t = e.touches[0];
+  const wrapRect = cropWrap.getBoundingClientRect();
+  if(dragging){
+    let newLeft = t.clientX - dragOffsetX;
+    let newTop = t.clientY - dragOffsetY;
+    newLeft = Math.max(0, Math.min(newLeft, wrapRect.width - cropBox.offsetWidth));
+    newTop = Math.max(0, Math.min(newTop, wrapRect.height - cropBox.offsetHeight));
+    cropBox.style.left = newLeft + 'px';
+    cropBox.style.top = newTop + 'px';
+  }
+  if(resizing){
+    let newW = t.clientX - wrapRect.left - cropBox.offsetLeft;
+    let newH = t.clientY - wrapRect.top - cropBox.offsetTop;
+    cropBox.style.width = Math.max(30,newW) + 'px';
+    cropBox.style.height = Math.max(30,newH) + 'px';
+  }
+});
+document.addEventListener('touchend', ()=>{ dragging = false; resizing = false; });
+
+document.getElementById('applyBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Cropping...';
+  try{
+    // convert display box -> pdf coordinates (pdf-lib y-axis is bottom-up)
+    const left = cropBox.offsetLeft / renderScale;
+    const top = cropBox.offsetTop / renderScale;
+    const w = cropBox.offsetWidth / renderScale;
+    const h = cropBox.offsetHeight / renderScale;
+
+    const { PDFDocument } = PDFLib;
+    const bytes = await currentFile.arrayBuffer();
+    const pdfDoc = await PDFDocument.load(bytes);
+    const pages = pdfDoc.getPages();
+
+    pages.forEach(page => {
+      const pageHeight = page.getHeight();
+      const cropY = pageHeight - top - h; // flip y
+      page.setCropBox(left, cropY, w, h);
+    });
+
+    const newBytes = await pdfDoc.save();
+    const blob = new Blob([newBytes], {type:'application/pdf'});
+    downloadBlob('cropped.pdf', blob);
+    status.textContent = '✅ Cropped and downloaded!';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

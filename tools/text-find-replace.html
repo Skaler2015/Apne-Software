@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/text-find-replace.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Find and Replace Text — Online Text Tool | ApneSoftware">
+<meta property="og:description" content="Find and replace text instantly, with case-sensitive and whole-word options, and optional regex support. Free, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/text-find-replace.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Find and Replace Text — Online Text Tool | ApneSoftware">
+<meta name="twitter:description" content="Find and replace text instantly, with case-sensitive and whole-word options, and optional regex support. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Find and Replace Text","description":"Find and replace text instantly, with case-sensitive and whole-word options, and optional regex support. Free, no signup.","url":"https://apnesoftware.com/tools/text-find-replace.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Find and Replace Text — Online Text Tool | ApneSoftware</title>
+<meta name="description" content="Find and replace text instantly, with case-sensitive and whole-word options, and optional regex support. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  textarea#inputText{width:100%;min-height:280px;font-family:monospace;font-size:.85rem;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);resize:vertical}
+  .find-replace-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  @media(max-width:600px){ .find-replace-row{grid-template-columns:1fr} }
+  .options-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:14px}
+  .options-row label{display:flex;align-items:center;gap:6px;font-size:.85rem;font-weight:600}
+  .options-row input[type=checkbox]{width:auto}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔍 Find and Replace Text</h1>
+    <p>Find every occurrence of a word or phrase and replace it instantly, across any block of text.</p>
+  </div>
+
+  <div class="panel">
+    <div class="find-replace-row">
+      <div class="field"><label for="findInput">Find</label><input type="text" id="findInput" placeholder="Text to find"></div>
+      <div class="field"><label for="replaceInput">Replace with</label><input type="text" id="replaceInput" placeholder="Replacement text"></div>
+    </div>
+
+    <div class="options-row">
+      <label><input type="checkbox" id="optCase"> Case-sensitive</label>
+      <label><input type="checkbox" id="optWholeWord"> Whole word only</label>
+      <label><input type="checkbox" id="optRegex"> Treat "Find" as regex</label>
+    </div>
+
+    <div class="field"><label for="inputText">Your text</label><textarea id="inputText" placeholder="Paste your text here..."></textarea></div>
+
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn" id="replaceBtn">🔍 Replace All</button>
+      <button class="btn secondary" id="copyBtn">📋 Copy Result</button>
+      <button class="btn secondary" id="downloadBtn">⬇️ Download .txt</button>
+      <button class="btn secondary" id="resetBtn">🔄 Reset</button>
+    </div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Most word processors have a basic find-and-replace feature, but it's often buried in a menu, limited in what it can match, or simply unavailable when you're working with plain text outside a full editor — a block of code, a CSV export, or notes pasted from somewhere else. This tool gives you a fast, flexible find-and-replace that works on any text you paste in, with the same kind of options found in proper code editors: case sensitivity, whole-word matching, and even regular expression support for more advanced patterns.</p>
+      <p>Case-sensitive matching means "Apple" and "apple" are treated as different strings, which matters when you need to replace a specific capitalization without touching others. Whole-word matching prevents a search for "cat" from also matching the "cat" inside "category" or "concatenate." The regex option unlocks pattern-based find-and-replace for anyone comfortable with regular expressions — useful for things like removing all numbers, matching variable patterns, or replacing anything that fits a structure rather than an exact phrase.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Enter the text you want to find, and what to replace it with.</li>
+        <li>Turn on any matching options you need (case-sensitive, whole word, or regex).</li>
+        <li>Paste your text below, click "Replace All," then copy or download the result.</li>
+      </ol>
+      <h3>A note on regex mode</h3>
+      <p>When the regex option is on, the "Find" field is treated as a regular expression pattern rather than literal text, which means characters like ., *, +, and parentheses have special meaning rather than matching themselves. This is powerful for advanced replacements but easy to get wrong if you're not familiar with regex syntax — if your pattern doesn't behave as expected, try turning the option off and matching the literal text instead, or double-check your pattern against a regex reference.</p>
+      <p>Developers reach for this tool constantly when cleaning up data dumps, renaming variables consistently across a pasted code snippet, or stripping out unwanted formatting characters from text copied out of another program. Writers and editors use the plain matching mode just as often — swapping a character's name throughout a draft, fixing a repeated typo across a long document, or standardizing inconsistent spelling without manually scanning every paragraph. Because the whole operation runs instantly in the browser on text you've already pasted in, there's no waiting, no file upload, and no limit on how many times you can adjust the find and replace terms before landing on exactly the result you need.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>ज़्यादातर word processors में एक basic find-and-replace feature होता है, पर वह अक्सर किसी menu में छुपा होता है, सीमित होता है कि क्या match कर सकता है, या बिल्कुल उपलब्ध नहीं होता जब plain text के साथ किसी पूरे editor के बाहर काम कर रहे हों — कोई code का हिस्सा, CSV export, या कहीं से paste किए गए notes। यह tool किसी भी paste किए गए text पर तेज़, flexible find-and-replace देता है, असली code editors जैसे options के साथ: case sensitivity, whole-word matching, और advanced patterns के लिए regular expression support भी।</p>
+      <p>Case-sensitive matching का मतलब है "Apple" और "apple" को अलग strings माना जाता है, जो तब मायने रखता है जब किसी खास capitalization को बिना बाकी छुए replace करना हो। Whole-word matching "cat" की search को "category" या "concatenate" के अंदर वाले "cat" से matching होने से रोकता है। Regex option उन लोगों के लिए pattern-based find-and-replace खोलता है जो regular expressions से सहज हैं — सभी numbers हटाने, variable patterns match करने, या किसी exact phrase की बजाय किसी structure से मिलने वाली चीज़ें replace करने जैसे कामों के लिए उपयोगी।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>जो text ढूंढना है वह डालें, और किससे replace करना है वह भी।</li>
+        <li>ज़रूरी matching options चालू करें (case-sensitive, whole word, या regex)।</li>
+        <li>नीचे अपना text paste करें, "Replace All" दबाएं, फिर result copy या download करें।</li>
+      </ol>
+      <h3>Regex mode पर एक नोट</h3>
+      <p>जब regex option चालू हो, तो "Find" field को literal text की बजाय एक regular expression pattern माना जाता है, जिसका मतलब है ., *, +, और brackets जैसे characters का खुद से मेल खाने की बजाय खास मतलब होता है। यह advanced replacements के लिए शक्तिशाली है पर अगर regex syntax से परिचित न हों तो गलत होना आसान है — अगर pattern उम्मीद के मुताबिक काम न करे, तो option बंद करके literal text match करके देखें, या अपने pattern को किसी regex reference से दोबारा जांच लें।</p>
+      <p>Developers इस tool का इस्तेमाल लगातार data dumps साफ़ करने, paste किए गए code snippet में variables का नाम consistently बदलने, या किसी और program से copy किए गए text में अनचाहे formatting characters हटाने के लिए करते हैं। Writers और editors plain matching mode का इस्तेमाल उतनी ही बार करते हैं — पूरे draft में किसी character का नाम बदलना, किसी लंबे document में बार-बार आने वाली typo ठीक करना, या हर paragraph हाथ से scan किए बिना असंगत spelling को एक जैसा करना। चूंकि पूरा operation पहले से paste किए गए text पर browser में तुरंत होता है, कोई इंतज़ार नहीं करना पड़ता, कोई file upload नहीं चाहिए, और find-replace terms को जितनी बार चाहें adjust कर सकते हैं जब तक बिल्कुल वही result न मिल जाए।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+document.getElementById('replaceBtn').addEventListener('click', ()=>{
+  const status = document.getElementById('statusMsg');
+  const find = document.getElementById('findInput').value;
+  const replace = document.getElementById('replaceInput').value;
+  let text = document.getElementById('inputText').value;
+
+  if(!find){ status.textContent = '⚠️ Please enter text to find.'; return; }
+
+  const caseSensitive = document.getElementById('optCase').checked;
+  const wholeWord = document.getElementById('optWholeWord').checked;
+  const useRegex = document.getElementById('optRegex').checked;
+
+  try{
+    let pattern = useRegex ? find : find.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    if(wholeWord) pattern = `\\b${pattern}\\b`;
+    const flags = 'g' + (caseSensitive ? '' : 'i');
+    const re = new RegExp(pattern, flags);
+    const matches = (text.match(re) || []).length;
+    text = text.replace(re, replace);
+    document.getElementById('inputText').value = text;
+    status.textContent = matches ? `✅ Replaced ${matches} occurrence(s).` : 'ℹ️ No matches found.';
+  }catch(err){
+    status.textContent = '❌ Invalid pattern: ' + err.message;
+  }
+});
+
+document.getElementById('copyBtn').addEventListener('click', function(){
+  copyText(document.getElementById('inputText').value, this);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  downloadText('replaced-text.txt', document.getElementById('inputText').value, 'text/plain');
+});
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  document.getElementById('inputText').value = '';
+  document.getElementById('findInput').value = '';
+  document.getElementById('replaceInput').value = '';
+  document.getElementById('statusMsg').textContent = '';
+});
+</script>
+</body>
+</html>

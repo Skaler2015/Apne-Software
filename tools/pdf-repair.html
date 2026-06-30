@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-repair.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Repair | ApneSoftware">
+<meta property="og:description" content="Best-effort fix for damaged PDFs. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-repair.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Repair | ApneSoftware">
+<meta name="twitter:description" content="Best-effort fix for damaged PDFs. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Repair","description":"Best-effort fix for damaged PDFs. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-repair.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF Repair | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .limit-note{
+    background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:8px;
+    padding:12px 14px;font-size:.85rem;color:#fbbf24;margin-top:14px;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🛠️ PDF Repair</h1>
+    <p>Try to fix a PDF that won't open properly or shows errors — best-effort, not guaranteed.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+    <div class="limit-note">⚠️ This rebuilds the PDF's internal structure, which fixes minor corruption (broken cross-reference tables, small structural issues). It can't recover a file that's severely/physically damaged or truncated mid-download.</div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool attempts to repair a PDF by loading and completely rebuilding its internal structure — this fixes many cases of minor corruption that cause "file is damaged" type errors. It's a best-effort tool, not a guaranteed fix for every broken file.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload the problematic PDF.</li>
+        <li>It attempts to repair and download automatically.</li>
+        <li>If it can't be opened/repaired at all, you'll see a clear error message.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल PDF को लोड करके उसका पूरा इंटरनल स्ट्रक्चर दोबारा बनाने की कोशिश करता है — इससे "file is damaged" जैसी कई छोटी-मोटी खराबियां ठीक हो जाती हैं। यह best-effort टूल है, हर खराब फाइल को ठीक करने की गारंटी नहीं है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>खराब PDF अपलोड करें।</li>
+        <li>यह अपने आप ठीक करने की कोशिश करके डाउनलोड करेगा।</li>
+        <li>अगर बिल्कुल भी नहीं खुल/ठीक हो पा रही, तो साफ एरर मैसेज दिख जाएगा।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+async function handleFile(file){
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Attempting repair...';
+  try{
+    const { PDFDocument } = PDFLib;
+    const bytes = await file.arrayBuffer();
+
+    let pdfDoc;
+    try{
+      pdfDoc = await PDFDocument.load(bytes, { ignoreEncryption: true, throwOnInvalidObject: false, updateMetadata: false });
+    }catch(e1){
+      // try a more lenient pass
+      pdfDoc = await PDFDocument.load(bytes, { ignoreEncryption: true, throwOnInvalidObject: false, updateMetadata: false, parseSpeed: PDFLib.ParseSpeeds.Slow });
+    }
+
+    const pageCount = pdfDoc.getPageCount();
+    if(pageCount === 0){
+      status.textContent = '⚠️ The file loaded but has no pages — it may be too badly damaged to recover.';
+      return;
+    }
+
+    status.textContent = '⏳ Rebuilding and saving...';
+    const newBytes = await pdfDoc.save({ useObjectStreams: false });
+    const blob = new Blob([newBytes], { type: 'application/pdf' });
+    const outName = file.name.replace(/\.pdf$/i, '') + '-repaired.pdf';
+    downloadBlob(outName, blob);
+    status.textContent = `✅ Repair attempt complete (${pageCount} page${pageCount===1?'':'s'} recovered) — please check the downloaded file opens correctly.`;
+  }catch(err){
+    status.textContent = '❌ Could not repair this file — it may be too severely damaged. Error: ' + err.message;
+  }
+}
+</script>
+</body>
+</html>

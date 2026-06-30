@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-to-long-image.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF to Long Image | ApneSoftware">
+<meta property="og:description" content="Stitch all PDF pages into one tall image. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-to-long-image.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF to Long Image | ApneSoftware">
+<meta name="twitter:description" content="Stitch all PDF pages into one tall image. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF to Long Image","description":"Stitch all PDF pages into one tall image. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-to-long-image.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF to Long Image | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .preview-wrap{margin-top:18px;max-height:500px;overflow-y:auto;border:1px solid var(--border);border-radius:8px}
+  .preview-wrap img{width:100%;display:block}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📜 PDF to Long Image</h1>
+    <p>Stitch every page of a PDF into one tall image — perfect for sharing on WhatsApp or social media.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag & drop your PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div class="row" style="margin-top:18px">
+      <div class="field">
+        <label for="formatSelect">Format</label>
+        <select id="formatSelect">
+          <option value="image/jpeg">JPG</option>
+          <option value="image/png">PNG</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="scaleSelect">Quality</label>
+        <select id="scaleSelect">
+          <option value="1">Normal</option>
+          <option value="1.5" selected>High</option>
+          <option value="2">Very High</option>
+        </select>
+      </div>
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem;margin-top:10px"></p>
+
+    <div class="btn-row" id="downloadRow" style="display:none">
+      <button class="btn" id="downloadBtn">⬇️ Download Long Image</button>
+    </div>
+
+    <div class="preview-wrap" id="previewWrap" style="display:none">
+      <img id="previewImg" alt="Stitched preview">
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Combines every page of a PDF into one continuous, scrollable image — useful for sharing multi-page documents on WhatsApp, Instagram, or anywhere a single image works better than a PDF attachment.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Choose a format and quality.</li>
+        <li>Download the combined long image.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>PDF के हर पेज को एक लंबी, स्क्रॉल होने वाली इमेज में जोड़ देता है — WhatsApp, Instagram, या जहां भी PDF attachment की जगह एक इमेज बेहतर हो, वहां शेयर करने के लिए उपयोगी।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>फॉर्मेट और क्वालिटी चुनें।</li>
+        <li>बनी हुई लंबी इमेज डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let stitchedBlob = null;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf'){
+    processFile(files[0]);
+  }
+});
+
+async function processFile(file){
+  const status = document.getElementById('statusMsg');
+  document.getElementById('downloadRow').style.display = 'none';
+  document.getElementById('previewWrap').style.display = 'none';
+  status.textContent = '⏳ Loading PDF...';
+
+  const scale = parseFloat(document.getElementById('scaleSelect').value);
+  const arrayBuffer = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+
+  const canvases = [];
+  let totalHeight = 0;
+  let maxWidth = 0;
+
+  for(let i=1; i<=pdf.numPages; i++){
+    status.textContent = `⏳ Rendering page ${i} of ${pdf.numPages}...`;
+    const page = await pdf.getPage(i);
+    const viewport = page.getViewport({ scale });
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport }).promise;
+    canvases.push(canvas);
+    totalHeight += canvas.height;
+    if(canvas.width > maxWidth) maxWidth = canvas.width;
+  }
+
+  status.textContent = '⏳ Stitching pages together...';
+  const finalCanvas = document.createElement('canvas');
+  finalCanvas.width = maxWidth;
+  finalCanvas.height = totalHeight;
+  const fctx = finalCanvas.getContext('2d');
+  fctx.fillStyle = '#fff';
+  fctx.fillRect(0,0,maxWidth,totalHeight);
+
+  let yOffset = 0;
+  canvases.forEach(c=>{
+    fctx.drawImage(c, 0, yOffset);
+    yOffset += c.height;
+  });
+
+  const format = document.getElementById('formatSelect').value;
+  finalCanvas.toBlob((blob)=>{
+    stitchedBlob = blob;
+    document.getElementById('previewImg').src = URL.createObjectURL(blob);
+    document.getElementById('previewWrap').style.display = 'block';
+    document.getElementById('downloadRow').style.display = 'flex';
+    status.textContent = `✅ Combined ${pdf.numPages} pages into one image (${maxWidth}×${totalHeight}px).`;
+  }, format, 0.92);
+}
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  if(!stitchedBlob) return;
+  const ext = document.getElementById('formatSelect').value === 'image/png' ? 'png' : 'jpg';
+  downloadBlob('pdf-long-image.' + ext, stitchedBlob);
+});
+</script>
+</body>
+</html>

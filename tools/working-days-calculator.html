@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/working-days-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Working Days Calculator — Business Days Between Dates | ApneSoftware">
+<meta property="og:description" content="Count working days between two dates excluding weekends. Ideal for project planning, deadline calculation, and leave tracking. Free online tool.">
+<meta property="og:url" content="https://apnesoftware.com/tools/working-days-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Working Days Calculator — Business Days Between Dates | ApneSoftware">
+<meta name="twitter:description" content="Count working days between two dates excluding weekends. Ideal for project planning, deadline calculation, and leave tracking. Free online tool.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Working Days Calculator","description":"Count working days between two dates excluding weekends. Ideal for project planning, deadline calculation, and leave tracking. Free online tool.","url":"https://apnesoftware.com/tools/working-days-calculator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Working Days Calculator — Business Days Between Dates | ApneSoftware</title>
+<meta name="description" content="Count working days between two dates excluding weekends. Ideal for project planning, deadline calculation, and leave tracking. Free online tool.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .holiday-row{display:flex;gap:10px;align-items:center;margin-top:8px}
+  .holiday-row input[type=date]{flex:1}
+  #holidayList{margin-top:8px;font-size:.85rem;color:var(--text-dim)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+<div class="container">
+  <div class="tool-header">
+    <h1>📅 Working Days Calculator</h1>
+    <p>Count the exact number of working days between two dates, excluding weekends and optional holidays.</p>
+  </div>
+  <div class="panel">
+    <div class="row">
+      <div class="field"><label for="startDate">Start Date</label><input type="date" id="startDate"></div>
+      <div class="field"><label for="endDate">End Date</label><input type="date" id="endDate"></div>
+    </div>
+    <div class="field">
+      <label>Weekend:</label>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:6px">
+        <label style="display:flex;align-items:center;gap:6px;font-weight:600;font-size:.85rem"><input type="radio" name="weekend" value="67" checked style="width:auto"> Sat + Sun</label>
+        <label style="display:flex;align-items:center;gap:6px;font-weight:600;font-size:.85rem"><input type="radio" name="weekend" value="7" style="width:auto"> Sun only</label>
+        <label style="display:flex;align-items:center;gap:6px;font-weight:600;font-size:.85rem"><input type="radio" name="weekend" value="6" style="width:auto"> Sat only</label>
+      </div>
+    </div>
+    <div class="field">
+      <label>Add Public Holidays (optional)</label>
+      <div class="holiday-row">
+        <input type="date" id="holidayInput">
+        <button class="btn secondary" id="addHolidayBtn">+ Add</button>
+      </div>
+      <div id="holidayList">No holidays added.</div>
+    </div>
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn" id="calcBtn">Calculate Working Days</button>
+      <button class="btn secondary" id="resetBtn">🔄 Reset</button>
+    </div>
+    <div class="stat-grid" style="margin-top:20px">
+      <div class="stat-box"><div class="num" id="workingDaysVal">0</div><div class="lbl">Working Days</div></div>
+      <div class="stat-box"><div class="num" id="totalDaysVal">0</div><div class="lbl">Total Calendar Days</div></div>
+      <div class="stat-box"><div class="num" id="weekendDaysVal">0</div><div class="lbl">Weekend Days</div></div>
+      <div class="stat-box"><div class="num" id="holidayDaysVal">0</div><div class="lbl">Holidays Excluded</div></div>
+    </div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Knowing the exact number of working days between two dates is essential for project planning, calculating notice periods, tracking leave balances, setting delivery deadlines, and billing on a per-day basis. Simply counting calendar days includes weekends and holidays that you're not actually working, which leads to inaccurate estimates and missed expectations on timelines.</p>
+      <p>This calculator counts only the days that fall on genuine working days — Monday through Friday by default, or adjustable to include or exclude Saturday — and lets you optionally add specific public holidays to deduct them from the count as well. This gives you a more accurate picture of the actual time available to complete a task, project, or process within a given date range.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Select the start and end dates for the period you want to calculate.</li>
+        <li>Choose your weekend configuration — Sat+Sun, Sun only, or Sat only.</li>
+        <li>Optionally add any public or company holidays that fall in the range.</li>
+        <li>Click "Calculate Working Days" to get the exact count.</li>
+      </ol>
+      <h3>Common uses</h3>
+      <p>Project managers use this to set realistic sprint deadlines and delivery milestones. HR teams use it to calculate notice periods — a 30-day notice period means 30 calendar days, but a "one-month notice" at a company with 5-day weeks actually corresponds to roughly 22 working days. Employees use it to track remaining leave days within a period, or to confirm whether a particular task can realistically be completed within a given timeframe given the actual days available.</p>
+      <p>The holiday exclusion feature is especially valuable in India, where the number of public holidays varies significantly between states and organizations — central government employees observe different holidays from private sector employees, and regional festivals create state-specific holidays that can significantly reduce available working days in a given month. Adding these holidays ensures the calculator reflects the actual available days rather than a theoretical maximum.</p>
+      <p>Freelancers और consultants जो per-day या per-hour bill करते हैं उनके लिए यह tool billing expectations accurately set करने, income forecast करने, और project timelines structure करने के लिए essential है। Remote international teams के लिए, अलग-अलग weekend structures को quickly account करने की ability — कुछ Middle Eastern countries में Friday–Saturday weekends होते हैं — cross-team deadlines plan करते वक्त scheduling conflicts avoid करने में मदद करती है — उदाहरण के लिए India में Friday काम का दिन है जबकि Saudi Arabia में weekend का हिस्सा।</p>
+      <p>HR teams इसका इस्तेमाल annual leave entitlements calculate करने, carry-forward policies verify करने, और यह सुनिश्चित करने के लिए करती हैं कि employees की leaves properly recorded हों। Payroll departments इसे overtime, half-days, और partial month joiners या leavers के लिए pro-rata salary calculate करने में इस्तेमाल करते हैं — ये सभी scenarios जहाँ exact working days count करना essential है।</p>
+      <p>This tool is also frequently used by freelancers and consultants who bill clients by the day or hour — knowing the exact working days in a month or quarter helps set accurate billing expectations, forecast income, and structure project timelines in a way that's honest and deliverable. For remote international teams, being able to quickly account for different weekend structures (some Middle Eastern countries have Friday–Saturday weekends, for instance) helps avoid scheduling conflicts when planning cross-team deadlines and deliverables.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>दो dates के बीच working days की exact संख्या जानना project planning, notice periods calculate करने, leave balances track करने, delivery deadlines set करने, और per-day basis पर billing के लिए essential है। Calendar days गिनने में weekends और holidays शामिल हो जाते हैं जो आप actually काम नहीं कर रहे, जो inaccurate estimates और timelines पर missed expectations का कारण बनता है।</p>
+      <p>यह calculator सिर्फ़ उन्हीं days को count करता है जो genuine working days पर पड़ते हैं — default रूप से Monday से Friday, या Saturday को include या exclude करने के लिए adjustable — और आपको optionally specific public holidays भी add करने देता है। यह किसी task, project, या process को एक given date range में complete करने के लिए actually available time की अधिक accurate picture देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>जो period calculate करना है उसके लिए start और end dates चुनें।</li>
+        <li>Weekend configuration चुनें — Sat+Sun, सिर्फ़ Sun, या सिर्फ़ Sat।</li>
+        <li>Optionally range में पड़ने वाले public या company holidays add करें।</li>
+        <li>Exact count पाने के लिए "Calculate Working Days" दबाएं।</li>
+      </ol>
+      <h3>Common uses</h3>
+      <p>Project managers इसका इस्तेमाल realistic sprint deadlines और delivery milestones set करने के लिए करते हैं। HR teams इसका उपयोग notice periods calculate करने के लिए करती हैं — 30-day notice period का मतलब 30 calendar days है, पर 5-day weeks वाली company में "one-month notice" actually लगभग 22 working days के बराबर होता है। Employees इसका उपयोग किसी period में remaining leave days track करने, या यह confirm करने के लिए करते हैं कि available actual days को देखते हुए कोई task realistically किसी timeframe में complete हो सकता है।</p>
+      <p>Holiday exclusion feature भारत में खासकर valuable है, जहां public holidays की संख्या states और organizations में काफ़ी अलग होती है — central government employees private sector employees से अलग holidays observe करते हैं, और regional festivals state-specific holidays बनाते हैं जो किसी महीने में available working days को काफ़ी कम कर सकते हैं। ये holidays add करने से calculator theoretical maximum की बजाय actual available days reflect करता है।</p>
+      <p>HR teams इसका इस्तेमाल annual leave entitlements calculate करने, carry-forward policies verify करने, और partial month joiners या leavers के लिए pro-rata salary calculate करने में करती हैं — ये सभी ऐसे scenarios हैं जहाँ exact working days accurately count करना payroll accuracy के लिए essential है, और manual counting में गलती होना बहुत आसान है।</p>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<script src="../assets/common.js"></script>
+<script>
+const holidays = new Set();
+
+// Default dates
+const today = new Date();
+const nextMonth = new Date(today);
+nextMonth.setMonth(nextMonth.getMonth() + 1);
+document.getElementById('startDate').value = today.toISOString().split('T')[0];
+document.getElementById('endDate').value = nextMonth.toISOString().split('T')[0];
+
+document.getElementById('addHolidayBtn').addEventListener('click', ()=>{
+  const d = document.getElementById('holidayInput').value;
+  if(!d) return;
+  holidays.add(d);
+  renderHolidays();
+  document.getElementById('holidayInput').value = '';
+});
+
+function renderHolidays(){
+  const el = document.getElementById('holidayList');
+  if(holidays.size === 0){ el.textContent = 'No holidays added.'; return; }
+  el.innerHTML = [...holidays].sort().map(d =>
+    `<span style="display:inline-block;margin:3px 6px 3px 0;padding:3px 8px;background:var(--surface);border:1px solid var(--border);border-radius:6px">${d} <button onclick="holidays.delete('${d}');renderHolidays()" style="background:none;border:none;cursor:pointer;color:var(--accent);font-size:.9rem">✕</button></span>`
+  ).join('');
+}
+
+document.getElementById('calcBtn').addEventListener('click', ()=>{
+  const start = new Date(document.getElementById('startDate').value);
+  const end = new Date(document.getElementById('endDate').value);
+  const status = document.getElementById('statusMsg');
+  if(!start || !end || isNaN(start) || isNaN(end)){ status.textContent = '⚠️ Please select valid start and end dates.'; return; }
+  if(end < start){ status.textContent = '⚠️ End date must be after start date.'; return; }
+  status.textContent = '';
+
+  const weekendVal = document.querySelector('input[name="weekend"]:checked').value;
+  const weekendDays = weekendVal.split('').map(Number); // [6,7] or [7] or [6]
+
+  let current = new Date(start);
+  let totalDays = 0, weekendCount = 0, holidayCount = 0, workingCount = 0;
+
+  while(current <= end){
+    totalDays++;
+    const dow = current.getDay(); // 0=Sun,6=Sat
+    const dateStr = current.toISOString().split('T')[0];
+
+    // Convert: weekendVal uses 6=Sat,7=Sun (JS: 6=Sat,0=Sun)
+    const isSat = dow === 6;
+    const isSun = dow === 0;
+    const isWeekend = (weekendVal.includes('6') && isSat) || (weekendVal.includes('7') && isSun);
+
+    if(isWeekend){ weekendCount++; }
+    else if(holidays.has(dateStr)){ holidayCount++; }
+    else { workingCount++; }
+
+    current.setDate(current.getDate() + 1);
+  }
+
+  document.getElementById('workingDaysVal').textContent = workingCount + ' days';
+  document.getElementById('totalDaysVal').textContent = totalDays + ' days';
+  document.getElementById('weekendDaysVal').textContent = weekendCount + ' days';
+  document.getElementById('holidayDaysVal').textContent = holidayCount + ' days';
+});
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  holidays.clear();
+  renderHolidays();
+  document.getElementById('statusMsg').textContent = '';
+  ['workingDaysVal','totalDaysVal','weekendDaysVal','holidayDaysVal'].forEach(id => document.getElementById(id).textContent = '0');
+});
+</script>
+</body>
+</html>

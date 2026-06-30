@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/solid-bg-remover.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Solid-Color Background Remover | ApneSoftware">
+<meta property="og:description" content="Make a plain solid background transparent. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/solid-bg-remover.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Solid-Color Background Remover | ApneSoftware">
+<meta name="twitter:description" content="Make a plain solid background transparent. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Solid-Color Background Remover","description":"Make a plain solid background transparent. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/solid-bg-remover.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Solid-Color Background Remover | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  #previewCanvas{max-width:100%;border-radius:10px;background:repeating-conic-gradient(#2a2a2a 0% 25%, #222 0% 50%) 50% / 20px 20px;cursor:crosshair}
+  .swatch-preview{width:34px;height:34px;border-radius:6px;border:1px solid var(--border);display:inline-block;vertical-align:middle;margin-left:8px}
+  .new-tech-note{
+    background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;
+    padding:12px 14px;font-size:.85rem;color:var(--text-dim);margin-top:14px;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🎭 Solid-Color Background Remover</h1>
+    <p>Make a flat, solid-colored background transparent — works great for product photos and ID-style photos with a plain background.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an image here or click to choose (plain background works best)</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <p style="font-size:.88rem;color:var(--text-dim)">Click anywhere on the background in the preview to pick its color, or use the auto-detected corner color.</p>
+      <div class="field">
+        <label>Background color to remove <span class="swatch-preview" id="colorSwatch"></span></label>
+      </div>
+      <div class="field">
+        <label for="toleranceSlider">Tolerance: <span id="toleranceVal">35</span></label>
+        <input type="range" id="toleranceSlider" min="0" max="120" value="35">
+      </div>
+
+      <canvas id="previewCanvas"></canvas>
+
+      <div class="btn-row">
+        <button class="btn" id="downloadBtn">⬇️ Download Transparent PNG</button>
+        <button class="btn secondary" id="resetBtn">↩️ Reset</button>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+      <div class="new-tech-note">ℹ️ This works by removing pixels close to one chosen color — best for plain, evenly-lit backgrounds. For complex photo backgrounds, an AI-based tool would be needed.</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Removes a flat, solid-colored background (like white, green, or any plain backdrop) by making matching pixels transparent. Ideal for product photos, ID photos, or graphics shot against a plain backdrop.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a photo with a plain, even-colored background.</li>
+        <li>Click on the background in the preview to pick its exact color (or use the auto-detected one).</li>
+        <li>Adjust the tolerance slider until the background disappears cleanly, then download.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल एक प्लेन, सॉलिड-कलर बैकग्राउंड (जैसे सफेद, हरा, या कोई भी एक रंग का बैकग्राउंड) हटाता है, उससे मिलते-जुलते पिक्सल को ट्रांसपेरेंट बना देता है। प्रोडक्ट फोटो, ID फोटो, या प्लेन बैकग्राउंड वाली ग्राफिक्स के लिए बढ़िया।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>प्लेन, एक जैसे रंग वाले बैकग्राउंड की फोटो अपलोड करें।</li>
+        <li>प्रीव्यू में बैकग्राउंड पर क्लिक करके उसका सही रंग चुनें (या ऑटो-डिटेक्टेड रंग इस्तेमाल करें)।</li>
+        <li>टॉलरेंस स्लाइडर सेट करें जब तक बैकग्राउंड साफ तरीके से हट न जाए, फिर डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const canvas = document.getElementById('previewCanvas');
+const ctx = canvas.getContext('2d');
+let img = new Image();
+let targetColor = [255,255,255];
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    img.onload = ()=>{
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      document.getElementById('afterUpload').style.display = 'block';
+      autoDetectColor();
+      render();
+    };
+    img.src = URL.createObjectURL(files[0]);
+  }
+});
+
+function autoDetectColor(){
+  const tmp = document.createElement('canvas');
+  tmp.width = img.naturalWidth; tmp.height = img.naturalHeight;
+  const tctx = tmp.getContext('2d');
+  tctx.drawImage(img, 0, 0);
+  const corners = [
+    tctx.getImageData(0,0,1,1).data,
+    tctx.getImageData(tmp.width-1,0,1,1).data,
+    tctx.getImageData(0,tmp.height-1,1,1).data,
+    tctx.getImageData(tmp.width-1,tmp.height-1,1,1).data
+  ];
+  let r=0,g=0,b=0;
+  corners.forEach(c=>{ r+=c[0]; g+=c[1]; b+=c[2]; });
+  targetColor = [Math.round(r/4), Math.round(g/4), Math.round(b/4)];
+  updateSwatch();
+}
+
+function updateSwatch(){
+  document.getElementById('colorSwatch').style.background = `rgb(${targetColor[0]},${targetColor[1]},${targetColor[2]})`;
+}
+
+function render(){
+  const tolerance = parseInt(document.getElementById('toleranceSlider').value);
+  const tmp = document.createElement('canvas');
+  tmp.width = canvas.width; tmp.height = canvas.height;
+  const tctx = tmp.getContext('2d');
+  tctx.drawImage(img, 0, 0);
+  const imageData = tctx.getImageData(0, 0, tmp.width, tmp.height);
+  const data = imageData.data;
+  const [tr, tg, tb] = targetColor;
+
+  for(let i=0;i<data.length;i+=4){
+    const dr = data[i]-tr, dg = data[i+1]-tg, db = data[i+2]-tb;
+    const dist = Math.sqrt(dr*dr + dg*dg + db*db);
+    if(dist < tolerance){
+      // smooth edge: fade alpha near the threshold boundary
+      const fade = Math.max(0, Math.min(1, (tolerance - dist) / Math.max(1,tolerance*0.4)));
+      data[i+3] = Math.round(data[i+3] * (1 - fade));
+    }
+  }
+
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.putImageData(imageData, 0, 0);
+}
+
+canvas.addEventListener('click', (e)=>{
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  const x = Math.floor((e.clientX - rect.left) * scaleX);
+  const y = Math.floor((e.clientY - rect.top) * scaleY);
+
+  const tmp = document.createElement('canvas');
+  tmp.width = canvas.width; tmp.height = canvas.height;
+  const tctx = tmp.getContext('2d');
+  tctx.drawImage(img, 0, 0);
+  const px = tctx.getImageData(x, y, 1, 1).data;
+  targetColor = [px[0], px[1], px[2]];
+  updateSwatch();
+  render();
+});
+
+document.getElementById('toleranceSlider').addEventListener('input', ()=>{
+  document.getElementById('toleranceVal').textContent = document.getElementById('toleranceSlider').value;
+  render();
+});
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  document.getElementById('toleranceSlider').value = 35;
+  document.getElementById('toleranceVal').textContent = 35;
+  autoDetectColor();
+  render();
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  canvas.toBlob((blob)=>{
+    downloadBlob('transparent.png', blob);
+    document.getElementById('statusMsg').textContent = '✅ Downloaded!';
+  }, 'image/png');
+});
+</script>
+</body>
+</html>

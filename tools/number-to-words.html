@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/number-to-words.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Number to Words Converter | ApneSoftware">
+<meta property="og:description" content="Number to words, Indian lakh/crore system. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/number-to-words.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Number to Words Converter | ApneSoftware">
+<meta name="twitter:description" content="Number to words, Indian lakh/crore system. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Number to Words Converter","description":"Number to words, Indian lakh/crore system. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/number-to-words.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Number to Words Converter | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .result-box{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:18px;margin-top:14px;font-size:1.05rem;font-weight:600;color:var(--accent-2);line-height:1.6}
+  .tab-row{display:flex;gap:8px;margin-bottom:14px}
+  .tab-btn{padding:7px 14px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-size:.85rem;cursor:pointer}
+  .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔤 Number to Words Converter</h1>
+    <p>Convert a number into words — Indian numbering system (lakh/crore), handy for writing cheques.</p>
+  </div>
+
+  <div class="panel">
+    <div class="tab-row">
+      <button class="tab-btn active" data-mode="number">Plain Number</button>
+      <button class="tab-btn" data-mode="rupees">Rupees & Paise (for cheques)</button>
+    </div>
+
+    <div class="field">
+      <label for="numberInput">Enter a number</label>
+      <input type="number" id="numberInput" value="1234567" step="0.01">
+    </div>
+
+    <div class="result-box" id="resultBox"></div>
+    <div class="btn-row">
+      <button class="btn secondary" id="copyBtn">📋 Copy</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Converts any number into words using the Indian numbering system (thousand, lakh, crore) — useful for writing cheque amounts in words, legal documents, or invoices. A dedicated Rupees & Paise mode formats it exactly as needed for a cheque.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Type a number.</li>
+        <li>Switch to "Rupees & Paise" mode if you're writing a cheque amount.</li>
+        <li>Copy the result.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी भी नंबर को भारतीय नंबरिंग सिस्टम (हज़ार, लाख, करोड़) के हिसाब से शब्दों में बदलता है — चेक की राशि शब्दों में लिखने, कानूनी दस्तावेज़ या इनवॉइस के लिए उपयोगी। "Rupees & Paise" मोड चेक के लिए सही फॉर्मेट में बना देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक नंबर टाइप करें।</li>
+        <li>चेक की राशि लिखनी हो तो "Rupees & Paise" मोड पर जाएं।</li>
+        <li>रिजल्ट कॉपी करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const ones = ['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten',
+  'Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'];
+const tens = ['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'];
+
+function twoDigits(n){
+  if(n < 20) return ones[n];
+  const t = Math.floor(n/10), o = n%10;
+  return tens[t] + (o ? ' ' + ones[o] : '');
+}
+function threeDigits(n){
+  const h = Math.floor(n/100), rest = n%100;
+  let s = '';
+  if(h) s += ones[h] + ' Hundred' + (rest ? ' ' : '');
+  if(rest) s += twoDigits(rest);
+  return s;
+}
+
+function numberToWordsIndian(num){
+  if(num === 0) return 'Zero';
+  let str = '';
+  let crore = Math.floor(num / 10000000); num %= 10000000;
+  let lakh = Math.floor(num / 100000); num %= 100000;
+  let thousand = Math.floor(num / 1000); num %= 1000;
+  let hundred = num;
+
+  if(crore) str += threeDigits(crore) + ' Crore ';
+  if(lakh) str += twoDigits(lakh) + ' Lakh ';
+  if(thousand) str += twoDigits(thousand) + ' Thousand ';
+  if(hundred) str += threeDigits(hundred);
+
+  return str.trim().replace(/\s+/g,' ');
+}
+
+function rupeesInWords(amount){
+  const rupees = Math.floor(Math.abs(amount));
+  const paise = Math.round((Math.abs(amount) - rupees) * 100);
+  let str = numberToWordsIndian(rupees) + ' Rupees';
+  if(paise) str += ' and ' + numberToWordsIndian(paise) + ' Paise';
+  return (amount < 0 ? 'Minus ' : '') + str + ' Only';
+}
+
+let mode = 'number';
+
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    mode = btn.dataset.mode;
+    calculate();
+  });
+});
+
+function calculate(){
+  const num = parseFloat(document.getElementById('numberInput').value) || 0;
+  const box = document.getElementById('resultBox');
+  if(mode === 'number'){
+    const intPart = Math.trunc(Math.abs(num));
+    const isNeg = num < 0;
+    let result = numberToWordsIndian(intPart);
+    if(num % 1 !== 0){
+      const decimalStr = Math.abs(num).toFixed(2).split('.')[1];
+      result += ' Point ' + decimalStr.split('').map(d => d === '0' ? 'Zero' : ones[parseInt(d)] || tens[parseInt(d)]).join(' ');
+    }
+    box.textContent = (isNeg ? 'Minus ' : '') + result;
+  } else {
+    box.textContent = rupeesInWords(num);
+  }
+}
+
+document.getElementById('numberInput').addEventListener('input', calculate);
+document.getElementById('copyBtn').addEventListener('click', (e)=>{
+  copyText(document.getElementById('resultBox').textContent, e.target);
+});
+
+calculate();
+</script>
+</body>
+</html>

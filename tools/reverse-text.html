@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/reverse-text.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Reverse Text Generator — ApneSoftware">
+<meta property="og:description" content="Reverse any text, word order, or each line instantly. Free, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/reverse-text.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Reverse Text Generator — ApneSoftware">
+<meta name="twitter:description" content="Reverse any text, word order, or each line instantly. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Reverse Text Generator","description":"Reverse any text, word order, or each line instantly. Free, no signup.","url":"https://apnesoftware.com/tools/reverse-text.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Reverse Text Generator — ApneSoftware</title>
+<meta name="description" content="Reverse any text, word order, or each line instantly. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .text-area-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){ .text-area-pair{grid-template-columns:1fr} }
+  textarea{width:100%;min-height:220px;font-family:monospace;font-size:.9rem;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);resize:vertical}
+  .col-label{font-size:.8rem;font-weight:700;color:var(--text-dim);margin-bottom:6px}
+  select{padding:9px 13px;border-radius:9px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font-size:.85rem;margin-bottom:14px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔁 Reverse Text Generator</h1>
+    <p>Reverse the letters, word order, or lines of any text — instantly.</p>
+  </div>
+
+  <div class="panel">
+    <select id="reverseMode">
+      <option value="chars">Reverse all characters (mirror text)</option>
+      <option value="words">Reverse word order</option>
+      <option value="lines">Reverse line order</option>
+    </select>
+
+    <div class="text-area-pair">
+      <div>
+        <div class="col-label">INPUT</div>
+        <textarea id="inputText" placeholder="Type or paste text here...">Hello World</textarea>
+      </div>
+      <div>
+        <div class="col-label">REVERSED OUTPUT</div>
+        <textarea id="outputText" readonly></textarea>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn" id="reverseBtn">🔁 Reverse</button>
+      <button class="btn secondary" id="copyBtn">📋 Copy Result</button>
+      <button class="btn secondary" id="resetBtn">🔄 Reset</button>
+    </div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Reversing text comes up in more situations than it might seem — mirror-writing a word for a design or puzzle, checking whether a word or phrase is a palindrome, flipping the order of items in a list, or just having a bit of fun turning a sentence backward to share with friends. Doing this character by character in your head or by hand is slow and easy to get wrong, especially with longer text.</p>
+      <p>This tool offers three different ways to reverse text depending on what you're after: flipping every individual character so the whole string reads backward, reversing the order of the words while keeping each word itself intact, or reversing the order of lines in a multi-line block of text.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Paste your text.</li>
+        <li>Choose a reverse mode — characters, words, or lines.</li>
+        <li>Click "Reverse," then copy the result.</li>
+      </ol>
+      <h3>The three modes explained</h3>
+      <p>Character reversal turns "Hello World" into "dlroW olleH" — every single character flips order, which is the classic "mirror text" effect. Word reversal turns "Hello World" into "World Hello" — the words themselves stay spelled normally, but their order in the sentence flips, useful for testing word-order based puzzles or just rearranging a phrase. Line reversal takes a list or paragraph split across multiple lines and flips which line comes first and last, useful for reversing a numbered list, a set of steps, or any sequence where the line order matters but each line's content shouldn't change.</p>
+      <p>Palindrome checking is a popular use of character reversal — type in a word or short phrase, reverse it, and compare the two to see if they match (ignoring spaces and punctuation, a surprising number of phrases turn out to be palindromes once you account for that). Word reversal mode is handy for testing certain word games or puzzles, or for the simple novelty of seeing a familiar sentence read backward. Whatever the reason, all three modes work instantly on any length of text, from a single word to a full paragraph, with the result ready to copy as soon as you click reverse.</p>
+      <p>Teachers sometimes use reversed text to create simple decoding activities for younger students, while social media users enjoy posting a reversed sentence as a lighthearted puzzle for friends to figure out. Whatever the reason behind it, the conversion itself is completely lossless — reversing the same text twice always brings back the exact original, so there's no risk of losing or corrupting any part of the content along the way.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>Text reverse करना उससे ज़्यादा स्थितियों में काम आता है जितना लगता है — किसी design या puzzle के लिए mirror-writing करना, यह जांचना कि कोई word या phrase palindrome है या नहीं, किसी list में items का order पलटना, या बस मज़े के लिए किसी sentence को उल्टा करके दोस्तों के साथ शेयर करना। यह हाथ से या दिमाग में character-by-character करना धीमा और गलत होने की संभावना वाला है, खासकर लंबे text के साथ।</p>
+      <p>यह tool जो चाहिए उसके हिसाब से text reverse करने के तीन तरीके देता है: हर अलग character को flip करना ताकि पूरी string उल्टी पढ़ी जाए, words का order पलटना जबकि हर word वैसा ही रहे, या multi-line text block में lines का order पलटना।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना text paste करें।</li>
+        <li>एक reverse mode चुनें — characters, words, या lines।</li>
+        <li>"Reverse" दबाएं, फिर result copy करें।</li>
+      </ol>
+      <h3>तीनों modes समझाए गए</h3>
+      <p>Character reversal "Hello World" को "dlroW olleH" बना देता है — हर अलग character का order पलट जाता है, यह classic "mirror text" effect है। Word reversal "Hello World" को "World Hello" बना देता है — words खुद सामान्य रूप से spell होते रहते हैं, पर sentence में उनका order पलट जाता है, word-order आधारित puzzles test करने या किसी phrase को दोबारा व्यवस्थित करने के लिए उपयोगी। Line reversal किसी list या paragraph को जो कई lines में बंटा हो उसमें कौन सी line पहले और आख़िर में आती है यह पलट देता है, किसी numbered list, steps के सेट, या किसी भी sequence को पलटने के लिए उपयोगी जहां line order मायने रखे पर हर line का content न बदले।</p>
+      <p>Palindrome जांचना character reversal का एक लोकप्रिय इस्तेमाल है — कोई word या छोटा phrase टाइप करें, उसे reverse करें, और दोनों को compare करें यह देखने के लिए कि वे मेल खाते हैं या नहीं (spaces और punctuation को नज़रअंदाज़ करते हुए, हैरानी की बात है कि कितने phrases palindrome निकलते हैं इसे ध्यान में रखने पर)। Word reversal mode कुछ word games या puzzles test करने के लिए, या बस किसी जाने-पहचाने sentence को उल्टा पढ़े जाते देखने की नवीनता के लिए सुविधाजनक है। जो भी वजह हो, तीनों modes किसी भी length के text पर तुरंत काम करते हैं, एक word से लेकर पूरे paragraph तक, reverse दबाते ही result copy करने के लिए तैयार।</p>
+      <p>Teachers कभी-कभी reversed text का इस्तेमाल छोटे students के लिए simple decoding activities बनाने में करते हैं, जबकि social media users किसी reversed sentence को दोस्तों के सुलझाने के लिए एक हल्के-फुल्के puzzle के रूप में post करना पसंद करते हैं। इसके पीछे जो भी वजह हो, conversion खुद पूरी तरह lossless है — एक ही text को दो बार reverse करने पर हमेशा बिल्कुल original वापस मिल जाता है, तो रास्ते में content का कोई हिस्सा खोने या बिगड़ने का कोई खतरा नहीं।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+document.getElementById('reverseBtn').addEventListener('click', ()=>{
+  const mode = document.getElementById('reverseMode').value;
+  const input = document.getElementById('inputText').value;
+  let result;
+
+  if(mode === 'chars'){
+    result = [...input].reverse().join('');
+  } else if(mode === 'words'){
+    result = input.split(/\s+/).filter(Boolean).reverse().join(' ');
+  } else {
+    result = input.split('\n').reverse().join('\n');
+  }
+
+  document.getElementById('outputText').value = result;
+  document.getElementById('statusMsg').textContent = '✅ Reversed.';
+});
+
+document.getElementById('copyBtn').addEventListener('click', function(){
+  copyText(document.getElementById('outputText').value, this);
+});
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  document.getElementById('inputText').value = '';
+  document.getElementById('outputText').value = '';
+  document.getElementById('statusMsg').textContent = '';
+});
+</script>
+</body>
+</html>

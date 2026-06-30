@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Free Advanced Average Calculator — Calculate Mean, Median, Mode, Standard Deviation, Variance, Quartiles, Geometric Mean, Harmonic Mean & 20+ statistics instantly. Charts included. No signup.">
+<link rel="canonical" href="https://apnesoftware.com/tools/average-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Average Calculator — Mean, Median, Mode, SD & 20+ Stats | ApneSoftware">
+<meta property="og:description" content="Advanced free calculator for Mean, Median, Mode, Standard Deviation, Variance, Quartiles, Geometric Mean, Harmonic Mean, Weighted Average and more. Charts, CSV export, history.">
+<meta property="og:url" content="https://apnesoftware.com/tools/average-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Average Calculator — Mean, Median, Mode, SD & 20+ Stats | ApneSoftware">
+<meta name="twitter:description" content="Advanced free calculator: Mean, Median, Mode, Std Dev, Variance, Quartiles, Geometric & Harmonic Mean, Charts, CSV export.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebApplication",
+      "name":"Average Calculator",
+      "url":"https://apnesoftware.com/tools/average-calculator.html",
+      "description":"Advanced free calculator: Mean, Median, Mode, Standard Deviation, Variance, Quartiles, Geometric Mean, Harmonic Mean, Weighted Average and 20+ statistics with interactive charts.",
+      "applicationCategory":"UtilityApplication",
+      "operatingSystem":"Any",
+      "browserRequirements":"Requires JavaScript",
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},
+      "provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"},
+      "featureList":["Mean","Median","Mode","Standard Deviation","Variance","Quartiles","IQR","Geometric Mean","Harmonic Mean","Weighted Average","Histogram Chart","Bar Chart","CSV Export","History","Share"]
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},
+        {"@type":"ListItem","position":2,"name":"Calculator Tools","item":"https://apnesoftware.com/category/calculator.html"},
+        {"@type":"ListItem","position":3,"name":"Average Calculator","item":"https://apnesoftware.com/tools/average-calculator.html"}
+      ]
+    },
+    {
+      "@type":"HowTo",
+      "name":"How to Calculate Mean, Median and Mode",
+      "step":[
+        {"@type":"HowToStep","position":1,"name":"Enter Numbers","text":"Type or paste your numbers in the input box. Separate with commas, spaces, tabs, or new lines."},
+        {"@type":"HowToStep","position":2,"name":"Set Precision","text":"Choose how many decimal places you want in the results (0 to 5)."},
+        {"@type":"HowToStep","position":3,"name":"View Results","text":"Results update live as you type. See 20+ statistics in the results table."},
+        {"@type":"HowToStep","position":4,"name":"Explore Charts","text":"Switch between Histogram and Bar Chart to visualize your data."},
+        {"@type":"HowToStep","position":5,"name":"Export","text":"Download results as CSV, TXT, or PDF. Share via WhatsApp, Telegram, Twitter."}
+      ]
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"What is Mean (Average)?","acceptedAnswer":{"@type":"Answer","text":"Mean is the sum of all values divided by the count. Formula: Mean = Σx / n. It is the most common measure of central tendency."}},
+        {"@type":"Question","name":"What is Median?","acceptedAnswer":{"@type":"Answer","text":"Median is the middle value when numbers are arranged in ascending order. For even count, it is the average of the two middle values. It is less affected by outliers than the mean."}},
+        {"@type":"Question","name":"What is Mode?","acceptedAnswer":{"@type":"Answer","text":"Mode is the most frequently occurring value in a dataset. A dataset can have no mode, one mode, or multiple modes (multimodal)."}},
+        {"@type":"Question","name":"What is Standard Deviation?","acceptedAnswer":{"@type":"Answer","text":"Standard Deviation measures how spread out numbers are from the mean. A low SD means values cluster near the mean; a high SD means they are spread out. Formula: σ = √(Σ(x-μ)² / n)."}},
+        {"@type":"Question","name":"What is Variance?","acceptedAnswer":{"@type":"Answer","text":"Variance is the average of squared differences from the mean. It is the square of Standard Deviation. Formula: σ² = Σ(x-μ)² / n."}},
+        {"@type":"Question","name":"What is Geometric Mean?","acceptedAnswer":{"@type":"Answer","text":"Geometric Mean is the nth root of the product of n values. Useful for growth rates and ratios. Formula: GM = (x₁ × x₂ × ... × xₙ)^(1/n)."}},
+        {"@type":"Question","name":"What is Harmonic Mean?","acceptedAnswer":{"@type":"Answer","text":"Harmonic Mean is n divided by the sum of reciprocals of values. Useful for rates and speeds. Formula: HM = n / (1/x₁ + 1/x₂ + ... + 1/xₙ)."}},
+        {"@type":"Question","name":"What are Quartiles?","acceptedAnswer":{"@type":"Answer","text":"Quartiles divide sorted data into four equal parts. Q1 (25th percentile), Q2 (50th percentile = Median), Q3 (75th percentile). IQR = Q3 - Q1."}},
+        {"@type":"Question","name":"What is IQR?","acceptedAnswer":{"@type":"Answer","text":"Interquartile Range (IQR) is Q3 minus Q1. It represents the middle 50% of data and is useful for identifying outliers."}},
+        {"@type":"Question","name":"What is Mean Absolute Deviation?","acceptedAnswer":{"@type":"Answer","text":"MAD is the average of absolute differences between each value and the mean. Formula: MAD = Σ|x - μ| / n."}},
+        {"@type":"Question","name":"What is Weighted Average?","acceptedAnswer":{"@type":"Answer","text":"Weighted Average assigns different importance (weights) to each value. Formula: WA = Σ(xᵢ × wᵢ) / Σwᵢ. Enable it in the tool and enter weights for each number."}},
+        {"@type":"Question","name":"Can I enter negative numbers?","acceptedAnswer":{"@type":"Answer","text":"Yes! This calculator supports negative numbers, decimals, and very large numbers. Note: Geometric and Harmonic Mean require positive values only."}},
+        {"@type":"Question","name":"How do I separate numbers?","acceptedAnswer":{"@type":"Answer","text":"You can separate numbers with commas, spaces, tabs, or new lines. The tool automatically ignores blank lines and extra spaces."}},
+        {"@type":"Question","name":"Can I download my results?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can download results as CSV (for Excel), TXT (plain text), or print as PDF using the export buttons."}},
+        {"@type":"Question","name":"Is my data saved anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations happen in your browser. Data is never sent to any server. The last 20 calculations are saved locally in your browser's LocalStorage only."}},
+        {"@type":"Question","name":"What is a Histogram?","acceptedAnswer":{"@type":"Answer","text":"A histogram groups numbers into ranges (bins) and shows how many values fall in each range. It helps visualize the distribution of your data."}},
+        {"@type":"Question","name":"What are Percentiles?","acceptedAnswer":{"@type":"Answer","text":"A percentile indicates the value below which a given percentage of observations fall. For example, the 90th percentile is the value below which 90% of data points lie."}},
+        {"@type":"Question","name":"What is the difference between Population and Sample SD?","acceptedAnswer":{"@type":"Answer","text":"Population SD divides by n (all data). Sample SD divides by n-1 (Bessel's correction for a sample). This tool shows Population SD by default."}},
+        {"@type":"Question","name":"Can I compare multiple datasets?","acceptedAnswer":{"@type":"Answer","text":"Use the History panel to review your last 20 calculations. Each entry shows key stats so you can compare results across different inputs."}},
+        {"@type":"Question","name":"Is this tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free with no signup, no ads, no limitations."}}
+      ]
+    }
+  ]
+}
+</script>
+
+<meta name="color-scheme" content="dark">
+<title>Average Calculator — Mean, Median, Mode, Standard Deviation & 20+ Stats | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<style>
+/* =========================================================
+   AVERAGE CALCULATOR — PREMIUM STYLES
+   Extends site style.css. No overrides to core branding.
+   ========================================================= */
+
+/* ── Theme Vars ── */
+body.light-mode {
+  --bg:#f4f0ff; --surface:rgba(0,0,0,.06); --surface-2:rgba(0,0,0,.04);
+  --border:rgba(0,0,0,.12); --border-strong:rgba(0,0,0,.2);
+  --text:#1a0a35; --text-dim:rgba(26,10,53,.6);
+  --shadow:0 8px 32px rgba(0,0,0,.1); color-scheme:light;
+  background:linear-gradient(135deg,#f4f0ff,#e8e0ff,#ddf2ea,#eaf0ff) !important;
+}
+body.light-mode .site-header { background:rgba(240,238,255,.9) !important; }
+body.light-mode textarea, body.light-mode input[type=text],
+body.light-mode input[type=number] {
+  background:rgba(255,255,255,.8) !important; color:#1a0a35 !important;
+}
+
+/* ── Breadcrumb ── */
+.breadcrumb {
+  display:flex; align-items:center; gap:6px; flex-wrap:wrap;
+  font-size:.78rem; color:var(--text-dim); margin-bottom:12px;
+}
+.breadcrumb a { color:var(--accent); text-decoration:none; }
+.breadcrumb a:hover { text-decoration:underline; }
+.breadcrumb span { opacity:.5; }
+
+/* ── Toolbar ── */
+.ac-toolbar {
+  display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+  margin-bottom:14px;
+}
+.ac-toolbar label { font-size:.82rem; font-weight:600; color:var(--text-dim); }
+.ac-toolbar select {
+  padding:7px 10px; border-radius:8px; border:1px solid var(--border);
+  background:var(--surface); color:var(--text); font-size:.82rem;
+  font-family:var(--font); cursor:pointer;
+}
+.theme-btns { display:flex; gap:4px; margin-left:auto; }
+.theme-btn {
+  padding:6px 12px; border-radius:8px; border:1px solid var(--border);
+  background:var(--surface); color:var(--text-dim); font-size:.78rem;
+  font-weight:600; cursor:pointer; font-family:var(--font); transition:.2s;
+}
+.theme-btn.active, .theme-btn:hover { background:var(--accent); color:#fff; border-color:var(--accent); }
+
+/* ── Textarea ── */
+textarea#numInput {
+  width:100%; min-height:130px; font-family:monospace; font-size:.95rem;
+  padding:14px; border-radius:12px; border:1px solid var(--border);
+  background:var(--surface-2); color:var(--text); resize:vertical;
+  transition:border-color .2s;
+  -webkit-appearance:none;
+}
+textarea#numInput:focus { outline:none; border-color:var(--accent); }
+
+/* Weighted table */
+#weightTable { width:100%; border-collapse:collapse; margin-top:10px; font-size:.85rem; }
+#weightTable th { padding:8px 10px; background:var(--surface); color:var(--text-dim); text-align:left; font-size:.75rem; text-transform:uppercase; }
+#weightTable td { padding:7px 10px; border-bottom:1px solid var(--border); }
+#weightTable input { width:100%; padding:5px 8px; border-radius:6px; border:1px solid var(--border); background:var(--surface-2); color:var(--text); font-family:monospace; font-size:.85rem; }
+
+/* ── Stat grid extensions ── */
+.stat-grid-3 {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:10px; margin-top:10px;
+}
+.sbox {
+  background:var(--surface-2); border:1px solid var(--border);
+  border-radius:12px; padding:14px 10px; text-align:center;
+  transition:transform .2s, box-shadow .2s;
+}
+.sbox:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(124,92,252,.2); }
+.sbox .sn {
+  font-size:1.3rem; font-weight:800; color:var(--accent);
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.sbox .sl { font-size:.72rem; color:var(--text-dim); margin-top:5px; font-weight:600; }
+
+/* ── Result Table ── */
+.res-table-wrap { overflow-x:auto; margin-top:14px; border-radius:12px; border:1px solid var(--border); }
+.res-table { width:100%; border-collapse:collapse; font-size:.84rem; }
+.res-table th {
+  padding:10px 14px; background:rgba(124,92,252,.15);
+  color:var(--text); font-weight:700; text-align:left;
+  font-size:.75rem; text-transform:uppercase; letter-spacing:.04em;
+  position:sticky; top:0;
+}
+.res-table td { padding:9px 14px; border-bottom:1px solid var(--border); }
+.res-table tr:last-child td { border-bottom:none; }
+.res-table tr:hover td { background:rgba(124,92,252,.07); }
+.res-table .val-cell { font-family:monospace; font-weight:700; color:var(--accent); }
+.res-table .formula { font-size:.72rem; color:var(--text-dim); font-family:monospace; }
+
+/* ── Section titles ── */
+.sec-title {
+  font-size:.95rem; font-weight:700; padding-bottom:10px;
+  border-bottom:1px solid var(--border); margin-bottom:14px;
+  display:flex; align-items:center; gap:8px;
+}
+
+/* ── Sorted display ── */
+.sorted-row {
+  background:var(--surface-2); border:1px solid var(--border);
+  border-radius:10px; padding:12px 14px; font-family:monospace;
+  font-size:.85rem; line-height:1.8; word-break:break-all;
+  max-height:100px; overflow-y:auto;
+}
+
+/* ── Number Analysis ── */
+.analysis-grid {
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(110px,1fr));
+  gap:8px; margin-top:8px;
+}
+.ana-box {
+  background:var(--surface-2); border:1px solid var(--border);
+  border-radius:10px; padding:12px 8px; text-align:center;
+}
+.ana-box .an { font-size:1.1rem; font-weight:800; color:var(--accent-2); }
+.ana-box .al { font-size:.7rem; color:var(--text-dim); margin-top:4px; font-weight:600; }
+
+/* ── Charts ── */
+.chart-tabs { display:flex; gap:6px; margin-bottom:12px; }
+.chart-tab {
+  padding:7px 14px; border-radius:999px; border:1px solid var(--border);
+  background:var(--surface); color:var(--text-dim); font-size:.8rem;
+  font-weight:600; cursor:pointer; font-family:var(--font); transition:.2s;
+}
+.chart-tab.active { background:linear-gradient(135deg,var(--accent),#5A3FE0); color:#fff; border-color:transparent; }
+.chart-wrap { position:relative; height:260px; }
+
+/* ── Action buttons ── */
+.act-btn {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:8px 14px; border-radius:999px; border:1px solid var(--border);
+  background:var(--surface); color:var(--text); font-size:.8rem;
+  font-weight:600; cursor:pointer; font-family:var(--font); transition:.2s;
+  white-space:nowrap;
+}
+.act-btn:hover { background:rgba(124,92,252,.2); border-color:var(--accent); color:var(--accent); }
+.act-btn.primary { background:linear-gradient(135deg,var(--accent),#5A3FE0); color:#fff; border-color:transparent; box-shadow:0 4px 14px rgba(124,92,252,.35); }
+.act-btn.primary:hover { box-shadow:0 6px 22px rgba(124,92,252,.55); transform:translateY(-1px); }
+.act-btn.success { background:rgba(22,192,121,.15); color:#16C079; border-color:rgba(22,192,121,.3); }
+.act-btn.danger  { color:#F87171; border-color:rgba(248,113,113,.4); }
+.act-btn.danger:hover { background:rgba(248,113,113,.15); }
+.act-btn.wa  { color:#25D366; border-color:rgba(37,211,102,.4); }
+.act-btn.wa:hover  { background:rgba(37,211,102,.15); }
+.act-btn.tg  { color:#229ED9; border-color:rgba(34,158,217,.4); }
+.act-btn.tg:hover  { background:rgba(34,158,217,.15); }
+.act-btn.tw  { color:#1DA1F2; border-color:rgba(29,161,242,.4); }
+.act-btn.tw:hover  { background:rgba(29,161,242,.15); }
+.act-btn.fb  { color:#1877F2; border-color:rgba(24,119,242,.4); }
+.act-btn.fb:hover  { background:rgba(24,119,242,.15); }
+
+/* ── Error / Warning ── */
+.err-box {
+  padding:10px 14px; border-radius:9px; font-size:.84rem; font-weight:600;
+  background:rgba(248,113,113,.1); border:1px solid rgba(248,113,113,.3);
+  color:#F87171; display:none; margin-top:10px;
+}
+.err-box.show { display:block; animation:fadeUp .2s ease; }
+.warn-box {
+  padding:10px 14px; border-radius:9px; font-size:.82rem;
+  background:rgba(251,191,36,.1); border:1px solid rgba(251,191,36,.3);
+  color:#FBBF24; display:none; margin-top:8px;
+}
+.warn-box.show { display:block; }
+
+/* ── History ── */
+.history-list { display:flex; flex-direction:column; gap:8px; margin-top:8px; }
+.hist-item {
+  display:flex; justify-content:space-between; align-items:center;
+  background:var(--surface-2); border:1px solid var(--border);
+  border-radius:10px; padding:10px 14px; gap:10px; flex-wrap:wrap;
+  cursor:pointer; transition:.15s;
+}
+.hist-item:hover { border-color:var(--accent); }
+.hist-item .hi-stats { font-size:.8rem; color:var(--text-dim); }
+.hist-item .hi-input { font-family:monospace; font-size:.78rem; color:var(--text-dim); max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.hist-item .hi-time { font-size:.72rem; color:var(--text-dim); flex-shrink:0; }
+.hist-restore { font-size:.72rem; padding:4px 10px; border-radius:999px; border:1px solid var(--border); background:none; color:var(--text-dim); cursor:pointer; font-family:var(--font); transition:.15s; }
+.hist-restore:hover { border-color:var(--accent); color:var(--accent); }
+
+/* ── Toast ── */
+.toast {
+  position:fixed; bottom:24px; right:24px; z-index:999;
+  background:var(--accent); color:#fff; padding:10px 20px;
+  border-radius:999px; font-size:.85rem; font-weight:700;
+  box-shadow:0 4px 20px rgba(124,92,252,.45);
+  animation:toastIn .3s ease both; pointer-events:none;
+}
+@keyframes toastIn { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+/* ── Related Tools ── */
+.related-grid {
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:10px; margin-top:10px;
+}
+.related-card {
+  display:flex; align-items:center; gap:10px;
+  background:var(--surface-2); border:1px solid var(--border);
+  border-radius:10px; padding:12px 14px; text-decoration:none;
+  color:var(--text); font-size:.82rem; font-weight:600;
+  transition:.2s;
+}
+.related-card:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-1px); }
+.related-card .rc-icon { font-size:1.2rem; }
+
+/* ── FAQ ── */
+.faq-list { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+.faq-item { border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+.faq-q {
+  padding:12px 16px; font-weight:700; font-size:.87rem;
+  cursor:pointer; display:flex; justify-content:space-between; align-items:center;
+  background:var(--surface-2); transition:.15s; gap:10px;
+}
+.faq-q:hover { background:rgba(124,92,252,.1); }
+.faq-arrow { transition:.3s; font-style:normal; flex-shrink:0; }
+.faq-item.open .faq-arrow { transform:rotate(180deg); }
+.faq-a { display:none; padding:12px 16px; font-size:.84rem; color:var(--text-dim); line-height:1.75; border-top:1px solid var(--border); }
+.faq-item.open .faq-a { display:block; animation:fadeUp .2s ease; }
+
+/* ── Animations ── */
+@keyframes fadeUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+.sbox { animation:fadeUp .35s ease both; }
+.panel { animation:fadeUp .3s ease both; }
+
+/* ── Author box ── */
+.author-box {
+  display:flex; align-items:center; gap:14px; padding:14px 18px;
+  background:var(--surface-2); border:1px solid var(--border);
+  border-radius:12px; margin-top:16px;
+}
+.author-avatar {
+  width:44px; height:44px; border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.2rem; flex-shrink:0;
+}
+.author-info .name { font-weight:700; font-size:.88rem; }
+.author-info .meta { font-size:.75rem; color:var(--text-dim); margin-top:2px; }
+
+/* ── Percentile input ── */
+.pct-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:10px; }
+.pct-row input[type=number] {
+  width:90px; padding:8px 10px; border-radius:8px;
+  border:1px solid var(--border); background:var(--surface-2);
+  color:var(--text); font-family:monospace; font-size:.88rem;
+}
+.pct-result { font-size:.9rem; font-weight:700; color:var(--accent); margin-top:6px; }
+
+/* ── Mobile ── */
+@media(max-width:600px) {
+  .act-btn { padding:8px 11px; font-size:.76rem; }
+  .sbox .sn { font-size:1.05rem; }
+  .res-table td, .res-table th { padding:7px 9px; }
+  .chart-wrap { height:210px; }
+  .author-box { flex-direction:column; text-align:center; }
+}
+
+@media print {
+  .site-header, .ac-toolbar, .act-btn, footer, .chart-tabs,
+  .breadcrumb { display:none !important; }
+  .res-table td, .res-table th { color:#000 !important; }
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../index.html">🏠 Home</a>
+    <span>›</span>
+    <a href="../category/calculator.html">Calculators</a>
+    <span>›</span>
+    <span>Average Calculator</span>
+  </nav>
+
+  <div class="tool-header">
+    <h1>📊 Average Calculator</h1>
+    <p>Enter numbers to instantly calculate Mean, Median, Mode, Standard Deviation, Variance, Quartiles & 20+ statistics with interactive charts.</p>
+  </div>
+
+  <!-- ── TOOLBAR ── -->
+  <div class="ac-toolbar" role="toolbar" aria-label="Calculator settings">
+    <label for="precSelect">Decimals:</label>
+    <select id="precSelect" aria-label="Decimal precision">
+      <option value="0">0</option>
+      <option value="2" selected>2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+
+    <label for="sampleBtn" style="margin-left:8px"></label>
+    <button class="act-btn" id="sampleBtn" aria-label="Load sample data">📋 Sample Data</button>
+    <button class="act-btn" id="rndBtn"    aria-label="Generate random numbers">🎲 Random</button>
+    <select id="rndCount" aria-label="Random number count">
+      <option value="10">10 nums</option>
+      <option value="20">20 nums</option>
+      <option value="50">50 nums</option>
+      <option value="100">100 nums</option>
+    </select>
+
+    <div class="theme-btns" role="group" aria-label="Theme switcher">
+      <button class="theme-btn active" data-theme="dark"  aria-label="Dark theme">🌙 Dark</button>
+      <button class="theme-btn"        data-theme="light" aria-label="Light theme">☀️ Light</button>
+      <button class="theme-btn"        data-theme="auto"  aria-label="Auto theme">🖥 Auto</button>
+    </div>
+  </div>
+
+  <!-- ── INPUT PANEL ── -->
+  <div class="panel">
+    <div class="field">
+      <label for="numInput">Enter numbers <small style="font-weight:400;color:var(--text-dim)">(comma, space, tab or new-line separated)</small></label>
+      <textarea id="numInput"
+        placeholder="e.g.  10, 20, 30  or  10 20 30  or one per line"
+        aria-label="Enter numbers to calculate statistics"
+        inputmode="decimal"
+        autocomplete="off" spellcheck="false">10, 20, 30, 40, 50</textarea>
+    </div>
+
+    <!-- Weighted Average toggle -->
+    <div style="display:flex;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap">
+      <label style="display:flex;align-items:center;gap:7px;font-size:.85rem;cursor:pointer">
+        <input type="checkbox" id="weightedToggle" style="accent-color:var(--accent)">
+        Enable Weighted Average
+      </label>
+    </div>
+    <div id="weightSection" style="display:none;margin-top:10px">
+      <div class="sec-title" style="font-size:.85rem">⚖️ Weights (one per value)</div>
+      <div id="weightTableWrap">
+        <table id="weightTable">
+          <thead><tr><th>#</th><th>Value</th><th>Weight</th></tr></thead>
+          <tbody id="weightBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="errBox"  class="err-box"  role="alert" aria-live="polite"></div>
+    <div id="warnBox" class="warn-box" role="status" aria-live="polite"></div>
+
+    <!-- Buttons -->
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn" id="calcBtn" aria-label="Calculate statistics">Calculate</button>
+      <button class="btn secondary" id="resetBtn" aria-label="Reset all">🔄 Reset</button>
+    </div>
+    <p id="statusMsg" style="margin-top:8px;color:var(--text-dim);font-size:.82rem"></p>
+  </div>
+
+  <!-- ── RESULTS — STAT BOXES ── -->
+  <div id="resultsWrap" style="display:none">
+
+    <!-- Core 6 -->
+    <div class="panel" style="margin-top:10px">
+      <div class="sec-title">📈 Core Statistics</div>
+      <div class="stat-grid-3" id="coreGrid"></div>
+    </div>
+
+    <!-- Advanced stats -->
+    <div class="panel" style="margin-top:10px">
+      <div class="sec-title">🔬 Advanced Statistics</div>
+      <div class="stat-grid-3" id="advGrid"></div>
+    </div>
+
+    <!-- Full results table -->
+    <div class="panel" style="margin-top:10px">
+      <div class="sec-title">📋 Complete Results Table</div>
+      <div class="res-table-wrap">
+        <table class="res-table" aria-label="Statistics results">
+          <thead>
+            <tr>
+              <th>Statistic</th>
+              <th>Formula</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody id="resTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Sorted Values -->
+    <div class="panel" style="margin-top:10px">
+      <div class="sec-title">🔢 Sorted Values</div>
+      <div style="font-size:.8rem;color:var(--text-dim);margin-bottom:6px">Ascending Order</div>
+      <div class="sorted-row" id="sortedAsc"></div>
+      <div style="font-size:.8rem;color:var(--text-dim);margin:10px 0 6px">Descending Order</div>
+      <div class="sorted-row" id="sortedDesc"></div>
+    </div>
+
+    <!-- Number Analysis -->
+    <div class="panel" style="margin-top:10px">
+      <div class="sec-title">🔍 Number Analysis</div>
+      <div class="analysis-grid" id="anaGrid"></div>
+    </div>
+
+    <!-- Percentile -->
+    <div class="panel" style="margin-top:10px">
+      <div class="sec-title">📐 Percentile Lookup</div>
+      <div class="pct-row">
+        <label for="pctInput" style="font-size:.85rem;font-weight:600">Find percentile value at:</label>
+        <input type="number" id="pctInput" min="1" max="99" value="90" aria-label="Percentile to calculate">
+        <span style="font-size:.82rem">%</span>
+        <button class="act-btn" id="pctCalcBtn">Calculate</button>
+      </div>
+      <div class="pct-result" id="pctResult"></div>
+    </div>
+
+    <!-- Charts -->
+    <div class="panel" style="margin-top:10px">
+      <div class="sec-title">📊 Charts</div>
+      <div class="chart-tabs" role="tablist" aria-label="Chart type">
+        <button class="chart-tab active" data-chart="histogram" role="tab" aria-selected="true">Histogram</button>
+        <button class="chart-tab"        data-chart="bar"       role="tab" aria-selected="false">Bar Chart</button>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="chartCanvas" aria-label="Data visualization chart"></canvas>
+      </div>
+    </div>
+
+    <!-- Export & Share -->
+    <div class="panel" style="margin-top:10px">
+      <div class="sec-title">💾 Export & Share</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="act-btn primary" id="dlCsv" aria-label="Download CSV">⬇ CSV</button>
+        <button class="act-btn primary" id="dlTxt" aria-label="Download TXT">⬇ TXT</button>
+        <button class="act-btn primary" id="dlPdf" aria-label="Download PDF">⬇ PDF</button>
+        <button class="act-btn success" id="copyRes" aria-label="Copy results">📋 Copy</button>
+        <span style="color:var(--border);align-self:center">|</span>
+        <button class="act-btn wa" id="shareWa" aria-label="Share on WhatsApp">WhatsApp</button>
+        <button class="act-btn tg" id="shareTg" aria-label="Share on Telegram">Telegram</button>
+        <button class="act-btn tw" id="shareTw" aria-label="Share on Twitter">X / Twitter</button>
+        <button class="act-btn fb" id="shareFb" aria-label="Share on Facebook">Facebook</button>
+        <button class="act-btn"    id="copyLink" aria-label="Copy link">🔗 Link</button>
+      </div>
+    </div>
+
+  </div><!-- /resultsWrap -->
+
+  <!-- ── HISTORY ── -->
+  <div class="panel" style="margin-top:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+      <div class="sec-title" style="margin:0;border:none;padding:0">📜 Calculation History <small style="font-weight:400;font-size:.75rem;color:var(--text-dim)">(last 20)</small></div>
+      <button class="act-btn danger" id="clearHistBtn" aria-label="Clear history">🗑 Clear</button>
+    </div>
+    <div class="history-list" id="historyList">
+      <p style="color:var(--text-dim);font-size:.85rem">No history yet. Calculate something to see it here.</p>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+
+<!-- ── INFO SECTION ── -->
+<div class="info-wrap">
+  <div class="info-section">
+
+    <!-- ENGLISH -->
+    <div class="info-block">
+      <h2>ℹ️ About This Tool — Advanced Average Calculator</h2>
+
+      <p>Averages and related statistics appear constantly in everyday life — calculating a student's grade point average, analyzing monthly sales figures, tracking employee performance, or understanding survey results. This tool goes far beyond a simple mean calculator and provides a complete statistical summary: 20+ statistics including Mean, Median, Mode, Standard Deviation, Variance, Geometric Mean, Harmonic Mean, Weighted Average, Quartiles, IQR, Percentiles, and Mean Absolute Deviation — all in one place, instantly, without any signup or installation.</p>
+
+      <p>The <strong>Mean</strong> (arithmetic average) is the sum of all values divided by the count. It's the most familiar form of average and works well when data is evenly distributed without extreme outliers. The <strong>Median</strong> is the middle value in a sorted list, making it resistant to skewing by unusually high or low values — this is why median household income is considered a better economic indicator than mean income. The <strong>Mode</strong> is the most frequently occurring value, useful in retail (most popular price point), education (most common score), and manufacturing (most common defect type).</p>
+
+      <p>Advanced statistics like <strong>Standard Deviation</strong> and <strong>Variance</strong> measure how spread out data is from the mean. A low standard deviation means values cluster tightly; a high one means they are widely dispersed. These are essential in quality control, financial risk assessment, academic research, and scientific measurement. <strong>Geometric Mean</strong> is ideal for growth rates, investment returns, and compound interest calculations, because it correctly handles multiplicative relationships. <strong>Harmonic Mean</strong> works best for rates and speeds — for example, if you drive 60 km/h one way and 40 km/h on the return trip, harmonic mean gives the correct average speed.</p>
+
+      <p><strong>Quartiles</strong> divide sorted data into four equal parts. Q1 (25th percentile) marks the lower quarter, Q2 is the median, and Q3 (75th percentile) marks the upper quarter. The <strong>Interquartile Range (IQR = Q3 − Q1)</strong> represents the middle 50% of data and is the standard method for detecting outliers in a dataset. Any value more than 1.5 × IQR above Q3 or below Q1 is conventionally considered an outlier.</p>
+
+      <p>The <strong>Weighted Average</strong> feature is particularly useful when different values should contribute differently to the overall average. Classic examples: calculating a final exam grade where different components carry different weights (assignments 20%, midterm 30%, final 50%), calculating portfolio returns where stocks have different capital allocations, or computing a weighted GPA where different subjects carry different credit hours.</p>
+
+      <p>This tool also includes interactive <strong>Histogram</strong> and <strong>Bar Chart</strong> visualizations that update automatically as you enter data. The histogram groups values into bins and shows distribution, helping you identify skewness, bimodal distributions, and outliers visually. Charts can be combined with export to CSV for further analysis in Excel or Google Sheets.</p>
+
+      <p>For competitive exam aspirants, teachers, and students: use this tool to instantly find mean marks, identify the modal score, understand the spread of performance via standard deviation, and detect outliers in test results. For business professionals: analyze sales data, find median transaction values, and export results as CSV for reporting. For researchers: get complete descriptive statistics for small datasets without needing Python, R, or Excel's data analysis toolpak.</p>
+
+      <p>All calculations happen entirely in your browser. Your data is never transmitted to any server. The last 20 calculations are saved locally in your browser using LocalStorage, so you can refer back to previous results without recalculating. You can clear this history anytime with one click.</p>
+
+      <h3>📖 How to Use:</h3>
+      <ol>
+        <li>Enter numbers in the input box — separate with commas, spaces, tabs, or new lines.</li>
+        <li>Results update live as you type. Click "Calculate" for a final confirmation.</li>
+        <li>Switch between Core Statistics, Advanced Stats, Charts, and Number Analysis tabs.</li>
+        <li>Use Percentile Lookup to find the value at any percentile (e.g., 90th percentile).</li>
+        <li>Enable "Weighted Average" to assign different weights to each number.</li>
+        <li>Export as CSV, TXT, or PDF. Share on WhatsApp, Telegram, or Twitter.</li>
+      </ol>
+
+      <h3>📌 Real-Life Use Cases:</h3>
+      <ul>
+        <li><strong>Education:</strong> Calculate class average, find median marks, detect outlier scores, compute weighted GPA.</li>
+        <li><strong>Business:</strong> Average sales per day, median transaction value, standard deviation of revenue.</li>
+        <li><strong>Finance:</strong> Portfolio average returns, geometric mean for compound growth, risk via variance.</li>
+        <li><strong>Science & Research:</strong> Descriptive statistics for experimental data, identify distribution patterns.</li>
+        <li><strong>Government Exams:</strong> Find cut-off percentile, compare your score to class average, analyze merit list data.</li>
+        <li><strong>Sports:</strong> Average runs, batting median, performance standard deviation across seasons.</li>
+        <li><strong>HR & Payroll:</strong> Average salary, salary range, detect pay outliers via IQR.</li>
+      </ul>
+
+      <h3>🧮 Formulas Used:</h3>
+      <ul>
+        <li><strong>Mean:</strong> Σx / n</li>
+        <li><strong>Median:</strong> Middle value of sorted array</li>
+        <li><strong>Mode:</strong> Most frequent value(s)</li>
+        <li><strong>Standard Deviation:</strong> √(Σ(x−μ)² / n)</li>
+        <li><strong>Variance:</strong> Σ(x−μ)² / n</li>
+        <li><strong>Geometric Mean:</strong> (x₁ × x₂ × ... × xₙ)^(1/n)</li>
+        <li><strong>Harmonic Mean:</strong> n / Σ(1/xᵢ)</li>
+        <li><strong>IQR:</strong> Q3 − Q1</li>
+        <li><strong>MAD:</strong> Σ|x − μ| / n</li>
+      </ul>
+
+      <!-- Author box -->
+      <div class="author-box">
+        <div class="author-avatar">📊</div>
+        <div class="author-info">
+          <div class="name">ApneSoftware Tools Team</div>
+          <div class="meta">Last Updated: June 2026 &nbsp;·&nbsp; Version 2.0 &nbsp;·&nbsp; ~5 min read</div>
+        </div>
+      </div>
+
+      <!-- Related tools -->
+      <h3 style="margin-top:20px">🔗 Related Tools</h3>
+      <div class="related-grid">
+        <a class="related-card" href="percentage-calculator.html"><span class="rc-icon">%</span> Percentage Calculator</a>
+        <a class="related-card" href="age-calculator.html"><span class="rc-icon">🎂</span> Age Calculator</a>
+        <a class="related-card" href="bmi-calculator.html"><span class="rc-icon">⚖️</span> BMI Calculator</a>
+        <a class="related-card" href="emi-calculator.html"><span class="rc-icon">🏦</span> EMI Calculator</a>
+        <a class="related-card" href="compound-interest-calculator.html"><span class="rc-icon">📈</span> Compound Interest</a>
+        <a class="related-card" href="date-difference-calculator.html"><span class="rc-icon">📅</span> Date Difference</a>
+        <a class="related-card" href="body-fat-calculator.html"><span class="rc-icon">🏃</span> Body Fat Calculator</a>
+      </div>
+
+      <!-- FAQ English -->
+      <h3 style="margin-top:20px">❓ Frequently Asked Questions</h3>
+      <div class="faq-list" id="faqEn"></div>
+    </div>
+
+    <hr class="info-divider">
+
+    <!-- HINDI -->
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में — Advanced Average Calculator</h2>
+
+      <p>Averages और related statistics रोज़मर्रा की ज़िंदगी में हर जगह काम आती हैं — किसी student का grade point average calculate करना, monthly sales figures analyze करना, employee performance track करना, या survey results समझना। यह tool एक simple mean calculator से कहीं आगे जाता है और 20+ statistics का complete statistical summary देता है: Mean, Median, Mode, Standard Deviation, Variance, Geometric Mean, Harmonic Mean, Weighted Average, Quartiles, IQR, Percentiles, और Mean Absolute Deviation — सब कुछ एक जगह, तुरंत, बिना किसी signup या installation के।</p>
+
+      <p><strong>Mean</strong> (arithmetic average) सभी values का योग count से भाग देने पर आता है। यह average का सबसे familiar रूप है और तब अच्छा काम करता है जब data evenly distributed हो और extreme outliers न हों। <strong>Median</strong> sorted list में बीच की value है, जो असामान्य रूप से ऊँची या नीची values से skewing के प्रति resistant है। <strong>Mode</strong> सबसे बार आने वाली value है — retail में सबसे popular price point, education में सबसे common score, manufacturing में सबसे common defect type जानने के लिए उपयोगी।</p>
+
+      <p><strong>Standard Deviation</strong> और <strong>Variance</strong> यह मापते हैं कि data mean से कितना spread है। Quality control, financial risk assessment, academic research, और scientific measurement में ये essential हैं। <strong>Geometric Mean</strong> growth rates, investment returns, और compound interest calculations के लिए ideal है। <strong>Harmonic Mean</strong> rates और speeds के लिए सबसे अच्छा है।</p>
+
+      <p><strong>Quartiles</strong> sorted data को चार equal parts में divide करते हैं। Q1 (25th percentile) lower quarter, Q2 median, और Q3 (75th percentile) upper quarter। <strong>IQR (Q3 − Q1)</strong> middle 50% data represent करता है और outliers detect करने का standard तरीका है।</p>
+
+      <p><strong>Weighted Average</strong> feature तब काम आता है जब अलग-अलग values को overall average में अलग-अलग importance मिलनी चाहिए — जैसे final exam grade calculate करना जहाँ assignments 20%, midterm 30%, final 50% weight रखते हों।</p>
+
+      <p>यह tool interactive <strong>Histogram</strong> और <strong>Bar Chart</strong> visualizations भी include करता है जो data enter करते ही automatically update होते हैं। Histogram values को bins में group करके distribution दिखाता है — skewness, bimodal distributions, और outliers visually identify करने में मदद करता है।</p>
+
+      <p>सभी calculations पूरी तरह आपके browser में होती हैं। आपका data कभी किसी server को नहीं भेजा जाता। अंतिम 20 calculations browser के LocalStorage में locally save होती हैं — आप पिछले results को बिना दोबारा calculate किए देख सकते हैं।</p>
+
+      <h3>📖 इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>Input box में numbers enter करें — commas, spaces, tabs, या new lines से अलग करें।</li>
+        <li>Type करते ही results live update होते हैं। Final confirmation के लिए "Calculate" click करें।</li>
+        <li>Core Statistics, Advanced Stats, Charts, और Number Analysis देखें।</li>
+        <li>किसी भी percentile (जैसे 90th) की value Percentile Lookup से निकालें।</li>
+        <li>"Weighted Average" enable करके हर number को अलग weight दें।</li>
+        <li>CSV, TXT, या PDF में export करें। WhatsApp, Telegram, Twitter पर share करें।</li>
+      </ol>
+
+      <h3>📌 Real-Life उपयोग:</h3>
+      <ul>
+        <li><strong>शिक्षा:</strong> Class average, median marks, outlier scores, weighted GPA calculate करें।</li>
+        <li><strong>व्यापार:</strong> Average daily sales, median transaction value, revenue standard deviation।</li>
+        <li><strong>Finance:</strong> Portfolio average returns, geometric mean for compound growth।</li>
+        <li><strong>सरकारी परीक्षाएं:</strong> Cut-off percentile find करें, अपना score class average से compare करें।</li>
+        <li><strong>Sports:</strong> Average runs, batting median, performance standard deviation।</li>
+        <li><strong>HR:</strong> Average salary, salary range, IQR से pay outliers detect करें।</li>
+      </ul>
+
+      <!-- FAQ Hindi -->
+      <h3 style="margin-top:16px">❓ अक्सर पूछे जाने वाले सवाल</h3>
+      <div class="faq-list" id="faqHi"></div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<!-- ── Toast container ── -->
+<div id="toastArea"></div>
+
+<script src="../assets/common.js"></script>
+<script>
+/* ============================================================
+   AVERAGE CALCULATOR — PREMIUM JAVASCRIPT v2.0
+   Modular, no duplicated logic, no memory leaks, ES6+
+   ============================================================ */
+'use strict';
+
+// ── DOM REFS ──────────────────────────────────────────────────
+const numInput       = document.getElementById('numInput');
+const calcBtn        = document.getElementById('calcBtn');
+const resetBtn       = document.getElementById('resetBtn');
+const errBox         = document.getElementById('errBox');
+const warnBox        = document.getElementById('warnBox');
+const statusMsg      = document.getElementById('statusMsg');
+const resultsWrap    = document.getElementById('resultsWrap');
+const coreGrid       = document.getElementById('coreGrid');
+const advGrid        = document.getElementById('advGrid');
+const resTableBody   = document.getElementById('resTableBody');
+const sortedAsc      = document.getElementById('sortedAsc');
+const sortedDesc     = document.getElementById('sortedDesc');
+const anaGrid        = document.getElementById('anaGrid');
+const historyList    = document.getElementById('historyList');
+const precSelect     = document.getElementById('precSelect');
+const weightedToggle = document.getElementById('weightedToggle');
+const weightSection  = document.getElementById('weightSection');
+const weightBody     = document.getElementById('weightBody');
+const pctInput       = document.getElementById('pctInput');
+const pctResult      = document.getElementById('pctResult');
+const chartCanvas    = document.getElementById('chartCanvas');
+
+// ── STATE ─────────────────────────────────────────────────────
+let currentNums    = [];
+let currentSorted  = [];
+let chartInstance  = null;
+let currentChart   = 'histogram';
+let liveTimeout    = null;
+let currentStats   = {};
+
+// ── PRECISION ─────────────────────────────────────────────────
+function prec() { return parseInt(precSelect.value, 10); }
+function fmt(n) {
+  if (!isFinite(n)) return 'N/A';
+  return parseFloat(n.toFixed(prec())).toLocaleString('en-IN', {
+    minimumFractionDigits: prec(), maximumFractionDigits: prec()
+  });
+}
+function fmtRaw(n) {
+  if (!isFinite(n)) return 'N/A';
+  return parseFloat(n.toFixed(prec()));
+}
+
+// ── TOAST ─────────────────────────────────────────────────────
+function toast(msg) {
+  const area = document.getElementById('toastArea');
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.textContent = msg;
+  area.appendChild(t);
+  setTimeout(() => t.remove(), 2600);
+}
+
+// ── ERROR / WARN ──────────────────────────────────────────────
+function showErr(msg) { errBox.textContent = msg; errBox.classList.add('show'); }
+function hideErr()    { errBox.classList.remove('show'); }
+function showWarn(msg){ warnBox.textContent = msg; warnBox.classList.add('show'); }
+function hideWarn()   { warnBox.classList.remove('show'); }
+
+// ── PARSE INPUT ───────────────────────────────────────────────
+function parseInput(raw) {
+  const tokens  = raw.split(/[\s,;\t\n]+/).filter(t => t.trim() !== '');
+  const valid   = [];
+  const invalid = [];
+  tokens.forEach(t => {
+    const n = parseFloat(t);
+    if (!isNaN(n) && isFinite(n)) valid.push(n);
+    else if (t !== '') invalid.push(t);
+  });
+  return { valid, invalid };
+}
+
+// ── STATS ENGINE ──────────────────────────────────────────────
+function calcStats(nums, weights) {
+  const n = nums.length;
+  if (n === 0) return null;
+
+  const sorted = [...nums].sort((a, b) => a - b);
+  const sum    = nums.reduce((a, b) => a + b, 0);
+  const mean   = sum / n;
+
+  // Median
+  let median;
+  if (n % 2 === 0) median = (sorted[n/2 - 1] + sorted[n/2]) / 2;
+  else median = sorted[Math.floor(n/2)];
+
+  // Mode
+  const freq = {};
+  nums.forEach(x => { freq[x] = (freq[x] || 0) + 1; });
+  const maxF  = Math.max(...Object.values(freq));
+  const modes = maxF > 1
+    ? Object.keys(freq).filter(k => freq[k] === maxF).map(Number).sort((a,b)=>a-b)
+    : [];
+
+  // Variance & SD (population)
+  const variance = nums.reduce((acc, x) => acc + (x - mean) ** 2, 0) / n;
+  const stdDev   = Math.sqrt(variance);
+
+  // Sample Variance & SD
+  const sampleVariance = n > 1 ? nums.reduce((acc,x)=>acc+(x-mean)**2,0)/(n-1) : 0;
+  const sampleSD       = Math.sqrt(sampleVariance);
+
+  // Geometric mean (positive only)
+  let geoMean = NaN;
+  if (nums.every(x => x > 0)) {
+    const logSum = nums.reduce((a, x) => a + Math.log(x), 0);
+    geoMean = Math.exp(logSum / n);
+  }
+
+  // Harmonic mean (positive only)
+  let harmMean = NaN;
+  if (nums.every(x => x > 0)) {
+    harmMean = n / nums.reduce((a, x) => a + 1/x, 0);
+  }
+
+  // Quartiles (inclusive method)
+  function quartile(arr, q) {
+    const pos = (arr.length - 1) * q;
+    const lo  = Math.floor(pos);
+    const hi  = Math.ceil(pos);
+    return arr[lo] + (arr[hi] - arr[lo]) * (pos - lo);
+  }
+  const q1  = quartile(sorted, 0.25);
+  const q3  = quartile(sorted, 0.75);
+  const iqr = q3 - q1;
+
+  // MAD
+  const mad = nums.reduce((a, x) => a + Math.abs(x - mean), 0) / n;
+
+  // Range, Min, Max
+  const min   = sorted[0];
+  const max   = sorted[n - 1];
+  const range = max - min;
+
+  // Weighted average
+  let weightedAvg = NaN;
+  if (weights && weights.length === n) {
+    const wSum  = weights.reduce((a, b) => a + b, 0);
+    if (wSum !== 0) weightedAvg = weights.reduce((a, w, i) => a + w * nums[i], 0) / wSum;
+  }
+
+  // Skewness (Pearson's 2nd)
+  const skewness = stdDev !== 0 ? 3 * (mean - median) / stdDev : 0;
+
+  // Kurtosis (excess)
+  let kurtosis = NaN;
+  if (n >= 4 && stdDev !== 0) {
+    kurtosis = nums.reduce((a, x) => a + ((x - mean)/stdDev)**4, 0) / n - 3;
+  }
+
+  // Number analysis
+  const positives  = nums.filter(x => x > 0).length;
+  const negatives  = nums.filter(x => x < 0).length;
+  const zeros      = nums.filter(x => x === 0).length;
+  const evens      = nums.filter(x => Number.isInteger(x) && x % 2 === 0).length;
+  const odds       = nums.filter(x => Number.isInteger(x) && x % 2 !== 0).length;
+  const dupMap     = {};
+  nums.forEach(x => { dupMap[x] = (dupMap[x]||0)+1; });
+  const duplicates = Object.values(dupMap).filter(v => v > 1).reduce((a,v) => a + v, 0);
+  const unique     = Object.keys(dupMap).length;
+
+  return {
+    n, sum, mean, median,
+    modes, modeStr: modes.length ? modes.join(', ') : '— (no mode)',
+    min, max, range,
+    variance, stdDev, sampleVariance, sampleSD,
+    geoMean, harmMean, q1, median: median, q3, iqr, mad,
+    weightedAvg, skewness, kurtosis,
+    sorted,
+    positives, negatives, zeros, evens, odds, duplicates, unique,
+    freq
+  };
+}
+
+// ── PERCENTILE ────────────────────────────────────────────────
+function calcPercentile(sorted, p) {
+  if (!sorted || sorted.length === 0) return NaN;
+  p = Math.max(0, Math.min(100, p));
+  const idx = (p / 100) * (sorted.length - 1);
+  const lo  = Math.floor(idx);
+  const hi  = Math.ceil(idx);
+  return sorted[lo] + (sorted[hi] - sorted[lo]) * (idx - lo);
+}
+
+// ── BUILD STAT BOX ────────────────────────────────────────────
+function sbox(label, value, parent) {
+  const d = document.createElement('div');
+  d.className = 'sbox';
+  d.innerHTML = `<div class="sn">${value}</div><div class="sl">${label}</div>`;
+  parent.appendChild(d);
+}
+
+// ── RENDER ────────────────────────────────────────────────────
+function renderResults(nums, stats, weights) {
+  resultsWrap.style.display = 'block';
+
+  // ── Core Grid ──
+  coreGrid.innerHTML = '';
+  [
+    ['Mean',   fmt(stats.mean)],
+    ['Median', fmt(stats.median)],
+    ['Mode',   stats.modeStr],
+    ['Range',  fmt(stats.range)],
+    ['Sum',    fmt(stats.sum)],
+    ['Count',  stats.n]
+  ].forEach(([l, v]) => sbox(l, v, coreGrid));
+
+  // ── Advanced Grid ──
+  advGrid.innerHTML = '';
+  [
+    ['Min',              fmt(stats.min)],
+    ['Max',              fmt(stats.max)],
+    ['Std Dev (Pop)',    fmt(stats.stdDev)],
+    ['Variance (Pop)',   fmt(stats.variance)],
+    ['Std Dev (Sample)', fmt(stats.sampleSD)],
+    ['Geometric Mean',   isFinite(stats.geoMean)  ? fmt(stats.geoMean)  : 'N/A (needs >0)'],
+    ['Harmonic Mean',    isFinite(stats.harmMean) ? fmt(stats.harmMean) : 'N/A (needs >0)'],
+    ['Q1 (25th pct)',    fmt(stats.q1)],
+    ['Q2 = Median',      fmt(stats.median)],
+    ['Q3 (75th pct)',    fmt(stats.q3)],
+    ['IQR',              fmt(stats.iqr)],
+    ['MAD',              fmt(stats.mad)],
+    ['Skewness',         fmt(stats.skewness)],
+    ['Kurtosis',         isFinite(stats.kurtosis) ? fmt(stats.kurtosis) : 'N/A (need ≥4)'],
+    ['Weighted Avg',     isFinite(stats.weightedAvg) ? fmt(stats.weightedAvg) : '— (not enabled)']
+  ].forEach(([l, v]) => sbox(l, v, advGrid));
+
+  // ── Result Table ──
+  const rows = [
+    ['Mean (Arithmetic)',   'Σx / n',              fmt(stats.mean)],
+    ['Median',              'Middle of sorted',    fmt(stats.median)],
+    ['Mode',                'Most frequent',       stats.modeStr],
+    ['Sum',                 'Σx',                  fmt(stats.sum)],
+    ['Count',               'n',                   stats.n],
+    ['Min',                 'min(x)',               fmt(stats.min)],
+    ['Max',                 'max(x)',               fmt(stats.max)],
+    ['Range',               'Max − Min',            fmt(stats.range)],
+    ['Variance (Pop)',       'Σ(x−μ)²/n',           fmt(stats.variance)],
+    ['Std Dev (Pop)',        '√(Σ(x−μ)²/n)',        fmt(stats.stdDev)],
+    ['Variance (Sample)',    'Σ(x−μ)²/(n−1)',       fmt(stats.sampleVariance)],
+    ['Std Dev (Sample)',     '√(Σ(x−μ)²/(n−1))',   fmt(stats.sampleSD)],
+    ['Geometric Mean',       '(Πxᵢ)^(1/n)',         isFinite(stats.geoMean)  ? fmt(stats.geoMean)  : 'N/A'],
+    ['Harmonic Mean',        'n/Σ(1/xᵢ)',           isFinite(stats.harmMean) ? fmt(stats.harmMean) : 'N/A'],
+    ['Q1 (25th Percentile)', 'quartile(0.25)',       fmt(stats.q1)],
+    ['Q2 (Median)',          'quartile(0.50)',       fmt(stats.median)],
+    ['Q3 (75th Percentile)', 'quartile(0.75)',       fmt(stats.q3)],
+    ['IQR',                  'Q3 − Q1',              fmt(stats.iqr)],
+    ['Mean Abs Deviation',   'Σ|x−μ|/n',            fmt(stats.mad)],
+    ['Skewness',             '3(μ−Md)/σ',           fmt(stats.skewness)],
+    ['Kurtosis (excess)',    'Σ((x−μ)/σ)⁴/n − 3',  isFinite(stats.kurtosis) ? fmt(stats.kurtosis) : 'N/A'],
+    ['Weighted Average',     'Σ(xᵢwᵢ)/Σwᵢ',        isFinite(stats.weightedAvg) ? fmt(stats.weightedAvg) : '—']
+  ];
+  resTableBody.innerHTML = rows.map(([name, formula, val]) =>
+    `<tr><td>${name}</td><td class="formula">${formula}</td><td class="val-cell">${val}</td></tr>`
+  ).join('');
+
+  // ── Sorted ──
+  sortedAsc.textContent  = stats.sorted.join('  ');
+  sortedDesc.textContent = [...stats.sorted].reverse().join('  ');
+
+  // ── Number Analysis ──
+  anaGrid.innerHTML = '';
+  [
+    [stats.min,        'Lowest'],
+    [stats.max,        'Highest'],
+    [fmt(stats.range), 'Difference'],
+    [stats.positives,  'Positives'],
+    [stats.negatives,  'Negatives'],
+    [stats.zeros,      'Zeros'],
+    [stats.evens,      'Even Count'],
+    [stats.odds,       'Odd Count'],
+    [stats.duplicates, 'Duplicates'],
+    [stats.unique,     'Unique']
+  ].forEach(([v, l]) => {
+    const d = document.createElement('div');
+    d.className = 'ana-box';
+    d.innerHTML = `<div class="an">${v}</div><div class="al">${l}</div>`;
+    anaGrid.appendChild(d);
+  });
+
+  // ── Chart ──
+  renderChart(nums, stats);
+
+  // ── Percentile ──
+  updatePercentile();
+
+  // ── Status ──
+  statusMsg.textContent = `✅ ${stats.n} number${stats.n !== 1 ? 's' : ''} processed.`;
+}
+
+// ── CHART ─────────────────────────────────────────────────────
+function renderChart(nums, stats) {
+  if (!nums || nums.length === 0) return;
+  if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+
+  const ctx = chartCanvas.getContext('2d');
+  const colors = {
+    bg   : 'rgba(124,92,252,0.55)',
+    border: 'rgba(124,92,252,1)',
+    bg2  : 'rgba(22,192,121,0.55)',
+    bd2  : 'rgba(22,192,121,1)'
+  };
+
+  if (currentChart === 'histogram') {
+    // Build bins
+    const binCount = Math.max(5, Math.ceil(Math.sqrt(nums.length)));
+    const binSize  = stats.range / binCount || 1;
+    const bins     = Array.from({length: binCount}, (_, i) => ({
+      label : `${fmtRaw(stats.min + i*binSize)}–${fmtRaw(stats.min + (i+1)*binSize)}`,
+      count : 0
+    }));
+    nums.forEach(x => {
+      let idx = Math.floor((x - stats.min) / binSize);
+      if (idx >= binCount) idx = binCount - 1;
+      bins[idx].count++;
+    });
+    chartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: bins.map(b => b.label),
+        datasets: [{ label:'Frequency', data: bins.map(b => b.count),
+          backgroundColor: colors.bg, borderColor: colors.border, borderWidth:1.5, borderRadius:4 }]
+      },
+      options: chartOptions('Histogram — Value Distribution', 'Range', 'Frequency')
+    });
+  } else {
+    // Bar chart: each value
+    const display = nums.slice(0, 100); // cap for performance
+    chartInstance = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: display.map((_, i) => `#${i+1}`),
+        datasets: [{ label:'Values', data: display,
+          backgroundColor: display.map(v => v >= stats.mean ? colors.bg2 : colors.bg),
+          borderColor: display.map(v => v >= stats.mean ? colors.bd2 : colors.border),
+          borderWidth:1.5, borderRadius:4 }]
+      },
+      options: chartOptions('Bar Chart — All Values (green ≥ mean)', 'Index', 'Value')
+    });
+  }
+}
+
+function chartOptions(title, xLabel, yLabel) {
+  return {
+    responsive: true, maintainAspectRatio: false, animation: { duration: 500 },
+    plugins: {
+      legend: { display: false },
+      title:  { display: true, text: title, color: 'rgba(255,255,255,.7)', font:{size:12} }
+    },
+    scales: {
+      x: { title:{display:true,text:xLabel,color:'rgba(255,255,255,.5)',font:{size:10}},
+           ticks:{color:'rgba(255,255,255,.6)',maxRotation:45},
+           grid:{color:'rgba(255,255,255,.07)'} },
+      y: { title:{display:true,text:yLabel,color:'rgba(255,255,255,.5)',font:{size:10}},
+           ticks:{color:'rgba(255,255,255,.6)'},
+           grid:{color:'rgba(255,255,255,.07)'} }
+    }
+  };
+}
+
+// ── PERCENTILE LOOKUP ─────────────────────────────────────────
+function updatePercentile() {
+  if (currentSorted.length === 0) return;
+  const p = parseFloat(pctInput.value);
+  if (isNaN(p) || p < 0 || p > 100) { pctResult.textContent = 'Enter a value 0–100'; return; }
+  const val = calcPercentile(currentSorted, p);
+  pctResult.textContent = `The ${p}th percentile value is: ${fmt(val)}`;
+}
+document.getElementById('pctCalcBtn').addEventListener('click', updatePercentile);
+pctInput.addEventListener('input', updatePercentile);
+
+// ── WEIGHTED TABLE ────────────────────────────────────────────
+function buildWeightTable(nums) {
+  weightBody.innerHTML = nums.slice(0, 50).map((v, i) =>
+    `<tr>
+      <td>${i+1}</td>
+      <td>${v}</td>
+      <td><input type="number" class="wt-inp" data-idx="${i}" value="1" min="0" step="any" aria-label="Weight for ${v}"></td>
+    </tr>`
+  ).join('');
+}
+function getWeights(nums) {
+  const inputs = document.querySelectorAll('.wt-inp');
+  if (inputs.length !== Math.min(nums.length, 50)) return null;
+  return Array.from(inputs).map(inp => parseFloat(inp.value) || 0);
+}
+
+// ── HISTORY ───────────────────────────────────────────────────
+const HIST_KEY = 'ac_history_v2';
+function loadHistory() { try { return JSON.parse(localStorage.getItem(HIST_KEY)) || []; } catch { return []; } }
+function saveHistory(h){ try { localStorage.setItem(HIST_KEY, JSON.stringify(h.slice(0,20))); } catch {} }
+
+function pushHistory(input, stats) {
+  const h = loadHistory();
+  h.unshift({
+    input: input.slice(0, 120),
+    mean: fmtRaw(stats.mean),
+    median: fmtRaw(stats.median),
+    n: stats.n,
+    time: new Date().toLocaleString('en-IN')
+  });
+  saveHistory(h);
+  renderHistory();
+}
+
+function renderHistory() {
+  const h = loadHistory();
+  if (h.length === 0) {
+    historyList.innerHTML = '<p style="color:var(--text-dim);font-size:.85rem">No history yet.</p>';
+    return;
+  }
+  historyList.innerHTML = h.map((entry, i) => `
+    <div class="hist-item" data-idx="${i}">
+      <div>
+        <div class="hi-input">${entry.input}</div>
+        <div class="hi-stats">Mean: ${entry.mean} · Median: ${entry.median} · Count: ${entry.n}</div>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center">
+        <span class="hi-time">${entry.time}</span>
+        <button class="hist-restore" data-idx="${i}" aria-label="Restore this calculation">↩ Restore</button>
+      </div>
+    </div>`).join('');
+
+  // Restore click
+  historyList.querySelectorAll('.hist-restore').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const h = loadHistory();
+      const idx = parseInt(btn.dataset.idx, 10);
+      if (h[idx]) { numInput.value = h[idx].input; doCalculate(); }
+    });
+  });
+}
+
+document.getElementById('clearHistBtn').addEventListener('click', () => {
+  localStorage.removeItem(HIST_KEY);
+  renderHistory();
+  toast('🗑 History cleared');
+});
+
+// ── MAIN CALCULATE ────────────────────────────────────────────
+function doCalculate() {
+  hideErr(); hideWarn();
+  const raw = numInput.value.trim();
+  if (!raw) { showErr('⚠️ Please enter at least one number.'); return; }
+
+  const { valid, invalid } = parseInput(raw);
+
+  if (valid.length === 0) {
+    showErr('⚠️ No valid numbers found. Please check your input.');
+    return;
+  }
+  if (invalid.length > 0) {
+    showWarn(`⚠️ Ignored ${invalid.length} invalid value(s): ${invalid.slice(0,8).join(', ')}${invalid.length > 8 ? '…' : ''}`);
+  }
+
+  // Weights
+  const weights = (weightedToggle.checked && valid.length <= 50) ? getWeights(valid) : null;
+
+  const stats = calcStats(valid, weights);
+  if (!stats) { showErr('⚠️ Calculation failed.'); return; }
+
+  currentNums   = valid;
+  currentSorted = stats.sorted;
+  currentStats  = stats;
+
+  renderResults(valid, stats, weights);
+  pushHistory(raw.slice(0,120), stats);
+}
+
+// ── LIVE CALCULATE (debounced 400ms) ─────────────────────────
+numInput.addEventListener('input', () => {
+  clearTimeout(liveTimeout);
+  liveTimeout = setTimeout(doCalculate, 400);
+  // Rebuild weight table if weighted mode
+  if (weightedToggle.checked) {
+    const { valid } = parseInput(numInput.value);
+    if (valid.length > 0 && valid.length <= 50) buildWeightTable(valid);
+  }
+});
+precSelect.addEventListener('change', () => { if (currentNums.length) doCalculate(); });
+
+calcBtn.addEventListener('click', doCalculate);
+
+// ── RESET ─────────────────────────────────────────────────────
+resetBtn.addEventListener('click', () => {
+  numInput.value    = '';
+  currentNums       = [];
+  currentSorted     = [];
+  currentStats      = {};
+  resultsWrap.style.display = 'none';
+  hideErr(); hideWarn();
+  statusMsg.textContent = '';
+  pctResult.textContent = '';
+  weightBody.innerHTML  = '';
+  if (chartInstance) { chartInstance.destroy(); chartInstance = null; }
+  toast('🔄 Reset complete');
+});
+
+// ── CHART TABS ────────────────────────────────────────────────
+document.querySelectorAll('.chart-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.chart-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected','true');
+    currentChart = tab.dataset.chart;
+    if (currentNums.length) renderChart(currentNums, currentStats);
+  });
+});
+
+// ── WEIGHTED TOGGLE ───────────────────────────────────────────
+weightedToggle.addEventListener('change', () => {
+  weightSection.style.display = weightedToggle.checked ? 'block' : 'none';
+  if (weightedToggle.checked) {
+    const { valid } = parseInput(numInput.value);
+    if (valid.length > 0 && valid.length <= 50) buildWeightTable(valid);
+    else if (valid.length > 50) showWarn('⚠️ Weighted average supports up to 50 values.');
+  }
+  if (currentNums.length) doCalculate();
+});
+
+// ── SAMPLE & RANDOM ───────────────────────────────────────────
+document.getElementById('sampleBtn').addEventListener('click', () => {
+  numInput.value = '45, 82, 67, 91, 55, 78, 63, 88, 72, 59, 94, 41, 77, 85, 60, 73, 96, 52, 68, 84';
+  doCalculate();
+  toast('📋 Sample data loaded');
+});
+
+document.getElementById('rndBtn').addEventListener('click', () => {
+  const count = parseInt(document.getElementById('rndCount').value, 10);
+  const nums  = Array.from({length: count}, () => Math.round(Math.random() * 200 - 50));
+  numInput.value = nums.join(', ');
+  doCalculate();
+  toast(`🎲 ${count} random numbers generated`);
+});
+
+// ── EXPORT HELPERS ────────────────────────────────────────────
+function getResultsText() {
+  if (!currentStats || !currentStats.n) return '';
+  const s = currentStats;
+  return [
+    'AVERAGE CALCULATOR RESULTS — ApneSoftware.com',
+    '='.repeat(50),
+    `Numbers: ${currentNums.join(', ')}`,
+    '─'.repeat(50),
+    `Count:             ${s.n}`,
+    `Sum:               ${fmt(s.sum)}`,
+    `Mean:              ${fmt(s.mean)}`,
+    `Median:            ${fmt(s.median)}`,
+    `Mode:              ${s.modeStr}`,
+    `Range:             ${fmt(s.range)}`,
+    `Min:               ${fmt(s.min)}`,
+    `Max:               ${fmt(s.max)}`,
+    `Std Dev (Pop):     ${fmt(s.stdDev)}`,
+    `Variance (Pop):    ${fmt(s.variance)}`,
+    `Std Dev (Sample):  ${fmt(s.sampleSD)}`,
+    `Geometric Mean:    ${isFinite(s.geoMean)  ? fmt(s.geoMean)  : 'N/A'}`,
+    `Harmonic Mean:     ${isFinite(s.harmMean) ? fmt(s.harmMean) : 'N/A'}`,
+    `Q1:                ${fmt(s.q1)}`,
+    `Q3:                ${fmt(s.q3)}`,
+    `IQR:               ${fmt(s.iqr)}`,
+    `MAD:               ${fmt(s.mad)}`,
+    `Skewness:          ${fmt(s.skewness)}`,
+    '─'.repeat(50),
+    `Generated: ${new Date().toLocaleString('en-IN')} | apnesoftware.com`
+  ].join('\n');
+}
+
+function downloadFile(content, filename, mime) {
+  const blob = new Blob([content], {type: mime});
+  const a    = document.createElement('a');
+  a.href     = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+document.getElementById('dlTxt').addEventListener('click', () => {
+  if (!currentStats.n) { toast('⚠️ Calculate first'); return; }
+  downloadFile(getResultsText(), 'average-results.txt', 'text/plain');
+  toast('📄 TXT downloaded');
+});
+
+document.getElementById('dlCsv').addEventListener('click', () => {
+  if (!currentStats.n) { toast('⚠️ Calculate first'); return; }
+  const s = currentStats;
+  const rows = [
+    ['Statistic', 'Value'],
+    ['Count',     s.n],
+    ['Sum',       fmtRaw(s.sum)],
+    ['Mean',      fmtRaw(s.mean)],
+    ['Median',    fmtRaw(s.median)],
+    ['Mode',      s.modeStr],
+    ['Min',       s.min],
+    ['Max',       s.max],
+    ['Range',     fmtRaw(s.range)],
+    ['Std Dev (Pop)', fmtRaw(s.stdDev)],
+    ['Variance (Pop)',fmtRaw(s.variance)],
+    ['Geometric Mean', isFinite(s.geoMean)  ? fmtRaw(s.geoMean)  : 'N/A'],
+    ['Harmonic Mean',  isFinite(s.harmMean) ? fmtRaw(s.harmMean) : 'N/A'],
+    ['Q1', fmtRaw(s.q1)],
+    ['Q3', fmtRaw(s.q3)],
+    ['IQR',fmtRaw(s.iqr)],
+    ['MAD',fmtRaw(s.mad)],
+    ['', ''],
+    ['Numbers', currentNums.join(', ')]
+  ];
+  downloadFile(rows.map(r => r.join(',')).join('\n'), 'average-results.csv', 'text/csv');
+  toast('📊 CSV downloaded');
+});
+
+document.getElementById('dlPdf').addEventListener('click', () => {
+  if (!currentStats.n) { toast('⚠️ Calculate first'); return; }
+  const s = currentStats;
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>Average Results — ApneSoftware</title>
+<style>
+body{font-family:Arial,sans-serif;padding:30px;color:#1a0a35}
+h1{color:#7C5CFC}table{width:100%;border-collapse:collapse;margin:14px 0}
+th{background:#7C5CFC;color:#fff;padding:9px 12px;text-align:left}
+td{padding:8px 12px;border-bottom:1px solid #eee}
+tr:nth-child(even) td{background:#f9f7ff}
+.footer{color:#999;font-size:.8rem;margin-top:20px;text-align:center}
+</style></head><body>
+<h1>📊 Average Calculator Results</h1>
+<p style="color:#666">Generated: ${new Date().toLocaleString('en-IN')} · apnesoftware.com</p>
+<p><strong>Numbers:</strong> ${currentNums.slice(0,50).join(', ')}${currentNums.length>50?'…':''}</p>
+<table>
+<tr><th>Statistic</th><th>Value</th></tr>
+<tr><td>Count</td><td>${s.n}</td></tr>
+<tr><td>Sum</td><td>${fmtRaw(s.sum)}</td></tr>
+<tr><td>Mean</td><td>${fmtRaw(s.mean)}</td></tr>
+<tr><td>Median</td><td>${fmtRaw(s.median)}</td></tr>
+<tr><td>Mode</td><td>${s.modeStr}</td></tr>
+<tr><td>Min</td><td>${s.min}</td></tr>
+<tr><td>Max</td><td>${s.max}</td></tr>
+<tr><td>Range</td><td>${fmtRaw(s.range)}</td></tr>
+<tr><td>Std Dev (Pop)</td><td>${fmtRaw(s.stdDev)}</td></tr>
+<tr><td>Variance (Pop)</td><td>${fmtRaw(s.variance)}</td></tr>
+<tr><td>Geometric Mean</td><td>${isFinite(s.geoMean)?fmtRaw(s.geoMean):'N/A'}</td></tr>
+<tr><td>Harmonic Mean</td><td>${isFinite(s.harmMean)?fmtRaw(s.harmMean):'N/A'}</td></tr>
+<tr><td>Q1</td><td>${fmtRaw(s.q1)}</td></tr>
+<tr><td>Q3</td><td>${fmtRaw(s.q3)}</td></tr>
+<tr><td>IQR</td><td>${fmtRaw(s.iqr)}</td></tr>
+<tr><td>MAD</td><td>${fmtRaw(s.mad)}</td></tr>
+</table>
+<div class="footer">This report was generated by the free Average Calculator at apnesoftware.com — no data was stored or transmitted.</div>
+</body></html>`;
+  downloadFile(html, 'average-results.html', 'text/html');
+  toast('📄 Report downloaded! Open → Print → Save as PDF');
+});
+
+document.getElementById('copyRes').addEventListener('click', () => {
+  if (!currentStats.n) { toast('⚠️ Calculate first'); return; }
+  navigator.clipboard.writeText(getResultsText()).then(() => toast('✅ Results copied!'));
+});
+
+// ── SHARE ─────────────────────────────────────────────────────
+function shareText() {
+  if (!currentStats.n) return '';
+  const s = currentStats;
+  return `📊 Average Calculator Results\nMean: ${fmt(s.mean)} | Median: ${fmt(s.median)} | Mode: ${s.modeStr} | Count: ${s.n}\nCalculated at apnesoftware.com/tools/average-calculator.html`;
+}
+const PAGE_URL = 'https://apnesoftware.com/tools/average-calculator.html';
+
+document.getElementById('shareWa').addEventListener('click', () => {
+  if (!currentStats.n) { toast('⚠️ Calculate first'); return; }
+  window.open(`https://wa.me/?text=${encodeURIComponent(shareText())}`, '_blank');
+});
+document.getElementById('shareTg').addEventListener('click', () => {
+  if (!currentStats.n) { toast('⚠️ Calculate first'); return; }
+  window.open(`https://t.me/share/url?url=${encodeURIComponent(PAGE_URL)}&text=${encodeURIComponent(shareText())}`, '_blank');
+});
+document.getElementById('shareTw').addEventListener('click', () => {
+  if (!currentStats.n) { toast('⚠️ Calculate first'); return; }
+  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText())}`, '_blank');
+});
+document.getElementById('shareFb').addEventListener('click', () => {
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(PAGE_URL)}`, '_blank');
+});
+document.getElementById('copyLink').addEventListener('click', () => {
+  navigator.clipboard.writeText(PAGE_URL).then(() => toast('🔗 Link copied!'));
+});
+
+// ── THEME ─────────────────────────────────────────────────────
+document.querySelectorAll('.theme-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const t = btn.dataset.theme;
+    if (t === 'light') {
+      document.body.classList.add('light-mode');
+    } else if (t === 'dark') {
+      document.body.classList.remove('light-mode');
+    } else {
+      // Auto
+      if (window.matchMedia('(prefers-color-scheme: light)').matches)
+        document.body.classList.add('light-mode');
+      else
+        document.body.classList.remove('light-mode');
+    }
+  });
+});
+
+// ── FAQ BUILD ─────────────────────────────────────────────────
+const faqs = [
+  ['What is Mean (Average)?','Mean = Σx / n. Sum all values and divide by count. The most common measure of central tendency.'],
+  ['What is Median?','Middle value of a sorted dataset. For even count: average of two middle values. Less affected by outliers than mean.'],
+  ['What is Mode?','Most frequently occurring value(s). A dataset can have no mode, one mode (unimodal), or multiple (multimodal).'],
+  ['What is Standard Deviation?','Measures spread from mean. Formula: σ = √(Σ(x−μ)²/n). Low SD = values cluster near mean. High SD = widely spread.'],
+  ['What is Variance?','Square of Standard Deviation. Σ(x−μ)²/n. Variance in same unit² while SD is in original units.'],
+  ['What is Geometric Mean?','nth root of product of n values. Formula: (Πxᵢ)^(1/n). Best for growth rates, investment returns. Requires all positive values.'],
+  ['What is Harmonic Mean?','n divided by sum of reciprocals. Formula: n/Σ(1/xᵢ). Best for rates and speeds. Requires all positive values.'],
+  ['What are Quartiles?','Q1=25th percentile, Q2=Median, Q3=75th percentile. Divide sorted data into 4 equal parts.'],
+  ['What is IQR?','Interquartile Range = Q3 − Q1. Represents middle 50% of data. Used to detect outliers (outside 1.5×IQR).'],
+  ['What is MAD?','Mean Absolute Deviation = Σ|x−μ|/n. Average of absolute differences from mean. More robust than variance.'],
+  ['What is Weighted Average?','Assigns different importance to values. WA = Σ(xᵢwᵢ)/Σwᵢ. Enable via checkbox and enter weights per value.'],
+  ['Can I enter negative numbers?','Yes. Negative numbers, decimals, and large numbers all work. Note: Geometric and Harmonic Mean require positive values only.'],
+  ['How do I separate numbers?','Commas, spaces, tabs, or new lines — all work. Extra spaces and blank lines are automatically ignored.'],
+  ['Can I download results?','Yes. Download as CSV (for Excel), TXT (plain text). Click Print for PDF. Copy button copies everything.'],
+  ['Is data saved anywhere?','No — all calculations run in your browser. Last 20 calculations are in LocalStorage (your device only, never a server).'],
+  ['What is a Histogram?','Groups numbers into ranges and shows frequency. Helps visualize data distribution, skewness, and outliers.'],
+  ['What is Skewness?','Measures asymmetry of distribution. Positive skew = tail right; Negative skew = tail left; 0 = symmetric.'],
+  ['What is Sample vs Population SD?','Population SD divides by n (all data). Sample SD divides by n−1 (Bessel\'s correction for estimating from a sample).'],
+  ['What is Percentile Lookup?','Find the value at any percentile (0–100). E.g., 90th percentile = value below which 90% of data falls.'],
+  ['Is this tool free?','Yes, completely free. No signup, no ads, no limits. Use it as many times as you want.']
+];
+
+const hiFaqs = [
+  ['Mean (Average) क्या है?','Mean = Σx / n। सभी values का योग count से भाग। Average का सबसे common रूप।'],
+  ['Median क्या है?','Sorted dataset की middle value। Even count के लिए: दो middle values का average। Outliers से कम affected।'],
+  ['Mode क्या है?','सबसे बार आने वाली value। Dataset में कोई mode नहीं, एक (unimodal), या कई (multimodal) हो सकते हैं।'],
+  ['Standard Deviation क्या है?','Mean से spread मापता है। σ = √(Σ(x−μ)²/n)। Low SD = values mean के पास cluster। High SD = widely spread।'],
+  ['Variance क्या है?','Standard Deviation का square। Σ(x−μ)²/n। Quality control और risk assessment में essential।'],
+  ['Geometric Mean क्या है?','n values के product का nth root। Growth rates और investment returns के लिए। सभी positive values ज़रूरी।'],
+  ['Harmonic Mean क्या है?','n को reciprocals के योग से भाग। Rates और speeds के लिए। सभी positive values ज़रूरी।'],
+  ['Quartiles क्या हैं?','Q1=25th percentile, Q2=Median, Q3=75th percentile। Sorted data को 4 equal parts में divide करते हैं।'],
+  ['IQR क्या है?','Interquartile Range = Q3 − Q1। Middle 50% data। Outliers detect करने का standard तरीका (1.5×IQR से बाहर)।'],
+  ['MAD क्या है?','Mean Absolute Deviation = Σ|x−μ|/n। Mean से absolute differences का average।'],
+  ['Weighted Average कैसे use करें?','Checkbox enable करें और हर value के लिए weight enter करें। WA = Σ(xᵢwᵢ)/Σwᵢ।'],
+  ['Negative numbers enter कर सकते हैं?','हाँ। Negative, decimals, large numbers सब काम करते हैं। Geometric/Harmonic Mean के लिए positive ज़रूरी।'],
+  ['Numbers कैसे separate करें?','Commas, spaces, tabs, या new lines — सब काम करते हैं। Extra spaces और blank lines automatically ignore होते हैं।'],
+  ['Results download कैसे करें?','CSV (Excel के लिए), TXT, और PDF report download कर सकते हैं। Copy button से clipboard में copy करें।'],
+  ['क्या data कहीं save होता है?','नहीं। सभी calculations browser में। Last 20 calculations LocalStorage में (सिर्फ आपके device पर, कोई server नहीं)।'],
+  ['Histogram क्या है?','Numbers को ranges में group करके frequency दिखाता है। Data distribution, skewness, outliers visualize करता है।'],
+  ['Skewness क्या है?','Distribution की asymmetry मापता है। Positive = right tail; Negative = left tail; 0 = symmetric।'],
+  ['Sample vs Population SD?','Population SD: n से divide। Sample SD: n−1 से divide (Bessel\'s correction)। Sample estimate के लिए।'],
+  ['Percentile Lookup कैसे काम करता है?','कोई भी percentile (0–100) enter करें। Example: 90th percentile = वो value जिससे नीचे 90% data है।'],
+  ['क्या यह टूल Free है?','हाँ, पूरी तरह Free। कोई signup नहीं, कोई limit नहीं। जितनी बार चाहें use करें।']
+];
+
+function buildFAQs(containerId, items) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  items.forEach(([q, a]) => {
+    const item = document.createElement('div');
+    item.className = 'faq-item';
+    item.innerHTML = `<div class="faq-q" tabindex="0" role="button" aria-expanded="false">${q}<i class="faq-arrow">▾</i></div><div class="faq-a">${a}</div>`;
+    const qEl = item.querySelector('.faq-q');
+    function toggle() {
+      item.classList.toggle('open');
+      qEl.setAttribute('aria-expanded', item.classList.contains('open'));
+    }
+    qEl.addEventListener('click', toggle);
+    qEl.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); toggle(); }});
+    el.appendChild(item);
+  });
+}
+
+buildFAQs('faqEn', faqs);
+buildFAQs('faqHi', hiFaqs);
+
+// ── INIT ──────────────────────────────────────────────────────
+renderHistory();
+doCalculate();
+</script>
+</body>
+</html>

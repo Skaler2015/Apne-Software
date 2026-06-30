@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/slug-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Slug Generator | ApneSoftware">
+<meta property="og:description" content="Turn titles into clean URL-friendly slugs. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/slug-generator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Slug Generator | ApneSoftware">
+<meta name="twitter:description" content="Turn titles into clean URL-friendly slugs. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Slug Generator","description":"Turn titles into clean URL-friendly slugs. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/slug-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Slug Generator | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .result-box{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-top:14px;font-family:'Consolas','Courier New',monospace;font-size:1rem;color:var(--accent-2);word-break:break-all}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔗 Slug Generator</h1>
+    <p>Turn any title into a clean, URL-friendly slug.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="titleInput">Title / text</label>
+      <input type="text" id="titleInput" value="My Awesome Blog Post Title!" placeholder="e.g. My Awesome Blog Post">
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="separatorSelect">Separator</label>
+        <select id="separatorSelect">
+          <option value="-">Hyphen (-)</option>
+          <option value="_">Underscore (_)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="caseSelect">Case</label>
+        <select id="caseSelect">
+          <option value="lower">lowercase</option>
+          <option value="upper">UPPERCASE</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="maxLength">Max length (optional)</label>
+        <input type="number" id="maxLength" placeholder="e.g. 60" min="0">
+      </div>
+    </div>
+
+    <div class="result-box" id="resultBox"></div>
+    <div class="btn-row">
+      <button class="btn secondary" id="copyBtn">📋 Copy</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Converts any title or phrase into a clean, lowercase, URL-safe "slug" — removing special characters, accents, and spaces, and replacing them with hyphens or underscores. Useful for blog post URLs, file names, or anchor links.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Type or paste your title.</li>
+        <li>Choose a separator, case, and optional max length.</li>
+        <li>Copy the generated slug.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी भी title या phrase को साफ, lowercase, URL-safe "slug" में बदल देता है — स्पेशल कैरेक्टर, एक्सेंट और स्पेस हटाकर hyphen या underscore से बदल देता है। ब्लॉग पोस्ट URLs, फाइल नेम, या anchor links के लिए उपयोगी।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना title टाइप या पेस्ट करें।</li>
+        <li>separator, case, और चाहें तो max length चुनें।</li>
+        <li>बना हुआ slug कॉपी करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+function slugify(text, separator, caseMode, maxLength){
+  let slug = text
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // strip accents
+    .replace(/[^a-zA-Z0-9\s-_]/g, '') // strip special chars
+    .trim()
+    .replace(/[\s_-]+/g, separator);
+
+  slug = caseMode === 'upper' ? slug.toUpperCase() : slug.toLowerCase();
+
+  if(maxLength && maxLength > 0 && slug.length > maxLength){
+    slug = slug.slice(0, maxLength).replace(new RegExp(separator+'+$'), '');
+  }
+  return slug;
+}
+
+function generate(){
+  const text = document.getElementById('titleInput').value;
+  const separator = document.getElementById('separatorSelect').value;
+  const caseMode = document.getElementById('caseSelect').value;
+  const maxLength = parseInt(document.getElementById('maxLength').value) || 0;
+
+  document.getElementById('resultBox').textContent = slugify(text, separator, caseMode, maxLength) || '—';
+}
+
+document.querySelectorAll('input,select').forEach(el=> el.addEventListener('input', generate));
+document.getElementById('copyBtn').addEventListener('click', (e)=> copyText(document.getElementById('resultBox').textContent, e.target));
+
+generate();
+</script>
+</body>
+</html>

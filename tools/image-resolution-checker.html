@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/image-resolution-checker.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image Resolution & DPI Checker | ApneSoftware">
+<meta property="og:description" content="Check dimensions, size, and print size. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/image-resolution-checker.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Resolution & DPI Checker | ApneSoftware">
+<meta name="twitter:description" content="Check dimensions, size, and print size. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Resolution & DPI Checker","description":"Check dimensions, size, and print size. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/image-resolution-checker.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Image Resolution & DPI Checker | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .preview-img{max-width:100%;max-height:280px;border-radius:10px;border:1px solid var(--border);margin-bottom:14px}
+  .info-table{width:100%;border-collapse:collapse;font-size:.9rem}
+  .info-table th,.info-table td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border)}
+  .info-table th{color:var(--text-dim);font-weight:600;width:46%}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📐 Image Resolution & DPI Checker</h1>
+    <p>Check an image's pixel dimensions, file size, megapixels, and estimated print size.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an image here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <img class="preview-img" id="previewImg" alt="Preview">
+      <table class="info-table"><tbody id="infoTable"></tbody></table>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Quickly check the technical details of any image — exact pixel dimensions, aspect ratio, file size, megapixels, and how large it could be printed cleanly at common print resolutions (72, 150, and 300 DPI).</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload an image.</li>
+        <li>All details appear instantly — no calculation needed.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी भी इमेज की तकनीकी जानकारी तुरंत देखें — सटीक पिक्सल साइज़, अनुपात, फाइल साइज़, मेगापिक्सल, और आम प्रिंट रेजोल्यूशन (72, 150, 300 DPI) पर वह कितनी साफ प्रिंट हो सकती है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक इमेज अपलोड करें।</li>
+        <li>सारी जानकारी तुरंत दिख जाएगी — कोई कैलकुलेशन करने की ज़रूरत नहीं।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+
+function gcd(a,b){ return b === 0 ? a : gcd(b, a % b); }
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    const file = files[0];
+    const img = document.getElementById('previewImg');
+    img.src = URL.createObjectURL(file);
+    document.getElementById('afterUpload').style.display = 'block';
+
+    img.onload = ()=>{
+      const w = img.naturalWidth, h = img.naturalHeight;
+      const divisor = gcd(w, h) || 1;
+      const mp = (w*h/1000000).toFixed(2);
+
+      const rows = [
+        ['Dimensions', w + ' × ' + h + ' px'],
+        ['Aspect ratio', (w/divisor) + ':' + (h/divisor)],
+        ['Megapixels', mp + ' MP'],
+        ['File size', formatBytes(file.size)],
+        ['File type', file.type || 'unknown'],
+        ['Print size @ 72 DPI (web)', (w/72).toFixed(1) + '" × ' + (h/72).toFixed(1) + '"'],
+        ['Print size @ 150 DPI', (w/150).toFixed(1) + '" × ' + (h/150).toFixed(1) + '"'],
+        ['Print size @ 300 DPI (high quality)', (w/300).toFixed(1) + '" × ' + (h/300).toFixed(1) + '"'],
+      ];
+
+      const tbody = document.getElementById('infoTable');
+      tbody.innerHTML = '';
+      rows.forEach(([label, val])=>{
+        const tr = document.createElement('tr');
+        tr.innerHTML = '<th>'+label+'</th><td>'+val+'</td>';
+        tbody.appendChild(tr);
+      });
+    };
+  }
+});
+</script>
+</body>
+</html>

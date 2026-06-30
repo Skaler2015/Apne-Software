@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/tip-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tip Calculator | ApneSoftware">
+<meta property="og:description" content="Split a bill with tip across any group size. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/tip-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tip Calculator | ApneSoftware">
+<meta name="twitter:description" content="Split a bill with tip across any group size. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Tip Calculator","description":"Split a bill with tip across any group size. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/tip-calculator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Tip Calculator | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .tip-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+  .tip-btn{padding:8px 16px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-size:.9rem;cursor:pointer}
+  .tip-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🧾 Tip Calculator</h1>
+    <p>Split a bill with tip across any number of people.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="billAmount">Bill amount (₹)</label>
+      <input type="number" id="billAmount" value="1000" min="0">
+    </div>
+
+    <div class="field">
+      <label>Tip percentage</label>
+      <div class="tip-row">
+        <button class="tip-btn" data-tip="5">5%</button>
+        <button class="tip-btn active" data-tip="10">10%</button>
+        <button class="tip-btn" data-tip="15">15%</button>
+        <button class="tip-btn" data-tip="20">20%</button>
+      </div>
+      <input type="number" id="customTip" placeholder="Or enter custom %" style="margin-top:8px" min="0">
+    </div>
+
+    <div class="field">
+      <label for="peopleCount">Number of people</label>
+      <input type="number" id="peopleCount" value="1" min="1">
+    </div>
+
+    <div class="stat-grid" style="margin-top:14px">
+      <div class="stat-box"><div class="num" id="tipVal">₹0</div><div class="lbl">Tip Amount</div></div>
+      <div class="stat-box"><div class="num" id="totalVal">₹0</div><div class="lbl">Total Bill</div></div>
+      <div class="stat-box"><div class="num" id="perPersonVal" style="color:var(--accent-2)">₹0</div><div class="lbl">Per Person</div></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Splitting a restaurant bill with friends or family sounds like it should be simple arithmetic, but it's surprisingly easy to get wrong when you're doing it in your head at a noisy table after a meal — calculating a tip percentage, adding it to the bill, and then dividing the whole thing evenly across however many people are paying involves three separate steps, any one of which can go wrong, especially after a few drinks or when someone wants to split it a slightly different way. This tool handles the entire chain in one place so nobody has to pull out a phone calculator and start over twice.</p>
+      <p>You start by entering the bill amount, then pick a tip percentage from common presets like 5%, 10%, 15%, or 20%, or type in any custom percentage if your usual habit doesn't match those defaults — tipping norms vary a lot depending on where you are and the type of service, so having a custom option matters. Finally, enter how many people are splitting the bill, and the tool instantly shows the tip amount, the new total including tip, and exactly how much each person owes.</p>
+      <p>This is genuinely useful beyond just restaurants — it works just as well for splitting a cab fare with a service charge, dividing a group order for food delivery, or working out everyone's share of a hotel bill that includes a service fee. Because the per-person amount updates live as you change any input, it's easy to test a few different tip percentages on the spot if the group is debating how generous to be, or to quickly recalculate if someone leaves the table and the remaining people need to cover a slightly larger share.</p>
+      <p>The whole calculation happens instantly in your browser as you type, with no need to tap a separate "calculate" button, which matters when you're standing around a table waiting to settle up. There's nothing to install, no account needed, and no internet round-trip required once the page has loaded, so it works just as reliably on a spotty restaurant Wi-Fi connection as it does at home — open it, plug in the numbers, and you have an answer everyone at the table can agree on in seconds. It's a small tool, but it quietly removes one of the most common small frictions of eating out with a group — the slightly awkward few minutes of mental math and gentle disagreement that happens right when everyone's reaching for their wallets.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Enter the bill amount.</li>
+        <li>Pick a tip percentage or enter a custom one.</li>
+        <li>Enter how many people are splitting it — the per-person amount updates instantly.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>दोस्तों या परिवार के साथ किसी restaurant का बिल बांटना सुनने में simple arithmetic लगता है, पर खाने के बाद किसी शोरगुल वाली table पर दिमाग में करते वक्त इसमें गलती होना हैरानी की बात नहीं — tip percentage निकालना, उसे बिल में जोड़ना, और फिर पूरी रकम को जितने लोग pay कर रहे हैं उनमें बराबर बांटना, यह तीन अलग steps हैं, जिनमें से किसी में भी गलती हो सकती है, खासकर कुछ drinks के बाद या जब कोई थोड़ा अलग तरीके से बांटना चाहे। यह टूल पूरी chain को एक ही जगह handle करता है ताकि किसी को phone calculator निकालकर दो बार शुरुआत न करनी पड़े।</p>
+      <p>आप bill amount डालकर शुरू करते हैं, फिर 5%, 10%, 15%, या 20% जैसे common presets में से कोई tip percentage चुनते हैं, या अगर आपकी सामान्य आदत इन defaults से मेल नहीं खाती तो कोई custom percentage टाइप कर सकते हैं — tipping के norms जगह और service के प्रकार के हिसाब से काफी अलग होते हैं, इसलिए custom option का होना मायने रखता है। आखिर में, कितने लोग बिल बांट रहे हैं यह डालें, और टूल तुरंत tip amount, tip मिलाकर नया total, और हर व्यक्ति पर कितना बकाया है यह दिखा देता है।</p>
+      <p>यह सिर्फ restaurants से परे भी सच में उपयोगी है — यह किसी cab fare को service charge के साथ बांटने, food delivery के किसी group order को divide करने, या service fee वाले hotel bill में हर किसी का हिस्सा निकालने में भी उतना ही अच्छा काम करता है। चूंकि per-person amount किसी भी input को बदलते ही live update होता है, अगर group यह बहस कर रहा हो कि कितना generous होना है तो मौके पर ही कुछ अलग tip percentages आज़माना आसान है, या अगर कोई table छोड़कर चला जाए और बाकी लोगों को थोड़ा बड़ा हिस्सा cover करना पड़े तो तुरंत दोबारा calculate करना आसान है।</p>
+      <p>पूरी calculation टाइप करते ही आपके browser में तुरंत हो जाती है, किसी अलग "calculate" बटन दबाने की ज़रूरत नहीं, जो तब मायने रखता है जब आप table के पास खड़े होकर हिसाब निपटाने का इंतज़ार कर रहे हों। कुछ install करने की ज़रूरत नहीं, कोई account नहीं चाहिए, और page लोड होने के बाद किसी internet round-trip की ज़रूरत नहीं, तो यह घर जितना ही भरोसे से किसी कमज़ोर restaurant Wi-Fi connection पर भी काम करता है — इसे खोलें, नंबर डालें, और सेकंडों में table पर मौजूद हर किसी को मंज़ूर होने वाला जवाब आपके पास होगा।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>बिल अमाउंट डालें।</li>
+        <li>tip percentage चुनें या कस्टम % डालें।</li>
+        <li>कितने लोग बिल बांट रहे हैं डालें — per-person अमाउंट तुरंत दिख जाएगा।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+let selectedTip = 10;
+
+document.querySelectorAll('.tip-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tip-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedTip = parseFloat(btn.dataset.tip);
+    document.getElementById('customTip').value = '';
+    calculate();
+  });
+});
+
+document.getElementById('customTip').addEventListener('input', ()=>{
+  const v = document.getElementById('customTip').value;
+  if(v !== ''){
+    document.querySelectorAll('.tip-btn').forEach(b=>b.classList.remove('active'));
+    selectedTip = parseFloat(v) || 0;
+  }
+  calculate();
+});
+
+function formatRupee(n){
+  return '₹' + n.toLocaleString('en-IN', { maximumFractionDigits: 2 });
+}
+
+function calculate(){
+  const bill = parseFloat(document.getElementById('billAmount').value) || 0;
+  const people = Math.max(1, parseInt(document.getElementById('peopleCount').value) || 1);
+
+  const tipAmount = bill * selectedTip / 100;
+  const total = bill + tipAmount;
+  const perPerson = total / people;
+
+  document.getElementById('tipVal').textContent = formatRupee(tipAmount);
+  document.getElementById('totalVal').textContent = formatRupee(total);
+  document.getElementById('perPersonVal').textContent = formatRupee(perPerson);
+}
+
+document.getElementById('billAmount').addEventListener('input', calculate);
+document.getElementById('peopleCount').addEventListener('input', calculate);
+
+calculate();
+</script>
+</body>
+</html>

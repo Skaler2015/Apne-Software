@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Canonical URL Generator — Generate rel=canonical link tags instantly. Check and fix duplicate content issues. Supports URL normalization and bulk generation.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/canonical-url-generator.html">
+<meta property="og:title" content="Canonical URL Generator — Fix Duplicate Content | ApneSoftware">
+<meta property="og:description" content="Generate canonical link tags and fix duplicate content. URL normalizer + bulk canonical generator. Free.">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="dark">
+<title>Canonical URL Generator — Fix Duplicate Content | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.can-code{background:rgba(0,0,0,.4);border:1px solid rgba(124,92,252,.25);border-radius:12px;padding:14px 16px;font-family:'Courier New',monospace;font-size:.88rem;color:#A5D6FF;margin-top:12px;word-break:break-all;line-height:1.7}
+.can-tag{color:#79C0FF}.can-attr{color:#FFA657}.can-val{color:#A5D6FF}
+.can-url-analysis{display:grid;gap:8px;margin-top:12px}
+.can-url-row{display:flex;gap:10px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px 14px}
+.can-url-status{width:20px;flex-shrink:0;font-size:1rem;margin-top:1px}
+.can-url-label{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.35);margin-bottom:2px}
+.can-url-val{font-size:.82rem;color:rgba(255,255,255,.75);word-break:break-all}
+.can-tips{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-top:14px}
+.can-tip{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:12px}
+.can-tip-icon{font-size:1.1rem;margin-bottom:4px}
+.can-tip-title{font-size:.8rem;font-weight:700;color:rgba(255,255,255,.8);margin-bottom:3px}
+.can-tip-desc{font-size:.73rem;color:rgba(255,255,255,.4);line-height:1.5}
+#canScrollTop{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;box-shadow:0 4px 14px rgba(124,92,252,.4);transition:.2s}
+#canScrollTop.show{display:flex}
+#canScrollTop:hover{transform:translateY(-3px)}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="inner"><a class="brand" href="../index.html">Apne<span>Software</span></a><a class="back-link" href="../index.html">← All Tools</a></div></header>
+<div class="container">
+  <nav style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:2px">
+    <a href="../index.html" style="color:rgba(255,255,255,.45)">Home</a> › <span style="color:rgba(255,255,255,.7)">SEO Tools</span> › <span style="color:#A78BFA">Canonical URL Generator</span>
+  </nav>
+
+  <div class="tool-header"><h1>🔗 Canonical URL Generator</h1><p>Generate rel=canonical link tags instantly. Normalize URLs, fix duplicate content issues, and bulk-generate canonical tags for multiple pages.</p></div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="urlInput">Enter Page URL <span style="color:#F87171">*</span></label>
+      <input type="text" id="urlInput" placeholder="https://example.com/page?utm_source=twitter&session=abc123" autocomplete="off">
+    </div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px">
+      <label style="display:flex;align-items:center;gap:8px;font-size:.82rem;cursor:pointer"><input type="checkbox" id="chkHttps" checked> Force HTTPS</label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:.82rem;cursor:pointer"><input type="checkbox" id="chkWww"> Remove www</label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:.82rem;cursor:pointer"><input type="checkbox" id="chkTrailing" checked> Remove trailing slash</label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:.82rem;cursor:pointer"><input type="checkbox" id="chkParams" checked> Remove tracking params</label>
+      <label style="display:flex;align-items:center;gap:8px;font-size:.82rem;cursor:pointer"><input type="checkbox" id="chkLower" checked> Lowercase URL</label>
+    </div>
+    <div class="btn-row">
+      <button class="btn" id="btnGenerate">🔗 Generate Canonical</button>
+      <button class="btn secondary" id="btnSample">📋 Sample URL</button>
+      <button class="btn secondary" id="btnClear">🗑️ Clear</button>
+    </div>
+  </div>
+
+  <div id="results" style="display:none">
+    <div class="panel" style="margin-top:14px">
+      <h2 style="font-size:.95rem;font-weight:800;margin-bottom:10px">📄 Canonical Tag</h2>
+      <div class="can-code" id="canonicalTag"></div>
+      <div class="btn-row" style="margin-top:10px">
+        <button class="btn" id="btnCopy">📋 Copy Tag</button>
+        <button class="btn secondary" id="btnCopyUrl">📋 Copy Clean URL</button>
+      </div>
+      <div class="can-url-analysis" id="urlAnalysis" style="margin-top:14px"></div>
+    </div>
+
+    <div class="panel" style="margin-top:14px">
+      <h2 style="font-size:.95rem;font-weight:800;margin-bottom:14px">🔗 Bulk Canonical Generator</h2>
+      <div class="field"><label for="bulkUrls">Paste URLs (one per line)</label>
+        <textarea id="bulkUrls" rows="6" placeholder="https://example.com/page?utm_source=google&#10;https://example.com/page/&#10;https://Example.com/Page"></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="btnBulk">⚡ Generate All</button>
+        <button class="btn secondary" id="btnBulkDownload">⬇️ Download</button>
+      </div>
+      <div id="bulkResults" style="margin-top:12px"></div>
+    </div>
+  </div>
+
+  <!-- Tips -->
+  <div class="panel" style="margin-top:14px">
+    <h2 style="font-size:.95rem;font-weight:800;margin-bottom:14px">💡 Canonical URL Tips</h2>
+    <div class="can-tips">
+      <div class="can-tip"><div class="can-tip-icon">🔒</div><div class="can-tip-title">Always Use HTTPS</div><div class="can-tip-desc">Canonical URLs should always use https:// even if your site redirects HTTP to HTTPS.</div></div>
+      <div class="can-tip"><div class="can-tip-icon">🔗</div><div class="can-tip-title">Absolute URLs Only</div><div class="can-tip-desc">Always use full absolute URLs (https://example.com/page/) — never relative URLs (/page/).</div></div>
+      <div class="can-tip"><div class="can-tip-icon">📋</div><div class="can-tip-title">Remove Tracking Params</div><div class="can-tip-desc">UTM parameters, session IDs and click tracking create duplicate URLs. Canonical should point to the clean URL.</div></div>
+      <div class="can-tip"><div class="can-tip-icon">📄</div><div class="can-tip-title">Self-Referencing</div><div class="can-tip-desc">Every page should have a self-referencing canonical, even if there's no duplicate. It's an SEO best practice.</div></div>
+      <div class="can-tip"><div class="can-tip-icon">🔄</div><div class="can-tip-title">Consistent Trailing Slash</div><div class="can-tip-desc">Choose either /page/ or /page — then stick with it sitewide. Both are fine, but mixing creates duplicate content.</div></div>
+      <div class="can-tip"><div class="can-tip-icon">📱</div><div class="can-tip-title">Pagination</div><div class="can-tip-desc">For paginated content, the canonical of page 2, 3... should still point to that page — not page 1.</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="info-wrap"><div class="info-section">
+  <div class="info-block">
+    <h2>🔗 What is a Canonical URL?</h2>
+    <p>A <strong>canonical URL</strong> is the "master" version of a page that you want search engines to index when multiple URLs have the same or very similar content. The <code>rel="canonical"</code> HTML tag tells Google: "This is the definitive version of this content — ignore all duplicates and consolidate any ranking signals here."</p>
+    <p>Common causes of duplicate content that canonical URLs fix include: HTTP vs HTTPS versions, www vs non-www, trailing slash vs no slash, URL parameters (UTM, session IDs, filter parameters), printer-friendly versions, and paginated versions of pages.</p>
+    <h3>How to Add</h3>
+    <ol>
+      <li>Generate the canonical tag using this tool.</li>
+      <li>Paste it inside the <code>&lt;head&gt;</code> of the relevant page.</li>
+      <li>Every page should have exactly one canonical tag.</li>
+      <li>Canonical should match the URL shown in address bar (after redirects).</li>
+    </ol>
+  </div>
+  <div class="info-block">
+    <h2>🔗 Hindi Guide / हिंदी गाइड</h2>
+    <p><strong>Canonical URL</strong> वह "master" URL है जिसे आप Google को index करवाना चाहते हैं जब एक ही content multiple URLs पर available हो।</p>
+    <h3>Duplicate Content कब होता है?</h3>
+    <ol>
+      <li>HTTP और HTTPS दोनों accessible हों</li>
+      <li>www और non-www दोनों work करें</li>
+      <li>Trailing slash/no-slash दोनों हों (example.com/page/ vs /page)</li>
+      <li>UTM parameters वाले URLs (utm_source, utm_medium)</li>
+      <li>Session IDs, filter parameters</li>
+      <li>Print-friendly versions</li>
+    </ol>
+    <h3>कैसे Fix करें?</h3>
+    <ol>
+      <li>Clean URL enter करें और Generate Canonical click करें</li>
+      <li>Generated tag को &lt;head&gt; में paste करें</li>
+      <li>हर page पर एक canonical tag होना चाहिए</li>
+      <li>Self-referencing canonical भी SEO best practice है</li>
+    </ol>
+  </div>
+</div></div>
+
+<button id="canScrollTop">↑</button>
+<footer class="site-footer"><p>© 2025 <a href="../index.html">ApneSoftware.com</a> · Free Tools for Everyone</p></footer>
+<script src="../assets/common.js"></script>
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const TRACKING_PARAMS=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid','gclsrc','dclid','msclkid','_ga','_gl','ref','source','sessionid','sid','session_id','PHPSESSID','jsessionid'];
+
+function cleanUrl(raw){
+  let url=raw.trim();
+  if(!url) return null;
+  if(!/^https?:\/\//i.test(url)) url='https://'+url;
+  try{
+    const u=new URL(url);
+    if($('chkHttps').checked) u.protocol='https:';
+    if($('chkWww').checked) u.hostname=u.hostname.replace(/^www\./,'');
+    if($('chkLower').checked) u.pathname=u.pathname.toLowerCase();
+    if($('chkParams').checked) TRACKING_PARAMS.forEach(p=>u.searchParams.delete(p));
+    let href=u.href;
+    if($('chkTrailing').checked) href=href.replace(/\/+(\?|#|$)/,'$1').replace(/\/+$/,'');
+    return {clean:href,original:raw.trim(),u};
+  }catch(e){return null;}
+}
+
+function generate(){
+  const raw=$('urlInput').value;
+  if(!raw.trim()){showToast('⚠️ Enter a URL first.');return;}
+  const result=cleanUrl(raw);
+  if(!result){showToast('⚠️ Invalid URL. Include https://');return;}
+  const {clean,original,u}=result;
+  const tag=`<link rel="canonical" href="${clean}">`;
+  $('canonicalTag').innerHTML=`<span class="can-tag">&lt;link</span> <span class="can-attr">rel</span>="<span class="can-val">canonical</span>" <span class="can-attr">href</span>="<span class="can-val">${clean}</span>"<span class="can-tag">&gt;</span>`;
+  $('btnCopy').onclick=()=>navigator.clipboard.writeText(tag).then(()=>showToast('📋 Tag copied!'));
+  $('btnCopyUrl').onclick=()=>navigator.clipboard.writeText(clean).then(()=>showToast('📋 URL copied!'));
+
+  // Analysis
+  const items=[];
+  if(original!==clean) items.push({icon:'🔄',label:'URL Changed',val:original+' → '+clean,ok:true});
+  if(u.protocol==='http:') items.push({icon:'⚠️',label:'Was HTTP',val:'Converted to HTTPS',ok:true});
+  if(/^www\./i.test(new URL(original.startsWith('http')?original:'https://'+original).hostname)&&$('chkWww').checked) items.push({icon:'ℹ️',label:'www Removed',val:'',ok:true});
+  const params=[...new URL(original.startsWith('http')?original:'https://'+original).searchParams.keys()];
+  const removed=params.filter(p=>TRACKING_PARAMS.includes(p));
+  if(removed.length) items.push({icon:'🧹',label:'Tracking Params Removed',val:removed.join(', '),ok:true});
+  items.push({icon:'✅',label:'Canonical URL',val:clean,ok:true});
+  $('urlAnalysis').innerHTML=items.map(i=>`<div class="can-url-row"><div class="can-url-status">${i.icon}</div><div><div class="can-url-label">${i.label}</div>${i.val?`<div class="can-url-val">${i.val}</div>`:''}</div></div>`).join('');
+  $('results').style.display='block';
+  $('results').scrollIntoView({behavior:'smooth',block:'start'});
+  showToast('✅ Canonical tag generated!');
+}
+
+function bulk(){
+  const lines=$('bulkUrls').value.split('\n').filter(l=>l.trim());
+  if(!lines.length){showToast('⚠️ Paste some URLs first.');return;}
+  const tags=lines.map(line=>{
+    const r=cleanUrl(line);
+    return r?`<link rel="canonical" href="${r.clean}">  <!-- ${line.trim()} -->`:'<!-- Invalid URL: '+line.trim()+' -->';
+  });
+  $('bulkResults').innerHTML=`<div style="background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px;font-family:'Courier New',monospace;font-size:.76rem;line-height:1.8;color:#e0e0e0;white-space:pre-wrap;max-height:300px;overflow-y:auto">${tags.join('\n')}</div>`;
+  $('btnBulkDownload').onclick=()=>{
+    const b=new Blob([tags.join('\n')],{type:'text/html'});
+    const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(b),download:'canonical-tags.html'});
+    document.body.appendChild(a);a.click();document.body.removeChild(a);showToast('⬇️ Downloaded!');
+  };
+  showToast('✅ '+tags.length+' canonical tags generated!');
+}
+
+function showToast(msg){const t=document.createElement('div');t.className='prem-toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2400);}
+
+function init(){
+  $('btnGenerate').addEventListener('click',generate);
+  $('btnSample').addEventListener('click',()=>{$('urlInput').value='https://Example.com/Best-Running-Shoes/?utm_source=google&utm_medium=cpc&session=abc123&ref=newsletter';showToast('📋 Sample loaded!');});
+  $('btnClear').addEventListener('click',()=>{$('urlInput').value='';$('results').style.display='none';});
+  $('btnBulk').addEventListener('click',bulk);
+  document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();generate();}});
+  const sb=$('canScrollTop');
+  window.addEventListener('scroll',()=>sb.classList.toggle('show',scrollY>400));
+  sb.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+}
+document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+</body>
+</html>

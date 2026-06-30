@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/image-watermark.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image Watermark Adder | ApneSoftware">
+<meta property="og:description" content="Stamp a text watermark on photos. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/image-watermark.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Watermark Adder | ApneSoftware">
+<meta name="twitter:description" content="Stamp a text watermark on photos. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Watermark Adder","description":"Stamp a text watermark on photos. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/image-watermark.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Image Watermark Adder | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  #previewCanvas{max-width:100%;border-radius:10px;border:1px solid var(--border);background:repeating-conic-gradient(#2a2a2a 0% 25%, #222 0% 50%) 50% / 20px 20px}
+  .color-row{display:flex;align-items:center;gap:10px}
+  .color-row input[type=color]{width:48px;height:38px;padding:2px;border-radius:8px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>💧 Image Watermark Adder</h1>
+    <p>Stamp a text watermark on your photos — great for protecting work shared online.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an image here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <canvas id="previewCanvas"></canvas>
+
+      <div class="row" style="margin-top:16px">
+        <div class="field">
+          <label for="wmText">Watermark text</label>
+          <input type="text" id="wmText" value="© Your Name" placeholder="e.g. © Your Name 2026">
+        </div>
+        <div class="field" style="max-width:160px">
+          <label for="wmPosition">Position</label>
+          <select id="wmPosition">
+            <option value="bottom-right">Bottom Right</option>
+            <option value="bottom-left">Bottom Left</option>
+            <option value="top-right">Top Right</option>
+            <option value="top-left">Top Left</option>
+            <option value="center">Center</option>
+            <option value="tiled">Tiled (repeat)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="wmSize">Font size: <span id="wmSizeVal">28</span>px</label>
+          <input type="range" id="wmSize" min="10" max="120" value="28">
+        </div>
+        <div class="field">
+          <label for="wmOpacity">Opacity: <span id="wmOpacityVal">50</span>%</label>
+          <input type="range" id="wmOpacity" min="5" max="100" value="50">
+        </div>
+        <div class="field" style="max-width:140px">
+          <label for="wmColor">Color</label>
+          <div class="color-row"><input type="color" id="wmColor" value="#ffffff"></div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="downloadBtn">⬇️ Download Watermarked Image</button>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Add a text watermark to any image — your name, brand, or copyright notice — to discourage unauthorized use when sharing photos online. Adjust position, size, color, and opacity to fit your style.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload an image.</li>
+        <li>Type your watermark text and adjust position, size, color, and opacity.</li>
+        <li>Click Download to save the watermarked image.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी भी फोटो पर टेक्स्ट वॉटरमार्क लगाएं — अपना नाम, ब्रांड या कॉपीराइट नोटिस — ताकि ऑनलाइन शेयर करते समय गलत इस्तेमाल को रोका जा सके। पोजीशन, साइज़, कलर और ओपेसिटी अपने हिसाब से सेट करें।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक इमेज अपलोड करें।</li>
+        <li>वॉटरमार्क टेक्स्ट टाइप करें और पोजीशन, साइज़, कलर, ओपेसिटी सेट करें।</li>
+        <li>Download दबाकर वॉटरमार्क लगी इमेज सेव करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const canvas = document.getElementById('previewCanvas');
+const ctx = canvas.getContext('2d');
+let img = new Image();
+let currentFile = null;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    currentFile = files[0];
+    img.onload = ()=>{
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      document.getElementById('afterUpload').style.display = 'block';
+      draw();
+    };
+    img.src = URL.createObjectURL(currentFile);
+  }
+});
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.drawImage(img, 0, 0);
+
+  const text = document.getElementById('wmText').value || '';
+  const size = parseInt(document.getElementById('wmSize').value);
+  const opacity = parseInt(document.getElementById('wmOpacity').value) / 100;
+  const color = document.getElementById('wmColor').value;
+  const position = document.getElementById('wmPosition').value;
+
+  document.getElementById('wmSizeVal').textContent = size;
+  document.getElementById('wmOpacityVal').textContent = document.getElementById('wmOpacity').value;
+
+  if(!text) return;
+
+  ctx.font = `bold ${size}px Arial, sans-serif`;
+  ctx.fillStyle = color;
+  ctx.globalAlpha = opacity;
+  ctx.textBaseline = 'alphabetic';
+
+  const metrics = ctx.measureText(text);
+  const textW = metrics.width;
+  const pad = Math.max(14, size * 0.4);
+
+  if(position === 'tiled'){
+    const gapX = textW + 80;
+    const gapY = size + 60;
+    ctx.save();
+    ctx.translate(0,0);
+    for(let y = size; y < canvas.height + gapY; y += gapY){
+      for(let x = -gapX; x < canvas.width + gapX; x += gapX){
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(-Math.PI/8);
+        ctx.fillText(text, 0, 0);
+        ctx.restore();
+      }
+    }
+    ctx.restore();
+  } else {
+    let x, y;
+    if(position === 'bottom-right'){ x = canvas.width - textW - pad; y = canvas.height - pad; }
+    else if(position === 'bottom-left'){ x = pad; y = canvas.height - pad; }
+    else if(position === 'top-right'){ x = canvas.width - textW - pad; y = pad + size; }
+    else if(position === 'top-left'){ x = pad; y = pad + size; }
+    else { x = (canvas.width - textW)/2; y = (canvas.height + size/2)/2; }
+    ctx.fillText(text, x, y);
+  }
+
+  ctx.globalAlpha = 1;
+}
+
+['wmText','wmPosition','wmSize','wmOpacity','wmColor'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', draw);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  const status = document.getElementById('statusMsg');
+  canvas.toBlob((blob)=>{
+    const ext = (currentFile && currentFile.type === 'image/png') ? 'png' : 'jpg';
+    downloadBlob('watermarked.' + ext, blob);
+    status.textContent = '✅ Downloaded!';
+  }, (currentFile && currentFile.type === 'image/png') ? 'image/png' : 'image/jpeg', 0.95);
+});
+</script>
+</body>
+</html>

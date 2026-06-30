@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-edit.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Edit PDF — Add Text and Highlights | ApneSoftware">
+<meta property="og:description" content="Add text, highlights, boxes. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-edit.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Edit PDF — Add Text and Highlights | ApneSoftware">
+<meta name="twitter:description" content="Add text, highlights, boxes. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Edit","description":"Add text, highlights, boxes. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-edit.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Edit PDF — Add Text and Highlights | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .edit-toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:14px}
+  .edit-toolbar .btn{padding:9px 14px;font-size:.85rem}
+
+  .props-bar{
+    display:none;align-items:center;gap:14px;flex-wrap:wrap;
+    background:var(--surface-2);border:1px solid var(--border);border-radius:8px;
+    padding:10px 14px;margin-top:12px;font-size:.85rem;
+  }
+  .props-bar.show{display:flex}
+  .props-bar label{margin:0;color:var(--text-dim);font-size:.8rem;display:flex;align-items:center;gap:6px}
+  .props-bar input[type=color]{width:36px;height:32px;padding:2px;border:1px solid var(--border);border-radius:6px}
+  .props-bar input[type=range]{width:100px}
+
+  .page-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px}
+  .page-nav span{color:var(--text-dim);font-size:.9rem;min-width:80px;text-align:center}
+
+  .edit-stage{position:relative;display:inline-block;margin-top:14px;max-width:100%;user-select:none;touch-action:none}
+  .edit-stage canvas{display:block;max-width:100%;border:1px solid var(--border);border-radius:6px}
+
+  .el-box{position:absolute;box-sizing:border-box}
+  .el-box.selected{outline:2px solid var(--accent);outline-offset:1px}
+
+  .el-text{display:flex;flex-direction:column}
+  .el-text .drag-handle{
+    height:14px;background:rgba(124,92,252,.85);cursor:move;border-radius:3px 3px 0 0;
+    display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;letter-spacing:1px;
+  }
+  .el-text textarea{
+    flex:1;resize:both;border:1px dashed var(--accent);background:rgba(255,255,255,.92);
+    color:#111;font-family:Arial,sans-serif;padding:3px 5px;outline:none;min-width:60px;min-height:24px;
+  }
+
+  .el-rect{cursor:move}
+
+  .el-del{
+    position:absolute;top:-10px;right:-10px;width:20px;height:20px;border-radius:50%;
+    background:var(--danger);color:#fff;border:none;cursor:pointer;font-size:.7rem;
+    display:none;align-items:center;justify-content:center;z-index:5;
+  }
+  .el-box.selected .el-del{display:flex}
+  .el-resize{
+    position:absolute;width:14px;height:14px;right:-7px;bottom:-7px;
+    background:var(--accent);border-radius:50%;cursor:nwse-resize;border:2px solid #fff;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>✏️ Edit PDF</h1>
+    <p>Add new text, highlights, or boxes to a PDF and drag them wherever you like. ⚠️ This does not change text already in the PDF, it only adds new content on top — and the text box currently only supports English/Latin characters (use highlight/box for Hindi).</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div id="editorArea" style="display:none">
+      <div class="edit-toolbar">
+        <button class="btn secondary" id="addTextBtn">➕ Add Text</button>
+        <button class="btn secondary" id="addHighlightBtn">🖍️ Add Highlight</button>
+        <button class="btn secondary" id="addBoxBtn">▭ Add Box</button>
+      </div>
+
+      <div class="props-bar" id="propsBar">
+        <span>Selected element:</span>
+        <label>Color <input type="color" id="propColor" value="#ff0000"></label>
+        <label id="fontSizeWrap" style="display:none">Size <input type="range" id="propFontSize" min="8" max="48" value="16"> <span id="propFontSizeVal">16</span></label>
+        <button class="icon-btn danger" id="propDeleteBtn" title="Delete" style="width:auto;padding:6px 12px">🗑️ Delete</button>
+      </div>
+
+      <div class="page-nav">
+        <button class="btn secondary" id="prevPageBtn">⬅️</button>
+        <span id="pageInfo">1 / 1</span>
+        <button class="btn secondary" id="nextPageBtn">➡️</button>
+      </div>
+
+      <div class="edit-stage" id="editStage">
+        <canvas id="bgCanvas"></canvas>
+        <div id="overlayLayer" style="position:absolute;inset:0"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="saveBtn">💾 Save PDF and Download</button>
+      </div>
+
+      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Add new text, highlights, or boxes anywhere on a PDF page (does not edit text already in the PDF).</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Click Add Text / Add Highlight / Add Box and drag it into position.</li>
+        <li>Adjust color and size, then save and download.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल PDF पेज पर कहीं भी नया टेक्स्ट, हाईलाइट या बॉक्स जोड़ने देता है (PDF में पहले से मौजूद टेक्स्ट को एडिट नहीं करता)।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>Add Text / Add Highlight / Add Box दबाएं और उसे मनचाही जगह खींचें।</li>
+        <li>रंग और साइज़ सेट करें, फिर सेव करें और डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const editStage = document.getElementById('editStage');
+const overlayLayer = document.getElementById('overlayLayer');
+const bgCanvas = document.getElementById('bgCanvas');
+
+let currentFile = null;
+let pdfDocJs = null;
+let totalPages = 0;
+let currentPageIndex = 0;
+let renderScale = 1;
+
+let elements = []; // {id, page, type:'text'|'highlight'|'box', xPdf, yPdfTop, wPdf, hPdf, text, fontSize, color}
+let idCounter = 1;
+let selectedId = null;
+let dragState = null;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+async function handleFile(file){
+  currentFile = file;
+  elements = [];
+  selectedId = null;
+  const arrayBuf = await file.arrayBuffer();
+  pdfDocJs = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+  totalPages = pdfDocJs.numPages;
+  currentPageIndex = 0;
+
+  const firstPage = await pdfDocJs.getPage(1);
+  const vp = firstPage.getViewport({ scale: 1 });
+  renderScale = Math.min(560 / vp.width, 1.4);
+
+  document.getElementById('editorArea').style.display = 'block';
+  await renderCurrentPage();
+}
+
+async function renderCurrentPage(){
+  const page = await pdfDocJs.getPage(currentPageIndex + 1);
+  const viewport = page.getViewport({ scale: renderScale });
+  bgCanvas.width = viewport.width;
+  bgCanvas.height = viewport.height;
+  const ctx = bgCanvas.getContext('2d');
+  await page.render({ canvasContext: ctx, viewport }).promise;
+
+  editStage.style.width = viewport.width + 'px';
+  overlayLayer.style.width = viewport.width + 'px';
+  overlayLayer.style.height = viewport.height + 'px';
+
+  document.getElementById('pageInfo').textContent = `${currentPageIndex+1} / ${totalPages}`;
+  renderOverlayElements();
+  deselectAll();
+}
+
+document.getElementById('prevPageBtn').addEventListener('click', async ()=>{
+  if(currentPageIndex > 0){ currentPageIndex--; await renderCurrentPage(); }
+});
+document.getElementById('nextPageBtn').addEventListener('click', async ()=>{
+  if(currentPageIndex < totalPages - 1){ currentPageIndex++; await renderCurrentPage(); }
+});
+
+/* ---------- overlay rendering ---------- */
+function renderOverlayElements(){
+  overlayLayer.innerHTML = '';
+  elements.filter(el => el.page === currentPageIndex).forEach(el => buildElementDom(el));
+}
+
+function buildElementDom(el){
+  const box = document.createElement('div');
+  box.className = 'el-box ' + (el.type === 'text' ? 'el-text' : 'el-rect');
+  box.dataset.id = el.id;
+  box.style.left = (el.xPdf * renderScale) + 'px';
+  box.style.top = (el.yPdfTop * renderScale) + 'px';
+  box.style.width = (el.wPdf * renderScale) + 'px';
+  if(el.type !== 'text'){
+    box.style.height = (el.hPdf * renderScale) + 'px';
+  }
+  if(selectedId === el.id) box.classList.add('selected');
+
+  const delBtn = document.createElement('button');
+  delBtn.className = 'el-del';
+  delBtn.textContent = '✕';
+  delBtn.addEventListener('mousedown', e=> e.stopPropagation());
+  delBtn.addEventListener('click', (e)=>{ e.stopPropagation(); deleteElement(el.id); });
+  box.appendChild(delBtn);
+
+  if(el.type === 'text'){
+    const handle = document.createElement('div');
+    handle.className = 'drag-handle';
+    handle.textContent = '⠿⠿⠿';
+    handle.addEventListener('mousedown', e=> startDrag(e, el, box));
+    handle.addEventListener('touchstart', e=> startDrag(e, el, box));
+    box.appendChild(handle);
+
+    const ta = document.createElement('textarea');
+    ta.value = el.text || '';
+    ta.style.color = el.color;
+    ta.style.fontSize = Math.max(10, el.fontSize * renderScale * 0.8) + 'px';
+    ta.addEventListener('input', ()=>{ el.text = ta.value; });
+    ta.addEventListener('mousedown', e=> e.stopPropagation());
+    ta.addEventListener('focus', ()=> selectElement(el.id));
+    box.appendChild(ta);
+  } else {
+    if(el.type === 'highlight') box.style.background = hexToRgba(el.color, 0.4);
+    else box.style.border = `2px solid ${el.color}`;
+
+    box.addEventListener('mousedown', e=> startDrag(e, el, box));
+    box.addEventListener('touchstart', e=> startDrag(e, el, box));
+
+    const resize = document.createElement('div');
+    resize.className = 'el-resize';
+    resize.addEventListener('mousedown', e=> startResize(e, el, box));
+    resize.addEventListener('touchstart', e=> startResize(e, el, box));
+    box.appendChild(resize);
+  }
+
+  overlayLayer.appendChild(box);
+}
+
+/* ---------- drag / resize (single shared listener set) ---------- */
+function startDrag(e, el, box){
+  const point = e.touches ? e.touches[0] : e;
+  dragState = { type:'move', el, box, startX: point.clientX, startY: point.clientY, origLeft: box.offsetLeft, origTop: box.offsetTop };
+  selectElement(el.id);
+  e.stopPropagation();
+  if(e.cancelable) e.preventDefault();
+}
+function startResize(e, el, box){
+  const point = e.touches ? e.touches[0] : e;
+  dragState = { type:'resize', el, box, startX: point.clientX, startY: point.clientY, startW: box.offsetWidth, startH: box.offsetHeight };
+  e.stopPropagation();
+  if(e.cancelable) e.preventDefault();
+}
+
+function onPointerMove(e){
+  if(!dragState) return;
+  const point = e.touches ? e.touches[0] : e;
+  const dx = point.clientX - dragState.startX;
+  const dy = point.clientY - dragState.startY;
+  const { el, box, type } = dragState;
+
+  if(type === 'move'){
+    let newLeft = dragState.origLeft + dx;
+    let newTop = dragState.origTop + dy;
+    newLeft = Math.max(0, Math.min(newLeft, overlayLayer.clientWidth - box.offsetWidth));
+    newTop = Math.max(0, Math.min(newTop, overlayLayer.clientHeight - box.offsetHeight));
+    box.style.left = newLeft + 'px';
+    box.style.top = newTop + 'px';
+    el.xPdf = newLeft / renderScale;
+    el.yPdfTop = newTop / renderScale;
+  } else if(type === 'resize'){
+    const newW = Math.max(20, dragState.startW + dx);
+    const newH = Math.max(20, dragState.startH + dy);
+    box.style.width = newW + 'px';
+    box.style.height = newH + 'px';
+    el.wPdf = newW / renderScale;
+    el.hPdf = newH / renderScale;
+  }
+  if(e.cancelable) e.preventDefault();
+}
+function onPointerUp(){ dragState = null; }
+
+document.addEventListener('mousemove', onPointerMove);
+document.addEventListener('mouseup', onPointerUp);
+document.addEventListener('touchmove', onPointerMove, { passive:false });
+document.addEventListener('touchend', onPointerUp);
+
+editStage.addEventListener('mousedown', e=>{
+  if(e.target === bgCanvas) deselectAll();
+});
+
+/* ---------- selection / properties ---------- */
+function selectElement(id){
+  selectedId = id;
+  document.querySelectorAll('.el-box').forEach(b=>{
+    b.classList.toggle('selected', b.dataset.id == id);
+  });
+  const el = elements.find(e => e.id == id);
+  if(!el) return;
+  document.getElementById('propsBar').classList.add('show');
+  document.getElementById('propColor').value = el.color;
+  const fsWrap = document.getElementById('fontSizeWrap');
+  if(el.type === 'text'){
+    fsWrap.style.display = 'inline-flex';
+    document.getElementById('propFontSize').value = el.fontSize;
+    document.getElementById('propFontSizeVal').textContent = el.fontSize;
+  } else {
+    fsWrap.style.display = 'none';
+  }
+}
+
+function deselectAll(){
+  selectedId = null;
+  document.querySelectorAll('.el-box').forEach(b => b.classList.remove('selected'));
+  document.getElementById('propsBar').classList.remove('show');
+}
+
+document.getElementById('propColor').addEventListener('input', e=>{
+  const el = elements.find(x => x.id == selectedId);
+  if(!el) return;
+  el.color = e.target.value;
+  renderOverlayElements();
+  selectElement(selectedId);
+});
+document.getElementById('propFontSize').addEventListener('input', e=>{
+  const el = elements.find(x => x.id == selectedId);
+  if(!el) return;
+  el.fontSize = parseInt(e.target.value);
+  document.getElementById('propFontSizeVal').textContent = el.fontSize;
+  renderOverlayElements();
+  selectElement(selectedId);
+});
+document.getElementById('propDeleteBtn').addEventListener('click', ()=>{
+  if(selectedId) deleteElement(selectedId);
+});
+
+function deleteElement(id){
+  elements = elements.filter(e => e.id != id);
+  if(selectedId == id) deselectAll();
+  renderOverlayElements();
+}
+
+/* ---------- add buttons ---------- */
+function addElementFocused(el){
+  elements.push(el);
+  renderOverlayElements();
+  selectElement(el.id);
+  if(el.type === 'text'){
+    const box = overlayLayer.querySelector(`[data-id="${el.id}"]`);
+    const ta = box ? box.querySelector('textarea') : null;
+    if(ta) ta.focus();
+  }
+}
+
+document.getElementById('addTextBtn').addEventListener('click', ()=>{
+  addElementFocused({ id: idCounter++, page: currentPageIndex, type:'text', xPdf:40, yPdfTop:40, wPdf:150, hPdf:40, text:'', fontSize:16, color:'#ff0000' });
+});
+document.getElementById('addHighlightBtn').addEventListener('click', ()=>{
+  addElementFocused({ id: idCounter++, page: currentPageIndex, type:'highlight', xPdf:40, yPdfTop:40, wPdf:160, hPdf:24, color:'#ffeb00' });
+});
+document.getElementById('addBoxBtn').addEventListener('click', ()=>{
+  addElementFocused({ id: idCounter++, page: currentPageIndex, type:'box', xPdf:40, yPdfTop:40, wPdf:160, hPdf:60, color:'#ff3b30' });
+});
+
+/* ---------- helpers ---------- */
+function hexToRgba(hex, alpha){
+  hex = hex.replace('#','');
+  const bigint = parseInt(hex, 16);
+  const r=(bigint>>16)&255, g=(bigint>>8)&255, b=bigint&255;
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+function hexToRgb01(hex){
+  hex = hex.replace('#','');
+  const bigint = parseInt(hex, 16);
+  return { r: ((bigint>>16)&255)/255, g: ((bigint>>8)&255)/255, b: (bigint&255)/255 };
+}
+
+/* ---------- save ---------- */
+document.getElementById('saveBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  if(elements.length === 0){ status.textContent = '⚠️ No elements have been added'; return; }
+
+  status.textContent = '⏳ Building PDF...';
+  try{
+    const { PDFDocument, rgb, StandardFonts } = PDFLib;
+    const bytes = await currentFile.arrayBuffer();
+    const pdfDoc = await PDFDocument.load(bytes);
+    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    const pages = pdfDoc.getPages();
+
+    for(const el of elements){
+      const page = pages[el.page];
+      if(!page) continue;
+      const pageHeight = page.getHeight();
+      const color = hexToRgb01(el.color);
+
+      if(el.type === 'text'){
+        if(!el.text || !el.text.trim()) continue;
+        const lines = el.text.split('\n');
+        let y = pageHeight - el.yPdfTop - el.fontSize;
+        for(const line of lines){
+          page.drawText(line, { x: el.xPdf, y, size: el.fontSize, font, color: rgb(color.r,color.g,color.b) });
+          y -= el.fontSize * 1.25;
+        }
+      } else {
+        const y = pageHeight - el.yPdfTop - el.hPdf;
+        if(el.type === 'highlight'){
+          page.drawRectangle({ x: el.xPdf, y, width: el.wPdf, height: el.hPdf, color: rgb(color.r,color.g,color.b), opacity: 0.4 });
+        } else {
+          page.drawRectangle({ x: el.xPdf, y, width: el.wPdf, height: el.hPdf, borderColor: rgb(color.r,color.g,color.b), borderWidth: 2 });
+        }
+      }
+    }
+
+    const newBytes = await pdfDoc.save();
+    const blob = new Blob([newBytes], {type:'application/pdf'});
+    downloadBlob('edited.pdf', blob);
+    status.textContent = '✅ PDF edited and downloaded!';
+  }catch(err){
+    if(err.message && err.message.includes('WinAnsi')){
+      status.textContent = '❌ Error: the text box currently only supports English/Latin characters. Use highlight/box for Hindi.';
+    } else {
+      status.textContent = '❌ Error: ' + err.message;
+    }
+  }
+});
+</script>
+</body>
+</html>

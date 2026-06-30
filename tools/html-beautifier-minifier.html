@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/html-beautifier-minifier.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HTML Beautifier & Minifier — ApneSoftware">
+<meta property="og:description" content="Format messy HTML into readable code, or minify HTML to reduce file size. Free, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/html-beautifier-minifier.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HTML Beautifier & Minifier — ApneSoftware">
+<meta name="twitter:description" content="Format messy HTML into readable code, or minify HTML to reduce file size. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HTML Beautifier & Minifier","description":"Format messy HTML into readable code, or minify HTML to reduce file size. Free, no signup.","url":"https://apnesoftware.com/tools/html-beautifier-minifier.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>HTML Beautifier & Minifier — ApneSoftware</title>
+<meta name="description" content="Format messy HTML into readable code, or minify HTML to reduce file size. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .tab-row{display:flex;gap:8px;margin-bottom:14px}
+  textarea{width:100%;min-height:280px;font-family:monospace;font-size:.83rem;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);resize:vertical}
+  .text-area-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){ .text-area-pair{grid-template-columns:1fr} }
+  .col-label{font-size:.8rem;font-weight:700;color:var(--text-dim);margin-bottom:6px;display:flex;justify-content:space-between}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🌐 HTML Beautifier & Minifier</h1>
+    <p>Format messy HTML into clean, readable code, or minify it to shrink the file size.</p>
+  </div>
+
+  <div class="panel">
+    <div class="tab-row">
+      <button class="btn secondary active" id="beautifyTabBtn">✨ Beautify</button>
+      <button class="btn secondary" id="minifyTabBtn">📦 Minify</button>
+    </div>
+
+    <div class="text-area-pair">
+      <div>
+        <div class="col-label">INPUT HTML</div>
+        <textarea id="inputCode" placeholder="Paste your HTML here..."><div class="card"><h2>Title</h2><p>Some text here.</p></div></textarea>
+      </div>
+      <div>
+        <div class="col-label">OUTPUT <span id="sizeInfo"></span></div>
+        <textarea id="outputCode" readonly></textarea>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn" id="processBtn">✨ Beautify</button>
+      <button class="btn secondary" id="copyBtn">📋 Copy Result</button>
+      <button class="btn secondary" id="downloadBtn">⬇️ Download .html</button>
+      <button class="btn secondary" id="resetBtn">🔄 Reset</button>
+    </div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>HTML often ends up either too compressed to read or unnecessarily bulky depending on where it came from — code copied from a minified production website is a single unreadable line, while hand-written or auto-generated HTML can carry far more whitespace and indentation than it actually needs. This tool handles both directions: Beautify takes messy or minified HTML and reformats it with proper indentation and line breaks so it's actually readable and easy to edit, while Minify strips out comments and unnecessary whitespace to shrink the file size for production use.</p>
+      <p>Beautifying is useful when you're trying to understand or modify someone else's minified code, debugging a page's structure, or just want your own markup to look clean and organized. Minifying is the opposite use case — once your HTML is finished and ready to deploy, stripping the extra whitespace and comments reduces the file size slightly, which matters at scale across a high-traffic site.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Choose "Beautify" or "Minify" using the tabs.</li>
+        <li>Paste your HTML into the input box.</li>
+        <li>Click the action button, then copy or download the result.</li>
+      </ol>
+      <h3>What Minify changes</h3>
+      <p>Minification here removes HTML comments and collapses extra whitespace and line breaks between tags, while being careful to preserve the content inside &lt;pre&gt;, &lt;script&gt;, and &lt;textarea&gt; tags exactly as written, since whitespace inside those elements can be meaningful. This keeps the minification safe for typical web pages without breaking embedded JavaScript or preformatted text blocks.</p>
+      <p>For anyone maintaining a website by hand rather than through a build tool, having quick access to both directions matters — pulling a competitor's or inspiration site's markup for study generally means beautifying it first since production HTML is usually minified, while preparing your own finished page for upload benefits from a quick minify pass to shave off excess bytes before deployment. Because this works entirely in the browser with no file size limit beyond what your device can handle, it's equally useful for a small five-line snippet or an entire page's worth of markup pasted in at once.</p>
+      <p>The byte-size comparison shown next to the output is a small but useful detail too — it gives an immediate sense of how much a given page actually shrinks after minification, which can vary quite a bit depending on how much excess whitespace and how many comments the original markup had to begin with, and on a slow connection even modest savings can make a noticeable difference.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>HTML अक्सर या तो बहुत compressed होकर पढ़ने लायक नहीं रहती या ज़रूरत से ज़्यादा भारी हो जाती है, यह इस पर depend करता है कि वह कहां से आई है — किसी minified production website से copy किया गया code एक अपठनीय line होता है, जबकि हाथ से लिखी या auto-generated HTML में ज़रूरत से कहीं ज़्यादा whitespace और indentation हो सकती है। यह tool दोनों दिशाएं संभालता है: Beautify गड़बड़ या minified HTML लेकर सही indentation और line breaks के साथ दोबारा format करता है ताकि वह असल में पढ़ने और edit करने लायक हो, जबकि Minify production इस्तेमाल के लिए file size घटाने के लिए comments और फालतू whitespace हटा देता है।</p>
+      <p>Beautify करना तब उपयोगी है जब किसी और का minified code समझने या बदलने की कोशिश कर रहे हों, किसी page की structure debug कर रहे हों, या बस अपनी markup को साफ़ और व्यवस्थित दिखाना चाहते हों। Minify करना उल्टा इस्तेमाल है — जब आपकी HTML तैयार हो और deploy करने के लिए ready हो, extra whitespace और comments हटाने से file size थोड़ी घट जाती है, जो किसी high-traffic site पर बड़े पैमाने पर मायने रखती है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>Tabs से "Beautify" या "Minify" चुनें।</li>
+        <li>अपनी HTML input box में paste करें।</li>
+        <li>action बटन दबाएं, फिर result copy या download करें।</li>
+      </ol>
+      <h3>Minify क्या बदलता है</h3>
+      <p>यहां minification HTML comments हटाता है और tags के बीच extra whitespace और line breaks को collapse करता है, साथ ही यह ध्यान रखते हुए कि &lt;pre&gt;, &lt;script&gt;, और &lt;textarea&gt; tags के अंदर का content बिल्कुल वैसा ही रहे जैसा लिखा गया था, क्योंकि उन elements के अंदर whitespace मायने रख सकती है। इससे typical web pages के लिए minification सुरक्षित रहती है बिना embedded JavaScript या preformatted text blocks को तोड़े।</p>
+      <p>किसी build tool की बजाय हाथ से website maintain करने वाले किसी भी व्यक्ति के लिए, दोनों दिशाओं तक तेज़ी से पहुंच मायने रखती है — किसी competitor या inspiration site की markup study के लिए लेना आमतौर पर पहले उसे beautify करना मतलब रखता है क्योंकि production HTML आमतौर पर minified होती है, जबकि अपना तैयार page upload के लिए prepare करने में एक तेज़ minify pass से deployment से पहले फालतू bytes कम हो जाते हैं। चूंकि यह पूरी तरह browser में बिना किसी file size limit के काम करता है (सिवाय इसके कि आपका device क्या संभाल सकता है), यह छोटे पांच-line snippet के लिए भी और एक साथ paste की गई पूरे page की markup के लिए भी बराबर उपयोगी है।</p>
+      <p>Output के बगल में दिखने वाला byte-size comparison भी एक छोटी पर उपयोगी detail है — यह तुरंत अंदाज़ा देता है कि minification के बाद कोई page असल में कितना छोटा हो जाता है, जो काफ़ी अलग हो सकता है इस पर depend करते हुए कि original markup में कितनी फालतू whitespace और कितने comments शुरुआत में थे।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.1/beautify-html.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+let mode = 'beautify';
+
+document.getElementById('beautifyTabBtn').addEventListener('click', function(){
+  mode = 'beautify';
+  this.classList.add('active');
+  document.getElementById('minifyTabBtn').classList.remove('active');
+  document.getElementById('processBtn').textContent = '✨ Beautify';
+});
+document.getElementById('minifyTabBtn').addEventListener('click', function(){
+  mode = 'minify';
+  this.classList.add('active');
+  document.getElementById('beautifyTabBtn').classList.remove('active');
+  document.getElementById('processBtn').textContent = '📦 Minify';
+});
+
+function minifyHtml(code){
+  // Protect content inside pre, script, textarea from whitespace collapsing
+  const protectedBlocks = [];
+  let protectedCode = code.replace(/<(pre|script|textarea)[\s\S]*?<\/\1>/gi, (match) => {
+    protectedBlocks.push(match);
+    return `@@PROTECTED_${protectedBlocks.length - 1}@@`;
+  });
+
+  protectedCode = protectedCode
+    .replace(/<!--[\s\S]*?-->/g, '')   // remove comments
+    .replace(/>\s+</g, '><')           // collapse whitespace between tags
+    .replace(/\s{2,}/g, ' ')           // collapse multi-spaces
+    .trim();
+
+  protectedBlocks.forEach((block, i) => {
+    protectedCode = protectedCode.replace(`@@PROTECTED_${i}@@`, block);
+  });
+
+  return protectedCode;
+}
+
+document.getElementById('processBtn').addEventListener('click', ()=>{
+  const status = document.getElementById('statusMsg');
+  const input = document.getElementById('inputCode').value;
+  if(!input.trim()){ status.textContent = '⚠️ Please paste some HTML first.'; return; }
+
+  let output;
+  if(mode === 'beautify'){
+    output = html_beautify(input, { indent_size: 2, wrap_line_length: 0 });
+  } else {
+    output = minifyHtml(input);
+  }
+
+  document.getElementById('outputCode').value = output;
+  const originalSize = new Blob([input]).size;
+  const newSize = new Blob([output]).size;
+  document.getElementById('sizeInfo').textContent = `(${formatBytes(originalSize)} → ${formatBytes(newSize)})`;
+  status.textContent = '✅ Done.';
+});
+
+document.getElementById('copyBtn').addEventListener('click', function(){
+  copyText(document.getElementById('outputCode').value, this);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  downloadText('output.html', document.getElementById('outputCode').value, 'text/html');
+});
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  document.getElementById('inputCode').value = '';
+  document.getElementById('outputCode').value = '';
+  document.getElementById('sizeInfo').textContent = '';
+  document.getElementById('statusMsg').textContent = '';
+});
+</script>
+</body>
+</html>

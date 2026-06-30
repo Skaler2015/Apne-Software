@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-form-filler.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Form Filler | ApneSoftware">
+<meta property="og:description" content="Fill and lock PDF forms. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-form-filler.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Form Filler | ApneSoftware">
+<meta name="twitter:description" content="Fill and lock PDF forms. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Form Filler","description":"Fill and lock PDF forms. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-form-filler.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF Form Filler | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .form-field-row{margin-bottom:14px}
+  .form-field-row label{display:block;font-size:.85rem;color:var(--text-dim);margin-bottom:6px;font-weight:600}
+  .form-field-row .field-type{font-size:.72rem;color:var(--accent);margin-left:6px;font-weight:400}
+  .checkbox-row{display:flex;align-items:center;gap:8px}
+  .checkbox-row input{width:auto}
+  .radio-options label{display:flex;align-items:center;gap:6px;font-weight:400;color:var(--text);margin-bottom:4px}
+  .radio-options input{width:auto}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📝 PDF Form Filler</h1>
+    <p>Fill in any fillable PDF form right in your browser, then save and download.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a PDF form here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+
+    <div id="formArea" style="display:none;margin-top:18px">
+      <div id="fieldsContainer"></div>
+
+      <label style="display:flex;align-items:center;gap:8px;font-weight:400;color:var(--text);margin:16px 0">
+        <input type="checkbox" id="flattenCheck" style="width:auto"> Lock the form after filling (flatten — can't be edited again)
+      </label>
+
+      <div class="btn-row">
+        <button class="btn" id="saveBtn">💾 Save Filled PDF and Download</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool reads the fillable fields inside a PDF form (text boxes, checkboxes, radio buttons, dropdowns) and lets you fill them right in your browser, then save the completed form.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a PDF that has fillable form fields.</li>
+        <li>Fill in the fields that appear below.</li>
+        <li>Optionally tick "Lock the form" so it can't be edited further.</li>
+        <li>Click Save and download the completed PDF.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल PDF फॉर्म के अंदर मौजूद भरने लायक फील्ड्स (टेक्स्ट बॉक्स, चेकबॉक्स, रेडियो बटन, ड्रॉपडाउन) को पढ़कर सीधे ब्राउज़र में भरने देता है, फिर पूरा भरा हुआ फॉर्म सेव कर देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>ऐसी PDF अपलोड करें जिसमें भरने लायक फॉर्म फील्ड्स हों।</li>
+        <li>नीचे दिखने वाली फील्ड्स भरें।</li>
+        <li>चाहें तो "Lock the form" टिक करें ताकि बाद में एडिट न हो सके।</li>
+        <li>Save बटन दबाएं और भरी हुई PDF डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let currentFile = null;
+let pdfDoc = null;
+let formFields = []; // {name, type, field}
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+async function handleFile(file){
+  currentFile = file;
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Reading form fields...';
+  document.getElementById('formArea').style.display = 'none';
+
+  try{
+    const { PDFDocument } = PDFLib;
+    const bytes = await file.arrayBuffer();
+    pdfDoc = await PDFDocument.load(bytes);
+    const form = pdfDoc.getForm();
+    const fields = form.getFields();
+
+    if(!fields.length){
+      status.textContent = '⚠️ This PDF doesn\'t have any fillable form fields.';
+      return;
+    }
+
+    formFields = fields.map(f => ({ name: f.getName(), type: f.constructor.name, field: f }));
+    renderFields();
+    status.textContent = `✅ Found ${fields.length} field(s)`;
+    document.getElementById('formArea').style.display = 'block';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+}
+
+function renderFields(){
+  const container = document.getElementById('fieldsContainer');
+  container.innerHTML = '';
+
+  formFields.forEach((f, i) => {
+    const row = document.createElement('div');
+    row.className = 'form-field-row';
+
+    if(f.type === 'PDFTextField'){
+      let current = '';
+      try{ current = f.field.getText() || ''; }catch(e){}
+      row.innerHTML = `<label>${f.name} <span class="field-type">(text)</span></label>
+        <input type="text" data-idx="${i}" class="ff-input" value="${current.replace(/"/g,'&quot;')}">`;
+    } else if(f.type === 'PDFCheckBox'){
+      let checked = false;
+      try{ checked = f.field.isChecked(); }catch(e){}
+      row.innerHTML = `<label class="checkbox-row"><input type="checkbox" data-idx="${i}" class="ff-input" ${checked?'checked':''}> ${f.name} <span class="field-type">(checkbox)</span></label>`;
+    } else if(f.type === 'PDFRadioGroup'){
+      let options = [];
+      let selected = '';
+      try{ options = f.field.getOptions(); selected = f.field.getSelected() || ''; }catch(e){}
+      const opts = options.map(o => `<label><input type="radio" name="radio-${i}" data-idx="${i}" class="ff-input" value="${o}" ${o===selected?'checked':''}> ${o}</label>`).join('');
+      row.innerHTML = `<label>${f.name} <span class="field-type">(choose one)</span></label><div class="radio-options">${opts}</div>`;
+    } else if(f.type === 'PDFDropdown' || f.type === 'PDFOptionList'){
+      let options = [];
+      let selected = [];
+      try{ options = f.field.getOptions(); selected = f.field.getSelected() || []; }catch(e){}
+      const opts = options.map(o => `<option value="${o}" ${selected.includes(o)?'selected':''}>${o}</option>`).join('');
+      row.innerHTML = `<label>${f.name} <span class="field-type">(dropdown)</span></label>
+        <select data-idx="${i}" class="ff-input"><option value="">— Select —</option>${opts}</select>`;
+    } else {
+      row.innerHTML = `<label>${f.name} <span class="field-type">(${f.type}, not editable here)</span></label>`;
+    }
+
+    container.appendChild(row);
+  });
+}
+
+document.getElementById('saveBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Saving...';
+  try{
+    formFields.forEach((f, i) => {
+      const inputs = document.querySelectorAll(`.ff-input[data-idx="${i}"]`);
+      if(!inputs.length) return;
+
+      if(f.type === 'PDFTextField'){
+        try{ f.field.setText(inputs[0].value); }catch(e){}
+      } else if(f.type === 'PDFCheckBox'){
+        try{ inputs[0].checked ? f.field.check() : f.field.uncheck(); }catch(e){}
+      } else if(f.type === 'PDFRadioGroup'){
+        const checked = Array.from(inputs).find(r => r.checked);
+        if(checked){ try{ f.field.select(checked.value); }catch(e){} }
+      } else if(f.type === 'PDFDropdown' || f.type === 'PDFOptionList'){
+        const val = inputs[0].value;
+        if(val){ try{ f.field.select(val); }catch(e){} }
+      }
+    });
+
+    if(document.getElementById('flattenCheck').checked){
+      pdfDoc.getForm().flatten();
+    }
+
+    const newBytes = await pdfDoc.save();
+    const blob = new Blob([newBytes], {type:'application/pdf'});
+    downloadBlob('filled-form.pdf', blob);
+    status.textContent = '✅ Form filled and downloaded!';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

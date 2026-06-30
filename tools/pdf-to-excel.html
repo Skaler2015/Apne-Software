@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-to-excel.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF to Excel | ApneSoftware">
+<meta property="og:description" content="Convert PDF table to .xlsx. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-to-excel.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF to Excel | ApneSoftware">
+<meta name="twitter:description" content="Convert PDF table to .xlsx. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF to Excel","description":"Convert PDF table to .xlsx. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-to-excel.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF to Excel | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .limit-note{
+    background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:8px;
+    padding:12px 14px;font-size:.85rem;color:#fbbf24;margin-top:14px;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📈 PDF to Excel</h1>
+    <p>Pull the text/table data out of a PDF into an Excel (.xlsx) spreadsheet.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+    <div class="limit-note">⚠️ Note: this works best on PDFs with simple, clearly-spaced tables. It guesses rows/columns based on text position, so complex tables (merged cells, multi-column layouts) may not split perfectly — please double-check the result.</div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool reads the text in a PDF along with its position on the page, groups it into rows and columns, and exports the result as an Excel spreadsheet.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF (it needs selectable text, not a scanned image).</li>
+        <li>It converts automatically and downloads as an .xlsx file.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल PDF का टेक्स्ट उसकी पेज पर मौजूद पोज़िशन के साथ पढ़ता है, उसे रो और कॉलम में बांटता है, और नतीजा Excel स्प्रेडशीट के रूप में देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें (इसमें चुनने लायक टेक्स्ट होना चाहिए, सिर्फ स्कैन की हुई इमेज नहीं)।</li>
+        <li>यह अपने आप बदलकर .xlsx फाइल के रूप में डाउनलोड हो जाएगी।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+function extractRows(items){
+  // group text items into rows by Y proximity
+  const sorted = [...items].sort((a,b) => b.transform[5] - a.transform[5]);
+  const rows = [];
+  let currentRow = [];
+  let lastY = null;
+
+  sorted.forEach(item => {
+    const y = item.transform[5];
+    if(lastY !== null && Math.abs(y - lastY) > 4){
+      if(currentRow.length) rows.push(currentRow);
+      currentRow = [];
+    }
+    currentRow.push(item);
+    lastY = y;
+  });
+  if(currentRow.length) rows.push(currentRow);
+
+  // within each row, sort by X and cluster into columns by gap size
+  return rows.map(row => {
+    const sortedRow = [...row].sort((a,b) => a.transform[4] - b.transform[4]);
+    const cells = [];
+    let cellText = sortedRow[0].str;
+    let lastEndX = sortedRow[0].transform[4] + (sortedRow[0].width || sortedRow[0].str.length*5);
+
+    for(let i=1; i<sortedRow.length; i++){
+      const item = sortedRow[i];
+      const gap = item.transform[4] - lastEndX;
+      if(gap > 10){
+        cells.push(cellText.trim());
+        cellText = item.str;
+      } else {
+        cellText += item.str;
+      }
+      lastEndX = item.transform[4] + (item.width || item.str.length*5);
+    }
+    cells.push(cellText.trim());
+    return cells;
+  });
+}
+
+async function handleFile(file){
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Extracting data...';
+  try{
+    const arrayBuf = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+    let allRows = [];
+
+    for(let i=1; i<=pdf.numPages; i++){
+      status.textContent = `⏳ Reading page ${i}/${pdf.numPages}...`;
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      if(content.items.length){
+        const rows = extractRows(content.items);
+        allRows = allRows.concat(rows);
+      }
+    }
+
+    if(!allRows.length){
+      status.textContent = '⚠️ No selectable text found — this looks like a scanned PDF. Try the PDF OCR tool instead.';
+      return;
+    }
+
+    status.textContent = '⏳ Building spreadsheet...';
+    const ws = XLSX.utils.aoa_to_sheet(allRows);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+    const wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    const blob = new Blob([wbout], { type: 'application/octet-stream' });
+    const outName = file.name.replace(/\.pdf$/i, '') + '.xlsx';
+    downloadBlob(outName, blob);
+    status.textContent = '✅ Converted and downloaded! Please double-check the rows/columns.';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+}
+</script>
+</body>
+</html>

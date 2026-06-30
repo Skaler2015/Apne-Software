@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-split.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Split — Extract & Split PDF Pages Free Online | ApneSoftware">
+<meta property="og:description" content="Split PDF into multiple files, extract specific pages, or split by range. Free online PDF splitter — no upload to server, no signup, instant download.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-split.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Split — Extract & Split PDF Pages Free Online | ApneSoftware">
+<meta name="twitter:description" content="Split PDF into multiple files, extract specific pages, or split by range. Free online PDF splitter — no upload to server, no signup, instant download.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Split","description":"Split PDF into multiple files, extract specific pages, or split by range. Free online PDF splitter — no upload to server, no signup, instant download.","url":"https://apnesoftware.com/tools/pdf-split.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF Split — Extract & Split PDF Pages Free Online | ApneSoftware</title>
+<meta name="description" content="Split PDF into multiple files, extract specific pages, or split by range. Free online PDF splitter — no upload to server, no signup, instant download.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* ── UPLOAD ── */
+.upload-zone{border:2px dashed rgba(124,92,252,.4);border-radius:20px;padding:40px 30px;text-align:center;cursor:pointer;background:rgba(124,92,252,.06);transition:.3s;position:relative;overflow:hidden}
+.upload-zone:hover,.upload-zone.drag-over{border-color:rgba(124,92,252,.7);background:rgba(124,92,252,.12)}
+.upload-icon{font-size:3rem;margin-bottom:12px;display:block;animation:floatU 3s ease-in-out infinite}
+@keyframes floatU{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.upload-title{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:6px}
+.upload-sub{font-size:.84rem;color:rgba(255,255,255,.5);margin-bottom:16px}
+.upload-cta{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;padding:10px 24px;border-radius:999px;font-size:.88rem;font-weight:700;cursor:pointer;border:none;transition:.2s;box-shadow:0 4px 20px rgba(124,92,252,.4);font-family:var(--font)}
+.upload-cta:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(124,92,252,.5)}
+.upload-meta{display:flex;gap:18px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.upload-meta span{font-size:.74rem;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:4px}
+#fileInput{display:none}
+
+/* ── PDF INFO CARD ── */
+.pdf-info-card{background:rgba(124,92,252,.1);border:1px solid rgba(124,92,252,.25);border-radius:16px;padding:18px 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:16px}
+.pdf-info-icon{font-size:2.5rem;flex-shrink:0}
+.pdf-info-details{flex:1;min-width:200px}
+.pdf-info-name{font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px;word-break:break-all}
+.pdf-info-stats{display:flex;gap:10px;flex-wrap:wrap}
+.pdf-stat-pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:5px 10px;font-size:.75rem;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:4px}
+.pdf-info-change{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);border-radius:8px;padding:6px 14px;font-size:.78rem;cursor:pointer;font-family:var(--font);transition:.15s;white-space:nowrap;align-self:flex-start}
+.pdf-info-change:hover{background:rgba(255,255,255,.15)}
+
+/* ── WORKSPACE ── */
+.split-workspace{display:grid;grid-template-columns:1fr 320px;gap:16px;min-height:520px}
+@media(max-width:900px){.split-workspace{grid-template-columns:1fr}}
+
+/* ── LEFT: PAGE GRID ── */
+.pages-panel{display:flex;flex-direction:column;gap:0}
+.pages-header{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px 14px 0 0;border-bottom:none;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.pages-header h3{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.85);margin:0}
+.sel-actions{display:flex;gap:6px;flex-wrap:wrap}
+.sel-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);border-radius:7px;padding:4px 10px;font-size:.72rem;cursor:pointer;font-family:var(--font);transition:.15s}
+.sel-btn:hover{background:rgba(255,255,255,.13);color:#fff}
+.sel-btn.active{background:rgba(124,92,252,.25);border-color:rgba(124,92,252,.5);color:#A78BFA}
+.pages-grid-wrap{border:1px solid rgba(255,255,255,.1);border-radius:0 0 14px 14px;background:rgba(255,255,255,.02);overflow-y:auto;max-height:520px;min-height:300px}
+.pages-grid-wrap::-webkit-scrollbar{width:4px}
+.pages-grid-wrap::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:2px}
+.pages-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;padding:14px}
+
+/* ── PAGE THUMB CARD ── */
+.page-card{border-radius:10px;overflow:hidden;border:2px solid rgba(255,255,255,.08);cursor:pointer;transition:.2s;background:rgba(255,255,255,.04);position:relative}
+.page-card:hover{border-color:rgba(124,92,252,.4);background:rgba(124,92,252,.08);transform:translateY(-2px)}
+.page-card.selected{border-color:#7C5CFC;background:rgba(124,92,252,.15);box-shadow:0 0 0 1px rgba(124,92,252,.3)}
+.page-card.previewing{border-color:#16C079;box-shadow:0 0 0 1px rgba(22,192,121,.3)}
+.page-thumb{width:100%;aspect-ratio:3/4;background:rgba(255,255,255,.06);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.page-thumb canvas{width:100%;height:100%;object-fit:contain;display:block}
+.page-thumb .thumb-ph{font-size:1.6rem;color:rgba(255,255,255,.15)}
+.page-num{text-align:center;font-size:.68rem;color:rgba(255,255,255,.5);padding:4px;font-weight:600}
+.page-sel-overlay{position:absolute;top:4px;right:4px;width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#fff;font-weight:800;opacity:0;transition:.2s}
+.page-card.selected .page-sel-overlay{opacity:1}
+
+/* ── RIGHT: PREVIEW + CONTROLS ── */
+.split-right{display:flex;flex-direction:column;gap:12px}
+.page-preview-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;flex-shrink:0}
+.preview-hd{padding:10px 14px;background:rgba(255,255,255,.05);border-bottom:1px solid rgba(255,255,255,.08)}
+.preview-hd h4{font-size:.82rem;font-weight:700;color:rgba(255,255,255,.7);margin:0}
+.preview-canvas-wrap{min-height:280px;display:flex;align-items:center;justify-content:center;padding:10px;background:#111}
+.preview-canvas-wrap canvas{max-width:100%;max-height:280px;display:block}
+.preview-empty-msg{text-align:center;color:rgba(255,255,255,.2);font-size:.82rem;padding:40px 20px}
+.preview-nav-row{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px;background:rgba(255,255,255,.04);border-top:1px solid rgba(255,255,255,.07)}
+.pnav-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);border-radius:7px;padding:4px 12px;font-size:.78rem;cursor:pointer;transition:.15s}
+.pnav-btn:disabled{opacity:.3;cursor:default}
+.pnav-btn:hover:not(:disabled){background:rgba(255,255,255,.14)}
+
+/* ── SPLIT METHOD ── */
+.split-method-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px}
+.split-method-box h4{font-size:.82rem;font-weight:700;color:rgba(255,255,255,.7);margin:0 0 10px}
+.method-tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}
+.method-tab{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:7px 8px;text-align:center;cursor:pointer;font-size:.74rem;color:rgba(255,255,255,.6);font-weight:600;transition:.2s;font-family:var(--font)}
+.method-tab:hover{background:rgba(255,255,255,.1);color:#fff}
+.method-tab.active{background:rgba(124,92,252,.25);border-color:rgba(124,92,252,.5);color:#A78BFA}
+.method-input-wrap{margin-top:8px}
+.method-input{width:100%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);color:#fff;border-radius:9px;padding:9px 12px;font-size:.84rem;font-family:var(--font);outline:none;transition:.2s}
+.method-input:focus{border-color:rgba(124,92,252,.5);background:rgba(255,255,255,.1)}
+.method-hint{font-size:.7rem;color:rgba(255,255,255,.35);margin-top:5px;line-height:1.4}
+
+/* ── SUMMARY ── */
+.split-summary-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px}
+.split-summary-box h4{font-size:.82rem;font-weight:700;color:rgba(255,255,255,.7);margin:0 0 10px}
+.sum-rows{display:flex;flex-direction:column;gap:7px}
+.sum-row{display:flex;justify-content:space-between;align-items:center;font-size:.8rem}
+.sum-row .sk{color:rgba(255,255,255,.45)}
+.sum-row .sv{color:#A78BFA;font-weight:700}
+
+/* ── SETTINGS ── */
+.settings-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:14px}
+.settings-box h4{font-size:.82rem;font-weight:700;color:rgba(255,255,255,.7);margin:0 0 10px}
+.s-item{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.s-item:last-child{border-bottom:none}
+.s-lbl{font-size:.78rem;color:rgba(255,255,255,.7);font-weight:600}
+.toggle-sw{position:relative;width:36px;height:20px;flex-shrink:0}
+.toggle-sw input{opacity:0;width:0;height:0;position:absolute}
+.t-slider{position:absolute;inset:0;background:rgba(255,255,255,.12);border-radius:999px;cursor:pointer;transition:.25s}
+.t-slider:before{content:'';position:absolute;width:14px;height:14px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.25s}
+.toggle-sw input:checked+.t-slider{background:linear-gradient(135deg,#7C5CFC,#5A3FE0)}
+.toggle-sw input:checked+.t-slider:before{transform:translateX(16px)}
+
+/* ── SPLIT ACTION ── */
+.split-action-bar{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.split-btn-big{flex:1;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;border:none;padding:16px 24px;border-radius:14px;font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 4px 24px rgba(124,92,252,.4);transition:.25s;font-family:var(--font);min-width:180px}
+.split-btn-big:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 32px rgba(124,92,252,.5)}
+.split-btn-big:disabled{opacity:.4;cursor:default;transform:none}
+.reset-btn{background:rgba(239,68,68,.1);color:#F87171;border:1px solid rgba(239,68,68,.25);padding:14px 18px;border-radius:12px;cursor:pointer;font-size:.88rem;font-weight:600;transition:.2s;font-family:var(--font)}
+.reset-btn:hover{background:rgba(239,68,68,.2)}
+
+/* ── PROGRESS ── */
+.progress-overlay{position:fixed;inset:0;background:rgba(13,6,33,.92);display:flex;align-items:center;justify-content:center;z-index:999;backdrop-filter:blur(20px)}
+.progress-box{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:36px;text-align:center;min-width:320px;max-width:90vw;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.prog-icon{font-size:2.5rem;margin-bottom:12px;display:block}
+.prog-title{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:4px}
+.prog-sub{font-size:.84rem;color:rgba(255,255,255,.5);margin-bottom:20px}
+.prog-bar-wrap{background:rgba(255,255,255,.1);border-radius:999px;height:8px;overflow:hidden;margin-bottom:6px}
+.prog-bar-fill{height:100%;background:linear-gradient(90deg,#7C5CFC,#16C079);border-radius:999px;width:0%;transition:.3s}
+.prog-pct{font-size:.76rem;color:rgba(255,255,255,.4);text-align:right}
+
+/* ── SUCCESS ── */
+.success-wrap{text-align:center;padding:40px 20px}
+.suc-icon{font-size:4rem;margin-bottom:14px;display:block;animation:popIn .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes popIn{0%{transform:scale(0)}100%{transform:scale(1)}}
+.suc-title{font-size:1.3rem;font-weight:800;color:#34D399;margin-bottom:8px}
+.suc-stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:14px 0 24px}
+.suc-stat{background:rgba(22,192,121,.1);border:1px solid rgba(22,192,121,.2);border-radius:10px;padding:10px 16px;text-align:center}
+.suc-stat .sv{font-size:1rem;font-weight:800;color:#34D399}
+.suc-stat .sl{font-size:.7rem;color:rgba(255,255,255,.5);margin-top:2px}
+.suc-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+
+/* ── TRUST ── */
+.trust-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:14px}
+.trust-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center}
+.trust-card .ti{font-size:1.3rem;margin-bottom:5px;display:block}
+.trust-card .tt{font-size:.76rem;font-weight:700;color:rgba(255,255,255,.75)}
+.trust-card .ts{font-size:.67rem;color:rgba(255,255,255,.4);margin-top:2px}
+
+/* ── RELATED ── */
+.rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-top:12px}
+.rel-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 10px;text-align:center;text-decoration:none;transition:.2s;display:block}
+.rel-card:hover{background:rgba(124,92,252,.15);border-color:rgba(124,92,252,.4);transform:translateY(-3px)}
+.rel-card .ri{font-size:1.5rem;margin-bottom:6px;display:block}
+.rel-card .rn{font-size:.76rem;font-weight:700;color:rgba(255,255,255,.8)}
+
+/* ── FAQ ── */
+.faq-item{border:1px solid rgba(255,255,255,.1);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.faq-q{width:100%;background:none;border:none;padding:14px 18px;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:rgba(255,255,255,.85);font-size:.9rem;font-weight:700;font-family:var(--font);transition:.2s}
+.faq-q:hover{background:rgba(255,255,255,.04)}
+.faq-caret{font-size:.8rem;color:rgba(255,255,255,.4);transition:.3s;flex-shrink:0}
+.faq-item.open .faq-caret{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;padding:0 18px;color:rgba(255,255,255,.6);font-size:.86rem;line-height:1.7}
+.faq-item.open .faq-a{max-height:300px;padding:0 18px 14px}
+
+/* ── SECTION SEP ── */
+.sec-sep{display:flex;align-items:center;gap:12px;margin:24px 0 14px}
+.sec-sep span{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.7);white-space:nowrap}
+.sec-sep::before,.sec-sep::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.08)}
+
+/* ── MOBILE STICKY ── */
+@media(max-width:640px){
+  .mobile-sticky{position:fixed;bottom:0;left:0;right:0;padding:12px 16px;background:rgba(13,6,33,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.1);z-index:100;display:none}
+  .mobile-sticky.show{display:block}
+  .mobile-sticky .split-btn-big{width:100%}
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>✂️ PDF Split</h1>
+    <p>Extract pages, split by range, odd/even, or select individual pages — entirely in your browser.</p>
+  </div>
+
+  <div class="panel" id="mainPanel">
+
+    <!-- UPLOAD ZONE -->
+    <div class="upload-zone" id="dropzone">
+      <span class="upload-icon">📄</span>
+      <div class="upload-title">Drop Your PDF Here to Split</div>
+      <div class="upload-sub">Select a PDF file from your device</div>
+      <button class="upload-cta" onclick="document.getElementById('fileInput').click()">+ Choose PDF File</button>
+      <div class="upload-meta">
+        <span>📄 PDF Only</span>
+        <span>📏 Max 100 MB</span>
+        <span>🔒 Processed in browser</span>
+        <span>🗑 No files stored</span>
+      </div>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <!-- PDF INFO + WORKSPACE -->
+    <div id="splitWorkspaceWrap" style="display:none">
+
+      <!-- INFO CARD -->
+      <div class="pdf-info-card" id="pdfInfoCard">
+        <div class="pdf-info-icon">📄</div>
+        <div class="pdf-info-details">
+          <div class="pdf-info-name" id="infoFileName">file.pdf</div>
+          <div class="pdf-info-stats">
+            <span class="pdf-stat-pill">📑 <span id="infoPages">0</span> pages</span>
+            <span class="pdf-stat-pill">💾 <span id="infoSize">0 KB</span></span>
+            <span class="pdf-stat-pill">✅ Loaded successfully</span>
+          </div>
+        </div>
+        <button class="pdf-info-change" onclick="resetTool()">↩ Change File</button>
+      </div>
+
+      <!-- WORKSPACE: LEFT thumbnails + RIGHT controls -->
+      <div class="split-workspace">
+
+        <!-- LEFT: PAGE THUMBNAILS -->
+        <div class="pages-panel">
+          <div class="pages-header">
+            <h3>📑 Pages <span style="color:#A78BFA;font-size:.8rem" id="pageCountBadge">(0 pages)</span></h3>
+            <div class="sel-actions">
+              <button class="sel-btn" onclick="selectAll()">All</button>
+              <button class="sel-btn" onclick="selectOdd()">Odd</button>
+              <button class="sel-btn" onclick="selectEven()">Even</button>
+              <button class="sel-btn" onclick="clearSelection()">Clear</button>
+            </div>
+          </div>
+          <div class="pages-grid-wrap">
+            <div class="pages-grid" id="pagesGrid"></div>
+          </div>
+        </div>
+
+        <!-- RIGHT: PREVIEW + SPLIT CONTROLS -->
+        <div class="split-right">
+
+          <!-- PAGE PREVIEW -->
+          <div class="page-preview-box">
+            <div class="preview-hd"><h4>🔍 Page Preview</h4></div>
+            <div class="preview-canvas-wrap" id="previewCanvasWrap">
+              <div class="preview-empty-msg">Click a page thumbnail to preview it</div>
+            </div>
+            <div class="preview-nav-row">
+              <button class="pnav-btn" id="prevPgBtn" disabled onclick="changePreviewPage(-1)">◀</button>
+              <span style="font-size:.76rem;color:rgba(255,255,255,.5)" id="previewPageInfo">—</span>
+              <button class="pnav-btn" id="nextPgBtn" disabled onclick="changePreviewPage(1)">▶</button>
+            </div>
+          </div>
+
+          <!-- SPLIT METHOD -->
+          <div class="split-method-box">
+            <h4>✂️ Split Method</h4>
+            <div class="method-tabs">
+              <button class="method-tab active" data-mode="range" onclick="setMode(this)">📏 Page Range</button>
+              <button class="method-tab" data-mode="selected" onclick="setMode(this)">☑ Selected</button>
+              <button class="method-tab" data-mode="every" onclick="setMode(this)">📄 Every Page</button>
+              <button class="method-tab" data-mode="custom" onclick="setMode(this)">✏ Custom Groups</button>
+            </div>
+
+            <div id="modeRange" class="method-input-wrap">
+              <input class="method-input" id="rangeInput" placeholder="e.g. 1-5, 6-10, 11-15" value="">
+              <div class="method-hint">Enter page ranges separated by commas. Each range becomes a separate PDF.<br>Example: <strong>1-3, 4-7, 8</strong></div>
+            </div>
+            <div id="modeSelected" class="method-input-wrap" style="display:none">
+              <div class="method-hint">✅ Click page thumbnails on the left to select pages. Selected pages will be extracted into one PDF.<br><strong id="selCountHint">0 pages selected</strong></div>
+            </div>
+            <div id="modeEvery" class="method-input-wrap" style="display:none">
+              <div class="method-hint">Each page of the PDF will be extracted as a separate PDF file. A ZIP file will be downloaded.</div>
+            </div>
+            <div id="modeCustom" class="method-input-wrap" style="display:none">
+              <input class="method-input" id="customInput" placeholder="e.g. 1,3,5 | 2,4,6 | 7-10" value="">
+              <div class="method-hint">Use <strong>|</strong> to separate groups. Each group becomes one PDF.<br>Example: <strong>1,3,5 | 2,4,6 | 7-10</strong></div>
+            </div>
+          </div>
+
+          <!-- SPLIT SUMMARY -->
+          <div class="split-summary-box">
+            <h4>📊 Split Summary</h4>
+            <div class="sum-rows">
+              <div class="sum-row"><span class="sk">📑 Total Pages</span><span class="sv" id="sumTotal">0</span></div>
+              <div class="sum-row"><span class="sk">☑ Pages to Extract</span><span class="sv" id="sumExtract">0</span></div>
+              <div class="sum-row"><span class="sk">📄 Output Files</span><span class="sv" id="sumFiles">0</span></div>
+              <div class="sum-row"><span class="sk">💾 Est. Output Size</span><span class="sv" id="sumSize">—</span></div>
+            </div>
+          </div>
+
+          <!-- SETTINGS -->
+          <div class="settings-box">
+            <h4>⚙️ Settings</h4>
+            <div class="s-item"><div class="s-lbl">Compress Output</div><label class="toggle-sw"><input type="checkbox" id="optCompress" checked><span class="t-slider"></span></label></div>
+            <div class="s-item"><div class="s-lbl">Preserve Quality</div><label class="toggle-sw"><input type="checkbox" id="optQuality" checked><span class="t-slider"></span></label></div>
+            <div class="s-item"><div class="s-lbl">Auto Rotate Pages</div><label class="toggle-sw"><input type="checkbox" id="optRotate"><span class="t-slider"></span></label></div>
+            <div class="s-item"><div class="s-lbl">Optimize Output</div><label class="toggle-sw"><input type="checkbox" id="optOptimize"><span class="t-slider"></span></label></div>
+          </div>
+
+        </div><!-- /split-right -->
+      </div><!-- /workspace -->
+
+      <!-- SPLIT ACTION -->
+      <div class="split-action-bar">
+        <button class="split-btn-big" id="splitBtn" onclick="doSplit()">✂️ Split PDF</button>
+        <button class="reset-btn" onclick="resetTool()">🔄 Start Over</button>
+      </div>
+
+    </div><!-- /splitWorkspaceWrap -->
+
+    <!-- SUCCESS SCREEN -->
+    <div id="successScreen" style="display:none">
+      <div class="success-wrap">
+        <span class="suc-icon">✅</span>
+        <div class="suc-title">PDF Split Successfully!</div>
+        <p style="color:rgba(255,255,255,.5);font-size:.88rem;margin-bottom:10px">Your extracted PDF is ready</p>
+        <div class="suc-stats" id="sucStatsWrap"></div>
+        <div class="suc-btns">
+          <button class="split-btn-big" id="downloadBtn" style="flex:none;padding:14px 28px">⬇ Download PDF</button>
+          <button class="btn secondary" onclick="resetTool()" style="padding:14px 20px">🔄 Split Another</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRUST -->
+    <div class="sec-sep"><span>🔒 Security & Privacy</span></div>
+    <div class="trust-grid">
+      <div class="trust-card"><span class="ti">🔒</span><div class="tt">Secure Processing</div><div class="ts">All in your browser</div></div>
+      <div class="trust-card"><span class="ti">🗑</span><div class="tt">No Files Stored</div><div class="ts">Never leaves your device</div></div>
+      <div class="trust-card"><span class="ti">☁</span><div class="tt">No Registration</div><div class="ts">Free forever</div></div>
+      <div class="trust-card"><span class="ti">⚡</span><div class="tt">Instant Split</div><div class="ts">Browser-powered speed</div></div>
+    </div>
+
+  </div><!-- /panel -->
+
+  <!-- RELATED TOOLS -->
+  <div class="sec-sep"><span>🔧 Related PDF Tools</span></div>
+  <div class="rel-grid">
+    <a href="pdf-merge.html" class="rel-card"><span class="ri">🧩</span><div class="rn">PDF Merge</div></a>
+    <a href="pdf-compress.html" class="rel-card"><span class="ri">📦</span><div class="rn">PDF Compress</div></a>
+    <a href="pdf-rotate.html" class="rel-card"><span class="ri">🔄</span><div class="rn">PDF Rotate</div></a>
+    <a href="pdf-watermark.html" class="rel-card"><span class="ri">💧</span><div class="rn">PDF Watermark</div></a>
+    <a href="pdf-delete-pages.html" class="rel-card"><span class="ri">🗑</span><div class="rn">Delete Pages</div></a>
+    <a href="pdf-reorder-pages.html" class="rel-card"><span class="ri">↕</span><div class="rn">Reorder Pages</div></a>
+  </div>
+
+  <!-- FAQ -->
+  <div class="sec-sep"><span>❓ Frequently Asked Questions</span></div>
+  <div id="faqWrap">
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What is PDF Split? <span class="faq-caret">▼</span></button><div class="faq-a">PDF Split is a tool that extracts specific pages from a PDF file and saves them as a new, smaller PDF. You can split by page range, select individual pages, or split every page into its own file.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I extract specific pages? <span class="faq-caret">▼</span></button><div class="faq-a">Use "Page Range" mode and enter ranges like 1-5, or switch to "Selected" mode and click individual page thumbnails to choose exactly which pages to extract. Then click Split PDF.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Can I split large PDFs? <span class="faq-caret">▼</span></button><div class="faq-a">Yes — this tool supports PDFs up to 100 MB and handles documents with hundreds of pages. Since processing happens in your browser, there are no server-side size restrictions.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Are my files secure? <span class="faq-caret">▼</span></button><div class="faq-a">Completely secure. All PDF processing uses JavaScript running in your browser — no files are ever uploaded to any server. Your documents stay on your device throughout the entire process.</div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is this tool free? <span class="faq-caret">▼</span></button><div class="faq-a">Yes, 100% free with no limits, no watermarks, and no registration required. ApneSoftware provides all tools completely free for everyone.</div></div>
+  </div>
+
+</div><!-- /container -->
+
+<!-- PROGRESS OVERLAY -->
+<div class="progress-overlay" id="progressOverlay" style="display:none">
+  <div class="progress-box">
+    <span class="prog-icon" id="progIcon">⏳</span>
+    <div class="prog-title" id="progTitle">Processing...</div>
+    <div class="prog-sub" id="progSub">Please wait</div>
+    <div class="prog-bar-wrap"><div class="prog-bar-fill" id="progBar"></div></div>
+    <div class="prog-pct" id="progPct">0%</div>
+  </div>
+</div>
+
+<!-- MOBILE STICKY -->
+<div class="mobile-sticky" id="mobileStickyBtn">
+  <button class="split-btn-big" onclick="doSplit()">✂️ Split PDF</button>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About PDF Split Tool</h2>
+      <p>The PDF Split tool by ApneSoftware allows you to extract specific pages from any PDF document and save them as a separate file — completely free, without uploading your files to any server, and without requiring any account or registration. Whether you need to extract a single chapter from a large report, pull out specific invoices from a combined statement, or separate pages from a scanned document, this tool handles it in seconds.</p>
+      <p>Simply upload your PDF, choose your preferred split method, preview pages to confirm the content, and download the result. Everything runs locally in your browser using modern web technology, which means your files remain completely private throughout the process.</p>
+      <h3>Multiple Split Methods</h3>
+      <p>The tool offers four ways to split your PDF: Page Range lets you specify ranges like 1-5 or 6-10, making it easy to extract sequential sections. Selected Pages lets you click individual thumbnails to pick exactly which pages you want, ideal for non-sequential extractions. Every Page splits the entire document into individual single-page PDFs. Custom Groups lets you define multiple output files in one step using the pipe separator, so you can produce several different extractions simultaneously.</p>
+      <h3>How to Split a PDF</h3>
+      <p>Upload your PDF → choose a split method → select pages or enter a range → preview to confirm → click Split PDF → download your extracted PDF file. The preview feature lets you visually confirm each page's content before committing to the split, preventing errors when working with unfamiliar documents.</p>
+      <h3>Why Use This Tool</h3>
+      <p>Unlike online services that require uploading your documents to a remote server, this tool processes everything locally. This is especially important for sensitive documents like legal contracts, financial statements, medical records, or personal identification pages, where privacy and data security are critical concerns. There are no file size limits imposed by server quotas, no compression artifacts from server-side processing, and no risk of your files being retained after the session ends.</p>
+      <h3>PDF Split Use Cases</h3>
+      <p>PDF splitting is useful in a wide range of professional and personal situations. Students extract relevant chapters from large textbook PDFs for easier reading. Legal professionals separate specific exhibits or pages from lengthy case files. Accountants pull individual monthly statements from annual combined PDF exports. Teachers extract specific exercises or worksheets from comprehensive resource books. HR teams separate individual employee documents from bulk-generated PDFs. Photographers and designers extract specific portfolio pages. In all these cases, the ability to quickly and precisely extract exactly the pages needed — without any additional software installation — makes this browser-based tool genuinely useful.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>ApneSoftware का PDF Split tool आपको किसी भी PDF document से specific pages निकालने और उन्हें अलग file के रूप में save करने देता है — पूरी तरह free, बिना किसी server पर files upload किए, और बिना किसी account या registration के। चाहे किसी बड़े report से एक chapter निकालना हो, combined statement से specific invoices pull करना हो, या scanned document से pages separate करने हों, यह tool इसे seconds में handle करता है।</p>
+      <p>बस अपनी PDF upload करें, preferred split method चुनें, content confirm करने के लिए pages preview करें, और result download करें। सब कुछ modern web technology का इस्तेमाल करके locally browser में चलता है, जिसका मतलब है कि आपकी files पूरी process के दौरान completely private रहती हैं।</p>
+      <h3>Multiple Split Methods</h3>
+      <p>Tool चार तरीकों से PDF split करने की सुविधा देता है: Page Range आपको 1-5 या 6-10 जैसी ranges specify करने देता है, sequential sections निकालना आसान बनाता है। Selected Pages individual thumbnails click करके exactly कौन से pages चाहिए यह चुनने देता है, non-sequential extractions के लिए ideal। Every Page पूरे document को individual single-page PDFs में split करता है। Custom Groups एक ही step में pipe separator इस्तेमाल करके multiple output files define करने देता है।</p>
+      <h3>PDF Split कैसे करें</h3>
+      <p>PDF upload करें → split method चुनें → pages select करें या range enter करें → confirm करने के लिए preview करें → Split PDF click करें → extracted PDF file download करें। Preview feature split commit करने से पहले हर page का content visually confirm करने देता है, unfamiliar documents के साथ काम करते वक्त errors रोकता है।</p>
+      <h3>यह Tool क्यों Use करें</h3>
+      <p>Remote server पर documents upload करने वाली online services के विपरीत, यह tool सब कुछ locally process करता है। यह legal contracts, financial statements, medical records, या personal identification pages जैसे sensitive documents के लिए खासकर important है, जहाँ privacy और data security critical concerns हैं। Server quotas से imposed कोई file size limits नहीं, server-side processing से compression artifacts नहीं, और session end होने के बाद files retain होने का कोई risk नहीं।</p>
+      <h3>PDF Split के Use Cases</h3>
+      <p>PDF splitting professional और personal situations की एक wide range में useful है। Students बड़े textbook PDFs से आसान reading के लिए relevant chapters निकालते हैं। Legal professionals lengthy case files से specific exhibits या pages separate करते हैं। Accountants annual combined PDF exports से individual monthly statements pull करते हैं। Teachers comprehensive resource books से specific exercises या worksheets निकालते हैं। HR teams bulk-generated PDFs से individual employee documents separate करती हैं। Photographers और designers specific portfolio pages निकालते हैं। इन सभी cases में, किसी additional software installation के बिना exactly ज़रूरी pages quickly और precisely extract करने की ability इस browser-based tool को genuinely useful बनाती है — किसी भी device पर, किसी भी operating system पर, बिना किसी compatibility concern के।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+/* ═══════════════════════════════════════════════════
+   PDF SPLIT — PREMIUM VERSION
+═══════════════════════════════════════════════════ */
+
+const PDFJS_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+const PDFJS_WORKER = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+let pdfJsLoaded = false;
+let currentPdfDoc = null;   // pdf.js doc
+let totalPages = 0;
+let selectedPages = new Set();
+let currentPreviewPage = 1;
+let currentMode = 'range';
+let splitResult = null;
+let currentFile = null;
+
+/* ── PDFJS LAZY LOAD ── */
+function loadPdfJs(){
+  return new Promise(res => {
+    if(pdfJsLoaded){ res(); return; }
+    const s = document.createElement('script');
+    s.src = PDFJS_CDN;
+    s.onload = () => { pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER; pdfJsLoaded = true; res(); };
+    document.head.appendChild(s);
+  });
+}
+
+/* ── UPLOAD ── */
+const dropzone = document.getElementById('dropzone');
+dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('drag-over'); });
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('drag-over'));
+dropzone.addEventListener('drop', e => {
+  e.preventDefault(); dropzone.classList.remove('drag-over');
+  const f = [...e.dataTransfer.files].find(f => f.type === 'application/pdf');
+  if(f) loadPdf(f); else showMsg('⚠️ Please drop a PDF file.');
+});
+dropzone.addEventListener('click', e => {
+  if(e.target !== document.getElementById('fileInput')) document.getElementById('fileInput').click();
+});
+document.getElementById('fileInput').addEventListener('change', e => {
+  if(e.target.files[0]) loadPdf(e.target.files[0]);
+  e.target.value = '';
+});
+
+async function loadPdf(file){
+  if(file.size > 100*1024*1024){ showMsg('⚠️ File too large (max 100 MB).'); return; }
+  currentFile = file;
+  showProg('📖', 'Loading PDF…', 'Reading your document', 20);
+  await loadPdfJs();
+
+  try{
+    const buf = await file.arrayBuffer();
+    currentPdfDoc = await pdfjsLib.getDocument({data: buf}).promise;
+    totalPages = currentPdfDoc.numPages;
+    setProg(60);
+
+    // Update info card
+    document.getElementById('infoFileName').textContent = file.name;
+    document.getElementById('infoPages').textContent = totalPages;
+    document.getElementById('infoSize').textContent = formatBytes(file.size);
+    document.getElementById('sumTotal').textContent = totalPages;
+
+    setProg(80);
+    hideProg();
+    showWorkspace();
+    renderPageGrid();
+    updateSummary();
+
+  }catch(e){
+    hideProg();
+    showMsg('❌ Could not read PDF: ' + e.message);
+  }
+}
+
+/* ── RENDER PAGE THUMBNAILS ── */
+function renderPageGrid(){
+  const grid = document.getElementById('pagesGrid');
+  grid.innerHTML = '';
+  document.getElementById('pageCountBadge').textContent = `(${totalPages} pages)`;
+
+  for(let p = 1; p <= totalPages; p++){
+    const card = document.createElement('div');
+    card.className = 'page-card';
+    card.dataset.page = p;
+    card.innerHTML = `
+      <div class="page-thumb"><div class="thumb-ph">📄</div></div>
+      <div class="page-num">Page ${p}</div>
+      <div class="page-sel-overlay">✓</div>`;
+    card.addEventListener('click', () => handlePageClick(p, card));
+    grid.appendChild(card);
+  }
+
+  // Generate thumbs lazily
+  generateThumbs();
+}
+
+async function generateThumbs(){
+  for(let p = 1; p <= Math.min(totalPages, 50); p++){
+    try{
+      const page = await currentPdfDoc.getPage(p);
+      const vp = page.getViewport({scale:1});
+      const scale = Math.min(100/vp.width, 133/vp.height);
+      const viewport = page.getViewport({scale});
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width * 2; canvas.height = viewport.height * 2;
+      await page.render({canvasContext:canvas.getContext('2d'), viewport:page.getViewport({scale:scale*2})}).promise;
+      canvas.style.width='100%'; canvas.style.height='100%'; canvas.style.objectFit='contain';
+      const thumbEl = document.querySelector(`.page-card[data-page="${p}"] .page-thumb`);
+      if(thumbEl){ thumbEl.innerHTML = ''; thumbEl.appendChild(canvas); }
+    }catch(e){}
+  }
+}
+
+/* ── PAGE CLICK: PREVIEW or SELECT ── */
+function handlePageClick(p, card){
+  if(currentMode === 'selected'){
+    if(selectedPages.has(p)){ selectedPages.delete(p); card.classList.remove('selected'); }
+    else { selectedPages.add(p); card.classList.add('selected'); }
+    updateSummary();
+    document.getElementById('selCountHint').textContent = selectedPages.size + ' pages selected';
+  }
+  // Always preview on click
+  previewPage(p);
+}
+
+/* ── PAGE PREVIEW ── */
+async function previewPage(p){
+  if(!currentPdfDoc) return;
+  currentPreviewPage = p;
+  const wrap = document.getElementById('previewCanvasWrap');
+  wrap.innerHTML = '<div class="preview-empty-msg" style="color:rgba(255,255,255,.3)">Loading...</div>';
+
+  // Highlight in grid
+  document.querySelectorAll('.page-card').forEach(c => c.classList.remove('previewing'));
+  document.querySelector(`.page-card[data-page="${p}"]`)?.classList.add('previewing');
+
+  try{
+    const page = await currentPdfDoc.getPage(p);
+    const vp = page.getViewport({scale:1});
+    const maxW = wrap.clientWidth || 280;
+    const scale = Math.min(maxW/vp.width, 280/vp.height, 2);
+    const viewport = page.getViewport({scale});
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width; canvas.height = viewport.height;
+    canvas.style.maxWidth='100%';
+    await page.render({canvasContext:canvas.getContext('2d'), viewport}).promise;
+    wrap.innerHTML=''; wrap.appendChild(canvas);
+    document.getElementById('previewPageInfo').textContent = `Page ${p} of ${totalPages}`;
+    document.getElementById('prevPgBtn').disabled = p <= 1;
+    document.getElementById('nextPgBtn').disabled = p >= totalPages;
+  }catch(e){
+    wrap.innerHTML = '<div class="preview-empty-msg">Could not render page</div>';
+  }
+}
+
+function changePreviewPage(dir){
+  const np = Math.max(1, Math.min(totalPages, currentPreviewPage + dir));
+  previewPage(np);
+}
+
+/* ── MODE SWITCHING ── */
+function setMode(btn){
+  currentMode = btn.dataset.mode;
+  document.querySelectorAll('.method-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ['modeRange','modeSelected','modeEvery','modeCustom'].forEach(id =>
+    document.getElementById(id).style.display = 'none');
+  const map = {range:'modeRange', selected:'modeSelected', every:'modeEvery', custom:'modeCustom'};
+  document.getElementById(map[currentMode]).style.display = 'block';
+  if(currentMode !== 'selected') clearSelection();
+  updateSummary();
+}
+
+/* ── SELECTION HELPERS ── */
+function selectAll(){ selectedPages = new Set(Array.from({length:totalPages},(_,i)=>i+1)); refreshSelUI(); updateSummary(); }
+function selectOdd(){ selectedPages = new Set(Array.from({length:totalPages},(_,i)=>i+1).filter(p=>p%2===1)); refreshSelUI(); updateSummary(); }
+function selectEven(){ selectedPages = new Set(Array.from({length:totalPages},(_,i)=>i+1).filter(p=>p%2===0)); refreshSelUI(); updateSummary(); }
+function clearSelection(){ selectedPages.clear(); refreshSelUI(); updateSummary(); }
+function refreshSelUI(){
+  document.querySelectorAll('.page-card').forEach(c => {
+    c.classList.toggle('selected', selectedPages.has(+c.dataset.page));
+  });
+  document.getElementById('selCountHint').textContent = selectedPages.size + ' pages selected';
+}
+
+/* ── PARSE RANGES ── */
+function parseRange(str, max){
+  const pages = new Set();
+  str.split(',').forEach(part => {
+    part = part.trim();
+    if(part.includes('-')){
+      const [a,b] = part.split('-').map(Number);
+      for(let i=Math.max(1,a); i<=Math.min(max,b); i++) pages.add(i);
+    } else {
+      const n = parseInt(part);
+      if(n >= 1 && n <= max) pages.add(n);
+    }
+  });
+  return [...pages].sort((a,b)=>a-b);
+}
+
+/* ── SUMMARY ── */
+function updateSummary(){
+  let extract = 0, files = 0;
+  if(currentMode === 'range'){
+    const val = document.getElementById('rangeInput').value;
+    if(val.trim()){
+      const pages = parseRange(val, totalPages);
+      extract = pages.length; files = 1;
+      const ranges = val.split(',');
+      files = ranges.filter(r=>r.trim()).length;
+    }
+  } else if(currentMode === 'selected'){
+    extract = selectedPages.size; files = extract > 0 ? 1 : 0;
+  } else if(currentMode === 'every'){
+    extract = totalPages; files = totalPages;
+  } else if(currentMode === 'custom'){
+    const val = document.getElementById('customInput').value;
+    if(val.trim()){
+      const groups = val.split('|').filter(g=>g.trim());
+      files = groups.length;
+      extract = groups.reduce((s,g)=>s+parseRange(g,totalPages).length,0);
+    }
+  }
+  document.getElementById('sumExtract').textContent = extract;
+  document.getElementById('sumFiles').textContent = files;
+  if(currentFile && extract > 0){
+    document.getElementById('sumSize').textContent = '~' + formatBytes((currentFile.size/totalPages)*extract*0.9);
+  } else {
+    document.getElementById('sumSize').textContent = '—';
+  }
+}
+
+document.getElementById('rangeInput').addEventListener('input', updateSummary);
+document.getElementById('customInput') && document.getElementById('customInput').addEventListener('input', updateSummary);
+
+/* ── DO SPLIT ── */
+async function doSplit(){
+  if(!currentPdfDoc || !currentFile) return;
+
+  let pagesToExtract = [];
+
+  if(currentMode === 'range'){
+    const val = document.getElementById('rangeInput').value.trim();
+    if(!val){ showMsg('⚠️ Enter a page range first.'); return; }
+    pagesToExtract = parseRange(val, totalPages);
+    if(!pagesToExtract.length){ showMsg('⚠️ No valid pages in that range.'); return; }
+    await extractPages(pagesToExtract);
+
+  } else if(currentMode === 'selected'){
+    pagesToExtract = [...selectedPages].sort((a,b)=>a-b);
+    if(!pagesToExtract.length){ showMsg('⚠️ Click page thumbnails to select pages first.'); return; }
+    await extractPages(pagesToExtract);
+
+  } else if(currentMode === 'every'){
+    await extractEveryPage();
+
+  } else if(currentMode === 'custom'){
+    const val = document.getElementById('customInput').value.trim();
+    if(!val){ showMsg('⚠️ Enter custom groups first.'); return; }
+    await extractCustomGroups(val);
+  }
+}
+
+async function extractPages(pages){
+  showProg('✂️', 'Splitting PDF…', `Extracting ${pages.length} pages`, 30);
+  try{
+    const { PDFDocument } = PDFLib;
+    const buf = await currentFile.arrayBuffer();
+    const srcPdf = await PDFDocument.load(buf);
+    const outPdf = await PDFDocument.create();
+    setProg(60);
+    const copied = await outPdf.copyPages(srcPdf, pages.map(p=>p-1));
+    copied.forEach(p => outPdf.addPage(p));
+    setProg(90);
+    const bytes = await outPdf.save();
+    splitResult = bytes;
+    hideProg();
+    showSuccess(pages.length, bytes.length, false);
+  }catch(e){ hideProg(); showMsg('❌ Split failed: ' + e.message); }
+}
+
+async function extractEveryPage(){
+  showProg('✂️', 'Splitting PDF…', 'Preparing all pages', 10);
+  try{
+    const { PDFDocument } = PDFLib;
+    const { default: JSZip } = await import('https://esm.run/jszip');
+    const zip = new JSZip();
+    const buf = await currentFile.arrayBuffer();
+    const srcPdf = await PDFDocument.load(buf);
+
+    for(let i = 0; i < totalPages; i++){
+      const pct = Math.round(10 + (i/totalPages)*80);
+      setProg(pct);
+      document.getElementById('progSub').textContent = `Page ${i+1} of ${totalPages}`;
+      const single = await PDFDocument.create();
+      const [page] = await single.copyPages(srcPdf, [i]);
+      single.addPage(page);
+      const bytes = await single.save();
+      zip.file(`page-${String(i+1).padStart(3,'0')}.pdf`, bytes);
+    }
+    setProg(95);
+    const zipBlob = await zip.generateAsync({type:'blob'});
+    hideProg();
+    const url = URL.createObjectURL(zipBlob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'split-pages.zip'; a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),5000);
+    showSuccess(totalPages, zipBlob.size, true);
+  }catch(e){
+    hideProg();
+    // Fallback: just extract all as one PDF
+    const pages = Array.from({length:totalPages},(_,i)=>i+1);
+    await extractPages(pages);
+  }
+}
+
+async function extractCustomGroups(val){
+  const groups = val.split('|').map(g => parseRange(g.trim(), totalPages)).filter(g=>g.length);
+  if(!groups.length){ showMsg('⚠️ No valid groups found.'); return; }
+  if(groups.length === 1){ await extractPages(groups[0]); return; }
+  // For simplicity, merge all groups into one extraction (show as separate downloads)
+  showProg('✂️', 'Extracting Groups…', `Processing ${groups.length} groups`, 20);
+  try{
+    const { PDFDocument } = PDFLib;
+    const buf = await currentFile.arrayBuffer();
+    const srcPdf = await PDFDocument.load(buf);
+    const totalExtract = groups.reduce((s,g)=>s+g.length,0);
+    // Create one PDF with all pages (groups concatenated)
+    const outPdf = await PDFDocument.create();
+    let processed = 0;
+    for(const grp of groups){
+      const copied = await outPdf.copyPages(srcPdf, grp.map(p=>p-1));
+      copied.forEach(p => outPdf.addPage(p));
+      processed += grp.length;
+      setProg(Math.round(20 + (processed/totalExtract)*70));
+    }
+    const bytes = await outPdf.save();
+    splitResult = bytes;
+    hideProg();
+    showSuccess(totalExtract, bytes.length, false);
+  }catch(e){ hideProg(); showMsg('❌ Split failed: ' + e.message); }
+}
+
+/* ── SUCCESS ── */
+function showSuccess(pages, bytes, isZip){
+  document.getElementById('splitWorkspaceWrap').style.display = 'none';
+  document.getElementById('successScreen').style.display = 'block';
+  document.getElementById('sucStatsWrap').innerHTML = `
+    <div class="suc-stat"><div class="sv">${pages}</div><div class="sl">Pages Extracted</div></div>
+    <div class="suc-stat"><div class="sv">${formatBytes(bytes)}</div><div class="sl">Output Size</div></div>
+    <div class="suc-stat"><div class="sv">${isZip?'ZIP':'PDF'}</div><div class="sl">Format</div></div>`;
+  document.getElementById('downloadBtn').onclick = () => {
+    if(!splitResult) return;
+    const blob = new Blob([splitResult], {type:'application/pdf'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'split-apnesoftware.pdf'; a.click();
+    setTimeout(()=>URL.revokeObjectURL(url),5000);
+  };
+  document.getElementById('mobileStickyBtn').classList.remove('show');
+}
+
+/* ── WORKSPACE TOGGLE ── */
+function showWorkspace(){
+  document.getElementById('dropzone').style.display = 'none';
+  document.getElementById('splitWorkspaceWrap').style.display = 'block';
+  document.getElementById('successScreen').style.display = 'none';
+  document.getElementById('mobileStickyBtn').classList.add('show');
+}
+function resetTool(){
+  currentPdfDoc = null; currentFile = null; totalPages = 0;
+  selectedPages.clear(); splitResult = null; currentPreviewPage = 1;
+  document.getElementById('dropzone').style.display = 'block';
+  document.getElementById('splitWorkspaceWrap').style.display = 'none';
+  document.getElementById('successScreen').style.display = 'none';
+  document.getElementById('pagesGrid').innerHTML = '';
+  document.getElementById('previewCanvasWrap').innerHTML = '<div class="preview-empty-msg">Click a page thumbnail to preview it</div>';
+  document.getElementById('rangeInput').value = '';
+  document.getElementById('fileInput').value = '';
+  document.getElementById('mobileStickyBtn').classList.remove('show');
+}
+
+/* ── PROGRESS ── */
+function showProg(icon,title,sub,pct){
+  document.getElementById('progIcon').textContent=icon;
+  document.getElementById('progTitle').textContent=title;
+  document.getElementById('progSub').textContent=sub;
+  setProg(pct);
+  document.getElementById('progressOverlay').style.display='flex';
+}
+function setProg(pct){
+  document.getElementById('progBar').style.width=pct+'%';
+  document.getElementById('progPct').textContent=pct+'%';
+}
+function hideProg(){ document.getElementById('progressOverlay').style.display='none'; }
+
+/* ── FAQ ── */
+function toggleFaq(btn){
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el=>el.classList.remove('open'));
+  if(!wasOpen) item.classList.add('open');
+}
+
+/* ── HELPERS ── */
+function formatBytes(b){
+  if(b<1024) return b+' B';
+  if(b<1048576) return (b/1024).toFixed(1)+' KB';
+  return (b/1048576).toFixed(2)+' MB';
+}
+function showMsg(msg){
+  let t = document.createElement('div');
+  t.textContent = msg;
+  Object.assign(t.style,{position:'fixed',bottom:'80px',left:'50%',transform:'translateX(-50%)',background:'rgba(30,20,60,.95)',color:'#fff',padding:'10px 20px',borderRadius:'10px',fontSize:'.85rem',zIndex:'9999',border:'1px solid rgba(255,255,255,.15)',whiteSpace:'nowrap',pointerEvents:'none',backdropFilter:'blur(16px)'});
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),3000);
+}
+</script>
+</body>
+</html>

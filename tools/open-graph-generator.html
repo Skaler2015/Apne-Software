@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Open Graph Tag Generator — Create perfect OG meta tags for Facebook, LinkedIn, WhatsApp and Twitter. Live preview of how your page will look when shared on social media.">
+<meta name="keywords" content="open graph generator, OG tags, facebook meta tags, linkedin meta tags, social media preview, og:image generator">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/open-graph-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Open Graph Generator — Perfect Social Share Tags | ApneSoftware">
+<meta property="og:description" content="Generate Open Graph tags for Facebook, LinkedIn, WhatsApp with a live preview. Free, instant, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/open-graph-generator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Open Graph Generator — Perfect Social Share Tags | ApneSoftware">
+<meta name="twitter:description" content="Generate OG tags with live social preview. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Open Graph Generator","description":"Free online Open Graph tag generator with live social media preview for Facebook, LinkedIn and WhatsApp.","url":"https://apnesoftware.com/tools/open-graph-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"SEO Tools"},{"@type":"ListItem","position":3,"name":"Open Graph Generator","item":"https://apnesoftware.com/tools/open-graph-generator.html"}]}]}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Open Graph Generator — Perfect Social Share Tags | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* ── OG Generator local styles ── */
+.ogg-live-preview{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+@media(max-width:600px){.ogg-live-preview{grid-template-columns:1fr}}
+
+/* Facebook card */
+.ogg-fb{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);font-family:Arial,sans-serif}
+.ogg-fb-img{width:100%;aspect-ratio:1.91;background:linear-gradient(135deg,rgba(24,119,242,.25),rgba(124,92,252,.2));display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.2);position:relative;overflow:hidden}
+.ogg-fb-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ogg-fb-body{padding:12px 14px;background:rgba(255,255,255,.04)}
+.ogg-fb-domain{font-size:.68rem;text-transform:uppercase;color:rgba(255,255,255,.3);letter-spacing:.5px;margin-bottom:3px}
+.ogg-fb-title{font-size:.9rem;font-weight:700;color:rgba(255,255,255,.9);line-height:1.3;margin-bottom:3px}
+.ogg-fb-desc{font-size:.77rem;color:rgba(255,255,255,.5);line-height:1.4}
+.ogg-platform-lbl{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.3);text-align:center;padding:5px 0 3px}
+
+/* LinkedIn card (slightly different style) */
+.ogg-li{border-radius:12px;overflow:hidden;border:1px solid rgba(10,102,194,.3);background:rgba(255,255,255,.03)}
+.ogg-li-img{width:100%;aspect-ratio:1.91;background:linear-gradient(135deg,rgba(10,102,194,.25),rgba(22,192,121,.15));display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.2);position:relative;overflow:hidden}
+.ogg-li-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ogg-li-body{padding:12px 14px}
+.ogg-li-title{font-size:.9rem;font-weight:700;color:rgba(255,255,255,.9);margin-bottom:3px}
+.ogg-li-domain{font-size:.72rem;color:rgba(255,255,255,.35)}
+
+/* WhatsApp preview */
+.ogg-wa{background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.2);border-radius:12px;overflow:hidden}
+.ogg-wa-img{width:100%;aspect-ratio:2.5;background:linear-gradient(135deg,rgba(37,211,102,.2),rgba(22,192,121,.1));display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:rgba(255,255,255,.2);position:relative;overflow:hidden}
+.ogg-wa-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ogg-wa-body{padding:10px 12px}
+.ogg-wa-title{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.9);margin-bottom:2px}
+.ogg-wa-desc{font-size:.75rem;color:rgba(255,255,255,.5)}
+.ogg-wa-domain{font-size:.68rem;color:rgba(37,211,102,.8);margin-top:3px}
+
+/* Twitter large image */
+.ogg-tw{border-radius:12px;overflow:hidden;border:1px solid rgba(29,161,242,.25);background:rgba(255,255,255,.03)}
+.ogg-tw-img{width:100%;aspect-ratio:1.91;background:linear-gradient(135deg,rgba(29,161,242,.2),rgba(22,192,121,.15));display:flex;align-items:center;justify-content:center;font-size:3rem;color:rgba(255,255,255,.2);position:relative;overflow:hidden}
+.ogg-tw-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ogg-tw-body{padding:10px 14px}
+.ogg-tw-title{font-size:.88rem;font-weight:700;color:rgba(255,255,255,.9);margin-bottom:2px}
+.ogg-tw-desc{font-size:.76rem;color:rgba(255,255,255,.5)}
+.ogg-tw-domain{font-size:.68rem;color:rgba(255,255,255,.3);margin-top:3px}
+
+/* Platforms grid (4 up) */
+.ogg-platforms{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+@media(max-width:600px){.ogg-platforms{grid-template-columns:1fr}}
+
+/* Image tester */
+.ogg-img-status{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:.78rem}
+.ogg-img-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* Code output */
+.ogg-code{background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px 18px;font-family:'Courier New',monospace;font-size:.8rem;line-height:1.7;color:#e0e0e0;white-space:pre-wrap;word-break:break-all;max-height:360px;overflow-y:auto;margin-top:14px}
+.ogg-code .hl-tag{color:#FF7B72}
+.ogg-code .hl-attr{color:#79C0FF}
+.ogg-code .hl-val{color:#A5D6FF}
+.ogg-code .hl-com{color:#8B949E}
+
+#oggScrollTop{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;box-shadow:0 4px 14px rgba(124,92,252,.4);transition:.2s}
+#oggScrollTop.show{display:flex}
+#oggScrollTop:hover{transform:translateY(-3px)}
+.char-counter{font-size:.75rem;font-weight:700;padding:2px 9px;border-radius:999px}
+.cc-ok{background:rgba(22,192,121,.15);color:#16C079}
+.cc-warn{background:rgba(255,215,0,.15);color:#FFD700}
+.cc-bad{background:rgba(248,113,113,.15);color:#F87171}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+<div class="container">
+  <nav aria-label="Breadcrumb" style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:2px">
+    <a href="../index.html" style="color:rgba(255,255,255,.45)">Home</a>
+    <span style="margin:0 6px">›</span>
+    <span style="color:rgba(255,255,255,.7)">SEO Tools</span>
+    <span style="margin:0 6px">›</span>
+    <span style="color:#A78BFA">Open Graph Generator</span>
+  </nav>
+
+  <div class="tool-header">
+    <h1>📘 Open Graph Generator</h1>
+    <p>Create perfect Open Graph tags for Facebook, LinkedIn, WhatsApp, Twitter and more — with a live multi-platform preview as you type.</p>
+  </div>
+
+  <div class="panel">
+    <!-- Inputs -->
+    <div class="field">
+      <label for="ogTitle">OG Title <span style="color:#F87171">*</span></label>
+      <input type="text" id="ogTitle" placeholder="Your compelling page title for social sharing" maxlength="100">
+      <div style="display:flex;justify-content:space-between;margin-top:4px">
+        <span style="font-size:.75rem;color:rgba(255,255,255,.35)">Recommended: under 60 chars</span>
+        <span class="char-counter cc-ok" id="ogTitleCount">0</span>
+      </div>
+    </div>
+    <div class="field">
+      <label for="ogDesc">OG Description <span style="color:#F87171">*</span></label>
+      <textarea id="ogDesc" rows="3" placeholder="Write a description that makes people want to click (55–200 characters)…" maxlength="300"></textarea>
+      <div style="display:flex;justify-content:space-between;margin-top:4px">
+        <span style="font-size:.75rem;color:rgba(255,255,255,.35)">Recommended: 55–200 chars</span>
+        <span class="char-counter cc-ok" id="ogDescCount">0</span>
+      </div>
+    </div>
+    <div class="field">
+      <label for="ogUrl">Page URL</label>
+      <input type="text" id="ogUrl" placeholder="https://example.com/page/">
+    </div>
+    <div class="field">
+      <label for="ogImage">Image URL <span style="color:#F87171">*</span></label>
+      <input type="text" id="ogImage" placeholder="https://example.com/share-image.jpg">
+      <div class="ogg-img-status" id="imgStatus">
+        <div class="ogg-img-dot" style="background:rgba(255,255,255,.2)"></div>
+        <span style="color:rgba(255,255,255,.35)">Enter image URL to validate</span>
+      </div>
+      <span style="font-size:.75rem;color:rgba(255,255,255,.3)">Best: 1200×630 px · JPG/PNG · max 8 MB · absolute URL (https://)</span>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="ogSiteName">Site Name</label>
+        <input type="text" id="ogSiteName" placeholder="My Brand">
+      </div>
+      <div class="field">
+        <label for="ogType">OG Type</label>
+        <select id="ogType">
+          <option value="website">website</option>
+          <option value="article">article</option>
+          <option value="product">product</option>
+          <option value="video.movie">video.movie</option>
+          <option value="music.song">music.song</option>
+          <option value="book">book</option>
+          <option value="profile">profile</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label for="ogLocale">Locale</label>
+        <select id="ogLocale">
+          <option value="en_US">en_US</option>
+          <option value="hi_IN">hi_IN</option>
+          <option value="es_ES">es_ES</option>
+          <option value="fr_FR">fr_FR</option>
+          <option value="de_DE">de_DE</option>
+          <option value="pt_BR">pt_BR</option>
+          <option value="ar_AR">ar_AR</option>
+          <option value="zh_CN">zh_CN</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="fbAppId">Facebook App ID <span style="font-size:.75rem;color:rgba(255,255,255,.35)">(optional)</span></label>
+        <input type="text" id="fbAppId" placeholder="1234567890">
+      </div>
+    </div>
+
+    <!-- Article fields -->
+    <div id="articleFields" style="display:none">
+      <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin:18px 0 10px">📰 Article Fields</div>
+      <div class="row">
+        <div class="field"><label for="artAuthor">Article Author</label><input type="text" id="artAuthor" placeholder="Author Name"></div>
+        <div class="field"><label for="artSection">Article Section</label><input type="text" id="artSection" placeholder="Technology"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label for="artPub">Published Time</label><input type="datetime-local" id="artPub"></div>
+        <div class="field"><label for="artMod">Modified Time</label><input type="datetime-local" id="artMod"></div>
+      </div>
+    </div>
+
+    <!-- Image dimensions (for output) -->
+    <div class="row">
+      <div class="field">
+        <label for="imgWidth">Image Width (px)</label>
+        <input type="number" id="imgWidth" value="1200" placeholder="1200">
+      </div>
+      <div class="field">
+        <label for="imgHeight">Image Height (px)</label>
+        <input type="number" id="imgHeight" value="630" placeholder="630">
+      </div>
+      <div class="field">
+        <label for="imgAlt">Image Alt Text</label>
+        <input type="text" id="imgAlt" placeholder="Descriptive alt text for the image">
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="btnGenerate">⚡ Generate OG Tags</button>
+      <button class="btn secondary" id="btnSample">📋 Sample</button>
+      <button class="btn secondary" id="btnReset">🗑️ Reset</button>
+    </div>
+  </div>
+
+  <!-- Live Preview -->
+  <div class="panel" style="margin-top:14px">
+    <h2 style="font-size:1rem;font-weight:800;margin-bottom:4px">📱 Live Social Preview</h2>
+    <p style="font-size:.82rem;color:rgba(255,255,255,.45);margin-bottom:14px">Updates as you type — see exactly how your link will look when shared.</p>
+    <div class="ogg-platforms">
+      <div>
+        <div class="ogg-platform-lbl">📘 Facebook</div>
+        <div class="ogg-fb">
+          <div class="ogg-fb-img" id="fbImg">📷</div>
+          <div class="ogg-fb-body">
+            <div class="ogg-fb-domain" id="fbDomain">example.com</div>
+            <div class="ogg-fb-title"  id="fbTitle">Your OG Title</div>
+            <div class="ogg-fb-desc"   id="fbDesc">Your OG description here.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="ogg-platform-lbl">💼 LinkedIn</div>
+        <div class="ogg-li">
+          <div class="ogg-li-img" id="liImg">🔗</div>
+          <div class="ogg-li-body">
+            <div class="ogg-li-title"  id="liTitle">Your OG Title</div>
+            <div class="ogg-li-domain" id="liDomain">example.com</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="ogg-platform-lbl">💬 WhatsApp</div>
+        <div class="ogg-wa">
+          <div class="ogg-wa-img" id="waImg">📱</div>
+          <div class="ogg-wa-body">
+            <div class="ogg-wa-title"  id="waTitle">Your OG Title</div>
+            <div class="ogg-wa-desc"   id="waDesc">Description text</div>
+            <div class="ogg-wa-domain" id="waDomain">example.com</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="ogg-platform-lbl">🐦 Twitter / X</div>
+        <div class="ogg-tw">
+          <div class="ogg-tw-img" id="twImg">🐦</div>
+          <div class="ogg-tw-body">
+            <div class="ogg-tw-title"  id="twTitle">Your OG Title</div>
+            <div class="ogg-tw-desc"   id="twDesc">Description</div>
+            <div class="ogg-tw-domain" id="twDomain">example.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Output -->
+  <div class="panel" id="outputPanel" style="display:none;margin-top:14px">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px">
+      <h2 style="font-size:1rem;font-weight:800;margin:0">📄 Generated OG Tags</h2>
+      <div style="display:flex;gap:8px">
+        <button class="btn" id="btnCopy">📋 Copy</button>
+        <button class="btn secondary" id="btnDownload">⬇️ Download</button>
+      </div>
+    </div>
+    <div class="ogg-code" id="outputCode"></div>
+  </div>
+</div>
+
+<!-- Info -->
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>📘 What are Open Graph Tags?</h2>
+      <p><strong>Open Graph (OG) tags</strong> are meta tags developed by Facebook that control how your webpage appears when shared on social media platforms including Facebook, LinkedIn, WhatsApp, Telegram, Slack, Discord and many others. They let you define exactly which title, description, and image is shown — rather than letting each platform guess.</p>
+      <p>Without OG tags, social platforms crawl your page and pick whatever content they find — often the wrong image, a truncated title, or no description at all. With proper OG tags, every share of your link looks professional, branded and enticing, which directly increases click-through rates from social media.</p>
+      <h3>The Essential OG Tags</h3>
+      <ol>
+        <li><strong>og:title</strong> — The headline shown in the shared post</li>
+        <li><strong>og:description</strong> — The summary text below the title</li>
+        <li><strong>og:image</strong> — The preview image (1200×630px recommended)</li>
+        <li><strong>og:url</strong> — The canonical URL of the page</li>
+        <li><strong>og:type</strong> — Content type (website, article, product…)</li>
+        <li><strong>og:site_name</strong> — Your brand name</li>
+        <li><strong>og:locale</strong> — Language and region</li>
+      </ol>
+      <h3>How to Use This Generator</h3>
+      <ol>
+        <li>Enter your title, description and image URL above.</li>
+        <li>Watch the live previews update in real time across Facebook, LinkedIn, WhatsApp and Twitter.</li>
+        <li>Click <strong>Generate OG Tags</strong> to produce the HTML code.</li>
+        <li>Copy and paste it inside the <code>&lt;head&gt;</code> of your webpage.</li>
+        <li>Test your result with Facebook's Sharing Debugger or LinkedIn's Post Inspector.</li>
+      </ol>
+    </div>
+    <div class="info-block">
+      <h2>📘 Hindi Guide / हिंदी गाइड</h2>
+      <p><strong>Open Graph (OG) Tags</strong> वे मेटा टैग्स हैं जो यह नियंत्रित करते हैं कि जब आपका लिंक Facebook, LinkedIn, WhatsApp, या Telegram पर शेयर किया जाता है तो वह कैसा दिखता है।</p>
+      <p>OG Tags के बिना, सोशल मीडिया प्लेटफॉर्म आपके पेज से कोई भी random image और text उठा लेते हैं। सही OG Tags लगाने से हर शेयर प्रोफेशनल दिखता है और ज़्यादा लोग क्लिक करते हैं।</p>
+      <h3>कौन से OG Tags ज़रूरी हैं?</h3>
+      <ol>
+        <li><strong>og:title</strong> — शेयर होने पर दिखने वाला शीर्षक</li>
+        <li><strong>og:description</strong> — शीर्षक के नीचे का विवरण</li>
+        <li><strong>og:image</strong> — प्रीव्यू इमेज (1200×630px)</li>
+        <li><strong>og:url</strong> — पेज का canonical URL</li>
+        <li><strong>og:type</strong> — कंटेंट टाइप (website, article…)</li>
+        <li><strong>og:site_name</strong> — आपका ब्रांड नाम</li>
+      </ol>
+      <h3>Image के लिए Best Practices</h3>
+      <ol>
+        <li>Image size: <strong>1200×630 pixels</strong> (Facebook recommended)</li>
+        <li>File size: <strong>8 MB से कम</strong></li>
+        <li>Format: <strong>JPG या PNG</strong></li>
+        <li>URL: हमेशा <strong>https://</strong> से शुरू होना चाहिए</li>
+        <li>Text in image: <strong>20% से कम</strong> रखें</li>
+        <li>Image URL: Absolute URL होनी चाहिए, relative नहीं</li>
+      </ol>
+      <h3>कहाँ लगाएं?</h3>
+      <p>Generated OG Tags को अपनी website के हर पेज की <code>&lt;head&gt;</code> section में paste करें — <code>&lt;/head&gt;</code> tag से पहले।</p>
+    </div>
+  </div>
+</div>
+
+<button id="oggScrollTop" aria-label="Scroll to top">↑</button>
+<footer class="site-footer">
+  <p>© 2025 <a href="../index.html">ApneSoftware.com</a> · Free Tools for Everyone · No Signup Required</p>
+</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+(function(){
+'use strict';
+const LS='ogg_last';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+const SAMPLE={
+  ogTitle:'Best Running Shoes 2025 — Expert Picks for Beginners',
+  ogDesc:'Discover the top-rated running shoes for beginners. Comfort, durability and value compared by experts. Free shipping on ₹999+.',
+  ogUrl:'https://shoestore.example.com/best-running-shoes-2025/',
+  ogImage:'https://apnesoftware.com/assets/og-image.png',
+  ogSiteName:'ShoeStore',
+  ogType:'article',
+  imgWidth:'1200',imgHeight:'630',
+  imgAlt:'A collection of the best running shoes for beginners in 2025',
+};
+
+let imgCheckTimer=null;
+
+function getDomain(url){
+  try{ return new URL(url).hostname; } catch{ return 'example.com'; }
+}
+
+function setImg(elId,url,fallback){
+  const el=$(elId);
+  if(url){
+    const img=new Image();
+    img.onload=()=>{ el.innerHTML=`<img src="${esc(url)}" alt="preview">`; };
+    img.onerror=()=>{ el.innerHTML=fallback; };
+    img.src=url;
+  } else { el.innerHTML=fallback; }
+}
+
+function updatePreviews(){
+  const t=$('ogTitle').value||'Your OG Title';
+  const d=$('ogDesc').value||'Your description here.';
+  const u=$('ogUrl').value;
+  const img=$('ogImage').value;
+  const dom=u?getDomain(u):'example.com';
+
+  // Counters
+  const tl=$('ogTitle').value.length;
+  const dl=$('ogDesc').value.length;
+  $('ogTitleCount').textContent=tl+' ch';
+  $('ogTitleCount').className='char-counter '+(tl===0?'cc-ok':tl<=60?'cc-ok':tl<=90?'cc-warn':'cc-bad');
+  $('ogDescCount').textContent=dl+' ch';
+  $('ogDescCount').className='char-counter '+(dl===0?'cc-ok':dl<=200?'cc-ok':dl<=250?'cc-warn':'cc-bad');
+
+  // Image validation
+  clearTimeout(imgCheckTimer);
+  if(img){
+    imgCheckTimer=setTimeout(()=>{
+      const i=new Image();
+      i.onload=()=>{
+        $('imgStatus').innerHTML=`<div class="ogg-img-dot" style="background:#16C079"></div><span style="color:#16C079">✓ Image loaded (${i.naturalWidth}×${i.naturalHeight} px)</span>`;
+        if(i.naturalWidth<1200||i.naturalHeight<630){
+          $('imgStatus').innerHTML+=` <span style="color:#FFD700">— smaller than recommended 1200×630</span>`;
+        }
+      };
+      i.onerror=()=>{ $('imgStatus').innerHTML=`<div class="ogg-img-dot" style="background:#F87171"></div><span style="color:#F87171">✗ Image failed to load — check the URL</span>`; };
+      i.src=img;
+    },600);
+  } else {
+    $('imgStatus').innerHTML=`<div class="ogg-img-dot" style="background:rgba(255,255,255,.2)"></div><span style="color:rgba(255,255,255,.35)">Enter image URL to validate</span>`;
+  }
+
+  // FB
+  $('fbTitle').textContent=t;
+  $('fbDesc').textContent=d;
+  $('fbDomain').textContent=dom.toUpperCase();
+  setImg('fbImg',img,'📷');
+
+  // LinkedIn
+  $('liTitle').textContent=t;
+  $('liDomain').textContent=dom;
+  setImg('liImg',img,'🔗');
+
+  // WhatsApp
+  $('waTitle').textContent=t;
+  $('waDesc').textContent=d.slice(0,80);
+  $('waDomain').textContent=dom;
+  setImg('waImg',img,'📱');
+
+  // Twitter
+  $('twTitle').textContent=t;
+  $('twDesc').textContent=d.slice(0,120);
+  $('twDomain').textContent=dom;
+  setImg('twImg',img,'🐦');
+
+  // Article fields
+  $('articleFields').style.display=$('ogType').value==='article'?'block':'none';
+
+  saveLS();
+}
+
+function generate(){
+  const t=$('ogTitle').value.trim();
+  const d=$('ogDesc').value.trim();
+  if(!t&&!d){ showToast('⚠️ Please enter at least a title or description.'); return; }
+
+  const lines=[
+    '<!-- ===== Open Graph / Social Meta Tags ===== -->',
+    `<meta property="og:type"        content="${esc($('ogType').value)}">`,
+    t?`<meta property="og:title"       content="${esc(t)}">` :'',
+    d?`<meta property="og:description" content="${esc(d)}">` :'',
+    $('ogUrl').value?`<meta property="og:url"         content="${esc($('ogUrl').value)}">` :'',
+    $('ogSiteName').value?`<meta property="og:site_name"   content="${esc($('ogSiteName').value)}">` :'',
+    $('ogLocale').value?`<meta property="og:locale"      content="${esc($('ogLocale').value)}">` :'',
+    $('ogImage').value?[
+      `<meta property="og:image"        content="${esc($('ogImage').value)}">`,
+      $('imgWidth').value?`<meta property="og:image:width"  content="${esc($('imgWidth').value)}">` :'',
+      $('imgHeight').value?`<meta property="og:image:height" content="${esc($('imgHeight').value)}">` :'',
+      $('imgAlt').value?`<meta property="og:image:alt"    content="${esc($('imgAlt').value)}">` :'',
+    ].filter(Boolean).join('\n'):'',
+    $('fbAppId').value?`<meta property="fb:app_id"       content="${esc($('fbAppId').value)}">` :'',
+    // Article
+    $('ogType').value==='article'&&$('artAuthor').value?`<meta property="article:author"         content="${esc($('artAuthor').value)}">` :'',
+    $('ogType').value==='article'&&$('artSection').value?`<meta property="article:section"        content="${esc($('artSection').value)}">` :'',
+    $('ogType').value==='article'&&$('artPub').value?`<meta property="article:published_time" content="${esc($('artPub').value)}">` :'',
+    $('ogType').value==='article'&&$('artMod').value?`<meta property="article:modified_time"  content="${esc($('artMod').value)}">` :'',
+  ].filter(Boolean).join('\n');
+
+  $('outputCode').innerHTML=syntaxHL(lines);
+  $('outputPanel').style.display='block';
+  $('outputPanel').scrollIntoView({behavior:'smooth',block:'start'});
+  showToast('✅ OG Tags generated!');
+
+  $('btnCopy').onclick=()=>{ navigator.clipboard.writeText(lines).then(()=>showToast('📋 Copied!')); };
+  $('btnDownload').onclick=()=>{
+    const b=new Blob([lines],{type:'text/html'});
+    const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(b),download:'open-graph-tags.html'});
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    showToast('⬇️ Downloaded!');
+  };
+}
+
+function syntaxHL(html){
+  return html
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(&lt;!--.*?--&gt;)/g,'<span class="hl-com">$1</span>')
+    .replace(/(&lt;\/?[a-z][a-z0-9]*)/gi,'<span class="hl-tag">$1</span>')
+    .replace(/(&gt;)/g,'<span class="hl-tag">$1</span>')
+    .replace(/ ([a-z][a-z0-9:_-]*)=/gi,' <span class="hl-attr">$1</span>=')
+    .replace(/&quot;([^&]*)&quot;/g,'&quot;<span class="hl-val">$1</span>&quot;');
+}
+
+function saveLS(){
+  try{
+    const s={ogTitle:$('ogTitle').value,ogDesc:$('ogDesc').value,ogUrl:$('ogUrl').value,
+      ogImage:$('ogImage').value,ogSiteName:$('ogSiteName').value,ogType:$('ogType').value};
+    localStorage.setItem(LS,JSON.stringify(s));
+  }catch(e){}
+}
+
+function loadLS(){
+  try{
+    const s=JSON.parse(localStorage.getItem(LS)||'{}');
+    Object.entries(s).forEach(([k,v])=>{ const el=$(k); if(el) el.value=v; });
+  }catch(e){}
+}
+
+function showToast(msg){
+  const t=document.createElement('div');
+  t.className='prem-toast';t.textContent=msg;
+  document.body.appendChild(t);setTimeout(()=>t.remove(),2400);
+}
+
+function init(){
+  loadLS();
+  ['ogTitle','ogDesc','ogUrl','ogImage','ogSiteName','imgWidth','imgHeight','imgAlt','fbAppId',
+   'artAuthor','artSection','artPub','artMod'].forEach(id=>{
+    const el=$(id); if(el) el.addEventListener('input',updatePreviews);
+  });
+  $('ogType').addEventListener('change',updatePreviews);
+  $('ogLocale').addEventListener('change',updatePreviews);
+  $('btnGenerate').addEventListener('click',generate);
+  $('btnSample').addEventListener('click',()=>{
+    Object.entries(SAMPLE).forEach(([k,v])=>{ const el=$(k); if(el) el.value=v; });
+    updatePreviews(); showToast('📋 Sample loaded!');
+  });
+  $('btnReset').addEventListener('click',()=>{
+    ['ogTitle','ogDesc','ogUrl','ogImage','ogSiteName','imgWidth','imgHeight','imgAlt',
+     'fbAppId','artAuthor','artSection'].forEach(id=>{ const el=$(id); if(el) el.value=''; });
+    $('imgWidth').value='1200'; $('imgHeight').value='630';
+    $('outputPanel').style.display='none';
+    localStorage.removeItem(LS); updatePreviews(); showToast('🗑️ Reset!');
+  });
+  document.addEventListener('keydown',e=>{ if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();generate();} });
+  const sb=$('oggScrollTop');
+  window.addEventListener('scroll',()=>sb.classList.toggle('show',scrollY>400));
+  sb.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+  updatePreviews();
+}
+document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+</body>
+</html>

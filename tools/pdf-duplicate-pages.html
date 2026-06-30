@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-duplicate-pages.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Duplicate Pages | ApneSoftware">
+<meta property="og:description" content="Duplicate selected pages within a PDF. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-duplicate-pages.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Duplicate Pages | ApneSoftware">
+<meta name="twitter:description" content="Duplicate selected pages within a PDF. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Duplicate Pages","description":"Duplicate selected pages within a PDF. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-duplicate-pages.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF Duplicate Pages | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .page-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin-top:18px}
+  .page-card{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center;cursor:pointer;position:relative;transition:.2s}
+  .page-card.marked{border-color:var(--accent);box-shadow:0 0 0 2px rgba(124,92,252,.25)}
+  .page-card canvas{width:100%;border-radius:4px;border:1px solid var(--border)}
+  .page-card .lbl{font-size:.78rem;color:var(--text-dim);margin-top:6px}
+  .page-card .mark-icon{position:absolute;top:4px;right:4px;background:var(--accent);color:#fff;border-radius:50%;width:22px;height:22px;display:none;align-items:center;justify-content:center;font-size:.75rem}
+  .page-card.marked .mark-icon{display:flex}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📑 PDF Duplicate Pages</h1>
+    <p>Click the pages you want to duplicate (they'll be marked), then download — each copy is inserted right after its original.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag & drop your PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+    <div class="page-grid" id="pageGrid"></div>
+
+    <div class="btn-row" id="saveRow" style="display:none">
+      <button class="btn" id="saveBtn">📑 Duplicate Selected Pages and Download</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Sometimes you genuinely need a single page to appear twice within one PDF — a blank page inserted for double-sided printing alignment, a divider page repeated between sections, a terms-and-conditions page that needs to show up in two places, or simply a template page you want to fill in multiple times within the same document. This tool lets you pick any page, or several at once, and insert an exact copy of each one immediately after the original, without retyping or rebuilding anything by hand.</p>
+      <p>After uploading your PDF, every single page appears as its own clickable thumbnail laid out in a simple grid. Click any page you want duplicated and it gets a clear highlight; click it again to undo if you change your mind before finalizing anything. Once you're happy with your selection, a single click rebuilds the document with each chosen page copied right next to itself, and every other page stays exactly where it was, completely untouched, with no need to manually renumber or reorganize anything afterward.</p>
+      <p>This comes up more often than people expect with real paperwork: printers that need a blank separator page between double-sided sections, contracts where a signature page needs to repeat for multiple signatories, or worksheets and forms where the same page needs to be filled out more than once before scanning everything back together as one file, rather than juggling several loose printed copies separately.</p>
+      <p>The entire process runs locally in your browser using a PDF library — your document is never uploaded anywhere just to copy a page. Once finished, the new PDF downloads immediately, with no watermark, no page limit, and no account required. It's a small, focused tool, but it removes the only real alternative most people have for this task — manually rebuilding a document page by page in a heavier desktop application just to repeat one or two pages.</p>
+      <p>It's worth distinguishing this from simply copying the whole file — you're working within a single document, so the duplicated page keeps its exact position relative to everything around it, which matters when page order and adjacency carry meaning, like a form that needs to repeat right where the original was rather than being appended somewhere else entirely. If you ever need the opposite operation, removing pages instead of adding copies, the PDF Delete Pages tool on this site uses the exact same thumbnail-based selection approach.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Click on the pages you want to duplicate (they'll be marked).</li>
+        <li>Click duplicate and download the new PDF.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>कभी-कभी किसी PDF में किसी पन्ने को दो बार दिखना ज़रूरी होता है — double-sided printing के alignment के लिए डाला गया कोई खाली पन्ना, sections के बीच दोहराया जाने वाला कोई divider पन्ना, कोई terms-and-conditions पन्ना जो दो जगह दिखना चाहिए, या बस कोई template पन्ना जिसे आप उसी document में कई बार भरना चाहते हों। यह टूल आपको कोई भी पन्ना (या कई पन्ने) चुनकर हर एक की एक exact copy उसके ठीक बाद डालने देता है, बिना कुछ दोबारा टाइप किए या पूरा document फिर से बनाए।</p>
+      <p>अपनी PDF अपलोड करने के बाद, हर पन्ना एक clickable thumbnail के तौर पर दिखता है। जो पन्ना duplicate करना है उस पर क्लिक करें, वह साफ highlight हो जाएगा; दोबारा क्लिक करके वापस हटा सकते हैं। अपनी selection से संतुष्ट होने के बाद, एक क्लिक document को फिर से बनाता है जिसमें हर चुना हुआ पन्ना अपने बगल में copy हो जाता है, और बाकी हर पन्ना बिल्कुल वहीं रहता है जहां था, पूरी तरह अछूता।</p>
+      <p>यह असली कागज़ात के साथ लोगों की उम्मीद से ज़्यादा बार काम आता है: double-sided sections के बीच खाली separator पन्ना चाहने वाले printers, कई signatories के लिए signature पन्ना दोहराने वाले contracts, या worksheets और forms जहां एक ही पन्ना एक से ज़्यादा बार भरना हो उसे वापस एक file में scan करने से पहले।</p>
+      <p>पूरी process एक PDF library इस्तेमाल करके आपके browser में locally होती है — सिर्फ एक पन्ना copy करने के लिए आपका document कहीं अपलोड नहीं होता। पूरा होने के बाद, नई PDF तुरंत download हो जाती है, कोई watermark नहीं, कोई page limit नहीं, और किसी account की ज़रूरत नहीं। यह एक छोटा, focused टूल है, पर यह उस इकलौते असली विकल्प को हटा देता है जो ज़्यादातर लोगों के पास होता है — सिर्फ एक-दो पन्ने दोहराने के लिए किसी भारी desktop application में पूरा document पन्ना-दर-पन्ना दोबारा बनाना।</p>
+      <p>इसे पूरी file को सिर्फ copy करने से अलग समझना ज़रूरी है — आप एक ही document के अंदर काम कर रहे हैं, तो duplicate हुआ पन्ना अपने आसपास की हर चीज़ के मुकाबले बिल्कुल वहीं अपनी जगह बनाए रखता है, जो तब मायने रखता है जब page order और adjacency का कोई मतलब हो, जैसे कोई form जिसे कहीं और जोड़ने की बजाय ठीक उसी जगह दोहराना हो जहां original था। अगर कभी इसका उल्टा काम चाहिए हो, यानी copies जोड़ने की बजाय पन्ने हटाने हों, तो इसी साइट का PDF Delete Pages टूल बिल्कुल वही thumbnail-based selection तरीका इस्तेमाल करता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>जो पन्ने duplicate करने हैं उन पर क्लिक करें (वो मार्क हो जाएंगे)।</li>
+        <li>Duplicate बटन दबाएं और नई PDF डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let currentFile = null;
+let markedForDup = new Set();
+let pageCount = 0;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+async function handleFile(file){
+  currentFile = file;
+  markedForDup = new Set();
+  const grid = document.getElementById('pageGrid');
+  grid.innerHTML = '';
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Loading...';
+
+  const arrayBuf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+  pageCount = pdf.numPages;
+
+  for(let i=1; i<=pdf.numPages; i++){
+    const page = await pdf.getPage(i);
+    const viewport = page.getViewport({ scale: 0.5 });
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport }).promise;
+
+    const card = document.createElement('div');
+    card.className = 'page-card';
+    card.id = 'card-' + (i-1);
+    card.innerHTML = `<span class="mark-icon">✓</span><div class="lbl">Page ${i}</div>`;
+    card.prepend(canvas);
+    card.addEventListener('click', ()=> toggleMark(i-1));
+    grid.appendChild(card);
+  }
+
+  status.textContent = `✅ ${pageCount} pages loaded`;
+  document.getElementById('saveRow').style.display = 'flex';
+}
+
+function toggleMark(idx){
+  const card = document.getElementById('card-' + idx);
+  if(markedForDup.has(idx)){
+    markedForDup.delete(idx);
+    card.classList.remove('marked');
+  } else {
+    markedForDup.add(idx);
+    card.classList.add('marked');
+  }
+  document.getElementById('statusMsg').textContent = `${markedForDup.size} page(s) selected for duplication`;
+}
+
+document.getElementById('saveBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  if(markedForDup.size === 0){ status.textContent = '⚠️ No pages selected'; return; }
+
+  status.textContent = '⏳ Building PDF...';
+  try{
+    const { PDFDocument } = PDFLib;
+    const bytes = await currentFile.arrayBuffer();
+    const srcPdf = await PDFDocument.load(bytes);
+    const newPdf = await PDFDocument.create();
+
+    for(let i=0; i<pageCount; i++){
+      const [copied] = await newPdf.copyPages(srcPdf, [i]);
+      newPdf.addPage(copied);
+      if(markedForDup.has(i)){
+        const [dup] = await newPdf.copyPages(srcPdf, [i]);
+        newPdf.addPage(dup);
+      }
+    }
+
+    const newBytes = await newPdf.save();
+    const blob = new Blob([newBytes], {type:'application/pdf'});
+    downloadBlob('pages-duplicated.pdf', blob);
+    status.textContent = `✅ Duplicated ${markedForDup.size} page(s) and downloaded!`;
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

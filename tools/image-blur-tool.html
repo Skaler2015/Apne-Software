@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/image-blur-tool.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image Blur Tool — Blur Photos Online | ApneSoftware">
+<meta property="og:description" content="Apply an adjustable blur effect to any photo right in your browser. Free, fast, no upload to any server.">
+<meta property="og:url" content="https://apnesoftware.com/tools/image-blur-tool.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Blur Tool — Blur Photos Online | ApneSoftware">
+<meta name="twitter:description" content="Apply an adjustable blur effect to any photo right in your browser. Free, fast, no upload to any server.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Blur Tool","description":"Apply an adjustable blur effect to any photo right in your browser. Free, fast, no upload to any server.","url":"https://apnesoftware.com/tools/image-blur-tool.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Image Blur Tool — Blur Photos Online | ApneSoftware</title>
+<meta name="description" content="Apply an adjustable blur effect to any photo right in your browser. Free, fast, no upload to any server.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .canvas-wrap{margin-top:14px}
+  #previewCanvas{max-width:100%;border-radius:10px;border:1px solid var(--border);display:block}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🌫️ Image Blur Tool</h1>
+    <p>Apply a smooth, adjustable blur to any photo — useful for backgrounds, privacy, or a soft focus effect.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an image here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <div class="field">
+        <label for="blurSlider">Blur strength: <span id="blurVal">8</span>px</label>
+        <input type="range" id="blurSlider" min="0" max="40" value="8">
+      </div>
+
+      <div class="canvas-wrap">
+        <canvas id="previewCanvas"></canvas>
+      </div>
+
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn secondary" id="resetBtn">🔄 Reset</button>
+        <button class="btn" id="downloadBtn">⬇️ Download</button>
+      </div>
+      <p style="margin-top:10px;color:var(--text-dim);font-size:.9rem">ℹ️ Everything happens locally in your browser — the photo is never uploaded anywhere.</p>
+    </div>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>A blur effect softens the detail in a photo by smoothing out sharp edges, which is useful for a surprising number of everyday tasks: blurring a busy background so a product or a person stands out more clearly, softening a photo for a dreamy or artistic look, creating a blurred placeholder image while a real photo loads on a website, or roughly obscuring a section of an image for privacy without removing it entirely. Doing this in a full photo editor usually means learning layers, masks, and filter menus — this tool reduces it to a single slider.</p>
+      <p>Upload any photo and drag the blur strength slider — the preview updates instantly as you move it, so you can dial in exactly how much softening looks right before downloading. The blur is applied evenly across the whole image; if you only need to blur one specific area like a face or a license plate rather than the entire photo, the dedicated Image Pixelator tool lets you draw a box over just that region instead.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a photo.</li>
+        <li>Drag the blur strength slider until it looks right in the live preview.</li>
+        <li>Click Download to save the blurred image.</li>
+      </ol>
+      <h3>Blur vs pixelation</h3>
+      <p>Blur and pixelation both obscure detail, but they look and behave differently. Blur smooths colors together into soft gradients, which keeps a natural, photographic feel and works well for backgrounds, depth-of-field effects, or artistic softening. Pixelation instead replaces detail with visible flat-colored blocks, giving the unmistakable "censored" look used to hide faces or sensitive text — that effect cannot be reversed by simply un-blurring it, which is why pixelation is the safer choice specifically when the goal is hiding identifying information rather than just softening an image.</p>
+      <p>A common real-world use is taking a sharp photo of a product or a person and blurring just the background behind them using a separate cropped copy, then layering the two back together in a different editor — this tool handles the blurring half of that workflow cleanly with a single slider, leaving you free to focus on the composition rather than fighting with filter settings. The effect works on any photo format you can upload, and the final download is always a clean PNG file regardless of what you started with, so there's no need to worry about format compatibility before or after using this tool.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>Blur effect किसी फोटो की details को नरम कर देता है, sharp edges को smooth बनाकर — जो रोज़मर्रा के कई कामों में उपयोगी है: किसी busy background को blur करना ताकि product या व्यक्ति साफ़ दिखे, फोटो को dreamy या artistic look देना, website पर असली फोटो load होने तक एक blurred placeholder image दिखाना, या privacy के लिए किसी हिस्से को पूरी तरह हटाए बिना धुंधला करना। एक पूरे photo editor में यह करने के लिए layers, masks, filter menus सीखने पड़ते हैं — यह tool उसे सिर्फ़ एक slider तक सीमित कर देता है।</p>
+      <p>कोई भी फोटो अपलोड करें और blur strength slider को drag करें — preview तुरंत अपडेट होता है जैसे ही आप इसे move करते हैं, तो download करने से पहले ही सही मात्रा तय कर सकते हैं। Blur पूरी image पर समान रूप से लगता है; अगर सिर्फ़ एक खास हिस्सा जैसे चेहरा या नंबर प्लेट blur करना है पूरी फोटो नहीं, तो dedicated Image Pixelator tool उस हिस्से पर बॉक्स draw करने देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक फोटो अपलोड करें।</li>
+        <li>Live preview में सही दिखने तक blur strength slider drag करें।</li>
+        <li>Blur की हुई image save करने के लिए Download दबाएं।</li>
+      </ol>
+      <h3>Blur बनाम pixelation</h3>
+      <p>Blur और pixelation दोनों detail छिपाते हैं, पर दिखने और काम करने का तरीका अलग है। Blur रंगों को मिलाकर नरम gradients बना देता है, जिससे natural, photographic feel बना रहता है और backgrounds, depth-of-field effects, या artistic softening के लिए अच्छा है। Pixelation इसकी जगह detail को साफ़ दिखने वाले flat-colored blocks से बदल देता है, जिससे वह जानी-पहचानी "censored" look मिलती है जो चेहरे या संवेदनशील text छिपाने के लिए इस्तेमाल होती है — सिर्फ़ un-blur करके उसे वापस नहीं लाया जा सकता, इसीलिए जब असली मकसद पहचान छिपाना हो न कि सिर्फ़ image नरम करना हो, तो pixelation ज़्यादा सुरक्षित विकल्प है।</p>
+      <p>एक आम real-world इस्तेमाल है किसी product या व्यक्ति की sharp फोटो लेकर उसके पीछे के background को अलग cropped copy से blur करना, फिर दोनों को किसी दूसरे editor में जोड़ना — यह tool उस workflow के blurring वाले हिस्से को सिर्फ़ एक slider से साफ़-सुथरे तरीके से संभाल लेता है, ताकि filter settings से जूझने की बजाय composition पर ध्यान दिया जा सके। यह effect किसी भी upload किए गए photo format पर काम करता है, और final download हमेशा एक साफ़ PNG file होती है, चाहे शुरुआत कैसी भी फाइल से हुई हो।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const canvas = document.getElementById('previewCanvas');
+const ctx = canvas.getContext('2d');
+const blurSlider = document.getElementById('blurSlider');
+const blurVal = document.getElementById('blurVal');
+let img = new Image();
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    img.onload = ()=>{
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      document.getElementById('afterUpload').style.display = 'block';
+      draw();
+    };
+    img.src = URL.createObjectURL(files[0]);
+  }
+});
+
+function draw(){
+  const blur = blurSlider.value;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.filter = `blur(${blur}px)`;
+  ctx.drawImage(img, 0, 0);
+  ctx.filter = 'none';
+}
+
+blurSlider.addEventListener('input', ()=>{
+  blurVal.textContent = blurSlider.value;
+  draw();
+});
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  blurSlider.value = 8;
+  blurVal.textContent = 8;
+  draw();
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  canvas.toBlob(blob => downloadBlob('blurred-image.png', blob), 'image/png');
+});
+</script>
+</body>
+</html>

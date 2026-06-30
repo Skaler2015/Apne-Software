@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/passport-photo-maker.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Passport Photo Maker | ApneSoftware">
+<meta property="og:description" content="Make passport-size photos. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/passport-photo-maker.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Passport Photo Maker | ApneSoftware">
+<meta name="twitter:description" content="Make passport-size photos. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Passport Photo Maker","description":"Make passport-size photos. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/passport-photo-maker.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Passport Photo Maker | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .preview-box{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;margin-top:16px}
+  .preview-box img{border-radius:6px;border:1px solid var(--border);background:#fff}
+  .sheet-wrap{overflow:auto;max-width:100%}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🪪 Passport Photo Maker</h1>
+    <p>Upload your photo and create standard-size passport photos — multiple copies on one sheet, ready to print.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag & drop your photo here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div class="row" style="margin-top:18px">
+      <div class="field">
+        <label for="sizeSelect">Choose size</label>
+        <select id="sizeSelect">
+          <option value="35x45">35mm × 45mm (India/Europe passport)</option>
+          <option value="2x2">2in × 2in (US passport)</option>
+          <option value="51x51">51mm × 51mm (PAN card)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="copiesSelect">How many copies on the sheet?</label>
+        <select id="copiesSelect">
+          <option value="1">1</option>
+          <option value="4">4</option>
+          <option value="6" selected>6</option>
+          <option value="8">8</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="preview-box sheet-wrap" id="previewBox" style="display:none">
+      <canvas id="sheetCanvas"></canvas>
+    </div>
+
+    <div class="btn-row" id="downloadRow" style="display:none">
+      <button class="btn" id="downloadBtn">⬇️ Download Sheet (PNG)</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Create standard-size passport or ID photos with multiple copies arranged on one printable sheet.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your photo.</li>
+        <li>Choose the required size (passport, PAN card, etc.) and number of copies.</li>
+        <li>Download the print-ready sheet.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल स्टैंडर्ड साइज़ की पासपोर्ट या ID फोटो बनाकर एक शीट में कई कॉपी के साथ प्रिंट के लिए तैयार करता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी फोटो अपलोड करें।</li>
+        <li>ज़रूरी साइज़ (पासपोर्ट, PAN कार्ड आदि) और कॉपी की संख्या चुनें।</li>
+        <li>प्रिंट के लिए तैयार शीट डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const sizeSelect = document.getElementById('sizeSelect');
+const copiesSelect = document.getElementById('copiesSelect');
+let img = new Image();
+let ready = false;
+
+const DPI = 300; // print quality
+
+const sizeMap = {
+  '35x45': { wMM: 35, hMM: 45 },
+  '2x2': { wMM: 50.8, hMM: 50.8 },
+  '51x51': { wMM: 51, hMM: 51 }
+};
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length) handleFile(files[0]);
+});
+
+function handleFile(file){
+  if(!file.type.startsWith('image/')) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    img = new Image();
+    img.onload = () => { ready = true; render(); };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function mmToPx(mm){ return Math.round((mm / 25.4) * DPI); }
+
+function render(){
+  if(!ready) return;
+  const { wMM, hMM } = sizeMap[sizeSelect.value];
+  const photoW = mmToPx(wMM);
+  const photoH = mmToPx(hMM);
+  const copies = parseInt(copiesSelect.value);
+  const gap = 20;
+  const cols = Math.min(copies, 4);
+  const rows = Math.ceil(copies / cols);
+
+  const canvas = document.getElementById('sheetCanvas');
+  canvas.width = cols * photoW + (cols+1)*gap;
+  canvas.height = rows * photoH + (rows+1)*gap;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  // crop image to target aspect ratio (cover-fit, centered)
+  const targetRatio = photoW / photoH;
+  const imgRatio = img.width / img.height;
+  let sx, sy, sw, sh;
+  if(imgRatio > targetRatio){
+    sh = img.height;
+    sw = sh * targetRatio;
+    sx = (img.width - sw)/2;
+    sy = 0;
+  } else {
+    sw = img.width;
+    sh = sw / targetRatio;
+    sx = 0;
+    sy = (img.height - sh)/2;
+  }
+
+  let placed = 0;
+  for(let r=0; r<rows; r++){
+    for(let c=0; c<cols; c++){
+      if(placed >= copies) break;
+      const x = gap + c*(photoW+gap);
+      const y = gap + r*(photoH+gap);
+      ctx.drawImage(img, sx, sy, sw, sh, x, y, photoW, photoH);
+      ctx.strokeStyle = '#ccc';
+      ctx.strokeRect(x, y, photoW, photoH);
+      placed++;
+    }
+  }
+
+  // scale down canvas display for preview only (keep actual resolution for download)
+  canvas.style.width = Math.min(canvas.width, 700) + 'px';
+  canvas.style.height = 'auto';
+
+  document.getElementById('previewBox').style.display = 'block';
+  document.getElementById('downloadRow').style.display = 'flex';
+}
+
+sizeSelect.addEventListener('change', render);
+copiesSelect.addEventListener('change', render);
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  const canvas = document.getElementById('sheetCanvas');
+  canvas.toBlob(blob => downloadBlob('passport-photo-sheet.png', blob), 'image/png');
+});
+</script>
+</body>
+</html>

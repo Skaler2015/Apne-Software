@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/invoice-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Invoice Generator | ApneSoftware">
+<meta property="og:description" content="Itemized invoices with auto totals, export as PDF. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/invoice-generator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Invoice Generator | ApneSoftware">
+<meta name="twitter:description" content="Itemized invoices with auto totals, export as PDF. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Invoice Generator","description":"Itemized invoices with auto totals, export as PDF. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/invoice-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Invoice Generator | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .builder-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  @media (max-width:900px){ .builder-grid{grid-template-columns:1fr} }
+  .item-row{
+    display:grid;grid-template-columns:1fr 70px 90px 32px;gap:8px;margin-bottom:8px;align-items:center;
+  }
+  .item-row input{padding:8px 10px}
+  .item-row .removeItemBtn{background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);cursor:pointer;padding:6px;font-size:.8rem}
+  .color-row{display:flex;align-items:center;gap:10px}
+  .color-row input[type=color]{width:44px;height:36px;padding:2px;border-radius:8px}
+  .logo-dropzone{
+    border:1px dashed var(--border);border-radius:8px;padding:12px;text-align:center;cursor:pointer;font-size:.82rem;color:var(--text-dim);
+  }
+
+  /* Invoice preview (exported to PDF) */
+  #invoicePreview{
+    background:#fff;color:#1a1a1a;border-radius:8px;padding:36px;font-family:'Helvetica Neue',Arial,sans-serif;
+    min-height:600px;box-shadow:0 4px 20px rgba(0,0,0,.3);font-size:.88rem;
+  }
+  #invoicePreview .inv-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+  #invoicePreview .inv-title{font-size:1.6rem;font-weight:800;letter-spacing:.5px}
+  #invoicePreview .biz-name{font-weight:700;font-size:1rem}
+  #invoicePreview .muted{color:#666;font-size:.82rem;line-height:1.5}
+  #invoicePreview .logo-img{max-width:120px;max-height:70px;object-fit:contain}
+  #invoicePreview .meta-grid{display:flex;gap:40px;margin:18px 0}
+  #invoicePreview .meta-grid > div{flex:1}
+  #invoicePreview table{width:100%;border-collapse:collapse;margin-top:10px}
+  #invoicePreview th{
+    text-align:left;font-size:.78rem;text-transform:uppercase;letter-spacing:.4px;color:#666;
+    border-bottom:2px solid #222;padding:6px 8px;
+  }
+  #invoicePreview td{padding:8px;border-bottom:1px solid #eee;vertical-align:top}
+  #invoicePreview .num-col{text-align:right}
+  #invoicePreview .totals{margin-top:14px;margin-left:auto;width:260px}
+  #invoicePreview .totals-row{display:flex;justify-content:space-between;padding:4px 0;font-size:.88rem}
+  #invoicePreview .totals-row.grand{font-weight:800;font-size:1rem;border-top:2px solid #222;margin-top:4px;padding-top:8px}
+  #invoicePreview .notes{margin-top:24px;font-size:.82rem;color:#555;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🧾 Invoice Generator</h1>
+    <p>Create a clean, itemized invoice with auto-calculated totals — download as a PDF, ready to send.</p>
+  </div>
+
+  <div class="panel">
+    <div class="row">
+      <div class="field" style="max-width:160px">
+        <label for="accentColor">Accent color</label>
+        <div class="color-row"><input type="color" id="accentColor" value="#7C5CFC"></div>
+      </div>
+      <div class="field" style="max-width:120px">
+        <label for="currencySelect">Currency</label>
+        <select id="currencySelect">
+          <option value="₹">₹ INR</option>
+          <option value="$">$ USD</option>
+          <option value="€">€ EUR</option>
+          <option value="£">£ GBP</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="builder-grid">
+      <div id="formSide">
+        <h3 style="font-size:.95rem;margin-bottom:8px">🏢 Your Business</h3>
+        <div class="field"><label for="bizName">Business name</label><input type="text" id="bizName" placeholder="Noble Care Hospital"></div>
+        <div class="field"><label for="bizAddress">Address / contact</label><textarea id="bizAddress" style="min-height:60px" placeholder="Address, phone, email"></textarea></div>
+        <div class="field">
+          <label>Logo (optional)</label>
+          <div class="logo-dropzone" id="logoDropzone">📤 Click to upload a logo</div>
+          <input type="file" id="logoInput" accept="image/*" style="display:none">
+        </div>
+
+        <h3 style="font-size:.95rem;margin:18px 0 8px">👤 Bill To</h3>
+        <div class="field"><label for="clientName">Client name</label><input type="text" id="clientName" placeholder="Client / company name"></div>
+        <div class="field"><label for="clientAddress">Client address / contact</label><textarea id="clientAddress" style="min-height:60px" placeholder="Client address, email"></textarea></div>
+
+        <h3 style="font-size:.95rem;margin:18px 0 8px">📋 Invoice Details</h3>
+        <div class="row">
+          <div class="field"><label for="invoiceNum">Invoice #</label><input type="text" id="invoiceNum" placeholder="INV-001"></div>
+          <div class="field"><label for="invoiceDate">Date</label><input type="date" id="invoiceDate"></div>
+          <div class="field"><label for="dueDate">Due date</label><input type="date" id="dueDate"></div>
+        </div>
+
+        <h3 style="font-size:.95rem;margin:18px 0 8px">🧾 Line Items</h3>
+        <div class="item-row" style="font-size:.78rem;color:var(--text-dim)">
+          <span>Description</span><span>Qty</span><span>Price</span><span></span>
+        </div>
+        <div id="itemsList"></div>
+        <button class="btn secondary" id="addItemBtn">+ Add Item</button>
+
+        <div class="row" style="margin-top:14px">
+          <div class="field" style="max-width:160px"><label for="taxRate">Tax rate (%)</label><input type="number" id="taxRate" value="0" min="0"></div>
+        </div>
+        <div class="field">
+          <label for="notesInput">Notes / payment terms</label>
+          <textarea id="notesInput" style="min-height:70px" placeholder="Payment due within 15 days. Bank details: ..."></textarea>
+        </div>
+
+        <div class="btn-row" style="margin-top:14px">
+          <button class="btn" id="downloadBtn">⬇️ Download PDF</button>
+        </div>
+        <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+      </div>
+
+      <div id="previewSide">
+        <h3 style="font-size:.95rem;margin-bottom:8px">👁️ Live Preview</h3>
+        <div id="invoicePreview"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Create a professional, itemized invoice in minutes — add your business and client details, line items with quantities and prices, and tax rate. Totals are calculated automatically, and the final invoice downloads as a clean PDF.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Fill in your business details and the client's billing details.</li>
+        <li>Add line items — description, quantity, and price per item.</li>
+        <li>Set a tax rate if needed, then click Download PDF.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>मिनटों में एक प्रोफेशनल, आइटमाइज़्ड इनवॉइस बनाएं — अपना बिज़नेस और क्लाइंट की डिटेल्स, क्वांटिटी और प्राइस के साथ लाइन आइटम, और टैक्स रेट जोड़ें। टोटल अपने आप कैलकुलेट होता है, और आखिरी इनवॉइस साफ PDF के रूप में डाउनलोड होता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी बिज़नेस डिटेल्स और क्लाइंट की बिलिंग डिटेल्स भरें।</li>
+        <li>लाइन आइटम जोड़ें — डिस्क्रिप्शन, क्वांटिटी, और प्रति आइटम प्राइस।</li>
+        <li>ज़रूरत हो तो टैक्स रेट सेट करें, फिर Download PDF दबाएं।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+let items = [{ desc:'', qty:1, price:0 }];
+let logoDataUrl = null;
+
+function renderItemsForm(){
+  const wrap = document.getElementById('itemsList');
+  wrap.innerHTML = '';
+  items.forEach((item, i)=>{
+    const row = document.createElement('div');
+    row.className = 'item-row';
+    row.innerHTML = `
+      <input type="text" data-field="desc" data-i="${i}" value="${escAttr(item.desc)}" placeholder="Item or service description">
+      <input type="number" data-field="qty" data-i="${i}" value="${item.qty}" min="0" step="1">
+      <input type="number" data-field="price" data-i="${i}" value="${item.price}" min="0" step="0.01">
+      <button class="removeItemBtn" data-i="${i}" ${items.length===1?'disabled':''}>✕</button>
+    `;
+    wrap.appendChild(row);
+  });
+  wireItemInputs();
+}
+
+function escAttr(s){ return (s||'').toString().replace(/&/g,'&amp;').replace(/"/g,'&quot;'); }
+function escHtml(s){ return (s||'').toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function wireItemInputs(){
+  document.querySelectorAll('#itemsList [data-field]').forEach(el=>{
+    el.addEventListener('input', ()=>{
+      const i = parseInt(el.dataset.i);
+      const field = el.dataset.field;
+      items[i][field] = (field === 'qty' || field === 'price') ? parseFloat(el.value)||0 : el.value;
+      renderPreview();
+    });
+  });
+  document.querySelectorAll('.removeItemBtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      if(items.length > 1){
+        items.splice(parseInt(btn.dataset.i),1);
+        renderItemsForm(); renderPreview();
+      }
+    });
+  });
+}
+
+document.getElementById('addItemBtn').addEventListener('click', ()=>{
+  items.push({ desc:'', qty:1, price:0 });
+  renderItemsForm(); renderPreview();
+});
+
+document.getElementById('logoDropzone').addEventListener('click', ()=> document.getElementById('logoInput').click());
+document.getElementById('logoInput').addEventListener('change', (e)=>{
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev)=>{
+    logoDataUrl = ev.target.result;
+    document.getElementById('logoDropzone').textContent = '✅ Logo uploaded — click to change';
+    renderPreview();
+  };
+  reader.readAsDataURL(file);
+});
+
+function renderPreview(){
+  const accent = document.getElementById('accentColor').value;
+  const currency = document.getElementById('currencySelect').value;
+  const bizName = document.getElementById('bizName').value || 'Your Business';
+  const bizAddress = document.getElementById('bizAddress').value;
+  const clientName = document.getElementById('clientName').value || 'Client Name';
+  const clientAddress = document.getElementById('clientAddress').value;
+  const invoiceNum = document.getElementById('invoiceNum').value || '—';
+  const invoiceDate = document.getElementById('invoiceDate').value;
+  const dueDate = document.getElementById('dueDate').value;
+  const taxRate = parseFloat(document.getElementById('taxRate').value) || 0;
+  const notes = document.getElementById('notesInput').value;
+
+  let subtotal = 0;
+  const rows = items.map(it=>{
+    const amount = (it.qty||0) * (it.price||0);
+    subtotal += amount;
+    return `<tr>
+      <td>${escHtml(it.desc) || '—'}</td>
+      <td class="num-col">${it.qty||0}</td>
+      <td class="num-col">${currency}${(it.price||0).toFixed(2)}</td>
+      <td class="num-col">${currency}${amount.toFixed(2)}</td>
+    </tr>`;
+  }).join('');
+
+  const taxAmount = subtotal * (taxRate/100);
+  const total = subtotal + taxAmount;
+
+  const html = `
+    <div class="inv-header">
+      <div>
+        ${logoDataUrl ? '<img class="logo-img" src="'+logoDataUrl+'"><div style="height:8px"></div>' : ''}
+        <div class="biz-name">${escHtml(bizName)}</div>
+        <div class="muted">${escHtml(bizAddress).replace(/\n/g,'<br>')}</div>
+      </div>
+      <div style="text-align:right">
+        <div class="inv-title" style="color:${accent}">INVOICE</div>
+        <div class="muted">#${escHtml(invoiceNum)}</div>
+      </div>
+    </div>
+
+    <div class="meta-grid">
+      <div>
+        <div style="font-weight:700;font-size:.8rem;color:#888;margin-bottom:4px">BILL TO</div>
+        <div style="font-weight:700">${escHtml(clientName)}</div>
+        <div class="muted">${escHtml(clientAddress).replace(/\n/g,'<br>')}</div>
+      </div>
+      <div>
+        <div class="muted"><strong>Invoice Date:</strong> ${invoiceDate || '—'}</div>
+        <div class="muted"><strong>Due Date:</strong> ${dueDate || '—'}</div>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>Description</th><th class="num-col">Qty</th><th class="num-col">Price</th><th class="num-col">Amount</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+
+    <div class="totals">
+      <div class="totals-row"><span>Subtotal</span><span>${currency}${subtotal.toFixed(2)}</span></div>
+      ${taxRate > 0 ? '<div class="totals-row"><span>Tax ('+taxRate+'%)</span><span>'+currency+taxAmount.toFixed(2)+'</span></div>' : ''}
+      <div class="totals-row grand" style="color:${accent}"><span>Total</span><span>${currency}${total.toFixed(2)}</span></div>
+    </div>
+
+    ${notes ? '<div class="notes"><strong>Notes:</strong><br>'+escHtml(notes)+'</div>' : ''}
+  `;
+
+  document.getElementById('invoicePreview').innerHTML = html;
+}
+
+document.querySelectorAll('#bizName,#bizAddress,#clientName,#clientAddress,#invoiceNum,#invoiceDate,#dueDate,#taxRate,#notesInput,#accentColor,#currencySelect').forEach(el=>{
+  el.addEventListener('input', renderPreview);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Generating PDF...';
+  const el = document.getElementById('invoicePreview');
+  const num = (document.getElementById('invoiceNum').value || 'invoice').replace(/\s+/g,'-');
+  html2pdf().set({
+    margin: 0,
+    filename: num + '.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'pt', format: 'a4', orientation: 'portrait' }
+  }).from(el).save().then(()=>{
+    status.textContent = '✅ PDF downloaded!';
+  }).catch((err)=>{
+    status.textContent = '❌ Error generating PDF: ' + (err && err.message ? err.message : String(err));
+  });
+});
+
+renderItemsForm();
+renderPreview();
+</script>
+</body>
+</html>

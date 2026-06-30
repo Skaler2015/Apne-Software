@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/image-grid-splitter.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image Splitter — Grid Maker for Instagram | ApneSoftware">
+<meta property="og:description" content="Split a photo into a grid of equal pieces — perfect for Instagram 3x3 grid posts. Free, downloads as a ZIP, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/image-grid-splitter.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Splitter — Grid Maker for Instagram | ApneSoftware">
+<meta name="twitter:description" content="Split a photo into a grid of equal pieces — perfect for Instagram 3x3 grid posts. Free, downloads as a ZIP, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Splitter (Grid Maker)","description":"Split a photo into a grid of equal pieces — perfect for Instagram 3x3 grid posts. Free, downloads as a ZIP, no signup.","url":"https://apnesoftware.com/tools/image-grid-splitter.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Image Splitter — Grid Maker for Instagram | ApneSoftware</title>
+<meta name="description" content="Split a photo into a grid of equal pieces — perfect for Instagram 3x3 grid posts. Free, downloads as a ZIP, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .preview-wrap{position:relative;display:inline-block;max-width:100%;margin-top:14px}
+  #previewCanvas{max-width:100%;border-radius:10px;border:1px solid var(--border);display:block}
+  .grid-overlay{position:absolute;inset:0;pointer-events:none}
+  .grid-row{display:grid;gap:10px;margin-bottom:14px}
+  .preset-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .preset-row button{padding:8px 14px;font-size:.82rem}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🧩 Image Splitter (Grid Maker)</h1>
+    <p>Cut a photo into a grid of equal pieces — perfect for Instagram 3x3 grid posts or printing a poster across pages.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an image here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <div class="preset-row">
+        <button class="btn secondary" data-r="3" data-c="3">3×3 Instagram Grid</button>
+        <button class="btn secondary" data-r="1" data-c="3">1×3 Row</button>
+        <button class="btn secondary" data-r="3" data-c="1">3×1 Column</button>
+        <button class="btn secondary" data-r="2" data-c="2">2×2</button>
+        <button class="btn secondary" data-r="4" data-c="4">4×4</button>
+      </div>
+
+      <div class="grid-row" style="grid-template-columns:1fr 1fr">
+        <div class="field">
+          <label for="rowsInput">Rows</label>
+          <input type="number" id="rowsInput" value="3" min="1" max="10">
+        </div>
+        <div class="field">
+          <label for="colsInput">Columns</label>
+          <input type="number" id="colsInput" value="3" min="1" max="10">
+        </div>
+      </div>
+
+      <div class="preview-wrap">
+        <canvas id="previewCanvas"></canvas>
+        <div class="grid-overlay" id="gridOverlay"></div>
+      </div>
+
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn" id="splitBtn">🧩 Split & Download ZIP</button>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem">ℹ️ Everything happens locally in your browser — the photo is never uploaded anywhere.</p>
+    </div>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Splitting a single image into a grid of equal pieces has a few popular uses: the most common is the Instagram "grid post" trend, where a single wide photo or piece of artwork is cut into a 3×3 grid so that posting all nine pieces in order recreates the full image across your profile feed. It's also useful for printing a large image like a poster or banner across multiple sheets of paper that get taped together afterward, or simply for breaking a wide screenshot or photo into smaller chunks to share individually where only small images are accepted.</p>
+      <p>Upload a photo, choose how many rows and columns to split it into — either pick a common preset like the 3×3 Instagram grid, or set a custom grid for any other layout — and the grid lines overlay the live preview so you can see exactly where each cut will happen before splitting. Clicking Split & Download gives you every piece bundled together as a single ZIP file, numbered in reading order (left to right, top to bottom), so you always know which piece goes where when reassembling or posting them in sequence.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a photo.</li>
+        <li>Pick a preset grid size or enter custom rows and columns.</li>
+        <li>Click Split & Download ZIP to get every piece as separate numbered image files.</li>
+      </ol>
+      <h3>Tips for a clean Instagram grid</h3>
+      <p>For the classic 3×3 Instagram layout, start with a perfectly square source image if possible — Instagram crops posts to a square by default, so a non-square source can throw off the alignment between pieces once posted. Upload the resulting nine pieces to Instagram in reverse order (bottom-right piece first, ending with the top-left piece last), since the most recent post appears at the top-left of a profile grid — posting in reverse is what makes the final feed line up correctly into the original image.</p>
+      <p>The custom rows and columns option isn't limited to square grids either — a 1×3 row works well for a wide panorama split into a horizontal triptych, while a 3×1 column suits a tall image split for a vertical carousel post. Whatever the layout, the live grid overlay on the preview always shows exactly where each cut will land before you commit, so there are no surprises in the downloaded pieces once the ZIP file is unzipped and reviewed on your computer or phone.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी एक image को बराबर हिस्सों के grid में बांटने के कुछ लोकप्रिय इस्तेमाल हैं: सबसे आम है Instagram का "grid post" trend, जिसमें एक चौड़ी फोटो या artwork को 3×3 grid में काटा जाता है ताकि सभी नौ हिस्सों को क्रम में post करने पर पूरी image आपकी profile feed पर बन जाए। यह किसी बड़ी image जैसे poster या banner को कई कागज़ों पर print करके बाद में जोड़ने के लिए भी उपयोगी है, या सिर्फ़ किसी चौड़े screenshot या फोटो को छोटे हिस्सों में तोड़कर अलग-अलग शेयर करने के लिए जहां सिर्फ़ छोटी images स्वीकार होती हैं।</p>
+      <p>एक फोटो अपलोड करें, कितनी rows और columns में बांटना है चुनें — या तो 3×3 Instagram grid जैसा कोई आम preset चुनें, या किसी और layout के लिए custom grid सेट करें — और grid lines live preview पर overlay हो जाती हैं ताकि split करने से पहले ही पता चल जाए कि हर कट कहां होगा। Split & Download दबाने पर हर हिस्सा एक साथ ZIP file में मिलता है, reading order में number किया हुआ (बाएं से दाएं, ऊपर से नीचे), तो दोबारा जोड़ते या क्रम में post करते वक्त हमेशा पता रहता है कौन सा हिस्सा कहां जाता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक फोटो अपलोड करें।</li>
+        <li>कोई preset grid size चुनें या custom rows-columns डालें।</li>
+        <li>हर हिस्से को अलग-अलग numbered image files के रूप में पाने के लिए Split & Download ZIP दबाएं।</li>
+      </ol>
+      <h3>साफ़ Instagram grid के लिए सुझाव</h3>
+      <p>Classic 3×3 Instagram layout के लिए, अगर मुमकिन हो तो एक बिल्कुल square source image से शुरू करें — Instagram posts को default रूप से square में crop करता है, तो non-square source post होने के बाद हिस्सों के alignment को बिगाड़ सकता है। बनी हुई नौ pieces को Instagram पर उल्टे क्रम में upload करें (bottom-right वाला हिस्सा पहले, top-left वाला आख़िर में), क्योंकि सबसे नया post profile grid में सबसे ऊपर-बाएं दिखता है — उल्टे क्रम में post करने से ही आख़िर में feed सही जुड़कर original image बनती है।</p>
+      <p>Custom rows-columns option सिर्फ़ square grids तक सीमित नहीं है — एक 1×3 row किसी चौड़ी panorama image को horizontal triptych में बांटने के लिए अच्छी है, जबकि 3×1 column किसी लंबी image को vertical carousel post के लिए उपयुक्त है। कोई भी layout हो, preview पर live grid overlay हमेशा दिखा देता है कि हर कट commit करने से पहले कहां पड़ेगा, तो downloaded pieces में कोई हैरानी नहीं होती।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const canvas = document.getElementById('previewCanvas');
+const ctx = canvas.getContext('2d');
+const rowsInput = document.getElementById('rowsInput');
+const colsInput = document.getElementById('colsInput');
+const gridOverlay = document.getElementById('gridOverlay');
+let img = new Image();
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    img.onload = ()=>{
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      ctx.drawImage(img, 0, 0);
+      document.getElementById('afterUpload').style.display = 'block';
+      drawGridOverlay();
+    };
+    img.src = URL.createObjectURL(files[0]);
+  }
+});
+
+function drawGridOverlay(){
+  const rows = parseInt(rowsInput.value) || 1;
+  const cols = parseInt(colsInput.value) || 1;
+  let lines = '';
+  for(let c = 1; c < cols; c++){
+    const pct = (c / cols) * 100;
+    lines += `<div style="position:absolute;left:${pct}%;top:0;bottom:0;width:2px;background:rgba(124,92,252,.7)"></div>`;
+  }
+  for(let r = 1; r < rows; r++){
+    const pct = (r / rows) * 100;
+    lines += `<div style="position:absolute;top:${pct}%;left:0;right:0;height:2px;background:rgba(124,92,252,.7)"></div>`;
+  }
+  gridOverlay.innerHTML = lines;
+}
+
+[rowsInput, colsInput].forEach(inp => inp.addEventListener('input', drawGridOverlay));
+
+document.querySelectorAll('.preset-row button').forEach(btn => {
+  btn.addEventListener('click', ()=>{
+    rowsInput.value = btn.dataset.r;
+    colsInput.value = btn.dataset.c;
+    drawGridOverlay();
+  });
+});
+
+document.getElementById('splitBtn').addEventListener('click', async ()=>{
+  const rows = parseInt(rowsInput.value) || 1;
+  const cols = parseInt(colsInput.value) || 1;
+  const statusMsg = document.getElementById('statusMsg');
+  statusMsg.textContent = '⏳ Splitting and zipping...';
+
+  const pieceW = img.naturalWidth / cols;
+  const pieceH = img.naturalHeight / rows;
+  const zip = new JSZip();
+  let count = 1;
+
+  for(let r = 0; r < rows; r++){
+    for(let c = 0; c < cols; c++){
+      const pieceCanvas = document.createElement('canvas');
+      pieceCanvas.width = pieceW;
+      pieceCanvas.height = pieceH;
+      const pctx = pieceCanvas.getContext('2d');
+      pctx.drawImage(img, c*pieceW, r*pieceH, pieceW, pieceH, 0, 0, pieceW, pieceH);
+      const blob = await new Promise(res => pieceCanvas.toBlob(res, 'image/png'));
+      zip.file(`piece-${String(count).padStart(2,'0')}.png`, blob);
+      count++;
+    }
+  }
+
+  const zipBlob = await zip.generateAsync({ type: 'blob' });
+  downloadBlob('image-grid-pieces.zip', zipBlob);
+  statusMsg.textContent = `✅ Done — ${rows * cols} pieces downloaded as a ZIP.`;
+});
+</script>
+</body>
+</html>

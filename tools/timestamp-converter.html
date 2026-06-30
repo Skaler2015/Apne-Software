@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/timestamp-converter.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Timestamp Converter | ApneSoftware">
+<meta property="og:description" content="Unix timestamp to/from human-readable date. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/timestamp-converter.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Timestamp Converter | ApneSoftware">
+<meta name="twitter:description" content="Unix timestamp to/from human-readable date. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Timestamp Converter","description":"Unix timestamp to/from human-readable date. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/timestamp-converter.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Timestamp Converter | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .result-row{
+    display:flex;justify-content:space-between;align-items:center;background:var(--surface-2);
+    border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:8px;font-size:.9rem;
+  }
+  .result-row .lbl{color:var(--text-dim);font-size:.8rem}
+  .result-row .val{font-family:'Consolas','Courier New',monospace}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🕒 Timestamp Converter</h1>
+    <p>Convert between Unix timestamps and human-readable dates.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="unixInput">Unix timestamp (seconds or milliseconds)</label>
+      <input type="text" id="unixInput" placeholder="e.g. 1750000000">
+    </div>
+    <div class="btn-row">
+      <button class="btn secondary" id="nowBtn">🕐 Use Current Timestamp</button>
+    </div>
+
+    <div style="margin-top:16px">
+      <div class="result-row"><span class="lbl">Local date & time</span><span class="val" id="localResult">—</span></div>
+      <div class="result-row"><span class="lbl">UTC date & time</span><span class="val" id="utcResult">—</span></div>
+      <div class="result-row"><span class="lbl">ISO 8601</span><span class="val" id="isoResult">—</span></div>
+      <div class="result-row"><span class="lbl">Relative</span><span class="val" id="relativeResult">—</span></div>
+    </div>
+
+    <h3 style="font-size:.9rem;margin:20px 0 8px">🔄 Or convert a date to timestamp</h3>
+    <div class="field">
+      <label for="dateInput">Pick a date & time (your local timezone)</label>
+      <input type="datetime-local" id="dateInput">
+    </div>
+    <div class="result-row"><span class="lbl">Unix timestamp (seconds)</span><span class="val" id="reverseResult">—</span></div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Convert Unix timestamps (seconds since January 1, 1970) into readable dates in your local timezone, UTC, and ISO 8601 format — or go the other way and turn any date into a Unix timestamp. Handles both second and millisecond timestamps automatically.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Paste a Unix timestamp, or click "Use Current Timestamp".</li>
+        <li>See it converted to local time, UTC, ISO format, and relative time.</li>
+        <li>To go the other way, pick a date and time below to get its timestamp.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>Unix timestamp (1 जनवरी 1970 से सेकंड्स) को आपके local timezone, UTC, और ISO 8601 फॉर्मेट में पढ़ने लायक डेट में बदलें — या उल्टा किसी भी डेट को Unix timestamp में बदलें। सेकंड और मिलीसेकंड दोनों तरह के timestamp अपने आप पहचान लेता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>Unix timestamp पेस्ट करें, या "Use Current Timestamp" दबाएं।</li>
+        <li>local time, UTC, ISO फॉर्मेट और relative time में बदला हुआ देखें।</li>
+        <li>उल्टा करने के लिए नीचे कोई डेट और टाइम चुनें ताकि उसका timestamp मिले।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+function updateFromTimestamp(){
+  const raw = document.getElementById('unixInput').value.trim();
+  if(!raw){
+    ['localResult','utcResult','isoResult','relativeResult'].forEach(id=> document.getElementById(id).textContent = '—');
+    return;
+  }
+  let num = parseFloat(raw);
+  if(isNaN(num)) return;
+  // Heuristic: if it's a huge number, treat as milliseconds
+  const ms = Math.abs(num) > 99999999999 ? num : num * 1000;
+  const date = new Date(ms);
+
+  document.getElementById('localResult').textContent = date.toString();
+  document.getElementById('utcResult').textContent = date.toUTCString();
+  document.getElementById('isoResult').textContent = date.toISOString();
+
+  const diffSec = (Date.now() - ms) / 1000;
+  document.getElementById('relativeResult').textContent = relativeTime(diffSec);
+}
+
+function relativeTime(diffSec){
+  const future = diffSec < 0;
+  const abs = Math.abs(diffSec);
+  let str;
+  if(abs < 60) str = Math.round(abs) + ' seconds';
+  else if(abs < 3600) str = Math.round(abs/60) + ' minutes';
+  else if(abs < 86400) str = Math.round(abs/3600) + ' hours';
+  else if(abs < 2592000) str = Math.round(abs/86400) + ' days';
+  else if(abs < 31536000) str = Math.round(abs/2592000) + ' months';
+  else str = (abs/31536000).toFixed(1) + ' years';
+  return future ? 'in ' + str : str + ' ago';
+}
+
+document.getElementById('unixInput').addEventListener('input', updateFromTimestamp);
+
+document.getElementById('nowBtn').addEventListener('click', ()=>{
+  document.getElementById('unixInput').value = Math.floor(Date.now()/1000);
+  updateFromTimestamp();
+});
+
+document.getElementById('dateInput').addEventListener('input', ()=>{
+  const val = document.getElementById('dateInput').value;
+  if(!val){ document.getElementById('reverseResult').textContent = '—'; return; }
+  const date = new Date(val);
+  document.getElementById('reverseResult').textContent = Math.floor(date.getTime()/1000);
+});
+
+updateFromTimestamp();
+</script>
+</body>
+</html>

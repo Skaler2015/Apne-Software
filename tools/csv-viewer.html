@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/csv-viewer.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CSV Viewer — View CSV Files Online | ApneSoftware">
+<meta property="og:description" content="View, search, and sort a CSV file as a clean table directly in your browser. Free, no signup, no upload to any server.">
+<meta property="og:url" content="https://apnesoftware.com/tools/csv-viewer.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSV Viewer — View CSV Files Online | ApneSoftware">
+<meta name="twitter:description" content="View, search, and sort a CSV file as a clean table directly in your browser. Free, no signup, no upload to any server.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"CSV Viewer","description":"View, search, and sort a CSV file as a clean table directly in your browser. Free, no signup, no upload to any server.","url":"https://apnesoftware.com/tools/csv-viewer.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>CSV Viewer — View CSV Files Online | ApneSoftware</title>
+<meta name="description" content="View, search, and sort a CSV file as a clean table directly in your browser. Free, no signup, no upload to any server.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .table-wrap{overflow:auto;margin-top:14px;border:1px solid var(--border);border-radius:10px;max-height:560px}
+  table.csv-table{width:100%;border-collapse:collapse;font-size:.83rem}
+  table.csv-table th{
+    background:var(--surface-2);padding:9px 12px;text-align:left;position:sticky;top:0;
+    font-weight:700;cursor:pointer;white-space:nowrap;user-select:none;
+  }
+  table.csv-table th:hover{color:var(--accent)}
+  table.csv-table td{padding:8px 12px;border-top:1px solid var(--border);white-space:nowrap}
+  .toolbar-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px}
+  .toolbar-row input{flex:1;min-width:180px}
+  .meta-row{font-size:.8rem;color:var(--text-dim);margin-top:8px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📑 CSV Viewer</h1>
+    <p>View, search, and sort a CSV file as a clean table — no spreadsheet software needed.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a CSV file here or click to choose</p>
+      <input type="file" id="fileInput" accept=".csv,text/csv">
+    </div>
+
+    <div id="afterUpload" style="display:none">
+      <div class="toolbar-row">
+        <input type="text" id="searchInput" placeholder="🔍 Search in table...">
+        <button class="btn secondary" id="downloadJsonBtn">⬇️ Export as JSON</button>
+      </div>
+      <div class="meta-row">Showing <span id="visibleCount">0</span> of <span id="totalCount">0</span> rows — click a column header to sort.</div>
+      <div class="table-wrap"><table class="csv-table" id="csvTable"></table></div>
+    </div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>A raw .csv file opened in a plain text editor is just rows of values separated by commas — readable if you squint, but not pleasant, and definitely not something you'd want to search through or sort by eye. This viewer turns any CSV into a proper interactive table the moment you upload it: aligned columns, a sticky header row that stays visible while scrolling, and click-to-sort on any column so you can quickly find the highest, lowest, or alphabetically first value without opening spreadsheet software.</p>
+      <p>The search box filters the table live across every column at once, which makes it easy to find a specific row in a large dataset — a particular name, an ID, or any value you remember — without scrolling through hundreds of rows manually. If you'd rather work with the data in a different format afterward, the Export as JSON button converts the same data into a JSON file in one click.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a CSV file.</li>
+        <li>Click any column header to sort by that column (click again to reverse the order).</li>
+        <li>Use the search box to filter rows, or export the data as JSON.</li>
+      </ol>
+      <h3>When this beats opening Excel</h3>
+      <p>For a quick look at a CSV someone sent you, opening a full spreadsheet program is often slower than necessary, and on a phone it may not even be an option. This viewer loads instantly, works on any device with a browser, and doesn't require an account, a download, or any software installation — perfect for situations where you just need to glance at the data, confirm it looks right, search for a specific entry, or grab it in a different format.</p>
+      <p>This comes up often when working with exports from accounting software, e-commerce platforms, survey tools, or database queries — all of which commonly hand you a raw CSV with no formatting whatsoever. Rather than importing it into a spreadsheet just to check a handful of values, you can drag it straight into this viewer and immediately see it as a proper table. The sorting and search work entirely on the data already loaded in your browser, so even fairly large CSV files with several thousand rows stay responsive, and since nothing is uploaded to a server, sensitive exported data like customer records or financial figures never leaves your device, which matters for anyone handling payroll, billing, or personal data exports.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी plain text editor में खुली raw .csv file सिर्फ़ commas से अलग की गई values की पंक्तियां होती हैं — ध्यान से देखें तो पढ़ने लायक, पर सुखद नहीं, और निश्चित रूप से ऐसा कुछ नहीं जिसे आंखों से search या sort करना चाहें। यह viewer किसी भी CSV को upload करते ही एक असली interactive table में बदल देता है: aligned columns, scroll करते वक्त भी दिखने वाला sticky header row, और किसी भी column पर click-to-sort, ताकि बिना spreadsheet software खोले सबसे बड़ी, सबसे छोटी, या alphabetically पहली value तुरंत मिल जाए।</p>
+      <p>Search box पूरे table को एक साथ सभी columns में live filter करता है, जिससे किसी बड़े dataset में कोई खास row ढूंढना आसान हो जाता है — कोई नाम, ID, या याद की हुई कोई value — सैकड़ों rows हाथ से scroll किए बिना। अगर बाद में data को किसी और format में इस्तेमाल करना हो, तो Export as JSON बटन एक click में उसी data को JSON file में बदल देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक CSV file अपलोड करें।</li>
+        <li>किसी column से sort करने के लिए उसका header क्लिक करें (order उल्टा करने के लिए दोबारा क्लिक करें)।</li>
+        <li>rows filter करने के लिए search box इस्तेमाल करें, या data को JSON के रूप में export करें।</li>
+      </ol>
+      <h3>यह Excel खोलने से बेहतर कब है</h3>
+      <p>किसी भेजी गई CSV पर एक तेज़ नज़र डालने के लिए, पूरा spreadsheet program खोलना अक्सर ज़रूरत से ज़्यादा धीमा होता है, और फोन पर यह विकल्प होता ही नहीं। यह viewer तुरंत load होता है, किसी भी browser वाले device पर काम करता है, और किसी account, download, या software installation की ज़रूरत नहीं — उन स्थितियों के लिए एकदम सही जब बस data पर नज़र डालनी हो, यह confirm करना हो कि सही दिख रहा है, कोई खास entry ढूंढनी हो, या उसे किसी और format में लेना हो।</p>
+      <p>यह अक्सर accounting software, e-commerce platforms, survey tools, या database queries से किए गए exports के साथ काम करते वक्त सामने आता है — यह सब आमतौर पर बिना किसी formatting वाली raw CSV देते हैं। सिर्फ़ कुछ values check करने के लिए spreadsheet में import करने की बजाय, इसे सीधे इस viewer में drag करें और तुरंत एक असली table के रूप में देखें। Sorting और search पूरी तरह browser में पहले से loaded data पर काम करते हैं, तो काफ़ी बड़ी CSV files जिनमें कई हज़ार rows हों वे भी responsive रहती हैं, और चूंकि कुछ भी server पर upload नहीं होता, customer records या financial figures जैसा संवेदनशील exported data कभी आपके device से बाहर नहीं जाता।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let header = [];
+let rows = [];
+let sortCol = -1, sortAsc = true;
+let sourceFileName = 'data';
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length) handleFile(files[0]);
+});
+
+function handleFile(file){
+  sourceFileName = file.name.replace(/\.csv$/i, '');
+  Papa.parse(file, {
+    complete: (results) => {
+      const data = results.data.filter(row => row.some(cell => cell.trim() !== ''));
+      header = data[0] || [];
+      rows = data.slice(1);
+      document.getElementById('totalCount').textContent = rows.length;
+      document.getElementById('afterUpload').style.display = 'block';
+      renderTable(rows);
+    }
+  });
+}
+
+function renderTable(data){
+  const table = document.getElementById('csvTable');
+  table.innerHTML = `<thead><tr>${header.map((h,i)=>`<th data-i="${i}">${h} ${sortCol===i ? (sortAsc?'▲':'▼') : ''}</th>`).join('')}</tr></thead>
+    <tbody>${data.map(r=>`<tr>${header.map((_,i)=>`<td>${r[i] ?? ''}</td>`).join('')}</tr>`).join('')}</tbody>`;
+  document.getElementById('visibleCount').textContent = data.length;
+
+  table.querySelectorAll('th').forEach(th => {
+    th.addEventListener('click', () => {
+      const i = +th.dataset.i;
+      sortAsc = sortCol === i ? !sortAsc : true;
+      sortCol = i;
+      const sorted = [...currentFiltered()].sort((a,b)=>{
+        const av = a[i] ?? '', bv = b[i] ?? '';
+        const an = parseFloat(av), bn = parseFloat(bv);
+        let cmp;
+        if(!isNaN(an) && !isNaN(bn)) cmp = an - bn;
+        else cmp = String(av).localeCompare(String(bv));
+        return sortAsc ? cmp : -cmp;
+      });
+      renderTable(sorted);
+    });
+  });
+}
+
+function currentFiltered(){
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  if(!q) return rows;
+  return rows.filter(r => r.some(cell => String(cell).toLowerCase().includes(q)));
+}
+
+document.getElementById('searchInput').addEventListener('input', ()=>{
+  renderTable(currentFiltered());
+});
+
+document.getElementById('downloadJsonBtn').addEventListener('click', ()=>{
+  const json = rows.map(r => {
+    const obj = {};
+    header.forEach((h,i) => obj[h] = r[i] ?? '');
+    return obj;
+  });
+  downloadText(sourceFileName + '.json', JSON.stringify(json, null, 2), 'application/json');
+});
+</script>
+</body>
+</html>

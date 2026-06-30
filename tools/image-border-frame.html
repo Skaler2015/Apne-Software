@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/image-border-frame.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image Border & Frame Adder | ApneSoftware">
+<meta property="og:description" content="Add a solid, rounded, or Polaroid frame. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/image-border-frame.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Border & Frame Adder | ApneSoftware">
+<meta name="twitter:description" content="Add a solid, rounded, or Polaroid frame. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Border & Frame Adder","description":"Add a solid, rounded, or Polaroid frame. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/image-border-frame.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Image Border & Frame Adder | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  #previewCanvas{max-width:100%;border-radius:6px}
+  .color-row{display:flex;align-items:center;gap:10px}
+  .color-row input[type=color]{width:48px;height:38px;padding:2px;border-radius:8px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🖼️ Image Border & Frame Adder</h1>
+    <p>Add a clean border, or a Polaroid-style frame with caption space, to any photo.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an image here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <div class="row">
+        <div class="field" style="max-width:180px">
+          <label for="styleSelect">Frame style</label>
+          <select id="styleSelect">
+            <option value="solid">Solid Border</option>
+            <option value="polaroid">Polaroid</option>
+            <option value="rounded">Rounded Border</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="widthSlider">Border width: <span id="widthVal">24</span>px</label>
+          <input type="range" id="widthSlider" min="2" max="100" value="24">
+        </div>
+        <div class="field" style="max-width:140px">
+          <label for="colorPicker">Color</label>
+          <div class="color-row"><input type="color" id="colorPicker" value="#ffffff"></div>
+        </div>
+      </div>
+
+      <div class="field" id="captionField" style="display:none">
+        <label for="captionInput">Caption (Polaroid only)</label>
+        <input type="text" id="captionInput" placeholder="e.g. Summer 2026">
+      </div>
+
+      <canvas id="previewCanvas"></canvas>
+
+      <div class="btn-row">
+        <button class="btn" id="downloadBtn">⬇️ Download</button>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Add a clean solid border, a rounded border, or a classic Polaroid-style frame with caption space to any photo — a quick way to make images look more finished before sharing or printing.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload an image.</li>
+        <li>Pick a frame style, border width, and color. Add a caption for the Polaroid style.</li>
+        <li>Click Download to save the framed image.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी भी फोटो में साफ-सुथरा सॉलिड बॉर्डर, राउंडेड बॉर्डर, या कैप्शन स्पेस के साथ क्लासिक Polaroid-स्टाइल फ्रेम जोड़ें — शेयर करने या प्रिंट करने से पहले इमेज को और बेहतर दिखाने का तरीका।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक इमेज अपलोड करें।</li>
+        <li>फ्रेम स्टाइल, बॉर्डर विड्थ और कलर चुनें। Polaroid स्टाइल के लिए कैप्शन डालें।</li>
+        <li>Download दबाकर फ्रेम वाली इमेज सेव करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const canvas = document.getElementById('previewCanvas');
+const ctx = canvas.getContext('2d');
+let img = new Image();
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    img.onload = ()=>{
+      document.getElementById('afterUpload').style.display = 'block';
+      draw();
+    };
+    img.src = URL.createObjectURL(files[0]);
+  }
+});
+
+document.getElementById('styleSelect').addEventListener('change', ()=>{
+  document.getElementById('captionField').style.display =
+    document.getElementById('styleSelect').value === 'polaroid' ? 'block' : 'none';
+  draw();
+});
+['widthSlider','colorPicker','captionInput'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', ()=>{
+    document.getElementById('widthVal').textContent = document.getElementById('widthSlider').value;
+    draw();
+  });
+});
+
+function draw(){
+  if(!img.naturalWidth) return;
+  const style = document.getElementById('styleSelect').value;
+  const bw = parseInt(document.getElementById('widthSlider').value);
+  const color = document.getElementById('colorPicker').value;
+  const w = img.naturalWidth, h = img.naturalHeight;
+
+  if(style === 'polaroid'){
+    const sideBorder = bw;
+    const bottomBorder = bw * 4;
+    canvas.width = w + sideBorder*2;
+    canvas.height = h + sideBorder + bottomBorder;
+    ctx.fillStyle = color;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(img, sideBorder, sideBorder);
+
+    const caption = document.getElementById('captionInput').value;
+    if(caption){
+      ctx.fillStyle = '#222';
+      ctx.font = Math.max(16, bw*0.8) + 'px Arial, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(caption, canvas.width/2, h + sideBorder + bottomBorder*0.62);
+    }
+  } else if(style === 'rounded'){
+    const radius = Math.max(8, bw*0.6);
+    canvas.width = w + bw*2;
+    canvas.height = h + bw*2;
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    roundRect(ctx, 0, 0, canvas.width, canvas.height, radius);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.save();
+    roundRect(ctx, bw, bw, w, h, Math.max(0, radius - bw*0.3));
+    ctx.clip();
+    ctx.drawImage(img, bw, bw);
+    ctx.restore();
+  } else {
+    canvas.width = w + bw*2;
+    canvas.height = h + bw*2;
+    ctx.fillStyle = color;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(img, bw, bw);
+  }
+}
+
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.lineTo(x+w-r,y);
+  ctx.arcTo(x+w,y,x+w,y+r,r);
+  ctx.lineTo(x+w,y+h-r);
+  ctx.arcTo(x+w,y+h,x+w-r,y+h,r);
+  ctx.lineTo(x+r,y+h);
+  ctx.arcTo(x,y+h,x,y+h-r,r);
+  ctx.lineTo(x,y+r);
+  ctx.arcTo(x,y,x+r,y,r);
+  ctx.closePath();
+}
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  canvas.toBlob((blob)=>{
+    downloadBlob('framed.png', blob);
+    document.getElementById('statusMsg').textContent = '✅ Downloaded!';
+  }, 'image/png');
+});
+</script>
+</body>
+</html>

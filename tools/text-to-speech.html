@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/text-to-speech.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Text to Speech | ApneSoftware">
+<meta property="og:description" content="Convert text into speech. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/text-to-speech.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Text to Speech | ApneSoftware">
+<meta name="twitter:description" content="Convert text into speech. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text to Speech","description":"Convert text into speech. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/text-to-speech.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Text to Speech | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔊 Text to Speech</h1>
+    <p>Type some text and listen to it spoken aloud.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="inputText">Type your text</label>
+      <textarea id="inputText" placeholder="Type the text you want to hear...">Hello! This is the Text to Speech tool from ApneSoftware.</textarea>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="voiceSelect">Choose a voice</label>
+        <select id="voiceSelect"></select>
+      </div>
+      <div class="field">
+        <label for="rateRange">Speed: <span id="rateVal">1</span>x</label>
+        <input type="range" id="rateRange" min="0.5" max="2" step="0.1" value="1">
+      </div>
+      <div class="field">
+        <label for="pitchRange">Pitch: <span id="pitchVal">1</span></label>
+        <input type="range" id="pitchRange" min="0" max="2" step="0.1" value="1">
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="playBtn">▶️ Play</button>
+      <button class="btn secondary" id="pauseBtn">⏸️ Pause</button>
+      <button class="btn secondary" id="stopBtn">⏹️ Stop</button>
+    </div>
+
+    <p style="color:var(--text-dim);font-size:.85rem;margin-top:14px">⚠️ Note: Available voices depend on your device/browser.</p>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Convert any written text into spoken audio that plays directly in your browser.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Type or paste the text you want to hear.</li>
+        <li>Choose a voice and speed if needed.</li>
+        <li>Click Play to listen.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल किसी भी लिखे हुए टेक्स्ट को बोली हुई आवाज़ में बदलकर सीधे ब्राउज़र में सुनाता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>जो टेक्स्ट सुनना है उसे टाइप या पेस्ट करें।</li>
+        <li>ज़रूरत हो तो आवाज़ और स्पीड चुनें।</li>
+        <li>सुनने के लिए Play बटन दबाएं।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const synth = window.speechSynthesis;
+const voiceSelect = document.getElementById('voiceSelect');
+let voices = [];
+
+function loadVoices(){
+  voices = synth.getVoices();
+  voiceSelect.innerHTML = '';
+  voices.forEach((v, i)=>{
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = `${v.name} (${v.lang})`;
+    voiceSelect.appendChild(opt);
+  });
+  const enIndex = voices.findIndex(v => v.lang.startsWith('en'));
+  if(enIndex >= 0) voiceSelect.value = enIndex;
+}
+
+loadVoices();
+if(synth.onvoiceschanged !== undefined){
+  synth.onvoiceschanged = loadVoices;
+}
+
+document.getElementById('rateRange').addEventListener('input', e=>{
+  document.getElementById('rateVal').textContent = e.target.value;
+});
+document.getElementById('pitchRange').addEventListener('input', e=>{
+  document.getElementById('pitchVal').textContent = e.target.value;
+});
+
+document.getElementById('playBtn').addEventListener('click', ()=>{
+  synth.cancel();
+  const text = document.getElementById('inputText').value;
+  if(!text.trim()) return;
+  const utter = new SpeechSynthesisUtterance(text);
+  const vIndex = voiceSelect.value;
+  if(voices[vIndex]) utter.voice = voices[vIndex];
+  utter.rate = parseFloat(document.getElementById('rateRange').value);
+  utter.pitch = parseFloat(document.getElementById('pitchRange').value);
+  synth.speak(utter);
+});
+
+document.getElementById('pauseBtn').addEventListener('click', ()=>{
+  if(synth.speaking && !synth.paused) synth.pause();
+  else if(synth.paused) synth.resume();
+});
+
+document.getElementById('stopBtn').addEventListener('click', ()=> synth.cancel());
+</script>
+</body>
+</html>

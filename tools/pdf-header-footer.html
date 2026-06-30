@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-header-footer.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Add Header/Footer to PDF | ApneSoftware">
+<meta property="og:description" content="Add header & footer text. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-header-footer.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Add Header/Footer to PDF | ApneSoftware">
+<meta name="twitter:description" content="Add header & footer text. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Header/Footer","description":"Add header & footer text. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-header-footer.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Add Header/Footer to PDF | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .file-preview-card{display:flex;align-items:center;gap:14px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-top:14px}
+  .file-preview-card img{width:54px;height:auto;border-radius:4px;border:1px solid var(--border);background:#fff}
+  .file-preview-card .meta b{display:block;font-size:.88rem;word-break:break-all}
+  .file-preview-card .meta span{font-size:.78rem;color:var(--text-dim)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📑 Add Header/Footer to PDF</h1>
+    <p>Add your own text to the top (header) and bottom (footer) of every page — like a company name or document title.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <div class="file-preview-card">
+        <img id="previewThumb" src="" alt="">
+        <div class="meta">
+          <b id="previewName"></b>
+          <span id="previewMeta"></span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="headerText">Header text (top of page) — leave blank if not needed</label>
+        <input type="text" id="headerText" placeholder="e.g. ApneSoftware Pvt Ltd">
+      </div>
+      <div class="field">
+        <label for="footerText">Footer text (bottom of page) — leave blank if not needed</label>
+        <input type="text" id="footerText" placeholder="e.g. www.apnesoftware.com">
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="fontSizeInput">Font size</label>
+          <input type="number" id="fontSizeInput" value="10" min="6" max="24">
+        </div>
+        <div class="field">
+          <label for="alignSelect">Alignment</label>
+          <select id="alignSelect">
+            <option value="center">Center</option>
+            <option value="left">Left</option>
+            <option value="right">Right</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="applyBtn">📑 Apply and Download</button>
+      </div>
+
+      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Add your own header text (top) and/or footer text (bottom) to every page of a PDF.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Type the header and/or footer text, choose size and alignment.</li>
+        <li>Apply and download.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल PDF के हर पेज पर ऊपर हेडर और/या नीचे फुटर टेक्स्ट जोड़ देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>हेडर और/या फुटर टेक्स्ट लिखें, साइज़ और अलाइनमेंट चुनें।</li>
+        <li>लगाएं बटन दबाएं और डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let currentFile = null;
+
+setupDropzone(dropzone, fileInput, async files => {
+  if(files.length && files[0].type === 'application/pdf'){
+    currentFile = files[0];
+    const arrayBuf = await currentFile.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+    const page = await pdf.getPage(1);
+    const viewport = page.getViewport({ scale: 0.3 });
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport }).promise;
+    document.getElementById('previewThumb').src = canvas.toDataURL();
+    document.getElementById('previewName').textContent = currentFile.name;
+    document.getElementById('previewMeta').textContent = `${pdf.numPages} pages • ${formatBytes(currentFile.size)}`;
+    document.getElementById('afterUpload').style.display = 'block';
+  }
+});
+
+document.getElementById('applyBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  const headerText = document.getElementById('headerText').value.trim();
+  const footerText = document.getElementById('footerText').value.trim();
+
+  if(!headerText && !footerText){ status.textContent = '⚠️ Please fill in at least header or footer'; return; }
+
+  status.textContent = '⏳ Processing...';
+  try{
+    const { PDFDocument, rgb, StandardFonts } = PDFLib;
+    const bytes = await currentFile.arrayBuffer();
+    const pdfDoc = await PDFDocument.load(bytes);
+    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+
+    const fontSize = parseInt(document.getElementById('fontSizeInput').value) || 10;
+    const align = document.getElementById('alignSelect').value;
+    const margin = 26;
+
+    function getX(text, width){
+      const tw = font.widthOfTextAtSize(text, fontSize);
+      if(align === 'center') return width/2 - tw/2;
+      if(align === 'right') return width - margin - tw;
+      return margin;
+    }
+
+    pdfDoc.getPages().forEach(page => {
+      const { width, height } = page.getSize();
+      if(headerText){
+        page.drawText(headerText, { x: getX(headerText, width), y: height - margin, size: fontSize, font, color: rgb(0.35,0.35,0.35) });
+      }
+      if(footerText){
+        page.drawText(footerText, { x: getX(footerText, width), y: margin - fontSize/2, size: fontSize, font, color: rgb(0.35,0.35,0.35) });
+      }
+    });
+
+    const newBytes = await pdfDoc.save();
+    const blob = new Blob([newBytes], {type:'application/pdf'});
+    downloadBlob('header-footer.pdf', blob);
+    status.textContent = '✅ Done, downloaded!';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

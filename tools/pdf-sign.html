@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-sign.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sign a PDF | ApneSoftware">
+<meta property="og:description" content="Add your signature to a PDF. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-sign.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sign a PDF | ApneSoftware">
+<meta name="twitter:description" content="Add your signature to a PDF. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Sign","description":"Add your signature to a PDF. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-sign.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Sign a PDF | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  #sigPad{border:1px solid var(--border);border-radius:8px;background:#fff;touch-action:none;cursor:crosshair;width:100%;max-width:400px}
+  .preview-wrap{position:relative;display:inline-block;margin-top:16px;max-width:100%}
+  .preview-wrap canvas{display:block;max-width:100%;border:1px solid var(--border);border-radius:6px}
+  .sig-drag{position:absolute;cursor:move;border:2px dashed var(--accent)}
+  .sig-drag img{width:100%;height:100%;pointer-events:none}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>✍️ Sign a PDF</h1>
+    <p>Draw your signature below, then place it anywhere on the PDF and download.</p>
+  </div>
+
+  <div class="panel">
+    <p class="muted" style="color:var(--text-dim);font-size:.85rem">Step 1: Sign here (with mouse or finger)</p>
+    <canvas id="sigPad" width="400" height="150"></canvas>
+    <div class="btn-row">
+      <button class="btn secondary" id="clearSigBtn">🗑️ Clear</button>
+      <button class="btn" id="useSigBtn">✅ Use this signature</button>
+    </div>
+
+    <div id="step2" style="display:none;margin-top:24px;border-top:1px solid var(--border);padding-top:20px">
+      <p class="muted" style="color:var(--text-dim);font-size:.85rem">Step 2: Upload PDF</p>
+      <div class="dropzone" id="dropzone">
+        <p>📤 Drag a PDF file here or click to choose</p>
+        <input type="file" id="fileInput" accept="application/pdf">
+      </div>
+    </div>
+
+    <div id="step3" style="display:none;margin-top:20px">
+      <p class="muted" style="color:var(--text-dim);font-size:.85rem">Step 3: Drag the signature to the right spot (first page)</p>
+      <div class="preview-wrap" id="previewWrap">
+        <canvas id="previewCanvas"></canvas>
+        <div class="sig-drag" id="sigDrag"><img id="sigDragImg"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="applyBtn">✍️ Add Signature to PDF and Download</button>
+      </div>
+
+      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Draw your signature and place it anywhere on a PDF document.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Draw your signature using your mouse or finger.</li>
+        <li>Click "Use this signature" then upload the PDF.</li>
+        <li>Drag the signature to the right spot and download.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल आपका हस्ताक्षर बनवाकर PDF पर मनचाही जगह लगाने देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>माउस या उंगली से अपना हस्ताक्षर बनाएं।</li>
+        <li>"Use this signature" दबाएं फिर PDF अपलोड करें।</li>
+        <li>साइन को सही जगह खींचें और डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+/* ---------- Signature pad ---------- */
+const sigPad = document.getElementById('sigPad');
+const sigCtx = sigPad.getContext('2d');
+sigCtx.strokeStyle = '#000';
+sigCtx.lineWidth = 2.5;
+sigCtx.lineCap = 'round';
+let drawing = false;
+
+function getPos(e, canvas){
+  const rect = canvas.getBoundingClientRect();
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  return { x: (clientX-rect.left) * (canvas.width/rect.width), y: (clientY-rect.top) * (canvas.height/rect.height) };
+}
+
+function startDraw(e){ drawing = true; const p = getPos(e, sigPad); sigCtx.beginPath(); sigCtx.moveTo(p.x, p.y); e.preventDefault(); }
+function moveDraw(e){ if(!drawing) return; const p = getPos(e, sigPad); sigCtx.lineTo(p.x, p.y); sigCtx.stroke(); e.preventDefault(); }
+function endDraw(){ drawing = false; }
+
+sigPad.addEventListener('mousedown', startDraw);
+sigPad.addEventListener('mousemove', moveDraw);
+sigPad.addEventListener('mouseup', endDraw);
+sigPad.addEventListener('mouseleave', endDraw);
+sigPad.addEventListener('touchstart', startDraw);
+sigPad.addEventListener('touchmove', moveDraw);
+sigPad.addEventListener('touchend', endDraw);
+
+document.getElementById('clearSigBtn').addEventListener('click', ()=>{
+  sigCtx.clearRect(0,0,sigPad.width,sigPad.height);
+});
+
+let signatureDataUrl = null;
+document.getElementById('useSigBtn').addEventListener('click', ()=>{
+  signatureDataUrl = sigPad.toDataURL('image/png');
+  document.getElementById('sigDragImg').src = signatureDataUrl;
+  document.getElementById('step2').style.display = 'block';
+});
+
+/* ---------- PDF upload + preview ---------- */
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let currentFile = null;
+let renderScale = 1;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+async function handleFile(file){
+  currentFile = file;
+  const arrayBuf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+  const page = await pdf.getPage(1);
+  const viewport = page.getViewport({ scale: 1 });
+  renderScale = Math.min(500/viewport.width, 1.5);
+  const dispViewport = page.getViewport({ scale: renderScale });
+
+  const canvas = document.getElementById('previewCanvas');
+  canvas.width = dispViewport.width;
+  canvas.height = dispViewport.height;
+  const ctx = canvas.getContext('2d');
+  await page.render({ canvasContext: ctx, viewport: dispViewport }).promise;
+
+  const sigDrag = document.getElementById('sigDrag');
+  sigDrag.style.width = '120px';
+  sigDrag.style.height = '50px';
+  sigDrag.style.left = '20px';
+  sigDrag.style.top = (dispViewport.height - 80) + 'px';
+
+  document.getElementById('step3').style.display = 'block';
+}
+
+/* drag signature box */
+const sigDrag = document.getElementById('sigDrag');
+const previewWrap = document.getElementById('previewWrap');
+let sigDragging = false, offX=0, offY=0;
+
+sigDrag.addEventListener('mousedown', e=>{
+  sigDragging = true;
+  offX = e.clientX - sigDrag.offsetLeft;
+  offY = e.clientY - sigDrag.offsetTop;
+});
+document.addEventListener('mousemove', e=>{
+  if(!sigDragging) return;
+  const rect = previewWrap.getBoundingClientRect();
+  let nx = e.clientX - offX;
+  let ny = e.clientY - offY;
+  nx = Math.max(0, Math.min(nx, rect.width - sigDrag.offsetWidth));
+  ny = Math.max(0, Math.min(ny, rect.height - sigDrag.offsetHeight));
+  sigDrag.style.left = nx + 'px';
+  sigDrag.style.top = ny + 'px';
+});
+document.addEventListener('mouseup', ()=> sigDragging = false);
+
+sigDrag.addEventListener('touchstart', e=>{
+  sigDragging = true;
+  const t = e.touches[0];
+  offX = t.clientX - sigDrag.offsetLeft;
+  offY = t.clientY - sigDrag.offsetTop;
+});
+document.addEventListener('touchmove', e=>{
+  if(!sigDragging) return;
+  const t = e.touches[0];
+  const rect = previewWrap.getBoundingClientRect();
+  let nx = t.clientX - offX;
+  let ny = t.clientY - offY;
+  sigDrag.style.left = Math.max(0,nx) + 'px';
+  sigDrag.style.top = Math.max(0,ny) + 'px';
+});
+document.addEventListener('touchend', ()=> sigDragging = false);
+
+/* ---------- Apply signature to PDF ---------- */
+document.getElementById('applyBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Adding signature...';
+  try{
+    const { PDFDocument } = PDFLib;
+    const bytes = await currentFile.arrayBuffer();
+    const pdfDoc = await PDFDocument.load(bytes);
+    const firstPage = pdfDoc.getPages()[0];
+    const pageHeight = firstPage.getHeight();
+
+    const sigBytes = await fetch(signatureDataUrl).then(r => r.arrayBuffer());
+    const sigImg = await pdfDoc.embedPng(sigBytes);
+
+    const x = sigDrag.offsetLeft / renderScale;
+    const yTop = sigDrag.offsetTop / renderScale;
+    const w = sigDrag.offsetWidth / renderScale;
+    const h = sigDrag.offsetHeight / renderScale;
+    const y = pageHeight - yTop - h;
+
+    firstPage.drawImage(sigImg, { x, y, width: w, height: h });
+
+    const newBytes = await pdfDoc.save();
+    const blob = new Blob([newBytes], {type:'application/pdf'});
+    downloadBlob('signed.pdf', blob);
+    status.textContent = '✅ Signed and downloaded!';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

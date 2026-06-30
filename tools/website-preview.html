@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Preview & Tester — Upload ZIP & Preview | ApneSoftware</title>
+<meta name="description" content="Upload your website ZIP file to preview and test it completely in your browser. File tree, viewport switcher, console, asset checker — all free.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/website-preview.html">
+<meta property="og:title" content="Website Preview Tool — Upload ZIP & Preview Free">
+<meta property="og:description" content="Upload website ZIP to preview and test in browser. File explorer, mobile/tablet/desktop view, console — 100% free.">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Website Preview Tool","description":"Upload website ZIP file to preview and test completely in browser. Supports HTML, CSS, JS, images.","url":"https://apnesoftware.com/tools/website-preview.html","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+
+<!-- JSZip for ZIP extraction -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<style>
+/* ═══════════════════════════════════════
+   CSS VARIABLES & RESET
+═══════════════════════════════════════ */
+:root {
+  --bg:      #0d1117;
+  --bg2:     #161b27;
+  --bg3:     #1e2533;
+  --surf:    rgba(255,255,255,.06);
+  --surf2:   rgba(255,255,255,.04);
+  --border:  rgba(255,255,255,.1);
+  --border2: rgba(255,255,255,.06);
+  --txt:     #e6eaf2;
+  --dim:     rgba(230,234,242,.55);
+  --muted:   rgba(230,234,242,.3);
+  --accent:  #7c5cfc;
+  --green:   #16c079;
+  --orange:  #f97316;
+  --yellow:  #facc15;
+  --red:     #ef4444;
+  --blue:    #60a5fa;
+  --radius:  10px;
+  --font:    'Segoe UI', system-ui, -apple-system, sans-serif;
+  --mono:    'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+  --hdr:     52px;
+  --sidebar: 260px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; }
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--txt);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+a { color: var(--accent); text-decoration: none; }
+button { font-family: var(--font); cursor: pointer; }
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); border-radius: 3px; }
+
+/* ═══════════════════════════════════════
+   HEADER
+═══════════════════════════════════════ */
+.header {
+  height: var(--hdr);
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 12px;
+  flex-shrink: 0;
+  z-index: 100;
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 1.05rem;
+  text-decoration: none;
+  color: var(--txt);
+}
+.header-brand span { color: var(--accent); }
+.header-sep { width: 1px; height: 20px; background: var(--border); }
+.header-title { font-size: .9rem; font-weight: 600; color: var(--dim); }
+.header-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--txt);
+  font-size: .82rem;
+  font-weight: 500;
+  transition: .15s;
+  white-space: nowrap;
+}
+.btn:hover { background: rgba(124,92,252,.15); border-color: var(--accent); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #fff !important; font-weight: 600; }
+.btn-primary:hover { background: #6b5ee0; }
+.btn-success { background: rgba(22,192,121,.15); border-color: rgba(22,192,121,.4); color: var(--green) !important; }
+.btn-danger { background: rgba(239,68,68,.12); border-color: rgba(239,68,68,.3); color: var(--red) !important; }
+.btn-danger:hover { background: rgba(239,68,68,.25); }
+.btn-sm { padding: 4px 9px; font-size: .75rem; }
+.btn svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════
+   MAIN LAYOUT
+═══════════════════════════════════════ */
+.app-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════ */
+.sidebar {
+  width: var(--sidebar);
+  min-width: 0;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: width .25s ease;
+}
+.sidebar.hidden { width: 0; }
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.sidebar-title {
+  font-size: .75rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.sidebar-title svg { width: 13px; height: 13px; fill: var(--accent); }
+
+/* Search */
+.search-wrap { padding: 8px 10px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 5px 9px;
+  transition: .15s;
+}
+.search-box:focus-within { border-color: var(--accent); }
+.search-box svg { width: 12px; height: 12px; fill: var(--muted); flex-shrink: 0; }
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--txt);
+  font-size: .8rem;
+  font-family: var(--font);
+  min-width: 0;
+}
+.search-box input::placeholder { color: var(--muted); }
+
+/* File tree */
+.file-tree {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 0 8px;
+}
+.tree-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--muted);
+  gap: 8px;
+}
+.tree-empty svg { width: 36px; height: 36px; fill: var(--muted); opacity: .4; }
+.tree-empty p { font-size: .85rem; font-weight: 600; }
+.tree-empty small { font-size: .75rem; }
+
+.tree-folder-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--dim);
+  cursor: pointer;
+  user-select: none;
+}
+.tree-folder-header:hover { background: var(--surf); }
+.tree-folder-header svg { width: 13px; height: 13px; fill: var(--yellow); flex-shrink: 0; }
+.tree-folder-arrow { margin-left: auto; width: 10px !important; height: 10px !important; fill: var(--muted) !important; transition: .2s; }
+.tree-folder.open .tree-folder-arrow { transform: rotate(90deg); }
+.tree-folder-children { padding-left: 14px; display: none; }
+.tree-folder.open .tree-folder-children { display: block; }
+
+.tree-file {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 10px;
+  font-size: .78rem;
+  color: var(--dim);
+  cursor: pointer;
+  transition: background .1s;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.tree-file:hover { background: var(--surf); color: var(--txt); }
+.tree-file.active { background: rgba(124,92,252,.15); color: var(--accent); }
+.tree-file svg { width: 13px; height: 13px; flex-shrink: 0; }
+.tf-html svg { fill: #f97316; }
+.tf-css  svg { fill: #60a5fa; }
+.tf-js   svg { fill: #facc15; }
+.tf-img  svg { fill: #16c079; }
+.tf-json svg { fill: #a78bfa; }
+.tf-font svg { fill: #f472b6; }
+.tf-other svg { fill: var(--muted); }
+.tree-file-name { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+.tree-file-size { font-size: .68rem; color: var(--muted); flex-shrink: 0; margin-left: 4px; }
+
+/* Project info */
+.sidebar-footer {
+  border-top: 1px solid var(--border);
+  padding: 10px 12px;
+  flex-shrink: 0;
+  font-size: .75rem;
+}
+.proj-info-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--dim);
+  padding: 2px 0;
+}
+.proj-info-row svg { width: 11px; height: 11px; fill: var(--muted); flex-shrink: 0; }
+.proj-info-row b { color: var(--txt); }
+
+/* ═══════════════════════════════════════
+   MAIN CONTENT
+═══════════════════════════════════════ */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* ── UPLOAD SCREEN ── */
+.upload-screen {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: auto;
+}
+.upload-card {
+  width: 100%;
+  max-width: 620px;
+  background: var(--bg2);
+  border: 2px dashed var(--border);
+  border-radius: 20px;
+  padding: 50px 40px;
+  text-align: center;
+  transition: .2s;
+}
+.upload-card.drag-over {
+  border-color: var(--accent);
+  background: rgba(124,92,252,.06);
+  transform: scale(1.01);
+}
+.upload-icon {
+  width: 72px; height: 72px;
+  background: rgba(124,92,252,.12);
+  border: 1px solid rgba(124,92,252,.3);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+.upload-icon svg { width: 36px; height: 36px; fill: var(--accent); }
+.upload-card h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 8px; }
+.upload-card p { color: var(--dim); font-size: .9rem; margin-bottom: 28px; line-height: 1.6; }
+.upload-methods {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.upload-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 20px;
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  color: var(--txt);
+  font-size: .88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .15s;
+}
+.upload-label:hover { background: rgba(124,92,252,.15); border-color: var(--accent); color: var(--accent); }
+.upload-label.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.upload-label.primary:hover { background: #6b5ee0; }
+.upload-label svg { width: 16px; height: 16px; fill: currentColor; }
+.upload-hint {
+  font-size: .75rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 24px;
+}
+.upload-hint svg { width: 12px; height: 12px; fill: var(--green); }
+
+/* Limitations */
+.limitations {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  text-align: left;
+  font-size: .8rem;
+}
+.limitations-title {
+  font-weight: 700;
+  color: var(--dim);
+  margin-bottom: 10px;
+  font-size: .8rem;
+}
+.limits-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+.limit-ok  { color: var(--green); }
+.limit-no  { color: var(--red); }
+.limit-na  { color: var(--yellow); }
+
+/* ── PREVIEW TOOLBAR ── */
+.preview-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+.toolbar-section { display: flex; align-items: center; gap: 5px; }
+.toolbar-sep { width: 1px; height: 18px; background: var(--border); margin: 0 3px; }
+.toolbar-right { margin-left: auto; }
+
+/* Viewport buttons */
+.vp-group { display: flex; gap: 2px; }
+.vp-btn {
+  padding: 5px 10px;
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: .8rem;
+  cursor: pointer;
+  transition: .15s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.vp-btn svg { width: 13px; height: 13px; fill: currentColor; }
+.vp-btn:hover { color: var(--txt); }
+.vp-btn.active { background: rgba(124,92,252,.2); border-color: var(--accent); color: var(--accent); }
+
+/* URL bar */
+.url-bar-wrap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 5px 10px;
+  font-size: .8rem;
+  color: var(--dim);
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.url-bar-wrap svg { width: 12px; height: 12px; fill: var(--green); flex-shrink: 0; }
+
+/* Asset status bar */
+.asset-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  font-size: .72rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+.asset-chip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.asset-chip svg { width: 10px; height: 10px; fill: currentColor; }
+.chip-ok  { background: rgba(22,192,121,.12); border: 1px solid rgba(22,192,121,.3); color: var(--green); }
+.chip-miss{ background: rgba(255,255,255,.05); border: 1px solid var(--border); color: var(--muted); }
+.chip-err { background: rgba(239,68,68,.12);  border: 1px solid rgba(239,68,68,.3);  color: var(--red); }
+.asset-bar-right { margin-left: auto; display: flex; gap: 5px; }
+
+/* Loading bar */
+.loading-bar {
+  height: 3px;
+  background: var(--bg3);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.loading-bar-inner {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--green));
+  width: 0%;
+  transition: width .3s ease;
+  border-radius: 2px;
+}
+
+/* ── PREVIEW AREA ── */
+.preview-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #e8e8e8;
+}
+.preview-frame-wrap {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: auto;
+  padding: 12px;
+  gap: 0;
+}
+.preview-frame-wrap.vp-desktop { padding: 0; }
+.device-frame {
+  background: #fff;
+  box-shadow: 0 8px 40px rgba(0,0,0,.4);
+  transition: width .3s ease, border-radius .3s;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+.device-frame.vp-desktop { width: 100%; height: 100%; border-radius: 0; }
+.device-frame.vp-laptop  { width: 1280px; min-height: 100%; border-radius: 4px; }
+.device-frame.vp-tablet  { width: 768px;  min-height: 600px; border-radius: 12px; border: 8px solid #1a1a2e; margin-top:8px; }
+.device-frame.vp-mobile  { width: 390px;  min-height: 600px; border-radius: 40px; border: 10px solid #1a1a2e; margin-top:8px;
+                            box-shadow: 0 8px 40px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.1); }
+
+#previewFrame {
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  border: none;
+  display: block;
+}
+
+/* Viewport label */
+.vp-label {
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  font-size: .65rem;
+  color: var(--muted);
+  background: rgba(0,0,0,.6);
+  padding: 2px 6px;
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* ── CONSOLE PANEL ── */
+.console-panel {
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+  max-height: 180px;
+  min-height: 28px;
+  transition: max-height .2s;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.console-panel.collapsed { max-height: 28px; }
+.console-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+  user-select: none;
+}
+.console-header-left { display: flex; align-items: center; gap: 7px; font-size: .75rem; font-weight: 700; color: var(--dim); }
+.console-header-left svg { width: 12px; height: 12px; fill: var(--dim); }
+.console-badge {
+  background: var(--red);
+  color: #fff;
+  font-size: .62rem;
+  padding: 1px 5px;
+  border-radius: 8px;
+  font-weight: 700;
+  display: none;
+}
+.console-log { flex: 1; overflow-y: auto; padding: 4px 12px 6px; font-family: var(--mono); font-size: .75rem; }
+.c-line { display: flex; align-items: flex-start; gap: 8px; padding: 2px 0; border-bottom: 1px solid var(--border2); }
+.c-line:last-child { border-bottom: none; }
+.c-type { flex-shrink: 0; font-size: .65rem; font-weight: 700; padding: 1px 5px; border-radius: 4px; margin-top: 1px; }
+.c-log  .c-type { background: rgba(255,255,255,.08); color: var(--muted); }
+.c-err  .c-type { background: rgba(239,68,68,.2);   color: var(--red); }
+.c-warn .c-type { background: rgba(250,204,21,.2);  color: var(--yellow); }
+.c-info .c-type { background: rgba(96,165,250,.2);  color: var(--blue); }
+.c-text { color: var(--dim); word-break: break-all; line-height: 1.5; }
+.c-err  .c-text { color: var(--red); }
+.c-warn .c-text { color: var(--yellow); }
+.c-welcome { color: var(--muted); padding: 6px 0; }
+
+/* ── SOURCE CODE MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.7);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+  display: none;
+}
+.modal-overlay.show { display: flex; }
+.modal-box {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 900px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.modal-head h3 { font-size: .95rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.modal-head h3 svg { width: 16px; height: 16px; fill: var(--accent); }
+.modal-actions { display: flex; gap: 6px; }
+.modal-close { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1.2rem; padding: 0 4px; }
+.modal-close:hover { color: var(--txt); }
+.modal-body { flex: 1; overflow: auto; }
+.source-pre {
+  font-family: var(--mono);
+  font-size: .78rem;
+  color: var(--txt);
+  padding: 16px 20px;
+  white-space: pre;
+  tab-size: 2;
+  line-height: 1.65;
+  background: var(--bg);
+  min-height: 300px;
+}
+
+/* ── TOAST ── */
+.toast-container {
+  position: fixed;
+  bottom: 20px; right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.toast {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 9px 15px;
+  font-size: .82rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.4);
+  animation: toastIn .2s ease;
+  max-width: 280px;
+}
+.toast.ok  { border-color: rgba(22,192,121,.4); color: var(--green); }
+.toast.err { border-color: rgba(239,68,68,.4);  color: var(--red); }
+.toast.inf { border-color: rgba(96,165,250,.4); color: var(--blue); }
+.toast.wrn { border-color: rgba(250,204,21,.4); color: var(--yellow); }
+@keyframes toastIn { from { transform: translateX(20px); opacity: 0; } }
+
+/* ── LOADING OVERLAY ── */
+.frame-loader {
+  position: absolute; inset: 0;
+  background: #fff;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 16px; z-index: 10;
+  transition: opacity .3s;
+}
+.frame-loader.hidden { opacity: 0; pointer-events: none; }
+.loader-spinner {
+  width: 40px; height: 40px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #7c5cfc;
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+.loader-text { font-size: .85rem; color: #6b7280; font-weight: 600; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  :root { --sidebar: 220px; }
+  .vp-btn span { display: none; }
+  .url-bar-wrap { display: none; }
+  .preview-frame-wrap { padding: 6px; }
+  .device-frame.vp-tablet { width: 100%; }
+  .device-frame.vp-laptop { width: 100%; }
+  .limits-grid { grid-template-columns: 1fr; }
+  .upload-methods { flex-direction: column; align-items: center; }
+  .upload-card { padding: 32px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ HEADER ══════════════════ -->
+<header class="header">
+  <a href="https://apnesoftware.com" class="header-brand">
+    ⚡ Apne<span>Software</span>
+  </a>
+  <div class="header-sep"></div>
+  <span class="header-title">Website Preview & Tester</span>
+  <div class="header-right">
+    <button class="btn btn-sm" id="sidebarToggleBtn" onclick="toggleSidebar()" title="Toggle file explorer">
+      <svg viewBox="0 0 16 16"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v11A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-11zM2.5 2a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-11a.5.5 0 0 0-.5-.5h-3zm5-1a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5H15a.5.5 0 0 0 0-1H8V2h7a.5.5 0 0 0 0-1H7.5z"/></svg>
+      Files
+    </button>
+    <button class="btn btn-sm" id="uploadNewBtn" onclick="showUploadScreen()" title="Upload new project" style="display:none">
+      <svg viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/></svg>
+      New Upload
+    </button>
+    <a href="https://apnesoftware.com" class="btn btn-sm">← All Tools</a>
+  </div>
+</header>
+
+<!-- ══════════════════ BODY ══════════════════ -->
+<div class="app-body">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">
+        <svg viewBox="0 0 16 16"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9z"/></svg>
+        File Explorer
+      </div>
+      <button class="btn btn-sm" onclick="toggleSidebar()">
+        <svg viewBox="0 0 16 16"><path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854z"/></svg>
+      </button>
+    </div>
+    <div class="search-wrap">
+      <div class="search-box">
+        <svg viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
+        <input type="text" id="searchInput" placeholder="Search files..." oninput="filterFiles()">
+      </div>
+    </div>
+    <div class="file-tree" id="fileTree">
+      <div class="tree-empty">
+        <svg viewBox="0 0 16 16"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9z"/></svg>
+        <p>No project loaded</p>
+        <small>Upload a ZIP or HTML file to get started</small>
+      </div>
+    </div>
+    <div class="sidebar-footer" id="sidebarFooter" style="display:none">
+      <div class="proj-info-row">
+        <svg viewBox="0 0 16 16"><path d="M6.5 7.5a1 1 0 0 0-1 1V13a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V8.5a1 1 0 0 0-1-1h-1zm4 0a1 1 0 0 0-1 1V13a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1V8.5a1 1 0 0 0-1-1h-1zM4 3.5a.5.5 0 0 0 0 1h8a.5.5 0 0 0 0-1H4z"/></svg>
+        <b id="projName" style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">—</b>
+      </div>
+      <div class="proj-info-row">
+        <svg viewBox="0 0 16 16"><path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5z"/></svg>
+        <span id="projFiles">0 files</span>
+      </div>
+      <div class="proj-info-row">
+        <svg viewBox="0 0 16 16"><path d="M1 2.5A1.5 1.5 0 0 1 2.5 1H7v2H2.5a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-4h2v4A2.5 2.5 0 0 1 13.5 16h-11A2.5 2.5 0 0 1 0 13.5v-10A2.5 2.5 0 0 1 2.5 0H7v2H2.5A.5.5 0 0 0 2 2.5Z"/></svg>
+        <span id="projSize">0 KB</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content" id="mainContent">
+
+    <!-- ── UPLOAD SCREEN ── -->
+    <div class="upload-screen" id="uploadScreen">
+      <div class="upload-card" id="dropZone"
+        ondragover="onDragOver(event)"
+        ondragleave="onDragLeave(event)"
+        ondrop="onDrop(event)">
+        <div class="upload-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H8l4-4 4 4h-3v4h-2z"/></svg>
+        </div>
+        <h1>Upload Your Website</h1>
+        <p>Upload a ZIP file of your complete website to preview and test it.<br>HTML, CSS, JS, images — all rendered in a sandboxed frame.</p>
+        <div class="upload-methods">
+          <label class="upload-label primary" for="zipInput">
+            <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.53 15.93 1 13.5 1c-1.53 0-2.83.78-3.5 1.9C9.33 1.78 8.03 1 6.5 1 4.07 1 2 2.53 2 4.64c0 .48.11.92.18 1.36H0v2h2v11h20V8h2V6h-4zm-1 11H5V8h14v9zM6.5 6c-.59 0-1-.41-1-1.04C5.5 4.23 5.95 3 6.5 3c.44 0 1.13.34 1.5.67v2.24C7.68 6.17 7.06 6 6.5 6zm7 0c-.56 0-1.18.17-1.5.42V3.67c.37-.33 1.06-.67 1.5-.67.55 0 1 1.23 1 1.96C14.5 5.59 14.09 6 13.5 6z"/></svg>
+            Upload ZIP File
+            <input type="file" id="zipInput" accept=".zip" style="display:none" onchange="handleZip(event)">
+          </label>
+          <label class="upload-label" for="htmlInput">
+            <svg viewBox="0 0 24 24"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/></svg>
+            Upload HTML File
+            <input type="file" id="htmlInput" accept=".html,.htm" style="display:none" onchange="handleHtml(event)">
+          </label>
+          <button class="upload-label" onclick="showPasteModal()">
+            <svg viewBox="0 0 24 24"><path d="M19 2h-4.18C14.4.84 13.3 0 12 0c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 18H5V4h2v3h10V4h2v16z"/></svg>
+            Paste HTML Code
+          </button>
+        </div>
+        <div class="upload-hint">
+          <svg viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+          Files processed 100% in browser — nothing uploaded to any server
+        </div>
+        <div class="limitations">
+          <div class="limitations-title">📋 What works in browser preview:</div>
+          <div class="limits-grid">
+            <span class="limit-ok">✅ HTML, CSS, JavaScript</span>
+            <span class="limit-ok">✅ Bootstrap, Tailwind CDN</span>
+            <span class="limit-ok">✅ Images, Fonts, Icons</span>
+            <span class="limit-ok">✅ Multi-page navigation</span>
+            <span class="limit-ok">✅ Responsive design testing</span>
+            <span class="limit-ok">✅ JavaScript animations</span>
+            <span class="limit-no">❌ PHP / Server-side code</span>
+            <span class="limit-no">❌ MySQL / Database queries</span>
+            <span class="limit-no">❌ Node.js backend</span>
+            <span class="limit-na">⚠️ External API calls (CORS)</span>
+            <span class="limit-na">⚠️ .htaccess redirects</span>
+            <span class="limit-na">⚠️ Server-sent events</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PREVIEW SCREEN ── -->
+    <div id="previewScreen" style="display:none; flex-direction:column; flex:1; overflow:hidden;">
+
+      <!-- Toolbar -->
+      <div class="preview-toolbar">
+        <div class="toolbar-section">
+          <button class="btn btn-sm" onclick="reloadPreview()" title="Reload">
+            <svg viewBox="0 0 16 16"><path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/><path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/></svg>
+            Reload
+          </button>
+          <button class="btn btn-sm" onclick="viewFileSource()" title="View source" id="viewSrcBtn">
+            <svg viewBox="0 0 16 16"><path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"/></svg>
+            Source
+          </button>
+          <button class="btn btn-sm" onclick="copySource()" title="Copy source">
+            <svg viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
+            Copy
+          </button>
+          <button class="btn btn-sm" onclick="downloadEntry()" title="Download">
+            <svg viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>
+            Download
+          </button>
+          <button class="btn btn-sm" onclick="openNewTab()" title="Open in new tab">
+            <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/><path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/></svg>
+          </button>
+        </div>
+
+        <div class="toolbar-sep"></div>
+
+        <!-- Viewport -->
+        <div class="toolbar-section">
+          <div class="vp-group">
+            <button class="vp-btn active" data-vp="desktop" onclick="setVP('desktop')" title="Desktop">
+              <svg viewBox="0 0 16 16"><path d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4c0 .667.083 1.167.25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75c.167-.333.25-.833.25-1.5H2s-2 0-2-2V4zm1.398-.855a.758.758 0 0 0-.254.302A1.46 1.46 0 0 0 1 4.01V10c0 .325.078.502.145.602.07.105.17.188.302.254a1.464 1.464 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.758.758 0 0 0 .254-.302 1.464 1.464 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.757.757 0 0 0-.302-.254A1.46 1.46 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145z"/></svg>
+              <span>Desktop</span>
+            </button>
+            <button class="vp-btn" data-vp="laptop" onclick="setVP('laptop')" title="Laptop (1280px)">
+              <svg viewBox="0 0 16 16"><path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zm-2 9a1 1 0 0 0-1 1v.5a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 15 12.5V12a1 1 0 0 0-1-1H.5z"/></svg>
+              <span>Laptop</span>
+            </button>
+            <button class="vp-btn" data-vp="tablet" onclick="setVP('tablet')" title="Tablet (768px)">
+              <svg viewBox="0 0 16 16"><path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z"/><path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+              <span>Tablet</span>
+            </button>
+            <button class="vp-btn" data-vp="mobile" onclick="setVP('mobile')" title="Mobile (390px)">
+              <svg viewBox="0 0 16 16"><path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/><path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>
+              <span>Mobile</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="toolbar-sep"></div>
+
+        <!-- URL bar -->
+        <div class="url-bar-wrap" id="urlBar">
+          <svg viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/></svg>
+          <span id="urlBarText">—</span>
+        </div>
+
+        <div class="toolbar-right">
+          <button class="btn btn-sm btn-danger" onclick="clearProject()">
+            <svg viewBox="0 0 16 16"><path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1z"/></svg>
+            Clear
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading bar -->
+      <div class="loading-bar"><div class="loading-bar-inner" id="loadingBar"></div></div>
+
+      <!-- Asset bar -->
+      <div class="asset-bar" id="assetBar">
+        <span id="chipHTML" class="asset-chip chip-miss">
+          <svg viewBox="0 0 16 16"><path d="M5.854 4.854a.5.5 0 1 0-.708-.708l-3.5 3.5a.5.5 0 0 0 0 .708l3.5 3.5a.5.5 0 0 0 .708-.708L2.707 8l3.147-3.146zm4.292 0a.5.5 0 0 1 .708-.708l3.5 3.5a.5.5 0 0 1 0 .708l-3.5 3.5a.5.5 0 0 1-.708-.708L13.293 8l-3.147-3.146z"/></svg>
+          HTML
+        </span>
+        <span id="chipCSS" class="asset-chip chip-miss">
+          <svg viewBox="0 0 16 16"><path d="M5.854 4.854a.5.5 0 1 0-.708-.708l-3.5 3.5a.5.5 0 0 0 0 .708l3.5 3.5a.5.5 0 0 0 .708-.708L2.707 8l3.147-3.146zm4.292 0a.5.5 0 0 1 .708-.708l3.5 3.5a.5.5 0 0 1 0 .708l-3.5 3.5a.5.5 0 0 1-.708-.708L13.293 8l-3.147-3.146z"/></svg>
+          CSS
+        </span>
+        <span id="chipJS" class="asset-chip chip-miss">
+          <svg viewBox="0 0 16 16"><path d="M5.854 4.854a.5.5 0 1 0-.708-.708l-3.5 3.5a.5.5 0 0 0 0 .708l3.5 3.5a.5.5 0 0 0 .708-.708L2.707 8l3.147-3.146zm4.292 0a.5.5 0 0 1 .708-.708l3.5 3.5a.5.5 0 0 1 0 .708l-3.5 3.5a.5.5 0 0 1-.708-.708L13.293 8l-3.147-3.146z"/></svg>
+          JS
+        </span>
+        <span id="chipIMG" class="asset-chip chip-miss">
+          <svg viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/><path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/></svg>
+          Images
+        </span>
+        <span id="chipFONT" class="asset-chip chip-miss">
+          <svg viewBox="0 0 16 16"><path d="M12 6a4 4 0 0 1-3.5 3.968V12.5a.5.5 0 0 1-1 0V9.968A4 4 0 1 1 12 6z"/></svg>
+          Fonts
+        </span>
+        <div class="asset-bar-right">
+          <span id="errorCount" style="display:none" class="asset-chip chip-err">
+            <svg viewBox="0 0 16 16"><path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg>
+            <span id="errorCountText">0 errors</span>
+          </span>
+          <span id="fileCountBadge" class="asset-chip" style="background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--dim)">
+            <svg viewBox="0 0 16 16"><path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5z"/></svg>
+            <span id="fileCountText">0 files</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Preview iframe -->
+      <div class="preview-area">
+        <div class="preview-frame-wrap vp-desktop" id="frameWrap">
+          <div class="device-frame vp-desktop" id="deviceFrame">
+            <div class="frame-loader" id="frameLoader">
+              <div class="loader-spinner"></div>
+              <div class="loader-text" id="loaderText">Loading project...</div>
+            </div>
+            <iframe id="previewFrame"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-modals allow-downloads allow-popups"
+              title="Website preview"
+              onload="onFrameLoad()">
+            </iframe>
+            <div class="vp-label" id="vpLabel">Desktop</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Console -->
+      <div class="console-panel" id="consolePanel">
+        <div class="console-header" onclick="toggleConsole()">
+          <div class="console-header-left">
+            <svg viewBox="0 0 16 16"><path d="M6 9a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3A.5.5 0 0 1 6 9zM3.854 4.146a.5.5 0 1 0-.708.708L4.793 6.5 3.146 8.146a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z"/><path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12z"/></svg>
+            Console
+            <span class="console-badge" id="consoleBadge"></span>
+          </div>
+          <div style="display:flex;gap:5px">
+            <button class="btn btn-sm" onclick="clearConsole(event)" title="Clear console">Clear</button>
+            <span id="consoleChevron" style="color:var(--muted);transition:.2s">▲</span>
+          </div>
+        </div>
+        <div class="console-log" id="consoleLog">
+          <div class="c-welcome">Console output from your website will appear here...</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main-content -->
+</div><!-- /app-body -->
+
+<!-- ══════════════════ SOURCE MODAL ══════════════════ -->
+<div class="modal-overlay" id="sourceModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3>
+        <svg viewBox="0 0 16 16"><path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"/></svg>
+        <span id="sourceModalTitle">Source Code</span>
+      </h3>
+      <div class="modal-actions">
+        <button class="btn btn-sm" onclick="copyModalCode()">Copy</button>
+        <button class="modal-close" onclick="closeSourceModal()">✕</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <pre class="source-pre" id="sourceModalCode"></pre>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ PASTE MODAL ══════════════════ -->
+<div class="modal-overlay" id="pasteModal">
+  <div class="modal-box" style="max-width:680px">
+    <div class="modal-head">
+      <h3>
+        <svg viewBox="0 0 16 16"><path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/><path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/></svg>
+        Paste HTML Source Code
+      </h3>
+      <button class="modal-close" onclick="closePasteModal()">✕</button>
+    </div>
+    <div class="modal-body" style="padding:16px">
+      <p style="color:var(--dim);font-size:.83rem;margin-bottom:10px">Paste the full HTML source of a webpage. External CSS/JS files will still be fetched from the web if they use CDN URLs.</p>
+      <textarea id="pasteArea" rows="14" style="
+        width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;
+        color:var(--txt);font-family:var(--mono);font-size:.8rem;padding:12px;
+        resize:vertical;outline:none;line-height:1.6
+      " placeholder="<!DOCTYPE html>&#10;<html>&#10;  <!-- Paste your HTML source here -->&#10;</html>"></textarea>
+    </div>
+    <div style="padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn" onclick="closePasteModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="loadPastedCode()">
+        <svg viewBox="0 0 16 16" style="width:13px;height:13px;fill:currentColor"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z"/></svg>
+        Load Preview
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast container -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  WEBSITE PREVIEW TOOL — Complete JavaScript
+// ═══════════════════════════════════════════════════════
+'use strict';
+
+// ── STATE ──────────────────────────────────────────────
+let wpFiles    = {};     // path → {data: Uint8Array, size, type, content?}
+let wpBlobs    = {};     // path → blob URL
+let entryPath  = '';     // current entry HTML file path
+let currentVP  = 'desktop';
+let sidebarOpen= true;
+let consoleOpen= true;
+let consoleCount = 0;
+let errorCount   = 0;
+let allPaths     = [];   // for search
+
+// ── MIME TYPES ─────────────────────────────────────────
+const MIME = {
+  html:'text/html', htm:'text/html', css:'text/css',
+  js:'application/javascript', mjs:'application/javascript',
+  json:'application/json', xml:'text/xml', txt:'text/plain',
+  svg:'image/svg+xml', png:'image/png', jpg:'image/jpeg',
+  jpeg:'image/jpeg', gif:'image/gif', webp:'image/webp',
+  ico:'image/x-icon', bmp:'image/bmp', avif:'image/avif',
+  woff:'font/woff', woff2:'font/woff2', ttf:'font/ttf',
+  eot:'application/vnd.ms-fontobject', otf:'font/otf',
+  mp4:'video/mp4', webm:'video/webm', ogg:'audio/ogg',
+  mp3:'audio/mpeg', wav:'audio/wav', pdf:'application/pdf',
+  zip:'application/zip',
+};
+function getMime(name) {
+  const ext = name.split('.').pop().toLowerCase();
+  return MIME[ext] || 'application/octet-stream';
+}
+
+// ── ENTRY POINT DETECTION ──────────────────────────────
+const ENTRY_CANDIDATES = [
+  'index.html','index.htm','default.html','default.htm',
+  'home.html','home.htm','main.html','start.html',
+];
+function findEntry() {
+  const paths = Object.keys(wpFiles);
+  // Root level exact match
+  for (const c of ENTRY_CANDIDATES) {
+    if (wpFiles[c]) return c;
+  }
+  // One subfolder deep
+  for (const p of paths) {
+    const parts = p.split('/');
+    if (parts.length === 2 && ENTRY_CANDIDATES.includes(parts[1])) return p;
+  }
+  // Any html file
+  return paths.find(p => p.match(/\.html?$/i)) || null;
+}
+
+// ── DRAG & DROP ─────────────────────────────────────────
+function onDragOver(e) {
+  e.preventDefault();
+  document.getElementById('dropZone').classList.add('drag-over');
+}
+function onDragLeave(e) {
+  if (!document.getElementById('dropZone').contains(e.relatedTarget))
+    document.getElementById('dropZone').classList.remove('drag-over');
+}
+function onDrop(e) {
+  e.preventDefault();
+  document.getElementById('dropZone').classList.remove('drag-over');
+  const f = e.dataTransfer.files[0];
+  if (!f) return;
+  if (f.name.endsWith('.zip')) loadZipFile(f);
+  else if (f.name.match(/\.html?$/i)) loadHtmlFile(f);
+  else toast('Please drop a .zip or .html file', 'err');
+}
+function handleZip(e)  { if (e.target.files[0]) loadZipFile(e.target.files[0]); }
+function handleHtml(e) { if (e.target.files[0]) loadHtmlFile(e.target.files[0]); }
+
+// ── LOAD ZIP ───────────────────────────────────────────
+async function loadZipFile(file) {
+  if (file.size > 200 * 1024 * 1024) { toast('ZIP too large (max 200MB)', 'err'); return; }
+  toast('Extracting ZIP...', 'inf');
+  setProgress(10);
+  try {
+    const buf = await file.arrayBuffer();
+    setProgress(30);
+    const zip = await JSZip.loadAsync(buf);
+    setProgress(50);
+    wpFiles = {}; allPaths = [];
+    const tasks = [];
+    zip.forEach((path, entry) => {
+      if (entry.dir) return;
+      const clean = path.replace(/^\//, '').replace(/\\/g, '/');
+      tasks.push(
+        entry.async('uint8array').then(data => {
+          wpFiles[clean] = { data, size: data.length, type: getMime(clean) };
+          allPaths.push(clean);
+        })
+      );
+    });
+    await Promise.all(tasks);
+    setProgress(80);
+    if (!allPaths.length) { toast('ZIP is empty', 'err'); resetProgress(); return; }
+    initProject(file.name);
+    toast(`ZIP loaded! ${allPaths.length} files`, 'ok');
+  } catch(err) {
+    toast('Failed to extract ZIP: ' + err.message, 'err');
+    resetProgress();
+  }
+}
+
+// ── LOAD HTML ──────────────────────────────────────────
+function loadHtmlFile(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    wpFiles = {}; allPaths = [];
+    const content = e.target.result;
+    const enc = new TextEncoder();
+    wpFiles[file.name] = {
+      data: enc.encode(content),
+      size: content.length,
+      type: 'text/html',
+      content
+    };
+    allPaths = [file.name];
+    initProject(file.name);
+    toast('HTML file loaded!', 'ok');
+  };
+  reader.readAsText(file);
+}
+
+// ── PASTE CODE ─────────────────────────────────────────
+function loadPastedCode() {
+  const code = document.getElementById('pasteArea').value.trim();
+  if (!code) { toast('Please paste some HTML', 'err'); return; }
+  wpFiles = {}; allPaths = [];
+  const enc = new TextEncoder();
+  wpFiles['index.html'] = {
+    data: enc.encode(code),
+    size: code.length,
+    type: 'text/html',
+    content: code
+  };
+  allPaths = ['index.html'];
+  closePasteModal();
+  initProject('Pasted Code');
+  toast('HTML loaded from paste!', 'ok');
+}
+
+// ── INIT PROJECT ───────────────────────────────────────
+function initProject(name) {
+  // Revoke old blob URLs
+  Object.values(wpBlobs).forEach(u => { try { URL.revokeObjectURL(u); } catch(e){} });
+  wpBlobs = {};
+
+  // Create blob URLs for all assets
+  for (const [path, file] of Object.entries(wpFiles)) {
+    const blob = new Blob([file.data], { type: file.type });
+    wpBlobs[path] = URL.createObjectURL(blob);
+  }
+
+  entryPath = findEntry();
+  if (!entryPath) {
+    toast('No HTML entry point found in ZIP', 'err');
+    return;
+  }
+
+  // Show preview screen
+  showPreviewScreen();
+  updateSidebar(name);
+  updateAssetBar();
+  renderProject(entryPath);
+  setupConsoleBridge();
+}
+
+// ── RENDER ─────────────────────────────────────────────
+function renderProject(htmlPath) {
+  const file = wpFiles[htmlPath];
+  if (!file) { toast('File not found: ' + htmlPath, 'err'); return; }
+
+  showFrameLoader('Rendering ' + htmlPath.split('/').pop() + '...');
+  setProgress(85);
+  entryPath = htmlPath;
+  document.getElementById('urlBarText').textContent = htmlPath;
+
+  // Get HTML content
+  let html = file.content;
+  if (!html) {
+    html = new TextDecoder('utf-8', {fatal:false}).decode(file.data);
+    file.content = html;
+  }
+
+  // Rewrite asset URLs → blob URLs
+  const baseDir = htmlPath.includes('/') ? htmlPath.substring(0, htmlPath.lastIndexOf('/')+1) : '';
+  const rewritten = rewriteURLs(html, baseDir);
+
+  const frame = document.getElementById('previewFrame');
+  frame.srcdoc = rewritten;
+  setProgress(95);
+
+  // Mark active file
+  document.querySelectorAll('.tree-file').forEach(f => {
+    f.classList.toggle('active', f.dataset.path === htmlPath);
+  });
+}
+
+// ── URL REWRITING ──────────────────────────────────────
+function rewriteURLs(html, baseDir) {
+  // Rewrite src= and href= attributes for local files
+  html = html.replace(/(src|href|action)\s*=\s*["']([^"'#?:]+)["']/gi, (match, attr, url) => {
+    if (url.startsWith('http') || url.startsWith('//') ||
+        url.startsWith('data:') || url.startsWith('mailto:') ||
+        url.startsWith('tel:') || url.startsWith('blob:')) {
+      return match;
+    }
+    // Resolve path
+    const resolved = resolvePath(baseDir, url);
+    const blobURL = findBlob(resolved, url);
+    if (blobURL) return `${attr}="${blobURL}"`;
+    return match;
+  });
+
+  // Rewrite url() in inline styles
+  html = html.replace(/url\(['"]?([^'")#?:]+)['"]?\)/gi, (match, url) => {
+    if (url.startsWith('http') || url.startsWith('//') || url.startsWith('data:')) return match;
+    const resolved = resolvePath(baseDir, url);
+    const blobURL = findBlob(resolved, url);
+    if (blobURL) return `url("${blobURL}")`;
+    return match;
+  });
+
+  // Inject console bridge
+  const bridge = `<script>
+(function(){
+  var _c={log:console.log,error:console.error,warn:console.warn,info:console.info};
+  ['log','error','warn','info'].forEach(function(m){
+    console[m]=function(){
+      var a=Array.from(arguments).map(function(x){
+        try{return typeof x==='object'?JSON.stringify(x,null,0):String(x)}catch(e){return String(x)}
+      }).join(' ');
+      window.parent.postMessage({_wp:1,t:m,m:a},'*');
+      _c[m].apply(console,arguments);
+    };
+  });
+  window.addEventListener('error',function(e){
+    window.parent.postMessage({_wp:1,t:'error',m:(e.message||'Script error')+' (line '+e.lineno+')'},'*');
+  });
+  window.addEventListener('unhandledrejection',function(e){
+    window.parent.postMessage({_wp:1,t:'error',m:'Unhandled Promise: '+(e.reason||'unknown')},'*');
+  });
+})();
+<\/script>`;
+
+  // Insert bridge before </head> or at start of <body>
+  if (html.includes('</head>')) {
+    html = html.replace('</head>', bridge + '</head>');
+  } else if (html.includes('<body')) {
+    html = html.replace(/<body([^>]*)>/, '<body$1>' + bridge);
+  } else {
+    html = bridge + html;
+  }
+
+  return html;
+}
+
+function resolvePath(baseDir, url) {
+  if (url.startsWith('/')) return url.slice(1);
+  let result = baseDir + url;
+  // Normalize ./ and ../
+  const parts = result.split('/');
+  const resolved = [];
+  for (const p of parts) {
+    if (p === '..') resolved.pop();
+    else if (p !== '.') resolved.push(p);
+  }
+  return resolved.join('/');
+}
+
+function findBlob(resolved, original) {
+  if (wpBlobs[resolved]) return wpBlobs[resolved];
+  if (wpBlobs[original]) return wpBlobs[original];
+  // Try case-insensitive match
+  const lower = resolved.toLowerCase();
+  for (const [k, v] of Object.entries(wpBlobs)) {
+    if (k.toLowerCase() === lower) return v;
+  }
+  // Try just filename
+  const fname = original.split('/').pop().toLowerCase();
+  for (const [k, v] of Object.entries(wpBlobs)) {
+    if (k.split('/').pop().toLowerCase() === fname) return v;
+  }
+  return null;
+}
+
+// ── CONSOLE BRIDGE ─────────────────────────────────────
+function setupConsoleBridge() {
+  window.removeEventListener('message', handleFrameMsg);
+  window.addEventListener('message', handleFrameMsg);
+}
+function handleFrameMsg(e) {
+  if (!e.data || !e.data._wp) return;
+  addConsoleLine(e.data.t, e.data.m);
+  if (e.data.t === 'error') errorCount++;
+  updateErrorBadge();
+}
+function addConsoleLine(type, msg) {
+  const log = document.getElementById('consoleLog');
+  const welcome = log.querySelector('.c-welcome');
+  if (welcome) welcome.remove();
+
+  const labels = { log:'LOG', error:'ERR', warn:'WARN', info:'INFO' };
+  const line = document.createElement('div');
+  line.className = `c-line c-${type === 'error' ? 'err' : type === 'warn' ? 'warn' : type === 'info' ? 'info' : 'log'}`;
+  line.innerHTML = `<span class="c-type">${labels[type]||'LOG'}</span><span class="c-text">${escHtml(msg)}</span>`;
+  log.appendChild(line);
+  log.scrollTop = log.scrollHeight;
+
+  consoleCount++;
+  const badge = document.getElementById('consoleBadge');
+  badge.textContent = consoleCount;
+  badge.style.display = 'inline-flex';
+}
+
+// ── ASSET BAR ──────────────────────────────────────────
+function updateAssetBar() {
+  const paths = Object.keys(wpFiles);
+  const hasHTML = paths.some(p => p.match(/\.html?$/i));
+  const hasCSS  = paths.some(p => p.match(/\.css$/i));
+  const hasJS   = paths.some(p => p.match(/\.m?js$/i));
+  const hasIMG  = paths.some(p => p.match(/\.(png|jpg|jpeg|gif|svg|webp|ico|avif)$/i));
+  const hasFONT = paths.some(p => p.match(/\.(woff2?|ttf|eot|otf)$/i));
+  setChip('chipHTML', hasHTML);
+  setChip('chipCSS',  hasCSS);
+  setChip('chipJS',   hasJS);
+  setChip('chipIMG',  hasIMG);
+  setChip('chipFONT', hasFONT);
+  document.getElementById('fileCountText').textContent = paths.length + ' files';
+}
+function setChip(id, exists) {
+  const el = document.getElementById(id);
+  el.className = 'asset-chip ' + (exists ? 'chip-ok' : 'chip-miss');
+}
+function updateErrorBadge() {
+  const el = document.getElementById('errorCount');
+  if (errorCount > 0) {
+    el.style.display = 'flex';
+    document.getElementById('errorCountText').textContent = errorCount + ' error' + (errorCount !== 1 ? 's' : '');
+  }
+}
+
+// ── FILE TREE ──────────────────────────────────────────
+function updateSidebar(projName) {
+  // Update project info
+  document.getElementById('projName').textContent = projName;
+  document.getElementById('projFiles').textContent = allPaths.length + ' files';
+  const totalSize = Object.values(wpFiles).reduce((a,f) => a+f.size, 0);
+  document.getElementById('projSize').textContent = fmtSize(totalSize);
+  document.getElementById('sidebarFooter').style.display = 'block';
+
+  buildFileTree(allPaths);
+}
+
+function buildFileTree(paths) {
+  const tree = document.getElementById('fileTree');
+  if (!paths.length) { tree.innerHTML = '<div class="tree-empty"><p>No files</p></div>'; return; }
+
+  // Group by top-level folder
+  const structure = {};
+  for (const p of paths) {
+    const parts = p.split('/');
+    if (parts.length === 1) {
+      structure['__root__'] = structure['__root__'] || [];
+      structure['__root__'].push(p);
+    } else {
+      const folder = parts[0];
+      structure[folder] = structure[folder] || [];
+      structure[folder].push(p);
+    }
+  }
+
+  let html = '';
+  // Root files first
+  if (structure['__root__']) {
+    for (const p of structure['__root__'].sort()) {
+      html += fileNodeHTML(p, p);
+    }
+  }
+  // Folders
+  for (const [folder, files] of Object.entries(structure)) {
+    if (folder === '__root__') continue;
+    const id = 'folder_' + folder.replace(/[^a-z0-9]/gi,'_');
+    html += `<div class="tree-folder open" id="${id}">
+      <div class="tree-folder-header" onclick="toggleFolder('${id}')">
+        <svg viewBox="0 0 16 16"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9z"/></svg>
+        ${escHtml(folder)}
+        <svg class="tree-folder-arrow" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+      </div>
+      <div class="tree-folder-children">
+        ${files.sort().map(p => fileNodeHTML(p, p.split('/').slice(1).join('/'))).join('')}
+      </div>
+    </div>`;
+  }
+  tree.innerHTML = html;
+}
+
+function fileNodeHTML(path, display) {
+  const size = wpFiles[path] ? fmtSize(wpFiles[path].size) : '';
+  const cls  = fileClass(path);
+  const icon = fileIcon(path);
+  const isActive = path === entryPath ? ' active' : '';
+  return `<div class="tree-file ${cls}${isActive}" data-path="${escAttr(path)}" onclick="clickFile('${escAttr(path)}')" title="${escAttr(path)}">
+    ${icon}
+    <span class="tree-file-name">${escHtml(display)}</span>
+    <span class="tree-file-size">${size}</span>
+  </div>`;
+}
+
+function fileClass(p) {
+  if (p.match(/\.html?$/i)) return 'tf-html';
+  if (p.match(/\.css$/i))   return 'tf-css';
+  if (p.match(/\.m?js$/i))  return 'tf-js';
+  if (p.match(/\.(png|jpg|jpeg|gif|svg|webp|ico|avif|bmp)$/i)) return 'tf-img';
+  if (p.match(/\.json$/i))  return 'tf-json';
+  if (p.match(/\.(woff2?|ttf|eot|otf)$/i)) return 'tf-font';
+  return 'tf-other';
+}
+
+function fileIcon(p) {
+  // Return SVG icon based on type
+  const html = '<svg viewBox="0 0 16 16"><path d="M5.854 4.854a.5.5 0 1 0-.708-.708l-3.5 3.5a.5.5 0 0 0 0 .708l3.5 3.5a.5.5 0 0 0 .708-.708L2.707 8l3.147-3.146zm4.292 0a.5.5 0 0 1 .708-.708l3.5 3.5a.5.5 0 0 1 0 .708l-3.5 3.5a.5.5 0 0 1-.708-.708L13.293 8l-3.147-3.146z"/></svg>';
+  const css  = '<svg viewBox="0 0 16 16"><path d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.413A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0zm0 1a.5.5 0 0 0-.5.5v13a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H1.5z"/></svg>';
+  if (p.match(/\.html?$/i)) return html;
+  if (p.match(/\.css$/i))   return css;
+  if (p.match(/\.m?js$/i))  return '<svg viewBox="0 0 16 16"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm4.965 1.69a6.5 6.5 0 1 0 1.354 9.279.5.5 0 1 0-.707-.707 5.5 5.5 0 1 1-1.01-7.843.5.5 0 0 0 .363-.729z"/></svg>';
+  if (p.match(/\.(png|jpg|jpeg|gif|svg|webp|ico|avif)$/i)) return '<svg viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/><path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12z"/></svg>';
+  if (p.match(/\.json$/i))  return '<svg viewBox="0 0 16 16"><path d="M14 4.5V9h-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v7H2V2a2 2 0 0 1 2-2h5.5L14 4.5z"/></svg>';
+  return '<svg viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/></svg>';
+}
+
+function clickFile(path) {
+  const file = wpFiles[path];
+  if (!file) return;
+
+  // If HTML → render it
+  if (path.match(/\.html?$/i)) {
+    renderProject(path);
+    return;
+  }
+
+  // If image → open in new tab
+  if (path.match(/\.(png|jpg|jpeg|gif|svg|webp|ico|avif|bmp)$/i)) {
+    if (wpBlobs[path]) window.open(wpBlobs[path], '_blank');
+    return;
+  }
+
+  // Otherwise → show source
+  let content = file.content;
+  if (!content) {
+    content = new TextDecoder('utf-8', {fatal:false}).decode(file.data);
+    file.content = content;
+  }
+  document.getElementById('sourceModalTitle').textContent = path.split('/').pop();
+  document.getElementById('sourceModalCode').textContent = content;
+  openSourceModal();
+}
+
+function toggleFolder(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+function filterFiles() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  document.querySelectorAll('.tree-file').forEach(el => {
+    const visible = !q || el.dataset.path.toLowerCase().includes(q);
+    el.style.display = visible ? '' : 'none';
+  });
+  document.querySelectorAll('.tree-folder-header').forEach(el => {
+    el.parentElement.style.display = '';
+  });
+}
+
+// ── VIEWPORT ───────────────────────────────────────────
+const VP_CONFIG = {
+  desktop:  { label: 'Desktop (Full Width)',   frameClass: 'vp-desktop',  wrapClass: 'vp-desktop' },
+  laptop:   { label: 'Laptop (1280px)',         frameClass: 'vp-laptop',   wrapClass: '' },
+  tablet:   { label: 'Tablet (768px)',          frameClass: 'vp-tablet',   wrapClass: '' },
+  mobile:   { label: 'Mobile (390px)',          frameClass: 'vp-mobile',   wrapClass: '' },
+};
+function setVP(vp) {
+  currentVP = vp;
+  document.querySelectorAll('.vp-btn').forEach(b => b.classList.toggle('active', b.dataset.vp === vp));
+  const cfg = VP_CONFIG[vp];
+  const frame  = document.getElementById('deviceFrame');
+  const wrap   = document.getElementById('frameWrap');
+  const label  = document.getElementById('vpLabel');
+  // Reset classes
+  frame.className = 'device-frame ' + cfg.frameClass;
+  wrap.className  = 'preview-frame-wrap ' + (cfg.wrapClass || '');
+  label.textContent = cfg.label;
+}
+
+// ── TOOLBAR ACTIONS ────────────────────────────────────
+function reloadPreview() {
+  if (entryPath) {
+    // Force reload by clearing and re-rendering
+    wpFiles[entryPath].content = null;
+    renderProject(entryPath);
+    toast('Reloaded', 'ok');
+  }
+}
+function viewFileSource() {
+  if (!entryPath) return;
+  const file = wpFiles[entryPath];
+  let content = file.content;
+  if (!content) { content = new TextDecoder().decode(file.data); file.content = content; }
+  document.getElementById('sourceModalTitle').textContent = entryPath;
+  document.getElementById('sourceModalCode').textContent = content;
+  openSourceModal();
+}
+function copySource() {
+  if (!entryPath) return;
+  const file = wpFiles[entryPath];
+  let content = file.content;
+  if (!content) { content = new TextDecoder().decode(file.data); }
+  navigator.clipboard.writeText(content)
+    .then(() => toast('Source copied!', 'ok'))
+    .catch(() => toast('Copy failed', 'err'));
+}
+function downloadEntry() {
+  if (!entryPath || !wpBlobs[entryPath]) return;
+  const a = document.createElement('a');
+  a.href = wpBlobs[entryPath];
+  a.download = entryPath.split('/').pop();
+  a.click();
+  toast('Downloaded ' + a.download, 'ok');
+}
+function openNewTab() {
+  if (!wpBlobs[entryPath]) return;
+  window.open(wpBlobs[entryPath], '_blank');
+}
+function clearProject() {
+  if (Object.keys(wpFiles).length && !confirm('Clear current project?')) return;
+  Object.values(wpBlobs).forEach(u => { try { URL.revokeObjectURL(u); } catch(e){} });
+  wpFiles = {}; wpBlobs = {}; allPaths = [];
+  entryPath = ''; consoleCount = 0; errorCount = 0;
+  document.getElementById('consoleBadge').style.display = 'none';
+  document.getElementById('consoleBadge').textContent = '';
+  document.getElementById('errorCount').style.display = 'none';
+  document.getElementById('fileTree').innerHTML = `<div class="tree-empty">
+    <svg viewBox="0 0 16 16"><path d="M1 3.5A1.5 1.5 0 0 1 2.5 2h2.764c.958 0 1.76.56 2.311 1.184C7.985 3.648 8.48 4 9 4h4.5A1.5 1.5 0 0 1 15 5.5v7a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 12.5v-9z"/></svg>
+    <p>No project loaded</p><small>Upload a ZIP or HTML file</small></div>`;
+  document.getElementById('sidebarFooter').style.display = 'none';
+  showUploadScreen();
+  document.getElementById('uploadNewBtn').style.display = 'none';
+  document.getElementById('consoleLog').innerHTML = '<div class="c-welcome">Console output from your website will appear here...</div>';
+  resetProgress();
+  toast('Project cleared', 'inf');
+  // Reset file inputs
+  document.getElementById('zipInput').value = '';
+  document.getElementById('htmlInput').value = '';
+}
+
+// ── CONSOLE ─────────────────────────────────────────────
+function toggleConsole() {
+  consoleOpen = !consoleOpen;
+  document.getElementById('consolePanel').classList.toggle('collapsed', !consoleOpen);
+  document.getElementById('consoleChevron').textContent = consoleOpen ? '▲' : '▼';
+}
+function clearConsole(e) {
+  if (e) e.stopPropagation();
+  document.getElementById('consoleLog').innerHTML = '<div class="c-welcome">Console cleared.</div>';
+  consoleCount = 0;
+  document.getElementById('consoleBadge').style.display = 'none';
+  document.getElementById('consoleBadge').textContent = '';
+}
+
+// ── SCREEN SWITCHING ───────────────────────────────────
+function showPreviewScreen() {
+  document.getElementById('uploadScreen').style.display = 'none';
+  const ps = document.getElementById('previewScreen');
+  ps.style.display = 'flex';
+  ps.style.flex = '1';
+  document.getElementById('uploadNewBtn').style.display = 'inline-flex';
+}
+function showUploadScreen() {
+  document.getElementById('previewScreen').style.display = 'none';
+  document.getElementById('uploadScreen').style.display = 'flex';
+}
+
+// ── LOADER ─────────────────────────────────────────────
+function showFrameLoader(text) {
+  const loader = document.getElementById('frameLoader');
+  document.getElementById('loaderText').textContent = text;
+  loader.classList.remove('hidden');
+}
+function onFrameLoad() {
+  document.getElementById('frameLoader').classList.add('hidden');
+  setProgress(100);
+  setTimeout(resetProgress, 400);
+}
+function setProgress(pct) {
+  document.getElementById('loadingBar').style.width = pct + '%';
+}
+function resetProgress() {
+  setTimeout(() => { document.getElementById('loadingBar').style.width = '0%'; }, 300);
+}
+
+// ── SIDEBAR TOGGLE ──────────────────────────────────────
+function toggleSidebar() {
+  sidebarOpen = !sidebarOpen;
+  document.getElementById('sidebar').classList.toggle('hidden', !sidebarOpen);
+}
+
+// ── SOURCE MODAL ────────────────────────────────────────
+function openSourceModal()  { document.getElementById('sourceModal').classList.add('show'); }
+function closeSourceModal() { document.getElementById('sourceModal').classList.remove('show'); }
+function copyModalCode() {
+  navigator.clipboard.writeText(document.getElementById('sourceModalCode').textContent)
+    .then(() => toast('Copied!', 'ok'))
+    .catch(() => toast('Failed', 'err'));
+}
+// Close on overlay click
+document.getElementById('sourceModal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeSourceModal();
+});
+
+// ── PASTE MODAL ─────────────────────────────────────────
+function showPasteModal()  { document.getElementById('pasteModal').classList.add('show'); }
+function closePasteModal() { document.getElementById('pasteModal').classList.remove('show'); }
+document.getElementById('pasteModal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closePasteModal();
+});
+
+// ── TOAST ───────────────────────────────────────────────
+function toast(msg, type='inf') {
+  const c = document.getElementById('toastContainer');
+  const types = { ok:'ok', err:'err', inf:'inf', wrn:'wrn' };
+  const icons  = { ok:'✅', err:'❌', inf:'ℹ️', wrn:'⚠️' };
+  const t = document.createElement('div');
+  t.className = `toast ${types[type]||'inf'}`;
+  t.innerHTML = `<span>${icons[type]||'ℹ️'}</span><span>${escHtml(msg)}</span>`;
+  c.appendChild(t);
+  setTimeout(() => { t.style.opacity='0'; t.style.transition='opacity .3s';
+    setTimeout(() => t.remove(), 300); }, 2800);
+}
+
+// ── UTILS ───────────────────────────────────────────────
+function fmtSize(b) {
+  if (b < 1024) return b + 'B';
+  if (b < 1024*1024) return (b/1024).toFixed(0) + 'KB';
+  return (b/1024/1024).toFixed(1) + 'MB';
+}
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function escAttr(s) { return String(s).replace(/'/g,"\\'").replace(/"/g,'&quot;'); }
+
+// ── KEYBOARD ────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeSourceModal(); closePasteModal(); }
+  if ((e.ctrlKey||e.metaKey) && e.key==='r' && entryPath) { e.preventDefault(); reloadPreview(); }
+});
+
+// ── GLOBAL DRAG DROP ────────────────────────────────────
+document.addEventListener('dragover', e => e.preventDefault());
+document.addEventListener('drop', e => {
+  e.preventDefault();
+  if (!document.getElementById('uploadScreen').style.display ||
+      document.getElementById('uploadScreen').style.display === 'flex') return;
+  const f = e.dataTransfer.files[0];
+  if (f && f.name.endsWith('.zip')) loadZipFile(f);
+  else if (f && f.name.match(/\.html?$/i)) loadHtmlFile(f);
+});
+</script>
+
+</body>
+</html>

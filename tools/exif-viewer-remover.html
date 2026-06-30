@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/exif-viewer-remover.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="EXIF Viewer & Remover — Image Metadata Privacy Tool | ApneSoftware">
+<meta property="og:description" content="View and strip hidden photo metadata. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/exif-viewer-remover.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EXIF Viewer & Remover — Image Metadata Privacy Tool | ApneSoftware">
+<meta name="twitter:description" content="View and strip hidden photo metadata. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"EXIF Viewer & Remover","description":"View and strip hidden photo metadata. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/exif-viewer-remover.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>EXIF Viewer & Remover — Image Metadata Privacy Tool | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .preview-img{max-width:100%;max-height:280px;border-radius:10px;border:1px solid var(--border);margin-bottom:14px}
+  .exif-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:10px}
+  .exif-table th,.exif-table td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border)}
+  .exif-table th{color:var(--text-dim);font-weight:600;width:42%}
+  .privacy-note{
+    background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;
+    padding:12px 14px;font-size:.85rem;color:var(--text-dim);margin-top:14px;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🕵️ EXIF Viewer & Remover</h1>
+    <p>See the hidden metadata in your photos (camera, GPS location, date) — and strip it out before sharing.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a photo here or click to choose (JPG works best)</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <img class="preview-img" id="previewImg" alt="Preview">
+
+      <h3 style="font-size:.95rem;margin-bottom:6px">📋 Found Metadata</h3>
+      <table class="exif-table" id="exifTable"><tbody></tbody></table>
+      <p id="noExifMsg" style="display:none;color:var(--text-dim);font-size:.9rem;margin-top:8px">No EXIF metadata found in this image — it's already clean, or the format doesn't support EXIF.</p>
+
+      <div class="btn-row">
+        <button class="btn" id="removeBtn">🧹 Remove All Metadata & Download</button>
+      </div>
+
+      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
+      <div class="privacy-note">ℹ️ Photos often contain hidden GPS coordinates and device info. Removing metadata before sharing online helps protect your privacy. Everything happens locally in your browser — nothing is uploaded.</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Photos taken on phones and cameras often embed hidden EXIF metadata — including the exact GPS location, camera model, and timestamp. This tool shows you what's hidden in a photo and lets you strip it all out before posting or sharing.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a photo.</li>
+        <li>Review the metadata table to see what information is embedded.</li>
+        <li>Click Remove All Metadata to download a clean copy with no hidden data.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>फोन और कैमरे से ली गई फोटो में अक्सर छिपा हुआ EXIF मेटाडेटा होता है — जिसमें सटीक GPS लोकेशन, कैमरा मॉडल और टाइमस्टैम्प शामिल होता है। यह टूल फोटो में छिपी जानकारी दिखाता है और शेयर करने से पहले उसे पूरी तरह हटा देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक फोटो अपलोड करें।</li>
+        <li>मेटाडेटा टेबल देखकर पता करें कि क्या जानकारी छिपी है।</li>
+        <li>Remove All Metadata दबाएं और बिना किसी छिपी जानकारी वाली साफ फोटो डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let currentFile = null;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    currentFile = files[0];
+    loadImage(currentFile);
+  }
+});
+
+function loadImage(file){
+  const url = URL.createObjectURL(file);
+  const img = document.getElementById('previewImg');
+  img.src = url;
+  document.getElementById('afterUpload').style.display = 'block';
+  document.getElementById('statusMsg').textContent = '';
+
+  img.onload = () => {
+    EXIF.getData(img, function(){
+      const allTags = EXIF.getAllTags(this);
+      renderExif(allTags);
+    });
+  };
+}
+
+function renderExif(tags){
+  const tbody = document.querySelector('#exifTable tbody');
+  tbody.innerHTML = '';
+  const keys = Object.keys(tags || {});
+  const interesting = ['Make','Model','DateTime','DateTimeOriginal','ExposureTime','FNumber','ISOSpeedRatings','FocalLength','GPSLatitude','GPSLongitude','Software','Orientation','PixelXDimension','PixelYDimension'];
+  let shown = 0;
+
+  interesting.forEach(key=>{
+    if(tags[key] !== undefined){
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<th>'+key+'</th><td>'+formatTagValue(key, tags[key])+'</td>';
+      tbody.appendChild(tr);
+      shown++;
+    }
+  });
+
+  if(shown === 0){
+    document.getElementById('noExifMsg').style.display = 'block';
+  } else {
+    document.getElementById('noExifMsg').style.display = 'none';
+  }
+}
+
+function formatTagValue(key, val){
+  if(Array.isArray(val)) return val.map(v => (v && v.numerator !== undefined) ? (v.numerator+'/'+v.denominator) : v).join(', ');
+  return String(val);
+}
+
+document.getElementById('removeBtn').addEventListener('click', ()=>{
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Removing metadata...';
+
+  const img = new Image();
+  img.onload = ()=>{
+    const canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+
+    canvas.toBlob((blob)=>{
+      const ext = (currentFile.type === 'image/png') ? 'png' : 'jpg';
+      downloadBlob('cleaned.' + ext, blob);
+      status.textContent = '✅ Clean image downloaded — all metadata removed!';
+    }, currentFile.type === 'image/png' ? 'image/png' : 'image/jpeg', 0.95);
+  };
+  img.src = URL.createObjectURL(currentFile);
+});
+</script>
+</body>
+</html>

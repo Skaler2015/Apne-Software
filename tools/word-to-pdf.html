@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/word-to-pdf.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Word to PDF | ApneSoftware">
+<meta property="og:description" content="Convert .docx to PDF. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/word-to-pdf.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Word to PDF | ApneSoftware">
+<meta name="twitter:description" content="Convert .docx to PDF. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Word to PDF","description":"Convert .docx to PDF. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/word-to-pdf.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Word to PDF | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .limit-note{
+    background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:8px;
+    padding:12px 14px;font-size:.85rem;color:#fbbf24;margin-top:14px;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📄 Word to PDF</h1>
+    <p>Convert a .docx Word file into a PDF — text, headings and paragraphs convert cleanly.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a .docx file here or click to choose</p>
+      <input type="file" id="fileInput" accept=".docx">
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+    <div class="limit-note">⚠️ Note: this preserves the text content, headings and paragraphs, but exact visual formatting (fonts, multi-column layouts, embedded images, tables) is not guaranteed to look identical to the original Word file.</div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool reads the text content of a Word (.docx) file — paragraphs, headings, and basic structure — and lays it out into a new PDF.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your .docx file.</li>
+        <li>It converts automatically and downloads as a PDF.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल Word (.docx) फाइल का टेक्स्ट कंटेंट — पैराग्राफ, हेडिंग और बेसिक स्ट्रक्चर — पढ़कर एक नई PDF में सजा देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी .docx फाइल अपलोड करें।</li>
+        <li>यह अपने आप बदलकर PDF के रूप में डाउनलोड हो जाएगी।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mammoth@1/mammoth.browser.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length) handleFile(files[0]);
+});
+
+function wrapText(text, font, fontSize, maxWidth){
+  const words = text.split(/\s+/).filter(Boolean);
+  const lines = [];
+  let line = '';
+  words.forEach(word => {
+    const test = line ? line + ' ' + word : word;
+    if(font.widthOfTextAtSize(test, fontSize) > maxWidth && line){
+      lines.push(line);
+      line = word;
+    } else {
+      line = test;
+    }
+  });
+  if(line) lines.push(line);
+  return lines;
+}
+
+async function handleFile(file){
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Reading Word file...';
+  try{
+    const arrayBuffer = await file.arrayBuffer();
+    const result = await mammoth.convertToHtml({ arrayBuffer });
+    const html = result.value;
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const blocks = Array.from(doc.body.children);
+
+    const { PDFDocument, StandardFonts, rgb } = PDFLib;
+    const pdfDoc = await PDFDocument.create();
+    const fontRegular = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+
+    const pageWidth = 595, pageHeight = 842, margin = 50;
+    const maxWidth = pageWidth - margin*2;
+    let page = pdfDoc.addPage([pageWidth, pageHeight]);
+    let y = pageHeight - margin;
+
+    function newPageIfNeeded(lineHeight){
+      if(y - lineHeight < margin){
+        page = pdfDoc.addPage([pageWidth, pageHeight]);
+        y = pageHeight - margin;
+      }
+    }
+
+    status.textContent = '⏳ Building PDF...';
+
+    blocks.forEach(el => {
+      const tag = el.tagName.toLowerCase();
+      let fontSize = 11, font = fontRegular, prefix = '';
+      let spacingAfter = 8;
+
+      if(tag === 'h1'){ fontSize = 22; font = fontBold; spacingAfter = 14; }
+      else if(tag === 'h2'){ fontSize = 18; font = fontBold; spacingAfter = 12; }
+      else if(tag === 'h3'){ fontSize = 15; font = fontBold; spacingAfter = 10; }
+      else if(tag === 'li'){ prefix = '• '; }
+      else if(tag === 'p' && el.querySelector('strong, b') && el.textContent.trim() === (el.querySelector('strong,b')?.textContent || '').trim()){
+        font = fontBold;
+      }
+
+      const text = prefix + el.textContent.trim();
+      if(!text.trim()){ y -= 6; return; }
+
+      const lines = wrapText(text, font, fontSize, maxWidth);
+      const lineHeight = fontSize * 1.4;
+
+      lines.forEach(line => {
+        newPageIfNeeded(lineHeight);
+        page.drawText(line, { x: margin, y: y - fontSize, size: fontSize, font, color: rgb(0.1,0.1,0.1) });
+        y -= lineHeight;
+      });
+      y -= spacingAfter;
+    });
+
+    const pdfBytes = await pdfDoc.save();
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    const outName = file.name.replace(/\.docx$/i, '') + '.pdf';
+    downloadBlob(outName, blob);
+    status.textContent = '✅ Converted and downloaded!';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/image-pixelator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image Pixelator — Blur Faces & Sensitive Areas | ApneSoftware">
+<meta property="og:description" content="Blur faces or sensitive areas in a photo. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/image-pixelator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Pixelator — Blur Faces & Sensitive Areas | ApneSoftware">
+<meta name="twitter:description" content="Blur faces or sensitive areas in a photo. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Pixelator","description":"Blur faces or sensitive areas in a photo. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/image-pixelator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Image Pixelator — Blur Faces & Sensitive Areas | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .canvas-wrap{position:relative;display:inline-block;max-width:100%;margin-top:14px;touch-action:none}
+  #previewCanvas{max-width:100%;border-radius:10px;border:1px solid var(--border);display:block;cursor:crosshair}
+  .new-tech-note{
+    background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;
+    padding:12px 14px;font-size:.85rem;color:var(--text-dim);margin-top:14px;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🧊 Image Pixelator</h1>
+    <p>Draw a box over a face or sensitive detail to pixelate it before sharing a photo.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an image here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <div class="field">
+        <label for="blockSlider">Pixel block size: <span id="blockVal">16</span>px</label>
+        <input type="range" id="blockSlider" min="4" max="40" value="16">
+      </div>
+      <p style="font-size:.85rem;color:var(--text-dim)">Draw a box on the image below (drag with mouse or finger) to pixelate that area. Draw multiple times for multiple areas.</p>
+
+      <div class="canvas-wrap">
+        <canvas id="previewCanvas"></canvas>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn secondary" id="undoBtn">↩️ Undo Last</button>
+        <button class="btn secondary" id="pixelateAllBtn">🧊 Pixelate Whole Image</button>
+        <button class="btn secondary" id="resetBtn">🔄 Reset</button>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="downloadBtn">⬇️ Download</button>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+      <div class="new-tech-note">ℹ️ Everything happens locally in your browser — the photo is never uploaded anywhere.</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Blur out faces, license plates, or other sensitive details in a photo by drawing a box over them — the area is replaced with a chunky pixelated effect, similar to TV censoring. Useful for privacy before posting photos online.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a photo.</li>
+        <li>Set the pixel block size, then drag a box over each area you want to hide.</li>
+        <li>Click Download when you're done.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी फोटो में चेहरे, नंबर प्लेट या किसी और संवेदनशील हिस्से को बॉक्स बनाकर ब्लर करें — वह हिस्सा TV सेंसरिंग जैसे पिक्सलेटेड इफेक्ट में बदल जाता है। ऑनलाइन फोटो शेयर करने से पहले प्राइवेसी के लिए उपयोगी।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक फोटो अपलोड करें।</li>
+        <li>पिक्सल ब्लॉक साइज़ सेट करें, फिर जिस हिस्से को छिपाना है उस पर बॉक्स ड्रैग करें।</li>
+        <li>काम पूरा होने पर Download दबाएं।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const canvas = document.getElementById('previewCanvas');
+const ctx = canvas.getContext('2d');
+let img = new Image();
+let history = []; // stack of ImageData snapshots for undo
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    img.onload = ()=>{
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      ctx.drawImage(img, 0, 0);
+      history = [];
+      document.getElementById('afterUpload').style.display = 'block';
+    };
+    img.src = URL.createObjectURL(files[0]);
+  }
+});
+
+function pixelateRegion(x, y, w, h){
+  const block = parseInt(document.getElementById('blockSlider').value);
+  if(w <= 0 || h <= 0) return;
+  const imageData = ctx.getImageData(x, y, w, h);
+  const data = imageData.data;
+
+  for(let by = 0; by < h; by += block){
+    for(let bx = 0; bx < w; bx += block){
+      let r=0,g=0,b=0,a=0,count=0;
+      for(let dy=0; dy<block && by+dy<h; dy++){
+        for(let dx=0; dx<block && bx+dx<w; dx++){
+          const idx = ((by+dy)*w + (bx+dx))*4;
+          r+=data[idx]; g+=data[idx+1]; b+=data[idx+2]; a+=data[idx+3]; count++;
+        }
+      }
+      r=Math.round(r/count); g=Math.round(g/count); b=Math.round(b/count); a=Math.round(a/count);
+      for(let dy=0; dy<block && by+dy<h; dy++){
+        for(let dx=0; dx<block && bx+dx<w; dx++){
+          const idx = ((by+dy)*w + (bx+dx))*4;
+          data[idx]=r; data[idx+1]=g; data[idx+2]=b; data[idx+3]=a;
+        }
+      }
+    }
+  }
+  ctx.putImageData(imageData, x, y);
+}
+
+let drawing = false, startX = 0, startY = 0;
+
+function getCanvasPos(e){
+  const rect = canvas.getBoundingClientRect();
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
+  const pt = e.touches ? e.touches[0] : e;
+  return {
+    x: (pt.clientX - rect.left) * scaleX,
+    y: (pt.clientY - rect.top) * scaleY
+  };
+}
+
+function startDraw(e){
+  if(!img.naturalWidth) return;
+  e.preventDefault();
+  drawing = true;
+  const pos = getCanvasPos(e);
+  startX = pos.x; startY = pos.y;
+  history.push(ctx.getImageData(0,0,canvas.width,canvas.height));
+}
+
+function endDraw(e){
+  if(!drawing) return;
+  drawing = false;
+  const pos = getCanvasPos(e.changedTouches ? e : e);
+  const x = Math.min(startX, pos.x);
+  const y = Math.min(startY, pos.y);
+  const w = Math.abs(pos.x - startX);
+  const h = Math.abs(pos.y - startY);
+  pixelateRegion(Math.round(x), Math.round(y), Math.round(w), Math.round(h));
+}
+
+canvas.addEventListener('mousedown', startDraw);
+canvas.addEventListener('touchstart', startDraw, {passive:false});
+canvas.addEventListener('mouseup', endDraw);
+canvas.addEventListener('touchend', endDraw);
+
+document.getElementById('undoBtn').addEventListener('click', ()=>{
+  if(history.length){
+    const last = history.pop();
+    ctx.putImageData(last, 0, 0);
+  }
+});
+
+document.getElementById('pixelateAllBtn').addEventListener('click', ()=>{
+  history.push(ctx.getImageData(0,0,canvas.width,canvas.height));
+  pixelateRegion(0, 0, canvas.width, canvas.height);
+});
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  ctx.drawImage(img, 0, 0);
+  history = [];
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  canvas.toBlob((blob)=>{
+    downloadBlob('pixelated.jpg', blob);
+    document.getElementById('statusMsg').textContent = '✅ Downloaded!';
+  }, 'image/jpeg', 0.95);
+});
+</script>
+</body>
+</html>

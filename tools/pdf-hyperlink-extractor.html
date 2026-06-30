@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-hyperlink-extractor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Hyperlink Extractor — Extract All Links from PDF | ApneSoftware">
+<meta property="og:description" content="Extract every clickable hyperlink from a PDF into a simple list. Free, no signup, no upload to any server.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-hyperlink-extractor.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Hyperlink Extractor — Extract All Links from PDF | ApneSoftware">
+<meta name="twitter:description" content="Extract every clickable hyperlink from a PDF into a simple list. Free, no signup, no upload to any server.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Hyperlink Extractor","description":"Extract every clickable hyperlink from a PDF into a simple list. Free, no signup, no upload to any server.","url":"https://apnesoftware.com/tools/pdf-hyperlink-extractor.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF Hyperlink Extractor — Extract All Links from PDF | ApneSoftware</title>
+<meta name="description" content="Extract every clickable hyperlink from a PDF into a simple list. Free, no signup, no upload to any server.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .link-list{margin-top:16px;display:flex;flex-direction:column;gap:8px;max-height:480px;overflow-y:auto}
+  .link-row{
+    display:flex;align-items:center;gap:10px;padding:10px 14px;
+    background:var(--surface-2);border:1px solid var(--border);border-radius:10px;font-size:.85rem;
+  }
+  .link-row .lnum{color:var(--text-dim);font-size:.72rem;flex-shrink:0;width:46px}
+  .link-row a{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--accent)}
+  .link-row .pagebadge{font-size:.7rem;color:var(--text-dim);flex-shrink:0;background:var(--surface);padding:2px 8px;border-radius:999px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔗 PDF Hyperlink Extractor</h1>
+    <p>Pull out every clickable link in a PDF into one simple list — no clicking through page by page.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a PDF here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <p style="font-size:.85rem;color:var(--text-dim)">Found <span id="linkCount">0</span> link(s):</p>
+      <div class="link-list" id="linkList"></div>
+      <div class="btn-row" style="margin-top:14px">
+        <button class="btn secondary" id="copyAllBtn">📋 Copy All Links</button>
+        <button class="btn" id="downloadBtn">⬇️ Download as .txt</button>
+      </div>
+    </div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>PDFs often have clickable hyperlinks tucked inside them — references in a research paper, source links in a report, contact pages in a brochure, or resource links in a slide deck exported to PDF — but there's no built-in way to see them all listed at once. Finding them means clicking through every page individually and hoping you don't miss one, which gets tedious fast in a long document.</p>
+      <p>This tool scans every page of a PDF and pulls out every embedded hyperlink it finds, listing the destination URL along with which page it appears on. The result is a simple, scannable list you can review, copy, or download all at once, rather than hunting through pages one at a time.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a PDF.</li>
+        <li>Every link found is listed below, along with its page number.</li>
+        <li>Click any link to open it directly, or copy/download the full list.</li>
+      </ol>
+      <h3>What counts as a link here</h3>
+      <p>This tool finds clickable link annotations embedded in the PDF — the kind you'd normally click directly in a PDF reader, often added when a document is exported from Word, PowerPoint, or a webpage. It does not scan for plain text that merely looks like a URL but isn't actually a clickable link (for example, a website address typed as plain text in a scanned document) — those would need to be read visually or extracted with a text-extraction tool instead, since they aren't stored as links inside the PDF itself.</p>
+      <p>This is particularly useful for checking a document before distributing it widely — a report or proposal with broken or outdated links looks unprofessional, and manually clicking through dozens of pages to verify every reference is impractical. Researchers reviewing a paper's citations, editors checking a brochure before it goes to print, or anyone repurposing content from an old PDF who needs to recover its source links can use this to get a complete inventory in seconds rather than working through the document page by page. Since everything runs locally in the browser, even a confidential or unpublished document can be checked without it ever being uploaded anywhere, which matters for legal documents, internal reports, or drafts that haven't been cleared for wider circulation yet, and it gives a quick way to confirm there are no stray, outdated, or broken-looking links left behind before a document is sent out or published.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>PDFs में अक्सर clickable hyperlinks छुपे होते हैं — किसी research paper में references, किसी report में source links, brochure में contact pages, या PDF में export की गई slide deck में resource links — पर इन्हें एक साथ list के रूप में देखने का कोई built-in तरीका नहीं होता। इन्हें ढूंढने के लिए हर page पर अलग-अलग क्लिक करना पड़ता है और उम्मीद करनी पड़ती है कि कोई छूट न जाए, जो किसी लंबे document में जल्दी थका देने वाला हो जाता है।</p>
+      <p>यह tool PDF के हर page को scan करता है और मिलने वाला हर embedded hyperlink निकाल लेता है, destination URL के साथ यह भी बताता है कि वह किस page पर है। नतीजा एक simple, आसानी से देखी जा सकने वाली list होती है जिसे एक साथ देख सकते हैं, copy कर सकते हैं, या download कर सकते हैं, बजाय एक-एक करके pages में ढूंढने के।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक PDF अपलोड करें।</li>
+        <li>मिला हर link नीचे उसके page number के साथ list होता है।</li>
+        <li>किसी link को सीधे खोलने के लिए क्लिक करें, या पूरी list copy/download करें।</li>
+      </ol>
+      <h3>यहां "link" का मतलब क्या है</h3>
+      <p>यह tool PDF में embedded clickable link annotations ढूंढता है — वह तरीका जिन्हें आमतौर पर किसी PDF reader में सीधे क्लिक किया जाता है, अक्सर तब जुड़ते हैं जब कोई document Word, PowerPoint, या किसी webpage से export होता है। यह सिर्फ़ ऐसे plain text को नहीं ढूंढता जो URL जैसा दिखता हो पर असल में clickable link न हो (जैसे किसी scanned document में plain text के रूप में लिखा website address) — उन्हें visually पढ़ना या किसी text-extraction tool से निकालना पड़ेगा, क्योंकि वे PDF के अंदर असली link के रूप में save नहीं होते।</p>
+      <p>यह खासकर किसी document को व्यापक रूप से बांटने से पहले जांचने के लिए उपयोगी है — टूटे या पुराने links वाली कोई report या proposal अव्यवसायिक दिखती है, और हर reference verify करने के लिए दर्जनों pages पर हाथ से क्लिक करना अव्यावहारिक है। किसी paper के citations review कर रहे researchers, print जाने से पहले brochure जांच रहे editors, या किसी पुरानी PDF से content दोबारा इस्तेमाल कर रहा कोई व्यक्ति जिसे उसके source links वापस चाहिए, यह सब इसका इस्तेमाल पूरी inventory कुछ ही सेकंड में पाने के लिए कर सकते हैं, document को page-दर-page पढ़ने की बजाय। चूंकि सब कुछ locally browser में चलता है, कोई confidential या अप्रकाशित document भी बिना कहीं upload हुए जांचा जा सकता है।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let allLinks = [];
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length) handleFile(files[0]);
+});
+
+async function handleFile(file){
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Scanning pages for links...';
+  allLinks = [];
+
+  const arrayBuf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+
+  for(let i=1; i<=pdf.numPages; i++){
+    const page = await pdf.getPage(i);
+    const annotations = await page.getAnnotations();
+    annotations.forEach(ann => {
+      if(ann.subtype === 'Link' && ann.url){
+        allLinks.push({ url: ann.url, page: i });
+      }
+    });
+  }
+
+  renderLinks();
+  document.getElementById('afterUpload').style.display = 'block';
+  status.textContent = allLinks.length
+    ? `✅ Done — found ${allLinks.length} link(s).`
+    : 'ℹ️ No clickable hyperlinks were found in this PDF.';
+}
+
+function renderLinks(){
+  document.getElementById('linkCount').textContent = allLinks.length;
+  document.getElementById('linkList').innerHTML = allLinks.map((l, i) => `
+    <div class="link-row">
+      <span class="lnum">#${i+1}</span>
+      <a href="${l.url}" target="_blank" rel="noopener">${l.url}</a>
+      <span class="pagebadge">Page ${l.page}</span>
+    </div>
+  `).join('');
+}
+
+document.getElementById('copyAllBtn').addEventListener('click', function(){
+  const text = allLinks.map(l => `${l.url} (page ${l.page})`).join('\n');
+  copyText(text, this);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  const text = allLinks.map(l => `${l.url} (page ${l.page})`).join('\n');
+  downloadText('extracted-links.txt', text, 'text/plain');
+});
+</script>
+</body>
+</html>

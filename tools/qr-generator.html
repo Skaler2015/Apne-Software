@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/qr-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="QR Code Generator | ApneSoftware">
+<meta property="og:description" content="Create a QR code for text/links. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/qr-generator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QR Code Generator | ApneSoftware">
+<meta name="twitter:description" content="Create a QR code for text/links. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"QR Code Generator","description":"Create a QR code for text/links. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/qr-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>QR Code Generator | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  #qrResult{display:flex;justify-content:center;margin-top:18px;background:#fff;border-radius:8px;padding:20px;display:none}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>▦ QR Code Generator</h1>
+    <p>Enter any text, link or info and instantly create a QR code.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field">
+      <label for="qrInput">Enter text or a link</label>
+      <textarea id="qrInput" placeholder="https://apnesoftware.com">https://apnesoftware.com</textarea>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="sizeSelect">Size</label>
+        <select id="sizeSelect">
+          <option value="200">200 x 200</option>
+          <option value="300" selected>300 x 300</option>
+          <option value="500">500 x 500</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="generateBtn">▦ Generate QR Code</button>
+    </div>
+
+    <div id="qrResult">
+      <canvas id="qrCanvas"></canvas>
+    </div>
+
+    <div class="btn-row" id="downloadRow" style="display:none">
+      <button class="btn secondary" id="downloadBtn">⬇️ Download (PNG)</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Create a QR code instantly from any text or link.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Type or paste your text or link.</li>
+        <li>Choose the size.</li>
+        <li>Click Generate and download the QR code as a PNG image.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल किसी भी टेक्स्ट या लिंक से तुरंत QR कोड बनाता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना टेक्स्ट या लिंक टाइप या पेस्ट करें।</li>
+        <li>साइज़ चुनें।</li>
+        <li>Generate बटन दबाएं और QR कोड को PNG इमेज के रूप में डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+let qrInstance = null;
+
+document.getElementById('generateBtn').addEventListener('click', generate);
+document.getElementById('qrInput').addEventListener('input', generate);
+document.getElementById('sizeSelect').addEventListener('change', generate);
+
+function generate(){
+  const text = document.getElementById('qrInput').value.trim();
+  const size = parseInt(document.getElementById('sizeSelect').value);
+  const resultDiv = document.getElementById('qrResult');
+
+  if(!text){
+    resultDiv.style.display = 'none';
+    document.getElementById('downloadRow').style.display = 'none';
+    return;
+  }
+
+  resultDiv.innerHTML = '';
+  resultDiv.style.display = 'flex';
+
+  // qrcodejs creates an img/canvas inside a div
+  const tempDiv = document.createElement('div');
+  new QRCode(tempDiv, {
+    text: text,
+    width: size,
+    height: size,
+    correctLevel: QRCode.CorrectLevel.M
+  });
+
+  setTimeout(()=>{
+    resultDiv.innerHTML = '';
+    const canvasEl = tempDiv.querySelector('canvas');
+    const imgEl = tempDiv.querySelector('img');
+    if(canvasEl){
+      resultDiv.appendChild(canvasEl);
+      window.currentQRCanvas = canvasEl;
+    } else if(imgEl){
+      resultDiv.appendChild(imgEl);
+    }
+    document.getElementById('downloadRow').style.display = 'flex';
+  }, 100);
+}
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  if(window.currentQRCanvas){
+    window.currentQRCanvas.toBlob(blob => downloadBlob('qrcode.png', blob));
+  }
+});
+
+generate();
+</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/hra-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HRA Calculator — House Rent Allowance Exemption | ApneSoftware">
+<meta property="og:description" content="Calculate your HRA tax exemption instantly. Know exactly how much of your House Rent Allowance is tax-free. Free, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/hra-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HRA Calculator — House Rent Allowance Exemption | ApneSoftware">
+<meta name="twitter:description" content="Calculate your HRA tax exemption instantly. Know exactly how much of your House Rent Allowance is tax-free. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HRA Calculator","description":"Calculate your HRA tax exemption instantly. Know exactly how much of your House Rent Allowance is tax-free. Free, no signup.","url":"https://apnesoftware.com/tools/hra-calculator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>HRA Calculator — House Rent Allowance Exemption | ApneSoftware</title>
+<meta name="description" content="Calculate your HRA tax exemption instantly. Know exactly how much of your House Rent Allowance is tax-free. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .hra-rule{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin:6px 0;display:flex;justify-content:space-between;align-items:center;font-size:.88rem}
+  .hra-rule.min{background:rgba(124,92,252,.08);border-color:rgba(124,92,252,.3);font-weight:700}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+<div class="container">
+  <div class="tool-header">
+    <h1>🏠 HRA Calculator</h1>
+    <p>Calculate your HRA tax exemption based on the three-condition rule used by the Income Tax Department.</p>
+  </div>
+  <div class="panel">
+    <div class="row">
+      <div class="field"><label for="basicSalary">Basic Salary (Monthly ₹)</label><input type="number" id="basicSalary" value="50000" min="1"></div>
+      <div class="field"><label for="hraReceived">HRA Received (Monthly ₹)</label><input type="number" id="hraReceived" value="25000" min="1"></div>
+    </div>
+    <div class="row">
+      <div class="field"><label for="rentPaid">Rent Paid (Monthly ₹)</label><input type="number" id="rentPaid" value="20000" min="1"></div>
+      <div class="field">
+        <label for="city">City Type</label>
+        <select id="city" style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--border);background:var(--surface-2);color:var(--text)">
+          <option value="0.5">Metro (Delhi, Mumbai, Kolkata, Chennai)</option>
+          <option value="0.4">Non-Metro</option>
+        </select>
+      </div>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-box"><div class="num" id="exemption">₹0</div><div class="lbl">Annual Exemption</div></div>
+      <div class="stat-box"><div class="num" id="taxable">₹0</div><div class="lbl">Taxable HRA (Annual)</div></div>
+    </div>
+    <div id="breakdown" style="margin-top:16px"></div>
+  </div>
+</div>
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>House Rent Allowance (HRA) is one of the most common salary components in India and one of the most valuable tax-saving tools available to salaried employees. Under Section 10(13A) of the Income Tax Act, the portion of your HRA that qualifies for exemption is the lowest of three amounts — the actual HRA received from your employer, the actual rent paid minus 10% of your basic salary, and 50% of your basic salary if you live in a metro city (Delhi, Mumbai, Kolkata, Chennai) or 40% in non-metro cities.</p>
+      <p>The key rule that many employees miss is the "10% of basic salary" deduction from actual rent paid. If your rent is ₹20,000 and your basic is ₹50,000, the "rent minus 10% basic" figure is ₹20,000 – ₹5,000 = ₹15,000, not ₹20,000. The actual exemption is the minimum of all three computed amounts — this is what this calculator works out for you.</p>
+      <p>Important: HRA exemption is only available under the Old Tax Regime. Under the New Tax Regime, no HRA exemption is allowed but the tax rates are lower. Always compare both regimes using an income tax calculator to decide which is more beneficial for your specific situation. Also note that HRA exemption requires you to actually pay rent — you cannot claim it if you live in your own house.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Enter your monthly basic salary and the monthly HRA component you receive.</li>
+        <li>Enter your monthly rent and select your city type.</li>
+        <li>See the annual HRA exemption and how much HRA remains taxable.</li>
+      </ol>
+    <p>Many employees overpay taxes on HRA simply because they're unaware of the calculation rules. Asking the employer's HR or payroll team to compute it, or verifying the TDS deducted on your payslip against this calculator, is a good annual habit before filing your returns. If you realize excess tax was deducted, you can claim the refund when filing your ITR. Also note that the 10% of basic rule means that if you're paying relatively low rent compared to your salary, the exemption is naturally limited — in that case, switching to a higher-rent accommodation in the same city could actually increase your tax savings while keeping your lifestyle unchanged. Remember that actual rent receipts and a valid rent agreement are required as documentary evidence for HRA claims — verbal arrangements with landlords don't qualify, and for annual rent exceeding ₹1 lakh, the landlord's PAN must also be provided to your employer. If you're self-employed or a business owner, you cannot claim HRA under the salaried exemption rules, but you can deduct reasonable rent paid for the business premises as a business expense — a separate but equally important tax planning point.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>House Rent Allowance (HRA) भारत में सबसे आम salary components में से एक है और salaried employees के लिए उपलब्ध सबसे मूल्यवान tax-saving tools में से एक है। Income Tax Act की Section 10(13A) के तहत, आपके HRA का वह हिस्सा जो exemption के लिए qualify करता है, तीन amounts में से सबसे कम होता है — employer से प्राप्त actual HRA, actual rent में से basic salary का 10% घटाने पर बचा rent, और metro city (Delhi, Mumbai, Kolkata, Chennai) में basic salary का 50% या non-metro cities में 40%।</p>
+      <p>वह key rule जो कई employees miss कर देते हैं वह है actual rent में से basic salary का 10% घटाना। अगर आपका rent ₹20,000 है और basic ₹50,000 है, तो "rent minus 10% basic" figure ₹20,000 – ₹5,000 = ₹15,000 है, ₹20,000 नहीं। Actual exemption तीनों calculated amounts में से minimum है — यही यह calculator आपके लिए निकालता है।</p>
+      <p>महत्वपूर्ण: HRA exemption सिर्फ Old Tax Regime में उपलब्ध है। New Tax Regime में कोई HRA exemption नहीं मिलती लेकिन tax rates कम होती हैं। हमेशा income tax calculator का उपयोग करके दोनों regimes की तुलना करें कि आपकी specific situation में कौन सी ज़्यादा फायदेमंद है। यह भी ध्यान रखें कि HRA exemption के लिए आपको actually किराया pay करना होता है — अगर आप अपने घर में रहते हैं तो आप इसका claim नहीं कर सकते।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी monthly basic salary और monthly HRA component डालें।</li>
+        <li>Monthly rent और city type चुनें।</li>
+        <li>Annual HRA exemption और taxable HRA देखें।</li>
+      </ol>
+    <p>कई employees HRA पर ज़्यादा tax pay करते हैं सिर्फ इसलिए क्योंकि उन्हें calculation rules पता नहीं हैं। Employer की HR या payroll team से इसे compute करवाना, या अपने payslip पर deducted TDS को इस calculator से verify करना, returns file करने से पहले एक अच्छी annual habit है। अगर आपको पता चलता है कि excess tax deduct हुआ था, तो आप ITR file करते समय refund claim कर सकते हैं। यह भी ध्यान दें कि basic का 10% rule का मतलब है कि अगर आप अपनी salary की तुलना में relatively कम rent pay कर रहे हैं, तो exemption naturally limited है — उस स्थिति में, उसी city में higher-rent accommodation में shifting करने से lifestyle unchanged रखते हुए tax savings actually बढ़ सकती है, जो एक tax-efficient financial decision हो सकता है, खासकर तब जब आपकी company का office उस city में हो जहाँ rent comparatively ज़्यादा हो और work from office mandatory हो।</p>
+    </div>
+  </div>
+</div>
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<script>
+function fmt(n){ return '₹' + Math.round(n).toLocaleString('en-IN'); }
+function calc(){
+  const basic = parseFloat(document.getElementById('basicSalary').value) || 0;
+  const hraReceived = parseFloat(document.getElementById('hraReceived').value) || 0;
+  const rent = parseFloat(document.getElementById('rentPaid').value) || 0;
+  const cityPct = parseFloat(document.getElementById('city').value);
+  if(!basic || !hraReceived || !rent) return;
+
+  const rule1 = hraReceived;
+  const rule2 = Math.max(0, rent - 0.1 * basic);
+  const rule3 = cityPct * basic;
+
+  const exemptionMonthly = Math.min(rule1, rule2, rule3);
+  const exemptionAnnual = exemptionMonthly * 12;
+  const taxableAnnual = (hraReceived - exemptionMonthly) * 12;
+
+  document.getElementById('exemption').textContent = fmt(exemptionAnnual);
+  document.getElementById('taxable').textContent = fmt(taxableAnnual);
+
+  const isMin = (val) => val === exemptionMonthly;
+  document.getElementById('breakdown').innerHTML = `
+    <p style="font-weight:700;margin-bottom:8px">Monthly HRA Exemption Calculation (lowest of 3 rules):</p>
+    <div class="hra-rule ${isMin(rule1)?'min':''}">
+      <span>Rule 1: Actual HRA received</span><span>${fmt(rule1)} ${isMin(rule1)?'✅ (Minimum)':''}</span>
+    </div>
+    <div class="hra-rule ${isMin(rule2)?'min':''}">
+      <span>Rule 2: Rent – 10% of Basic (${fmt(rent)} – ${fmt(0.1*basic)})</span><span>${fmt(rule2)} ${isMin(rule2)?'✅ (Minimum)':''}</span>
+    </div>
+    <div class="hra-rule ${isMin(rule3)?'min':''}">
+      <span>Rule 3: ${Math.round(cityPct*100)}% of Basic (${cityPct===0.5?'Metro':'Non-Metro'})</span><span>${fmt(rule3)} ${isMin(rule3)?'✅ (Minimum)':''}</span>
+    </div>
+    <p style="margin-top:8px;font-size:.82rem;color:var(--text-dim)">Exempt monthly: ${fmt(exemptionMonthly)} → Annual: ${fmt(exemptionAnnual)} याद रखें कि HRA claims के लिए documentary evidence के रूप में actual rent receipts और एक valid rent agreement ज़रूरी हैं — landlords के साथ verbal arrangements qualify नहीं करते, और ₹1 लाख से अधिक annual rent के लिए, landlord का PAN भी employer को provide करना होगा। अगर आप self-employed हैं या business owner हैं, तो आप salaried exemption rules के तहत HRA claim नहीं कर सकते, लेकिन आप business premises के लिए pay किए गए reasonable rent को business expense के रूप में deduct कर सकते हैं — एक अलग लेकिन equally important tax planning point। इसके अलावा, अगर आपके parents के पास कोई taxable income नहीं है, तो उन्हें rent pay करके और उनसे rent agreement लेकर HRA benefit claim करना एक popular tax planning strategy है जो कई tax consultants suggest करते हैं।</p>
+  `;
+}
+document.querySelectorAll('input,select').forEach(el => el.addEventListener('input', calc));
+calc();
+</script>
+</body>
+</html>

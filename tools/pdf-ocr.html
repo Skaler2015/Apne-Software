@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-ocr.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF OCR — Extract Text from Scanned PDFs | ApneSoftware">
+<meta property="og:description" content="Extract text from scanned PDFs. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-ocr.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF OCR — Extract Text from Scanned PDFs | ApneSoftware">
+<meta name="twitter:description" content="Extract text from scanned PDFs. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF OCR","description":"Extract text from scanned PDFs. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-ocr.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF OCR — Extract Text from Scanned PDFs | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .progress-bar{height:10px;border-radius:6px;background:var(--surface-2);overflow:hidden;margin-top:10px}
+  .progress-fill{height:100%;background:var(--accent);width:0%;transition:.3s}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔍 PDF OCR</h1>
+    <p>Recognize text from a scanned or image-based PDF (Optical Character Recognition). ⚠️ This can take a while, especially for PDFs with many pages — clean scans give the best results.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div class="field" style="margin-top:14px">
+      <label for="langSelect">Language</label>
+      <select id="langSelect">
+        <option value="eng">English</option>
+        <option value="hin">Hindi</option>
+        <option value="eng+hin">English + Hindi</option>
+      </select>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="startBtn" disabled>🔍 Start OCR</button>
+    </div>
+
+    <div id="progressArea" style="display:none">
+      <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem;margin-top:10px"></p>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <div class="field" id="outputField" style="display:none;margin-top:18px">
+      <label>Recognized Text</label>
+      <textarea id="outputText" readonly style="min-height:280px"></textarea>
+    </div>
+
+    <div class="btn-row" id="actionRow" style="display:none">
+      <button class="btn secondary" id="copyBtn">📋 Copy</button>
+      <button class="btn secondary" id="downloadBtn">⬇️ Download .txt</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Recognize and extract text from scanned or image-based PDFs using Optical Character Recognition.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your scanned PDF.</li>
+        <li>Choose the language (English/Hindi/both).</li>
+        <li>Click Start OCR and wait — then copy or download the recognized text.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल स्कैन की हुई या इमेज वाली PDF से Optical Character Recognition (OCR) की मदद से टेक्स्ट पहचानकर निकालता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी स्कैन की हुई PDF अपलोड करें।</li>
+        <li>भाषा चुनें (English/हिंदी/दोनों)।</li>
+        <li>OCR शुरू करें बटन दबाएं और इंतज़ार करें — फिर निकाला गया टेक्स्ट कॉपी या डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const startBtn = document.getElementById('startBtn');
+let currentFile = null;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf'){
+    currentFile = files[0];
+    startBtn.disabled = false;
+  }
+});
+
+startBtn.addEventListener('click', async ()=>{
+  if(!currentFile) return;
+  startBtn.disabled = true;
+  const status = document.getElementById('statusMsg');
+  const fill = document.getElementById('progressFill');
+  document.getElementById('progressArea').style.display = 'block';
+
+  try{
+    status.textContent = '⏳ Loading PDF...';
+    const arrayBuf = await currentFile.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+    const lang = document.getElementById('langSelect').value;
+
+    status.textContent = '⏳ Preparing OCR engine (takes a little time the first run)...';
+    const worker = await Tesseract.createWorker(lang);
+
+    let fullText = '';
+    const totalPages = pdf.numPages;
+
+    for(let i=1; i<=totalPages; i++){
+      status.textContent = `🔍 Reading page ${i}/${totalPages}...`;
+      const page = await pdf.getPage(i);
+      const viewport = page.getViewport({ scale: 2 });
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext('2d');
+      await page.render({ canvasContext: ctx, viewport }).promise;
+
+      const { data } = await worker.recognize(canvas);
+      fullText += `--- Page ${i} ---\n${data.text}\n\n`;
+
+      fill.style.width = Math.round((i/totalPages)*100) + '%';
+    }
+
+    await worker.terminate();
+
+    document.getElementById('outputText').value = fullText.trim();
+    document.getElementById('outputField').style.display = 'block';
+    document.getElementById('actionRow').style.display = 'flex';
+    status.textContent = `✅ OCR complete for ${totalPages} page(s)!`;
+  }catch(err){
+    document.getElementById('statusMsg').textContent = '❌ Error: ' + err.message;
+  }
+  startBtn.disabled = false;
+});
+
+document.getElementById('copyBtn').addEventListener('click', (e)=>{
+  copyText(document.getElementById('outputText').value, e.target);
+});
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  downloadText('ocr-text.txt', document.getElementById('outputText').value);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/lorem-ipsum-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lorem Ipsum Generator | ApneSoftware">
+<meta property="og:description" content="Generate placeholder text for mockups. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/lorem-ipsum-generator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lorem Ipsum Generator | ApneSoftware">
+<meta name="twitter:description" content="Generate placeholder text for mockups. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Lorem Ipsum Generator","description":"Generate placeholder text for mockups. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/lorem-ipsum-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Lorem Ipsum Generator | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📃 Lorem Ipsum Generator</h1>
+    <p>Generate placeholder text for mockups, designs, or testing layouts.</p>
+  </div>
+
+  <div class="panel">
+    <div class="row" style="align-items:flex-end">
+      <div class="field" style="max-width:180px">
+        <label for="unitType">Generate by</label>
+        <select id="unitType">
+          <option value="paragraphs">Paragraphs</option>
+          <option value="sentences">Sentences</option>
+          <option value="words">Words</option>
+        </select>
+      </div>
+      <div class="field" style="max-width:120px">
+        <label for="unitCount">Amount</label>
+        <input type="number" id="unitCount" value="3" min="1" max="100">
+      </div>
+      <div class="field" style="max-width:220px">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
+          <input type="checkbox" id="startWithLorem" checked style="width:auto">
+          Start with "Lorem ipsum..."
+        </label>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="generateBtn">✨ Generate</button>
+    </div>
+
+    <div class="field" style="margin-top:16px">
+      <label>Generated text</label>
+      <textarea id="outputText" readonly style="min-height:240px"></textarea>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn secondary" id="copyBtn">📋 Copy</button>
+      <button class="btn secondary" id="downloadBtn">⬇️ Download .txt</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Lorem Ipsum is classic placeholder text used by designers and developers to fill mockups, wireframes, and layouts before real content is ready. Generate exactly the amount you need — by paragraphs, sentences, or words.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Choose whether to generate paragraphs, sentences, or words.</li>
+        <li>Set the amount you need.</li>
+        <li>Click Generate, then copy or download the result.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>Lorem Ipsum एक क्लासिक प्लेसहोल्डर टेक्स्ट है जिसे डिज़ाइनर और डेवलपर असली कंटेंट आने से पहले मॉकअप, वायरफ्रेम और लेआउट भरने के लिए इस्तेमाल करते हैं। पैराग्राफ, वाक्य या शब्दों के हिसाब से जितना चाहिए उतना जनरेट करें।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>पैराग्राफ, वाक्य या शब्द में से चुनें।</li>
+        <li>कितनी मात्रा चाहिए सेट करें।</li>
+        <li>Generate दबाएं, फिर रिजल्ट कॉपी या डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const WORDS = ("lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum at vero eos accusamus accusantium doloremque laudantium totam rem aperiam eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo nemo enim ipsam voluptatem quia voluptas").split(' ');
+
+function randWord(){ return WORDS[Math.floor(Math.random()*WORDS.length)]; }
+
+function makeSentence(minW, maxW){
+  const len = minW + Math.floor(Math.random()*(maxW-minW));
+  let words = [];
+  for(let i=0;i<len;i++) words.push(randWord());
+  let s = words.join(' ');
+  return s.charAt(0).toUpperCase() + s.slice(1) + '.';
+}
+
+function makeParagraph(minS, maxS){
+  const len = minS + Math.floor(Math.random()*(maxS-minS));
+  let sentences = [];
+  for(let i=0;i<len;i++) sentences.push(makeSentence(5,16));
+  return sentences.join(' ');
+}
+
+document.getElementById('generateBtn').addEventListener('click', ()=>{
+  const type = document.getElementById('unitType').value;
+  let count = parseInt(document.getElementById('unitCount').value) || 1;
+  count = Math.max(1, Math.min(100, count));
+  const startLorem = document.getElementById('startWithLorem').checked;
+  let result = '';
+
+  if(type === 'words'){
+    let words = [];
+    for(let i=0;i<count;i++) words.push(randWord());
+    if(startLorem){ words[0]='Lorem'; if(words[1]!==undefined) words[1]='ipsum'; }
+    result = words.join(' ') + '.';
+  } else if(type === 'sentences'){
+    let sentences = [];
+    for(let i=0;i<count;i++) sentences.push(makeSentence(6,16));
+    if(startLorem) sentences[0] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+    result = sentences.join(' ');
+  } else {
+    let paragraphs = [];
+    for(let i=0;i<count;i++) paragraphs.push(makeParagraph(4,8));
+    if(startLorem) paragraphs[0] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' + paragraphs[0];
+    result = paragraphs.join('\n\n');
+  }
+
+  document.getElementById('outputText').value = result;
+});
+
+document.getElementById('copyBtn').addEventListener('click', (e)=>{
+  copyText(document.getElementById('outputText').value, e.target);
+});
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  downloadText('lorem-ipsum.txt', document.getElementById('outputText').value, 'text/plain');
+});
+
+// generate one on load
+document.getElementById('generateBtn').click();
+</script>
+</body>
+</html>

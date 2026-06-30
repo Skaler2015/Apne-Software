@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/text-cleaner.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Text Cleaner — Remove Blank Lines & Extra Spaces | ApneSoftware">
+<meta property="og:description" content="Clean up messy text — remove blank lines, trim extra spaces, and fix line breaks instantly. Free, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/text-cleaner.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Text Cleaner — Remove Blank Lines & Extra Spaces | ApneSoftware">
+<meta name="twitter:description" content="Clean up messy text — remove blank lines, trim extra spaces, and fix line breaks instantly. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text Cleaner","description":"Clean up messy text — remove blank lines, trim extra spaces, and fix line breaks instantly. Free, no signup.","url":"https://apnesoftware.com/tools/text-cleaner.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Text Cleaner — Remove Blank Lines & Extra Spaces | ApneSoftware</title>
+<meta name="description" content="Clean up messy text — remove blank lines, trim extra spaces, and fix line breaks instantly. Free, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .text-area-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){ .text-area-pair{grid-template-columns:1fr} }
+  textarea{width:100%;min-height:260px;font-family:monospace;font-size:.85rem;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);resize:vertical}
+  .options-row{display:flex;flex-wrap:wrap;gap:14px;margin:14px 0}
+  .options-row label{display:flex;align-items:center;gap:6px;font-size:.85rem;font-weight:600}
+  .options-row input[type=checkbox]{width:auto}
+  .col-label{font-size:.8rem;font-weight:700;color:var(--text-dim);margin-bottom:6px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🧹 Text Cleaner</h1>
+    <p>Remove blank lines, extra spaces, and messy formatting from any block of text in one click.</p>
+  </div>
+
+  <div class="panel">
+    <div class="options-row">
+      <label><input type="checkbox" id="optBlankLines" checked> Remove blank lines</label>
+      <label><input type="checkbox" id="optTrim" checked> Trim leading/trailing spaces per line</label>
+      <label><input type="checkbox" id="optMultiSpace" checked> Collapse multiple spaces into one</label>
+      <label><input type="checkbox" id="optTabs"> Convert tabs to spaces</label>
+    </div>
+
+    <div class="text-area-pair">
+      <div>
+        <div class="col-label">INPUT</div>
+        <textarea id="inputText" placeholder="Paste messy text here..."></textarea>
+      </div>
+      <div>
+        <div class="col-label">CLEANED OUTPUT</div>
+        <textarea id="outputText" readonly></textarea>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn" id="cleanBtn">🧹 Clean Text</button>
+      <button class="btn secondary" id="copyBtn">📋 Copy Result</button>
+      <button class="btn secondary" id="downloadBtn">⬇️ Download .txt</button>
+    </div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Text copied from a PDF, a website, or an old email often comes with messy formatting baked in — random blank lines scattered throughout, double or triple spaces where there should be one, trailing spaces at the end of lines that are invisible but still there, or tab characters mixed in unpredictably with regular spaces. None of this is usually visible at a glance, but it causes real problems later: messy spacing in a document, broken alignment in code, or odd-looking gaps when the text is pasted somewhere else.</p>
+      <p>This tool cleans all of that up in a single pass, with each type of cleanup as an optional checkbox so you control exactly what gets changed. Removing blank lines collapses any sequence of empty lines down to nothing, trimming spaces clears invisible whitespace at the start and end of every line, collapsing multiple spaces turns any run of spaces into a single one, and the tab-to-space option normalizes tab characters that might be causing inconsistent indentation.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Paste your text into the input box.</li>
+        <li>Choose which cleanup options you want (all are on by default except tab conversion).</li>
+        <li>Click "Clean Text," then copy the result or download it as a .txt file.</li>
+      </ol>
+      <h3>Common situations this helps with</h3>
+      <p>Pasting text copied from a PDF into a Word document or an email often leaves behind odd blank lines after every sentence because the PDF's internal line breaks get carried over — this tool clears that up instantly. It's also handy for cleaning up code or data that was copy-pasted from a different source with inconsistent spacing, or for tidying up a long block of notes before sharing it somewhere that should look clean and professional.</p>
+      <p>Because every cleanup option is its own checkbox, you can be as conservative or as thorough as you need — someone preparing code samples might want only tab-to-space conversion without touching blank lines that are meant to separate logical sections, while someone preparing prose for a document might want every option turned on to get the tightest possible formatting. The cleaning happens instantly on the text you've pasted, so you can experiment with different combinations of options and immediately see the result before copying or downloading the final version, with nothing ever leaving your browser in the process, which also makes it safe to use on confidential drafts or unpublished material.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी PDF, website, या पुराने email से copy किया गया text अक्सर अपने साथ गड़बड़ formatting लेकर आता है — बीच-बीच में बिखरी हुई blank lines, जहां एक space चाहिए वहां double या triple spaces, lines के आख़िर में invisible trailing spaces, या tab characters जो सामान्य spaces के साथ अनियमित रूप से मिले हों। यह सब आमतौर पर एक नज़र में दिखता नहीं, पर बाद में असली परेशानी पैदा करता है: document में गड़बड़ spacing, code में टूटी हुई alignment, या कहीं और paste करने पर अजीब दिखने वाले gaps।</p>
+      <p>यह tool यह सब एक ही बार में साफ़ कर देता है, हर तरह की सफ़ाई एक optional checkbox के रूप में ताकि आप पूरा control रखें कि क्या बदला जाए। Blank lines हटाने से खाली lines की कोई भी सीरीज़ पूरी तरह हट जाती है, spaces trim करने से हर line की शुरुआत और आख़िर का invisible whitespace साफ़ होता है, multiple spaces collapse करने से spaces की कोई भी लड़ी एक में बदल जाती है, और tab-to-space option उन tab characters को normalize करता है जो असंगत indentation बना रहे हों।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना text input box में paste करें।</li>
+        <li>जो cleanup options चाहिए वो चुनें (tab conversion छोड़कर बाकी सब default रूप से चालू हैं)।</li>
+        <li>"Clean Text" दबाएं, फिर result copy करें या .txt file के रूप में download करें।</li>
+      </ol>
+      <h3>यह किन आम स्थितियों में मदद करता है</h3>
+      <p>किसी PDF से copy किया text Word document या email में paste करने पर अक्सर हर sentence के बाद अजीब blank lines रह जाती हैं क्योंकि PDF के अंदरूनी line breaks भी साथ आ जाते हैं — यह tool उसे तुरंत साफ़ कर देता है। यह किसी अलग source से copy-paste किए गए code या data को असंगत spacing से साफ़ करने, या कहीं professional तरीके से share करने से पहले notes के किसी लंबे हिस्से को व्यवस्थित करने के लिए भी उपयोगी है।</p>
+      <p>चूंकि हर cleanup option अपना अलग checkbox है, आप जितना सावधानी भरा या जितना पूरा चाहें उतना कर सकते हैं — code samples तैयार करने वाला कोई व्यक्ति शायद सिर्फ़ tab-to-space conversion चाहे, उन blank lines को छुए बिना जो logical sections अलग करने के लिए हों, जबकि prose तैयार करने वाला कोई व्यक्ति सबसे tight formatting पाने के लिए सभी options चालू करना चाहे। Cleaning paste किए गए text पर तुरंत होती है, तो आप अलग-अलग options आज़मा सकते हैं और copy या download करने से पहले तुरंत result देख सकते हैं।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+document.getElementById('cleanBtn').addEventListener('click', ()=>{
+  let text = document.getElementById('inputText').value;
+
+  if(document.getElementById('optTabs').checked){
+    text = text.replace(/\t/g, '    ');
+  }
+  if(document.getElementById('optTrim').checked){
+    text = text.split('\n').map(line => line.trim()).join('\n');
+  }
+  if(document.getElementById('optMultiSpace').checked){
+    text = text.split('\n').map(line => line.replace(/ {2,}/g, ' ')).join('\n');
+  }
+  if(document.getElementById('optBlankLines').checked){
+    text = text.split('\n').filter(line => line.trim() !== '').join('\n');
+  }
+
+  document.getElementById('outputText').value = text;
+  document.getElementById('statusMsg').textContent = '✅ Cleaned.';
+});
+
+document.getElementById('copyBtn').addEventListener('click', function(){
+  copyText(document.getElementById('outputText').value, this);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  downloadText('cleaned-text.txt', document.getElementById('outputText').value, 'text/plain');
+});
+</script>
+</body>
+</html>

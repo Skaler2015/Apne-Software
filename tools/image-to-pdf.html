@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/image-to-pdf.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image to PDF Converter | ApneSoftware">
+<meta property="og:description" content="Create a PDF from photos. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/image-to-pdf.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image to PDF Converter | ApneSoftware">
+<meta name="twitter:description" content="Create a PDF from photos. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image to PDF","description":"Create a PDF from photos. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/image-to-pdf.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Image to PDF Converter | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .thumb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px;margin-top:14px}
+  .thumb{position:relative;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .thumb img{width:100%;height:110px;object-fit:cover;display:block}
+  .thumb .remove{position:absolute;top:4px;right:4px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:.8rem}
+  .thumb .order{position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.6);color:#fff;font-size:.7rem;padding:2px 6px;border-radius:4px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🖨️ Image to PDF</h1>
+    <p>Choose one or more photos and turn them into a PDF — pages follow the order shown below.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag & drop images here or click to choose (you can select multiple)</p>
+      <input type="file" id="fileInput" accept="image/*" multiple>
+    </div>
+
+    <div class="thumb-grid" id="thumbGrid"></div>
+
+    <div class="row" style="margin-top:18px">
+      <div class="field">
+        <label for="pageSizeSelect">Page size</label>
+        <select id="pageSizeSelect">
+          <option value="a4">A4</option>
+          <option value="fit">Match image (Fit)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="createBtn" disabled>🖨️ Create PDF and Download</button>
+      <button class="btn secondary" id="clearBtn">🗑️ Clear All</button>
+    </div>
+
+    <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Converting a stack of images into a single PDF is one of the most common small tasks people run into — scanning receipts with a phone camera and wanting them as one document for expense reports, putting together a set of photographed pages from a notebook or whiteboard, or combining product photos into a shareable catalog-style file. JPG, PNG, and most other common image formats can be turned into a clean, properly formatted PDF here, with each image becoming one page in the final document, in whatever order you choose.</p>
+      <p>After uploading your images, you can reorder them by dragging, remove any that don't belong, and rotate individual images if any were captured sideways — a common issue with phone-scanned documents. The tool automatically fits each image onto a standard page size while preserving its aspect ratio, so photos of different dimensions don't end up stretched, cropped awkwardly, or surrounded by huge amounts of empty space, which is exactly the kind of fiddly manual adjustment that makes other PDF-from-images workflows tedious. You can also choose page orientation and margin settings to better match how you intend to print or share the result, whether that means a tight, document-style layout for scanned text or a more spacious layout for displaying photographs.</p>
+      <p>This is especially handy for anyone digitizing paperwork the simple way — using a phone to photograph receipts, ID documents, handwritten notes, or pages from a physical book, then turning that batch of photos into one shareable, properly ordered PDF rather than sending a dozen separate image files over email or chat. Recruiters, students, small business owners filing expense claims, and anyone dealing with physical paperwork that needs to become digital all find this conversion useful on a regular basis.</p>
+      <p>The entire conversion happens in your browser using PDF generation libraries that run client-side, so your photos are never uploaded to a server before becoming a PDF — useful given how often the images people convert this way include personal documents like ID cards, signatures, or financial paperwork. Once generated, the PDF downloads immediately, with no watermark, no page limit, and no account needed, regardless of whether you're combining two photos or fifty. It's a quick, repeatable step that turns a folder full of loose photos into one tidy, professional-looking file you can attach to an email, upload to a portal, or print as a complete set without anyone having to open ten separate images one at a time.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload one or more images.</li>
+        <li>Arrange them in the order you want the pages.</li>
+        <li>Click Create PDF and download.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>Images के एक ढेर को एक PDF में बदलना सबसे आम छोटे कामों में से एक है जिनसे लोगों का सामना होता है — phone camera से receipts scan करके expense reports के लिए उन्हें एक document के तौर पर चाहना, किसी notebook या whiteboard से फोटो खींचे गए पन्नों को साथ रखना, या product photos को catalog-style शेयर करने लायक एक file में जोड़ना। JPG, PNG, और बाकी ज़्यादातर आम image formats को यहां एक साफ, सही फॉर्मेट वाली PDF में बदला जा सकता है, हर image final document में एक पन्ना बन जाती है, जिस क्रम में आप चाहें।</p>
+      <p>अपनी images अपलोड करने के बाद, आप उन्हें drag करके reorder कर सकते हैं, जो ठीक नहीं बैठतीं उन्हें हटा सकते हैं, और अगर कोई image तिरछी खिंची हो तो उसे rotate कर सकते हैं — phone से scan किए गए documents में यह एक आम समस्या है। टूल हर image को standard page size पर अपने आप fit कर देता है उसका aspect ratio बनाए रखते हुए, तो अलग-अलग dimensions वाली photos न तो stretched दिखती हैं, न अजीब तरीके से crop होती हैं, न उनके चारों तरफ बहुत ज़्यादा खाली जगह बचती है। आप page orientation और margin settings भी चुन सकते हैं ताकि result आपकी print या share करने की योजना से बेहतर मेल खाए।</p>
+      <p>यह खासतौर पर उन लोगों के लिए उपयोगी है जो आसान तरीके से कागज़ात digitize करते हैं — receipts, ID documents, हाथ से लिखे नोट्स, या किसी physical book के पन्नों को phone से फोटो खींचकर, फिर उन photos के batch को email या chat पर दर्जनों अलग image files भेजने की बजाय एक shareable, सही क्रम वाली PDF में बदलकर। Recruiters, students, expense claims भरने वाले छोटे business owners, और physical कागज़ात को digital बनाने की ज़रूरत वाला हर कोई इस conversion को नियमित रूप से उपयोगी पाता है।</p>
+      <p>पूरा conversion client-side चलने वाली PDF generation libraries इस्तेमाल करके आपके browser में होता है, तो PDF बनने से पहले आपकी photos कभी किसी server पर अपलोड नहीं होतीं — यह तब बहुत मायने रखता है क्योंकि इस तरीके से convert की जाने वाली images में अक्सर ID cards, signatures, या financial paperwork जैसे personal documents शामिल होते हैं। बनने के बाद, PDF तुरंत download हो जाती है, कोई watermark नहीं, कोई page limit नहीं, और किसी account की ज़रूरत नहीं, चाहे आप दो photos जोड़ रहे हों या पचास। यह एक तेज़, बार-बार दोहराया जा सकने वाला step है जो photos से भरे किसी folder को एक साफ-सुथरी, professional दिखने वाली file में बदल देता है जिसे आप email से attach कर सकते हैं, किसी portal पर अपलोड कर सकते हैं, या एक साथ पूरा सेट print कर सकते हैं, बिना किसी को दस अलग images एक-एक करके खोलने की ज़रूरत पड़े।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक या कई इमेज अपलोड करें।</li>
+        <li>जिस क्रम में पेज चाहिए उस क्रम में रखें।</li>
+        <li>PDF बनाएं बटन दबाएं और डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const thumbGrid = document.getElementById('thumbGrid');
+const createBtn = document.getElementById('createBtn');
+let images = []; // {file, dataUrl}
+
+setupDropzone(dropzone, fileInput, files => {
+  const imgs = files.filter(f => f.type.startsWith('image/'));
+  imgs.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      images.push({file, dataUrl: e.target.result});
+      renderThumbs();
+    };
+    reader.readAsDataURL(file);
+  });
+});
+
+function renderThumbs(){
+  thumbGrid.innerHTML = '';
+  images.forEach((img, i) => {
+    const div = document.createElement('div');
+    div.className = 'thumb';
+    div.innerHTML = `
+      <img src="${img.dataUrl}">
+      <span class="order">${i+1}</span>
+      <button class="remove" onclick="removeImg(${i})">✖</button>`;
+    thumbGrid.appendChild(div);
+  });
+  createBtn.disabled = images.length === 0;
+}
+
+function removeImg(i){
+  images.splice(i, 1);
+  renderThumbs();
+}
+
+document.getElementById('clearBtn').addEventListener('click', ()=>{
+  images = [];
+  renderThumbs();
+  document.getElementById('statusMsg').textContent = '';
+});
+
+createBtn.addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Creating PDF...';
+  createBtn.disabled = true;
+
+  try{
+    const { PDFDocument } = PDFLib;
+    const pdfDoc = await PDFDocument.create();
+    const fitMode = document.getElementById('pageSizeSelect').value;
+
+    for(const imgObj of images){
+      const bytes = await imgObj.file.arrayBuffer();
+      let embedded;
+      if(imgObj.file.type.includes('png')){
+        embedded = await pdfDoc.embedPng(bytes);
+      } else {
+        embedded = await pdfDoc.embedJpg(bytes);
+      }
+
+      const { width, height } = embedded;
+
+      if(fitMode === 'fit'){
+        const page = pdfDoc.addPage([width, height]);
+        page.drawImage(embedded, {x:0, y:0, width, height});
+      } else {
+        // A4 in points: 595 x 842
+        const pageW = 595, pageH = 842;
+        const page = pdfDoc.addPage([pageW, pageH]);
+        const scale = Math.min((pageW-40)/width, (pageH-40)/height);
+        const w = width*scale, h = height*scale;
+        page.drawImage(embedded, {
+          x: (pageW-w)/2, y: (pageH-h)/2, width: w, height: h
+        });
+      }
+    }
+
+    const pdfBytes = await pdfDoc.save();
+    const blob = new Blob([pdfBytes], {type:'application/pdf'});
+    downloadBlob('images.pdf', blob);
+    status.textContent = `✅ Created a PDF from ${images.length} image(s)!`;
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+  createBtn.disabled = false;
+});
+</script>
+</body>
+</html>

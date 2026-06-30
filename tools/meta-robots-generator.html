@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Meta Robots Tag Generator — Generate robots directives for all major search engines. Visual controls for index/noindex, follow/nofollow, nosnippet, noarchive, max-snippet and more.">
+<meta name="keywords" content="meta robots generator, robots meta tag, noindex generator, nofollow generator, robots directives, googlebot meta tag">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/meta-robots-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Meta Robots Tag Generator — All Directives | ApneSoftware">
+<meta property="og:description" content="Generate robots meta tags with visual controls. Supports all directives — index, noindex, follow, nofollow, nosnippet and more. Free.">
+<meta property="og:url" content="https://apnesoftware.com/tools/meta-robots-generator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Meta Robots Tag Generator — All Directives | ApneSoftware">
+<meta name="twitter:description" content="Generate robots meta tags visually. All directives supported. Free, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"SoftwareApplication","name":"Meta Robots Tag Generator","description":"Free tool to generate robots meta tags with visual controls for all search engine directives.","url":"https://apnesoftware.com/tools/meta-robots-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"SEO Tools"},{"@type":"ListItem","position":3,"name":"Meta Robots Generator","item":"https://apnesoftware.com/tools/meta-robots-generator.html"}]}]}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Meta Robots Tag Generator — All Directives | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* ── Meta Robots Generator local styles ── */
+.mrg-toggle-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:16px}
+.mrg-toggle{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px;cursor:pointer;transition:.2s;user-select:none}
+.mrg-toggle:hover{background:rgba(255,255,255,.08)}
+.mrg-toggle.on{background:rgba(22,192,121,.1);border-color:rgba(22,192,121,.4)}
+.mrg-toggle.warn-on{background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.3)}
+.mrg-toggle-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.mrg-toggle-name{font-size:.85rem;font-weight:700;color:rgba(255,255,255,.85)}
+.mrg-toggle-sw{width:36px;height:20px;background:rgba(255,255,255,.15);border-radius:999px;position:relative;flex-shrink:0;transition:.2s}
+.mrg-toggle.on .mrg-toggle-sw{background:#16C079}
+.mrg-toggle.warn-on .mrg-toggle-sw{background:#F87171}
+.mrg-toggle-sw::after{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:#fff;transition:.2s}
+.mrg-toggle.on .mrg-toggle-sw::after,.mrg-toggle.warn-on .mrg-toggle-sw::after{left:calc(100% - 17px)}
+.mrg-toggle-desc{font-size:.72rem;color:rgba(255,255,255,.4);line-height:1.4}
+.mrg-toggle-badge{display:inline-block;font-size:.65rem;font-weight:700;padding:1px 7px;border-radius:999px;margin-top:5px}
+.badge-green{background:rgba(22,192,121,.15);color:#16C079}
+.badge-red  {background:rgba(248,113,113,.15);color:#F87171}
+.badge-blue {background:rgba(124,92,252,.15);color:#A78BFA}
+.badge-grey {background:rgba(255,255,255,.08);color:rgba(255,255,255,.4)}
+
+/* Live tag display */
+.mrg-live-tag{background:rgba(0,0,0,.4);border:1px solid rgba(124,92,252,.3);border-radius:14px;padding:18px 20px;font-family:'Courier New',monospace;font-size:.9rem;line-height:1.6;color:#e0e0e0;word-break:break-all;margin-top:16px;min-height:60px;transition:.2s}
+.mrg-live-tag .hl-tag{color:#FF7B72}.mrg-live-tag .hl-attr{color:#79C0FF}.mrg-live-tag .hl-val{color:#A5D6FF}
+
+/* Impact indicator */
+.mrg-impact{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.mrg-impact-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:8px 12px;font-size:.78rem;font-weight:600}
+.mrg-impact-pill.active{border-color:rgba(248,113,113,.3);background:rgba(248,113,113,.08);color:#F87171}
+.mrg-impact-pill.safe {border-color:rgba(22,192,121,.3);background:rgba(22,192,121,.08);color:#16C079}
+.mrg-impact-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0}
+
+/* Preset buttons */
+.mrg-preset-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin-bottom:18px}
+.mrg-preset-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.7);border-radius:10px;padding:10px 14px;font-size:.8rem;font-weight:700;cursor:pointer;text-align:left;transition:.2s;font-family:var(--font)}
+.mrg-preset-btn:hover{background:rgba(124,92,252,.15);border-color:rgba(124,92,252,.35);color:#A78BFA}
+.mrg-preset-icon{font-size:1.1rem;margin-bottom:4px;display:block}
+.mrg-preset-name{font-size:.82rem;font-weight:700}
+.mrg-preset-desc{font-size:.7rem;color:rgba(255,255,255,.35);margin-top:1px}
+
+/* Warning box */
+.mrg-warning{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.25);border-radius:12px;padding:12px 16px;font-size:.82rem;color:#F87171;display:none;margin-top:10px;line-height:1.6}
+.mrg-warning.show{display:block}
+
+/* Full output code */
+.mrg-output{background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px 18px;font-family:'Courier New',monospace;font-size:.8rem;line-height:1.7;color:#e0e0e0;white-space:pre-wrap;word-break:break-all;max-height:340px;overflow-y:auto;margin-top:14px}
+.mrg-output .hl-tag{color:#FF7B72}.mrg-output .hl-attr{color:#79C0FF}.mrg-output .hl-val{color:#A5D6FF}.mrg-output .hl-com{color:#8B949E}
+
+#mrgScrollTop{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;box-shadow:0 4px 14px rgba(124,92,252,.4);transition:.2s}
+#mrgScrollTop.show{display:flex}
+#mrgScrollTop:hover{transform:translateY(-3px)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+<div class="container">
+  <nav aria-label="Breadcrumb" style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:2px">
+    <a href="../index.html" style="color:rgba(255,255,255,.45)">Home</a>
+    <span style="margin:0 6px">›</span>
+    <span style="color:rgba(255,255,255,.7)">SEO Tools</span>
+    <span style="margin:0 6px">›</span>
+    <span style="color:#A78BFA">Meta Robots Generator</span>
+  </nav>
+
+  <div class="tool-header">
+    <h1>🤖 Meta Robots Tag Generator</h1>
+    <p>Generate precise robots meta tags for any search engine using visual toggle controls — with live preview, impact warnings and downloadable output.</p>
+  </div>
+
+  <div class="panel">
+    <!-- Presets -->
+    <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin-bottom:10px">⚡ Quick Presets</div>
+    <div class="mrg-preset-row">
+      <button class="mrg-preset-btn" data-preset="public">
+        <span class="mrg-preset-icon">✅</span>
+        <div class="mrg-preset-name">Public Page</div>
+        <div class="mrg-preset-desc">index, follow — fully visible</div>
+      </button>
+      <button class="mrg-preset-btn" data-preset="noindex">
+        <span class="mrg-preset-icon">🚫</span>
+        <div class="mrg-preset-name">No Index</div>
+        <div class="mrg-preset-desc">noindex, follow</div>
+      </button>
+      <button class="mrg-preset-btn" data-preset="block">
+        <span class="mrg-preset-icon">🔒</span>
+        <div class="mrg-preset-name">Full Block</div>
+        <div class="mrg-preset-desc">noindex, nofollow</div>
+      </button>
+      <button class="mrg-preset-btn" data-preset="nofollow">
+        <span class="mrg-preset-icon">🔗</span>
+        <div class="mrg-preset-name">No Link Juice</div>
+        <div class="mrg-preset-desc">index, nofollow</div>
+      </button>
+      <button class="mrg-preset-btn" data-preset="snippet">
+        <span class="mrg-preset-icon">📄</span>
+        <div class="mrg-preset-name">No Snippet</div>
+        <div class="mrg-preset-desc">nosnippet, noarchive</div>
+      </button>
+      <button class="mrg-preset-btn" data-preset="ecommerce">
+        <span class="mrg-preset-icon">🛒</span>
+        <div class="mrg-preset-name">E-commerce Product</div>
+        <div class="mrg-preset-desc">index + max-image:large</div>
+      </button>
+    </div>
+
+    <!-- Toggles -->
+    <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin-bottom:10px">🔧 Configure Directives</div>
+    <div class="mrg-toggle-grid" id="toggleGrid"></div>
+
+    <!-- Numeric fields -->
+    <div class="row" id="numericFields">
+      <div class="field" id="maxSnippetField" style="display:none">
+        <label for="maxSnippetVal">max-snippet value (-1 = unlimited)</label>
+        <input type="number" id="maxSnippetVal" value="160" min="-1" max="10000">
+      </div>
+      <div class="field" id="maxVideoField" style="display:none">
+        <label for="maxVideoVal">max-video-preview value (-1 = unlimited)</label>
+        <input type="number" id="maxVideoVal" value="-1" min="-1" max="3600">
+      </div>
+      <div class="field" id="maxImageField" style="display:none">
+        <label for="maxImageVal">max-image-preview value</label>
+        <select id="maxImageVal">
+          <option value="none">none</option>
+          <option value="standard" selected>standard</option>
+          <option value="large">large</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Engine-specific -->
+    <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin:16px 0 10px">🔍 Search Engine Specific (optional)</div>
+    <div class="row">
+      <div class="field">
+        <label for="gbotVal">Googlebot-specific</label>
+        <input type="text" id="gbotVal" placeholder="e.g. nosnippet, notranslate">
+      </div>
+      <div class="field">
+        <label for="bbotVal">Bingbot-specific</label>
+        <input type="text" id="bbotVal" placeholder="e.g. nosnippet">
+      </div>
+    </div>
+
+    <!-- Warning -->
+    <div class="mrg-warning" id="warningBox"></div>
+
+    <!-- Live preview -->
+    <div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.4);margin:18px 0 6px">👁️ Live Tag Preview</div>
+    <div class="mrg-live-tag" id="liveTag"></div>
+
+    <!-- Impact pills -->
+    <div class="mrg-impact" id="impactRow"></div>
+
+    <div class="btn-row" style="margin-top:16px">
+      <button class="btn" id="btnGenerate">⚡ Generate Full Code</button>
+      <button class="btn secondary" id="btnReset">🗑️ Reset</button>
+    </div>
+  </div>
+
+  <!-- Output -->
+  <div class="panel" id="outputPanel" style="display:none;margin-top:14px">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px">
+      <h2 style="font-size:1rem;font-weight:800;margin:0">📄 Generated Robots Tags</h2>
+      <div style="display:flex;gap:8px">
+        <button class="btn" id="btnCopy">📋 Copy</button>
+        <button class="btn secondary" id="btnDownload">⬇️ Download</button>
+      </div>
+    </div>
+    <div class="mrg-output" id="outputCode"></div>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>🤖 What are Robots Meta Tags?</h2>
+      <p><strong>Robots meta tags</strong> are HTML directives placed in a page's <code>&lt;head&gt;</code> that tell search engine crawlers how to treat that specific page. Unlike the <code>robots.txt</code> file (which controls access to your entire site), robots meta tags work at the individual page level, giving you fine-grained control over indexing, link-following, snippet display, image preview size and more.</p>
+      <p>Google supports a rich set of directives: <strong>index/noindex</strong> (include or exclude from search results), <strong>follow/nofollow</strong> (pass or block link equity), <strong>nosnippet</strong> (hide description snippets), <strong>noarchive</strong> (don't show Google's cached version), <strong>noimageindex</strong> (don't index images on this page), and several max-* directives that give you granular control over snippet and image preview length.</p>
+      <h3>Common Use Cases</h3>
+      <ol>
+        <li><strong>Thank-you pages</strong> — noindex, nofollow</li>
+        <li><strong>Login / register pages</strong> — noindex, follow</li>
+        <li><strong>Staging / test pages</strong> — noindex, nofollow</li>
+        <li><strong>Paginated pages</strong> — index, follow</li>
+        <li><strong>Privacy / terms pages</strong> — noindex, follow</li>
+        <li><strong>Product pages</strong> — index, follow, max-image-preview:large</li>
+        <li><strong>News articles</strong> — index, follow, max-snippet:-1</li>
+      </ol>
+      <h3>robots.txt vs robots meta tag</h3>
+      <p>If your <code>robots.txt</code> blocks a page, crawlers can't read its robots meta tag either. Use <code>robots.txt</code> to block crawling of large sections of your site, and robots meta tags for fine-grained page-level control where you want the page crawled but not indexed.</p>
+    </div>
+    <div class="info-block">
+      <h2>🤖 Hindi Guide / हिंदी गाइड</h2>
+      <p><strong>Robots Meta Tags</strong> HTML directives हैं जो search engine crawlers को बताते हैं कि किसी specific page को कैसे handle करना है — index करना है या नहीं, links follow करने हैं या नहीं।</p>
+      <h3>मुख्य Directives क्या हैं?</h3>
+      <ol>
+        <li><strong>index</strong> — Google इस page को search results में दिखाए (default)</li>
+        <li><strong>noindex</strong> — Google इस page को search results से हटाए</li>
+        <li><strong>follow</strong> — Google page के links follow करे (default)</li>
+        <li><strong>nofollow</strong> — Google page के links ignore करे</li>
+        <li><strong>nosnippet</strong> — Search results में description text न दिखाए</li>
+        <li><strong>noarchive</strong> — Google का cached version न दिखाए</li>
+        <li><strong>noimageindex</strong> — Page की images को index न करे</li>
+        <li><strong>max-snippet:160</strong> — Maximum 160 chars का snippet दिखाए</li>
+        <li><strong>max-image-preview:large</strong> — Large image preview दिखाए</li>
+      </ol>
+      <h3>किस Page पर क्या लगाएं?</h3>
+      <ol>
+        <li><strong>Thank-you pages:</strong> noindex, nofollow</li>
+        <li><strong>Login/Register pages:</strong> noindex, follow</li>
+        <li><strong>Staging/Test pages:</strong> noindex, nofollow</li>
+        <li><strong>Product pages:</strong> index, follow, max-image-preview:large</li>
+        <li><strong>Privacy/Terms pages:</strong> noindex, follow</li>
+        <li><strong>Blog articles:</strong> index, follow, max-snippet:-1</li>
+        <li><strong>Homepage:</strong> index, follow (default)</li>
+      </ol>
+      <h3>⚠️ Important</h3>
+      <p><strong>noindex</strong> का मतलब यह नहीं कि Google page को crawl नहीं करेगा — वह crawl करेगा लेकिन index नहीं करेगा। अगर आप crawl भी रोकना चाहते हैं तो robots.txt use करें।</p>
+    </div>
+  </div>
+</div>
+
+<button id="mrgScrollTop" aria-label="Scroll to top">↑</button>
+<footer class="site-footer">
+  <p>© 2025 <a href="../index.html">ApneSoftware.com</a> · Free Tools for Everyone · No Signup Required</p>
+</footer>
+<script src="../assets/common.js"></script>
+<script>
+(function(){
+'use strict';
+const LS='mrg_last';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+/* Toggle definitions */
+const TOGGLES=[
+  {id:'index',    name:'index',          desc:'Include this page in search results.',     badge:'Safe',     badgeCls:'badge-green', warn:false, default:true},
+  {id:'noindex',  name:'noindex',        desc:'Exclude this page from search results.',   badge:'Caution',  badgeCls:'badge-red',   warn:true,  default:false},
+  {id:'follow',   name:'follow',         desc:'Allow crawlers to follow all links.',      badge:'Safe',     badgeCls:'badge-green', warn:false, default:true},
+  {id:'nofollow', name:'nofollow',       desc:'Block link equity passing on all links.',  badge:'Caution',  badgeCls:'badge-red',   warn:true,  default:false},
+  {id:'nosnippet',name:'nosnippet',      desc:'Hide description snippets in results.',    badge:'Optional', badgeCls:'badge-grey',  warn:false, default:false},
+  {id:'noarchive',name:'noarchive',      desc:'Don\'t show Google\'s cached version.',   badge:'Optional', badgeCls:'badge-grey',  warn:false, default:false},
+  {id:'noimageindex',name:'noimageindex',desc:'Don\'t index images on this page.',        badge:'Optional', badgeCls:'badge-blue',  warn:false, default:false},
+  {id:'notranslate',name:'notranslate',  desc:'Don\'t offer translation of this page.',  badge:'Optional', badgeCls:'badge-grey',  warn:false, default:false},
+  {id:'maxsnippet',name:'max-snippet',   desc:'Limit snippet text length (chars).',       badge:'Advanced', badgeCls:'badge-blue',  warn:false, default:false, hasVal:true},
+  {id:'maximage', name:'max-image-preview',desc:'Control large image preview size.',      badge:'Advanced', badgeCls:'badge-blue',  warn:false, default:false, hasVal:true},
+  {id:'maxvideo', name:'max-video-preview',desc:'Limit video preview duration (secs).',   badge:'Advanced', badgeCls:'badge-blue',  warn:false, default:false, hasVal:true},
+  {id:'noodp',    name:'noodp',          desc:'Don\'t use ODP description as snippet.',  badge:'Legacy',   badgeCls:'badge-grey',  warn:false, default:false},
+];
+
+const PRESETS={
+  public:    {index:true,noindex:false,follow:true,nofollow:false},
+  noindex:   {index:false,noindex:true,follow:true,nofollow:false},
+  block:     {index:false,noindex:true,follow:false,nofollow:true},
+  nofollow:  {index:true,noindex:false,follow:false,nofollow:true},
+  snippet:   {index:true,noindex:false,follow:true,nofollow:false,nosnippet:true,noarchive:true},
+  ecommerce: {index:true,noindex:false,follow:true,nofollow:false,maximage:true},
+};
+
+/* State */
+const state={};
+TOGGLES.forEach(t=>state[t.id]=t.default);
+
+/* Build toggle grid */
+function buildGrid(){
+  const grid=$('toggleGrid');
+  grid.innerHTML=TOGGLES.map(t=>{
+    const isOn=state[t.id];
+    const cls=isOn?(t.warn?'warn-on':'on'):'';
+    return `<div class="mrg-toggle ${cls}" id="tog_${t.id}" data-id="${t.id}" role="checkbox" aria-checked="${isOn}" tabindex="0">
+      <div class="mrg-toggle-top">
+        <div class="mrg-toggle-name">${esc(t.name)}</div>
+        <div class="mrg-toggle-sw"></div>
+      </div>
+      <div class="mrg-toggle-desc">${esc(t.desc)}</div>
+      <span class="mrg-toggle-badge ${t.badgeCls}">${t.badge}</span>
+    </div>`;
+  }).join('');
+
+  document.querySelectorAll('.mrg-toggle').forEach(el=>{
+    el.addEventListener('click',()=>toggle(el.dataset.id));
+    el.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();toggle(el.dataset.id);}});
+  });
+}
+
+function toggle(id){
+  state[id]=!state[id];
+  // Mutual exclusion
+  if(id==='index'&&state.index)   state.noindex=false;
+  if(id==='noindex'&&state.noindex) state.index=false;
+  if(id==='follow'&&state.follow) state.nofollow=false;
+  if(id==='nofollow'&&state.nofollow) state.follow=false;
+  refreshGrid();update();
+}
+
+function refreshGrid(){
+  TOGGLES.forEach(t=>{
+    const el=$('tog_'+t.id);if(!el)return;
+    const isOn=state[t.id];
+    el.classList.toggle('on',isOn&&!t.warn);
+    el.classList.toggle('warn-on',isOn&&!!t.warn);
+    el.classList.remove(isOn?'':'on',isOn?'':'warn-on');
+    el.setAttribute('aria-checked',isOn);
+  });
+}
+
+function update(){
+  // Show/hide numeric fields
+  $('maxSnippetField').style.display=state.maxsnippet?'block':'none';
+  $('maxImageField').style.display  =state.maximage?'block':'none';
+  $('maxVideoField').style.display  =state.maxvideo?'block':'none';
+
+  // Build directive list
+  const parts=[];
+  if(state.index&&!state.noindex) parts.push('index');
+  if(state.noindex)               parts.push('noindex');
+  if(state.follow&&!state.nofollow) parts.push('follow');
+  if(state.nofollow)              parts.push('nofollow');
+  if(state.nosnippet)             parts.push('nosnippet');
+  if(state.noarchive)             parts.push('noarchive');
+  if(state.noimageindex)          parts.push('noimageindex');
+  if(state.notranslate)           parts.push('notranslate');
+  if(state.maxsnippet)            parts.push('max-snippet:'+$('maxSnippetVal').value);
+  if(state.maximage)              parts.push('max-image-preview:'+$('maxImageVal').value);
+  if(state.maxvideo)              parts.push('max-video-preview:'+$('maxVideoVal').value);
+  if(state.noodp)                 parts.push('noodp');
+
+  const content=parts.join(', ')||'index, follow';
+  const tag=`<meta name="robots" content="${content}">`;
+  $('liveTag').innerHTML=syntaxHL(tag);
+
+  // Warnings
+  const warns=[];
+  if(state.noindex) warns.push('⚠️ noindex will remove this page from Google Search results. Use only if intentional.');
+  if(state.nofollow&&state.noindex) warns.push('🔒 noindex + nofollow: Crawlers cannot pass link equity from this page.');
+  if(state.nosnippet) warns.push('📄 nosnippet: No description will appear in search results — this may reduce CTR.');
+  $('warningBox').textContent=warns.join(' ');
+  $('warningBox').classList.toggle('show',warns.length>0);
+
+  // Impact pills
+  const impacts=[
+    {label:'Indexed in Google', safe:!state.noindex, txt:state.noindex?'Disabled':'Enabled'},
+    {label:'Link Equity Flows', safe:!state.nofollow,txt:state.nofollow?'Blocked':'Flowing'},
+    {label:'Snippet Shown',     safe:!state.nosnippet,txt:state.nosnippet?'Hidden':'Visible'},
+    {label:'Cached Version',    safe:!state.noarchive,txt:state.noarchive?'Disabled':'Allowed'},
+  ];
+  $('impactRow').innerHTML=impacts.map(i=>`<div class="mrg-impact-pill ${i.safe?'safe':'active'}"><div class="mrg-impact-dot"></div>${esc(i.label)}: <strong>${i.txt}</strong></div>`).join('');
+
+  save();
+}
+
+function generate(){
+  const parts=[];
+  if(state.index&&!state.noindex) parts.push('index');
+  if(state.noindex)               parts.push('noindex');
+  if(state.follow&&!state.nofollow) parts.push('follow');
+  if(state.nofollow)              parts.push('nofollow');
+  if(state.nosnippet)             parts.push('nosnippet');
+  if(state.noarchive)             parts.push('noarchive');
+  if(state.noimageindex)          parts.push('noimageindex');
+  if(state.notranslate)           parts.push('notranslate');
+  if(state.maxsnippet)            parts.push('max-snippet:'+$('maxSnippetVal').value);
+  if(state.maximage)              parts.push('max-image-preview:'+$('maxImageVal').value);
+  if(state.maxvideo)              parts.push('max-video-preview:'+$('maxVideoVal').value);
+  if(state.noodp)                 parts.push('noodp');
+  const gbVal=$('gbotVal').value.trim();
+  const bbVal=$('bbotVal').value.trim();
+
+  const lines=[
+    '<!-- ===== Robots Meta Tags ===== -->',
+    `<meta name="robots"    content="${parts.join(', ')||'index, follow'}">`,
+    gbVal?`<meta name="googlebot" content="${esc(gbVal)}">` :'',
+    bbVal?`<meta name="bingbot"   content="${esc(bbVal)}">` :'',
+  ].filter(Boolean).join('\n');
+
+  $('outputCode').innerHTML=syntaxHL(lines);
+  $('outputPanel').style.display='block';
+  $('outputPanel').scrollIntoView({behavior:'smooth',block:'start'});
+  showToast('✅ Robots tags generated!');
+
+  $('btnCopy').onclick=()=>navigator.clipboard.writeText(lines).then(()=>showToast('📋 Copied!'));
+  $('btnDownload').onclick=()=>{
+    const b=new Blob([lines],{type:'text/html'});
+    const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(b),download:'robots-meta-tags.html'});
+    document.body.appendChild(a);a.click();document.body.removeChild(a);showToast('⬇️ Downloaded!');
+  };
+}
+
+function syntaxHL(html){
+  return html
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(&lt;!--.*?--&gt;)/g,'<span class="hl-com">$1</span>')
+    .replace(/(&lt;\/?[a-z][a-z0-9]*)/gi,'<span class="hl-tag">$1</span>')
+    .replace(/(&gt;)/g,'<span class="hl-tag">$1</span>')
+    .replace(/ ([a-z][a-z0-9:_-]*)=/gi,' <span class="hl-attr">$1</span>=')
+    .replace(/&quot;([^&]*)&quot;/g,'&quot;<span class="hl-val">$1</span>&quot;');
+}
+
+function save(){
+  try{localStorage.setItem(LS,JSON.stringify(state));}catch(e){}
+}
+function load(){
+  try{const s=JSON.parse(localStorage.getItem(LS)||'{}');Object.assign(state,s);}catch(e){}
+}
+
+function showToast(msg){const t=document.createElement('div');t.className='prem-toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2400);}
+
+function init(){
+  load();
+  buildGrid();
+  update();
+
+  // Preset buttons
+  document.querySelectorAll('.mrg-preset-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      TOGGLES.forEach(t=>state[t.id]=false);
+      const p=PRESETS[btn.dataset.preset]||{};
+      Object.assign(state,p);
+      refreshGrid();update();
+      showToast('⚡ Preset applied: '+btn.querySelector('.mrg-preset-name').textContent);
+    });
+  });
+
+  ['maxSnippetVal','maxImageVal','maxVideoVal','gbotVal','bbotVal'].forEach(id=>{
+    const el=$(id); if(el) el.addEventListener('input',update);
+  });
+  $('btnGenerate').addEventListener('click',generate);
+  $('btnReset').addEventListener('click',()=>{
+    TOGGLES.forEach(t=>state[t.id]=t.default);
+    refreshGrid();update();
+    $('outputPanel').style.display='none';
+    $('gbotVal').value='';$('bbotVal').value='';
+    localStorage.removeItem(LS);
+    showToast('🗑️ Reset to defaults!');
+  });
+
+  const sb=$('mrgScrollTop');
+  window.addEventListener('scroll',()=>sb.classList.toggle('show',scrollY>400));
+  sb.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+}
+document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+</body>
+</html>

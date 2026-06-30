@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/uuid-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="UUID Generator | ApneSoftware">
+<meta property="og:description" content="Generate random UUIDs, single or bulk. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/uuid-generator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="UUID Generator | ApneSoftware">
+<meta name="twitter:description" content="Generate random UUIDs, single or bulk. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"UUID Generator","description":"Generate random UUIDs, single or bulk. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/uuid-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>UUID Generator | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .uuid-list{font-family:'Consolas','Courier New',monospace;font-size:.88rem;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-top:14px;max-height:400px;overflow-y:auto}
+  .uuid-item{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border)}
+  .uuid-item:last-child{border-bottom:none}
+  .uuid-item button{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:.85rem}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🆔 UUID Generator</h1>
+    <p>Generate random UUIDs (v4) — one at a time or in bulk.</p>
+  </div>
+
+  <div class="panel">
+    <div class="row">
+      <div class="field" style="max-width:160px">
+        <label for="uuidCount">How many?</label>
+        <input type="number" id="uuidCount" value="1" min="1" max="100">
+      </div>
+      <div class="field" style="max-width:160px">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:8px">
+          <input type="checkbox" id="uppercaseToggle" style="width:auto"> Uppercase
+        </label>
+      </div>
+      <div class="field" style="max-width:160px">
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:8px">
+          <input type="checkbox" id="hyphenToggle" checked style="width:auto"> With hyphens
+        </label>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="generateBtn">🎲 Generate</button>
+      <button class="btn secondary" id="copyAllBtn">📋 Copy All</button>
+      <button class="btn secondary" id="downloadBtn">⬇️ Download .txt</button>
+    </div>
+
+    <div class="uuid-list" id="uuidList"></div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Generates RFC 4122 version 4 UUIDs (Universally Unique Identifiers) — random IDs commonly used for database keys, session tokens, or unique references in code. Generate a single one or hundreds at once.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Choose how many UUIDs you need and click Generate.</li>
+        <li>Toggle uppercase or hyphen formatting if needed.</li>
+        <li>Copy all, or download as a text file.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>RFC 4122 version 4 UUID (Universally Unique Identifier) जनरेट करता है — random IDs जो database keys, session tokens, या कोड में unique references के लिए इस्तेमाल होते हैं। एक बार में एक या सैकड़ों UUID बना सकते हैं।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>कितने UUID चाहिए चुनें और Generate दबाएं।</li>
+        <li>ज़रूरत हो तो uppercase या hyphen फॉर्मेटिंग चालू करें।</li>
+        <li>सब कॉपी करें, या टेक्स्ट फाइल के रूप में डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+let currentUUIDs = [];
+
+function generateUUID(){
+  return crypto.randomUUID();
+}
+
+function formatUUID(uuid){
+  const upper = document.getElementById('uppercaseToggle').checked;
+  const hyphen = document.getElementById('hyphenToggle').checked;
+  let result = uuid;
+  if(!hyphen) result = result.replace(/-/g, '');
+  if(upper) result = result.toUpperCase();
+  return result;
+}
+
+function render(){
+  const list = document.getElementById('uuidList');
+  list.innerHTML = '';
+  currentUUIDs.forEach((uuid, i)=>{
+    const formatted = formatUUID(uuid);
+    const item = document.createElement('div');
+    item.className = 'uuid-item';
+    item.innerHTML = `<span>${formatted}</span><button data-i="${i}">📋</button>`;
+    list.appendChild(item);
+  });
+  list.querySelectorAll('button').forEach(btn=>{
+    btn.addEventListener('click', (e)=>{
+      copyText(formatUUID(currentUUIDs[btn.dataset.i]), btn);
+    });
+  });
+}
+
+document.getElementById('generateBtn').addEventListener('click', ()=>{
+  const count = Math.max(1, Math.min(100, parseInt(document.getElementById('uuidCount').value) || 1));
+  currentUUIDs = Array.from({length: count}, generateUUID);
+  render();
+});
+
+document.getElementById('uppercaseToggle').addEventListener('input', render);
+document.getElementById('hyphenToggle').addEventListener('input', render);
+
+document.getElementById('copyAllBtn').addEventListener('click', (e)=>{
+  const text = currentUUIDs.map(formatUUID).join('\n');
+  copyText(text, e.target);
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  const text = currentUUIDs.map(formatUUID).join('\n');
+  downloadText('uuids.txt', text);
+});
+
+currentUUIDs = [generateUUID()];
+render();
+</script>
+</body>
+</html>

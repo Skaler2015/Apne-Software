@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-rotate.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Rotate — Rotate Pages | ApneSoftware">
+<meta property="og:description" content="Rotate pages. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-rotate.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Rotate — Rotate Pages | ApneSoftware">
+<meta name="twitter:description" content="Rotate pages. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Rotate","description":"Rotate pages. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-rotate.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF Rotate — Rotate Pages | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .page-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin-top:18px}
+  .page-card{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center}
+  .page-card canvas, .page-card img{width:100%;border-radius:4px;border:1px solid var(--border);transition:.2s}
+  .page-card .lbl{font-size:.78rem;color:var(--text-dim);margin:6px 0}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔃 PDF Rotate</h1>
+    <p>Rotate the pages of a PDF — all pages at once, or one at a time.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag & drop your PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div class="btn-row" id="allRow" style="display:none">
+      <button class="btn secondary" onclick="rotateAll(-90)">⟲ Rotate all left</button>
+      <button class="btn secondary" onclick="rotateAll(90)">⟳ Rotate all right</button>
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+
+    <div class="page-grid" id="pageGrid"></div>
+
+    <div class="btn-row" id="saveRow" style="display:none">
+      <button class="btn" id="saveBtn">💾 Save PDF and Download</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>A sideways or upside-down page is one of the most common small annoyances with scanned PDFs — it happens when a document is fed into a scanner the wrong way, when a phone is held in the wrong orientation while photographing pages, or when pages from different sources with different orientations get combined into one file. Rather than re-scanning the document or living with a page you have to tilt your head to read, this tool lets you rotate any page, or every page, of a PDF by 90, 180, or 270 degrees in just a couple of clicks.</p>
+      <p>You can apply a single rotation to the entire document at once if every page has the same orientation problem, which is the most common case with a document that was simply scanned sideways from start to finish. Alternatively, you can go page by page and rotate only the specific pages that need it, leaving correctly oriented pages untouched — useful for documents assembled from multiple sources where only a few pages came in rotated while the rest were fine. A live preview shows you exactly how each page will look after rotation before you finalize anything, so there's no guesswork and no need to download a test version just to check whether you got the right angle.</p>
+      <p>This comes up constantly with documents scanned on shared office scanners or multifunction printers, where it's easy for a page to get fed in slightly wrong, especially with double-sided scanning or mixed-orientation source documents like a mix of portrait letters and landscape spreadsheets. Fixing this after the fact with this tool is far faster than walking back to the scanner, finding the original paper, and redoing the entire scan just because of one or two misaligned pages.</p>
+      <p>As with the other PDF tools here, rotation happens entirely within your browser; the file is processed locally and never uploaded to a remote server, so there's no waiting on an upload or download round-trip and no concern about where a copy of your document might end up. Once you're satisfied with the orientation of every page, a single click saves the corrected PDF, ready to download, print, or share looking exactly the way it should. There's no limit on how many pages you can fix in one pass, no watermark added to the output, and no account or sign-up required, so it works just as well for a one-page certificate as it does for a hundred-page scanned report with orientation problems scattered throughout.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Rotate individual pages or all pages using the rotate buttons.</li>
+        <li>Save and download the corrected PDF.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>कोई पन्ना तिरछा या उल्टा होना scanned PDFs के साथ सबसे आम छोटी परेशानियों में से एक है — यह तब होता है जब कोई document scanner में गलत तरीके से डाला जाता है, पन्नों की फोटो खींचते वक्त phone गलत orientation में पकड़ा जाता है, या अलग-अलग orientation वाले अलग-अलग स्रोतों के पन्ने एक file में मिल जाते हैं। document को दोबारा scan करने या किसी पन्ने को पढ़ने के लिए सिर तिरछा करने की बजाय, यह टूल आपको PDF के किसी भी पन्ने, या सभी पन्नों को, बस कुछ क्लिक में 90, 180, या 270 डिग्री rotate करने देता है।</p>
+      <p>अगर पूरे document में orientation की समस्या एक जैसी है, तो आप पूरे document पर एक साथ rotation लगा सकते हैं, जो ऐसे document के लिए सबसे आम स्थिति है जो शुरू से आखिर तक बस तिरछा scan हो गया था। वैकल्पिक रूप से, आप पन्ना-दर-पन्ना जाकर सिर्फ उन specific पन्नों को rotate कर सकते हैं जिन्हें इसकी ज़रूरत है, सही orientation वाले पन्नों को छेड़े बिना — यह उन documents के लिए उपयोगी है जो कई स्रोतों से जोड़े गए हों जहां सिर्फ कुछ पन्ने ही rotated आए हों जबकि बाकी ठीक थे। कुछ भी finalize करने से पहले एक live preview दिखाता है कि rotation के बाद हर पन्ना ठीक कैसा दिखेगा।</p>
+      <p>यह shared office scanners या multifunction printers पर scan किए गए documents के साथ लगातार होता है, जहां double-sided scanning या portrait letters और landscape spreadsheets जैसे mixed-orientation source documents के साथ किसी पन्ने का थोड़ा गलत feed होना आसान है। इसे बाद में इस टूल से ठीक करना scanner तक वापस जाने, original paper ढूंढने, और सिर्फ एक-दो गलत-संरेखित पन्नों की वजह से पूरा scan दोबारा करने से कहीं ज़्यादा तेज़ है।</p>
+      <p>यहां के बाकी PDF tools की तरह, rotation पूरी तरह आपके browser के अंदर होती है; file locally process होती है और कभी किसी remote server पर अपलोड नहीं होती, तो किसी upload या download round-trip का इंतज़ार नहीं करना पड़ता और इस बात की कोई चिंता नहीं कि आपके document की कोई copy कहां पहुंच सकती है। हर पन्ने की orientation से संतुष्ट होने के बाद, एक क्लिक corrected PDF को save कर देता है, बिल्कुल वैसी दिखने के लिए तैयार जैसी उसे दिखना चाहिए — download, print, या share करने के लिए। एक बार में कितने पन्ने ठीक कर सकते हैं इसकी कोई सीमा नहीं, output पर कोई watermark नहीं जुड़ता, और किसी account या sign-up की ज़रूरत नहीं, तो यह एक पन्ने के certificate के लिए जितना अच्छा काम करता है, उतना ही सौ-पन्नों की scanned report के लिए भी जिसमें जगह-जगह orientation की समस्याएं हों।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>रोटेट बटन से पेज को अलग-अलग या सभी को एक साथ घुमाएं।</li>
+        <li>ठीक की गई PDF सेव करें और डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let currentFile = null;
+let rotations = []; // degrees added per page (0,90,180,270)
+let pageCount = 0;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+async function handleFile(file){
+  currentFile = file;
+  const grid = document.getElementById('pageGrid');
+  grid.innerHTML = '';
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Loading...';
+
+  const arrayBuf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+  pageCount = pdf.numPages;
+  rotations = new Array(pageCount).fill(0);
+
+  for(let i=1; i<=pdf.numPages; i++){
+    const page = await pdf.getPage(i);
+    const viewport = page.getViewport({ scale: 0.5 });
+    const canvas = document.createElement('canvas');
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext('2d');
+    await page.render({ canvasContext: ctx, viewport }).promise;
+
+    const card = document.createElement('div');
+    card.className = 'page-card';
+    card.id = 'card-' + (i-1);
+    card.innerHTML = `
+      <canvas style="transform:rotate(0deg)" id="canvas-${i-1}"></canvas>
+      <div class="lbl">Page ${i}</div>
+      <div class="btn-row" style="margin:0;justify-content:center">
+        <button class="icon-btn" onclick="rotateOne(${i-1},-90)" style="width:auto;padding:4px 10px">⟲</button>
+        <button class="icon-btn" onclick="rotateOne(${i-1},90)" style="width:auto;padding:4px 10px">⟳</button>
+      </div>`;
+    grid.appendChild(card);
+    const targetCanvas = document.getElementById(`canvas-${i-1}`);
+    targetCanvas.width = canvas.width;
+    targetCanvas.height = canvas.height;
+    targetCanvas.getContext('2d').drawImage(canvas, 0, 0);
+  }
+
+  status.textContent = `✅ ${pageCount} pages loaded — rotate them all together or one by one`;
+  document.getElementById('allRow').style.display = 'flex';
+  document.getElementById('saveRow').style.display = 'flex';
+}
+
+function rotateOne(idx, deg){
+  rotations[idx] = (rotations[idx] + deg + 360) % 360;
+  const canvas = document.getElementById(`canvas-${idx}`);
+  canvas.style.transform = `rotate(${rotations[idx]}deg)`;
+}
+
+function rotateAll(deg){
+  for(let i=0; i<pageCount; i++) rotateOne(i, deg);
+}
+
+document.getElementById('saveBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Saving PDF...';
+  try{
+    const { PDFDocument, degrees } = PDFLib;
+    const bytes = await currentFile.arrayBuffer();
+    const pdfDoc = await PDFDocument.load(bytes);
+    const pages = pdfDoc.getPages();
+    pages.forEach((page, i) => {
+      const current = page.getRotation().angle;
+      page.setRotation(degrees(current + rotations[i]));
+    });
+    const newBytes = await pdfDoc.save();
+    const blob = new Blob([newBytes], {type:'application/pdf'});
+    downloadBlob('rotated.pdf', blob);
+    status.textContent = '✅ Downloaded!';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-viewer.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Viewer — View PDF Online | ApneSoftware">
+<meta property="og:description" content="View a PDF online. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-viewer.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Viewer — View PDF Online | ApneSoftware">
+<meta name="twitter:description" content="View a PDF online. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Viewer","description":"View a PDF online. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-viewer.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF Viewer — View PDF Online | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  #viewerCanvas{display:block;margin:0 auto;border:1px solid var(--border);border-radius:6px;max-width:100%}
+  .viewer-controls{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px;flex-wrap:wrap}
+  .viewer-controls span{color:var(--text-dim);font-size:.9rem;min-width:90px;text-align:center}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>👁️ PDF Viewer</h1>
+    <p>View PDF files directly in your browser, page by page — no download needed.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div id="viewerArea" style="display:none">
+      <canvas id="viewerCanvas"></canvas>
+      <div class="viewer-controls">
+        <button class="btn secondary" id="prevBtn">⬅️ Previous</button>
+        <span id="pageInfo">1 / 1</span>
+        <button class="btn secondary" id="nextBtn">Next ➡️</button>
+        <button class="btn secondary" id="zoomOutBtn">➖</button>
+        <span id="zoomInfo">100%</span>
+        <button class="btn secondary" id="zoomInBtn">➕</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>View any PDF file directly in your browser, page by page, without downloading it first.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Use the next/previous buttons to flip through pages.</li>
+        <li>Use + and - to zoom in or out.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल किसी भी PDF फाइल को बिना डाउनलोड किए सीधे ब्राउज़र में पेज दर पेज देखने देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>अगला/पिछला बटन से पेज बदलें।</li>
+        <li>ज़ूम करने के लिए + और - इस्तेमाल करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let pdfDoc = null;
+let currentPage = 1;
+let zoom = 1;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+async function handleFile(file){
+  const arrayBuf = await file.arrayBuffer();
+  pdfDoc = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+  currentPage = 1;
+  zoom = 1;
+  document.getElementById('viewerArea').style.display = 'block';
+  renderPage();
+}
+
+async function renderPage(){
+  const page = await pdfDoc.getPage(currentPage);
+  const viewport = page.getViewport({ scale: zoom * 1.3 });
+  const canvas = document.getElementById('viewerCanvas');
+  canvas.width = viewport.width;
+  canvas.height = viewport.height;
+  const ctx = canvas.getContext('2d');
+  await page.render({ canvasContext: ctx, viewport }).promise;
+
+  document.getElementById('pageInfo').textContent = `${currentPage} / ${pdfDoc.numPages}`;
+  document.getElementById('zoomInfo').textContent = Math.round(zoom*100) + '%';
+}
+
+document.getElementById('prevBtn').addEventListener('click', ()=>{
+  if(currentPage > 1){ currentPage--; renderPage(); }
+});
+document.getElementById('nextBtn').addEventListener('click', ()=>{
+  if(currentPage < pdfDoc.numPages){ currentPage++; renderPage(); }
+});
+document.getElementById('zoomInBtn').addEventListener('click', ()=>{
+  zoom = Math.min(zoom + 0.2, 3);
+  renderPage();
+});
+document.getElementById('zoomOutBtn').addEventListener('click', ()=>{
+  zoom = Math.max(zoom - 0.2, 0.4);
+  renderPage();
+});
+</script>
+</body>
+</html>

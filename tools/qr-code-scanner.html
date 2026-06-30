@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/qr-code-scanner.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="QR Code Scanner — Decode QR from an Image | ApneSoftware">
+<meta property="og:description" content="Decode a QR code from an uploaded image. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/qr-code-scanner.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QR Code Scanner — Decode QR from an Image | ApneSoftware">
+<meta name="twitter:description" content="Decode a QR code from an uploaded image. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"QR Code Scanner","description":"Decode a QR code from an uploaded image. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/qr-code-scanner.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>QR Code Scanner — Decode QR from an Image | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .preview-img{max-width:100%;max-height:320px;border-radius:10px;border:1px solid var(--border);margin-bottom:14px}
+  .result-box{
+    background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:16px;
+    font-family:'Consolas','Courier New',monospace;font-size:.9rem;word-break:break-all;margin-top:14px;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📷 QR Code Scanner</h1>
+    <p>Upload an image containing a QR code and instantly decode what it says.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag an image with a QR code here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <img class="preview-img" id="previewImg" alt="Preview">
+      <div id="resultWrap" style="display:none">
+        <div class="result-box" id="resultText"></div>
+        <div class="btn-row">
+          <button class="btn secondary" id="copyBtn">📋 Copy</button>
+          <a class="btn secondary" id="openLinkBtn" href="#" target="_blank" rel="noopener" style="display:none">🔗 Open Link</a>
+        </div>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Decode any QR code from a photo or screenshot — no need to point a camera at it. Useful when someone sends you a QR code image and you just want to read what it contains.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload an image containing a QR code.</li>
+        <li>The decoded text or link appears automatically.</li>
+        <li>Copy the result, or open it directly if it's a link.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>किसी फोटो या स्क्रीनशॉट से QR कोड डिकोड करें — कैमरा पॉइंट करने की ज़रूरत नहीं। जब कोई आपको QR कोड की इमेज भेजे और आपको बस यह जानना हो कि उसमें क्या है, तब उपयोगी।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>QR कोड वाली इमेज अपलोड करें।</li>
+        <li>डिकोड किया गया टेक्स्ट या लिंक अपने आप दिख जाएगा।</li>
+        <li>रिजल्ट कॉपी करें, या लिंक है तो सीधे खोलें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    const status = document.getElementById('statusMsg');
+    const resultWrap = document.getElementById('resultWrap');
+    resultWrap.style.display = 'none';
+    status.textContent = '⏳ Scanning...';
+
+    const img = document.getElementById('previewImg');
+    img.src = URL.createObjectURL(files[0]);
+    document.getElementById('afterUpload').style.display = 'block';
+
+    img.onload = ()=>{
+      const canvas = document.createElement('canvas');
+      canvas.width = img.naturalWidth;
+      canvas.height = img.naturalHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const code = jsQR(imageData.data, imageData.width, imageData.height);
+
+      if(code){
+        document.getElementById('resultText').textContent = code.data;
+        resultWrap.style.display = 'block';
+        const openBtn = document.getElementById('openLinkBtn');
+        if(/^https?:\/\//i.test(code.data)){
+          openBtn.href = code.data;
+          openBtn.style.display = 'inline-block';
+        } else {
+          openBtn.style.display = 'none';
+        }
+        status.textContent = '✅ QR code decoded!';
+      } else {
+        status.textContent = '❌ No QR code found in this image. Try a clearer or larger image.';
+      }
+    };
+  }
+});
+
+document.getElementById('copyBtn').addEventListener('click', (e)=>{
+  copyText(document.getElementById('resultText').textContent, e.target);
+});
+</script>
+</body>
+</html>

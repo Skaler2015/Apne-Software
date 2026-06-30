@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/txt-to-pdf.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TXT to PDF | ApneSoftware">
+<meta property="og:description" content="Convert plain text into a paginated PDF. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/txt-to-pdf.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TXT to PDF | ApneSoftware">
+<meta name="twitter:description" content="Convert plain text into a paginated PDF. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"TXT to PDF","description":"Convert plain text into a paginated PDF. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/txt-to-pdf.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>TXT to PDF | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .opt-row{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0}
+  .opt-field{display:flex;flex-direction:column;gap:4px}
+  .opt-field label{font-size:.78rem;color:var(--text-dim);font-weight:600}
+  .opt-field select{padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);font-family:var(--font)}
+  textarea#txtInput{width:100%;min-height:240px;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);font-family:monospace;font-size:.9rem;resize:vertical}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📄 TXT to PDF</h1>
+    <p>Upload a .txt file or paste text below, choose a page size and font size, and download a clean PDF.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag & drop a .txt file here or click to choose (optional — you can also just paste text below)</p>
+      <input type="file" id="fileInput" accept=".txt,text/plain">
+    </div>
+
+    <textarea id="txtInput" placeholder="Paste or type your text here..."></textarea>
+
+    <div class="opt-row">
+      <div class="opt-field">
+        <label for="pageSize">Page Size</label>
+        <select id="pageSize">
+          <option value="a4">A4</option>
+          <option value="letter">Letter</option>
+        </select>
+      </div>
+      <div class="opt-field">
+        <label for="fontSize">Font Size</label>
+        <select id="fontSize">
+          <option value="10">10pt</option>
+          <option value="12" selected>12pt</option>
+          <option value="14">14pt</option>
+          <option value="16">16pt</option>
+        </select>
+      </div>
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+    <div class="btn-row">
+      <button class="btn" id="convertBtn">📄 Convert to PDF</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Plain text files are simple and universal, but they're not always the right format to share or print — a PDF looks more finished, keeps its page breaks and layout fixed no matter what device opens it, and is the expected format for printed handouts, simple reports, or notes you want to archive in a consistent way. This tool turns any .txt file, or text you paste directly, into a properly paginated PDF with sensible margins and word wrapping, ready to share or print.</p>
+      <p>You can either upload an existing .txt file or just type or paste text straight into the box — both approaches end up producing exactly the same kind of result. Choose a page size (A4 is standard in most of the world, Letter is standard in the US and a few other countries) and a font size that suits your content, and the tool automatically wraps your text and splits it across as many pages as needed, just like a word processor would, without you having to manually insert any page breaks yourself.</p>
+      <p>This is useful for turning quick notes, code snippets, exported chat logs, scraped text, or anything else that started life as plain text into something presentable enough to email, print, or file away, especially when the recipient expects a proper document rather than a raw .txt attachment. It's also a fast way to create a basic PDF without opening a full word processor just for a few short paragraphs of plain content.</p>
+      <p>The whole conversion happens locally in your browser using a PDF-generation library — your text is never uploaded anywhere. Once converted, the PDF downloads immediately, with no watermark, no page limit, and no account required. Whether you're converting a two-line note or a multi-page document full of text, the same word-wrapping and pagination logic applies automatically, so you never have to manually check where one page ends and the next begins.</p>
+      <p>One detail worth knowing: this tool uses a standard, widely compatible font rather than trying to preserve any custom font your original text editor might have used, since plain text files don't carry font information at all. If you need rich formatting like bold text, multiple fonts, or embedded images alongside your content, this tool intentionally stays simple and text-only — for richer documents, the site's Word to PDF tool is a better fit if your source content already has formatting applied.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload a .txt file or paste your text into the box.</li>
+        <li>Choose your page size and font size.</li>
+        <li>Click Convert and download the PDF.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>Plain text files सरल और universal होती हैं, पर शेयर करने या print करने के लिए हमेशा सही format नहीं होतीं — एक PDF ज़्यादा finished दिखती है, उसके page breaks और layout किसी भी device पर खुलने पर एक जैसे रहते हैं, और printed handouts, simple reports, या एक जैसा रखकर archive करने वाले notes के लिए यही expected format है। यह टूल किसी भी .txt file को, या सीधे paste किए गए text को, सही margins और word wrapping वाली properly paginated PDF में बदल देता है, share या print करने के लिए तैयार।</p>
+      <p>आप या तो कोई मौजूदा .txt file अपलोड कर सकते हैं या सीधे box में text टाइप या paste कर सकते हैं — दोनों तरीके एक जैसे काम करते हैं। एक page size चुनें (दुनिया के ज़्यादातर हिस्सों में A4 standard है, US और कुछ और देशों में Letter) और अपने content के हिसाब से font size चुनें, और टूल अपने आप आपके text को wrap करके जितने पन्नों की ज़रूरत हो उतनों में बांट देता है, बिल्कुल किसी word processor की तरह।</p>
+      <p>यह quick notes, code snippets, exported chat logs, scrape किए गए text, या plain text के तौर पर शुरू हुई किसी भी चीज़ को email, print, या file करने लायक कुछ presentable बनाने के लिए उपयोगी है। यह सिर्फ कुछ paragraphs के plain content के लिए पूरा word processor खोले बिना एक basic PDF बनाने का तेज़ तरीका भी है।</p>
+      <p>पूरा conversion एक PDF-generation library इस्तेमाल करके आपके browser में locally होता है — आपका text कहीं अपलोड नहीं होता। Convert होने के बाद, PDF तुरंत download हो जाती है, कोई watermark नहीं, कोई page limit नहीं, और किसी account की ज़रूरत नहीं। चाहे आप दो लाइनों का नोट convert कर रहे हों या text से भरा कई पन्नों का document, वही word-wrapping और pagination logic अपने आप लागू होता है, तो आपको कभी हाथ से यह चेक नहीं करना पड़ता कि एक पन्ना कहां खत्म होता है और अगला कहां शुरू।</p>
+      <p>एक बात जानने लायक है: यह टूल एक standard, व्यापक रूप से compatible font इस्तेमाल करता है, आपके original text editor में इस्तेमाल हुए किसी custom font को बनाए रखने की कोशिश नहीं करता, क्योंकि plain text files में font की जानकारी होती ही नहीं। अगर आपको bold text, कई fonts, या content के साथ embedded images जैसी रंगीन formatting चाहिए, तो यह टूल जानबूझकर simple और सिर्फ-text तक सीमित रहता है — अगर आपके source content में पहले से formatting लगी हो तो ज़्यादा समृद्ध documents के लिए साइट का Word to PDF टूल बेहतर रहेगा।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>.txt file अपलोड करें या अपना text box में paste करें।</li>
+        <li>अपना page size और font size चुनें।</li>
+        <li>Convert बटन दबाएं और PDF डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const txtInput = document.getElementById('txtInput');
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length) handleFile(files[0]);
+});
+
+async function handleFile(file){
+  const text = await file.text();
+  txtInput.value = text;
+  document.getElementById('statusMsg').textContent = `✅ Loaded "${file.name}"`;
+}
+
+document.getElementById('convertBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  const text = txtInput.value;
+  if(!text.trim()){ status.textContent = '⚠️ Please upload a file or type/paste some text first'; return; }
+
+  status.textContent = '⏳ Building PDF...';
+  try{
+    const { PDFDocument, StandardFonts, rgb } = PDFLib;
+    const pageSizeChoice = document.getElementById('pageSize').value;
+    const fontSize = parseInt(document.getElementById('fontSize').value, 10);
+    const dims = pageSizeChoice === 'a4' ? [595.28, 841.89] : [612, 792];
+    const margin = 50;
+    const lineHeight = fontSize * 1.4;
+
+    const pdfDoc = await PDFDocument.create();
+    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+    const maxWidth = dims[0] - margin * 2;
+
+    // Word-wrap every paragraph (preserving existing line breaks) into lines that fit the page width
+    const rawLines = text.split('\n');
+    const wrappedLines = [];
+    rawLines.forEach(rawLine => {
+      if(rawLine.trim() === ''){ wrappedLines.push(''); return; }
+      const words = rawLine.split(' ');
+      let current = '';
+      words.forEach(word => {
+        const test = current ? current + ' ' + word : word;
+        const width = font.widthOfTextAtSize(test, fontSize);
+        if(width > maxWidth && current){
+          wrappedLines.push(current);
+          current = word;
+        } else {
+          current = test;
+        }
+      });
+      wrappedLines.push(current);
+    });
+
+    let page = pdfDoc.addPage(dims);
+    let y = dims[1] - margin;
+
+    wrappedLines.forEach(line => {
+      if(y < margin){
+        page = pdfDoc.addPage(dims);
+        y = dims[1] - margin;
+      }
+      page.drawText(line, { x: margin, y, size: fontSize, font, color: rgb(0.1,0.1,0.1) });
+      y -= lineHeight;
+    });
+
+    const pdfBytes = await pdfDoc.save();
+    const blob = new Blob([pdfBytes], {type:'application/pdf'});
+    downloadBlob('converted.pdf', blob);
+    status.textContent = `✅ Converted and downloaded! (${pdfDoc.getPageCount()} page${pdfDoc.getPageCount()>1?'s':''})`;
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

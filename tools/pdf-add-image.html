@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-add-image.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Add Image to PDF | ApneSoftware">
+<meta property="og:description" content="Place a photo, logo or stamp on a page. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-add-image.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Add Image to PDF | ApneSoftware">
+<meta name="twitter:description" content="Place a photo, logo or stamp on a page. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Add Image to PDF","description":"Place a photo, logo or stamp on a page. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-add-image.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Add Image to PDF | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .page-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px}
+  .page-nav span{color:var(--text-dim);font-size:.9rem;min-width:80px;text-align:center}
+  .edit-stage{position:relative;display:inline-block;margin-top:14px;max-width:100%;user-select:none;touch-action:none}
+  .edit-stage canvas{display:block;max-width:100%;border:1px solid var(--border);border-radius:6px}
+  .img-box{position:absolute;box-sizing:border-box;cursor:move;border:1px dashed transparent}
+  .img-box.selected{outline:2px solid var(--accent);outline-offset:1px}
+  .img-box img{width:100%;height:100%;pointer-events:none;display:block}
+  .img-del{
+    position:absolute;top:-10px;right:-10px;width:20px;height:20px;border-radius:50%;
+    background:var(--danger);color:#fff;border:none;cursor:pointer;font-size:.7rem;
+    display:none;align-items:center;justify-content:center;z-index:5;
+  }
+  .img-box.selected .img-del{display:flex}
+  .img-resize{
+    position:absolute;width:14px;height:14px;right:-7px;bottom:-7px;
+    background:var(--accent);border-radius:50%;cursor:nwse-resize;border:2px solid #fff;
+  }
+  .img-dropzone-mini{border:2px dashed var(--border);border-radius:8px;padding:18px;text-align:center;color:var(--text-dim);cursor:pointer;margin-top:14px}
+  .img-dropzone-mini input{display:none}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🖼️ Add Image to PDF</h1>
+    <p>Place a photo, logo, or stamp anywhere on a PDF page.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div id="editorArea" style="display:none">
+      <div class="img-dropzone-mini" id="imgDropzone">
+        <p>📤 Click or drop an image (PNG/JPG) to add it to the current page</p>
+        <input type="file" id="imgInput" accept="image/*">
+      </div>
+
+      <div class="page-nav">
+        <button class="btn secondary" id="prevPageBtn">⬅️</button>
+        <span id="pageInfo">1 / 1</span>
+        <button class="btn secondary" id="nextPageBtn">➡️</button>
+      </div>
+
+      <div class="edit-stage" id="editStage">
+        <canvas id="bgCanvas"></canvas>
+        <div id="overlayLayer" style="position:absolute;inset:0"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="saveBtn">💾 Save PDF and Download</button>
+      </div>
+
+      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool lets you place an image (a photo, logo, or stamp) anywhere on any page of a PDF, then drag and resize it to fit.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Upload an image — it will appear on the current page.</li>
+        <li>Drag/resize it into position, and navigate pages to add more if needed.</li>
+        <li>Click Save and download the final PDF.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल PDF के किसी भी पेज पर इमेज (फोटो, लोगो या स्टैंप) रखने देता है, फिर उसे खींचकर और साइज़ बदलकर सही जगह सेट करने देता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>एक इमेज अपलोड करें — वो मौजूदा पेज पर दिख जाएगी।</li>
+        <li>उसे खींचकर/साइज़ बदलकर सही जगह रखें, ज़रूरत हो तो दूसरे पेज पर जाकर और इमेज जोड़ें।</li>
+        <li>Save बटन दबाएं और फाइनल PDF डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const imgDropzone = document.getElementById('imgDropzone');
+const imgInput = document.getElementById('imgInput');
+const editStage = document.getElementById('editStage');
+const overlayLayer = document.getElementById('overlayLayer');
+const bgCanvas = document.getElementById('bgCanvas');
+
+let currentFile = null;
+let pdfDocJs = null;
+let totalPages = 0;
+let currentPageIndex = 0;
+let renderScale = 1;
+
+let images = []; // {id, page, xPdf, yPdfTop, wPdf, hPdf, dataUrl, mimeType}
+let idCounter = 1;
+let selectedId = null;
+let dragState = null;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+setupDropzone(imgDropzone, imgInput, files => {
+  if(files.length && files[0].type.startsWith('image/')) handleImage(files[0]);
+});
+
+async function handleFile(file){
+  currentFile = file;
+  images = [];
+  selectedId = null;
+  const arrayBuf = await file.arrayBuffer();
+  pdfDocJs = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+  totalPages = pdfDocJs.numPages;
+  currentPageIndex = 0;
+
+  const firstPage = await pdfDocJs.getPage(1);
+  const vp = firstPage.getViewport({ scale: 1 });
+  renderScale = Math.min(560 / vp.width, 1.4);
+
+  document.getElementById('editorArea').style.display = 'block';
+  await renderCurrentPage();
+}
+
+function handleImage(file){
+  const reader = new FileReader();
+  reader.onload = e => {
+    const img = new Image();
+    img.onload = () => {
+      const wPdf = Math.min(150, img.width / 2);
+      const hPdf = wPdf * (img.height / img.width);
+      const entry = {
+        id: idCounter++, page: currentPageIndex,
+        xPdf: 40, yPdfTop: 40, wPdf, hPdf,
+        dataUrl: e.target.result,
+        mimeType: file.type.includes('png') ? 'png' : 'jpg'
+      };
+      images.push(entry);
+      renderOverlayImages();
+      selectElement(entry.id);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+async function renderCurrentPage(){
+  const page = await pdfDocJs.getPage(currentPageIndex + 1);
+  const viewport = page.getViewport({ scale: renderScale });
+  bgCanvas.width = viewport.width;
+  bgCanvas.height = viewport.height;
+  const ctx = bgCanvas.getContext('2d');
+  await page.render({ canvasContext: ctx, viewport }).promise;
+
+  editStage.style.width = viewport.width + 'px';
+  overlayLayer.style.width = viewport.width + 'px';
+  overlayLayer.style.height = viewport.height + 'px';
+
+  document.getElementById('pageInfo').textContent = `${currentPageIndex+1} / ${totalPages}`;
+  renderOverlayImages();
+  deselectAll();
+}
+
+document.getElementById('prevPageBtn').addEventListener('click', async ()=>{
+  if(currentPageIndex > 0){ currentPageIndex--; await renderCurrentPage(); }
+});
+document.getElementById('nextPageBtn').addEventListener('click', async ()=>{
+  if(currentPageIndex < totalPages - 1){ currentPageIndex++; await renderCurrentPage(); }
+});
+
+function renderOverlayImages(){
+  overlayLayer.innerHTML = '';
+  images.filter(im => im.page === currentPageIndex).forEach(im => buildImgDom(im));
+}
+
+function buildImgDom(im){
+  const box = document.createElement('div');
+  box.className = 'img-box';
+  box.dataset.id = im.id;
+  box.style.left = (im.xPdf * renderScale) + 'px';
+  box.style.top = (im.yPdfTop * renderScale) + 'px';
+  box.style.width = (im.wPdf * renderScale) + 'px';
+  box.style.height = (im.hPdf * renderScale) + 'px';
+  if(selectedId === im.id) box.classList.add('selected');
+
+  const imgEl = document.createElement('img');
+  imgEl.src = im.dataUrl;
+  box.appendChild(imgEl);
+
+  const delBtn = document.createElement('button');
+  delBtn.className = 'img-del';
+  delBtn.textContent = '✕';
+  delBtn.addEventListener('mousedown', e=> e.stopPropagation());
+  delBtn.addEventListener('click', (e)=>{ e.stopPropagation(); deleteImage(im.id); });
+  box.appendChild(delBtn);
+
+  box.addEventListener('mousedown', e=> startDrag(e, im, box));
+  box.addEventListener('touchstart', e=> startDrag(e, im, box));
+
+  const resize = document.createElement('div');
+  resize.className = 'img-resize';
+  resize.addEventListener('mousedown', e=> startResize(e, im, box));
+  resize.addEventListener('touchstart', e=> startResize(e, im, box));
+  box.appendChild(resize);
+
+  overlayLayer.appendChild(box);
+}
+
+function startDrag(e, im, box){
+  const point = e.touches ? e.touches[0] : e;
+  dragState = { type:'move', im, box, startX: point.clientX, startY: point.clientY, origLeft: box.offsetLeft, origTop: box.offsetTop };
+  selectElement(im.id);
+  e.stopPropagation();
+  if(e.cancelable) e.preventDefault();
+}
+function startResize(e, im, box){
+  const point = e.touches ? e.touches[0] : e;
+  dragState = { type:'resize', im, box, startX: point.clientX, startY: point.clientY, startW: box.offsetWidth, startH: box.offsetHeight };
+  e.stopPropagation();
+  if(e.cancelable) e.preventDefault();
+}
+function onPointerMove(e){
+  if(!dragState) return;
+  const point = e.touches ? e.touches[0] : e;
+  const dx = point.clientX - dragState.startX;
+  const dy = point.clientY - dragState.startY;
+  const { im, box, type } = dragState;
+
+  if(type === 'move'){
+    let newLeft = dragState.origLeft + dx;
+    let newTop = dragState.origTop + dy;
+    newLeft = Math.max(0, Math.min(newLeft, overlayLayer.clientWidth - box.offsetWidth));
+    newTop = Math.max(0, Math.min(newTop, overlayLayer.clientHeight - box.offsetHeight));
+    box.style.left = newLeft + 'px';
+    box.style.top = newTop + 'px';
+    im.xPdf = newLeft / renderScale;
+    im.yPdfTop = newTop / renderScale;
+  } else if(type === 'resize'){
+    const newW = Math.max(20, dragState.startW + dx);
+    const newH = Math.max(20, dragState.startH + dy);
+    box.style.width = newW + 'px';
+    box.style.height = newH + 'px';
+    im.wPdf = newW / renderScale;
+    im.hPdf = newH / renderScale;
+  }
+  if(e.cancelable) e.preventDefault();
+}
+function onPointerUp(){ dragState = null; }
+document.addEventListener('mousemove', onPointerMove);
+document.addEventListener('mouseup', onPointerUp);
+document.addEventListener('touchmove', onPointerMove, { passive:false });
+document.addEventListener('touchend', onPointerUp);
+
+editStage.addEventListener('mousedown', e=>{ if(e.target === bgCanvas) deselectAll(); });
+
+function selectElement(id){
+  selectedId = id;
+  document.querySelectorAll('.img-box').forEach(b=> b.classList.toggle('selected', b.dataset.id == id));
+}
+function deselectAll(){
+  selectedId = null;
+  document.querySelectorAll('.img-box').forEach(b => b.classList.remove('selected'));
+}
+function deleteImage(id){
+  images = images.filter(im => im.id != id);
+  if(selectedId == id) deselectAll();
+  renderOverlayImages();
+}
+
+document.getElementById('saveBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  if(images.length === 0){ status.textContent = '⚠️ Add at least one image first'; return; }
+
+  status.textContent = '⏳ Building PDF...';
+  try{
+    const { PDFDocument } = PDFLib;
+    const bytes = await currentFile.arrayBuffer();
+    const pdfDoc = await PDFDocument.load(bytes);
+    const pages = pdfDoc.getPages();
+
+    for(const im of images){
+      const page = pages[im.page];
+      if(!page) continue;
+      const imgBytes = await fetch(im.dataUrl).then(r => r.arrayBuffer());
+      const embedded = im.mimeType === 'png' ? await pdfDoc.embedPng(imgBytes) : await pdfDoc.embedJpg(imgBytes);
+      const pageHeight = page.getHeight();
+      const y = pageHeight - im.yPdfTop - im.hPdf;
+      page.drawImage(embedded, { x: im.xPdf, y, width: im.wPdf, height: im.hPdf });
+    }
+
+    const newBytes = await pdfDoc.save();
+    const blob = new Blob([newBytes], {type:'application/pdf'});
+    downloadBlob('with-image.pdf', blob);
+    status.textContent = '✅ Image(s) added and downloaded!';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

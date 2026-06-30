@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/certificate-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Certificate / ID Card Generator (Bulk) | ApneSoftware">
+<meta property="og:description" content="Bulk-generate certificates from a CSV. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/certificate-generator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Certificate / ID Card Generator (Bulk) | ApneSoftware">
+<meta name="twitter:description" content="Bulk-generate certificates from a CSV. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Certificate/ID Card Generator","description":"Bulk-generate certificates from a CSV. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/certificate-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Certificate / ID Card Generator (Bulk) | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .stage{position:relative;display:inline-block;max-width:100%;margin-top:14px;touch-action:none;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .stage img{display:block;max-width:100%;user-select:none;-webkit-user-drag:none}
+  .field-marker{
+    position:absolute;cursor:move;padding:2px 8px;border:1px dashed #7C5CFC;background:rgba(124,92,252,.12);
+    white-space:nowrap;transform:translate(-50%,-50%);font-family:Arial,sans-serif;
+  }
+  .field-list-item{
+    background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:10px;
+  }
+  .field-list-item .removeFieldBtn{float:right;background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);cursor:pointer;padding:3px 8px;font-size:.78rem}
+  .color-row{display:flex;align-items:center;gap:10px}
+  .color-row input[type=color]{width:40px;height:34px;padding:2px;border-radius:6px}
+  .csv-headers{font-size:.78rem;color:var(--text-dim);margin-top:6px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🎓 Certificate / ID Card Generator</h1>
+    <p>Upload a template, position text fields, upload a CSV of names — get one PDF with everyone's certificate.</p>
+  </div>
+
+  <div class="panel">
+    <h3 style="font-size:.95rem;margin-bottom:8px">1️⃣ Upload your certificate/ID template</h3>
+    <div class="dropzone" id="templateDropzone">
+      <p>📤 Drag your certificate background image here or click to choose</p>
+      <input type="file" id="templateInput" accept="image/*">
+    </div>
+
+    <div id="afterTemplate" style="display:none;margin-top:18px">
+      <h3 style="font-size:.95rem;margin-bottom:8px">2️⃣ Position your text fields (drag to move)</h3>
+      <div class="stage" id="stage">
+        <img id="templateImg" alt="Template">
+      </div>
+      <button class="btn secondary" id="addFieldBtn" style="margin-top:10px">+ Add Field</button>
+
+      <div id="fieldsConfig" style="margin-top:14px"></div>
+
+      <h3 style="font-size:.95rem;margin:18px 0 8px">3️⃣ Upload your CSV (one row per certificate)</h3>
+      <div class="dropzone" id="csvDropzone">
+        <p>📤 Drag a .csv file here or click to choose</p>
+        <input type="file" id="csvInput" accept=".csv,text/csv">
+      </div>
+      <div class="csv-headers" id="csvStatus"></div>
+
+      <div class="btn-row" style="margin-top:16px">
+        <button class="btn" id="generateBtn">🎓 Generate All & Download PDF</button>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Generate personalized certificates or ID cards in bulk — upload your design as a background image, position text fields like name and date by dragging them into place, then upload a CSV with one row per person. Every certificate is combined into a single downloadable PDF.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your certificate or ID card design as a background image.</li>
+        <li>Add text fields and drag them to where the name, date, etc. should appear. Set font size and color for each.</li>
+        <li>Upload a CSV file, map each field to a CSV column, then click Generate All & Download PDF.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>बल्क में पर्सनलाइज़्ड सर्टिफिकेट या ID कार्ड बनाएं — अपनी डिज़ाइन को बैकग्राउंड इमेज की तरह अपलोड करें, नाम, तारीख जैसे टेक्स्ट फील्ड को ड्रैग करके सही जगह पर रखें, फिर एक CSV अपलोड करें जिसमें हर व्यक्ति के लिए एक पंक्ति हो। हर सर्टिफिकेट एक ही डाउनलोड करने योग्य PDF में मिल जाता है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना सर्टिफिकेट या ID कार्ड डिज़ाइन बैकग्राउंड इमेज की तरह अपलोड करें।</li>
+        <li>टेक्स्ट फील्ड जोड़ें और उन्हें वहां ड्रैग करें जहां नाम, तारीख वगैरह दिखनी चाहिए। हर एक का फॉन्ट साइज़ और कलर सेट करें।</li>
+        <li>CSV फाइल अपलोड करें, हर फील्ड को CSV कॉलम से मैप करें, फिर Generate All & Download PDF दबाएं।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.umd.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const templateDropzone = document.getElementById('templateDropzone');
+const templateInput = document.getElementById('templateInput');
+const stage = document.getElementById('stage');
+const templateImg = document.getElementById('templateImg');
+
+let fields = []; // { id, name, xPct, yPct, fontSize, color, align, column }
+let csvData = null;
+let csvHeaders = [];
+let fieldIdCounter = 0;
+
+setupDropzone(templateDropzone, templateInput, files => {
+  if(files.length && files[0].type.startsWith('image/')){
+    templateImg.onload = ()=>{
+      document.getElementById('afterTemplate').style.display = 'block';
+      if(fields.length === 0) addField('Name', 50, 50);
+    };
+    templateImg.src = URL.createObjectURL(files[0]);
+  }
+});
+
+function addField(name, xPct, yPct){
+  fieldIdCounter++;
+  fields.push({
+    id: fieldIdCounter, name: name || ('Field ' + fieldIdCounter),
+    xPct: xPct !== undefined ? xPct : 50, yPct: yPct !== undefined ? yPct : 50,
+    fontSize: 36, color: '#000000', align: 'center', column: ''
+  });
+  renderFieldMarkers();
+  renderFieldsConfig();
+}
+
+document.getElementById('addFieldBtn').addEventListener('click', ()=>{
+  if(fields.length >= 5){ alert('Maximum 5 fields supported.'); return; }
+  addField('Field ' + (fieldIdCounter+1), 50, 60);
+});
+
+function renderFieldMarkers(){
+  stage.querySelectorAll('.field-marker').forEach(el=>el.remove());
+  fields.forEach(f=>{
+    const marker = document.createElement('div');
+    marker.className = 'field-marker';
+    marker.dataset.id = f.id;
+    marker.style.left = f.xPct + '%';
+    marker.style.top = f.yPct + '%';
+    marker.style.fontSize = Math.max(10, f.fontSize * 0.5) + 'px';
+    marker.style.color = f.color;
+    marker.textContent = '{{' + f.name + '}}';
+    stage.appendChild(marker);
+    wireMarkerDrag(marker, f);
+  });
+}
+
+function wireMarkerDrag(marker, field){
+  let dragging = false;
+  function start(e){ dragging = true; e.preventDefault(); }
+  function move(e){
+    if(!dragging) return;
+    const pt = e.touches ? e.touches[0] : e;
+    const rect = stage.getBoundingClientRect();
+    let xPct = ((pt.clientX - rect.left) / rect.width) * 100;
+    let yPct = ((pt.clientY - rect.top) / rect.height) * 100;
+    xPct = Math.max(0, Math.min(100, xPct));
+    yPct = Math.max(0, Math.min(100, yPct));
+    field.xPct = xPct; field.yPct = yPct;
+    marker.style.left = xPct + '%';
+    marker.style.top = yPct + '%';
+  }
+  function end(){ dragging = false; }
+  marker.addEventListener('mousedown', start);
+  marker.addEventListener('touchstart', start, {passive:false});
+  window.addEventListener('mousemove', move);
+  window.addEventListener('touchmove', move, {passive:false});
+  window.addEventListener('mouseup', end);
+  window.addEventListener('touchend', end);
+}
+
+function renderFieldsConfig(){
+  const wrap = document.getElementById('fieldsConfig');
+  wrap.innerHTML = '';
+  fields.forEach(f=>{
+    const item = document.createElement('div');
+    item.className = 'field-list-item';
+    item.innerHTML = `
+      <button class="removeFieldBtn" data-id="${f.id}">✕ Remove</button>
+      <div class="row">
+        <div class="field"><label>Field name</label><input type="text" data-id="${f.id}" data-prop="name" value="${f.name}"></div>
+        <div class="field"><label>CSV column</label>
+          <select data-id="${f.id}" data-prop="column">
+            <option value="">— select —</option>
+            ${csvHeaders.map(h=>'<option value="'+h+'" '+(f.column===h?'selected':'')+'>'+h+'</option>').join('')}
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Font size</label><input type="number" data-id="${f.id}" data-prop="fontSize" value="${f.fontSize}" min="8" max="200"></div>
+        <div class="field" style="max-width:120px"><label>Color</label><div class="color-row"><input type="color" data-id="${f.id}" data-prop="color" value="${f.color}"></div></div>
+        <div class="field" style="max-width:140px"><label>Align</label>
+          <select data-id="${f.id}" data-prop="align">
+            <option value="left" ${f.align==='left'?'selected':''}>Left</option>
+            <option value="center" ${f.align==='center'?'selected':''}>Center</option>
+            <option value="right" ${f.align==='right'?'selected':''}>Right</option>
+          </select>
+        </div>
+      </div>
+    `;
+    wrap.appendChild(item);
+  });
+
+  wrap.querySelectorAll('input,select').forEach(el=>{
+    el.addEventListener('input', ()=>{
+      const f = fields.find(x=>x.id == el.dataset.id);
+      const prop = el.dataset.prop;
+      f[prop] = (prop === 'fontSize') ? parseInt(el.value)||20 : el.value;
+      renderFieldMarkers();
+    });
+  });
+  wrap.querySelectorAll('.removeFieldBtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      fields = fields.filter(f=>f.id != btn.dataset.id);
+      renderFieldMarkers(); renderFieldsConfig();
+    });
+  });
+}
+
+const csvDropzone = document.getElementById('csvDropzone');
+const csvInput = document.getElementById('csvInput');
+setupDropzone(csvDropzone, csvInput, files => {
+  if(files.length){
+    const reader = new FileReader();
+    reader.onload = (e)=>{
+      const result = Papa.parse(e.target.result.trim(), { header:true, skipEmptyLines:true, dynamicTyping:false });
+      csvData = result.data;
+      csvHeaders = result.meta.fields || [];
+      document.getElementById('csvStatus').textContent = '✅ Loaded ' + csvData.length + ' row(s). Columns: ' + csvHeaders.join(', ');
+      renderFieldsConfig();
+    };
+    reader.readAsText(files[0]);
+  }
+});
+
+function renderCertificateCanvas(rowData){
+  const canvas = document.createElement('canvas');
+  canvas.width = templateImg.naturalWidth;
+  canvas.height = templateImg.naturalHeight;
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(templateImg, 0, 0);
+
+  fields.forEach(f=>{
+    const value = f.column && rowData ? (rowData[f.column] || '') : ('{{'+f.name+'}}');
+    const x = (f.xPct/100) * canvas.width;
+    const y = (f.yPct/100) * canvas.height;
+    ctx.font = f.fontSize + 'px Arial, sans-serif';
+    ctx.fillStyle = f.color;
+    ctx.textAlign = f.align;
+    ctx.textBaseline = 'middle';
+    ctx.fillText(String(value), x, y);
+  });
+
+  return canvas;
+}
+
+document.getElementById('generateBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  if(!csvData || !csvData.length){ status.textContent = '⚠️ Please upload a CSV file first.'; return; }
+  if(!fields.some(f=>f.column)){ status.textContent = '⚠️ Please map at least one field to a CSV column.'; return; }
+
+  status.textContent = '⏳ Generating ' + csvData.length + ' certificate(s)...';
+
+  const { jsPDF } = window.jspdf;
+  const mmW = templateImg.naturalWidth * 25.4 / 96;
+  const mmH = templateImg.naturalHeight * 25.4 / 96;
+  const orientation = mmW >= mmH ? 'landscape' : 'portrait';
+
+  const pdf = new jsPDF({ orientation, unit: 'mm', format: [mmW, mmH] });
+
+  for(let i=0; i<csvData.length; i++){
+    if(i > 0) pdf.addPage([mmW, mmH], orientation);
+    const canvas = renderCertificateCanvas(csvData[i]);
+    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+    pdf.addImage(imgData, 'JPEG', 0, 0, mmW, mmH);
+    if(i % 5 === 0) status.textContent = '⏳ Generating... (' + (i+1) + '/' + csvData.length + ')';
+  }
+
+  pdf.save('certificates.pdf');
+  status.textContent = '✅ Done! Downloaded ' + csvData.length + ' certificate(s) in one PDF.';
+});
+</script>
+</body>
+</html>

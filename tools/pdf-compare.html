@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-compare.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PDF Compare — Find Differences Between Two PDFs | ApneSoftware">
+<meta property="og:description" content="Find differences between two PDFs. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-compare.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PDF Compare — Find Differences Between Two PDFs | ApneSoftware">
+<meta name="twitter:description" content="Find differences between two PDFs. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Compare","description":"Find differences between two PDFs. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-compare.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>PDF Compare — Find Differences Between Two PDFs | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:560px){ .compare-grid{grid-template-columns:1fr} }
+  .compare-grid .dropzone{padding:24px 14px}
+  .compare-grid .file-name{font-size:.8rem;color:var(--accent);margin-top:8px;text-align:center;word-break:break-all}
+  .diff-result{
+    margin-top:18px;background:var(--surface-2);border:1px solid var(--border);
+    border-radius:8px;padding:18px;font-size:.92rem;line-height:1.9;
+    white-space:pre-wrap;word-break:break-word;max-height:500px;overflow-y:auto;
+  }
+  .diff-result ins{background:rgba(34,197,94,.25);color:#86efac;text-decoration:none;border-radius:3px;padding:0 2px}
+  .diff-result del{background:rgba(239,68,68,.25);color:#fca5a5;text-decoration:line-through;border-radius:3px;padding:0 2px}
+  .diff-legend{display:flex;gap:18px;margin-top:10px;font-size:.82rem;color:var(--text-dim)}
+  .diff-legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend-swatch{width:14px;height:14px;border-radius:3px;display:inline-block}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔍 PDF Compare</h1>
+    <p>Compare two versions of a PDF and see exactly what text was added, removed, or changed.</p>
+  </div>
+
+  <div class="panel">
+    <div class="compare-grid">
+      <div>
+        <div class="dropzone" id="dropzoneA">
+          <p>📤 Original PDF</p>
+          <input type="file" id="fileInputA" accept="application/pdf">
+        </div>
+        <div class="file-name" id="fileNameA"></div>
+      </div>
+      <div>
+        <div class="dropzone" id="dropzoneB">
+          <p>📤 Updated PDF</p>
+          <input type="file" id="fileInputB" accept="application/pdf">
+        </div>
+        <div class="file-name" id="fileNameB"></div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="compareBtn" disabled>🔍 Compare Documents</button>
+    </div>
+
+    <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
+
+    <div id="resultArea" style="display:none">
+      <div class="stat-grid">
+        <div class="stat-box"><div class="num" id="addedCount" style="color:#22c55e">0</div><div class="lbl">Words Added</div></div>
+        <div class="stat-box"><div class="num" id="removedCount" style="color:#ef4444">0</div><div class="lbl">Words Removed</div></div>
+      </div>
+      <div class="diff-legend">
+        <span><span class="legend-swatch" style="background:rgba(34,197,94,.4)"></span> Added</span>
+        <span><span class="legend-swatch" style="background:rgba(239,68,68,.4)"></span> Removed</span>
+      </div>
+      <div class="diff-result" id="diffResult"></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool extracts the text from two PDF files and highlights exactly what was added, removed, or changed between them — useful for checking edits between two versions of a contract, report, or any document.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload the original PDF on the left.</li>
+        <li>Upload the updated PDF on the right.</li>
+        <li>Click Compare — added text shows in green, removed text in red.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल दो PDF फाइलों का टेक्स्ट निकालकर साफ-साफ दिखाता है कि दोनों के बीच क्या जोड़ा गया, क्या हटाया गया या क्या बदला गया — किसी कॉन्ट्रैक्ट, रिपोर्ट या डॉक्यूमेंट के दो वर्ज़न के बीच के बदलाव चेक करने के लिए उपयोगी।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>बाईं तरफ ओरिजिनल PDF अपलोड करें।</li>
+        <li>दाईं तरफ अपडेटेड PDF अपलोड करें।</li>
+        <li>Compare बटन दबाएं — जोड़ा गया टेक्स्ट हरे रंग में, हटाया गया टेक्स्ट लाल रंग में दिखेगा।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/8.0.2/diff.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+let fileA = null, fileB = null;
+
+setupDropzone(document.getElementById('dropzoneA'), document.getElementById('fileInputA'), files => {
+  if(files.length && files[0].type === 'application/pdf'){
+    fileA = files[0];
+    document.getElementById('fileNameA').textContent = fileA.name;
+    checkReady();
+  }
+});
+setupDropzone(document.getElementById('dropzoneB'), document.getElementById('fileInputB'), files => {
+  if(files.length && files[0].type === 'application/pdf'){
+    fileB = files[0];
+    document.getElementById('fileNameB').textContent = fileB.name;
+    checkReady();
+  }
+});
+
+function checkReady(){
+  document.getElementById('compareBtn').disabled = !(fileA && fileB);
+}
+
+async function extractText(file){
+  const arrayBuf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+  let fullText = '';
+  for(let i=1; i<=pdf.numPages; i++){
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    fullText += content.items.map(item => item.str).join(' ') + '\n';
+  }
+  return fullText.trim();
+}
+
+document.getElementById('compareBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Reading both PDFs...';
+  document.getElementById('resultArea').style.display = 'none';
+
+  try{
+    const [textA, textB] = await Promise.all([extractText(fileA), extractText(fileB)]);
+
+    status.textContent = '⏳ Comparing...';
+    const diff = Diff.diffWords(textA, textB);
+
+    let added = 0, removed = 0;
+    const html = diff.map(part => {
+      const escaped = part.value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      if(part.added){
+        added += part.value.trim().split(/\s+/).filter(Boolean).length;
+        return `<ins>${escaped}</ins>`;
+      }
+      if(part.removed){
+        removed += part.value.trim().split(/\s+/).filter(Boolean).length;
+        return `<del>${escaped}</del>`;
+      }
+      return escaped;
+    }).join('');
+
+    document.getElementById('diffResult').innerHTML = html || 'No differences found — the documents have identical text.';
+    document.getElementById('addedCount').textContent = added;
+    document.getElementById('removedCount').textContent = removed;
+    document.getElementById('resultArea').style.display = 'block';
+    status.textContent = '✅ Comparison complete';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

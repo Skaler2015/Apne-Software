@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/words-to-number.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Words to Number Converter — ApneSoftware">
+<meta property="og:description" content="Convert number words like 'two hundred fifty' back into digits like 250. Free, instant, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/words-to-number.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Words to Number Converter — ApneSoftware">
+<meta name="twitter:description" content="Convert number words like 'two hundred fifty' back into digits like 250. Free, instant, no signup.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Words to Number Converter","description":"Convert number words like 'two hundred fifty' back into digits like 250. Free, instant, no signup.","url":"https://apnesoftware.com/tools/words-to-number.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Words to Number Converter — ApneSoftware</title>
+<meta name="description" content="Convert number words like 'two hundred fifty' back into digits like 250. Free, instant, no signup.">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  textarea{width:100%;min-height:120px;font-family:inherit;font-size:.95rem;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);resize:vertical}
+  .result-box{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:18px;margin-top:16px;font-size:1.6rem;font-weight:800;color:var(--accent);text-align:center}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔢 Words to Number Converter</h1>
+    <p>Convert spelled-out numbers like "two hundred fifty" back into digits like 250.</p>
+  </div>
+
+  <div class="panel">
+    <div class="field"><label for="inputText">Number in words</label><textarea id="inputText" placeholder="e.g. two hundred and fifty">two hundred and fifty</textarea></div>
+
+    <div class="btn-row" style="margin-top:14px">
+      <button class="btn" id="convertBtn">🔢 Convert to Number</button>
+      <button class="btn secondary" id="copyBtn">📋 Copy Result</button>
+      <button class="btn secondary" id="resetBtn">🔄 Reset</button>
+    </div>
+
+    <div class="result-box" id="resultBox" style="display:none"></div>
+    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+  </div>
+</div>
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Numbers written out as words show up in legal documents, cheques, formal contracts, and exam answer sheets — "fifty thousand rupees only" instead of "50,000" — and while that's standard for those situations, it's not always convenient when you actually need the number itself for a calculation, a form field, or to double-check a figure. Converting it back by hand means carefully parsing each word and adding up its value, which gets error-prone once the number runs into thousands or includes "and" connectors.</p>
+      <p>This tool parses standard English number words — including hundred, thousand, lakh, crore, million, and billion — and instantly converts them into the actual numeric digits, handling the usual word order and optional "and" connectors used in everyday writing.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Type or paste a number written in words.</li>
+        <li>Click "Convert to Number."</li>
+        <li>Copy the resulting digit form.</li>
+      </ol>
+      <h3>Indian and international number words both work</h3>
+      <p>This tool understands both the international number system (thousand, million, billion) and the Indian numbering system (lakh, crore), since both are common in everyday writing depending on context — a cheque written in India typically uses lakh and crore, while an international document usually uses thousand and million. Mixing styles in a single phrase isn't standard usage and may not convert correctly, so it's best to stick with one system per phrase for a reliable result.</p>
+      <p>This comes up often when verifying figures on legal paperwork, contracts, or cheques, where the amount is typically spelled out in words specifically to prevent tampering with a numeric figure — but a human checking that paperwork still needs to confirm the words actually match the number written elsewhere on the document. It's also genuinely useful for accountants, students learning number systems, or anyone transcribing dictated figures from an audio recording or handwritten note, where the source naturally comes through as words rather than digits and needs to be converted before it can be used in a spreadsheet or calculation.</p>
+      <p>The tool also serves as a quick sanity check when proofreading a document that mixes both formats — comparing the converted digit value against a number written elsewhere on the same page is a fast way to catch a transcription mistake before it causes a real problem in a financial or legal context, especially when the stakes involve money or a signed agreement that can't easily be corrected later without reissuing paperwork or amending a signed agreement.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>Numbers को शब्दों में लिखना legal documents, cheques, formal contracts, और exam answer sheets में दिखता है — "50,000" की जगह "fifty thousand rupees only" — और यह उन स्थितियों के लिए standard है, पर हमेशा सुविधाजनक नहीं होता जब असल में किसी calculation, form field, या किसी figure को दोबारा जांचने के लिए वह number चाहिए हो। इसे हाथ से वापस बदलना मतलब हर शब्द को ध्यान से समझना और उसकी value जोड़ना, जो हज़ारों तक पहुंचने पर या "and" connectors होने पर गलतियों भरा हो जाता है।</p>
+      <p>यह tool standard English number words को पढ़ता है — hundred, thousand, lakh, crore, million, और billion सहित — और उन्हें तुरंत असली numeric digits में बदल देता है, सामान्य word order और रोज़मर्रा की लेखनी में इस्तेमाल होने वाले optional "and" connectors को भी संभालते हुए।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>शब्दों में लिखा कोई number टाइप या paste करें।</li>
+        <li>"Convert to Number" दबाएं।</li>
+        <li>बना हुआ digit form copy करें।</li>
+      </ol>
+      <h3>Indian और international दोनों number words काम करते हैं</h3>
+      <p>यह tool international number system (thousand, million, billion) और Indian numbering system (lakh, crore) दोनों समझता है, क्योंकि context के हिसाब से दोनों रोज़मर्रा की लेखनी में आम हैं — भारत में लिखा गया cheque आमतौर पर lakh और crore इस्तेमाल करता है, जबकि international document आमतौर पर thousand और million। एक ही phrase में styles मिलाना standard usage नहीं है और सही convert नहीं हो सकता, तो भरोसेमंद result के लिए एक phrase में एक ही system पर टिके रहना बेहतर है।</p>
+      <p>यह अक्सर legal paperwork, contracts, या cheques पर figures verify करते वक्त काम आता है, जहां amount को आमतौर पर शब्दों में specifically इसलिए लिखा जाता है ताकि किसी numeric figure से छेड़छाड़ न हो सके — पर उस paperwork को जांचने वाले व्यक्ति को फिर भी confirm करना पड़ता है कि शब्द document में कहीं और लिखे number से मेल खाते हैं या नहीं। यह accountants, number systems सीख रहे students, या किसी audio recording या handwritten note से dictated figures transcribe कर रहे किसी भी व्यक्ति के लिए भी genuinely उपयोगी है, जहां source स्वाभाविक रूप से digits की बजाय words के रूप में आता है और किसी spreadsheet या calculation में इस्तेमाल होने से पहले convert करना पड़ता है।</p>
+      <p>यह tool किसी ऐसे document को proofread करते वक्त एक तेज़ sanity check का भी काम करता है जिसमें दोनों formats मिले हों — convert किए गए digit value को उसी page पर कहीं और लिखे number से compare करना किसी transcription गलती को किसी financial या legal context में असली समस्या बनने से पहले पकड़ने का तेज़ तरीका है।</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const units = {
+  zero:0, one:1, two:2, three:3, four:4, five:5, six:6, seven:7, eight:8, nine:9,
+  ten:10, eleven:11, twelve:12, thirteen:13, fourteen:14, fifteen:15, sixteen:16,
+  seventeen:17, eighteen:18, nineteen:19
+};
+const tens = {
+  twenty:20, thirty:30, forty:40, fifty:50, sixty:60, seventy:70, eighty:80, ninety:90
+};
+const scales = {
+  hundred: 100, thousand: 1000, lakh: 100000, million: 1000000, crore: 10000000, billion: 1000000000
+};
+
+function wordsToNumber(text){
+  const words = text.toLowerCase().replace(/-/g, ' ').replace(/[^a-z\s]/g, '').split(/\s+/).filter(w => w && w !== 'and');
+  let total = 0, current = 0;
+  let found = false;
+
+  for(const word of words){
+    if(word in units){ current += units[word]; found = true; }
+    else if(word in tens){ current += tens[word]; found = true; }
+    else if(word === 'hundred'){ current = (current || 1) * 100; found = true; }
+    else if(word in scales){
+      const scaleVal = scales[word];
+      total += (current || 1) * scaleVal;
+      current = 0;
+      found = true;
+    } else {
+      return null; // unrecognized word
+    }
+  }
+  total += current;
+  return found ? total : null;
+}
+
+document.getElementById('convertBtn').addEventListener('click', ()=>{
+  const status = document.getElementById('statusMsg');
+  const resultBox = document.getElementById('resultBox');
+  const text = document.getElementById('inputText').value.trim();
+
+  if(!text){ status.textContent = '⚠️ Please enter a number in words.'; resultBox.style.display = 'none'; return; }
+
+  const num = wordsToNumber(text);
+  if(num === null){
+    status.textContent = '❌ Could not recognize this as a number in words — check the spelling.';
+    resultBox.style.display = 'none';
+  } else {
+    resultBox.textContent = num.toLocaleString('en-IN');
+    resultBox.style.display = 'block';
+    status.textContent = '✅ Converted successfully.';
+  }
+});
+
+document.getElementById('copyBtn').addEventListener('click', function(){
+  const text = document.getElementById('resultBox').textContent;
+  if(text) copyText(text, this);
+});
+
+document.getElementById('resetBtn').addEventListener('click', ()=>{
+  document.getElementById('inputText').value = '';
+  document.getElementById('resultBox').style.display = 'none';
+  document.getElementById('statusMsg').textContent = '';
+});
+</script>
+</body>
+</html>

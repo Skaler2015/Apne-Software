@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-unlock.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Unlock PDF — Remove Password | ApneSoftware">
+<meta property="og:description" content="Remove password (must know it). Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-unlock.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Unlock PDF — Remove Password | ApneSoftware">
+<meta name="twitter:description" content="Remove password (must know it). Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Unlock PDF","description":"Remove password (must know it). Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-unlock.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Unlock PDF — Remove Password | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .new-tech-note{
+    background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;
+    padding:12px 14px;font-size:.85rem;color:var(--text-dim);margin-top:14px;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔓 Unlock PDF</h1>
+    <p>Remove the password and restrictions from a PDF — you must know the current password.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag a password-protected PDF here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <div id="afterUpload" style="display:none;margin-top:18px">
+      <div class="field">
+        <label for="pwInput">Current password</label>
+        <input type="text" id="pwInput" placeholder="Enter the file's current password">
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="unlockBtn">🔓 Unlock and Download</button>
+      </div>
+
+      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
+      <div class="new-tech-note">ℹ️ This tool uses a new encryption engine on ApneSoftware (QPDF, open-source, Apache-2.0 licensed). Everything still runs fully in your browser — no file is uploaded anywhere.</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>This tool removes password protection and restrictions from a PDF. You need to know the file's current password — this tool does not crack or guess unknown passwords.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your password-protected PDF.</li>
+        <li>Type the current password.</li>
+        <li>Click Unlock and download the unprotected PDF.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>यह टूल PDF से पासवर्ड प्रोटेक्शन और रिस्ट्रिक्शन हटा देता है। इसके लिए आपको फाइल का मौजूदा पासवर्ड पता होना चाहिए — यह टूल अनजान पासवर्ड को क्रैक या अंदाज़ा नहीं लगाता।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>पासवर्ड-प्रोटेक्टेड PDF अपलोड करें।</li>
+        <li>मौजूदा पासवर्ड डालें।</li>
+        <li>Unlock बटन दबाएं और बिना प्रोटेक्शन वाली PDF डाउनलोड करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script type="module">
+import createQpdf from "https://cdn.jsdelivr.net/npm/@neslinesli93/qpdf-wasm/+esm";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let currentFile = null;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf'){
+    currentFile = files[0];
+    document.getElementById('afterUpload').style.display = 'block';
+  }
+});
+
+async function loadQpdf(){
+  return await createQpdf({
+    locateFile: () => "https://cdn.jsdelivr.net/npm/@neslinesli93/qpdf-wasm/dist/qpdf.wasm",
+    noInitialRun: true,
+  });
+}
+
+document.getElementById('unlockBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  const pw = document.getElementById('pwInput').value;
+
+  status.textContent = '⏳ Loading decryption engine (first time may take a moment)...';
+  try{
+    const qpdf = await loadQpdf();
+    const bytes = new Uint8Array(await currentFile.arrayBuffer());
+    qpdf.FS.writeFile('/input.pdf', bytes);
+
+    const args = [];
+    if(pw) args.push('--password=' + pw);
+    args.push('--decrypt', '/input.pdf', '/output.pdf');
+
+    status.textContent = '⏳ Unlocking...';
+    qpdf.callMain(args);
+
+    const output = qpdf.FS.readFile('/output.pdf');
+    const blob = new Blob([output], { type: 'application/pdf' });
+    downloadBlob('unlocked.pdf', blob);
+    status.textContent = '✅ PDF unlocked and downloaded!';
+  }catch(err){
+    status.textContent = '❌ Error: ' + (err && err.message ? err.message : String(err)) + ' — check that the password is correct.';
+  }
+});
+</script>
+</body>
+</html>

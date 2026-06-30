@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/pdf-annotate.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Draw & Annotate PDF | ApneSoftware">
+<meta property="og:description" content="Freehand draw and highlight directly on PDF pages. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/pdf-annotate.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Draw & Annotate PDF | ApneSoftware">
+<meta name="twitter:description" content="Freehand draw and highlight directly on PDF pages. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Draw & Annotate PDF","description":"Freehand draw and highlight directly on PDF pages. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-annotate.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Draw & Annotate PDF | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .ann-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:16px 0;padding:12px 16px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px}
+  .ann-mode-btn{padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:var(--surface);font-size:.85rem;font-weight:700;cursor:pointer}
+  .ann-mode-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .ann-toolbar input[type=color]{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);cursor:pointer;padding:0}
+  .ann-toolbar input[type=range]{width:100px}
+  .ann-toolbar .lbl{font-size:.78rem;color:var(--text-dim);font-weight:600}
+  .canvas-stack{position:relative;display:inline-block;margin-top:10px;touch-action:none}
+  .canvas-stack canvas{display:block;border:1px solid var(--border);border-radius:6px}
+  .canvas-stack canvas.pdf-layer{position:relative;z-index:1}
+  .canvas-stack canvas.draw-layer{position:absolute;top:0;left:0;z-index:2;cursor:crosshair}
+  .page-nav{display:flex;gap:12px;align-items:center;margin-top:14px;font-size:.85rem;color:var(--text-dim)}
+  .canvas-center{text-align:center}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>✏️ Draw & Annotate PDF</h1>
+    <p>Freehand draw, highlight, or mark up any page directly on top of your PDF, then save a new annotated copy.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag & drop your PDF file here or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf">
+    </div>
+
+    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+
+    <div id="editorArea" style="display:none">
+      <div class="ann-toolbar">
+        <button class="ann-mode-btn active" id="penModeBtn">✏️ Pen</button>
+        <button class="ann-mode-btn" id="highlightModeBtn">🖍️ Highlighter</button>
+        <span class="lbl">Color</span>
+        <input type="color" id="colorPicker" value="#e63946">
+        <span class="lbl">Size</span>
+        <input type="range" id="sizeSlider" min="1" max="30" value="4">
+        <button class="ann-mode-btn" id="undoBtn">↩️ Undo</button>
+        <button class="ann-mode-btn" id="clearPageBtn">🗑️ Clear Page</button>
+      </div>
+
+      <div class="canvas-center">
+        <div class="canvas-stack" id="canvasStack">
+          <canvas class="pdf-layer" id="pdfCanvas"></canvas>
+          <canvas class="draw-layer" id="drawCanvas"></canvas>
+        </div>
+      </div>
+
+      <div class="page-nav">
+        <button class="btn secondary" id="prevPageBtn">← Prev</button>
+        <span id="pageLabel"></span>
+        <button class="btn secondary" id="nextPageBtn">Next →</button>
+      </div>
+
+      <div class="btn-row" style="margin-top:18px">
+        <button class="btn" id="saveBtn">💾 Save Annotated PDF</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Sometimes the fastest way to explain something on a document isn't typed text in a fixed box — it's a quick circle around a number, an arrow pointing at a clause, a freehand note in the margin, or a highlighted line drawing attention to exactly the part that matters. This tool lets you draw and highlight directly on top of any page of your PDF, the same way you'd mark up a printed page with a pen or highlighter, and saves the result as a new PDF with your marks permanently part of the page.</p>
+      <p>Two drawing modes are available: a Pen for precise, solid freehand lines — good for circling, underlining, or writing quick notes — and a Highlighter, which draws a thicker, semi-transparent stroke that sits over the existing text without hiding it, just like a real highlighter pen. You can change the color and stroke size for either tool, undo your last stroke if you make a mistake, or clear all marks on the current page and start over, giving you the same freedom to experiment that you'd have with a pencil and an eraser on a printed page.</p>
+      <p>Navigate between pages using the Prev/Next controls — your drawings on each page are kept in memory as you move around, so you can mark up several pages in one session before saving, without losing any earlier work as you jump back and forth. Nothing is finalized until you click Save, so feel free to review your marks across the whole document first.</p>
+      <p>The entire process runs locally in your browser; your document and your annotations are never uploaded to a server. When you save, your marks are composited onto the original page content and a new PDF downloads immediately — the rest of each page's original text and formatting stays exactly as sharp and unchanged as it was before, with no watermark and no account required. Works equally well on a touchscreen with your finger or stylus as it does with a mouse, so marking up a document from a tablet or phone is just as easy as from a desktop.</p>
+      <p>If what you actually need is typed text in a fixed position rather than handwritten-style marks — like filling in a form field or adding a formal caption — the site's PDF Edit and Add Image to PDF tools are better suited to that precise, typed-text style of change, while this tool is specifically built for the more expressive, freehand kind of mark-up.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Upload your PDF.</li>
+        <li>Pick Pen or Highlighter, choose a color and size, and draw directly on the page.</li>
+        <li>Move between pages as needed, then click Save Annotated PDF to download.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>कभी-कभी किसी document पर कुछ समझाने का सबसे तेज़ तरीका किसी fixed box में टाइप किया गया text नहीं होता — बल्कि किसी नंबर के चारों तरफ एक जल्दी सा circle, किसी clause की तरफ इशारा करता arrow, हाशिये में एक freehand note, या किसी ज़रूरी लाइन को highlight करना होता है। यह टूल आपको अपनी PDF के किसी भी पन्ने पर सीधे draw और highlight करने देता है, बिल्कुल वैसे जैसे आप किसी printed पन्ने पर pen या highlighter से मार्क करते, और result को एक नई PDF के तौर पर save करता है जिसमें आपके निशान हमेशा के लिए पन्ने का हिस्सा बन जाते हैं।</p>
+      <p>दो drawing modes उपलब्ध हैं: एक Pen, सटीक, solid freehand लाइनों के लिए — circle बनाने, underline करने, या जल्दी नोट लिखने के लिए अच्छा — और एक Highlighter, जो एक मोटी, semi-transparent stroke बनाता है जो मौजूदा text को छुपाए बिना उसके ऊपर बैठता है, बिल्कुल असली highlighter pen की तरह। आप किसी भी tool के लिए color और stroke size बदल सकते हैं, गलती होने पर अपना आखिरी stroke undo कर सकते हैं, या मौजूदा पन्ने के सारे निशान साफ करके दोबारा शुरू कर सकते हैं।</p>
+      <p>Prev/Next controls से पन्नों के बीच जाएं — हर पन्ने पर आपकी drawings memory में बनी रहती हैं जब तक आप इधर-उधर घूमते हैं, तो आप save करने से पहले एक ही session में कई पन्ने mark up कर सकते हैं। Save दबाने तक कुछ भी final नहीं होता, तो बेझिझक पूरे document में अपने निशान review कर लें।</p>
+      <p>पूरी process आपके browser में locally चलती है; आपका document और आपके annotations कभी किसी server पर अपलोड नहीं होते। Save करते वक्त, आपके निशान original page content पर composite हो जाते हैं और एक नई PDF तुरंत download हो जाती है — हर पन्ने का बाकी original text और formatting पहले जितना ही sharp और अपरिवर्तित रहता है, कोई watermark नहीं और किसी account की ज़रूरत नहीं। यह touchscreen पर उंगली या stylus से भी उतना ही अच्छा काम करता है जितना mouse से, तो किसी tablet या phone से document mark up करना desktop जितना ही आसान है।</p>
+      <p>अगर आपको असल में किसी fixed position पर typed text चाहिए, handwritten-style निशान नहीं — जैसे किसी form field को भरना या कोई formal caption जोड़ना — तो साइट के PDF Edit और Add Image to PDF टूल्स उस सटीक, typed-text वाले बदलाव के लिए बेहतर हैं, जबकि यह टूल खासतौर पर ज़्यादा expressive, freehand तरीके के mark-up के लिए बनाया गया है।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपनी PDF अपलोड करें।</li>
+        <li>Pen या Highlighter चुनें, color और size चुनें, और सीधे पन्ने पर draw करें।</li>
+        <li>ज़रूरत के हिसाब से पन्नों के बीच जाएं, फिर Save Annotated PDF दबाकर download करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let currentFile = null;
+let pdfDocJS = null;
+let numPages = 0;
+let currentPage = 1;
+let mode = 'pen'; // 'pen' | 'highlight'
+let strokeHistory = {}; // pageNum -> array of stroke dataURLs (snapshots) for undo
+let pageAnnotations = {}; // pageNum -> dataURL of the drawing layer (transparent PNG)
+let renderScale = 1.4;
+
+setupDropzone(dropzone, fileInput, files => {
+  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
+});
+
+async function handleFile(file){
+  currentFile = file;
+  pageAnnotations = {};
+  strokeHistory = {};
+  currentPage = 1;
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Loading...';
+
+  const arrayBuf = await file.arrayBuffer();
+  pdfDocJS = await pdfjsLib.getDocument({data: arrayBuf}).promise;
+  numPages = pdfDocJS.numPages;
+
+  status.textContent = `✅ ${numPages} page(s) loaded`;
+  document.getElementById('editorArea').style.display = 'block';
+  await renderPage(1);
+}
+
+async function renderPage(num){
+  saveCurrentDrawing(); // persist whatever was drawn on the page we're leaving
+  currentPage = num;
+
+  const page = await pdfDocJS.getPage(num);
+  const viewport = page.getViewport({ scale: renderScale });
+  const pdfCanvas = document.getElementById('pdfCanvas');
+  const drawCanvas = document.getElementById('drawCanvas');
+
+  pdfCanvas.width = drawCanvas.width = viewport.width;
+  pdfCanvas.height = drawCanvas.height = viewport.height;
+
+  const ctx = pdfCanvas.getContext('2d');
+  await page.render({ canvasContext: ctx, viewport }).promise;
+
+  const drawCtx = drawCanvas.getContext('2d');
+  drawCtx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
+  if(pageAnnotations[num]){
+    const img = new Image();
+    await new Promise(resolve => { img.onload = resolve; img.src = pageAnnotations[num]; });
+    drawCtx.drawImage(img, 0, 0);
+  }
+
+  document.getElementById('pageLabel').textContent = `Page ${num} of ${numPages}`;
+}
+
+function saveCurrentDrawing(){
+  if(!currentPage) return;
+  const drawCanvas = document.getElementById('drawCanvas');
+  pageAnnotations[currentPage] = drawCanvas.toDataURL('image/png');
+}
+
+document.getElementById('prevPageBtn').addEventListener('click', ()=>{
+  if(currentPage > 1) renderPage(currentPage - 1);
+});
+document.getElementById('nextPageBtn').addEventListener('click', ()=>{
+  if(currentPage < numPages) renderPage(currentPage + 1);
+});
+
+/* ---- Drawing ---- */
+const drawCanvas = document.getElementById('drawCanvas');
+const drawCtx = drawCanvas.getContext('2d');
+let drawing = false;
+let lastX = 0, lastY = 0;
+
+function getPos(e){
+  const rect = drawCanvas.getBoundingClientRect();
+  const scaleX = drawCanvas.width / rect.width;
+  const scaleY = drawCanvas.height / rect.height;
+  const point = e.touches ? e.touches[0] : e;
+  return { x: (point.clientX - rect.left) * scaleX, y: (point.clientY - rect.top) * scaleY };
+}
+
+function pushHistory(){
+  if(!strokeHistory[currentPage]) strokeHistory[currentPage] = [];
+  strokeHistory[currentPage].push(drawCanvas.toDataURL('image/png'));
+  if(strokeHistory[currentPage].length > 20) strokeHistory[currentPage].shift();
+}
+
+function startDraw(e){
+  e.preventDefault();
+  pushHistory();
+  drawing = true;
+  const pos = getPos(e);
+  lastX = pos.x; lastY = pos.y;
+}
+function moveDraw(e){
+  if(!drawing) return;
+  e.preventDefault();
+  const pos = getPos(e);
+  const color = document.getElementById('colorPicker').value;
+  const size = parseInt(document.getElementById('sizeSlider').value, 10);
+
+  drawCtx.lineCap = 'round';
+  drawCtx.lineJoin = 'round';
+  if(mode === 'highlight'){
+    drawCtx.globalAlpha = 0.35;
+    drawCtx.lineWidth = size * 3;
+  } else {
+    drawCtx.globalAlpha = 1;
+    drawCtx.lineWidth = size;
+  }
+  drawCtx.strokeStyle = color;
+  drawCtx.beginPath();
+  drawCtx.moveTo(lastX, lastY);
+  drawCtx.lineTo(pos.x, pos.y);
+  drawCtx.stroke();
+  lastX = pos.x; lastY = pos.y;
+}
+function endDraw(){ drawing = false; }
+
+drawCanvas.addEventListener('mousedown', startDraw);
+drawCanvas.addEventListener('mousemove', moveDraw);
+window.addEventListener('mouseup', endDraw);
+drawCanvas.addEventListener('touchstart', startDraw, { passive: false });
+drawCanvas.addEventListener('touchmove', moveDraw, { passive: false });
+drawCanvas.addEventListener('touchend', endDraw);
+
+document.getElementById('penModeBtn').addEventListener('click', ()=>{
+  mode = 'pen';
+  document.getElementById('penModeBtn').classList.add('active');
+  document.getElementById('highlightModeBtn').classList.remove('active');
+});
+document.getElementById('highlightModeBtn').addEventListener('click', ()=>{
+  mode = 'highlight';
+  document.getElementById('highlightModeBtn').classList.add('active');
+  document.getElementById('penModeBtn').classList.remove('active');
+});
+
+document.getElementById('undoBtn').addEventListener('click', ()=>{
+  const hist = strokeHistory[currentPage];
+  if(!hist || !hist.length) return;
+  const last = hist.pop();
+  const img = new Image();
+  img.onload = ()=>{
+    drawCtx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
+    drawCtx.drawImage(img, 0, 0);
+  };
+  img.src = last;
+});
+
+document.getElementById('clearPageBtn').addEventListener('click', ()=>{
+  if(!confirm('Clear all marks on this page?')) return;
+  drawCtx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
+  delete pageAnnotations[currentPage];
+  strokeHistory[currentPage] = [];
+});
+
+/* ---- Save ---- */
+document.getElementById('saveBtn').addEventListener('click', async ()=>{
+  saveCurrentDrawing();
+  const status = document.getElementById('statusMsg');
+  status.textContent = '⏳ Building annotated PDF...';
+
+  try{
+    const { PDFDocument } = PDFLib;
+    const bytes = await currentFile.arrayBuffer();
+    const srcPdf = await PDFDocument.load(bytes);
+    const pages = srcPdf.getPages();
+
+    for(const pageNumStr of Object.keys(pageAnnotations)){
+      const pageNum = parseInt(pageNumStr, 10);
+      const dataUrl = pageAnnotations[pageNum];
+      if(!dataUrl) continue;
+
+      const pngBytes = await (await fetch(dataUrl)).arrayBuffer();
+      const pngImage = await srcPdf.embedPng(pngBytes);
+      const page = pages[pageNum - 1];
+      const { width, height } = page.getSize();
+      page.drawImage(pngImage, { x: 0, y: 0, width, height });
+    }
+
+    const outBytes = await srcPdf.save();
+    const blob = new Blob([outBytes], {type:'application/pdf'});
+    downloadBlob('annotated.pdf', blob);
+    status.textContent = '✅ Annotated PDF downloaded!';
+  }catch(err){
+    status.textContent = '❌ Error: ' + err.message;
+  }
+});
+</script>
+</body>
+</html>

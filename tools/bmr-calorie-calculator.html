@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/bmr-calorie-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BMR & Calorie Calculator | ApneSoftware">
+<meta property="og:description" content="Estimate daily calorie needs (Mifflin-St Jeor). Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/bmr-calorie-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BMR & Calorie Calculator | ApneSoftware">
+<meta name="twitter:description" content="Estimate daily calorie needs (Mifflin-St Jeor). Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"BMR & Calorie Calculator","description":"Estimate daily calorie needs (Mifflin-St Jeor). Free online tool — no signup required.","url":"https://apnesoftware.com/tools/bmr-calorie-calculator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>BMR & Calorie Calculator | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  .goal-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:14px}
+  @media (max-width:600px){ .goal-grid{grid-template-columns:1fr} }
+  .goal-card{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+  .goal-card .kcal{font-size:1.3rem;font-weight:800;color:var(--accent-2)}
+  .goal-card .lbl{font-size:.8rem;color:var(--text-dim);margin-top:4px}
+  .tab-row{display:flex;gap:8px;margin-bottom:6px}
+  .tab-btn{padding:7px 16px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-size:.85rem;cursor:pointer}
+  .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .new-tech-note{
+    background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;
+    padding:12px 14px;font-size:.85rem;color:var(--text-dim);margin-top:16px;
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🔥 BMR & Calorie Calculator</h1>
+    <p>Estimate your daily calorie needs based on the Mifflin-St Jeor formula.</p>
+  </div>
+
+  <div class="panel">
+    <div class="tab-row">
+      <button class="tab-btn active" data-gender="male">Male</button>
+      <button class="tab-btn" data-gender="female">Female</button>
+    </div>
+
+    <div class="row">
+      <div class="field"><label for="age">Age</label><input type="number" id="age" value="30" min="10" max="100"></div>
+      <div class="field"><label for="height">Height (cm)</label><input type="number" id="height" value="170" min="100" max="250"></div>
+      <div class="field"><label for="weight">Weight (kg)</label><input type="number" id="weight" value="70" min="30" max="250"></div>
+    </div>
+
+    <div class="field">
+      <label for="activity">Activity level</label>
+      <select id="activity">
+        <option value="1.2">Sedentary (little or no exercise)</option>
+        <option value="1.375" selected>Light activity (1-3 days/week)</option>
+        <option value="1.55">Moderate activity (3-5 days/week)</option>
+        <option value="1.725">Very active (6-7 days/week)</option>
+        <option value="1.9">Extremely active (physical job + training)</option>
+      </select>
+    </div>
+
+    <div class="goal-grid" id="goalGrid"></div>
+
+    <div class="new-tech-note">ℹ️ These are general estimates based on a standard formula, not personalized medical advice. Calorie needs vary by individual. If you're considering a significant change to your diet, it's a good idea to check in with a doctor or registered dietitian first.</div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Your Basal Metabolic Rate, or BMR, is the number of calories your body needs just to keep its basic functions running while completely at rest — breathing, circulating blood, maintaining body temperature, and supporting your organs. Total Daily Energy Expenditure, or TDEE, builds on that by adding in the calories you burn through daily activity and exercise, giving a more complete picture of how much energy your body actually uses across a typical day. This calculator uses the Mifflin-St Jeor equation, which nutrition professionals widely consider one of the more accurate formulas for estimating BMR from basic measurements like age, height, weight, and gender.</p>
+      <p>To get your estimate, you enter your age, height, weight, and select the activity level that best matches your typical week, ranging from sedentary through to extremely active. The tool then calculates your BMR and multiplies it by an activity factor to estimate your TDEE, which represents roughly how many calories you'd need to eat daily to maintain your current weight. Alongside the maintenance figure, the tool also shows gentle, moderate calorie ranges for those with weight goals — a modest deficit range for gradual weight loss and a modest surplus range for gradual weight gain, both kept within commonly recommended, sustainable limits rather than anything extreme.</p>
+      <p>It's worth understanding that this number is an estimate based on population averages, not a precise measurement of your individual metabolism, which can vary based on muscle mass, genetics, hormonal factors, and other variables this formula doesn't capture. Two people with identical age, height, and weight can have genuinely different calorie needs in practice. This tool is meant to give you a reasonable starting point for thinking about nutrition and activity, not a precise prescription, and it deliberately avoids suggesting aggressive or extreme calorie deficits, since sustainable, gradual changes are both healthier and more likely to last.</p>
+      <p>If you're considering a meaningful change to your diet, especially anything involving a significant calorie deficit, increased training intensity, or you have an existing health condition, it's genuinely worth having that conversation with a doctor or a registered dietitian who can account for your full health picture rather than relying on a formula alone. This calculator runs entirely in your browser, with no data about your age, weight, or health ever sent anywhere, so you're free to check it privately as often as you'd like as your weight or activity level changes over time.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Select your gender, and enter your age, height, and weight.</li>
+        <li>Pick the activity level that best matches your week.</li>
+        <li>See your estimated maintenance calories and gentle ranges for weight goals.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>आपका Basal Metabolic Rate, या BMR, वह कैलोरी संख्या है जो आपके शरीर को पूरी तरह आराम की हालत में भी अपने बुनियादी कामकाज चलाने के लिए चाहिए होती है — सांस लेना, खून का संचार, body temperature बनाए रखना, और अपने organs को सहारा देना। Total Daily Energy Expenditure, या TDEE, इसी पर बनता है और रोज़ की activity और exercise से बर्न होने वाली कैलोरी भी जोड़ देता है, जिससे यह ज़्यादा पूरी तस्वीर मिलती है कि आपका शरीर एक सामान्य दिन में असल में कितनी energy इस्तेमाल करता है। यह calculator Mifflin-St Jeor equation इस्तेमाल करता है, जिसे nutrition professionals age, height, weight, और gender जैसी बुनियादी जानकारी से BMR का अंदाज़ा लगाने के लिए व्यापक रूप से ज़्यादा सटीक formulas में से एक मानते हैं।</p>
+      <p>अपना अनुमान पाने के लिए, आप अपनी age, height, weight डालते हैं, और अपने सामान्य हफ्ते से सबसे मेल खाने वाला activity level चुनते हैं, sedentary से लेकर extremely active तक। टूल फिर आपका BMR निकालता है और उसे एक activity factor से multiply करके आपका TDEE अनुमानित करता है, जो लगभग बताता है कि अपना मौजूदा वज़न बनाए रखने के लिए आपको रोज़ कितनी कैलोरी खानी चाहिए। Maintenance वाले आंकड़े के साथ-साथ, टूल weight goals रखने वालों के लिए हल्के, सामान्य calorie ranges भी दिखाता है — धीरे-धीरे वज़न घटाने के लिए एक मामूली deficit range और धीरे-धीरे वज़न बढ़ाने के लिए एक मामूली surplus range, दोनों ही आम तौर पर सुझाई जाने वाली, टिकाऊ सीमाओं के अंदर, किसी भी तरह की extreme चीज़ नहीं।</p>
+      <p>यह समझना ज़रूरी है कि यह नंबर population averages पर आधारित एक अनुमान है, आपके individual metabolism की सटीक measurement नहीं, जो muscle mass, genetics, hormonal factors, और इस formula में शामिल न होने वाले बाकी कारकों के हिसाब से अलग हो सकता है। एक जैसी age, height, और weight वाले दो लोगों की असल calorie needs वाकई अलग हो सकती हैं। यह टूल nutrition और activity के बारे में सोचने के लिए एक उचित शुरुआती बिंदु देने के लिए है, कोई सटीक prescription नहीं, और यह जानबूझकर aggressive या extreme calorie deficits सुझाने से बचता है, क्योंकि टिकाऊ, धीरे-धीरे होने वाले बदलाव ज़्यादा healthy भी होते हैं और लंबे समय तक टिकने की संभावना भी ज़्यादा होती है।</p>
+      <p>अगर आप अपनी diet में कोई बड़ा बदलाव सोच रहे हैं, खासकर कोई बड़ा calorie deficit, training की intensity बढ़ाना, या आपको कोई मौजूदा health condition है, तो यह बातचीत किसी doctor या registered dietitian से करना सच में बेहतर है जो सिर्फ एक formula पर भरोसा करने की बजाय आपकी पूरी health picture को ध्यान में रख सके। यह calculator पूरी तरह आपके browser में चलता है, आपकी age, weight, या health के बारे में कोई data कहीं नहीं भेजा जाता, तो समय के साथ आपका वज़न या activity level बदलने पर आप इसे जितनी बार चाहें निजी तौर पर check कर सकते हैं।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>अपना gender चुनें, और age, height, weight डालें।</li>
+        <li>अपने हफ्ते के हिसाब से activity level चुनें।</li>
+        <li>अपनी अनुमानित maintenance कैलोरी और हल्के goal ranges देखें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+let gender = 'male';
+
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    gender = btn.dataset.gender;
+    calculate();
+  });
+});
+
+function calculate(){
+  const age = parseFloat(document.getElementById('age').value) || 0;
+  const height = parseFloat(document.getElementById('height').value) || 0;
+  const weight = parseFloat(document.getElementById('weight').value) || 0;
+  const activity = parseFloat(document.getElementById('activity').value);
+
+  let bmr;
+  if(gender === 'male'){
+    bmr = 10*weight + 6.25*height - 5*age + 5;
+  } else {
+    bmr = 10*weight + 6.25*height - 5*age - 161;
+  }
+  const tdee = bmr * activity;
+
+  const grid = document.getElementById('goalGrid');
+  grid.innerHTML = `
+    <div class="goal-card">
+      <div class="kcal">${Math.round(tdee - 350)}–${Math.round(tdee - 250)}</div>
+      <div class="lbl">Mild calorie range for gradual weight loss</div>
+    </div>
+    <div class="goal-card">
+      <div class="kcal">${Math.round(tdee)}</div>
+      <div class="lbl">Estimated Maintenance Calories</div>
+    </div>
+    <div class="goal-card">
+      <div class="kcal">${Math.round(tdee + 250)}–${Math.round(tdee + 350)}</div>
+      <div class="lbl">Mild calorie range for gradual weight gain</div>
+    </div>
+  `;
+}
+
+['age','height','weight','activity'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', calculate);
+});
+
+calculate();
+</script>
+</body>
+</html>

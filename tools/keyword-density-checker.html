@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Keyword Density Checker — Paste any text to analyze keyword frequency, density percentage and distribution. Supports 1-word, 2-word and 3-word phrases.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/keyword-density-checker.html">
+<meta property="og:title" content="Keyword Density Checker — Frequency & Density Analysis | ApneSoftware">
+<meta property="og:description" content="Analyze keyword density for 1, 2 and 3-word phrases. Find overused and missing keywords. Free, instant.">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="dark">
+<title>Keyword Density Checker — Frequency & Density Analysis | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.kdc-tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.kdc-tab{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);border-radius:8px;padding:7px 14px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:var(--font);transition:.2s}
+.kdc-tab.active,.kdc-tab:hover{background:rgba(124,92,252,.2);border-color:rgba(124,92,252,.4);color:#A78BFA}
+.kdc-kw-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.82rem}
+.kdc-kw-word{flex:1;font-weight:600;color:rgba(255,255,255,.85);min-width:0;word-break:break-word}
+.kdc-kw-count{width:50px;text-align:right;color:#A78BFA;font-weight:700}
+.kdc-kw-pct{width:55px;text-align:right;font-weight:700}
+.kdc-kw-bar-wrap{width:120px;height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;flex-shrink:0}
+.kdc-kw-bar{height:100%;border-radius:3px;transition:width .4s}
+.kdc-stat-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin-bottom:14px}
+.kdc-stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:12px;text-align:center}
+.kdc-stat-num{font-size:1.6rem;font-weight:800;color:#A78BFA}
+.kdc-stat-lbl{font-size:.7rem;color:rgba(255,255,255,.4);margin-top:2px}
+.kdc-warn-badge{background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.2);color:#F87171;border-radius:6px;padding:2px 8px;font-size:.7rem;font-weight:700;flex-shrink:0}
+.kdc-ok-badge{background:rgba(22,192,121,.12);border:1px solid rgba(22,192,121,.2);color:#16C079;border-radius:6px;padding:2px 8px;font-size:.7rem;font-weight:700;flex-shrink:0}
+#kdcScrollTop{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;box-shadow:0 4px 14px rgba(124,92,252,.4);transition:.2s}
+#kdcScrollTop.show{display:flex}
+#kdcScrollTop:hover{transform:translateY(-3px)}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="inner"><a class="brand" href="../index.html">Apne<span>Software</span></a><a class="back-link" href="../index.html">← All Tools</a></div></header>
+<div class="container">
+  <nav style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:2px">
+    <a href="../index.html" style="color:rgba(255,255,255,.45)">Home</a> › <span style="color:rgba(255,255,255,.7)">SEO Tools</span> › <span style="color:#A78BFA">Keyword Density Checker</span>
+  </nav>
+
+  <div class="tool-header"><h1>🔑 Keyword Density Checker</h1><p>Paste any text to analyze keyword frequency and density. Detects 1-word, 2-word and 3-word phrases. Instantly spot overused or missing keywords.</p></div>
+
+  <div class="panel">
+    <div class="field"><label for="textInput">Paste Your Content <span style="color:#F87171">*</span></label>
+      <textarea id="textInput" rows="8" placeholder="Paste your article, blog post, product description or any text here to analyze keyword density…"></textarea>
+    </div>
+    <div class="row">
+      <div class="field"><label for="targetKw">Target Keywords (optional, comma-separated)</label>
+        <input type="text" id="targetKw" placeholder="e.g. running shoes, beginner shoes, 2025">
+      </div>
+      <div class="field"><label for="minChars">Min. word length</label>
+        <select id="minChars"><option value="2">2+ chars</option><option value="3" selected>3+ chars</option><option value="4">4+ chars</option><option value="5">5+ chars</option></select>
+      </div>
+      <div class="field"><label for="topN">Show top N results</label>
+        <select id="topN"><option value="20">20</option><option value="30" selected>30</option><option value="50">50</option><option value="100">All</option></select>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn" id="btnAnalyze">🔑 Analyze</button>
+      <button class="btn secondary" id="btnSample">📋 Sample Text</button>
+      <button class="btn secondary" id="btnClear">🗑️ Clear</button>
+      <button class="btn secondary" id="btnDownload">⬇️ Download Report</button>
+    </div>
+    <p style="font-size:.75rem;color:rgba(255,255,255,.3);margin-top:8px">⌨️ <kbd style="background:rgba(255,255,255,.08);padding:1px 6px;border-radius:4px">Ctrl+Enter</kbd> to analyze</p>
+  </div>
+
+  <div id="resultsPanel" style="display:none">
+    <div class="panel" style="margin-top:14px">
+      <h2 style="font-size:.95rem;font-weight:800;margin-bottom:12px">📊 Content Stats</h2>
+      <div class="kdc-stat-row" id="statsGrid"></div>
+      <div id="targetKwResults" style="display:none;margin-top:10px"></div>
+    </div>
+
+    <div class="panel" style="margin-top:14px">
+      <div class="kdc-tabs" id="kwTabs">
+        <button class="kdc-tab active" data-n="1">1-Word Keywords</button>
+        <button class="kdc-tab" data-n="2">2-Word Phrases</button>
+        <button class="kdc-tab" data-n="3">3-Word Phrases</button>
+      </div>
+      <div id="kwList"></div>
+    </div>
+  </div>
+</div>
+
+<div class="info-wrap"><div class="info-section">
+  <div class="info-block">
+    <h2>🔑 What is Keyword Density?</h2>
+    <p><strong>Keyword density</strong> is the percentage of times a keyword appears in your content relative to the total word count. A keyword that appears 5 times in a 500-word article has a density of 1%.</p>
+    <p>While Google no longer uses keyword density as a direct ranking factor, it's still a useful signal to ensure your content naturally covers your target topic. Too low and Google may not understand what the page is about. Too high (keyword stuffing) can trigger a penalty.</p>
+    <h3>Recommended Density</h3>
+    <ol>
+      <li><strong>Primary keyword:</strong> 1–3% density</li>
+      <li><strong>Secondary keywords:</strong> 0.5–1.5%</li>
+      <li><strong>Above 4%:</strong> Potential keyword stuffing warning</li>
+      <li><strong>LSI keywords:</strong> Use naturally, no set target</li>
+    </ol>
+    <h3>How to Use the Results</h3>
+    <ol>
+      <li>Check 1-word results to see which terms dominate your content</li>
+      <li>Check 2-word and 3-word phrases to find natural keyword clusters</li>
+      <li>Use target keywords field to check if your focus keywords are present</li>
+      <li>Rewrite content to naturally increase density of important keywords</li>
+    </ol>
+  </div>
+  <div class="info-block">
+    <h2>🔑 Hindi Guide / हिंदी गाइड</h2>
+    <p><strong>Keyword Density</strong> यह measure करता है कि कोई keyword आपके content में कितनी बार आया है। 500 words के article में 5 बार keyword = 1% density।</p>
+    <h3>Ideal Keyword Density</h3>
+    <ol>
+      <li><strong>Primary keyword:</strong> 1-3% ideal</li>
+      <li><strong>Secondary keywords:</strong> 0.5-1.5%</li>
+      <li><strong>4% से ज़्यादा:</strong> Keyword stuffing का danger</li>
+      <li>Natural writing ज़्यादा important है exact density से</li>
+    </ol>
+    <h3>इस Tool को कैसे Use करें?</h3>
+    <ol>
+      <li>अपना article/content paste करें</li>
+      <li>Target Keywords field में focus keyword डालें</li>
+      <li>Analyze पर click करें</li>
+      <li>1-word, 2-word, 3-word tabs में results देखें</li>
+      <li>High density keywords को synonyms से replace करें</li>
+      <li>Low density target keywords को naturally add करें</li>
+    </ol>
+    <h3>⚠️ Keyword Stuffing से बचें</h3>
+    <p>Same keyword बार-बार repeat करना Google penalty का कारण बन सकता है। Natural language और LSI (Latent Semantic Indexing) keywords use करें।</p>
+  </div>
+</div></div>
+
+<button id="kdcScrollTop">↑</button>
+<footer class="site-footer"><p>© 2025 <a href="../index.html">ApneSoftware.com</a> · Free Tools for Everyone</p></footer>
+<script src="../assets/common.js"></script>
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const STOPWORDS=new Set('a an the and or but in on at to for of is are was were be been being have has had do does did will would could should may might shall can this that these those with from by into through during before after above below between among i me my we our you your he she it its they them their what which who how when where why all each every both few more most other some such no nor not only own same so than too very just able about across along already also always among around as at back below between beyond could down each easy even ever far few find first found full get going good had has have here high how its just keep kind know large last late later let like long make many may me more most much myself never no now number often only our out own part put rather really right round said same say see set several should since small some still such take then there these thing think this those time too top turn until very well were what where while who will with would year yet'.split(' '));
+
+const SAMPLE=`Running shoes are essential for any beginner runner. When choosing running shoes for beginners, comfort and support are the most important factors. The best running shoes for beginners provide excellent cushioning to protect joints and reduce injury risk. A good pair of beginner running shoes should fit well, with about a thumb's width of space at the toe. Many experts recommend visiting a specialty running store to get fitted properly for running shoes. The right running shoes can make the difference between an enjoyable running experience and painful blisters or shin splints. Beginner runners should look for running shoes with extra cushioning and stability features. Remember that running shoes should be replaced every 400 to 500 miles of use.`;
+
+let allFreq={1:{},2:{},3:{}};
+let totalWords=0;
+let activeN=1;
+
+function tokenize(text){
+  return text.toLowerCase().replace(/[^a-z0-9\s]/g,' ').split(/\s+/).filter(Boolean);
+}
+
+function analyze(){
+  const text=$('textInput').value.trim();
+  if(!text){showToast('⚠️ Paste some text first.');return;}
+  const minLen=+$('minChars').value;
+  const words=tokenize(text);
+  totalWords=words.length;
+  allFreq={1:{},2:{},3:{}};
+  // 1-gram
+  words.forEach(w=>{if(w.length>=minLen&&!STOPWORDS.has(w)){allFreq[1][w]=(allFreq[1][w]||0)+1;}});
+  // 2-gram
+  for(let i=0;i<words.length-1;i++){
+    const a=words[i],b=words[i+1];
+    if(a.length>=minLen&&b.length>=minLen&&!STOPWORDS.has(a)&&!STOPWORDS.has(b)){
+      const key=a+' '+b;allFreq[2][key]=(allFreq[2][key]||0)+1;
+    }
+  }
+  // 3-gram
+  for(let i=0;i<words.length-2;i++){
+    const a=words[i],b=words[i+1],c=words[i+2];
+    if(a.length>=minLen&&b.length>=minLen&&c.length>=minLen&&!STOPWORDS.has(a)&&!STOPWORDS.has(c)){
+      const key=a+' '+b+' '+c;allFreq[3][key]=(allFreq[3][key]||0)+1;
+    }
+  }
+  // Stats
+  const sentences=text.split(/[.!?]+/).filter(s=>s.trim()).length;
+  const unique=Object.keys(allFreq[1]).length;
+  $('statsGrid').innerHTML=[
+    {n:totalWords,l:'Total Words'},{n:sentences,l:'Sentences'},
+    {n:unique,l:'Unique Keywords'},{n:text.length,l:'Characters'},
+  ].map(s=>`<div class="kdc-stat"><div class="kdc-stat-num">${s.n}</div><div class="kdc-stat-lbl">${s.l}</div></div>`).join('');
+
+  // Target keywords
+  const tKws=$('targetKw').value.split(',').map(k=>k.trim().toLowerCase()).filter(Boolean);
+  if(tKws.length){
+    $('targetKwResults').style.display='block';
+    $('targetKwResults').innerHTML='<div style="font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:rgba(255,255,255,.4);margin-bottom:8px">🎯 Target Keywords</div>'+
+    tKws.map(kw=>{
+      const wc=kw.split(' ').length;
+      const count=allFreq[Math.min(wc,3)][kw]||0;
+      const pct=totalWords>0?((count/(totalWords-(wc-1)))*100).toFixed(2):0;
+      const ok=count>0;
+      return `<div class="kdc-kw-row">
+        <div class="kdc-kw-word">${kw}</div>
+        <div class="kdc-kw-count">${count}×</div>
+        <div class="kdc-kw-pct" style="color:${ok?'#16C079':'#F87171'}">${pct}%</div>
+        <span class="${ok?'kdc-ok-badge':'kdc-warn-badge'}">${ok?'✅ Found':'❌ Missing'}</span>
+      </div>`;
+    }).join('');
+  } else {
+    $('targetKwResults').style.display='none';
+  }
+
+  renderKwList();
+  $('resultsPanel').style.display='block';
+  $('resultsPanel').scrollIntoView({behavior:'smooth',block:'start'});
+  showToast('✅ Analysis complete! '+totalWords+' words analyzed.');
+}
+
+function renderKwList(){
+  const topN=+$('topN').value;
+  const freq=allFreq[activeN];
+  const sorted=Object.entries(freq).sort((a,b)=>b[1]-a[1]);
+  const show=topN===100?sorted:sorted.slice(0,topN);
+  const maxCount=show[0]?show[0][1]:1;
+  const denom=activeN===1?totalWords:Math.max(1,totalWords-(activeN-1));
+  $('kwList').innerHTML=show.map(([word,count])=>{
+    const pct=(count/denom*100).toFixed(2);
+    const barW=Math.round(count/maxCount*100);
+    const isHigh=+pct>3.5;
+    const color=isHigh?'#F87171':+pct>=1?'#16C079':'#7C5CFC';
+    return `<div class="kdc-kw-row">
+      <div class="kdc-kw-word">${word}</div>
+      <div class="kdc-kw-count">${count}×</div>
+      <div class="kdc-kw-pct" style="color:${color}">${pct}%</div>
+      <div class="kdc-kw-bar-wrap"><div class="kdc-kw-bar" style="width:${barW}%;background:${color}"></div></div>
+      ${isHigh?'<span class="kdc-warn-badge">High</span>':''}
+    </div>`;
+  }).join('')||'<div style="color:rgba(255,255,255,.35);font-size:.85rem;padding:14px 0">No results. Try shorter min. word length.</div>';
+}
+
+function downloadReport(){
+  const lines=['KEYWORD DENSITY REPORT','='.repeat(40),'Generated: '+new Date().toLocaleString(),'Total Words: '+totalWords,'',''];
+  [1,2,3].forEach(n=>{
+    lines.push(`── ${n}-Word ${n===1?'Keywords':'Phrases'} ──`);
+    const sorted=Object.entries(allFreq[n]).sort((a,b)=>b[1]-a[1]).slice(0,30);
+    const denom=n===1?totalWords:Math.max(1,totalWords-(n-1));
+    sorted.forEach(([w,c])=>lines.push(`  ${c}× (${(c/denom*100).toFixed(2)}%) — ${w}`));
+    lines.push('');
+  });
+  const b=new Blob([lines.join('\n')],{type:'text/plain'});
+  const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(b),download:'keyword-density-report.txt'});
+  document.body.appendChild(a);a.click();document.body.removeChild(a);showToast('⬇️ Downloaded!');
+}
+
+function showToast(msg){const t=document.createElement('div');t.className='prem-toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2400);}
+
+function init(){
+  $('btnAnalyze').addEventListener('click',analyze);
+  $('btnSample').addEventListener('click',()=>{$('textInput').value=SAMPLE;showToast('📋 Sample text loaded!');});
+  $('btnClear').addEventListener('click',()=>{$('textInput').value='';$('resultsPanel').style.display='none';});
+  $('btnDownload').addEventListener('click',()=>{if(!totalWords){showToast('⚠️ Analyze text first.');return;}downloadReport();});
+  document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();analyze();}});
+  document.querySelectorAll('.kdc-tab').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      activeN=+btn.dataset.n;
+      document.querySelectorAll('.kdc-tab').forEach(b=>b.classList.toggle('active',b===btn));
+      if(totalWords) renderKwList();
+    });
+  });
+  const sb=$('kdcScrollTop');
+  window.addEventListener('scroll',()=>sb.classList.toggle('show',scrollY>400));
+  sb.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+}
+document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+</body>
+</html>

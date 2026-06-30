@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/image-collage-maker.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Image Collage Maker | ApneSoftware">
+<meta property="og:description" content="Combine multiple photos into a grid. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/image-collage-maker.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Collage Maker | ApneSoftware">
+<meta name="twitter:description" content="Combine multiple photos into a grid. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Collage Maker","description":"Combine multiple photos into a grid. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/image-collage-maker.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Image Collage Maker | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  #previewCanvas{max-width:100%;border-radius:10px;border:1px solid var(--border)}
+  .file-item img{width:36px;height:36px;object-fit:cover;border-radius:4px;margin-right:8px;vertical-align:middle}
+  .color-row{display:flex;align-items:center;gap:10px}
+  .color-row input[type=color]{width:48px;height:38px;padding:2px;border-radius:8px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>🧩 Image Collage Maker</h1>
+    <p>Combine multiple photos into one grid collage.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag 2–9 images here or click to choose (select multiple at once)</p>
+      <input type="file" id="fileInput" accept="image/*" multiple>
+    </div>
+
+    <div class="file-list" id="fileList"></div>
+
+    <div id="controls" style="display:none;margin-top:18px">
+      <div class="row">
+        <div class="field" style="max-width:160px">
+          <label for="layoutSelect">Layout</label>
+          <select id="layoutSelect">
+            <option value="2x1">2 across</option>
+            <option value="1x2">2 stacked</option>
+            <option value="2x2">2 × 2 grid</option>
+            <option value="3x1">3 across</option>
+            <option value="3x3">3 × 3 grid</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="gapSlider">Spacing: <span id="gapVal">8</span>px</label>
+          <input type="range" id="gapSlider" min="0" max="40" value="8">
+        </div>
+        <div class="field" style="max-width:140px">
+          <label for="bgColor">Background</label>
+          <div class="color-row"><input type="color" id="bgColor" value="#ffffff"></div>
+        </div>
+      </div>
+
+      <canvas id="previewCanvas"></canvas>
+
+      <div class="btn-row">
+        <button class="btn" id="downloadBtn">⬇️ Download Collage</button>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Arrange several photos into a single grid collage — pick a layout that matches how many photos you have, adjust spacing and background color, then download the combined image.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Select 2 to 9 images at once.</li>
+        <li>Choose a grid layout, spacing, and background color.</li>
+        <li>Click Download to save the collage.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>कई फोटो को एक ही ग्रिड कोलाज में जोड़ें — जितनी फोटो हैं उसके हिसाब से लेआउट चुनें, स्पेसिंग और बैकग्राउंड कलर सेट करें, फिर मिली हुई इमेज डाउनलोड करें।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक साथ 2 से 9 इमेज चुनें।</li>
+        <li>ग्रिड लेआउट, स्पेसिंग और बैकग्राउंड कलर चुनें।</li>
+        <li>Download दबाकर कोलाज सेव करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const canvas = document.getElementById('previewCanvas');
+const ctx = canvas.getContext('2d');
+let images = []; // loaded Image objects
+
+const LAYOUTS = {
+  '2x1': {cols:2, rows:1},
+  '1x2': {cols:1, rows:2},
+  '2x2': {cols:2, rows:2},
+  '3x1': {cols:3, rows:1},
+  '3x3': {cols:3, rows:3},
+};
+
+setupDropzone(dropzone, fileInput, files => {
+  const imgFiles = files.filter(f => f.type.startsWith('image/')).slice(0, 9);
+  if(!imgFiles.length) return;
+  images = [];
+  const list = document.getElementById('fileList');
+  list.innerHTML = '';
+
+  let loaded = 0;
+  imgFiles.forEach((file, idx)=>{
+    const img = new Image();
+    img.onload = ()=>{
+      images[idx] = img;
+      loaded++;
+      if(loaded === imgFiles.length){
+        document.getElementById('controls').style.display = 'block';
+        renderCollage();
+      }
+    };
+    img.src = URL.createObjectURL(file);
+
+    const item = document.createElement('div');
+    item.className = 'file-item';
+    item.innerHTML = `<img src="${URL.createObjectURL(file)}"><span>${file.name}</span>`;
+    list.appendChild(item);
+  });
+});
+
+function renderCollage(){
+  const layout = LAYOUTS[document.getElementById('layoutSelect').value];
+  const gap = parseInt(document.getElementById('gapSlider').value);
+  const bg = document.getElementById('bgColor').value;
+  const cellSize = 400;
+
+  const cols = layout.cols, rows = layout.rows;
+  canvas.width = cols * cellSize + gap * (cols + 1);
+  canvas.height = rows * cellSize + gap * (rows + 1);
+
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const validImages = images.filter(Boolean);
+  for(let i=0; i < cols*rows; i++){
+    const img = validImages[i % validImages.length];
+    if(!img) continue;
+    const col = i % cols, row = Math.floor(i / cols);
+    const x = gap + col * (cellSize + gap);
+    const y = gap + row * (cellSize + gap);
+
+    // cover-fit crop
+    const scale = Math.max(cellSize/img.naturalWidth, cellSize/img.naturalHeight);
+    const sw = cellSize/scale, sh = cellSize/scale;
+    const sx = (img.naturalWidth - sw)/2;
+    const sy = (img.naturalHeight - sh)/2;
+
+    ctx.drawImage(img, sx, sy, sw, sh, x, y, cellSize, cellSize);
+  }
+}
+
+['layoutSelect','gapSlider','bgColor'].forEach(id=>{
+  document.getElementById(id).addEventListener('input', ()=>{
+    document.getElementById('gapVal').textContent = document.getElementById('gapSlider').value;
+    if(images.length) renderCollage();
+  });
+});
+
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  canvas.toBlob((blob)=>{
+    downloadBlob('collage.jpg', blob);
+    document.getElementById('statusMsg').textContent = '✅ Downloaded!';
+  }, 'image/jpeg', 0.95);
+});
+</script>
+</body>
+</html>

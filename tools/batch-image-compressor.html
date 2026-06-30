@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/batch-image-compressor.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Batch Image Compressor & Resizer | ApneSoftware">
+<meta property="og:description" content="Compress/resize many images, download as zip. Free online tool — no signup required.">
+<meta property="og:url" content="https://apnesoftware.com/tools/batch-image-compressor.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Batch Image Compressor & Resizer | ApneSoftware">
+<meta name="twitter:description" content="Compress/resize many images, download as zip. Free online tool — no signup required.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Batch Image Compressor & Resizer","description":"Compress/resize many images, download as zip. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/batch-image-compressor.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Batch Image Compressor & Resizer | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* Premium upload enhancement for this tool */
+.dropzone{cursor:pointer}
+.dropzone p{font-size:.9rem}
+.panel{position:relative;z-index:1}
+</style>
+<style>
+  .file-item img{width:36px;height:36px;object-fit:cover;border-radius:4px;margin-right:8px;vertical-align:middle}
+  .file-item .size-info{font-size:.78rem;color:var(--text-dim);margin-left:8px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <h1>📦 Batch Image Compressor & Resizer</h1>
+    <p>Compress and resize many images at once, then download them all as a zip.</p>
+  </div>
+
+  <div class="panel">
+    <div class="dropzone" id="dropzone">
+      <p>📤 Drag multiple images here or click to choose</p>
+      <input type="file" id="fileInput" accept="image/*" multiple>
+    </div>
+
+    <div class="file-list" id="fileList"></div>
+
+    <div id="controls" style="display:none;margin-top:18px">
+      <div class="row">
+        <div class="field">
+          <label for="maxWidthInput">Max width (px, 0 = keep original)</label>
+          <input type="number" id="maxWidthInput" value="1920" min="0">
+        </div>
+        <div class="field">
+          <label for="qualitySlider">JPEG quality: <span id="qualityVal">80</span>%</label>
+          <input type="range" id="qualitySlider" min="10" max="100" value="80">
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="processBtn">📦 Compress & Download All (.zip)</button>
+      </div>
+      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+    </div>
+  </div>
+</div>
+
+
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>Compress and resize a whole batch of images in one go — set a maximum width and JPEG quality, then download every processed image packaged in a single zip file.</p>
+      <h3>How to use:</h3>
+      <ol>
+        <li>Select multiple images at once.</li>
+        <li>Set a max width (to resize down large photos) and JPEG quality (to reduce file size).</li>
+        <li>Click Compress & Download All to get a zip with every processed image.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p>कई इमेज को एक साथ compress और resize करें — max width और JPEG quality सेट करें, फिर हर प्रोसेस की हुई इमेज को एक zip फाइल में डाउनलोड करें।</p>
+      <h3>इस्तेमाल कैसे करें:</h3>
+      <ol>
+        <li>एक साथ कई इमेज चुनें।</li>
+        <li>Max width (बड़ी फोटो को छोटा करने के लिए) और JPEG quality (फाइल साइज़ कम करने के लिए) सेट करें।</li>
+        <li>Compress & Download All दबाकर सभी प्रोसेस की हुई इमेज वाला zip पाएं।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+let queuedFiles = [];
+
+setupDropzone(dropzone, fileInput, files => {
+  const imgFiles = files.filter(f => f.type.startsWith('image/'));
+  if(!imgFiles.length) return;
+  queuedFiles = queuedFiles.concat(imgFiles);
+  renderList();
+  document.getElementById('controls').style.display = 'block';
+});
+
+function renderList(){
+  const list = document.getElementById('fileList');
+  list.innerHTML = '';
+  queuedFiles.forEach((file, i)=>{
+    const item = document.createElement('div');
+    item.className = 'file-item';
+    item.innerHTML = `<img src="${URL.createObjectURL(file)}"><span>${file.name}</span><span class="size-info">${formatBytes(file.size)}</span><button onclick="removeFile(${i})">✕</button>`;
+    list.appendChild(item);
+  });
+}
+
+function removeFile(i){
+  queuedFiles.splice(i,1);
+  renderList();
+}
+
+document.getElementById('qualitySlider').addEventListener('input', ()=>{
+  document.getElementById('qualityVal').textContent = document.getElementById('qualitySlider').value;
+});
+
+function processOne(file, maxWidth, quality){
+  return new Promise((resolve)=>{
+    const img = new Image();
+    img.onload = ()=>{
+      let w = img.naturalWidth, h = img.naturalHeight;
+      if(maxWidth > 0 && w > maxWidth){
+        h = Math.round(h * (maxWidth / w));
+        w = maxWidth;
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = w; canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, w, h);
+      canvas.toBlob((blob)=> resolve(blob), 'image/jpeg', quality/100);
+    };
+    img.src = URL.createObjectURL(file);
+  });
+}
+
+document.getElementById('processBtn').addEventListener('click', async ()=>{
+  const status = document.getElementById('statusMsg');
+  if(!queuedFiles.length){ status.textContent = '⚠️ Please add at least one image.'; return; }
+
+  const maxWidth = parseInt(document.getElementById('maxWidthInput').value) || 0;
+  const quality = parseInt(document.getElementById('qualitySlider').value);
+
+  const zip = new JSZip();
+  let done = 0;
+
+  for(const file of queuedFiles){
+    status.textContent = `⏳ Processing ${done+1} of ${queuedFiles.length}...`;
+    const blob = await processOne(file, maxWidth, quality);
+    const baseName = file.name.replace(/\.[^.]+$/, '');
+    zip.file(baseName + '-compressed.jpg', blob);
+    done++;
+  }
+
+  status.textContent = '⏳ Packaging zip...';
+  const zipBlob = await zip.generateAsync({ type: 'blob' });
+  downloadBlob('compressed-images.zip', zipBlob);
+  status.textContent = '✅ Done! Downloaded ' + done + ' image(s) as a zip.';
+});
+</script>
+</body>
+</html>

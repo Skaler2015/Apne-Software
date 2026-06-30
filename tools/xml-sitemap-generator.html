@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free XML Sitemap Generator — Add URLs manually or in bulk to create a valid XML sitemap. Set priority, change frequency and lastmod. Download instantly.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/xml-sitemap-generator.html">
+<meta property="og:title" content="XML Sitemap Generator — Create Valid Sitemaps | ApneSoftware">
+<meta property="og:description" content="Generate XML sitemaps with priority, changefreq, lastmod. Bulk URL paste supported. Free, instant download.">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="dark">
+<title>XML Sitemap Generator — Create Valid Sitemaps | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.xsg-url-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.82rem}
+.xsg-url-table th{background:rgba(255,255,255,.07);padding:8px 10px;text-align:left;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:rgba(255,255,255,.4)}
+.xsg-url-table td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.05)}
+.xsg-url-table input,.xsg-url-table select{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:#fff;padding:5px 8px;font-family:var(--font);font-size:.78rem;width:100%}
+.xsg-del-btn{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.2);color:#F87171;border-radius:6px;padding:4px 8px;cursor:pointer;font-size:.75rem;font-family:var(--font)}
+.xsg-code{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;font-family:'Courier New',monospace;font-size:.78rem;line-height:1.7;color:#e0e0e0;white-space:pre-wrap;max-height:480px;overflow-y:auto;margin-top:12px}
+.xsg-tag{color:#79C0FF}.xsg-val{color:#A5D6FF}.xsg-attr{color:#FF7B72}.xsg-com{color:#8B949E}
+.xsg-tabs{display:flex;gap:6px;margin-bottom:16px}
+.xsg-tab{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.6);border-radius:8px;padding:8px 16px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:var(--font);transition:.2s}
+.xsg-tab.active,.xsg-tab:hover{background:rgba(124,92,252,.2);border-color:rgba(124,92,252,.4);color:#A78BFA}
+.xsg-panel{display:none}.xsg-panel.active{display:block}
+#xsgScrollTop{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;border:none;font-size:1.1rem;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;box-shadow:0 4px 14px rgba(124,92,252,.4);transition:.2s}
+#xsgScrollTop.show{display:flex}
+#xsgScrollTop:hover{transform:translateY(-3px)}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="inner"><a class="brand" href="../index.html">Apne<span>Software</span></a><a class="back-link" href="../index.html">← All Tools</a></div></header>
+<div class="container">
+  <nav style="font-size:.8rem;color:rgba(255,255,255,.45);margin-bottom:2px">
+    <a href="../index.html" style="color:rgba(255,255,255,.45)">Home</a> › <span style="color:rgba(255,255,255,.7)">SEO Tools</span> › <span style="color:#A78BFA">XML Sitemap Generator</span>
+  </nav>
+
+  <div class="tool-header"><h1>🗺️ XML Sitemap Generator</h1><p>Create a valid XML sitemap manually or by pasting a list of URLs. Set priority, change frequency and last modified date. Download instantly.</p></div>
+
+  <div class="panel">
+    <div class="xsg-tabs">
+      <button class="xsg-tab active" data-tab="manual">Manual Entry</button>
+      <button class="xsg-tab" data-tab="bulk">Bulk URL Paste</button>
+    </div>
+
+    <div class="xsg-panel active" id="tab-manual">
+      <div class="row">
+        <div class="field"><label for="defFreq">Default Change Frequency</label>
+          <select id="defFreq"><option value="always">always</option><option value="hourly">hourly</option><option value="daily" selected>daily</option><option value="weekly">weekly</option><option value="monthly">monthly</option><option value="yearly">yearly</option><option value="never">never</option></select>
+        </div>
+        <div class="field"><label for="defPriority">Default Priority</label>
+          <select id="defPriority"><option value="1.0">1.0 (Highest)</option><option value="0.9">0.9</option><option value="0.8" selected>0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option><option value="0.4">0.4</option><option value="0.3">0.3</option><option value="0.2">0.2</option><option value="0.1">0.1 (Lowest)</option></select>
+        </div>
+        <div class="field"><label for="defDate">Default Last Modified</label><input type="date" id="defDate"></div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="xsg-url-table">
+          <thead><tr><th>URL</th><th width="120">Freq</th><th width="90">Priority</th><th width="130">Last Modified</th><th width="40"></th></tr></thead>
+          <tbody id="urlTableBody"></tbody>
+        </table>
+      </div>
+      <div class="btn-row" style="margin-top:10px">
+        <button class="btn secondary" id="btnAddRow">+ Add URL</button>
+        <button class="btn secondary" id="btnAddSample">📋 Sample URLs</button>
+      </div>
+    </div>
+
+    <div class="xsg-panel" id="tab-bulk">
+      <div class="field"><label for="bulkUrls">Paste URLs (one per line)</label>
+        <textarea id="bulkUrls" rows="10" placeholder="https://example.com/&#10;https://example.com/about/&#10;https://example.com/products/&#10;https://example.com/contact/"></textarea>
+      </div>
+      <div class="row">
+        <div class="field"><label for="bulkFreq">Change Frequency</label>
+          <select id="bulkFreq"><option value="always">always</option><option value="hourly">hourly</option><option value="daily" selected>daily</option><option value="weekly">weekly</option><option value="monthly">monthly</option><option value="yearly">yearly</option><option value="never">never</option></select>
+        </div>
+        <div class="field"><label for="bulkPriority">Priority</label>
+          <select id="bulkPriority"><option value="1.0">1.0</option><option value="0.9">0.9</option><option value="0.8" selected>0.8</option><option value="0.7">0.7</option><option value="0.6">0.6</option><option value="0.5">0.5</option></select>
+        </div>
+        <div class="field"><label for="bulkDate">Last Modified</label><input type="date" id="bulkDate"></div>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top:12px">
+      <button class="btn" id="btnGenerate">⚡ Generate Sitemap</button>
+      <button class="btn secondary" id="btnCopy">📋 Copy XML</button>
+      <button class="btn secondary" id="btnDownload">⬇️ Download sitemap.xml</button>
+    </div>
+
+    <div style="margin-top:10px;font-size:.78rem;color:rgba(255,255,255,.35)">
+      <span id="urlCount">0 URLs</span> · Valid XML 1.0 · Compatible with Google, Bing, Yahoo
+    </div>
+  </div>
+
+  <div class="panel" id="outputPanel" style="display:none;margin-top:14px">
+    <h2 style="font-size:1rem;font-weight:800;margin-bottom:6px">📄 Generated sitemap.xml</h2>
+    <div class="xsg-code" id="outputCode"></div>
+  </div>
+</div>
+
+<div class="info-wrap"><div class="info-section">
+  <div class="info-block">
+    <h2>🗺️ What is an XML Sitemap?</h2>
+    <p>An <strong>XML sitemap</strong> is a file that lists all the important pages on your website, helping search engines discover and crawl them faster and more efficiently. Without a sitemap, search engines must discover your pages entirely through links, which can miss pages that aren't well linked.</p>
+    <p>A sitemap is especially important for: large websites (100+ pages), new websites with few backlinks, websites with rich media content, websites with frequently updated content, and websites with complex navigation.</p>
+    <h3>Sitemap Tags Explained</h3>
+    <ol>
+      <li><strong>loc</strong> — Full URL of the page (required)</li>
+      <li><strong>lastmod</strong> — Date the page was last modified</li>
+      <li><strong>changefreq</strong> — How often the page changes</li>
+      <li><strong>priority</strong> — Relative importance (0.0–1.0)</li>
+    </ol>
+    <h3>After Generating</h3>
+    <ol>
+      <li>Upload sitemap.xml to your website root</li>
+      <li>Add Sitemap directive to your robots.txt</li>
+      <li>Submit to Google Search Console</li>
+      <li>Submit to Bing Webmaster Tools</li>
+    </ol>
+  </div>
+  <div class="info-block">
+    <h2>🗺️ Hindi Guide / हिंदी गाइड</h2>
+    <p><strong>XML Sitemap</strong> एक file है जो आपकी website के सभी important pages की list रखती है। यह search engines को आपके pages जल्दी discover और crawl करने में मदद करती है।</p>
+    <h3>Sitemap कब ज़रूरी है?</h3>
+    <ol>
+      <li>बड़ी website (100+ pages)</li>
+      <li>नई website (कम backlinks)</li>
+      <li>Dynamic content (news, blog)</li>
+      <li>Complex navigation वाली sites</li>
+    </ol>
+    <h3>Priority कैसे set करें?</h3>
+    <ol>
+      <li>Homepage: 1.0</li>
+      <li>Category pages: 0.8</li>
+      <li>Product/Blog pages: 0.6-0.7</li>
+      <li>Tag/Archive pages: 0.4-0.5</li>
+      <li>Legal pages: 0.3</li>
+    </ol>
+    <h3>Submit कैसे करें?</h3>
+    <ol>
+      <li>sitemap.xml को website root पर upload करें</li>
+      <li>robots.txt में Sitemap URL add करें</li>
+      <li>Google Search Console में submit करें</li>
+    </ol>
+  </div>
+</div></div>
+
+<button id="xsgScrollTop">↑</button>
+<footer class="site-footer"><p>© 2025 <a href="../index.html">ApneSoftware.com</a> · Free Tools for Everyone</p></footer>
+<script src="../assets/common.js"></script>
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+let rows=[{url:'',freq:'daily',priority:'0.8',date:''}];
+let activeTab='manual';
+
+const today=new Date().toISOString().split('T')[0];
+$('defDate').value=today;$('bulkDate').value=today;
+
+function buildTable(){
+  $('urlTableBody').innerHTML=rows.map((r,i)=>`
+    <tr>
+      <td><input type="text" data-idx="${i}" class="r-url" value="${r.url}" placeholder="https://example.com/page/"></td>
+      <td><select data-idx="${i}" class="r-freq">${['always','hourly','daily','weekly','monthly','yearly','never'].map(f=>`<option value="${f}"${r.freq===f?' selected':''}>${f}</option>`).join('')}</select></td>
+      <td><select data-idx="${i}" class="r-pri">${['1.0','0.9','0.8','0.7','0.6','0.5','0.4','0.3','0.2','0.1'].map(p=>`<option value="${p}"${r.priority===p?' selected':''}>${p}</option>`).join('')}</select></td>
+      <td><input type="date" data-idx="${i}" class="r-date" value="${r.date}"></td>
+      <td><button class="xsg-del-btn" data-idx="${i}">✕</button></td>
+    </tr>`).join('');
+  $('urlTableBody').querySelectorAll('.r-url').forEach(i=>i.addEventListener('input',e=>{rows[+e.target.dataset.idx].url=e.target.value;updateCount();}));
+  $('urlTableBody').querySelectorAll('.r-freq').forEach(s=>s.addEventListener('change',e=>{rows[+e.target.dataset.idx].freq=e.target.value;}));
+  $('urlTableBody').querySelectorAll('.r-pri').forEach(s=>s.addEventListener('change',e=>{rows[+e.target.dataset.idx].priority=e.target.value;}));
+  $('urlTableBody').querySelectorAll('.r-date').forEach(i=>i.addEventListener('change',e=>{rows[+e.target.dataset.idx].date=e.target.value;}));
+  $('urlTableBody').querySelectorAll('.xsg-del-btn').forEach(b=>b.addEventListener('click',e=>{if(rows.length>1){rows.splice(+e.target.dataset.idx,1);buildTable();}}));
+  updateCount();
+}
+
+function updateCount(){
+  const c=activeTab==='manual'?rows.filter(r=>r.url.trim()).length:$('bulkUrls').value.split('\n').filter(l=>l.trim()).length;
+  $('urlCount').textContent=c+' URL'+(c!==1?'s':'');
+}
+
+function getXml(){
+  let urls=[];
+  if(activeTab==='manual'){
+    urls=rows.filter(r=>r.url.trim()).map(r=>({url:r.url.trim(),freq:r.freq,priority:r.priority,date:r.date}));
+  } else {
+    const lines=$('bulkUrls').value.split('\n').filter(l=>l.trim());
+    const freq=$('bulkFreq').value,pri=$('bulkPriority').value,date=$('bulkDate').value;
+    urls=lines.map(url=>({url:url.trim(),freq,priority:pri,date}));
+  }
+  if(!urls.length)return null;
+  const entries=urls.map(u=>`  <url>\n    <loc>${esc(u.url)}</loc>${u.date?`\n    <lastmod>${u.date}</lastmod>`:''}\n    <changefreq>${u.freq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`).join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<!-- Sitemap generated by ApneSoftware.com on ${new Date().toLocaleDateString()} -->\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries}\n</urlset>`;
+}
+
+function syntaxHL(xml){
+  return xml
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(&lt;!--.*?--&gt;)/g,'<span class="xsg-com">$1</span>')
+    .replace(/(&lt;\?[^?]*\?&gt;)/g,'<span class="xsg-com">$1</span>')
+    .replace(/(&lt;\/?[a-zA-Z][a-zA-Z0-9:]*)/g,'<span class="xsg-tag">$1</span>')
+    .replace(/(&gt;)/g,'<span class="xsg-tag">$1</span>')
+    .replace(/(\s[a-z:]+)=(&quot;[^&]*&quot;)/g,'<span class="xsg-attr">$1</span>=<span class="xsg-val">$2</span>');
+}
+
+function generate(){
+  const xml=getXml();
+  if(!xml){showToast('⚠️ Add at least one URL.');return;}
+  $('outputCode').innerHTML=syntaxHL(xml);
+  $('outputPanel').style.display='block';
+  $('outputPanel').scrollIntoView({behavior:'smooth',block:'start'});
+  showToast('✅ Sitemap generated!');
+  $('btnCopy').onclick=()=>navigator.clipboard.writeText(xml).then(()=>showToast('📋 Copied!'));
+  $('btnDownload').onclick=()=>{
+    const b=new Blob([xml],{type:'application/xml'});
+    const a=Object.assign(document.createElement('a'),{href:URL.createObjectURL(b),download:'sitemap.xml'});
+    document.body.appendChild(a);a.click();document.body.removeChild(a);showToast('⬇️ Downloaded!');
+  };
+}
+
+function showToast(msg){const t=document.createElement('div');t.className='prem-toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),2400);}
+
+function init(){
+  buildTable();
+  $('btnAddRow').addEventListener('click',()=>{
+    const f=$('defFreq').value,p=$('defPriority').value,d=$('defDate').value;
+    rows.push({url:'',freq:f,priority:p,date:d});buildTable();
+  });
+  $('btnAddSample').addEventListener('click',()=>{
+    rows=[
+      {url:'https://example.com/',freq:'daily',priority:'1.0',date:today},
+      {url:'https://example.com/about/',freq:'monthly',priority:'0.7',date:today},
+      {url:'https://example.com/blog/',freq:'daily',priority:'0.9',date:today},
+      {url:'https://example.com/contact/',freq:'yearly',priority:'0.5',date:today},
+    ];buildTable();showToast('📋 Sample loaded!');
+  });
+  document.querySelectorAll('.xsg-tab').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      activeTab=btn.dataset.tab;
+      document.querySelectorAll('.xsg-tab').forEach(b=>b.classList.toggle('active',b===btn));
+      document.querySelectorAll('.xsg-panel').forEach(p=>p.classList.toggle('active',p.id==='tab-'+activeTab));
+      updateCount();
+    });
+  });
+  $('bulkUrls').addEventListener('input',updateCount);
+  $('btnGenerate').addEventListener('click',generate);
+  const sb=$('xsgScrollTop');
+  window.addEventListener('scroll',()=>sb.classList.toggle('show',scrollY>400));
+  sb.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+}
+document.addEventListener('DOMContentLoaded',init);
+})();
+</script>
+</body>
+</html>

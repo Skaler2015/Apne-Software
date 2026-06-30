@@ -1,0 +1,12 @@
+# Protect config.php and lib/ files from being browsed directly.
+# (track.php, sync_tools.php, and admin-analytics/* are meant to be accessed directly.)
+
+<Files "config.php">
+  Require all denied
+</Files>
+
+<FilesMatch "\.(sql)$">
+  Require all denied
+</FilesMatch>
+
+Options -Indexes
