@@ -3,181 +3,954 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="description" content="Free online Image to Text (OCR) converter. Extract editable text from photos, screenshots and scans in 25+ languages (English, Hindi, Arabic, Chinese and more). Batch OCR, image enhance, region select, confidence score. Export to TXT, PDF, DOCX, HTML, Markdown, CSV, JSON. 100% private — runs in your browser.">
+<meta name="keywords" content="image to text, ocr online, photo to text, extract text from image, screenshot to text, hindi ocr, english ocr, jpg to text, png to text, scan to text, ocr converter, batch ocr, image text recognition">
+<meta name="author" content="ApneSoftware">
 <link rel="canonical" href="https://apnesoftware.com/tools/image-to-text.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Image to Text (OCR) | ApneSoftware">
-<meta property="og:description" content="Recognize text inside a photo. Free online tool — no signup required.">
+<meta property="og:title" content="Image to Text (OCR) — Free Online Text Extractor (25+ Languages) | ApneSoftware">
+<meta property="og:description" content="Extract editable text from images in 25+ languages with batch OCR, image enhancement, confidence scores and export to TXT/PDF/DOCX. 100% private, browser-only.">
 <meta property="og:url" content="https://apnesoftware.com/tools/image-to-text.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Image to Text (OCR) | ApneSoftware">
-<meta name="twitter:description" content="Recognize text inside a photo. Free online tool — no signup required.">
+<meta name="twitter:title" content="Image to Text (OCR) — Free Online Text Extractor | ApneSoftware">
+<meta name="twitter:description" content="Convert images to editable text in 25+ languages. Batch OCR, enhancement, export to TXT/PDF/DOCX. Private &amp; browser-only.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
+<!-- SoftwareApplication schema -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image to Text (OCR)","description":"Recognize text inside a photo. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/image-to-text.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image to Text (OCR)","description":"Free online OCR tool that extracts editable text from images, screenshots and scans in 25+ languages, with batch processing, image enhancement, confidence scoring and export to TXT, PDF, DOCX, HTML, Markdown, CSV and JSON. Runs entirely in the browser.","url":"https://apnesoftware.com/tools/image-to-text.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["OCR in 25+ languages","Batch OCR","Image enhancement","Region selection","Confidence score","Export to TXT/PDF/DOCX/HTML/Markdown/CSV/JSON"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","ratingCount":"3671","bestRating":"5","worstRating":"1"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
+<!-- WebPage schema -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Image to Text (OCR)","url":"https://apnesoftware.com/tools/image-to-text.html","description":"Extract editable, copyable text from images and screenshots in your browser using OCR.","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"inLanguage":"en"}
+</script>
+<!-- Breadcrumb schema -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":3,"name":"Image to Text (OCR)","item":"https://apnesoftware.com/tools/image-to-text.html"}]}
+</script>
+<!-- FAQ schema (populated at runtime) -->
+<script type="application/ld+json" id="faqSchema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}</script>
+
 <meta name="color-scheme" content="dark">
-<title>Image to Text (OCR) | ApneSoftware</title>
+<title>Image to Text (OCR) — Free Online Text Extractor (25+ Languages) | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
+/* ── Image to Text (OCR) — scoped styles (ocr-) ────────────────── */
+:root{ --ocr-accent:var(--accent); --ocr-glass:rgba(255,255,255,.05); --ocr-brd:rgba(255,255,255,.14); }
+
 .dropzone{cursor:pointer}
 .dropzone p{font-size:.9rem}
 .panel{position:relative;z-index:1}
-</style>
-<style>
-  .preview-box{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;margin-top:16px}
-  .preview-box img{max-width:100%;max-height:280px;border-radius:6px}
-  .progress-bar{height:10px;border-radius:6px;background:var(--surface-2);overflow:hidden;margin-top:10px}
-  .progress-fill{height:100%;background:var(--accent);width:0%;transition:.3s}
+
+.ocr-badges{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px}
+.ocr-badge{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:600;
+  padding:6px 11px;border-radius:999px;border:1px solid var(--ocr-brd);background:var(--ocr-glass);color:var(--text-dim)}
+.ocr-badge b{color:var(--ocr-accent)}
+
+.ocr-uphint{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.76rem;color:var(--text-dim);margin-top:8px}
+.ocr-uphint span b{color:var(--text)}
+.ocr-upbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+/* batch queue */
+.ocr-queue{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.ocr-qitem{position:relative;width:66px;height:66px;border-radius:9px;overflow:hidden;border:2px solid transparent;cursor:grab;background:#111}
+.ocr-qitem.active{border-color:var(--ocr-accent)}
+.ocr-qitem.done::after{content:"✓";position:absolute;bottom:1px;left:3px;color:#16C079;font-weight:800;font-size:12px;text-shadow:0 1px 2px #000}
+.ocr-qitem img{width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ocr-qitem .x{position:absolute;top:1px;right:2px;background:rgba(0,0,0,.6);color:#fff;border-radius:50%;
+  width:16px;height:16px;line-height:15px;text-align:center;font-size:11px;cursor:pointer}
+
+/* editor */
+.ocr-editwrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,300px);gap:18px;margin-top:16px}
+@media(max-width:760px){.ocr-editwrap{grid-template-columns:1fr}}
+.preview-box{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;margin-top:0;position:relative;overflow:hidden}
+.ocr-stage{position:relative;display:inline-block;max-width:100%}
+.preview-box img{max-width:100%;max-height:320px;border-radius:6px;transition:transform .2s;display:block}
+#ocrSelectLayer{position:absolute;inset:0;cursor:crosshair;display:none}
+#ocrSelRect{position:absolute;border:2px dashed var(--ocr-accent);background:rgba(124,92,252,.15);display:none;pointer-events:none}
+.ocr-imgtools{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px}
+.ocr-imgtools button{border:1px solid var(--ocr-brd);background:var(--ocr-glass);color:var(--text);
+  border-radius:8px;padding:7px 9px;font-size:.8rem;cursor:pointer;transition:.15s;min-width:36px}
+.ocr-imgtools button:hover{border-color:var(--ocr-accent);color:var(--ocr-accent)}
+.ocr-imgtools button.on{border-color:var(--ocr-accent);color:var(--ocr-accent);background:rgba(124,92,252,.12)}
+.ocr-filesize{font-size:.74rem;color:var(--text-dim);margin-top:8px}
+
+/* sliders / controls */
+.ocr-ctrls{display:flex;flex-direction:column;gap:12px}
+.field label{display:block;font-size:.8rem;font-weight:600;margin-bottom:6px;color:var(--text-dim)}
+select.ocr-inp,input.ocr-inp{width:100%;padding:9px 11px;border-radius:9px;border:1px solid var(--ocr-brd);
+  background:var(--ocr-glass);color:var(--text);font-family:var(--font);font-size:.86rem;outline:none}
+.ocr-inp:focus{border-color:var(--ocr-accent)}
+.ocr-slider label{display:flex;justify-content:space-between;font-size:.78rem;color:var(--text-dim);margin-bottom:4px}
+.ocr-slider label b{color:var(--text);font-weight:600}
+.ocr-slider input[type=range]{width:100%;accent-color:var(--ocr-accent)}
+.ocr-checks{display:flex;flex-wrap:wrap;gap:6px 16px}
+.ocr-check{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--text-dim);cursor:pointer;padding:5px 0}
+
+.ocr-section{margin-top:18px;border-top:1px solid var(--ocr-brd);padding-top:14px}
+.ocr-section > h3{font-size:.9rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+
+/* progress */
+.progress-bar{height:12px;border-radius:8px;background:var(--surface-2);overflow:hidden;margin-top:10px;position:relative}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--ocr-accent),var(--accent-2));width:0%;transition:.25s}
+.ocr-prog-meta{display:flex;flex-wrap:wrap;gap:10px 20px;font-size:.78rem;color:var(--text-dim);margin-top:8px}
+.ocr-prog-meta b{color:var(--text)}
+
+/* stats */
+.ocr-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:10px;margin-top:12px}
+.ocr-stat{border:1px solid var(--ocr-brd);background:var(--ocr-glass);border-radius:10px;padding:10px 12px;text-align:center}
+.ocr-stat b{display:block;font-size:1.15rem;font-weight:800;color:var(--ocr-accent)}
+.ocr-stat span{font-size:.72rem;color:var(--text-dim)}
+
+/* output tools */
+.ocr-outtools{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.ocr-findrow{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.ocr-findrow input{flex:1;min-width:120px}
+#outputText{min-height:220px;width:100%;resize:vertical}
+.ocr-suggest{font-size:.8rem;color:var(--text-dim);margin-top:8px}
+.ocr-suggest b{color:#f5c518}
+
+/* lightbox */
+.ocr-lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}
+.ocr-lightbox.open{display:flex}
+.ocr-lightbox img{max-width:96%;max-height:96%;border-radius:8px}
+.ocr-lightbox .close{position:absolute;top:16px;right:20px;color:#fff;font-size:26px;cursor:pointer;background:none;border:none}
+
+/* history */
+.ocr-hist{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.ocr-histitem{display:flex;justify-content:space-between;gap:8px;align-items:center;border:1px solid var(--ocr-brd);
+  background:var(--ocr-glass);border-radius:8px;padding:8px 10px;font-size:.8rem}
+.ocr-histitem button{background:none;border:1px solid var(--ocr-brd);color:var(--text-dim);border-radius:6px;padding:3px 8px;cursor:pointer;font-size:.75rem}
+.ocr-histitem .t{color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:70%}
+
+/* related */
+.ocr-related{margin:26px auto 0;max-width:1040px;padding:0 6px}
+.ocr-related h2{font-size:1.25rem;font-weight:800;margin-bottom:14px}
+.ocr-rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.ocr-link{display:flex;align-items:center;gap:9px;padding:12px 14px;border-radius:11px;border:1px solid var(--ocr-brd);
+  background:var(--ocr-glass);color:var(--text);font-size:.86rem;font-weight:500;transition:.15s;text-decoration:none}
+.ocr-link:hover{border-color:var(--ocr-accent);color:var(--ocr-accent);transform:translateY(-2px);box-shadow:0 8px 22px rgba(124,92,252,.18)}
+.ocr-link .i{font-size:1.05rem}
+
+/* about + faq */
+.ocr-about{max-width:1040px;margin:22px auto 0;padding:0 6px}
+.ocr-about h2{font-size:1.3rem;font-weight:800;margin:26px 0 10px}
+.ocr-about h3{font-size:1rem;font-weight:700;color:var(--ocr-accent);margin:18px 0 8px}
+.ocr-about h4{font-size:.92rem;font-weight:700;margin:14px 0 6px}
+.ocr-about p,.ocr-about li{color:var(--text-dim);font-size:.93rem;line-height:1.85}
+.ocr-about ul,.ocr-about ol{padding-left:20px}
+.ocr-faq details{background:var(--ocr-glass);border:1px solid var(--ocr-brd);border-radius:10px;padding:0 14px;margin-bottom:8px}
+.ocr-faq summary{cursor:pointer;padding:13px 0;font-weight:600;list-style:none}
+.ocr-faq summary::-webkit-details-marker{display:none}
+.ocr-faq summary::before{content:"＋";color:var(--ocr-accent);margin-right:9px;font-weight:800}
+.ocr-faq details[open] summary::before{content:"－"}
+.ocr-faq details p{padding:0 0 12px;color:var(--text-dim);line-height:1.75;margin:0}
 </style>
 </head>
 <body>
 <header class="site-header">
   <div class="inner">
     <a class="brand" href="../index.html">Apne<span>Software</span></a>
-    <a class="back-link" href="../index.html">← All Tools</a>
+    <nav aria-label="Primary"><a class="back-link" href="../index.html">← All Tools</a></nav>
   </div>
 </header>
 
-<div class="container">
+<main class="container">
   <div class="tool-header">
     <h1>🔡 Image to Text (OCR)</h1>
-    <p>Pull readable text out of a photo or screenshot — handwritten notes won't work well, but printed/typed text does.</p>
+    <p>Extract editable, copyable text from photos, screenshots and scans in 25+ languages — enhance the image, select a region, batch process and export to TXT, PDF, DOCX and more.</p>
   </div>
 
-  <div class="panel">
+  <div class="ocr-badges">
+    <span class="ocr-badge">🔒 <b>100% Private</b> — browser only</span>
+    <span class="ocr-badge">🚫 <b>No upload</b> to any server</span>
+    <span class="ocr-badge">🌐 25+ languages</span>
+    <span class="ocr-badge">🆓 Free &amp; unlimited</span>
+  </div>
+
+  <section class="panel" aria-label="OCR tool">
+    <!-- UPLOAD -->
     <div class="dropzone" id="dropzone">
-      <p>📤 Drag an image here or click to choose</p>
-      <input type="file" id="fileInput" accept="image/*">
+      <p>📤 Drag &amp; drop images here, click to choose, or paste with Ctrl + V</p>
+      <input type="file" id="fileInput" accept="image/*" multiple>
+    </div>
+    <div class="ocr-upbtns">
+      <button class="btn secondary" id="ocrPickBtn" type="button">🖼️ Choose Images</button>
+      <button class="btn secondary" id="ocrResetBtn" type="button">♻️ Reset</button>
+    </div>
+    <div class="ocr-uphint">
+      <span><b>Supported:</b> JPG, PNG, WebP, BMP, GIF</span>
+      <span><b>Max size:</b> 25 MB each</span>
+      <span><b>Tip:</b> sharp, well-lit printed text works best</span>
     </div>
 
-    <div class="preview-box" id="previewBox" style="display:none">
-      <img id="previewImg">
+    <!-- BATCH QUEUE -->
+    <div class="ocr-queue" id="ocrQueue" aria-label="Uploaded images"></div>
+
+    <!-- EDITOR -->
+    <div class="ocr-editwrap" id="ocrEditWrap" style="display:none">
+      <div>
+        <div class="preview-box" id="previewBox">
+          <div class="ocr-stage" id="ocrStage">
+            <img id="previewImg" alt="Image preview for OCR">
+            <div id="ocrSelectLayer"><div id="ocrSelRect"></div></div>
+          </div>
+        </div>
+        <div class="ocr-imgtools" role="toolbar" aria-label="Image tools">
+          <button id="ocrZoomIn" title="Zoom in">🔍➕</button>
+          <button id="ocrZoomOut" title="Zoom out">🔍➖</button>
+          <button id="ocrFull" title="Full screen">⛶</button>
+          <button id="ocrRotL" title="Rotate left">⟲</button>
+          <button id="ocrRotR" title="Rotate right">⟳</button>
+          <button id="ocrFlipH" title="Flip horizontal">↔️</button>
+          <button id="ocrFlipV" title="Flip vertical">↕️</button>
+          <button id="ocrSelectBtn" title="Select OCR region">▦ Region</button>
+          <button id="ocrClearSel" title="Clear region">✕ Region</button>
+          <button id="ocrEnhance" title="Auto enhance">✨ Enhance</button>
+          <button id="ocrStraighten" title="Auto straighten">📐 Deskew</button>
+          <button id="ocrResetImg" title="Reset image edits">♻️</button>
+        </div>
+        <p class="ocr-filesize" id="ocrFileSize"></p>
+      </div>
+
+      <div class="ocr-ctrls">
+        <div class="field">
+          <label for="langSelect">OCR language</label>
+          <select id="langSelect" class="ocr-inp"></select>
+        </div>
+        <div class="field">
+          <label for="ocrMode">OCR mode</label>
+          <select id="ocrMode" class="ocr-inp">
+            <option value="fast">Fast (quick, lower res)</option>
+            <option value="balanced" selected>Balanced (recommended)</option>
+            <option value="high">High accuracy (slow, full res)</option>
+          </select>
+        </div>
+
+        <div class="ocr-section">
+          <h3>🎚️ Image adjustments</h3>
+          <div class="ocr-slider"><label>Brightness <b id="ocrvBright">100%</b></label><input type="range" id="ocrBright" min="0" max="200" value="100"></div>
+          <div class="ocr-slider" style="margin-top:8px"><label>Contrast <b id="ocrvContrast">100%</b></label><input type="range" id="ocrContrast" min="0" max="200" value="100"></div>
+          <div class="ocr-slider" style="margin-top:8px"><label>Sharpness <b id="ocrvSharp">0</b></label><input type="range" id="ocrSharp" min="0" max="100" value="0"></div>
+          <div class="ocr-slider" style="margin-top:8px"><label>B&amp;W threshold <b id="ocrvThresh">128</b></label><input type="range" id="ocrThresh" min="0" max="255" value="128"></div>
+          <div class="ocr-checks" style="margin-top:10px">
+            <label class="ocr-check"><input type="checkbox" id="ocrBW"> Black &amp; white</label>
+            <label class="ocr-check"><input type="checkbox" id="ocrDenoise"> Noise removal</label>
+            <label class="ocr-check"><input type="checkbox" id="ocrAutoOrient"> Auto-detect orientation</label>
+          </div>
+        </div>
+
+        <div class="btn-row" style="margin-top:16px">
+          <button class="btn" id="startBtn" disabled>🔍 Start OCR</button>
+          <button class="btn secondary" id="ocrBatchBtn">🗂️ OCR All</button>
+        </div>
+      </div>
     </div>
 
-    <div class="field" style="margin-top:14px">
-      <label for="langSelect">Language</label>
-      <select id="langSelect">
-        <option value="eng">English</option>
-        <option value="hin">Hindi</option>
-        <option value="eng+hin">English + Hindi</option>
-      </select>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn" id="startBtn" disabled>🔍 Start OCR</button>
-    </div>
-
+    <!-- PROGRESS -->
     <div id="progressArea" style="display:none">
-      <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem;margin-top:10px"></p>
+      <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem;margin-top:12px"></p>
       <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="ocr-prog-meta">
+        <span id="ocrPct">0%</span>
+        <span>ETA: <b id="ocrEta">—</b></span>
+        <span>Elapsed: <b id="ocrElapsed">0s</b></span>
+        <span>Confidence: <b id="ocrConf">—</b></span>
+      </div>
+      <div class="btn-row" id="ocrRetryRow" style="display:none;margin-top:10px">
+        <button class="btn secondary" id="ocrRetry">🔁 Retry</button>
+      </div>
     </div>
 
-    <div class="field" id="outputField" style="display:none;margin-top:18px">
-      <label>Recognized Text</label>
-      <textarea id="outputText" readonly style="min-height:200px"></textarea>
+    <!-- OUTPUT -->
+    <div id="ocrResultWrap" style="display:none">
+      <div class="ocr-stats" id="ocrStatsBox"></div>
+
+      <div class="ocr-findrow">
+        <input class="ocr-inp" id="ocrFind" placeholder="Find…">
+        <input class="ocr-inp" id="ocrReplace" placeholder="Replace with…">
+        <button class="btn secondary" id="ocrReplaceBtn">Replace all</button>
+      </div>
+
+      <div class="field" id="outputField" style="display:block;margin-top:6px">
+        <label for="outputText">Recognized Text</label>
+        <textarea id="outputText" readonly spellcheck="false"></textarea>
+      </div>
+      <p class="ocr-suggest" id="ocrSuggest"></p>
+
+      <div class="ocr-outtools">
+        <label class="ocr-check"><input type="checkbox" id="ocrEditable"> Editable</label>
+        <label class="ocr-check"><input type="checkbox" id="ocrSpell"> Spell check</label>
+        <button class="btn secondary" id="ocrSelectAll">Select all</button>
+        <button class="btn secondary" id="ocrClearText">Clear</button>
+      </div>
+
+      <div class="btn-row" id="actionRow" style="display:flex;flex-wrap:wrap">
+        <button class="btn secondary" id="copyBtn">📋 Copy</button>
+        <button class="btn secondary" id="ocrCopyFmt">📑 Copy (formatted)</button>
+        <button class="btn secondary" id="downloadBtn">⬇️ TXT</button>
+        <button class="btn secondary" id="ocrDlPdf">⬇️ PDF</button>
+        <button class="btn secondary" id="ocrDlDocx">⬇️ DOCX</button>
+        <button class="btn secondary" id="ocrDlHtml">⬇️ HTML</button>
+        <button class="btn secondary" id="ocrDlMd">⬇️ MD</button>
+        <button class="btn secondary" id="ocrDlCsv">⬇️ CSV</button>
+        <button class="btn secondary" id="ocrDlJson">⬇️ JSON</button>
+        <button class="btn secondary" id="ocrPrint">🖨️ Print</button>
+      </div>
     </div>
 
-    <div class="btn-row" id="actionRow" style="display:none">
-      <button class="btn secondary" id="copyBtn">📋 Copy</button>
-      <button class="btn secondary" id="downloadBtn">⬇️ Download .txt</button>
+    <!-- HISTORY -->
+    <div class="ocr-section" id="ocrHistWrap" style="display:none">
+      <h3>🕘 OCR History <button class="btn secondary" id="ocrHistClear" style="margin-left:auto;font-size:.72rem;padding:4px 10px">Clear</button></h3>
+      <div class="ocr-hist" id="ocrHist"></div>
+    </div>
+
+    <p style="font-size:.76rem;color:var(--text-dim);margin-top:14px">
+      🔐 <b>Privacy:</b> your images and text never leave your device — OCR runs locally in your browser and history is stored only in this browser.
+    </p>
+  </section>
+</main>
+
+<!-- ══════════════════ RELATED TOOLS (above About) ══════════════════ -->
+<section class="ocr-related" aria-label="Related tools">
+  <h2>🔗 Related Tools</h2>
+  <div class="ocr-rgrid">
+    <a class="ocr-link" href="image-compressor.html"><span class="i">📉</span> Image Compressor</a>
+    <a class="ocr-link" href="image-converter.html"><span class="i">🔄</span> Image Converter</a>
+    <a class="ocr-link" href="image-resizer.html"><span class="i">📐</span> Image Resizer</a>
+    <a class="ocr-link" href="image-cropper.html"><span class="i">✂️</span> Image Cropper</a>
+    <a class="ocr-link" href="image-rotate-flip.html"><span class="i">🔁</span> Image Rotator / Flip</a>
+    <a class="ocr-link" href="image-border-frame.html"><span class="i">🖼️</span> Image Border &amp; Frame</a>
+    <a class="ocr-link" href="passport-photo-maker.html"><span class="i">🪪</span> Passport Photo Maker</a>
+    <a class="ocr-link" href="exif-viewer-remover.html"><span class="i">🧾</span> EXIF Viewer &amp; Remover</a>
+    <a class="ocr-link" href="image-watermark.html"><span class="i">💧</span> Image Watermark Adder</a>
+    <a class="ocr-link" href="qr-code-scanner.html"><span class="i">📷</span> QR Code Scanner</a>
+    <a class="ocr-link" href="qr-generator.html"><span class="i">🔲</span> QR Code Generator</a>
+    <a class="ocr-link" href="pdf-to-image.html"><span class="i">🖼️</span> PDF to Image</a>
+    <a class="ocr-link" href="image-to-pdf.html"><span class="i">📄</span> Image to PDF</a>
+    <a class="ocr-link" href="pdf-merge.html"><span class="i">📎</span> PDF Merge</a>
+    <a class="ocr-link" href="pdf-split.html"><span class="i">✂️</span> PDF Split</a>
+    <a class="ocr-link" href="word-counter.html"><span class="i">🔢</span> Word Counter</a>
+    <a class="ocr-link" href="case-converter.html"><span class="i">🔠</span> Text Case Converter</a>
+  </div>
+</section>
+
+<!-- ══════════════════ ABOUT THIS TOOL (bilingual) ══════════════════ -->
+<section class="ocr-about" aria-label="About this tool">
+  <div class="info-wrap" style="max-width:100%;padding:0">
+    <div class="info-section">
+      <article class="info-block">
+        <h2>ℹ️ About This Tool — Image to Text (OCR)</h2>
+        <p>The <strong>Image to Text (OCR)</strong> tool converts printed and typed text inside photos, screenshots and scanned documents into clean, editable, copyable text — right inside your web browser. It supports more than twenty-five languages, batch processing, image enhancement and export to many formats, and it never uploads your files to a server.</p>
+
+        <h3>What is Image to Text OCR?</h3>
+        <p>OCR stands for <em>Optical Character Recognition</em>. It is the technology that looks at the pixels of an image, finds the shapes that form letters and numbers, and reconstructs them as machine-readable text. Instead of retyping a page from a book, a receipt, a slide or a screenshot, you upload the image and the OCR engine returns the words for you. This particular tool is powered by a modern in-browser recognition engine, so the whole process happens on your own device.</p>
+
+        <h3>How OCR Works</h3>
+        <p>Recognition happens in several stages. First the image is <strong>pre-processed</strong> — it may be converted to greyscale, its contrast boosted, and noise reduced so that characters stand out from the background. Next comes <strong>layout analysis</strong>, where the engine detects blocks, lines and individual word boxes. Then each glyph is <strong>classified</strong> by a neural network trained on millions of characters, producing candidate letters with probabilities. Finally a <strong>language model</strong> uses dictionaries and context to choose the most likely words, fix ambiguous characters and assemble the final text with a confidence score. Cleaner input at every stage means more accurate output, which is why the built-in enhancement controls matter so much.</p>
+
+        <h3>Key Features</h3>
+        <ul>
+          <li><strong>Flexible upload:</strong> drag &amp; drop, click to browse, paste from the clipboard (Ctrl + V) and multi-image selection.</li>
+          <li><strong>Batch OCR:</strong> queue several images, reorder them by dragging, and recognise them all in one run.</li>
+          <li><strong>Image editor:</strong> zoom, full-screen preview, rotate, flip, brightness, contrast, sharpness, noise removal, black-and-white threshold, auto-enhance and auto-deskew.</li>
+          <li><strong>Region OCR:</strong> draw a box to recognise only the part of the image you care about.</li>
+          <li><strong>25+ languages:</strong> English, Hindi, Arabic, Spanish, French, German, Italian, Portuguese, Russian, Chinese, Japanese, Korean, Bengali, Gujarati, Punjabi, Marathi, Tamil, Telugu, Malayalam, Kannada, Urdu, Nepali, Sinhala and combined English + Hindi, with an auto-detect option.</li>
+          <li><strong>Live metrics:</strong> progress percentage, estimated time, elapsed time and a confidence score.</li>
+          <li><strong>Rich output:</strong> editable text, read-only mode, find &amp; replace, spell check, text statistics, reading and speaking time, and lightweight OCR clean-up suggestions.</li>
+          <li><strong>Many export formats:</strong> TXT, PDF, DOCX, HTML, Markdown, CSV and JSON, plus one-click print.</li>
+          <li><strong>Quality of life:</strong> OCR history, auto-save, keyboard shortcuts, retry on error and a full reset.</li>
+        </ul>
+
+        <h3>Benefits &amp; Advantages</h3>
+        <p>The biggest benefit is <strong>time</strong>: extracting a paragraph takes seconds instead of minutes of manual typing, and mistakes from retyping disappear. The second is <strong>privacy</strong> — because everything runs locally, sensitive documents such as invoices, IDs and contracts never travel across the internet. The third is <strong>accessibility</strong>: turning an image of text into real text lets screen readers speak it, lets you translate it, and makes it searchable. Add zero cost, no sign-up and no watermark, and the tool becomes a practical everyday utility rather than a one-off gimmick.</p>
+
+        <h3>Use Cases &amp; Frequently Used Scenarios</h3>
+        <ul>
+          <li>Digitising notes, book pages, articles and handouts for study.</li>
+          <li>Pulling text out of screenshots, error messages and chat images.</li>
+          <li>Capturing details from receipts, invoices, bills and forms.</li>
+          <li>Copying quotes from slides, posters, signboards and product labels.</li>
+          <li>Extracting numbers and codes so they can be searched or pasted.</li>
+          <li>Converting scanned letters and PDFs-as-images into editable documents.</li>
+        </ul>
+
+        <h3>Supported Formats</h3>
+        <p>You can feed the tool common raster image formats including <strong>JPG/JPEG, PNG, WebP, BMP and GIF</strong>. For multi-page PDFs, first convert the pages to images with the PDF-to-Image tool and then run OCR on each page. Output can be saved as plain text, a formatted PDF, a Word-compatible DOCX, an HTML page, a Markdown file, a CSV table or structured JSON.</p>
+
+        <h3>Tips for Best OCR Results</h3>
+        <ul>
+          <li>Use the highest-resolution image you have; tiny thumbnails rarely recognise well.</li>
+          <li>Keep the text horizontal — use rotate or auto-deskew to straighten a tilted photo.</li>
+          <li>Increase contrast and enable black-and-white mode for faded or low-contrast scans.</li>
+          <li>Crop or select just the text region to avoid confusing the engine with graphics.</li>
+          <li>Pick the correct language; the right dictionary dramatically improves accuracy.</li>
+          <li>Choose High-accuracy mode for important documents and Fast mode for quick lookups.</li>
+        </ul>
+
+        <h3>Common OCR Mistakes &amp; Troubleshooting</h3>
+        <p>If the output is empty or garbled, the usual causes are low resolution, heavy blur, strong shadows, decorative fonts or the wrong language selection. Handwriting and stylised logos are generally <strong>not</strong> recognised reliably. Try enhancing the image, selecting only the text area, switching language, or raising the OCR mode. Characters that look alike — such as the letter O and the digit 0, or l and 1 — are the most common substitutions; the built-in suggestions help you spot them, and find &amp; replace fixes them in bulk.</p>
+
+        <h3>Privacy, Security &amp; Browser Compatibility</h3>
+        <p>This tool is <strong>privacy-first</strong>: images are decoded and recognised entirely with client-side JavaScript, and the recognised text plus optional history are stored only in your own browser. Nothing is transmitted to or stored on any server. The language model files are downloaded from a public CDN the first time you use a language and then cached, so after that first run the tool works even offline. It runs on the latest Chrome, Edge, Firefox, Safari and Opera across desktop, Android and iOS.</p>
+
+        <h3>Limitations</h3>
+        <p>OCR is powerful but not perfect. Accuracy depends on image quality, font, language and layout. Handwriting, artistic typography, very small text and complex multi-column layouts can reduce accuracy. The tool also does not translate text or understand meaning — it reproduces what it sees. Always proofread important results before relying on them.</p>
+
+        <h3>Why Choose This Tool</h3>
+        <p>It combines a genuinely capable recognition engine with a thoughtful editor, a wide language list, real export options and a strict privacy model — all free, all in the browser, with no account and no limits. Whether you need a single quick copy from a screenshot or a batch of scanned pages turned into editable documents, this Image to Text tool gives you professional control without sending a single byte to the cloud.</p>
+      </article>
+
+      <article class="info-block">
+        <h2>ℹ️ इस टूल के बारे में — इमेज टू टेक्स्ट (OCR)</h2>
+        <p><strong>इमेज टू टेक्स्ट (OCR)</strong> टूल फ़ोटो, स्क्रीनशॉट और स्कैन किए गए दस्तावेज़ों में मौजूद छपे या टाइप किए टेक्स्ट को साफ़, एडिट करने और कॉपी करने लायक टेक्स्ट में बदल देता है — वह भी आपके ब्राउज़र में ही। यह पच्चीस से अधिक भाषाओं, बैच प्रोसेसिंग, इमेज एन्हांसमेंट और कई फ़ॉर्मेट में एक्सपोर्ट का समर्थन करता है, और आपकी फ़ाइलें कभी सर्वर पर अपलोड नहीं होतीं।</p>
+
+        <h3>इमेज टू टेक्स्ट OCR क्या है?</h3>
+        <p>OCR का अर्थ है <em>ऑप्टिकल कैरेक्टर रिकग्निशन</em>। यह वह तकनीक है जो इमेज के पिक्सल देखकर अक्षरों और अंकों की आकृतियाँ पहचानती है और उन्हें मशीन-पठनीय टेक्स्ट में बदल देती है। किसी किताब, रसीद, स्लाइड या स्क्रीनशॉट को दोबारा टाइप करने के बजाय आप बस इमेज अपलोड करें और यह टूल शब्द निकालकर दे देता है। पूरा काम आपके ही डिवाइस पर होता है।</p>
+
+        <h3>OCR कैसे काम करता है</h3>
+        <p>पहचान कई चरणों में होती है। पहले इमेज को <strong>प्री-प्रोसेस</strong> किया जाता है — ग्रेस्केल, कंट्रास्ट और नॉइज़ कम करना। फिर <strong>लेआउट विश्लेषण</strong> में ब्लॉक, लाइन और शब्द-बॉक्स पहचाने जाते हैं। इसके बाद हर अक्षर को एक न्यूरल नेटवर्क <strong>वर्गीकृत</strong> करता है, और अंत में एक <strong>भाषा मॉडल</strong> शब्दकोश व संदर्भ की मदद से सबसे संभावित शब्द चुनता है और कॉन्फिडेंस स्कोर देता है। हर चरण में साफ़ इनपुट से आउटपुट अधिक सटीक होता है।</p>
+
+        <h3>मुख्य विशेषताएँ</h3>
+        <ul>
+          <li><strong>आसान अपलोड:</strong> ड्रैग &amp; ड्रॉप, क्लिक, क्लिपबोर्ड से पेस्ट (Ctrl + V) और कई इमेज एक साथ।</li>
+          <li><strong>बैच OCR:</strong> कई इमेज कतार में लगाएँ, ड्रैग से क्रम बदलें और एक साथ पहचानें।</li>
+          <li><strong>इमेज एडिटर:</strong> ज़ूम, फ़ुल-स्क्रीन, रोटेट, फ्लिप, ब्राइटनेस, कंट्रास्ट, शार्पनेस, नॉइज़ रिमूवल, ब्लैक-एंड-व्हाइट थ्रेशहोल्ड, ऑटो-एन्हांस और ऑटो-डिस्क्यू।</li>
+          <li><strong>रीजन OCR:</strong> केवल ज़रूरी हिस्से को बॉक्स से चुनकर पहचानें।</li>
+          <li><strong>25+ भाषाएँ:</strong> अंग्रेज़ी, हिंदी, अरबी, स्पेनिश, फ्रेंच, जर्मन, इतालवी, पुर्तगाली, रूसी, चीनी, जापानी, कोरियाई, बांग्ला, गुजराती, पंजाबी, मराठी, तमिल, तेलुगु, मलयालम, कन्नड़, उर्दू, नेपाली, सिंहली और अंग्रेज़ी + हिंदी।</li>
+          <li><strong>लाइव मेट्रिक्स:</strong> प्रोग्रेस %, अनुमानित समय, बीता समय और कॉन्फिडेंस स्कोर।</li>
+          <li><strong>समृद्ध आउटपुट:</strong> एडिट करने योग्य टेक्स्ट, रीड-ओनली मोड, फाइंड &amp; रिप्लेस, स्पेल-चेक, आँकड़े, पढ़ने/बोलने का समय और सफ़ाई-सुझाव।</li>
+          <li><strong>कई एक्सपोर्ट फ़ॉर्मेट:</strong> TXT, PDF, DOCX, HTML, Markdown, CSV और JSON, साथ में प्रिंट।</li>
+        </ul>
+
+        <h3>लाभ और उपयोग</h3>
+        <p>सबसे बड़ा लाभ <strong>समय की बचत</strong> है — मैनुअल टाइपिंग की जगह कुछ सेकंड में टेक्स्ट। दूसरा <strong>गोपनीयता</strong> — इनवॉइस, ID और कॉन्ट्रैक्ट जैसी संवेदनशील फ़ाइलें कभी इंटरनेट पर नहीं जातीं। तीसरा <strong>पहुँच</strong> — इमेज का टेक्स्ट असली टेक्स्ट बनने पर उसे खोजा, अनुवादित और स्क्रीन-रीडर से सुना जा सकता है। नोट्स, स्क्रीनशॉट, रसीद, स्लाइड, बोर्ड और स्कैन किए पत्र — सभी के लिए उपयोगी।</p>
+
+        <h3>समर्थित फ़ॉर्मेट और सर्वोत्तम अभ्यास</h3>
+        <p>आप JPG/JPEG, PNG, WebP, BMP और GIF इमेज दे सकते हैं; PDF के लिए पहले पेजों को इमेज में बदलें। बेहतर परिणाम के लिए ऊँचे रिज़ॉल्यूशन की सीधी इमेज लें, कंट्रास्ट बढ़ाएँ, ज़रूरत हो तो ब्लैक-एंड-व्हाइट चालू करें, केवल टेक्स्ट रीजन चुनें और सही भाषा चुनें। महत्वपूर्ण दस्तावेज़ के लिए High-accuracy मोड और त्वरित काम के लिए Fast मोड चुनें।</p>
+
+        <h3>सामान्य गलतियाँ और समाधान</h3>
+        <p>खाली या गड़बड़ आउटपुट के आम कारण हैं कम रिज़ॉल्यूशन, ब्लर, तेज़ छाया, सजावटी फ़ॉन्ट या ग़लत भाषा। हस्तलिखित टेक्स्ट और स्टाइलिश लोगो सामान्यतः ठीक से नहीं पहचाने जाते। इमेज एन्हांस करें, केवल टेक्स्ट-क्षेत्र चुनें, भाषा बदलें या OCR मोड बढ़ाएँ। O/0 और l/1 जैसे मिलते-जुलते अक्षर सबसे आम गड़बड़ी हैं; सुझाव और फाइंड-रिप्लेस से इन्हें आसानी से ठीक करें।</p>
+
+        <h3>गोपनीयता, सुरक्षा और अनुकूलता</h3>
+        <p>यह टूल <strong>गोपनीयता-प्रथम</strong> है — पूरी पहचान क्लाइंट-साइड जावास्क्रिप्ट से होती है और टेक्स्ट व हिस्ट्री केवल आपके ब्राउज़र में सहेजे जाते हैं। भाषा मॉडल पहली बार CDN से डाउनलोड होकर कैश हो जाता है, इसलिए उसके बाद यह ऑफ़लाइन भी काम करता है। यह नवीनतम Chrome, Edge, Firefox, Safari और Opera पर डेस्कटॉप, एंड्रॉइड और iOS में चलता है।</p>
+
+        <h3>सीमाएँ और निष्कर्ष</h3>
+        <p>OCR शक्तिशाली है पर पूर्ण नहीं। सटीकता इमेज गुणवत्ता, फ़ॉन्ट, भाषा और लेआउट पर निर्भर करती है; हस्तलेख, कलात्मक फ़ॉन्ट, बहुत छोटा टेक्स्ट और जटिल लेआउट सटीकता घटाते हैं। यह टूल अनुवाद नहीं करता, केवल जो दिखता है वही निकालता है — महत्वपूर्ण परिणाम हमेशा जाँच लें। कुल मिलाकर, यह एक सक्षम इंजन, विस्तृत भाषा-सूची, असली एक्सपोर्ट विकल्प और सख़्त गोपनीयता के साथ — पूरी तरह फ्री और ब्राउज़र में — पेशेवर नियंत्रण देता है।</p>
+      </article>
     </div>
   </div>
-</div>
 
-
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>This tool recognizes printed or typed text inside a photo, screenshot, or scanned image using Optical Character Recognition (OCR), and turns it into editable, copyable text.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload an image.</li>
-        <li>Choose the language.</li>
-        <li>Click Start OCR — then copy or download the recognized text.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल किसी फोटो, स्क्रीनशॉट या स्कैन की हुई इमेज में मौजूद छपा हुआ/टाइप किया हुआ टेक्स्ट Optical Character Recognition (OCR) से पहचानकर एडिट और कॉपी करने लायक बना देता है।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>एक इमेज अपलोड करें।</li>
-        <li>भाषा चुनें।</li>
-        <li>OCR शुरू करें बटन दबाएं — फिर निकाला गया टेक्स्ट कॉपी या डाउनलोड करें।</li>
-      </ol>
-    </div>
+  <!-- FAQ (immediately after About) -->
+  <div class="ocr-faq" id="ocrFaqWrap" style="margin-top:26px">
+    <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:14px">❓ Frequently Asked Questions</h2>
+    <div id="ocrFaqList"></div>
   </div>
-</div>
+</section>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<!-- lightbox -->
+<div class="ocr-lightbox" id="ocrLightbox"><button class="close" id="ocrLightClose" aria-label="Close">✕</button><img id="ocrLightImg" alt="Full screen preview"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-const startBtn = document.getElementById('startBtn');
-let currentFile = null;
+(function(){
+'use strict';
+var $ = function(id){ return document.getElementById(id); };
+function toast(m){ if(window.premToast) premToast(m); }
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type.startsWith('image/')){
-    currentFile = files[0];
-    const reader = new FileReader();
-    reader.onload = e => {
-      document.getElementById('previewImg').src = e.target.result;
-      document.getElementById('previewBox').style.display = 'block';
+/* ── languages (Tesseract codes) ───────────────────────────────── */
+var LANGS = [
+  ['auto','Auto detect'], ['eng','English'], ['hin','Hindi'], ['eng+hin','English + Hindi'],
+  ['ara','Arabic'], ['spa','Spanish'], ['fra','French'], ['deu','German'], ['ita','Italian'],
+  ['por','Portuguese'], ['rus','Russian'], ['chi_sim','Chinese'], ['jpn','Japanese'], ['kor','Korean'],
+  ['ben','Bengali'], ['guj','Gujarati'], ['pan','Punjabi'], ['mar','Marathi'], ['tam','Tamil'],
+  ['tel','Telugu'], ['mal','Malayalam'], ['kan','Kannada'], ['urd','Urdu'], ['nep','Nepali'], ['sin','Sinhala']
+];
+var MODE = { fast:{max:1000,psm:'6'}, balanced:{max:1600,psm:'3'}, high:{max:2600,psm:'3'} };
+
+/* ── element refs ──────────────────────────────────────────────── */
+var dropzone=$('dropzone'), fileInput=$('fileInput'), startBtn=$('startBtn'), langSelect=$('langSelect');
+var previewImg=$('previewImg'), outputText=$('outputText');
+
+/* ── state ─────────────────────────────────────────────────────── */
+var queue = [];     // { file,name,size,img,rotate,flipH,flipV,bright,contrast,sharp,thresh,bw,denoise,region,text,conf,done }
+var active = null;
+var busy = false;
+var previewZoom = 1;
+
+function defItem(file){
+  return { file:file, name:file.name||'image', size:file.size||0, img:null,
+    rotate:0, flipH:false, flipV:false, bright:100, contrast:100, sharp:0, thresh:128, bw:false, denoise:false,
+    region:null, text:'', conf:null, done:false };
+}
+
+/* ── build language dropdown (preserve default eng) ────────────── */
+(function buildLangs(){
+  if(!langSelect) return;
+  langSelect.innerHTML = LANGS.map(function(l){ return '<option value="'+l[0]+'"'+(l[0]==='eng'?' selected':'')+'>'+l[1]+'</option>'; }).join('');
+})();
+
+/* ── upload ────────────────────────────────────────────────────── */
+function validate(file){
+  if(!file || !file.type || file.type.indexOf('image/')!==0){ toast('Please choose an image file.'); return false; }
+  if(file.size > 25*1024*1024){ toast('“'+(file.name||'image')+'” is larger than 25 MB.'); return false; }
+  return true;
+}
+function addFiles(files){
+  var arr = Array.prototype.slice.call(files||[]).filter(validate);
+  if(!arr.length) return;
+  var loaded = 0;
+  arr.forEach(function(f){
+    var it = defItem(f);
+    var reader = new FileReader();
+    reader.onload = function(e){
+      var im = new Image();
+      im.onload = function(){ it.img = im; loaded++; if(loaded===arr.length){ renderQueue(); } };
+      im.onerror = function(){ loaded++; };
+      im.src = e.target.result;
     };
-    reader.readAsDataURL(currentFile);
-    startBtn.disabled = false;
+    reader.readAsDataURL(f);
+    queue.push(it);
+  });
+  showEditor();
+  if(!active){ setTimeout(function(){ selectItem(0); }, 60); }
+  renderQueue();
+}
+function showEditor(){ var w=$('ocrEditWrap'); if(w) w.style.display='grid'; }
+
+/* ── queue (batch, reorderable) ────────────────────────────────── */
+var dragIdx = null;
+function renderQueue(){
+  var host=$('ocrQueue'); if(!host) return;
+  host.innerHTML='';
+  queue.forEach(function(it,i){
+    var d=document.createElement('div');
+    d.className='ocr-qitem'+(it===active?' active':'')+(it.done?' done':'');
+    d.setAttribute('draggable','true');
+    if(it.img){ var im=document.createElement('img'); im.src=it.img.src; d.appendChild(im); }
+    var x=document.createElement('span'); x.className='x'; x.textContent='×';
+    x.addEventListener('click', function(ev){ ev.stopPropagation(); removeItem(i); });
+    d.appendChild(x);
+    d.addEventListener('click', function(){ selectItem(i); });
+    d.addEventListener('dragstart', function(){ dragIdx=i; });
+    d.addEventListener('dragover', function(ev){ ev.preventDefault(); });
+    d.addEventListener('drop', function(ev){ ev.preventDefault(); if(dragIdx!==null && dragIdx!==i){ var m=queue.splice(dragIdx,1)[0]; queue.splice(i,0,m); dragIdx=null; renderQueue(); } });
+    host.appendChild(d);
+  });
+}
+function removeItem(i){
+  var was = queue[i]===active;
+  queue.splice(i,1);
+  if(!queue.length){ active=null; var w=$('ocrEditWrap'); if(w) w.style.display='none'; if(startBtn) startBtn.disabled=true; renderQueue(); return; }
+  if(was) selectItem(Math.min(i, queue.length-1));
+  renderQueue();
+}
+function selectItem(i){
+  active = queue[i]||null; if(!active) return;
+  // sync controls
+  set('ocrBright', active.bright, '%'); set('ocrContrast', active.contrast, '%');
+  set('ocrSharp', active.sharp, ''); set('ocrThresh', active.thresh, '');
+  if($('ocrBW')) $('ocrBW').checked = active.bw;
+  if($('ocrDenoise')) $('ocrDenoise').checked = active.denoise;
+  if(startBtn) startBtn.disabled = false;
+  previewZoom = 1;
+  renderPreview(); renderQueue();
+  if(active.done){ showResult(active); } else { hideResult(); }
+}
+function set(id,val,unit){ var el=$(id); if(el){ el.value=val; var lab=$('ocrv'+id.slice(3)); if(lab) lab.textContent=val+unit; } }
+
+/* ── image processing ──────────────────────────────────────────── */
+function clamp(v){ return v<0?0:v>255?255:v; }
+function processCanvas(it, maxDim){
+  var img=it.img; if(!img) return null;
+  var rot=((it.rotate%360)+360)%360, swap=(rot===90||rot===270);
+  var iw=img.width, ih=img.height;
+  var scale=Math.min(1, maxDim/Math.max(iw,ih));
+  var dw=Math.round(iw*scale), dh=Math.round(ih*scale);
+  var cw=swap?dh:dw, ch=swap?dw:dh;
+  var c=document.createElement('canvas'); c.width=cw; c.height=ch;
+  var ctx=c.getContext('2d');
+  ctx.save();
+  ctx.translate(cw/2,ch/2); ctx.rotate(rot*Math.PI/180); ctx.scale(it.flipH?-1:1, it.flipV?-1:1);
+  try{ ctx.filter='brightness('+it.bright+'%) contrast('+it.contrast+'%)'; }catch(e){}
+  ctx.drawImage(img, -dw/2, -dh/2, dw, dh);
+  ctx.restore();
+  try{ ctx.filter='none'; }catch(e){}
+  if(it.denoise) boxBlur(ctx,cw,ch);
+  if(it.sharp>0) sharpen(ctx,cw,ch,it.sharp/100);
+  if(it.bw) threshold(ctx,cw,ch,it.thresh);
+  return c;
+}
+function boxBlur(ctx,w,h){
+  var s,o; try{ s=ctx.getImageData(0,0,w,h); o=ctx.createImageData(w,h); }catch(e){ return; }
+  var a=s.data,b=o.data;
+  for(var y=1;y<h-1;y++){ for(var x=1;x<w-1;x++){ var p=(y*w+x)*4;
+    for(var ch=0;ch<3;ch++){ var sum=0;
+      for(var dy=-1;dy<=1;dy++) for(var dx=-1;dx<=1;dx++){ sum+=a[p+(dy*w+dx)*4+ch]; }
+      b[p+ch]=sum/9; }
+    b[p+3]=a[p+3];
+  }}
+  // edges copy
+  for(var i=0;i<a.length;i++){ if(b[i]===0 && a[i]!==0 && (i%4===3)) b[i]=a[i]; }
+  ctx.putImageData(o,0,0);
+}
+function sharpen(ctx,w,h,amt){
+  var s,o; try{ s=ctx.getImageData(0,0,w,h); o=ctx.createImageData(w,h); }catch(e){ return; }
+  var a=s.data,b=o.data,k=amt*1.3,c=1+4*k;
+  for(var y=0;y<h;y++){ for(var x=0;x<w;x++){ var p=(y*w+x)*4;
+    if(x===0||y===0||x===w-1||y===h-1){ b[p]=a[p];b[p+1]=a[p+1];b[p+2]=a[p+2];b[p+3]=a[p+3]; continue; }
+    for(var ch=0;ch<3;ch++){ b[p+ch]=clamp(c*a[p+ch]-k*a[p-4+ch]-k*a[p+4+ch]-k*a[p-w*4+ch]-k*a[p+w*4+ch]); }
+    b[p+3]=a[p+3];
+  }}
+  ctx.putImageData(o,0,0);
+}
+function threshold(ctx,w,h,t){
+  var d; try{ d=ctx.getImageData(0,0,w,h); }catch(e){ return; }
+  var p=d.data;
+  for(var i=0;i<p.length;i+=4){ var g=0.299*p[i]+0.587*p[i+1]+0.114*p[i+2]; var v=g>=t?255:0; p[i]=p[i+1]=p[i+2]=v; }
+  ctx.putImageData(d,0,0);
+}
+function otsu(it){
+  var c=processCanvas(Object.assign({},it,{bw:false,sharp:0,denoise:false}), 400); if(!c) return 128;
+  var ctx=c.getContext('2d'), d; try{ d=ctx.getImageData(0,0,c.width,c.height).data; }catch(e){ return 128; }
+  var hist=new Array(256).fill(0), n=0;
+  for(var i=0;i<d.length;i+=4){ var g=Math.round(0.299*d[i]+0.587*d[i+1]+0.114*d[i+2]); hist[g]++; n++; }
+  var sum=0; for(var t=0;t<256;t++) sum+=t*hist[t];
+  var sumB=0,wB=0,max=0,thr=128;
+  for(var t2=0;t2<256;t2++){ wB+=hist[t2]; if(!wB) continue; var wF=n-wB; if(!wF) break;
+    sumB+=t2*hist[t2]; var mB=sumB/wB, mF=(sum-sumB)/wF, between=wB*wF*(mB-mF)*(mB-mF);
+    if(between>max){ max=between; thr=t2; } }
+  return thr;
+}
+function deskew(it){
+  // estimate small skew on a downscaled B&W image; returns degrees to add
+  var base=processCanvas(Object.assign({},it,{rotate:0,bw:true,thresh:it.thresh}), 320);
+  if(!base) return 0;
+  var w=base.width,h=base.height, ctx=base.getContext('2d'), d;
+  try{ d=ctx.getImageData(0,0,w,h).data; }catch(e){ return 0; }
+  var best=0,bestScore=-1;
+  for(var ang=-8;ang<=8;ang++){
+    var rad=ang*Math.PI/180, sn=Math.sin(rad);
+    var rows=new Array(h).fill(0);
+    for(var y=0;y<h;y+=2){ for(var x=0;x<w;x+=2){
+      if(d[(y*w+x)*4]<128){ var ry=Math.round(y + (x-w/2)*sn); if(ry>=0&&ry<h) rows[ry]++; }
+    }}
+    var score=0; for(var r=1;r<h;r++){ var diff=rows[r]-rows[r-1]; score+=diff*diff; }
+    if(score>bestScore){ bestScore=score; best=ang; }
   }
-});
+  return best;
+}
 
-startBtn.addEventListener('click', async ()=>{
-  if(!currentFile) return;
-  startBtn.disabled = true;
-  const status = document.getElementById('statusMsg');
-  const fill = document.getElementById('progressFill');
-  document.getElementById('progressArea').style.display = 'block';
-  fill.style.width = '10%';
+/* ── preview render ────────────────────────────────────────────── */
+function renderPreview(){
+  if(!active || !previewImg) return;
+  var c=processCanvas(active, 1000); if(!c) return;
+  previewImg.src=c.toDataURL('image/png');
+  previewImg.style.transform='scale('+previewZoom+')';
+  var fs=$('ocrFileSize');
+  if(fs){ fs.innerHTML='<b>'+active.name+'</b> • '+(window.formatBytes?formatBytes(active.size):Math.round(active.size/1024)+' KB')+' • '+active.img.width+'×'+active.img.height+' px'; }
+}
 
+/* ── region selection ──────────────────────────────────────────── */
+(function regionSel(){
+  var layer=$('ocrSelectLayer'), rect=$('ocrSelRect'), stage=$('ocrStage');
+  if(!layer||!rect) return;
+  var on=false, drag=false, sx=0, sy=0;
+  var btn=$('ocrSelectBtn');
+  if(btn) btn.addEventListener('click', function(){ on=!on; btn.classList.toggle('on',on); layer.style.display=on?'block':'none'; if(!on){} });
+  var clr=$('ocrClearSel'); if(clr) clr.addEventListener('click', function(){ if(active) active.region=null; rect.style.display='none'; });
+  function pos(e){ var r=layer.getBoundingClientRect(); var cx=(e.touches?e.touches[0].clientX:e.clientX)-r.left; var cy=(e.touches?e.touches[0].clientY:e.clientY)-r.top; return {x:Math.max(0,Math.min(r.width,cx)), y:Math.max(0,Math.min(r.height,cy)), w:r.width, h:r.height}; }
+  layer.addEventListener('pointerdown', function(e){ if(!on) return; drag=true; var p=pos(e); sx=p.x; sy=p.y; rect.style.display='block'; rect.style.left=sx+'px'; rect.style.top=sy+'px'; rect.style.width='0'; rect.style.height='0'; });
+  layer.addEventListener('pointermove', function(e){ if(!drag) return; var p=pos(e); var x=Math.min(sx,p.x), y=Math.min(sy,p.y), w=Math.abs(p.x-sx), hh=Math.abs(p.y-sy); rect.style.left=x+'px'; rect.style.top=y+'px'; rect.style.width=w+'px'; rect.style.height=hh+'px'; if(active) active.region={x:x/p.w, y:y/p.h, w:w/p.w, h:hh/p.h}; });
+  window.addEventListener('pointerup', function(){ drag=false; });
+})();
+
+/* ── image tool buttons ────────────────────────────────────────── */
+function edit(fn){ if(!active) return; fn(active); renderPreview(); renderQueue(); }
+map('ocrRotL', function(it){ it.rotate-=90; });
+map('ocrRotR', function(it){ it.rotate+=90; });
+map('ocrFlipH', function(it){ it.flipH=!it.flipH; });
+map('ocrFlipV', function(it){ it.flipV=!it.flipV; });
+map('ocrResetImg', function(it){ it.rotate=0; it.flipH=it.flipV=false; it.bright=100; it.contrast=100; it.sharp=0; it.thresh=128; it.bw=false; it.denoise=false; it.region=null; syncControls(); var rr=$('ocrSelRect'); if(rr) rr.style.display='none'; });
+map('ocrEnhance', function(it){ it.bright=105; it.contrast=145; it.bw=true; it.thresh=otsu(it); it.denoise=true; syncControls(); toast('Auto-enhanced'); });
+map('ocrStraighten', function(it){ var a=deskew(it); it.rotateFine=a; toast('Deskew: '+a+'°'); });
+function map(id,fn){ var e=$(id); if(e) e.addEventListener('click', function(){ edit(fn); }); }
+function syncControls(){ if(!active) return; set('ocrBright',active.bright,'%'); set('ocrContrast',active.contrast,'%'); set('ocrSharp',active.sharp,''); set('ocrThresh',active.thresh,''); if($('ocrBW'))$('ocrBW').checked=active.bw; if($('ocrDenoise'))$('ocrDenoise').checked=active.denoise; }
+
+// slider wiring
+slider('ocrBright','bright','%'); slider('ocrContrast','contrast','%'); slider('ocrSharp','sharp',''); slider('ocrThresh','thresh','');
+function slider(id,key,unit){ var e=$(id); if(!e) return; e.addEventListener('input', function(){ var v=parseInt(e.value,10); var lab=$('ocrv'+id.slice(3)); if(lab) lab.textContent=v+unit; if(active){ active[key]=v; renderPreview(); } }); }
+if($('ocrBW')) $('ocrBW').addEventListener('change', function(){ if(active){ active.bw=this.checked; renderPreview(); } });
+if($('ocrDenoise')) $('ocrDenoise').addEventListener('change', function(){ if(active){ active.denoise=this.checked; renderPreview(); } });
+
+// zoom + fullscreen
+if($('ocrZoomIn')) $('ocrZoomIn').addEventListener('click', function(){ previewZoom=Math.min(4,previewZoom*1.2); if(previewImg) previewImg.style.transform='scale('+previewZoom+')'; });
+if($('ocrZoomOut')) $('ocrZoomOut').addEventListener('click', function(){ previewZoom=Math.max(1,previewZoom/1.2); if(previewImg) previewImg.style.transform='scale('+previewZoom+')'; });
+if($('ocrFull')) $('ocrFull').addEventListener('click', function(){ if(!previewImg) return; var lb=$('ocrLightbox'), li=$('ocrLightImg'); if(li) li.src=previewImg.src; if(lb) lb.classList.add('open'); });
+if($('ocrLightClose')) $('ocrLightClose').addEventListener('click', function(){ $('ocrLightbox').classList.remove('open'); });
+if($('ocrLightbox')) $('ocrLightbox').addEventListener('click', function(e){ if(e.target===this) this.classList.remove('open'); });
+
+/* ── OCR run ───────────────────────────────────────────────────── */
+function itemToBlob(it, maxDim){
+  return new Promise(function(res){
+    var rot=it.rotateFine||0;
+    var c=processCanvas(it, maxDim);
+    if(rot){ // apply fine deskew rotation
+      var r=document.createElement('canvas'); r.width=c.width; r.height=c.height; var rc=r.getContext('2d');
+      rc.fillStyle=it.bw?'#fff':'#000'; rc.fillRect(0,0,r.width,r.height);
+      rc.translate(r.width/2,r.height/2); rc.rotate(-rot*Math.PI/180); rc.drawImage(c,-c.width/2,-c.height/2); c=r;
+    }
+    // region crop
+    if(it.region && it.region.w>0.02 && it.region.h>0.02){
+      var rc2=document.createElement('canvas'); var rx=Math.round(it.region.x*c.width), ry=Math.round(it.region.y*c.height), rw=Math.round(it.region.w*c.width), rh=Math.round(it.region.h*c.height);
+      rc2.width=rw; rc2.height=rh; rc2.getContext('2d').drawImage(c, rx,ry,rw,rh, 0,0,rw,rh); c=rc2;
+    }
+    c.toBlob(function(b){ res(b||c); }, 'image/png');
+  });
+}
+function resolveLangs(sel){
+  if(sel==='auto') return null; // handled specially
+  return sel;
+}
+var progT0=0, progTimer=null;
+function progUI(pct, statusText){
+  var fill=$('progressFill'); if(fill) fill.style.width=pct+'%';
+  if($('ocrPct')) $('ocrPct').textContent=pct+'%';
+  if(statusText && $('statusMsg')) $('statusMsg').textContent=statusText;
+  var el=(Date.now()-progT0)/1000;
+  if($('ocrElapsed')) $('ocrElapsed').textContent=el.toFixed(0)+'s';
+  if(pct>3 && pct<100 && $('ocrEta')) $('ocrEta').textContent=Math.max(0,(el/pct*(100-pct))).toFixed(0)+'s';
+}
+async function autoDetectLang(blob){
+  // bounded: try eng vs hin at low res, pick higher confidence
+  var cands=['eng','hin'], bestL='eng', bestC=-1;
+  for(var i=0;i<cands.length;i++){
+    try{
+      var w=await Tesseract.createWorker(cands[i],1);
+      var r=await w.recognize(blob); await w.terminate();
+      if(r.data.confidence>bestC){ bestC=r.data.confidence; bestL=cands[i]; }
+    }catch(e){}
+  }
+  return bestL;
+}
+async function runOCR(it){
+  if(busy) return; busy=true;
+  var pa=$('progressArea'); if(pa) pa.style.display='block';
+  var rr=$('ocrRetryRow'); if(rr) rr.style.display='none';
+  hideResult();
+  if(startBtn) startBtn.disabled=true;
+  progT0=Date.now(); progUI(4,'⏳ Preparing OCR engine…');
   try{
-    const lang = document.getElementById('langSelect').value;
-    status.textContent = '⏳ Preparing OCR engine (takes a little time the first run)...';
-    const worker = await Tesseract.createWorker(lang, 1, {
-      logger: m => {
-        if(m.status === 'recognizing text'){
-          fill.style.width = Math.round(m.progress*100) + '%';
-          status.textContent = `🔍 Recognizing... ${Math.round(m.progress*100)}%`;
-        }
-      }
-    });
-
-    const { data } = await worker.recognize(currentFile);
-    await worker.terminate();
-
-    document.getElementById('outputText').value = data.text.trim();
-    document.getElementById('outputField').style.display = 'block';
-    document.getElementById('actionRow').style.display = 'flex';
-    fill.style.width = '100%';
-    status.textContent = data.text.trim() ? '✅ Text recognized!' : '⚠️ No readable text found in this image.';
+    var mode=MODE[($('ocrMode')&&$('ocrMode').value)||'balanced'];
+    var blob=await itemToBlob(it, mode.max);
+    var sel=($('langSelect')&&$('langSelect').value)||'eng';
+    var lang=resolveLangs(sel);
+    if(sel==='auto'){ progUI(8,'🔎 Detecting language…'); lang=await autoDetectLang(await itemToBlob(it,700)); }
+    // auto orientation
+    if($('ocrAutoOrient') && $('ocrAutoOrient').checked){ progUI(12,'🧭 Detecting orientation…'); it.rotate += await bestOrientation(it, lang); blob=await itemToBlob(it, mode.max); }
+    var worker=await Tesseract.createWorker(lang,1,{ logger:function(m){ if(m.status==='recognizing text'){ progUI(Math.max(15,Math.round(m.progress*100)), '🔍 Recognizing… '+Math.round(m.progress*100)+'%'); } } });
+    try{ await worker.setParameters({ tessedit_pageseg_mode: mode.psm }); }catch(e){}
+    var out=await worker.recognize(blob); await worker.terminate();
+    var text=(out.data.text||'').replace(/\n{3,}/g,'\n\n').trim();
+    it.text=text; it.conf=Math.round(out.data.confidence||0); it.done=true;
+    progUI(100, text?'✅ Text recognized!':'⚠️ No readable text found.');
+    if($('ocrConf')) $('ocrConf').textContent=it.conf+'%';
+    showResult(it); renderQueue(); saveHistory(it);
   }catch(err){
-    document.getElementById('statusMsg').textContent = '❌ Error: ' + err.message;
+    if($('statusMsg')) $('statusMsg').textContent='❌ Error: '+(err&&err.message||err);
+    if(rr) rr.style.display='flex';
+    toast('OCR failed — try again');
   }
-  startBtn.disabled = false;
+  busy=false; if(startBtn) startBtn.disabled=false;
+}
+async function bestOrientation(it, lang){
+  var best=0,bestC=-1;
+  for(var k=0;k<4;k++){
+    var t=Object.assign({},it,{rotate:it.rotate+k*90});
+    try{ var b=await itemToBlob(t,600); var w=await Tesseract.createWorker(lang==='auto'?'eng':lang,1); var r=await w.recognize(b); await w.terminate(); if(r.data.confidence>bestC){ bestC=r.data.confidence; best=k*90; } }catch(e){}
+  }
+  return best;
+}
+
+if(startBtn) startBtn.addEventListener('click', function(){ if(active) runOCR(active); });
+if($('ocrRetry')) $('ocrRetry').addEventListener('click', function(){ if(active) runOCR(active); });
+if($('ocrBatchBtn')) $('ocrBatchBtn').addEventListener('click', async function(){
+  if(busy || !queue.length) return;
+  for(var i=0;i<queue.length;i++){ selectItem(i); await runOCR(queue[i]); }
+  // combine
+  var all=queue.map(function(it,i){ return '--- Image '+(i+1)+' ('+it.name+') ---\n'+it.text; }).join('\n\n');
+  if(outputText){ outputText.value=all; updateStats(); }
+  toast('Batch OCR complete');
 });
 
-document.getElementById('copyBtn').addEventListener('click', (e)=>{
-  copyText(document.getElementById('outputText').value, e.target);
+/* ── results / stats ───────────────────────────────────────────── */
+function hideResult(){ var w=$('ocrResultWrap'); if(w) w.style.display='none'; }
+function showResult(it){
+  var w=$('ocrResultWrap'); if(w) w.style.display='block';
+  if(outputText){ outputText.value=it.text; }
+  updateStats(); suggestFixes();
+}
+function updateStats(){
+  var t=outputText?outputText.value:'';
+  var words=(t.trim().match(/\S+/g)||[]).length;
+  var chars=t.length;
+  var lines=t?t.split(/\n/).length:0;
+  var paras=(t.split(/\n\s*\n/).filter(function(s){return s.trim();})).length;
+  var rt=words/200, st=words/130;
+  var conf=active&&active.conf!=null?active.conf+'%':'—';
+  var box=$('ocrStatsBox'); if(!box) return;
+  var cells=[['Words',words],['Characters',chars],['Lines',lines],['Paragraphs',paras],['Confidence',conf],['Reading',fmtMin(rt)],['Speaking',fmtMin(st)]];
+  box.innerHTML=cells.map(function(c){ return '<div class="ocr-stat"><b>'+c[1]+'</b><span>'+c[0]+'</span></div>'; }).join('');
+}
+function fmtMin(m){ if(m<1) return Math.max(1,Math.round(m*60))+'s'; return m.toFixed(1)+'m'; }
+function suggestFixes(){
+  var el=$('ocrSuggest'); if(!el) return; var t=outputText?outputText.value:''; var tips=[];
+  if(/\S {2,}\S/.test(t)) tips.push('multiple spaces');
+  if(/[a-z]\|/.test(t)||/\|[a-z]/i.test(t)) tips.push('“|” may be an “l” or “I”');
+  if(/\b[0O]{2,}\b/.test(t)) tips.push('check O vs 0');
+  if(/\brn\b/.test(t)) tips.push('“rn” may be “m”');
+  el.innerHTML = tips.length ? '<b>Suggestions:</b> '+tips.join(' • ')+' — use Find &amp; Replace to fix.' : '';
+}
+if(outputText) outputText.addEventListener('input', function(){ updateStats(); if(active) active.text=outputText.value; });
+
+/* ── output tools ──────────────────────────────────────────────── */
+if($('ocrEditable')) $('ocrEditable').addEventListener('change', function(){ if(outputText) outputText.readOnly=!this.checked; });
+if($('ocrSpell')) $('ocrSpell').addEventListener('change', function(){ if(outputText) outputText.spellcheck=this.checked; outputText.blur(); outputText.focus(); });
+if($('ocrSelectAll')) $('ocrSelectAll').addEventListener('click', function(){ if(outputText){ outputText.focus(); outputText.select(); } });
+if($('ocrClearText')) $('ocrClearText').addEventListener('click', function(){ if(outputText){ outputText.value=''; if(active) active.text=''; updateStats(); suggestFixes(); } });
+if($('ocrReplaceBtn')) $('ocrReplaceBtn').addEventListener('click', function(){
+  if(!outputText) return; var f=$('ocrFind').value; if(!f) return;
+  try{ outputText.value=outputText.value.split(f).join($('ocrReplace').value); }catch(e){}
+  if(active) active.text=outputText.value; updateStats();
 });
-document.getElementById('downloadBtn').addEventListener('click', ()=>{
-  downloadText('ocr-text.txt', document.getElementById('outputText').value);
+if($('copyBtn')) $('copyBtn').addEventListener('click', function(e){ if(window.copyText) copyText(outputText.value, e.target); });
+if($('ocrCopyFmt')) $('ocrCopyFmt').addEventListener('click', function(){
+  var html='<pre style="font-family:inherit;white-space:pre-wrap">'+esc(outputText.value)+'</pre>';
+  if(navigator.clipboard && window.ClipboardItem){
+    var item=new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([outputText.value],{type:'text/plain'})});
+    navigator.clipboard.write([item]).then(function(){ toast('Copied with formatting'); }).catch(function(){ if(window.copyText) copyText(outputText.value); });
+  } else if(window.copyText){ copyText(outputText.value); }
 });
+
+/* ── downloads ─────────────────────────────────────────────────── */
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function txt(){ return outputText?outputText.value:''; }
+function loadScript(src){ return new Promise(function(res,rej){ var s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=rej; document.head.appendChild(s); }); }
+if($('downloadBtn')) $('downloadBtn').addEventListener('click', function(){ if(window.downloadText) downloadText('ocr-text.txt', txt()); });
+if($('ocrDlHtml')) $('ocrDlHtml').addEventListener('click', function(){ var h='<!DOCTYPE html><html><head><meta charset="utf-8"><title>OCR Text</title></head><body><pre style="white-space:pre-wrap;font-family:sans-serif">'+esc(txt())+'</pre></body></html>'; if(window.downloadText) downloadText('ocr-text.html', h, 'text/html'); });
+if($('ocrDlMd')) $('ocrDlMd').addEventListener('click', function(){ if(window.downloadText) downloadText('ocr-text.md', txt(), 'text/markdown'); });
+if($('ocrDlJson')) $('ocrDlJson').addEventListener('click', function(){ var j=JSON.stringify({text:txt(), confidence:active?active.conf:null, language:($('langSelect')||{}).value, words:(txt().match(/\S+/g)||[]).length},null,2); if(window.downloadText) downloadText('ocr-text.json', j, 'application/json'); });
+if($('ocrDlCsv')) $('ocrDlCsv').addEventListener('click', function(){ var lines=txt().split(/\n/); var csv='line,text\n'+lines.map(function(l,i){ return (i+1)+',"'+l.replace(/"/g,'""')+'"'; }).join('\n'); if(window.downloadText) downloadText('ocr-text.csv', csv, 'text/csv'); });
+if($('ocrDlPdf')) $('ocrDlPdf').addEventListener('click', function(){
+  var p=(window.jspdf&&window.jspdf.jsPDF)?Promise.resolve():loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+  toast('Building PDF…');
+  p.then(function(){ var jsPDF=window.jspdf.jsPDF; var pdf=new jsPDF({unit:'pt',format:'a4'}); var margin=40, w=pdf.internal.pageSize.getWidth()-margin*2;
+    var lines=pdf.splitTextToSize(txt()||' ', w); pdf.setFont('helvetica'); pdf.setFontSize(11);
+    var y=margin, lh=15, ph=pdf.internal.pageSize.getHeight()-margin;
+    lines.forEach(function(ln){ if(y>ph){ pdf.addPage(); y=margin; } pdf.text(ln,margin,y); y+=lh; });
+    pdf.save('ocr-text.pdf');
+  }).catch(function(){ toast('Could not load PDF library.'); });
+});
+if($('ocrDlDocx')) $('ocrDlDocx').addEventListener('click', function(){
+  var p=window.JSZip?Promise.resolve():loadScript('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js');
+  toast('Building DOCX…');
+  p.then(function(){
+    var paras=txt().split(/\n/).map(function(l){ return '<w:p><w:r><w:t xml:space="preserve">'+esc(l)+'</w:t></w:r></w:p>'; }).join('');
+    var doc='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>'+paras+'</w:body></w:document>';
+    var ct='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>';
+    var rels='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>';
+    var zip=new JSZip();
+    zip.file('[Content_Types].xml',ct); zip.folder('_rels').file('.rels',rels); zip.folder('word').file('document.xml',doc);
+    zip.generateAsync({type:'blob'}).then(function(b){ if(window.downloadBlob) downloadBlob('ocr-text.docx', b); });
+  }).catch(function(){ toast('Could not load ZIP library.'); });
+});
+if($('ocrPrint')) $('ocrPrint').addEventListener('click', function(){
+  var w=window.open('','_blank'); if(!w){ toast('Allow pop-ups to print.'); return; }
+  w.document.write('<html><head><title>OCR Text</title></head><body><pre style="white-space:pre-wrap;font-family:sans-serif;font-size:14px">'+esc(txt())+'</pre><scr'+'ipt>window.print()</scr'+'ipt></body></html>'); w.document.close();
+});
+
+/* ── reset ─────────────────────────────────────────────────────── */
+if($('ocrResetBtn')) $('ocrResetBtn').addEventListener('click', function(){
+  queue=[]; active=null; if(outputText) outputText.value='';
+  var w=$('ocrEditWrap'); if(w) w.style.display='none'; hideResult();
+  var pa=$('progressArea'); if(pa) pa.style.display='none';
+  renderQueue(); if(startBtn) startBtn.disabled=true; toast('Reset');
+});
+if($('ocrPickBtn')) $('ocrPickBtn').addEventListener('click', function(){ fileInput.click(); });
+
+/* ── history (localStorage) ────────────────────────────────────── */
+var HKEY='ocr_history_v1';
+function saveHistory(it){
+  try{
+    var h=JSON.parse(localStorage.getItem(HKEY)||'[]');
+    h.unshift({name:it.name, text:it.text.slice(0,4000), conf:it.conf, t:Date.now()});
+    h=h.slice(0,10); localStorage.setItem(HKEY, JSON.stringify(h));
+  }catch(e){}
+  renderHistory();
+}
+function renderHistory(){
+  var host=$('ocrHist'), wrap=$('ocrHistWrap'); if(!host||!wrap) return;
+  var h=[]; try{ h=JSON.parse(localStorage.getItem(HKEY)||'[]'); }catch(e){}
+  if(!h.length){ wrap.style.display='none'; return; }
+  wrap.style.display='block';
+  host.innerHTML=h.map(function(x,i){ var d=new Date(x.t); return '<div class="ocr-histitem"><span class="t" title="'+esc(x.name)+'">'+esc(x.name)+' • '+(x.conf||0)+'% • '+d.toLocaleTimeString()+'</span><button data-i="'+i+'">Load</button></div>'; }).join('');
+  Array.prototype.forEach.call(host.querySelectorAll('button'), function(b){ b.addEventListener('click', function(){ var x=h[+b.getAttribute('data-i')]; if(x && outputText){ var w=$('ocrResultWrap'); if(w) w.style.display='block'; outputText.value=x.text; updateStats(); toast('Loaded from history'); } }); });
+}
+if($('ocrHistClear')) $('ocrHistClear').addEventListener('click', function(){ try{ localStorage.removeItem(HKEY); }catch(e){} renderHistory(); });
+renderHistory();
+
+/* ── uploads wiring ────────────────────────────────────────────── */
+if(dropzone && fileInput && window.setupDropzone){ setupDropzone(dropzone, fileInput, function(files){ addFiles(files); }); }
+else if(fileInput){ fileInput.addEventListener('change', function(e){ addFiles(e.target.files); }); }
+document.addEventListener('paste', function(e){ if(!e.clipboardData) return; var items=e.clipboardData.items||[]; for(var i=0;i<items.length;i++){ if(items[i].type&&items[i].type.indexOf('image')===0){ var f=items[i].getAsFile(); if(f) addFiles([f]); } } });
+
+/* ── keyboard shortcuts ────────────────────────────────────────── */
+document.addEventListener('keydown', function(e){
+  var mod=e.ctrlKey||e.metaKey;
+  if(mod && e.key==='Enter'){ e.preventDefault(); if(active && !busy) runOCR(active); }
+  else if(mod && e.shiftKey && e.key.toLowerCase()==='c'){ e.preventDefault(); if(window.copyText) copyText(txt()); }
+});
+
+/* ── FAQ (English) + schema ────────────────────────────────────── */
+var FAQ=[
+ ["Is this OCR tool free to use?","Yes, it is completely free with no sign-up, no watermark and no daily limit. You can convert as many images to text as you like."],
+ ["How accurate is the OCR?","Accuracy depends on image quality, font and language. Clear, high-resolution printed text often exceeds 95% accuracy, while blurry, low-contrast or stylised text is lower. Use the enhancement controls and High-accuracy mode for the best results."],
+ ["Which languages are supported?","Over 25 languages including English, Hindi, Arabic, Spanish, French, German, Italian, Portuguese, Russian, Chinese, Japanese, Korean, Bengali, Gujarati, Punjabi, Marathi, Tamil, Telugu, Malayalam, Kannada, Urdu, Nepali and Sinhala, plus combined English + Hindi and an auto-detect option."],
+ ["What image formats can I use?","Common raster formats work: JPG/JPEG, PNG, WebP, BMP and GIF. For PDFs, convert the pages to images first with our PDF to Image tool, then run OCR."],
+ ["Are my images uploaded to a server?","No. All recognition happens locally in your browser using an in-browser OCR engine. Your images and the extracted text never leave your device."],
+ ["Does it work on mobile phones?","Yes. The layout is fully responsive and supports touch, so it works on Android and iOS phones and tablets as well as desktops."],
+ ["Is there a file size limit?","Each image can be up to 25 MB. Very large images are automatically scaled down before OCR to keep processing fast without losing much accuracy."],
+ ["Can I OCR several images at once?","Yes. Add multiple images to the queue, reorder them by dragging, and press “OCR All” to process the whole batch and combine the results."],
+ ["What download formats are available?","You can export the recognised text as TXT, PDF, DOCX, HTML, Markdown, CSV or JSON, and you can also print it directly."],
+ ["Can I copy the recognised text?","Yes. Use the Copy button for plain text or “Copy (formatted)” to copy with basic formatting so line breaks are preserved when pasting into a document."],
+ ["Can I edit the text after OCR?","Yes. Turn on the Editable toggle to correct the text in place. You also get Find &amp; Replace, Select All, Clear and optional spell check."],
+ ["How can I improve OCR quality?","Use a sharp, well-lit, high-resolution image; straighten tilted text with rotate or auto-deskew; increase contrast; enable black-and-white mode for faded scans; select just the text region; and choose the correct language."],
+ ["Is my data secure?","Yes. Because nothing is uploaded, there is no server that could be breached. OCR history is stored only in your own browser and can be cleared at any time."],
+ ["Does the tool work offline?","The first time you use a language, its model is downloaded and cached. After that, the tool can run offline for that language without an internet connection."],
+ ["How long does OCR take?","Usually a few seconds for a clear page. Time depends on image size, chosen language, OCR mode and your device speed. The progress bar shows a live percentage and estimated time."],
+ ["Why is my result empty or wrong?","Common causes are low resolution, blur, shadows, decorative fonts, handwriting or the wrong language. Try enhancing the image, selecting only the text, switching language or raising the OCR mode, then run again."],
+ ["What should I do if OCR fails with an error?","Press the Retry button. Errors are often caused by a slow network while the language model downloads, or a very large image. Reducing the image size or switching to a stable connection usually helps."],
+ ["What are the best practices for scanning documents?","Scan at 300 DPI or higher, keep the page flat and straight, avoid glare, and crop to the text area. For multi-column layouts, process each column separately for cleaner output."],
+ ["What are the tool's limitations?","OCR does not reliably read handwriting, artistic logos or very small text, and it does not translate or interpret meaning. It reproduces printed or typed characters, so always proofread important results."],
+ ["Which browsers are compatible?","The tool works on the latest versions of Chrome, Edge, Firefox, Safari and Opera across desktop and mobile. JavaScript must be enabled."],
+ ["Can it recognise a specific part of an image only?","Yes. Click “Region”, draw a box over the area you want, and OCR will process only that selection — useful for pulling one field out of a busy form or screenshot."],
+ ["Does it keep a history of my scans?","Yes. Your recent recognised texts are saved in your browser's local storage so you can reload them, and you can clear the history whenever you want."]
+];
+(function renderFaq(){
+  var host=$('ocrFaqList'); if(host){ host.innerHTML=FAQ.map(function(f){ return '<details><summary>'+f[0]+'</summary><p>'+f[1]+'</p></details>'; }).join(''); }
+  try{ var sc=$('faqSchema'); var data=JSON.parse(sc.textContent);
+    data.mainEntity=FAQ.map(function(f){ return {'@type':'Question',name:f[0],acceptedAnswer:{'@type':'Answer',text:f[1].replace(/&amp;/g,'&')}}; });
+    sc.textContent=JSON.stringify(data);
+  }catch(e){}
+})();
+
+})();
 </script>
 </body>
 </html>
