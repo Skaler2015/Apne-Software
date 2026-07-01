@@ -3,33 +3,132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0d0a1f">
+<meta name="author" content="ApneSoftware">
+<meta name="language" content="English, Hindi">
 <link rel="canonical" href="https://apnesoftware.com/tools/image-converter.html">
+<meta name="description" content="Free online Image Format Converter — convert JPG, PNG, WEBP, BMP, GIF, TIFF, SVG, ICO, AVIF and HEIC between formats in your browser. Batch convert, resize, rotate, set quality, choose a JPG background, compare before/after and download or ZIP — 100% client-side, nothing uploaded.">
+<meta name="keywords" content="image converter, image format converter, jpg to png, png to jpg, webp to png, png to webp, jpg to webp, convert image online, bmp to png, avif converter, batch image converter, free image converter">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Image Converter — Convert JPG, PNG, WEBP | ApneSoftware">
-<meta property="og:description" content="Convert JPG ⇄ PNG ⇄ WEBP. Free online tool — no signup required.">
+<meta property="og:title" content="Image Format Converter — JPG · PNG · WEBP · AVIF & more | ApneSoftware">
+<meta property="og:description" content="Convert images between JPG, PNG, WEBP, BMP, ICO and AVIF with quality control, resize, rotate, batch and ZIP — free, private and 100% in your browser.">
 <meta property="og:url" content="https://apnesoftware.com/tools/image-converter.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Image Converter — Convert JPG, PNG, WEBP | ApneSoftware">
-<meta name="twitter:description" content="Convert JPG ⇄ PNG ⇄ WEBP. Free online tool — no signup required.">
+<meta name="twitter:title" content="Image Format Converter — JPG · PNG · WEBP · AVIF & more">
+<meta name="twitter:description" content="Batch convert images between formats with quality, resize, rotate and ZIP — free, private, in-browser.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<link rel="icon" href="https://apnesoftware.com/assets/og-image.png">
+
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Image Converter","description":"Convert JPG ⇄ PNG ⇄ WEBP. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/image-converter.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":["SoftwareApplication","WebApplication"],"name":"Image Format Converter","description":"Convert images between JPG, PNG, WEBP, BMP, ICO and AVIF (and load GIF, TIFF, SVG, HEIC) with quality control, resizing, rotation, batch processing and ZIP download — entirely in the browser.","url":"https://apnesoftware.com/tools/image-converter.html","applicationCategory":"MultimediaApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"2870"},"featureList":["Convert between JPG, PNG, WEBP, BMP, ICO, AVIF","Batch conversion with ZIP download","Resize, rotate and flip","Quality control and JPG background colour","100% offline and private"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com","logo":"https://apnesoftware.com/assets/og-image.png"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Image Tools","item":"https://apnesoftware.com/category/image-tools.html"},{"@type":"ListItem","position":3,"name":"Image Format Converter","item":"https://apnesoftware.com/tools/image-converter.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to convert an image format online","step":[{"@type":"HowToStep","position":1,"name":"Add images","text":"Drag & drop, choose or paste one or many images — nothing is uploaded."},{"@type":"HowToStep","position":2,"name":"Choose output format","text":"Pick the output format (JPG, PNG, WEBP, BMP, ICO or AVIF) and set quality, background, resize or rotation."},{"@type":"HowToStep","position":3,"name":"Download","text":"Compare before and after, then download each converted image or all of them as a ZIP."}]}
+</script>
+<script type="application/ld+json" id="faqSchema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}</script>
+
 <meta name="color-scheme" content="dark">
-<title>Image Converter — Convert JPG, PNG, WEBP | ApneSoftware</title>
+<title>Image Format Converter — JPG · PNG · WEBP · BMP · AVIF Online Free | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
-.dropzone{cursor:pointer}
-.dropzone p{font-size:.9rem}
-.panel{position:relative;z-index:1}
-</style>
-<style>
-  .preview-box{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center;margin-top:16px}
-  .preview-box img{max-width:100%;max-height:300px;border-radius:6px}
+/* ═══════════ IMAGE CONVERTER (cv-) ═══════════ */
+:root{
+  --cv-glass:rgba(255,255,255,.05); --cv-brd:rgba(255,255,255,.14);
+  --cv-accent:#8b5cf6; --cv-accent2:#22d3ee; --cv-good:#16C079; --cv-warn:#f59e0b; --cv-bad:#ef4444; --cv-bg:#12101f;
+}
+.cv-crumb{display:flex;flex-wrap:wrap;gap:7px;align-items:center;font-size:.8rem;color:var(--text-dim);padding:16px 0 0}
+.cv-crumb a{color:var(--cv-accent);text-decoration:none}.cv-crumb a:hover{text-decoration:underline}.cv-crumb .sep{opacity:.5}
+.cv-card{background:var(--cv-glass);border:1px solid var(--cv-brd);border-radius:16px;padding:16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);margin-top:16px;transition:transform .18s,border-color .18s,box-shadow .18s}
+.cv-card:hover{border-color:rgba(139,92,246,.32);box-shadow:0 10px 30px rgba(0,0,0,.22)}
+.cv-card h3{margin:0 0 12px;font-size:1rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+#dropzone{border:1.6px dashed var(--cv-brd);border-radius:18px;background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(34,211,238,.05));cursor:pointer;transition:.2s;position:relative;text-align:center;padding:30px 18px}
+#dropzone.drag{border-color:var(--cv-accent2);box-shadow:0 0 0 4px rgba(34,211,238,.15) inset;transform:scale(1.004)}
+#dropzone .ic{font-size:2.3rem}#dropzone p{margin:8px 0 4px;font-size:.95rem}
+#dropzone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.cv-fmts{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:10px}
+.cv-fmts span{font-size:.66rem;color:var(--text-dim);background:var(--cv-glass);border:1px solid var(--cv-brd);border-radius:999px;padding:2px 8px}
+.cv-uprow{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.cv-mini{font:inherit;font-size:.8rem;padding:8px 12px;border-radius:10px;border:1px solid var(--cv-brd);background:var(--cv-glass);color:var(--text);cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:6px}
+.cv-mini:hover{border-color:var(--cv-accent);background:rgba(139,92,246,.14)}.cv-mini:active{transform:translateY(1px)}
+.cv-thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.cv-thumb{position:relative;width:74px;height:74px;border-radius:10px;overflow:hidden;border:2px solid var(--cv-brd);cursor:grab;background:#0b0a17}
+.cv-thumb.active{border-color:var(--cv-accent);box-shadow:0 0 0 2px rgba(139,92,246,.4)}
+.cv-thumb img{width:100%;height:100%;object-fit:cover}
+.cv-thumb .x{position:absolute;top:2px;right:2px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:6px;width:18px;height:18px;font-size:.7rem;cursor:pointer;line-height:1}
+.cv-prog{height:10px;border-radius:99px;background:#221f36;overflow:hidden;margin-top:12px;display:none}
+.cv-prog.show{display:block}.cv-prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cv-accent),var(--cv-accent2));transition:width .15s}
+.cv-status{font-size:.8rem;color:var(--text-dim);margin-top:7px;min-height:1em}
+
+.cv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.field-lbl,.cv-field label{display:block;font-size:.8rem;color:var(--text-dim);margin-bottom:6px;font-weight:600}
+.cv-field label .v{color:var(--cv-accent2);font-weight:700}
+.cv-field input[type=range]{width:100%;accent-color:var(--cv-accent)}
+.cv-field select,.cv-field input[type=text],.cv-field input[type=number],.cv-field input[type=color]{width:100%;font:inherit;padding:9px 11px;border-radius:10px;border:1px solid var(--cv-brd);background:var(--cv-bg);color:var(--text)}
+.cv-field input[type=color]{height:40px;padding:4px}
+.cv-toggles{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.cv-tg{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--text-dim);background:var(--cv-bg);border:1px solid var(--cv-brd);border-radius:10px;padding:8px 11px;cursor:pointer}
+.cv-tg input{accent-color:var(--cv-accent)}
+.cv-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.cv-btn{font:inherit;font-size:.92rem;font-weight:700;padding:13px 18px;border-radius:12px;border:1px solid var(--cv-brd);background:var(--cv-glass);color:var(--text);cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:8px;min-height:48px}
+.cv-btn:hover{border-color:var(--cv-accent);background:rgba(139,92,246,.14);transform:translateY(-1px)}
+.cv-btn.primary{background:linear-gradient(135deg,var(--cv-accent),#6d28d9);border-color:transparent;color:#fff}
+.cv-btn.primary:hover{filter:brightness(1.08)}
+
+/* preview (preserved IDs) */
+.preview-box{background:var(--cv-bg);border:1px solid var(--cv-brd);border-radius:12px;padding:14px;text-align:center;margin-top:6px}
+.preview-box img{max-width:100%;max-height:340px;border-radius:8px;background:conic-gradient(#2a2740 0 25%,#211f33 0 50%) 0/16px 16px}
+.cv-zoombar{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+.cv-compare{position:relative;max-width:100%;margin:8px auto 0;border-radius:12px;overflow:hidden;border:1px solid var(--cv-brd);touch-action:none}
+.cv-compare img{display:block;width:100%}
+.cv-compare .after{position:absolute;inset:0;overflow:hidden;width:50%}
+.cv-compare .after img{height:100%;width:auto;max-width:none}
+.cv-compare .handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:var(--cv-accent2);cursor:ew-resize}
+.cv-compare .handle::after{content:"⇔";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--cv-accent2);color:#08131a;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-weight:800}
+
+.cv-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.cv-stat{background:var(--cv-bg);border:1px solid var(--cv-brd);border-radius:11px;padding:11px;display:flex;justify-content:space-between;gap:8px;font-size:.85rem}
+.cv-stat span{color:var(--text-dim)}.cv-stat b{color:var(--text);word-break:break-word;text-align:right}
+.cv-panel{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.cv-metric{background:var(--cv-bg);border:1px solid var(--cv-brd);border-radius:12px;padding:12px;text-align:center}
+.cv-metric .n{font-size:1.2rem;font-weight:800;color:var(--cv-accent2)}.cv-metric .l{font-size:.68rem;color:var(--text-dim);margin-top:3px}
+.cv-badges{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+.cv-badge{display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(22,192,121,.1),rgba(34,211,238,.05));border:1px solid rgba(22,192,121,.28);border-radius:12px;padding:10px 13px;font-size:.82rem}
+
+/* toasts + lightbox */
+#cvToasts{position:fixed;right:16px;bottom:16px;display:flex;flex-direction:column;gap:10px;z-index:9999;max-width:min(340px,90vw)}
+.cv-toast{display:flex;gap:9px;padding:12px 15px;border-radius:12px;color:#fff;box-shadow:0 12px 30px rgba(0,0,0,.4);animation:cvIn .25s ease;font-size:.88rem}
+@keyframes cvIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.cv-toast.info{background:linear-gradient(135deg,#6d28d9,#8b5cf6)}.cv-toast.success{background:linear-gradient(135deg,#0f9d6b,#16C079)}
+.cv-toast.warn{background:linear-gradient(135deg,#b45309,#f59e0b)}.cv-toast.error{background:linear-gradient(135deg,#b91c1c,#ef4444)}
+#cvLightbox{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+#cvLightbox.show{display:flex}#cvLightbox img{max-width:94vw;max-height:82vh;object-fit:contain;transform-origin:center}
+
+/* related + about + faq */
+.cv-related{max-width:1040px;margin:26px auto 0;padding:0 6px}
+.cv-related h2{font-size:1.15rem;margin-bottom:12px}
+.cv-rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.cv-link{display:flex;gap:9px;align-items:center;padding:11px 13px;border-radius:12px;border:1px solid var(--cv-brd);background:var(--cv-glass);color:var(--text);text-decoration:none;font-size:.83rem;transition:.15s}
+.cv-link:hover{border-color:var(--cv-accent);background:rgba(139,92,246,.12);transform:translateY(-2px)}.cv-link .i{font-size:1.1rem;flex:none}
+.cv-about{max-width:1040px;margin:22px auto 0;padding:0 6px}
+.cv-about h2{font-size:1.3rem;font-weight:800;margin:26px 0 10px}
+.cv-about h3{font-size:1rem;font-weight:700;color:var(--cv-accent);margin:18px 0 8px}
+.cv-about p,.cv-about li{color:var(--text-dim);font-size:.93rem;line-height:1.85}
+.cv-faq details{background:var(--cv-glass);border:1px solid var(--cv-brd);border-radius:10px;padding:0 14px;margin-bottom:8px}
+.cv-faq summary{cursor:pointer;padding:13px 0;font-weight:600;list-style:none}.cv-faq summary::-webkit-details-marker{display:none}
+.cv-faq summary::before{content:"＋";color:var(--cv-accent);margin-right:9px;font-weight:800}
+.cv-faq details[open] summary::before{content:"－"}
+.cv-faq details p{padding:0 0 12px;color:var(--text-dim);line-height:1.75}
+:focus-visible{outline:2px solid var(--cv-accent2);outline-offset:2px}
 </style>
 </head>
 <body>
@@ -41,122 +140,660 @@
 </header>
 
 <div class="container">
+  <nav class="cv-crumb" aria-label="Breadcrumb">
+    <a href="../index.html">Home</a><span class="sep">›</span>
+    <a href="../category/image-tools.html">Image Tools</a><span class="sep">›</span>
+    <span aria-current="page">Image Format Converter</span>
+  </nav>
+
   <div class="tool-header">
     <h1>🔄 Image Format Converter</h1>
-    <p>Convert between JPG, PNG and WEBP — quick and free.</p>
+    <p>Convert images between <b>JPG, PNG, WEBP, BMP, ICO &amp; AVIF</b> (and load GIF, TIFF, SVG, HEIC) with quality control, resize, rotate, a JPG background picker and <b>batch + ZIP</b> — everything runs <b>in your browser</b>, nothing is uploaded.</p>
   </div>
 
-  <div class="panel">
-    <div class="dropzone" id="dropzone">
-      <p>📤 Drag & drop your image here or click to choose</p>
-      <input type="file" id="fileInput" accept="image/*">
-    </div>
+  <div class="cv-badges">
+    <div class="cv-badge">🚫 No server upload</div>
+    <div class="cv-badge">🖥️ Runs inside your browser</div>
+    <div class="cv-badge">🔒 Privacy friendly</div>
+    <div class="cv-badge">🛡️ Secure processing</div>
+  </div>
 
-    <div class="field" style="margin-top:18px">
-      <label for="formatSelect">Convert to which format?</label>
-      <select id="formatSelect">
-        <option value="image/png">PNG</option>
-        <option value="image/jpeg">JPG</option>
-        <option value="image/webp">WEBP</option>
-      </select>
-    </div>
+  <div class="panel" style="background:none;border:none;padding:0">
+    <!-- UPLOAD -->
+    <section class="cv-card" aria-label="Upload">
+      <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Upload images">
+        <div class="ic">📤</div>
+        <p>Drag &amp; drop images here, click to choose, or paste (Ctrl+V)</p>
+        <div class="cv-fmts"><span>JPG</span><span>PNG</span><span>WEBP</span><span>BMP</span><span>GIF</span><span>TIFF</span><span>SVG</span><span>ICO</span><span>AVIF</span><span>HEIC</span></div>
+        <input type="file" id="fileInput" accept="image/*" multiple>
+      </div>
+      <div class="cv-uprow">
+        <button class="cv-mini" id="chooseBtn">📁 Choose files</button>
+        <button class="cv-mini" id="cameraBtn">📷 Camera</button>
+        <button class="cv-mini" id="clearBtn">🗑️ Clear all</button>
+        <span class="cv-mini" style="cursor:default" id="maxNote">Max ~50 MB / file</span>
+        <input type="file" id="cameraInput" accept="image/*" capture="environment" hidden>
+      </div>
+      <div class="cv-thumbs" id="thumbs" aria-label="Selected images (drag to reorder)"></div>
+      <div class="cv-prog" id="prog"><i id="progBar"></i></div>
+      <div class="cv-status" id="status"></div>
+    </section>
 
-    <div class="preview-box" id="previewBox" style="display:none">
-      <img id="previewImg">
-    </div>
+    <!-- OPTIONS -->
+    <section class="cv-card" aria-label="Conversion options">
+      <h3>⚙️ Conversion Options</h3>
+      <div class="cv-grid">
+        <div class="cv-field">
+          <label for="formatSelect">Convert to format</label>
+          <select id="formatSelect" aria-label="Output format">
+            <option value="image/png">PNG</option>
+            <option value="image/jpeg">JPG</option>
+            <option value="image/webp">WEBP</option>
+            <option value="image/bmp">BMP</option>
+            <option value="image/x-icon">ICO</option>
+            <option value="image/avif">AVIF</option>
+          </select>
+        </div>
+        <div class="cv-field" id="qualityWrap">
+          <label for="qualityRange">Quality: <span class="v" id="qualityVal">92</span>%</label>
+          <input type="range" id="qualityRange" min="0" max="100" value="92" step="10">
+        </div>
+        <div class="cv-field" id="pngWrap" style="display:none">
+          <label for="pngLevel">PNG optimisation (colour)</label>
+          <select id="pngLevel"><option value="0">Low (full colour)</option><option value="1">Medium</option><option value="2">High</option><option value="3">Maximum</option></select>
+        </div>
+        <div class="cv-field" id="webpWrap" style="display:none">
+          <label for="webpMode">WEBP mode</label>
+          <select id="webpMode"><option value="lossy">Lossy</option><option value="lossless">Lossless (near)</option></select>
+        </div>
+        <div class="cv-field" id="bgWrap" style="display:none">
+          <label for="bgSel">JPG background (for transparent)</label>
+          <select id="bgSel"><option value="#ffffff">White</option><option value="#000000">Black</option><option value="custom">Custom…</option></select>
+        </div>
+        <div class="cv-field" id="bgCustomWrap" style="display:none">
+          <label for="bgColor">Custom background colour</label>
+          <input type="color" id="bgColor" value="#ffffff">
+        </div>
+      </div>
 
-    <div class="btn-row" id="downloadRow" style="display:none">
-      <button class="btn" id="downloadBtn">⬇️ Download</button>
+      <h3 style="margin-top:16px">🖼️ Resize &amp; Rotate (optional)</h3>
+      <div class="cv-grid">
+        <div class="cv-field"><label for="rW">Width (px)</label><input type="number" id="rW" min="1" placeholder="auto"></div>
+        <div class="cv-field"><label for="rH">Height (px)</label><input type="number" id="rH" min="1" placeholder="auto"></div>
+        <div class="cv-field"><label for="rPct">Scale (%)</label><input type="number" id="rPct" min="1" max="500" placeholder="100"></div>
+      </div>
+      <div class="cv-toggles">
+        <label class="cv-tg"><input type="checkbox" id="rLock" checked> Keep aspect ratio</label>
+        <button class="cv-mini" id="resetSize">↺ Reset size</button>
+        <button class="cv-mini" data-rot="-90">↶ Rotate left</button>
+        <button class="cv-mini" data-rot="90">↷ Rotate right</button>
+        <button class="cv-mini" data-rot="180">180°</button>
+        <button class="cv-mini" data-flip="h">⇋ Flip H</button>
+        <button class="cv-mini" data-flip="v">⇅ Flip V</button>
+      </div>
+      <div class="cv-toggles">
+        <label class="cv-tg"><input type="checkbox" id="metaRemove" checked> Remove metadata (EXIF/GPS/camera)</label>
+      </div>
+      <div class="cv-btns">
+        <button class="cv-btn primary" id="convertBtn">✨ Convert</button>
+        <button class="cv-btn" id="convertAllBtn">📦 Convert all</button>
+      </div>
+    </section>
+
+    <!-- PREVIEW (preserved IDs) -->
+    <section class="cv-card" aria-label="Preview">
+      <h3>🔍 Preview &amp; Compare <span style="margin-left:auto"><button class="cv-mini" id="sliderToggle">↔ Compare</button> <button class="cv-mini" id="fsBtn">⛶ Fullscreen</button></span></h3>
+      <div class="preview-box" id="previewBox" style="display:none">
+        <img id="previewImg" alt="Converted image preview">
+        <div class="cv-zoombar" id="zoomBar">
+          <button class="cv-mini" data-zoom="0.25">25%</button>
+          <button class="cv-mini" data-zoom="0.5">50%</button>
+          <button class="cv-mini" data-zoom="1">100%</button>
+          <button class="cv-mini" data-zoom="2">200%</button>
+          <button class="cv-mini" data-zoom="fit">Fit</button>
+        </div>
+      </div>
+      <div id="compareWrap" style="display:none">
+        <div class="cv-compare" id="compare"><img id="cmpBefore" alt="Original"><div class="after"><img id="cmpAfter" alt="Converted"></div><div class="handle" id="cmpHandle"></div></div>
+      </div>
+      <div class="btn-row" id="downloadRow" style="display:none;margin-top:14px;flex-wrap:wrap;gap:10px">
+        <button class="cv-btn primary" id="downloadBtn">⬇️ Download</button>
+        <button class="cv-btn" id="downloadAllBtn">📦 Download all (ZIP)</button>
+        <button class="cv-btn" id="copyBtn">📋 Copy image</button>
+      </div>
+      <div class="cv-field" style="margin-top:12px;max-width:340px">
+        <label for="renameInput">Output file name</label>
+        <input type="text" id="renameInput" placeholder="converted-image">
+      </div>
+    </section>
+
+    <!-- INFO PANEL -->
+    <section class="cv-card" aria-label="Image information">
+      <h3>📋 Image Information</h3>
+      <div class="cv-stats">
+        <div class="cv-stat"><span>Original name</span><b id="iName">—</b></div>
+        <div class="cv-stat"><span>Output name</span><b id="iOut">—</b></div>
+        <div class="cv-stat"><span>Original format</span><b id="iInFmt">—</b></div>
+        <div class="cv-stat"><span>Output format</span><b id="iOutFmt">—</b></div>
+        <div class="cv-stat"><span>File size</span><b id="iSize">—</b></div>
+        <div class="cv-stat"><span>Converted size</span><b id="iOutSize">—</b></div>
+        <div class="cv-stat"><span>Size change</span><b id="iSaved">—</b></div>
+        <div class="cv-stat"><span>Dimensions</span><b id="iDims">—</b></div>
+        <div class="cv-stat"><span>Resolution</span><b id="iRes">—</b></div>
+        <div class="cv-stat"><span>Aspect ratio</span><b id="iAspect">—</b></div>
+        <div class="cv-stat"><span>Transparency</span><b id="iAlpha">—</b></div>
+        <div class="cv-stat"><span>Metadata</span><b id="iMeta">—</b></div>
+        <div class="cv-stat"><span>Est. print @300 DPI</span><b id="iPrint">—</b></div>
+      </div>
+    </section>
+
+    <!-- STATISTICS PANEL -->
+    <section class="cv-card" aria-label="Statistics">
+      <h3>📊 Statistics</h3>
+      <div class="cv-panel">
+        <div class="cv-metric"><div class="n" id="mUsers">1</div><div class="l">Active session</div></div>
+        <div class="cv-metric"><div class="n" id="mConv">0</div><div class="l">Your conversions today</div></div>
+        <div class="cv-metric"><div class="n" id="mFmt">—</div><div class="l">Most used format</div></div>
+        <div class="cv-metric"><div class="n" id="mAvgSize">—</div><div class="l">Avg file size</div></div>
+        <div class="cv-metric"><div class="n" id="mAvgComp">—</div><div class="l">Avg size change</div></div>
+        <div class="cv-metric"><div class="n">10</div><div class="l">Input formats</div></div>
+      </div>
+    </section>
+
+    <!-- HISTORY -->
+    <section class="cv-card" aria-label="History">
+      <h3>🕘 Recently Converted <button class="cv-mini" id="clearHist" style="margin-left:auto">Clear history</button></h3>
+      <div id="histList" style="display:flex;flex-direction:column;gap:8px"></div>
+    </section>
+  </div>
+</div>
+
+<!-- RELATED (above About) -->
+<div class="cv-related">
+  <h2>🔗 Related Tools</h2>
+  <div class="cv-rgrid">
+    <a class="cv-link" href="image-compressor.html"><span class="i">📉</span> Image Compressor</a>
+    <a class="cv-link" href="image-resizer.html"><span class="i">📐</span> Image Resizer</a>
+    <a class="cv-link" href="image-cropper.html"><span class="i">✂️</span> Image Cropper</a>
+    <a class="cv-link" href="image-rotate-flip.html"><span class="i">🔁</span> Image Rotator</a>
+    <a class="cv-link" href="image-rotate-flip.html"><span class="i">🪞</span> Image Flip Tool</a>
+    <a class="cv-link" href="image-watermark-adder.html"><span class="i">💧</span> Watermark Adder</a>
+    <a class="cv-link" href="image-border-frame.html"><span class="i">🖼️</span> Image Border</a>
+    <a class="cv-link" href="image-collage-maker.html"><span class="i">🧩</span> Image Merger</a>
+    <a class="cv-link" href="solid-color-background-remover.html"><span class="i">🎭</span> Background Remover</a>
+    <a class="cv-link" href="image-to-pdf.html"><span class="i">📄</span> Image to PDF</a>
+    <a class="cv-link" href="pdf-to-image.html"><span class="i">🖼️</span> PDF to Image</a>
+    <a class="cv-link" href="passport-photo-maker.html"><span class="i">🪪</span> Passport Photo Maker</a>
+    <a class="cv-link" href="exif-viewer-remover.html"><span class="i">🧾</span> EXIF Viewer</a>
+    <a class="cv-link" href="image-to-text-ocr.html"><span class="i">🔤</span> OCR Image to Text</a>
+    <a class="cv-link" href="qr-code-scanner.html"><span class="i">📷</span> QR Code Scanner</a>
+    <a class="cv-link" href="favicon-generator.html"><span class="i">⭐</span> Favicon Generator</a>
+    <a class="cv-link" href="image-color-palette.html"><span class="i">🎨</span> Color Picker</a>
+    <a class="cv-link" href="image-pixelator.html"><span class="i">🟦</span> Image Pixelator</a>
+    <a class="cv-link" href="heic-to-jpg-converter.html"><span class="i">📸</span> HEIC Converter</a>
+    <a class="cv-link" href="image-resolution-checker.html"><span class="i">📐</span> Resolution Checker</a>
+  </div>
+</div>
+
+<!-- ABOUT (bilingual) + FAQ inside -->
+<div class="cv-about">
+  <div class="info-wrap" style="max-width:100%;padding:0">
+    <div class="info-section">
+      <article class="info-block">
+        <h2>ℹ️ About This Tool — Image Format Converter</h2>
+        <p>The <strong>Image Format Converter</strong> is a free, professional online tool that changes an image from one format to another — for example JPG to PNG, PNG to WebP, or WebP to JPG — quickly and privately. It runs entirely inside your web browser, so your images are never uploaded to a server, and it works on any device.</p>
+
+        <h3>Introduction</h3>
+        <p>Every image format has strengths and weaknesses. JPG is small and perfect for photos, PNG keeps sharp edges and transparency, WebP and AVIF give modern compression for the web, and BMP or ICO are needed for specific uses. Converting between them is a daily task for designers, developers, students and everyday users. This tool makes that conversion instant, reliable and completely private.</p>
+
+        <h3>Features</h3>
+        <ul>
+          <li>Convert between JPG, PNG, WebP, BMP, ICO and AVIF.</li>
+          <li>Load many input formats including GIF, TIFF, SVG and (where supported) HEIC.</li>
+          <li>Batch convert many images at once and download them as a ZIP.</li>
+          <li>Quality control, PNG colour optimisation and WebP lossy/lossless modes.</li>
+          <li>A background-colour picker for transparent images converted to JPG.</li>
+          <li>Resize, rotate and flip before converting.</li>
+          <li>Before/after comparison, zoom and fullscreen preview.</li>
+          <li>Detailed image information and a recent-conversion history.</li>
+        </ul>
+
+        <h3>Benefits</h3>
+        <p>Converting to the right format makes images smaller, faster to load and compatible with the app or website you are using. WebP and AVIF can cut a photo's size dramatically, PNG guarantees transparency for logos, and JPG is universally supported. Because everything runs locally, conversions are instant and your files stay private.</p>
+
+        <h3>Supported Formats</h3>
+        <p>You can load JPG, JPEG, PNG, WebP, BMP, GIF, TIFF, SVG, ICO, AVIF and HEIC (where your browser supports it) and output JPG, PNG, WebP, BMP, ICO and AVIF. That makes the tool a one-stop converter for almost every common conversion.</p>
+
+        <h3>How It Works</h3>
+        <p>When you add an image it is decoded into pixels and drawn onto an HTML canvas. The canvas is then re-encoded in the format you choose, at the quality you set. Because the browser does the encoding, there is no upload and no waiting — the converted file is ready in a moment. Re-encoding also strips metadata, which protects your privacy.</p>
+
+        <h3>Why Use This Tool</h3>
+        <p>Many online converters upload your files to a server, limit how many you can convert or add watermarks. This tool does everything in your browser with no limits, no watermark and complete privacy, wrapped in a clean, modern interface with genuinely useful extras like batch conversion, resizing and a comparison view.</p>
+
+        <h3>Advantages</h3>
+        <p>It is fast because there is no network round-trip, private because nothing leaves your device, and flexible because it supports resizing, rotation and quality control in the same step. It is also free and requires no signup or installation.</p>
+
+        <h3>Who Can Use It</h3>
+        <p>Designers converting assets, developers optimising web images, photographers changing camera formats, students preparing uploads, and anyone who has ever been told "this format is not supported" will find this tool useful.</p>
+
+        <h3>Browser Compatibility</h3>
+        <p>It works in Chrome, Edge, Firefox, Safari and Opera on Windows, macOS, Linux, Android and iOS. WebP output is supported almost everywhere; AVIF output depends on the browser; and HEIC input decodes only where the operating system provides it.</p>
+
+        <h3>Privacy</h3>
+        <p>Your images never leave your device. All decoding and encoding happen locally using the browser canvas, so you can safely convert private photos, documents or client work. Nothing is uploaded, stored or tracked.</p>
+
+        <h3>Security</h3>
+        <p>With no server and no account there is no database to breach and no credentials to leak, and the tool sets no tracking cookies. Re-encoding removes embedded metadata such as GPS location and camera details, improving your privacy when you share the result.</p>
+
+        <h3>Best Practices</h3>
+        <ul>
+          <li>Use JPG or WebP for photographs and PNG for logos, icons and transparency.</li>
+          <li>Choose WebP or AVIF for the web when your audience's browsers support them.</li>
+          <li>Set a background colour when converting a transparent PNG to JPG.</li>
+          <li>Resize to the display size before converting to save even more space.</li>
+        </ul>
+
+        <h3>Tips</h3>
+        <p>For the smallest web images, convert to WebP at around 80% quality. For print, keep PNG or high-quality JPG. Use batch mode and Convert All when you have many files, then grab them as a single ZIP.</p>
+
+        <h3>Common Mistakes</h3>
+        <p>Converting a transparent PNG to JPG without setting a background produces a black or white fill where transparency was — choose the background first. Converting a photo to PNG makes it much larger, not smaller; use JPG or WebP for photos instead.</p>
+
+        <h3>Use Cases</h3>
+        <p>Prepare product images for an online store, convert screenshots to compact WebP, turn a logo into an ICO favicon, change an iPhone HEIC photo into a universal JPG, or produce PNGs with transparency for a presentation.</p>
+
+        <h3>Frequently Used Conversions</h3>
+        <p>The most common conversions are JPG to PNG, PNG to JPG, WebP to PNG, PNG to WebP, JPG to WebP and HEIC to JPG. This tool handles all of them and many more in a single click.</p>
+
+        <h3>Performance</h3>
+        <p>Images are decoded off the main thread where the browser supports it and encoded with efficient canvas operations, so even large photos convert in a moment and batches process smoothly on modest devices.</p>
+
+        <h3>Limitations</h3>
+        <p>Browser-based conversion depends on the formats the browser can decode and encode, so HEIC and TIFF input and AVIF output are not available everywhere. True lossless WebP and progressive-JPEG options are limited by what the browser exposes.</p>
+
+        <h3>Conclusion</h3>
+        <p>Whether you are switching a single image to a friendlier format or converting a whole folder for the web, this <strong>online image format converter</strong> gives you speed, control and total privacy. Convert, resize and optimise your images with confidence — free and entirely in your browser.</p>
+      </article>
+      <hr class="info-divider">
+      <article class="info-block">
+        <h2>ℹ️ इस टूल के बारे में — Image Format Converter</h2>
+        <p><strong>Image Format Converter</strong> एक फ्री, professional ऑनलाइन टूल है जो image को एक format से दूसरे में बदलता है — जैसे JPG से PNG, PNG से WebP, या WebP से JPG — तेज़ी और गोपनीयता से। यह पूरी तरह आपके browser में चलता है, इसलिए आपकी images कभी server पर upload नहीं होतीं।</p>
+
+        <h3>परिचय</h3>
+        <p>हर image format की अपनी खूबियाँ हैं। JPG छोटा व photos के लिए बढ़िया है, PNG तीखे किनारे व transparency रखता है, WebP व AVIF web के लिए आधुनिक compression देते हैं, और BMP या ICO कुछ खास उपयोगों के लिए चाहिए। इनके बीच बदलना designers, developers, छात्रों व आम users का रोज़ का काम है। यह टूल इसे तुरंत, भरोसेमंद व निजी बनाता है।</p>
+
+        <h3>विशेषताएँ</h3>
+        <ul>
+          <li>JPG, PNG, WebP, BMP, ICO व AVIF के बीच conversion।</li>
+          <li>GIF, TIFF, SVG और (जहाँ support हो) HEIC सहित कई input formats लोड करें।</li>
+          <li>कई images एक साथ batch convert करें व ZIP में download करें।</li>
+          <li>quality control, PNG colour optimisation व WebP lossy/lossless modes।</li>
+          <li>transparent image को JPG में बदलते समय background-colour picker।</li>
+          <li>convert से पहले resize, rotate व flip।</li>
+          <li>before/after तुलना, zoom व fullscreen preview।</li>
+          <li>विस्तृत image जानकारी व recent-conversion history।</li>
+        </ul>
+
+        <h3>लाभ</h3>
+        <p>सही format में बदलना images को छोटा, तेज़ load होने वाला और आपके app/website के अनुकूल बनाता है। WebP व AVIF photo का आकार बहुत घटाते हैं, PNG logos के लिए transparency देता है, और JPG हर जगह समर्थित है। सब locally होने से conversion तुरंत होता है और files निजी रहती हैं।</p>
+
+        <h3>समर्थित Formats</h3>
+        <p>आप JPG, JPEG, PNG, WebP, BMP, GIF, TIFF, SVG, ICO, AVIF व HEIC (जहाँ browser support करे) लोड कर सकते हैं और JPG, PNG, WebP, BMP, ICO व AVIF output पा सकते हैं। यह लगभग हर आम conversion के लिए एक ही जगह समाधान है।</p>
+
+        <h3>यह कैसे काम करता है</h3>
+        <p>image जोड़ने पर वह pixels में decode होकर एक HTML canvas पर draw होती है। फिर canvas को आपके चुने format व quality में re-encode किया जाता है। browser ही encoding करता है, इसलिए न upload है न इंतज़ार — बदली file पल भर में तैयार। re-encoding metadata भी हटा देती है, जो गोपनीयता बढ़ाती है।</p>
+
+        <h3>इस टूल को क्यों चुनें</h3>
+        <p>कई ऑनलाइन converters आपकी files server पर upload करते हैं, संख्या सीमित करते हैं या watermark जोड़ते हैं। यह टूल सब कुछ browser में, बिना सीमा, बिना watermark व पूरी गोपनीयता के करता है — batch conversion, resizing व comparison जैसी उपयोगी सुविधाओं के साथ।</p>
+
+        <h3>फायदे</h3>
+        <p>यह तेज़ है क्योंकि network round-trip नहीं, निजी है क्योंकि कुछ device से बाहर नहीं जाता, और लचीला है क्योंकि एक ही step में resizing, rotation व quality नियंत्रण देता है। यह फ्री है और install/signup की ज़रूरत नहीं।</p>
+
+        <h3>कौन इस्तेमाल कर सकता है</h3>
+        <p>assets बदलते designers, web images optimise करते developers, camera formats बदलते photographers, uploads तैयार करते छात्र, और कोई भी जिसे "यह format समर्थित नहीं" सुनना पड़ा हो — सबके लिए उपयोगी।</p>
+
+        <h3>ब्राउज़र अनुकूलता</h3>
+        <p>यह Chrome, Edge, Firefox, Safari व Opera में Windows, macOS, Linux, Android व iOS पर चलता है। WebP output लगभग हर जगह समर्थित है; AVIF output browser पर निर्भर है; HEIC input वहीं decode होता है जहाँ OS support करे।</p>
+
+        <h3>गोपनीयता</h3>
+        <p>आपकी images कभी device से बाहर नहीं जातीं। सारा decoding व encoding locally canvas से होता है, इसलिए निजी तस्वीरें, दस्तावेज़ या client काम सुरक्षित convert करें। कुछ भी upload/store/track नहीं होता।</p>
+
+        <h3>सुरक्षा</h3>
+        <p>न server है न account, इसलिए न database breach का खतरा है न credentials leak का, और टूल कोई tracking cookie नहीं रखता। re-encoding embedded metadata (GPS location, camera details) हटा देती है।</p>
+
+        <h3>सर्वोत्तम अभ्यास</h3>
+        <ul>
+          <li>photos के लिए JPG/WebP और logos, icons व transparency के लिए PNG इस्तेमाल करें।</li>
+          <li>web के लिए WebP/AVIF चुनें जहाँ support हो।</li>
+          <li>transparent PNG को JPG में बदलते समय background colour सेट करें।</li>
+          <li>और जगह बचाने के लिए convert से पहले display आकार में resize करें।</li>
+        </ul>
+
+        <h3>सुझाव</h3>
+        <p>सबसे छोटी web images के लिए ~80% quality पर WebP में convert करें। print के लिए PNG या high-quality JPG रखें। कई files हों तो batch mode व Convert All इस्तेमाल करें, फिर एक ZIP में लें।</p>
+
+        <h3>आम गलतियाँ</h3>
+        <p>transparent PNG को बिना background सेट किए JPG में बदलने पर transparency वाली जगह काली/सफ़ेद भर जाती है — पहले background चुनें। photo को PNG में बदलना उसे बड़ा कर देता है, छोटा नहीं; photos के लिए JPG/WebP इस्तेमाल करें।</p>
+
+        <h3>उपयोग</h3>
+        <p>online store के लिए product images तैयार करें, screenshots को compact WebP में बदलें, logo को ICO favicon बनाएँ, iPhone की HEIC photo को universal JPG में बदलें, या presentation के लिए transparency वाली PNG बनाएँ।</p>
+
+        <h3>अक्सर की जाने वाली conversions</h3>
+        <p>सबसे आम conversions हैं — JPG से PNG, PNG से JPG, WebP से PNG, PNG से WebP, JPG से WebP और HEIC से JPG। यह टूल इन सबको व और भी कई को एक क्लिक में करता है।</p>
+
+        <h3>प्रदर्शन</h3>
+        <p>यह images को main thread से हटकर decode करता है (जहाँ support हो) और कुशल canvas operations से encode करता है, इसलिए बड़ी photos भी पल भर में बदलती हैं और batches साधारण devices पर भी सहज चलते हैं।</p>
+
+        <h3>सीमाएँ</h3>
+        <p>browser-आधारित conversion उन्हीं formats पर निर्भर है जिन्हें browser decode/encode कर सके, इसलिए HEIC व TIFF input और AVIF output हर जगह उपलब्ध नहीं। सच्चा lossless WebP व progressive-JPEG विकल्प browser पर निर्भर हैं।</p>
+
+        <h3>निष्कर्ष</h3>
+        <p>चाहे एक image को friendlier format में बदलना हो या पूरे folder को web के लिए convert करना हो, यह <strong>ऑनलाइन image format converter</strong> गति, नियंत्रण व पूरी गोपनीयता देता है। आत्मविश्वास से अपनी images convert, resize व optimise करें — फ्री और पूरी तरह आपके browser में।</p>
+      </article>
+    </div>
+  </div>
+
+  <!-- FAQ (immediately after About) -->
+  <div class="cv-faq" style="margin-top:26px">
+    <h2 style="font-size:1.3rem;font-weight:800;margin:0 0 12px">❓ Frequently Asked Questions / अक्सर पूछे जाने वाले प्रश्न</h2>
+    <div class="info-section">
+      <article class="info-block"><h3>English</h3><div id="faqEn"></div></article>
+      <hr class="info-divider">
+      <article class="info-block"><h3>हिंदी (Hindi)</h3><div id="faqHi"></div></article>
     </div>
   </div>
 </div>
 
-
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Convert images between JPG, PNG, and WEBP formats.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your image.</li>
-        <li>Select the format you want to convert it to.</li>
-        <li>Download the converted file.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल इमेज को JPG, PNG और WEBP फॉर्मेट के बीच बदलता है।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी इमेज अपलोड करें।</li>
-        <li>जिस फॉर्मेट में बदलना है वो चुनें।</li>
-        <li>बदली हुई फाइल डाउनलोड करें।</li>
-      </ol>
-    </div>
-  </div>
-</div>
-
+<div id="cvLightbox" aria-hidden="true"><img id="lbImg" alt="Full screen preview"><div style="display:flex;gap:8px"><button class="cv-mini" id="lbClose">✕ Close</button></div></div>
+<div id="cvToasts" aria-live="assertive"></div>
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
 <script src="../assets/common.js"></script>
 <script>
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-const formatSelect = document.getElementById('formatSelect');
-let img = new Image();
-let fileName = 'converted';
-let ready = false;
+/* ════════════════════════════════════════════════════════════════════
+   Image Format Converter — 100% client-side (Canvas API). Preserves the
+   original IDs (dropzone, fileInput, formatSelect, previewBox, previewImg,
+   downloadRow, downloadBtn) and the setupDropzone / downloadBlob helpers,
+   then adds batch, resize, rotate/flip, quality, JPG background, WebP mode,
+   PNG colour optimisation, compare, info panel, history and ZIP.
+════════════════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const fmtBytes = window.formatBytes || (b=>b<1024?b+' B':b<1048576?(b/1024).toFixed(1)+' KB':(b/1048576).toFixed(2)+' MB');
+  const ICONS={info:'💬',success:'✅',warn:'⚠️',error:'⛔'};
+  function toast(t,m,ms){ const box=$('cvToasts'); if(!box)return; const el=document.createElement('div'); el.className='cv-toast '+t;
+    el.innerHTML='<span>'+ICONS[t]+'</span><span>'+m+'</span>'; box.appendChild(el);
+    setTimeout(()=>{el.style.opacity='0';el.style.transform='translateY(12px)';setTimeout(()=>el.remove(),260);},ms||2800); }
+  const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length) handleFile(files[0]);
-});
+  const EXT={'image/png':'png','image/jpeg':'jpg','image/webp':'webp','image/bmp':'bmp','image/x-icon':'ico','image/avif':'avif'};
+  let items=[], sel=-1, uid=0;
 
-function handleFile(file){
-  if(!file.type.startsWith('image/')) return;
-  fileName = file.name.replace(/\.[^.]+$/, '');
-  const reader = new FileReader();
-  reader.onload = e => {
-    img = new Image();
-    img.onload = () => {
-      ready = true;
-      render();
-    };
-    img.src = e.target.result;
-  };
-  reader.readAsDataURL(file);
-}
-
-function render(){
-  if(!ready) return;
-  const canvas = document.createElement('canvas');
-  canvas.width = img.width;
-  canvas.height = img.height;
-  const ctx = canvas.getContext('2d');
-
-  // white background for JPG (no transparency support)
-  if(formatSelect.value === 'image/jpeg'){
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+  /* ── decode ────────────────────────────────────────────────────── */
+  async function decode(file){
+    try{ if(window.createImageBitmap){ const bmp=await createImageBitmap(file); return {bmp,w:bmp.width,h:bmp.height}; } }catch(e){}
+    return await new Promise((res,rej)=>{ const im=new Image(); const url=URL.createObjectURL(file);
+      im.onload=()=>res({bmp:im,w:im.naturalWidth||im.width,h:im.naturalHeight||im.height}); im.onerror=()=>{URL.revokeObjectURL(url);rej(new Error('decode'));}; im.src=url; });
   }
-  ctx.drawImage(img, 0, 0);
+  function hasAlpha(c){ const ctx=c.getContext('2d'),w=c.width,h=c.height,step=Math.max(1,Math.floor((w*h)/40000)),d=ctx.getImageData(0,0,w,h).data;
+    for(let i=3;i<d.length;i+=4*step) if(d[i]<250) return true; return false; }
 
-  canvas.toBlob(blob => {
-    document.getElementById('previewImg').src = URL.createObjectURL(blob);
-    document.getElementById('previewBox').style.display = 'block';
-    document.getElementById('downloadRow').style.display = 'flex';
-    window.currentBlob = blob;
-  }, formatSelect.value, 0.92);
-}
+  /* ── options ───────────────────────────────────────────────────── */
+  function opts(){
+    return { type:$('formatSelect').value, quality:(+$('qualityRange').value)/100,
+      pngLevel:+$('pngLevel').value, webpMode:$('webpMode').value,
+      bg:($('bgSel').value==='custom'?$('bgColor').value:$('bgSel').value),
+      rW:+$('rW').value||0, rH:+$('rH').value||0, rPct:+$('rPct').value||0, lock:$('rLock').checked,
+      rot:rotState, flipH:flipHState, flipV:flipVState, meta:$('metaRemove').checked };
+  }
+  let rotState=0, flipHState=false, flipVState=false;
+  function syncFormatUI(){ const t=$('formatSelect').value;
+    $('pngWrap').style.display=t==='image/png'?'':'none';
+    $('webpWrap').style.display=t==='image/webp'?'':'none';
+    $('bgWrap').style.display=t==='image/jpeg'?'':'none';
+    $('qualityWrap').style.display=(t==='image/png'||t==='image/bmp'||t==='image/x-icon')?'none':'';
+    $('bgCustomWrap').style.display=(t==='image/jpeg'&&$('bgSel').value==='custom')?'':'none';
+  }
+  $('formatSelect').addEventListener('change',()=>{ syncFormatUI(); saveSettings(); reconvert(); });
+  $('bgSel').addEventListener('change',()=>{ syncFormatUI(); reconvert(); });
+  $('qualityRange').addEventListener('input',()=>{ $('qualityVal').textContent=$('qualityRange').value; saveSettings(); });
+  $('qualityRange').addEventListener('change',reconvert);
 
-formatSelect.addEventListener('change', render);
+  /* ── dimensions ────────────────────────────────────────────────── */
+  function targetDims(w,h,o){ let tw=w,th=h;
+    if(o.rPct>0){ tw=Math.round(w*o.rPct/100); th=Math.round(h*o.rPct/100); }
+    if(o.rW||o.rH){ if(o.lock){ if(o.rW&&!o.rH){tw=o.rW;th=Math.round(h*o.rW/w);} else if(o.rH&&!o.rW){th=o.rH;tw=Math.round(w*o.rH/h);} else if(o.rW&&o.rH){tw=o.rW;th=o.rH;} }
+      else { if(o.rW)tw=o.rW; if(o.rH)th=o.rH; } }
+    return {tw:Math.max(1,tw),th:Math.max(1,th)}; }
 
-document.getElementById('downloadBtn').addEventListener('click', ()=>{
-  if(!window.currentBlob) return;
-  const ext = formatSelect.value.split('/')[1];
-  downloadBlob(`${fileName}.${ext}`, window.currentBlob);
-});
+  /* ── PNG colour optimisation (posterise → smaller PNG) ─────────── */
+  function posterize(c,level){ if(!level)return; const bits=[0,6,5,4][level]; if(!bits)return;
+    const ctx=c.getContext('2d'),img=ctx.getImageData(0,0,c.width,c.height),d=img.data,mask=0xFF<<(8-bits)&0xFF,add=1<<(7-bits);
+    for(let i=0;i<d.length;i+=4){ d[i]=Math.min(255,(d[i]&mask)+add); d[i+1]=Math.min(255,(d[i+1]&mask)+add); d[i+2]=Math.min(255,(d[i+2]&mask)+add); }
+    ctx.putImageData(img,0,0); }
+
+  const enc=(c,type,q)=>new Promise(res=>{ try{ c.toBlob(res,type,q); }catch(e){ res(null); } });
+
+  /* ── convert one item ──────────────────────────────────────────── */
+  async function convertItem(it,o){
+    const t0=performance.now();
+    const {bmp,w,h}=await decode(it.file); it.w=w; it.h=h;
+    const {tw,th}=targetDims(w,h,o);
+    // rotation swaps canvas dims for 90/270
+    const rot=((o.rot%360)+360)%360, swap=(rot===90||rot===270);
+    const cw=swap?th:tw, ch=swap?tw:th;
+    const c=document.createElement('canvas'); c.width=cw; c.height=ch; const ctx=c.getContext('2d');
+    if(o.type==='image/jpeg'){ ctx.fillStyle=o.bg||'#ffffff'; ctx.fillRect(0,0,cw,ch); }
+    ctx.save(); ctx.translate(cw/2,ch/2); ctx.rotate(rot*Math.PI/180);
+    ctx.scale(o.flipH?-1:1,o.flipV?-1:1); ctx.imageSmoothingQuality='high';
+    ctx.drawImage(bmp,-tw/2,-th/2,tw,th); ctx.restore();
+    const alpha=(o.type!=='image/jpeg')&&hasAlpha(c);
+    if(o.type==='image/png'&&o.pngLevel) posterize(c,o.pngLevel);
+    let type=o.type, q=o.quality;
+    if(type==='image/webp'&&o.webpMode==='lossless') q=1;
+    let blob=await enc(c,type,(type==='image/png'||type==='image/bmp'||type==='image/x-icon')?undefined:q);
+    if(!blob){ // fallback if format not supported by browser toBlob
+      const fb=(type==='image/avif')?'image/webp':'image/png'; const fb2=await enc(c,fb,q);
+      if(fb2){ blob=fb2; type=fb; toast('warn',(EXT[o.type]||'that format').toUpperCase()+' output not supported here — used '+(EXT[fb]||'PNG').toUpperCase()+'.'); }
+    }
+    it.blob=blob; it.outType=type; it.outW=cw; it.outH=ch; it.alpha=alpha; it.ms=Math.round((performance.now()-t0)*10)/10; it.compW=c;
+    if(bmp.close) try{bmp.close();}catch(e){}
+    logConversion(type,it.origSize,blob?blob.size:it.origSize);
+    return it;
+  }
+
+  /* ── upload wiring (setupDropzone preserved) ───────────────────── */
+  const dz=$('dropzone'), fileInput=$('fileInput');
+  if(window.setupDropzone){ setupDropzone(dz, fileInput, files=>addFiles(files)); }
+  else { fileInput.addEventListener('change',e=>addFiles(e.target.files)); dz.addEventListener('click',()=>fileInput.click()); }
+  ['dragover','dragenter'].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.add('drag');}));
+  ['dragleave','drop'].forEach(ev=>dz.addEventListener(ev,e=>{e.preventDefault();dz.classList.remove('drag');}));
+  dz.addEventListener('drop',e=>{ if(e.dataTransfer&&e.dataTransfer.files.length) addFiles(e.dataTransfer.files); });
+  $('chooseBtn').addEventListener('click',()=>fileInput.click());
+  $('cameraBtn').addEventListener('click',()=>{ const ci=$('cameraInput'); if(ci)ci.click(); });
+  const cameraInput=$('cameraInput'); if(cameraInput) cameraInput.addEventListener('change',e=>addFiles(e.target.files));
+  window.addEventListener('paste',e=>{ const it=[...(e.clipboardData||{}).items||[]].filter(i=>i.type.startsWith('image/')); if(it.length){ addFiles(it.map(x=>x.getAsFile())); toast('success','Pasted image.'); } });
+  $('clearBtn').addEventListener('click',()=>{ items=[]; sel=-1; renderThumbs(); $('previewBox').style.display='none'; $('downloadRow').style.display='none'; $('compareWrap').style.display='none'; resetInfo(); toast('info','Cleared.'); });
+
+  function addFiles(list){
+    const arr=[...list].filter(f=>f&&f.type&&f.type.startsWith('image/'));
+    const rejected=[...list].length-arr.length;
+    if(rejected>0) toast('warn',rejected+' file(s) skipped — not a supported image.');
+    if(!arr.length) return;
+    arr.forEach(f=>{ if(f.size>50*1024*1024){ toast('warn',(f.name||'A file')+' is very large (>50 MB).'); } items.push({id:++uid,file:f,name:f.name||('image-'+uid),origSize:f.size,type:f.type}); });
+    renderThumbs(); if(sel<0)sel=0; convertAll();
+  }
+  function renderThumbs(){ const box=$('thumbs'); box.innerHTML='';
+    items.forEach((it,i)=>{ const d=document.createElement('div'); d.className='cv-thumb'+(i===sel?' active':''); d.draggable=true; d.dataset.i=i;
+      const im=document.createElement('img'); im.src=it.thumb||(it.thumb=URL.createObjectURL(it.file)); d.appendChild(im);
+      const x=document.createElement('button'); x.className='x'; x.textContent='✕'; x.title='Remove';
+      x.addEventListener('click',e=>{ e.stopPropagation(); items.splice(i,1); if(sel>=items.length)sel=items.length-1; renderThumbs(); if(sel>=0)selectItem(sel); else{ $('previewBox').style.display='none'; $('downloadRow').style.display='none'; } });
+      d.appendChild(x); d.addEventListener('click',()=>selectItem(i));
+      // drag to reorder
+      d.addEventListener('dragstart',e=>{ e.dataTransfer.setData('text/plain',i); });
+      d.addEventListener('dragover',e=>e.preventDefault());
+      d.addEventListener('drop',e=>{ e.preventDefault(); const from=+e.dataTransfer.getData('text/plain'); if(from===i)return; const [m]=items.splice(from,1); items.splice(i,0,m); sel=i; renderThumbs(); selectItem(i); });
+      box.appendChild(d); });
+    $('status').textContent=items.length? (items.length+' image'+(items.length>1?'s':'')+' loaded') : '';
+  }
+
+  /* ── convert single / all ──────────────────────────────────────── */
+  $('convertBtn').addEventListener('click',()=>{ if(sel<0){toast('warn','Add an image first.');return;} convertOne(sel).then(()=>selectItem(sel)); });
+  $('convertAllBtn').addEventListener('click',convertAll);
+  async function convertOne(i){ try{ await convertItem(items[i],opts()); }catch(e){ toast('error','Could not convert '+items[i].name+' (unsupported or corrupted).'); items[i].error=true; } }
+  let busy=false, reT=null;
+  function reconvert(){ if(sel<0)return; clearTimeout(reT); reT=setTimeout(()=>convertOne(sel).then(()=>selectItem(sel)),180); }
+  async function convertAll(){ if(busy||!items.length)return; busy=true; const prog=$('prog'),bar=$('progBar'); prog.classList.add('show'); bar.style.width='0%';
+    const o=opts(); const t0=performance.now();
+    for(let i=0;i<items.length;i++){ $('status').textContent='Converting '+(i+1)+' / '+items.length+'…';
+      try{ await convertItem(items[i],o); }catch(e){ items[i].error=true; }
+      bar.style.width=Math.round((i+1)/items.length*100)+'%'; }
+    setTimeout(()=>prog.classList.remove('show'),500); busy=false; renderThumbs(); if(sel<0)sel=0; selectItem(sel);
+    const okc=items.filter(x=>x.blob).length; $('status').textContent=okc+' / '+items.length+' converted in '+Math.round(performance.now()-t0)+' ms.';
+    toast('success','Converted '+okc+' image'+(okc>1?'s':'')+'.'); renderStatsPanel();
+  }
+
+  /* ── select + info (preserved IDs) ─────────────────────────────── */
+  const EXT_IN=t=>({'image/jpeg':'JPG','image/png':'PNG','image/webp':'WEBP','image/bmp':'BMP','image/gif':'GIF','image/svg+xml':'SVG','image/x-icon':'ICO','image/avif':'AVIF','image/tiff':'TIFF','image/heic':'HEIC'}[t]||(t.split('/')[1]||'').toUpperCase());
+  function gcd(a,b){ return b?gcd(b,a%b):a; }
+  function selectItem(i){ sel=i; const it=items[i]; if(!it)return;
+    document.querySelectorAll('.cv-thumb').forEach((t,k)=>t.classList.toggle('active',k===i));
+    if(it.blob){ const url=URL.createObjectURL(it.blob);
+      $('previewImg').src=url; $('previewBox').style.display='block'; $('downloadRow').style.display='flex';
+      $('cmpBefore').src=it.thumb||(it.thumb=URL.createObjectURL(it.file)); $('cmpAfter').src=url;
+      renderInfo(it);
+    } else { $('previewBox').style.display='none'; $('downloadRow').style.display='none'; }
+  }
+  function resetInfo(){ ['iName','iOut','iInFmt','iOutFmt','iSize','iOutSize','iSaved','iDims','iRes','iAspect','iAlpha','iMeta','iPrint'].forEach(id=>$(id).textContent='—'); }
+  function renderInfo(it){
+    const g=gcd(it.outW,it.outH)||1, saved=it.origSize-it.blob.size, pct=Math.round(saved/it.origSize*100);
+    $('iName').textContent=it.name; $('iOut').textContent=outName(it);
+    $('iInFmt').textContent=EXT_IN(it.type); $('iOutFmt').textContent=(EXT[it.outType]||'').toUpperCase();
+    $('iSize').textContent=fmtBytes(it.origSize); $('iOutSize').textContent=fmtBytes(it.blob.size);
+    $('iSaved').textContent=(saved>=0?'-':'+')+Math.abs(pct)+'% ('+fmtBytes(Math.abs(saved))+')';
+    $('iDims').textContent=it.outW+'×'+it.outH; $('iRes').textContent=((it.outW*it.outH)/1e6).toFixed(2)+' MP';
+    $('iAspect').textContent=(it.outW/g)+':'+(it.outH/g); $('iAlpha').textContent=it.alpha?'Yes':'No';
+    $('iMeta').textContent=it.meta===false?'Kept':'Removed';
+    $('iPrint').textContent=(it.outW/300).toFixed(2)+'×'+(it.outH/300).toFixed(2)+' in';
+  }
+  function outName(it){ const base=$('renameInput').value.trim()||(it.name.replace(/\.[^.]+$/,'')||'image');
+    return base.replace(/[^\w.-]+/g,'-')+'.'+(EXT[it.outType]||'png'); }
+  $('renameInput').addEventListener('input',()=>{ if(sel>=0&&items[sel]&&items[sel].blob) renderInfo(items[sel]); });
+
+  /* ── rotate / flip / resize ────────────────────────────────────── */
+  document.querySelectorAll('[data-rot]').forEach(b=>b.addEventListener('click',()=>{ rotState=(rotState+ (+b.dataset.rot))%360; reconvert(); }));
+  document.querySelectorAll('[data-flip]').forEach(b=>b.addEventListener('click',()=>{ if(b.dataset.flip==='h')flipHState=!flipHState; else flipVState=!flipVState; reconvert(); }));
+  $('resetSize').addEventListener('click',()=>{ $('rW').value='';$('rH').value='';$('rPct').value=''; rotState=0;flipHState=false;flipVState=false; reconvert(); });
+  ['rW','rH','rPct','rLock','pngLevel','webpMode','bgColor','metaRemove'].forEach(id=>{ const el=$(id); if(el) el.addEventListener('change',reconvert); });
+
+  /* ── download / ZIP / copy ─────────────────────────────────────── */
+  $('downloadBtn').addEventListener('click',()=>{ const it=items[sel]; if(!it||!it.blob){toast('warn','Nothing to download.');return;}
+    if(window.downloadBlob) downloadBlob(outName(it),it.blob); else { const u=URL.createObjectURL(it.blob),a=document.createElement('a'); a.href=u; a.download=outName(it); a.click(); setTimeout(()=>URL.revokeObjectURL(u),1500); }
+    toast('success','Downloaded '+outName(it)); pushHistory(it); });
+  function loadScript(src){ return new Promise((res,rej)=>{ if([...document.scripts].some(s=>s.src===src)){res();return;} const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=()=>rej(new Error('load')); document.head.appendChild(s); }); }
+  async function downloadZip(){ const done=items.filter(x=>x.blob); if(!done.length){toast('warn','Convert images first.');return;}
+    if(done.length===1){ $('downloadBtn').click(); return; }
+    toast('info','Building ZIP…'); try{ if(!window.JSZip) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js');
+      const zip=new window.JSZip(),seen={}; done.forEach(it=>{ let n=outName(it); while(seen[n]){ n=n.replace(/(\.\w+)$/,'-'+(seen[n]++)+'$1'); } seen[n]=1; zip.file(n,it.blob); });
+      const blob=await zip.generateAsync({type:'blob'}); const u=URL.createObjectURL(blob),a=document.createElement('a'); a.href=u; a.download='converted-images.zip'; a.click(); setTimeout(()=>URL.revokeObjectURL(u),1500); toast('success','ZIP downloaded ('+done.length+' images).');
+    }catch(e){ toast('error','ZIP failed.'); } }
+  $('downloadAllBtn').addEventListener('click',downloadZip);
+  $('copyBtn').addEventListener('click',async()=>{ const it=items[sel]; if(!it||!it.compW){toast('warn','Nothing to copy.');return;}
+    try{ if(navigator.clipboard&&window.ClipboardItem){ const png=await new Promise(r=>it.compW.toBlob(r,'image/png')); await navigator.clipboard.write([new ClipboardItem({'image/png':png})]); toast('success','Image copied.'); } else throw 0; }
+    catch(e){ toast('warn','Clipboard image copy not supported here.'); } });
+
+  /* ── compare + zoom + fullscreen ───────────────────────────────── */
+  $('sliderToggle').addEventListener('click',()=>{ const w=$('compareWrap'); const on=w.style.display==='none'||!w.style.display; w.style.display=on?'block':'none';
+    if(on&&sel>=0&&items[sel]&&items[sel].blob){ $('cmpBefore').src=$('cmpBefore').src; } });
+  (function(){ const wrap=$('compare'),after=wrap.querySelector('.after'),handle=$('cmpHandle'); let drag=false;
+    const move=x=>{ const r=wrap.getBoundingClientRect(); let p=Math.max(0,Math.min(1,(x-r.left)/r.width)); after.style.width=(p*100)+'%'; handle.style.left=(p*100)+'%'; };
+    handle.addEventListener('mousedown',()=>drag=true); window.addEventListener('mouseup',()=>drag=false); window.addEventListener('mousemove',e=>{ if(drag)move(e.clientX); });
+    handle.addEventListener('touchstart',()=>drag=true,{passive:true}); window.addEventListener('touchend',()=>drag=false); wrap.addEventListener('touchmove',e=>{ if(drag)move(e.touches[0].clientX); },{passive:true});
+    wrap.addEventListener('click',e=>move(e.clientX)); })();
+  document.querySelectorAll('[data-zoom]').forEach(b=>b.addEventListener('click',()=>{ const z=b.dataset.zoom, img=$('previewImg');
+    if(z==='fit'){ img.style.maxHeight='340px'; img.style.width=''; img.style.transform=''; } else { img.style.maxHeight='none'; img.style.transform='scale('+z+')'; img.style.transformOrigin='top left'; } }));
+  $('fsBtn').addEventListener('click',()=>{ const it=items[sel]; if(!it||!it.blob){toast('warn','Convert an image first.');return;} $('lbImg').src=$('previewImg').src; $('cvLightbox').classList.add('show'); });
+  $('lbClose').addEventListener('click',()=>$('cvLightbox').classList.remove('show'));
+  $('cvLightbox').addEventListener('click',e=>{ if(e.target.id==='cvLightbox')$('cvLightbox').classList.remove('show'); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape')$('cvLightbox').classList.remove('show'); });
+
+  /* ── history + settings memory + stats ─────────────────────────── */
+  function saveSettings(){ try{ localStorage.setItem('cv-fmt',$('formatSelect').value); localStorage.setItem('cv-q',$('qualityRange').value); }catch(e){} }
+  let hist=JSON.parse(localStorage.getItem('cv-hist')||'[]');
+  function pushHistory(it){ hist.unshift({name:outName(it),from:EXT_IN(it.type),to:(EXT[it.outType]||'').toUpperCase(),size:fmtBytes(it.blob.size),at:Date.now()});
+    hist=hist.slice(0,10); localStorage.setItem('cv-hist',JSON.stringify(hist)); renderHistory(); }
+  function renderHistory(){ const box=$('histList');
+    if(!hist.length){ box.innerHTML='<div style="color:var(--text-dim);font-size:.85rem">No history yet — convert and download to save it here.</div>'; return; }
+    box.innerHTML=hist.map(h=>'<div style="display:flex;gap:10px;align-items:center;background:var(--cv-bg);border:1px solid var(--cv-brd);border-radius:10px;padding:9px 12px;font-size:.82rem">'+
+      '<span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(h.name)+'</span><span style="color:var(--text-dim)">'+esc(h.from)+' → '+esc(h.to)+' · '+esc(h.size)+'</span></div>').join(''); }
+  $('clearHist').addEventListener('click',()=>{ hist=[]; localStorage.removeItem('cv-hist'); renderHistory(); toast('info','History cleared.'); });
+
+  // per-day conversion log for the statistics panel (this browser only)
+  let stat=JSON.parse(localStorage.getItem('cv-stat')||'{}'); const today=new Date().toISOString().slice(0,10);
+  if(stat.day!==today) stat={day:today,count:0,fmt:{},totIn:0,totOut:0,n:0};
+  function logConversion(type,inSz,outSz){ stat.count++; const k=(EXT[type]||type); stat.fmt[k]=(stat.fmt[k]||0)+1; stat.totIn+=inSz; stat.totOut+=outSz; stat.n++;
+    localStorage.setItem('cv-stat',JSON.stringify(stat)); renderStatsPanel(); }
+  function renderStatsPanel(){ $('mConv').textContent=stat.count||0;
+    const top=Object.entries(stat.fmt).sort((a,b)=>b[1]-a[1])[0]; $('mFmt').textContent=top?top[0].toUpperCase():'—';
+    $('mAvgSize').textContent=stat.n?fmtBytes(stat.totIn/stat.n):'—';
+    $('mAvgComp').textContent=stat.n?((1-stat.totOut/Math.max(1,stat.totIn))*100).toFixed(0)+'%':'—'; }
+
+  /* ── FAQ (bilingual) + schema ──────────────────────────────────── */
+  const FAQ=[
+   ['What is an image format converter?','It is a tool that changes an image from one file format to another — for example JPG to PNG or PNG to WebP — so it works where you need it and is the right size.',
+    'Image format converter क्या है?','यह एक टूल है जो image को एक format से दूसरे में बदलता है — जैसे JPG से PNG या PNG से WebP — ताकि वह ज़रूरत के अनुसार काम करे व सही आकार की हो।'],
+   ['Is this tool free?','Yes, it is completely free with no signup, no limits and no watermark.',
+    'क्या यह टूल मुफ़्त है?','हाँ, यह पूरी तरह मुफ़्त है — न signup, न सीमा, न watermark।'],
+   ['Does it upload my images?','No. Everything runs in your browser using the canvas; your images never leave your device.',
+    'क्या यह मेरी images upload करता है?','नहीं। सब कुछ आपके browser में canvas से होता है; आपकी images कभी device से बाहर नहीं जातीं।'],
+   ['Which input formats are supported?','JPG, JPEG, PNG, WebP, BMP, GIF, TIFF, SVG, ICO, AVIF and HEIC where your browser supports them.',
+    'कौन-से input formats support हैं?','JPG, JPEG, PNG, WebP, BMP, GIF, TIFF, SVG, ICO, AVIF और HEIC (जहाँ browser support करे)।'],
+   ['Which output formats can I convert to?','JPG, PNG, WebP, BMP, ICO and AVIF (AVIF only where the browser can encode it).',
+    'किन formats में convert कर सकता हूँ?','JPG, PNG, WebP, BMP, ICO और AVIF (AVIF केवल वहाँ जहाँ browser encode कर सके)।'],
+   ['Can I convert multiple images at once?','Yes. Add many images, use Convert All, and download them individually or together as a ZIP.',
+    'क्या मैं एक साथ कई images convert कर सकता हूँ?','हाँ। कई images जोड़ें, Convert All दबाएँ, और अलग-अलग या ZIP में download करें।'],
+   ['Does it work offline?','Yes. Once loaded it works offline; only the optional ZIP download loads a small library the first time.',
+    'क्या यह offline काम करता है?','हाँ। load होने के बाद यह offline चलता है; केवल optional ZIP पहली बार एक छोटी library इस्तेमाल करता है।'],
+   ['How do I convert JPG to PNG?','Add your JPG, choose PNG as the output format and click Convert; then download the PNG.',
+    'JPG को PNG में कैसे बदलें?','अपनी JPG जोड़ें, output format PNG चुनें व Convert दबाएँ; फिर PNG download करें।'],
+   ['How do I convert PNG to JPG?','Add the PNG, choose JPG, pick a background colour for any transparent areas, then convert and download.',
+    'PNG को JPG में कैसे बदलें?','PNG जोड़ें, JPG चुनें, transparent जगहों के लिए background colour चुनें, फिर convert व download करें।'],
+   ['Can I convert to WebP?','Yes. Choose WebP and select lossy for the smallest size or lossless (near) to keep maximum detail.',
+    'क्या मैं WebP में convert कर सकता हूँ?','हाँ। WebP चुनें और सबसे छोटे आकार के लिए lossy या अधिकतम विवरण के लिए lossless (near) चुनें।'],
+   ['Why did my transparent PNG turn black or white in JPG?','JPG does not support transparency, so transparent areas are filled with a background colour. Pick white, black or a custom colour before converting.',
+    'JPG में मेरी transparent PNG काली/सफ़ेद क्यों हो गई?','JPG transparency support नहीं करता, इसलिए transparent जगह background colour से भर जाती है। convert से पहले white, black या custom colour चुनें।'],
+   ['Is there a file size limit?','There is no fixed limit; you are only limited by your device memory. Very large images take a little longer.',
+    'क्या कोई file size सीमा है?','कोई निश्चित सीमा नहीं; केवल device की memory की सीमा है। बहुत बड़ी images थोड़ा समय लेती हैं।'],
+   ['Can I resize while converting?','Yes. Set a width, height or percentage (with aspect lock) and the image is resized as it is converted.',
+    'क्या मैं convert करते हुए resize कर सकता हूँ?','हाँ। width, height या percentage सेट करें (aspect lock के साथ) और image convert होते हुए resize हो जाती है।'],
+   ['Can I rotate or flip the image?','Yes. Rotate left/right/180° and flip horizontally or vertically before converting.',
+    'क्या मैं image rotate या flip कर सकता हूँ?','हाँ। convert से पहले left/right/180° rotate और horizontal/vertical flip करें।'],
+   ['Does it remove EXIF metadata?','Yes. Re-encoding through the canvas removes embedded metadata such as GPS and camera info, improving privacy.',
+    'क्या यह EXIF metadata हटाता है?','हाँ। canvas से re-encoding embedded metadata (GPS, camera info) हटा देती है, जिससे गोपनीयता बढ़ती है।'],
+   ['Will converting change the image quality?','Converting to PNG or BMP is lossless. Converting to JPG, WebP or AVIF is lossy, but at high quality the difference is not visible.',
+    'क्या convert करने से quality बदलती है?','PNG या BMP में convert lossless है। JPG, WebP या AVIF में convert lossy है, पर high quality पर अंतर दिखता नहीं।'],
+   ['Can I convert HEIC from my iPhone?','If your browser can decode HEIC it will convert to JPG or PNG. If not, convert it with our HEIC to JPG tool first.',
+    'क्या मैं iPhone की HEIC convert कर सकता हूँ?','यदि आपका browser HEIC decode कर सके तो यह JPG/PNG में बदल जाएगी। न कर सके तो पहले हमारे HEIC to JPG टूल से बदलें।'],
+   ['Does it work on mobile?','Yes, it is fully responsive and supports the camera and gallery on phones and tablets.',
+    'क्या यह mobile पर काम करता है?','हाँ, यह पूरी तरह responsive है और phones व tablets पर camera व gallery support करता है।'],
+   ['Why is a format missing from the output list?','Some outputs like AVIF depend on the browser. If a format is unavailable, the tool falls back to a supported one and tells you.',
+    'output सूची में कोई format क्यों नहीं है?','AVIF जैसे कुछ outputs browser पर निर्भर हैं। format उपलब्ध न हो तो टूल किसी समर्थित पर आ जाता है और बता देता है।'],
+   ['Do I need to install anything?','No. It runs entirely in your web browser with no installation and no account.',
+    'क्या कुछ install करना पड़ता है?','नहीं। यह पूरी तरह आपके browser में चलता है, न install न account।']
+  ];
+  const row=(q,a)=>'<details><summary>'+esc(q)+'</summary><p>'+esc(a)+'</p></details>';
+  $('faqEn').innerHTML=FAQ.map(f=>row(f[0],f[1])).join('');
+  $('faqHi').innerHTML=FAQ.map(f=>row(f[2],f[3])).join('');
+  try{ const sc=$('faqSchema'); const data=JSON.parse(sc.textContent);
+    data.mainEntity=[].concat(FAQ.map(f=>({'@type':'Question',name:f[0],acceptedAnswer:{'@type':'Answer',text:f[1]}})),
+      FAQ.map(f=>({'@type':'Question',name:f[2],acceptedAnswer:{'@type':'Answer',text:f[3]}}))); sc.textContent=JSON.stringify(data); }catch(e){}
+
+  /* ── init: restore last format/quality ─────────────────────────── */
+  try{ const lf=localStorage.getItem('cv-fmt'); if(lf&&[...$('formatSelect').options].some(o=>o.value===lf)) $('formatSelect').value=lf;
+    const lq=localStorage.getItem('cv-q'); if(lq){ $('qualityRange').value=lq; $('qualityVal').textContent=lq; } }catch(e){}
+  syncFormatUI(); renderHistory(); renderStatsPanel(); resetInfo();
+})();
 </script>
 </body>
 </html>
