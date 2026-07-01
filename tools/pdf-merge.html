@@ -577,7 +577,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{ou
     <div class="success-box">
       <span class="success-icon">✅</span>
       <div class="success-title">PDF Merged Successfully!</div>
-      <p style="color:rgba(255,255,255,.5);margin-bottom:16px;font-size:.88rem">Your merged PDF is ready to download</p>
+      <p style="color:rgba(255,255,255,.5);margin-bottom:16px;font-size:.88rem">Your merged PDF has started downloading automatically — use the buttons below if you need it again.</p>
       <div class="success-out-name" id="successOutName"></div>
       <div class="success-stats" id="successStats"></div>
       <div class="success-btns">
@@ -1270,6 +1270,8 @@ document.getElementById('mergeBtn').addEventListener('click', async () => {
       mergeResult = pdfBytes;
       mergeName = (document.getElementById('optFileName').value.trim() || 'merged-apnesoftware').replace(/\.pdf$/i,'');
       showSuccess(mergedPdf.getPageCount(), pdfBytes.length, elapsed, perFilePages.length);
+      // Auto-download the merged PDF right away (the manual button stays as a fallback)
+      downloadResult();
     }, 500);
 
   }catch(e){
@@ -1279,8 +1281,15 @@ document.getElementById('mergeBtn').addEventListener('click', async () => {
 });
 
 function showSuccess(pages, bytes, elapsed, mergedCount){
-  document.getElementById('mainPanel').style.display = 'none';
-  document.getElementById('successScreen').style.display = 'block';
+  const mp = document.getElementById('mainPanel');
+  const ss = document.getElementById('successScreen');
+  // Move the success screen ABOVE the tool panel (and above the injected
+  // "Rate & Review" widget, which common.js inserts right after the panel).
+  if(mp && ss && mp.parentNode && mp.previousElementSibling !== ss){
+    mp.parentNode.insertBefore(ss, mp);
+  }
+  mp.style.display = 'none';
+  ss.style.display = 'block';
   document.getElementById('successOutName').innerHTML = 'File: <b>' + esc(mergeName) + '.pdf</b>';
   document.getElementById('successStats').innerHTML = `
     <div class="success-stat"><div class="val">${mergedCount != null ? mergedCount : files.length}</div><div class="lbl">Files Merged</div></div>
@@ -1289,7 +1298,6 @@ function showSuccess(pages, bytes, elapsed, mergedCount){
     <div class="success-stat"><div class="val">${elapsed}s</div><div class="lbl">Process Time</div></div>`;
   document.getElementById('mobileStickyMerge').classList.remove('visible');
   // bring the success screen (with the Download button) into view
-  const ss = document.getElementById('successScreen');
   if(ss && ss.scrollIntoView) ss.scrollIntoView({ behavior:'smooth', block:'center' });
 }
 
