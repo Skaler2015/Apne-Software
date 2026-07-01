@@ -412,12 +412,15 @@
   }
 
   // ── auto document detection ───────────────────────────────────────
-  // Strategy: model the background from the image border, measure each
-  // pixel's colour distance from that background, threshold with Otsu,
-  // clean up, keep the largest region (the card) and read its 4 corners.
-  // This separates the card from the background regardless of whether the
-  // card is lighter or darker, and works on textured backgrounds (denim,
-  // wood, cloth) far better than a plain brightness threshold.
+  // Strategy: EDGE-BARRIER FLOOD FILL. The card sits inside a frame that is
+  // usually a textured, possibly multi-tone background (denim, skin, wood).
+  // A plain colour threshold fails when the background is not uniform, so we
+  // instead: (1) find strong edges (Sobel + Otsu) — the card's high-contrast
+  // border becomes a closed barrier while weak background texture does not;
+  // (2) flood-fill the background inward from the image borders, blocked by
+  // that barrier; (3) whatever the flood cannot reach is the card. Finally we
+  // take the largest region and read its four corners. This isolates the card
+  // regardless of background colour or tone changes.
   function autoDetect(s){
     if(!s.img) return;
     const W=s.img.width,H=s.img.height;
@@ -427,29 +430,36 @@
     const tcx=tc.getContext('2d'); tcx.drawImage(s.img,0,0,sw,sh);
     const data=tcx.getImageData(0,0,sw,sh).data, n=sw*sh;
 
-    // Background colour = median of a border band (robust to a card that
-    // slightly overlaps one edge).
-    const band=Math.max(2,Math.round(Math.min(sw,sh)*0.045));
-    const br=[],bg=[],bb=[];
-    for(let y=0;y<sh;y++) for(let x=0;x<sw;x++){
-      if(x<band||x>=sw-band||y<band||y>=sh-band){ const i=(y*sw+x)*4; br.push(data[i]);bg.push(data[i+1]);bb.push(data[i+2]); }
+    // (1) Sobel edge magnitude on luminance.
+    const gray=new Float32Array(n);
+    for(let i=0;i<n;i++) gray[i]=data[i*4]*0.299+data[i*4+1]*0.587+data[i*4+2]*0.114;
+    const mag=new Float32Array(n); let maxm=0;
+    for(let y=1;y<sh-1;y++) for(let x=1;x<sw-1;x++){ const i=y*sw+x;
+      const gx=-gray[i-sw-1]-2*gray[i-1]-gray[i+sw-1]+gray[i-sw+1]+2*gray[i+1]+gray[i+sw+1];
+      const gy=-gray[i-sw-1]-2*gray[i-sw]-gray[i-sw+1]+gray[i+sw-1]+2*gray[i+sw]+gray[i+sw+1];
+      const m=Math.sqrt(gx*gx+gy*gy); mag[i]=m; if(m>maxm) maxm=m;
     }
-    const med=a=>{ a.sort((p,q)=>p-q); return a[a.length>>1]||0; };
-    const bR=med(br),bG=med(bg),bB=med(bb);
+    const sc=255/(maxm||1), hist=new Array(256).fill(0);
+    for(let i=0;i<n;i++) hist[Math.min(255,mag[i]*sc|0)]++;
+    const E=Math.max(30, otsu(hist,n))/sc;      // edge threshold in raw units
+    let barrier=new Uint8Array(n);
+    for(let i=0;i<n;i++) if(mag[i]>E) barrier[i]=1;
+    barrier=dilate(barrier,sw,sh,1);            // close 1px gaps in the card border
 
-    // Colour-distance map + Otsu threshold on it.
-    const dist=new Uint8Array(n), hist=new Array(256).fill(0);
-    for(let i=0;i<n;i++){ const j=i*4;
-      const dr=data[j]-bR,dg=data[j+1]-bG,db=data[j+2]-bB;
-      let d=Math.sqrt(dr*dr+dg*dg+db*db); d=d>255?255:d|0; dist[i]=d; hist[d]++;
-    }
-    const thr=Math.max(26, otsu(hist,n));
-    let fg=new Uint8Array(n),cnt=0;
-    for(let i=0;i<n;i++) if(dist[i]>thr){ fg[i]=1; cnt++; }
+    // (2) Flood the background from the borders, blocked by the barrier.
+    const bgm=new Uint8Array(n), q=new Int32Array(n); let qt=0,qh=0;
+    const push=i=>{ if(!bgm[i]&&!barrier[i]){ bgm[i]=1; q[qt++]=i; } };
+    for(let x=0;x<sw;x++){ push(x); push((sh-1)*sw+x); }
+    for(let y=0;y<sh;y++){ push(y*sw); push(y*sw+sw-1); }
+    while(qh<qt){ const idx=q[qh++], x=idx%sw, y=(idx/sw)|0;
+      if(x>0) push(idx-1); if(x<sw-1) push(idx+1); if(y>0) push(idx-sw); if(y<sh-1) push(idx+sw); }
+
+    // (3) Foreground = everything the background flood could not reach.
+    let fg=new Uint8Array(n), cnt=0;
+    for(let i=0;i<n;i++) if(!bgm[i]){ fg[i]=1; cnt++; }
     const frac=cnt/n;
-    if(frac<0.05 || frac>0.95){ fullFrame(s); return; }   // detection unreliable
-
-    fg=closeMask(fg,sw,sh,2);                              // fill holes (photo, QR, text)
+    if(frac<0.05 || frac>0.9){ fullFrame(s); return; }    // blocked / leaked → unreliable
+    fg=closeMask(fg,sw,sh,2);
     const comp=largestComponent(fg,sw,sh);
     if(!comp || comp.count < n*0.05){ fullFrame(s); return; }
 
@@ -471,9 +481,22 @@
       {x:clamp((br2.x)*up+pad,0,W),y:clamp((br2.y)*up+pad,0,H)},
       {x:clamp((bl2.x)*up-pad,0,W),y:clamp((bl2.y)*up+pad,0,H)}
     ];
-    // Sanity: quad must cover a reasonable area, else fall back to full frame.
-    if(quadArea(cand) < W*H*0.08){ fullFrame(s); return; }
+    // Sanity: quad must cover a fair area AND fill most of its bounding box
+    // (rejects degenerate triangles that shoot a corner off to the frame).
+    const xs=cand.map(p=>p.x),ys=cand.map(p=>p.y);
+    const bboxA=(Math.max(...xs)-Math.min(...xs))*(Math.max(...ys)-Math.min(...ys));
+    if(quadArea(cand) < W*H*0.08 || quadArea(cand) < bboxA*0.42){ fullFrame(s); return; }
     s.corners=cand;
+  }
+
+  // Morphological dilate ×it (3×3).
+  function dilate(mask,w,h,it){
+    const dil=m=>{ const o=new Uint8Array(w*h);
+      for(let y=0;y<h;y++) for(let x=0;x<w;x++){ let v=0;
+        for(let dy=-1;dy<=1&&!v;dy++) for(let dx=-1;dx<=1;dx++){ const nx=x+dx,ny=y+dy;
+          if(nx>=0&&nx<w&&ny>=0&&ny<h&&m[ny*w+nx]){ v=1; break; } }
+        o[y*w+x]=v; } return o; };
+    let m=mask; for(let i=0;i<it;i++) m=dil(m); return m;
   }
 
   // Otsu threshold from a 256-bin histogram.
