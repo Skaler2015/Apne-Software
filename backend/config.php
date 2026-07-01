@@ -6,6 +6,11 @@ define('DB_PASS', 'Apnesoftware@2507');
 define('ADMIN_PASSWORD', 'Kaler@062026');
 define('SITE_URL', 'https://apnesoftware.com');
 
+// Keyword Rank Tracker — real Google results via Serper.dev.
+// Get a free API key at https://serper.dev (generous free tier),
+// then paste it below between the quotes.
+define('SERPER_API_KEY', '');
+
 function get_db_connection() {
     static $pdo = null;
     if ($pdo === null) {

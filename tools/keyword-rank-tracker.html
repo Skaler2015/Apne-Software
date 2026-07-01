@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://apnesoftware.com/tools/keyword-rank-tracker.html">
+<meta name="description" content="Free Keyword Rank Tracker — check your website's real Google ranking position for any keyword, or upload a CSV to track many keywords at once. See position, ranking URL and page number. Choose country and language.">
+<meta name="keywords" content="keyword rank tracker, google rank checker, serp position checker, check keyword ranking, bulk rank tracker, website ranking tool, keyword position checker">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Keyword Rank Tracker — Check Google Ranking Position | ApneSoftware">
+<meta property="og:description" content="Check your website's real Google rank for any keyword. Single check or bulk CSV upload, with country/language targeting and CSV export.">
+<meta property="og:url" content="https://apnesoftware.com/tools/keyword-rank-tracker.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Keyword Rank Tracker — Check Google Ranking Position | ApneSoftware">
+<meta name="twitter:description" content="Check your website's real Google rank for any keyword. Single or bulk CSV, with CSV export.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":["SoftwareApplication","WebApplication"],"name":"Keyword Rank Tracker","description":"Check a website's real Google ranking position for keywords, individually or in bulk via CSV, with country and language targeting.","url":"https://apnesoftware.com/tools/keyword-rank-tracker.html","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"SEO Tools","item":"https://apnesoftware.com/category/seo-tools.html"},{"@type":"ListItem","position":3,"name":"Keyword Rank Tracker","item":"https://apnesoftware.com/tools/keyword-rank-tracker.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to check keyword rankings on Google","step":[{"@type":"HowToStep","position":1,"name":"Enter your website","text":"Type your domain, for example example.com."},{"@type":"HowToStep","position":2,"name":"Add keywords","text":"Type keywords (one per line) or upload a CSV to check many at once, and pick a country and language."},{"@type":"HowToStep","position":3,"name":"Check rankings","text":"Click Check Rankings to see each keyword's Google position, ranking URL and page, then export as CSV."}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How does the keyword rank tracker work?","acceptedAnswer":{"@type":"Answer","text":"You enter your domain and keywords; the tool queries live Google results and reports the position where your domain ranks (top 100), along with the ranking URL and page number."}},
+{"@type":"Question","name":"Are the rankings real Google results?","acceptedAnswer":{"@type":"Answer","text":"Yes. Rankings come from live Google search results through a SERP data provider, not from an estimate or cache."}},
+{"@type":"Question","name":"Can I check many keywords at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter one keyword per line or upload a CSV file to track many keywords in a single run and export the results."}},
+{"@type":"Question","name":"Can I choose the country and language?","acceptedAnswer":{"@type":"Answer","text":"Yes. Pick the Google country (for example India, USA, UK) and language so the rankings match your target audience."}},
+{"@type":"Question","name":"Why do rankings differ from what I see?","acceptedAnswer":{"@type":"Answer","text":"Google personalizes results by location, device and history. This tool returns neutral, non-personalized rankings for the chosen country and language."}},
+{"@type":"Question","name":"Is it free?","acceptedAnswer":{"@type":"Answer","text":"Yes, the tool is free to use. It relies on a SERP data provider whose free quota covers regular checking."}}
+]}
+</script>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+<meta name="color-scheme" content="dark">
+<title>Keyword Rank Tracker — Check Google Ranking Position | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* ═══════════ KEYWORD RANK TRACKER (krt-) ═══════════ */
+.krt-crumb{display:flex;flex-wrap:wrap;gap:7px;align-items:center;font-size:.8rem;color:var(--text-dim);padding:16px 0 0}
+.krt-crumb a{color:var(--accent);text-decoration:none}.krt-crumb a:hover{text-decoration:underline}.krt-crumb .sep{opacity:.5}
+.krt-glass{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:14px;padding:16px;margin-top:14px}
+.krt-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.krt-field label{display:block;font-size:.78rem;color:var(--text-dim);margin-bottom:5px}
+.krt-field input,.krt-field select,.krt-field textarea{width:100%;box-sizing:border-box;background:rgba(0,0,0,.28);color:var(--text);border:1px solid var(--border);border-radius:9px;padding:10px 12px;font:inherit;font-size:.92rem}
+.krt-field textarea{min-height:110px;resize:vertical;font-family:inherit}
+.krt-field input:focus,.krt-field select:focus,.krt-field textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.krt-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+.krt-btn{font:inherit;font-weight:700;font-size:.88rem;padding:11px 18px;border-radius:11px;cursor:pointer;border:1px solid transparent;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff}
+.krt-btn:hover{box-shadow:0 8px 20px rgba(124,92,252,.4)}
+.krt-btn.ghost{background:rgba(255,255,255,.05);border-color:var(--border);color:var(--text)}
+.krt-btn.ghost:hover{border-color:var(--accent)}
+.krt-btn[disabled]{opacity:.5;cursor:not-allowed}
+.krt-note{font-size:.82rem;color:var(--text-dim)}
+.krt-setup{display:none;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.4);border-radius:12px;padding:14px;margin-top:14px;font-size:.88rem;line-height:1.7}
+.krt-setup.show{display:block}
+.krt-setup code{background:rgba(0,0,0,.35);padding:1px 6px;border-radius:5px}
+.krt-progress{display:none;align-items:center;gap:12px;margin-top:14px}
+.krt-progress.show{display:flex}
+.krt-progress .track{flex:1;height:9px;border-radius:9px;background:rgba(255,255,255,.12);overflow:hidden}
+.krt-progress .fill{height:100%;width:0;border-radius:9px;background:linear-gradient(90deg,#7C5CFC,#16C079);transition:width .25s}
+.krt-tablewrap{overflow-x:auto;margin-top:16px}
+table.krt-table{width:100%;border-collapse:collapse;font-size:.88rem;min-width:520px}
+.krt-table th,.krt-table td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--border)}
+.krt-table th{color:var(--text-dim);font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;position:sticky;top:0;background:var(--surface)}
+.krt-pos{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:28px;padding:0 8px;border-radius:8px;font-weight:800}
+.krt-pos.top{background:rgba(22,192,121,.2);color:#6ee7b7}
+.krt-pos.mid{background:rgba(245,158,11,.2);color:#fcd34d}
+.krt-pos.low{background:rgba(255,255,255,.08);color:var(--text-dim)}
+.krt-pos.none{background:rgba(239,68,68,.15);color:#fca5a5}
+.krt-table a{color:var(--accent);text-decoration:none;word-break:break-all}
+.krt-table a:hover{text-decoration:underline}
+.krt-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:14px}
+.krt-stat{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+.krt-stat .v{font-size:1.3rem;font-weight:800}.krt-stat .l{font-size:.72rem;color:var(--text-dim);margin-top:2px}
+.krt-related{max-width:1040px;margin:26px auto 0;padding:0 22px}
+.krt-related h2{font-size:1.15rem;font-weight:800;margin-bottom:12px}
+.krt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:11px}
+.krt-link{display:flex;align-items:center;gap:8px;text-decoration:none;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;padding:11px 13px;color:var(--text);font-size:.84rem;font-weight:600;transition:.16s}
+.krt-link:hover{transform:translateY(-3px);border-color:var(--accent)}
+.krt-faq{max-width:1040px;margin:24px auto 0;padding:0 22px}
+.krt-faq details{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:10px;padding:0 14px;margin-bottom:8px}
+.krt-faq summary{cursor:pointer;padding:13px 0;font-weight:600;list-style:none}.krt-faq summary::-webkit-details-marker{display:none}
+.krt-faq p{color:var(--text-dim);font-size:.9rem;line-height:1.7;padding:10px 0}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="krt-crumb" aria-label="Breadcrumb">
+    <a href="../index.html">Home</a><span class="sep">›</span>
+    <a href="../category/seo-tools.html">SEO Tools</a><span class="sep">›</span>
+    <span aria-current="page">Keyword Rank Tracker</span>
+  </nav>
+
+  <div class="tool-header">
+    <h1>🔍 Keyword Rank Tracker</h1>
+    <p>Check where your website ranks on <b>real Google results</b> for any keyword — one at a time or in bulk via CSV. See the exact position, ranking URL and page, targeted by country and language.</p>
+  </div>
+
+  <div class="panel">
+    <div class="krt-glass">
+      <div class="krt-row">
+        <div class="krt-field">
+          <label for="domain">Your website (domain)</label>
+          <input type="text" id="domain" placeholder="example.com" autocomplete="off">
+        </div>
+        <div class="krt-field">
+          <label for="gl">Google country</label>
+          <select id="gl">
+            <option value="in" selected>India</option>
+            <option value="us">United States</option>
+            <option value="gb">United Kingdom</option>
+            <option value="ca">Canada</option>
+            <option value="au">Australia</option>
+            <option value="ae">UAE</option>
+            <option value="sg">Singapore</option>
+            <option value="de">Germany</option>
+          </select>
+        </div>
+        <div class="krt-field">
+          <label for="hl">Language</label>
+          <select id="hl">
+            <option value="en" selected>English</option>
+            <option value="hi">Hindi</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+            <option value="ar">Arabic</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="krt-field" style="margin-top:12px">
+        <label for="keywords">Keywords <span style="color:var(--text-dim)">(one per line — up to 50)</span></label>
+        <textarea id="keywords" placeholder="free online tools&#10;pdf compressor&#10;image resizer"></textarea>
+      </div>
+
+      <div class="krt-actions">
+        <button class="krt-btn" id="checkBtn">🔍 Check Rankings</button>
+        <button class="krt-btn ghost" id="csvBtn">📄 Upload CSV</button>
+        <input type="file" id="csvFile" accept=".csv,.txt" hidden>
+        <button class="krt-btn ghost" id="clearBtn">🧹 Clear</button>
+        <span class="krt-note" id="kwCount">0 keywords</span>
+      </div>
+
+      <div class="krt-setup" id="setupBox">
+        <b>⚙️ One-time setup needed.</b> This tool reads real Google results through
+        <a href="https://serper.dev" target="_blank" rel="noopener" style="color:#A78BFA">Serper.dev</a> (free tier).
+        Create a free account, copy your API key, and paste it into
+        <code>backend/config.php</code> as <code>SERPER_API_KEY</code>. Then reload this page.
+      </div>
+
+      <div class="krt-progress" id="progress">
+        <div class="track"><div class="fill" id="progressFill"></div></div>
+        <span id="progressTxt" class="krt-note" style="min-width:90px">0 / 0</span>
+      </div>
+
+      <p id="statusMsg" class="krt-note" style="margin-top:10px"></p>
+    </div>
+
+    <!-- Summary + results -->
+    <div class="krt-summary" id="summary" style="display:none"></div>
+
+    <div class="krt-tablewrap" id="tableWrap" style="display:none">
+      <table class="krt-table" id="resultsTable">
+        <thead><tr><th>#</th><th>Keyword</th><th>Position</th><th>Page</th><th>Ranking URL</th></tr></thead>
+        <tbody id="resultsBody"></tbody>
+      </table>
+    </div>
+
+    <div class="krt-actions" id="exportRow" style="display:none">
+      <button class="krt-btn ghost" id="exportBtn">⬇️ Export CSV</button>
+    </div>
+  </div>
+</div>
+
+<!-- RELATED -->
+<div class="krt-related">
+  <h2>🔗 Related SEO Tools</h2>
+  <div class="krt-grid">
+    <a class="krt-link" href="meta-tag-generator.html">🏷️ Meta Tag Generator</a>
+    <a class="krt-link" href="meta-tag-analyzer.html">🔎 Meta Tag Analyzer</a>
+    <a class="krt-link" href="serp-preview-tool.html">👁️ SERP Preview</a>
+    <a class="krt-link" href="robots-txt-generator.html">🤖 Robots.txt Generator</a>
+    <a class="krt-link" href="xml-sitemap-generator.html">🗺️ Sitemap Generator</a>
+    <a class="krt-link" href="schema-markup-generator.html">📋 Schema Generator</a>
+    <a class="krt-link" href="keyword-density-checker.html">📊 Keyword Density</a>
+    <a class="krt-link" href="slug-generator.html">🔗 Slug Generator</a>
+  </div>
+</div>
+
+<!-- SEO content -->
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About the Keyword Rank Tracker</h2>
+      <p>A <strong>keyword rank tracker</strong> tells you exactly where your website appears in Google's search results for the words your customers actually type. Instead of scrolling through pages of Google yourself in a private window, you enter your domain and your keywords and get back the precise position, the exact page that ranks, and its URL — for one keyword or hundreds at once.</p>
+      <p>The rankings here come from <strong>live Google results</strong>, not guesses or cached data, and you can target a specific <strong>country and language</strong> so the numbers reflect the audience you care about rather than your own personalized results. Upload a <strong>CSV</strong> of keywords to check a whole campaign in one run, watch the progress fill in row by row, and export everything back to CSV for your reports or to compare against last week.</p>
+      <p>Tracking rank matters because SEO is a moving target: competitors publish, Google updates, and a page that sat at position 3 can quietly slip to 12. Checking regularly shows whether your content and link-building are working, which keywords are close to page one and worth a push, and which pages are winning so you can double down. It turns "I think we're doing okay" into concrete numbers you can act on.</p>
+      <p>Because the Google query runs on the server side, your searches are neutral and non-personalized, and your API key stays private. Everything else — building the keyword list, reading the table, exporting CSV — happens in your browser.</p>
+      <h3>✨ Features</h3>
+      <ul>
+        <li>Real Google ranking position (top 100) with the exact ranking URL and page number.</li>
+        <li>Single keyword check or <strong>bulk CSV upload</strong> (up to 50 per run).</li>
+        <li><strong>Country and language</strong> targeting for accurate local rankings.</li>
+        <li>Progress bar, summary stats, and one-click <strong>CSV export</strong>.</li>
+      </ul>
+      <h3>📝 How to use</h3>
+      <ol>
+        <li>Enter your domain (for example <code>example.com</code>).</li>
+        <li>Type keywords one per line, or upload a CSV.</li>
+        <li>Pick the Google country and language.</li>
+        <li>Click <em>Check Rankings</em>, then export the results.</li>
+      </ol>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ कीवर्ड रैंक ट्रैकर के बारे में</h2>
+      <p><strong>Keyword rank tracker</strong> आपको बताता है कि आपके ग्राहक जो शब्द असल में टाइप करते हैं, उनके लिए आपकी website Google के search results में ठीक किस नंबर पर आती है। खुद private window में Google के पन्ने scroll करने के बजाय, आप अपना domain और keywords डालिए और सटीक position, कौन-सा page rank कर रहा है, और उसका URL पाइए — एक keyword के लिए या एक साथ सैकड़ों के लिए।</p>
+      <p>यहाँ rankings <strong>live Google results</strong> से आती हैं, अंदाज़े या cache से नहीं, और आप एक खास <strong>देश और भाषा</strong> target कर सकते हैं ताकि नंबर आपके असली audience के हिसाब से हों, न कि आपके personalized results के। keywords की <strong>CSV</strong> upload करके पूरा campaign एक बार में जाँचिए, progress row-दर-row भरते देखिए, और सब कुछ वापस CSV में export कीजिए।</p>
+      <p>Rank track करना ज़रूरी है क्योंकि SEO बदलता रहता है: competitors publish करते हैं, Google updates आते हैं, और position 3 वाला page चुपचाप 12 पर खिसक सकता है। नियमित जाँच दिखाती है कि आपका content और link-building काम कर रहे हैं या नहीं, कौन-से keywords page one के करीब हैं, और कौन-से pages जीत रहे हैं।</p>
+      <p>चूँकि Google query server-side चलती है, आपकी searches neutral (non-personalized) रहती हैं और आपकी API key निजी रहती है। बाकी सब — keyword list बनाना, table पढ़ना, CSV export — आपके browser में होता है।</p>
+      <h3>✨ विशेषताएँ</h3>
+      <ul>
+        <li>असली Google ranking position (top 100), ranking URL और page number के साथ।</li>
+        <li>एक keyword या <strong>bulk CSV upload</strong> (एक बार में 50 तक)।</li>
+        <li>सटीक local rankings के लिए <strong>देश व भाषा</strong> targeting।</li>
+        <li>Progress bar, summary और एक-क्लिक <strong>CSV export</strong>।</li>
+      </ul>
+      <h3>📝 इस्तेमाल कैसे करें</h3>
+      <ol>
+        <li>अपना domain डालें (जैसे <code>example.com</code>)।</li>
+        <li>keywords एक-एक line में लिखें, या CSV upload करें।</li>
+        <li>Google का देश व भाषा चुनें।</li>
+        <li><em>Check Rankings</em> दबाएँ, फिर results export करें।</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="krt-faq">
+  <h2>❓ Frequently Asked Questions</h2>
+  <details><summary>Are these real Google rankings?</summary><p>Yes — positions come from live Google search results via a SERP data provider, targeted by the country and language you choose.</p></details>
+  <details><summary>Why is my rank different from what I see in my browser?</summary><p>Google personalizes results by your location, device and history. This tool returns neutral, non-personalized rankings for the selected country/language.</p></details>
+  <details><summary>How many keywords can I check at once?</summary><p>Up to 50 per run. Enter them one per line or upload a CSV, and results appear as each keyword is checked.</p></details>
+  <details><summary>What does "Not in top 100" mean?</summary><p>Your domain did not appear anywhere in the first 100 Google results for that keyword — a sign there's ranking work to do.</p></details>
+  <details><summary>Is my data private?</summary><p>Your keyword list and results stay in your browser. Only the search query runs server-side so the API key stays hidden.</p></details>
+  <details><summary>Is it free?</summary><p>The tool is free; it uses a SERP provider whose free quota covers regular checking. Heavy bulk use may need a paid plan.</p></details>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+/* ═══ Keyword Rank Tracker — talks to backend/rank_check.php (real Google via Serper) ═══ */
+(function(){
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const toast = m => { try{ premToast(m); }catch(e){} };
+  const ENDPOINT = '../backend/rank_check.php';
+  let lastResults = [];
+
+  /* keyword counter */
+  function keywords(){
+    return [...new Set($('keywords').value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean))].slice(0,50);
+  }
+  function updateCount(){ $('kwCount').textContent = keywords().length + ' keywords'; }
+  $('keywords').addEventListener('input', updateCount);
+
+  /* remember domain + country + language */
+  try{
+    const p = JSON.parse(localStorage.getItem('krt-prefs')||'{}');
+    if(p.domain) $('domain').value = p.domain;
+    if(p.gl) $('gl').value = p.gl;
+    if(p.hl) $('hl').value = p.hl;
+  }catch(e){}
+  function savePrefs(){ try{ localStorage.setItem('krt-prefs', JSON.stringify({domain:$('domain').value.trim(), gl:$('gl').value, hl:$('hl').value})); }catch(e){} }
+
+  /* CSV upload → fill textarea (first column of each row) */
+  $('csvBtn').addEventListener('click', ()=> $('csvFile').click());
+  $('csvFile').addEventListener('change', e => {
+    const f = e.target.files[0]; if(!f) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      const rows = String(reader.result).split(/\r?\n/).map(l=>l.trim()).filter(Boolean);
+      const kws = [];
+      rows.forEach((line,i) => {
+        const first = line.split(/[,;\t]/)[0].replace(/^"|"$/g,'').trim();
+        if(!first) return;
+        if(i===0 && /^keywords?$/i.test(first)) return; // skip header
+        kws.push(first);
+      });
+      $('keywords').value = kws.join('\n'); updateCount();
+      toast('📄 Loaded ' + kws.length + ' keywords');
+    };
+    reader.readAsText(f);
+  });
+
+  $('clearBtn').addEventListener('click', ()=>{ $('keywords').value=''; updateCount(); $('statusMsg').textContent=''; });
+
+  /* ---- Check rankings (batched for progress + resilience) ---- */
+  $('checkBtn').addEventListener('click', run);
+  async function run(){
+    const domain = $('domain').value.trim();
+    const kws = keywords();
+    if(!domain){ $('statusMsg').textContent='⚠️ Enter your website domain.'; return; }
+    if(!kws.length){ $('statusMsg').textContent='⚠️ Add at least one keyword.'; return; }
+    savePrefs();
+    $('setupBox').classList.remove('show');
+    $('checkBtn').disabled = true;
+    $('summary').style.display='none'; $('tableWrap').style.display='none'; $('exportRow').style.display='none';
+    $('resultsBody').innerHTML=''; lastResults=[];
+    $('progress').classList.add('show');
+    $('statusMsg').textContent = '⏳ Checking Google rankings…';
+
+    const gl = $('gl').value, hl = $('hl').value;
+    const batchSize = 5, batches = [];
+    for(let i=0;i<kws.length;i+=batchSize) batches.push(kws.slice(i,i+batchSize));
+    let done = 0, aborted = false;
+
+    for(const batch of batches){
+      let data;
+      try{
+        const res = await fetch(ENDPOINT, {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ domain, keywords:batch, gl, hl })
+        });
+        data = await res.json();
+      }catch(err){ $('statusMsg').textContent='❌ Network error contacting the server.'; aborted=true; break; }
+
+      if(data && data.error){
+        if(/api key/i.test(data.error)){ $('setupBox').classList.add('show'); $('statusMsg').textContent='⚙️ Setup needed — see the note above.'; }
+        else { $('statusMsg').textContent='❌ ' + data.error; }
+        aborted = true; break;
+      }
+      (data.results||[]).forEach(r => { lastResults.push(r); addRow(lastResults.length, r); });
+      done += batch.length;
+      const pct = Math.round(done/kws.length*100);
+      $('progressFill').style.width = pct+'%'; $('progressTxt').textContent = done+' / '+kws.length;
+    }
+
+    $('progress').classList.remove('show'); $('checkBtn').disabled=false;
+    if(!aborted){
+      $('statusMsg').textContent = '✅ Done — checked ' + lastResults.length + ' keywords.';
+      renderSummary(); $('exportRow').style.display='flex';
+    }
+    if(lastResults.length){ $('tableWrap').style.display='block'; }
+  }
+
+  function addRow(n, r){
+    const tr = document.createElement('tr');
+    let posCell, pageCell='—', urlCell='—';
+    if(r.error){ posCell = '<span class="krt-pos none" title="'+esc(r.error)+'">err</span>'; }
+    else if(r.position){
+      const cls = r.position<=3?'top':r.position<=10?'top':r.position<=30?'mid':'low';
+      posCell = '<span class="krt-pos '+cls+'">#'+r.position+'</span>';
+      pageCell = r.page || '—';
+      urlCell = r.url ? '<a href="'+esc(r.url)+'" target="_blank" rel="noopener">'+esc(r.url)+'</a>' : '—';
+    } else { posCell = '<span class="krt-pos none">100+</span>'; }
+    tr.innerHTML = '<td>'+n+'</td><td>'+esc(r.keyword)+'</td><td>'+posCell+'</td><td>'+pageCell+'</td><td>'+urlCell+'</td>';
+    $('resultsBody').appendChild(tr);
+    $('tableWrap').style.display='block';
+  }
+
+  function renderSummary(){
+    const ranked = lastResults.filter(r=>r.position);
+    const top10 = ranked.filter(r=>r.position<=10).length;
+    const top3 = ranked.filter(r=>r.position<=3).length;
+    const notFound = lastResults.filter(r=>!r.position && !r.error).length;
+    const avg = ranked.length ? Math.round(ranked.reduce((s,r)=>s+r.position,0)/ranked.length) : '—';
+    $('summary').innerHTML =
+      stat(lastResults.length,'Keywords') + stat(top3,'Top 3') + stat(top10,'Top 10') +
+      stat(avg,'Avg. Position') + stat(notFound,'Not in Top 100');
+    $('summary').style.display='grid';
+  }
+  const stat = (v,l)=>'<div class="krt-stat"><div class="v">'+v+'</div><div class="l">'+l+'</div></div>';
+
+  /* CSV export */
+  $('exportBtn').addEventListener('click', ()=>{
+    if(!lastResults.length) return;
+    const rows = [['Keyword','Position','Page','Ranking URL','Status']];
+    lastResults.forEach(r=>{
+      rows.push([ r.keyword, r.position||'', r.page||'', r.url||'',
+        r.error ? ('Error: '+r.error) : (r.position ? 'Ranked' : 'Not in top 100') ]);
+    });
+    const csv = rows.map(row => row.map(c => '"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+    try{ downloadText('keyword-rankings.csv', csv, 'text/csv'); }
+    catch(e){ const b=new Blob([csv],{type:'text/csv'}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='keyword-rankings.csv'; a.click(); }
+    toast('⬇️ Exported CSV');
+  });
+
+  const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  updateCount();
+})();
+</script>
+</body>
+</html>
