@@ -412,53 +412,97 @@
   }
 
   // ── auto document detection ───────────────────────────────────────
+  // Strategy: model the background from the image border, measure each
+  // pixel's colour distance from that background, threshold with Otsu,
+  // clean up, keep the largest region (the card) and read its 4 corners.
+  // This separates the card from the background regardless of whether the
+  // card is lighter or darker, and works on textured backgrounds (denim,
+  // wood, cloth) far better than a plain brightness threshold.
   function autoDetect(s){
     if(!s.img) return;
     const W=s.img.width,H=s.img.height;
-    const scale=Math.min(1, 480/Math.max(W,H));
+    const scale=Math.min(1, 460/Math.max(W,H));
     const sw=Math.max(40,Math.round(W*scale)), sh=Math.max(40,Math.round(H*scale));
     const tc=document.createElement('canvas'); tc.width=sw; tc.height=sh;
     const tcx=tc.getContext('2d'); tcx.drawImage(s.img,0,0,sw,sh);
-    const data=tcx.getImageData(0,0,sw,sh).data;
-    const n=sw*sh, gray=new Uint8Array(n), hist=new Array(256).fill(0);
-    for(let i=0;i<n;i++){
-      const r=data[i*4],g=data[i*4+1],b=data[i*4+2];
-      const v=(r*0.299+g*0.587+b*0.114)|0; gray[i]=v; hist[v]++;
+    const data=tcx.getImageData(0,0,sw,sh).data, n=sw*sh;
+
+    // Background colour = median of a border band (robust to a card that
+    // slightly overlaps one edge).
+    const band=Math.max(2,Math.round(Math.min(sw,sh)*0.045));
+    const br=[],bg=[],bb=[];
+    for(let y=0;y<sh;y++) for(let x=0;x<sw;x++){
+      if(x<band||x>=sw-band||y<band||y>=sh-band){ const i=(y*sw+x)*4; br.push(data[i]);bg.push(data[i+1]);bb.push(data[i+2]); }
     }
-    // Otsu threshold
-    let sum=0; for(let t=0;t<256;t++) sum+=t*hist[t];
-    let sumB=0,wB=0,maxVar=-1,thr=127;
-    for(let t=0;t<256;t++){
-      wB+=hist[t]; if(!wB) continue; const wF=n-wB; if(!wF) break;
-      sumB+=t*hist[t];
-      const mB=sumB/wB, mF=(sum-sumB)/wF, between=wB*wF*(mB-mF)*(mB-mF);
-      if(between>maxVar){ maxVar=between; thr=t; }
+    const med=a=>{ a.sort((p,q)=>p-q); return a[a.length>>1]||0; };
+    const bR=med(br),bG=med(bg),bB=med(bb);
+
+    // Colour-distance map + Otsu threshold on it.
+    const dist=new Uint8Array(n), hist=new Array(256).fill(0);
+    for(let i=0;i<n;i++){ const j=i*4;
+      const dr=data[j]-bR,dg=data[j+1]-bG,db=data[j+2]-bB;
+      let d=Math.sqrt(dr*dr+dg*dg+db*db); d=d>255?255:d|0; dist[i]=d; hist[d]++;
     }
-    // The card is usually the brighter region. Build bright mask.
-    const mask=new Uint8Array(n);
-    let bright=0;
-    for(let i=0;i<n;i++){ if(gray[i]>thr){ mask[i]=1; bright++; } }
-    // If bright region is tiny or nearly everything, auto-detect is unreliable.
-    const frac=bright/n;
-    if(frac<0.08 || frac>0.97){ fullFrame(s); return; }
-    // Keep the largest connected bright component (removes stray highlights).
-    const comp = largestComponent(mask,sw,sh);
+    const thr=Math.max(26, otsu(hist,n));
+    let fg=new Uint8Array(n),cnt=0;
+    for(let i=0;i<n;i++) if(dist[i]>thr){ fg[i]=1; cnt++; }
+    const frac=cnt/n;
+    if(frac<0.05 || frac>0.95){ fullFrame(s); return; }   // detection unreliable
+
+    fg=closeMask(fg,sw,sh,2);                              // fill holes (photo, QR, text)
+    const comp=largestComponent(fg,sw,sh);
     if(!comp || comp.count < n*0.05){ fullFrame(s); return; }
-    // 4-corner extreme heuristic over the component.
-    let tl,tr,br,bl, minSum=1e9,maxSum=-1e9,minDif=1e9,maxDif=-1e9;
+
+    // 4-corner extreme heuristic (min/max of x±y) over the card region.
+    let tl,tr,bl2,br2, minSum=1e9,maxSum=-1e9,minDif=1e9,maxDif=-1e9;
     const {pix}=comp;
     for(let k=0;k<pix.length;k+=2){
       const x=pix[k], y=pix[k+1], sm=x+y, df=x-y;
       if(sm<minSum){minSum=sm; tl={x,y};}
-      if(sm>maxSum){maxSum=sm; br={x,y};}
+      if(sm>maxSum){maxSum=sm; br2={x,y};}
       if(df>maxDif){maxDif=df; tr={x,y};}
-      if(df<minDif){minDif=df; bl={x,y};}
+      if(df<minDif){minDif=df; bl2={x,y};}
     }
-    if(!tl||!tr||!br||!bl){ fullFrame(s); return; }
-    const up=1/scale;
-    s.corners=[tl,tr,br,bl].map(p=>({x:clamp(p.x*up,0,W),y:clamp(p.y*up,0,H)}));
-    // Sanity: reject degenerate quads.
-    if(quadArea(s.corners) < W*H*0.12) fullFrame(s);
+    if(!tl||!tr||!br2||!bl2){ fullFrame(s); return; }
+    const up=1/scale, pad=1.5*up;   // tiny outward pad so the border isn't clipped
+    const cand=[
+      {x:clamp((tl.x)*up-pad,0,W), y:clamp((tl.y)*up-pad,0,H)},
+      {x:clamp((tr.x)*up+pad,0,W), y:clamp((tr.y)*up-pad,0,H)},
+      {x:clamp((br2.x)*up+pad,0,W),y:clamp((br2.y)*up+pad,0,H)},
+      {x:clamp((bl2.x)*up-pad,0,W),y:clamp((bl2.y)*up+pad,0,H)}
+    ];
+    // Sanity: quad must cover a reasonable area, else fall back to full frame.
+    if(quadArea(cand) < W*H*0.08){ fullFrame(s); return; }
+    s.corners=cand;
+  }
+
+  // Otsu threshold from a 256-bin histogram.
+  function otsu(hist,total){
+    let sum=0; for(let t=0;t<256;t++) sum+=t*hist[t];
+    let sumB=0,wB=0,mx=-1,thr=127;
+    for(let t=0;t<256;t++){
+      wB+=hist[t]; if(!wB) continue; const wF=total-wB; if(!wF) break;
+      sumB+=t*hist[t];
+      const mB=sumB/wB, mF=(sum-sumB)/wF, between=wB*wF*(mB-mF)*(mB-mF);
+      if(between>mx){ mx=between; thr=t; }
+    }
+    return thr;
+  }
+
+  // Morphological close (dilate ×it then erode ×it) to fill interior holes
+  // such as the photo, QR block and dark text inside the card.
+  function closeMask(mask,w,h,it){
+    const dil=m=>{ const o=new Uint8Array(w*h);
+      for(let y=0;y<h;y++) for(let x=0;x<w;x++){ let v=0;
+        for(let dy=-1;dy<=1&&!v;dy++) for(let dx=-1;dx<=1;dx++){ const nx=x+dx,ny=y+dy;
+          if(nx>=0&&nx<w&&ny>=0&&ny<h&&m[ny*w+nx]){ v=1; break; } }
+        o[y*w+x]=v; } return o; };
+    const ero=m=>{ const o=new Uint8Array(w*h);
+      for(let y=0;y<h;y++) for(let x=0;x<w;x++){ let v=1;
+        for(let dy=-1;dy<=1&&v;dy++) for(let dx=-1;dx<=1;dx++){ const nx=x+dx,ny=y+dy;
+          if(nx<0||nx>=w||ny<0||ny>=h||!m[ny*w+nx]){ v=0; break; } }
+        o[y*w+x]=v; } return o; };
+    let m=mask; for(let i=0;i<it;i++) m=dil(m); for(let i=0;i<it;i++) m=ero(m); return m;
   }
 
   // BFS largest connected component of a binary mask; returns pixel list.
@@ -621,15 +665,20 @@
     const auto=$('chkAuto').checked, gray=$('chkGray').checked;
     let bright=+$('rBright').value, contrast=+$('rContrast').value, sharp=+$('rSharp').value/100;
     if(auto){
-      // mild contrast stretch based on luminance percentiles
-      const {lo,hi}=percentiles(px,w,h);
-      const range=Math.max(1,hi-lo);
-      const gain=255/range, off=-lo*gain;
-      for(let i=0;i<px.length;i+=4){
-        px[i]=clamp(px[i]*gain+off,0,255);
-        px[i+1]=clamp(px[i+1]*gain+off,0,255);
-        px[i+2]=clamp(px[i+2]*gain+off,0,255);
+      // Per-channel levels: stretch each channel between its 1.5% and 99.2%
+      // percentile. This both boosts contrast AND white-balances the paper,
+      // so a yellowish/bluish phone photo prints on a clean white background.
+      for(let ch=0;ch<3;ch++){
+        const {lo,hi}=channelPercentiles(px,ch);
+        const range=Math.max(1,hi-lo), gain=255/range, off=-lo*gain;
+        for(let i=0;i<px.length;i+=4) px[i+ch]=clamp(px[i+ch]*gain+off,0,255);
       }
+      // Gentle midtone lift so faint text stays readable after the stretch.
+      for(let i=0;i<px.length;i+=4){
+        for(let ch=0;ch<3;ch++){ const v=px[i+ch]/255; px[i+ch]=clamp(Math.pow(v,0.92)*255,0,255); }
+      }
+      // Auto mode gets a stronger baseline sharpen for crisp text.
+      sharp=Math.max(sharp,0.55);
     }
     const cf=(259*(contrast+255))/(255*(259-contrast));
     for(let i=0;i<px.length;i+=4){
@@ -640,10 +689,11 @@
     }
     if(sharp>0) unsharp(px,w,h,sharp);
   }
-  function percentiles(px,w,h){
+  // 1.5% / 99.2% percentiles of one RGB channel.
+  function channelPercentiles(px,ch){
     const hist=new Array(256).fill(0); let tot=0;
-    for(let i=0;i<px.length;i+=4){ const g=(px[i]*0.299+px[i+1]*0.587+px[i+2]*0.114)|0; hist[g]++; tot++; }
-    let lo=0,hi=255,c=0; const loN=tot*0.02, hiN=tot*0.98;
+    for(let i=0;i<px.length;i+=4){ hist[px[i+ch]|0]++; tot++; }
+    let lo=0,hi=255,c=0; const loN=tot*0.015, hiN=tot*0.992;
     for(let v=0;v<256;v++){ c+=hist[v]; if(c>=loN){lo=v;break;} }
     c=0; for(let v=0;v<256;v++){ c+=hist[v]; if(c>=hiN){hi=v;break;} }
     if(hi<=lo){lo=0;hi=255;}
