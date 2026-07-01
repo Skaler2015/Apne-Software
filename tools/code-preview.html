@@ -17,7 +17,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Code Preview Tool — Free Online Code Editor">
 <meta name="twitter:description" content="Live HTML/CSS/JS editor + Website ZIP preview. Free, no signup.">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Code Preview Tool","description":"Free live HTML/CSS/JS code editor with real-time preview and website ZIP upload preview.","url":"https://apnesoftware.com/tools/code-preview.html","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":["SoftwareApplication","WebApplication"],"name":"Code Preview Tool","description":"Free live HTML/CSS/JS code editor with real-time preview and website ZIP upload preview.","url":"https://apnesoftware.com/tools/code-preview.html","applicationCategory":"DeveloperApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Developer Tools","item":"https://apnesoftware.com/category/developer-tools.html"},{"@type":"ListItem","position":3,"name":"Code Preview","item":"https://apnesoftware.com/tools/code-preview.html"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"How to use the Code Preview editor","step":[{"@type":"HowToStep","position":1,"name":"Write code","text":"Type HTML, CSS and JavaScript in the three editor tabs."},{"@type":"HowToStep","position":2,"name":"Run preview","text":"Press Run (or Ctrl+Enter) to see a live preview, or turn on Live to auto-update."},{"@type":"HowToStep","position":3,"name":"Share or download","text":"Copy a shareable link, download a single HTML file, or upload a website ZIP to preview it."}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this code editor free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Code Preview tool is 100% free, needs no signup and runs entirely in your browser."}},{"@type":"Question","name":"Can I preview a whole website ZIP?","acceptedAnswer":{"@type":"Answer","text":"Yes. Switch to Website Preview and upload a ZIP of your site (HTML, CSS, JS, images). It renders in the browser with working multi-page navigation. PHP and server-side code will not execute."}},{"@type":"Question","name":"Can I add libraries like Bootstrap or Tailwind?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the Add Library menu to insert Bootstrap, Tailwind, jQuery, Font Awesome or Animate.css via CDN, or paste your own CDN links in the HTML."}},{"@type":"Question","name":"Is my code private?","acceptedAnswer":{"@type":"Answer","text":"Yes. Everything runs locally in your browser. Your code is saved only in your own browser storage and is never uploaded to any server."}}]}</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="../assets/style.css">
 <link rel="stylesheet" href="../assets/code-preview-style.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -74,6 +80,28 @@ body.dark-mode { background: var(--bg, #0e1117) !important; }
       <div class="toolbar-sep"></div>
       <button class="tbtn" onclick="copyAllCode()"><i class="bi bi-clipboard"></i> Copy</button>
       <button class="tbtn" onclick="downloadHTML()"><i class="bi bi-download"></i> Download</button>
+      <div class="toolbar-sep"></div>
+      <select class="tbtn" id="cpTemplate" title="Load a starter template" aria-label="Templates" style="cursor:pointer">
+        <option value="">📁 Templates…</option>
+        <option value="blank">Blank</option>
+        <option value="center">Centered box (Flexbox)</option>
+        <option value="landing">Landing page</option>
+        <option value="form">Contact form</option>
+        <option value="anim">CSS animation</option>
+        <option value="fetch">Fetch API demo</option>
+      </select>
+      <select class="tbtn" id="cpLib" title="Add a CDN library to your HTML" aria-label="Add library" style="cursor:pointer">
+        <option value="">＋ Library…</option>
+        <option value="bootstrap">Bootstrap 5</option>
+        <option value="tailwind">Tailwind CSS</option>
+        <option value="jquery">jQuery</option>
+        <option value="fontawesome">Font Awesome</option>
+        <option value="animate">Animate.css</option>
+      </select>
+      <button class="tbtn" id="cpShare" title="Copy a shareable link"><i class="bi bi-share"></i> Share</button>
+      <label class="tbtn" id="cpLiveLabel" title="Auto-run on every change" style="cursor:pointer;display:inline-flex;gap:6px;align-items:center">
+        <input type="checkbox" id="cpAutoRun" style="margin:0"> <i class="bi bi-lightning-charge"></i> Live
+      </label>
     </div>
     <div class="toolbar-right">
       <div class="code-stats">
@@ -117,6 +145,10 @@ body.dark-mode { background: var(--bg, #0e1117) !important; }
       <div class="preview-header">
         <div class="preview-label"><i class="bi bi-display"></i> Preview <span class="preview-status" id="previewStatus">Ready</span></div>
         <div class="preview-actions">
+          <button class="tbtn tbtn-sm cp-vp active" data-vp="desktop" title="Desktop"><i class="bi bi-display"></i></button>
+          <button class="tbtn tbtn-sm cp-vp" data-vp="tablet" title="Tablet"><i class="bi bi-tablet"></i></button>
+          <button class="tbtn tbtn-sm cp-vp" data-vp="mobile" title="Mobile"><i class="bi bi-phone"></i></button>
+          <span style="width:1px;height:18px;background:rgba(255,255,255,.15);margin:0 2px"></span>
           <button class="tbtn tbtn-sm" onclick="refreshPreview()"><i class="bi bi-arrow-clockwise"></i></button>
           <button class="tbtn tbtn-sm" onclick="openInNewTab()"><i class="bi bi-box-arrow-up-right"></i></button>
           <button class="tbtn tbtn-sm" onclick="toggleFullscreenPreview()"><i class="bi bi-fullscreen"></i></button>
@@ -240,6 +272,100 @@ body.dark-mode { background: var(--bg, #0e1117) !important; }
   </div>
 </main>
 
+<!-- ═══════════ SEO / CONTENT (scrolls below the app) ═══════════ -->
+<style>
+.cp-seo{background:#0e1117;border-top:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.75)}
+.cp-seo .container{max-width:1040px;margin:0 auto;padding:26px 22px}
+.cp-crumb{display:flex;flex-wrap:wrap;gap:7px;align-items:center;font-size:.8rem;color:rgba(255,255,255,.55);margin-bottom:6px}
+.cp-crumb a{color:#A78BFA;text-decoration:none}.cp-crumb a:hover{text-decoration:underline}.cp-crumb .sep{opacity:.5}
+.cp-seo h2{color:#fff;font-size:1.15rem;font-weight:800;margin:22px 0 10px}
+.cp-seo h3{color:#A78BFA;font-size:.95rem;font-weight:700;margin:16px 0 8px}
+.cp-seo p,.cp-seo li{font-size:.9rem;line-height:1.75;color:rgba(255,255,255,.72)}
+.cp-seo ul,.cp-seo ol{padding-left:20px}
+.cp-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:760px){.cp-cols{grid-template-columns:1fr}}
+.cp-rel{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:11px;margin-top:12px}
+.cp-rel a{display:flex;align-items:center;gap:9px;text-decoration:none;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:11px 13px;color:#fff;transition:.18s;font-size:.84rem;font-weight:600}
+.cp-rel a:hover{transform:translateY(-3px);border-color:#A78BFA}
+</style>
+<section class="cp-seo">
+  <div class="container">
+    <nav class="cp-crumb" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a><span class="sep">›</span>
+      <a href="../category/developer-tools.html">Developer Tools</a><span class="sep">›</span>
+      <span aria-current="page">Code Preview</span>
+    </nav>
+    <div class="cp-cols">
+      <div>
+        <h2>ℹ️ About the Code Preview Tool</h2>
+        <p>Code Preview is a free, browser-based <strong>HTML / CSS / JavaScript editor with a live preview</strong> — a lightweight alternative to CodePen or JSFiddle that needs no signup. Write code in three tabs, hit <em>Run</em> (or turn on <em>Live</em>) and watch the result update instantly, complete with a built-in console for <code>console.log</code>, errors and warnings.</p>
+        <p>It also includes a full <strong>Website Preview</strong> mode: upload a <strong>ZIP of an entire website</strong> (or a single HTML file) and view it right in your browser with working multi-page navigation, a file tree, responsive device sizes and a source viewer — all processed locally, so your files never leave your device.</p>
+        <h3>✨ Features</h3>
+        <ul>
+          <li>Live HTML/CSS/JS editor with syntax highlighting &amp; auto-close brackets.</li>
+          <li><strong>Live/auto-run</strong>, Run (Ctrl+Enter), Format, Copy and Download single-file HTML.</li>
+          <li><strong>Starter templates</strong> and one-click <strong>CDN libraries</strong> (Bootstrap, Tailwind, jQuery, Font Awesome, Animate.css).</li>
+          <li><strong>Shareable links</strong> — your code is encoded in the URL, no server needed.</li>
+          <li><strong>Responsive preview</strong> (mobile / tablet / desktop), fullscreen &amp; open-in-new-tab.</li>
+          <li><strong>Website ZIP preview</strong> with file tree, search, source view and project download.</li>
+          <li>Built-in console, autosave, and dark / light themes.</li>
+        </ul>
+        <h3>📝 How to Use</h3>
+        <ol>
+          <li>Type your HTML, CSS and JavaScript in the editor tabs.</li>
+          <li>Press <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to run, or tick <em>Live</em> to auto-update.</li>
+          <li>Add a library or template from the toolbar if you need one.</li>
+          <li>Click <em>Share</em> to copy a link, or <em>Download</em> for a single HTML file.</li>
+          <li>To preview a full site, open <em>Website Preview</em> and upload a ZIP.</li>
+        </ol>
+        <h3>❓ FAQ</h3>
+        <p><strong>Is it free &amp; private?</strong> Yes — free, no signup, and everything runs in your browser.</p>
+        <p><strong>Can I preview a website ZIP?</strong> Yes, including multi-page sites. PHP/server code won't run.</p>
+        <p><strong>Can I add Bootstrap/Tailwind?</strong> Yes — use the Add Library menu.</p>
+      </div>
+      <div>
+        <h2>ℹ️ कोड प्रीव्यू टूल के बारे में</h2>
+        <p>Code Preview एक मुफ़्त, browser-आधारित <strong>HTML / CSS / JavaScript editor</strong> है जिसमें <strong>live preview</strong> मिलता है — CodePen या JSFiddle जैसा हल्का विकल्प, बिना signup। तीन tabs में code लिखें, <em>Run</em> दबाएँ (या <em>Live</em> चालू करें) और नतीजा तुरंत update होता दिखे, साथ में <code>console.log</code>, errors व warnings के लिए built-in console।</p>
+        <p>इसमें पूरा <strong>Website Preview</strong> mode भी है: किसी पूरी वेबसाइट का <strong>ZIP</strong> (या एक HTML file) upload करें और उसे browser में ही चलते देखें — multi-page navigation, file tree, responsive device sizes और source viewer के साथ। सब कुछ आपके device पर ही process होता है, files कहीं upload नहीं होतीं।</p>
+        <h3>✨ विशेषताएँ</h3>
+        <ul>
+          <li>Syntax highlighting व auto-close brackets वाला live editor।</li>
+          <li><strong>Live/auto-run</strong>, Run (Ctrl+Enter), Format, Copy और single-file HTML Download।</li>
+          <li><strong>Starter templates</strong> और एक-क्लिक <strong>CDN libraries</strong> (Bootstrap, Tailwind, jQuery आदि)।</li>
+          <li><strong>Shareable link</strong> — code URL में encode, बिना server।</li>
+          <li><strong>Responsive preview</strong> (mobile/tablet/desktop), fullscreen व new-tab।</li>
+          <li><strong>Website ZIP preview</strong> — file tree, search, source view, project download।</li>
+          <li>Built-in console, autosave, और dark/light theme।</li>
+        </ul>
+        <h3>📝 इस्तेमाल कैसे करें</h3>
+        <ol>
+          <li>editor tabs में अपना HTML, CSS, JavaScript लिखें।</li>
+          <li><kbd>Ctrl</kbd>+<kbd>Enter</kbd> दबाएँ, या <em>Live</em> टिक करके auto-update पाएँ।</li>
+          <li>ज़रूरत हो तो toolbar से library या template जोड़ें।</li>
+          <li><em>Share</em> से link copy करें, या <em>Download</em> से HTML file पाएँ।</li>
+          <li>पूरी site के लिए <em>Website Preview</em> खोलकर ZIP upload करें।</li>
+        </ol>
+        <h3>❓ सामान्य सवाल</h3>
+        <p><strong>मुफ़्त व निजी?</strong> हाँ — मुफ़्त, बिना signup, सब browser में।</p>
+        <p><strong>Website ZIP preview?</strong> हाँ, multi-page भी। PHP/server code नहीं चलेगा।</p>
+        <p><strong>Bootstrap/Tailwind जोड़ सकते हैं?</strong> हाँ — Add Library menu से।</p>
+      </div>
+    </div>
+
+    <h2>🔗 Related Developer Tools</h2>
+    <div class="cp-rel">
+      <a href="html-beautifier-minifier.html">📑 HTML Beautifier</a>
+      <a href="css-beautifier-minifier.html">🎨 CSS Beautifier</a>
+      <a href="json-formatter.html">{ } JSON Formatter</a>
+      <a href="markdown-to-html.html">📝 Markdown to HTML</a>
+      <a href="url-html-encoder-decoder.html">🌐 URL / HTML Encoder</a>
+      <a href="base64-encoder-decoder.html">🔐 Base64 Encoder</a>
+      <a href="regex-tester.html">🔎 Regex Tester</a>
+      <a href="uuid-generator.html">🆔 UUID Generator</a>
+    </div>
+  </div>
+</section>
+
 <!-- PASTE MODAL -->
 <div class="modal fade" id="pasteModal" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -291,5 +417,102 @@ body.dark-mode { background: var(--bg, #0e1117) !important; }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="../assets/code-preview-script.js"></script>
 <script src="../assets/common.js"></script>
+<script>
+/* ═══ Code Preview — extra features (templates, CDN libs, share, live, responsive)
+   All hooks are guarded so the existing editor never breaks. ═══ */
+(function(){
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const toast = (m,t) => { try{ (typeof showToast==='function') ? showToast(m,t||'success') : premToast(m); }catch(e){} };
+  const ready = fn => { if(typeof cmHTML!=='undefined' && cmHTML && cmCSS && cmJS){ fn(); } else { setTimeout(()=>ready(fn),150); } };
+
+  /* ---- Starter templates ---- */
+  const TPL = {
+    blank:{h:'<!-- HTML -->\n<h1>Hello</h1>',c:'/* CSS */\nh1{font-family:sans-serif}',j:'// JS\nconsole.log("Hi");'},
+    center:{h:'<div class="box">Centered</div>',c:'body{margin:0;height:100vh;display:flex;align-items:center;justify-content:center;background:#0e1117}\n.box{padding:24px 40px;border-radius:14px;background:linear-gradient(135deg,#7C5CFC,#16C079);color:#fff;font:600 20px sans-serif}',j:''},
+    landing:{h:'<header>\n  <h1>Your Product</h1>\n  <p>A short, punchy tagline goes here.</p>\n  <a class="cta" href="#">Get Started</a>\n</header>',c:'*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif}header{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:16px;background:linear-gradient(135deg,#1a0533,#1a3a5c);color:#fff}h1{font-size:3rem;margin:0}.cta{padding:12px 28px;border-radius:999px;background:#16C079;color:#fff;text-decoration:none;font-weight:700}',j:''},
+    form:{h:'<form onsubmit="handle(event)">\n  <h2>Contact us</h2>\n  <input placeholder="Name" required>\n  <input type="email" placeholder="Email" required>\n  <textarea placeholder="Message"></textarea>\n  <button>Send</button>\n</form>',c:'body{font-family:sans-serif;background:#f4f4f8;display:flex;justify-content:center;padding:30px}form{background:#fff;padding:24px;border-radius:14px;display:flex;flex-direction:column;gap:12px;width:320px;box-shadow:0 10px 30px rgba(0,0,0,.1)}input,textarea{padding:10px;border:1px solid #ddd;border-radius:8px;font:inherit}button{padding:11px;border:0;border-radius:8px;background:#7C5CFC;color:#fff;font-weight:700;cursor:pointer}',j:'function handle(e){e.preventDefault();alert("Thanks! (demo)");}'},
+    anim:{h:'<div class="loader"></div>',c:'body{margin:0;height:100vh;display:grid;place-items:center;background:#0e1117}.loader{width:64px;height:64px;border-radius:50%;border:6px solid rgba(255,255,255,.15);border-top-color:#7C5CFC;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}',j:''},
+    fetch:{h:'<h2>Random user</h2>\n<pre id="out">Loading…</pre>',c:'body{font-family:sans-serif;padding:20px}pre{background:#111;color:#0f0;padding:14px;border-radius:8px;overflow:auto}',j:'fetch("https://api.github.com/zen")\n  .then(r=>r.text())\n  .then(t=>{document.getElementById("out").textContent=t;})\n  .catch(e=>{document.getElementById("out").textContent="Error: "+e;});'}
+  };
+  /* ---- CDN libraries ---- */
+  const LIB = {
+    bootstrap:'<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">\n<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"><\/script>',
+    tailwind:'<script src="https://cdn.tailwindcss.com"><\/script>',
+    jquery:'<script src="https://code.jquery.com/jquery-3.7.1.min.js"><\/script>',
+    fontawesome:'<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">',
+    animate:'<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">'
+  };
+
+  ready(function(){
+    /* Templates */
+    const tpl = $('cpTemplate');
+    if(tpl) tpl.addEventListener('change', () => {
+      const t = TPL[tpl.value]; if(!t) return;
+      if(!confirm('Load this template? It replaces the current code.')){ tpl.value=''; return; }
+      cmHTML.setValue(t.h); cmCSS.setValue(t.c); cmJS.setValue(t.j);
+      if(typeof runCode==='function') runCode();
+      tpl.value=''; toast('Template loaded');
+    });
+
+    /* Library injector */
+    const lib = $('cpLib');
+    if(lib) lib.addEventListener('change', () => {
+      const tag = LIB[lib.value]; if(!tag) return;
+      const cur = cmHTML.getValue();
+      if(cur.indexOf(tag.split('"')[1]||tag) === -1){ cmHTML.setValue(tag + '\n' + cur); toast(lib.options[lib.selectedIndex].text + ' added'); }
+      else toast('Already added');
+      if(typeof runCode==='function') runCode();
+      lib.value='';
+    });
+
+    /* Share link (code encoded in URL, no server) */
+    const share = $('cpShare');
+    if(share) share.addEventListener('click', () => {
+      try{
+        const data = JSON.stringify({h:cmHTML.getValue(),c:cmCSS.getValue(),j:cmJS.getValue()});
+        const enc = btoa(unescape(encodeURIComponent(data)));
+        const url = location.origin + location.pathname + '#code=' + enc;
+        if(url.length > 30000){ toast('Code too large to share via link','error'); return; }
+        navigator.clipboard.writeText(url).then(()=>toast('🔗 Share link copied')).catch(()=>{
+          prompt('Copy this link:', url);
+        });
+      }catch(e){ toast('Could not build link','error'); }
+    });
+
+    /* Load shared code from URL hash */
+    try{
+      const m = location.hash.match(/#code=(.+)$/);
+      if(m){
+        const data = JSON.parse(decodeURIComponent(escape(atob(m[1]))));
+        if(data && typeof data.h==='string'){
+          cmHTML.setValue(data.h); cmCSS.setValue(data.c||''); cmJS.setValue(data.j||'');
+          if(typeof runCode==='function') runCode();
+          toast('Loaded shared code');
+        }
+      }
+    }catch(e){}
+
+    /* Live / auto-run */
+    let liveTimer;
+    const runLive = () => { const cb=$('cpAutoRun'); if(!cb||!cb.checked) return;
+      clearTimeout(liveTimer); liveTimer = setTimeout(()=>{ if(typeof runCode==='function') runCode(); }, 700); };
+    [cmHTML,cmCSS,cmJS].forEach(cm => cm.on('change', runLive));
+
+    /* Responsive preview (resize the editor's preview iframe) */
+    const SIZES = { desktop:null, tablet:768, mobile:390 };
+    const frame = $('previewFrame');
+    document.querySelectorAll('.cp-vp').forEach(btn => btn.addEventListener('click', () => {
+      document.querySelectorAll('.cp-vp').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const w = SIZES[btn.dataset.vp];
+      if(frame){
+        if(w){ frame.style.width = w+'px'; frame.style.maxWidth='100%'; frame.style.margin='0 auto'; frame.style.display='block'; frame.style.borderLeft='1px solid rgba(255,255,255,.1)'; frame.style.borderRight='1px solid rgba(255,255,255,.1)'; }
+        else { frame.style.width=''; frame.style.margin=''; frame.style.borderLeft=''; frame.style.borderRight=''; }
+      }
+    }));
+  });
+})();
+</script>
 </body>
 </html>
