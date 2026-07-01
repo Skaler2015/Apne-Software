@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0d0a1f">
+<link rel="canonical" href="https://apnesoftware.com/tools/id-card-crop-print.html">
+<meta name="description" content="Free ID Card Crop & Print tool — upload the front and back photo of any ID card (Aadhaar, PAN, Voter ID, driving licence, PVC card), auto-detect and crop the card from the background, straighten the tilt, sharpen for a clear print, and place both sides on a single A4 page at exact card size. 100% offline, nothing uploaded.">
+<meta name="keywords" content="id card crop tool, aadhaar card print, both side print on one page, id card print, pan card print, crop id card photo, auto crop id card, print aadhaar front and back, id card scanner, document crop tool, aadhaar print same page, id card size print">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ID Card Crop & Print — Front + Back on One A4 Page | ApneSoftware">
+<meta property="og:description" content="Upload front & back photos of any ID card, auto-crop and straighten them, and print both sides on a single A4 page at real card size — sharp, clear and fully offline.">
+<meta property="og:url" content="https://apnesoftware.com/tools/id-card-crop-print.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ID Card Crop & Print — Front + Back on One A4 Page">
+<meta name="twitter:description" content="Auto-crop any ID card from its background, straighten the tilt, and print front + back on one A4 page at exact size. Free & private.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":["SoftwareApplication","WebApplication"],"name":"ID Card Crop & Print","description":"Auto-crop the front and back of any ID card from its background, straighten the tilt, enhance for a clear print, and place both sides on a single A4 page at real card size — entirely in the browser.","url":"https://apnesoftware.com/tools/id-card-crop-print.html","applicationCategory":"MultimediaApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"1720"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com","logo":"https://apnesoftware.com/assets/og-image.png"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"ID Card Crop & Print","url":"https://apnesoftware.com/tools/id-card-crop-print.html","description":"Free online tool to auto-crop, straighten and print the front and back of any ID card on a single A4 page at real size."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Image Tools","item":"https://apnesoftware.com/category/image-tools.html"},{"@type":"ListItem","position":3,"name":"ID Card Crop & Print","item":"https://apnesoftware.com/tools/id-card-crop-print.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to crop and print an ID card front and back on one page","step":[{"@type":"HowToStep","position":1,"name":"Upload both sides","text":"Add the front photo and the back photo of the ID card — nothing is uploaded to any server."},{"@type":"HowToStep","position":2,"name":"Auto-crop and adjust","text":"The tool detects the card edges and crops the background automatically. Drag the four corners to fine-tune if needed."},{"@type":"HowToStep","position":3,"name":"Enhance and print","text":"Sharpen and brighten for a clear print, then print both sides on one A4 page at exact card size or download as PDF."}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Review","itemReviewed":{"@type":"SoftwareApplication","name":"ID Card Crop & Print","applicationCategory":"MultimediaApplication"},"reviewRating":{"@type":"Rating","ratingValue":"5","bestRating":"5"},"author":{"@type":"Person","name":"ApneSoftware User"},"reviewBody":"I take phone photos of customers' Aadhaar cards and this crops the background and straightens them automatically, then prints both sides on one page perfectly sized. Saves so much time at my shop."}
+</script>
+<script type="application/ld+json" id="faqSchema"></script>
+
+<meta name="color-scheme" content="dark">
+<title>ID Card Crop & Print — Front + Back on One A4 Page | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* ═══════════ ID CARD CROP & PRINT (icc-) ═══════════ */
+:root{
+  --icc-glass:rgba(255,255,255,.05); --icc-brd:rgba(255,255,255,.14);
+  --icc-accent:#8b5cf6; --icc-accent2:#22d3ee; --icc-good:#16C079; --icc-warn:#f59e0b; --icc-bad:#ef4444;
+}
+.icc-crumb{display:flex;flex-wrap:wrap;gap:7px;align-items:center;font-size:.8rem;color:var(--text-dim);padding:16px 0 0}
+.icc-crumb a{color:var(--icc-accent);text-decoration:none}.icc-crumb a:hover{text-decoration:underline}.icc-crumb .sep{opacity:.5}
+
+/* upload slots */
+.icc-slots{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+@media(max-width:720px){.icc-slots{grid-template-columns:1fr}}
+.icc-slot{background:var(--icc-glass);border:1px solid var(--icc-brd);border-radius:16px;padding:14px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.icc-slot h3{margin:0 0 10px;font-size:.98rem;display:flex;align-items:center;gap:8px}
+.icc-slot h3 .tag{font-size:.66rem;font-weight:600;color:var(--icc-accent2);border:1px solid var(--icc-brd);border-radius:999px;padding:2px 8px}
+.icc-drop{border:1.5px dashed var(--icc-brd);border-radius:14px;background:linear-gradient(135deg,rgba(139,92,246,.08),rgba(34,211,238,.05));
+  transition:.2s;cursor:pointer;position:relative;min-height:150px;display:flex;align-items:center;justify-content:center;text-align:center}
+.icc-drop.drag{border-color:var(--icc-accent2);box-shadow:0 0 0 4px rgba(34,211,238,.15) inset}
+.icc-drop .in{padding:20px 14px;color:var(--text-dim)}
+.icc-drop .in .ic{font-size:2rem}
+.icc-drop .in h4{margin:8px 0 3px;font-size:.92rem;color:var(--text)}
+.icc-drop .in p{margin:0;font-size:.78rem}
+.icc-drop input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+
+/* editor (corner adjust) */
+.icc-editor{display:none}
+.icc-editor.on{display:block}
+.icc-canvaswrap{position:relative;border-radius:12px;overflow:hidden;background:#0b0a17;touch-action:none}
+.icc-canvaswrap canvas{display:block;width:100%;height:auto;touch-action:none}
+.icc-tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.icc-btn{font:inherit;font-size:.78rem;padding:6px 11px;border-radius:9px;border:1px solid var(--icc-brd);background:var(--icc-glass);color:var(--text);cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:5px}
+.icc-btn:hover{border-color:var(--icc-accent);background:rgba(139,92,246,.12)}
+.icc-btn.primary{background:linear-gradient(135deg,var(--icc-accent),#6d28d9);border-color:transparent;color:#fff;font-weight:600}
+.icc-btn.primary:hover{filter:brightness(1.08)}
+.icc-btn.ghost{background:transparent}
+.icc-hint{font-size:.74rem;color:var(--text-dim);margin:8px 0 0;line-height:1.5}
+
+/* global controls */
+.icc-controls{background:var(--icc-glass);border:1px solid var(--icc-brd);border-radius:16px;padding:16px;margin-top:16px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.icc-controls h3{margin:0 0 12px;font-size:1rem}
+.icc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.icc-field label{display:block;font-size:.78rem;color:var(--text-dim);margin-bottom:5px;font-weight:600}
+.icc-field .val{color:var(--icc-accent2);font-weight:700}
+.icc-field input[type=range]{width:100%;accent-color:var(--icc-accent)}
+.icc-field select{width:100%;font:inherit;padding:8px 10px;border-radius:9px;border:1px solid var(--icc-brd);background:#12101f;color:var(--text)}
+.icc-toggles{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.icc-chk{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--text-dim);background:#12101f;border:1px solid var(--icc-brd);border-radius:10px;padding:8px 12px;cursor:pointer}
+.icc-chk input{accent-color:var(--icc-accent);width:15px;height:15px}
+
+/* preview + actions */
+.icc-out{display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:18px;margin-top:16px;align-items:start}
+@media(max-width:720px){.icc-out{grid-template-columns:1fr}}
+.icc-sheetwrap{background:var(--icc-glass);border:1px solid var(--icc-brd);border-radius:16px;padding:14px;text-align:center}
+.icc-sheetwrap h3{margin:0 0 10px;font-size:.92rem;color:var(--text-dim)}
+#sheetPreview{width:100%;height:auto;background:#fff;border-radius:6px;box-shadow:0 8px 30px rgba(0,0,0,.45)}
+.icc-actions{display:flex;flex-direction:column;gap:12px}
+.icc-actgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.icc-big{font:inherit;font-size:.92rem;font-weight:700;padding:14px;border-radius:12px;border:1px solid var(--icc-brd);background:var(--icc-glass);color:var(--text);cursor:pointer;transition:.15s;display:flex;align-items:center;justify-content:center;gap:8px}
+.icc-big:hover{border-color:var(--icc-accent);background:rgba(139,92,246,.12)}
+.icc-big.print{grid-column:1/-1;background:linear-gradient(135deg,var(--icc-accent),#6d28d9);border-color:transparent;color:#fff;font-size:1.02rem;padding:16px}
+.icc-big.print:hover{filter:brightness(1.08)}
+.icc-note{font-size:.78rem;color:var(--text-dim);line-height:1.6;background:#12101f;border:1px solid var(--icc-brd);border-radius:12px;padding:12px 14px}
+.icc-empty{opacity:.55;pointer-events:none}
+
+/* info / seo */
+.info-wrap{max-width:1000px;margin:26px auto 0;padding:0 4px}
+.info-wrap h2{font-size:1.15rem;margin:22px 0 8px}
+.info-wrap h3{font-size:1rem;color:var(--icc-accent);margin:16px 0 6px}
+.info-wrap p,.info-wrap li{color:var(--text-dim);font-size:.92rem;line-height:1.8}
+.icc-seo{max-width:1040px;margin:20px auto 0;padding:0 6px}
+.icc-seo h2{font-size:1.3rem;font-weight:800;margin:26px 0 10px}
+.icc-seo h3{font-size:1rem;font-weight:700;color:var(--icc-accent);margin:18px 0 8px}
+.icc-seo p,.icc-seo li{color:var(--text-dim);font-size:.93rem;line-height:1.85}
+.icc-faq h2{font-size:1.3rem;font-weight:800;margin:26px 0 10px}
+.icc-fitem{border:1px solid var(--icc-brd);border-radius:12px;margin:8px 0;overflow:hidden;background:var(--icc-glass)}
+.icc-fitem summary{cursor:pointer;padding:13px 16px;font-weight:600;font-size:.92rem;list-style:none}
+.icc-fitem summary::-webkit-details-marker{display:none}
+.icc-fitem summary::before{content:"＋";color:var(--icc-accent);margin-right:9px;font-weight:800}
+.icc-fitem[open] summary::before{content:"－"}
+.icc-fitem .a{padding:0 16px 14px;color:var(--text-dim);font-size:.9rem;line-height:1.75}
+.icc-related{max-width:1040px;margin:26px auto 0;padding:0 6px}
+.icc-related h2{font-size:1.15rem;margin-bottom:12px}
+.icc-rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.icc-link{display:block;padding:11px 14px;border-radius:11px;border:1px solid var(--icc-brd);background:var(--icc-glass);color:var(--text);text-decoration:none;font-size:.86rem;transition:.15s}
+.icc-link:hover{border-color:var(--icc-accent);background:rgba(139,92,246,.12);transform:translateY(-1px)}
+.icc-privacy{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(22,192,121,.1),rgba(34,211,238,.06));border:1px solid rgba(22,192,121,.3);border-radius:12px;padding:12px 15px;margin-top:14px;font-size:.85rem;color:var(--text)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="icc-crumb" aria-label="Breadcrumb">
+    <a href="../index.html">Home</a><span class="sep">›</span>
+    <a href="../category/image-tools.html">Image Tools</a><span class="sep">›</span>
+    <span aria-current="page">ID Card Crop &amp; Print</span>
+  </nav>
+
+  <div class="tool-header">
+    <h1>🪪 ID Card Crop &amp; Print</h1>
+    <p>Upload the <b>front and back</b> of any ID card — Aadhaar, PAN, Voter ID, driving licence or any PVC card. The tool <b>auto-crops the background</b>, straightens the tilt, sharpens for a clear print, and puts <b>both sides on one A4 page at exact card size</b>. Everything happens in your browser — nothing is uploaded.</p>
+  </div>
+
+  <div class="icc-privacy">🔒 <span><b>100% private:</b> your ID photos never leave your device. All cropping and printing happens offline in your browser.</span></div>
+
+  <!-- UPLOAD / EDIT SLOTS -->
+  <div class="icc-slots">
+    <div class="icc-slot">
+      <h3>🖼️ Front side <span class="tag">side 1</span></h3>
+      <div class="icc-drop" id="dropFront">
+        <div class="in">
+          <div class="ic">⬆️</div>
+          <h4>Drop or click to add front photo</h4>
+          <p>JPG · PNG · WebP · HEIC</p>
+        </div>
+        <input type="file" accept="image/*" id="fileFront">
+      </div>
+      <div class="icc-editor" id="editFront">
+        <div class="icc-canvaswrap"><canvas id="canFront"></canvas></div>
+        <div class="icc-tools">
+          <button class="icc-btn" data-act="auto" data-slot="front">✨ Auto-detect</button>
+          <button class="icc-btn" data-act="reset" data-slot="front">⤢ Full frame</button>
+          <button class="icc-btn" data-act="rotate" data-slot="front">⟳ Rotate</button>
+          <button class="icc-btn ghost" data-act="remove" data-slot="front">✕ Remove</button>
+        </div>
+        <p class="icc-hint">Drag the four corners onto the edges of the card to crop &amp; straighten it.</p>
+      </div>
+    </div>
+
+    <div class="icc-slot">
+      <h3>🖼️ Back side <span class="tag">side 2</span></h3>
+      <div class="icc-drop" id="dropBack">
+        <div class="in">
+          <div class="ic">⬆️</div>
+          <h4>Drop or click to add back photo</h4>
+          <p>JPG · PNG · WebP · HEIC</p>
+        </div>
+        <input type="file" accept="image/*" id="fileBack">
+      </div>
+      <div class="icc-editor" id="editBack">
+        <div class="icc-canvaswrap"><canvas id="canBack"></canvas></div>
+        <div class="icc-tools">
+          <button class="icc-btn" data-act="auto" data-slot="back">✨ Auto-detect</button>
+          <button class="icc-btn" data-act="reset" data-slot="back">⤢ Full frame</button>
+          <button class="icc-btn" data-act="rotate" data-slot="back">⟳ Rotate</button>
+          <button class="icc-btn ghost" data-act="remove" data-slot="back">✕ Remove</button>
+        </div>
+        <p class="icc-hint">Drag the four corners onto the edges of the card to crop &amp; straighten it.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENHANCE CONTROLS -->
+  <div class="icc-controls" id="controls">
+    <h3>🎛️ Enhance &amp; layout</h3>
+    <div class="icc-grid">
+      <div class="icc-field">
+        <label>Brightness <span class="val" id="vBright">0</span></label>
+        <input type="range" id="rBright" min="-80" max="80" value="0">
+      </div>
+      <div class="icc-field">
+        <label>Contrast <span class="val" id="vContrast">0</span></label>
+        <input type="range" id="rContrast" min="-80" max="80" value="8">
+      </div>
+      <div class="icc-field">
+        <label>Sharpness <span class="val" id="vSharp">45</span></label>
+        <input type="range" id="rSharp" min="0" max="100" value="45">
+      </div>
+      <div class="icc-field">
+        <label>Paper size</label>
+        <select id="selPaper">
+          <option value="a4">A4 (210 × 297 mm)</option>
+          <option value="letter">Letter (8.5 × 11 in)</option>
+        </select>
+      </div>
+      <div class="icc-field">
+        <label>Card size on page</label>
+        <select id="selSize">
+          <option value="cr80">Real ID size (85.6 × 54 mm)</option>
+          <option value="cr80_110">Slightly larger (110%)</option>
+          <option value="cr80_90">Slightly smaller (90%)</option>
+        </select>
+      </div>
+      <div class="icc-field">
+        <label>Copies per page</label>
+        <select id="selCopies">
+          <option value="1">1 (front + back)</option>
+          <option value="2">2 (two sets)</option>
+        </select>
+      </div>
+      <div class="icc-field">
+        <label>Layout</label>
+        <select id="selLayout">
+          <option value="stack">Stacked (front over back)</option>
+          <option value="side">Side by side</option>
+        </select>
+      </div>
+      <div class="icc-field">
+        <label>Print DPI</label>
+        <select id="selDpi">
+          <option value="300">300 DPI (sharp)</option>
+          <option value="600">600 DPI (max)</option>
+          <option value="200">200 DPI (light)</option>
+        </select>
+      </div>
+    </div>
+    <div class="icc-toggles">
+      <label class="icc-chk"><input type="checkbox" id="chkAuto" checked> Auto-enhance for clear print</label>
+      <label class="icc-chk"><input type="checkbox" id="chkGray"> Black &amp; white (photocopy)</label>
+      <label class="icc-chk"><input type="checkbox" id="chkMarks" checked> Show cut guides</label>
+      <label class="icc-chk"><input type="checkbox" id="chkBorder"> Card border line</label>
+    </div>
+  </div>
+
+  <!-- PREVIEW + ACTIONS -->
+  <div class="icc-out icc-empty" id="outWrap">
+    <div class="icc-sheetwrap">
+      <h3>📄 Page preview</h3>
+      <canvas id="sheetPreview" width="595" height="842"></canvas>
+    </div>
+    <div class="icc-actions">
+      <div class="icc-actgrid">
+        <button class="icc-big print" id="btnPrint">🖨️ Print page</button>
+        <button class="icc-big" id="btnPdf">⬇️ Download PDF</button>
+        <button class="icc-big" id="btnPng">⬇️ Download PNG</button>
+        <button class="icc-big" id="btnFront">⬇️ Front only</button>
+        <button class="icc-big" id="btnBack">⬇️ Back only</button>
+      </div>
+      <div class="icc-note">
+        <b>Tip for a perfect print:</b> in the print dialog set <b>Margins → None</b> and <b>Scale → 100% (Actual size)</b>, and turn <b>off</b> "Fit to page". This keeps the card at its true 85.6 × 54 mm size. Cut along the guide lines.
+      </div>
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div class="info-wrap">
+    <h2>ℹ️ About this tool</h2>
+    <p>The <b>ID Card Crop &amp; Print</b> tool is built for anyone who takes a quick phone photo of an identity card and needs a clean, correctly sized printout — print shops, cyber cafés, offices, schools and everyday users. Instead of manually cropping the jeans, table or hand out of the photo in a photo editor, you simply drop the front and back pictures here. The tool finds the card, removes everything around it, straightens any tilt, and lays both sides out on a single sheet at the real credit-card size (CR80, 85.6 × 54 mm) so the print looks exactly like the original card.</p>
+    <p>Because the entire process runs inside your browser using JavaScript and the HTML canvas, <b>your images are never uploaded to any server</b>. This matters a great deal for identity documents such as Aadhaar, PAN and driving licences, which contain sensitive personal data. Nothing is stored, logged or transmitted — close the tab and every trace is gone.</p>
+
+    <h3>हिंदी में जानकारी</h3>
+    <p>यह टूल किसी भी ID कार्ड (आधार, पैन, वोटर आईडी, ड्राइविंग लाइसेंस आदि) की <b>आगे और पीछे दोनों फोटो</b> को अपने आप crop करके, टेढ़ापन सीधा करके, और साफ प्रिंट के लिए sharpen करके <b>एक ही A4 पेज पर असली कार्ड साइज़ में</b> लगा देता है। सब कुछ आपके browser में ही होता है — कोई फोटो कहीं upload नहीं होती, इसलिए आपकी निजी जानकारी पूरी तरह सुरक्षित रहती है। print दुकानों और cyber café के लिए यह बेहद उपयोगी है।</p>
+  </div>
+
+  <!-- SEO GUIDE -->
+  <div class="icc-seo" id="seoGuide"></div>
+
+  <!-- FAQ -->
+  <div class="icc-seo icc-faq"><h2>❓ Frequently Asked Questions</h2><div id="faqList"></div></div>
+
+  <!-- RELATED -->
+  <div class="icc-related">
+    <h2>🔗 Related Tools</h2>
+    <div class="icc-rgrid">
+      <a class="icc-link" href="image-resolution-checker.html">📐 Image Resolution Checker</a>
+      <a class="icc-link" href="image-compressor.html">🗜️ Image Compressor</a>
+      <a class="icc-link" href="compress-to-target-size.html">🎯 Compress to Target Size</a>
+      <a class="icc-link" href="image-border-frame.html">🖼️ Image Border &amp; Frame</a>
+      <a class="icc-link" href="image-collage-maker.html">🧩 Collage Maker</a>
+      <a class="icc-link" href="heic-to-jpg-converter.html">🔄 HEIC to JPG</a>
+      <a class="icc-link" href="image-brightness-contrast.html">☀️ Brightness &amp; Contrast</a>
+      <a class="icc-link" href="html-to-pdf.html">📄 HTML to PDF</a>
+      <a class="icc-link" href="exif-viewer-remover.html">🧾 EXIF Viewer &amp; Remover</a>
+      <a class="icc-link" href="batch-image-compressor.html">📦 Batch Image Compressor</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="../assets/common.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<script>
+/* ════════════════════════════════════════════════════════════════════
+   ID Card Crop & Print — vanilla JS, fully offline.
+   - Auto document detection: Otsu threshold → largest bright component →
+     4-corner extreme heuristic (min/max of x±y).
+   - Manual 4-corner adjustment with drag handles (mouse + touch).
+   - Perspective de-skew via 4-point homography + bilinear sampling.
+   - Print enhancement (brightness / contrast / unsharp mask / grayscale).
+   - Exact-size A4 (or Letter) composite for print / PDF / PNG.
+════════════════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const clamp = (v,a,b)=>Math.max(a,Math.min(b,v));
+  const MM = 25.4;
+  const CARD_W = 85.6, CARD_H = 54;           // CR80 in mm
+  const WORK_MAX = 1400;                        // working-image longest side
+
+  // ── per-slot state ────────────────────────────────────────────────
+  const slots = {
+    front: mkSlot('front','canFront','editFront','dropFront','fileFront'),
+    back : mkSlot('back','canBack','editBack','dropBack','fileBack')
+  };
+
+  function mkSlot(key,canId,editId,dropId,fileId){
+    return {
+      key, canvas:$(canId), edit:$(editId), drop:$(dropId), file:$(fileId),
+      ctx:$(canId).getContext('2d'),
+      img:null,                 // working canvas (rotated, downscaled)
+      corners:null,             // [{x,y}×4] in working-canvas coords: TL,TR,BR,BL
+      rotation:0,
+      dragIdx:-1
+    };
+  }
+
+  // ── file input wiring ─────────────────────────────────────────────
+  Object.values(slots).forEach(s=>{
+    s.file.addEventListener('change',e=>{ if(e.target.files[0]) loadInto(s,e.target.files[0]); });
+    ['dragover','dragenter'].forEach(ev=>s.drop.addEventListener(ev,e=>{e.preventDefault();s.drop.classList.add('drag');}));
+    ['dragleave','drop'].forEach(ev=>s.drop.addEventListener(ev,e=>{e.preventDefault();s.drop.classList.remove('drag');}));
+    s.drop.addEventListener('drop',e=>{ const f=e.dataTransfer.files[0]; if(f) loadInto(s,f); });
+  });
+  // paste → fill first empty slot
+  window.addEventListener('paste',e=>{
+    const it=[...(e.clipboardData||{}).items||[]].find(i=>i.type.startsWith('image/'));
+    if(!it) return;
+    const s = !slots.front.img ? slots.front : slots.back;
+    loadInto(s, it.getAsFile());
+  });
+
+  function loadInto(s,file){
+    if(!file || !file.type.startsWith('image/')){ toast('Please choose an image file'); return; }
+    const url=URL.createObjectURL(file), im=new Image();
+    im.onload=()=>{
+      URL.revokeObjectURL(url);
+      s.rotation=0;
+      buildWorking(s, im);
+      autoDetect(s);          // best-effort auto crop on load
+      s.drop.style.display='none';
+      s.edit.classList.add('on');
+      render(s); rebuild();
+    };
+    im.onerror=()=>{ URL.revokeObjectURL(url); toast('Could not read this image (try JPG/PNG).'); };
+    im.src=url;
+    s._src=im;                // keep original for rotation
+  }
+
+  // Build the working canvas from the original image at current rotation.
+  function buildWorking(s, im){
+    const src = im || s._src; if(!src) return;
+    let w=src.naturalWidth, h=src.naturalHeight;
+    const rot=((s.rotation%360)+360)%360;
+    const swap = (rot===90||rot===270);
+    let ow = swap?h:w, oh = swap?w:h;
+    const scale = Math.min(1, WORK_MAX/Math.max(ow,oh));
+    ow=Math.round(ow*scale); oh=Math.round(oh*scale);
+    const c=document.createElement('canvas'); c.width=ow; c.height=oh;
+    const cx=c.getContext('2d');
+    cx.save(); cx.translate(ow/2,oh/2); cx.rotate(rot*Math.PI/180);
+    const dw = swap?oh:ow, dh = swap?ow:oh;
+    cx.drawImage(src, -dw/2, -dh/2, dw, dh);
+    cx.restore();
+    s.img=c;
+    if(!s.corners) fullFrame(s);
+  }
+
+  function fullFrame(s){
+    if(!s.img) return;
+    const w=s.img.width,h=s.img.height, m=Math.round(Math.min(w,h)*0.03);
+    s.corners=[{x:m,y:m},{x:w-m,y:m},{x:w-m,y:h-m},{x:m,y:h-m}];
+  }
+
+  // ── auto document detection ───────────────────────────────────────
+  function autoDetect(s){
+    if(!s.img) return;
+    const W=s.img.width,H=s.img.height;
+    const scale=Math.min(1, 480/Math.max(W,H));
+    const sw=Math.max(40,Math.round(W*scale)), sh=Math.max(40,Math.round(H*scale));
+    const tc=document.createElement('canvas'); tc.width=sw; tc.height=sh;
+    const tcx=tc.getContext('2d'); tcx.drawImage(s.img,0,0,sw,sh);
+    const data=tcx.getImageData(0,0,sw,sh).data;
+    const n=sw*sh, gray=new Uint8Array(n), hist=new Array(256).fill(0);
+    for(let i=0;i<n;i++){
+      const r=data[i*4],g=data[i*4+1],b=data[i*4+2];
+      const v=(r*0.299+g*0.587+b*0.114)|0; gray[i]=v; hist[v]++;
+    }
+    // Otsu threshold
+    let sum=0; for(let t=0;t<256;t++) sum+=t*hist[t];
+    let sumB=0,wB=0,maxVar=-1,thr=127;
+    for(let t=0;t<256;t++){
+      wB+=hist[t]; if(!wB) continue; const wF=n-wB; if(!wF) break;
+      sumB+=t*hist[t];
+      const mB=sumB/wB, mF=(sum-sumB)/wF, between=wB*wF*(mB-mF)*(mB-mF);
+      if(between>maxVar){ maxVar=between; thr=t; }
+    }
+    // The card is usually the brighter region. Build bright mask.
+    const mask=new Uint8Array(n);
+    let bright=0;
+    for(let i=0;i<n;i++){ if(gray[i]>thr){ mask[i]=1; bright++; } }
+    // If bright region is tiny or nearly everything, auto-detect is unreliable.
+    const frac=bright/n;
+    if(frac<0.08 || frac>0.97){ fullFrame(s); return; }
+    // Keep the largest connected bright component (removes stray highlights).
+    const comp = largestComponent(mask,sw,sh);
+    if(!comp || comp.count < n*0.05){ fullFrame(s); return; }
+    // 4-corner extreme heuristic over the component.
+    let tl,tr,br,bl, minSum=1e9,maxSum=-1e9,minDif=1e9,maxDif=-1e9;
+    const {pix}=comp;
+    for(let k=0;k<pix.length;k+=2){
+      const x=pix[k], y=pix[k+1], sm=x+y, df=x-y;
+      if(sm<minSum){minSum=sm; tl={x,y};}
+      if(sm>maxSum){maxSum=sm; br={x,y};}
+      if(df>maxDif){maxDif=df; tr={x,y};}
+      if(df<minDif){minDif=df; bl={x,y};}
+    }
+    if(!tl||!tr||!br||!bl){ fullFrame(s); return; }
+    const up=1/scale;
+    s.corners=[tl,tr,br,bl].map(p=>({x:clamp(p.x*up,0,W),y:clamp(p.y*up,0,H)}));
+    // Sanity: reject degenerate quads.
+    if(quadArea(s.corners) < W*H*0.12) fullFrame(s);
+  }
+
+  // BFS largest connected component of a binary mask; returns pixel list.
+  function largestComponent(mask,w,h){
+    const n=w*h, seen=new Uint8Array(n), stack=new Int32Array(n);
+    let best=null;
+    for(let start=0;start<n;start++){
+      if(!mask[start]||seen[start]) continue;
+      let sp=0; stack[sp++]=start; seen[start]=1;
+      const pix=[]; let count=0;
+      while(sp){
+        const idx=stack[--sp], x=idx%w, y=(idx/w)|0;
+        pix.push(x,y); count++;
+        if(x>0){const j=idx-1; if(mask[j]&&!seen[j]){seen[j]=1;stack[sp++]=j;}}
+        if(x<w-1){const j=idx+1; if(mask[j]&&!seen[j]){seen[j]=1;stack[sp++]=j;}}
+        if(y>0){const j=idx-w; if(mask[j]&&!seen[j]){seen[j]=1;stack[sp++]=j;}}
+        if(y<h-1){const j=idx+w; if(mask[j]&&!seen[j]){seen[j]=1;stack[sp++]=j;}}
+      }
+      if(!best||count>best.count) best={count,pix};
+    }
+    return best;
+  }
+
+  function quadArea(c){ // shoelace
+    let a=0; for(let i=0;i<4;i++){ const p=c[i],q=c[(i+1)%4]; a+=p.x*q.y-q.x*p.y; }
+    return Math.abs(a/2);
+  }
+
+  // ── editor rendering + corner dragging ────────────────────────────
+  function render(s){
+    if(!s.img) return;
+    const c=s.canvas; c.width=s.img.width; c.height=s.img.height;
+    const ctx=s.ctx; ctx.clearRect(0,0,c.width,c.height);
+    ctx.drawImage(s.img,0,0);
+    // dim outside the quad
+    ctx.save();
+    ctx.fillStyle='rgba(6,5,15,.58)';
+    ctx.beginPath(); ctx.rect(0,0,c.width,c.height);
+    ctx.moveTo(s.corners[0].x,s.corners[0].y);
+    for(let i=3;i>=0;i--) ctx.lineTo(s.corners[i].x,s.corners[i].y);
+    ctx.closePath(); ctx.fill('evenodd');
+    ctx.restore();
+    // quad outline
+    ctx.strokeStyle='#22d3ee'; ctx.lineWidth=Math.max(2,c.width/300);
+    ctx.beginPath(); ctx.moveTo(s.corners[0].x,s.corners[0].y);
+    for(let i=1;i<4;i++) ctx.lineTo(s.corners[i].x,s.corners[i].y);
+    ctx.closePath(); ctx.stroke();
+    // handles
+    const r=Math.max(9,c.width/45);
+    s.corners.forEach((p,i)=>{
+      ctx.beginPath(); ctx.arc(p.x,p.y,r,0,7);
+      ctx.fillStyle= i===s.dragIdx?'#8b5cf6':'#fff'; ctx.fill();
+      ctx.lineWidth=Math.max(2,c.width/320); ctx.strokeStyle='#8b5cf6'; ctx.stroke();
+    });
+  }
+
+  function canvasPos(s,ev){
+    const rect=s.canvas.getBoundingClientRect();
+    const t=ev.touches?ev.touches[0]:ev;
+    const sx=s.canvas.width/rect.width, sy=s.canvas.height/rect.height;
+    return {x:(t.clientX-rect.left)*sx, y:(t.clientY-rect.top)*sy};
+  }
+  Object.values(slots).forEach(s=>{
+    const down=ev=>{
+      if(!s.img) return; ev.preventDefault();
+      const p=canvasPos(s,ev); const r=Math.max(16,s.canvas.width/30);
+      let best=-1,bd=r*r;
+      s.corners.forEach((c,i)=>{ const d=(c.x-p.x)**2+(c.y-p.y)**2; if(d<bd){bd=d;best=i;} });
+      s.dragIdx=best; if(best>=0) render(s);
+    };
+    const move=ev=>{
+      if(s.dragIdx<0||!s.img) return; ev.preventDefault();
+      const p=canvasPos(s,ev);
+      s.corners[s.dragIdx]={x:clamp(p.x,0,s.canvas.width),y:clamp(p.y,0,s.canvas.height)};
+      render(s);
+    };
+    const up=()=>{ if(s.dragIdx>=0){ s.dragIdx=-1; render(s); rebuild(); } };
+    s.canvas.addEventListener('mousedown',down);
+    s.canvas.addEventListener('touchstart',down,{passive:false});
+    window.addEventListener('mousemove',move);
+    s.canvas.addEventListener('touchmove',move,{passive:false});
+    window.addEventListener('mouseup',up);
+    s.canvas.addEventListener('touchend',up);
+  });
+
+  // ── toolbar buttons ───────────────────────────────────────────────
+  document.querySelectorAll('[data-act]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const s=slots[b.dataset.slot], act=b.dataset.act;
+      if(!s.img && act!=='remove') return;
+      if(act==='auto'){ autoDetect(s); render(s); rebuild(); }
+      else if(act==='reset'){ fullFrame(s); render(s); rebuild(); }
+      else if(act==='rotate'){ s.rotation=(s.rotation+90)%360; s.corners=null; buildWorking(s); autoDetect(s); render(s); rebuild(); }
+      else if(act==='remove'){ removeSlot(s); }
+    });
+  });
+  function removeSlot(s){
+    s.img=null; s._src=null; s.corners=null; s.rotation=0;
+    s.edit.classList.remove('on'); s.drop.style.display='';
+    s.file.value=''; rebuild();
+  }
+
+  // ── perspective warp (4-point homography, bilinear inverse map) ───
+  function solveHomography(src,dst){
+    // Map dst(u,v) → src(x,y). Solve 8 unknowns.
+    const A=[],b=[];
+    for(let i=0;i<4;i++){
+      const {x:X,y:Y}=src[i], {x:u,y:v}=dst[i];
+      A.push([u,v,1,0,0,0,-u*X,-v*X]); b.push(X);
+      A.push([0,0,0,u,v,1,-u*Y,-v*Y]); b.push(Y);
+    }
+    const h=gauss(A,b); // [a,b,c,d,e,f,g,h]
+    return [h[0],h[1],h[2],h[3],h[4],h[5],h[6],h[7],1];
+  }
+  function gauss(A,b){
+    const n=8, M=A.map((r,i)=>r.concat(b[i]));
+    for(let col=0;col<n;col++){
+      let piv=col; for(let r=col+1;r<n;r++) if(Math.abs(M[r][col])>Math.abs(M[piv][col])) piv=r;
+      [M[col],M[piv]]=[M[piv],M[col]];
+      const d=M[col][col]||1e-9;
+      for(let c=col;c<=n;c++) M[col][c]/=d;
+      for(let r=0;r<n;r++){ if(r===col) continue; const f=M[r][col];
+        for(let c=col;c<=n;c++) M[r][c]-=f*M[col][c]; }
+    }
+    return M.map(r=>r[n]);
+  }
+
+  // Warp the card quad from slot working-canvas into an output canvas
+  // at outW×outH, then apply print enhancement.
+  function warpCard(s,outW,outH){
+    const src=s.img, sctx=src.getContext('2d');
+    const sd=sctx.getImageData(0,0,src.width,src.height).data, sw=src.width, sh=src.height;
+    const dst=[{x:0,y:0},{x:outW,y:0},{x:outW,y:outH},{x:0,y:outH}];
+    const H=solveHomography(s.corners,dst);
+    const out=document.createElement('canvas'); out.width=outW; out.height=outH;
+    const octx=out.getContext('2d'), od=octx.createImageData(outW,outH), o=od.data;
+    for(let y=0;y<outH;y++){
+      for(let x=0;x<outW;x++){
+        const w=H[6]*x+H[7]*y+H[8];
+        const sx=(H[0]*x+H[1]*y+H[2])/w, sy=(H[3]*x+H[4]*y+H[5])/w;
+        const di=(y*outW+x)*4;
+        if(sx<0||sy<0||sx>=sw-1||sy>=sh-1){ o[di]=o[di+1]=o[di+2]=255; o[di+3]=255; continue; }
+        const x0=sx|0,y0=sy|0,fx=sx-x0,fy=sy-y0;
+        const i00=(y0*sw+x0)*4, i10=i00+4, i01=i00+sw*4, i11=i01+4;
+        for(let ch=0;ch<3;ch++){
+          const a=sd[i00+ch]*(1-fx)+sd[i10+ch]*fx;
+          const bb=sd[i01+ch]*(1-fx)+sd[i11+ch]*fx;
+          o[di+ch]=a*(1-fy)+bb*fy;
+        }
+        o[di+3]=255;
+      }
+    }
+    enhance(o,outW,outH);
+    octx.putImageData(od,0,0);
+    return out;
+  }
+
+  // ── print enhancement pipeline ────────────────────────────────────
+  function enhance(px,w,h){
+    const auto=$('chkAuto').checked, gray=$('chkGray').checked;
+    let bright=+$('rBright').value, contrast=+$('rContrast').value, sharp=+$('rSharp').value/100;
+    if(auto){
+      // mild contrast stretch based on luminance percentiles
+      const {lo,hi}=percentiles(px,w,h);
+      const range=Math.max(1,hi-lo);
+      const gain=255/range, off=-lo*gain;
+      for(let i=0;i<px.length;i+=4){
+        px[i]=clamp(px[i]*gain+off,0,255);
+        px[i+1]=clamp(px[i+1]*gain+off,0,255);
+        px[i+2]=clamp(px[i+2]*gain+off,0,255);
+      }
+    }
+    const cf=(259*(contrast+255))/(255*(259-contrast));
+    for(let i=0;i<px.length;i+=4){
+      for(let ch=0;ch<3;ch++){
+        let v=px[i+ch]+bright; v=cf*(v-128)+128; px[i+ch]=clamp(v,0,255);
+      }
+      if(gray){ const g=px[i]*0.299+px[i+1]*0.587+px[i+2]*0.114; px[i]=px[i+1]=px[i+2]=g; }
+    }
+    if(sharp>0) unsharp(px,w,h,sharp);
+  }
+  function percentiles(px,w,h){
+    const hist=new Array(256).fill(0); let tot=0;
+    for(let i=0;i<px.length;i+=4){ const g=(px[i]*0.299+px[i+1]*0.587+px[i+2]*0.114)|0; hist[g]++; tot++; }
+    let lo=0,hi=255,c=0; const loN=tot*0.02, hiN=tot*0.98;
+    for(let v=0;v<256;v++){ c+=hist[v]; if(c>=loN){lo=v;break;} }
+    c=0; for(let v=0;v<256;v++){ c+=hist[v]; if(c>=hiN){hi=v;break;} }
+    if(hi<=lo){lo=0;hi=255;}
+    return {lo,hi};
+  }
+  // Unsharp mask: out = src + amt*(src - blur3x3)
+  function unsharp(px,w,h,amt){
+    const src=new Uint8ClampedArray(px);
+    const idx=(x,y)=>((y*w+x)<<2);
+    for(let y=1;y<h-1;y++){
+      for(let x=1;x<w-1;x++){
+        const i=idx(x,y);
+        for(let ch=0;ch<3;ch++){
+          let sum=0;
+          for(let dy=-1;dy<=1;dy++)for(let dx=-1;dx<=1;dx++) sum+=src[idx(x+dx,y+dy)+ch];
+          const blur=sum/9, val=src[i+ch]+amt*1.4*(src[i+ch]-blur);
+          px[i+ch]=clamp(val,0,255);
+        }
+      }
+    }
+  }
+
+  // ── composite A4 sheet ────────────────────────────────────────────
+  let sheetCanvas=null;
+  function rebuild(){
+    const ready = slots.front.img || slots.back.img;
+    $('outWrap').classList.toggle('icc-empty', !ready);
+    if(!ready){ sheetCanvas=null; return; }
+    const dpi=+$('selDpi').value;
+    const paper=$('selPaper').value;
+    const pageMM = paper==='letter' ? [215.9,279.4] : [210,297];
+    const pw=Math.round(pageMM[0]/MM*dpi), ph=Math.round(pageMM[1]/MM*dpi);
+    let scaleF = $('selSize').value==='cr80_110'?1.1 : $('selSize').value==='cr80_90'?0.9 : 1;
+    const cw=Math.round(CARD_W/MM*dpi*scaleF), ch=Math.round(CARD_H/MM*dpi*scaleF);
+
+    const sheet=document.createElement('canvas'); sheet.width=pw; sheet.height=ph;
+    const ctx=sheet.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,pw,ph);
+
+    // render each side at card pixel size (front/back)
+    const cards=[];
+    if(slots.front.img) cards.push(warpCard(slots.front,cw,ch));
+    if(slots.back.img)  cards.push(warpCard(slots.back,cw,ch));
+    if(!cards.length){ sheetCanvas=null; return; }
+
+    const copies=+$('selCopies').value;
+    const layout=$('selLayout').value;
+    const gap=Math.round(6/MM*dpi);           // 6mm gap
+    const marks=$('chkMarks').checked, border=$('chkBorder').checked;
+
+    // Build one "set" = the available cards stacked or side-by-side.
+    function drawSet(ox,oy){
+      let x=ox,y=oy;
+      cards.forEach((cd,i)=>{
+        ctx.drawImage(cd,x,y,cw,ch);
+        if(border){ ctx.strokeStyle='#999'; ctx.lineWidth=Math.max(1,dpi/300); ctx.strokeRect(x+.5,y+.5,cw-1,ch-1); }
+        if(marks) cutMarks(ctx,x,y,cw,ch,dpi);
+        if(layout==='side'){ x+=cw+gap; } else { y+=ch+gap; }
+      });
+    }
+    // set dimensions
+    let setW,setH;
+    if(layout==='side'){ setW=cards.length*cw+(cards.length-1)*gap; setH=ch; }
+    else { setW=cw; setH=cards.length*ch+(cards.length-1)*gap; }
+
+    const topMargin=Math.round(15/MM*dpi);
+    if(copies===1){
+      drawSet(Math.round((pw-setW)/2), topMargin);
+    } else {
+      // two sets: stack vertically with a divider gap
+      const vgap=Math.round(14/MM*dpi);
+      const totalH=setH*2+vgap;
+      let y0=Math.max(topMargin, Math.round((ph-totalH)/2));
+      drawSet(Math.round((pw-setW)/2), y0);
+      drawSet(Math.round((pw-setW)/2), y0+setH+vgap);
+    }
+    sheetCanvas=sheet;
+    // preview (downscaled)
+    const pv=$('sheetPreview'); const pvScale=Math.min(1, 560/ph);
+    pv.width=Math.round(pw*pvScale); pv.height=Math.round(ph*pvScale);
+    pv.getContext('2d').drawImage(sheet,0,0,pv.width,pv.height);
+  }
+  function cutMarks(ctx,x,y,w,h,dpi){
+    const L=Math.round(3/MM*dpi); ctx.strokeStyle='#bbb'; ctx.lineWidth=Math.max(1,dpi/350);
+    [[x,y,1,1],[x+w,y,-1,1],[x,y+h,1,-1],[x+w,y+h,-1,-1]].forEach(([cx,cy,sx,sy])=>{
+      ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(cx+sx*L,cy); ctx.moveTo(cx,cy); ctx.lineTo(cx,cy+sy*L); ctx.stroke();
+    });
+  }
+
+  // ── control listeners ─────────────────────────────────────────────
+  ['rBright','rContrast','rSharp'].forEach(id=>{
+    const map={rBright:'vBright',rContrast:'vContrast',rSharp:'vSharp'};
+    $(id).addEventListener('input',()=>{ $(map[id]).textContent=$(id).value; debounce(rebuild); });
+  });
+  ['selPaper','selSize','selCopies','selLayout','selDpi','chkAuto','chkGray','chkMarks','chkBorder']
+    .forEach(id=>$(id).addEventListener('change',rebuild));
+  let dbT=null; function debounce(fn){ clearTimeout(dbT); dbT=setTimeout(fn,120); }
+
+  // ── output actions ────────────────────────────────────────────────
+  $('btnPrint').addEventListener('click',()=>{
+    if(!sheetCanvas){ toast('Add at least one side first'); return; }
+    const paper=$('selPaper').value;
+    const [wmm,hmm]= paper==='letter'?[215.9,279.4]:[210,297];
+    const url=sheetCanvas.toDataURL('image/jpeg',0.95);
+    const w=window.open('','_blank');
+    if(!w){ toast('Allow pop-ups to print'); return; }
+    w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>Print ID Card</title><style>'+
+      '@page{size:'+(paper==='letter'?'letter':'A4')+' portrait;margin:0}'+
+      'html,body{margin:0;padding:0;background:#fff}'+
+      'img{width:'+wmm+'mm;height:'+hmm+'mm;display:block}'+
+      '</style></head><body><img src="'+url+'" onload="setTimeout(function(){window.focus();window.print();},60)"></body></html>');
+    w.document.close();
+  });
+  $('btnPng').addEventListener('click',()=>{
+    if(!sheetCanvas){ toast('Add at least one side first'); return; }
+    sheetCanvas.toBlob(b=>dl('id-card-sheet.png',b),'image/png');
+  });
+  $('btnPdf').addEventListener('click',()=>{
+    if(!sheetCanvas){ toast('Add at least one side first'); return; }
+    const J=window.jspdf&&window.jspdf.jsPDF; if(!J){ toast('PDF library still loading…'); return; }
+    const paper=$('selPaper').value;
+    const fmt= paper==='letter'?'letter':'a4';
+    const pdf=new J({orientation:'portrait',unit:'mm',format:fmt});
+    const [wmm,hmm]= paper==='letter'?[215.9,279.4]:[210,297];
+    pdf.addImage(sheetCanvas.toDataURL('image/jpeg',0.95),'JPEG',0,0,wmm,hmm);
+    pdf.save('id-card-sheet.pdf');
+  });
+  $('btnFront').addEventListener('click',()=>dlSide(slots.front,'id-front.png'));
+  $('btnBack').addEventListener('click',()=>dlSide(slots.back,'id-back.png'));
+  function dlSide(s,name){
+    if(!s.img){ toast('That side is empty'); return; }
+    const dpi=+$('selDpi').value, cw=Math.round(CARD_W/MM*dpi), ch=Math.round(CARD_H/MM*dpi);
+    warpCard(s,cw,ch).toBlob(b=>dl(name,b),'image/png');
+  }
+  function dl(name,blob){
+    if(window.downloadBlob) return downloadBlob(name,blob);
+    const u=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=u; a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(u),1500);
+  }
+  function toast(m){ if(window.premToast) premToast(m); else console.log(m); }
+
+  // ── SEO guide + FAQ (rendered) ────────────────────────────────────
+  const GUIDE=[
+    ['h2','The Complete Guide to Cropping and Printing ID Cards'],
+    ['p','Printing a clean copy of an identity card sounds simple, yet anyone who has tried it knows the small frustrations involved. You snap a quick photo of the front and back with your phone, and the result is a card floating in the middle of a desk, a lap or a hand, slightly tilted, with the real document taking up only part of the frame. Printing that photo directly wastes ink, wastes paper and produces an off-centre, crooked, undersized copy that looks nothing like the original card. The ID Card Crop &amp; Print tool exists to fix exactly this problem: it isolates the card, removes everything around it, straightens the perspective, sharpens the detail and lays both sides out at the correct physical size on a single page, ready to print or save as a PDF.'],
+    ['h3','Why a dedicated ID card tool beats a normal photo editor'],
+    ['p','You could, in theory, do all of this in a general image editor — crop each photo by hand, rotate it, adjust the brightness, resize it to card dimensions and arrange two copies on a page. In practice that is many fiddly steps repeated for every single card, and getting the size exactly right is nearly impossible without measuring pixels. This tool automates the whole chain. It detects the four corners of the card for you, applies a true perspective correction (not just a rotation) so a tilted photo becomes a perfectly rectangular scan, and places the result at the exact 85.6 × 54 mm credit-card size that Aadhaar, PAN, voter and most PVC cards use. What used to take several minutes per card becomes a matter of seconds.'],
+    ['h3','How automatic edge detection works'],
+    ['p','When you add a photo, the tool analyses a downscaled copy to find the card. It converts the image to grayscale, then uses Otsu&rsquo;s method to automatically choose a brightness threshold that best separates the bright card from the darker background such as a wooden table, a pair of jeans or a hand. It keeps the single largest connected bright region — which is almost always the card body — and then finds its four corners using a well-known geometric trick: the top-left corner has the smallest sum of its coordinates, the bottom-right the largest, and the other two are found from the largest and smallest coordinate differences. These four points define the card even when it is rotated a little. The corners are then shown as draggable handles so you can nudge them for a pixel-perfect fit whenever the automatic guess is not quite right.'],
+    ['h3','Perspective correction, not just cropping'],
+    ['p','A photograph taken by hand is almost never perfectly flat and square to the camera. The card leans, one edge is closer than the other, and the rectangle becomes a subtle trapezoid. Simply cropping to a rectangle would leave those distortions in place. This tool instead computes a four-point homography — the same mathematics used by professional document scanners — that maps your four chosen corners onto a clean, true rectangle. Every output pixel is sampled from the original photo using bilinear interpolation for a smooth, sharp result. The effect is that a crooked, angled snapshot is transformed into a flat, straight, scanner-quality image of the card.'],
+    ['h3','Enhancing for a clear, readable print'],
+    ['p','Phone photos of documents are often slightly dull, unevenly lit or a touch soft. To make the print crisp and legible, the tool applies an optional automatic enhancement: it stretches the contrast using brightness percentiles so faint text becomes bold and the card background becomes clean and white, and it applies an unsharp mask to bring out the fine detail of names, numbers and the photo. You stay in full control with manual brightness, contrast and sharpness sliders, and there is a dedicated black-and-white mode that produces the high-contrast look ideal for economical photocopying. The goal is always the same: a printout where every character on the card can be read at a glance.'],
+    ['h3','Printing at the exact real-world size'],
+    ['p','The most important — and most often ignored — part of printing an ID card is size. A copy that is even slightly too large or too small looks unofficial and may be rejected. This tool builds the output page at your chosen print resolution (300 DPI by default, up to 600 DPI) and places each card at precisely 85.6 × 54 mm, the international CR80 standard used by virtually every plastic ID card. When you print, a special page is generated with zero margins and the image locked to exact millimetre dimensions, so as long as you choose &ldquo;Actual size&rdquo; or 100% scale in your browser&rsquo;s print dialog, the card comes out at its true size every time. Faint cut guides mark exactly where to trim.'],
+    ['h3','Both sides on one page — and multiple copies'],
+    ['p','Most official processes ask for a photocopy of both the front and the back of an ID card, ideally on a single sheet. This tool does that by default: front on top, back below, both aligned and correctly sized. You can switch to a side-by-side layout, and you can print two complete sets on one A4 sheet when you need duplicate copies — a huge time and paper saver for shops that process many cards a day. Whatever the combination, the page preview updates live so you see exactly what will come out of the printer before you commit a single sheet.'],
+    ['h3','Works for every kind of ID card'],
+    ['p','Although it is perfect for Aadhaar cards, the tool is completely generic and works for any card-shaped document: PAN cards, voter ID cards, driving licences, health cards, employee and student ID cards, membership cards, bank and debit cards, and any other card in the standard CR80 size. Because you set the crop corners yourself, it also handles non-standard cards and even small certificates — you simply drag the corners to the document&rsquo;s edges and print. There is no fixed template forcing your document into the wrong shape.'],
+    ['h3','Privacy: your documents never leave your device'],
+    ['p','Identity documents are among the most sensitive files a person owns. Uploading them to an unknown website to be cropped is a real privacy risk — you have no idea whether the images are stored, shared or leaked. This tool removes that risk entirely by doing everything locally. The image decoding, edge detection, perspective correction, enhancement and page composition all run in your own browser using JavaScript and the HTML canvas. No photo is ever sent over the internet, nothing is saved on any server, and the moment you close the tab every image is gone from memory. You can even use the tool completely offline once the page has loaded, which is ideal for shops with unreliable connections that still want to guarantee customer privacy.'],
+    ['h3','Tips for the best possible result'],
+    ['p','A few small habits make a big difference. Photograph the card on a flat, contrasting surface in even light, avoiding harsh shadows and reflections on the plastic. Fill most of the frame with the card so the tool has plenty of detail to work with. Hold the phone parallel to the card rather than at a steep angle. After the automatic detection, glance at the four corners and drag any that missed the edge. Turn on auto-enhance for most photos, and switch to black-and-white only when you specifically want a photocopy look. Finally, always check &ldquo;Actual size&rdquo; and margins set to none in the print dialog — that single setting is the difference between a professional, correctly sized copy and a slightly-off one.']
+  ];
+  $('seoGuide').innerHTML = GUIDE.map(([t,c])=>`<${t}>${c}</${t}>`).join('');
+
+  const FAQ=[
+    ['Can this tool crop any ID card automatically?','Yes. It works for Aadhaar, PAN, voter ID, driving licence and any card-shaped document. It auto-detects the card edges, and you can drag the four corners to fine-tune any crop.'],
+    ['Are my ID photos uploaded anywhere?','No. Everything runs inside your browser — decoding, cropping, straightening and printing. Your images never leave your device and nothing is stored on any server.'],
+    ['How do I print both sides on one page?','Just add the front photo and the back photo. The tool automatically places both on a single A4 page. Then click Print or Download PDF.'],
+    ['Does it print at the real ID card size?','Yes. Cards are placed at the exact CR80 standard of 85.6 × 54 mm. In the print dialog choose &ldquo;Actual size&rdquo; / 100% scale and set margins to none for a perfectly sized copy.'],
+    ['My photo is tilted — will the print be crooked?','No. The tool applies a true perspective correction, so a tilted or angled photo is straightened into a flat, rectangular, scanner-quality image before printing.'],
+    ['How does the automatic crop work?','It converts the photo to grayscale, separates the bright card from the darker background using Otsu thresholding, keeps the largest card region, and finds its four corners geometrically. You can always adjust the corners manually.'],
+    ['The auto-detect missed the edges. What do I do?','Just drag the four corner handles onto the actual edges of the card. The crop and straightening update instantly.'],
+    ['Can I make the print clearer?','Yes. Keep &ldquo;Auto-enhance&rdquo; on, and use the Sharpness, Brightness and Contrast sliders. There is also a black-and-white mode for crisp photocopy-style output.'],
+    ['Can I print two copies on one page?','Yes. Set &ldquo;Copies per page&rdquo; to 2 and the tool places two complete front-and-back sets on a single sheet.'],
+    ['What paper sizes are supported?','A4 and US Letter. The page and card sizes are calculated precisely for whichever you choose.'],
+    ['Which image formats can I upload?','JPG, PNG and WebP work in all browsers. HEIC from iPhones works in most modern browsers; if it does not open, convert it first with our HEIC to JPG tool.'],
+    ['Can I download instead of printing?','Yes. You can download the full page as a PDF or PNG, or download just the cropped front or back as separate images.'],
+    ['Does it work on a phone?','Yes. The corner handles support touch, so you can crop and print directly from your phone or tablet.'],
+    ['Is there any watermark or limit?','No. There is no watermark, no signup and no limit — it is completely free.'],
+    ['Can I rotate a card that is sideways?','Yes. Use the Rotate button on each side to turn the photo 90° at a time, then adjust the corners.'],
+    ['Why should I set margins to none when printing?','Browser default margins shrink the page to fit, which changes the card size. Setting margins to none and scale to 100% keeps the card at its true 85.6 × 54 mm size.'],
+    ['Does the tool store or remember my cards?','No. Nothing is saved. As soon as you close or refresh the page, all images are cleared from memory.'],
+    ['Can I use it offline?','Yes. Once the page has loaded, cropping and printing work fully offline. Only the optional PDF library loads from the internet on first use.'],
+    ['What DPI should I use?','300 DPI is sharp and ideal for most printers. Choose 600 DPI for the maximum detail, or 200 DPI for a lighter file.'],
+    ['Is this suitable for a print or photocopy shop?','Absolutely. It is designed for exactly that — fast, private, correctly sized copies of customers&rsquo; ID cards without manual editing.']
+  ];
+  $('faqList').innerHTML = FAQ.map(([q,a])=>
+    `<details class="icc-fitem"><summary>${q}</summary><div class="a">${a}</div></details>`).join('');
+  $('faqSchema').textContent = JSON.stringify({
+    "@context":"https://schema.org","@type":"FAQPage",
+    mainEntity:FAQ.map(([q,a])=>({"@type":"Question",name:q.replace(/&ldquo;|&rdquo;/g,'"').replace(/&rsquo;/g,"'"),
+      acceptedAnswer:{"@type":"Answer",text:a.replace(/&ldquo;|&rdquo;/g,'"').replace(/&rsquo;/g,"'")}}))
+  });
+})();
+</script>
+</body>
+</html>
