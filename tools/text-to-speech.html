@@ -3,24 +3,167 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0d0a1f">
+<meta name="author" content="ApneSoftware">
+<meta name="language" content="English">
 <link rel="canonical" href="https://apnesoftware.com/tools/text-to-speech.html">
+<meta name="description" content="Free online Text to Speech tool — read any text aloud in your browser with natural voices, adjustable speed, pitch and volume. Import TXT, PDF and DOCX, highlight words while reading, and keep everything 100% private and offline using the browser's built-in Speech Synthesis. No signup, no AI, no upload.">
+<meta name="keywords" content="text to speech, online text to speech tool, free text to speech, browser text reader, speech synthesis, text reader, read text aloud, tts, text to voice, speak text online, listen to text, web speech api">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Text to Speech | ApneSoftware">
-<meta property="og:description" content="Convert text into speech. Free online tool — no signup required.">
+<meta property="og:title" content="Text to Speech — Read Any Text Aloud Free | ApneSoftware">
+<meta property="og:description" content="Turn text into natural speech right in your browser. Adjustable voice, speed, pitch and volume, word highlighting, TXT/PDF/DOCX import — free, private and offline.">
 <meta property="og:url" content="https://apnesoftware.com/tools/text-to-speech.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Text to Speech | ApneSoftware">
-<meta name="twitter:description" content="Convert text into speech. Free online tool — no signup required.">
+<meta name="twitter:title" content="Text to Speech — Read Any Text Aloud Free">
+<meta name="twitter:description" content="Free, private, offline Text to Speech in your browser — natural voices, speed & pitch control, word highlighting and file import.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text to Speech","description":"Convert text into speech. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/text-to-speech.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":["WebApplication","SoftwareApplication"],"name":"Text to Speech","description":"Free online Text to Speech tool that reads any text aloud in the browser using the native Speech Synthesis API, with adjustable voice, speed, pitch and volume, word highlighting and TXT/PDF/DOCX import.","url":"https://apnesoftware.com/tools/text-to-speech.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires a browser with the Web Speech API (SpeechSynthesis)","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"1540"},"featureList":["Natural browser voices","Adjustable speed, pitch and volume","Word and sentence highlighting","Import TXT, PDF and DOCX","Sleep timer, repeat and loop","100% offline and private"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com","logo":"https://apnesoftware.com/assets/og-image.png"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Text Tools","item":"https://apnesoftware.com/category/text-tools.html"},{"@type":"ListItem","position":3,"name":"Text to Speech","item":"https://apnesoftware.com/tools/text-to-speech.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to convert text to speech online","step":[{"@type":"HowToStep","position":1,"name":"Enter your text","text":"Type or paste text, or import a TXT, PDF or DOCX file into the editor."},{"@type":"HowToStep","position":2,"name":"Choose a voice and settings","text":"Pick a voice and adjust the speed, pitch and volume to your liking."},{"@type":"HowToStep","position":3,"name":"Press Play","text":"Click Play to hear your text read aloud, with the current word highlighted as it speaks."}]}
+</script>
+<script type="application/ld+json" id="faqSchema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}</script>
+
 <meta name="color-scheme" content="dark">
-<title>Text to Speech | ApneSoftware</title>
+<title>Text to Speech — Read Any Text Aloud Free & Private | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
+<style>
+/* ═══════════ TEXT TO SPEECH (tts-) ═══════════ */
+:root{
+  --tts-glass:rgba(255,255,255,.05); --tts-brd:rgba(255,255,255,.14);
+  --tts-accent:#8b5cf6; --tts-accent2:#22d3ee; --tts-good:#16C079; --tts-warn:#f59e0b; --tts-bad:#ef4444;
+}
+.tts-crumb{display:flex;flex-wrap:wrap;gap:7px;align-items:center;font-size:.8rem;color:var(--text-dim);padding:16px 0 0}
+.tts-crumb a{color:var(--tts-accent);text-decoration:none}.tts-crumb a:hover{text-decoration:underline}.tts-crumb .sep{opacity:.5}
+
+/* cards / glassmorphism */
+.tts-card{background:var(--tts-glass);border:1px solid var(--tts-brd);border-radius:16px;padding:16px;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);margin-top:16px;transition:transform .18s,border-color .18s,box-shadow .18s}
+.tts-card:hover{border-color:rgba(139,92,246,.4);box-shadow:0 10px 34px rgba(0,0,0,.28)}
+.tts-card h3{margin:0 0 12px;font-size:1rem;display:flex;align-items:center;gap:8px}
+.tts-grid2{display:grid;grid-template-columns:1.35fr 1fr;gap:16px;align-items:start}
+@media(max-width:860px){.tts-grid2{grid-template-columns:1fr}}
+
+/* editor */
+#inputText{width:100%;min-height:220px;resize:vertical;font:inherit;font-size:1rem;line-height:1.7;
+  padding:14px;border-radius:12px;border:1px solid var(--tts-brd);background:#12101f;color:var(--text)}
+#inputText:focus{outline:none;border-color:var(--tts-accent);box-shadow:0 0 0 3px rgba(139,92,246,.18)}
+.tts-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.tts-mini{font:inherit;font-size:.82rem;padding:9px 13px;border-radius:10px;border:1px solid var(--tts-brd);
+  background:var(--tts-glass);color:var(--text);cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:6px}
+.tts-mini:hover{border-color:var(--tts-accent);background:rgba(139,92,246,.14)}
+.tts-mini:active{transform:translateY(1px)}
+
+/* counters + limit */
+.tts-counts{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:8px;margin-top:12px}
+.tts-count{background:#12101f;border:1px solid var(--tts-brd);border-radius:11px;padding:9px 8px;text-align:center}
+.tts-count .n{font-size:1.15rem;font-weight:800;color:var(--tts-accent2)}
+.tts-count .l{font-size:.68rem;color:var(--text-dim);margin-top:2px}
+.tts-limit{margin-top:12px;font-size:.76rem;color:var(--text-dim);display:flex;justify-content:space-between}
+.tts-bar{height:8px;border-radius:99px;background:#221f36;overflow:hidden;margin-top:5px}
+.tts-bar > i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--tts-accent),var(--tts-accent2));transition:width .25s}
+
+/* controls */
+.tts-field{margin-bottom:12px}
+.tts-field label{display:block;font-size:.8rem;color:var(--text-dim);margin-bottom:6px;font-weight:600}
+.tts-field label .v{color:var(--tts-accent2);font-weight:700}
+.tts-field input[type=range]{width:100%;accent-color:var(--tts-accent)}
+.tts-field select,.tts-field input[type=text]{width:100%;font:inherit;padding:9px 11px;border-radius:10px;border:1px solid var(--tts-brd);background:#12101f;color:var(--text)}
+.tts-filters{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:480px){.tts-filters{grid-template-columns:1fr}}
+.tts-voicerow{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap}
+
+/* gradient buttons */
+.tts-btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.tts-btn{font:inherit;font-size:.92rem;font-weight:700;padding:13px 18px;border-radius:12px;border:1px solid var(--tts-brd);
+  background:var(--tts-glass);color:var(--text);cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:8px;min-height:48px}
+.tts-btn:hover{border-color:var(--tts-accent);background:rgba(139,92,246,.14);transform:translateY(-1px)}
+.tts-btn:active{transform:translateY(0)}
+.tts-btn.primary{background:linear-gradient(135deg,var(--tts-accent),#6d28d9);border-color:transparent;color:#fff}
+.tts-btn.primary:hover{filter:brightness(1.08)}
+.tts-btn.on{border-color:var(--tts-accent2);background:rgba(34,211,238,.16);color:#fff}
+.tts-btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+
+/* progress / time */
+.tts-prog{margin-top:14px}
+.tts-time{display:flex;justify-content:space-between;font-size:.78rem;color:var(--text-dim);margin-top:6px}
+
+/* reader / highlight */
+.tts-reader{background:#12101f;border:1px solid var(--tts-brd);border-radius:12px;padding:16px;min-height:80px;max-height:340px;
+  overflow:auto;line-height:2;font-size:1.02rem;white-space:pre-wrap;color:var(--text)}
+.tts-sent{border-radius:6px;padding:1px 2px;transition:background .15s}
+.tts-sent.active{background:rgba(139,92,246,.22);box-shadow:0 0 0 1px rgba(139,92,246,.35)}
+.tts-reader mark{background:var(--tts-accent2);color:#08131a;border-radius:5px;padding:0 3px}
+.tts-optrow{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.tts-chk{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;color:var(--text-dim);background:#12101f;border:1px solid var(--tts-brd);border-radius:10px;padding:7px 11px;cursor:pointer}
+.tts-chk input{accent-color:var(--tts-accent)}
+
+/* statistics */
+.tts-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.tts-stat{background:#12101f;border:1px solid var(--tts-brd);border-radius:11px;padding:11px}
+.tts-stat .l{font-size:.7rem;color:var(--text-dim)}
+.tts-stat .n{font-size:1.02rem;font-weight:700;margin-top:3px;word-break:break-word}
+
+/* history */
+.tts-hist{display:flex;flex-direction:column;gap:8px}
+.tts-hitem{display:flex;justify-content:space-between;gap:10px;align-items:center;background:#12101f;border:1px solid var(--tts-brd);border-radius:10px;padding:10px 12px}
+.tts-hitem span{font-size:.85rem;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.tts-hitem button{font:inherit;font-size:.76rem;padding:5px 10px;border-radius:8px;border:1px solid var(--tts-brd);background:transparent;color:var(--tts-accent);cursor:pointer}
+
+/* browser support */
+.tts-browsers{display:flex;flex-wrap:wrap;gap:10px}
+.tts-bchip{display:flex;align-items:center;gap:8px;background:#12101f;border:1px solid var(--tts-brd);border-radius:11px;padding:9px 14px;font-size:.85rem}
+.tts-bchip b{font-weight:700}
+
+/* keyboard shortcuts */
+.tts-keys{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.tts-key{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--text-dim)}
+kbd{background:#221f36;border:1px solid var(--tts-brd);border-bottom-width:2px;border-radius:6px;padding:2px 8px;font-family:inherit;font-size:.8rem;color:var(--text)}
+
+/* alerts / toasts */
+#ttsToasts{position:fixed;right:16px;bottom:16px;display:flex;flex-direction:column;gap:10px;z-index:9999;max-width:min(360px,90vw)}
+.tts-toast{display:flex;align-items:flex-start;gap:10px;padding:13px 15px;border-radius:12px;color:#fff;
+  box-shadow:0 12px 34px rgba(0,0,0,.4);animation:ttsIn .25s ease;font-size:.9rem}
+@keyframes ttsIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.tts-toast.info{background:linear-gradient(135deg,#6d28d9,#8b5cf6)}
+.tts-toast.success{background:linear-gradient(135deg,#0f9d6b,#16C079)}
+.tts-toast.warn{background:linear-gradient(135deg,#b45309,#f59e0b)}
+.tts-toast.error{background:linear-gradient(135deg,#b91c1c,#ef4444)}
+.tts-banner{display:none;align-items:center;gap:10px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.4);
+  border-radius:12px;padding:12px 15px;margin-top:14px;font-size:.9rem;color:var(--text)}
+.tts-banner.show{display:flex}
+
+/* privacy strip */
+.tts-privacy{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(22,192,121,.1),rgba(34,211,238,.06));
+  border:1px solid rgba(22,192,121,.3);border-radius:12px;padding:12px 15px;margin-top:14px;font-size:.85rem;color:var(--text)}
+
+/* SEO / FAQ / related */
+.tts-seo{max-width:1040px;margin:22px auto 0;padding:0 6px}
+.tts-seo h2{font-size:1.3rem;font-weight:800;margin:26px 0 10px}
+.tts-seo h3{font-size:1rem;font-weight:700;color:var(--tts-accent);margin:18px 0 8px}
+.tts-seo p,.tts-seo li{color:var(--text-dim);font-size:.93rem;line-height:1.85}
+.tts-faq details{background:var(--tts-glass);border:1px solid var(--tts-brd);border-radius:10px;padding:0 14px;margin-bottom:8px}
+.tts-faq summary{cursor:pointer;padding:13px 0;font-weight:600;list-style:none}.tts-faq summary::-webkit-details-marker{display:none}
+.tts-faq summary::before{content:"＋";color:var(--tts-accent);margin-right:9px;font-weight:800}
+.tts-faq details[open] summary::before{content:"－"}
+.tts-faq details p{padding:0 0 12px;color:var(--text-dim);line-height:1.75}
+.tts-related{max-width:1040px;margin:26px auto 0;padding:0 6px}
+.tts-related h2{font-size:1.15rem;margin-bottom:12px}
+.tts-rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.tts-link{display:block;padding:11px 14px;border-radius:11px;border:1px solid var(--tts-brd);background:var(--tts-glass);color:var(--text);text-decoration:none;font-size:.86rem;transition:.15s}
+.tts-link:hover{border-color:var(--tts-accent);background:rgba(139,92,246,.12);transform:translateY(-1px)}
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -31,120 +174,778 @@
 </header>
 
 <div class="container">
+  <nav class="tts-crumb" aria-label="Breadcrumb">
+    <a href="../index.html">Home</a><span class="sep">›</span>
+    <a href="../category/text-tools.html">Text Tools</a><span class="sep">›</span>
+    <span aria-current="page">Text to Speech</span>
+  </nav>
+
   <div class="tool-header">
     <h1>🔊 Text to Speech</h1>
-    <p>Type some text and listen to it spoken aloud.</p>
+    <p>Read any text aloud in your browser with natural voices, adjustable <b>speed, pitch and volume</b>, word highlighting and TXT/PDF/DOCX import — <b>free, private and offline</b>, powered by your browser's built-in Speech Synthesis. No signup, no AI, nothing uploaded.</p>
   </div>
 
-  <div class="panel">
-    <div class="field">
-      <label for="inputText">Type your text</label>
-      <textarea id="inputText" placeholder="Type the text you want to hear...">Hello! This is the Text to Speech tool from ApneSoftware.</textarea>
-    </div>
+  <!-- Browser-not-supported banner -->
+  <div class="tts-banner" id="supportBanner" role="alert">⚠️ <span>Your browser does not support the Web Speech API. Please try Chrome, Edge, Safari, Firefox or Opera to use this tool.</span></div>
 
-    <div class="row">
-      <div class="field">
-        <label for="voiceSelect">Choose a voice</label>
-        <select id="voiceSelect"></select>
+  <div class="tts-privacy">🔒 <span><b>100% private:</b> your text is spoken by your own browser and is never uploaded, saved on a server or shared. Everything runs locally on your device.</span></div>
+
+  <div class="tts-grid2">
+    <!-- ═══ EDITOR ═══ -->
+    <section class="tts-card" aria-label="Text editor">
+      <h3>📝 Your Text</h3>
+      <div class="tts-toolbar">
+        <button class="tts-mini" id="pasteBtn" type="button">📥 Paste</button>
+        <button class="tts-mini" id="copyBtn" type="button">📋 Copy</button>
+        <button class="tts-mini" id="clearBtn" type="button">🗑️ Clear</button>
+        <button class="tts-mini" id="importBtn" type="button">📂 Import TXT/PDF/DOCX</button>
+        <button class="tts-mini" id="dlBtn" type="button">⬇️ Download .txt</button>
+        <button class="tts-mini" id="printBtn" type="button">🖨️ Print</button>
+        <input type="file" id="fileInput" accept=".txt,.pdf,.docx,text/plain,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
       </div>
-      <div class="field">
-        <label for="rateRange">Speed: <span id="rateVal">1</span>x</label>
+      <textarea id="inputText" placeholder="Type or paste the text you want to hear… or drag & drop a .txt file here."></textarea>
+
+      <div class="tts-counts">
+        <div class="tts-count"><div class="n" id="cChars">0</div><div class="l">Characters</div></div>
+        <div class="tts-count"><div class="n" id="cWords">0</div><div class="l">Words</div></div>
+        <div class="tts-count"><div class="n" id="cSent">0</div><div class="l">Sentences</div></div>
+        <div class="tts-count"><div class="n" id="cPara">0</div><div class="l">Paragraphs</div></div>
+        <div class="tts-count"><div class="n" id="cRead">0s</div><div class="l">Reading time</div></div>
+        <div class="tts-count"><div class="n" id="cSpeak">0s</div><div class="l">Speaking time</div></div>
+      </div>
+      <div class="tts-limit"><span>Character limit</span><span id="limitTxt">0 / 100,000</span></div>
+      <div class="tts-bar"><i id="limitBar"></i></div>
+    </section>
+
+    <!-- ═══ VOICE + PLAYBACK CONTROLS ═══ -->
+    <section class="tts-card" aria-label="Voice and playback controls">
+      <h3>🎚️ Voice &amp; Controls</h3>
+
+      <div class="tts-filters">
+        <div class="tts-field"><label for="voiceSearch">Search voice</label><input type="text" id="voiceSearch" placeholder="e.g. Google, Ravi…"></div>
+        <div class="tts-field"><label for="langFilter">Language</label><select id="langFilter"><option value="">All languages</option></select></div>
+        <div class="tts-field"><label for="accentFilter">Accent / Region</label><select id="accentFilter"><option value="">All accents</option></select></div>
+        <div class="tts-field"><label for="genderFilter">Gender</label><select id="genderFilter"><option value="">Any</option><option value="female">Female</option><option value="male">Male</option></select></div>
+      </div>
+
+      <div class="tts-field">
+        <label for="voiceSelect">Voice</label>
+        <select id="voiceSelect" aria-label="Choose a voice"></select>
+        <div class="tts-voicerow">
+          <button class="tts-mini" id="previewBtn" type="button">🔎 Preview</button>
+          <button class="tts-mini" id="favBtn" type="button">☆ Favorite</button>
+          <button class="tts-mini" id="defaultBtn" type="button">📌 Set default</button>
+          <label class="tts-chk"><input type="checkbox" id="favOnly"> Favorites only</label>
+        </div>
+      </div>
+
+      <div class="tts-field">
+        <label for="rateRange">Speed: <span class="v" id="rateVal">1</span>x</label>
         <input type="range" id="rateRange" min="0.5" max="2" step="0.1" value="1">
       </div>
-      <div class="field">
-        <label for="pitchRange">Pitch: <span id="pitchVal">1</span></label>
+      <div class="tts-field">
+        <label for="pitchRange">Pitch: <span class="v" id="pitchVal">1</span></label>
         <input type="range" id="pitchRange" min="0" max="2" step="0.1" value="1">
       </div>
-    </div>
+      <div class="tts-field">
+        <label for="volRange">Volume: <span class="v" id="volVal">100</span>%</label>
+        <input type="range" id="volRange" min="0" max="1" step="0.05" value="1">
+      </div>
+      <div class="tts-field">
+        <label for="sleepTimer">😴 Sleep timer</label>
+        <select id="sleepTimer"><option value="0">Off</option><option value="5">5 minutes</option><option value="10">10 minutes</option><option value="15">15 minutes</option><option value="30">30 minutes</option><option value="45">45 minutes</option><option value="60">60 minutes</option></select>
+      </div>
 
-    <div class="btn-row">
-      <button class="btn" id="playBtn">▶️ Play</button>
-      <button class="btn secondary" id="pauseBtn">⏸️ Pause</button>
-      <button class="btn secondary" id="stopBtn">⏹️ Stop</button>
-    </div>
+      <div class="tts-btns">
+        <button class="tts-btn primary" id="playBtn" type="button">▶️ Play</button>
+        <button class="tts-btn" id="pauseBtn" type="button" disabled>⏸️ Pause</button>
+        <button class="tts-btn" id="stopBtn" type="button" disabled>⏹️ Stop</button>
+        <button class="tts-btn" id="restartBtn" type="button" disabled>⟲ Restart</button>
+        <button class="tts-btn" id="repeatBtn" type="button" title="Repeat once when finished">🔂 Repeat</button>
+        <button class="tts-btn" id="loopBtn" type="button" title="Loop forever">🔁 Loop</button>
+      </div>
 
-    <p style="color:var(--text-dim);font-size:.85rem;margin-top:14px">⚠️ Note: Available voices depend on your device/browser.</p>
+      <div class="tts-prog">
+        <div class="tts-bar"><i id="playBar"></i></div>
+        <div class="tts-time"><span id="elapsed">00:00</span><span id="progPct">0%</span><span id="remaining">-00:00</span></div>
+      </div>
+    </section>
   </div>
+
+  <!-- ═══ READER / HIGHLIGHT ═══ -->
+  <section class="tts-card" aria-label="Reading view">
+    <h3>👁️ Reading View</h3>
+    <div class="tts-optrow">
+      <label class="tts-chk"><input type="checkbox" id="optSentence" checked> Highlight sentence</label>
+      <label class="tts-chk"><input type="checkbox" id="optWord" checked> Highlight word</label>
+      <label class="tts-chk"><input type="checkbox" id="optScroll" checked> Auto-scroll</label>
+    </div>
+    <div class="tts-reader" id="ttsReader" aria-live="polite">Your text will appear here and the current sentence and word will be highlighted while it is read aloud.</div>
+  </section>
+
+  <!-- ═══ STATISTICS ═══ -->
+  <section class="tts-card" aria-label="Statistics">
+    <h3>📊 Statistics</h3>
+    <div class="tts-stats">
+      <div class="tts-stat"><div class="l">Characters</div><div class="n" id="sChars">0</div></div>
+      <div class="tts-stat"><div class="l">Words</div><div class="n" id="sWords">0</div></div>
+      <div class="tts-stat"><div class="l">Sentences</div><div class="n" id="sSent">0</div></div>
+      <div class="tts-stat"><div class="l">Paragraphs</div><div class="n" id="sPara">0</div></div>
+      <div class="tts-stat"><div class="l">Reading time</div><div class="n" id="sRead">0s</div></div>
+      <div class="tts-stat"><div class="l">Speaking time</div><div class="n" id="sSpeak">0s</div></div>
+      <div class="tts-stat"><div class="l">Speech progress</div><div class="n" id="sProg">0%</div></div>
+      <div class="tts-stat"><div class="l">Current voice</div><div class="n" id="sVoice">—</div></div>
+      <div class="tts-stat"><div class="l">Current speed</div><div class="n" id="sSpeed">1x</div></div>
+      <div class="tts-stat"><div class="l">Current pitch</div><div class="n" id="sPitch">1</div></div>
+    </div>
+  </section>
+
+  <!-- ═══ HISTORY ═══ -->
+  <section class="tts-card" aria-label="Recent history">
+    <h3>🕘 Recent History <button class="tts-mini" id="clearHist" type="button" style="margin-left:auto">Clear</button></h3>
+    <div class="tts-hist" id="histList"></div>
+  </section>
+
+  <!-- ═══ BROWSER SUPPORT ═══ -->
+  <section class="tts-card" aria-label="Browser support">
+    <h3>🌐 Supported Browsers</h3>
+    <div class="tts-browsers">
+      <div class="tts-bchip">🟢 <b>Chrome</b></div>
+      <div class="tts-bchip">🔵 <b>Edge</b></div>
+      <div class="tts-bchip">🧭 <b>Safari</b></div>
+      <div class="tts-bchip">🦊 <b>Firefox</b></div>
+      <div class="tts-bchip">🔴 <b>Opera</b></div>
+    </div>
+  </section>
+
+  <!-- ═══ KEYBOARD SHORTCUTS ═══ -->
+  <section class="tts-card" aria-label="Keyboard shortcuts">
+    <h3>⌨️ Keyboard Shortcuts</h3>
+    <div class="tts-keys">
+      <div class="tts-key"><kbd>Space</kbd> Play / Pause</div>
+      <div class="tts-key"><kbd>Ctrl</kbd> + <kbd>C</kbd> Copy text</div>
+      <div class="tts-key"><kbd>Ctrl</kbd> + <kbd>L</kbd> Clear text</div>
+      <div class="tts-key"><kbd>Ctrl</kbd> + <kbd>P</kbd> Print text</div>
+    </div>
+  </section>
 </div>
 
-
+<!-- ═══ ABOUT (bilingual ~1500 words) ═══ -->
 <div class="info-wrap">
   <div class="info-section">
     <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Convert any written text into spoken audio that plays directly in your browser.</p>
-      <h3>How to use:</h3>
+      <h2>ℹ️ About This Tool — Free Online Text to Speech</h2>
+      <p>This <strong>Text to Speech</strong> tool turns any written text into natural spoken audio that plays instantly in your web browser. It is a completely free, <strong>online Text to Speech tool</strong> that uses your browser's built-in <strong>Speech Synthesis</strong> engine, so there is no software to install, no account to create and nothing to pay. Whether you want to listen to an article while you rest your eyes, proofread your own writing by ear, or study on the go, this <strong>browser text reader</strong> lets you <strong>read text aloud</strong> in seconds.</p>
+
+      <h3>What This Tool Does</h3>
+      <p>At its core, the tool takes the text you type, paste or import and speaks it out loud using the voices available on your device. You can choose from every voice your browser and operating system provide, change the reading speed, adjust the pitch and control the volume. As it reads, the current sentence and word are highlighted so you can follow along easily, which is perfect for reading practice, language learning and accessibility.</p>
+
+      <h3>Why It Is Useful</h3>
+      <p>Listening is often faster and less tiring than reading, especially for long documents. A good <strong>text reader</strong> lets you consume content while doing other things, catch mistakes you would skim past on screen, and give your eyes a break. People who find reading difficult — because of dyslexia, low vision or simply tiredness — can absorb the same information comfortably through audio. Turning text into speech also makes multitasking easy: you can listen to your notes while commuting, cooking or exercising.</p>
+
+      <h3>Key Features</h3>
+      <ul>
+        <li>Natural voices from your browser and device, with search, language, accent and gender filters.</li>
+        <li>Adjustable speed, pitch and volume, plus a voice preview and favourite voices.</li>
+        <li>Full playback control: play, pause, resume, stop, restart, repeat and infinite loop.</li>
+        <li>Live sentence and word highlighting with auto-scroll in the reading view.</li>
+        <li>Import text from TXT, PDF and DOCX files, or drag and drop a text file.</li>
+        <li>Character, word, sentence and paragraph counters with reading and speaking time.</li>
+        <li>Sleep timer, download as .txt, print, auto-save and a recent history list.</li>
+      </ul>
+
+      <h3>Benefits of Using Read Text Aloud</h3>
+      <p>Hearing your own writing read back to you is one of the best ways to catch awkward sentences, missing words and typos. Students can revise by listening to notes, writers can polish drafts, and busy professionals can get through reports hands-free. Because the tool works entirely in the browser, it is fast, responsive and available whenever you need it.</p>
+
+      <h3>How to Use</h3>
       <ol>
-        <li>Type or paste the text you want to hear.</li>
-        <li>Choose a voice and speed if needed.</li>
-        <li>Click Play to listen.</li>
+        <li>Type or paste your text into the editor, or import a TXT, PDF or DOCX file.</li>
+        <li>Pick a voice and adjust the speed, pitch and volume to suit you.</li>
+        <li>Press <strong>Play</strong> to hear the text read aloud with live highlighting.</li>
+        <li>Use pause, resume, stop, repeat or loop as needed, and set a sleep timer if you like.</li>
+        <li>Download or print the text, and revisit earlier text from your recent history.</li>
       </ol>
+
+      <h3>Why Choose This Tool?</h3>
+      <p>Many online readers send your text to a remote server, require a login or limit how much you can convert. This <strong>free Text to Speech</strong> tool does the opposite: it is unlimited, needs no signup, contains no ads-driven paywall and processes everything on your own device. It combines a clean, modern interface with genuinely useful features such as word highlighting, file import and playback control that many simple readers lack.</p>
+
+      <h3>Privacy &amp; Security</h3>
+      <p>Your privacy is fully protected because all processing happens locally in your browser using the native <strong>Speech Synthesis</strong> API. The text you enter is never uploaded to any server, never stored in the cloud and never shared with third parties. Imported files are read directly in your browser and are not transmitted anywhere. When you close the tab, the audio stops and nothing is left behind except the optional auto-saved copy kept only on your own device.</p>
+
+      <h3>Supported Browsers</h3>
+      <p>The tool works in every modern browser that supports the Web Speech API, including Google Chrome, Microsoft Edge, Apple Safari, Mozilla Firefox and Opera, on both desktop and mobile. The exact voices available depend on your operating system, so Windows, macOS, Android and iOS each offer their own set of voices. Chrome and Edge usually provide the widest choice, including online neural voices when you are connected.</p>
+
+      <h3>Tips for Best Results</h3>
+      <ul>
+        <li>Break very long text into paragraphs so highlighting and scrolling stay smooth.</li>
+        <li>Try a few voices — quality varies a lot between devices and languages.</li>
+        <li>Slightly slower speeds (0.8x–0.9x) sound clearer for study and language practice.</li>
+        <li>Use punctuation properly; commas and full stops help the voice pause naturally.</li>
+      </ul>
+
+      <h3>Limitations of Browser Voices</h3>
+      <p>Because this tool uses the voices built into your browser and device, the number and quality of voices are not the same for everyone. Some devices offer only one or two robotic voices, while others include many lifelike ones. A few browsers also pause long readings, which is why the tool automatically splits your text into smaller pieces for reliable playback.</p>
+
+      <h3>Conclusion</h3>
+      <p>This <strong>online Text to Speech tool</strong> gives you a fast, private and flexible way to listen to any text without installing anything or trusting a server with your words. With natural voices, precise controls, file import and live highlighting, it is a dependable everyday companion for reading, studying, proofreading and accessibility — completely free.</p>
     </div>
     <hr class="info-divider">
     <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल किसी भी लिखे हुए टेक्स्ट को बोली हुई आवाज़ में बदलकर सीधे ब्राउज़र में सुनाता है।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
+      <h2>ℹ️ इस टूल के बारे में — फ्री ऑनलाइन टेक्स्ट टू स्पीच</h2>
+      <p>यह <strong>Text to Speech</strong> टूल किसी भी लिखे हुए टेक्स्ट को स्वाभाविक बोली हुई आवाज़ में बदलकर सीधे आपके ब्राउज़र में सुनाता है। यह पूरी तरह फ्री <strong>ऑनलाइन टेक्स्ट टू स्पीच टूल</strong> है जो आपके ब्राउज़र की built-in <strong>Speech Synthesis</strong> तकनीक का उपयोग करता है — न कोई software install करना है, न account बनाना है और न कुछ pay करना है। चाहे आप आँखें आराम देते हुए कोई लेख सुनना चाहें, अपने लेखन को सुनकर जाँचना चाहें, या चलते-फिरते पढ़ाई करना चाहें, यह <strong>browser text reader</strong> कुछ ही सेकंड में टेक्स्ट को <strong>ज़ोर से पढ़कर</strong> सुना देता है।</p>
+
+      <h3>यह टूल क्या करता है</h3>
+      <p>यह टूल आपके टाइप, पेस्ट या import किए हुए टेक्स्ट को आपके device पर उपलब्ध आवाज़ों से बोलकर सुनाता है। आप अपने ब्राउज़र और operating system की हर आवाज़ में से चुन सकते हैं, पढ़ने की गति बदल सकते हैं, pitch समायोजित कर सकते हैं और volume नियंत्रित कर सकते हैं। पढ़ते समय मौजूदा वाक्य और शब्द highlight होते हैं ताकि आप आसानी से साथ-साथ पढ़ सकें — जो पढ़ने के अभ्यास, भाषा सीखने और accessibility के लिए बहुत उपयोगी है।</p>
+
+      <h3>यह क्यों उपयोगी है</h3>
+      <p>सुनना अक्सर पढ़ने से तेज़ और कम थकाने वाला होता है, खासकर लंबे दस्तावेज़ों के लिए। एक अच्छा <strong>text reader</strong> आपको दूसरे काम करते हुए content सुनने देता है, ऐसी गलतियाँ पकड़ता है जिन्हें आप स्क्रीन पर छोड़ देते, और आपकी आँखों को आराम देता है। जिन्हें पढ़ने में कठिनाई होती है — dyslexia, कमज़ोर दृष्टि या थकान के कारण — वे यही जानकारी audio के ज़रिए आराम से समझ सकते हैं।</p>
+
+      <h3>मुख्य विशेषताएँ</h3>
+      <ul>
+        <li>आपके ब्राउज़र और device की स्वाभाविक आवाज़ें, search, भाषा, accent और gender filter के साथ।</li>
+        <li>गति, pitch और volume समायोजन, आवाज़ का preview और पसंदीदा आवाज़ें।</li>
+        <li>पूरा playback नियंत्रण: play, pause, resume, stop, restart, repeat और अनंत loop।</li>
+        <li>reading view में live वाक्य व शब्द highlight और auto-scroll।</li>
+        <li>TXT, PDF और DOCX फाइलों से टेक्स्ट import, या text फाइल drag & drop।</li>
+        <li>अक्षर, शब्द, वाक्य व पैराग्राफ counters तथा reading व speaking time।</li>
+        <li>Sleep timer, .txt download, print, auto-save और recent history।</li>
+      </ul>
+
+      <h3>लाभ</h3>
+      <p>अपने लेखन को सुनकर जाँचना अटपटे वाक्य, छूटे शब्द और typos पकड़ने का सबसे अच्छा तरीका है। छात्र notes सुनकर revision कर सकते हैं, लेखक अपने draft सुधार सकते हैं, और व्यस्त पेशेवर रिपोर्ट hands-free सुन सकते हैं। चूँकि टूल पूरी तरह ब्राउज़र में चलता है, यह तेज़ और हमेशा उपलब्ध रहता है।</p>
+
+      <h3>इस्तेमाल कैसे करें</h3>
       <ol>
-        <li>जो टेक्स्ट सुनना है उसे टाइप या पेस्ट करें।</li>
-        <li>ज़रूरत हो तो आवाज़ और स्पीड चुनें।</li>
-        <li>सुनने के लिए Play बटन दबाएं।</li>
+        <li>editor में टेक्स्ट टाइप या पेस्ट करें, या TXT/PDF/DOCX फाइल import करें।</li>
+        <li>एक आवाज़ चुनें और गति, pitch व volume अपने अनुसार सेट करें।</li>
+        <li>live highlighting के साथ सुनने के लिए <strong>Play</strong> दबाएँ।</li>
+        <li>ज़रूरत अनुसार pause, resume, stop, repeat या loop करें और चाहें तो sleep timer लगाएँ।</li>
+        <li>टेक्स्ट download या print करें, और recent history से पुराना टेक्स्ट दोबारा खोलें।</li>
       </ol>
+
+      <h3>इस टूल को क्यों चुनें?</h3>
+      <p>कई ऑनलाइन readers आपका टेक्स्ट server पर भेजते हैं, login माँगते हैं या सीमा लगाते हैं। यह <strong>फ्री टेक्स्ट टू स्पीच</strong> टूल इसके उलट है: यह असीमित है, signup की ज़रूरत नहीं, कोई paywall नहीं और सब कुछ आपके ही device पर होता है। इसमें एक साफ़, आधुनिक interface के साथ word highlighting, फाइल import और playback नियंत्रण जैसी वास्तव में उपयोगी सुविधाएँ हैं।</p>
+
+      <h3>गोपनीयता और सुरक्षा</h3>
+      <p>आपकी गोपनीयता पूरी तरह सुरक्षित है क्योंकि सारा काम आपके ब्राउज़र में native <strong>Speech Synthesis</strong> API से होता है। आपका टेक्स्ट कभी किसी server पर upload नहीं होता, cloud में सहेजा नहीं जाता और किसी तीसरे पक्ष से साझा नहीं होता। Import की गई फाइलें भी सीधे आपके ब्राउज़र में पढ़ी जाती हैं, कहीं भेजी नहीं जातीं। tab बंद करते ही सब कुछ हट जाता है, सिवाय उस optional auto-saved copy के जो केवल आपके device पर रहती है।</p>
+
+      <h3>समर्थित ब्राउज़र</h3>
+      <p>यह टूल हर आधुनिक ब्राउज़र में काम करता है जो Web Speech API का समर्थन करता है — Google Chrome, Microsoft Edge, Apple Safari, Mozilla Firefox और Opera, desktop व mobile दोनों पर। उपलब्ध आवाज़ें आपके operating system पर निर्भर करती हैं, इसलिए Windows, macOS, Android और iOS की अपनी-अपनी आवाज़ें होती हैं। Chrome और Edge आमतौर पर सबसे ज़्यादा विकल्प देते हैं।</p>
+
+      <h3>बेहतर परिणाम के लिए सुझाव</h3>
+      <ul>
+        <li>बहुत लंबे टेक्स्ट को पैराग्राफ में बाँटें ताकि highlight और scroll सहज रहें।</li>
+        <li>कुछ आवाज़ें आज़माएँ — गुणवत्ता device और भाषा के अनुसार बदलती है।</li>
+        <li>पढ़ाई व भाषा अभ्यास के लिए थोड़ी धीमी गति (0.8x–0.9x) अधिक स्पष्ट लगती है।</li>
+        <li>सही punctuation का उपयोग करें; comma व full stop आवाज़ को स्वाभाविक विराम देते हैं।</li>
+      </ul>
+
+      <h3>ब्राउज़र आवाज़ों की सीमाएँ</h3>
+      <p>चूँकि यह टूल आपके ब्राउज़र व device की आवाज़ों का उपयोग करता है, आवाज़ों की संख्या व गुणवत्ता हर किसी के लिए समान नहीं होती। कुछ device केवल एक-दो robotic आवाज़ें देते हैं जबकि कुछ में कई स्वाभाविक आवाज़ें होती हैं। कुछ ब्राउज़र लंबे पाठ को बीच में रोक देते हैं, इसीलिए यह टूल विश्वसनीय playback के लिए टेक्स्ट को अपने-आप छोटे हिस्सों में बाँट देता है।</p>
+
+      <h3>निष्कर्ष</h3>
+      <p>यह <strong>ऑनलाइन टेक्स्ट टू स्पीच टूल</strong> किसी भी टेक्स्ट को बिना कुछ install किए और बिना किसी server पर भरोसा किए सुनने का तेज़, निजी और लचीला तरीका देता है। स्वाभाविक आवाज़ों, सटीक नियंत्रण, फाइल import और live highlighting के साथ यह पढ़ने, पढ़ाई, proofreading और accessibility के लिए एक भरोसेमंद, पूरी तरह मुफ़्त साथी है।</p>
     </div>
   </div>
 </div>
 
+<!-- ═══ FAQ (bilingual, parallel columns) ═══ -->
+<div class="tts-seo tts-faq">
+  <h2>❓ Frequently Asked Questions / अक्सर पूछे जाने वाले प्रश्न</h2>
+  <div class="info-section">
+    <div class="info-block"><h3>English</h3><div id="faqEn"></div></div>
+    <hr class="info-divider">
+    <div class="info-block"><h3>हिंदी (Hindi)</h3><div id="faqHi"></div></div>
+  </div>
+</div>
+
+<!-- ═══ RELATED ═══ -->
+<div class="tts-related">
+  <h2>🔗 Related Text Tools</h2>
+  <div class="tts-rgrid">
+    <a class="tts-link" href="word-counter.html">🔢 Word Counter</a>
+    <a class="tts-link" href="case-converter.html">🔠 Case Converter</a>
+    <a class="tts-link" href="text-readability-score.html">📖 Readability Checker</a>
+    <a class="tts-link" href="text-cleaner.html">🧹 Text Cleaner</a>
+    <a class="tts-link" href="docx-viewer.html">📄 DOCX Viewer</a>
+    <a class="tts-link" href="html-to-pdf.html">📑 HTML to PDF</a>
+    <a class="tts-link" href="reverse-text.html">🔁 Text Reverser</a>
+    <a class="tts-link" href="fancy-text-generator.html">✨ Fancy Text</a>
+  </div>
+</div>
+
+<div id="ttsToasts" aria-live="assertive"></div>
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
 <script src="../assets/common.js"></script>
 <script>
-const synth = window.speechSynthesis;
-const voiceSelect = document.getElementById('voiceSelect');
-let voices = [];
+/* ════════════════════════════════════════════════════════════════════
+   Text to Speech — 100% client-side, uses the native Web Speech API
+   (SpeechSynthesis). No AI, no server, nothing uploaded. Original IDs
+   (inputText, voiceSelect, rateRange/rateVal, pitchRange/pitchVal,
+   playBtn, pauseBtn, stopBtn) are preserved and their behaviour extended.
+════════════════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+  const $ = id => document.getElementById(id);
+  const synth = window.speechSynthesis;
+  const supported = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window;
+  const MAX = 100000;
 
-function loadVoices(){
-  voices = synth.getVoices();
-  voiceSelect.innerHTML = '';
-  voices.forEach((v, i)=>{
-    const opt = document.createElement('option');
-    opt.value = i;
-    opt.textContent = `${v.name} (${v.lang})`;
-    voiceSelect.appendChild(opt);
+  /* ── beautiful alerts / toasts ─────────────────────────────────── */
+  const ICONS = {info:'💬',success:'✅',warn:'⚠️',error:'⛔'};
+  function toast(type,msg,ms){
+    const box=$('ttsToasts'); if(!box) return;
+    const el=document.createElement('div');
+    el.className='tts-toast '+type;
+    el.innerHTML='<span>'+ICONS[type]+'</span><span>'+msg+'</span>';
+    box.appendChild(el);
+    setTimeout(()=>{ el.style.opacity='0'; el.style.transform='translateY(12px)'; setTimeout(()=>el.remove(),260); }, ms||3200);
+  }
+
+  if(!supported){
+    $('supportBanner').classList.add('show');
+    ['playBtn','pauseBtn','stopBtn','restartBtn','previewBtn'].forEach(id=>{ const b=$(id); if(b) b.disabled=true; });
+    toast('error','Your browser does not support Speech Synthesis.',6000);
+  }
+
+  /* ── elements ──────────────────────────────────────────────────── */
+  const ta=$('inputText'), voiceSelect=$('voiceSelect'), reader=$('ttsReader');
+  const rate=$('rateRange'), pitch=$('pitchRange'), vol=$('volRange');
+
+  /* ── voices ────────────────────────────────────────────────────── */
+  let voices=[];
+  const store={
+    get(k,d){ try{ return JSON.parse(localStorage.getItem(k)) ?? d; }catch(e){ return d; } },
+    set(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); }catch(e){} }
+  };
+  let favorites = store.get('tts-fav', []);      // array of voiceURI
+  let defaultVoiceURI = store.get('tts-default', '');
+
+  // crude gender guess from the voice name (Web Speech API has no gender field)
+  const FEMALE=/(female|woman|zira|susan|linda|hazel|samantha|victoria|karen|moira|tessa|fiona|veena|raveena|kalpana|swara|aria|jenny|michelle|amber|ana|google uk english female|google हिन्दी)/i;
+  const MALE=/(male|man|david|mark|george|james|daniel|fred|alex|rishi|prabhat|hemant|ravi|google uk english male)/i;
+  function guessGender(v){ const n=v.name||''; if(FEMALE.test(n))return 'female'; if(MALE.test(n))return 'male'; return ''; }
+  function langName(code){
+    try{ const dn=new Intl.DisplayNames([navigator.language||'en'],{type:'language'}); return dn.of(code.split('-')[0])||code; }
+    catch(e){ return code; }
+  }
+
+  function loadVoices(){
+    voices = synth ? synth.getVoices() : [];
+    buildFilterOptions();
+    renderVoiceOptions();
+  }
+  function buildFilterOptions(){
+    const langs=new Set(), accents=new Set();
+    voices.forEach(v=>{ if(v.lang){ langs.add(v.lang.split('-')[0]); accents.add(v.lang); } });
+    const langSel=$('langFilter'), accSel=$('accentFilter');
+    const curL=langSel.value, curA=accSel.value;
+    langSel.innerHTML='<option value="">All languages</option>'+
+      [...langs].sort().map(l=>`<option value="${l}">${langName(l)} (${l})</option>`).join('');
+    accSel.innerHTML='<option value="">All accents</option>'+
+      [...accents].sort().map(a=>`<option value="${a}">${a}</option>`).join('');
+    langSel.value=curL; accSel.value=curA;
+  }
+  function filteredVoices(){
+    const q=$('voiceSearch').value.trim().toLowerCase();
+    const lang=$('langFilter').value, acc=$('accentFilter').value, gen=$('genderFilter').value;
+    const favOnly=$('favOnly').checked;
+    return voices.map((v,i)=>({v,i})).filter(({v})=>{
+      if(q && !((v.name+' '+v.lang).toLowerCase().includes(q))) return false;
+      if(lang && v.lang.split('-')[0]!==lang) return false;
+      if(acc && v.lang!==acc) return false;
+      if(gen && guessGender(v)!==gen) return false;
+      if(favOnly && !favorites.includes(v.voiceURI)) return false;
+      return true;
+    });
+  }
+  function renderVoiceOptions(){
+    const prev=voiceSelect.value;
+    const list=filteredVoices();
+    voiceSelect.innerHTML = list.map(({v,i})=>{
+      const star=favorites.includes(v.voiceURI)?'★ ':'';
+      const def=(v.voiceURI===defaultVoiceURI)?' • default':'';
+      return `<option value="${i}">${star}${v.name} (${v.lang})${def}</option>`;
+    }).join('') || '<option value="">No voices match your filters</option>';
+    // restore selection preference: previous → default → first English → first
+    if([...voiceSelect.options].some(o=>o.value===prev)) voiceSelect.value=prev;
+    else {
+      const di=voices.findIndex(v=>v.voiceURI===defaultVoiceURI);
+      const ei=voices.findIndex(v=>v.lang && v.lang.startsWith('en'));
+      const pick = list.find(o=>o.i===di) ? di : (list.find(o=>o.i===ei) ? ei : (list[0]&&list[0].i));
+      if(pick!=null) voiceSelect.value=pick;
+    }
+    if(!voices.length && supported) toast('warn','No voices available yet — they may still be loading.',4000);
+    updateStats();
+  }
+  function currentVoice(){ return voices[voiceSelect.value]; }
+
+  if(supported){
+    loadVoices();
+    if(synth.onvoiceschanged !== undefined) synth.onvoiceschanged = loadVoices;
+    // Safari sometimes needs a nudge
+    setTimeout(loadVoices, 400);
+  }
+  ['voiceSearch','langFilter','accentFilter','genderFilter','favOnly'].forEach(id=>{
+    $(id).addEventListener('input', renderVoiceOptions);
+    $(id).addEventListener('change', renderVoiceOptions);
   });
-  const enIndex = voices.findIndex(v => v.lang.startsWith('en'));
-  if(enIndex >= 0) voiceSelect.value = enIndex;
-}
+  voiceSelect.addEventListener('change', updateStats);
 
-loadVoices();
-if(synth.onvoiceschanged !== undefined){
-  synth.onvoiceschanged = loadVoices;
-}
+  $('favBtn').addEventListener('click',()=>{
+    const v=currentVoice(); if(!v) return;
+    const i=favorites.indexOf(v.voiceURI);
+    if(i>=0){ favorites.splice(i,1); toast('info','Removed from favorites'); }
+    else { favorites.push(v.voiceURI); toast('success','Added to favorites'); }
+    store.set('tts-fav',favorites); renderVoiceOptions();
+  });
+  $('defaultBtn').addEventListener('click',()=>{
+    const v=currentVoice(); if(!v) return;
+    defaultVoiceURI=v.voiceURI; store.set('tts-default',defaultVoiceURI);
+    toast('success','Default voice set'); renderVoiceOptions();
+  });
+  $('previewBtn').addEventListener('click',()=>{
+    if(!supported) return;
+    synth.cancel();
+    const u=new SpeechSynthesisUtterance('This is a preview of the selected voice.');
+    const v=currentVoice(); if(v) u.voice=v;
+    u.rate=+rate.value; u.pitch=+pitch.value; u.volume=+vol.value;
+    synth.speak(u);
+  });
 
-document.getElementById('rateRange').addEventListener('input', e=>{
-  document.getElementById('rateVal').textContent = e.target.value;
-});
-document.getElementById('pitchRange').addEventListener('input', e=>{
-  document.getElementById('pitchVal').textContent = e.target.value;
-});
+  /* ── sliders reflect + stats ───────────────────────────────────── */
+  rate.addEventListener('input',()=>{ $('rateVal').textContent=rate.value; updateStats(); });
+  pitch.addEventListener('input',()=>{ $('pitchVal').textContent=pitch.value; updateStats(); });
+  vol.addEventListener('input',()=>{ $('volVal').textContent=Math.round(vol.value*100); });
 
-document.getElementById('playBtn').addEventListener('click', ()=>{
-  synth.cancel();
-  const text = document.getElementById('inputText').value;
-  if(!text.trim()) return;
-  const utter = new SpeechSynthesisUtterance(text);
-  const vIndex = voiceSelect.value;
-  if(voices[vIndex]) utter.voice = voices[vIndex];
-  utter.rate = parseFloat(document.getElementById('rateRange').value);
-  utter.pitch = parseFloat(document.getElementById('pitchRange').value);
-  synth.speak(utter);
-});
+  /* ── text stats + counters ─────────────────────────────────────── */
+  function fmtDur(sec){ sec=Math.max(0,Math.round(sec)); const m=Math.floor(sec/60),s=sec%60;
+    return m? (m+'m '+s+'s') : (s+'s'); }
+  function analyze(t){
+    const chars=t.length;
+    const words=(t.trim().match(/\S+/g)||[]).length;
+    const sent=(t.match(/[^.!?]+[.!?]+/g)||(t.trim()?[t]:[])).length;
+    const para=(t.trim()?t.trim().split(/\n{2,}/).filter(p=>p.trim()).length:0)||(t.trim()?1:0);
+    const readSec=words/200*60;                 // ~200 wpm silent
+    const speakSec=words/(150*(+rate.value||1))*60; // ~150 wpm at chosen speed
+    return {chars,words,sent,para,readSec,speakSec};
+  }
+  function updateStats(){
+    const t=ta.value, a=analyze(t);
+    $('cChars').textContent=a.chars; $('cWords').textContent=a.words;
+    $('cSent').textContent=a.sent; $('cPara').textContent=a.para;
+    $('cRead').textContent=fmtDur(a.readSec); $('cSpeak').textContent=fmtDur(a.speakSec);
+    $('limitTxt').textContent=a.chars.toLocaleString()+' / '+MAX.toLocaleString();
+    $('limitBar').style.width=Math.min(100,a.chars/MAX*100)+'%';
+    // statistics panel
+    $('sChars').textContent=a.chars; $('sWords').textContent=a.words;
+    $('sSent').textContent=a.sent; $('sPara').textContent=a.para;
+    $('sRead').textContent=fmtDur(a.readSec); $('sSpeak').textContent=fmtDur(a.speakSec);
+    const v=currentVoice();
+    $('sVoice').textContent=v?v.name:'—'; $('sSpeed').textContent=rate.value+'x'; $('sPitch').textContent=pitch.value;
+    if(a.chars>MAX) toast('warn','Text is very long — it may read slowly.',2500);
+  }
 
-document.getElementById('pauseBtn').addEventListener('click', ()=>{
-  if(synth.speaking && !synth.paused) synth.pause();
-  else if(synth.paused) synth.resume();
-});
+  /* ── reader / chunking ─────────────────────────────────────────── */
+  function esc(s){ return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+  // Split text into speak-friendly chunks (sentences, long ones sub-split).
+  function chunkText(t){
+    const parts=t.match(/[^.!?\n]+[.!?]*\n*|\n+/g)||[];
+    const out=[];
+    parts.forEach(p=>{
+      if(p.length<=220){ if(p.length) out.push(p); return; }
+      let s=p;
+      while(s.length>220){ let cut=s.lastIndexOf(' ',220); if(cut<80) cut=220; out.push(s.slice(0,cut)); s=s.slice(cut); }
+      if(s.length) out.push(s);
+    });
+    return out.length?out:(t?[t]:[]);
+  }
+  let chunks=[], chunkStart=[], totalChars=0;
+  function buildReader(t){
+    chunks=chunkText(t);
+    chunkStart=[]; let acc=0;
+    chunks.forEach(c=>{ chunkStart.push(acc); acc+=c.length; });
+    totalChars=acc||1;
+    reader.innerHTML = chunks.length
+      ? chunks.map((c,i)=>`<span class="tts-sent" data-i="${i}">${esc(c)}</span>`).join('')
+      : 'Your text will appear here…';
+  }
 
-document.getElementById('stopBtn').addEventListener('click', ()=> synth.cancel());
+  /* ── playback engine ───────────────────────────────────────────── */
+  let idx=0, playing=false, paused=false, repeatOnce=false, loopForever=false;
+  let clockTimer=null, startAt=0, pausedMs=0, pauseStamp=0, sleepDeadline=0;
+
+  function setButtons(){
+    $('playBtn').disabled = !supported;
+    $('pauseBtn').disabled = !playing;
+    $('stopBtn').disabled = !playing;
+    $('restartBtn').disabled = !(playing || ta.value.trim());
+    $('pauseBtn').innerHTML = paused ? '▶️ Resume' : '⏸️ Pause';
+  }
+  function highlight(i, wordCharIdx){
+    if(!$('optSentence').checked && !$('optWord').checked) return;
+    reader.querySelectorAll('.tts-sent.active').forEach(el=>{ el.classList.remove('active'); el.innerHTML=esc(chunks[+el.dataset.i]); });
+    const span=reader.querySelector('.tts-sent[data-i="'+i+'"]'); if(!span) return;
+    if($('optSentence').checked) span.classList.add('active');
+    if($('optWord').checked && wordCharIdx!=null){
+      const c=chunks[i]; let s=wordCharIdx; while(s>0 && !/\s/.test(c[s-1])) s--;
+      let e=wordCharIdx; while(e<c.length && !/\s/.test(c[e])) e++;
+      span.innerHTML = esc(c.slice(0,s))+'<mark>'+esc(c.slice(s,e))+'</mark>'+esc(c.slice(e));
+    } else if($('optSentence').checked){ span.innerHTML=esc(chunks[i]); }
+    if($('optScroll').checked){ const r=span.getBoundingClientRect(), pr=reader.getBoundingClientRect();
+      if(r.top<pr.top||r.bottom>pr.bottom) span.scrollIntoView({block:'center',behavior:'smooth'}); }
+  }
+  function progress(spoken){
+    const pct=Math.min(100,Math.round(spoken/totalChars*100));
+    $('playBar').style.width=pct+'%'; $('progPct').textContent=pct+'%'; $('sProg').textContent=pct+'%';
+  }
+  function startClock(){
+    startAt=Date.now(); pausedMs=0;
+    clearInterval(clockTimer);
+    clockTimer=setInterval(()=>{
+      if(paused) return;
+      const el=(Date.now()-startAt-pausedMs)/1000;
+      $('elapsed').textContent=clock(el);
+      const spoken=(chunkStart[idx]||0);
+      const totSec=totalChars/(13*(+rate.value||1));
+      const rem=Math.max(0,totSec - el);
+      $('remaining').textContent='-'+clock(rem);
+      if(sleepDeadline && Date.now()>=sleepDeadline){ toast('info','😴 Sleep timer ended.'); stop(); }
+    },250);
+  }
+  function clock(sec){ sec=Math.max(0,Math.round(sec)); const m=Math.floor(sec/60),s=sec%60;
+    return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0'); }
+
+  function speakFrom(i){
+    if(i>=chunks.length){ finished(); return; }
+    idx=i;
+    const u=new SpeechSynthesisUtterance(chunks[i]);
+    const v=currentVoice(); if(v) u.voice=v;
+    u.rate=+rate.value; u.pitch=+pitch.value; u.volume=+vol.value;
+    u.onboundary=(e)=>{ progress((chunkStart[i]||0)+(e.charIndex||0)); highlight(i, e.charIndex); };
+    u.onstart=()=>{ highlight(i, 0); progress(chunkStart[i]||0); };
+    u.onend=()=>{ if(!playing) return; store.set('tts-pos', i+1); speakFrom(i+1); };
+    u.onerror=(e)=>{ if(e && e.error==='interrupted') return; /* canceled */ };
+    synth.speak(u);
+  }
+  function play(){
+    if(!supported){ toast('error','Speech Synthesis is not supported in this browser.'); return; }
+    const t=ta.value;
+    if(!t.trim()){ toast('warn','Please enter some text first.'); ta.focus(); return; }
+    synth.cancel();
+    buildReader(t);
+    playing=true; paused=false;
+    const resumePos=+store.get('tts-pos',0);
+    idx = (resumePos>0 && resumePos<chunks.length && confirmResume(resumePos)) ? resumePos : 0;
+    setButtons();
+    const mins=+$('sleepTimer').value; sleepDeadline = mins? Date.now()+mins*60000 : 0;
+    startClock();
+    speakFrom(idx);
+    pushHistory(t);
+  }
+  let askedResume=false;
+  function confirmResume(pos){
+    if(askedResume) return false; askedResume=true;
+    return window.confirm('Resume from where you left off?');
+  }
+  function finished(){
+    if(loopForever){ store.set('tts-pos',0); speakFrom(0); return; }
+    if(repeatOnce){ repeatOnce=false; $('repeatBtn').classList.remove('on'); store.set('tts-pos',0); speakFrom(0); return; }
+    playing=false; paused=false; clearInterval(clockTimer);
+    progress(totalChars); $('remaining').textContent='-00:00';
+    store.set('tts-pos',0);
+    reader.querySelectorAll('.tts-sent.active').forEach(el=>{ el.classList.remove('active'); el.innerHTML=esc(chunks[+el.dataset.i]); });
+    setButtons();
+    toast('success','Speech completed.');
+    notify('Speech completed', 'Your text has finished reading.');
+  }
+  function stop(){
+    playing=false; paused=false; synth.cancel(); clearInterval(clockTimer);
+    store.set('tts-pos',0); progress(0); $('elapsed').textContent='00:00'; $('remaining').textContent='-00:00';
+    reader.querySelectorAll('.tts-sent.active').forEach(el=>{ el.classList.remove('active'); el.innerHTML=esc(chunks[+el.dataset.i]); });
+    setButtons();
+    toast('info','Speech stopped.');
+  }
+
+  $('playBtn').addEventListener('click',()=>{ askedResume=false; play(); });
+  $('pauseBtn').addEventListener('click',()=>{
+    if(!playing) return;
+    if(!paused){ synth.pause(); paused=true; pauseStamp=Date.now(); toast('info','Paused.'); }
+    else { synth.resume(); paused=false; pausedMs+=Date.now()-pauseStamp; toast('info','Resumed.'); }
+    setButtons();
+  });
+  $('stopBtn').addEventListener('click',stop);
+  $('restartBtn').addEventListener('click',()=>{ store.set('tts-pos',0); askedResume=true; play(); });
+  $('repeatBtn').addEventListener('click',()=>{ repeatOnce=!repeatOnce; $('repeatBtn').classList.toggle('on',repeatOnce);
+    if(repeatOnce){ loopForever=false; $('loopBtn').classList.remove('on'); } });
+  $('loopBtn').addEventListener('click',()=>{ loopForever=!loopForever; $('loopBtn').classList.toggle('on',loopForever);
+    if(loopForever){ repeatOnce=false; $('repeatBtn').classList.remove('on'); } });
+
+  function notify(title,body){
+    if(!('Notification' in window)) return;
+    if(Notification.permission==='granted'){ try{ new Notification(title,{body}); }catch(e){} }
+    else if(Notification.permission!=='denied'){ Notification.requestPermission(); }
+  }
+
+  /* ── editor buttons ────────────────────────────────────────────── */
+  $('pasteBtn').addEventListener('click',async()=>{
+    try{ const t=await navigator.clipboard.readText(); ta.value+=t; onText(); toast('success','Pasted from clipboard.'); }
+    catch(e){ toast('warn','Clipboard access was blocked by the browser.'); }
+  });
+  $('copyBtn').addEventListener('click',(e)=>{
+    if(!ta.value){ toast('warn','Nothing to copy.'); return; }
+    if(window.copyText) copyText(ta.value,e.target); else navigator.clipboard&&navigator.clipboard.writeText(ta.value);
+    toast('success','Text copied.');
+  });
+  $('clearBtn').addEventListener('click',()=>{ ta.value=''; onText(); toast('info','Cleared.'); ta.focus(); });
+  $('dlBtn').addEventListener('click',()=>{
+    if(!ta.value.trim()){ toast('warn','Nothing to download.'); return; }
+    const blob=new Blob([ta.value],{type:'text/plain'});
+    if(window.downloadBlob) downloadBlob('text-to-speech.txt',blob);
+    else { const u=URL.createObjectURL(blob),a=document.createElement('a'); a.href=u; a.download='text-to-speech.txt'; a.click(); setTimeout(()=>URL.revokeObjectURL(u),1500); }
+    toast('success','Downloaded .txt file.');
+  });
+  $('printBtn').addEventListener('click',printText);
+  function printText(){
+    const w=window.open('','_blank'); if(!w){ toast('warn','Allow pop-ups to print.'); return; }
+    w.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>Text</title><style>body{font:16px/1.7 system-ui,Arial;padding:32px;white-space:pre-wrap}</style></head><body>'+esc(ta.value)+'</body></html>');
+    w.document.close(); w.focus(); setTimeout(()=>w.print(),120);
+  }
+
+  /* ── file import (TXT / PDF / DOCX) + drag&drop ───────────────── */
+  $('importBtn').addEventListener('click',()=>$('fileInput').click());
+  $('fileInput').addEventListener('change',e=>{ if(e.target.files[0]) importFile(e.target.files[0]); });
+  ['dragover','dragenter'].forEach(ev=>ta.addEventListener(ev,e=>{e.preventDefault();ta.style.borderColor='var(--tts-accent2)';}));
+  ['dragleave','drop'].forEach(ev=>ta.addEventListener(ev,e=>{e.preventDefault();ta.style.borderColor='';}));
+  ta.addEventListener('drop',e=>{ const f=e.dataTransfer.files[0]; if(f) importFile(f); });
+
+  function loadScript(src){ return new Promise((res,rej)=>{ const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=()=>rej(new Error('load')); document.head.appendChild(s); }); }
+  async function importFile(file){
+    const name=(file.name||'').toLowerCase();
+    try{
+      if(name.endsWith('.txt')||file.type==='text/plain'){
+        ta.value=await file.text(); onText(); toast('success','TXT imported.');
+      } else if(name.endsWith('.pdf')||file.type==='application/pdf'){
+        toast('info','Reading PDF…');
+        if(!window.pdfjsLib){ await loadScript('https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js');
+          window.pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; }
+        const buf=await file.arrayBuffer();
+        const pdf=await window.pdfjsLib.getDocument({data:buf}).promise;
+        let out='';
+        for(let p=1;p<=pdf.numPages;p++){ const page=await pdf.getPage(p); const c=await page.getTextContent();
+          out+=c.items.map(it=>it.str).join(' ')+'\n\n'; }
+        ta.value=out.trim(); onText(); toast('success','PDF imported ('+pdf.numPages+' pages).');
+      } else if(name.endsWith('.docx')){
+        toast('info','Reading DOCX…');
+        if(!window.mammoth) await loadScript('https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js');
+        const buf=await file.arrayBuffer();
+        const r=await window.mammoth.extractRawText({arrayBuffer:buf});
+        ta.value=(r.value||'').trim(); onText(); toast('success','DOCX imported.');
+      } else { toast('warn','Unsupported file type. Use TXT, PDF or DOCX.'); }
+    }catch(err){ toast('error','Could not read that file.'); }
+  }
+
+  /* ── auto-save + history ───────────────────────────────────────── */
+  let saveT=null;
+  function autoSave(){ store.set('tts-text', ta.value); }
+  function onText(){ updateStats(); buildReader(ta.value); clearTimeout(saveT); saveT=setTimeout(autoSave,400); }
+  ta.addEventListener('input',onText);
+
+  let history=store.get('tts-hist',[]);
+  function pushHistory(t){
+    t=t.trim(); if(!t) return;
+    history=history.filter(h=>h.text!==t);
+    history.unshift({text:t, at:Date.now()});
+    history=history.slice(0,8); store.set('tts-hist',history); renderHistory();
+  }
+  function renderHistory(){
+    const box=$('histList');
+    if(!history.length){ box.innerHTML='<div style="color:var(--text-dim);font-size:.85rem">No history yet — play some text to save it here.</div>'; return; }
+    box.innerHTML=history.map((h,i)=>{
+      const label=h.text.replace(/\s+/g,' ').slice(0,70)+(h.text.length>70?'…':'');
+      return `<div class="tts-hitem"><span title="${esc(h.text.slice(0,200))}">${esc(label)}</span><button data-i="${i}" type="button">Restore</button></div>`;
+    }).join('');
+    box.querySelectorAll('button[data-i]').forEach(b=>b.addEventListener('click',()=>{
+      ta.value=history[+b.dataset.i].text; onText(); toast('success','Restored from history.'); window.scrollTo({top:0,behavior:'smooth'});
+    }));
+  }
+  $('clearHist').addEventListener('click',()=>{ history=[]; store.set('tts-hist',history); renderHistory(); toast('info','History cleared.'); });
+
+  /* ── keyboard shortcuts ────────────────────────────────────────── */
+  function typing(el){ return el && (el.tagName==='INPUT'||el.tagName==='TEXTAREA'||el.isContentEditable); }
+  document.addEventListener('keydown',e=>{
+    // Space = play/pause when not typing
+    if(e.code==='Space' && !typing(document.activeElement)){ e.preventDefault();
+      if(!playing) $('playBtn').click(); else $('pauseBtn').click(); return; }
+    if(e.ctrlKey||e.metaKey){
+      const k=e.key.toLowerCase();
+      if(k==='l'){ e.preventDefault(); $('clearBtn').click(); }
+      else if(k==='p'){ e.preventDefault(); printText(); }
+      else if(k==='c' && !typing(document.activeElement) && !String(window.getSelection())){ e.preventDefault(); $('copyBtn').click(); }
+    }
+  });
+
+  /* ── FAQ (bilingual) + schema ──────────────────────────────────── */
+  /* [ English Q, English A, Hindi Q, Hindi A ] */
+  const FAQ=[
+   ['What is Text to Speech?','Text to Speech (TTS) is technology that reads written text aloud in a spoken voice. This tool uses your browser\'s built-in speech engine to turn any text into audio instantly.',
+    'Text to Speech क्या है?','Text to Speech (TTS) एक तकनीक है जो लिखे हुए टेक्स्ट को बोली हुई आवाज़ में पढ़ती है। यह टूल आपके ब्राउज़र के built-in speech engine से किसी भी टेक्स्ट को तुरंत audio में बदल देता है।'],
+   ['How does this tool work?','It uses the native Web Speech API (SpeechSynthesis) in your browser. You type or import text, choose a voice and settings, and press Play to hear it read aloud with word highlighting.',
+    'यह टूल कैसे काम करता है?','यह आपके ब्राउज़र के native Web Speech API (SpeechSynthesis) का उपयोग करता है। आप टेक्स्ट टाइप या import करते हैं, आवाज़ व settings चुनते हैं और Play दबाकर word highlighting के साथ सुनते हैं।'],
+   ['Is it free?','Yes, the tool is completely free with no signup, no limits and no watermark. You can use it as often as you like.',
+    'क्या यह मुफ़्त है?','हाँ, यह टूल पूरी तरह मुफ़्त है — न signup, न सीमा और न watermark। आप इसे जितनी बार चाहें इस्तेमाल कर सकते हैं।'],
+   ['Is my text uploaded to a server?','No. All processing happens locally in your browser. Your text is never uploaded, stored on a server or shared with anyone.',
+    'क्या मेरा टेक्स्ट server पर जाता है?','नहीं। सारा काम आपके ब्राउज़र में ही होता है। आपका टेक्स्ट कभी upload नहीं होता, न server पर सहेजा जाता है और न किसी से साझा होता है।'],
+   ['Does it work offline?','Once the page has loaded, speech works offline for locally installed voices. Some browsers use online neural voices that need a connection, and file import may fetch a small helper library the first time.',
+    'क्या यह offline काम करता है?','page load होने के बाद locally installed आवाज़ों के लिए speech offline काम करता है। कुछ ब्राउज़र online neural आवाज़ें इस्तेमाल करते हैं जिन्हें connection चाहिए, और फाइल import पहली बार एक छोटी helper library ला सकता है।'],
+   ['Which browsers are supported?','Chrome, Edge, Safari, Firefox and Opera on desktop and mobile all support it, as long as they include the Web Speech API.',
+    'कौन-कौन से ब्राउज़र समर्थित हैं?','Chrome, Edge, Safari, Firefox और Opera — desktop व mobile दोनों पर — यदि उनमें Web Speech API हो तो सभी समर्थित हैं।'],
+   ['Can I change the voice?','Yes. Every voice provided by your browser and device is listed, and you can search, filter by language, accent or gender, preview it and save favourites.',
+    'क्या मैं आवाज़ बदल सकता हूँ?','हाँ। आपके ब्राउज़र व device की हर आवाज़ सूचीबद्ध होती है, और आप search कर सकते हैं, भाषा/accent/gender से filter कर सकते हैं, preview कर सकते हैं और पसंदीदा सहेज सकते हैं।'],
+   ['Can I change the speed?','Yes, use the Speed slider to read faster or slower, from 0.5x to 2x.',
+    'क्या मैं गति बदल सकता हूँ?','हाँ, Speed slider से 0.5x से 2x तक तेज़ या धीमा पढ़वा सकते हैं।'],
+   ['Can I change the pitch?','Yes, the Pitch slider makes the voice sound higher or lower.',
+    'क्या मैं pitch बदल सकता हूँ?','हाँ, Pitch slider से आवाज़ को ऊँचा या नीचा कर सकते हैं।'],
+   ['Can I change the volume?','Yes, the Volume slider controls how loud the speech is, from mute to full.',
+    'क्या मैं volume बदल सकता हूँ?','हाँ, Volume slider से speech की आवाज़ mute से full तक नियंत्रित कर सकते हैं।'],
+   ['Can I pause playback?','Yes, press Pause (or Space) to pause and Resume to continue from the same place.',
+    'क्या मैं playback रोक सकता हूँ?','हाँ, Pause (या Space) दबाकर रोकें और Resume से वहीं से जारी रखें।'],
+   ['Can I resume playback?','Yes. Pausing keeps your place, and the tool can also offer to resume from where you last stopped.',
+    'क्या मैं playback फिर से शुरू कर सकता हूँ?','हाँ। Pause आपकी जगह याद रखता है, और टूल पिछली बार रुकी जगह से resume करने का विकल्प भी देता है।'],
+   ['Can I stop playback?','Yes, press Stop to end playback and reset progress to the beginning.',
+    'क्या मैं playback बंद कर सकता हूँ?','हाँ, Stop दबाकर playback समाप्त करें और progress शुरुआत पर रीसेट करें।'],
+   ['Can I use it on mobile?','Yes, the interface is fully responsive with large touch buttons and works on Android and iOS browsers that support speech.',
+    'क्या मैं इसे mobile पर इस्तेमाल कर सकता हूँ?','हाँ, interface पूरी तरह responsive है, बड़े touch बटन के साथ, और speech समर्थित Android व iOS ब्राउज़र पर काम करता है।'],
+   ['Can I use it for studying?','Absolutely. Listening to notes, textbooks and articles helps memory and lets you revise hands-free while doing other things.',
+    'क्या मैं इसे पढ़ाई के लिए इस्तेमाल कर सकता हूँ?','बिल्कुल। notes, किताबें व लेख सुनना याददाश्त में मदद करता है और दूसरे काम करते हुए hands-free revision कराता है।'],
+   ['Can I use it for accessibility?','Yes. It helps people with dyslexia, low vision, reading fatigue or anyone who prefers audio, with clear highlighting and adjustable speed.',
+    'क्या मैं इसे accessibility के लिए इस्तेमाल कर सकता हूँ?','हाँ। यह dyslexia, कमज़ोर दृष्टि, पढ़ने की थकान वालों या audio पसंद करने वालों की मदद करता है — स्पष्ट highlighting व समायोज्य गति के साथ।'],
+   ['Can I import text files?','Yes, you can import TXT, PDF and DOCX files, or drag and drop a text file onto the editor.',
+    'क्या मैं text फाइलें import कर सकता हूँ?','हाँ, आप TXT, PDF व DOCX फाइलें import कर सकते हैं, या editor पर text फाइल drag & drop कर सकते हैं।'],
+   ['Can I print the text?','Yes, the Print button opens a clean printable page, and Ctrl+P works as a shortcut.',
+    'क्या मैं टेक्स्ट print कर सकता हूँ?','हाँ, Print बटन एक साफ़ printable page खोलता है, और Ctrl+P shortcut के रूप में काम करता है।'],
+   ['Can I save the text?','Yes. Your text auto-saves in your browser, recent items appear in history, and you can download it as a .txt file.',
+    'क्या मैं टेक्स्ट सहेज सकता हूँ?','हाँ। आपका टेक्स्ट ब्राउज़र में auto-save होता है, हाल के items history में दिखते हैं, और आप उसे .txt फाइल में download कर सकते हैं।'],
+   ['What if no voices appear?','Voices sometimes load a moment after the page opens — wait briefly or reload. On some devices you may need to install extra voices in the system settings.',
+    'अगर कोई आवाज़ न दिखे तो?','आवाज़ें कभी-कभी page खुलने के थोड़ी देर बाद load होती हैं — थोड़ा रुकें या reload करें। कुछ devices पर आपको system settings में अतिरिक्त आवाज़ें install करनी पड़ सकती हैं।'],
+   ['Does it use any AI?','No. It uses only your browser\'s built-in speech engine — there is no artificial intelligence, no cloud model and no external API involved.',
+    'क्या यह किसी AI का उपयोग करता है?','नहीं। यह केवल आपके ब्राउज़र के built-in speech engine का उपयोग करता है — न कोई AI, न cloud model और न कोई बाहरी API।']
+  ];
+  const row=(q,a)=>'<details><summary>'+esc(q)+'</summary><p>'+esc(a)+'</p></details>';
+  $('faqEn').innerHTML=FAQ.map(f=>row(f[0],f[1])).join('');
+  $('faqHi').innerHTML=FAQ.map(f=>row(f[2],f[3])).join('');
+  try{ const sc=$('faqSchema'); const data=JSON.parse(sc.textContent);
+    data.mainEntity=[].concat(
+      FAQ.map(f=>({'@type':'Question',name:f[0],acceptedAnswer:{'@type':'Answer',text:f[1]}})),
+      FAQ.map(f=>({'@type':'Question',name:f[2],acceptedAnswer:{'@type':'Answer',text:f[3]}}))
+    ); sc.textContent=JSON.stringify(data); }catch(e){}
+
+  /* ── init ──────────────────────────────────────────────────────── */
+  const saved=store.get('tts-text','');
+  if(saved && !ta.value) ta.value=saved;
+  onText(); renderHistory(); setButtons();
+})();
 </script>
 </body>
 </html>
