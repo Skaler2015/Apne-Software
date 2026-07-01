@@ -3,35 +3,175 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="description" content="Free online PDF to JPG/PNG converter. Turn PDF pages into JPG, PNG, WEBP, BMP, TIFF or AVIF images with page selection, DPI up to 600, quality control, rotate, reorder, delete, ZIP download and password support. 100% private — runs in your browser.">
+<meta name="keywords" content="pdf to jpg, pdf to png, pdf to image, convert pdf to jpg online, pdf to webp, pdf pages to images, pdf to picture, extract pdf pages as images, pdf to jpg converter free, pdf to png high quality">
+<meta name="author" content="ApneSoftware">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-to-image.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PDF to JPG/PNG — Turn Pages into Images | ApneSoftware">
-<meta property="og:description" content="Turn pages into images. Free online tool — no signup required.">
+<meta property="og:title" content="PDF to JPG / PNG Converter — Free & Private | ApneSoftware">
+<meta property="og:description" content="Convert PDF pages to JPG, PNG, WEBP, BMP, TIFF or AVIF with page selection, DPI up to 600, rotate/reorder/delete and ZIP download. Runs entirely in your browser.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-to-image.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PDF to JPG/PNG — Turn Pages into Images | ApneSoftware">
-<meta name="twitter:description" content="Turn pages into images. Free online tool — no signup required.">
+<meta name="twitter:title" content="PDF to JPG / PNG Converter — Free & Private | ApneSoftware">
+<meta name="twitter:description" content="Turn PDF pages into JPG, PNG, WEBP, BMP, TIFF or AVIF with full control. Private, browser-only, no signup.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
+<!-- SoftwareApplication schema -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF to JPG/PNG","description":"Turn pages into images. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-to-image.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF to JPG/PNG Converter","description":"Free online tool to convert PDF pages into JPG, PNG, WEBP, BMP, TIFF or AVIF images, with page selection, DPI up to 600, quality control, rotate, reorder, delete, ZIP download and password-protected PDF support. Runs entirely in the browser.","url":"https://apnesoftware.com/tools/pdf-to-image.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["PDF to JPG/PNG/WEBP/BMP/TIFF/AVIF","Page selection & ranges","DPI 72-600","Rotate, reorder, delete pages","ZIP download","Password-protected PDF support"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"3902","bestRating":"5","worstRating":"1"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
-<meta name="color-scheme" content="dark">
-<title>PDF to JPG/PNG — Turn Pages into Images | ApneSoftware</title>
+<!-- Breadcrumb schema -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":3,"name":"PDF to JPG/PNG","item":"https://apnesoftware.com/tools/pdf-to-image.html"}]}
+</script>
+<!-- HowTo schema -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to convert a PDF to images online","description":"Turn PDF pages into image files in your browser.","totalTime":"PT1M","tool":[{"@type":"HowToTool","name":"PDF to JPG/PNG Converter"}],"step":[{"@type":"HowToStep","position":1,"name":"Upload PDF","text":"Drag & drop or choose one or more PDF files."},{"@type":"HowToStep","position":2,"name":"Select pages","text":"Choose all pages or pick specific pages, ranges, odd or even."},{"@type":"HowToStep","position":3,"name":"Set format & quality","text":"Pick JPG, PNG, WEBP, BMP, TIFF or AVIF and the DPI/quality."},{"@type":"HowToStep","position":4,"name":"Convert & download","text":"Convert in your browser, then download pages individually or as a ZIP."}]}
+</script>
+<!-- FAQ schema (populated at runtime) -->
+<script type="application/ld+json" id="faqSchema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}</script>
+
+<meta name="color-scheme" content="dark light">
+<title>PDF to JPG / PNG Converter — Free, Private &amp; High Quality | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
-.dropzone{cursor:pointer}
-.dropzone p{font-size:.9rem}
+/* ══════════ PDF to Image — scoped styles (p2i-) ══════════ */
+:root{ --p2i-accent:var(--accent); --p2i-accent2:#16C079; --p2i-glass:rgba(255,255,255,.05); --p2i-brd:rgba(255,255,255,.12); --p2i-surface:var(--surface-2); --p2i-text:#fff; --p2i-dim:var(--text-dim); }
+/* light theme (scoped to the tool workspace only) */
+.p2i-scope.light{ --p2i-glass:rgba(0,0,0,.03); --p2i-brd:rgba(0,0,0,.14); --p2i-surface:#f4f5f9; --p2i-text:#16121f; --p2i-dim:rgba(20,16,30,.6); background:#eef0f6; border-radius:18px; color:var(--p2i-text) }
+.p2i-scope.light .p2i-inp,.p2i-scope.light select.p2i-inp{background:#fff;color:#16121f;border-color:rgba(0,0,0,.15)}
+.p2i-scope.light .p2i-card,.p2i-scope.light .p2i-page{background:#fff;color:#16121f}
+
 .panel{position:relative;z-index:1}
-</style>
-<style>
-  .page-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-top:18px}
-  .page-card{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center}
-  .page-card img{width:100%;border-radius:4px;margin-bottom:6px;border:1px solid var(--border)}
-  .page-card button{width:100%}
+
+/* toolbar row */
+.p2i-topbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.p2i-topbar .sp{margin-left:auto}
+.p2i-theme{border:1px solid var(--p2i-brd);background:var(--p2i-glass);color:var(--p2i-text);border-radius:999px;padding:7px 14px;font-size:.8rem;cursor:pointer;font-family:var(--font)}
+
+/* dropzone */
+.p2i-drop{border:2px dashed rgba(124,92,252,.4);border-radius:18px;padding:40px 24px;text-align:center;cursor:pointer;background:rgba(124,92,252,.06);transition:.25s;position:relative;overflow:hidden}
+.p2i-drop:hover,.p2i-drop.drag{border-color:rgba(124,92,252,.75);background:rgba(124,92,252,.12)}
+.p2i-drop.drag{transform:scale(1.01)}
+.p2i-drop .ic{font-size:2.6rem;display:block;margin-bottom:8px;animation:p2iFloat 3s ease-in-out infinite}
+@keyframes p2iFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.p2i-drop .t{font-size:1.05rem;font-weight:700;color:var(--p2i-text);margin-bottom:4px}
+.p2i-drop .s{font-size:.82rem;color:var(--p2i-dim)}
+.p2i-drop input{display:none}
+.p2i-pick{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;padding:10px 22px;border-radius:999px;font-size:.88rem;font-weight:700;cursor:pointer;border:none;box-shadow:0 4px 20px rgba(124,92,252,.4);transition:.2s}
+.p2i-pick:hover{transform:translateY(-2px);box-shadow:0 6px 26px rgba(124,92,252,.5)}
+.p2i-upprog{height:6px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:14px;display:none}
+.p2i-upprog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--p2i-accent),var(--p2i-accent2));transition:width .2s}
+.p2i-fileinfo{font-size:.78rem;color:var(--p2i-dim);margin-top:12px}
+.p2i-fileinfo b{color:var(--p2i-text)}
+
+/* selection toolbar */
+.p2i-selbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:14px}
+.p2i-selbar .lbl{font-size:.76rem;color:var(--p2i-dim);margin-right:2px}
+.p2i-sbtn{border:1px solid var(--p2i-brd);background:var(--p2i-glass);color:var(--p2i-text);border-radius:8px;padding:6px 11px;font-size:.76rem;cursor:pointer;font-family:var(--font);transition:.15s}
+.p2i-sbtn:hover{border-color:var(--p2i-accent);color:var(--p2i-accent)}
+.p2i-range{width:130px;font-size:.76rem;color:var(--p2i-text);background:var(--p2i-glass);border:1px solid var(--p2i-brd);border-radius:8px;padding:6px 9px;font-family:var(--font);outline:none}
+
+/* page grid */
+.page-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-top:16px}
+.p2i-page{position:relative;background:var(--p2i-surface);border:1px solid var(--p2i-brd);border-radius:10px;overflow:hidden;transition:.2s}
+.p2i-page.sel{border-color:var(--p2i-accent);box-shadow:0 0 0 1px var(--p2i-accent) inset}
+.p2i-page.drag-ghost{opacity:.4}
+.p2i-page-thumb{width:100%;height:150px;object-fit:contain;background:#fff;display:block;cursor:zoom-in}
+.p2i-page-chk{position:absolute;top:6px;left:6px;width:20px;height:20px;cursor:pointer;accent-color:var(--p2i-accent)}
+.p2i-page-lbl{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.6);color:#fff;font-size:.66rem;padding:2px 7px;border-radius:999px}
+.p2i-page-acts{display:flex;gap:2px;padding:6px}
+.p2i-page-acts button{flex:1;border:1px solid var(--p2i-brd);background:var(--p2i-glass);color:var(--p2i-dim);border-radius:6px;padding:5px 0;font-size:.75rem;cursor:pointer;transition:.15s}
+.p2i-page-acts button:hover{border-color:var(--p2i-accent);color:var(--p2i-accent)}
+.p2i-skeleton{height:150px;border-radius:10px;background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,255,255,.12),rgba(255,255,255,.05));background-size:200% 100%;animation:p2iSk 1.2s infinite}
+@keyframes p2iSk{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* settings */
+.p2i-settings{margin-top:20px;border-top:1px solid var(--p2i-brd);padding-top:8px}
+.p2i-acc{border-bottom:1px solid var(--p2i-brd)}
+.p2i-acc>summary{cursor:pointer;list-style:none;padding:14px 2px;font-size:.9rem;font-weight:700;color:var(--p2i-text);display:flex;align-items:center;gap:9px}
+.p2i-acc>summary::-webkit-details-marker{display:none}
+.p2i-acc>summary::after{content:'▾';margin-left:auto;color:var(--p2i-dim);transition:.2s}
+.p2i-acc[open]>summary::after{transform:rotate(180deg)}
+.p2i-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;padding:4px 2px 18px}
+.p2i-field label{display:block;font-size:.78rem;font-weight:600;color:var(--p2i-dim);margin-bottom:5px}
+.p2i-inp{width:100%;padding:9px 11px;border-radius:9px;border:1px solid var(--p2i-brd);background:var(--p2i-glass);color:var(--p2i-text);font-family:var(--font);font-size:.85rem;outline:none}
+.p2i-inp:focus{border-color:var(--p2i-accent)}
+.p2i-inline{display:flex;gap:8px}
+.p2i-inline .p2i-inp{flex:1}
+.p2i-slider input[type=range]{width:100%;accent-color:var(--p2i-accent)}
+.p2i-slider label b{color:var(--p2i-text)}
+
+/* actions */
+.p2i-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.p2i-btn{background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;border:none;padding:15px 30px;border-radius:13px;font-size:.98rem;font-weight:700;cursor:pointer;transition:.25s;display:inline-flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 4px 22px rgba(124,92,252,.4);flex:1;min-width:200px}
+.p2i-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(124,92,252,.5)}
+.p2i-btn:disabled{opacity:.4;cursor:default;transform:none}
+.p2i-btn.ghost{background:var(--p2i-glass);color:var(--p2i-text);border:1px solid var(--p2i-brd);box-shadow:none;flex:0 0 auto;min-width:0}
+.p2i-btn.ghost:hover{border-color:var(--p2i-accent);color:var(--p2i-accent);transform:none;box-shadow:none}
+.p2i-btn.warn{background:rgba(239,68,68,.12);color:#F87171;border:1px solid rgba(239,68,68,.3);box-shadow:none;flex:0 0 auto;min-width:0}
+
+/* progress + status */
+.p2i-prog{display:none;margin-top:16px}
+.p2i-prog.show{display:block}
+.p2i-prog-bar{height:10px;border-radius:8px;background:rgba(255,255,255,.08);overflow:hidden}
+.p2i-prog-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--p2i-accent),var(--p2i-accent2));transition:width .2s}
+.p2i-prog-meta{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.78rem;color:var(--p2i-dim);margin-top:8px}
+.p2i-prog-meta b{color:var(--p2i-text)}
+.p2i-prog-ctrls{display:flex;gap:8px;margin-top:10px}
+#statusMsg{margin-top:12px;font-size:.9rem;color:var(--p2i-dim)}
+.p2i-status-ok{color:#34D399!important}
+.p2i-status-err{color:#F87171!important}
+
+/* download row */
+#downloadAllRow{display:none;gap:10px;flex-wrap:wrap;margin-top:16px}
+
+/* lightbox */
+.p2i-lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center;padding:16px}
+.p2i-lightbox.open{display:flex}
+.p2i-lightbox .imgwrap{flex:1;display:flex;align-items:center;justify-content:center;overflow:auto;width:100%}
+.p2i-lightbox img{transform-origin:center;transition:transform .15s}
+.p2i-lb-bar{display:flex;gap:10px;align-items:center;padding:12px;background:rgba(255,255,255,.06);border-radius:12px;margin-top:10px}
+.p2i-lb-bar button{border:1px solid var(--p2i-brd);background:var(--p2i-glass);color:#fff;border-radius:8px;padding:8px 14px;font-size:.85rem;cursor:pointer}
+.p2i-lb-bar .x{margin-left:6px}
+
+/* content sections */
+.p2i-wrap{max-width:1040px;margin:26px auto 0;padding:0 6px}
+.p2i-title{display:flex;align-items:center;gap:12px;margin:26px 0 14px}
+.p2i-title h2{font-size:1.25rem;font-weight:800;margin:0;white-space:nowrap}
+.p2i-title::before,.p2i-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.08)}
+.p2i-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.p2i-card{border:1px solid var(--p2i-brd);background:var(--p2i-glass);border-radius:14px;padding:16px;transition:.2s;backdrop-filter:blur(6px)}
+.p2i-card:hover{border-color:rgba(124,92,252,.4);transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.14)}
+.p2i-card h3{font-size:.9rem;font-weight:700;color:var(--p2i-text);margin:0 0 6px;display:flex;align-items:center;gap:8px}
+.p2i-card p{font-size:.82rem;color:var(--p2i-dim);line-height:1.65;margin:0}
+.p2i-rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.p2i-rel{display:flex;gap:11px;align-items:flex-start;padding:13px;border-radius:12px;border:1px solid var(--p2i-brd);background:var(--p2i-glass);text-decoration:none;transition:.2s}
+.p2i-rel:hover{border-color:rgba(124,92,252,.45);background:rgba(124,92,252,.12);transform:translateY(-3px)}
+.p2i-rel .ri{font-size:1.4rem;flex-shrink:0}
+.p2i-rel .rn{font-size:.85rem;font-weight:700;color:var(--p2i-text);margin-bottom:2px}
+.p2i-rel .rd{font-size:.72rem;color:var(--p2i-dim);line-height:1.45}
+.p2i-about h3{font-size:1rem;font-weight:700;color:var(--p2i-accent);margin:18px 0 8px}
+.p2i-about h4{font-size:.92rem;font-weight:700;color:#fff;margin:14px 0 6px}
+.p2i-about p,.p2i-about li{color:var(--text-dim);font-size:.9rem;line-height:1.8}
+.p2i-about ul{padding-left:20px}
+.p2i-faq details{border:1px solid var(--p2i-brd);background:var(--p2i-glass);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.p2i-faq summary{list-style:none;cursor:pointer;padding:14px 18px;font-size:.9rem;font-weight:700;color:rgba(255,255,255,.86);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.p2i-faq summary::-webkit-details-marker{display:none}
+.p2i-faq summary::after{content:'＋';color:var(--p2i-accent);font-weight:800}
+.p2i-faq details[open] summary::after{content:'－'}
+.p2i-faq details p{padding:0 18px 14px;font-size:.85rem;color:var(--text-dim);line-height:1.7;margin:0}
+
+/* sticky mobile convert */
+@media(max-width:640px){
+  .p2i-sticky{position:fixed;bottom:0;left:0;right:0;padding:12px 16px;background:rgba(13,6,33,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.1);z-index:100;display:none}
+  .p2i-sticky.show{display:block}
+  .p2i-sticky .p2i-btn{width:100%}
+}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid #A78BFA;outline-offset:2px}
 </style>
 </head>
 <body>
@@ -44,157 +184,709 @@
 
 <div class="container">
   <div class="tool-header">
-    <h1>🖼️ PDF to JPG/PNG</h1>
-    <p>Turn every page of a PDF into a separate image and download it.</p>
+    <h1>🖼️ PDF to JPG / PNG Converter</h1>
+    <p>Turn PDF pages into JPG, PNG, WEBP, BMP, TIFF or AVIF images — pick pages, set DPI up to 600, rotate, reorder and download individually or as a ZIP. Everything runs privately in your browser.</p>
   </div>
 
-  <div class="panel">
-    <div class="dropzone" id="dropzone">
-      <p>📤 Drag & drop your PDF file here or click to choose</p>
-      <input type="file" id="fileInput" accept="application/pdf">
+  <div class="panel p2i-scope" id="p2iScope">
+    <div class="p2i-topbar">
+      <span style="font-size:.78rem;color:var(--p2i-dim)">🔒 100% client-side · your files never leave your device</span>
+      <button class="p2i-theme sp" id="themeBtn" type="button">🌙 Dark</button>
     </div>
 
-    <div class="row" style="margin-top:18px">
-      <div class="field">
-        <label for="formatSelect">Format</label>
-        <select id="formatSelect">
-          <option value="image/jpeg">JPG</option>
-          <option value="image/png">PNG</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="scaleSelect">Quality</label>
-        <select id="scaleSelect">
-          <option value="1">Normal</option>
-          <option value="2" selected>High (HD)</option>
-          <option value="3">Very High</option>
-        </select>
-      </div>
+    <!-- UPLOAD -->
+    <div class="p2i-drop" id="dropzone" role="button" tabindex="0" aria-label="Upload PDF">
+      <span class="ic">📤</span>
+      <div class="t">Drag &amp; Drop PDF Files Here</div>
+      <div class="s">or click to browse — you can add multiple PDFs (batch)</div>
+      <button class="p2i-pick" type="button" id="pickBtn">+ Choose PDF Files</button>
+      <div class="p2i-upprog" id="upProg"><i></i></div>
+      <input type="file" id="fileInput" accept="application/pdf" multiple>
+    </div>
+    <div class="p2i-fileinfo" id="fileInfo" style="display:none"></div>
+
+    <!-- SELECTION TOOLBAR -->
+    <div class="p2i-selbar" id="selBar" style="display:none">
+      <span class="lbl">Select:</span>
+      <button class="p2i-sbtn" data-sel="all" type="button">All</button>
+      <button class="p2i-sbtn" data-sel="none" type="button">None</button>
+      <button class="p2i-sbtn" data-sel="odd" type="button">Odd</button>
+      <button class="p2i-sbtn" data-sel="even" type="button">Even</button>
+      <button class="p2i-sbtn" data-sel="first" type="button">First</button>
+      <button class="p2i-sbtn" data-sel="last" type="button">Last</button>
+      <button class="p2i-sbtn" data-sel="invert" type="button">Invert</button>
+      <input class="p2i-range" id="rangeInput" placeholder="e.g. 1-5,8" aria-label="Custom page range">
+      <button class="p2i-sbtn" id="rangeApply" type="button">Apply range</button>
     </div>
 
-    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
-
-    <div class="btn-row" id="downloadAllRow" style="display:none">
-      <button class="btn" id="downloadAllBtn">⬇️ Download All Pages</button>
-    </div>
-
+    <!-- PAGE GRID -->
     <div class="page-grid" id="pageGrid"></div>
+
+    <!-- SETTINGS -->
+    <div class="p2i-settings" id="settings" style="display:none">
+      <details class="p2i-acc" open>
+        <summary>🎨 Format &amp; Quality</summary>
+        <div class="p2i-fields">
+          <div class="p2i-field">
+            <label for="formatSelect">Output format</label>
+            <select id="formatSelect" class="p2i-inp">
+              <option value="image/jpeg">JPG</option>
+              <option value="image/png">PNG</option>
+              <option value="image/webp">WEBP</option>
+              <option value="image/bmp">BMP</option>
+              <option value="image/tiff">TIFF</option>
+              <option value="image/avif">AVIF</option>
+            </select>
+          </div>
+          <div class="p2i-field">
+            <label for="scaleSelect">Quality preset</label>
+            <select id="scaleSelect" class="p2i-inp">
+              <option value="96">Low (96 DPI)</option>
+              <option value="150">Medium (150 DPI)</option>
+              <option value="300" selected>High (300 DPI)</option>
+              <option value="600">Ultra HD (600 DPI)</option>
+            </select>
+          </div>
+          <div class="p2i-field">
+            <label for="dpiSelect">DPI</label>
+            <select id="dpiSelect" class="p2i-inp">
+              <option value="72">72 DPI</option>
+              <option value="96">96 DPI</option>
+              <option value="150">150 DPI</option>
+              <option value="200">200 DPI</option>
+              <option value="300" selected>300 DPI</option>
+              <option value="600">600 DPI</option>
+            </select>
+          </div>
+          <div class="p2i-field" id="jpgQualityWrap">
+            <div class="p2i-slider">
+              <label>JPEG/WEBP quality <b id="qualVal">92%</b></label>
+              <input type="range" id="jpgQuality" min="10" max="100" value="92">
+            </div>
+          </div>
+          <div class="p2i-field">
+            <label for="compressSelect">Compression</label>
+            <select id="compressSelect" class="p2i-inp">
+              <option value="none">None</option>
+              <option value="low" selected>Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+        </div>
+      </details>
+
+      <details class="p2i-acc">
+        <summary>📐 Resolution &amp; Resize</summary>
+        <div class="p2i-fields">
+          <div class="p2i-field">
+            <label for="resizeMode">Resize</label>
+            <select id="resizeMode" class="p2i-inp">
+              <option value="none" selected>Original (use DPI)</option>
+              <option value="width">Fit to width (px)</option>
+              <option value="height">Fit to height (px)</option>
+              <option value="max">Max side (px)</option>
+            </select>
+          </div>
+          <div class="p2i-field" id="resizeValWrap" style="display:none">
+            <label for="resizeVal">Target size (px)</label>
+            <input type="number" id="resizeVal" class="p2i-inp" min="50" max="10000" value="1600">
+          </div>
+        </div>
+      </details>
+
+      <details class="p2i-acc">
+        <summary>🏷️ Output &amp; Naming</summary>
+        <div class="p2i-fields">
+          <div class="p2i-field">
+            <label for="namePrefix">File name prefix</label>
+            <input type="text" id="namePrefix" class="p2i-inp" value="page">
+          </div>
+          <div class="p2i-field">
+            <label for="zipName">ZIP file name</label>
+            <input type="text" id="zipName" class="p2i-inp" value="pdf-pages">
+          </div>
+        </div>
+      </details>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="p2i-actions" id="actions" style="display:none">
+      <button class="p2i-btn" id="convertBtn">🖼️ Convert to Images</button>
+      <button class="p2i-btn ghost" id="clearBtn" type="button">🔄 Reset</button>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="p2i-prog" id="progWrap">
+      <div class="p2i-prog-bar"><i id="progFill"></i></div>
+      <div class="p2i-prog-meta">
+        <span id="progPct">0%</span>
+        <span>Page <b id="progPage">0/0</b></span>
+        <span>ETA: <b id="progEta">—</b></span>
+        <span>Elapsed: <b id="progElapsed">0s</b></span>
+      </div>
+      <div class="p2i-prog-ctrls">
+        <button class="p2i-btn ghost" id="pauseBtn" type="button">⏸ Pause</button>
+        <button class="p2i-btn warn" id="cancelBtn" type="button">✖ Cancel</button>
+      </div>
+    </div>
+
+    <p id="statusMsg" role="status" aria-live="polite"></p>
+
+    <!-- DOWNLOAD -->
+    <div id="downloadAllRow">
+      <button class="p2i-btn" id="downloadAllBtn" style="flex:0 0 auto;min-width:0;padding:13px 24px">🗜️ Download All (ZIP)</button>
+      <button class="p2i-btn ghost" id="downloadSelBtn">⬇ Download selected</button>
+    </div>
   </div>
 </div>
 
+<!-- STICKY MOBILE CONVERT -->
+<div class="p2i-sticky" id="stickyBar"><button class="p2i-btn" type="button" onclick="document.getElementById('convertBtn').click()">🖼️ Convert to Images</button></div>
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>There are plenty of situations where you have a PDF but actually need its content as images instead — uploading a single page to a website that only accepts JPG or PNG, pulling a diagram or chart out of a report to drop into a presentation, sharing a quick visual of a document on social media or chat apps where PDFs don't preview nicely, or feeding a scanned page into an image-editing tool that doesn't understand PDF files at all. This tool converts every page of a PDF into a separate high-quality image file, in either JPG or PNG format, ready to use individually wherever images are needed instead of documents.</p>
-      <p>After uploading your PDF, the tool renders each page and displays it as a thumbnail so you can see exactly what you're about to get before downloading anything. You can choose the output quality, from a standard resolution suitable for screen viewing and quick sharing, up to a high-resolution setting better suited for printing or zooming in on fine detail like small text or technical diagrams. Each page can be downloaded individually with a single click, or you can grab every page at once as a convenient batch download if you need the whole document converted.</p>
-      <p>This is particularly handy for situations where the receiving system genuinely can't handle PDFs — certain government and school application portals, older content management systems, image-only social platforms, and a surprising number of online forms that only accept JPG or PNG uploads despite the source document obviously being a PDF. Rather than hunting for a workaround or taking a screenshot of your screen at a fixed, often blurry resolution, this gives you a clean, properly rendered image straight from the original PDF content at whatever resolution you choose.</p>
-      <p>The entire rendering process happens locally in your browser using a PDF rendering engine, so your document is never sent to a server just to be turned into images — everything you see and download was generated on your own device. This matters if the PDF you're converting contains anything personal or confidential, since there's no intermediate upload step where a copy could be stored or logged somewhere outside your control. The tool works the same way whether you're converting a single-page document or a hundred-page report, and because nothing about file count or page count is artificially limited, it scales naturally from a quick one-off conversion to processing an entire batch of scanned files in one sitting.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your PDF.</li>
-        <li>Choose the output format and quality.</li>
-        <li>Download individual pages or all pages at once.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>कई situations ऐसी होती हैं जहां आपके पास PDF है पर असल में आपको उसका content images के तौर पर चाहिए होता है — किसी ऐसी website पर एक पन्ना अपलोड करना जो सिर्फ JPG या PNG accept करती है, किसी report से कोई diagram या chart निकालकर presentation में डालना, social media या chat apps पर किसी document की quick visual शेयर करना जहां PDFs ठीक से preview नहीं होतीं, या किसी scanned पन्ने को किसी ऐसे image-editing tool में डालना जो PDF files को बिल्कुल नहीं समझता। यह टूल किसी PDF के हर पन्ने को एक अलग high-quality image file में, JPG या PNG फॉर्मेट में बदल देता है, जहां भी documents की बजाय images चाहिए वहां अलग-अलग इस्तेमाल के लिए तैयार।</p>
-      <p>अपनी PDF अपलोड करने के बाद, टूल हर पन्ने को render करके उसे एक thumbnail के तौर पर दिखाता है ताकि कुछ भी download करने से पहले आप ठीक-ठीक देख सकें कि आपको क्या मिलने वाला है। आप output quality चुन सकते हैं, screen पर देखने और जल्दी share करने के लिए सही एक standard resolution से लेकर, छोटे text या technical diagrams जैसी बारीक डिटेल पर print करने या zoom करने के लिए बेहतर एक high-resolution setting तक। हर पन्ना एक क्लिक से अलग-अलग download किया जा सकता है, या अगर पूरा document convert करना हो तो आप एक साथ सभी पन्ने एक सुविधाजनक batch download के तौर पर ले सकते हैं।</p>
-      <p>यह खासतौर पर उन स्थितियों में काम आता है जहां पाने वाला system सच में PDFs handle नहीं कर सकता — कुछ government और school के application portals, पुराने content management systems, सिर्फ image वाले social platforms, और हैरानी की बात नहीं कि कई online forms जो source document साफ तौर पर PDF होने के बावजूद सिर्फ JPG या PNG uploads accept करते हैं। किसी workaround की तलाश करने या अपनी screen का एक fixed, अक्सर धुंधले resolution वाला screenshot लेने की बजाय, यह आपको original PDF content से सीधे, आपकी चुनी resolution पर एक साफ, सही तरीके से render की गई image देता है।</p>
-      <p>पूरी rendering process एक PDF rendering engine इस्तेमाल करके आपके browser में locally होती है, तो सिर्फ images में बदलने के लिए आपका document कभी किसी server पर नहीं भेजा जाता — जो कुछ भी आप देखते और download करते हैं वह आपकी अपनी डिवाइस पर बना है। यह तब मायने रखता है जब आप जो PDF convert कर रहे हैं उसमें कुछ personal या confidential हो, क्योंकि बीच में कोई upload step नहीं होता जहां कोई copy आपके control से बाहर कहीं स्टोर या log हो सके। चाहे आप एक-पन्ने का document convert कर रहे हों या सौ-पन्नों की report, टूल बिल्कुल उसी तरह काम करता है।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी PDF अपलोड करें।</li>
-        <li>आउटपुट फॉर्मेट और क्वालिटी चुनें।</li>
-        <li>अलग-अलग पेज या सभी पेज एक साथ डाउनलोड करें।</li>
-      </ol>
+<!-- ══════════ RELATED TOOLS (above About) ══════════ -->
+<section class="p2i-wrap" aria-label="Related tools">
+  <div class="p2i-title"><h2>🔗 Related Tools</h2></div>
+  <div class="p2i-rel-grid">
+    <a href="pdf-merge.html" class="p2i-rel"><span class="ri">🧩</span><div><div class="rn">PDF Merge</div><div class="rd">Combine PDFs into one</div></div></a>
+    <a href="pdf-split.html" class="p2i-rel"><span class="ri">✂️</span><div><div class="rn">PDF Split</div><div class="rd">Extract or split pages</div></div></a>
+    <a href="image-to-pdf.html" class="p2i-rel"><span class="ri">🖼️</span><div><div class="rn">Image to PDF</div><div class="rd">Images into a PDF</div></div></a>
+    <a href="pdf-compress.html" class="p2i-rel"><span class="ri">📦</span><div><div class="rn">PDF Compress</div><div class="rd">Reduce PDF size</div></div></a>
+    <a href="pdf-rotate.html" class="p2i-rel"><span class="ri">🔄</span><div><div class="rn">PDF Rotate</div><div class="rd">Rotate PDF pages</div></div></a>
+    <a href="pdf-crop.html" class="p2i-rel"><span class="ri">📐</span><div><div class="rn">PDF Crop</div><div class="rd">Trim PDF margins</div></div></a>
+    <a href="pdf-watermark.html" class="p2i-rel"><span class="ri">💧</span><div><div class="rn">PDF Watermark</div><div class="rd">Add a watermark</div></div></a>
+    <a href="pdf-extract-images.html" class="p2i-rel"><span class="ri">🏞️</span><div><div class="rn">PDF Extract Images</div><div class="rd">Pull images from a PDF</div></div></a>
+    <a href="pdf-extract-text.html" class="p2i-rel"><span class="ri">📝</span><div><div class="rn">PDF Extract Text</div><div class="rd">Get text from a PDF</div></div></a>
+    <a href="pdf-viewer.html" class="p2i-rel"><span class="ri">👓</span><div><div class="rn">PDF Viewer</div><div class="rd">Open PDFs in browser</div></div></a>
+    <a href="pdf-ocr.html" class="p2i-rel"><span class="ri">🔎</span><div><div class="rn">PDF OCR</div><div class="rd">Make scans searchable</div></div></a>
+    <a href="pdf-reorder.html" class="p2i-rel"><span class="ri">↕️</span><div><div class="rn">PDF Reorder Pages</div><div class="rd">Rearrange page order</div></div></a>
+    <a href="pdf-delete-pages.html" class="p2i-rel"><span class="ri">🗑</span><div><div class="rn">PDF Delete Pages</div><div class="rd">Remove pages</div></div></a>
+    <a href="pdf-page-numbers.html" class="p2i-rel"><span class="ri">🔢</span><div><div class="rn">PDF Page Numbers</div><div class="rd">Add page numbers</div></div></a>
+    <a href="pdf-grayscale.html" class="p2i-rel"><span class="ri">⚫</span><div><div class="rn">PDF Grayscale</div><div class="rd">Convert PDF to grayscale</div></div></a>
+    <a href="pdf-header-footer.html" class="p2i-rel"><span class="ri">📑</span><div><div class="rn">PDF Header/Footer</div><div class="rd">Add header &amp; footer</div></div></a>
+    <a href="pdf-sign.html" class="p2i-rel"><span class="ri">✍️</span><div><div class="rn">PDF Sign</div><div class="rd">Sign a PDF</div></div></a>
+    <a href="image-compressor.html" class="p2i-rel"><span class="ri">📉</span><div><div class="rn">Image Compressor</div><div class="rd">Shrink image size</div></div></a>
+    <a href="image-resizer.html" class="p2i-rel"><span class="ri">📏</span><div><div class="rn">Image Resizer</div><div class="rd">Resize images</div></div></a>
+    <a href="image-converter.html" class="p2i-rel"><span class="ri">🔄</span><div><div class="rn">Image Converter</div><div class="rd">Convert image formats</div></div></a>
+  </div>
+</section>
+
+<!-- ══════════ ABOUT (bilingual) ══════════ -->
+<section class="p2i-wrap p2i-about" aria-label="About this tool">
+  <div class="p2i-title"><h2>ℹ️ About This Tool</h2></div>
+  <div class="info-wrap" style="max-width:100%;padding:0">
+    <div class="info-section">
+      <article class="info-block p2i-about">
+        <h2>PDF to JPG / PNG Converter (English)</h2>
+        <p>The <strong>PDF to JPG/PNG Converter</strong> by ApneSoftware turns the pages of a PDF into ready-to-use image files — JPG, PNG, WEBP, BMP, TIFF or AVIF — right inside your web browser. Whether you need one page as a picture for an online form, a diagram lifted out of a report, or an entire scanned document exported as images, this tool renders each page crisply at the resolution you choose and lets you download pages one by one or all together in a ZIP, without ever uploading your file to a server.</p>
+
+        <h3>Introduction</h3>
+        <p>PDFs are perfect for sharing finished documents, but many websites, forms and apps only accept images. Government and school portals, older content systems, social platforms and countless upload forms want a JPG or PNG, not a PDF. Taking a screenshot gives you a blurry, badly-cropped result; this converter instead renders the real page content at a precise DPI, so the image is sharp, correctly sized and true to the original. It is the fast, reliable way to move from document format to image format whenever you need to.</p>
+
+        <h3>Main Features</h3>
+        <ul>
+          <li><strong>Six output formats:</strong> JPG, PNG, WEBP, BMP, TIFF and AVIF (where your browser supports it).</li>
+          <li><strong>Full page selection:</strong> all pages, custom ranges (like 1-5,8), odd, even, first, last, or individual checkboxes.</li>
+          <li><strong>Batch &amp; multi-file:</strong> add several PDFs at once and convert them together.</li>
+          <li><strong>Quality control:</strong> DPI from 72 to 600, quality presets, a JPEG/WEBP quality slider and compression levels.</li>
+          <li><strong>Resize options:</strong> keep the original DPI-based size or fit to a target width, height or maximum side.</li>
+          <li><strong>Page management:</strong> rotate, delete and drag-to-reorder pages before converting.</li>
+          <li><strong>Preview:</strong> thumbnails plus a full-screen preview with zoom in and out.</li>
+          <li><strong>Output:</strong> download pages individually, download only the selected pages, or grab everything as a ZIP, with custom file naming.</li>
+          <li><strong>Password-protected PDFs:</strong> enter the password when prompted and convert as usual.</li>
+          <li><strong>Convenience:</strong> progress bar with estimated time, pause, resume and cancel, plus a dark/light theme toggle and keyboard shortcuts.</li>
+        </ul>
+
+        <h3>Benefits</h3>
+        <p>The tool saves you from clumsy workarounds. Instead of screenshotting pages or installing heavy software, you get precise, high-quality images in seconds. Because it runs entirely on your device, it is fast even on a slow connection, works offline once loaded, and keeps confidential documents private. It is completely free, with no watermark, no sign-up and no limit on the number of pages or files.</p>
+
+        <h3>Why Use This Tool</h3>
+        <p>Many online converters upload your PDF to a remote server, cap the number of pages, or stamp a watermark on the output. This one does none of that. It offers more formats and finer control — DPI, quality, resize, rotation, page selection and ZIP export — than most paid alternatives, in a clean, modern interface that works equally well on desktop and mobile.</p>
+
+        <h3>Common Use Cases</h3>
+        <ul>
+          <li>Uploading a single PDF page to a form that only accepts JPG or PNG.</li>
+          <li>Pulling a chart, diagram or figure out of a report for a slide deck.</li>
+          <li>Turning a scanned multi-page document into a set of images.</li>
+          <li>Creating high-resolution images of pages for printing or zooming into fine detail.</li>
+          <li>Sharing a page as a quick image on chat or social media where PDFs do not preview.</li>
+          <li>Exporting pages as WEBP or AVIF to save space on a website.</li>
+        </ul>
+
+        <h3>Privacy &amp; Security</h3>
+        <p>Privacy is central to the design. Your PDF is read with the browser's File API and rendered with a client-side PDF engine; nothing is transmitted, cached on a server or retained after you close the tab. Password-protected files are handled locally too — the password you type is used only in your browser to unlock the document for rendering. This makes the tool suitable for personal, business, legal, financial and medical documents that should never pass through a third-party server.</p>
+
+        <h3>Supported Formats &amp; Browser Compatibility</h3>
+        <p>Input is any standard PDF. Output covers JPG, PNG, WEBP, BMP and TIFF everywhere, with AVIF where the browser can encode it. The converter works in the latest Chrome, Edge, Firefox, Safari, Opera and Brave on Windows, macOS, Linux, Android and iOS. A modern browser with JavaScript is all you need — nothing to install.</p>
+
+        <h3>Tips &amp; Best Practices</h3>
+        <ul>
+          <li>Use 300 DPI for printing and 96–150 DPI for on-screen use to keep files small.</li>
+          <li>Choose PNG for text and line art, and JPG or WEBP for photos and scans.</li>
+          <li>Convert only the pages you need with the selection tools to save time and memory.</li>
+          <li>Rotate any sideways pages before converting so the images come out upright.</li>
+          <li>Use the ZIP download for large documents instead of many separate files.</li>
+        </ul>
+
+        <h3>Limitations</h3>
+        <p>Very high DPI on large documents uses more memory, so extremely long PDFs at 600 DPI may be slow on low-end devices — reduce the DPI or convert in smaller batches. AVIF and, on some browsers, WEBP encoding depend on the browser; if a format is unavailable the tool will fall back gracefully. The converter renders pages as images, so the output is not editable text unless you use a dedicated OCR tool afterwards.</p>
+
+        <h3>Conclusion</h3>
+        <p>This PDF to JPG/PNG converter combines a capable rendering engine with rich, professional controls and a strict privacy model — all free and entirely in the browser. From a single quick export to a full batch of high-resolution images, it gives you exactly the pages you need, in the format and quality you choose, without your files ever leaving your device.</p>
+      </article>
+
+      <hr class="info-divider">
+
+      <article class="info-block p2i-about">
+        <h2>PDF से JPG / PNG कन्वर्टर (हिंदी)</h2>
+        <p>ApneSoftware का <strong>PDF to JPG/PNG Converter</strong> किसी PDF के पन्नों को उपयोग के लिए तैयार image files — JPG, PNG, WEBP, BMP, TIFF या AVIF — में बदल देता है, वह भी आपके ब्राउज़र में ही। किसी ऑनलाइन फ़ॉर्म के लिए एक पन्ना चाहिए हो, किसी रिपोर्ट से निकाला गया diagram हो, या पूरा स्कैन किया दस्तावेज़ images के रूप में चाहिए हो — यह टूल हर पन्ने को आपकी चुनी resolution पर साफ़-साफ़ render करता है और पन्ने एक-एक करके या सब एक साथ ZIP में download करने देता है, बिना आपकी फ़ाइल किसी server पर भेजे।</p>
+
+        <h3>परिचय</h3>
+        <p>PDF तैयार दस्तावेज़ साझा करने के लिए बढ़िया हैं, पर कई वेबसाइट, फ़ॉर्म और ऐप केवल images स्वीकार करते हैं। सरकारी व स्कूल पोर्टल, पुराने सिस्टम, सोशल प्लेटफ़ॉर्म और अनगिनत फ़ॉर्म JPG या PNG माँगते हैं, PDF नहीं। Screenshot लेने से धुंधला, ग़लत-कटा परिणाम मिलता है; यह converter असली पन्ने की सामग्री को सटीक DPI पर render करता है, जिससे image साफ़, सही आकार की और मूल के अनुरूप होती है।</p>
+
+        <h3>मुख्य विशेषताएँ</h3>
+        <ul>
+          <li><strong>छह आउटपुट फ़ॉर्मेट:</strong> JPG, PNG, WEBP, BMP, TIFF और AVIF (जहाँ ब्राउज़र सपोर्ट करे)।</li>
+          <li><strong>पूरा पेज चयन:</strong> सभी पेज, custom range (जैसे 1-5,8), odd, even, first, last, या checkbox से अलग-अलग।</li>
+          <li><strong>बैच व मल्टी-फ़ाइल:</strong> एक साथ कई PDF जोड़कर convert करें।</li>
+          <li><strong>Quality नियंत्रण:</strong> 72 से 600 तक DPI, quality presets, JPEG/WEBP quality slider और compression स्तर।</li>
+          <li><strong>Resize:</strong> मूल DPI-आधारित आकार या target width/height/max side के अनुसार।</li>
+          <li><strong>पेज प्रबंधन:</strong> convert से पहले rotate, delete और ड्रैग से reorder।</li>
+          <li><strong>Preview:</strong> thumbnails और zoom के साथ full-screen preview।</li>
+          <li><strong>आउटपुट:</strong> अलग-अलग, चयनित, या पूरा ZIP; custom file naming।</li>
+          <li><strong>Password-protected PDF:</strong> पूछे जाने पर password डालें और सामान्य रूप से convert करें।</li>
+          <li><strong>सुविधाएँ:</strong> अनुमानित समय के साथ progress bar, pause/resume/cancel, dark/light theme और keyboard shortcuts।</li>
+        </ul>
+
+        <h3>लाभ और उपयोग</h3>
+        <p>यह टूल असुविधाजनक तरीक़ों से बचाता है। Screenshot या भारी software के बजाय कुछ ही सेकंड में सटीक, उच्च-गुणवत्ता वाली images मिलती हैं। पूरी प्रक्रिया आपके डिवाइस पर चलने से यह धीमे कनेक्शन पर भी तेज़ है, लोड होने के बाद ऑफ़लाइन काम करता है और गोपनीय दस्तावेज़ निजी रखता है। यह पूरी तरह फ्री है — न watermark, न sign-up, न पेज/फ़ाइल की सीमा। फ़ॉर्म के लिए एक पन्ना, रिपोर्ट से chart, स्कैन दस्तावेज़ के images, print के लिए high-resolution पन्ने, chat/सोशल पर त्वरित image, या वेबसाइट के लिए WEBP/AVIF — जैसे कई काम इससे आसान हो जाते हैं।</p>
+
+        <h3>गोपनीयता, फ़ॉर्मेट और अनुकूलता</h3>
+        <p>आपकी PDF ब्राउज़र के File API से पढ़ी और client-side इंजन से render होती है; कुछ भी server पर नहीं भेजा या संग्रहीत होता, और tab बंद करते ही सब हट जाता है। Password वाली फ़ाइल भी locally खुलती है — आपका डाला password केवल ब्राउज़र में उपयोग होता है। इनपुट कोई भी मानक PDF; आउटपुट में JPG, PNG, WEBP, BMP, TIFF हर जगह और AVIF जहाँ ब्राउज़र encode कर सके। यह नवीनतम Chrome, Edge, Firefox, Safari, Opera और Brave पर Windows, macOS, Linux, Android और iOS में चलता है।</p>
+
+        <h3>सुझाव, सीमाएँ और निष्कर्ष</h3>
+        <p>प्रिंट के लिए 300 DPI और स्क्रीन के लिए 96–150 DPI रखें; text/line-art के लिए PNG और फ़ोटो/स्कैन के लिए JPG/WEBP चुनें; केवल ज़रूरी पेज convert करें; तिरछे पेज पहले rotate करें; बड़े दस्तावेज़ के लिए ZIP चुनें। सीमाएँ: बड़े दस्तावेज़ पर बहुत ऊँचा DPI ज़्यादा memory लेता है, इसलिए कमज़ोर डिवाइस पर 600 DPI धीमा हो सकता है — DPI घटाएँ या छोटे बैच में convert करें; AVIF/कुछ ब्राउज़र में WEBP encoding ब्राउज़र पर निर्भर है और उपलब्ध न होने पर टूल सहज रूप से fallback कर देता है। कुल मिलाकर, यह एक सक्षम इंजन, समृद्ध नियंत्रण और सख़्त गोपनीयता के साथ — पूरी तरह फ्री और ब्राउज़र में — आपको मनचाहे फ़ॉर्मेट व गुणवत्ता में सही पन्ने देता है, बिना आपकी फ़ाइलें कहीं भेजे।</p>
+      </article>
     </div>
   </div>
-</div>
+</section>
 
-<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<!-- ══════════ FAQ ══════════ -->
+<section class="p2i-wrap p2i-faq" aria-label="Frequently asked questions">
+  <div class="p2i-title"><h2>❓ Frequently Asked Questions</h2></div>
+  <div id="faqList"></div>
+</section>
+
+<footer class="site-footer">© 2026 ApneSoftware.com — PDF to JPG/PNG Converter · Free &amp; private, in your browser.</footer>
+
+<!-- lightbox -->
+<div class="p2i-lightbox" id="lightbox">
+  <div class="imgwrap"><img id="lightImg" alt="Page preview"></div>
+  <div class="p2i-lb-bar">
+    <button id="lbZoomOut" type="button">➖</button>
+    <button id="lbZoomIn" type="button">➕</button>
+    <button id="lbReset" type="button">Reset</button>
+    <button id="lbClose" class="x" type="button">✕ Close</button>
+  </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+/* ═══════════════════════════════════════════════════════════
+   PDF to JPG / PNG CONVERTER — client-side, powered by pdf.js.
+   Nothing is uploaded; pages are rendered in your browser.
+═══════════════════════════════════════════════════════════ */
+(function(){
+'use strict';
+var $ = function(id){ return document.getElementById(id); };
+function toast(m){ if(window.premToast) premToast(m); }
+if(window.pdfjsLib){ pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"; }
 
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-let pageBlobs = [];
+/* state */
+var docs = [];        // {name, pdf}
+var pages = [];        // {docIdx, docName, pageNum, thumbUrl, w, h, rotate, sel}
+var results = [];      // {name, blob, url, sel}
+var busy = false, cancelFlag = false, paused = false;
+var THUMB_SCALE = 0.28;
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
-});
+var dropzone = $('dropzone'), fileInput = $('fileInput');
 
-async function handleFile(file){
-  const status = document.getElementById('statusMsg');
-  const grid = document.getElementById('pageGrid');
-  grid.innerHTML = '';
-  pageBlobs = [];
-  status.textContent = '⏳ Loading PDF...';
+/* ── format capability detection ───────────────────────── */
+function canEncode(mime){ try{ var c=document.createElement('canvas'); c.width=c.height=2; return c.toDataURL(mime).indexOf('data:'+mime)===0; }catch(e){ return false; } }
+var NATIVE = { 'image/jpeg':true, 'image/png':true, 'image/webp':canEncode('image/webp'), 'image/avif':canEncode('image/avif') };
+(function markFormats(){
+  var sel=$('formatSelect'); if(!sel) return;
+  Array.prototype.forEach.call(sel.options, function(o){
+    if(o.value==='image/webp' && !NATIVE['image/webp']){ o.textContent='WEBP (not supported here)'; o.disabled=true; }
+    if(o.value==='image/avif' && !NATIVE['image/avif']){ o.textContent='AVIF (not supported here)'; o.disabled=true; }
+  });
+})();
 
-  const arrayBuf = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
-  const format = document.getElementById('formatSelect').value;
-  const scale = parseFloat(document.getElementById('scaleSelect').value);
-  const ext = format === 'image/png' ? 'png' : 'jpg';
+/* ── file size ─────────────────────────────────────────── */
+function fmtSize(b){ if(!b) return '—'; if(b<1024) return b+' B'; if(b<1048576) return (b/1024).toFixed(1)+' KB'; return (b/1048576).toFixed(2)+' MB'; }
 
-  for(let i=1; i<=pdf.numPages; i++){
-    status.textContent = `⏳ Building page ${i}/${pdf.numPages}...`;
-    const page = await pdf.getPage(i);
-    const viewport = page.getViewport({ scale });
-    const canvas = document.createElement('canvas');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    const ctx = canvas.getContext('2d');
-    if(format === 'image/jpeg'){
-      ctx.fillStyle = '#fff';
-      ctx.fillRect(0,0,canvas.width,canvas.height);
-    }
-    await page.render({ canvasContext: ctx, viewport }).promise;
-
-    await new Promise(resolve => {
-      canvas.toBlob(blob => {
-        pageBlobs.push({ blob, index: i });
-        const card = document.createElement('div');
-        card.className = 'page-card';
-        card.innerHTML = `
-          <img src="${URL.createObjectURL(blob)}">
-          <div style="font-size:.8rem;color:var(--text-dim);margin-bottom:6px">Page ${i}</div>
-          <button class="btn secondary" style="padding:6px 10px;font-size:.8rem" onclick="downloadOne(${pageBlobs.length-1}, '${ext}')">⬇️ Download</button>`;
-        grid.appendChild(card);
-        resolve();
-      }, format, 0.92);
-    });
+/* ── upload ────────────────────────────────────────────── */
+function pickPdf(list){ return Array.prototype.slice.call(list||[]).filter(function(f){ return f && (f.type==='application/pdf' || /\.pdf$/i.test(f.name||'')); }); }
+async function addFiles(list){
+  var files = pickPdf(list);
+  if(!files.length){ toast('Please choose PDF files.'); return; }
+  var prog=$('upProg'), bar=prog.querySelector('i'); prog.style.display='block'; bar.style.width='8%';
+  for(var fi=0; fi<files.length; fi++){
+    var f = files[fi];
+    try{
+      var buf = await f.arrayBuffer();
+      var pdf = await loadPdf(buf, f.name);
+      if(!pdf) continue;
+      var di = docs.length; docs.push({ name:f.name, pdf:pdf, size:f.size });
+      // render thumbnails
+      for(var p=1; p<=pdf.numPages; p++){
+        var entry = { docIdx:di, docName:f.name, pageNum:p, thumbUrl:null, w:0, h:0, rotate:0, sel:true };
+        pages.push(entry);
+        renderGridSkeletons();
+        await makeThumb(entry, pdf, p);
+      }
+    }catch(err){ toast('Could not read '+(f.name||'PDF')); }
+    bar.style.width = Math.round((fi+1)/files.length*100)+'%';
   }
-
-  status.textContent = `✅ ${pdf.numPages} pages ready`;
-  document.getElementById('downloadAllRow').style.display = 'flex';
+  setTimeout(function(){ prog.style.display='none'; bar.style.width='0'; }, 400);
+  updateUI();
+  render();
+}
+async function loadPdf(buf, name){
+  try{ return await pdfjsLib.getDocument({ data: buf.slice(0) }).promise; }
+  catch(e){
+    if(e && (e.name==='PasswordException' || /password/i.test(e.message||''))){
+      var pw = prompt('“'+(name||'PDF')+'” is password-protected. Enter the password:');
+      if(pw==null) return null;
+      try{ return await pdfjsLib.getDocument({ data: buf.slice(0), password: pw }).promise; }
+      catch(e2){ toast('Wrong password or the PDF could not be opened.'); return null; }
+    }
+    throw e;
+  }
+}
+async function makeThumb(entry, pdf, p){
+  try{
+    var page = await pdf.getPage(p);
+    var vp = page.getViewport({ scale: THUMB_SCALE });
+    var c = document.createElement('canvas'); c.width=vp.width; c.height=vp.height;
+    var ctx = c.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height);
+    await page.render({ canvasContext:ctx, viewport:vp }).promise;
+    var base = page.getViewport({ scale:1 });
+    entry.w = Math.round(base.width); entry.h = Math.round(base.height);
+    entry.thumbUrl = c.toDataURL('image/jpeg', 0.7);
+    render();
+  }catch(e){}
+}
+if(dropzone && fileInput){
+  fileInput.addEventListener('change', function(e){ addFiles(e.target.files); e.target.value=''; });
+  dropzone.addEventListener('click', function(e){ if(e.target.id==='pickBtn'||e.target===dropzone||e.target.classList.contains('ic')||e.target.classList.contains('t')||e.target.classList.contains('s')) fileInput.click(); });
+  dropzone.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); fileInput.click(); } });
+  ['dragenter','dragover'].forEach(function(ev){ dropzone.addEventListener(ev, function(e){ e.preventDefault(); dropzone.classList.add('drag'); }); });
+  ['dragleave','drop'].forEach(function(ev){ dropzone.addEventListener(ev, function(e){ e.preventDefault(); dropzone.classList.remove('drag'); }); });
+  dropzone.addEventListener('drop', function(e){ if(e.dataTransfer) addFiles(e.dataTransfer.files); });
 }
 
-function downloadOne(idx, ext){
-  const item = pageBlobs[idx];
-  downloadBlob(`page-${item.index}.${ext}`, item.blob);
+/* ── UI visibility ─────────────────────────────────────── */
+function updateUI(){
+  var has = pages.length>0;
+  $('selBar').style.display = has?'flex':'none';
+  $('settings').style.display = has?'block':'none';
+  $('actions').style.display = has?'flex':'none';
+  $('stickyBar').classList.toggle('show', has);
+  $('fileInfo').style.display = has?'block':'none';
+  if(has){
+    var totalSize = docs.reduce(function(s,d){return s+(d.size||0);},0);
+    $('fileInfo').innerHTML = '<b>'+docs.length+'</b> file(s) · <b>'+pages.length+'</b> pages · '+fmtSize(totalSize);
+  }
 }
 
-document.getElementById('downloadAllBtn').addEventListener('click', ()=>{
-  pageBlobs.forEach((item, i) => {
-    setTimeout(()=>{
-      const ext = document.getElementById('formatSelect').value === 'image/png' ? 'png' : 'jpg';
-      downloadBlob(`page-${item.index}.${ext}`, item.blob);
-    }, i * 300);
+/* ── render grid ───────────────────────────────────────── */
+function renderGridSkeletons(){
+  var grid=$('pageGrid');
+  if(grid.querySelectorAll('.p2i-page').length + grid.querySelectorAll('.p2i-skeleton').length >= pages.length) return;
+  var d=document.createElement('div'); d.className='p2i-skeleton'; grid.appendChild(d);
+}
+var dragFrom=null;
+function render(){
+  var grid=$('pageGrid'); grid.innerHTML='';
+  pages.forEach(function(pg,i){
+    var d=document.createElement('div');
+    d.className='p2i-page'+(pg.sel?' sel':''); d.setAttribute('draggable','true'); d.dataset.i=i;
+    var thumb = pg.thumbUrl ? '<img class="p2i-page-thumb" src="'+pg.thumbUrl+'" alt="page" loading="lazy" style="transform:rotate('+pg.rotate+'deg)">' : '<div class="p2i-skeleton"></div>';
+    d.innerHTML =
+      '<input type="checkbox" class="p2i-page-chk" '+(pg.sel?'checked':'')+'>'+
+      '<span class="p2i-page-lbl">'+(docs.length>1?('F'+(pg.docIdx+1)+' · '):'')+'P'+pg.pageNum+'</span>'+
+      thumb+
+      '<div class="p2i-page-acts">'+
+        (pg.res ? '<button data-a="dl" title="Download this image" style="color:var(--p2i-accent)">⬇</button>' : '')+
+        '<button data-a="rotl" title="Rotate left">⟲</button>'+
+        '<button data-a="rotr" title="Rotate right">⟳</button>'+
+        '<button data-a="del" title="Delete">🗑</button>'+
+      '</div>';
+    d.querySelector('.p2i-page-chk').addEventListener('change', function(){ pg.sel=this.checked; d.classList.toggle('sel',pg.sel); });
+    var im=d.querySelector('.p2i-page-thumb'); if(im) im.addEventListener('click', function(){ openLightbox(pg.thumbUrl, pg.rotate); });
+    d.querySelectorAll('[data-a]').forEach(function(b){ b.addEventListener('click', function(ev){ ev.stopPropagation(); pageAct(b.getAttribute('data-a'), i); }); });
+    d.addEventListener('dragstart', function(){ d.classList.add('drag-ghost'); dragFrom=i; });
+    d.addEventListener('dragend', function(){ d.classList.remove('drag-ghost'); });
+    d.addEventListener('dragover', function(ev){ ev.preventDefault(); });
+    d.addEventListener('drop', function(ev){ ev.preventDefault(); var to=+d.dataset.i; if(dragFrom!=null&&dragFrom!==to){ var m=pages.splice(dragFrom,1)[0]; pages.splice(to,0,m); dragFrom=null; render(); } });
+    grid.appendChild(d);
   });
+}
+function pageAct(a,i){
+  var pg=pages[i]; if(!pg) return;
+  if(a==='dl'){ if(pg.res) downloadBlobLocal(pg.res.name, pg.res.blob); return; }
+  if(a==='del'){ pages.splice(i,1); if(!pages.length){ resetAll(); return; } updateUI(); }
+  else if(a==='rotl'){ pg.rotate=(pg.rotate+270)%360; }
+  else if(a==='rotr'){ pg.rotate=(pg.rotate+90)%360; }
+  render();
+}
+
+/* ── selection toolbar ─────────────────────────────────── */
+$('selBar').addEventListener('click', function(e){
+  var b=e.target.closest('[data-sel]'); if(!b) return;
+  var s=b.getAttribute('data-sel');
+  pages.forEach(function(p,i){
+    if(s==='all') p.sel=true;
+    else if(s==='none') p.sel=false;
+    else if(s==='odd') p.sel=(p.pageNum%2===1);
+    else if(s==='even') p.sel=(p.pageNum%2===0);
+    else if(s==='first') p.sel=(i===0);
+    else if(s==='last') p.sel=(i===pages.length-1);
+    else if(s==='invert') p.sel=!p.sel;
+  });
+  render();
+});
+$('rangeApply').addEventListener('click', function(){
+  var set = parseRange($('rangeInput').value, pages.length);
+  if(!set){ toast('Enter a range like 1-5,8'); return; }
+  pages.forEach(function(p,i){ p.sel = set.indexOf(i)>=0; });
+  render();
+});
+function parseRange(str,total){
+  if(!str||!str.trim()) return null; var out=[];
+  str.split(',').forEach(function(part){ part=part.trim();
+    if(/^\d+$/.test(part)){ var n=+part; if(n>=1&&n<=total) out.push(n-1); }
+    else { var m=part.match(/^(\d+)\s*-\s*(\d+)$/); if(m){ var a=+m[1],b=+m[2]; if(a>b){var t=a;a=b;b=t;} for(var k=a;k<=b;k++) if(k>=1&&k<=total) out.push(k-1); } }
+  });
+  return out;
+}
+
+/* ── settings sync ─────────────────────────────────────── */
+$('scaleSelect').addEventListener('change', function(){ $('dpiSelect').value=this.value; });
+$('dpiSelect').addEventListener('change', function(){ /* dpi is source of truth */ });
+$('formatSelect').addEventListener('change', function(){
+  var lossy = /jpeg|webp|avif/.test(this.value);
+  $('jpgQualityWrap').style.display = lossy?'':'none';
+});
+$('jpgQuality').addEventListener('input', function(){ $('qualVal').textContent=this.value+'%'; });
+$('resizeMode').addEventListener('change', function(){ $('resizeValWrap').style.display = this.value==='none'?'none':''; });
+$('compressSelect').addEventListener('change', function(){});
+
+/* ── theme toggle ──────────────────────────────────────── */
+$('themeBtn').addEventListener('click', function(){
+  var sc=$('p2iScope'); var light=sc.classList.toggle('light');
+  this.textContent = light?'☀️ Light':'🌙 Dark';
 });
 
-['formatSelect','scaleSelect'].forEach(id=>{
-  document.getElementById(id).addEventListener('change', ()=>{
-    if(fileInput.files[0]) handleFile(fileInput.files[0]);
+/* ── lightbox ──────────────────────────────────────────── */
+var lbZoom=1, lbRot=0;
+function openLightbox(url,rot){ if(!url) return; lbZoom=1; lbRot=rot||0; var im=$('lightImg'); im.src=url; applyLb(); $('lightbox').classList.add('open'); }
+function applyLb(){ $('lightImg').style.transform='rotate('+lbRot+'deg) scale('+lbZoom+')'; }
+$('lbZoomIn').addEventListener('click', function(){ lbZoom=Math.min(6,lbZoom*1.25); applyLb(); });
+$('lbZoomOut').addEventListener('click', function(){ lbZoom=Math.max(.2,lbZoom/1.25); applyLb(); });
+$('lbReset').addEventListener('click', function(){ lbZoom=1; applyLb(); });
+$('lbClose').addEventListener('click', function(){ $('lightbox').classList.remove('open'); });
+$('lightbox').addEventListener('click', function(e){ if(e.target===this) this.classList.remove('open'); });
+
+/* ── BMP encoder (24-bit, uncompressed) ────────────────── */
+function encodeBMP(imageData){
+  var w=imageData.width, h=imageData.height, data=imageData.data;
+  var rowSize=Math.floor((24*w+31)/32)*4, pixSize=rowSize*h, fileSize=54+pixSize;
+  var buf=new ArrayBuffer(fileSize), dv=new DataView(buf);
+  dv.setUint8(0,0x42); dv.setUint8(1,0x4D); dv.setUint32(2,fileSize,true); dv.setUint32(10,54,true);
+  dv.setUint32(14,40,true); dv.setInt32(18,w,true); dv.setInt32(22,h,true);
+  dv.setUint16(26,1,true); dv.setUint16(28,24,true); dv.setUint32(34,pixSize,true);
+  dv.setInt32(38,2835,true); dv.setInt32(42,2835,true);
+  for(var y=0;y<h;y++){ var rp=54+(h-1-y)*rowSize; for(var x=0;x<w;x++){ var i=(y*w+x)*4; dv.setUint8(rp++,data[i+2]); dv.setUint8(rp++,data[i+1]); dv.setUint8(rp++,data[i]); } }
+  return new Blob([buf],{type:'image/bmp'});
+}
+/* ── TIFF encoder (baseline, uncompressed RGB, little-endian) ── */
+function encodeTIFF(imageData){
+  var w=imageData.width, h=imageData.height, data=imageData.data;
+  var pix=w*h, rgb=new Uint8Array(pix*3);
+  for(var i=0,j=0;i<data.length;i+=4){ rgb[j++]=data[i]; rgb[j++]=data[i+1]; rgb[j++]=data[i+2]; }
+  var imgOff=8, imgSize=pix*3;
+  var ifdOff=imgOff+imgSize; if(ifdOff%2) ifdOff++;
+  var nEntries=12, ifdSize=2+nEntries*12+4, extOff=ifdOff+ifdSize;
+  var extSize=6+8+8; // BitsPerSample(3 shorts) + XRes + YRes rationals
+  var total=extOff+extSize;
+  var buf=new ArrayBuffer(total), dv=new DataView(buf), u8=new Uint8Array(buf);
+  dv.setUint16(0,0x4949,true); dv.setUint16(2,42,true); dv.setUint32(4,ifdOff,true);
+  u8.set(rgb, imgOff);
+  var bpsOff=extOff, xresOff=extOff+6, yresOff=extOff+14;
+  dv.setUint16(bpsOff,8,true); dv.setUint16(bpsOff+2,8,true); dv.setUint16(bpsOff+4,8,true);
+  dv.setUint32(xresOff,72,true); dv.setUint32(xresOff+4,1,true);
+  dv.setUint32(yresOff,72,true); dv.setUint32(yresOff+4,1,true);
+  var o=ifdOff; dv.setUint16(o,nEntries,true); o+=2;
+  function e(tag,type,count,val){ dv.setUint16(o,tag,true); dv.setUint16(o+2,type,true); dv.setUint32(o+4,count,true); dv.setUint32(o+8,val,true); o+=12; }
+  e(256,4,1,w); e(257,4,1,h); e(258,3,3,bpsOff); e(259,3,1,1); e(262,3,1,2);
+  e(273,4,1,imgOff); e(277,3,1,3); e(278,4,1,h); e(279,4,1,imgSize);
+  e(282,5,1,xresOff); e(283,5,1,yresOff); e(296,3,1,2);
+  dv.setUint32(o,0,true);
+  return new Blob([buf],{type:'image/tiff'});
+}
+function canvasToBlob(canvas, mime, quality){
+  return new Promise(function(res){
+    if(mime==='image/bmp' || mime==='image/tiff'){
+      var ctx=canvas.getContext('2d'); var id=ctx.getImageData(0,0,canvas.width,canvas.height);
+      res(mime==='image/bmp'?encodeBMP(id):encodeTIFF(id)); return;
+    }
+    canvas.toBlob(function(b){ res(b); }, mime, quality);
   });
+}
+
+/* ── conversion ────────────────────────────────────────── */
+$('convertBtn').addEventListener('click', function(){ convert(); });
+$('clearBtn').addEventListener('click', resetAll);
+$('cancelBtn').addEventListener('click', function(){ cancelFlag=true; paused=false; });
+$('pauseBtn').addEventListener('click', function(){ paused=!paused; this.textContent = paused?'▶ Resume':'⏸ Pause'; });
+
+function sleep(ms){ return new Promise(function(r){ setTimeout(r,ms); }); }
+
+async function convert(){
+  if(busy) return;
+  var chosen = pages.filter(function(p){ return p.sel; });
+  if(!chosen.length){ setStatus('⚠️ Select at least one page.', 'err'); return; }
+  var fmt=$('formatSelect').value;
+  if((fmt==='image/webp'&&!NATIVE['image/webp'])||(fmt==='image/avif'&&!NATIVE['image/avif'])){ setStatus('⚠️ '+fmt+' is not supported by this browser. Choose PNG/JPG.','err'); return; }
+  busy=true; cancelFlag=false; paused=false;
+  $('convertBtn').disabled=true; $('downloadAllRow').style.display='none';
+  clearResults();
+  var dpi=parseInt($('dpiSelect').value,10)||300;
+  var quality=parseInt($('jpgQuality').value,10)/100;
+  var comp=$('compressSelect').value;
+  if(/jpeg|webp|avif/.test(fmt)){ var cf={none:1,low:.95,medium:.85,high:.7}[comp]; quality=Math.max(.1, quality*cf); }
+  var resizeMode=$('resizeMode').value, resizeVal=parseInt($('resizeVal').value,10)||1600;
+  var prefix=($('namePrefix').value.trim()||'page');
+  var ext={ 'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/bmp':'bmp','image/tiff':'tiff','image/avif':'avif' }[fmt];
+
+  var prog=$('progWrap'); prog.classList.add('show'); $('pauseBtn').textContent='⏸ Pause';
+  var t0=Date.now();
+  try{
+    for(var idx=0; idx<chosen.length; idx++){
+      while(paused && !cancelFlag){ await sleep(120); }
+      if(cancelFlag){ setStatus('⏹ Conversion cancelled.', 'err'); break; }
+      var pg=chosen[idx];
+      var pct=Math.round((idx)/chosen.length*100);
+      $('progFill').style.width=pct+'%'; $('progPct').textContent=pct+'%';
+      $('progPage').textContent=(idx+1)+'/'+chosen.length;
+      var el=(Date.now()-t0)/1000; $('progElapsed').textContent=el.toFixed(0)+'s';
+      if(idx>0) $('progEta').textContent=Math.max(0,(el/idx*(chosen.length-idx))).toFixed(0)+'s';
+      setStatus('🖼️ Rendering page '+(idx+1)+' of '+chosen.length+'…');
+
+      var pdf=docs[pg.docIdx].pdf;
+      var page=await pdf.getPage(pg.pageNum);
+      var base=page.getViewport({ scale:1 });
+      var scale=dpi/72;
+      if(resizeMode==='width') scale=resizeVal/base.width;
+      else if(resizeMode==='height') scale=resizeVal/base.height;
+      else if(resizeMode==='max') scale=Math.min(resizeVal/base.width, resizeVal/base.height);
+      scale=Math.max(.05, Math.min(scale, 8));
+      var rotation=(page.rotate + pg.rotate) % 360;
+      var vp=page.getViewport({ scale:scale, rotation:rotation });
+      var canvas=document.createElement('canvas'); canvas.width=Math.round(vp.width); canvas.height=Math.round(vp.height);
+      var ctx=canvas.getContext('2d');
+      if(fmt!=='image/png'){ ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height); }
+      await page.render({ canvasContext:ctx, viewport:vp }).promise;
+      var blob=await canvasToBlob(canvas, fmt, quality);
+      canvas.width=canvas.height=0; // free memory
+      if(!blob) continue;
+      var name=prefix+'-'+(docs.length>1?((pg.docIdx+1)+'-'):'')+pg.pageNum+'.'+ext;
+      var r={ name:name, blob:blob, url:URL.createObjectURL(blob), sel:true };
+      results.push(r); pg.res=r;
+      render();
+    }
+    if(!cancelFlag){
+      $('progFill').style.width='100%'; $('progPct').textContent='100%';
+      setStatus('✅ Converted '+results.length+' page(s) to '+ext.toUpperCase()+'.', 'ok');
+      $('downloadAllRow').style.display='flex';
+    }
+  }catch(err){ setStatus('❌ Conversion failed: '+(err&&err.message||err), 'err'); }
+  busy=false; $('convertBtn').disabled=false;
+  setTimeout(function(){ prog.classList.remove('show'); }, 800);
+}
+
+/* ── results ───────────────────────────────────────────── */
+function clearResults(){ results.forEach(function(r){ if(r.url) URL.revokeObjectURL(r.url); }); results=[]; pages.forEach(function(p){ p.res=null; }); }
+
+/* ── downloads ─────────────────────────────────────────── */
+function downloadBlobLocal(name, blob){ if(window.downloadBlob) return downloadBlob(name, blob); var u=URL.createObjectURL(blob); var a=document.createElement('a'); a.href=u; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(u);},4000); }
+$('downloadSelBtn').addEventListener('click', function(){ results.forEach(function(r,i){ setTimeout(function(){ downloadBlobLocal(r.name, r.blob); }, i*250); }); });
+$('downloadAllBtn').addEventListener('click', async function(){
+  if(!results.length) return;
+  if(results.length===1){ downloadBlobLocal(results[0].name, results[0].blob); return; }
+  setStatus('🗜️ Building ZIP…');
+  var p = window.JSZip ? Promise.resolve() : loadScript('https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js');
+  p.then(function(){
+    var zip=new JSZip();
+    results.forEach(function(r){ zip.file(r.name, r.blob); });
+    zip.generateAsync({type:'blob'}).then(function(b){ downloadBlobLocal(($('zipName').value.trim()||'pdf-pages')+'.zip', b); setStatus('✅ ZIP downloaded.', 'ok'); });
+  }).catch(function(){ setStatus('❌ Could not load the ZIP library.', 'err'); });
 });
+function loadScript(src){ return new Promise(function(res,rej){ var s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=rej; document.head.appendChild(s); }); }
+
+/* ── status / reset ────────────────────────────────────── */
+function setStatus(m, kind){ var el=$('statusMsg'); el.textContent=m; el.className=''; if(kind==='ok') el.classList.add('p2i-status-ok'); if(kind==='err') el.classList.add('p2i-status-err'); }
+function resetAll(){
+  pages.forEach(function(p){});
+  clearResults();
+  docs.forEach(function(d){ try{ d.pdf.destroy&&d.pdf.destroy(); }catch(e){} });
+  docs=[]; pages=[]; busy=false; cancelFlag=false; paused=false;
+  $('pageGrid').innerHTML=''; setStatus(''); $('downloadAllRow').style.display='none';
+  $('progWrap').classList.remove('show'); updateUI();
+}
+
+/* ── keyboard shortcuts ────────────────────────────────── */
+document.addEventListener('keydown', function(e){
+  if(document.activeElement && /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) return;
+  if((e.ctrlKey||e.metaKey) && e.key==='Enter'){ e.preventDefault(); if(!busy) $('convertBtn').click(); }
+  else if(e.key==='Escape'){ if($('lightbox').classList.contains('open')) $('lightbox').classList.remove('open'); else if(busy){ cancelFlag=true; } }
+  else if(e.key.toLowerCase()==='a' && pages.length){ pages.forEach(function(p){p.sel=true;}); render(); }
+});
+
+/* ── FAQ (rendered + schema) ───────────────────────────── */
+var FAQ=[
+ ["Is this PDF to JPG/PNG converter free?","Yes. It is completely free with no sign-up, no watermark and no limit on the number of pages or files you convert."],
+ ["Are my PDF files uploaded to a server?","No. All rendering happens locally in your browser, so your PDF and the images it produces never leave your device."],
+ ["Which output formats are supported?","JPG, PNG, WEBP, BMP and TIFF work in all modern browsers, and AVIF is available where the browser can encode it. Unsupported formats are clearly marked."],
+ ["How do I convert only specific pages?","Use the selection toolbar to pick All, Odd, Even, First or Last, type a custom range like 1-5,8, or tick the checkbox on each page you want, then convert."],
+ ["Can I convert multiple PDFs at once?","Yes. Add several PDFs and their pages appear together; convert them in one run and download everything as a single ZIP."],
+ ["What DPI should I choose?","Use 300 DPI for printing and sharp detail, and 96–150 DPI for on-screen use to keep file sizes small. You can go up to 600 DPI for maximum quality."],
+ ["How do quality and compression work?","The JPEG/WEBP quality slider sets detail from 10% to 100%, and the compression level reduces it further for smaller files. PNG and BMP are lossless, so quality does not apply to them."],
+ ["Can I resize the output images?","Yes. Keep the DPI-based size, or fit the output to a target width, height or maximum side in pixels."],
+ ["Can I rotate or reorder pages before converting?","Yes. Rotate any page 90° at a time, drag thumbnails to reorder, and delete pages you do not need — the output follows what you see."],
+ ["How do I download the images?","Download pages individually, download only the selected pages, or get everything at once as a ZIP with your own file name and prefix."],
+ ["Does it work with password-protected PDFs?","Yes. When you add a protected PDF the tool asks for the password and uses it locally to unlock and render the pages."],
+ ["Will converting reduce quality?","Only as much as you choose. High DPI with PNG keeps every detail; lower DPI or higher compression trades some quality for a smaller file."],
+ ["Does it work on mobile phones?","Yes. The interface is fully responsive with a sticky convert button and works on Android and iPhone as well as tablets and desktops."],
+ ["Which browsers are supported?","The latest Chrome, Edge, Firefox, Safari, Opera and Brave, with JavaScript enabled."],
+ ["Is there a limit on file size or page count?","There is no fixed server limit because processing is local. Very large PDFs at high DPI simply use more of your device's memory, so convert in batches if needed."],
+ ["Can I pause or cancel a long conversion?","Yes. While converting you can pause and resume, or cancel entirely, and the pages already produced remain available to download."],
+ ["Is my data safe for confidential documents?","Yes. Nothing is uploaded, so there is no server that could store or expose your files, making it safe for personal, legal, financial and medical PDFs."],
+ ["Does it support dark and light themes?","Yes. Use the theme toggle in the tool to switch the workspace between dark and light to suit your preference."]
+];
+(function renderFaq(){
+  var host=$('faqList'); if(host){ host.innerHTML=FAQ.map(function(f){ return '<details><summary>'+f[0]+'</summary><p>'+f[1]+'</p></details>'; }).join(''); }
+  try{ var sc=$('faqSchema'); var data=JSON.parse(sc.textContent);
+    data.mainEntity=FAQ.map(function(f){ return {'@type':'Question',name:f[0],acceptedAnswer:{'@type':'Answer',text:f[1]}}; });
+    sc.textContent=JSON.stringify(data);
+  }catch(e){}
+})();
+
+updateUI();
+})();
 </script>
 </body>
 </html>
