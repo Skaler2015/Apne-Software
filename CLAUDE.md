@@ -23,6 +23,21 @@ So the canonical order is: **Related → About → FAQ**.
 - This applies to every tool that has these sections. If a tool lacks one of them,
   keep the remaining sections in the same relative order.
 
+## Full-width below-tool content (handled globally)
+
+On tool pages, `assets/common.js` (`buildLeftSidebar`) builds a
+`[left-sidebar | .container | right-sidebar]` layout. It also **absorbs every
+body-level section between `.container` and the `<footer>`** (Related, About,
+FAQ, Privacy, etc.) into the main column and clears their `max-width` so they
+span the full tool width instead of a narrow centred strip. Because of this:
+
+- Author below-tool content (Related → About → FAQ, etc.) as normal
+  body-level siblings placed **after** `<div class="container">` and **before**
+  `<footer class="site-footer">`. Do not wrap them in an extra full-page
+  container — common.js will widen and align them automatically.
+- Do not fight this with per-tool `max-width` on those sections; it is
+  overridden at runtime. Keep the footer as the last body-level block.
+
 ## Other conventions
 
 - Preserve existing element IDs and working functionality when upgrading a tool.

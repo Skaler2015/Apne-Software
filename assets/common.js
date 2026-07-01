@@ -337,6 +337,29 @@ function formatBytes(bytes){
       wrapper.appendChild(sidebar);
       wrapper.appendChild(container);
 
+      // ---------- Keep below-tool content in the main column ----------
+      // About / FAQ / Related / Privacy sections are authored as siblings
+      // after the tool <div class="container">. Move them INTO the container
+      // so they share the tool's (wide) main-column width instead of showing
+      // as a narrow centred strip on large screens. This runs for every tool,
+      // so new tools get full-width content automatically. Fixed overlays
+      // (toasts, floating buttons) move too but stay viewport-fixed.
+      (function absorbBelowContent(){
+        let sib = wrapper.nextElementSibling;
+        while (sib) {
+          const next = sib.nextElementSibling;
+          const tag = sib.tagName;
+          if (tag === 'FOOTER' || (sib.classList && sib.classList.contains('site-footer'))) break;
+          if (!/^(SCRIPT|STYLE|LINK|NOSCRIPT|TEMPLATE)$/.test(tag)) {
+            sib.style.maxWidth = 'none';       // fill the column, not a 1040px strip
+            sib.style.marginLeft = '0';
+            sib.style.marginRight = '0';
+            container.appendChild(sib);
+          }
+          sib = next;
+        }
+      })();
+
       // Build RIGHT sidebar with related tools
       const rightSidebar = document.createElement('aside');
       rightSidebar.className = 'tool-right-sidebar';
