@@ -4,34 +4,92 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free online PDF info &amp; metadata analyzer — view PDF version, page count, page sizes, title/author/producer, fonts, images, permissions, encryption, outline, PDF/A status, word count and more. Export as JSON, CSV or TXT. 100% private, runs in your browser.">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-info.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PDF Info | ApneSoftware">
-<meta property="og:description" content="See full PDF details. Free online tool — no signup required.">
+<meta property="og:title" content="PDF Info — PDF Metadata &amp; Properties Analyzer Free &amp; Private | ApneSoftware">
+<meta property="og:description" content="Analyze a PDF's full metadata and properties — version, pages, fonts, images, permissions, encryption, outline and more. Export JSON/CSV/TXT. Runs entirely in your browser.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-info.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PDF Info | ApneSoftware">
-<meta name="twitter:description" content="See full PDF details. Free online tool — no signup required.">
+<meta name="twitter:title" content="PDF Info — PDF Metadata &amp; Properties Analyzer Free &amp; Private">
+<meta name="twitter:description" content="Full PDF metadata and properties analyzer with JSON/CSV/TXT export. 100% client-side.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Info","description":"See full PDF details. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-info.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Info","operatingSystem":"Any (web browser)","applicationCategory":"UtilitiesApplication","description":"Analyze PDF metadata and properties online — version, page count, page sizes, fonts, images, permissions, encryption, outline, PDF/A status, word count and more, with JSON/CSV/TXT export. Fully client-side and private.","url":"https://apnesoftware.com/tools/pdf-info.html","browserRequirements":"Requires JavaScript. Works in Chrome, Edge, Firefox, Safari.","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
-<meta name="color-scheme" content="dark">
-<title>PDF Info | ApneSoftware</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"PDF Info Tool","url":"https://apnesoftware.com/tools/pdf-info.html","description":"Free online PDF metadata and properties analyzer with export, entirely in your browser.","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"inLanguage":"en"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://apnesoftware.com/index.html#pdf"},{"@type":"ListItem","position":3,"name":"PDF Info","item":"https://apnesoftware.com/tools/pdf-info.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to view a PDF's information and metadata","description":"Analyze a PDF's metadata and properties for free in your browser.","step":[{"@type":"HowToStep","name":"Upload PDF","text":"Drag and drop your PDF onto the upload area or click to browse and select it."},{"@type":"HowToStep","name":"Analyze","text":"The tool reads the file and shows summary cards and a full grouped table of properties and metadata."},{"@type":"HowToStep","name":"Search","text":"Use the search box to filter the metadata fields you care about."},{"@type":"HowToStep","name":"Export","text":"Copy everything, or export the report as JSON, CSV or TXT, or print it."}]}
+</script>
+<!-- FAQ schema (populated at runtime) -->
+<script type="application/ld+json" id="faqSchema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}</script>
+
+<meta name="color-scheme" content="dark light">
+<title>PDF Info — PDF Metadata &amp; Properties Analyzer Free &amp; Private | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
-.dropzone{cursor:pointer}
-.dropzone p{font-size:.9rem}
-.panel{position:relative;z-index:1}
-</style>
-<style>
-  .info-table{width:100%;border-collapse:collapse;margin-top:16px}
-  .info-table td{padding:10px 12px;border-bottom:1px solid var(--border);font-size:.9rem}
-  .info-table td:first-child{color:var(--text-dim);width:40%}
-  .info-table td:last-child{font-weight:600;word-break:break-word}
+/* ── PDF Info tool — scoped styles (pi-) ─────────────────────── */
+.pi-scope{--pi-accent:#A78BFA;--pi-accent2:#7C3AED;}
+.pi-hide{display:none !important;}
+.pi-drop{cursor:pointer;transition:border-color .2s,background .2s;}
+.pi-drop.drag{border-color:var(--pi-accent);background:rgba(167,139,250,.08);}
+.pi-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:16px;}
+.pi-scard{background:var(--surface-2,rgba(255,255,255,.03));border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center;}
+.pi-scard .v{font-size:1.4rem;font-weight:800;color:var(--pi-accent);word-break:break-word;}
+.pi-scard .k{font-size:.76rem;color:var(--text-dim);margin-top:4px;}
+.pi-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px;}
+.pi-bar input[type=text]{flex:1;min-width:180px;background:var(--surface,rgba(0,0,0,.25));color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-family:var(--font);font-size:.88rem;outline:none;}
+.pi-bar input:focus{border-color:var(--pi-accent);}
+.pi-btn{background:linear-gradient(135deg,var(--pi-accent),var(--pi-accent2));color:#fff;border:0;border-radius:9px;padding:8px 13px;font:inherit;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
+.pi-btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text);font-weight:500;}
+.pi-btn.sm{padding:6px 10px;font-size:.82rem;}
+.pi-group{margin-top:18px;}
+.pi-group h3{font-size:.9rem;margin:0 0 8px;color:var(--text);display:flex;align-items:center;gap:8px;}
+.pi-table{width:100%;border-collapse:collapse;background:var(--surface-2,rgba(255,255,255,.02));border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.pi-table td{padding:9px 12px;border-bottom:1px solid var(--border);font-size:.86rem;vertical-align:top;}
+.pi-table tr:last-child td{border-bottom:0;}
+.pi-table td:first-child{color:var(--text-dim);width:42%;}
+.pi-table td:last-child{font-weight:600;word-break:break-word;}
+.pi-table .pi-copy{float:right;background:transparent;border:1px solid var(--border);color:var(--text-dim);border-radius:6px;cursor:pointer;font-size:.72rem;padding:1px 7px;margin-left:8px;}
+.pi-table .pi-copy:hover{border-color:var(--pi-accent);color:var(--text);}
+.pi-prog{height:8px;background:var(--surface,rgba(0,0,0,.3));border-radius:6px;overflow:hidden;margin-top:12px;}
+.pi-prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pi-accent),var(--pi-accent2));transition:width .15s;}
+.pi-status{margin-top:10px;font-size:.9rem;color:var(--text-dim);min-height:1.2em;}
+.pi-badge{display:inline-block;font-size:.72rem;padding:1px 8px;border-radius:20px;border:1px solid var(--border);margin-left:6px;}
+.pi-badge.ok{color:#34d399;border-color:rgba(52,211,153,.4);}
+.pi-badge.no{color:#f87171;border-color:rgba(248,113,113,.4);}
+@media(max-width:560px){.pi-table td:first-child{width:50%;}}
+/* below-tool content */
+.pi-wrap{max-width:1040px;margin:26px auto 0;padding:0 6px;}
+.pi-title{display:flex;align-items:center;gap:12px;margin:26px 0 14px;}
+.pi-title h2{font-size:1.25rem;font-weight:800;margin:0;white-space:nowrap;}
+.pi-title::before,.pi-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.10);}
+.pi-lead{color:var(--text-dim);font-size:.95rem;line-height:1.8;margin:0 6px;}
+.pi-feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.pi-fcard{border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.03));border-radius:14px;padding:16px;transition:.2s;}
+.pi-fcard:hover{border-color:var(--pi-accent);transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.14);}
+.pi-fcard h3{font-size:.92rem;font-weight:700;margin:0 0 6px;display:flex;align-items:center;gap:8px;}
+.pi-fcard p{font-size:.84rem;color:var(--text-dim);line-height:1.65;margin:0;}
+.pi-about ol,.pi-about > p{color:var(--text-dim);font-size:.92rem;line-height:1.8;padding-left:6px;}
+.pi-about ol{padding-left:24px;}
+.pi-related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:10px 0 4px;}
+.pi-related a{display:block;background:var(--surface-2,rgba(255,255,255,.03));border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text);transition:border-color .2s,transform .15s;}
+.pi-related a:hover{border-color:var(--pi-accent);transform:translateY(-2px);}
+.pi-related b{display:block;font-size:.92rem;margin-bottom:3px;}
+.pi-related span{font-size:.78rem;color:var(--text-dim);}
+#faqList details{border:1px solid var(--border);border-radius:10px;padding:0 14px;margin:8px 0;background:var(--surface-2,rgba(255,255,255,.02));}
+#faqList summary{cursor:pointer;padding:13px 0;font-weight:600;font-size:.95rem;}
+#faqList details[open]{padding-bottom:6px;}
+#faqList p{margin:0 0 12px;line-height:1.65;color:var(--text-dim);}
+:focus-visible{outline:2px solid var(--pi-accent);outline-offset:2px;}
 </style>
 </head>
 <body>
@@ -43,105 +101,416 @@
 </header>
 
 <div class="container">
+  <div class="pi-scope" id="piScope">
   <div class="tool-header">
     <h1>ℹ️ PDF Info</h1>
-    <p>View complete information about any PDF — page count, size, title, author, and more.</p>
+    <p>Analyze any PDF's full metadata and properties — version, pages, fonts, images, permissions, encryption, outline and more. Export as JSON, CSV or TXT. Everything runs in your browser.</p>
   </div>
 
   <div class="panel">
-    <div class="dropzone" id="dropzone">
-      <p>📤 Drag a PDF file here or click to choose</p>
-      <input type="file" id="fileInput" accept="application/pdf">
+    <div class="dropzone pi-drop" id="dropzone" role="button" tabindex="0" aria-label="Upload PDF file">
+      <p>📤 Drag &amp; drop your PDF here, or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf" hidden>
     </div>
 
-    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+    <div class="pi-prog pi-hide" id="progWrap"><i id="progFill"></i></div>
+    <p class="pi-status" id="statusMsg" role="status" aria-live="polite"></p>
 
-    <table class="info-table" id="infoTable" style="display:none"></table>
+    <div id="workspace" class="pi-hide">
+      <div class="pi-cards" id="summaryCards"></div>
+
+      <div class="pi-bar">
+        <input type="text" id="searchInput" placeholder="🔍 Search fields…" aria-label="Search metadata fields">
+        <button class="pi-btn ghost sm" id="copyAllBtn">📋 Copy all</button>
+        <button class="pi-btn ghost sm" id="jsonBtn">JSON</button>
+        <button class="pi-btn ghost sm" id="csvBtn">CSV</button>
+        <button class="pi-btn ghost sm" id="txtBtn">TXT</button>
+        <button class="pi-btn ghost sm" id="printBtn">🖨️ Print</button>
+        <button class="pi-btn ghost sm" id="clearBtn">🗑️ New file</button>
+      </div>
+
+      <div id="report"></div>
+      <table class="pi-table pi-hide" id="infoTable"></table>
+    </div>
+  </div>
   </div>
 </div>
 
+<!-- ── Below-tool content ─────────────────────────────────────── -->
+<section class="pi-wrap" aria-labelledby="introH">
+  <div class="pi-title"><h2 id="introH">ℹ️ PDF Info — Inspect Any PDF's Metadata &amp; Properties</h2></div>
+  <p class="pi-lead">The <strong>ApneSoftware PDF Info</strong> tool is a complete PDF metadata and properties analyzer. Drop in any PDF and it reveals everything about the file — its PDF version, page count and page sizes, the title, author and producer, the fonts and images it uses, its security permissions and encryption, the document outline, word count and more — laid out in tidy, searchable tables you can copy or export as JSON, CSV or TXT. It reads the file entirely in your browser, so even confidential documents never leave your device.</p>
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>View detailed information about a PDF — page count, file size, title, author, and more.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your PDF.</li>
-        <li>The full details appear automatically in a table below.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल PDF की पूरी जानकारी दिखाता है — पेज संख्या, फाइल साइज़, टाइटल, लेखक, वगैरह।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी PDF अपलोड करें।</li>
-        <li>पूरी जानकारी अपने आप नीचे टेबल में दिख जाएगी।</li>
-      </ol>
+  <div class="pi-title"><h2>✨ Key Features</h2></div>
+  <div class="pi-feature-grid">
+    <div class="pi-fcard"><h3>🗂️ File &amp; Version</h3><p>File name, size, MIME type, extension and the exact PDF specification version.</p></div>
+    <div class="pi-fcard"><h3>🏷️ Full Metadata</h3><p>Title, author, subject, keywords, creator, producer, and creation / modification dates.</p></div>
+    <div class="pi-fcard"><h3>📄 Page Analysis</h3><p>Total pages, per-page sizes, orientation, rotation and mixed-size detection.</p></div>
+    <div class="pi-fcard"><h3>🔤 Fonts &amp; Images</h3><p>Font names and types (embedded / subset), plus a count of embedded images.</p></div>
+    <div class="pi-fcard"><h3>🔐 Security</h3><p>Encryption status and printing, copying, editing and annotation permissions.</p></div>
+    <div class="pi-fcard"><h3>📖 Structure</h3><p>Outline / bookmark count, attachments, form and signature presence, PDF/A status.</p></div>
+    <div class="pi-fcard"><h3>📊 Content Stats</h3><p>Word and character counts, average words per page and estimated reading time.</p></div>
+    <div class="pi-fcard"><h3>📤 Export</h3><p>Search the fields and copy all, or export as JSON, CSV or TXT, or print.</p></div>
+  </div>
+
+  <div class="pi-title"><h2>🎁 Benefits</h2></div>
+  <div class="pi-feature-grid">
+    <div class="pi-fcard"><h3>🔎 Understand Any File</h3><p>See exactly what a PDF contains before editing, sharing or printing it.</p></div>
+    <div class="pi-fcard"><h3>🛡️ Check Permissions</h3><p>Know instantly whether a PDF is encrypted or restricts printing and copying.</p></div>
+    <div class="pi-fcard"><h3>🧾 Audit &amp; Report</h3><p>Export clean metadata reports for records, compliance or troubleshooting.</p></div>
+    <div class="pi-fcard"><h3>🔐 Private</h3><p>Inspect sensitive documents without them leaving your device.</p></div>
+    <div class="pi-fcard"><h3>🆓 Free &amp; Unlimited</h3><p>No installs, no accounts, and no watermark added by us.</p></div>
+  </div>
+</section>
+
+<section class="pi-wrap" aria-labelledby="relatedH">
+  <div class="pi-title"><h2 id="relatedH">🔗 Related Tools</h2></div>
+  <div class="pi-related">
+    <a href="pdf-metadata-editor.html"><b>Metadata Editor</b><span>Edit PDF metadata</span></a>
+    <a href="pdf-viewer.html"><b>PDF Viewer</b><span>Read PDFs in the browser</span></a>
+    <a href="pdf-extract-text.html"><b>Extract Text</b><span>Copy text from a PDF</span></a>
+    <a href="pdf-extract-images.html"><b>Extract Images</b><span>Pull images from a PDF</span></a>
+    <a href="pdf-compress.html"><b>Compress PDF</b><span>Reduce PDF file size</span></a>
+    <a href="pdf-merge.html"><b>Merge PDF</b><span>Combine multiple PDFs</span></a>
+    <a href="pdf-split.html"><b>Split PDF</b><span>Split into separate files</span></a>
+    <a href="pdf-protect.html"><b>Protect PDF</b><span>Add a password</span></a>
+    <a href="pdf-unlock.html"><b>Unlock PDF</b><span>Remove a password</span></a>
+    <a href="pdf-rotate.html"><b>Rotate PDF</b><span>Rotate PDF pages</span></a>
+  </div>
+</section>
+
+<section class="pi-wrap" aria-labelledby="aboutH">
+  <div class="pi-title"><h2 id="aboutH">ℹ️ About This Tool</h2></div>
+  <div class="info-wrap" style="max-width:100%;padding:0">
+    <div class="info-section">
+      <article class="info-block pi-about">
+        <h2>About the PDF Info Tool (English)</h2>
+        <p>Every PDF carries a great deal of hidden information beyond the words and pictures you see. There is metadata that names the author and the software that made it, structural data that records how many pages there are and how big each one is, a security layer that can restrict printing or copying, lists of the fonts and images the file relies on, and much more. The ApneSoftware PDF Info tool surfaces all of it in one place, turning a mysterious file into a clear, readable report — and it does so entirely inside your browser, without uploading your document anywhere.</p>
+
+        <p>At the top of the report you get quick <strong>summary cards</strong> for the numbers you most often need — the page count, the file size, the PDF version and whether the file is encrypted — so you can size up a document at a glance. Below that, a set of grouped, searchable tables lays out the full picture, organised into logical sections so you can find exactly the detail you want.</p>
+
+        <p>The <strong>file and document</strong> section covers the basics and the identity of the file: its name, size, MIME type and extension, the exact <strong>PDF specification version</strong> it conforms to, and the standard document-information metadata — <strong>title, author, subject, keywords, creator and producer</strong>, along with the <strong>creation and modification dates</strong>. The “creator” usually names the program the content was authored in, while the “producer” names the library or engine that wrote the actual PDF, which is invaluable when you are troubleshooting where a file came from or why it behaves oddly.</p>
+
+        <p>The <strong>page analysis</strong> looks at the physical structure. It reports the total number of pages, the size of the pages in points (and the common paper name where it matches A4, Letter and so on), the <strong>orientation</strong>, any <strong>rotation</strong> applied, and whether the document has <strong>mixed page sizes</strong> — a common surprise in files assembled from different sources. Because it measures pages individually, it can tell you when a document is not as uniform as it looks.</p>
+
+        <p>Two sections dig into the resources the file uses. The <strong>fonts</strong> section lists the typefaces the document draws with, together with their type (such as Type 1, TrueType or CID/Type 0) and whether each appears to be <strong>embedded or subset</strong> into the file — important for knowing whether the PDF will render identically on another machine. The <strong>images</strong> section counts the embedded raster images the pages reference, so you can tell a text-only document from an image-heavy one at a glance (for pixel-level image details, our Extract Images tool goes further).</p>
+
+        <p>The <strong>security</strong> section is one of the most useful. It tells you whether the PDF is <strong>encrypted</strong>, and — where the file declares them — the specific <strong>permissions</strong> the owner set: whether <strong>printing, copying text, editing content and adding annotations</strong> are allowed or restricted. It also flags whether the document contains an <strong>interactive form</strong> or a <strong>digital signature</strong> field. This lets you understand at a glance why you might be unable to copy text from, or print, a particular file.</p>
+
+        <p>Rounding out the report, a <strong>structure</strong> section counts the document's <strong>outline (bookmarks / table of contents)</strong> entries and any file <strong>attachments</strong>, and detects standards conformance such as <strong>PDF/A</strong> (the archival standard) from the file's XMP metadata where present. A <strong>content</strong> section reads the text layer to give you the <strong>word and character counts</strong>, the <strong>average words per page</strong> and an <strong>estimated reading time</strong> — handy for writers, editors and anyone gauging the length of a document.</p>
+
+        <p>Getting the information out is easy. A <strong>search box</strong> filters the tables as you type, so you can jump straight to a single field in a long report. Every value has a one-click <strong>copy</strong> button, and toolbar buttons let you <strong>copy the whole report</strong> or export it as <strong>JSON</strong> (for developers and automation), <strong>CSV</strong> (for spreadsheets) or plain <strong>TXT</strong>, as well as print it. The exported report is a clean, structured record you can keep, share or attach to a ticket.</p>
+
+        <p>As with all ApneSoftware tools, <strong>privacy</strong> is built in. Your PDF is read and analysed entirely on your own device using JavaScript; nothing is uploaded, stored or logged, so the tool is safe for contracts, medical records, financial statements and any confidential file. <strong>Password-protected PDFs</strong> that you are authorised to open are handled locally, larger documents are read with a progress indicator, and there is no account to create, no software to install and no watermark added. Whether you are a developer inspecting output, a professional auditing documents, or simply curious about a file someone sent you, PDF Info gives you the complete story in seconds.</p>
+      </article>
+
+      <article class="info-block pi-about">
+        <h2>इस टूल के बारे में (Hindi)</h2>
+        <p>हर PDF में आपको दिखने वाले शब्दों और तस्वीरों से कहीं ज़्यादा छिपी हुई जानकारी होती है। ऐसा metadata होता है जो लेखक और उसे बनाने वाले software का नाम बताता है, संरचनात्मक data जो दर्ज करता है कि कितने पन्ने हैं और हर एक कितना बड़ा है, एक security परत जो printing या copying रोक सकती है, file जिन fonts और images पर निर्भर है उनकी सूची, और बहुत कुछ। ApneSoftware PDF Info टूल यह सब एक जगह सामने लाता है, एक रहस्यमय file को एक स्पष्ट, पढ़ने योग्य report में बदल देता है — और यह पूरी तरह आपके browser के अंदर करता है, आपका document कहीं upload किए बिना।</p>
+
+        <p>Report के ऊपर आपको सबसे ज़रूरी संख्याओं के लिए त्वरित <strong>summary cards</strong> मिलते हैं — पन्नों की संख्या, file size, PDF version और file encrypted है या नहीं — ताकि आप एक नज़र में document का अंदाज़ा लगा सकें। उसके नीचे, समूहबद्ध, searchable tables का एक सेट पूरी तस्वीर तार्किक sections में व्यवस्थित करके रखता है, ताकि आप ठीक वही विवरण ढूँढ सकें जो चाहिए।</p>
+
+        <p><strong>File और document</strong> section मूल बातें और file की पहचान बताता है: उसका नाम, size, MIME type और extension, वह सटीक <strong>PDF specification version</strong> जिसके अनुरूप वह है, और मानक document-information metadata — <strong>title, author, subject, keywords, creator और producer</strong>, साथ में <strong>creation और modification dates</strong>। “creator” आमतौर पर उस program का नाम बताता है जिसमें content लिखा गया, जबकि “producer” उस library या engine का नाम बताता है जिसने असल PDF लिखी, जो तब बहुमूल्य है जब आप पता कर रहे हों कि file कहाँ से आई या अजीब व्यवहार क्यों करती है।</p>
+
+        <p><strong>Page analysis</strong> भौतिक संरचना देखता है। यह पन्नों की कुल संख्या, points में पन्ने का आकार (और A4, Letter आदि से मेल खाने पर सामान्य कागज़ का नाम), <strong>orientation</strong>, कोई लागू <strong>rotation</strong>, और document में <strong>अलग-अलग आकार के पन्ने</strong> हैं या नहीं — विभिन्न स्रोतों से जोड़ी गई files में एक आम आश्चर्य — बताता है। चूँकि यह पन्नों को अलग-अलग मापता है, यह बता सकता है कि कोई document दिखने जितना एक-समान नहीं है।</p>
+
+        <p>दो sections file द्वारा उपयोग संसाधनों में गहराई से जाते हैं। <strong>Fonts</strong> section उन typefaces की सूची देता है जिनसे document बना है, उनके प्रकार (जैसे Type 1, TrueType या CID/Type 0) और हर एक file में <strong>embedded या subset</strong> लगता है या नहीं — यह जानने के लिए महत्वपूर्ण कि PDF किसी दूसरी मशीन पर एक जैसा render होगा या नहीं। <strong>Images</strong> section पन्नों द्वारा संदर्भित embedded raster images गिनता है, ताकि आप एक नज़र में text-only और image-भारी document का अंतर बता सकें (pixel-स्तर के image विवरण के लिए हमारा Extract Images टूल आगे जाता है)।</p>
+
+        <p><strong>Security</strong> section सबसे उपयोगी में से एक है। यह बताता है कि PDF <strong>encrypted</strong> है या नहीं, और — जहाँ file घोषित करती है — मालिक द्वारा सेट विशिष्ट <strong>permissions</strong>: <strong>printing, text copying, content editing और annotations जोड़ना</strong> अनुमत है या प्रतिबंधित। यह यह भी दर्शाता है कि document में <strong>interactive form</strong> या <strong>digital signature</strong> field है या नहीं। इससे आप एक नज़र में समझ जाते हैं कि आप किसी file से text copy या print क्यों नहीं कर पा रहे।</p>
+
+        <p>Report को पूरा करते हुए, एक <strong>structure</strong> section document की <strong>outline (bookmarks / table of contents)</strong> प्रविष्टियाँ और किसी file <strong>attachments</strong> गिनता है, और जहाँ मौजूद हो वहाँ file के XMP metadata से <strong>PDF/A</strong> (archival standard) जैसी standards अनुरूपता पहचानता है। एक <strong>content</strong> section text layer पढ़कर आपको <strong>word और character counts</strong>, <strong>औसत words प्रति पन्ना</strong> और एक <strong>अनुमानित reading time</strong> देता है — writers, editors और document की लंबाई आँकने वालों के लिए उपयोगी।</p>
+
+        <p>जानकारी बाहर निकालना आसान है। एक <strong>search box</strong> टाइप करते ही tables को filter करता है, ताकि आप लंबी report में किसी एक field पर सीधे पहुँच सकें। हर value में एक-क्लिक <strong>copy</strong> बटन है, और toolbar बटन आपको <strong>पूरी report copy</strong> करने या उसे <strong>JSON</strong> (developers और automation के लिए), <strong>CSV</strong> (spreadsheets के लिए) या सादा <strong>TXT</strong> के रूप में export करने, साथ ही print करने देते हैं। export की गई report एक साफ़, संरचित record है जिसे आप रख, साझा या किसी ticket से जोड़ सकते हैं।</p>
+
+        <p>सभी ApneSoftware tools की तरह, <strong>privacy</strong> अंतर्निहित है। आपकी PDF पूरी तरह आपके अपने device पर JavaScript से पढ़ी और विश्लेषित की जाती है; कुछ भी upload, store या log नहीं होता, इसलिए टूल contracts, medical records, financial statements और किसी भी गोपनीय file के लिए सुरक्षित है। जिन <strong>password-protected PDF</strong> को खोलने का आपको अधिकार है वे locally संभाली जाती हैं, बड़े documents progress indicator के साथ पढ़े जाते हैं, और कोई account बनाना नहीं, कोई software install करना नहीं और कोई watermark नहीं जुड़ता। चाहे आप output जाँचने वाले developer हों, documents audit करने वाले professional, या बस किसी की भेजी file के बारे में उत्सुक — PDF Info आपको कुछ ही सेकंड में पूरी कहानी देता है।</p>
+      </article>
     </div>
   </div>
-</div>
+</section>
+
+<section class="pi-wrap pi-about" aria-labelledby="howH">
+  <div class="pi-title"><h2 id="howH">📝 How To Use</h2></div>
+  <ol>
+    <li>Drag &amp; drop your PDF onto the upload area, or click to browse.</li>
+    <li>Read the <strong>summary cards</strong> and the grouped property tables that appear.</li>
+    <li>Use the <strong>search box</strong> to filter to the fields you care about.</li>
+    <li>Click a field's <strong>copy</strong> button, or copy the whole report.</li>
+    <li>Export as <strong>JSON</strong>, <strong>CSV</strong> or <strong>TXT</strong>, or print the report.</li>
+  </ol>
+</section>
+
+<section class="pi-wrap pi-faq" aria-labelledby="faqH">
+  <div class="pi-title"><h2 id="faqH">❓ Frequently Asked Questions</h2></div>
+  <div id="faqList"></div>
+</section>
+
+<section class="pi-wrap pi-about" aria-labelledby="privacyH">
+  <div class="pi-title"><h2 id="privacyH">🔒 Privacy</h2></div>
+  <p>This tool is 100% client-side. Your PDF is read and analysed entirely in your browser using JavaScript — it is never sent to ApneSoftware or any third party. Nothing is stored, logged or transmitted. When you close or refresh the page, the file is cleared from memory. Because there is no upload, you can safely inspect confidential, legal, medical and financial documents.</p>
+
+  <div class="pi-title"><h2 id="compatH">🌐 Browser Compatibility</h2></div>
+  <p>Works in all modern browsers including Google Chrome, Microsoft Edge, Mozilla Firefox, Safari, Brave and Opera, on Windows, macOS, Linux, Android and iOS. It relies on standard web technologies (File API and JavaScript PDF libraries), so no plugins or extensions are required. For very large PDFs a desktop browser with more available memory gives the smoothest experience.</p>
+
+  <div class="pi-title"><h2 id="formatsH">📁 Supported Formats</h2></div>
+  <p><strong>Input:</strong> PDF (.pdf), including password-protected PDFs you are authorised to open. <strong>Report export:</strong> JSON (.json), CSV (.csv) and plain text (.txt), plus copy-to-clipboard and print. The tool only reads the file; it never modifies your PDF.</p>
+</section>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
+/* ══════════════════════════════════════════════════════════════
+   PDF INFO — premium metadata & properties analyzer (pdf.js)
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+  if(window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  var $ = function(id){ return document.getElementById(id); };
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
-});
+  var FAQ = [
+    ["Is my PDF uploaded to a server?","No. The whole analysis runs locally in your browser using JavaScript. Your PDF never leaves your device, so it is safe for confidential documents."],
+    ["What information does it show?","File name, size and MIME type, PDF version, all document metadata (title, author, subject, keywords, creator, producer, dates), page count and sizes, fonts, image count, encryption and permissions, outline and attachments, PDF/A status, and word/character counts."],
+    ["What is the difference between Creator and Producer?","Creator usually names the program the content was authored in (for example a word processor), while Producer names the library or engine that generated the actual PDF."],
+    ["Can it tell me if a PDF is encrypted?","Yes. The Security section shows whether the file is encrypted and which permissions (printing, copying, editing, annotating) the owner allowed or restricted."],
+    ["Does it detect page rotation and mixed page sizes?","Yes. It reports each page's size and rotation and flags when a document mixes different page sizes."],
+    ["Can it show the fonts used in a PDF?","Yes. It lists the font names and types the document draws with and indicates whether they appear embedded or subset, which affects how the PDF renders elsewhere."],
+    ["Does it count images?","Yes. It counts the embedded raster images the pages reference. For per-image dimensions and previews, use the Extract Images tool."],
+    ["What is PDF/A and can it detect it?","PDF/A is an ISO standard for long-term archiving. The tool detects PDF/A conformance from the file's XMP metadata where it is declared."],
+    ["Does it show word count and reading time?","Yes. It reads the text layer to report word and character counts, average words per page and an estimated reading time."],
+    ["Can I export the report?","Yes. Export as JSON, CSV or TXT, copy the whole report, or print it. Individual values also have a copy button."],
+    ["Can I search within the report?","Yes. The search box filters the property tables as you type, so you can jump to a single field quickly."],
+    ["Does it detect digital signatures or forms?","It flags whether the document contains an interactive form and whether a signature field is present, based on the PDF's structure."],
+    ["Can it open password-protected PDFs?","Yes, if you are authorised. You are prompted for the password in your browser and it is used only locally to read the file."],
+    ["Does it modify my PDF?","No. The tool only reads and reports on the file. Your PDF is never changed."],
+    ["Why is word count zero on some PDFs?","Scanned PDFs are images with no text layer, so there is no text to count. Use the PDF OCR tool to recognise the text first."],
+    ["Is there a file-size limit?","There is no fixed limit — it depends on your device's memory. Larger files are read with a progress indicator."],
+    ["Does it work on phones and tablets?","Yes. The layout is responsive with mobile-friendly tables, and export and copy work on modern mobile browsers."],
+    ["What formats can I export to?","JSON for developers and automation, CSV for spreadsheets, and plain TXT for a readable report — plus copy to clipboard and print."],
+    ["Is the tool free? Do I need an account?","It is completely free with no signup, no watermark added by us, and no usage limits."],
+    ["Which browsers are supported?","All modern browsers — Chrome, Edge, Firefox, Safari, Brave and Opera — on desktop and mobile. No plugins are required."],
+    ["Can I edit the metadata it shows?","This tool only views metadata. To change the title, author and other fields, use the PDF Metadata Editor tool."]
+  ];
 
-function row(label, value){
-  return `<tr><td>${label}</td><td>${value || '—'}</td></tr>`;
-}
+  var report=[];    // [{group, label, value}]
+  var srcName="";
 
-async function handleFile(file){
-  const status = document.getElementById('statusMsg');
-  status.textContent = '⏳ Reading...';
+  function setProg(p){ var w=$('progWrap'); if(p<0){w.classList.add('pi-hide');return;} w.classList.remove('pi-hide'); $('progFill').style.width=Math.round(p*100)+'%'; }
+  function status(m){ $('statusMsg').textContent=m||''; }
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
 
-  try{
-    const { PDFDocument } = PDFLib;
-    const bytes = await file.arrayBuffer();
-    const pdfDoc = await PDFDocument.load(bytes, { updateMetadata: false });
-
-    const title = pdfDoc.getTitle();
-    const author = pdfDoc.getAuthor();
-    const subject = pdfDoc.getSubject();
-    const creator = pdfDoc.getCreator();
-    const producer = pdfDoc.getProducer();
-    const created = pdfDoc.getCreationDate();
-    const modified = pdfDoc.getModificationDate();
-    const pageCount = pdfDoc.getPageCount();
-    const firstPage = pdfDoc.getPage(0);
-    const { width, height } = firstPage.getSize();
-
-    const table = document.getElementById('infoTable');
-    table.innerHTML =
-      row('File Name', file.name) +
-      row('File Size', formatBytes(file.size)) +
-      row('Total Pages', pageCount) +
-      row('Page Size (first page)', `${Math.round(width)} × ${Math.round(height)} pt`) +
-      row('Title', title) +
-      row('Author', author) +
-      row('Subject', subject) +
-      row('Creator', creator) +
-      row('Producer', producer) +
-      row('Created Date', created ? created.toLocaleString('en-US') : '—') +
-      row('Last Modified', modified ? modified.toLocaleString('en-US') : '—') +
-      row('Encrypted', pdfDoc.isEncrypted ? 'Yes' : 'No');
-
-    table.style.display = 'table';
-    status.textContent = '✅ Info loaded';
-  }catch(err){
-    status.textContent = '❌ Error: ' + err.message;
+  function pdfDate(s){
+    if(!s) return null;
+    if(s instanceof Date) return isNaN(s)?null:s.toLocaleString();
+    var m=/D?:?(\d{4})(\d{2})?(\d{2})?(\d{2})?(\d{2})?(\d{2})?/.exec(String(s));
+    if(!m) return String(s);
+    var d=new Date(Date.UTC(+m[1],(+(m[2]||1))-1,+(m[3]||1),+(m[4]||0),+(m[5]||0),+(m[6]||0)));
+    return isNaN(d)?String(s):d.toLocaleString();
   }
-}
+  function paperName(w,h){
+    var pairs=[['A4',595,842],['A3',842,1191],['A5',420,595],['Letter',612,792],['Legal',612,1008],['Tabloid',792,1224]];
+    for(var i=0;i<pairs.length;i++){ var p=pairs[i]; if((near(w,p[1])&&near(h,p[2]))||(near(w,p[2])&&near(h,p[1]))) return p[0]; }
+    return '';
+  }
+  function near(a,b){ return Math.abs(a-b)<=3; }
+
+  function add(group,label,value){ report.push({group:group,label:label,value:(value==null||value==='')?'—':String(value)}); }
+
+  // ── Analyze ────────────────────────────────────────────────
+  function loadFile(file){
+    if(!file || file.type!=='application/pdf'){ status('⚠️ Please choose a PDF file.'); return; }
+    srcName=file.name; status('⏳ Reading…'); setProg(0.05);
+    file.arrayBuffer().then(function(buf){
+      var bytes=buf.slice(0);
+      pdfjsLib.getDocument({data:buf.slice(0)}).promise.then(function(doc){ analyze(doc,file,bytes,false); })
+      .catch(function(err){
+        if(err&&err.name==='PasswordException'){ var pw=prompt('This PDF is password protected. Enter the password:'); if(pw!=null){ pdfjsLib.getDocument({data:bytes.slice(0),password:pw}).promise.then(function(d){ analyze(d,file,bytes,true); }).catch(function(){ setProg(-1); status('❌ Wrong password or unreadable PDF.'); }); return; } }
+        setProg(-1); status('❌ Could not read this PDF (it may be corrupted): '+(err&&err.message||err));
+      });
+    });
+  }
+
+  function analyze(doc,file,bytes,wasProtected){
+    report=[];
+    (async function(){
+      var meta={}; try{ meta=await doc.getMetadata(); }catch(e){}
+      var info=(meta&&meta.info)||{};
+      var xmp=''; try{ xmp=(meta&&meta.metadata&&meta.metadata.getRaw&&meta.metadata.getRaw())||''; }catch(e){}
+
+      // File
+      add('File','File name',file.name);
+      add('File','File size',formatBytes(file.size)+' ('+file.size.toLocaleString()+' bytes)');
+      add('File','MIME type',file.type||'application/pdf');
+      add('File','Extension','.'+(file.name.split('.').pop()||'pdf').toLowerCase());
+      add('File','PDF version',info.PDFFormatVersion||'—');
+      add('File','Linearized (fast web view)',info.IsLinearized?'Yes':'No');
+      add('File','Validation','Loaded successfully (not corrupted)');
+
+      // Document metadata
+      add('Document','Title',info.Title);
+      add('Document','Author',info.Author);
+      add('Document','Subject',info.Subject);
+      add('Document','Keywords',info.Keywords);
+      add('Document','Creator',info.Creator);
+      add('Document','Producer',info.Producer);
+      add('Document','Created',pdfDate(info.CreationDate));
+      add('Document','Modified',pdfDate(info.ModDate));
+      add('Document','Language',info.Language||'—');
+      add('Document','Trapped',info.Trapped&&info.Trapped.name?info.Trapped.name:(info.Trapped||'—'));
+
+      // Standards from XMP
+      var pdfa = /pdfaid:part>?\s*[>"']?\s*(\d)/i.exec(xmp) || /pdfaid:part=["'](\d)/i.exec(xmp);
+      var pdfaConf = /pdfaid:conformance>?\s*[>"']?\s*([AB])/i.exec(xmp) || /pdfaid:conformance=["']([AB])/i.exec(xmp);
+      add('Document','PDF/A', pdfa? ('PDF/A-'+pdfa[1]+(pdfaConf?pdfaConf[1].toLowerCase():'')) : 'Not detected');
+      add('Document','PDF/X', /pdfxid|pdfx:/i.test(xmp)?'Detected':'Not detected');
+      add('Document','XMP metadata', xmp? 'Present ('+xmp.length+' bytes)':'None');
+
+      // Pages
+      var numPages=doc.numPages; add('Pages','Total pages',numPages);
+      var sizes={}, rotations={}, wTot=0,hTot=0, firstDim=null, fonts={}, imgIds={};
+      var wordCount=0, charCount=0;
+      for(var p=1;p<=numPages;p++){
+        status('⏳ Analyzing page '+p+'/'+numPages+'…'); setProg(0.1+0.8*p/numPages);
+        var page; try{ page=await doc.getPage(p); }catch(e){ continue; }
+        var vp=page.getViewport({scale:1});
+        var w=Math.round(vp.width), h=Math.round(vp.height);
+        if(!firstDim) firstDim={w:w,h:h};
+        wTot+=w; hTot+=h;
+        var key=w+'x'+h; sizes[key]=(sizes[key]||0)+1;
+        var rot=page.rotate||0; rotations[rot]=(rotations[rot]||0)+1;
+        // text
+        try{ var tc=await page.getTextContent(); var t=tc.items.map(function(i){return i.str;}).join(' '); charCount+=t.length; wordCount+=(t.match(/\S+/g)||[]).length; }catch(e){}
+        // fonts + images from operator list
+        try{
+          var ops=await page.getOperatorList();
+          for(var k=0;k<ops.fnArray.length;k++){
+            var fn=ops.fnArray[k];
+            if(fn===pdfjsLib.OPS.setFont){ var fid=ops.argsArray[k][0]; if(fid) fonts[fid]=fonts[fid]||true; }
+            else if(fn===pdfjsLib.OPS.paintImageXObject||fn===pdfjsLib.OPS.paintImageXObjectRepeat){ var iid=ops.argsArray[k][0]; if(typeof iid==='string') imgIds[iid]=1; }
+          }
+        }catch(e){}
+      }
+      // page size summary
+      var sizeKeys=Object.keys(sizes);
+      var mainSize=firstDim?(firstDim.w+' × '+firstDim.h+' pt'+(paperName(firstDim.w,firstDim.h)?(' ('+paperName(firstDim.w,firstDim.h)+')'):'')):'—';
+      add('Pages','Page size (first)',mainSize);
+      add('Pages','Average page size',numPages?(Math.round(wTot/numPages)+' × '+Math.round(hTot/numPages)+' pt'):'—');
+      add('Pages','Orientation',firstDim?(firstDim.w>firstDim.h?'Landscape':(firstDim.w<firstDim.h?'Portrait':'Square')):'—');
+      add('Pages','Mixed page sizes',sizeKeys.length>1?('Yes ('+sizeKeys.length+' different sizes)'):'No (uniform)');
+      var rotKeys=Object.keys(rotations).filter(function(r){return +r!==0;});
+      add('Pages','Rotation',rotKeys.length?('Some pages rotated ('+rotKeys.join('°, ')+'°)'):'None (0°)');
+
+      // Fonts
+      var fontList=[];
+      Object.keys(fonts).forEach(function(fid){
+        try{ var fo=page && page.commonObjs && page.commonObjs.has && page.commonObjs.has(fid) ? page.commonObjs.get(fid) : null;
+          if(fo){ var nm=fo.name||fid; var subset=/^[A-Z]{6}\+/.test(nm); fontList.push({name:nm,type:fo.type||'',embedded:subset}); }
+          else fontList.push({name:fid,type:'',embedded:false});
+        }catch(e){ fontList.push({name:fid,type:'',embedded:false}); }
+      });
+      add('Fonts','Total fonts',fontList.length||'0');
+      add('Fonts','Embedded / subset',fontList.filter(function(f){return f.embedded;}).length);
+      if(fontList.length){ add('Fonts','Font names', fontList.map(function(f){return f.name.replace(/^[A-Z]{6}\+/,'')+(f.type?(' ['+f.type+']'):'');}).slice(0,40).join(', ')); }
+
+      // Images
+      add('Images','Embedded images (unique)',Object.keys(imgIds).length);
+      add('Images','Detail','Use the Extract Images tool for per-image size &amp; preview');
+
+      // Security & permissions
+      var perms=null; try{ perms=await doc.getPermissions(); }catch(e){}
+      var encrypted = wasProtected || perms!==null;
+      add('Security','Encrypted',encrypted?'Yes':'No');
+      var PF=pdfjsLib.PermissionFlag||{PRINT:4,MODIFY_CONTENTS:8,COPY:16,MODIFY_ANNOTATIONS:32};
+      function allow(flag){ return perms===null?true:(perms.indexOf(flag)!==-1); }
+      add('Security','Printing allowed',allow(PF.PRINT)?'Yes':'No');
+      add('Security','Copy text allowed',allow(PF.COPY)?'Yes':'No');
+      add('Security','Editing allowed',allow(PF.MODIFY_CONTENTS)?'Yes':'No');
+      add('Security','Annotations allowed',allow(PF.MODIFY_ANNOTATIONS)?'Yes':'No');
+      add('Security','Interactive form',info.IsAcroFormPresent?'Yes':(info.IsXFAPresent?'Yes (XFA)':'No'));
+      // signature detection
+      var sig='No'; try{ var fo=await doc.getFieldObjects(); if(fo){ Object.keys(fo).forEach(function(k){ (fo[k]||[]).forEach(function(f){ if(f&&(f.type==='signature')) sig='Yes'; }); }); } }catch(e){}
+      if(sig==='No' && /\/Sig\b|adbe\.pkcs7|ETSI\./.test(xmp)) sig='Likely';
+      add('Security','Digital signature field',sig);
+
+      // Structure
+      var outline=null; try{ outline=await doc.getOutline(); }catch(e){}
+      function countOutline(items){ if(!items)return 0; var n=items.length; items.forEach(function(it){ if(it.items) n+=countOutline(it.items); }); return n; }
+      add('Structure','Outline / bookmarks',outline?countOutline(outline):0);
+      var atts=null; try{ atts=await doc.getAttachments(); }catch(e){}
+      add('Structure','Attachments',atts?Object.keys(atts).length:0);
+      add('Structure','Tagged PDF',info.IsSignaturesPresent!=null?'—':(/<pdfuaid:|StructTreeRoot/.test(xmp)?'Yes':'—'));
+
+      // Content
+      add('Content','Word count',wordCount.toLocaleString());
+      add('Content','Character count',charCount.toLocaleString());
+      add('Content','Average words / page',numPages?Math.round(wordCount/numPages):0);
+      add('Content','Estimated reading time',wordCount?(Math.max(1,Math.round(wordCount/200))+' min'):'—');
+
+      setProg(-1); status('✅ Analysis complete.');
+      $('workspace').classList.remove('pi-hide'); $('dropzone').classList.add('pi-hide');
+      renderSummary(numPages,file.size,info.PDFFormatVersion,encrypted);
+      renderReport();
+    })().catch(function(e){ setProg(-1); status('❌ '+(e&&e.message||e)); });
+  }
+
+  // ── Render ─────────────────────────────────────────────────
+  function renderSummary(pages,size,ver,enc){
+    $('summaryCards').innerHTML=
+      card(pages,'Pages')+card(formatBytes(size),'File size')+card(ver||'—','PDF version')+
+      card(enc?'🔒 Yes':'🔓 No','Encrypted');
+  }
+  function card(v,k){ return '<div class="pi-scard"><div class="v">'+esc(v)+'</div><div class="k">'+esc(k)+'</div></div>'; }
+
+  function renderReport(){
+    var q=($('searchInput').value||'').toLowerCase();
+    var groups={}; report.forEach(function(r){ (groups[r.group]=groups[r.group]||[]).push(r); });
+    var order=['File','Document','Pages','Fonts','Images','Security','Structure','Content'];
+    var icons={File:'🗂️',Document:'🏷️',Pages:'📄',Fonts:'🔤',Images:'🖼️',Security:'🔐',Structure:'📖',Content:'📊'};
+    var html='';
+    order.forEach(function(g){
+      var rows=(groups[g]||[]).filter(function(r){ return !q || r.label.toLowerCase().indexOf(q)!==-1 || r.value.toLowerCase().indexOf(q)!==-1; });
+      if(!rows.length) return;
+      html+='<div class="pi-group"><h3>'+(icons[g]||'')+' '+g+'</h3><table class="pi-table">';
+      rows.forEach(function(r){ html+='<tr><td>'+esc(r.label)+'</td><td>'+r.value+'<button class="pi-copy" data-v="'+esc(r.value)+'">copy</button></td></tr>'; });
+      html+='</table></div>';
+    });
+    $('report').innerHTML=html || '<p style="color:var(--text-dim)">No fields match your search.</p>';
+    Array.prototype.forEach.call($('report').querySelectorAll('.pi-copy'),function(b){ b.addEventListener('click',function(){ var v=this.getAttribute('data-v'); if(window.copyText) copyText(v,this); else navigator.clipboard&&navigator.clipboard.writeText(v); this.textContent='✓'; var self=this; setTimeout(function(){self.textContent='copy';},1000); }); });
+  }
+
+  // ── Export ─────────────────────────────────────────────────
+  function asObject(){ var o={}; report.forEach(function(r){ o[r.label]=r.value.replace(/&amp;/g,'&'); }); return o; }
+  function baseName(){ return (srcName||'pdf-info').replace(/\.pdf$/i,'')+'-info'; }
+  function dl(name,text,mime){ var blob=new Blob([text],{type:mime}); if(window.downloadBlob) downloadBlob(name,blob); else { var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); } }
+  function exportJSON(){ dl(baseName()+'.json', JSON.stringify(asObject(),null,2), 'application/json'); }
+  function exportCSV(){ var rows=[['Field','Value']]; report.forEach(function(r){ rows.push([r.label, r.value.replace(/&amp;/g,'&')]); }); var csv=rows.map(function(row){ return row.map(function(c){ return '"'+String(c).replace(/"/g,'""')+'"'; }).join(','); }).join('\n'); dl(baseName()+'.csv', csv, 'text/csv'); }
+  function reportText(){ var s=''; var last=''; report.forEach(function(r){ if(r.group!==last){ s+='\n['+r.group+']\n'; last=r.group; } s+=r.label+': '+r.value.replace(/&amp;/g,'&')+'\n'; }); return s.trim(); }
+  function exportTXT(){ dl(baseName()+'.txt', reportText(), 'text/plain'); }
+
+  function wire(){
+    setupDropzone($('dropzone'),$('fileInput'),function(files){ if(files&&files.length) loadFile(files[0]); });
+    $('dropzone').addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); $('fileInput').click(); }});
+    $('searchInput').addEventListener('input',renderReport);
+    $('copyAllBtn').addEventListener('click',function(e){ if(window.copyText) copyText(reportText(),e.target); else navigator.clipboard&&navigator.clipboard.writeText(reportText()); });
+    $('jsonBtn').addEventListener('click',exportJSON);
+    $('csvBtn').addEventListener('click',exportCSV);
+    $('txtBtn').addEventListener('click',exportTXT);
+    $('printBtn').addEventListener('click',function(){ var w=window.open('','_blank'); if(!w)return; w.document.write('<pre style="font:13px monospace;padding:20px;white-space:pre-wrap">'+esc(reportText())+'</pre>'); w.document.close(); w.print(); });
+    $('clearBtn').addEventListener('click',function(){ report=[]; $('report').innerHTML=''; $('summaryCards').innerHTML=''; $('searchInput').value=''; $('workspace').classList.add('pi-hide'); $('dropzone').classList.remove('pi-hide'); $('fileInput').value=''; status(''); });
+  }
+
+  function buildFaq(){
+    var list=$('faqList'); if(!list) return;
+    list.innerHTML=FAQ.map(function(f){ return '<details><summary>'+f[0]+'</summary><p>'+f[1]+'</p></details>'; }).join('');
+    try{ var sc=$('faqSchema'); var data=JSON.parse(sc.textContent);
+      data.mainEntity=FAQ.map(function(f){ return {'@type':'Question','name':f[0],'acceptedAnswer':{'@type':'Answer','text':f[1]}}; });
+      sc.textContent=JSON.stringify(data);
+    }catch(e){}
+  }
+
+  function init(){ wire(); buildFaq(); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
 </script>
 </body>
 </html>
