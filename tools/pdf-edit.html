@@ -4,74 +4,110 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free online PDF editor — add text (any language, incl. Hindi), shapes, arrows, freehand drawing, highlights, images and stamps to a PDF, then move, resize, rotate and layer them. Undo/redo, page thumbnails, zoom. 100% private, runs in your browser, no upload.">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-edit.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Edit PDF — Add Text and Highlights | ApneSoftware">
-<meta property="og:description" content="Add text, highlights, boxes. Free online tool — no signup required.">
+<meta property="og:title" content="Edit PDF — Add Text, Shapes, Images &amp; Annotations Free &amp; Private | ApneSoftware">
+<meta property="og:description" content="Edit and annotate a PDF: add text in any language, shapes, arrows, freehand, highlights, images and stamps. Move, resize, rotate, undo/redo. Runs entirely in your browser.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-edit.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Edit PDF — Add Text and Highlights | ApneSoftware">
-<meta name="twitter:description" content="Add text, highlights, boxes. Free online tool — no signup required.">
+<meta name="twitter:title" content="Edit PDF — Add Text, Shapes, Images &amp; Annotations Free &amp; Private">
+<meta name="twitter:description" content="Annotate PDFs with text (any language), shapes, freehand, images and stamps. 100% client-side.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Edit","description":"Add text, highlights, boxes. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-edit.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Edit","operatingSystem":"Any (web browser)","applicationCategory":"UtilitiesApplication","description":"Online PDF editor to add and edit text (any language), shapes, arrows, freehand drawing, highlights, images and stamps on a PDF, with move, resize, rotate, layering, undo/redo, page thumbnails and zoom. Fully client-side and private.","url":"https://apnesoftware.com/tools/pdf-edit.html","browserRequirements":"Requires JavaScript. Works in Chrome, Edge, Firefox, Safari.","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
-<meta name="color-scheme" content="dark">
-<title>Edit PDF — Add Text and Highlights | ApneSoftware</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"PDF Editor Tool","url":"https://apnesoftware.com/tools/pdf-edit.html","description":"Free online PDF editor to add text, shapes, images and annotations, entirely in your browser.","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"inLanguage":"en"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://apnesoftware.com/index.html#pdf"},{"@type":"ListItem","position":3,"name":"Edit PDF","item":"https://apnesoftware.com/tools/pdf-edit.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to edit a PDF","description":"Add text, shapes and images to a PDF for free in your browser.","step":[{"@type":"HowToStep","name":"Upload PDF","text":"Drag and drop your PDF onto the upload area or click to browse."},{"@type":"HowToStep","name":"Add content","text":"Pick a tool — text, shape, arrow, pen, highlight, image or stamp — and add it to the page."},{"@type":"HowToStep","name":"Arrange","text":"Move, resize, rotate and layer objects, and change colour, opacity and style in the properties panel."},{"@type":"HowToStep","name":"Navigate","text":"Use thumbnails, page controls and zoom to edit any page."},{"@type":"HowToStep","name":"Download","text":"Click Save & Download to get the edited PDF, or print it."}]}
+</script>
+<!-- FAQ schema (populated at runtime) -->
+<script type="application/ld+json" id="faqSchema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}</script>
+
+<meta name="color-scheme" content="dark light">
+<title>Edit PDF — Add Text, Shapes, Images &amp; Annotations Free &amp; Private | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
-.dropzone{cursor:pointer}
-.dropzone p{font-size:.9rem}
-.panel{position:relative;z-index:1}
-</style>
-<style>
-  .edit-toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:14px}
-  .edit-toolbar .btn{padding:9px 14px;font-size:.85rem}
-
-  .props-bar{
-    display:none;align-items:center;gap:14px;flex-wrap:wrap;
-    background:var(--surface-2);border:1px solid var(--border);border-radius:8px;
-    padding:10px 14px;margin-top:12px;font-size:.85rem;
-  }
-  .props-bar.show{display:flex}
-  .props-bar label{margin:0;color:var(--text-dim);font-size:.8rem;display:flex;align-items:center;gap:6px}
-  .props-bar input[type=color]{width:36px;height:32px;padding:2px;border:1px solid var(--border);border-radius:6px}
-  .props-bar input[type=range]{width:100px}
-
-  .page-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px}
-  .page-nav span{color:var(--text-dim);font-size:.9rem;min-width:80px;text-align:center}
-
-  .edit-stage{position:relative;display:inline-block;margin-top:14px;max-width:100%;user-select:none;touch-action:none}
-  .edit-stage canvas{display:block;max-width:100%;border:1px solid var(--border);border-radius:6px}
-
-  .el-box{position:absolute;box-sizing:border-box}
-  .el-box.selected{outline:2px solid var(--accent);outline-offset:1px}
-
-  .el-text{display:flex;flex-direction:column}
-  .el-text .drag-handle{
-    height:14px;background:rgba(124,92,252,.85);cursor:move;border-radius:3px 3px 0 0;
-    display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;letter-spacing:1px;
-  }
-  .el-text textarea{
-    flex:1;resize:both;border:1px dashed var(--accent);background:rgba(255,255,255,.92);
-    color:#111;font-family:Arial,sans-serif;padding:3px 5px;outline:none;min-width:60px;min-height:24px;
-  }
-
-  .el-rect{cursor:move}
-
-  .el-del{
-    position:absolute;top:-10px;right:-10px;width:20px;height:20px;border-radius:50%;
-    background:var(--danger);color:#fff;border:none;cursor:pointer;font-size:.7rem;
-    display:none;align-items:center;justify-content:center;z-index:5;
-  }
-  .el-box.selected .el-del{display:flex}
-  .el-resize{
-    position:absolute;width:14px;height:14px;right:-7px;bottom:-7px;
-    background:var(--accent);border-radius:50%;cursor:nwse-resize;border:2px solid #fff;
-  }
+/* ── PDF Edit tool — scoped styles (pe-) ─────────────────────── */
+.pe-scope{--pe-accent:#A78BFA;--pe-accent2:#7C3AED;}
+.pe-hide{display:none !important;}
+.pe-drop{cursor:pointer;transition:border-color .2s,background .2s;}
+.pe-drop.drag{border-color:var(--pe-accent);background:rgba(167,139,250,.08);}
+.pe-toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px;background:var(--surface-2,rgba(255,255,255,.04));border:1px solid var(--border);border-radius:12px;margin-top:14px;}
+.pe-toolbar .g{display:flex;gap:4px;align-items:center;padding:0 6px;border-right:1px solid var(--border);}
+.pe-toolbar .g:last-child{border-right:0;}
+.pe-tb{background:transparent;border:1px solid transparent;color:var(--text);border-radius:7px;padding:6px 9px;font:inherit;font-size:.85rem;cursor:pointer;}
+.pe-tb:hover{background:rgba(167,139,250,.15);}
+.pe-tb.on{background:var(--pe-accent);color:#160c2e;}
+.pe-tb:disabled{opacity:.4;cursor:not-allowed;}
+.pe-body{display:grid;grid-template-columns:130px 1fr 240px;gap:10px;margin-top:10px;}
+@media(max-width:900px){.pe-body{grid-template-columns:1fr;}}
+.pe-side{border:1px solid var(--border);border-radius:12px;background:var(--surface-2,rgba(255,255,255,.02));overflow:auto;max-height:74vh;padding:8px;}
+.pe-thumb{border:2px solid transparent;border-radius:6px;cursor:pointer;background:#fff;position:relative;margin-bottom:8px;}
+.pe-thumb.on{border-color:var(--pe-accent);}
+.pe-thumb canvas{display:block;width:100%;height:auto;}
+.pe-thumb .n{position:absolute;bottom:2px;right:4px;font-size:.66rem;background:rgba(0,0,0,.6);color:#fff;padding:0 5px;border-radius:4px;}
+.pe-stage-wrap{border:1px solid var(--border);border-radius:12px;background:#3a3a44;padding:12px;overflow:auto;max-height:74vh;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.pe-stage{position:relative;line-height:0;touch-action:none;box-shadow:0 4px 18px rgba(0,0,0,.5);}
+#bgCanvas{display:block;background:#fff;}
+#overlayCanvas{position:absolute;left:0;top:0;pointer-events:none;}
+#overlayLayer{position:absolute;left:0;top:0;}
+.pe-el{position:absolute;box-sizing:border-box;cursor:move;}
+.pe-el.sel{outline:1.5px solid var(--pe-accent);outline-offset:0;}
+.pe-h{position:absolute;width:11px;height:11px;background:var(--pe-accent);border:1px solid #fff;border-radius:2px;right:-6px;bottom:-6px;cursor:nwse-resize;}
+.pe-r{position:absolute;width:13px;height:13px;background:#fff;border:2px solid var(--pe-accent);border-radius:50%;left:calc(50% - 7px);top:-24px;cursor:grab;}
+.pe-nav{display:flex;align-items:center;gap:8px;font-size:.85rem;flex-wrap:wrap;justify-content:center;}
+.pe-nav button{background:var(--surface-2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:5px 10px;cursor:pointer;}
+.pe-props{font-size:.84rem;}
+.pe-props h4{margin:0 0 8px;font-size:.9rem;}
+.pe-field{margin:0 0 10px;}
+.pe-field label{display:block;font-size:.76rem;color:var(--text-dim);margin:0 0 4px;}
+.pe-field input[type=text],.pe-field textarea,.pe-field select,.pe-field input[type=number]{width:100%;box-sizing:border-box;background:var(--surface,rgba(0,0,0,.25));color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 9px;font-family:var(--font);font-size:.85rem;outline:none;}
+.pe-field textarea{min-height:60px;resize:vertical;}
+.pe-field input:focus,.pe-field textarea:focus,.pe-field select:focus{border-color:var(--pe-accent);}
+.pe-row{display:flex;gap:8px;flex-wrap:wrap;}
+.pe-row .pe-field{flex:1;min-width:70px;}
+.pe-swatch{width:100%;height:32px;padding:2px;border:1px solid var(--border);border-radius:8px;background:var(--surface);cursor:pointer;}
+.pe-check{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;cursor:pointer;margin:0 10px 6px 0;}
+.pe-mini{display:flex;gap:5px;flex-wrap:wrap;}
+.pe-mini button{background:var(--surface,rgba(0,0,0,.25));border:1px solid var(--border);color:var(--text);border-radius:6px;padding:5px 8px;font-size:.78rem;cursor:pointer;}
+.pe-mini button:hover{border-color:var(--pe-accent);}
+.pe-btn{background:linear-gradient(135deg,var(--pe-accent),var(--pe-accent2));color:#fff;border:0;border-radius:9px;padding:10px 15px;font:inherit;font-weight:600;cursor:pointer;}
+.pe-btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text);font-weight:500;}
+.pe-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.pe-status{margin-top:8px;font-size:.9rem;color:var(--text-dim);min-height:1.2em;}
+.pe-fileinfo{font-size:.78rem;color:var(--text-dim);margin-top:8px;}
+/* below-tool content */
+.pe-wrap{max-width:1040px;margin:26px auto 0;padding:0 6px;}
+.pe-title{display:flex;align-items:center;gap:12px;margin:26px 0 14px;}
+.pe-title h2{font-size:1.25rem;font-weight:800;margin:0;white-space:nowrap;}
+.pe-title::before,.pe-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.10);}
+.pe-lead{color:var(--text-dim);font-size:.95rem;line-height:1.8;margin:0 6px;}
+.pe-feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.pe-fcard{border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.03));border-radius:14px;padding:16px;transition:.2s;}
+.pe-fcard:hover{border-color:var(--pe-accent);transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.14);}
+.pe-fcard h3{font-size:.92rem;font-weight:700;margin:0 0 6px;display:flex;align-items:center;gap:8px;}
+.pe-fcard p{font-size:.84rem;color:var(--text-dim);line-height:1.65;margin:0;}
+.pe-about ol,.pe-about > p{color:var(--text-dim);font-size:.92rem;line-height:1.8;padding-left:6px;}
+.pe-about ol{padding-left:24px;}
+.pe-related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:10px 0 4px;}
+.pe-related a{display:block;background:var(--surface-2,rgba(255,255,255,.03));border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text);transition:border-color .2s,transform .15s;}
+.pe-related a:hover{border-color:var(--pe-accent);transform:translateY(-2px);}
+.pe-related b{display:block;font-size:.92rem;margin-bottom:3px;}
+.pe-related span{font-size:.78rem;color:var(--text-dim);}
+#faqList details{border:1px solid var(--border);border-radius:10px;padding:0 14px;margin:8px 0;background:var(--surface-2,rgba(255,255,255,.02));}
+#faqList summary{cursor:pointer;padding:13px 0;font-weight:600;font-size:.95rem;}
+#faqList details[open]{padding-bottom:6px;}
+#faqList p{margin:0 0 12px;line-height:1.65;color:var(--text-dim);}
+:focus-visible{outline:2px solid var(--pe-accent);outline-offset:2px;}
 </style>
 </head>
 <body>
@@ -83,77 +119,231 @@
 </header>
 
 <div class="container">
+  <div class="pe-scope" id="peScope">
   <div class="tool-header">
     <h1>✏️ Edit PDF</h1>
-    <p>Add new text, highlights, or boxes to a PDF and drag them wherever you like. ⚠️ This does not change text already in the PDF, it only adds new content on top — and the text box currently only supports English/Latin characters (use highlight/box for Hindi).</p>
+    <p>Add and edit text in any language, shapes, arrows, freehand drawing, highlights, images and stamps — then move, resize and rotate them. Everything runs in your browser; your file is never uploaded.</p>
   </div>
 
   <div class="panel">
-    <div class="dropzone" id="dropzone">
-      <p>📤 Drag a PDF file here or click to choose</p>
-      <input type="file" id="fileInput" accept="application/pdf">
+    <div class="dropzone pe-drop" id="dropzone" role="button" tabindex="0" aria-label="Upload PDF file">
+      <p>📤 Drag &amp; drop your PDF here, or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf" hidden>
     </div>
 
-    <div id="editorArea" style="display:none">
-      <div class="edit-toolbar">
-        <button class="btn secondary" id="addTextBtn">➕ Add Text</button>
-        <button class="btn secondary" id="addHighlightBtn">🖍️ Add Highlight</button>
-        <button class="btn secondary" id="addBoxBtn">▭ Add Box</button>
+    <div id="editorArea" class="pe-hide">
+      <div class="pe-toolbar" role="toolbar" aria-label="Editing tools">
+        <div class="g">
+          <button class="pe-tb" id="addTextBtn" title="Add text">🅣 Text</button>
+          <button class="pe-tb" id="addHighlightBtn" title="Highlight">🖍 Highlight</button>
+          <button class="pe-tb" id="addBoxBtn" title="Rectangle">▭ Rect</button>
+          <button class="pe-tb" id="addRoundBtn" title="Rounded rectangle">▢ Round</button>
+          <button class="pe-tb" id="addEllipseBtn" title="Ellipse">◯ Ellipse</button>
+          <button class="pe-tb" id="addLineBtn" title="Line">／ Line</button>
+          <button class="pe-tb" id="addArrowBtn" title="Arrow">➜ Arrow</button>
+          <button class="pe-tb" id="penBtn" title="Freehand pen">✎ Pen</button>
+          <button class="pe-tb" id="addImageBtn" title="Add image">🖼 Image</button>
+          <input type="file" id="imgInput" accept="image/png,image/jpeg" hidden>
+        </div>
+        <div class="g">
+          <button class="pe-tb" id="stampApproved" title="Approved stamp">✅ Approved</button>
+          <button class="pe-tb" id="stampDraft" title="Draft stamp">📝 Draft</button>
+          <button class="pe-tb" id="stampConf" title="Confidential stamp">🔒 Confidential</button>
+          <button class="pe-tb" id="stampPaid" title="Paid stamp">💵 Paid</button>
+        </div>
+        <div class="g">
+          <button class="pe-tb" id="undoBtn" title="Undo" disabled>↶</button>
+          <button class="pe-tb" id="redoBtn" title="Redo" disabled>↷</button>
+          <button class="pe-tb" id="dupBtn" title="Duplicate" disabled>⧉</button>
+          <button class="pe-tb" id="fwdBtn" title="Bring forward" disabled>⤒</button>
+          <button class="pe-tb" id="bwdBtn" title="Send backward" disabled>⤓</button>
+          <button class="pe-tb" id="delBtn" title="Delete" disabled>🗑</button>
+        </div>
+        <div class="g">
+          <button class="pe-tb" id="pvZoomOut" title="Zoom out">−</button><span id="zoomLabel" style="font-size:.8rem">Fit</span><button class="pe-tb" id="pvZoomIn" title="Zoom in">+</button>
+        </div>
       </div>
 
-      <div class="props-bar" id="propsBar">
-        <span>Selected element:</span>
-        <label>Color <input type="color" id="propColor" value="#ff0000"></label>
-        <label id="fontSizeWrap" style="display:none">Size <input type="range" id="propFontSize" min="8" max="48" value="16"> <span id="propFontSizeVal">16</span></label>
-        <button class="icon-btn danger" id="propDeleteBtn" title="Delete" style="width:auto;padding:6px 12px">🗑️ Delete</button>
+      <div class="pe-body">
+        <aside class="pe-side" id="thumbList" aria-label="Page thumbnails"></aside>
+
+        <div class="pe-stage-wrap">
+          <div class="pe-stage" id="editStage">
+            <canvas id="bgCanvas"></canvas>
+            <canvas id="overlayCanvas"></canvas>
+            <div id="overlayLayer"></div>
+          </div>
+          <div class="pe-nav">
+            <button id="prevPageBtn" aria-label="Previous page">‹</button>
+            <span>Page <b id="pageCur">1</b> / <span id="pageTot">1</span></span>
+            <button id="nextPageBtn" aria-label="Next page">›</button>
+            <span id="pageInfo" class="pe-hide"></span>
+          </div>
+        </div>
+
+        <aside class="pe-side pe-props" id="propsPanel">
+          <div id="propsEmpty" style="color:var(--text-dim)">Select or add an object to edit its properties.</div>
+          <div id="propsBar" class="pe-hide">
+            <h4 id="propTitle">Object</h4>
+            <div class="pe-field" id="wrapText">
+              <label for="propText">Text</label>
+              <textarea id="propText" placeholder="Type here (any language)"></textarea>
+            </div>
+            <div class="pe-row" id="wrapFont">
+              <div class="pe-field"><label for="propFont">Font</label>
+                <select id="propFont"><option value="Arial, Helvetica, sans-serif">Sans</option><option value="Georgia, serif">Serif</option><option value="'Courier New', monospace">Mono</option></select></div>
+              <div class="pe-field" style="max-width:74px"><label for="propFontSize">Size</label><input type="number" id="propFontSize" value="18" min="6" max="200"></div>
+            </div>
+            <div id="wrapTextStyle" style="margin:2px 0 8px">
+              <label class="pe-check"><input type="checkbox" id="propBold"> Bold</label>
+              <label class="pe-check"><input type="checkbox" id="propItalic"> Italic</label>
+              <select id="propAlign" style="width:auto;padding:4px 6px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:6px"><option value="left">Left</option><option value="center">Centre</option><option value="right">Right</option></select>
+            </div>
+            <div class="pe-field"><label for="propColor">Colour</label><input type="color" id="propColor" value="#e11d48" class="pe-swatch"></div>
+            <div id="wrapFill" style="margin-bottom:8px"><label class="pe-check"><input type="checkbox" id="propFill"> Fill shape</label></div>
+            <div class="pe-row">
+              <div class="pe-field" id="wrapStroke"><label for="propStroke">Stroke</label><input type="number" id="propStroke" value="2" min="1" max="20"></div>
+              <div class="pe-field"><label for="propOpacity">Opacity: <span id="propOpacityVal">1.0</span></label><input type="range" id="propOpacity" min="0.1" max="1" step="0.05" value="1"></div>
+            </div>
+            <div class="pe-field"><label for="propRot">Rotation: <span id="propRotVal">0</span>°</label><input type="range" id="propRot" min="0" max="360" value="0"></div>
+            <div class="pe-mini">
+              <button id="propLock">🔓 Lock</button>
+              <button id="propDup">⧉ Duplicate</button>
+              <button id="propDel">🗑 Delete</button>
+            </div>
+          </div>
+        </aside>
       </div>
 
-      <div class="page-nav">
-        <button class="btn secondary" id="prevPageBtn">⬅️</button>
-        <span id="pageInfo">1 / 1</span>
-        <button class="btn secondary" id="nextPageBtn">➡️</button>
+      <div class="pe-actions">
+        <div class="pe-field" style="max-width:180px;margin:0"><input type="text" id="outName" value="edited" aria-label="Output file name"></div>
+        <label class="pe-check"><input type="checkbox" id="optCompress"> Compress</label>
+        <button class="pe-btn" id="saveBtn">💾 Save &amp; Download</button>
+        <button class="pe-btn ghost" id="printBtn">🖨️ Print</button>
+        <button class="pe-btn ghost" id="clearBtn">🗑️ New file</button>
       </div>
-
-      <div class="edit-stage" id="editStage">
-        <canvas id="bgCanvas"></canvas>
-        <div id="overlayLayer" style="position:absolute;inset:0"></div>
-      </div>
-
-      <div class="btn-row">
-        <button class="btn" id="saveBtn">💾 Save PDF and Download</button>
-      </div>
-
-      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
+      <p class="pe-fileinfo" id="fileInfo"></p>
+      <p class="pe-status" id="statusMsg" role="status" aria-live="polite"></p>
     </div>
+  </div>
   </div>
 </div>
 
+<!-- ── Below-tool content ─────────────────────────────────────── -->
+<section class="pe-wrap" aria-labelledby="introH">
+  <div class="pe-title"><h2 id="introH">✏️ PDF Editor — Add Text, Shapes &amp; Annotations</h2></div>
+  <p class="pe-lead">The <strong>ApneSoftware Edit PDF</strong> tool is a browser-based PDF editor for adding new content on top of any PDF. Add text in any language — including Hindi and other Indian scripts — draw shapes, arrows and freehand lines, highlight passages, drop in images and place ready-made stamps, then move, resize, rotate and layer everything exactly how you want. It runs entirely on your device and never uploads your file.</p>
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Add new text, highlights, or boxes anywhere on a PDF page (does not edit text already in the PDF).</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your PDF.</li>
-        <li>Click Add Text / Add Highlight / Add Box and drag it into position.</li>
-        <li>Adjust color and size, then save and download.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल PDF पेज पर कहीं भी नया टेक्स्ट, हाईलाइट या बॉक्स जोड़ने देता है (PDF में पहले से मौजूद टेक्स्ट को एडिट नहीं करता)।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी PDF अपलोड करें।</li>
-        <li>Add Text / Add Highlight / Add Box दबाएं और उसे मनचाही जगह खींचें।</li>
-        <li>रंग और साइज़ सेट करें, फिर सेव करें और डाउनलोड करें।</li>
-      </ol>
+  <div class="pe-title"><h2>✨ Key Features</h2></div>
+  <div class="pe-feature-grid">
+    <div class="pe-fcard"><h3>🅣 Text in Any Language</h3><p>Add text boxes in English, Hindi and any script, with font, size, bold, italic, alignment and colour.</p></div>
+    <div class="pe-fcard"><h3>🔷 Shapes &amp; Arrows</h3><p>Rectangle, rounded rectangle, ellipse, line and arrow, with fill, stroke width and colour.</p></div>
+    <div class="pe-fcard"><h3>✎ Freehand &amp; Highlight</h3><p>Draw freehand with the pen and highlight areas in any colour.</p></div>
+    <div class="pe-fcard"><h3>🖼 Images &amp; Stamps</h3><p>Insert PNG/JPG images and place Approved, Draft, Confidential or Paid stamps.</p></div>
+    <div class="pe-fcard"><h3>🎯 Move / Resize / Rotate</h3><p>Drag, resize with a handle, rotate freely, set opacity, lock, duplicate and layer objects.</p></div>
+    <div class="pe-fcard"><h3>↶ Undo / Redo</h3><p>Full undo and redo, plus page thumbnails and zoom for multi-page editing.</p></div>
+    <div class="pe-fcard"><h3>💾 Save &amp; Print</h3><p>Download the edited PDF or print it; rename and optionally compress the output.</p></div>
+    <div class="pe-fcard"><h3>🔒 100% Private</h3><p>Everything runs in your browser; your PDF is never uploaded.</p></div>
+  </div>
+
+  <div class="pe-title"><h2>🎁 Benefits</h2></div>
+  <div class="pe-feature-grid">
+    <div class="pe-fcard"><h3>📝 Fill &amp; Annotate</h3><p>Complete forms, add notes and mark up documents without printing.</p></div>
+    <div class="pe-fcard"><h3>🌐 Hindi Supported</h3><p>Add Devanagari and other scripts that basic PDF text tools cannot handle.</p></div>
+    <div class="pe-fcard"><h3>🏷️ Quick Stamps</h3><p>Approve, mark as draft or flag confidential documents in one click.</p></div>
+    <div class="pe-fcard"><h3>🔐 Private</h3><p>Sensitive documents stay on your own device from start to finish.</p></div>
+    <div class="pe-fcard"><h3>🆓 Free &amp; Unlimited</h3><p>No installs, no accounts, and no watermark added by us.</p></div>
+  </div>
+</section>
+
+<section class="pe-wrap" aria-labelledby="relatedH">
+  <div class="pe-title"><h2 id="relatedH">🔗 Related Tools</h2></div>
+  <div class="pe-related">
+    <a href="pdf-sign.html"><b>Sign a PDF</b><span>Add your signature</span></a>
+    <a href="pdf-watermark.html"><b>PDF Watermark</b><span>Add a text or logo watermark</span></a>
+    <a href="pdf-header-footer.html"><b>Header &amp; Footer</b><span>Add headers and footers</span></a>
+    <a href="pdf-page-numbers.html"><b>Page Numbers</b><span>Add page numbers</span></a>
+    <a href="pdf-form-filler.html"><b>Form Filler</b><span>Fill in PDF forms</span></a>
+    <a href="pdf-redact.html"><b>Redact PDF</b><span>Black out content</span></a>
+    <a href="pdf-merge.html"><b>Merge PDF</b><span>Combine multiple PDFs</span></a>
+    <a href="pdf-crop.html"><b>Crop PDF</b><span>Trim page margins</span></a>
+    <a href="pdf-viewer.html"><b>PDF Viewer</b><span>Read PDFs in the browser</span></a>
+    <a href="pdf-compress.html"><b>Compress PDF</b><span>Reduce PDF file size</span></a>
+  </div>
+</section>
+
+<section class="pe-wrap" aria-labelledby="aboutH">
+  <div class="pe-title"><h2 id="aboutH">ℹ️ About This Tool</h2></div>
+  <div class="info-wrap" style="max-width:100%;padding:0">
+    <div class="info-section">
+      <article class="info-block pe-about">
+        <h2>About the Edit PDF Tool (English)</h2>
+        <p>PDF is a fixed-layout format, which is exactly why it is so useful for sharing — and exactly why it can be frustrating to change. Most people do not need to rewrite the underlying document; they need to <em>add</em> something to it: fill in a blank on a form, sign or initial a page, highlight an important clause, draw an arrow to point something out, drop in a logo, or stamp a document as approved. The ApneSoftware Edit PDF tool is built for exactly this. It is a browser-based editor that lets you place new content on top of any PDF and arrange it precisely, then download the result — all without installing software or uploading your file.</p>
+
+        <p>The tool offers a full palette of objects. You can add <strong>text boxes</strong> and type in them directly, choosing the font, size, weight (bold), style (italic), alignment and colour. Importantly, the text is rendered exactly as you see it and supports <strong>any language</strong>, including Hindi and other Indian scripts, Arabic, Chinese, Japanese and emoji — solving a common limitation of simpler PDF tools that can only add basic Latin characters. For marking up documents there are <strong>shapes</strong> — rectangle, rounded rectangle and ellipse, each with an outline or a solid fill — plus <strong>lines</strong> and <strong>arrows</strong> for pointing things out, a <strong>highlighter</strong> for emphasising passages, and a <strong>freehand pen</strong> for drawing or scribbling a quick note.</p>
+
+        <p>Beyond drawing, you can insert <strong>images</strong> — a PNG or JPG logo, a photo, or a picture of your signature — and place, scale and rotate them anywhere. Ready-made <strong>stamps</strong> (Approved, Draft, Confidential and Paid) let you flag a document's status in one click, styled as bold coloured labels. Every object you add becomes a movable item: <strong>drag</strong> it to reposition, use the corner <strong>handle to resize</strong>, use the round handle to <strong>rotate</strong> it to any angle, and adjust its <strong>colour, opacity and stroke width</strong> in the properties panel. You can <strong>duplicate</strong> an object, <strong>lock</strong> it so it will not move by accident, and change its stacking order by bringing it <strong>forward</strong> or sending it <strong>backward</strong> relative to other objects.</p>
+
+        <p>Editing a real document means working across pages and making mistakes, so the tool is built around that. A <strong>thumbnail sidebar</strong> shows every page and lets you jump between them; each object remembers which page it belongs to, so your edits stay put as you navigate. <strong>Previous and next</strong> controls, a page indicator and <strong>zoom</strong> help you work comfortably on large or dense pages. And because nobody gets it right the first time, full <strong>undo and redo</strong> let you step back and forward through your changes without fear.</p>
+
+        <p>A word on how the editing works technically, because it shapes what you can expect. This tool <strong>adds a new layer of content on top of the existing page</strong>; it does not rewrite or reflow the text that is already in the PDF. That is the right model for the vast majority of real tasks — annotating, filling, signing and marking up — and it means your original page is never altered or degraded underneath your additions. When you save, your added objects are rendered at high resolution and drawn onto each page exactly as they appear on screen, so the output is a faithful, what-you-see-is-what-you-get copy of your edits.</p>
+
+        <p>When you are finished, the <strong>output options</strong> let you rename the file and optionally compress it, then download the edited PDF or send it straight to your printer. Everything is baked into a standard PDF that opens and prints correctly in any reader. <strong>Password-protected PDFs</strong> you are authorised to open are handled locally, and large multi-page documents are supported, processed on your own machine.</p>
+
+        <p>Privacy is fundamental. Your PDF, any images you add and every edit you make are processed entirely on your own device using JavaScript; nothing is uploaded, stored or logged, and everything is cleared from memory when you close the page. That makes the editor safe for contracts, application forms, financial statements, medical documents and any other confidential file — the kind of documents you would never want to send to an unknown server just to add a line of text. There is no account to create, no software to install and no watermark added to your work.</p>
+
+        <p>Whether you are filling in a government form in Hindi, signing and dating an agreement, highlighting the key terms of a contract, adding your company logo to a proposal, marking a draft for review, or simply correcting a small detail visually, the Edit PDF tool gives you a fast, private and capable way to change a PDF without specialist software.</p>
+      </article>
+
+      <article class="info-block pe-about">
+        <h2>इस टूल के बारे में (Hindi)</h2>
+        <p>PDF एक fixed-layout format है, इसीलिए यह साझा करने के लिए इतना उपयोगी है — और इसीलिए इसे बदलना निराशाजनक हो सकता है। अधिकांश लोगों को अंतर्निहित document दोबारा लिखने की ज़रूरत नहीं होती; उन्हें उसमें कुछ <em>जोड़ना</em> होता है: किसी form में खाली जगह भरना, किसी पन्ने पर sign या initial करना, किसी महत्वपूर्ण clause को highlight करना, किसी चीज़ की ओर arrow खींचना, कोई logo डालना, या document को approved के रूप में stamp करना। ApneSoftware Edit PDF टूल ठीक इसी के लिए बना है। यह एक browser-based editor है जो आपको किसी भी PDF के ऊपर नई सामग्री रखने और उसे सटीक रूप से व्यवस्थित करने देता है, फिर परिणाम download करने देता है — बिना software install किए या file upload किए।</p>
+
+        <p>टूल objects का पूरा palette देता है। आप <strong>text boxes</strong> जोड़कर उनमें सीधे टाइप कर सकते हैं, font, size, weight (bold), style (italic), alignment और रंग चुनकर। महत्वपूर्ण रूप से, text ठीक वैसा ही render होता है जैसा आप देखते हैं और <strong>किसी भी भाषा</strong> का समर्थन करता है, जिसमें Hindi और अन्य भारतीय लिपियाँ, Arabic, Chinese, Japanese और emoji शामिल हैं — यह सरल PDF tools की उस आम सीमा को हल करता है जो केवल बुनियादी Latin अक्षर जोड़ सकते हैं। documents mark-up के लिए <strong>shapes</strong> हैं — rectangle, rounded rectangle और ellipse, हर एक outline या ठोस fill के साथ — साथ ही किसी चीज़ की ओर इशारा करने के लिए <strong>lines</strong> और <strong>arrows</strong>, passages पर ज़ोर देने के लिए एक <strong>highlighter</strong>, और जल्दी नोट बनाने या खींचने के लिए एक <strong>freehand pen</strong>।</p>
+
+        <p>drawing के अलावा, आप <strong>images</strong> डाल सकते हैं — कोई PNG या JPG logo, कोई photo, या आपके signature की तस्वीर — और उन्हें कहीं भी रख, scale और rotate कर सकते हैं। तैयार <strong>stamps</strong> (Approved, Draft, Confidential और Paid) आपको एक क्लिक में document की स्थिति चिह्नित करने देते हैं, गहरे रंगीन labels के रूप में। आपके द्वारा जोड़ा गया हर object एक हिलने-योग्य item बन जाता है: उसे <strong>drag</strong> करके फिर से रखें, कोने के <strong>handle से आकार बदलें</strong>, गोल handle से किसी भी कोण पर <strong>rotate</strong> करें, और properties panel में उसका <strong>रंग, opacity और stroke width</strong> समायोजित करें। आप किसी object को <strong>duplicate</strong> कर सकते हैं, गलती से हिलने से बचाने के लिए <strong>lock</strong> कर सकते हैं, और उसे अन्य objects के सापेक्ष <strong>आगे</strong> या <strong>पीछे</strong> लाकर stacking क्रम बदल सकते हैं।</p>
+
+        <p>किसी असली document को edit करने का मतलब है पन्नों में काम करना और गलतियाँ करना, इसलिए टूल उसी के इर्द-गिर्द बना है। एक <strong>thumbnail sidebar</strong> हर पन्ना दिखाता है और उनके बीच जाने देता है; हर object याद रखता है वह किस पन्ने का है, इसलिए navigate करते समय आपके edits अपनी जगह रहते हैं। <strong>Previous और next</strong> नियंत्रण, एक page indicator और <strong>zoom</strong> आपको बड़े या घने पन्नों पर आराम से काम करने में मदद करते हैं। और चूँकि कोई पहली बार में सब सही नहीं करता, पूरा <strong>undo और redo</strong> आपको बिना डर के अपने बदलावों में पीछे-आगे जाने देता है।</p>
+
+        <p>editing तकनीकी रूप से कैसे काम करता है, इस पर एक बात, क्योंकि यह तय करता है कि आप क्या अपेक्षा कर सकते हैं। यह टूल <strong>मौजूदा पन्ने के ऊपर सामग्री की एक नई परत जोड़ता है</strong>; यह उस text को दोबारा नहीं लिखता या reflow नहीं करता जो पहले से PDF में है। अधिकांश असली कार्यों — annotating, filling, signing और mark-up — के लिए यही सही model है, और इसका मतलब है कि आपकी additions के नीचे आपका मूल पन्ना कभी बदला या घटाया नहीं जाता। save करने पर, आपके जोड़े objects high resolution पर render होकर हर पन्ने पर ठीक वैसे ही खींचे जाते हैं जैसे वे screen पर दिखते हैं, इसलिए output आपके edits की एक ईमानदार, what-you-see-is-what-you-get प्रति है।</p>
+
+        <p>समाप्त होने पर, <strong>output विकल्प</strong> आपको file का नाम बदलने और वैकल्पिक रूप से compress करने देते हैं, फिर edited PDF download करने या सीधे printer पर भेजने देते हैं। सब कुछ एक मानक PDF में bake हो जाता है जो किसी भी reader में सही खुलती और print होती है। जिन <strong>password-protected PDF</strong> को खोलने का आपको अधिकार है वे locally संभाली जाती हैं, और बड़े कई-पन्नों के documents समर्थित हैं, आपकी अपनी मशीन पर process होते हैं।</p>
+
+        <p>Privacy मौलिक है। आपकी PDF, आपके जोड़े कोई images और आपका हर edit पूरी तरह आपके अपने device पर JavaScript से process होता है; कुछ भी upload, store या log नहीं होता, और page बंद करने पर सब memory से हट जाता है। यह editor को contracts, application forms, financial statements, medical documents और किसी भी गोपनीय file के लिए सुरक्षित बनाता है — वैसे documents जिन्हें आप बस एक पंक्ति text जोड़ने के लिए किसी अनजान server पर कभी नहीं भेजना चाहेंगे। कोई account बनाना नहीं, कोई software install करना नहीं और आपके काम पर कोई watermark नहीं।</p>
+
+        <p>चाहे आप Hindi में कोई सरकारी form भर रहे हों, किसी agreement पर sign और date कर रहे हों, किसी contract की मुख्य शर्तें highlight कर रहे हों, किसी proposal पर अपनी कंपनी का logo जोड़ रहे हों, समीक्षा के लिए किसी draft को चिह्नित कर रहे हों, या बस दृश्य रूप से कोई छोटा विवरण ठीक कर रहे हों — Edit PDF टूल आपको विशेष software के बिना PDF बदलने का एक तेज़, निजी और सक्षम तरीका देता है।</p>
+      </article>
     </div>
   </div>
-</div>
+</section>
+
+<section class="pe-wrap pe-about" aria-labelledby="howH">
+  <div class="pe-title"><h2 id="howH">📝 How To Use</h2></div>
+  <ol>
+    <li>Drag &amp; drop your PDF onto the upload area, or click to browse.</li>
+    <li>Pick a tool from the toolbar — <strong>text, shape, arrow, pen, highlight, image</strong> or a <strong>stamp</strong>.</li>
+    <li><strong>Drag</strong> to move, use the handle to <strong>resize</strong>, and the round handle to <strong>rotate</strong>.</li>
+    <li>Adjust <strong>colour, opacity, font and style</strong> in the properties panel; use <strong>undo/redo</strong> freely.</li>
+    <li>Use <strong>thumbnails</strong> and page controls to edit other pages.</li>
+    <li>Rename, then click <strong>Save &amp; Download</strong> — or print.</li>
+  </ol>
+</section>
+
+<section class="pe-wrap pe-faq" aria-labelledby="faqH">
+  <div class="pe-title"><h2 id="faqH">❓ Frequently Asked Questions</h2></div>
+  <div id="faqList"></div>
+</section>
+
+<section class="pe-wrap pe-about" aria-labelledby="privacyH">
+  <div class="pe-title"><h2 id="privacyH">🔒 Privacy</h2></div>
+  <p>This tool is 100% client-side. Your PDF, any images you add and all your edits are processed entirely in your browser using JavaScript — they are never sent to ApneSoftware or any third party. Nothing is stored, logged or transmitted. When you close or refresh the page, everything is cleared from memory. Because there is no upload, you can safely edit confidential, legal, medical and financial documents.</p>
+
+  <div class="pe-title"><h2 id="compatH">🌐 Browser Compatibility</h2></div>
+  <p>Works in all modern browsers including Google Chrome, Microsoft Edge, Mozilla Firefox, Safari, Brave and Opera, on Windows, macOS, Linux, Android and iOS. It relies on standard web technologies (Canvas, File API and JavaScript PDF libraries), so no plugins or extensions are required. Touch screens are supported for adding and moving objects.</p>
+
+  <div class="pe-title"><h2 id="formatsH">📁 Supported Formats</h2></div>
+  <p><strong>Input document:</strong> PDF (.pdf), including password-protected PDFs you are authorised to open. <strong>Added images:</strong> PNG and JPG/JPEG. <strong>Output:</strong> a standard PDF (.pdf) with your text, shapes, images and stamps drawn onto the chosen pages, ready to download or print. Added content sits on a new layer over the original page.</p>
+</section>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
@@ -161,315 +351,370 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+/* ══════════════════════════════════════════════════════════════
+   EDIT PDF — premium client-side editor (pdf.js render + pdf-lib bake)
+   Single canvas render engine used for preview AND output (WYSIWYG).
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+  if(window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  var $ = function(id){ return document.getElementById(id); };
 
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-const editStage = document.getElementById('editStage');
-const overlayLayer = document.getElementById('overlayLayer');
-const bgCanvas = document.getElementById('bgCanvas');
+  var FAQ = [
+    ["Is my PDF uploaded to a server?","No. Everything runs locally in your browser. Your PDF, added images and edits never leave your device, so it is safe for confidential documents."],
+    ["Can I add Hindi or other non-English text?","Yes. Text is rendered exactly as shown and supports any language, including Hindi and other Indian scripts, Arabic, Chinese, Japanese and emoji."],
+    ["Can I edit the text that is already in the PDF?","This tool adds new content on top of the page; it does not rewrite existing text. It is ideal for annotating, filling, signing and marking up. To pull existing text out, use the Extract Text tool."],
+    ["What objects can I add?","Text, highlight, rectangle, rounded rectangle, ellipse, line, arrow, freehand pen strokes, images, and ready-made stamps (Approved, Draft, Confidential, Paid)."],
+    ["Can I move, resize and rotate objects?","Yes. Drag to move, use the corner handle to resize, and the round handle to rotate to any angle. You can also set exact opacity, colour and stroke width."],
+    ["Is there undo and redo?","Yes. Full undo and redo let you step back and forward through every change."],
+    ["Can I edit more than one page?","Yes. Use the thumbnail sidebar and page controls to move between pages; each object stays on its own page."],
+    ["Can I add an image or logo?","Yes. Insert a PNG or JPG, then move, resize and rotate it. Transparent PNGs keep their transparency."],
+    ["How do stamps work?","Click a stamp (Approved, Draft, Confidential or Paid) to drop a bold coloured label onto the page, which you can then move, resize and recolour."],
+    ["Will my added text be selectable in the final PDF?","Added content is drawn onto the page as a high-resolution layer so it looks exactly as you designed it and supports every language. It is part of the page image rather than separately selectable text."],
+    ["Does editing change the original page?","No. Your additions sit on a new layer over the page. The original content underneath is preserved and not degraded."],
+    ["Can I lock an object so it doesn't move?","Yes. Lock an object to prevent accidental dragging or resizing, and unlock it when you need to change it."],
+    ["Can I change the stacking order?","Yes. Bring an object forward or send it backward to control which objects appear on top."],
+    ["Can I duplicate an object?","Yes. Duplicate creates a copy you can reposition, which is handy for repeating a stamp or shape."],
+    ["Can it open password-protected PDFs?","Yes, if you are authorised to open them. You are prompted for the password locally and it is used only on your device."],
+    ["Can I compress or rename the output?","Yes. Set a file name and optionally enable compression before saving."],
+    ["Can I print the edited PDF?","Yes. The Print button opens the edited result in your browser's print dialog."],
+    ["Does it work on phones and tablets?","Yes. The layout is responsive and objects can be added and moved with touch. A desktop is easier for detailed editing."],
+    ["Is the tool free? Do I need an account?","It is completely free with no signup, no watermark added by us, and no usage limits."],
+    ["Which browsers are supported?","All modern browsers — Chrome, Edge, Firefox, Safari, Brave and Opera — on desktop and mobile. No plugins are required."],
+    ["Is there a page or file-size limit?","There is no fixed limit — it depends on your device's memory. Very large documents use more memory and are best edited on a desktop."]
+  ];
 
-let currentFile = null;
-let pdfDocJs = null;
-let totalPages = 0;
-let currentPageIndex = 0;
-let renderScale = 1;
+  // ── State ──────────────────────────────────────────────────
+  var pdfjsDoc=null, numPages=0, srcBytes=null, srcName='document.pdf';
+  var curPage=0, pvZoom=1, dispScale=1, pageBase={w:612,h:792};
+  var els=[], idc=1, selId=null, tool=null, penActive=false;
+  var history=[], histIdx=-1;
+  var PDFLibRef=window.PDFLib;
 
-let elements = []; // {id, page, type:'text'|'highlight'|'box', xPdf, yPdfTop, wPdf, hPdf, text, fontSize, color}
-let idCounter = 1;
-let selectedId = null;
-let dragState = null;
+  function status(m){ $('statusMsg').textContent=m||''; }
+  function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+  function selEl(){ return els.find(function(e){return e.id===selId;}); }
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
-});
-
-async function handleFile(file){
-  currentFile = file;
-  elements = [];
-  selectedId = null;
-  const arrayBuf = await file.arrayBuffer();
-  pdfDocJs = await pdfjsLib.getDocument({data: arrayBuf}).promise;
-  totalPages = pdfDocJs.numPages;
-  currentPageIndex = 0;
-
-  const firstPage = await pdfDocJs.getPage(1);
-  const vp = firstPage.getViewport({ scale: 1 });
-  renderScale = Math.min(560 / vp.width, 1.4);
-
-  document.getElementById('editorArea').style.display = 'block';
-  await renderCurrentPage();
-}
-
-async function renderCurrentPage(){
-  const page = await pdfDocJs.getPage(currentPageIndex + 1);
-  const viewport = page.getViewport({ scale: renderScale });
-  bgCanvas.width = viewport.width;
-  bgCanvas.height = viewport.height;
-  const ctx = bgCanvas.getContext('2d');
-  await page.render({ canvasContext: ctx, viewport }).promise;
-
-  editStage.style.width = viewport.width + 'px';
-  overlayLayer.style.width = viewport.width + 'px';
-  overlayLayer.style.height = viewport.height + 'px';
-
-  document.getElementById('pageInfo').textContent = `${currentPageIndex+1} / ${totalPages}`;
-  renderOverlayElements();
-  deselectAll();
-}
-
-document.getElementById('prevPageBtn').addEventListener('click', async ()=>{
-  if(currentPageIndex > 0){ currentPageIndex--; await renderCurrentPage(); }
-});
-document.getElementById('nextPageBtn').addEventListener('click', async ()=>{
-  if(currentPageIndex < totalPages - 1){ currentPageIndex++; await renderCurrentPage(); }
-});
-
-/* ---------- overlay rendering ---------- */
-function renderOverlayElements(){
-  overlayLayer.innerHTML = '';
-  elements.filter(el => el.page === currentPageIndex).forEach(el => buildElementDom(el));
-}
-
-function buildElementDom(el){
-  const box = document.createElement('div');
-  box.className = 'el-box ' + (el.type === 'text' ? 'el-text' : 'el-rect');
-  box.dataset.id = el.id;
-  box.style.left = (el.xPdf * renderScale) + 'px';
-  box.style.top = (el.yPdfTop * renderScale) + 'px';
-  box.style.width = (el.wPdf * renderScale) + 'px';
-  if(el.type !== 'text'){
-    box.style.height = (el.hPdf * renderScale) + 'px';
-  }
-  if(selectedId === el.id) box.classList.add('selected');
-
-  const delBtn = document.createElement('button');
-  delBtn.className = 'el-del';
-  delBtn.textContent = '✕';
-  delBtn.addEventListener('mousedown', e=> e.stopPropagation());
-  delBtn.addEventListener('click', (e)=>{ e.stopPropagation(); deleteElement(el.id); });
-  box.appendChild(delBtn);
-
-  if(el.type === 'text'){
-    const handle = document.createElement('div');
-    handle.className = 'drag-handle';
-    handle.textContent = '⠿⠿⠿';
-    handle.addEventListener('mousedown', e=> startDrag(e, el, box));
-    handle.addEventListener('touchstart', e=> startDrag(e, el, box));
-    box.appendChild(handle);
-
-    const ta = document.createElement('textarea');
-    ta.value = el.text || '';
-    ta.style.color = el.color;
-    ta.style.fontSize = Math.max(10, el.fontSize * renderScale * 0.8) + 'px';
-    ta.addEventListener('input', ()=>{ el.text = ta.value; });
-    ta.addEventListener('mousedown', e=> e.stopPropagation());
-    ta.addEventListener('focus', ()=> selectElement(el.id));
-    box.appendChild(ta);
-  } else {
-    if(el.type === 'highlight') box.style.background = hexToRgba(el.color, 0.4);
-    else box.style.border = `2px solid ${el.color}`;
-
-    box.addEventListener('mousedown', e=> startDrag(e, el, box));
-    box.addEventListener('touchstart', e=> startDrag(e, el, box));
-
-    const resize = document.createElement('div');
-    resize.className = 'el-resize';
-    resize.addEventListener('mousedown', e=> startResize(e, el, box));
-    resize.addEventListener('touchstart', e=> startResize(e, el, box));
-    box.appendChild(resize);
+  // ── History ────────────────────────────────────────────────
+  function snapshot(){ return JSON.stringify(els.map(function(e){ var c=Object.assign({},e); delete c.imgEl; return c; })); }
+  function pushHistory(){ history=history.slice(0,histIdx+1); history.push(snapshot()); histIdx=history.length-1; updHist(); }
+  function updHist(){ $('undoBtn').disabled=histIdx<=0; $('redoBtn').disabled=histIdx>=history.length-1; }
+  function restore(s){
+    var arr=JSON.parse(s);
+    arr.forEach(function(e){ if(e.type==='image'&&e.imgData){ var im=new Image(); im.src=e.imgData; e.imgEl=im; } });
+    els=arr; selId=null; redraw(); syncBoxes(); showProps(); updHist();
   }
 
-  overlayLayer.appendChild(box);
-}
+  // ── Colour ─────────────────────────────────────────────────
+  function hex01(hex){ hex=(hex||'#000').replace('#',''); if(hex.length===3)hex=hex.split('').map(function(c){return c+c;}).join(''); var n=parseInt(hex,16); return {r:((n>>16)&255)/255,g:((n>>8)&255)/255,b:(n&255)/255}; }
 
-/* ---------- drag / resize (single shared listener set) ---------- */
-function startDrag(e, el, box){
-  const point = e.touches ? e.touches[0] : e;
-  dragState = { type:'move', el, box, startX: point.clientX, startY: point.clientY, origLeft: box.offsetLeft, origTop: box.offsetTop };
-  selectElement(el.id);
-  e.stopPropagation();
-  if(e.cancelable) e.preventDefault();
-}
-function startResize(e, el, box){
-  const point = e.touches ? e.touches[0] : e;
-  dragState = { type:'resize', el, box, startX: point.clientX, startY: point.clientY, startW: box.offsetWidth, startH: box.offsetHeight };
-  e.stopPropagation();
-  if(e.cancelable) e.preventDefault();
-}
-
-function onPointerMove(e){
-  if(!dragState) return;
-  const point = e.touches ? e.touches[0] : e;
-  const dx = point.clientX - dragState.startX;
-  const dy = point.clientY - dragState.startY;
-  const { el, box, type } = dragState;
-
-  if(type === 'move'){
-    let newLeft = dragState.origLeft + dx;
-    let newTop = dragState.origTop + dy;
-    newLeft = Math.max(0, Math.min(newLeft, overlayLayer.clientWidth - box.offsetWidth));
-    newTop = Math.max(0, Math.min(newTop, overlayLayer.clientHeight - box.offsetHeight));
-    box.style.left = newLeft + 'px';
-    box.style.top = newTop + 'px';
-    el.xPdf = newLeft / renderScale;
-    el.yPdfTop = newTop / renderScale;
-  } else if(type === 'resize'){
-    const newW = Math.max(20, dragState.startW + dx);
-    const newH = Math.max(20, dragState.startH + dy);
-    box.style.width = newW + 'px';
-    box.style.height = newH + 'px';
-    el.wPdf = newW / renderScale;
-    el.hPdf = newH / renderScale;
+  // ── Core render (used by preview canvas AND output bake) ───
+  // ctx already at device scale; s = points->pixels scale
+  function drawEl(ctx,e,s){
+    ctx.save();
+    ctx.globalAlpha=(e.opacity==null?1:e.opacity);
+    var cx=(e.x+e.w/2)*s, cy=(e.y+e.h/2)*s, w=e.w*s, h=e.h*s;
+    ctx.translate(cx,cy); ctx.rotate((e.rot||0)*Math.PI/180); ctx.translate(-w/2,-h/2);
+    var col=e.color||'#000';
+    if(e.type==='text'||e.type==='stamp'){
+      var fs=(e.fontSize||18)*s;
+      ctx.font=(e.italic?'italic ':'')+(e.bold||e.type==='stamp'?'bold ':'')+fs+'px '+(e.fontFamily||'Arial,sans-serif');
+      ctx.fillStyle=col; ctx.textBaseline='top';
+      var align=e.align||'left'; ctx.textAlign=align;
+      var ax = align==='center'? w/2 : (align==='right'? w-4 : 4);
+      var lines=String(e.text||'').split('\n'); var ly=3;
+      if(e.type==='stamp'){ ctx.strokeStyle=col; ctx.lineWidth=Math.max(2,fs*0.08); ctx.strokeRect(2,2,w-4,h-4); }
+      for(var i=0;i<lines.length;i++){ ctx.fillText(lines[i],ax,ly); ly+=fs*1.25; }
+    } else if(e.type==='highlight'){
+      var c=hex01(col); ctx.fillStyle='rgba('+Math.round(c.r*255)+','+Math.round(c.g*255)+','+Math.round(c.b*255)+',0.4)'; ctx.fillRect(0,0,w,h);
+    } else if(e.type==='rect'||e.type==='roundrect'){
+      var r=e.type==='roundrect'?Math.min(w,h)*0.18:0;
+      ctx.beginPath();
+      if(r>0){ ctx.moveTo(r,0); ctx.arcTo(w,0,w,h,r); ctx.arcTo(w,h,0,h,r); ctx.arcTo(0,h,0,0,r); ctx.arcTo(0,0,w,0,r); ctx.closePath(); }
+      else ctx.rect(0,0,w,h);
+      if(e.fill){ ctx.fillStyle=col; ctx.fill(); } else { ctx.strokeStyle=col; ctx.lineWidth=(e.strokeW||2)*s; ctx.stroke(); }
+    } else if(e.type==='ellipse'){
+      ctx.beginPath(); ctx.ellipse(w/2,h/2,w/2,h/2,0,0,Math.PI*2);
+      if(e.fill){ ctx.fillStyle=col; ctx.fill(); } else { ctx.strokeStyle=col; ctx.lineWidth=(e.strokeW||2)*s; ctx.stroke(); }
+    } else if(e.type==='line'||e.type==='arrow'){
+      ctx.strokeStyle=col; ctx.lineWidth=(e.strokeW||2)*s; ctx.lineCap='round';
+      ctx.beginPath(); ctx.moveTo(0,h/2); ctx.lineTo(w,h/2); ctx.stroke();
+      if(e.type==='arrow'){ var ah=Math.max(8,(e.strokeW||2)*s*3); ctx.beginPath(); ctx.moveTo(w,h/2); ctx.lineTo(w-ah,h/2-ah*0.6); ctx.lineTo(w-ah,h/2+ah*0.6); ctx.closePath(); ctx.fillStyle=col; ctx.fill(); }
+    } else if(e.type==='pen'){
+      ctx.strokeStyle=col; ctx.lineWidth=(e.strokeW||2)*s; ctx.lineCap='round'; ctx.lineJoin='round';
+      var pts=e.points||[]; if(pts.length){ ctx.beginPath(); ctx.moveTo(pts[0].x*w,pts[0].y*h); for(var k=1;k<pts.length;k++)ctx.lineTo(pts[k].x*w,pts[k].y*h); ctx.stroke(); }
+    } else if(e.type==='image' && e.imgEl && e.imgEl.complete){
+      try{ ctx.drawImage(e.imgEl,0,0,w,h); }catch(_){}
+    }
+    ctx.restore();
   }
-  if(e.cancelable) e.preventDefault();
-}
-function onPointerUp(){ dragState = null; }
+  function drawPage(ctx,pageIdx,s){ els.forEach(function(e){ if(e.page===pageIdx) drawEl(ctx,e,s); }); }
 
-document.addEventListener('mousemove', onPointerMove);
-document.addEventListener('mouseup', onPointerUp);
-document.addEventListener('touchmove', onPointerMove, { passive:false });
-document.addEventListener('touchend', onPointerUp);
-
-editStage.addEventListener('mousedown', e=>{
-  if(e.target === bgCanvas) deselectAll();
-});
-
-/* ---------- selection / properties ---------- */
-function selectElement(id){
-  selectedId = id;
-  document.querySelectorAll('.el-box').forEach(b=>{
-    b.classList.toggle('selected', b.dataset.id == id);
-  });
-  const el = elements.find(e => e.id == id);
-  if(!el) return;
-  document.getElementById('propsBar').classList.add('show');
-  document.getElementById('propColor').value = el.color;
-  const fsWrap = document.getElementById('fontSizeWrap');
-  if(el.type === 'text'){
-    fsWrap.style.display = 'inline-flex';
-    document.getElementById('propFontSize').value = el.fontSize;
-    document.getElementById('propFontSizeVal').textContent = el.fontSize;
-  } else {
-    fsWrap.style.display = 'none';
+  function redraw(){
+    var oc=$('overlayCanvas'), ctx=oc.getContext('2d');
+    oc.width=$('bgCanvas').width; oc.height=$('bgCanvas').height;
+    oc.style.width=$('bgCanvas').style.width; oc.style.height=$('bgCanvas').style.height;
+    ctx.clearRect(0,0,oc.width,oc.height);
+    var ratio=oc.width/(pageBase.w*dispScale); // device pixel ratio applied in canvas width
+    drawPage(ctx,curPage, dispScale*ratio);
   }
-}
 
-function deselectAll(){
-  selectedId = null;
-  document.querySelectorAll('.el-box').forEach(b => b.classList.remove('selected'));
-  document.getElementById('propsBar').classList.remove('show');
-}
-
-document.getElementById('propColor').addEventListener('input', e=>{
-  const el = elements.find(x => x.id == selectedId);
-  if(!el) return;
-  el.color = e.target.value;
-  renderOverlayElements();
-  selectElement(selectedId);
-});
-document.getElementById('propFontSize').addEventListener('input', e=>{
-  const el = elements.find(x => x.id == selectedId);
-  if(!el) return;
-  el.fontSize = parseInt(e.target.value);
-  document.getElementById('propFontSizeVal').textContent = el.fontSize;
-  renderOverlayElements();
-  selectElement(selectedId);
-});
-document.getElementById('propDeleteBtn').addEventListener('click', ()=>{
-  if(selectedId) deleteElement(selectedId);
-});
-
-function deleteElement(id){
-  elements = elements.filter(e => e.id != id);
-  if(selectedId == id) deselectAll();
-  renderOverlayElements();
-}
-
-/* ---------- add buttons ---------- */
-function addElementFocused(el){
-  elements.push(el);
-  renderOverlayElements();
-  selectElement(el.id);
-  if(el.type === 'text'){
-    const box = overlayLayer.querySelector(`[data-id="${el.id}"]`);
-    const ta = box ? box.querySelector('textarea') : null;
-    if(ta) ta.focus();
+  // ── Page render ────────────────────────────────────────────
+  function renderPage(){
+    if(!pdfjsDoc) return;
+    pdfjsDoc.getPage(curPage+1).then(function(page){
+      var base=page.getViewport({scale:1}); pageBase={w:base.width,h:base.height};
+      var wrapW=Math.min(($('editStage').parentElement.clientWidth||560),560);
+      dispScale=(wrapW/base.width)*pvZoom;
+      var ratio=Math.min(window.devicePixelRatio||1,2);
+      var vp=page.getViewport({scale:dispScale*ratio});
+      var bg=$('bgCanvas'); bg.width=vp.width; bg.height=vp.height;
+      bg.style.width=Math.round(base.width*dispScale)+'px'; bg.style.height=Math.round(base.height*dispScale)+'px';
+      page.render({canvasContext:bg.getContext('2d'),viewport:vp}).promise.then(function(){
+        $('editStage').style.width=bg.style.width; $('editStage').style.height=bg.style.height;
+        $('overlayLayer').style.width=bg.style.width; $('overlayLayer').style.height=bg.style.height;
+        redraw(); syncBoxes();
+      });
+      $('pageCur').textContent=curPage+1; $('pageTot').textContent=numPages; $('zoomLabel').textContent=Math.round(pvZoom*100)+'%';
+      highlightThumb();
+    });
   }
-}
 
-document.getElementById('addTextBtn').addEventListener('click', ()=>{
-  addElementFocused({ id: idCounter++, page: currentPageIndex, type:'text', xPdf:40, yPdfTop:40, wPdf:150, hPdf:40, text:'', fontSize:16, color:'#ff0000' });
-});
-document.getElementById('addHighlightBtn').addEventListener('click', ()=>{
-  addElementFocused({ id: idCounter++, page: currentPageIndex, type:'highlight', xPdf:40, yPdfTop:40, wPdf:160, hPdf:24, color:'#ffeb00' });
-});
-document.getElementById('addBoxBtn').addEventListener('click', ()=>{
-  addElementFocused({ id: idCounter++, page: currentPageIndex, type:'box', xPdf:40, yPdfTop:40, wPdf:160, hPdf:60, color:'#ff3b30' });
-});
+  // ── Interaction boxes (transparent hit targets) ────────────
+  function syncBoxes(){
+    var layer=$('overlayLayer'); layer.innerHTML='';
+    els.filter(function(e){return e.page===curPage;}).forEach(function(e){
+      var b=document.createElement('div'); b.className='pe-el'+(e.id===selId?' sel':''); b.dataset.id=e.id;
+      b.style.left=(e.x*dispScale)+'px'; b.style.top=(e.y*dispScale)+'px'; b.style.width=(e.w*dispScale)+'px'; b.style.height=(e.h*dispScale)+'px';
+      b.style.transform='rotate('+(e.rot||0)+'deg)';
+      if(e.id===selId && !e.locked){ var rh=document.createElement('div'); rh.className='pe-r'; rh.dataset.role='rot'; b.appendChild(rh); var hh=document.createElement('div'); hh.className='pe-h'; hh.dataset.role='resize'; b.appendChild(hh); }
+      b.addEventListener('pointerdown',function(ev){ onBoxDown(ev,e); });
+      layer.appendChild(b);
+    });
+  }
 
-/* ---------- helpers ---------- */
-function hexToRgba(hex, alpha){
-  hex = hex.replace('#','');
-  const bigint = parseInt(hex, 16);
-  const r=(bigint>>16)&255, g=(bigint>>8)&255, b=bigint&255;
-  return `rgba(${r},${g},${b},${alpha})`;
-}
-function hexToRgb01(hex){
-  hex = hex.replace('#','');
-  const bigint = parseInt(hex, 16);
-  return { r: ((bigint>>16)&255)/255, g: ((bigint>>8)&255)/255, b: (bigint&255)/255 };
-}
+  var act=null,startPt=null,startBox=null,startRot=0,center=null;
+  function evtPt(ev){ var r=$('overlayLayer').getBoundingClientRect(); return {x:(ev.clientX-r.left)/dispScale, y:(ev.clientY-r.top)/dispScale, rawX:ev.clientX, rawY:ev.clientY}; }
+  function onBoxDown(ev,e){
+    if(penActive) return;
+    select(e.id);
+    if(e.locked){ return; }
+    var role=ev.target.dataset&&ev.target.dataset.role;
+    act = role==='resize'?'resize':(role==='rot'?'rot':'move');
+    startPt=evtPt(ev); startBox={x:e.x,y:e.y,w:e.w,h:e.h}; startRot=e.rot||0;
+    var r=$('overlayLayer').getBoundingClientRect(); center={x:r.left+(e.x+e.w/2)*dispScale,y:r.top+(e.y+e.h/2)*dispScale};
+    ev.preventDefault(); ev.stopPropagation();
+  }
+  function onMove(ev){
+    if(!act) return; var e=selEl(); if(!e)return; var p=evtPt(ev);
+    if(act==='move'){ e.x=clamp(startBox.x+(p.x-startPt.x),-e.w/2,pageBase.w-e.w/2); e.y=clamp(startBox.y+(p.y-startPt.y),-e.h/2,pageBase.h-e.h/2); }
+    else if(act==='resize'){ e.w=Math.max(12,startBox.w+(p.x-startPt.x)); e.h=Math.max(8,startBox.h+(p.y-startPt.y)); }
+    else if(act==='rot'){ var ang=Math.atan2(p.rawY-center.y,p.rawX-center.x)*180/Math.PI; e.rot=Math.round((ang+90+360)%360); if($('propRot')){ $('propRot').value=e.rot; $('propRotVal').textContent=e.rot; } }
+    redraw(); syncBoxes(); if(ev.cancelable)ev.preventDefault();
+  }
+  function onUp(){ if(act){ act=null; pushHistory(); } }
 
-/* ---------- save ---------- */
-document.getElementById('saveBtn').addEventListener('click', async ()=>{
-  const status = document.getElementById('statusMsg');
-  if(elements.length === 0){ status.textContent = '⚠️ No elements have been added'; return; }
+  // ── Pen (freehand) ─────────────────────────────────────────
+  var penPts=null;
+  function stageDown(ev){
+    if(!penActive) return;
+    var r=$('overlayLayer').getBoundingClientRect(); penPts=[{x:(ev.clientX-r.left)/dispScale,y:(ev.clientY-r.top)/dispScale}]; ev.preventDefault();
+  }
+  function stageMove(ev){
+    if(!penActive||!penPts) return; var r=$('overlayLayer').getBoundingClientRect();
+    penPts.push({x:(ev.clientX-r.left)/dispScale,y:(ev.clientY-r.top)/dispScale});
+    // live preview
+    var ctx=$('overlayCanvas').getContext('2d'); var ratio=$('overlayCanvas').width/(pageBase.w*dispScale);
+    redraw(); ctx.save(); ctx.strokeStyle=$('propColor').value||'#e11d48'; ctx.lineWidth=2*dispScale*ratio; ctx.lineCap='round'; ctx.beginPath();
+    penPts.forEach(function(pt,i){ var X=pt.x*dispScale*ratio,Y=pt.y*dispScale*ratio; if(i===0)ctx.moveTo(X,Y); else ctx.lineTo(X,Y); }); ctx.stroke(); ctx.restore();
+    ev.preventDefault();
+  }
+  function stageUp(){
+    if(!penActive||!penPts||penPts.length<2){ penPts=null; return; }
+    var xs=penPts.map(function(p){return p.x;}),ys=penPts.map(function(p){return p.y;});
+    var minX=Math.min.apply(null,xs),maxX=Math.max.apply(null,xs),minY=Math.min.apply(null,ys),maxY=Math.max.apply(null,ys);
+    var w=Math.max(6,maxX-minX),h=Math.max(6,maxY-minY);
+    var norm=penPts.map(function(p){ return {x:(p.x-minX)/w, y:(p.y-minY)/h}; });
+    els.push({ id:idc++, page:curPage, type:'pen', x:minX, y:minY, w:w, h:h, rot:0, opacity:1, color:$('propColor').value||'#e11d48', strokeW:2, points:norm });
+    penPts=null; setTool(null); pushHistory(); redraw(); syncBoxes();
+  }
 
-  status.textContent = '⏳ Building PDF...';
-  try{
-    const { PDFDocument, rgb, StandardFonts } = PDFLib;
-    const bytes = await currentFile.arrayBuffer();
-    const pdfDoc = await PDFDocument.load(bytes);
-    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
-    const pages = pdfDoc.getPages();
+  // ── Selection / properties ─────────────────────────────────
+  function select(id){ selId=id; syncBoxes(); showProps(); toolbarState(); }
+  function deselect(){ selId=null; syncBoxes(); showProps(); toolbarState(); }
+  function toolbarState(){ var has=!!selEl(); ['delBtn','dupBtn','fwdBtn','bwdBtn'].forEach(function(id){ $(id).disabled=!has; }); }
+  function showProps(){
+    var e=selEl();
+    $('propsEmpty').classList.toggle('pe-hide',!!e); $('propsBar').classList.toggle('pe-hide',!e);
+    if(!e) return;
+    var isText=(e.type==='text'||e.type==='stamp'); var isShape=(e.type==='rect'||e.type==='roundrect'||e.type==='ellipse');
+    $('propTitle').textContent=e.type.charAt(0).toUpperCase()+e.type.slice(1);
+    $('wrapText').classList.toggle('pe-hide',e.type!=='text'&&e.type!=='stamp'); if(isText)$('propText').value=e.text||'';
+    $('wrapFont').classList.toggle('pe-hide',!isText); $('wrapTextStyle').classList.toggle('pe-hide',!isText);
+    if(isText){ $('propFont').value=e.fontFamily||'Arial, Helvetica, sans-serif'; $('propFontSize').value=e.fontSize||18; $('propBold').checked=!!e.bold; $('propItalic').checked=!!e.italic; $('propAlign').value=e.align||'left'; }
+    $('wrapFill').classList.toggle('pe-hide',!isShape); if(isShape)$('propFill').checked=!!e.fill;
+    $('wrapStroke').classList.toggle('pe-hide',isText||e.type==='image'||e.type==='highlight'); $('propStroke').value=e.strokeW||2;
+    $('propColor').value=e.color||'#e11d48';
+    $('propOpacity').value=(e.opacity==null?1:e.opacity); $('propOpacityVal').textContent=(e.opacity==null?1:e.opacity).toFixed(1);
+    $('propRot').value=e.rot||0; $('propRotVal').textContent=e.rot||0;
+    $('propLock').textContent=e.locked?'🔒 Unlock':'🔓 Lock';
+  }
 
-    for(const el of elements){
-      const page = pages[el.page];
-      if(!page) continue;
-      const pageHeight = page.getHeight();
-      const color = hexToRgb01(el.color);
+  // ── Add objects ────────────────────────────────────────────
+  function add(e){ els.push(e); select(e.id); pushHistory(); redraw(); syncBoxes(); }
+  function baseEl(type,extra){ var e={id:idc++,page:curPage,type:type,x:40,y:40,w:160,h:50,rot:0,opacity:1,color:$('propColor')?$('propColor').value:'#e11d48',strokeW:2}; return Object.assign(e,extra||{}); }
 
-      if(el.type === 'text'){
-        if(!el.text || !el.text.trim()) continue;
-        const lines = el.text.split('\n');
-        let y = pageHeight - el.yPdfTop - el.fontSize;
-        for(const line of lines){
-          page.drawText(line, { x: el.xPdf, y, size: el.fontSize, font, color: rgb(color.r,color.g,color.b) });
-          y -= el.fontSize * 1.25;
-        }
-      } else {
-        const y = pageHeight - el.yPdfTop - el.hPdf;
-        if(el.type === 'highlight'){
-          page.drawRectangle({ x: el.xPdf, y, width: el.wPdf, height: el.hPdf, color: rgb(color.r,color.g,color.b), opacity: 0.4 });
-        } else {
-          page.drawRectangle({ x: el.xPdf, y, width: el.wPdf, height: el.hPdf, borderColor: rgb(color.r,color.g,color.b), borderWidth: 2 });
-        }
+  function setTool(t){ tool=t; penActive=(t==='pen'); $('penBtn').classList.toggle('on',penActive); $('overlayLayer').style.pointerEvents=penActive?'auto':'auto'; }
+
+  // ── Load ───────────────────────────────────────────────────
+  function loadFile(file){
+    if(!file || file.type!=='application/pdf'){ status('⚠️ Please choose a PDF file.'); return; }
+    srcName=file.name.replace(/\.pdf$/i,''); status('⏳ Loading…');
+    file.arrayBuffer().then(function(buf){
+      srcBytes=buf.slice(0);
+      pdfjsLib.getDocument({data:buf.slice(0)}).promise.then(function(doc){ ready(doc,file); })
+      .catch(function(err){ if(err&&err.name==='PasswordException'){ var pw=prompt('This PDF is password protected. Enter the password:'); if(pw!=null){ pdfjsLib.getDocument({data:buf.slice(0),password:pw}).promise.then(function(d){ ready(d,file); }).catch(function(){ status('❌ Wrong password or unreadable PDF.'); }); return; } } status('❌ Could not read this PDF: '+(err&&err.message||err)); });
+    });
+  }
+  function ready(doc,file){
+    pdfjsDoc=doc; numPages=doc.numPages; curPage=0; els=[]; selId=null; history=[]; histIdx=-1;
+    $('editorArea').classList.remove('pe-hide'); $('dropzone').classList.add('pe-hide');
+    $('fileInfo').textContent=file.name+' · '+formatBytes(file.size)+' · '+numPages+' page(s)';
+    status('');
+    renderPage(); buildThumbs(); pushHistory();
+  }
+
+  function buildThumbs(){
+    var list=$('thumbList'); list.innerHTML='';
+    for(var i=0;i<numPages;i++){ var t=document.createElement('div'); t.className='pe-thumb'; t.dataset.page=i; t.innerHTML='<div style="height:70px;display:flex;align-items:center;justify-content:center;color:#888">'+(i+1)+'</div><span class="n">'+(i+1)+'</span>'; (function(pg){ t.addEventListener('click',function(){ curPage=pg; deselect(); renderPage(); }); })(i); list.appendChild(t); }
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting) renderThumb(+e.target.dataset.page,e.target); }); },{root:list,rootMargin:'150px'});
+    Array.prototype.forEach.call(list.children,function(c){ io.observe(c); });
+  }
+  function renderThumb(p,el){ if(el.dataset.done)return; el.dataset.done='1'; pdfjsDoc.getPage(p+1).then(function(page){ var s=110/page.getViewport({scale:1}).width; var vp=page.getViewport({scale:s}); var c=document.createElement('canvas'); c.width=vp.width; c.height=vp.height; page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise.then(function(){ el.innerHTML=''; el.appendChild(c); el.insertAdjacentHTML('beforeend','<span class="n">'+(p+1)+'</span>'); if(p===curPage)el.classList.add('on'); }); }); }
+  function highlightThumb(){ Array.prototype.forEach.call($('thumbList').children,function(c){ c.classList.toggle('on',+c.dataset.page===curPage); }); }
+
+  // ── Save (bake) ────────────────────────────────────────────
+  function build(){
+    return (async function(){
+      var PDFLib=PDFLibRef;
+      var doc=await PDFLib.PDFDocument.load(srcBytes.slice(0),{ignoreEncryption:true});
+      var pages=doc.getPages();
+      var used={}; els.forEach(function(e){ used[e.page]=1; });
+      var bake=3; // px per pt for the overlay layer
+      for(var pi in used){
+        var idx=+pi; var page=pages[idx]; if(!page) continue;
+        var pw=page.getWidth(), ph=page.getHeight();
+        var c=document.createElement('canvas'); c.width=Math.round(pw*bake); c.height=Math.round(ph*bake);
+        var ctx=c.getContext('2d'); ctx.clearRect(0,0,c.width,c.height);
+        drawPage(ctx,idx,bake);
+        var dataURL=c.toDataURL('image/png');
+        var bin=atob(dataURL.split(',')[1]); var arr=new Uint8Array(bin.length); for(var k=0;k<bin.length;k++)arr[k]=bin.charCodeAt(k);
+        var png=await doc.embedPng(arr);
+        page.drawImage(png,{x:0,y:0,width:pw,height:ph});
       }
-    }
-
-    const newBytes = await pdfDoc.save();
-    const blob = new Blob([newBytes], {type:'application/pdf'});
-    downloadBlob('edited.pdf', blob);
-    status.textContent = '✅ PDF edited and downloaded!';
-  }catch(err){
-    if(err.message && err.message.includes('WinAnsi')){
-      status.textContent = '❌ Error: the text box currently only supports English/Latin characters. Use highlight/box for Hindi.';
-    } else {
-      status.textContent = '❌ Error: ' + err.message;
-    }
+      var out=await doc.save({useObjectStreams:$('optCompress').checked});
+      return new Blob([out],{type:'application/pdf'});
+    })();
   }
-});
+  function save(download){
+    if(!els.length){ status('⚠️ Add something to the PDF first.'); return; }
+    status('⏳ Building PDF…');
+    build().then(function(blob){
+      var name=($('outName').value.trim()||'edited').replace(/\.pdf$/i,'')+'.pdf';
+      if(download){ if(window.downloadBlob)downloadBlob(name,blob); else { var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); } status('✅ Saved and downloaded.'); if(window.premToast)premToast('Edited PDF downloaded'); }
+      else { var url=URL.createObjectURL(blob), w=window.open(url); if(w){ w.addEventListener('load',function(){ try{w.print();}catch(e){} }); } status('🖨️ Opened print view.'); }
+    }).catch(function(e){ status('❌ '+(e&&e.message||e)); });
+  }
+
+  // ── UI wiring ──────────────────────────────────────────────
+  function wire(){
+    setupDropzone($('dropzone'),$('fileInput'),function(files){ if(files&&files.length) loadFile(files[0]); });
+    $('dropzone').addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); $('fileInput').click(); }});
+
+    $('addTextBtn').addEventListener('click',function(){ add(baseEl('text',{w:180,h:44,text:'Text',fontFamily:'Arial, Helvetica, sans-serif',fontSize:18,bold:false,italic:false,align:'left'})); });
+    $('addHighlightBtn').addEventListener('click',function(){ add(baseEl('highlight',{w:180,h:22,color:'#ffe600'})); });
+    $('addBoxBtn').addEventListener('click',function(){ add(baseEl('rect',{w:160,h:80,fill:false})); });
+    $('addRoundBtn').addEventListener('click',function(){ add(baseEl('roundrect',{w:160,h:80,fill:false})); });
+    $('addEllipseBtn').addEventListener('click',function(){ add(baseEl('ellipse',{w:140,h:100,fill:false})); });
+    $('addLineBtn').addEventListener('click',function(){ add(baseEl('line',{w:180,h:20})); });
+    $('addArrowBtn').addEventListener('click',function(){ add(baseEl('arrow',{w:180,h:24})); });
+    $('penBtn').addEventListener('click',function(){ setTool(penActive?null:'pen'); status(penActive?'✎ Pen: draw on the page.':''); });
+    $('addImageBtn').addEventListener('click',function(){ $('imgInput').click(); });
+    $('imgInput').addEventListener('change',function(){ var f=this.files&&this.files[0]; if(!f)return; var rd=new FileReader(); rd.onload=function(){ var im=new Image(); im.onload=function(){ var w=180,h=180*(im.naturalHeight/im.naturalWidth); add(baseEl('image',{w:w,h:h,imgEl:im,imgData:rd.result})); }; im.src=rd.result; }; rd.readAsDataURL(f); this.value=''; });
+
+    function stamp(text,color){ add(baseEl('stamp',{w:150,h:44,text:text,color:color,fontSize:20,align:'center'})); }
+    $('stampApproved').addEventListener('click',function(){ stamp('APPROVED','#16a34a'); });
+    $('stampDraft').addEventListener('click',function(){ stamp('DRAFT','#6b7280'); });
+    $('stampConf').addEventListener('click',function(){ stamp('CONFIDENTIAL','#dc2626'); });
+    $('stampPaid').addEventListener('click',function(){ stamp('PAID','#2563eb'); });
+
+    $('undoBtn').addEventListener('click',function(){ if(histIdx>0){ histIdx--; restore(history[histIdx]); } });
+    $('redoBtn').addEventListener('click',function(){ if(histIdx<history.length-1){ histIdx++; restore(history[histIdx]); } });
+    function del(){ var e=selEl(); if(!e)return; els=els.filter(function(x){return x.id!==e.id;}); deselect(); pushHistory(); redraw(); syncBoxes(); }
+    function dup(){ var e=selEl(); if(!e)return; var c=Object.assign({},e); c.id=idc++; c.x+=12; c.y+=12; if(e.imgEl)c.imgEl=e.imgEl; els.push(c); select(c.id); pushHistory(); redraw(); syncBoxes(); }
+    function move(dir){ var e=selEl(); if(!e)return; var i=els.indexOf(e); if(dir>0&&i<els.length-1){ els.splice(i,1); els.splice(i+1,0,e); } else if(dir<0&&i>0){ els.splice(i,1); els.splice(i-1,0,e); } pushHistory(); redraw(); syncBoxes(); }
+    $('delBtn').addEventListener('click',del); $('dupBtn').addEventListener('click',dup);
+    $('fwdBtn').addEventListener('click',function(){ move(1); }); $('bwdBtn').addEventListener('click',function(){ move(-1); });
+    $('propDel').addEventListener('click',del); $('propDup').addEventListener('click',dup);
+    $('propLock').addEventListener('click',function(){ var e=selEl(); if(!e)return; e.locked=!e.locked; showProps(); syncBoxes(); pushHistory(); });
+
+    // property inputs
+    function upd(f){ var e=selEl(); if(!e)return; f(e); redraw(); syncBoxes(); }
+    $('propText').addEventListener('input',function(){ upd(function(e){ e.text=$('propText').value; }); });
+    $('propText').addEventListener('change',pushHistory);
+    $('propFont').addEventListener('change',function(){ upd(function(e){ e.fontFamily=$('propFont').value; }); pushHistory(); });
+    $('propFontSize').addEventListener('input',function(){ upd(function(e){ e.fontSize=parseInt($('propFontSize').value,10)||18; }); });
+    $('propFontSize').addEventListener('change',pushHistory);
+    $('propBold').addEventListener('change',function(){ upd(function(e){ e.bold=$('propBold').checked; }); pushHistory(); });
+    $('propItalic').addEventListener('change',function(){ upd(function(e){ e.italic=$('propItalic').checked; }); pushHistory(); });
+    $('propAlign').addEventListener('change',function(){ upd(function(e){ e.align=$('propAlign').value; }); pushHistory(); });
+    $('propColor').addEventListener('input',function(){ upd(function(e){ e.color=$('propColor').value; }); });
+    $('propColor').addEventListener('change',pushHistory);
+    $('propFill').addEventListener('change',function(){ upd(function(e){ e.fill=$('propFill').checked; }); pushHistory(); });
+    $('propStroke').addEventListener('input',function(){ upd(function(e){ e.strokeW=parseInt($('propStroke').value,10)||2; }); });
+    $('propStroke').addEventListener('change',pushHistory);
+    $('propOpacity').addEventListener('input',function(){ upd(function(e){ e.opacity=parseFloat($('propOpacity').value); }); $('propOpacityVal').textContent=parseFloat($('propOpacity').value).toFixed(1); });
+    $('propOpacity').addEventListener('change',pushHistory);
+    $('propRot').addEventListener('input',function(){ upd(function(e){ e.rot=parseInt($('propRot').value,10); }); $('propRotVal').textContent=$('propRot').value; });
+    $('propRot').addEventListener('change',pushHistory);
+
+    window.addEventListener('pointermove',function(e){ onMove(e); stageMove(e); });
+    window.addEventListener('pointerup',function(){ onUp(); stageUp(); });
+    $('overlayLayer').addEventListener('pointerdown',function(ev){ if(penActive){ stageDown(ev); } else if(ev.target===$('overlayLayer')){ deselect(); } });
+
+    $('prevPageBtn').addEventListener('click',function(){ if(curPage>0){curPage--;deselect();renderPage();} });
+    $('nextPageBtn').addEventListener('click',function(){ if(curPage<numPages-1){curPage++;deselect();renderPage();} });
+    $('pvZoomIn').addEventListener('click',function(){ pvZoom=Math.min(3,pvZoom+0.25); renderPage(); });
+    $('pvZoomOut').addEventListener('click',function(){ pvZoom=Math.max(0.5,pvZoom-0.25); renderPage(); });
+
+    $('saveBtn').addEventListener('click',function(){ save(true); });
+    $('printBtn').addEventListener('click',function(){ save(false); });
+    $('clearBtn').addEventListener('click',function(){ pdfjsDoc=null; srcBytes=null; els=[]; $('editorArea').classList.add('pe-hide'); $('dropzone').classList.remove('pe-hide'); $('fileInput').value=''; status(''); });
+
+    document.addEventListener('keydown',function(e){
+      if(e.target && (e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT')) return;
+      if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){ e.preventDefault(); if(e.shiftKey){ if(histIdx<history.length-1){histIdx++;restore(history[histIdx]);} } else { if(histIdx>0){histIdx--;restore(history[histIdx]);} } }
+      else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){ e.preventDefault(); if(histIdx<history.length-1){histIdx++;restore(history[histIdx]);} }
+      else if((e.key==='Delete'||e.key==='Backspace')&&selEl()){ e.preventDefault(); del(); }
+      else if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){ if(srcBytes){ e.preventDefault(); save(true); } }
+    });
+    window.addEventListener('resize',function(){ if(pdfjsDoc) renderPage(); });
+  }
+
+  function buildFaq(){
+    var list=$('faqList'); if(!list) return;
+    list.innerHTML=FAQ.map(function(f){ return '<details><summary>'+f[0]+'</summary><p>'+f[1]+'</p></details>'; }).join('');
+    try{ var sc=$('faqSchema'); var data=JSON.parse(sc.textContent);
+      data.mainEntity=FAQ.map(function(f){ return {'@type':'Question','name':f[0],'acceptedAnswer':{'@type':'Answer','text':f[1]}}; });
+      sc.textContent=JSON.stringify(data);
+    }catch(e){}
+  }
+
+  window.__peHooks={ build:function(){ return build(); }, addForTest:function(e){ els.push(e); }, setPageCount:function(n){ }, state:function(){ return {els:els,numPages:numPages}; } };
+
+  function init(){ PDFLibRef=window.PDFLib; wire(); buildFaq(); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
 </script>
 </body>
 </html>
