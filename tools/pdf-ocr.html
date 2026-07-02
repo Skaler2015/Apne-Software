@@ -4,32 +4,91 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free online PDF OCR — recognise text from scanned or image-based PDFs in 20+ languages, entirely in your browser. Quality modes, image clean-up, page range, editable output, search &amp; replace, and export as TXT, searchable PDF, HTML or JSON. 100% private, no upload.">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-ocr.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PDF OCR — Extract Text from Scanned PDFs | ApneSoftware">
-<meta property="og:description" content="Extract text from scanned PDFs. Free online tool — no signup required.">
+<meta property="og:title" content="PDF OCR — Extract Text from Scanned PDFs Free &amp; Private | ApneSoftware">
+<meta property="og:description" content="Recognise text from scanned PDFs in many languages, make a searchable PDF, and copy or export the text. Runs entirely in your browser — nothing is uploaded.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-ocr.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PDF OCR — Extract Text from Scanned PDFs | ApneSoftware">
-<meta name="twitter:description" content="Extract text from scanned PDFs. Free online tool — no signup required.">
+<meta name="twitter:title" content="PDF OCR — Extract Text from Scanned PDFs Free &amp; Private">
+<meta name="twitter:description" content="Browser-based OCR for scanned PDFs in 20+ languages, with searchable-PDF and text export. 100% client-side.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF OCR","description":"Extract text from scanned PDFs. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-ocr.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF OCR","operatingSystem":"Any (web browser)","applicationCategory":"UtilitiesApplication","description":"Optical character recognition for scanned or image-based PDFs, in 20+ languages, running fully in the browser. Includes quality modes, image clean-up, page-range selection, editable output, search and replace, and export as TXT, searchable PDF, HTML or JSON.","url":"https://apnesoftware.com/tools/pdf-ocr.html","browserRequirements":"Requires JavaScript. Works in Chrome, Edge, Firefox, Safari.","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
-<meta name="color-scheme" content="dark">
-<title>PDF OCR — Extract Text from Scanned PDFs | ApneSoftware</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"PDF OCR Tool","url":"https://apnesoftware.com/tools/pdf-ocr.html","description":"Free online OCR to extract text from scanned PDFs in many languages, entirely in your browser.","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"inLanguage":"en"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://apnesoftware.com/index.html#pdf"},{"@type":"ListItem","position":3,"name":"PDF OCR","item":"https://apnesoftware.com/tools/pdf-ocr.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to OCR a scanned PDF","description":"Recognise and extract text from a scanned PDF for free in your browser.","step":[{"@type":"HowToStep","name":"Upload PDF","text":"Drag and drop your scanned PDF onto the upload area or click to browse."},{"@type":"HowToStep","name":"Choose language & quality","text":"Select one or more languages and a quality mode, and optionally clean up the image."},{"@type":"HowToStep","name":"Select pages","text":"Choose which pages to recognise — all, first, last, odd, even or a custom range."},{"@type":"HowToStep","name":"Run OCR","text":"Start OCR and watch the progress as each page is recognised on your device."},{"@type":"HowToStep","name":"Export","text":"Copy or edit the text, or export as TXT, a searchable PDF, HTML or JSON."}]}
+</script>
+<!-- FAQ schema (populated at runtime) -->
+<script type="application/ld+json" id="faqSchema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}</script>
+
+<meta name="color-scheme" content="dark light">
+<title>PDF OCR — Extract Text from Scanned PDFs Free &amp; Private | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
-.dropzone{cursor:pointer}
-.dropzone p{font-size:.9rem}
-.panel{position:relative;z-index:1}
-</style>
-<style>
-  .progress-bar{height:10px;border-radius:6px;background:var(--surface-2);overflow:hidden;margin-top:10px}
-  .progress-fill{height:100%;background:var(--accent);width:0%;transition:.3s}
+/* ── PDF OCR tool — scoped styles (oc-) ──────────────────────── */
+.oc-scope{--oc-accent:#A78BFA;--oc-accent2:#7C3AED;}
+.oc-hide{display:none !important;}
+.oc-drop{cursor:pointer;transition:border-color .2s,background .2s;}
+.oc-drop.drag{border-color:var(--oc-accent);background:rgba(167,139,250,.08);}
+.oc-bar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:flex-end;margin-top:14px;padding:12px;background:var(--surface-2,rgba(255,255,255,.03));border:1px solid var(--border);border-radius:12px;}
+.oc-fileinfo{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.82rem;}
+.oc-fileinfo .k{color:var(--text-dim);}
+.oc-field{display:flex;flex-direction:column;gap:4px;}
+.oc-field label{font-size:.76rem;color:var(--text-dim);}
+.oc-field select,.oc-field input[type=text],.oc-field input[type=number]{background:var(--surface,rgba(0,0,0,.25));color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 9px;font-family:var(--font);font-size:.85rem;outline:none;}
+.oc-field select[multiple]{min-height:96px;min-width:150px;}
+.oc-field select:focus,.oc-field input:focus{border-color:var(--oc-accent);}
+.oc-check{display:inline-flex;align-items:center;gap:7px;font-size:.83rem;cursor:pointer;}
+.oc-check input{accent-color:var(--oc-accent);}
+.oc-range{accent-color:var(--oc-accent);}
+.oc-btn{background:linear-gradient(135deg,var(--oc-accent),var(--oc-accent2));color:#fff;border:0;border-radius:9px;padding:10px 16px;font:inherit;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px;}
+.oc-btn:disabled{opacity:.5;cursor:not-allowed;}
+.oc-btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text);font-weight:500;}
+.oc-btn.sm{padding:6px 10px;font-size:.82rem;}
+.oc-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0;}
+.oc-prog{height:10px;background:var(--surface,rgba(0,0,0,.3));border-radius:6px;overflow:hidden;margin-top:12px;}
+.oc-prog>i{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--oc-accent),var(--oc-accent2));transition:width .25s;}
+.oc-status{margin-top:8px;font-size:.9rem;color:var(--text-dim);min-height:1.2em;}
+#outputText{width:100%;box-sizing:border-box;min-height:300px;background:var(--surface,rgba(0,0,0,.25));color:var(--text);border:1px solid var(--border);border-radius:10px;padding:12px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;line-height:1.55;resize:vertical;outline:none;white-space:pre-wrap;}
+#outputText:focus{border-color:var(--oc-accent);}
+.oc-stats{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--text-dim);margin-top:8px;}
+.oc-search{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:10px;}
+.oc-search input{background:var(--surface,rgba(0,0,0,.25));color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 9px;font-size:.85rem;outline:none;}
+.oc-warn{background:rgba(255,193,7,.1);border:1px solid rgba(255,193,7,.35);border-radius:10px;padding:10px 12px;font-size:.85rem;margin-top:12px;}
+/* below-tool content */
+.oc-wrap{max-width:1040px;margin:26px auto 0;padding:0 6px;}
+.oc-title{display:flex;align-items:center;gap:12px;margin:26px 0 14px;}
+.oc-title h2{font-size:1.25rem;font-weight:800;margin:0;white-space:nowrap;}
+.oc-title::before,.oc-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.10);}
+.oc-lead{color:var(--text-dim);font-size:.95rem;line-height:1.8;margin:0 6px;}
+.oc-feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.oc-fcard{border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.03));border-radius:14px;padding:16px;transition:.2s;}
+.oc-fcard:hover{border-color:var(--oc-accent);transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.14);}
+.oc-fcard h3{font-size:.92rem;font-weight:700;margin:0 0 6px;display:flex;align-items:center;gap:8px;}
+.oc-fcard p{font-size:.84rem;color:var(--text-dim);line-height:1.65;margin:0;}
+.oc-about ol,.oc-about > p{color:var(--text-dim);font-size:.92rem;line-height:1.8;padding-left:6px;}
+.oc-about ol{padding-left:24px;}
+.oc-related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:10px 0 4px;}
+.oc-related a{display:block;background:var(--surface-2,rgba(255,255,255,.03));border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text);transition:border-color .2s,transform .15s;}
+.oc-related a:hover{border-color:var(--oc-accent);transform:translateY(-2px);}
+.oc-related b{display:block;font-size:.92rem;margin-bottom:3px;}
+.oc-related span{font-size:.78rem;color:var(--text-dim);}
+#faqList details{border:1px solid var(--border);border-radius:10px;padding:0 14px;margin:8px 0;background:var(--surface-2,rgba(255,255,255,.02));}
+#faqList summary{cursor:pointer;padding:13px 0;font-weight:600;font-size:.95rem;}
+#faqList details[open]{padding-bottom:6px;}
+#faqList p{margin:0 0 12px;line-height:1.65;color:var(--text-dim);}
+:focus-visible{outline:2px solid var(--oc-accent);outline-offset:2px;}
 </style>
 </head>
 <body>
@@ -41,147 +100,425 @@
 </header>
 
 <div class="container">
+  <div class="oc-scope" id="ocScope">
   <div class="tool-header">
     <h1>🔍 PDF OCR</h1>
-    <p>Recognize text from a scanned or image-based PDF (Optical Character Recognition). ⚠️ This can take a while, especially for PDFs with many pages — clean scans give the best results.</p>
+    <p>Recognise text from scanned or image-based PDFs in many languages, and turn them into copyable text or a searchable PDF. Everything runs in your browser; your file is never uploaded.</p>
   </div>
 
   <div class="panel">
-    <div class="dropzone" id="dropzone">
-      <p>📤 Drag a PDF file here or click to choose</p>
-      <input type="file" id="fileInput" accept="application/pdf">
+    <div class="dropzone oc-drop" id="dropzone" role="button" tabindex="0" aria-label="Upload PDF file">
+      <p>📤 Drag &amp; drop your scanned PDF here, or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf" hidden>
     </div>
 
-    <div class="field" style="margin-top:14px">
-      <label for="langSelect">Language</label>
-      <select id="langSelect">
-        <option value="eng">English</option>
-        <option value="hin">Hindi</option>
-        <option value="eng+hin">English + Hindi</option>
-      </select>
-    </div>
+    <div id="settings" class="oc-hide">
+      <div class="oc-bar">
+        <div class="oc-fileinfo">
+          <span><span class="k">File:</span> <b id="fiName">—</b></span>
+          <span><span class="k">Size:</span> <span id="fiSize">—</span></span>
+          <span><span class="k">Pages:</span> <span id="fiPages">—</span></span>
+        </div>
+      </div>
 
-    <div class="btn-row">
-      <button class="btn" id="startBtn" disabled>🔍 Start OCR</button>
-    </div>
+      <div class="oc-bar">
+        <div class="oc-field">
+          <label for="langSelect">Language(s) — Ctrl/Cmd-click for more</label>
+          <select id="langSelect" multiple size="5">
+            <option value="eng" selected>English</option>
+            <option value="hin">Hindi (हिन्दी)</option>
+            <option value="ben">Bengali (বাংলা)</option>
+            <option value="tam">Tamil (தமிழ்)</option>
+            <option value="tel">Telugu (తెలుగు)</option>
+            <option value="mar">Marathi (मराठी)</option>
+            <option value="guj">Gujarati (ગુજરાતી)</option>
+            <option value="pan">Punjabi (ਪੰਜਾਬੀ)</option>
+            <option value="kan">Kannada</option>
+            <option value="mal">Malayalam</option>
+            <option value="urd">Urdu (اردو)</option>
+            <option value="ara">Arabic (العربية)</option>
+            <option value="spa">Spanish</option>
+            <option value="fra">French</option>
+            <option value="deu">German</option>
+            <option value="por">Portuguese</option>
+            <option value="ita">Italian</option>
+            <option value="rus">Russian</option>
+            <option value="chi_sim">Chinese (Simplified)</option>
+            <option value="jpn">Japanese</option>
+          </select>
+        </div>
+        <div class="oc-field">
+          <label for="qualitySelect">Quality</label>
+          <select id="qualitySelect"><option value="1.5">Fast</option><option value="2" selected>Balanced</option><option value="3">Accurate (slow)</option></select>
+        </div>
+        <div class="oc-field">
+          <label for="scopeSelect">Pages</label>
+          <div style="display:flex;gap:6px;align-items:center"><select id="scopeSelect"><option value="all">All</option><option value="first">First</option><option value="last">Last</option><option value="odd">Odd</option><option value="even">Even</option><option value="range">Range…</option></select><input type="text" id="rangeInput" placeholder="1-3,5" class="oc-hide" style="width:90px"></div>
+        </div>
+        <div class="oc-field" style="align-self:flex-end">
+          <label>&nbsp;</label>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <label class="oc-check"><input type="checkbox" id="optClean" checked> Clean up image</label>
+            <label class="oc-check"><input type="checkbox" id="optMarkers" checked> Page markers</label>
+          </div>
+        </div>
+      </div>
 
-    <div id="progressArea" style="display:none">
-      <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem;margin-top:10px"></p>
-      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-    </div>
+      <div class="oc-tools">
+        <button class="oc-btn" id="startBtn">🔍 Start OCR</button>
+        <span style="font-size:.8rem;color:var(--text-dim)">Language data downloads on first use for each language.</span>
+      </div>
 
-    <div class="field" id="outputField" style="display:none;margin-top:18px">
-      <label>Recognized Text</label>
-      <textarea id="outputText" readonly style="min-height:280px"></textarea>
-    </div>
+      <div class="oc-prog oc-hide" id="progWrap"><i id="progressFill"></i></div>
+      <p class="oc-status" id="statusMsg" role="status" aria-live="polite"></p>
 
-    <div class="btn-row" id="actionRow" style="display:none">
-      <button class="btn secondary" id="copyBtn">📋 Copy</button>
-      <button class="btn secondary" id="downloadBtn">⬇️ Download .txt</button>
+      <div id="resultArea" class="oc-hide">
+        <div class="oc-search">
+          <input type="text" id="findInput" placeholder="🔍 Find" aria-label="Find in text">
+          <input type="text" id="replaceInput" placeholder="Replace with" aria-label="Replace with">
+          <button class="oc-btn ghost sm" id="findNextBtn">Find</button>
+          <button class="oc-btn ghost sm" id="replaceBtn">Replace</button>
+          <button class="oc-btn ghost sm" id="replaceAllBtn">Replace all</button>
+          <span id="matchCount" style="font-size:.78rem;color:var(--text-dim)"></span>
+        </div>
+        <textarea id="outputText" spellcheck="false" aria-label="Recognised text" style="margin-top:10px"></textarea>
+        <div class="oc-stats">
+          <span id="stWords">0 words</span><span id="stChars">0 characters</span><span id="stPages">0 pages</span><span id="stTime"></span>
+        </div>
+        <div class="oc-tools">
+          <button class="oc-btn" id="copyBtn">📋 Copy</button>
+          <button class="oc-btn ghost" id="downloadBtn">⬇️ TXT</button>
+          <button class="oc-btn ghost" id="pdfBtn">📄 Searchable PDF</button>
+          <button class="oc-btn ghost" id="htmlBtn">HTML</button>
+          <button class="oc-btn ghost" id="jsonBtn">JSON</button>
+          <button class="oc-btn ghost" id="printBtn">🖨️ Print</button>
+          <button class="oc-btn ghost" id="clearBtn">🗑️ New file</button>
+        </div>
+      </div>
     </div>
+  </div>
   </div>
 </div>
 
+<!-- ── Below-tool content ─────────────────────────────────────── -->
+<section class="oc-wrap" aria-labelledby="introH">
+  <div class="oc-title"><h2 id="introH">🔍 PDF OCR — Turn Scanned PDFs into Text</h2></div>
+  <p class="oc-lead">The <strong>ApneSoftware PDF OCR</strong> tool reads the text in scanned or image-based PDFs using optical character recognition, so you can copy, search and reuse content that was previously locked inside a picture of a page. It supports 20+ languages, several quality modes and image clean-up, lets you choose which pages to process, and can export the result as plain text, a searchable PDF, HTML or JSON — all running entirely in your browser, with nothing uploaded.</p>
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Recognize and extract text from scanned or image-based PDFs using Optical Character Recognition.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your scanned PDF.</li>
-        <li>Choose the language (English/Hindi/both).</li>
-        <li>Click Start OCR and wait — then copy or download the recognized text.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल स्कैन की हुई या इमेज वाली PDF से Optical Character Recognition (OCR) की मदद से टेक्स्ट पहचानकर निकालता है।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी स्कैन की हुई PDF अपलोड करें।</li>
-        <li>भाषा चुनें (English/हिंदी/दोनों)।</li>
-        <li>OCR शुरू करें बटन दबाएं और इंतज़ार करें — फिर निकाला गया टेक्स्ट कॉपी या डाउनलोड करें।</li>
-      </ol>
+  <div class="oc-title"><h2>✨ Key Features</h2></div>
+  <div class="oc-feature-grid">
+    <div class="oc-fcard"><h3>🌐 20+ Languages</h3><p>Recognise English, Hindi and many Indian and world languages — combine several at once.</p></div>
+    <div class="oc-fcard"><h3>⚙️ Quality Modes</h3><p>Fast, Balanced or Accurate — trade speed for higher-resolution recognition.</p></div>
+    <div class="oc-fcard"><h3>🧼 Image Clean-up</h3><p>Automatic grayscale, contrast and binarisation improve results on faint or noisy scans.</p></div>
+    <div class="oc-fcard"><h3>🎯 Page Selection</h3><p>OCR all pages, first, last, odd, even, or a custom range.</p></div>
+    <div class="oc-fcard"><h3>📄 Searchable PDF</h3><p>Export a PDF that looks the same but has a hidden, selectable text layer.</p></div>
+    <div class="oc-fcard"><h3>✍️ Edit &amp; Search</h3><p>Edit the recognised text, search and replace, and see word / character counts.</p></div>
+    <div class="oc-fcard"><h3>📤 Multiple Exports</h3><p>Copy, or export as TXT, searchable PDF, HTML or JSON, and print.</p></div>
+    <div class="oc-fcard"><h3>🔒 100% Private</h3><p>OCR runs on your device; your PDF is never uploaded.</p></div>
+  </div>
+
+  <div class="oc-title"><h2>🎁 Benefits</h2></div>
+  <div class="oc-feature-grid">
+    <div class="oc-fcard"><h3>🔎 Make it Searchable</h3><p>Turn scans of contracts, notes and books into text you can search and copy.</p></div>
+    <div class="oc-fcard"><h3>♿ Accessibility</h3><p>Give screen readers real text instead of an unreadable image.</p></div>
+    <div class="oc-fcard"><h3>✂️ Reuse Content</h3><p>Extract quotes, data and passages from paper documents you only have as scans.</p></div>
+    <div class="oc-fcard"><h3>🔐 Private</h3><p>Sensitive scans stay on your own device from start to finish.</p></div>
+    <div class="oc-fcard"><h3>🆓 Free &amp; Unlimited</h3><p>No installs, no accounts, and no watermark added by us.</p></div>
+  </div>
+</section>
+
+<section class="oc-wrap" aria-labelledby="relatedH">
+  <div class="oc-title"><h2 id="relatedH">🔗 Related Tools</h2></div>
+  <div class="oc-related">
+    <a href="pdf-extract-text.html"><b>Extract Text</b><span>Copy text from digital PDFs</span></a>
+    <a href="pdf-extract-images.html"><b>Extract Images</b><span>Pull images from a PDF</span></a>
+    <a href="pdf-to-image.html"><b>PDF to JPG</b><span>Render pages as images</span></a>
+    <a href="image-to-pdf.html"><b>Image to PDF</b><span>Combine images into a PDF</span></a>
+    <a href="pdf-merge.html"><b>Merge PDF</b><span>Combine multiple PDFs</span></a>
+    <a href="pdf-split.html"><b>Split PDF</b><span>Split into separate files</span></a>
+    <a href="pdf-compress.html"><b>Compress PDF</b><span>Reduce PDF file size</span></a>
+    <a href="pdf-rotate.html"><b>Rotate PDF</b><span>Rotate PDF pages</span></a>
+    <a href="pdf-viewer.html"><b>PDF Viewer</b><span>Read PDFs in the browser</span></a>
+    <a href="pdf-info.html"><b>PDF Info</b><span>View PDF properties</span></a>
+  </div>
+</section>
+
+<section class="oc-wrap" aria-labelledby="aboutH">
+  <div class="oc-title"><h2 id="aboutH">ℹ️ About This Tool</h2></div>
+  <div class="info-wrap" style="max-width:100%;padding:0">
+    <div class="info-section">
+      <article class="info-block oc-about">
+        <h2>About the PDF OCR Tool (English)</h2>
+        <p>A scanned PDF is, to a computer, just a set of pictures. You can see the words with your eyes, but the file contains no actual text — so you cannot select, copy, search or edit it. Optical character recognition, or OCR, is the technology that changes that: it looks at the image of a page, recognises the shapes of the letters, and reconstructs the real text. The ApneSoftware PDF OCR tool brings this capability into your browser, letting you convert scans and image-based PDFs into usable text, or into a searchable PDF, without installing anything and without sending your document to a server.</p>
+
+        <p>The tool works with a wide range of <strong>languages</strong> — over twenty, including English, Hindi, Bengali, Tamil, Telugu, Marathi, Gujarati, Punjabi, Kannada, Malayalam, Urdu and Arabic, as well as Spanish, French, German, Portuguese, Italian, Russian, Chinese and Japanese. You can select a single language or combine several when a document mixes scripts, which is common in Indian paperwork that blends English with a regional language. The language data for each script is downloaded the first time you use it and then reused, so subsequent runs are quicker.</p>
+
+        <p>Recognition quality depends heavily on the resolution at which each page is analysed, so the tool offers <strong>quality modes</strong>: Fast renders pages at a lower resolution for quick results on clean scans; Balanced is a sensible default; and Accurate renders at high resolution for the best possible recognition on difficult or small text, at the cost of speed. On top of that, an automatic <strong>image clean-up</strong> step converts each page to grayscale, boosts contrast and binarises it — turning the page into crisp black text on a white background — which is one of the single most effective ways to improve OCR accuracy on faint, greyish or noisy scans.</p>
+
+        <p>You are not forced to process an entire document. A <strong>page selector</strong> lets you OCR all pages, only the first or last, all odd or all even pages, or a precise custom range such as <em>1-3, 5, 8-10</em> — useful when you only need the text from one section, or when a long document has just a few scanned pages among digital ones. Throughout processing, a <strong>progress bar</strong> and a live status show which page is being read and how far along the current page is, because OCR of a many-page document genuinely takes time and honest feedback matters.</p>
+
+        <p>Once recognition is complete, the <strong>output</strong> is fully editable. OCR is never perfect on real-world scans, so being able to fix the occasional misread character is important — the text area lets you correct, delete or reformat freely. A built-in <strong>find and replace</strong> makes it easy to fix a repeated error or a name that was consistently misrecognised, and live <strong>word, character and page counts</strong> plus the total processing time give you a quick sense of the result. Optional <strong>page markers</strong> label each page's text so you always know where you are in a multi-page document.</p>
+
+        <p>Getting the result out is where the tool goes beyond a simple text dump. You can copy everything, download it as a plain <strong>TXT</strong> file, or export it as <strong>HTML</strong> or <strong>JSON</strong> for use in other tools and workflows. Most importantly, you can create a <strong>searchable PDF</strong>: the tool rebuilds each processed page with its original image on top and the recognised text placed invisibly behind it, so the document looks exactly like the scan but is now fully selectable and searchable in any PDF reader. This is the format archives, offices and libraries use to make scanned collections usable without changing how they look.</p>
+
+        <p>Because OCR is computationally heavy, it is worth understanding the trade-offs. Everything runs on <strong>your own device</strong> using WebAssembly, which keeps your document private but means speed depends on your computer — a modern desktop handles multi-page documents comfortably, while a phone will be slower and is best for a few pages. Clean, high-contrast scans at a reasonable resolution give dramatically better results than photos taken at an angle in poor light; the built-in clean-up helps, but the quality of the source scan is the biggest factor. The tool detects and reports errors clearly, and <strong>password-protected PDFs</strong> you are authorised to open are handled locally.</p>
+
+        <p>Privacy is the reason browser-based OCR matters. Traditional online OCR services upload your document to their servers, which is a real concern for contracts, identity documents, medical records and other sensitive scans. Here, nothing is uploaded, stored or logged — the recognition happens entirely in your browser and the file is cleared from memory when you leave. There is no account to create, no software to install and no watermark added. Whether you are digitising a stack of receipts, making an old scanned book searchable, pulling text from a photographed form, or turning an image-only contract into something you can copy from, the PDF OCR tool does it privately and for free.</p>
+      </article>
+
+      <article class="info-block oc-about">
+        <h2>इस टूल के बारे में (Hindi)</h2>
+        <p>किसी computer के लिए scan की गई PDF सिर्फ तस्वीरों का एक समूह है। आप शब्द अपनी आँखों से देख सकते हैं, पर file में कोई असली text नहीं होता — इसलिए आप उसे select, copy, search या edit नहीं कर सकते। Optical character recognition, यानी OCR, वह तकनीक है जो यह बदल देती है: यह किसी पन्ने की image देखता है, अक्षरों के आकार पहचानता है, और असली text फिर से बनाता है। ApneSoftware PDF OCR टूल यह क्षमता आपके browser में लाता है, जिससे आप scans और image-based PDF को उपयोगी text में, या एक searchable PDF में बदल सकते हैं — बिना कुछ install किए और बिना अपना document किसी server पर भेजे।</p>
+
+        <p>टूल कई <strong>भाषाओं</strong> के साथ काम करता है — बीस से अधिक, जिनमें English, Hindi, Bengali, Tamil, Telugu, Marathi, Gujarati, Punjabi, Kannada, Malayalam, Urdu और Arabic, साथ ही Spanish, French, German, Portuguese, Italian, Russian, Chinese और Japanese शामिल हैं। आप एक भाषा चुन सकते हैं या कई मिला सकते हैं जब कोई document लिपियाँ मिलाता हो, जो भारतीय कागज़ात में आम है जहाँ English किसी क्षेत्रीय भाषा के साथ मिली होती है। हर लिपि का language data पहली बार उपयोग पर download होता है और फिर दोबारा उपयोग होता है, इसलिए बाद के runs तेज़ होते हैं।</p>
+
+        <p>Recognition की गुणवत्ता बहुत हद तक उस resolution पर निर्भर करती है जिस पर हर पन्ना विश्लेषित होता है, इसलिए टूल <strong>quality modes</strong> देता है: Fast पन्नों को कम resolution पर render करता है ताकि साफ scans पर त्वरित परिणाम मिले; Balanced एक समझदार default है; और Accurate कठिन या छोटे text पर सर्वोत्तम recognition के लिए high resolution पर render करता है, गति की कीमत पर। इसके ऊपर, एक स्वचालित <strong>image clean-up</strong> चरण हर पन्ने को grayscale में बदलता है, contrast बढ़ाता है और उसे binarise करता है — पन्ने को सफेद पृष्ठभूमि पर कुरकुरे काले text में बदलकर — जो धुंधले, भूरे या शोर वाले scans पर OCR सटीकता सुधारने के सबसे प्रभावी तरीकों में से एक है।</p>
+
+        <p>आपको पूरा document process करना ज़रूरी नहीं। एक <strong>page selector</strong> आपको सभी पन्ने, केवल पहला या आखिरी, सभी विषम या सभी सम पन्ने, या <em>1-3, 5, 8-10</em> जैसी सटीक custom range OCR करने देता है — तब उपयोगी जब आपको केवल एक section का text चाहिए, या जब किसी लंबे document में digital पन्नों के बीच कुछ ही scan किए पन्ने हों। पूरे processing के दौरान, एक <strong>progress bar</strong> और live status दिखाते हैं कि कौन-सा पन्ना पढ़ा जा रहा है और वर्तमान पन्ना कितना आगे है, क्योंकि कई पन्नों वाले document का OCR सच में समय लेता है और ईमानदार feedback मायने रखता है।</p>
+
+        <p>Recognition पूरा होने पर, <strong>output</strong> पूरी तरह editable है। असल scans पर OCR कभी पूर्ण नहीं होता, इसलिए कभी-कभार गलत पढ़े अक्षर को ठीक कर पाना महत्वपूर्ण है — text area आपको स्वतंत्र रूप से सुधारने, हटाने या फिर से format करने देता है। एक built-in <strong>find और replace</strong> किसी दोहराई गई गलती या लगातार गलत पहचाने नाम को ठीक करना आसान बनाता है, और live <strong>word, character और page counts</strong> तथा कुल processing समय परिणाम का त्वरित अंदाज़ा देते हैं। वैकल्पिक <strong>page markers</strong> हर पन्ने के text को चिह्नित करते हैं ताकि आप कई-पन्नों वाले document में हमेशा जानें कि कहाँ हैं।</p>
+
+        <p>परिणाम बाहर निकालना वह जगह है जहाँ टूल सादे text से आगे जाता है। आप सब कुछ copy कर सकते हैं, उसे सादा <strong>TXT</strong> file के रूप में download कर सकते हैं, या अन्य tools और workflows के लिए <strong>HTML</strong> या <strong>JSON</strong> के रूप में export कर सकते हैं। सबसे महत्वपूर्ण, आप एक <strong>searchable PDF</strong> बना सकते हैं: टूल हर process किए पन्ने को उसकी मूल image ऊपर और पहचाना गया text उसके पीछे अदृश्य रूप में रखकर फिर से बनाता है, इसलिए document ठीक scan जैसा दिखता है पर अब किसी भी PDF reader में पूरी तरह selectable और searchable है। यही वह format है जिसे archives, offices और libraries scan किए संग्रहों को, उनका रूप बदले बिना, उपयोगी बनाने के लिए उपयोग करते हैं।</p>
+
+        <p>चूँकि OCR computationally भारी है, trade-offs समझना उपयोगी है। सब कुछ WebAssembly से <strong>आपके अपने device</strong> पर चलता है, जो आपके document को निजी रखता है पर इसका मतलब है गति आपके computer पर निर्भर करती है — एक आधुनिक desktop कई-पन्नों के documents आराम से संभालता है, जबकि phone धीमा होगा और कुछ पन्नों के लिए सबसे अच्छा है। किसी कोण से खराब रोशनी में ली गई photo की तुलना में उचित resolution पर साफ, high-contrast scans कहीं बेहतर परिणाम देते हैं; built-in clean-up मदद करता है, पर source scan की गुणवत्ता सबसे बड़ा कारक है। टूल errors को स्पष्ट रूप से पहचानता व रिपोर्ट करता है, और जिन <strong>password-protected PDF</strong> को खोलने का आपको अधिकार है वे locally संभाली जाती हैं।</p>
+
+        <p>Privacy ही वह कारण है जिससे browser-based OCR मायने रखता है। पारंपरिक online OCR सेवाएँ आपका document अपने servers पर upload करती हैं, जो contracts, पहचान documents, medical records और अन्य संवेदनशील scans के लिए एक असली चिंता है। यहाँ कुछ भी upload, store या log नहीं होता — recognition पूरी तरह आपके browser में होता है और जाने पर file memory से हट जाती है। कोई account बनाना नहीं, कोई software install करना नहीं और कोई watermark नहीं। चाहे आप receipts का ढेर digitise कर रहे हों, किसी पुरानी scan की किताब को searchable बना रहे हों, किसी photographed form से text निकाल रहे हों, या किसी image-only contract को copy करने योग्य बना रहे हों — PDF OCR टूल यह निजी रूप से और मुफ़्त में करता है।</p>
+      </article>
     </div>
   </div>
-</div>
+</section>
+
+<section class="oc-wrap oc-about" aria-labelledby="howH">
+  <div class="oc-title"><h2 id="howH">📝 How To Use</h2></div>
+  <ol>
+    <li>Drag &amp; drop your scanned PDF onto the upload area, or click to browse.</li>
+    <li>Select one or more <strong>languages</strong> and a <strong>quality</strong> mode; keep image clean-up on for best results.</li>
+    <li>Choose which <strong>pages</strong> to recognise, then click <strong>Start OCR</strong>.</li>
+    <li>Watch the progress; when done, <strong>edit</strong> the text and use <strong>find &amp; replace</strong> to fix any errors.</li>
+    <li>Copy, or export as <strong>TXT</strong>, a <strong>searchable PDF</strong>, <strong>HTML</strong> or <strong>JSON</strong> — or print.</li>
+  </ol>
+</section>
+
+<section class="oc-wrap oc-faq" aria-labelledby="faqH">
+  <div class="oc-title"><h2 id="faqH">❓ Frequently Asked Questions</h2></div>
+  <div id="faqList"></div>
+</section>
+
+<section class="oc-wrap oc-about" aria-labelledby="privacyH">
+  <div class="oc-title"><h2 id="privacyH">🔒 Privacy</h2></div>
+  <p>This tool is 100% client-side. Your PDF is rendered and recognised entirely in your browser using JavaScript and WebAssembly — it is never sent to ApneSoftware or any third party. Nothing is stored, logged or transmitted. When you close or refresh the page, the file is cleared from memory. Because there is no upload, you can safely OCR confidential, legal, medical and financial scans. (Language data files are downloaded from a public CDN the first time each language is used.)</p>
+
+  <div class="oc-title"><h2 id="compatH">🌐 Browser Compatibility</h2></div>
+  <p>Works in all modern browsers including Google Chrome, Microsoft Edge, Mozilla Firefox, Safari, Brave and Opera, on Windows, macOS, Linux, Android and iOS. It uses WebAssembly for recognition, so a reasonably modern browser and device give the best speed. Large, multi-page documents are best processed on a desktop.</p>
+
+  <div class="oc-title"><h2 id="formatsH">📁 Supported Formats</h2></div>
+  <p><strong>Input:</strong> PDF (.pdf), including scanned/image-based and password-protected PDFs you are authorised to open. <strong>Output:</strong> plain text (.txt), a searchable PDF (.pdf), HTML (.html) and JSON (.json), plus copy-to-clipboard and print. Languages include English, Hindi and 18+ others.</p>
+</section>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+/* ══════════════════════════════════════════════════════════════
+   PDF OCR — premium client-side OCR (pdf.js + Tesseract.js + pdf-lib)
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+  if(window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  var $ = function(id){ return document.getElementById(id); };
 
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-const startBtn = document.getElementById('startBtn');
-let currentFile = null;
+  var FAQ = [
+    ["Is my PDF uploaded to a server?","No. Recognition runs entirely in your browser using WebAssembly. Your PDF never leaves your device, so it is safe for confidential scans. Only the language data files are fetched from a public CDN."],
+    ["What is OCR and when do I need it?","OCR (optical character recognition) reads the text in an image or scanned page and turns it into real, selectable text. Use it when a PDF is a scan or photo and you cannot select or copy its text."],
+    ["Which languages are supported?","Over 20, including English, Hindi, Bengali, Tamil, Telugu, Marathi, Gujarati, Punjabi, Kannada, Malayalam, Urdu, Arabic, Spanish, French, German, Portuguese, Italian, Russian, Chinese and Japanese."],
+    ["Can I recognise a document with two languages?","Yes. Select multiple languages (Ctrl/Cmd-click) and they are used together — helpful for documents that mix, for example, English and a regional language."],
+    ["What do the quality modes do?","Fast renders pages at lower resolution for speed, Balanced is the default, and Accurate uses high resolution for the best recognition of small or difficult text (but is slower)."],
+    ["What does “Clean up image” do?","It converts each page to grayscale, boosts contrast and binarises it to crisp black-on-white, which noticeably improves accuracy on faint or noisy scans."],
+    ["Can I OCR only some pages?","Yes. Choose all, first, last, odd, even, or a custom range such as 1-3, 5, 8-10."],
+    ["What is a searchable PDF?","A PDF that looks exactly like your scan but has the recognised text placed invisibly behind the image, so you can select, copy and search it in any PDF reader."],
+    ["Which export formats are available?","Plain TXT, a searchable PDF, HTML and JSON, plus copy to clipboard and print."],
+    ["Is the recognised text always perfect?","No OCR is perfect on real scans. The output is fully editable and includes find & replace so you can quickly fix any misreads."],
+    ["Why is OCR slow on my phone?","Recognition is computationally heavy and runs on your device. Phones are slower than desktops; for many pages, a desktop browser is recommended."],
+    ["How can I get better results?","Use clean, high-contrast scans at a good resolution, choose the correct language(s), keep image clean-up on, and try Accurate mode for small text."],
+    ["Can it read handwriting?","OCR is designed for printed text. Handwriting recognition is unreliable and not the intended use."],
+    ["Can it OCR a password-protected PDF?","Yes, if you are authorised to open it. You are prompted for the password locally and it is used only on your device."],
+    ["Does it keep the original layout?","The text export is in reading order with optional page markers. The searchable PDF keeps the exact original appearance with a hidden text layer."],
+    ["Is there a page or file-size limit?","There is no fixed limit, but OCR of many pages takes time and memory. Process in ranges if a document is very large."],
+    ["Can I edit the text before exporting?","Yes. The output is a normal editable text area, so you can correct errors, delete sections and reformat before you export or copy."],
+    ["Why did language data take a while to load the first time?","Each language's recognition data is downloaded once from a public CDN and then cached, so the first run of a new language is slower than later ones."],
+    ["Is the tool free? Do I need an account?","It is completely free with no signup, no watermark added by us, and no usage limits."],
+    ["Which browsers are supported?","All modern browsers — Chrome, Edge, Firefox, Safari, Brave and Opera — on desktop and mobile, with WebAssembly support."],
+    ["What if my PDF already has text?","Then you do not need OCR — use the Extract Text tool, which copies the existing text instantly without recognition."]
+  ];
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type === 'application/pdf'){
-    currentFile = files[0];
-    startBtn.disabled = false;
+  var srcBytes=null, srcName='document.pdf', pdfjsDoc=null, pageCount=0, running=false;
+  var pagesData=[];  // [{n, text, imgDataURL, imgW, imgH, ptW, ptH, words:[{text,x0,y0,x1,y1}]}]
+
+  function setProg(p){ var w=$('progWrap'); if(p<0){w.classList.add('oc-hide');return;} w.classList.remove('oc-hide'); $('progressFill').style.width=Math.round(p*100)+'%'; }
+  function status(m){ $('statusMsg').textContent=m||''; }
+
+  // ── Page targeting ─────────────────────────────────────────
+  function parseRange(str,max){ var set={}; (str||'').split(',').forEach(function(p){ p=p.trim(); if(!p)return; var m=p.match(/^(\d+)\s*-\s*(\d+)$/); if(m){var a=+m[1],b=+m[2]; if(a>b){var t=a;a=b;b=t;} for(var i=a;i<=b;i++) if(i>=1&&i<=max)set[i]=1;} else if(/^\d+$/.test(p)){var n=+p; if(n>=1&&n<=max)set[n]=1;} }); return set; }
+  function targetPages(){
+    var sc=$('scopeSelect').value, arr=[], i;
+    if(sc==='first') return [1];
+    if(sc==='last') return [pageCount];
+    if(sc==='range'){ var set=parseRange($('rangeInput').value,pageCount); for(i=1;i<=pageCount;i++) if(set[i])arr.push(i); return arr.length?arr:[]; }
+    for(i=1;i<=pageCount;i++){ if(sc==='odd'&&i%2===0)continue; if(sc==='even'&&i%2===1)continue; arr.push(i); }
+    return arr;
   }
-});
 
-startBtn.addEventListener('click', async ()=>{
-  if(!currentFile) return;
-  startBtn.disabled = true;
-  const status = document.getElementById('statusMsg');
-  const fill = document.getElementById('progressFill');
-  document.getElementById('progressArea').style.display = 'block';
-
-  try{
-    status.textContent = '⏳ Loading PDF...';
-    const arrayBuf = await currentFile.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
-    const lang = document.getElementById('langSelect').value;
-
-    status.textContent = '⏳ Preparing OCR engine (takes a little time the first run)...';
-    const worker = await Tesseract.createWorker(lang);
-
-    let fullText = '';
-    const totalPages = pdf.numPages;
-
-    for(let i=1; i<=totalPages; i++){
-      status.textContent = `🔍 Reading page ${i}/${totalPages}...`;
-      const page = await pdf.getPage(i);
-      const viewport = page.getViewport({ scale: 2 });
-      const canvas = document.createElement('canvas');
-      canvas.width = viewport.width;
-      canvas.height = viewport.height;
-      const ctx = canvas.getContext('2d');
-      await page.render({ canvasContext: ctx, viewport }).promise;
-
-      const { data } = await worker.recognize(canvas);
-      fullText += `--- Page ${i} ---\n${data.text}\n\n`;
-
-      fill.style.width = Math.round((i/totalPages)*100) + '%';
+  // ── Image clean-up ─────────────────────────────────────────
+  function cleanup(canvas){
+    var ctx=canvas.getContext('2d'), im=ctx.getImageData(0,0,canvas.width,canvas.height), d=im.data;
+    var contrast=55, f=(259*(contrast+255))/(255*(259-contrast));
+    for(var i=0;i<d.length;i+=4){
+      var g=0.3*d[i]+0.59*d[i+1]+0.11*d[i+2];
+      var v=f*(g-128)+128;
+      v=v<135?0:255;         // binarise
+      d[i]=d[i+1]=d[i+2]=v;
     }
-
-    await worker.terminate();
-
-    document.getElementById('outputText').value = fullText.trim();
-    document.getElementById('outputField').style.display = 'block';
-    document.getElementById('actionRow').style.display = 'flex';
-    status.textContent = `✅ OCR complete for ${totalPages} page(s)!`;
-  }catch(err){
-    document.getElementById('statusMsg').textContent = '❌ Error: ' + err.message;
+    ctx.putImageData(im,0,0);
   }
-  startBtn.disabled = false;
-});
 
-document.getElementById('copyBtn').addEventListener('click', (e)=>{
-  copyText(document.getElementById('outputText').value, e.target);
-});
-document.getElementById('downloadBtn').addEventListener('click', ()=>{
-  downloadText('ocr-text.txt', document.getElementById('outputText').value);
-});
+  // ── OCR run ────────────────────────────────────────────────
+  function langString(){ var sel=$('langSelect'); var vals=Array.prototype.filter.call(sel.options,function(o){return o.selected;}).map(function(o){return o.value;}); return vals.length?vals.join('+'):'eng'; }
+
+  function runOCR(){
+    if(running || !pdfjsDoc){ return; }
+    if(!window.Tesseract){ status('❌ OCR engine failed to load. Check your connection and reload.'); return; }
+    running=true; $('startBtn').disabled=true; pagesData=[];
+    var t0=Date.now(); var scale=parseFloat($('qualitySelect').value)||2; var clean=$('optClean').checked;
+    var lang=langString(); var targets=targetPages();
+    if(!targets.length){ status('⚠️ No pages selected.'); running=false; $('startBtn').disabled=false; return; }
+    setProg(0.01); status('⏳ Preparing OCR engine…');
+    var pageProg=0;
+    Tesseract.createWorker(lang,1,{ logger:function(m){ if(m.status==='recognizing text'){ pageProg=m.progress; updateProg(); } } }).then(function(worker){
+      var doneCount=0, done=targets.length;
+      function updateProgClosure(){ updateProg=function(){ setProg((doneCount+pageProg)/done); }; }
+      updateProgClosure();
+      (async function(){
+        for(var idx=0;idx<targets.length;idx++){
+          var pn=targets[idx]; pageProg=0; updateProg();
+          status('🔍 Recognising page '+pn+' ('+(idx+1)+'/'+done+')…');
+          var page=await pdfjsDoc.getPage(pn);
+          var vp=page.getViewport({scale:scale});
+          var canvas=document.createElement('canvas'); canvas.width=vp.width; canvas.height=vp.height;
+          await page.render({canvasContext:canvas.getContext('2d'),viewport:vp}).promise;
+          var base=page.getViewport({scale:1});
+          if(clean) cleanup(canvas);
+          var res=await worker.recognize(canvas);
+          var words=(res.data.words||[]).map(function(w){ return {text:w.text, x0:w.bbox.x0, y0:w.bbox.y0, x1:w.bbox.x1, y1:w.bbox.y1}; });
+          pagesData.push({ n:pn, text:res.data.text||'', imgDataURL:canvas.toDataURL('image/jpeg',0.85), imgW:canvas.width, imgH:canvas.height, ptW:base.width, ptH:base.height, words:words });
+          doneCount++; pageProg=0; updateProg();
+        }
+        await worker.terminate();
+        finish(Date.now()-t0);
+      })().catch(function(e){ status('❌ '+(e&&e.message||e)); running=false; $('startBtn').disabled=false; try{worker.terminate();}catch(_){} });
+    }).catch(function(e){ status('❌ Could not start OCR engine: '+(e&&e.message||e)); running=false; $('startBtn').disabled=false; });
+  }
+  var updateProg=function(){};
+
+  function finish(ms){
+    running=false; $('startBtn').disabled=false; setProg(1);
+    $('outputText').value=assemble(pagesData, $('optMarkers').checked);
+    $('resultArea').classList.remove('oc-hide');
+    updateStats(); $('stTime').textContent='⏱ '+(ms/1000).toFixed(1)+'s';
+    status('✅ OCR complete for '+pagesData.length+' page(s).');
+    setTimeout(function(){setProg(-1);},800);
+  }
+
+  // ── Assembly & exports (pure) ──────────────────────────────
+  function assemble(pages,markers){ return pages.map(function(p){ return markers?('--- Page '+p.n+' ---\n'+p.text.trim()):p.text.trim(); }).join('\n\n').trim(); }
+  function toJSON(pages){ return JSON.stringify({ pages:pages.map(function(p){ return {page:p.n, text:p.text, wordCount:(p.text.match(/\S+/g)||[]).length}; }) },null,2); }
+  function toHTML(pages){ var esc=function(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}; return '<!DOCTYPE html>\n<html><head><meta charset="utf-8"><title>OCR result</title></head>\n<body>\n'+pages.map(function(p){ return '<h2>Page '+p.n+'</h2>\n<p>'+esc(p.text).replace(/\n/g,'<br>\n')+'</p>'; }).join('\n')+'\n</body></html>'; }
+  function buildSearchablePDF(pages){
+    return (async function(){
+      var PDFLib=window.PDFLib; var doc=await PDFLib.PDFDocument.create();
+      var font=await doc.embedFont(PDFLib.StandardFonts.Helvetica);
+      for(var i=0;i<pages.length;i++){
+        var pg=pages[i]; var page=doc.addPage([pg.ptW,pg.ptH]);
+        // image
+        try{ var b=pg.imgDataURL.split(',')[1]; var bin=atob(b); var arr=new Uint8Array(bin.length); for(var k=0;k<bin.length;k++)arr[k]=bin.charCodeAt(k);
+          var img = pg.imgDataURL.indexOf('image/png')>-1 ? await doc.embedPng(arr) : await doc.embedJpg(arr);
+          page.drawImage(img,{x:0,y:0,width:pg.ptW,height:pg.ptH});
+        }catch(e){}
+        // invisible text layer (map image px -> pt)
+        var sx=pg.ptW/pg.imgW, sy=pg.ptH/pg.imgH;
+        (pg.words||[]).forEach(function(w){
+          if(!w.text||!w.text.trim()) return;
+          var h=Math.max(4,(w.y1-w.y0)*sy);
+          var x=w.x0*sx, y=pg.ptH-(w.y1*sy);
+          try{ page.drawText(w.text,{x:x,y:y,size:h*0.9,font:font,color:PDFLib.rgb(0,0,0),opacity:0}); }catch(e){}
+        });
+      }
+      var out=await doc.save(); return new Blob([out],{type:'application/pdf'});
+    })();
+  }
+
+  function updateStats(){ var v=$('outputText').value; $('stWords').textContent=(v.match(/\S+/g)||[]).length+' words'; $('stChars').textContent=v.length+' characters'; $('stPages').textContent=pagesData.length+' pages'; }
+
+  // ── Find / replace ─────────────────────────────────────────
+  function findNext(){ var q=$('findInput').value; if(!q){ $('matchCount').textContent=''; return; } var ta=$('outputText'),text=ta.value,lower=text.toLowerCase(),ql=q.toLowerCase(); var total=0,idx=lower.indexOf(ql); while(idx!==-1){total++;idx=lower.indexOf(ql,idx+ql.length);} $('matchCount').textContent=total?total+' match'+(total>1?'es':''):'no matches'; if(!total)return; var from=ta.selectionEnd||0; var pos=lower.indexOf(ql,from); if(pos===-1)pos=lower.indexOf(ql,0); if(pos!==-1){ ta.focus(); ta.setSelectionRange(pos,pos+q.length); } }
+  function replaceOne(){ var ta=$('outputText'),q=$('findInput').value,r=$('replaceInput').value; if(!q)return; var s=ta.selectionStart,e=ta.selectionEnd; if(e>s && ta.value.substring(s,e).toLowerCase()===q.toLowerCase()){ ta.value=ta.value.slice(0,s)+r+ta.value.slice(e); ta.setSelectionRange(s,s+r.length); updateStats(); } findNext(); }
+  function replaceAll(){ var q=$('findInput').value,r=$('replaceInput').value; if(!q)return; var ta=$('outputText'); var rx=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'); ta.value=ta.value.replace(rx,r); updateStats(); findNext(); }
+
+  // ── Load ───────────────────────────────────────────────────
+  function loadFile(file){
+    if(!file || file.type!=='application/pdf'){ status('⚠️ Please choose a PDF file.'); return; }
+    srcName=file.name; status('⏳ Loading…');
+    file.arrayBuffer().then(function(buf){
+      srcBytes=buf.slice(0);
+      pdfjsLib.getDocument({data:buf.slice(0)}).promise.then(function(doc){ ready(doc,file); })
+      .catch(function(err){ if(err&&err.name==='PasswordException'){ var pw=prompt('This PDF is password protected. Enter the password:'); if(pw!=null){ pdfjsLib.getDocument({data:buf.slice(0),password:pw}).promise.then(function(d){ ready(d,file); }).catch(function(){ status('❌ Wrong password or unreadable PDF.'); }); return; } } status('❌ Could not read this PDF: '+(err&&err.message||err)); });
+    });
+  }
+  function ready(doc,file){
+    pdfjsDoc=doc; pageCount=doc.numPages;
+    $('fiName').textContent=srcName; $('fiSize').textContent=formatBytes(file.size); $('fiPages').textContent=pageCount;
+    $('settings').classList.remove('oc-hide'); $('dropzone').classList.add('oc-hide'); status('Ready — choose options and Start OCR.');
+  }
+
+  function dl(name,text,mime){ var blob=new Blob([text],{type:mime}); if(window.downloadBlob)downloadBlob(name,blob); else { var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); } }
+  function baseName(){ return (srcName||'ocr').replace(/\.pdf$/i,'')+'-ocr'; }
+
+  function wire(){
+    setupDropzone($('dropzone'),$('fileInput'),function(files){ if(files&&files.length) loadFile(files[0]); });
+    $('dropzone').addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); $('fileInput').click(); }});
+    $('scopeSelect').addEventListener('change',function(){ $('rangeInput').classList.toggle('oc-hide',this.value!=='range'); });
+    $('startBtn').addEventListener('click',runOCR);
+    $('outputText').addEventListener('input',updateStats);
+    $('findNextBtn').addEventListener('click',findNext);
+    $('findInput').addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); findNext(); } });
+    $('replaceBtn').addEventListener('click',replaceOne);
+    $('replaceAllBtn').addEventListener('click',replaceAll);
+    $('copyBtn').addEventListener('click',function(e){ if(window.copyText) copyText($('outputText').value,e.target); else navigator.clipboard&&navigator.clipboard.writeText($('outputText').value); });
+    $('downloadBtn').addEventListener('click',function(){ dl(baseName()+'.txt',$('outputText').value,'text/plain'); });
+    $('htmlBtn').addEventListener('click',function(){ dl(baseName()+'.html',toHTML(pagesData),'text/html'); });
+    $('jsonBtn').addEventListener('click',function(){ dl(baseName()+'.json',toJSON(pagesData),'application/json'); });
+    $('pdfBtn').addEventListener('click',function(){ if(!pagesData.length){ status('⚠️ Run OCR first.'); return; } status('⏳ Building searchable PDF…'); buildSearchablePDF(pagesData).then(function(blob){ if(window.downloadBlob)downloadBlob(baseName()+'-searchable.pdf',blob); else { var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=baseName()+'-searchable.pdf'; a.click(); } status('✅ Searchable PDF downloaded.'); }).catch(function(e){ status('❌ '+(e&&e.message||e)); }); });
+    $('printBtn').addEventListener('click',function(){ var w=window.open('','_blank'); if(!w)return; w.document.write('<pre style="font:13px monospace;white-space:pre-wrap;padding:20px">'+$('outputText').value.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];})+'</pre>'); w.document.close(); w.print(); });
+    $('clearBtn').addEventListener('click',function(){ pdfjsDoc=null; srcBytes=null; pagesData=[]; $('outputText').value=''; $('resultArea').classList.add('oc-hide'); $('settings').classList.add('oc-hide'); $('dropzone').classList.remove('oc-hide'); $('fileInput').value=''; status(''); });
+  }
+
+  function buildFaq(){
+    var list=$('faqList'); if(!list) return;
+    list.innerHTML=FAQ.map(function(f){ return '<details><summary>'+f[0]+'</summary><p>'+f[1]+'</p></details>'; }).join('');
+    try{ var sc=$('faqSchema'); var data=JSON.parse(sc.textContent);
+      data.mainEntity=FAQ.map(function(f){ return {'@type':'Question','name':f[0],'acceptedAnswer':{'@type':'Answer','text':f[1]}}; });
+      sc.textContent=JSON.stringify(data);
+    }catch(e){}
+  }
+
+  // test hooks (pure functions; harmless in production)
+  window.__ocrHooks={ assemble:assemble, toJSON:toJSON, toHTML:toHTML, buildSearchablePDF:buildSearchablePDF };
+
+  function init(){ wire(); buildFaq(); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
 </script>
 </body>
 </html>
