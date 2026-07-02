@@ -4,33 +4,109 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free online PDF viewer — open and read PDFs in your browser with thumbnails, document outline, continuous scroll, zoom, rotate, text search and selection, fullscreen and night reading mode. 100% private, nothing is uploaded.">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-viewer.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PDF Viewer — View PDF Online | ApneSoftware">
-<meta property="og:description" content="View a PDF online. Free online tool — no signup required.">
+<meta property="og:title" content="PDF Viewer — Read PDF Online Free &amp; Private | ApneSoftware">
+<meta property="og:description" content="Open PDFs in your browser with thumbnails, outline, search, zoom, rotate, fullscreen and night mode. Runs entirely on your device — nothing is uploaded.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-viewer.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PDF Viewer — View PDF Online | ApneSoftware">
-<meta name="twitter:description" content="View a PDF online. Free online tool — no signup required.">
+<meta name="twitter:title" content="PDF Viewer — Read PDF Online Free &amp; Private">
+<meta name="twitter:description" content="Read PDFs in your browser with thumbnails, outline, search, zoom and night mode. 100% client-side.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Viewer","description":"View a PDF online. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-viewer.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Viewer","operatingSystem":"Any (web browser)","applicationCategory":"UtilitiesApplication","description":"Free online PDF viewer to open and read PDF documents in the browser with thumbnails, outline, continuous scroll, zoom, rotate, text search and selection, fullscreen and night mode. Fully client-side and private.","url":"https://apnesoftware.com/tools/pdf-viewer.html","browserRequirements":"Requires JavaScript. Works in Chrome, Edge, Firefox, Safari.","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
-<meta name="color-scheme" content="dark">
-<title>PDF Viewer — View PDF Online | ApneSoftware</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"PDF Viewer Tool","url":"https://apnesoftware.com/tools/pdf-viewer.html","description":"Free online PDF viewer with thumbnails, outline, search, zoom and night mode, entirely in your browser.","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"inLanguage":"en"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://apnesoftware.com/index.html#pdf"},{"@type":"ListItem","position":3,"name":"PDF Viewer","item":"https://apnesoftware.com/tools/pdf-viewer.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to view a PDF online","description":"Open and read a PDF in your browser for free.","step":[{"@type":"HowToStep","name":"Open PDF","text":"Drag and drop your PDF onto the upload area or click to browse and select it."},{"@type":"HowToStep","name":"Read","text":"Scroll through the pages, or use the thumbnail sidebar and outline to jump around."},{"@type":"HowToStep","name":"Adjust","text":"Zoom, fit to width or page, rotate, and switch to night mode or fullscreen for comfortable reading."},{"@type":"HowToStep","name":"Search","text":"Use the find box to search the text and jump between matches."},{"@type":"HowToStep","name":"Download or print","text":"Download the original PDF or print it directly from the viewer."}]}
+</script>
+<!-- FAQ schema (populated at runtime) -->
+<script type="application/ld+json" id="faqSchema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}</script>
+
+<meta name="color-scheme" content="dark light">
+<title>PDF Viewer — Read PDF Online Free &amp; Private | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
-.dropzone{cursor:pointer}
-.dropzone p{font-size:.9rem}
-.panel{position:relative;z-index:1}
-</style>
-<style>
-  #viewerCanvas{display:block;margin:0 auto;border:1px solid var(--border);border-radius:6px;max-width:100%}
-  .viewer-controls{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px;flex-wrap:wrap}
-  .viewer-controls span{color:var(--text-dim);font-size:.9rem;min-width:90px;text-align:center}
+/* ── PDF Viewer tool — scoped styles (pv-) ───────────────────── */
+.pv-scope{--pv-accent:#A78BFA;--pv-accent2:#7C3AED;}
+.pv-hide{display:none !important;}
+.pv-drop{cursor:pointer;transition:border-color .2s,background .2s;}
+.pv-drop.drag{border-color:var(--pv-accent);background:rgba(167,139,250,.08);}
+/* toolbar */
+.pv-toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px;background:var(--surface-2,rgba(255,255,255,.04));border:1px solid var(--border);border-radius:12px;position:sticky;top:6px;z-index:20;}
+.pv-toolbar .pv-grp{display:flex;gap:4px;align-items:center;padding:0 6px;border-right:1px solid var(--border);}
+.pv-toolbar .pv-grp:last-child{border-right:0;}
+.pv-btn{background:transparent;border:1px solid transparent;color:var(--text);border-radius:7px;padding:6px 9px;font:inherit;font-size:.85rem;cursor:pointer;display:inline-flex;align-items:center;gap:5px;}
+.pv-btn:hover{background:rgba(167,139,250,.15);}
+.pv-btn.on{background:var(--pv-accent);color:#160c2e;}
+.pv-btn:disabled{opacity:.4;cursor:not-allowed;}
+.pv-toolbar input[type=number],.pv-toolbar input[type=text],.pv-toolbar select{background:var(--surface,rgba(0,0,0,.3));color:var(--text);border:1px solid var(--border);border-radius:7px;padding:5px 7px;font:inherit;font-size:.82rem;outline:none;}
+.pv-toolbar input:focus,.pv-toolbar select:focus{border-color:var(--pv-accent);}
+#pageNum{width:52px;text-align:center;}
+.pv-progress{height:3px;background:var(--pv-accent);width:0;border-radius:2px;transition:width .1s;}
+/* body layout */
+.pv-body{display:grid;grid-template-columns:190px 1fr;gap:10px;margin-top:10px;height:78vh;min-height:420px;}
+.pv-body.no-side{grid-template-columns:1fr;}
+@media(max-width:760px){.pv-body{grid-template-columns:1fr;height:72vh;} .pv-side{position:absolute;z-index:30;height:70vh;width:180px;background:var(--bg,#0d0d14);box-shadow:0 8px 30px rgba(0,0,0,.6);}}
+.pv-side{border:1px solid var(--border);border-radius:12px;overflow:auto;background:var(--surface-2,rgba(255,255,255,.02));}
+.pv-side-tabs{display:flex;position:sticky;top:0;background:var(--surface-2,#14121f);z-index:2;}
+.pv-side-tabs button{flex:1;background:transparent;border:0;border-bottom:2px solid transparent;color:var(--text-dim);padding:8px;font:inherit;font-size:.8rem;cursor:pointer;}
+.pv-side-tabs button.on{color:var(--text);border-bottom-color:var(--pv-accent);}
+.pv-thumbs{padding:8px;display:flex;flex-direction:column;gap:8px;}
+.pv-thumb{border:2px solid transparent;border-radius:6px;cursor:pointer;background:#fff;position:relative;overflow:hidden;}
+.pv-thumb.on{border-color:var(--pv-accent);}
+.pv-thumb canvas{display:block;width:100%;height:auto;}
+.pv-thumb .pv-tn{position:absolute;bottom:2px;right:4px;font-size:.68rem;background:rgba(0,0,0,.6);color:#fff;padding:0 5px;border-radius:4px;}
+.pv-outline{padding:8px;font-size:.82rem;}
+.pv-outline a{display:block;color:var(--text);text-decoration:none;padding:5px 6px;border-radius:6px;line-height:1.4;}
+.pv-outline a:hover{background:rgba(167,139,250,.15);}
+.pv-viewer{border:1px solid var(--border);border-radius:12px;overflow:auto;background:#3a3a44;padding:16px 0;scroll-behavior:smooth;}
+.pv-viewer.night{background:#000;}
+.pv-pagewrap{margin:0 auto 16px;position:relative;box-shadow:0 4px 18px rgba(0,0,0,.5);background:#fff;}
+.pv-viewer.night .pv-pagewrap{filter:invert(1) hue-rotate(180deg);}
+.pv-viewer.sepia .pv-pagewrap{filter:sepia(.45) brightness(.96);}
+.pv-pagewrap canvas{display:block;}
+.pv-textlayer{position:absolute;inset:0;overflow:hidden;line-height:1;opacity:1;}
+.pv-textlayer span{position:absolute;white-space:pre;color:transparent;transform-origin:0 0;cursor:text;}
+.pv-textlayer ::selection{background:rgba(167,139,250,.45);}
+.pv-textlayer mark{background:rgba(255,213,0,.55);color:transparent;border-radius:2px;}
+.pv-ph{display:flex;align-items:center;justify-content:center;color:#888;font-size:.85rem;}
+.pv-status{margin-top:10px;font-size:.9rem;color:var(--text-dim);min-height:1.2em;}
+.pv-find{display:flex;gap:5px;align-items:center;}
+#findInput{width:150px;}
+#findCount{font-size:.78rem;color:var(--text-dim);min-width:70px;}
+/* below-tool content */
+.pv-wrap{max-width:1040px;margin:26px auto 0;padding:0 6px;}
+.pv-title{display:flex;align-items:center;gap:12px;margin:26px 0 14px;}
+.pv-title h2{font-size:1.25rem;font-weight:800;margin:0;white-space:nowrap;}
+.pv-title::before,.pv-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.10);}
+.pv-lead{color:var(--text-dim);font-size:.95rem;line-height:1.8;margin:0 6px;}
+.pv-feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.pv-fcard{border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.03));border-radius:14px;padding:16px;transition:.2s;}
+.pv-fcard:hover{border-color:var(--pv-accent);transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.14);}
+.pv-fcard h3{font-size:.92rem;font-weight:700;margin:0 0 6px;display:flex;align-items:center;gap:8px;}
+.pv-fcard p{font-size:.84rem;color:var(--text-dim);line-height:1.65;margin:0;}
+.pv-about ol,.pv-about > p{color:var(--text-dim);font-size:.92rem;line-height:1.8;padding-left:6px;}
+.pv-about ol{padding-left:24px;}
+.pv-related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:10px 0 4px;}
+.pv-related a{display:block;background:var(--surface-2,rgba(255,255,255,.03));border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text);transition:border-color .2s,transform .15s;}
+.pv-related a:hover{border-color:var(--pv-accent);transform:translateY(-2px);}
+.pv-related b{display:block;font-size:.92rem;margin-bottom:3px;}
+.pv-related span{font-size:.78rem;color:var(--text-dim);}
+#faqList details{border:1px solid var(--border);border-radius:10px;padding:0 14px;margin:8px 0;background:var(--surface-2,rgba(255,255,255,.02));}
+#faqList summary{cursor:pointer;padding:13px 0;font-weight:600;font-size:.95rem;}
+#faqList details[open]{padding-bottom:6px;}
+#faqList p{margin:0 0 12px;line-height:1.65;color:var(--text-dim);}
+:focus-visible{outline:2px solid var(--pv-accent);outline-offset:2px;}
 </style>
 </head>
 <body>
@@ -42,111 +118,500 @@
 </header>
 
 <div class="container">
+  <div class="pv-scope" id="pvScope">
   <div class="tool-header">
     <h1>👁️ PDF Viewer</h1>
-    <p>View PDF files directly in your browser, page by page — no download needed.</p>
+    <p>Open and read any PDF right in your browser — thumbnails, outline, search, zoom, rotate, night mode and fullscreen. Nothing is uploaded.</p>
   </div>
 
   <div class="panel">
-    <div class="dropzone" id="dropzone">
-      <p>📤 Drag a PDF file here or click to choose</p>
-      <input type="file" id="fileInput" accept="application/pdf">
+    <div class="dropzone pv-drop" id="dropzone" role="button" tabindex="0" aria-label="Open PDF file">
+      <p>📤 Drag &amp; drop your PDF here, or click to open</p>
+      <input type="file" id="fileInput" accept="application/pdf" hidden>
     </div>
 
-    <div id="viewerArea" style="display:none">
-      <canvas id="viewerCanvas"></canvas>
-      <div class="viewer-controls">
-        <button class="btn secondary" id="prevBtn">⬅️ Previous</button>
-        <span id="pageInfo">1 / 1</span>
-        <button class="btn secondary" id="nextBtn">Next ➡️</button>
-        <button class="btn secondary" id="zoomOutBtn">➖</button>
-        <span id="zoomInfo">100%</span>
-        <button class="btn secondary" id="zoomInBtn">➕</button>
+    <p class="pv-status" id="statusMsg" role="status" aria-live="polite"></p>
+
+    <div id="viewerArea" class="pv-hide">
+      <div class="pv-toolbar" role="toolbar" aria-label="Viewer controls">
+        <div class="pv-grp">
+          <button class="pv-btn" id="sideToggle" title="Toggle sidebar" aria-label="Toggle sidebar">☰</button>
+          <span style="font-size:.8rem;color:var(--text-dim);max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" id="fiName">document.pdf</span>
+        </div>
+        <div class="pv-grp">
+          <button class="pv-btn" id="firstBtn" title="First page" aria-label="First page">⏮</button>
+          <button class="pv-btn" id="prevBtn" title="Previous page" aria-label="Previous page">◀</button>
+          <input type="number" id="pageNum" min="1" value="1" aria-label="Page number"> <span style="font-size:.8rem;color:var(--text-dim)">/ <span id="pageTotal">1</span></span>
+          <button class="pv-btn" id="nextBtn" title="Next page" aria-label="Next page">▶</button>
+          <button class="pv-btn" id="lastBtn" title="Last page" aria-label="Last page">⏭</button>
+        </div>
+        <div class="pv-grp">
+          <button class="pv-btn" id="zoomOutBtn" title="Zoom out" aria-label="Zoom out">➖</button>
+          <select id="zoomSelect" aria-label="Zoom level">
+            <option value="fit-width">Fit width</option>
+            <option value="fit-page">Fit page</option>
+            <option value="1">100%</option>
+            <option value="0.25">25%</option>
+            <option value="0.5">50%</option>
+            <option value="0.75">75%</option>
+            <option value="1.25">125%</option>
+            <option value="1.5">150%</option>
+            <option value="2">200%</option>
+            <option value="3">300%</option>
+          </select>
+          <button class="pv-btn" id="zoomInBtn" title="Zoom in" aria-label="Zoom in">➕</button>
+        </div>
+        <div class="pv-grp">
+          <button class="pv-btn" id="rotLeftBtn" title="Rotate left" aria-label="Rotate left">↺</button>
+          <button class="pv-btn" id="rotRightBtn" title="Rotate right" aria-label="Rotate right">↻</button>
+        </div>
+        <div class="pv-grp pv-find">
+          <input type="text" id="findInput" placeholder="🔍 Find in document" aria-label="Find text">
+          <button class="pv-btn" id="findPrev" title="Previous match" aria-label="Previous match">▲</button>
+          <button class="pv-btn" id="findNext" title="Next match" aria-label="Next match">▼</button>
+          <span id="findCount"></span>
+          <label class="pv-btn" style="cursor:pointer"><input type="checkbox" id="findCase" style="margin-right:4px">Aa</label>
+        </div>
+        <div class="pv-grp">
+          <button class="pv-btn" id="viewModeBtn" title="Two-page view" aria-label="Toggle two-page view">▤</button>
+          <button class="pv-btn" id="nightBtn" title="Night / reading mode" aria-label="Night mode">🌙</button>
+          <button class="pv-btn" id="fsBtn" title="Fullscreen / presentation" aria-label="Fullscreen">⛶</button>
+          <button class="pv-btn" id="downloadBtn" title="Download PDF" aria-label="Download PDF">⬇️</button>
+          <button class="pv-btn" id="printBtn" title="Print" aria-label="Print">🖨️</button>
+          <button class="pv-btn" id="clearBtn" title="Open another file" aria-label="Open another file">✕</button>
+        </div>
+      </div>
+      <div class="pv-progress" id="readProgress"></div>
+
+      <div class="pv-body" id="pvBody">
+        <aside class="pv-side" id="pvSide">
+          <div class="pv-side-tabs">
+            <button id="tabThumbs" class="on">Thumbnails</button>
+            <button id="tabOutline">Outline</button>
+          </div>
+          <div class="pv-thumbs" id="thumbList"></div>
+          <div class="pv-outline pv-hide" id="outlineList"></div>
+        </aside>
+        <div class="pv-viewer" id="viewer" tabindex="0"></div>
       </div>
     </div>
   </div>
-</div>
-
-
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>View any PDF file directly in your browser, page by page, without downloading it first.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your PDF.</li>
-        <li>Use the next/previous buttons to flip through pages.</li>
-        <li>Use + and - to zoom in or out.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल किसी भी PDF फाइल को बिना डाउनलोड किए सीधे ब्राउज़र में पेज दर पेज देखने देता है।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी PDF अपलोड करें।</li>
-        <li>अगला/पिछला बटन से पेज बदलें।</li>
-        <li>ज़ूम करने के लिए + और - इस्तेमाल करें।</li>
-      </ol>
-    </div>
   </div>
 </div>
+
+<!-- ── Below-tool content ─────────────────────────────────────── -->
+<section class="pv-wrap" aria-labelledby="introH">
+  <div class="pv-title"><h2 id="introH">👁️ PDF Viewer — Read PDFs in Your Browser</h2></div>
+  <p class="pv-lead">The <strong>ApneSoftware PDF Viewer</strong> opens and displays any PDF right inside your web browser, with the tools you expect from a proper reader: a thumbnail sidebar, the document outline, continuous scrolling, zoom and fit controls, page rotation, text search and selection, fullscreen presentation and a night reading mode. It renders the file entirely on your own device, so you can read even confidential documents without uploading anything.</p>
+
+  <div class="pv-title"><h2>✨ Key Features</h2></div>
+  <div class="pv-feature-grid">
+    <div class="pv-fcard"><h3>🖼️ Thumbnails &amp; Outline</h3><p>Jump to any page from the thumbnail sidebar or the document's built-in bookmarks / table of contents.</p></div>
+    <div class="pv-fcard"><h3>📜 Continuous Scroll</h3><p>Scroll smoothly through the whole document, with a live page indicator and reading-progress bar.</p></div>
+    <div class="pv-fcard"><h3>🔍 Find &amp; Select</h3><p>Search the text, jump between matches, and select and copy text straight from the page.</p></div>
+    <div class="pv-fcard"><h3>🔎 Zoom &amp; Fit</h3><p>Fit width, fit page, actual size or presets from 25% to 300%, plus Ctrl + mouse-wheel zoom.</p></div>
+    <div class="pv-fcard"><h3>🔄 Rotate &amp; 2-up</h3><p>Rotate left/right and switch between single-page and two-page (spread) views.</p></div>
+    <div class="pv-fcard"><h3>🌙 Night Mode &amp; Fullscreen</h3><p>Comfortable night reading mode and a distraction-free fullscreen presentation mode.</p></div>
+    <div class="pv-fcard"><h3>⌨️ Keyboard &amp; Touch</h3><p>Arrow keys, Home/End, +/−, and touch-friendly navigation on phones and tablets.</p></div>
+    <div class="pv-fcard"><h3>🔒 100% Private</h3><p>The PDF is rendered in your browser and never uploaded to any server.</p></div>
+  </div>
+
+  <div class="pv-title"><h2>🎁 Benefits</h2></div>
+  <div class="pv-feature-grid">
+    <div class="pv-fcard"><h3>⚡ No Install</h3><p>Read PDFs instantly without Acrobat or any app — just your browser.</p></div>
+    <div class="pv-fcard"><h3>🔐 Private Reading</h3><p>Open sensitive contracts and records without them leaving your device.</p></div>
+    <div class="pv-fcard"><h3>👓 Comfortable</h3><p>Night mode, zoom and fit controls make long documents easy on the eyes.</p></div>
+    <div class="pv-fcard"><h3>🧭 Easy Navigation</h3><p>Thumbnails, outline, go-to-page and search get you where you need fast.</p></div>
+    <div class="pv-fcard"><h3>🆓 Free &amp; Unlimited</h3><p>No accounts, no limits, and no watermark added by us.</p></div>
+  </div>
+</section>
+
+<section class="pv-wrap" aria-labelledby="relatedH">
+  <div class="pv-title"><h2 id="relatedH">🔗 Related Tools</h2></div>
+  <div class="pv-related">
+    <a href="pdf-merge.html"><b>Merge PDF</b><span>Combine multiple PDFs</span></a>
+    <a href="pdf-split.html"><b>Split PDF</b><span>Split into separate files</span></a>
+    <a href="pdf-compress.html"><b>Compress PDF</b><span>Reduce PDF file size</span></a>
+    <a href="pdf-rotate.html"><b>Rotate PDF</b><span>Rotate PDF pages</span></a>
+    <a href="pdf-crop.html"><b>Crop PDF</b><span>Trim page margins</span></a>
+    <a href="pdf-extract-text.html"><b>Extract Text</b><span>Copy text from a PDF</span></a>
+    <a href="pdf-to-image.html"><b>PDF to JPG</b><span>Render pages as images</span></a>
+    <a href="pdf-page-numbers.html"><b>Page Numbers</b><span>Add page numbers</span></a>
+    <a href="pdf-watermark.html"><b>PDF Watermark</b><span>Add a watermark</span></a>
+    <a href="pdf-info.html"><b>PDF Info</b><span>View PDF properties</span></a>
+  </div>
+</section>
+
+<section class="pv-wrap" aria-labelledby="aboutH">
+  <div class="pv-title"><h2 id="aboutH">ℹ️ About This Tool</h2></div>
+  <div class="info-wrap" style="max-width:100%;padding:0">
+    <div class="info-section">
+      <article class="info-block pv-about">
+        <h2>About the PDF Viewer (English)</h2>
+        <p>Opening a PDF should be effortless, but it often is not. Desktop readers can be heavy and slow to launch, some browsers download the file instead of showing it, and many “view PDF online” services quietly upload your document to their servers first. The ApneSoftware PDF Viewer avoids all of that: it renders your PDF directly in the browser tab, with a full set of reading tools, and never sends the file anywhere. You drop a PDF in and start reading in seconds.</p>
+
+        <p>The viewer is built around a smooth, <strong>continuous-scroll</strong> reading experience. Pages flow one after another the way they do in a modern reader, and a live indicator always shows which page you are on out of the total, with a slim <strong>reading-progress bar</strong> tracking how far through the document you are. Because rendering a large PDF all at once would be slow and memory-hungry, the viewer uses <strong>lazy rendering</strong>: it only draws pages as they scroll into view and releases ones that scroll far away, so even a document with hundreds of pages opens quickly and stays responsive.</p>
+
+        <p>Navigation is handled several ways so you can move exactly how you prefer. A <strong>thumbnail sidebar</strong> shows a small preview of every page; click one to jump straight there, and the current page is always highlighted. If the PDF has a built-in <strong>outline</strong> — the bookmarks or table of contents that authors add to reports, books and manuals — it appears in its own sidebar tab, and each entry links to the right place in the document. On top of that you get <strong>first, previous, next and last</strong> buttons, a <strong>go-to-page</strong> box, and full <strong>keyboard navigation</strong>: arrow keys and Page Up/Down to move, Home and End to jump to the ends, and shortcuts for zoom.</p>
+
+        <p>Reading comfort is covered by a rich set of <strong>view controls</strong>. Zoom in and out step by step, pick an exact level from 25% to 300%, or choose <strong>Fit width</strong> and <strong>Fit page</strong> so the document sizes itself to your screen; you can also hold Ctrl (or Cmd) and use the mouse wheel to zoom. Pages can be <strong>rotated</strong> left or right for documents scanned sideways, and a <strong>two-page (spread) view</strong> shows pages side by side like an open book. For low-light reading, a <strong>night mode</strong> inverts the page to light-on-dark, and a distraction-free <strong>fullscreen / presentation mode</strong> uses the whole screen — ideal for reading or presenting slides exported as PDF.</p>
+
+        <p>Because the viewer renders a real text layer over each page, the text is <strong>selectable</strong>: you can highlight and copy passages straight out of the document, just as you would in a desktop reader. A built-in <strong>find</strong> box searches the whole document, tells you how many matches there are, and lets you jump between them with next and previous, with an optional case-sensitive mode. When you want the file itself, one button <strong>downloads</strong> the original PDF and another sends it to your <strong>printer</strong>.</p>
+
+        <p><strong>Privacy</strong> is the reason many people choose an in-browser viewer, and it is central here. Your PDF is opened and rendered entirely on your own device using JavaScript and a well-tested browser PDF engine; the file is never uploaded, stored or logged, and it is cleared from memory when you close or refresh the page. That makes the viewer safe for contracts, medical records, financial statements, legal filings and any other sensitive material. <strong>Password-protected PDFs</strong> that you are authorised to open are handled locally — you are prompted for the password in your browser, and it is used only to unlock the file on your device.</p>
+
+        <p>The interface is fully <strong>responsive and touch-friendly</strong>. On phones and tablets the sidebar tucks away to give the page more room, navigation and zoom controls stay within thumb reach, and you can pinch and scroll naturally. Throughout, the viewer follows accessibility good practice with keyboard operability, labelled controls and strong contrast in both the default dark theme and night mode. It works in every modern browser — Chrome, Edge, Firefox, Safari, Brave and Opera — with no plugins or extensions.</p>
+
+        <p>Whether you need to quickly check a document someone sent you, read a long report comfortably, present a slide deck, copy a quote, or simply avoid downloading a file just to glance at it, the ApneSoftware PDF Viewer gives you a fast, private and full-featured reading experience that lives entirely in your browser.</p>
+      </article>
+
+      <article class="info-block pv-about">
+        <h2>इस टूल के बारे में (Hindi)</h2>
+        <p>PDF खोलना आसान होना चाहिए, पर अक्सर होता नहीं। Desktop readers भारी और धीरे खुलने वाले हो सकते हैं, कुछ browsers file दिखाने के बजाय download कर देते हैं, और कई “view PDF online” सेवाएँ चुपचाप आपका document पहले अपने servers पर upload कर देती हैं। ApneSoftware PDF Viewer यह सब टालता है: यह आपकी PDF को सीधे browser tab में render करता है, पूरे reading tools के साथ, और file कहीं नहीं भेजता। आप PDF डालते हैं और कुछ ही सेकंड में पढ़ना शुरू कर देते हैं।</p>
+
+        <p>Viewer एक सहज, <strong>continuous-scroll</strong> reading अनुभव के इर्द-गिर्द बना है। पन्ने एक के बाद एक बहते हैं जैसे किसी आधुनिक reader में, और एक जीवंत indicator हमेशा दिखाता है कि आप कुल में से किस पन्ने पर हैं, साथ में एक पतली <strong>reading-progress bar</strong> बताती है कि आप document में कितना आगे हैं। चूँकि बड़ी PDF को एक साथ render करना धीमा और memory-भारी होगा, viewer <strong>lazy rendering</strong> उपयोग करता है: यह पन्ने तभी बनाता है जब वे view में आते हैं और दूर वाले छोड़ देता है, इसलिए सैकड़ों पन्नों वाला document भी जल्दी खुलता और तेज़ रहता है।</p>
+
+        <p>Navigation कई तरह से है ताकि आप जैसे चाहें घूम सकें। एक <strong>thumbnail sidebar</strong> हर पन्ने का छोटा preview दिखाता है; किसी पर click कर सीधे वहाँ जाएँ, और वर्तमान पन्ना हमेशा highlight रहता है। यदि PDF में built-in <strong>outline</strong> हो — reports, किताबों और manuals में लेखकों द्वारा जोड़े bookmarks या table of contents — तो वह अपने sidebar tab में दिखती है, और हर प्रविष्टि document में सही जगह link करती है। इसके ऊपर <strong>first, previous, next और last</strong> बटन, एक <strong>go-to-page</strong> box, और पूरा <strong>keyboard navigation</strong> मिलता है: arrow keys और Page Up/Down से चलना, Home और End से किनारों पर जाना, और zoom के shortcuts।</p>
+
+        <p>पढ़ने का आराम समृद्ध <strong>view controls</strong> से मिलता है। कदम-दर-कदम zoom in/out करें, 25% से 300% तक सटीक स्तर चुनें, या <strong>Fit width</strong> और <strong>Fit page</strong> चुनें ताकि document आपकी screen के अनुसार आ जाए; आप Ctrl (या Cmd) दबाकर mouse wheel से भी zoom कर सकते हैं। पन्नों को बाएँ या दाएँ <strong>rotate</strong> किया जा सकता है (तिरछे scan हुए documents के लिए), और <strong>two-page (spread) view</strong> पन्ने किसी खुली किताब की तरह अगल-बगल दिखाता है। कम रोशनी में पढ़ने के लिए <strong>night mode</strong> पन्ने को light-on-dark कर देता है, और distraction-free <strong>fullscreen / presentation mode</strong> पूरी screen उपयोग करता है — PDF के रूप में export हुई slides पढ़ने या दिखाने के लिए आदर्श।</p>
+
+        <p>चूँकि viewer हर पन्ने पर एक असली text layer render करता है, text <strong>selectable</strong> है: आप document से सीधे passages highlight और copy कर सकते हैं, ठीक desktop reader की तरह। एक built-in <strong>find</strong> box पूरे document में खोजता है, बताता है कितने matches हैं, और next/previous से उनके बीच जाने देता है, वैकल्पिक case-sensitive mode के साथ। जब आपको file चाहिए, एक बटन मूल PDF <strong>download</strong> करता है और दूसरा उसे <strong>printer</strong> पर भेजता है।</p>
+
+        <p><strong>Privacy</strong> ही वह कारण है जिससे बहुत लोग in-browser viewer चुनते हैं, और यहाँ यह केंद्र में है। आपकी PDF पूरी तरह आपके अपने device पर JavaScript और एक भरोसेमंद browser PDF engine से खोली और render की जाती है; file कभी upload, store या log नहीं होती, और page बंद या refresh करने पर memory से हट जाती है। यह viewer को contracts, medical records, financial statements, legal filings और किसी भी संवेदनशील सामग्री के लिए सुरक्षित बनाता है। जिन <strong>password-protected PDF</strong> को खोलने का आपको अधिकार है वे locally संभाली जाती हैं — password आपके browser में माँगा जाता है और केवल आपके device पर file unlock करने के लिए उपयोग होता है।</p>
+
+        <p>Interface पूरी तरह <strong>responsive और touch-friendly</strong> है। phones और tablets पर sidebar छिप जाता है ताकि पन्ने को ज़्यादा जगह मिले, navigation और zoom नियंत्रण अंगूठे की पहुँच में रहते हैं, और आप स्वाभाविक रूप से pinch व scroll कर सकते हैं। पूरे समय viewer accessibility की अच्छी प्रथाओं का पालन करता है — keyboard से चलने योग्य, labelled नियंत्रण, और default dark theme व night mode दोनों में मज़बूत contrast। यह हर आधुनिक browser में काम करता है — Chrome, Edge, Firefox, Safari, Brave और Opera — बिना किसी plugin या extension के।</p>
+
+        <p>चाहे आपको किसी के भेजे document को जल्दी देखना हो, कोई लंबी report आराम से पढ़नी हो, कोई slide deck दिखाना हो, कोई quote copy करना हो, या बस एक झलक के लिए file download करने से बचना हो — ApneSoftware PDF Viewer आपको एक तेज़, निजी और पूर्ण-सुविधा reading अनुभव देता है जो पूरी तरह आपके browser में रहता है।</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="pv-wrap pv-about" aria-labelledby="howH">
+  <div class="pv-title"><h2 id="howH">📝 How To Use</h2></div>
+  <ol>
+    <li>Drag &amp; drop your PDF onto the upload area, or click to open.</li>
+    <li>Scroll to read; use the <strong>thumbnail sidebar</strong> or <strong>outline</strong> to jump to a page.</li>
+    <li>Use <strong>zoom / fit</strong>, <strong>rotate</strong> and <strong>two-page</strong> controls for comfortable reading.</li>
+    <li>Type in the <strong>Find</strong> box to search text and move between matches.</li>
+    <li>Switch on <strong>night mode</strong> or <strong>fullscreen</strong> as needed.</li>
+    <li><strong>Download</strong> the original PDF or <strong>print</strong> it from the toolbar.</li>
+  </ol>
+</section>
+
+<section class="pv-wrap pv-faq" aria-labelledby="faqH">
+  <div class="pv-title"><h2 id="faqH">❓ Frequently Asked Questions</h2></div>
+  <div id="faqList"></div>
+</section>
+
+<section class="pv-wrap pv-about" aria-labelledby="privacyH">
+  <div class="pv-title"><h2 id="privacyH">🔒 Privacy</h2></div>
+  <p>This viewer is 100% client-side. Your PDF is opened and rendered entirely in your browser using JavaScript — it is never sent to ApneSoftware or any third party. Nothing is stored, logged or transmitted. When you close or refresh the page, the file is cleared from memory. Because there is no upload, you can safely view confidential, legal, medical and financial documents.</p>
+
+  <div class="pv-title"><h2 id="compatH">🌐 Browser Compatibility</h2></div>
+  <p>Works in all modern browsers including Google Chrome, Microsoft Edge, Mozilla Firefox, Safari, Brave and Opera, on Windows, macOS, Linux, Android and iOS. It relies on standard web technologies (Canvas, File API and a JavaScript PDF engine), so no plugins or extensions are required. For very large PDFs a desktop browser with more available memory gives the smoothest experience.</p>
+
+  <div class="pv-title"><h2 id="formatsH">📁 Supported Formats</h2></div>
+  <p><strong>Input:</strong> PDF (.pdf), including password-protected PDFs you are authorised to open. The viewer renders pages, exposes a selectable text layer, and reads the document outline where present. You can download the original PDF or print it; the file itself is never modified.</p>
+</section>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+/* ══════════════════════════════════════════════════════════════
+   PDF VIEWER — premium client-side reader (pdf.js)
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+  if(window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  var $ = function(id){ return document.getElementById(id); };
 
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-let pdfDoc = null;
-let currentPage = 1;
-let zoom = 1;
+  var FAQ = [
+    ["Is my PDF uploaded to a server?","No. The viewer renders your PDF entirely in your browser using JavaScript. The file never leaves your device, so it is safe for confidential documents."],
+    ["Do I need to install anything?","No. It works in any modern browser with no plugins, extensions or apps — just open the page and drop in a PDF."],
+    ["Can I search the text inside the PDF?","Yes. Type in the Find box to search the whole document; it shows the match count and lets you jump between matches, with an optional case-sensitive mode."],
+    ["Can I select and copy text?","Yes. The viewer renders a real text layer over each page, so you can select and copy text just like in a desktop reader (for PDFs that contain selectable text)."],
+    ["Does it show the document's bookmarks or table of contents?","Yes. If the PDF has an outline, it appears in the Outline tab of the sidebar, and each entry jumps to the right page."],
+    ["How do I jump to a specific page?","Type the page number in the box in the toolbar, click a thumbnail, use the outline, or use the first/prev/next/last buttons and keyboard arrows."],
+    ["What zoom options are available?","Fit width, fit page, actual size, and presets from 25% to 300%, plus zoom in/out buttons and Ctrl/Cmd + mouse-wheel zoom."],
+    ["Can I rotate pages?","Yes. Rotate left or right from the toolbar — useful for documents scanned sideways. Rotation applies to the whole document in the viewer and does not change the file."],
+    ["Is there a night or dark reading mode?","Yes. Night mode inverts pages to light-on-dark for comfortable low-light reading. The interface itself uses a dark theme by default."],
+    ["Is there a fullscreen or presentation mode?","Yes. The fullscreen button uses your whole screen, which is great for reading or presenting slides exported as PDF."],
+    ["Can it open password-protected PDFs?","Yes, if you are authorised to open them. You are prompted for the password in your browser and it is used only locally to unlock the file."],
+    ["Does it handle large PDFs?","Yes. Pages are rendered lazily as you scroll and released when far away, so documents with hundreds of pages open quickly and stay responsive."],
+    ["Can I download or print the PDF from the viewer?","Yes. The toolbar has a download button for the original file and a print button that opens your browser's print dialog."],
+    ["Does viewing change my PDF?","No. The viewer only displays the file. Rotation and zoom affect the on-screen view, not the saved document. Download gives you the unchanged original."],
+    ["Does it work on phones and tablets?","Yes. The layout is responsive, the sidebar tucks away on small screens, and you can pinch-zoom and scroll naturally."],
+    ["Why can't I select text in my PDF?","If the PDF is a scan (an image of a page), it has no text layer to select. Use the PDF OCR tool to recognise the text, or the Extract Text tool for digital PDFs."],
+    ["Are keyboard shortcuts supported?","Yes. Arrow keys and Page Up/Down navigate, Home/End jump to the first/last page, and +/- zoom. Focus the viewer area first."],
+    ["Does it keep my place while reading?","The page indicator and reading-progress bar always show where you are. Scrolling is smooth and continuous like a normal reader."],
+    ["Is the tool free? Do I need an account?","It is completely free with no signup, no watermark added by us, and no usage limits."],
+    ["Which browsers are supported?","All modern browsers — Chrome, Edge, Firefox, Safari, Brave and Opera — on desktop and mobile. No plugins are required."],
+    ["Can I view two pages side by side?","Yes. The two-page (spread) view shows pages side by side like an open book; switch back to single-page any time."]
+  ];
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
-});
+  // ── State ──────────────────────────────────────────────────
+  var pdfDoc=null, numPages=0, srcBlob=null, srcName="document.pdf";
+  var zoomMode='fit-width';      // 'fit-width' | 'fit-page' | number
+  var rotation=0;                // 0/90/180/270
+  var twoUp=false, night=false;
+  var base1={w:612,h:792};       // page-1 base size (pt) at current rotation
+  var pageWraps=[], rendered={}, textCache={}, curPage=1;
+  var io=null, thumbIo=null;
+  var findMatches=[], findPos=-1, findQuery="";
 
-async function handleFile(file){
-  const arrayBuf = await file.arrayBuffer();
-  pdfDoc = await pdfjsLib.getDocument({data: arrayBuf}).promise;
-  currentPage = 1;
-  zoom = 1;
-  document.getElementById('viewerArea').style.display = 'block';
-  renderPage();
-}
+  function status(m){ $('statusMsg').textContent=m||''; }
+  function dpr(){ return Math.min(window.devicePixelRatio||1, 2); }
 
-async function renderPage(){
-  const page = await pdfDoc.getPage(currentPage);
-  const viewport = page.getViewport({ scale: zoom * 1.3 });
-  const canvas = document.getElementById('viewerCanvas');
-  canvas.width = viewport.width;
-  canvas.height = viewport.height;
-  const ctx = canvas.getContext('2d');
-  await page.render({ canvasContext: ctx, viewport }).promise;
+  // rotated base dims for a viewport
+  function rotDims(w,h){ return (rotation%180===0)?{w:w,h:h}:{w:h,h:w}; }
 
-  document.getElementById('pageInfo').textContent = `${currentPage} / ${pdfDoc.numPages}`;
-  document.getElementById('zoomInfo').textContent = Math.round(zoom*100) + '%';
-}
+  function scaleFor(bw,bh){
+    var vp=$('viewer'), pad=36;
+    if(zoomMode==='fit-width') return Math.max(0.1,(vp.clientWidth-pad-(twoUp?18:0))/(twoUp?bw*2:bw));
+    if(zoomMode==='fit-page') return Math.max(0.1,Math.min((vp.clientWidth-pad)/bw,(vp.clientHeight-pad)/bh));
+    return parseFloat(zoomMode)||1;
+  }
 
-document.getElementById('prevBtn').addEventListener('click', ()=>{
-  if(currentPage > 1){ currentPage--; renderPage(); }
-});
-document.getElementById('nextBtn').addEventListener('click', ()=>{
-  if(currentPage < pdfDoc.numPages){ currentPage++; renderPage(); }
-});
-document.getElementById('zoomInBtn').addEventListener('click', ()=>{
-  zoom = Math.min(zoom + 0.2, 3);
-  renderPage();
-});
-document.getElementById('zoomOutBtn').addEventListener('click', ()=>{
-  zoom = Math.max(zoom - 0.2, 0.4);
-  renderPage();
-});
+  // ── Build page placeholders ────────────────────────────────
+  function buildLayout(){
+    var viewer=$('viewer'); viewer.innerHTML=''; pageWraps=[]; rendered={};
+    viewer.classList.toggle('two', twoUp);
+    var s=scaleFor(base1.w,base1.h);
+    var rowWrap=viewer;
+    for(var i=1;i<=numPages;i++){
+      var wrap=document.createElement('div'); wrap.className='pv-pagewrap'; wrap.dataset.page=i;
+      wrap.style.width=Math.round(base1.w*s)+'px'; wrap.style.height=Math.round(base1.h*s)+'px';
+      var ph=document.createElement('div'); ph.className='pv-ph'; ph.style.height='100%'; ph.textContent='Page '+i; wrap.appendChild(ph);
+      viewer.appendChild(wrap); pageWraps.push(wrap);
+    }
+    observePages();
+  }
+
+  function observePages(){
+    if(io) io.disconnect();
+    io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ var p=+e.target.dataset.page; if(e.isIntersecting){ renderPage(p); } });
+      // update current page = topmost intersecting
+      updateCurrent();
+    },{root:$('viewer'),rootMargin:'200px 0px',threshold:0.01});
+    pageWraps.forEach(function(w){ io.observe(w); });
+  }
+
+  function renderPage(p){
+    if(rendered[p]==='done'||rendered[p]==='doing') return;
+    rendered[p]='doing';
+    pdfDoc.getPage(p).then(function(page){
+      var s=scaleFor(base1.w,base1.h);
+      var vp=page.getViewport({scale:s,rotation:rotation});
+      var wrap=pageWraps[p-1]; if(!wrap){ rendered[p]=null; return; }
+      wrap.style.width=Math.round(vp.width)+'px'; wrap.style.height=Math.round(vp.height)+'px';
+      wrap.innerHTML='';
+      var canvas=document.createElement('canvas'); var ratio=dpr();
+      canvas.width=Math.floor(vp.width*ratio); canvas.height=Math.floor(vp.height*ratio);
+      canvas.style.width=Math.round(vp.width)+'px'; canvas.style.height=Math.round(vp.height)+'px';
+      var ctx=canvas.getContext('2d'); ctx.scale(ratio,ratio);
+      wrap.appendChild(canvas);
+      var tl=document.createElement('div'); tl.className='pv-textlayer'; tl.style.width=Math.round(vp.width)+'px'; tl.style.height=Math.round(vp.height)+'px'; wrap.appendChild(tl);
+      page.render({canvasContext:ctx,viewport:vp}).promise.then(function(){
+        rendered[p]='done';
+        return page.getTextContent();
+      }).then(function(tc){
+        if(!tc) return;
+        try{ pdfjsLib.renderTextLayer({textContentSource:tc, container:tl, viewport:vp, textDivs:[]}); }catch(e){}
+        if(findQuery) highlightIn(tl);
+      }).catch(function(){ rendered[p]='done'; });
+    }).catch(function(){ rendered[p]=null; });
+  }
+
+  function updateCurrent(){
+    var viewer=$('viewer'), top=viewer.scrollTop, best=curPage, bestDist=1e9;
+    pageWraps.forEach(function(w){ var d=Math.abs(w.offsetTop-top-16); if(d<bestDist){ bestDist=d; best=+w.dataset.page; } });
+    if(best!==curPage){ curPage=best; $('pageNum').value=curPage; highlightThumb(curPage); }
+    var prog=numPages>1?((curPage-1)/(numPages-1))*100:100;
+    $('readProgress').style.width=prog+'%';
+  }
+
+  function goTo(p){
+    p=Math.max(1,Math.min(numPages,p)); curPage=p; $('pageNum').value=p;
+    var w=pageWraps[p-1]; if(w){ $('viewer').scrollTo({top:w.offsetTop-16,behavior:'smooth'}); }
+    highlightThumb(p);
+  }
+
+  // ── Thumbnails ─────────────────────────────────────────────
+  function buildThumbs(){
+    var list=$('thumbList'); list.innerHTML='';
+    for(var i=1;i<=numPages;i++){
+      var t=document.createElement('div'); t.className='pv-thumb'; t.dataset.page=i;
+      t.innerHTML='<div class="pv-ph" style="height:120px">'+i+'</div><span class="pv-tn">'+i+'</span>';
+      (function(pg){ t.addEventListener('click',function(){ goTo(pg); }); })(i);
+      list.appendChild(t);
+    }
+    if(thumbIo) thumbIo.disconnect();
+    thumbIo=new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting) renderThumb(+e.target.dataset.page, e.target); }); },{root:$('pvSide'),rootMargin:'150px'});
+    Array.prototype.forEach.call(list.children,function(c){ thumbIo.observe(c); });
+  }
+  function renderThumb(p,el){
+    if(el.dataset.done) return; el.dataset.done='1';
+    pdfDoc.getPage(p).then(function(page){
+      var vp0=page.getViewport({scale:1,rotation:rotation}); var s=160/vp0.width;
+      var vp=page.getViewport({scale:s,rotation:rotation});
+      var c=document.createElement('canvas'); c.width=vp.width; c.height=vp.height;
+      page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise.then(function(){
+        var span='<span class="pv-tn">'+p+'</span>'; el.innerHTML=''; el.appendChild(c); el.insertAdjacentHTML('beforeend',span);
+        if(p===curPage) el.classList.add('on');
+      }).catch(function(){});
+    }).catch(function(){});
+  }
+  function highlightThumb(p){ Array.prototype.forEach.call($('thumbList').children,function(c){ c.classList.toggle('on',+c.dataset.page===p); var on=+c.dataset.page===p; if(on) c.scrollIntoView({block:'nearest'}); }); }
+
+  // ── Outline ────────────────────────────────────────────────
+  function buildOutline(){
+    pdfDoc.getOutline().then(function(outline){
+      var box=$('outlineList');
+      if(!outline || !outline.length){ box.innerHTML='<p style="color:var(--text-dim);padding:6px">No outline in this PDF.</p>'; return; }
+      box.innerHTML='';
+      (function walk(items,depth){
+        items.forEach(function(it){
+          var a=document.createElement('a'); a.textContent=it.title; a.style.paddingLeft=(6+depth*12)+'px'; a.href='#';
+          a.addEventListener('click',function(e){ e.preventDefault(); resolveDest(it.dest); });
+          box.appendChild(a);
+          if(it.items&&it.items.length) walk(it.items,depth+1);
+        });
+      })(outline,0);
+    }).catch(function(){ $('outlineList').innerHTML='<p style="padding:6px">No outline.</p>'; });
+  }
+  function resolveDest(dest){
+    var pr=(typeof dest==='string')?pdfDoc.getDestination(dest):Promise.resolve(dest);
+    pr.then(function(d){ if(!d) return; var ref=d[0]; return pdfDoc.getPageIndex(ref); }).then(function(idx){ if(idx!=null) goTo(idx+1); }).catch(function(){});
+  }
+
+  // ── Find ───────────────────────────────────────────────────
+  function getPageText(p){
+    if(textCache[p]!=null) return Promise.resolve(textCache[p]);
+    return pdfDoc.getPage(p).then(function(pg){ return pg.getTextContent(); }).then(function(tc){ var s=tc.items.map(function(i){return i.str;}).join(' '); textCache[p]=s; return s; });
+  }
+  function runFind(){
+    var q=$('findInput').value; findQuery=q; findMatches=[]; findPos=-1;
+    if(!q){ $('findCount').textContent=''; clearHighlights(); return; }
+    var cs=$('findCase').checked; var needle=cs?q:q.toLowerCase();
+    status('🔍 Searching…');
+    var chain=Promise.resolve();
+    for(var p=1;p<=numPages;p++){ (function(pg){ chain=chain.then(function(){ return getPageText(pg).then(function(txt){ var hay=cs?txt:txt.toLowerCase(); var idx=hay.indexOf(needle); while(idx!==-1){ findMatches.push(pg); idx=hay.indexOf(needle,idx+needle.length); } }); }); })(p); }
+    chain.then(function(){
+      status('');
+      if(!findMatches.length){ $('findCount').textContent='0/0'; return; }
+      findPos=0; $('findCount').textContent='1/'+findMatches.length; goTo(findMatches[0]); scheduleHighlight();
+    });
+  }
+  function stepFind(dir){
+    if(!findMatches.length) return;
+    findPos=(findPos+dir+findMatches.length)%findMatches.length;
+    $('findCount').textContent=(findPos+1)+'/'+findMatches.length;
+    goTo(findMatches[findPos]); scheduleHighlight();
+  }
+  function scheduleHighlight(){ setTimeout(function(){ var w=pageWraps[curPage-1]; if(w){ var tl=w.querySelector('.pv-textlayer'); if(tl) highlightIn(tl); } },400); }
+  function clearHighlights(){ document.querySelectorAll('.pv-textlayer mark').forEach(function(m){ var t=document.createTextNode(m.textContent); m.parentNode.replaceChild(t,m); }); }
+  function highlightIn(tl){
+    if(!findQuery) return;
+    var cs=$('findCase').checked; var q=findQuery;
+    var rx; try{ rx=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'), cs?'g':'gi'); }catch(e){ return; }
+    Array.prototype.forEach.call(tl.querySelectorAll('span'),function(sp){
+      var t=sp.textContent; if(!t) return; if(!rx.test(t)) return; rx.lastIndex=0;
+      sp.innerHTML=t.replace(rx,function(m){ return '<mark>'+m+'</mark>'; });
+    });
+  }
+
+  // ── Zoom / rotate / modes ──────────────────────────────────
+  function reflow(){ buildLayout(); goTo(curPage); }
+  function setZoom(v){ zoomMode=v; $('zoomSelect').value=(typeof v==='string')?v:String(v); reflow(); }
+  function zoomStep(d){
+    var cur = (zoomMode==='fit-width'||zoomMode==='fit-page') ? (scaleFor(base1.w,base1.h)) : (parseFloat(zoomMode)||1);
+    setZoom(Math.max(0.25,Math.min(3, +(cur+d).toFixed(2))));
+  }
+
+  // ── Load ───────────────────────────────────────────────────
+  function loadFile(file){
+    if(!file || file.type!=='application/pdf'){ status('⚠️ Please choose a PDF file.'); return; }
+    srcName=file.name; srcBlob=file; status('⏳ Opening…');
+    file.arrayBuffer().then(function(buf){
+      pdfjsLib.getDocument({data:buf.slice(0)}).promise.then(function(doc){ ready(doc); })
+      .catch(function(err){
+        if(err&&err.name==='PasswordException'){ var pw=prompt('This PDF is password protected. Enter the password:'); if(pw!=null){ pdfjsLib.getDocument({data:buf.slice(0),password:pw}).promise.then(function(d){ ready(d); }).catch(function(){ status('❌ Wrong password or unreadable PDF.'); }); return; } }
+        status('❌ Could not open this PDF: '+(err&&err.message||err));
+      });
+    });
+  }
+  function ready(doc){
+    pdfDoc=doc; numPages=doc.numPages; curPage=1; rotation=0; textCache={};
+    $('fiName').textContent=srcName; $('pageTotal').textContent=numPages; $('pageNum').max=numPages; $('pageNum').value=1;
+    doc.getPage(1).then(function(pg){ var vp=pg.getViewport({scale:1}); base1={w:vp.width,h:vp.height};
+      $('viewerArea').classList.remove('pv-hide'); $('dropzone').classList.add('pv-hide'); status('');
+      buildLayout(); buildThumbs(); buildOutline();
+    });
+  }
+
+  // ── UI ─────────────────────────────────────────────────────
+  function wire(){
+    setupDropzone($('dropzone'),$('fileInput'),function(files){ if(files&&files.length) loadFile(files[0]); });
+    $('dropzone').addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); $('fileInput').click(); }});
+
+    $('firstBtn').addEventListener('click',function(){ goTo(1); });
+    $('prevBtn').addEventListener('click',function(){ goTo(curPage-1); });
+    $('nextBtn').addEventListener('click',function(){ goTo(curPage+1); });
+    $('lastBtn').addEventListener('click',function(){ goTo(numPages); });
+    $('pageNum').addEventListener('change',function(){ goTo(parseInt(this.value,10)||1); });
+
+    $('zoomSelect').addEventListener('change',function(){ setZoom(this.value); });
+    $('zoomInBtn').addEventListener('click',function(){ zoomStep(0.25); });
+    $('zoomOutBtn').addEventListener('click',function(){ zoomStep(-0.25); });
+    $('rotLeftBtn').addEventListener('click',function(){ rotation=(rotation+270)%360; reflow(); });
+    $('rotRightBtn').addEventListener('click',function(){ rotation=(rotation+90)%360; reflow(); });
+
+    $('viewModeBtn').addEventListener('click',function(){ twoUp=!twoUp; this.classList.toggle('on',twoUp); $('viewer').style.display='block'; reflow(); });
+    $('nightBtn').addEventListener('click',function(){ night=!night; $('viewer').classList.toggle('night',night); this.classList.toggle('on',night); });
+    $('sideToggle').addEventListener('click',function(){ $('pvBody').classList.toggle('no-side'); $('pvSide').classList.toggle('pv-hide'); });
+    $('fsBtn').addEventListener('click',function(){ var el=$('viewerArea'); if(!document.fullscreenElement){ (el.requestFullscreen||el.webkitRequestFullscreen||function(){}).call(el); } else { (document.exitFullscreen||function(){}).call(document); } });
+
+    $('tabThumbs').addEventListener('click',function(){ this.classList.add('on'); $('tabOutline').classList.remove('on'); $('thumbList').classList.remove('pv-hide'); $('outlineList').classList.add('pv-hide'); });
+    $('tabOutline').addEventListener('click',function(){ this.classList.add('on'); $('tabThumbs').classList.remove('on'); $('outlineList').classList.remove('pv-hide'); $('thumbList').classList.add('pv-hide'); });
+
+    $('findInput').addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); if(findQuery===this.value && findMatches.length){ stepFind(e.shiftKey?-1:1); } else { runFind(); } } });
+    $('findCase').addEventListener('change',runFind);
+    $('findNext').addEventListener('click',function(){ if(findQuery===$('findInput').value && findMatches.length) stepFind(1); else runFind(); });
+    $('findPrev').addEventListener('click',function(){ stepFind(-1); });
+
+    $('downloadBtn').addEventListener('click',function(){ if(!srcBlob)return; if(window.downloadBlob) downloadBlob(srcName,srcBlob); else { var a=document.createElement('a'); a.href=URL.createObjectURL(srcBlob); a.download=srcName; a.click(); } });
+    $('printBtn').addEventListener('click',function(){ if(!srcBlob)return; var url=URL.createObjectURL(srcBlob); var w=window.open(url); if(w){ w.addEventListener('load',function(){ try{w.print();}catch(e){} }); } });
+    $('clearBtn').addEventListener('click',function(){ pdfDoc=null; srcBlob=null; $('viewer').innerHTML=''; $('thumbList').innerHTML=''; $('viewerArea').classList.add('pv-hide'); $('dropzone').classList.remove('pv-hide'); $('fileInput').value=''; status(''); });
+
+    $('viewer').addEventListener('scroll',updateCurrent,{passive:true});
+    $('viewer').addEventListener('wheel',function(e){ if(e.ctrlKey||e.metaKey){ e.preventDefault(); zoomStep(e.deltaY<0?0.15:-0.15); } },{passive:false});
+    $('viewer').addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='PageDown'){ e.preventDefault(); goTo(curPage+1); }
+      else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); goTo(curPage-1); }
+      else if(e.key==='Home'){ e.preventDefault(); goTo(1); }
+      else if(e.key==='End'){ e.preventDefault(); goTo(numPages); }
+      else if(e.key==='+'||e.key==='='){ zoomStep(0.25); }
+      else if(e.key==='-'){ zoomStep(-0.25); }
+    });
+    window.addEventListener('resize',function(){ if(pdfDoc && (zoomMode==='fit-width'||zoomMode==='fit-page')) reflow(); });
+  }
+
+  function buildFaq(){
+    var list=$('faqList'); if(!list) return;
+    list.innerHTML=FAQ.map(function(f){ return '<details><summary>'+f[0]+'</summary><p>'+f[1]+'</p></details>'; }).join('');
+    try{ var sc=$('faqSchema'); var data=JSON.parse(sc.textContent);
+      data.mainEntity=FAQ.map(function(f){ return {'@type':'Question','name':f[0],'acceptedAnswer':{'@type':'Answer','text':f[1]}}; });
+      sc.textContent=JSON.stringify(data);
+    }catch(e){}
+  }
+
+  function init(){ wire(); buildFaq(); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
 </script>
 </body>
 </html>
