@@ -4,35 +4,101 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Extract embedded images from a PDF free online — preview every picture, see its dimensions, select what you want, and download as PNG, JPG or WEBP individually or as a ZIP. Skip icons, duplicates and transparent images. 100% private, runs in your browser, no upload.">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-extract-images.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Extract Images from PDF | ApneSoftware">
-<meta property="og:description" content="Pull out embedded photos as files. Free online tool — no signup required.">
+<meta property="og:title" content="Extract Images from PDF — Free &amp; Private Image Extractor | ApneSoftware">
+<meta property="og:description" content="Pull embedded images out of a PDF with previews, sizes and multi-select. Download as PNG, JPG or WEBP, single or ZIP. Runs entirely in your browser — nothing is uploaded.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-extract-images.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Extract Images from PDF | ApneSoftware">
-<meta name="twitter:description" content="Pull out embedded photos as files. Free online tool — no signup required.">
+<meta name="twitter:title" content="Extract Images from PDF — Free &amp; Private Image Extractor">
+<meta name="twitter:description" content="Extract embedded PDF images with preview and multi-select; download PNG/JPG/WEBP or ZIP. 100% client-side.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Extract Images from PDF","description":"Pull out embedded photos as files. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-extract-images.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Extract Images from PDF","operatingSystem":"Any (web browser)","applicationCategory":"UtilitiesApplication","description":"Extract embedded images from PDF files online with previews, image dimensions, multi-select, filters and PNG/JPG/WEBP export as single files or a ZIP. Fully client-side and private.","url":"https://apnesoftware.com/tools/pdf-extract-images.html","browserRequirements":"Requires JavaScript. Works in Chrome, Edge, Firefox, Safari.","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
-<meta name="color-scheme" content="dark">
-<title>Extract Images from PDF | ApneSoftware</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Extract Images from PDF Tool","url":"https://apnesoftware.com/tools/pdf-extract-images.html","description":"Free online tool to extract embedded images from a PDF with preview, selection and multiple export formats, entirely in your browser.","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"inLanguage":"en"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://apnesoftware.com/index.html#pdf"},{"@type":"ListItem","position":3,"name":"Extract Images from PDF","item":"https://apnesoftware.com/tools/pdf-extract-images.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to extract images from a PDF","description":"Extract embedded images from a PDF for free in your browser.","step":[{"@type":"HowToStep","name":"Upload PDF","text":"Drag and drop your PDF onto the upload area or click to browse and select it."},{"@type":"HowToStep","name":"Scan","text":"The tool scans every page and shows each embedded image with its size and page number."},{"@type":"HowToStep","name":"Filter and select","text":"Optionally skip small icons, duplicates and transparent images, then select the images you want."},{"@type":"HowToStep","name":"Choose format","text":"Pick PNG, JPG or WEBP and a quality level."},{"@type":"HowToStep","name":"Download","text":"Download images individually or all selected images at once as a ZIP."}]}
+</script>
+<!-- FAQ schema (populated at runtime) -->
+<script type="application/ld+json" id="faqSchema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}</script>
+
+<meta name="color-scheme" content="dark light">
+<title>Extract Images from PDF — Free &amp; Private Image Extractor | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
-.dropzone{cursor:pointer}
-.dropzone p{font-size:.9rem}
-.panel{position:relative;z-index:1}
-</style>
-<style>
-  .img-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin-top:18px}
-  .img-card{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center}
-  .img-card img{width:100%;height:100px;object-fit:contain;border-radius:4px;background:#fff}
-  .img-card .lbl{font-size:.72rem;color:var(--text-dim);margin:6px 0}
-  .img-card button{width:100%;padding:6px;font-size:.78rem}
+/* ── Extract Images tool — scoped styles (ex-) ───────────────── */
+.ex-scope{--ex-accent:#A78BFA;--ex-accent2:#7C3AED;}
+.ex-hide{display:none !important;}
+.ex-drop{cursor:pointer;transition:border-color .2s,background .2s;}
+.ex-drop.drag{border-color:var(--ex-accent);background:rgba(167,139,250,.08);}
+.ex-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px;padding:12px;background:var(--surface-2,rgba(255,255,255,.03));border:1px solid var(--border);border-radius:12px;}
+.ex-fileinfo{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.82rem;}
+.ex-fileinfo .k{color:var(--text-dim);}
+.ex-field{display:flex;flex-direction:column;gap:4px;}
+.ex-field label{font-size:.75rem;color:var(--text-dim);}
+.ex-field select,.ex-field input[type=text],.ex-field input[type=number]{background:var(--surface,rgba(0,0,0,.25));color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 9px;font-family:var(--font);font-size:.85rem;outline:none;}
+.ex-field select:focus,.ex-field input:focus{border-color:var(--ex-accent);}
+.ex-check{display:inline-flex;align-items:center;gap:7px;font-size:.83rem;cursor:pointer;}
+.ex-check input{accent-color:var(--ex-accent);}
+.ex-btn{background:linear-gradient(135deg,var(--ex-accent),var(--ex-accent2));color:#fff;border:0;border-radius:9px;padding:9px 14px;font:inherit;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px;}
+.ex-btn:disabled{opacity:.5;cursor:not-allowed;}
+.ex-btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text);font-weight:500;}
+.ex-btn.sm{padding:6px 10px;font-size:.82rem;}
+.ex-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0;}
+.ex-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:8px;}
+.ex-grid.list{grid-template-columns:1fr;}
+.ex-card{position:relative;background:var(--surface-2,rgba(255,255,255,.03));border:1px solid var(--border);border-radius:10px;padding:8px;text-align:center;transition:border-color .15s;}
+.ex-card.sel{border-color:var(--ex-accent);box-shadow:0 0 0 2px rgba(167,139,250,.35);}
+.ex-grid.list .ex-card{display:flex;align-items:center;gap:14px;text-align:left;}
+.ex-card .ex-thumb{width:100%;height:110px;object-fit:contain;border-radius:6px;background:#fff;cursor:zoom-in;}
+.ex-grid.list .ex-thumb{width:90px;height:70px;flex:none;}
+.ex-card .ex-meta{font-size:.72rem;color:var(--text-dim);margin:6px 0;line-height:1.4;}
+.ex-card .ex-cbx{position:absolute;top:10px;left:10px;width:18px;height:18px;accent-color:var(--ex-accent);}
+.ex-grid.list .ex-cbx{position:static;}
+.ex-card .ex-dl{width:100%;}
+.ex-grid.list .ex-info{flex:1;}
+.ex-prog{height:8px;background:var(--surface,rgba(0,0,0,.3));border-radius:6px;overflow:hidden;margin-top:12px;}
+.ex-prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ex-accent),var(--ex-accent2));transition:width .15s;}
+.ex-status{margin-top:10px;font-size:.9rem;color:var(--text-dim);min-height:1.2em;}
+/* lightbox */
+.ex-lb{position:fixed;inset:0;background:rgba(0,0,0,.9);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;gap:12px;}
+.ex-lb img{max-width:92vw;max-height:78vh;object-fit:contain;background:#fff;border-radius:4px;transition:transform .15s;}
+.ex-lb .ex-lbbar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+.ex-lb .ex-lbbar button{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:8px 12px;cursor:pointer;}
+.ex-lb .ex-lbcap{color:#fff;font-size:.85rem;}
+/* below-tool content */
+.ex-wrap{max-width:1040px;margin:26px auto 0;padding:0 6px;}
+.ex-title{display:flex;align-items:center;gap:12px;margin:26px 0 14px;}
+.ex-title h2{font-size:1.25rem;font-weight:800;margin:0;white-space:nowrap;}
+.ex-title::before,.ex-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.10);}
+.ex-lead{color:var(--text-dim);font-size:.95rem;line-height:1.8;margin:0 6px;}
+.ex-feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.ex-fcard{border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.03));border-radius:14px;padding:16px;transition:.2s;}
+.ex-fcard:hover{border-color:var(--ex-accent);transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.14);}
+.ex-fcard h3{font-size:.92rem;font-weight:700;margin:0 0 6px;display:flex;align-items:center;gap:8px;}
+.ex-fcard p{font-size:.84rem;color:var(--text-dim);line-height:1.65;margin:0;}
+.ex-about ol,.ex-about > p{color:var(--text-dim);font-size:.92rem;line-height:1.8;padding-left:6px;}
+.ex-about ol{padding-left:24px;}
+.ex-related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:10px 0 4px;}
+.ex-related a{display:block;background:var(--surface-2,rgba(255,255,255,.03));border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text);transition:border-color .2s,transform .15s;}
+.ex-related a:hover{border-color:var(--ex-accent);transform:translateY(-2px);}
+.ex-related b{display:block;font-size:.92rem;margin-bottom:3px;}
+.ex-related span{font-size:.78rem;color:var(--text-dim);}
+#faqList details{border:1px solid var(--border);border-radius:10px;padding:0 14px;margin:8px 0;background:var(--surface-2,rgba(255,255,255,.02));}
+#faqList summary{cursor:pointer;padding:13px 0;font-weight:600;font-size:.95rem;}
+#faqList details[open]{padding-bottom:6px;}
+#faqList p{margin:0 0 12px;line-height:1.65;color:var(--text-dim);}
+:focus-visible{outline:2px solid var(--ex-accent);outline-offset:2px;}
 </style>
 </head>
 <body>
@@ -44,167 +110,478 @@
 </header>
 
 <div class="container">
+  <div class="ex-scope" id="exScope">
   <div class="tool-header">
     <h1>🖼️ Extract Images from PDF</h1>
-    <p>Pull out every embedded photo or picture inside a PDF as separate image files.</p>
+    <p>Pull every embedded picture out of a PDF — preview each one, see its size, pick the ones you want, and download as PNG, JPG or WEBP. Everything runs in your browser; your file is never uploaded.</p>
   </div>
 
   <div class="panel">
-    <div class="dropzone" id="dropzone">
-      <p>📤 Drag a PDF file here or click to choose</p>
-      <input type="file" id="fileInput" accept="application/pdf">
+    <div class="dropzone ex-drop" id="dropzone" role="button" tabindex="0" aria-label="Upload PDF file">
+      <p>📤 Drag &amp; drop your PDF here, or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf" hidden>
     </div>
 
-    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+    <div class="ex-prog ex-hide" id="progWrap"><i id="progFill"></i></div>
+    <p class="ex-status" id="statusMsg" role="status" aria-live="polite"></p>
 
-    <div class="btn-row" id="downloadAllRow" style="display:none">
-      <button class="btn" id="downloadAllBtn">⬇️ Download All Images</button>
+    <div id="workspace" class="ex-hide">
+      <div class="ex-bar">
+        <div class="ex-fileinfo">
+          <span><span class="k">File:</span> <b id="fiName">—</b></span>
+          <span><span class="k">Size:</span> <span id="fiSize">—</span></span>
+          <span><span class="k">Pages:</span> <span id="fiPages">—</span></span>
+          <span><span class="k">Images:</span> <span id="fiImages">—</span></span>
+          <span><span class="k">Shown:</span> <span id="fiShown">—</span></span>
+        </div>
+      </div>
+
+      <div class="ex-bar" style="margin-top:10px">
+        <div class="ex-field"><label for="fmtSelect">Format</label>
+          <select id="fmtSelect"><option value="png">PNG</option><option value="jpeg">JPG</option><option value="webp">WEBP</option></select></div>
+        <div class="ex-field"><label for="qualSelect">Quality</label>
+          <select id="qualSelect"><option value="1">Original / High</option><option value="0.85">High</option><option value="0.7">Medium</option><option value="0.5">Compressed</option></select></div>
+        <div class="ex-field"><label for="prefixInput">Name prefix</label>
+          <input type="text" id="prefixInput" value="image" style="width:120px"></div>
+        <div class="ex-field"><label for="pageFilter">Only page(s)</label>
+          <input type="text" id="pageFilter" placeholder="all, e.g. 1-3,5" style="width:110px"></div>
+      </div>
+
+      <div class="ex-bar" style="margin-top:10px">
+        <label class="ex-check"><input type="checkbox" id="fltSmall"> Skip small icons (&lt; 48px)</label>
+        <label class="ex-check"><input type="checkbox" id="fltDup"> Skip duplicate images</label>
+        <label class="ex-check"><input type="checkbox" id="fltTransp"> Skip mostly-transparent</label>
+      </div>
+
+      <div class="ex-tools">
+        <button class="ex-btn sm ghost" id="selAllBtn">Select all</button>
+        <button class="ex-btn sm ghost" id="selNoneBtn">Deselect</button>
+        <button class="ex-btn sm ghost" id="selInvBtn">Invert</button>
+        <button class="ex-btn sm ghost" id="viewBtn">☰ List view</button>
+        <span style="flex:1"></span>
+        <button class="ex-btn" id="downloadSelBtn">⬇️ Download selected (ZIP)</button>
+        <button class="ex-btn ghost" id="downloadAllBtn">⬇️ Download all (ZIP)</button>
+        <button class="ex-btn ghost" id="clearBtn">🗑️ New file</button>
+      </div>
+
+      <div class="ex-grid" id="imgGrid"></div>
+      <div class="btn-row ex-hide" id="downloadAllRow"></div>
     </div>
-
-    <div class="img-grid" id="imgGrid"></div>
+  </div>
   </div>
 </div>
 
-
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>This tool scans a PDF for every embedded image (photo, logo, scanned picture) and lets you download each one separately as a PNG file. It finds actual embedded images, not full rendered pages.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your PDF.</li>
-        <li>Every image found inside it appears below automatically.</li>
-        <li>Download images one at a time, or all at once.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल PDF के अंदर मौजूद हर इमेज (फोटो, लोगो, स्कैन की हुई तस्वीर) ढूंढकर अलग-अलग PNG फाइल के रूप में डाउनलोड करने देता है। यह असली embedded इमेज ढूंढता है, पूरे पेज की तस्वीर नहीं।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी PDF अपलोड करें।</li>
-        <li>उसमें मौजूद हर इमेज अपने आप नीचे दिख जाएगी।</li>
-        <li>एक-एक करके या सभी एक साथ डाउनलोड करें।</li>
-      </ol>
-    </div>
+<!-- lightbox -->
+<div class="ex-lb ex-hide" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+  <img id="lbImg" alt="Extracted image preview">
+  <div class="ex-lbcap" id="lbCap"></div>
+  <div class="ex-lbbar">
+    <button id="lbPrev" aria-label="Previous">‹ Prev</button>
+    <button id="lbZoomOut" aria-label="Zoom out">−</button>
+    <button id="lbZoomIn" aria-label="Zoom in">+</button>
+    <button id="lbRotate" aria-label="Rotate">⟳ Rotate</button>
+    <button id="lbDl" aria-label="Download">⬇️ Download</button>
+    <button id="lbNext" aria-label="Next">Next ›</button>
+    <button id="lbClose" aria-label="Close">✕ Close</button>
   </div>
 </div>
+
+<!-- ── Below-tool content ─────────────────────────────────────── -->
+<section class="ex-wrap" aria-labelledby="introH">
+  <div class="ex-title"><h2 id="introH">🖼️ Extract Images from PDF — Save Every Picture</h2></div>
+  <p class="ex-lead">The <strong>ApneSoftware Extract Images from PDF</strong> tool finds every embedded picture inside a PDF — photos, logos, scans and figures — and lets you preview each one, see its size and page, select the images you want, and download them as PNG, JPG or WEBP, individually or all at once in a ZIP. It extracts the real embedded images at their original resolution, not screenshots of the page, and everything runs inside your browser without uploading your file.</p>
+
+  <div class="ex-title"><h2>✨ Key Features</h2></div>
+  <div class="ex-feature-grid">
+    <div class="ex-fcard"><h3>🔍 Real Extraction</h3><p>Finds actual embedded image objects at their original resolution — not rendered page screenshots.</p></div>
+    <div class="ex-fcard"><h3>🖼️ Preview &amp; Info</h3><p>Thumbnail, page number, index and pixel dimensions for every image, in grid or list view.</p></div>
+    <div class="ex-fcard"><h3>✅ Multi-select</h3><p>Select all, deselect, invert, or tick individual images to export just what you need.</p></div>
+    <div class="ex-fcard"><h3>📦 PNG / JPG / WEBP</h3><p>Export in your chosen format and quality, as single files or a single ZIP.</p></div>
+    <div class="ex-fcard"><h3>🧹 Smart Filters</h3><p>Skip tiny icons, duplicate images, mostly-transparent graphics, or limit to a page range.</p></div>
+    <div class="ex-fcard"><h3>🔎 Full-screen Preview</h3><p>Open any image with zoom, rotate and next/previous navigation.</p></div>
+    <div class="ex-fcard"><h3>🏷️ Custom Naming</h3><p>Set a name prefix; files are numbered sequentially for tidy output.</p></div>
+    <div class="ex-fcard"><h3>🔒 100% Private</h3><p>Everything runs in your browser; your PDF is never uploaded.</p></div>
+  </div>
+
+  <div class="ex-title"><h2>🎁 Benefits</h2></div>
+  <div class="ex-feature-grid">
+    <div class="ex-fcard"><h3>♻️ Reuse Assets</h3><p>Recover logos, photos and diagrams from a PDF to reuse in documents and slides.</p></div>
+    <div class="ex-fcard"><h3>🎯 Original Quality</h3><p>Get images at the resolution stored in the PDF, without re-screenshotting.</p></div>
+    <div class="ex-fcard"><h3>⏱️ Fast &amp; Batch</h3><p>Grab every image in one ZIP instead of saving them one by one.</p></div>
+    <div class="ex-fcard"><h3>🔐 Private</h3><p>Sensitive documents stay on your own device from start to finish.</p></div>
+    <div class="ex-fcard"><h3>🆓 Free &amp; Unlimited</h3><p>No installs, no accounts, and no watermark added by us.</p></div>
+  </div>
+</section>
+
+<section class="ex-wrap" aria-labelledby="relatedH">
+  <div class="ex-title"><h2 id="relatedH">🔗 Related Tools</h2></div>
+  <div class="ex-related">
+    <a href="pdf-to-image.html"><b>PDF to JPG</b><span>Render pages as images</span></a>
+    <a href="image-to-pdf.html"><b>Image to PDF</b><span>Combine images into a PDF</span></a>
+    <a href="pdf-extract-text.html"><b>Extract Text</b><span>Get text from a PDF</span></a>
+    <a href="pdf-merge.html"><b>Merge PDF</b><span>Combine multiple PDFs</span></a>
+    <a href="pdf-split.html"><b>Split PDF</b><span>Split into separate files</span></a>
+    <a href="pdf-compress.html"><b>Compress PDF</b><span>Reduce PDF file size</span></a>
+    <a href="pdf-crop.html"><b>Crop PDF</b><span>Trim page margins</span></a>
+    <a href="pdf-rotate.html"><b>Rotate PDF</b><span>Rotate PDF pages</span></a>
+    <a href="pdf-grayscale.html"><b>PDF Grayscale</b><span>Convert to grayscale</span></a>
+    <a href="pdf-watermark.html"><b>PDF Watermark</b><span>Add a watermark</span></a>
+  </div>
+</section>
+
+<section class="ex-wrap" aria-labelledby="aboutH">
+  <div class="ex-title"><h2 id="aboutH">ℹ️ About This Tool</h2></div>
+  <div class="info-wrap" style="max-width:100%;padding:0">
+    <div class="info-section">
+      <article class="info-block ex-about">
+        <h2>About the Extract Images from PDF Tool (English)</h2>
+        <p>PDFs are containers, and the pictures you see on the page — a company logo, a product photo, a scanned signature, a chart or a figure in a report — are usually stored inside the file as separate embedded image objects. The ApneSoftware Extract Images from PDF tool reaches into the file, finds those embedded images, and hands them back to you as ordinary image files you can save, reuse and edit. Crucially, it recovers the <em>actual</em> images at the resolution they were stored, rather than taking a screenshot of the rendered page, so a high-resolution photo embedded in a PDF comes out at its full quality.</p>
+
+        <p>Getting an image back out of a PDF is a surprisingly common need. You might have received a brochure and want the product photos, inherited a report whose charts you need for a presentation, scanned documents whose page images you want as JPGs, or simply lost the original of a logo that only survives inside an old PDF. Copy-and-paste from a PDF viewer is unreliable and often gives you a blurry, downscaled version; this tool gives you the genuine embedded asset. And because it runs entirely in your browser, you can do all of this with confidential material without sending it to any server.</p>
+
+        <p>When you upload a PDF, the tool scans every page, reads the page's drawing instructions, and pulls out each embedded image object it finds. Each image is shown in a <strong>preview grid</strong> (or a detailed <strong>list view</strong>) with its <strong>pixel dimensions</strong>, the <strong>page it came from</strong>, and its <strong>index</strong>, so you can quickly identify the ones you want. A running <strong>progress bar</strong> and a live count keep you informed while larger documents are scanned, and a <strong>file information panel</strong> shows the file name, size, page count and the total number of images found.</p>
+
+        <p>Real PDFs often contain more images than you actually want — tiny interface icons, repeated header logos, decorative rules, or the same picture used on many pages. To keep your results clean the tool offers practical <strong>filters</strong>: <strong>skip small icons</strong> removes images below a minimum pixel size; <strong>skip duplicates</strong> detects images that are visually identical (using a compact signature of each image) and keeps only the first; and <strong>skip mostly-transparent</strong> hides graphics that are largely see-through, which are usually overlays rather than content. You can also limit extraction to a <strong>specific page or page range</strong> such as <em>1-3, 5</em>, which is ideal when you only need the pictures from one chapter or section.</p>
+
+        <p>Selecting what to save is simple. Every image has a checkbox, and you can <strong>select all</strong>, <strong>deselect</strong> everything, or <strong>invert</strong> your selection with one click. When you are ready, choose an export <strong>format</strong> — PNG for lossless quality and transparency, JPG for small photographic files, or WEBP for a modern balance of size and quality — and a <strong>quality</strong> level for the lossy formats. Then download images one at a time, or grab everything you selected in a single <strong>ZIP archive</strong> with sequential, tidy file names based on a prefix you choose. A full-screen <strong>preview</strong> lets you zoom in, rotate and step through images before deciding, so you never save the wrong one.</p>
+
+        <p>It helps to understand what the tool can and cannot do, because PDFs vary. It extracts <strong>raster (bitmap) images</strong> that are embedded in the file — photographs, scans and exported graphics. Vector artwork drawn directly with PDF path commands (many logos, icons and charts) is not stored as an image object, so it is drawn rather than embedded and will not appear as an extractable image; for those, rendering the page with our PDF-to-JPG tool is the right approach. Some images may also be split into tiles or masked, in which case they appear as their component pieces. When an image uses an unusual colour space or compression that the browser cannot decode, the tool skips it safely rather than producing a broken file.</p>
+
+        <p>Everything is built for <strong>privacy, speed and convenience</strong>. Your PDF is read and processed entirely on your own device using JavaScript and the browser's imaging APIs; nothing is uploaded, stored or logged, so the tool is safe for contracts, medical records, financial statements and any other sensitive document. <strong>Password-protected PDFs</strong> that you are authorised to open are handled locally, thumbnails load lazily to keep the interface responsive, and large multi-hundred-page documents are supported, limited only by your device's memory. There is no installation, no account and no watermark — just a fast, private way to get the pictures out of any PDF.</p>
+
+        <p>Typical users include designers and marketers recovering brand assets, students and teachers pulling figures from papers and textbooks, office workers extracting scanned pages, and anyone who needs the images from a PDF without the surrounding text and layout. Whether you want a single logo or every photo in a hundred-page catalogue, the tool delivers clean image files in seconds.</p>
+      </article>
+
+      <article class="info-block ex-about">
+        <h2>इस टूल के बारे में (Hindi)</h2>
+        <p>PDF एक container है, और पन्ने पर दिखने वाली तस्वीरें — कंपनी का logo, product photo, scan किया हुआ हस्ताक्षर, कोई chart या report में figure — आमतौर पर file के अंदर अलग embedded image objects के रूप में सहेजी होती हैं। ApneSoftware Extract Images from PDF टूल file के अंदर पहुँचकर वे embedded images ढूँढता है और उन्हें आपको सामान्य image files के रूप में लौटाता है जिन्हें आप save, दोबारा उपयोग और edit कर सकते हैं। खास बात यह है कि यह <em>असली</em> images को उसी resolution पर निकालता है जिस पर वे सहेजी गई थीं, न कि rendered पन्ने का screenshot लेता है — इसलिए PDF में embedded high-resolution photo अपनी पूरी quality में मिलती है।</p>
+
+        <p>PDF से image वापस निकालना आश्चर्यजनक रूप से आम ज़रूरत है। हो सकता है आपको कोई brochure मिला हो और आप product photos चाहते हों, कोई report मिली हो जिसके charts आपको presentation के लिए चाहिए, scan किए documents हों जिनके पन्ने आप JPG के रूप में चाहते हों, या किसी logo का original खो गया हो जो केवल पुरानी PDF के अंदर बचा है। PDF viewer से copy-paste भरोसेमंद नहीं और अक्सर धुंधला, छोटा किया हुआ version देता है; यह टूल असली embedded asset देता है। और चूँकि यह पूरी तरह आपके browser में चलता है, आप यह सब गोपनीय सामग्री के साथ भी बिना किसी server पर भेजे कर सकते हैं।</p>
+
+        <p>जब आप PDF upload करते हैं, टूल हर पन्ने को scan करता है, पन्ने के drawing निर्देश पढ़ता है, और मिलने वाला हर embedded image object निकालता है। हर image एक <strong>preview grid</strong> (या विस्तृत <strong>list view</strong>) में उसके <strong>pixel dimensions</strong>, वह <strong>पन्ना जहाँ से आई</strong>, और उसके <strong>index</strong> के साथ दिखती है, ताकि आप जल्दी पहचान सकें कि आपको कौन-सी चाहिए। एक चलती <strong>progress bar</strong> और live count बड़े documents के scan होते समय आपको सूचित रखते हैं, और एक <strong>file information panel</strong> file का नाम, size, पन्नों की संख्या और मिली कुल images दिखाता है।</p>
+
+        <p>असली PDF में अक्सर उससे ज़्यादा images होती हैं जितनी आप चाहते हैं — छोटे interface icons, दोहराए गए header logos, सजावटी रेखाएँ, या कई पन्नों पर उपयोग हुई वही तस्वीर। परिणाम साफ़ रखने के लिए टूल व्यावहारिक <strong>filters</strong> देता है: <strong>skip small icons</strong> न्यूनतम pixel आकार से छोटी images हटाता है; <strong>skip duplicates</strong> दृश्य रूप से एक-जैसी images पहचानता है (हर image के compact signature से) और केवल पहली रखता है; और <strong>skip mostly-transparent</strong> उन graphics को छिपाता है जो काफ़ी हद तक पारदर्शी हैं, जो आमतौर पर overlay होती हैं, content नहीं। आप extraction को किसी <strong>विशेष पन्ने या page range</strong> जैसे <em>1-3, 5</em> तक भी सीमित कर सकते हैं, जो तब आदर्श है जब आपको केवल एक chapter की तस्वीरें चाहिए।</p>
+
+        <p>क्या save करना है यह चुनना सरल है। हर image में एक checkbox है, और आप एक क्लिक में <strong>सभी चुन</strong> सकते हैं, सब <strong>deselect</strong> कर सकते हैं, या चयन <strong>invert</strong> कर सकते हैं। तैयार होने पर export <strong>format</strong> चुनें — lossless quality और transparency के लिए PNG, छोटी photographic files के लिए JPG, या size और quality के आधुनिक संतुलन के लिए WEBP — और lossy formats के लिए एक <strong>quality</strong> स्तर। फिर images एक-एक करके download करें, या जो चुना है उसे एक <strong>ZIP</strong> में लें, आपके चुने prefix पर आधारित क्रमिक, साफ़ file नामों के साथ। एक full-screen <strong>preview</strong> आपको तय करने से पहले zoom, rotate और images के बीच घूमने देता है, ताकि आप कभी गलत image save न करें।</p>
+
+        <p>यह समझना उपयोगी है कि टूल क्या कर सकता है और क्या नहीं, क्योंकि PDF अलग-अलग होती हैं। यह file में embedded <strong>raster (bitmap) images</strong> निकालता है — photographs, scans और exported graphics। सीधे PDF path commands से बनी vector कलाकृति (कई logos, icons और charts) image object के रूप में सहेजी नहीं होती, इसलिए वह खींची जाती है, embedded नहीं होती, और extractable image के रूप में नहीं दिखेगी; उनके लिए हमारे PDF-to-JPG टूल से पन्ना render करना सही तरीका है। कुछ images tiles में बँटी या masked हो सकती हैं, तब वे अपने घटक टुकड़ों के रूप में दिखती हैं। जब कोई image असामान्य colour space या compression उपयोग करती है जिसे browser decode नहीं कर सकता, टूल उसे सुरक्षित रूप से छोड़ देता है, टूटी file बनाने के बजाय।</p>
+
+        <p>सब कुछ <strong>privacy, गति और सुविधा</strong> के लिए बना है। आपकी PDF आपके अपने device पर JavaScript और browser के imaging APIs से पढ़ी और process की जाती है; कुछ भी upload, store या log नहीं होता, इसलिए टूल contracts, medical records, financial statements और किसी भी संवेदनशील document के लिए सुरक्षित है। जिन <strong>password-protected PDF</strong> को खोलने का आपको अधिकार है वे locally संभाली जाती हैं, thumbnails आलस्य से (lazily) load होते हैं ताकि interface तेज़ रहे, और सैकड़ों पन्नों वाले बड़े documents समर्थित हैं, केवल आपके device की memory तक सीमित। कोई installation नहीं, कोई account नहीं और कोई watermark नहीं — बस किसी भी PDF से तस्वीरें निकालने का एक तेज़, निजी तरीका।</p>
+
+        <p>सामान्य उपयोगकर्ताओं में brand assets वापस पाने वाले designers और marketers, papers व textbooks से figures निकालने वाले students और teachers, scan किए पन्ने निकालने वाले office workers, और कोई भी जिसे आसपास के text और layout के बिना PDF की images चाहिए — शामिल हैं। चाहे आपको एक logo चाहिए या सौ-पन्नों के catalogue की हर photo, टूल कुछ ही सेकंड में साफ़ image files देता है।</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="ex-wrap ex-about" aria-labelledby="howH">
+  <div class="ex-title"><h2 id="howH">📝 How To Use</h2></div>
+  <ol>
+    <li>Drag &amp; drop your PDF onto the upload area, or click to browse.</li>
+    <li>Wait for the scan — every embedded image appears with its size and page.</li>
+    <li>Optionally turn on filters (skip small/duplicate/transparent) or limit to a page range.</li>
+    <li>Select the images you want, or use Select all.</li>
+    <li>Choose a <strong>format</strong> (PNG/JPG/WEBP) and quality, and set a name prefix.</li>
+    <li>Download images individually, or all selected images at once as a <strong>ZIP</strong>.</li>
+  </ol>
+</section>
+
+<section class="ex-wrap ex-faq" aria-labelledby="faqH">
+  <div class="ex-title"><h2 id="faqH">❓ Frequently Asked Questions</h2></div>
+  <div id="faqList"></div>
+</section>
+
+<section class="ex-wrap ex-about" aria-labelledby="privacyH">
+  <div class="ex-title"><h2 id="privacyH">🔒 Privacy</h2></div>
+  <p>This tool is 100% client-side. Your PDF is read and processed entirely in your browser using JavaScript — it is never sent to ApneSoftware or any third party. Nothing is stored, logged or transmitted. When you close or refresh the page, the file and extracted images are cleared from memory. Because there is no upload, you can safely extract images from confidential, legal, medical and financial documents.</p>
+
+  <div class="ex-title"><h2 id="compatH">🌐 Browser Compatibility</h2></div>
+  <p>Works in all modern browsers including Google Chrome, Microsoft Edge, Mozilla Firefox, Safari, Brave and Opera, on Windows, macOS, Linux, Android and iOS. It relies on standard web technologies (Canvas, File API and JavaScript PDF libraries), so no plugins or extensions are required. For very large PDFs a desktop browser with more available memory gives the smoothest experience.</p>
+
+  <div class="ex-title"><h2 id="formatsH">📁 Supported Formats</h2></div>
+  <p><strong>Input:</strong> PDF (.pdf), including password-protected PDFs you are authorised to open. <strong>Extracted image output:</strong> PNG (lossless, keeps transparency), JPG/JPEG and WEBP, downloaded individually or bundled in a ZIP. The tool extracts embedded raster images at their original resolution.</p>
+</section>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+/* ══════════════════════════════════════════════════════════════
+   EXTRACT IMAGES FROM PDF — premium client-side tool (pdf.js + JSZip)
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+  if(window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  var $ = function(id){ return document.getElementById(id); };
 
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-let foundImages = []; // {blob, index}
+  var FAQ = [
+    ["Is my PDF uploaded to a server?","No. The entire extraction runs locally in your browser using JavaScript. Your PDF and the extracted images never leave your device, so it is safe for confidential documents."],
+    ["Does it extract real images or screenshots of pages?","It extracts the real embedded image objects at their stored resolution, not screenshots of the rendered page. If you instead want whole pages as images, use our PDF-to-JPG tool."],
+    ["Which formats can I download images in?","PNG (lossless, keeps transparency), JPG/JPEG and WEBP. For JPG and WEBP you can also choose a quality level."],
+    ["Can I download all images at once?","Yes. Use “Download all (ZIP)” for every shown image, or select specific images and use “Download selected (ZIP)”. You can also download images one at a time."],
+    ["Can I see each image's dimensions?","Yes. Each image shows its pixel width × height, the page it came from and its index, in both grid and list views."],
+    ["Why do some images from the PDF not appear?","Only embedded raster images (photos, scans, exported graphics) can be extracted. Vector artwork drawn with PDF path commands is not stored as an image, so it will not appear here — render the page with PDF-to-JPG instead."],
+    ["What does “skip small icons” do?","It hides images smaller than a minimum pixel size, so tiny interface icons and decorative marks do not clutter your results."],
+    ["How does duplicate skipping work?","The tool computes a compact visual signature for each image and hides later copies that match an earlier one, keeping only the first occurrence."],
+    ["What is “skip mostly-transparent”?","It hides images that are largely see-through, which are usually overlays or effects rather than real picture content."],
+    ["Can I extract images from only some pages?","Yes. Enter a page or range in the “Only page(s)” box, such as 1-3, 5, to show images from just those pages."],
+    ["Can I preview an image before downloading?","Yes. Click any thumbnail to open a full-screen preview with zoom, rotate and next/previous navigation."],
+    ["Will the images keep their original quality?","Yes. Images are extracted at the resolution stored in the PDF. PNG is lossless; JPG and WEBP re-encode at the quality you choose."],
+    ["Does JPG export handle transparency?","JPG has no transparency, so transparent areas are placed on a white background. Choose PNG or WEBP if you need to keep transparency."],
+    ["Can I rename the downloaded files?","Yes. Set a name prefix and files are numbered sequentially, for example image-1.png, image-2.png."],
+    ["Can it handle password-protected PDFs?","If you are authorised to open the file, the tool loads it locally and extracts images. Everything still happens on your device."],
+    ["Is there a limit on file size or number of images?","There is no fixed limit — it depends on your device's memory. Thumbnails load lazily, so large documents remain responsive, though very large files use more memory."],
+    ["Does it work on phones and tablets?","Yes. The layout is responsive, the preview supports touch, and ZIP downloads work on modern mobile browsers."],
+    ["Are the extracted files safe to open?","Yes. They are standard image files created in your browser from the PDF's own image data; nothing external is added."],
+    ["Is the tool free? Do I need an account?","It is completely free with no signup, no watermark added by us, and no usage limits."],
+    ["Which browsers are supported?","All modern browsers — Chrome, Edge, Firefox, Safari, Brave and Opera — on desktop and mobile. No plugins are required."],
+    ["Can I get BMP or TIFF output?","The tool exports the most widely supported web formats — PNG, JPG and WEBP. PNG is the best choice when you need a lossless copy that any program can open."]
+  ];
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
-});
+  // ── State ──────────────────────────────────────────────────
+  var allImages=[];   // {canvas,w,h,page,idx,alphaRatio,sig}
+  var visible=[];     // filtered list currently shown
+  var selected={};    // key -> true (by image uid)
+  var srcName="", listView=false, pdfjsDoc=null;
+  var lbList=[], lbIdx=0, lbZoom=1, lbRot=0;
 
-function imageDataToCanvas(imgData){
-  const canvas = document.createElement('canvas');
-  canvas.width = imgData.width;
-  canvas.height = imgData.height;
-  const ctx = canvas.getContext('2d');
-  const idata = ctx.createImageData(imgData.width, imgData.height);
-  const src = imgData.data;
-  const dst = idata.data;
+  function setProg(p){ var w=$('progWrap'); if(p<0){w.classList.add('ex-hide');return;} w.classList.remove('ex-hide'); $('progFill').style.width=Math.round(p*100)+'%'; }
+  function status(m){ $('statusMsg').textContent=m||''; }
 
-  if(src.length === imgData.width * imgData.height * 4){
-    dst.set(src);
-  } else if(src.length === imgData.width * imgData.height * 3){
-    for(let i=0,j=0; i<src.length; i+=3, j+=4){
-      dst[j]=src[i]; dst[j+1]=src[i+1]; dst[j+2]=src[i+2]; dst[j+3]=255;
-    }
-  } else if(src.length === imgData.width * imgData.height){
-    for(let i=0,j=0; i<src.length; i++, j+=4){
-      dst[j]=src[i]; dst[j+1]=src[i]; dst[j+2]=src[i]; dst[j+3]=255;
-    }
-  } else {
+  // ── Image helpers ──────────────────────────────────────────
+  function imgToCanvas(imgData){
+    var w=imgData.width, h=imgData.height, src=imgData.data;
+    if(!w||!h) return null;
+    var canvas=document.createElement('canvas'); canvas.width=w; canvas.height=h;
+    var ctx=canvas.getContext('2d');
+    if(imgData.bitmap){
+      // pdf.js delivers decoded images as an ImageBitmap
+      try{ ctx.drawImage(imgData.bitmap,0,0,w,h); }catch(e){ return null; }
+    } else if(src && src.length){
+      var idata=ctx.createImageData(w,h); var dst=idata.data; var n=w*h;
+      if(src.length===n*4){ dst.set(src); }
+      else if(src.length===n*3){ for(var i=0,j=0;i<src.length;i+=3,j+=4){ dst[j]=src[i];dst[j+1]=src[i+1];dst[j+2]=src[i+2];dst[j+3]=255; } }
+      else if(src.length===n){ for(var p=0,q=0;p<src.length;p++,q+=4){ dst[q]=src[p];dst[q+1]=src[p];dst[q+2]=src[p];dst[q+3]=255; } }
+      else return null;
+      ctx.putImageData(idata,0,0);
+    } else { return null; }
+    // compute transparent-pixel ratio for the skip-transparent filter
+    var a0=0, tot=w*h;
+    try{ var d2=ctx.getImageData(0,0,w,h).data; for(var a=3;a<d2.length;a+=4){ if(d2[a]<16) a0++; } }catch(e){}
+    canvas._alphaRatio = tot?a0/tot:0;
+    return canvas;
+  }
+  // compact 8x8 signature for duplicate detection
+  function signature(canvas){
+    var c=document.createElement('canvas'); c.width=8; c.height=8;
+    var ctx=c.getContext('2d'); ctx.drawImage(canvas,0,0,8,8);
+    var d=ctx.getImageData(0,0,8,8).data; var s='';
+    for(var i=0;i<d.length;i+=4){ s+=(((d[i]+d[i+1]+d[i+2])/3)>>4).toString(16); }
+    return canvas.width+'x'+canvas.height+':'+s;
+  }
+  var QUALITY_FMT={png:'image/png',jpeg:'image/jpeg',webp:'image/webp'};
+  function canvasToBlob(canvas,fmt,q){
+    return new Promise(function(res){
+      var mime=QUALITY_FMT[fmt]||'image/png';
+      if(fmt==='jpeg'){ // flatten alpha onto white
+        var c=document.createElement('canvas'); c.width=canvas.width; c.height=canvas.height;
+        var ctx=c.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height); ctx.drawImage(canvas,0,0);
+        c.toBlob(function(b){res(b);},mime,q); return;
+      }
+      canvas.toBlob(function(b){res(b);},mime, fmt==='png'?undefined:q);
+    });
+  }
+  function ext(fmt){ return fmt==='jpeg'?'jpg':fmt; }
+
+  // ── Range parse ────────────────────────────────────────────
+  function parseRange(str,max){
+    str=(str||'').trim(); if(!str||str.toLowerCase()==='all') return null;
+    var set={}; str.split(',').forEach(function(part){ part=part.trim(); if(!part)return; var m=part.match(/^(\d+)\s*-\s*(\d+)$/); if(m){var a=+m[1],b=+m[2]; if(a>b){var t=a;a=b;b=t;} for(var i=a;i<=b;i++) if(i>=1&&i<=max)set[i]=1;} else if(/^\d+$/.test(part)){var n=+part; if(n>=1&&n<=max)set[n]=1;} });
+    return set;
+  }
+
+  // ── Scan PDF ───────────────────────────────────────────────
+  function loadFile(file){
+    if(!file || file.type!=='application/pdf'){ status('⚠️ Please choose a PDF file.'); return; }
+    srcName=file.name; status('⏳ Loading…'); setProg(0.05);
+    file.arrayBuffer().then(function(buf){
+      pdfjsLib.getDocument({data:buf.slice(0)}).promise.then(function(doc){ scan(doc,file); })
+      .catch(function(err){
+        if(err&&err.name==='PasswordException'){ var pw=prompt('This PDF is password protected. Enter the password:'); if(pw!=null){ pdfjsLib.getDocument({data:buf.slice(0),password:pw}).promise.then(function(d){ scan(d,file); }).catch(function(){ setProg(-1); status('❌ Wrong password or unreadable PDF.'); }); return; } }
+        setProg(-1); status('❌ Could not read this PDF: '+(err&&err.message||err));
+      });
+    });
+  }
+
+  // read a resolved image object synchronously (after the page has rendered).
+  // images used on a single page live in page.objs; images shared across
+  // pages are promoted to page.commonObjs — check both.
+  function readObj(page,id){
+    try{ if(page.objs.has && page.objs.has(id)) return page.objs.get(id); }catch(e){}
+    try{ if(page.commonObjs && page.commonObjs.has && page.commonObjs.has(id)) return page.commonObjs.get(id); }catch(e){}
+    try{ return page.objs.get(id); }catch(e){}
     return null;
   }
-  ctx.putImageData(idata, 0, 0);
-  return canvas;
-}
+  // rendering resolves image XObjects into page.objs; do it once per page off-screen
+  function renderToResolve(page){
+    return new Promise(function(resolve){
+      try{
+        var base=page.getViewport({scale:1});
+        var scale=Math.min(3, 2200/Math.max(base.width,base.height,1));
+        var vp=page.getViewport({scale:Math.max(1,scale)});
+        var c=document.createElement('canvas'); c.width=Math.max(1,Math.round(vp.width)); c.height=Math.max(1,Math.round(vp.height));
+        var task=page.render({canvasContext:c.getContext('2d'),viewport:vp});
+        task.promise.then(function(){ resolve(); }).catch(function(){ resolve(); });
+      }catch(e){ resolve(); }
+    });
+  }
 
-async function handleFile(file){
-  const status = document.getElementById('statusMsg');
-  const grid = document.getElementById('imgGrid');
-  grid.innerHTML = '';
-  foundImages = [];
-  status.textContent = '⏳ Scanning for images...';
-
-  try{
-    const arrayBuf = await file.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
-    let count = 0;
-
-    for(let i=1; i<=pdf.numPages; i++){
-      status.textContent = `⏳ Scanning page ${i}/${pdf.numPages}...`;
-      const page = await pdf.getPage(i);
-      const ops = await page.getOperatorList();
-      const fns = ops.fnArray;
-      const args = ops.argsArray;
-
-      for(let k=0; k<fns.length; k++){
-        if(fns[k] === pdfjsLib.OPS.paintImageXObject || fns[k] === pdfjsLib.OPS.paintImageXObjectRepeat){
-          const objId = args[k][0];
+  function scan(doc,file){
+    pdfjsDoc=doc;
+    allImages=[]; selected={};
+    $('fiName').textContent=srcName; $('fiSize').textContent=formatBytes(file.size); $('fiPages').textContent=doc.numPages;
+    $('workspace').classList.remove('ex-hide'); $('dropzone').classList.add('ex-hide');
+    var uid=0;
+    (async function(){
+      for(var pnum=1;pnum<=doc.numPages;pnum++){
+        status('⏳ Scanning page '+pnum+'/'+doc.numPages+'…'); setProg(pnum/doc.numPages);
+        var page; try{ page=await doc.getPage(pnum); }catch(e){ continue; }
+        var ops; try{ ops=await page.getOperatorList(); }catch(e){ continue; }
+        // render the page so its embedded image objects are dispatched/resolved
+        await renderToResolve(page);
+        var fns=ops.fnArray, args=ops.argsArray;
+        for(var k=0;k<fns.length;k++){
+          var isImg = fns[k]===pdfjsLib.OPS.paintImageXObject || fns[k]===pdfjsLib.OPS.paintImageXObjectRepeat;
+          var isInline = fns[k]===pdfjsLib.OPS.paintInlineImageXObject;
+          if(!isImg && !isInline) continue;
           try{
-            const imgData = await new Promise((resolve, reject) => {
-              page.objs.get(objId, (data)=> resolve(data));
-              setTimeout(()=> reject(new Error('timeout')), 5000);
-            });
-            if(!imgData || !imgData.width) continue;
-            const canvas = imageDataToCanvas(imgData);
-            if(!canvas) continue;
-            await new Promise(resolve => {
-              canvas.toBlob(blob => {
-                if(blob && blob.size > 200){
-                  count++;
-                  foundImages.push({ blob, index: count });
-                  const card = document.createElement('div');
-                  card.className = 'img-card';
-                  card.innerHTML = `
-                    <img src="${URL.createObjectURL(blob)}">
-                    <div class="lbl">Image ${count} (page ${i})</div>
-                    <button class="btn secondary" onclick="downloadOne(${foundImages.length-1})">⬇️ Download</button>`;
-                  grid.appendChild(card);
-                }
-                resolve();
-              }, 'image/png');
-            });
-          }catch(e){ /* skip image that can't be read */ }
+            var imgData;
+            if(isInline){ imgData=args[k][0]; }
+            else { imgData=readObj(page,args[k][0]); }
+            if(!imgData || !imgData.width || !(imgData.data || imgData.bitmap)) continue;
+            var canvas=imgToCanvas(imgData);
+            if(!canvas || canvas.width<2 || canvas.height<2) continue;
+            uid++;
+            allImages.push({ canvas:canvas, w:canvas.width, h:canvas.height, page:pnum, idx:allImages.length+1, uid:uid, alphaRatio:canvas._alphaRatio||0, sig:signature(canvas) });
+          }catch(e){}
         }
       }
-    }
-
-    if(count === 0){
-      status.textContent = '⚠️ No embedded images found in this PDF.';
-    } else {
-      status.textContent = `✅ Found ${count} image(s)`;
-      document.getElementById('downloadAllRow').style.display = 'flex';
-    }
-  }catch(err){
-    status.textContent = '❌ Error: ' + err.message;
+      setProg(-1);
+      $('fiImages').textContent=allImages.length;
+      if(allImages.length===0){ status('⚠️ No embedded raster images found. (Vector graphics can’t be extracted — try PDF to JPG.)'); render(); return; }
+      status('✅ Found '+allImages.length+' image(s).');
+      // select all by default
+      allImages.forEach(function(im){ selected[im.uid]=true; });
+      render();
+    })();
   }
-}
 
-function downloadOne(idx){
-  const item = foundImages[idx];
-  downloadBlob(`image-${item.index}.png`, item.blob);
-}
+  // ── Filters + render ───────────────────────────────────────
+  function computeVisible(){
+    var skipSmall=$('fltSmall').checked, skipDup=$('fltDup').checked, skipTr=$('fltTransp').checked;
+    var pageSet=parseRange($('pageFilter').value, pdfjsDoc?pdfjsDoc.numPages:1);
+    var seen={}; visible=[];
+    allImages.forEach(function(im){
+      if(skipSmall && (im.w<48 || im.h<48)) return;
+      if(skipTr && im.alphaRatio>0.6) return;
+      if(pageSet && !pageSet[im.page]) return;
+      if(skipDup){ if(seen[im.sig]) return; seen[im.sig]=1; }
+      visible.push(im);
+    });
+  }
 
-document.getElementById('downloadAllBtn').addEventListener('click', ()=>{
-  foundImages.forEach((item, i) => {
-    setTimeout(()=> downloadBlob(`image-${item.index}.png`, item.blob), i * 300);
-  });
-});
+  function render(){
+    computeVisible();
+    var grid=$('imgGrid'); grid.className='ex-grid'+(listView?' list':'');
+    grid.innerHTML='';
+    $('fiShown').textContent=visible.length;
+    visible.forEach(function(im,i){
+      var url=im.canvas.toDataURL('image/png');
+      var card=document.createElement('div');
+      card.className='ex-card'+(selected[im.uid]?' sel':'');
+      card.innerHTML=
+        '<input type="checkbox" class="ex-cbx" '+(selected[im.uid]?'checked':'')+' aria-label="Select image '+im.idx+'">'+
+        '<img class="ex-thumb" loading="lazy" src="'+url+'" alt="Image '+im.idx+' from page '+im.page+'">'+
+        '<div class="ex-info"><div class="ex-meta">#'+im.idx+' · page '+im.page+'<br>'+im.w+' × '+im.h+' px</div>'+
+        '<button class="ex-btn sm ghost ex-dl">⬇️ Download</button></div>';
+      var cbx=card.querySelector('.ex-cbx');
+      cbx.addEventListener('change',function(){ selected[im.uid]=this.checked; card.classList.toggle('sel',this.checked); });
+      card.querySelector('.ex-thumb').addEventListener('click',function(){ openLightbox(i); });
+      card.querySelector('.ex-dl').addEventListener('click',function(){ downloadOne(im); });
+      grid.appendChild(card);
+    });
+  }
+
+  // ── Download ───────────────────────────────────────────────
+  function fmt(){ return $('fmtSelect').value; }
+  function qual(){ return parseFloat($('qualSelect').value)||1; }
+  function fname(n){ return ($('prefixInput').value.trim()||'image')+'-'+n+'.'+ext(fmt()); }
+
+  function downloadOne(im){
+    canvasToBlob(im.canvas,fmt(),qual()).then(function(b){ if(window.downloadBlob)downloadBlob(fname(im.idx),b); else { var a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=fname(im.idx); a.click(); } });
+  }
+  function downloadZip(list){
+    if(!list.length){ status('⚠️ No images selected.'); return; }
+    if(!window.JSZip){ status('❌ ZIP library not loaded.'); return; }
+    status('⏳ Building ZIP…'); setProg(0.1);
+    var zip=new JSZip(), done=0;
+    Promise.all(list.map(function(im){ return canvasToBlob(im.canvas,fmt(),qual()).then(function(b){ zip.file(fname(im.idx),b); done++; setProg(0.1+0.6*done/list.length); }); }))
+    .then(function(){ return zip.generateAsync({type:'blob'},function(md){ setProg(0.7+0.3*(md.percent/100)); }); })
+    .then(function(blob){ var name=($('prefixInput').value.trim()||'images')+'.zip'; if(window.downloadBlob)downloadBlob(name,blob); else { var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); } setProg(-1); status('✅ Downloaded '+list.length+' image(s) as ZIP.'); if(window.premToast)premToast('ZIP downloaded'); })
+    .catch(function(e){ setProg(-1); status('❌ '+(e&&e.message||e)); });
+  }
+
+  // ── Lightbox ───────────────────────────────────────────────
+  function openLightbox(i){ lbList=visible.slice(); lbIdx=i; lbZoom=1; lbRot=0; $('lightbox').classList.remove('ex-hide'); showLb(); }
+  function showLb(){ var im=lbList[lbIdx]; if(!im)return; $('lbImg').src=im.canvas.toDataURL('image/png'); $('lbImg').style.transform='scale('+lbZoom+') rotate('+lbRot+'deg)'; $('lbCap').textContent='Image #'+im.idx+' · page '+im.page+' · '+im.w+'×'+im.h+'px'; }
+  function closeLb(){ $('lightbox').classList.add('ex-hide'); }
+
+  // ── UI ─────────────────────────────────────────────────────
+  function selectVisible(v){ visible.forEach(function(im){ selected[im.uid]=v; }); render(); }
+  function wire(){
+    setupDropzone($('dropzone'),$('fileInput'),function(files){ if(files&&files.length) loadFile(files[0]); });
+    $('dropzone').addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); $('fileInput').click(); }});
+
+    ['fltSmall','fltDup','fltTransp'].forEach(function(id){ $(id).addEventListener('change',render); });
+    $('pageFilter').addEventListener('input',render);
+
+    $('selAllBtn').addEventListener('click',function(){ selectVisible(true); });
+    $('selNoneBtn').addEventListener('click',function(){ selectVisible(false); });
+    $('selInvBtn').addEventListener('click',function(){ visible.forEach(function(im){ selected[im.uid]=!selected[im.uid]; }); render(); });
+    $('viewBtn').addEventListener('click',function(){ listView=!listView; this.textContent=listView?'▦ Grid view':'☰ List view'; render(); });
+
+    $('downloadSelBtn').addEventListener('click',function(){ downloadZip(visible.filter(function(im){return selected[im.uid];})); });
+    $('downloadAllBtn').addEventListener('click',function(){ downloadZip(visible.slice()); });
+    $('clearBtn').addEventListener('click',function(){ allImages=[]; visible=[]; selected={}; pdfjsDoc=null; $('imgGrid').innerHTML=''; $('workspace').classList.add('ex-hide'); $('dropzone').classList.remove('ex-hide'); $('fileInput').value=''; status(''); });
+
+    $('lbPrev').addEventListener('click',function(){ if(lbIdx>0){lbIdx--;lbZoom=1;lbRot=0;showLb();} });
+    $('lbNext').addEventListener('click',function(){ if(lbIdx<lbList.length-1){lbIdx++;lbZoom=1;lbRot=0;showLb();} });
+    $('lbZoomIn').addEventListener('click',function(){ lbZoom=Math.min(5,lbZoom+0.3); showLb(); });
+    $('lbZoomOut').addEventListener('click',function(){ lbZoom=Math.max(0.3,lbZoom-0.3); showLb(); });
+    $('lbRotate').addEventListener('click',function(){ lbRot=(lbRot+90)%360; showLb(); });
+    $('lbDl').addEventListener('click',function(){ downloadOne(lbList[lbIdx]); });
+    $('lbClose').addEventListener('click',closeLb);
+    $('lightbox').addEventListener('click',function(e){ if(e.target===this) closeLb(); });
+    document.addEventListener('keydown',function(e){
+      if($('lightbox').classList.contains('ex-hide')) return;
+      if(e.key==='Escape') closeLb(); else if(e.key==='ArrowLeft') $('lbPrev').click(); else if(e.key==='ArrowRight') $('lbNext').click();
+    });
+  }
+
+  function buildFaq(){
+    var list=$('faqList'); if(!list) return;
+    list.innerHTML=FAQ.map(function(f){ return '<details><summary>'+f[0]+'</summary><p>'+f[1]+'</p></details>'; }).join('');
+    try{ var sc=$('faqSchema'); var data=JSON.parse(sc.textContent);
+      data.mainEntity=FAQ.map(function(f){ return {'@type':'Question','name':f[0],'acceptedAnswer':{'@type':'Answer','text':f[1]}}; });
+      sc.textContent=JSON.stringify(data);
+    }catch(e){}
+  }
+
+  function init(){ wire(); buildFaq(); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
 </script>
 </body>
 </html>
