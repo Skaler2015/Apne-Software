@@ -4,28 +4,100 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Convert a PDF to grayscale or black &amp; white free online — grayscale modes (standard, high contrast, soft, pure B&amp;W, ink saver), brightness/contrast controls, before/after preview, DPI and quality, and page-range selection. 100% private, runs in your browser, no upload.">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-grayscale.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PDF Grayscale — Convert PDF to Black & White | ApneSoftware">
-<meta property="og:description" content="Convert PDF to black & white. Free online tool — no signup required.">
+<meta property="og:title" content="PDF Grayscale — Convert PDF to Grayscale / Black &amp; White Free &amp; Private | ApneSoftware">
+<meta property="og:description" content="Turn a colour PDF into grayscale or black &amp; white with modes, brightness/contrast, before/after preview and page control. Runs entirely in your browser — nothing is uploaded.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-grayscale.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PDF Grayscale — Convert PDF to Black & White | ApneSoftware">
-<meta name="twitter:description" content="Convert PDF to black & white. Free online tool — no signup required.">
+<meta name="twitter:title" content="PDF Grayscale — Convert PDF to Grayscale / Black &amp; White Free &amp; Private">
+<meta name="twitter:description" content="Convert PDFs to grayscale/B&amp;W with modes, adjustments and before/after preview. 100% client-side.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Grayscale","description":"Convert PDF to black & white. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-grayscale.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Grayscale","operatingSystem":"Any (web browser)","applicationCategory":"UtilitiesApplication","description":"Convert PDF documents to grayscale or black &amp; white online with grayscale modes, brightness/contrast/threshold controls, before/after preview, DPI and quality options and page-range selection. Fully client-side and private.","url":"https://apnesoftware.com/tools/pdf-grayscale.html","browserRequirements":"Requires JavaScript. Works in Chrome, Edge, Firefox, Safari.","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
-<meta name="color-scheme" content="dark">
-<title>PDF Grayscale — Convert PDF to Black & White | ApneSoftware</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"PDF Grayscale Tool","url":"https://apnesoftware.com/tools/pdf-grayscale.html","description":"Free online tool to convert a PDF to grayscale or black &amp; white with modes and adjustments, entirely in your browser.","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"inLanguage":"en"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://apnesoftware.com/index.html#pdf"},{"@type":"ListItem","position":3,"name":"PDF Grayscale","item":"https://apnesoftware.com/tools/pdf-grayscale.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to convert a PDF to grayscale","description":"Convert a colour PDF to grayscale or black &amp; white for free in your browser.","step":[{"@type":"HowToStep","name":"Upload PDF","text":"Drag and drop your PDF onto the upload area or click to browse."},{"@type":"HowToStep","name":"Choose a mode","text":"Pick a grayscale mode (standard, high contrast, soft, pure black & white or ink saver) and adjust brightness/contrast if needed."},{"@type":"HowToStep","name":"Preview","text":"Compare the before and after preview and set the DPI, quality and which pages to convert."},{"@type":"HowToStep","name":"Convert","text":"Click Convert & Download to grayscale the pages on your device."},{"@type":"HowToStep","name":"Download","text":"Save the grayscale PDF or print it."}]}
+</script>
+<!-- FAQ schema (populated at runtime) -->
+<script type="application/ld+json" id="faqSchema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}</script>
+
+<meta name="color-scheme" content="dark light">
+<title>PDF Grayscale — Convert PDF to Grayscale / Black &amp; White Free &amp; Private | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
-.dropzone{cursor:pointer}
-.dropzone p{font-size:.9rem}
-.panel{position:relative;z-index:1}
+/* ── PDF Grayscale tool — scoped styles (gs-) ────────────────── */
+.gs-scope{--gs-accent:#A78BFA;--gs-accent2:#7C3AED;}
+.gs-hide{display:none !important;}
+.gs-drop{cursor:pointer;transition:border-color .2s,background .2s;}
+.gs-drop.drag{border-color:var(--gs-accent);background:rgba(167,139,250,.08);}
+.gs-layout{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:18px;margin-top:18px;}
+@media(max-width:820px){.gs-layout{grid-template-columns:1fr;}}
+.gs-card{background:var(--surface-2,rgba(255,255,255,.03));border:1px solid var(--border,rgba(255,255,255,.1));border-radius:12px;padding:14px;}
+.gs-card h3{margin:0 0 10px;font-size:.95rem;}
+.gs-fileinfo{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:.83rem;}
+.gs-fileinfo .k{color:var(--text-dim);}
+.gs-field{margin:0 0 12px;}
+.gs-field>label{display:block;font-size:.8rem;color:var(--text-dim);margin:0 0 5px;}
+.gs-field select,.gs-field input[type=text],.gs-field input[type=number]{width:100%;box-sizing:border-box;background:var(--surface,rgba(0,0,0,.25));color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-family:var(--font);font-size:.88rem;outline:none;}
+.gs-field select:focus,.gs-field input:focus{border-color:var(--gs-accent);}
+.gs-range{width:100%;accent-color:var(--gs-accent);}
+.gs-modes{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.gs-modes button{background:var(--surface,rgba(0,0,0,.25));border:1px solid var(--border);color:var(--text);border-radius:8px;padding:7px 6px;font-size:.8rem;cursor:pointer;}
+.gs-modes button.on{background:var(--gs-accent);color:#160c2e;font-weight:600;border-color:var(--gs-accent);}
+.gs-seg{display:inline-flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;flex-wrap:wrap;}
+.gs-seg button{background:transparent;color:var(--text-dim);border:0;padding:6px 10px;font:inherit;font-size:.8rem;cursor:pointer;}
+.gs-seg button.on{background:var(--gs-accent);color:#160c2e;font-weight:600;}
+.gs-check{display:inline-flex;align-items:center;gap:7px;font-size:.83rem;cursor:pointer;margin:0 12px 8px 0;}
+.gs-check input{accent-color:var(--gs-accent);}
+.gs-btn{background:linear-gradient(135deg,var(--gs-accent),var(--gs-accent2));color:#fff;border:0;border-radius:9px;padding:11px 16px;font:inherit;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;}
+.gs-btn:disabled{opacity:.5;cursor:not-allowed;}
+.gs-btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text);font-weight:500;}
+.gs-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+.gs-preview{background:#0d0d14;border:1px solid var(--border);border-radius:12px;padding:12px;}
+.gs-compare{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(max-width:520px){.gs-compare{grid-template-columns:1fr;}}
+.gs-pane{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.gs-pane .t{font-size:.76rem;color:var(--text-dim);}
+.gs-pane canvas{max-width:100%;height:auto;background:#fff;border-radius:3px;box-shadow:0 4px 14px rgba(0,0,0,.45);}
+.gs-nav{display:flex;align-items:center;gap:8px;font-size:.85rem;flex-wrap:wrap;justify-content:center;margin-top:10px;}
+.gs-nav button{background:var(--surface-2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:5px 10px;cursor:pointer;}
+.gs-prog{height:8px;background:var(--surface,rgba(0,0,0,.3));border-radius:6px;overflow:hidden;margin-top:12px;}
+.gs-prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gs-accent),var(--gs-accent2));transition:width .2s;}
+.gs-status{margin-top:10px;font-size:.9rem;color:var(--text-dim);min-height:1.2em;}
+/* below-tool content */
+.gs-wrap{max-width:1040px;margin:26px auto 0;padding:0 6px;}
+.gs-title{display:flex;align-items:center;gap:12px;margin:26px 0 14px;}
+.gs-title h2{font-size:1.25rem;font-weight:800;margin:0;white-space:nowrap;}
+.gs-title::before,.gs-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.10);}
+.gs-lead{color:var(--text-dim);font-size:.95rem;line-height:1.8;margin:0 6px;}
+.gs-feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.gs-fcard{border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.03));border-radius:14px;padding:16px;transition:.2s;}
+.gs-fcard:hover{border-color:var(--gs-accent);transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.14);}
+.gs-fcard h3{font-size:.92rem;font-weight:700;margin:0 0 6px;display:flex;align-items:center;gap:8px;}
+.gs-fcard p{font-size:.84rem;color:var(--text-dim);line-height:1.65;margin:0;}
+.gs-about ol,.gs-about > p{color:var(--text-dim);font-size:.92rem;line-height:1.8;padding-left:6px;}
+.gs-about ol{padding-left:24px;}
+.gs-related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:10px 0 4px;}
+.gs-related a{display:block;background:var(--surface-2,rgba(255,255,255,.03));border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text);transition:border-color .2s,transform .15s;}
+.gs-related a:hover{border-color:var(--gs-accent);transform:translateY(-2px);}
+.gs-related b{display:block;font-size:.92rem;margin-bottom:3px;}
+.gs-related span{font-size:.78rem;color:var(--text-dim);}
+#faqList details{border:1px solid var(--border);border-radius:10px;padding:0 14px;margin:8px 0;background:var(--surface-2,rgba(255,255,255,.02));}
+#faqList summary{cursor:pointer;padding:13px 0;font-weight:600;font-size:.95rem;}
+#faqList details[open]{padding-bottom:6px;}
+#faqList p{margin:0 0 12px;line-height:1.65;color:var(--text-dim);}
+:focus-visible{outline:2px solid var(--gs-accent);outline-offset:2px;}
 </style>
 </head>
 <body>
@@ -37,60 +109,223 @@
 </header>
 
 <div class="container">
+  <div class="gs-scope" id="gsScope">
   <div class="tool-header">
     <h1>⬛ PDF Grayscale</h1>
-    <p>Convert a colored PDF into black & white (grayscale) — handy for saving printer ink.</p>
+    <p>Convert a colour PDF to grayscale or black &amp; white — choose a mode, fine-tune brightness and contrast, and preview before and after. Everything runs in your browser; your file is never uploaded.</p>
   </div>
 
   <div class="panel">
-    <div class="dropzone" id="dropzone">
-      <p>📤 Drag a PDF file here or click to choose</p>
-      <input type="file" id="fileInput" accept="application/pdf">
+    <div class="dropzone gs-drop" id="dropzone" role="button" tabindex="0" aria-label="Upload PDF file">
+      <p>📤 Drag &amp; drop your PDF here, or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf" hidden>
     </div>
 
-    <div id="afterUpload" style="display:none;margin-top:18px">
-      <p class="muted" style="color:var(--text-dim);font-size:.85rem">Total pages: <b id="pageCountLbl" style="color:var(--text)"></b></p>
+    <div id="afterUpload" class="gs-hide">
+      <div class="gs-layout">
+        <!-- Controls -->
+        <div>
+          <div class="gs-card">
+            <h3>📄 File</h3>
+            <div class="gs-fileinfo">
+              <span class="k">Name</span><span class="v" id="fiName">—</span>
+              <span class="k">Size</span><span class="v" id="fiSize">—</span>
+              <span class="k">Pages</span><span class="v"><span id="pageCountLbl">—</span></span>
+              <span class="k">Page size</span><span class="v" id="fiDim">—</span>
+            </div>
+          </div>
 
-      <div class="field">
-        <label for="qualityRange">Quality: <span id="qualityVal">85</span>%</label>
-        <input type="range" id="qualityRange" min="50" max="100" value="85">
+          <div class="gs-card" style="margin-top:14px">
+            <h3>🎛️ Grayscale mode</h3>
+            <div class="gs-modes" id="modeGrid">
+              <button data-mode="standard" class="on">Standard</button>
+              <button data-mode="highcontrast">High contrast</button>
+              <button data-mode="soft">Soft</button>
+              <button data-mode="bw">Pure B&amp;W</button>
+              <button data-mode="inksaver">Ink saver</button>
+              <button data-mode="printopt">Print optimised</button>
+            </div>
+            <div class="gs-field" style="margin-top:12px">
+              <label for="brightRange">Brightness: <span id="brightVal">0</span></label>
+              <input type="range" id="brightRange" class="gs-range" min="-100" max="100" value="0">
+            </div>
+            <div class="gs-field">
+              <label for="contrastRange">Contrast: <span id="contrastVal">0</span></label>
+              <input type="range" id="contrastRange" class="gs-range" min="-100" max="100" value="0">
+            </div>
+            <div class="gs-field" id="threshWrap" style="display:none">
+              <label for="threshRange">B&amp;W threshold: <span id="threshVal">128</span></label>
+              <input type="range" id="threshRange" class="gs-range" min="20" max="235" value="128">
+            </div>
+          </div>
+
+          <div class="gs-card" style="margin-top:14px">
+            <h3>⚙️ Output</h3>
+            <div class="gs-field">
+              <label for="dpiSelect">Resolution (DPI)</label>
+              <select id="dpiSelect"><option value="1.5">Low (fast, smaller)</option><option value="2" selected>Standard</option><option value="3">High (sharp, larger)</option></select>
+            </div>
+            <div class="gs-field">
+              <label for="qualityRange">JPEG quality: <span id="qualityVal">80</span></label>
+              <input type="range" id="qualityRange" class="gs-range" min="40" max="100" value="80">
+            </div>
+            <div class="gs-field">
+              <label>Convert which pages</label>
+              <div class="gs-seg" id="scopeSeg" aria-label="Pages to convert">
+                <button type="button" class="gs-scope-btn on" data-scope="all">All</button>
+                <button type="button" class="gs-scope-btn" data-scope="first">First</button>
+                <button type="button" class="gs-scope-btn" data-scope="last">Last</button>
+                <button type="button" class="gs-scope-btn" data-scope="odd">Odd</button>
+                <button type="button" class="gs-scope-btn" data-scope="even">Even</button>
+                <button type="button" class="gs-scope-btn" data-scope="range">Range</button>
+              </div>
+              <input type="text" id="rangeInput" placeholder="e.g. 1-3, 5" class="gs-hide" style="margin-top:8px" aria-label="Custom page range">
+              <p style="font-size:.74rem;color:var(--text-dim);margin:6px 0 0">Pages you don't select stay in their original colour.</p>
+            </div>
+            <div class="gs-field"><label for="outName">File name</label><input type="text" id="outName" value="grayscale"></div>
+            <label class="gs-check"><input type="checkbox" id="optMeta" checked> Preserve metadata</label>
+          </div>
+
+          <div class="gs-actions">
+            <button class="gs-btn" id="convertBtn">⬛ Convert &amp; Download</button>
+            <button class="gs-btn ghost" id="clearBtn">🗑️ New file</button>
+          </div>
+          <div class="gs-prog gs-hide" id="progWrap"><i id="progFill"></i></div>
+          <p class="gs-status" id="statusMsg" role="status" aria-live="polite"></p>
+        </div>
+
+        <!-- Preview -->
+        <div class="gs-preview">
+          <div class="gs-compare">
+            <div class="gs-pane"><span class="t">Before (original)</span><canvas id="beforeCanvas"></canvas></div>
+            <div class="gs-pane"><span class="t">After (grayscale)</span><canvas id="afterCanvas"></canvas></div>
+          </div>
+          <div class="gs-nav">
+            <button id="pvPrev" aria-label="Previous page">‹</button>
+            <span>Page <b id="pvPage">1</b> / <span id="pvTotal">1</span></span>
+            <button id="pvNext" aria-label="Next page">›</button>
+          </div>
+        </div>
       </div>
-
-      <div class="btn-row">
-        <button class="btn" id="convertBtn">⬛ Convert to Grayscale and Download</button>
-      </div>
-
-      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
     </div>
+  </div>
   </div>
 </div>
 
+<!-- ── Below-tool content ─────────────────────────────────────── -->
+<section class="gs-wrap" aria-labelledby="introH">
+  <div class="gs-title"><h2 id="introH">⬛ PDF Grayscale — Convert Colour PDFs to Black &amp; White</h2></div>
+  <p class="gs-lead">The <strong>ApneSoftware PDF Grayscale</strong> tool converts a colour PDF into grayscale or true black &amp; white. Choose from several grayscale modes, fine-tune brightness and contrast, compare a live before/after preview, control the resolution and quality, and pick which pages to convert — all in your browser, with nothing uploaded. It is ideal for saving colour printer ink, standardising documents for printing, and shrinking file size.</p>
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>This tool converts every page of a colored PDF into black & white (grayscale) — useful for saving printer ink or creating a uniform-looking document.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your PDF.</li>
-        <li>Adjust the output quality if needed.</li>
-        <li>Click Convert and download the grayscale PDF.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल रंगीन PDF के हर पेज को ब्लैक एंड व्हाइट (ग्रेस्केल) में बदल देता है — प्रिंटर की स्याही बचाने या एक जैसा दिखने वाला डॉक्यूमेंट बनाने के लिए उपयोगी।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी PDF अपलोड करें।</li>
-        <li>ज़रूरत हो तो आउटपुट क्वालिटी सेट करें।</li>
-        <li>Convert बटन दबाएं और ग्रेस्केल PDF डाउनलोड करें।</li>
-      </ol>
+  <div class="gs-title"><h2>✨ Key Features</h2></div>
+  <div class="gs-feature-grid">
+    <div class="gs-fcard"><h3>🎛️ Grayscale Modes</h3><p>Standard, high contrast, soft, pure black &amp; white, ink saver and print-optimised.</p></div>
+    <div class="gs-fcard"><h3>🎚️ Fine Control</h3><p>Adjust brightness, contrast and the black-and-white threshold for perfect results.</p></div>
+    <div class="gs-fcard"><h3>👁️ Before / After</h3><p>Compare the original and grayscale versions side by side, page by page.</p></div>
+    <div class="gs-fcard"><h3>🖨️ Resolution &amp; Quality</h3><p>Pick the DPI and JPEG quality to balance sharpness against file size.</p></div>
+    <div class="gs-fcard"><h3>🎯 Page Selection</h3><p>Convert all pages, first, last, odd, even or a custom range; other pages stay in colour.</p></div>
+    <div class="gs-fcard"><h3>🪶 Smaller Files</h3><p>Grayscale pages usually compress smaller, which is handy for email and printing.</p></div>
+    <div class="gs-fcard"><h3>⚙️ Output Options</h3><p>Rename, preserve or drop metadata, and download the result.</p></div>
+    <div class="gs-fcard"><h3>🔒 100% Private</h3><p>Everything runs in your browser; your PDF is never uploaded.</p></div>
+  </div>
+
+  <div class="gs-title"><h2>🎁 Benefits</h2></div>
+  <div class="gs-feature-grid">
+    <div class="gs-fcard"><h3>💰 Save Ink</h3><p>Print colour documents in black &amp; white without buying colour cartridges.</p></div>
+    <div class="gs-fcard"><h3>📉 Smaller Size</h3><p>Grayscale pages often reduce the file size for easier sharing.</p></div>
+    <div class="gs-fcard"><h3>🖨️ Print Ready</h3><p>Standardise mixed-colour documents into clean monochrome for printing.</p></div>
+    <div class="gs-fcard"><h3>🔐 Private</h3><p>Sensitive documents stay on your own device from start to finish.</p></div>
+    <div class="gs-fcard"><h3>🆓 Free &amp; Unlimited</h3><p>No installs, no accounts, and no watermark added by us.</p></div>
+  </div>
+</section>
+
+<section class="gs-wrap" aria-labelledby="relatedH">
+  <div class="gs-title"><h2 id="relatedH">🔗 Related Tools</h2></div>
+  <div class="gs-related">
+    <a href="pdf-compress.html"><b>Compress PDF</b><span>Reduce PDF file size</span></a>
+    <a href="pdf-to-image.html"><b>PDF to JPG</b><span>Render pages as images</span></a>
+    <a href="image-to-pdf.html"><b>Image to PDF</b><span>Combine images into a PDF</span></a>
+    <a href="pdf-merge.html"><b>Merge PDF</b><span>Combine multiple PDFs</span></a>
+    <a href="pdf-split.html"><b>Split PDF</b><span>Split into separate files</span></a>
+    <a href="pdf-rotate.html"><b>Rotate PDF</b><span>Rotate PDF pages</span></a>
+    <a href="pdf-crop.html"><b>Crop PDF</b><span>Trim page margins</span></a>
+    <a href="pdf-watermark.html"><b>PDF Watermark</b><span>Add a watermark</span></a>
+    <a href="pdf-viewer.html"><b>PDF Viewer</b><span>Read PDFs in the browser</span></a>
+    <a href="pdf-info.html"><b>PDF Info</b><span>View PDF properties</span></a>
+  </div>
+</section>
+
+<section class="gs-wrap" aria-labelledby="aboutH">
+  <div class="gs-title"><h2 id="aboutH">ℹ️ About This Tool</h2></div>
+  <div class="info-wrap" style="max-width:100%;padding:0">
+    <div class="info-section">
+      <article class="info-block gs-about">
+        <h2>About the PDF Grayscale Tool (English)</h2>
+        <p>Colour is wonderful on screen but expensive and often unnecessary on paper. A document full of coloured headings, charts and logos looks the same in black &amp; white for most practical purposes — and printing it in grayscale saves expensive colour ink or toner, produces cleaner photocopies, and standardises a document made from many differently-coloured sources. The ApneSoftware PDF Grayscale tool converts a colour PDF into grayscale or true black &amp; white directly in your browser, giving you control over exactly how the conversion looks, without uploading your file anywhere.</p>
+
+        <p>Grayscale is not a single thing, so the tool offers several <strong>modes</strong>, each suited to a different need. <strong>Standard</strong> uses the human-eye luminosity formula so colours become the shades of grey your eye perceives them as — the most natural, general-purpose conversion. <strong>High contrast</strong> deepens the darks and brightens the lights for punchy, readable output, good for text-heavy documents. <strong>Soft</strong> lightens the overall tone for a gentle, low-ink look. <strong>Pure black &amp; white</strong> applies a threshold so every pixel becomes either pure black or pure white — perfect for line art, forms and faxes, and it compresses very small. <strong>Ink saver</strong> lightens the mid-tones so less toner is used while keeping the document readable, and <strong>print optimised</strong> applies a balanced contrast tuned for laser and inkjet printing.</p>
+
+        <p>On top of the modes you get precise <strong>manual controls</strong>. A <strong>brightness</strong> slider lifts or lowers the overall tone, a <strong>contrast</strong> slider stretches or compresses the range between dark and light, and — in pure black &amp; white mode — a <strong>threshold</strong> slider decides the exact point at which grey becomes black or white, so you can rescue faint text or clean up a noisy scan. These controls are applied by the same processing engine that draws the preview, so what you set is exactly what you get.</p>
+
+        <p>That preview is a key part of the workflow. The tool shows a live <strong>before-and-after comparison</strong> of the current page — the original in colour on one side and your grayscale result on the other — updating instantly as you change modes and sliders. You can page through the whole document to check how different pages convert, which matters because a page that is mostly text behaves very differently from a page dominated by a photograph. There is no guesswork and no need to convert the entire file just to see whether your settings look right.</p>
+
+        <p>You also control the <strong>output quality and size</strong>. A resolution (DPI) selector sets how sharply each page is rendered — lower for speed and smaller files, higher for crisp text and detail — and a JPEG quality slider balances visual quality against file size. Because grayscale images carry no colour information and compress efficiently, the converted PDF is frequently <em>smaller</em> than the original, which is a welcome side effect when emailing or archiving. For documents where only some pages need converting, flexible <strong>page targeting</strong> lets you grayscale all pages, only the first or last, odd or even pages, or a custom range such as <em>1-3, 5</em> — and importantly, any page you do not select is kept exactly as it was, in full colour and full quality, so you can mix colour and grayscale pages in one file.</p>
+
+        <p>It helps to understand how the conversion works, because it shapes the result. To guarantee that <em>every</em> visual element — text, vector graphics, charts and photographs alike — is turned grey, the tool renders each selected page to a high-resolution image, applies the grayscale processing to the pixels, and rebuilds that page from the processed image. This is the most reliable way to grayscale a PDF completely, and it exactly matches the preview. The trade-off is that converted pages become images, so their text is no longer separately selectable; if you need to keep selectable text, convert only the pages that truly need it, or keep a colour copy of the original alongside the grayscale version.</p>
+
+        <p>When you are finished, the <strong>output options</strong> let you rename the file and choose whether to preserve or remove the document metadata, then download the grayscale PDF. Non-converted pages are copied across untouched, so the page order and any colour pages you kept are preserved. <strong>Password-protected PDFs</strong> you are authorised to open are handled locally, and larger documents are processed page by page with a progress bar so you always know how far along the conversion is.</p>
+
+        <p>Privacy is built in throughout. Your PDF is rendered, processed and rebuilt entirely on your own device using JavaScript and the browser's canvas; nothing is uploaded, stored or logged, so the tool is safe for contracts, financial statements, medical records and any confidential document. There is no account to create, no software to install and no watermark added. Whether you are preparing a document for economical black-and-white printing, cleaning up a colourful scan, cutting a file down for email, or simply standardising a report's appearance, the PDF Grayscale tool gives you a fast, private and controllable conversion.</p>
+      </article>
+
+      <article class="info-block gs-about">
+        <h2>इस टूल के बारे में (Hindi)</h2>
+        <p>रंग screen पर शानदार है पर कागज़ पर महँगा और अक्सर अनावश्यक। रंगीन headings, charts और logos से भरा document अधिकांश व्यावहारिक उद्देश्यों के लिए black &amp; white में एक जैसा दिखता है — और उसे grayscale में print करना महँगी colour ink या toner बचाता है, साफ़ photocopies बनाता है, और कई अलग-अलग रंगों वाले स्रोतों से बने document को मानकीकृत करता है। ApneSoftware PDF Grayscale टूल किसी colour PDF को सीधे आपके browser में grayscale या असली black &amp; white में बदल देता है, आपको यह नियंत्रण देते हुए कि conversion बिल्कुल कैसा दिखे, बिना आपकी file कहीं upload किए।</p>
+
+        <p>Grayscale एक अकेली चीज़ नहीं है, इसलिए टूल कई <strong>modes</strong> देता है, हर एक अलग ज़रूरत के लिए उपयुक्त। <strong>Standard</strong> मानव-आँख की luminosity सूत्र उपयोग करता है ताकि रंग वे grey shades बनें जैसे आपकी आँख उन्हें देखती है — सबसे स्वाभाविक, सामान्य conversion। <strong>High contrast</strong> गहरे को और गहरा और हल्के को और उजला करता है, text-भारी documents के लिए अच्छा। <strong>Soft</strong> समग्र tone को हल्का करता है, कम-ink वाले नरम रूप के लिए। <strong>Pure black &amp; white</strong> एक threshold लगाता है ताकि हर pixel या तो शुद्ध काला या शुद्ध सफेद बने — line art, forms और faxes के लिए एकदम सही, और यह बहुत छोटा compress होता है। <strong>Ink saver</strong> mid-tones को हल्का करता है ताकि कम toner लगे पर document पढ़ने योग्य रहे, और <strong>print optimised</strong> laser व inkjet printing के लिए संतुलित contrast लगाता है।</p>
+
+        <p>modes के ऊपर आपको सटीक <strong>manual नियंत्रण</strong> मिलते हैं। एक <strong>brightness</strong> slider समग्र tone उठाता या घटाता है, एक <strong>contrast</strong> slider गहरे और हल्के के बीच की सीमा खींचता या दबाता है, और — pure black &amp; white mode में — एक <strong>threshold</strong> slider तय करता है कि grey किस ठीक बिंदु पर काला या सफेद बने, ताकि आप धुंधला text बचा सकें या शोर वाला scan साफ़ कर सकें। ये नियंत्रण उसी processing engine से लगते हैं जो preview खींचता है, इसलिए जो आप सेट करते हैं वही आपको मिलता है।</p>
+
+        <p>वह preview workflow का मुख्य हिस्सा है। टूल वर्तमान पन्ने की जीवंत <strong>before-and-after तुलना</strong> दिखाता है — एक तरफ colour में original और दूसरी तरफ आपका grayscale परिणाम — जो modes और sliders बदलते ही तुरंत update होता है। आप पूरे document के पन्ने पलटकर जाँच सकते हैं कि अलग-अलग पन्ने कैसे convert होते हैं, जो मायने रखता है क्योंकि ज़्यादातर text वाला पन्ना किसी photograph से हावी पन्ने से बहुत अलग व्यवहार करता है। कोई अंदाज़ा नहीं और यह देखने के लिए पूरी file convert करने की ज़रूरत नहीं कि आपकी settings सही दिखती हैं या नहीं।</p>
+
+        <p>आप <strong>output quality और size</strong> भी नियंत्रित करते हैं। एक resolution (DPI) selector तय करता है कि हर पन्ना कितनी तीक्ष्णता से render हो — गति और छोटी files के लिए कम, कुरकुरे text और विवरण के लिए ज़्यादा — और एक JPEG quality slider दृश्य गुणवत्ता और file size में संतुलन बनाता है। चूँकि grayscale images में कोई रंग जानकारी नहीं होती और वे कुशलता से compress होते हैं, converted PDF अक्सर original से <em>छोटी</em> होती है, जो email या archiving करते समय एक स्वागत योग्य side effect है। जिन documents में केवल कुछ पन्ने convert करने हों, लचीला <strong>page targeting</strong> आपको सभी पन्ने, केवल पहला या आखिरी, विषम या सम पन्ने, या <em>1-3, 5</em> जैसी custom range grayscale करने देता है — और महत्वपूर्ण रूप से, जो पन्ना आप नहीं चुनते वह ठीक वैसा ही, पूरे रंग और पूरी गुणवत्ता में, रखा जाता है, इसलिए आप एक ही file में colour और grayscale पन्ने मिला सकते हैं।</p>
+
+        <p>यह समझना उपयोगी है कि conversion कैसे काम करता है। यह गारंटी देने के लिए कि <em>हर</em> दृश्य तत्व — text, vector graphics, charts और photographs सभी — grey हो जाए, टूल हर चुने पन्ने को high-resolution image में render करता है, pixels पर grayscale processing लगाता है, और उस पन्ने को processed image से फिर से बनाता है। यह किसी PDF को पूरी तरह grayscale करने का सबसे भरोसेमंद तरीका है और यह बिल्कुल preview से मेल खाता है। इसका trade-off यह है कि converted पन्ने images बन जाते हैं, इसलिए उनका text अलग से selectable नहीं रहता; यदि आपको selectable text रखना है, तो केवल वही पन्ने convert करें जिन्हें वाकई ज़रूरत है, या grayscale version के साथ original की एक colour प्रति रखें।</p>
+
+        <p>समाप्त होने पर, <strong>output विकल्प</strong> आपको file का नाम बदलने और चुनने देते हैं कि document का metadata रखना है या हटाना, फिर grayscale PDF download करें। Non-converted पन्ने अछूते copy होते हैं, इसलिए पन्ने का क्रम और आपके रखे कोई colour पन्ने संरक्षित रहते हैं। जिन <strong>password-protected PDF</strong> को खोलने का आपको अधिकार है वे locally संभाली जाती हैं, और बड़े documents progress bar के साथ पन्ना-दर-पन्ना process होते हैं ताकि आप हमेशा जानें conversion कितना आगे है।</p>
+
+        <p>Privacy पूरे में अंतर्निहित है। आपकी PDF पूरी तरह आपके अपने device पर JavaScript और browser के canvas से render, process और फिर से बनाई जाती है; कुछ भी upload, store या log नहीं होता, इसलिए टूल contracts, financial statements, medical records और किसी भी गोपनीय document के लिए सुरक्षित है। कोई account बनाना नहीं, कोई software install करना नहीं और कोई watermark नहीं। चाहे आप किफ़ायती black-and-white printing के लिए document तैयार कर रहे हों, किसी रंगीन scan को साफ़ कर रहे हों, email के लिए file छोटी कर रहे हों, या बस किसी report का रूप मानकीकृत कर रहे हों — PDF Grayscale टूल आपको एक तेज़, निजी और नियंत्रणीय conversion देता है।</p>
+      </article>
     </div>
   </div>
-</div>
+</section>
+
+<section class="gs-wrap gs-about" aria-labelledby="howH">
+  <div class="gs-title"><h2 id="howH">📝 How To Use</h2></div>
+  <ol>
+    <li>Drag &amp; drop your PDF onto the upload area, or click to browse.</li>
+    <li>Choose a <strong>grayscale mode</strong> and adjust brightness / contrast (and threshold for pure B&amp;W).</li>
+    <li>Compare the <strong>before/after preview</strong> and page through the document.</li>
+    <li>Set the <strong>DPI</strong>, <strong>quality</strong> and which <strong>pages</strong> to convert.</li>
+    <li>Rename the file, then click <strong>Convert &amp; Download</strong>.</li>
+  </ol>
+</section>
+
+<section class="gs-wrap gs-faq" aria-labelledby="faqH">
+  <div class="gs-title"><h2 id="faqH">❓ Frequently Asked Questions</h2></div>
+  <div id="faqList"></div>
+</section>
+
+<section class="gs-wrap gs-about" aria-labelledby="privacyH">
+  <div class="gs-title"><h2 id="privacyH">🔒 Privacy</h2></div>
+  <p>This tool is 100% client-side. Your PDF is rendered and converted entirely in your browser using JavaScript — it is never sent to ApneSoftware or any third party. Nothing is stored, logged or transmitted. When you close or refresh the page, the file is cleared from memory. Because there is no upload, you can safely convert confidential, legal, medical and financial documents.</p>
+
+  <div class="gs-title"><h2 id="compatH">🌐 Browser Compatibility</h2></div>
+  <p>Works in all modern browsers including Google Chrome, Microsoft Edge, Mozilla Firefox, Safari, Brave and Opera, on Windows, macOS, Linux, Android and iOS. It uses the Canvas and File APIs and JavaScript PDF libraries, so no plugins are required. For very large PDFs a desktop browser with more available memory gives the smoothest experience.</p>
+
+  <div class="gs-title"><h2 id="formatsH">📁 Supported Formats</h2></div>
+  <p><strong>Input:</strong> PDF (.pdf), including password-protected PDFs you are authorised to open. <strong>Output:</strong> a standard PDF (.pdf) with the selected pages converted to grayscale or black &amp; white and other pages kept in colour. Converted pages are rebuilt from high-resolution images.</p>
+</section>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
@@ -98,86 +333,194 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+/* ══════════════════════════════════════════════════════════════
+   PDF GRAYSCALE — premium client-side converter (pdf.js + pdf-lib)
+   Shared pixel engine drives BOTH the preview and the output.
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+  if(window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  var $ = function(id){ return document.getElementById(id); };
 
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-let currentFile = null;
+  var FAQ = [
+    ["Is my PDF uploaded to a server?","No. The whole conversion runs locally in your browser. Your PDF never leaves your device, so it is safe for confidential documents."],
+    ["What is the difference between the grayscale modes?","Standard uses natural luminosity; High contrast deepens darks and lightens lights; Soft lightens the tone; Pure B&W makes every pixel black or white; Ink saver lightens mid-tones to use less toner; Print optimised applies balanced contrast for printers."],
+    ["Can I convert to pure black and white?","Yes. Choose the Pure B&W mode and use the threshold slider to decide exactly where grey becomes black or white — ideal for line art, forms and scans."],
+    ["Can I adjust brightness and contrast?","Yes. Sliders let you fine-tune brightness and contrast, and the before/after preview updates instantly."],
+    ["Can I convert only some pages?","Yes. Convert all, first, last, odd, even or a custom range. Pages you don't select are kept in their original colour and quality."],
+    ["Will the file get smaller?","Often, yes. Grayscale images carry no colour data and compress efficiently, so the converted PDF is frequently smaller — but it depends on the content and your quality/DPI settings."],
+    ["Does converting keep selectable text?","Converted pages are rebuilt from images to guarantee everything turns grey, so their text is no longer separately selectable. Non-converted pages keep their original text."],
+    ["What do DPI and quality control?","DPI sets how sharply each page is rendered (higher is crisper but larger), and the JPEG quality slider balances image quality against file size."],
+    ["Is there a before/after preview?","Yes. The current page is shown in colour and grayscale side by side, and you can page through the document to check every page."],
+    ["Which mode is best for printing to save ink?","Ink saver or Soft lighten the output to use less toner; Print optimised gives balanced, readable contrast for laser and inkjet printers."],
+    ["Does it change the original page size?","No. Each converted page keeps its original dimensions; only its appearance changes to grayscale."],
+    ["Can it open password-protected PDFs?","Yes, if you are authorised to open them. You are prompted for the password locally and it is used only on your device."],
+    ["Can I keep or remove the metadata?","Yes. “Preserve metadata” keeps the title, author and similar fields; turn it off to strip them from the output."],
+    ["Is there a page or file-size limit?","There is no fixed limit — it depends on your device's memory. Pages are processed one at a time with a progress bar; very large files use more memory."],
+    ["Why does a photo-heavy page take longer?","High-resolution images have many pixels to process. Lowering the DPI speeds things up at the cost of some sharpness."],
+    ["Does it work on phones and tablets?","Yes. The layout is responsive and the controls are touch-friendly. A desktop is faster for large documents."],
+    ["Will colours become the right shades of grey?","In Standard mode, yes — it uses the luminosity formula so each colour becomes the brightness your eye perceives. Other modes intentionally alter this for effect."],
+    ["Can I undo the conversion?","The tool never changes your original file. Just keep the original and re-run with different settings, or convert again from the source."],
+    ["Is the tool free? Do I need an account?","It is completely free with no signup, no watermark added by us, and no usage limits."],
+    ["Which browsers are supported?","All modern browsers — Chrome, Edge, Firefox, Safari, Brave and Opera — on desktop and mobile. No plugins are required."],
+    ["My scan looks noisy in B&W — what can I do?","Adjust the threshold slider, or add a little brightness/contrast. A higher threshold keeps more as white; a lower one keeps more as black."]
+  ];
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
-});
+  var pdfjsDoc=null, numPages=0, srcBytes=null, srcName='document.pdf', meta={};
+  var mode='standard', scope='all', pvPage=1;
+  var previewColor=null; var previewToken=0;
+  var PDFLibRef=window.PDFLib;
+  var MODE_DEF={ standard:{b:0,c:0}, highcontrast:{b:0,c:45}, soft:{b:18,c:-10}, bw:{b:0,c:10}, inksaver:{b:35,c:-20}, printopt:{b:5,c:22} };
 
-async function handleFile(file){
-  currentFile = file;
-  const arrayBuf = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({data: arrayBuf.slice(0)}).promise;
-  document.getElementById('pageCountLbl').textContent = pdf.numPages;
-  document.getElementById('afterUpload').style.display = 'block';
-}
+  function setProg(p){ var w=$('progWrap'); if(p<0){w.classList.add('gs-hide');return;} w.classList.remove('gs-hide'); $('progFill').style.width=Math.round(p*100)+'%'; }
+  function status(m){ $('statusMsg').textContent=m||''; }
+  function settings(){ return { mode:mode, bright:parseInt($('brightRange').value,10)||0, contrast:parseInt($('contrastRange').value,10)||0, thresh:parseInt($('threshRange').value,10)||128 }; }
 
-document.getElementById('qualityRange').addEventListener('input', e=>{
-  document.getElementById('qualityVal').textContent = e.target.value;
-});
-
-document.getElementById('convertBtn').addEventListener('click', async ()=>{
-  const status = document.getElementById('statusMsg');
-  const btn = document.getElementById('convertBtn');
-  btn.disabled = true;
-  const quality = parseInt(document.getElementById('qualityRange').value) / 100;
-
-  try{
-    const arrayBuf = await currentFile.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({data: arrayBuf.slice(0)}).promise;
-    const { PDFDocument } = PDFLib;
-    const newPdf = await PDFDocument.create();
-
-    for(let i=1; i<=pdf.numPages; i++){
-      status.textContent = `⏳ Converting page ${i}/${pdf.numPages}...`;
-      const page = await pdf.getPage(i);
-      const viewport = page.getViewport({ scale: 2 });
-      const canvas = document.createElement('canvas');
-      canvas.width = viewport.width;
-      canvas.height = viewport.height;
-      const ctx = canvas.getContext('2d');
-
-      ctx.fillStyle = '#fff';
-      ctx.fillRect(0,0,canvas.width,canvas.height);
-
-      if('filter' in ctx){
-        ctx.filter = 'grayscale(100%)';
-        await page.render({ canvasContext: ctx, viewport }).promise;
-        ctx.filter = 'none';
-      } else {
-        // fallback: render normally then manually desaturate pixels
-        await page.render({ canvasContext: ctx, viewport }).promise;
-        const imgData = ctx.getImageData(0,0,canvas.width,canvas.height);
-        const d = imgData.data;
-        for(let p=0; p<d.length; p+=4){
-          const gray = d[p]*0.299 + d[p+1]*0.587 + d[p+2]*0.114;
-          d[p] = d[p+1] = d[p+2] = gray;
-        }
-        ctx.putImageData(imgData, 0, 0);
-      }
-
-      const jpgDataUrl = canvas.toDataURL('image/jpeg', quality);
-      const jpgBytes = await fetch(jpgDataUrl).then(r => r.arrayBuffer());
-      const embeddedImg = await newPdf.embedJpg(jpgBytes);
-
-      const newPage = newPdf.addPage([viewport.width, viewport.height]);
-      newPage.drawImage(embeddedImg, { x:0, y:0, width: viewport.width, height: viewport.height });
+  // ── Shared pixel engine ────────────────────────────────────
+  function processData(data,s){
+    var c=s.contrast, f=(259*(c+255))/(255*(259-c)); var b=s.bright;
+    for(var i=0;i<data.length;i+=4){
+      var g=data[i]*0.299+data[i+1]*0.587+data[i+2]*0.114;
+      if(s.mode==='soft') g=255-(255-g)*0.7;
+      else if(s.mode==='inksaver') g=90+g*(165/255);
+      g=f*(g-128)+128+b;
+      if(s.mode==='bw') g=g<s.thresh?0:255;
+      g=g<0?0:(g>255?255:g);
+      data[i]=data[i+1]=data[i+2]=g;
     }
-
-    status.textContent = '⏳ Saving PDF...';
-    const finalBytes = await newPdf.save();
-    const blob = new Blob([finalBytes], {type:'application/pdf'});
-    downloadBlob('grayscale.pdf', blob);
-    status.textContent = '✅ Converted to grayscale and downloaded!';
-  }catch(err){
-    status.textContent = '❌ Error: ' + err.message;
   }
-  btn.disabled = false;
-});
+
+  // ── Preview ────────────────────────────────────────────────
+  function renderPreview(){
+    if(!pdfjsDoc) return; var token=++previewToken;
+    pdfjsDoc.getPage(pvPage).then(function(page){
+      if(token!==previewToken) return;
+      var base=page.getViewport({scale:1});
+      var w=Math.min(260,($('beforeCanvas').parentElement.clientWidth||240));
+      var scale=w/base.width; var vp=page.getViewport({scale:scale});
+      var bc=$('beforeCanvas'); bc.width=vp.width; bc.height=vp.height;
+      var bctx=bc.getContext('2d'); bctx.fillStyle='#fff'; bctx.fillRect(0,0,bc.width,bc.height);
+      page.render({canvasContext:bctx,viewport:vp}).promise.then(function(){
+        if(token!==previewToken) return;
+        previewColor=bctx.getImageData(0,0,bc.width,bc.height);
+        applyPreview();
+      });
+      $('fiDim').textContent=Math.round(base.width)+' × '+Math.round(base.height)+' pt';
+    });
+    $('pvPage').textContent=pvPage; $('pvTotal').textContent=numPages;
+    $('pvPrev').disabled=(pvPage<=1); $('pvNext').disabled=(pvPage>=numPages);
+  }
+  function applyPreview(){
+    if(!previewColor) return;
+    var ac=$('afterCanvas'), bc=$('beforeCanvas'); ac.width=bc.width; ac.height=bc.height;
+    var im=new ImageData(new Uint8ClampedArray(previewColor.data),previewColor.width,previewColor.height);
+    processData(im.data,settings());
+    ac.getContext('2d').putImageData(im,0,0);
+  }
+
+  // ── Page targeting ─────────────────────────────────────────
+  function parseRange(str,max){ var set={}; (str||'').split(',').forEach(function(p){ p=p.trim(); if(!p)return; var m=p.match(/^(\d+)\s*-\s*(\d+)$/); if(m){var a=+m[1],b=+m[2]; if(a>b){var t=a;a=b;b=t;} for(var i=a;i<=b;i++) if(i>=1&&i<=max)set[i]=1;} else if(/^\d+$/.test(p)){var n=+p; if(n>=1&&n<=max)set[n]=1;} }); return set; }
+  function targeter(){
+    if(scope==='all') return function(){return true;};
+    if(scope==='first') return function(n){return n===1;};
+    if(scope==='last') return function(n){return n===numPages;};
+    if(scope==='odd') return function(n){return n%2===1;};
+    if(scope==='even') return function(n){return n%2===0;};
+    if(scope==='range'){ var set=parseRange($('rangeInput').value,numPages); return function(n){return !!set[n];}; }
+    return function(){return true;};
+  }
+
+  // ── Load ───────────────────────────────────────────────────
+  function loadFile(file){
+    if(!file || file.type!=='application/pdf'){ status('⚠️ Please choose a PDF file.'); return; }
+    srcName=file.name; status('⏳ Loading…');
+    file.arrayBuffer().then(function(buf){
+      srcBytes=buf.slice(0);
+      pdfjsLib.getDocument({data:buf.slice(0)}).promise.then(function(doc){ ready(doc,file); })
+      .catch(function(err){ if(err&&err.name==='PasswordException'){ var pw=prompt('This PDF is password protected. Enter the password:'); if(pw!=null){ pdfjsLib.getDocument({data:buf.slice(0),password:pw}).promise.then(function(d){ ready(d,file); }).catch(function(){ status('❌ Wrong password or unreadable PDF.'); }); return; } } status('❌ Could not read this PDF: '+(err&&err.message||err)); });
+    });
+  }
+  function ready(doc,file){
+    pdfjsDoc=doc; numPages=doc.numPages; pvPage=1;
+    doc.getMetadata().then(function(md){ meta=(md&&md.info)||{}; }).catch(function(){ meta={}; });
+    $('fiName').textContent=srcName; $('fiSize').textContent=formatBytes(file.size); $('pageCountLbl').textContent=numPages;
+    $('afterUpload').classList.remove('gs-hide'); $('dropzone').classList.add('gs-hide'); status('');
+    renderPreview();
+  }
+
+  // ── Convert (bake) ─────────────────────────────────────────
+  function build(){
+    return (async function(){
+      var PDFLib=PDFLibRef, s=settings(), dpi=parseFloat($('dpiSelect').value)||2, quality=parseInt($('qualityRange').value,10)/100;
+      var out=await PDFLib.PDFDocument.create();
+      var src=await PDFLib.PDFDocument.load(srcBytes.slice(0),{ignoreEncryption:true});
+      var tgt=targeter();
+      for(var i=1;i<=numPages;i++){
+        status('⏳ Converting page '+i+'/'+numPages+'…'); setProg(i/numPages);
+        if(tgt(i)){
+          var page=await pdfjsDoc.getPage(i);
+          var vp=page.getViewport({scale:dpi});
+          var c=document.createElement('canvas'); c.width=vp.width; c.height=vp.height;
+          var ctx=c.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height);
+          await page.render({canvasContext:ctx,viewport:vp}).promise;
+          var im=ctx.getImageData(0,0,c.width,c.height); processData(im.data,s); ctx.putImageData(im,0,0);
+          var jpg=c.toDataURL('image/jpeg',quality);
+          var bin=atob(jpg.split(',')[1]); var arr=new Uint8Array(bin.length); for(var k=0;k<bin.length;k++)arr[k]=bin.charCodeAt(k);
+          var img=await out.embedJpg(arr);
+          var base=page.getViewport({scale:1});
+          var np=out.addPage([base.width,base.height]);
+          np.drawImage(img,{x:0,y:0,width:base.width,height:base.height});
+        } else {
+          var copied=await out.copyPages(src,[i-1]); out.addPage(copied[0]);
+        }
+      }
+      if($('optMeta').checked){ try{ if(meta.Title)out.setTitle(meta.Title); if(meta.Author)out.setAuthor(meta.Author); if(meta.Subject)out.setSubject(meta.Subject); }catch(e){} }
+      var bytes=await out.save();
+      return new Blob([bytes],{type:'application/pdf'});
+    })();
+  }
+  function convert(){
+    if(!pdfjsDoc) return; $('convertBtn').disabled=true; status('⏳ Converting…'); setProg(0.02);
+    build().then(function(blob){
+      setProg(1);
+      var name=($('outName').value.trim()||'grayscale').replace(/\.pdf$/i,'')+'.pdf';
+      if(window.downloadBlob)downloadBlob(name,blob); else { var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); }
+      status('✅ Converted to grayscale — '+formatBytes(blob.size)+', downloaded.'); if(window.premToast)premToast('Grayscale PDF downloaded');
+      setTimeout(function(){setProg(-1);},800); $('convertBtn').disabled=false;
+    }).catch(function(e){ setProg(-1); status('❌ '+(e&&e.message||e)); $('convertBtn').disabled=false; });
+  }
+
+  // ── UI ─────────────────────────────────────────────────────
+  function setMode(m){ mode=m; Array.prototype.forEach.call($('modeGrid').children,function(b){ b.classList.toggle('on',b.getAttribute('data-mode')===m); }); var d=MODE_DEF[m]||{b:0,c:0}; $('brightRange').value=d.b; $('brightVal').textContent=d.b; $('contrastRange').value=d.c; $('contrastVal').textContent=d.c; $('threshWrap').style.display=(m==='bw')?'block':'none'; applyPreview(); }
+  function setScope(sc){ scope=sc; Array.prototype.forEach.call(document.querySelectorAll('.gs-scope-btn'),function(b){ b.classList.toggle('on',b.getAttribute('data-scope')===sc); }); $('rangeInput').classList.toggle('gs-hide',sc!=='range'); }
+  function wire(){
+    setupDropzone($('dropzone'),$('fileInput'),function(files){ if(files&&files.length) loadFile(files[0]); });
+    $('dropzone').addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); $('fileInput').click(); }});
+    Array.prototype.forEach.call($('modeGrid').children,function(b){ b.addEventListener('click',function(){ setMode(this.getAttribute('data-mode')); }); });
+    $('brightRange').addEventListener('input',function(){ $('brightVal').textContent=this.value; applyPreview(); });
+    $('contrastRange').addEventListener('input',function(){ $('contrastVal').textContent=this.value; applyPreview(); });
+    $('threshRange').addEventListener('input',function(){ $('threshVal').textContent=this.value; applyPreview(); });
+    $('qualityRange').addEventListener('input',function(){ $('qualityVal').textContent=this.value; });
+    Array.prototype.forEach.call(document.querySelectorAll('.gs-scope-btn'),function(b){ b.addEventListener('click',function(){ setScope(this.getAttribute('data-scope')); }); });
+    $('pvPrev').addEventListener('click',function(){ if(pvPage>1){pvPage--;renderPreview();} });
+    $('pvNext').addEventListener('click',function(){ if(pvPage<numPages){pvPage++;renderPreview();} });
+    $('convertBtn').addEventListener('click',convert);
+    $('clearBtn').addEventListener('click',function(){ pdfjsDoc=null; srcBytes=null; previewColor=null; $('afterUpload').classList.add('gs-hide'); $('dropzone').classList.remove('gs-hide'); $('fileInput').value=''; status(''); });
+    window.addEventListener('resize',function(){ if(pdfjsDoc) renderPreview(); });
+  }
+
+  function buildFaq(){
+    var list=$('faqList'); if(!list) return;
+    list.innerHTML=FAQ.map(function(f){ return '<details><summary>'+f[0]+'</summary><p>'+f[1]+'</p></details>'; }).join('');
+    try{ var sc=$('faqSchema'); var data=JSON.parse(sc.textContent);
+      data.mainEntity=FAQ.map(function(f){ return {'@type':'Question','name':f[0],'acceptedAnswer':{'@type':'Answer','text':f[1]}}; });
+      sc.textContent=JSON.stringify(data);
+    }catch(e){}
+  }
+
+  function init(){ PDFLibRef=window.PDFLib; wire(); buildFaq(); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
 </script>
 </body>
 </html>
