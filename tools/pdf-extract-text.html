@@ -4,28 +4,90 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Extract text from a PDF free online — copy or download selectable text with preserved line layout, page-range selection, search, word/character counts and per-page export. 100% private, runs in your browser, no upload, no signup.">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-extract-text.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Extract Text from PDF | ApneSoftware">
-<meta property="og:description" content="Copy text out of a PDF. Free online tool — no signup required.">
+<meta property="og:title" content="Extract Text from PDF — Copy &amp; Download PDF Text Free &amp; Private | ApneSoftware">
+<meta property="og:description" content="Pull selectable text out of a PDF with preserved layout, page selection, search and per-page export. Runs entirely in your browser — your file never leaves your device.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-extract-text.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Extract Text from PDF | ApneSoftware">
-<meta name="twitter:description" content="Copy text out of a PDF. Free online tool — no signup required.">
+<meta name="twitter:title" content="Extract Text from PDF — Copy &amp; Download PDF Text Free &amp; Private">
+<meta name="twitter:description" content="Extract selectable PDF text with layout, page selection and search. 100% client-side.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Extract Text","description":"Copy text out of a PDF. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-extract-text.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Extract Text from PDF","operatingSystem":"Any (web browser)","applicationCategory":"UtilitiesApplication","description":"Extract selectable text from PDF files online with preserved line layout, page-range selection, search, word and character counts, and per-page export. Fully client-side and private.","url":"https://apnesoftware.com/tools/pdf-extract-text.html","browserRequirements":"Requires JavaScript. Works in Chrome, Edge, Firefox, Safari.","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
-<meta name="color-scheme" content="dark">
-<title>Extract Text from PDF | ApneSoftware</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Extract Text from PDF Tool","url":"https://apnesoftware.com/tools/pdf-extract-text.html","description":"Free online tool to extract selectable text from a PDF with layout preservation, page selection and search, entirely in your browser.","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"inLanguage":"en"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://apnesoftware.com/index.html#pdf"},{"@type":"ListItem","position":3,"name":"Extract Text from PDF","item":"https://apnesoftware.com/tools/pdf-extract-text.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to extract text from a PDF","description":"Copy or download the selectable text from a PDF for free in your browser.","step":[{"@type":"HowToStep","name":"Upload PDF","text":"Drag and drop your PDF onto the upload area or click to browse and select it."},{"@type":"HowToStep","name":"Extract","text":"The tool reads every page and shows the extracted text with its original line layout."},{"@type":"HowToStep","name":"Refine","text":"Choose page range and formatting options such as preserve layout, page markers or join hyphenated words, and search the text."},{"@type":"HowToStep","name":"Copy or download","text":"Copy the text, download it as a .txt file, or export each page as a separate file in a ZIP."}]}
+</script>
+<!-- FAQ schema (populated at runtime) -->
+<script type="application/ld+json" id="faqSchema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}</script>
+
+<meta name="color-scheme" content="dark light">
+<title>Extract Text from PDF — Copy &amp; Download PDF Text Free &amp; Private | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
-.dropzone{cursor:pointer}
-.dropzone p{font-size:.9rem}
-.panel{position:relative;z-index:1}
+/* ── Extract Text tool — scoped styles (xt-) ─────────────────── */
+.xt-scope{--xt-accent:#A78BFA;--xt-accent2:#7C3AED;}
+.xt-hide{display:none !important;}
+.xt-drop{cursor:pointer;transition:border-color .2s,background .2s;}
+.xt-drop.drag{border-color:var(--xt-accent);background:rgba(167,139,250,.08);}
+.xt-bar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:14px;padding:12px;background:var(--surface-2,rgba(255,255,255,.03));border:1px solid var(--border);border-radius:12px;}
+.xt-fileinfo{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.82rem;}
+.xt-fileinfo .k{color:var(--text-dim);}
+.xt-field{display:flex;flex-direction:column;gap:4px;}
+.xt-field label{font-size:.75rem;color:var(--text-dim);}
+.xt-field select,.xt-field input[type=text]{background:var(--surface,rgba(0,0,0,.25));color:var(--text);border:1px solid var(--border);border-radius:8px;padding:7px 9px;font-family:var(--font);font-size:.85rem;outline:none;}
+.xt-field select:focus,.xt-field input:focus{border-color:var(--xt-accent);}
+.xt-check{display:inline-flex;align-items:center;gap:7px;font-size:.83rem;cursor:pointer;}
+.xt-check input{accent-color:var(--xt-accent);}
+.xt-btn{background:linear-gradient(135deg,var(--xt-accent),var(--xt-accent2));color:#fff;border:0;border-radius:9px;padding:9px 14px;font:inherit;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:7px;}
+.xt-btn:disabled{opacity:.5;cursor:not-allowed;}
+.xt-btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text);font-weight:500;}
+.xt-btn.sm{padding:6px 10px;font-size:.82rem;}
+.xt-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0;}
+#outputText{width:100%;box-sizing:border-box;min-height:340px;background:var(--surface,rgba(0,0,0,.25));color:var(--text);border:1px solid var(--border);border-radius:10px;padding:12px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.85rem;line-height:1.55;resize:vertical;outline:none;white-space:pre;overflow:auto;}
+#outputText:focus{border-color:var(--xt-accent);}
+.xt-stats{display:flex;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--text-dim);margin-top:8px;}
+.xt-search{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.xt-search input{min-width:180px;}
+.xt-prog{height:8px;background:var(--surface,rgba(0,0,0,.3));border-radius:6px;overflow:hidden;margin-top:12px;}
+.xt-prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--xt-accent),var(--xt-accent2));transition:width .15s;}
+.xt-status{margin-top:10px;font-size:.9rem;color:var(--text-dim);min-height:1.2em;}
+.xt-warn{background:rgba(255,193,7,.1);border:1px solid rgba(255,193,7,.35);border-radius:10px;padding:10px 12px;font-size:.85rem;margin-top:12px;}
+.xt-warn a{color:var(--xt-accent);}
+/* below-tool content */
+.xt-wrap{max-width:1040px;margin:26px auto 0;padding:0 6px;}
+.xt-title{display:flex;align-items:center;gap:12px;margin:26px 0 14px;}
+.xt-title h2{font-size:1.25rem;font-weight:800;margin:0;white-space:nowrap;}
+.xt-title::before,.xt-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.10);}
+.xt-lead{color:var(--text-dim);font-size:.95rem;line-height:1.8;margin:0 6px;}
+.xt-feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.xt-fcard{border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.03));border-radius:14px;padding:16px;transition:.2s;}
+.xt-fcard:hover{border-color:var(--xt-accent);transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.14);}
+.xt-fcard h3{font-size:.92rem;font-weight:700;margin:0 0 6px;display:flex;align-items:center;gap:8px;}
+.xt-fcard p{font-size:.84rem;color:var(--text-dim);line-height:1.65;margin:0;}
+.xt-about ol,.xt-about > p{color:var(--text-dim);font-size:.92rem;line-height:1.8;padding-left:6px;}
+.xt-about ol{padding-left:24px;}
+.xt-related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:10px 0 4px;}
+.xt-related a{display:block;background:var(--surface-2,rgba(255,255,255,.03));border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text);transition:border-color .2s,transform .15s;}
+.xt-related a:hover{border-color:var(--xt-accent);transform:translateY(-2px);}
+.xt-related b{display:block;font-size:.92rem;margin-bottom:3px;}
+.xt-related span{font-size:.78rem;color:var(--text-dim);}
+#faqList details{border:1px solid var(--border);border-radius:10px;padding:0 14px;margin:8px 0;background:var(--surface-2,rgba(255,255,255,.02));}
+#faqList summary{cursor:pointer;padding:13px 0;font-weight:600;font-size:.95rem;}
+#faqList details[open]{padding-bottom:6px;}
+#faqList p{margin:0 0 12px;line-height:1.65;color:var(--text-dim);}
+:focus-visible{outline:2px solid var(--xt-accent);outline-offset:2px;}
 </style>
 </head>
 <body>
@@ -37,105 +99,377 @@
 </header>
 
 <div class="container">
+  <div class="xt-scope" id="xtScope">
   <div class="tool-header">
     <h1>📋 Extract Text from PDF</h1>
-    <p>Make all the text inside a PDF copyable or downloadable. ⚠️ This only works on PDFs with typed text — for scanned/image-based PDFs, use the "PDF OCR" tool below.</p>
+    <p>Copy or download all the selectable text inside a PDF, with its line layout preserved. Everything runs in your browser; your file is never uploaded.</p>
   </div>
 
   <div class="panel">
-    <div class="dropzone" id="dropzone">
-      <p>📤 Drag a PDF file here or click to choose</p>
-      <input type="file" id="fileInput" accept="application/pdf">
+    <div class="dropzone xt-drop" id="dropzone" role="button" tabindex="0" aria-label="Upload PDF file">
+      <p>📤 Drag &amp; drop your PDF here, or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf" hidden>
     </div>
 
-    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+    <div class="xt-prog xt-hide" id="progWrap"><i id="progFill"></i></div>
+    <p class="xt-status" id="statusMsg" role="status" aria-live="polite"></p>
 
-    <div class="field" id="outputField" style="display:none;margin-top:14px">
-      <label>Extracted Text</label>
-      <textarea id="outputText" readonly style="min-height:300px"></textarea>
-    </div>
+    <div id="workspace" class="xt-hide">
+      <div class="xt-bar">
+        <div class="xt-fileinfo">
+          <span><span class="k">File:</span> <b id="fiName">—</b></span>
+          <span><span class="k">Size:</span> <span id="fiSize">—</span></span>
+          <span><span class="k">Pages:</span> <span id="fiPages">—</span></span>
+          <span><span class="k">Title:</span> <span id="fiTitle">—</span></span>
+        </div>
+      </div>
 
-    <div class="btn-row" id="actionRow" style="display:none">
-      <button class="btn secondary" id="copyBtn">📋 Copy</button>
-      <button class="btn secondary" id="downloadBtn">⬇️ Download .txt</button>
+      <div class="xt-bar" style="margin-top:10px">
+        <div class="xt-field"><label>Pages</label>
+          <div style="display:flex;gap:6px;align-items:center">
+            <select id="scopeSelect"><option value="all">All pages</option><option value="first">First page</option><option value="last">Last page</option><option value="range">Custom range…</option></select>
+            <input type="text" id="rangeInput" placeholder="1-3, 5" class="xt-hide" style="width:100px">
+          </div>
+        </div>
+        <div class="xt-field"><label>Layout</label>
+          <select id="layoutSelect"><option value="lines">Preserve line layout</option><option value="flow">Continuous text</option></select></div>
+        <label class="xt-check"><input type="checkbox" id="optMarkers" checked> Page markers</label>
+        <label class="xt-check"><input type="checkbox" id="optDehyphen"> Join hyphenated words</label>
+        <label class="xt-check"><input type="checkbox" id="optCollapse"> Collapse blank lines</label>
+      </div>
+
+      <div class="xt-bar" style="margin-top:10px">
+        <div class="xt-search">
+          <input type="text" id="searchInput" placeholder="🔍 Search in text…" aria-label="Search in extracted text">
+          <button class="xt-btn sm ghost" id="findNextBtn">Find next</button>
+          <span id="matchCount" style="font-size:.8rem;color:var(--text-dim)"></span>
+        </div>
+      </div>
+
+      <div class="field" id="outputField" style="margin-top:12px">
+        <label for="outputText">Extracted text (editable)</label>
+        <textarea id="outputText" spellcheck="false" aria-label="Extracted text"></textarea>
+      </div>
+      <div class="xt-stats">
+        <span id="stWords">0 words</span><span id="stChars">0 characters</span><span id="stLines">0 lines</span>
+      </div>
+
+      <div class="xt-tools" id="actionRow">
+        <button class="xt-btn" id="copyBtn">📋 Copy</button>
+        <button class="xt-btn ghost" id="downloadBtn">⬇️ Download .txt</button>
+        <button class="xt-btn ghost" id="downloadZipBtn">🗂️ Download per-page (ZIP)</button>
+        <button class="xt-btn ghost" id="clearBtn">🗑️ New file</button>
+      </div>
+
+      <div class="xt-warn xt-hide" id="scanWarn">⚠️ Little or no selectable text was found — this looks like a <strong>scanned / image-based PDF</strong>. Use the <a href="pdf-ocr.html">PDF OCR</a> tool to recognise the text from the page images.</div>
     </div>
+  </div>
   </div>
 </div>
 
+<!-- ── Below-tool content ─────────────────────────────────────── -->
+<section class="xt-wrap" aria-labelledby="introH">
+  <div class="xt-title"><h2 id="introH">📋 Extract Text from PDF — Copy Every Word</h2></div>
+  <p class="xt-lead">The <strong>ApneSoftware Extract Text from PDF</strong> tool pulls the selectable text out of any PDF so you can copy it, edit it or download it as a plain <code>.txt</code> file — with the original line layout kept intact. Choose which pages to read, search within the result, and export the whole document or each page separately, all inside your web browser and without uploading your file anywhere.</p>
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Pull out all the readable text from a PDF so you can copy or download it as plain text.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your PDF (it must have typed/selectable text, not just a scan).</li>
-        <li>The text appears automatically in the box below.</li>
-        <li>Copy it or download it as a .txt file.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल PDF में मौजूद सारा पढ़ने लायक टेक्स्ट निकालकर कॉपी या प्लेन टेक्स्ट के रूप में डाउनलोड करने लायक बना देता है।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी PDF अपलोड करें (इसमें टाइप किया हुआ टेक्स्ट होना चाहिए, सिर्फ स्कैन नहीं)।</li>
-        <li>टेक्स्ट नीचे बॉक्स में अपने आप आ जाएगा।</li>
-        <li>उसे कॉपी करें या .txt फाइल के रूप में डाउनलोड करें।</li>
-      </ol>
+  <div class="xt-title"><h2>✨ Key Features</h2></div>
+  <div class="xt-feature-grid">
+    <div class="xt-fcard"><h3>📐 Layout Preserved</h3><p>Reconstructs lines from the page so the text keeps its structure, not one long run-on paragraph.</p></div>
+    <div class="xt-fcard"><h3>🎯 Page Selection</h3><p>Extract all pages, only the first or last, or a custom range such as 1-3, 5.</p></div>
+    <div class="xt-fcard"><h3>🔍 Search</h3><p>Find any word or phrase inside the extracted text and jump between matches.</p></div>
+    <div class="xt-fcard"><h3>🧹 Clean-up Options</h3><p>Toggle page markers, join hyphenated line breaks, and collapse blank lines.</p></div>
+    <div class="xt-fcard"><h3>🔢 Live Counts</h3><p>See word, character and line counts update as you refine the text.</p></div>
+    <div class="xt-fcard"><h3>🗂️ Per-page Export</h3><p>Download the whole text as .txt or every page as a separate file in a ZIP.</p></div>
+    <div class="xt-fcard"><h3>🖨️ Scanned PDF Aware</h3><p>Detects image-only PDFs and points you to the OCR tool.</p></div>
+    <div class="xt-fcard"><h3>🔒 100% Private</h3><p>Everything runs in your browser; your PDF is never uploaded.</p></div>
+  </div>
+
+  <div class="xt-title"><h2>🎁 Benefits</h2></div>
+  <div class="xt-feature-grid">
+    <div class="xt-fcard"><h3>✍️ Reuse Content</h3><p>Copy quotes, data and passages into documents, emails and notes.</p></div>
+    <div class="xt-fcard"><h3>♿ Accessibility</h3><p>Get plain text you can read with a screen reader or convert to speech.</p></div>
+    <div class="xt-fcard"><h3>🔎 Make it Searchable</h3><p>Turn a PDF into searchable, editable text you can grep and index.</p></div>
+    <div class="xt-fcard"><h3>🔐 Private</h3><p>Sensitive documents stay on your own device from start to finish.</p></div>
+    <div class="xt-fcard"><h3>🆓 Free &amp; Unlimited</h3><p>No installs, no accounts, and no watermark added by us.</p></div>
+  </div>
+</section>
+
+<section class="xt-wrap" aria-labelledby="relatedH">
+  <div class="xt-title"><h2 id="relatedH">🔗 Related Tools</h2></div>
+  <div class="xt-related">
+    <a href="pdf-ocr.html"><b>PDF OCR</b><span>Read text from scanned PDFs</span></a>
+    <a href="pdf-extract-images.html"><b>Extract Images</b><span>Pull images out of a PDF</span></a>
+    <a href="pdf-to-image.html"><b>PDF to JPG</b><span>Render pages as images</span></a>
+    <a href="pdf-merge.html"><b>Merge PDF</b><span>Combine multiple PDFs</span></a>
+    <a href="pdf-split.html"><b>Split PDF</b><span>Split into separate files</span></a>
+    <a href="pdf-compress.html"><b>Compress PDF</b><span>Reduce PDF file size</span></a>
+    <a href="pdf-crop.html"><b>Crop PDF</b><span>Trim page margins</span></a>
+    <a href="pdf-rotate.html"><b>Rotate PDF</b><span>Rotate PDF pages</span></a>
+    <a href="pdf-page-numbers.html"><b>PDF Page Numbers</b><span>Add page numbers</span></a>
+    <a href="pdf-watermark.html"><b>PDF Watermark</b><span>Add a watermark</span></a>
+  </div>
+</section>
+
+<section class="xt-wrap" aria-labelledby="aboutH">
+  <div class="xt-title"><h2 id="aboutH">ℹ️ About This Tool</h2></div>
+  <div class="info-wrap" style="max-width:100%;padding:0">
+    <div class="info-section">
+      <article class="info-block xt-about">
+        <h2>About the Extract Text from PDF Tool (English)</h2>
+        <p>A PDF is designed to look the same everywhere, but that fixed layout makes its text surprisingly hard to reuse. You can see the words on screen, yet copying them from a viewer often scrambles the order, drops line breaks, or refuses to select at all. The ApneSoftware Extract Text from PDF tool solves this by reading the text layer stored inside the file and giving it back to you as clean, editable plain text that you can copy, search, tidy up and download — with its line structure preserved and entirely without uploading your document.</p>
+
+        <p>When you open a PDF, the tool reads every page's text content — the individual characters and words together with their positions on the page — and reconstructs the reading order line by line. Instead of merging everything into one long paragraph, it groups words that share the same line and starts a new line where the original text does, so the result looks like the document rather than a jumble. This <strong>layout-preserving</strong> extraction is the default, and it makes the output far easier to read and reuse; if you would rather have a single continuous flow of text (useful for pasting into a chat box or a word processor that will re-wrap it), a one-click <strong>Continuous text</strong> mode gives you that instead.</p>
+
+        <p>You are not forced to take the whole document. A <strong>page selector</strong> lets you extract all pages, just the first or last page, or a precise <strong>custom range</strong> such as <em>1-3, 5, 8-10</em> — ideal when you only need one section, chapter or table. Because the tool extracts every page once and then assembles the output from your choices, changing the range or the formatting is instant and never requires re-reading the file.</p>
+
+        <p>Several <strong>clean-up options</strong> help you get exactly the text you want. <strong>Page markers</strong> insert a clear “--- Page N ---” heading before each page so you always know where you are; turn them off for a seamless block of text. <strong>Join hyphenated words</strong> repairs words that were split across a line break with a hyphen, so “inter-\nnational” becomes “international”. <strong>Collapse blank lines</strong> removes runs of empty lines that some PDFs produce, giving tighter output. A built-in <strong>search</strong> box lets you find any word or phrase in the extracted text and jump straight to it, and because the output area is fully <strong>editable</strong>, you can delete headers, fix a stray character or trim to just the part you need before saving.</p>
+
+        <p>Getting the text out is just as flexible. <strong>Copy</strong> puts everything on your clipboard in one click; <strong>Download .txt</strong> saves it as a plain-text file; and <strong>Download per-page (ZIP)</strong> gives you a separate text file for each selected page, neatly bundled — perfect for feeding pages into other tools or archiving. Live <strong>word, character and line counts</strong> update as you edit, which is handy for writers and students working to a length. Throughout, a progress indicator keeps you informed while longer documents are read.</p>
+
+        <p>It is important to know the one thing this tool cannot do, because it is the most common source of confusion. It extracts a PDF's <strong>real text layer</strong> — the typed, selectable text that programs like Word, Google Docs, browsers and most report generators embed. If a PDF is a <strong>scan or a photograph of a page</strong>, there is no text layer at all: the page is just an image, and no amount of text extraction can read it. The tool detects this situation — when little or no selectable text is found — and points you to our <a href="pdf-ocr.html">PDF OCR</a> tool, which uses optical character recognition to recognise the words from the page images instead. For any PDF created digitally, though, extraction is fast, accurate and lossless.</p>
+
+        <p>Privacy is central to the design. Your PDF is read and processed entirely on your own device using JavaScript and the browser's built-in PDF engine; nothing is uploaded, stored or logged, so the tool is safe for contracts, medical records, financial statements, legal filings and any other confidential material. <strong>Password-protected PDFs</strong> that you are authorised to open are handled locally, large multi-hundred-page documents are supported, and there is no account to create, no software to install and no watermark added to your text.</p>
+
+        <p>Typical users include students and researchers pulling quotes and references from papers, professionals extracting clauses from contracts, writers repurposing content, developers who need a document's text for indexing or processing, and anyone using assistive technology who wants plain, readable text instead of a locked-down page. Whether you need a single paragraph or the full text of a long report, the tool delivers clean, well-structured text in seconds.</p>
+      </article>
+
+      <article class="info-block xt-about">
+        <h2>इस टूल के बारे में (Hindi)</h2>
+        <p>PDF इसलिए बनाई जाती है कि वह हर जगह एक जैसी दिखे, पर यही तयशुदा layout उसके text को दोबारा उपयोग करना आश्चर्यजनक रूप से कठिन बना देता है। आप शब्द screen पर देख सकते हैं, फिर भी viewer से उन्हें copy करने पर अक्सर क्रम बिगड़ जाता है, line breaks छूट जाते हैं, या select ही नहीं होता। ApneSoftware Extract Text from PDF टूल यह हल करता है — यह file के अंदर सहेजी text layer पढ़ता है और उसे साफ़, editable plain text के रूप में लौटाता है जिसे आप copy, search, ठीक और download कर सकते हैं, line structure बनाए रखते हुए और बिना आपका document upload किए।</p>
+
+        <p>जब आप PDF खोलते हैं, टूल हर पन्ने की text content — अलग-अलग अक्षर और शब्द उनके पन्ने पर स्थान सहित — पढ़ता है और पढ़ने का क्रम line-दर-line फिर से बनाता है। सब कुछ एक लंबे paragraph में मिलाने के बजाय, यह एक ही line साझा करने वाले शब्दों को समूहित करता है और वहीं नई line शुरू करता है जहाँ मूल text करता है, ताकि परिणाम किसी उलझन के बजाय document जैसा दिखे। यह <strong>layout-preserving</strong> extraction default है और output को पढ़ना व दोबारा उपयोग करना बहुत आसान बनाता है; यदि आप एक निरंतर text-प्रवाह चाहें (chat box या word processor में paste करने के लिए उपयोगी जो उसे फिर से wrap कर देगा), तो एक-क्लिक <strong>Continuous text</strong> mode वह देता है।</p>
+
+        <p>आपको पूरा document लेना ज़रूरी नहीं। एक <strong>page selector</strong> आपको सभी पन्ने, केवल पहला या आखिरी पन्ना, या <em>1-3, 5, 8-10</em> जैसी सटीक <strong>custom range</strong> निकालने देता है — तब आदर्श जब आपको केवल एक section, chapter या table चाहिए। चूँकि टूल हर पन्ना एक बार निकालता है और फिर आपके चयन से output बनाता है, range या formatting बदलना तुरंत होता है और file दोबारा पढ़ने की ज़रूरत नहीं।</p>
+
+        <p>कई <strong>clean-up विकल्प</strong> आपको ठीक वही text देने में मदद करते हैं। <strong>Page markers</strong> हर पन्ने से पहले स्पष्ट “--- Page N ---” heading डालते हैं ताकि आप हमेशा जानें कहाँ हैं; निर्बाध block के लिए इन्हें बंद कर दें। <strong>Join hyphenated words</strong> line break पर hyphen से टूटे शब्दों को जोड़ता है, ताकि “inter-\nnational” “international” बन जाए। <strong>Collapse blank lines</strong> कुछ PDF द्वारा बनी खाली lines की श्रृंखला हटाता है, जिससे output कसा हुआ मिलता है। एक built-in <strong>search</strong> box आपको extracted text में कोई शब्द या वाक्यांश ढूँढकर सीधे वहाँ जाने देता है, और चूँकि output क्षेत्र पूरी तरह <strong>editable</strong> है, आप save से पहले headers हटा सकते हैं, कोई भटका अक्षर ठीक कर सकते हैं, या केवल ज़रूरी हिस्सा रख सकते हैं।</p>
+
+        <p>text बाहर निकालना उतना ही लचीला है। <strong>Copy</strong> एक क्लिक में सब clipboard पर रखता है; <strong>Download .txt</strong> उसे plain-text file के रूप में सहेजता है; और <strong>Download per-page (ZIP)</strong> हर चुने पन्ने के लिए अलग text file देता है, साफ़-सुथरे bundle में — अन्य tools में पन्ने डालने या archive करने के लिए बढ़िया। जीवंत <strong>word, character और line counts</strong> संपादन के साथ अपडेट होते हैं, जो लंबाई पर काम करने वाले writers और students के लिए उपयोगी है। पूरे समय एक progress indicator लंबे documents पढ़ते समय आपको सूचित रखता है।</p>
+
+        <p>एक बात जानना ज़रूरी है जो टूल नहीं कर सकता, क्योंकि यही सबसे आम भ्रम है। यह PDF की <strong>असली text layer</strong> निकालता है — वह typed, selectable text जो Word, Google Docs, browsers और अधिकांश report generators embed करते हैं। यदि PDF किसी पन्ने का <strong>scan या photo</strong> है, तो कोई text layer होती ही नहीं: पन्ना बस एक image है, और कोई भी text extraction उसे पढ़ नहीं सकता। टूल इस स्थिति को पहचानता है — जब कम या कोई selectable text न मिले — और आपको हमारे <a href="pdf-ocr.html">PDF OCR</a> टूल की ओर भेजता है, जो optical character recognition से पन्ने की images से शब्द पहचानता है। पर किसी भी digitally बनी PDF के लिए extraction तेज़, सटीक और lossless है।</p>
+
+        <p>Privacy design का केंद्र है। आपकी PDF आपके अपने device पर JavaScript और browser के built-in PDF engine से पढ़ी और process की जाती है; कुछ भी upload, store या log नहीं होता, इसलिए टूल contracts, medical records, financial statements, legal filings और किसी भी गोपनीय सामग्री के लिए सुरक्षित है। जिन <strong>password-protected PDF</strong> को खोलने का आपको अधिकार है वे locally संभाली जाती हैं, सैकड़ों पन्नों वाले बड़े documents समर्थित हैं, और कोई account, कोई software install, या आपके text पर कोई watermark नहीं।</p>
+
+        <p>सामान्य उपयोगकर्ताओं में papers से quotes और references निकालने वाले students और researchers, contracts से clauses निकालने वाले professionals, content दोबारा उपयोग करने वाले writers, indexing या processing के लिए document का text चाहने वाले developers, और सहायक तकनीक उपयोग करने वाला कोई भी जो locked पन्ने के बजाय साफ़ पढ़ने योग्य text चाहता है — शामिल हैं। चाहे आपको एक paragraph चाहिए या किसी लंबी report का पूरा text, टूल कुछ ही सेकंड में साफ़, सुव्यवस्थित text देता है।</p>
+      </article>
     </div>
   </div>
-</div>
+</section>
+
+<section class="xt-wrap xt-about" aria-labelledby="howH">
+  <div class="xt-title"><h2 id="howH">📝 How To Use</h2></div>
+  <ol>
+    <li>Drag &amp; drop your PDF onto the upload area, or click to browse.</li>
+    <li>The text is extracted automatically with its line layout preserved.</li>
+    <li>Pick a <strong>page range</strong> and toggle options (markers, join hyphens, collapse blanks).</li>
+    <li>Use <strong>search</strong> to find text, and edit the box directly if needed.</li>
+    <li><strong>Copy</strong>, <strong>Download .txt</strong>, or export each page as a file in a <strong>ZIP</strong>.</li>
+    <li>If the PDF is a scan with no selectable text, use the <a href="pdf-ocr.html">PDF OCR</a> tool instead.</li>
+  </ol>
+</section>
+
+<section class="xt-wrap xt-faq" aria-labelledby="faqH">
+  <div class="xt-title"><h2 id="faqH">❓ Frequently Asked Questions</h2></div>
+  <div id="faqList"></div>
+</section>
+
+<section class="xt-wrap xt-about" aria-labelledby="privacyH">
+  <div class="xt-title"><h2 id="privacyH">🔒 Privacy</h2></div>
+  <p>This tool is 100% client-side. Your PDF is read and processed entirely in your browser using JavaScript — it is never sent to ApneSoftware or any third party. Nothing is stored, logged or transmitted. When you close or refresh the page, the file and its text are cleared from memory. Because there is no upload, you can safely extract text from confidential, legal, medical and financial documents.</p>
+
+  <div class="xt-title"><h2 id="compatH">🌐 Browser Compatibility</h2></div>
+  <p>Works in all modern browsers including Google Chrome, Microsoft Edge, Mozilla Firefox, Safari, Brave and Opera, on Windows, macOS, Linux, Android and iOS. It relies on standard web technologies (File API and a JavaScript PDF engine), so no plugins or extensions are required. For very large PDFs a desktop browser with more available memory gives the smoothest experience.</p>
+
+  <div class="xt-title"><h2 id="formatsH">📁 Supported Formats</h2></div>
+  <p><strong>Input:</strong> PDF (.pdf) with a real text layer (typed/selectable text), including password-protected PDFs you are authorised to open. <strong>Output:</strong> plain text (.txt), copied to the clipboard or downloaded as a single file or as one file per page in a ZIP. Scanned/image-only PDFs have no text layer — use the PDF OCR tool for those.</p>
+</section>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+/* ══════════════════════════════════════════════════════════════
+   EXTRACT TEXT FROM PDF — premium client-side tool (pdf.js + JSZip)
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+  if(window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  var $ = function(id){ return document.getElementById(id); };
 
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
+  var FAQ = [
+    ["Is my PDF uploaded to a server?","No. The entire extraction runs locally in your browser using JavaScript. Your PDF and its text never leave your device, so it is safe for confidential documents."],
+    ["Why does copying from a PDF viewer scramble the text?","PDFs store characters with positions, not a clean reading order. This tool reconstructs lines from those positions, so the extracted text keeps its structure instead of becoming a jumble."],
+    ["My PDF is a scan — why is there no text?","Scanned PDFs are images of pages with no text layer, so there is nothing to extract. Use the PDF OCR tool, which recognises the words from the page images."],
+    ["Can I extract text from only some pages?","Yes. Choose All, First, Last, or a custom range such as 1-3, 5, 8-10 in the Pages selector."],
+    ["What is the difference between “Preserve line layout” and “Continuous text”?","Preserve layout keeps line breaks so the text looks like the document. Continuous text joins everything into a flowing block, useful for pasting where it will be re-wrapped."],
+    ["What do the page markers do?","They insert a “--- Page N ---” heading before each page's text so you can tell pages apart. You can switch them off for a seamless block."],
+    ["What does “Join hyphenated words” do?","It repairs words split across a line break with a hyphen, turning “inter-\\nnational” into “international”."],
+    ["Can I edit the extracted text before saving?","Yes. The text box is fully editable, so you can delete headers, fix characters or trim to the part you need before copying or downloading."],
+    ["How do I search within the extracted text?","Type in the search box and use Find next to jump between matches. The match count is shown next to it."],
+    ["Can I download each page as a separate file?","Yes. “Download per-page (ZIP)” saves one .txt file per selected page, bundled into a single ZIP archive."],
+    ["Does it show word and character counts?","Yes. Word, character and line counts update live as you edit or change options."],
+    ["Can it handle password-protected PDFs?","If you are authorised to open the file, the tool loads it locally and extracts the text. Everything still happens on your device."],
+    ["Is there a limit on file size or pages?","There is no fixed limit — it depends on your device's memory. Large documents are read page by page with a progress bar."],
+    ["Will the extracted text be perfectly formatted?","It preserves lines well for most documents. Complex multi-column layouts, tables and unusual fonts can affect order or spacing; you can tidy the text in the editable box."],
+    ["Does it keep tables and columns intact?","Text is extracted in reading order line by line. Simple tables often survive, but complex multi-column layouts may need manual tidying, which the editable box makes easy."],
+    ["Are special characters and other languages supported?","Yes. Unicode text, including non-English scripts, is extracted as stored in the PDF, subject to the fonts using standard character mappings."],
+    ["Does it work on phones and tablets?","Yes. The layout is responsive and copy, download and ZIP export work on modern mobile browsers."],
+    ["Is the extracted .txt safe to open?","Yes. It is a standard plain-text file created in your browser from the PDF's own text; nothing external is added."],
+    ["Is the tool free? Do I need an account?","It is completely free with no signup, no watermark added by us, and no usage limits."],
+    ["Which browsers are supported?","All modern browsers — Chrome, Edge, Firefox, Safari, Brave and Opera — on desktop and mobile. No plugins are required."],
+    ["Can I extract text and then make a Word document?","Copy or download the text, then paste it into Word, Google Docs or any editor. This tool outputs clean plain text you can format however you like."]
+  ];
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
-});
+  var pages=[];       // [{n, lines:[...], flow:'...'}]
+  var srcName="", pdfDoc=null;
 
-async function handleFile(file){
-  const status = document.getElementById('statusMsg');
-  status.textContent = '⏳ Extracting text...';
+  function setProg(p){ var w=$('progWrap'); if(p<0){w.classList.add('xt-hide');return;} w.classList.remove('xt-hide'); $('progFill').style.width=Math.round(p*100)+'%'; }
+  function status(m){ $('statusMsg').textContent=m||''; }
 
-  const arrayBuf = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
-  let fullText = '';
-
-  for(let i=1; i<=pdf.numPages; i++){
-    status.textContent = `⏳ Reading page ${i}/${pdf.numPages}...`;
-    const page = await pdf.getPage(i);
-    const content = await page.getTextContent();
-    const pageText = content.items.map(item => item.str).join(' ');
-    fullText += `--- Page ${i} ---\n${pageText}\n\n`;
+  // ── Extract one page into lines using item positions ───────
+  function pageToLines(content){
+    var items=content.items.filter(function(it){ return it.str!==undefined; });
+    // sort top-to-bottom then left-to-right
+    var sorted=items.slice().sort(function(a,b){ var ay=a.transform[5], by=b.transform[5]; if(Math.abs(ay-by)>3) return by-ay; return a.transform[4]-b.transform[4]; });
+    var lines=[], cur=[], curY=null;
+    for(var i=0;i<sorted.length;i++){
+      var it=sorted[i]; var y=it.transform[5];
+      var lineTol=(it.height?it.height*0.6:3);
+      if(curY===null || Math.abs(y-curY)<=lineTol){ cur.push(it); if(curY===null)curY=y; else curY=(curY+y)/2; }
+      else { lines.push(cur); cur=[it]; curY=y; }
+    }
+    if(cur.length) lines.push(cur);
+    return lines.map(function(li){
+      li.sort(function(a,b){ return a.transform[4]-b.transform[4]; });
+      var s='', prevEnd=null;
+      for(var j=0;j<li.length;j++){
+        var it=li[j], x=it.transform[4];
+        if(prevEnd!==null){ var gap=x-prevEnd; var sp=(it.height?it.height*0.25:1.5); if(gap>sp && !/\s$/.test(s) && !/^\s/.test(it.str)) s+=' '; }
+        s+=it.str; prevEnd=x+(it.width||0);
+      }
+      return s.replace(/\s+$/,'');
+    });
   }
 
-  document.getElementById('outputText').value = fullText.trim();
-  document.getElementById('outputField').style.display = 'block';
-  document.getElementById('actionRow').style.display = 'flex';
-
-  if(!fullText.trim() || fullText.replace(/---.*?---/g,'').trim().length < 5){
-    status.textContent = '⚠️ No selectable text found in this PDF — it may be a scanned PDF. Try the "PDF OCR" tool instead.';
-  } else {
-    status.textContent = `✅ Text extracted from ${pdf.numPages} page(s)`;
+  // ── Assemble output from options ───────────────────────────
+  function parseRange(str,max){ var set={}; (str||'').split(',').forEach(function(p){ p=p.trim(); if(!p)return; var m=p.match(/^(\d+)\s*-\s*(\d+)$/); if(m){var a=+m[1],b=+m[2]; if(a>b){var t=a;a=b;b=t;} for(var i=a;i<=b;i++) if(i>=1&&i<=max)set[i]=1;} else if(/^\d+$/.test(p)){var n=+p; if(n>=1&&n<=max)set[n]=1;} }); return set; }
+  function selectedPages(){
+    var sc=$('scopeSelect').value, N=pages.length;
+    if(sc==='first') return [1];
+    if(sc==='last') return [N];
+    if(sc==='range'){ var set=parseRange($('rangeInput').value,N); var arr=[]; for(var i=1;i<=N;i++) if(set[i])arr.push(i); return arr.length?arr:[]; }
+    var all=[]; for(var k=1;k<=N;k++) all.push(k); return all;
   }
-}
+  function pageText(pg){
+    var layout=$('layoutSelect').value;
+    var txt = layout==='flow' ? pg.lines.join(' ').replace(/\s{2,}/g,' ') : pg.lines.join('\n');
+    if($('optDehyphen').checked){ txt=txt.replace(/(\w)-\n(\w)/g,'$1$2'); }
+    if($('optCollapse').checked){ txt=txt.replace(/\n{3,}/g,'\n\n'); }
+    return txt;
+  }
+  function assemble(){
+    var sel=selectedPages(), markers=$('optMarkers').checked, out=[];
+    sel.forEach(function(n){ var pg=pages[n-1]; if(!pg)return; var t=pageText(pg); out.push(markers ? ('--- Page '+n+' ---\n'+t) : t); });
+    var joined=out.join(markers?'\n\n':'\n\n');
+    $('outputText').value=joined;
+    updateStats();
+  }
+  function updateStats(){
+    var v=$('outputText').value;
+    var words=(v.match(/\S+/g)||[]).length;
+    $('stWords').textContent=words+' words';
+    $('stChars').textContent=v.length+' characters';
+    $('stLines').textContent=(v?v.split('\n').length:0)+' lines';
+  }
 
-document.getElementById('copyBtn').addEventListener('click', (e)=>{
-  copyText(document.getElementById('outputText').value, e.target);
-});
-document.getElementById('downloadBtn').addEventListener('click', ()=>{
-  downloadText('extracted-text.txt', document.getElementById('outputText').value);
-});
+  // ── Load + extract ─────────────────────────────────────────
+  function loadFile(file){
+    if(!file || file.type!=='application/pdf'){ status('⚠️ Please choose a PDF file.'); return; }
+    srcName=file.name; status('⏳ Loading…'); setProg(0.05);
+    file.arrayBuffer().then(function(buf){
+      pdfjsLib.getDocument({data:buf.slice(0)}).promise.then(function(doc){ extract(doc,file); })
+      .catch(function(err){
+        if(err&&err.name==='PasswordException'){ var pw=prompt('This PDF is password protected. Enter the password:'); if(pw!=null){ pdfjsLib.getDocument({data:buf.slice(0),password:pw}).promise.then(function(d){ extract(d,file); }).catch(function(){ setProg(-1); status('❌ Wrong password or unreadable PDF.'); }); return; } }
+        setProg(-1); status('❌ Could not read this PDF: '+(err&&err.message||err));
+      });
+    });
+  }
+  function extract(doc,file){
+    pdfDoc=doc; pages=[];
+    $('fiName').textContent=srcName; $('fiSize').textContent=formatBytes(file.size); $('fiPages').textContent=doc.numPages;
+    doc.getMetadata().then(function(md){ var t=md&&md.info&&md.info.Title; $('fiTitle').textContent=t||'—'; }).catch(function(){ $('fiTitle').textContent='—'; });
+    $('workspace').classList.remove('xt-hide'); $('dropzone').classList.add('xt-hide'); $('scanWarn').classList.add('xt-hide');
+    (async function(){
+      var totalChars=0;
+      for(var i=1;i<=doc.numPages;i++){
+        status('⏳ Reading page '+i+'/'+doc.numPages+'…'); setProg(i/doc.numPages);
+        var page,content; try{ page=await doc.getPage(i); content=await page.getTextContent(); }catch(e){ pages.push({n:i,lines:['']}); continue; }
+        var lines=pageToLines(content); pages.push({n:i,lines:lines});
+        totalChars+=lines.join('').length;
+      }
+      setProg(-1);
+      assemble();
+      if(totalChars<5){ status('⚠️ No selectable text found.'); $('scanWarn').classList.remove('xt-hide'); }
+      else{ status('✅ Text extracted from '+doc.numPages+' page(s).'); }
+    })();
+  }
+
+  // ── Search ─────────────────────────────────────────────────
+  function findNext(){
+    var q=$('searchInput').value; if(!q){ $('matchCount').textContent=''; return; }
+    var ta=$('outputText'), text=ta.value, lower=text.toLowerCase(), ql=q.toLowerCase();
+    var total=0, idx=lower.indexOf(ql); while(idx!==-1){ total++; idx=lower.indexOf(ql,idx+ql.length); }
+    $('matchCount').textContent=total?(total+' match'+(total>1?'es':'')):'no matches';
+    if(!total) return;
+    var from=(ta.selectionEnd||0);
+    var pos=lower.indexOf(ql,from); if(pos===-1) pos=lower.indexOf(ql,0);
+    if(pos!==-1){ ta.focus(); ta.setSelectionRange(pos,pos+q.length);
+      // scroll roughly to selection
+      var before=text.substr(0,pos).split('\n').length; ta.scrollTop=Math.max(0,(before-3)*18);
+    }
+  }
+
+  // ── Downloads ──────────────────────────────────────────────
+  function downloadZip(){
+    if(!window.JSZip){ status('❌ ZIP library not loaded.'); return; }
+    var sel=selectedPages(); if(!sel.length){ status('⚠️ No pages selected.'); return; }
+    var zip=new JSZip(); var base=(srcName||'document').replace(/\.pdf$/i,'');
+    sel.forEach(function(n){ var pg=pages[n-1]; if(pg) zip.file(base+'-page-'+n+'.txt', pageText(pg)); });
+    zip.generateAsync({type:'blob'}).then(function(blob){ var name=base+'-text.zip'; if(window.downloadBlob)downloadBlob(name,blob); else{ var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); } status('✅ Downloaded per-page ZIP.'); });
+  }
+
+  function wire(){
+    setupDropzone($('dropzone'),$('fileInput'),function(files){ if(files&&files.length) loadFile(files[0]); });
+    $('dropzone').addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); $('fileInput').click(); }});
+
+    $('scopeSelect').addEventListener('change',function(){ $('rangeInput').classList.toggle('xt-hide',this.value!=='range'); assemble(); });
+    $('rangeInput').addEventListener('input',assemble);
+    ['layoutSelect'].forEach(function(id){ $(id).addEventListener('change',assemble); });
+    ['optMarkers','optDehyphen','optCollapse'].forEach(function(id){ $(id).addEventListener('change',assemble); });
+    $('outputText').addEventListener('input',updateStats);
+
+    $('searchInput').addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); findNext(); } });
+    $('findNextBtn').addEventListener('click',findNext);
+
+    $('copyBtn').addEventListener('click',function(e){ if(window.copyText) copyText($('outputText').value,e.target); else { $('outputText').select(); document.execCommand('copy'); } });
+    $('downloadBtn').addEventListener('click',function(){ var name=(srcName||'extracted').replace(/\.pdf$/i,'')+'.txt'; if(window.downloadText) downloadText(name,$('outputText').value); else { var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([$('outputText').value],{type:'text/plain'})); a.download=name; a.click(); } });
+    $('downloadZipBtn').addEventListener('click',downloadZip);
+    $('clearBtn').addEventListener('click',function(){ pages=[]; pdfDoc=null; $('outputText').value=''; $('workspace').classList.add('xt-hide'); $('dropzone').classList.remove('xt-hide'); $('fileInput').value=''; status(''); });
+  }
+
+  function buildFaq(){
+    var list=$('faqList'); if(!list) return;
+    list.innerHTML=FAQ.map(function(f){ return '<details><summary>'+f[0]+'</summary><p>'+f[1]+'</p></details>'; }).join('');
+    try{ var sc=$('faqSchema'); var data=JSON.parse(sc.textContent);
+      data.mainEntity=FAQ.map(function(f){ return {'@type':'Question','name':f[0],'acceptedAnswer':{'@type':'Answer','text':f[1]}}; });
+      sc.textContent=JSON.stringify(data);
+    }catch(e){}
+  }
+
+  function init(){ wire(); buildFaq(); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
 </script>
 </body>
 </html>
