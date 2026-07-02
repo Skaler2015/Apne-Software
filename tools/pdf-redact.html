@@ -4,52 +4,127 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free online PDF redaction tool. Black out or blur names, account numbers, signatures and sensitive text, then flatten to image for true, irreversible redaction. Draw boxes, find-and-redact text, black/white/blur/pixelate fills. 100% private — runs in your browser, no uploads.">
+<meta name="keywords" content="pdf redact, redact pdf online, black out pdf text, remove sensitive info pdf, pdf redaction tool, blur pdf, hide text in pdf, flatten pdf redaction">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-redact.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PDF Redact — Hide Sensitive Info | ApneSoftware">
-<meta property="og:description" content="Hide sensitive info, truly removable. Free online tool — no signup required.">
+<meta property="og:title" content="PDF Redact — Truly Hide Sensitive Info in a PDF | ApneSoftware">
+<meta property="og:description" content="Black out or blur sensitive PDF content and flatten to image for true, irreversible redaction. Draw boxes, find-and-redact text. 100% private — no uploads.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-redact.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PDF Redact — Hide Sensitive Info | ApneSoftware">
-<meta name="twitter:description" content="Hide sensitive info, truly removable. Free online tool — no signup required.">
+<meta name="twitter:title" content="PDF Redact — Truly Hide Sensitive Info in a PDF | ApneSoftware">
+<meta name="twitter:description" content="Black out or blur sensitive PDF content and flatten to image for true, irreversible redaction. Find-and-redact text. 100% private — no uploads.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Redact","description":"Hide sensitive info, truly removable. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-redact.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Redact","description":"Redact sensitive information in a PDF entirely in your browser — draw black, white, custom-colour, blur or pixelate boxes, find and redact text, and flatten pages to image so the hidden data is truly and irreversibly removed. No uploads, no signup.","url":"https://apnesoftware.com/tools/pdf-redact.html","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires a modern web browser with JavaScript enabled","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Draw rectangle redaction boxes","Black, white, custom colour, blur and pixelate fills","Find and redact matching text","Multi-page navigation with thumbnails and zoom","Undo and redo","Flatten to image for true irreversible redaction"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"PDF Redact Tool","url":"https://apnesoftware.com/tools/pdf-redact.html","description":"Free browser-based tool to redact and permanently remove sensitive information from PDF files.","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"inLanguage":["en","hi"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"PDF Redact","item":"https://apnesoftware.com/tools/pdf-redact.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to redact a PDF","description":"Black out or blur sensitive content in a PDF and truly remove it.","step":[{"@type":"HowToStep","name":"Upload the PDF","text":"Drag a PDF into the drop zone or click to choose it. It renders page by page in your browser."},{"@type":"HowToStep","name":"Mark what to hide","text":"Drag on the page to draw redaction boxes over sensitive content, or use Find & Redact to box every match of a word or number."},{"@type":"HowToStep","name":"Choose a fill","text":"Pick black, white, a custom colour, blur or pixelate for each box, and adjust its position and size."},{"@type":"HowToStep","name":"Flatten and download","text":"Keep Flatten to image enabled for true redaction, then save and download the cleaned PDF."}]}
+</script>
+<script type="application/ld+json" id="faqSchema">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}
 </script>
 <meta name="color-scheme" content="dark">
-<title>PDF Redact — Hide Sensitive Info | ApneSoftware</title>
+<title>PDF Redact — Truly Hide Sensitive Info in a PDF | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
+/* ===== PDF Redact — scoped rd- styles ===== */
 .dropzone{cursor:pointer}
 .dropzone p{font-size:.9rem}
 .panel{position:relative;z-index:1}
-</style>
-<style>
-  .page-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:14px}
-  .page-nav span{color:var(--text-dim);font-size:.9rem;min-width:80px;text-align:center}
+.rd-badges{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:10px;font-size:.78rem;color:var(--text-dim)}
+.rd-badges span{display:inline-flex;align-items:center;gap:5px}
 
-  .redact-stage{position:relative;display:inline-block;margin-top:14px;max-width:100%;user-select:none;touch-action:none}
-  .redact-stage canvas{display:block;max-width:100%;border:1px solid var(--border);border-radius:6px}
+.rd-filerow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px}
+.rd-filerow .rd-fname{flex:1 1 200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.88rem}
+.rd-mini{background:rgba(255,255,255,.06);border:1px solid var(--border,rgba(255,255,255,.12));color:var(--text);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:.8rem}
+.rd-mini:hover{background:rgba(167,139,250,.25)}
 
-  .box{position:absolute;box-sizing:border-box;cursor:move;background:#000}
-  .box.selected{outline:2px solid var(--accent);outline-offset:1px}
-  .box-del{
-    position:absolute;top:-10px;right:-10px;width:20px;height:20px;border-radius:50%;
-    background:var(--danger);color:#fff;border:none;cursor:pointer;font-size:.7rem;
-    display:none;align-items:center;justify-content:center;z-index:5;
-  }
-  .box.selected .box-del{display:flex}
-  .box-resize{
-    position:absolute;width:14px;height:14px;right:-7px;bottom:-7px;
-    background:var(--accent);border-radius:50%;cursor:nwse-resize;border:2px solid #fff;
-  }
-  .lock-note{
-    background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:8px;
-    padding:12px 14px;font-size:.85rem;color:#86efac;margin-top:14px;
-  }
+.rd-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:12px}
+.rd-info .rd-i{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:10px;padding:8px 10px;font-size:.78rem}
+.rd-info .rd-i b{display:block;color:var(--text);font-size:.82rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rd-info .rd-i span{color:var(--text-dim)}
+
+/* toolbar */
+.rd-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px;padding:12px;background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px}
+.rd-tool{background:rgba(255,255,255,.06);border:1px solid var(--border,rgba(255,255,255,.12));color:var(--text);border-radius:8px;padding:7px 11px;cursor:pointer;font-size:.82rem}
+.rd-tool:hover{background:rgba(167,139,250,.25)}
+.rd-tool:disabled{opacity:.35;cursor:not-allowed}
+.rd-modes{display:inline-flex;border:1px solid var(--border,rgba(255,255,255,.14));border-radius:9px;overflow:hidden}
+.rd-modes button{background:transparent;border:none;color:var(--text-dim);padding:7px 10px;cursor:pointer;font-size:.8rem}
+.rd-modes button.active{background:rgba(167,139,250,.28);color:#e9e2ff}
+.rd-colorwrap{display:flex;align-items:center;gap:6px;font-size:.8rem;color:var(--text-dim)}
+.rd-colorwrap input[type=color]{width:34px;height:30px;padding:2px;border-radius:6px;border:1px solid var(--border,rgba(255,255,255,.2));background:transparent}
+.rd-find{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-left:auto}
+.rd-find input[type=text]{width:150px}
+
+/* work layout */
+.rd-work{display:grid;grid-template-columns:88px 1fr;gap:12px;margin-top:14px}
+@media(max-width:640px){.rd-work{grid-template-columns:1fr}.rd-thumbs{display:none!important}}
+.rd-thumbs{max-height:600px;overflow-y:auto;display:flex;flex-direction:column;gap:8px;padding-right:4px}
+.rd-thumb{border:2px solid transparent;border-radius:6px;cursor:pointer;position:relative;background:#fff}
+.rd-thumb.active{border-color:#a78bfa}
+.rd-thumb canvas{display:block;width:100%;border-radius:4px}
+.rd-thumb .rd-tn{position:absolute;top:2px;left:2px;background:rgba(0,0,0,.6);color:#fff;font-size:.62rem;padding:0 4px;border-radius:4px}
+.rd-thumb .rd-tdot{position:absolute;top:2px;right:2px;width:8px;height:8px;border-radius:50%;background:#f87171;display:none}
+.rd-thumb.has-redaction .rd-tdot{display:block}
+
+.rd-stagewrap{overflow:auto;background:#525659;border-radius:10px;padding:12px;display:flex;justify-content:center;min-height:300px}
+.redact-stage{position:relative;display:inline-block;user-select:none;touch-action:none}
+.redact-stage canvas{display:block;border-radius:4px;box-shadow:0 4px 18px rgba(0,0,0,.4)}
+#overlayLayer{position:absolute;inset:0;cursor:crosshair}
+
+.box,.rd-box{position:absolute;box-sizing:border-box;cursor:move;background:#000}
+.box.selected,.rd-box.selected{outline:2px solid var(--accent,#a78bfa);outline-offset:1px}
+.rd-box.mode-blur{background:transparent!important;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px dashed rgba(255,255,255,.5)}
+.rd-box.mode-pixelate{background:transparent!important;backdrop-filter:blur(3px) contrast(1.4) saturate(1.4);-webkit-backdrop-filter:blur(3px) contrast(1.4);border:1px dashed rgba(255,255,255,.5)}
+.box-del,.rd-del{position:absolute;top:-10px;right:-10px;width:20px;height:20px;border-radius:50%;background:var(--danger,#ef4444);color:#fff;border:none;cursor:pointer;font-size:.7rem;display:none;align-items:center;justify-content:center;z-index:5}
+.box.selected .box-del,.rd-box.selected .rd-del{display:flex}
+.box-resize,.rd-resize{position:absolute;width:14px;height:14px;right:-7px;bottom:-7px;background:var(--accent,#a78bfa);border-radius:50%;cursor:nwse-resize;border:2px solid #fff}
+.rd-rubber{position:absolute;border:2px dashed #a78bfa;background:rgba(167,139,250,.2);pointer-events:none}
+
+.page-nav{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:12px;flex-wrap:wrap}
+.page-nav span{color:var(--text-dim);font-size:.9rem}
+.page-nav input{width:56px;text-align:center}
+.rd-stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.rd-chip{background:rgba(255,255,255,.04);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:10px;padding:6px 12px;font-size:.8rem;color:var(--text-dim)}
+.rd-chip b{color:var(--text)}
+
+.lock-note{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:8px;padding:12px 14px;font-size:.85rem;color:#86efac;margin-top:14px}
+
+/* ===== Below-tool content ===== */
+.rd-wrap{margin:26px 0}
+.rd-title{font-size:1.35rem;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.rd-sub{color:var(--text-dim);font-size:.92rem;margin:0 0 18px;line-height:1.6}
+.rd-feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.rd-fcard{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:14px;padding:16px}
+.rd-fcard h4{margin:0 0 6px;font-size:.98rem;display:flex;align-items:center;gap:8px}
+.rd-fcard p{margin:0;font-size:.86rem;color:var(--text-dim);line-height:1.55}
+.rd-rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.rd-rel{display:block;text-decoration:none;background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:14px;transition:.15s;color:var(--text)}
+.rd-rel:hover{border-color:#a78bfa;background:rgba(167,139,250,.1);transform:translateY(-2px)}
+.rd-rel b{display:block;font-size:.92rem;margin-bottom:3px}
+.rd-rel span{font-size:.8rem;color:var(--text-dim);line-height:1.45}
+.rd-faq details{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:0 16px;margin-bottom:10px}
+.rd-faq summary{cursor:pointer;padding:14px 0;font-weight:600;font-size:.92rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.rd-faq summary::-webkit-details-marker{display:none}
+.rd-faq summary::after{content:'+';font-size:1.3rem;color:#a78bfa;flex:0 0 auto}
+.rd-faq details[open] summary::after{content:'−'}
+.rd-faq details p{margin:0 0 14px;font-size:.87rem;color:var(--text-dim);line-height:1.65}
+.rd-steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:12px}
+.rd-steps li{counter-increment:s;position:relative;padding-left:46px;font-size:.9rem;color:var(--text-dim);line-height:1.6}
+.rd-steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:9px;background:rgba(167,139,250,.18);color:#c4b5fd;font-weight:700;display:grid;place-items:center}
+.rd-steps li b{color:var(--text)}
+.rd-pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.rd-pill{background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);color:#d6cbff;border-radius:999px;padding:5px 12px;font-size:.8rem}
 </style>
 </head>
 <body>
@@ -63,32 +138,69 @@
 <div class="container">
   <div class="tool-header">
     <h1>🔒 PDF Redact</h1>
-    <p>Cover up sensitive information (names, account numbers, signatures) on a PDF before sharing it.</p>
+    <p>Black out, white out, blur or pixelate sensitive information — names, account numbers, signatures, addresses — anywhere on a PDF, then flatten to image for <b>true, irreversible</b> redaction. Everything runs privately in your browser; your file is never uploaded.</p>
   </div>
 
   <div class="panel">
     <div class="dropzone" id="dropzone">
       <p>📤 Drag a PDF file here or click to choose</p>
       <input type="file" id="fileInput" accept="application/pdf">
+      <div class="rd-badges"><span>📄 PDF only</span><span>🔒 Secure processing</span><span>🚫 No server upload</span></div>
     </div>
 
+    <div class="rd-filerow" id="fileRow" style="display:none">
+      <span class="rd-fname" id="fileNameLbl"></span>
+      <button class="rd-mini" id="replaceBtn" type="button">🔄 Replace</button>
+      <button class="rd-mini" id="removeBtn" type="button">✖ Remove</button>
+    </div>
+    <div class="rd-info" id="infoArea" style="display:none"></div>
+
     <div id="editorArea" style="display:none">
-      <div class="btn-row">
-        <button class="btn secondary" id="addBoxBtn">⬛ Add Redaction Box</button>
-        <label style="display:flex;align-items:center;gap:6px;font-weight:400;color:var(--text);margin:0">
-          Color <input type="color" id="boxColor" value="#000000" style="width:36px;height:32px;padding:2px">
-        </label>
+      <!-- toolbar -->
+      <div class="rd-toolbar">
+        <button class="rd-tool" id="addBoxBtn" type="button">⬛ Add box</button>
+        <div class="rd-modes" id="modeGroup" role="group" aria-label="Redaction fill">
+          <button data-mode="black" class="active" type="button">Black</button>
+          <button data-mode="white" type="button">White</button>
+          <button data-mode="custom" type="button">Colour</button>
+          <button data-mode="blur" type="button">Blur</button>
+          <button data-mode="pixelate" type="button">Pixelate</button>
+        </div>
+        <label class="rd-colorwrap">Custom <input type="color" id="boxColor" value="#000000"></label>
+        <button class="rd-tool" id="dupBtn" type="button" disabled>⧉ Duplicate</button>
+        <button class="rd-tool" id="undoBtn" type="button" disabled>↶ Undo</button>
+        <button class="rd-tool" id="redoBtn" type="button" disabled>↷ Redo</button>
+        <button class="rd-tool" id="zoomOutBtn" type="button">➖</button>
+        <span id="zoomLbl" style="font-size:.8rem;color:var(--text-dim)">100%</span>
+        <button class="rd-tool" id="zoomInBtn" type="button">➕</button>
+        <div class="rd-find">
+          <input type="text" id="findInput" placeholder="Find text to redact…" aria-label="Find text to redact">
+          <button class="rd-tool" id="findPageBtn" type="button">Redact page</button>
+          <button class="rd-tool" id="findAllBtn" type="button">All pages</button>
+        </div>
       </div>
 
-      <div class="page-nav">
-        <button class="btn secondary" id="prevPageBtn">⬅️</button>
-        <span id="pageInfo">1 / 1</span>
-        <button class="btn secondary" id="nextPageBtn">➡️</button>
-      </div>
-
-      <div class="redact-stage" id="redactStage">
-        <canvas id="bgCanvas"></canvas>
-        <div id="overlayLayer" style="position:absolute;inset:0"></div>
+      <div class="rd-work">
+        <div class="rd-thumbs" id="thumbs" aria-label="Page thumbnails"></div>
+        <div>
+          <div class="rd-stagewrap">
+            <div class="redact-stage" id="redactStage">
+              <canvas id="bgCanvas"></canvas>
+              <div id="overlayLayer"></div>
+            </div>
+          </div>
+          <div class="page-nav">
+            <button class="btn secondary" id="prevPageBtn" aria-label="Previous page">⬅️</button>
+            <span id="pageInfo">1 / 1</span>
+            <button class="btn secondary" id="nextPageBtn" aria-label="Next page">➡️</button>
+            <span>Go to <input type="number" id="gotoPage" min="1" value="1" aria-label="Go to page"></span>
+          </div>
+          <div class="rd-stats">
+            <span class="rd-chip">Boxes on page: <b id="statPage">0</b></span>
+            <span class="rd-chip">Total redactions: <b id="statTotal">0</b></span>
+            <span class="rd-chip">Pages redacted: <b id="statPages">0</b></span>
+          </div>
+        </div>
       </div>
 
       <label style="display:flex;align-items:center;gap:8px;font-weight:400;color:var(--text);margin-top:18px">
@@ -99,39 +211,119 @@
         <button class="btn" id="saveBtn">💾 Save Redacted PDF and Download</button>
       </div>
 
-      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
-      <div class="lock-note" id="lockNote">🔒 When "flatten to image" is checked, each page is converted to a picture after redaction — the text/data underneath the black boxes is completely destroyed, so it can't be selected, copied, or recovered. This is genuine redaction, not just a visual cover.</div>
+      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem" role="status" aria-live="polite"></p>
+      <div class="lock-note" id="lockNote">🔒 When “flatten to image” is checked, each page is converted to a picture after redaction — the text/data underneath the boxes is completely destroyed, so it can’t be selected, copied, or recovered. This is genuine redaction, not just a visual cover. Blur and pixelate fills always require flattening.</div>
     </div>
   </div>
 </div>
 
+<!-- ===================== BELOW-TOOL CONTENT ===================== -->
 
+<!-- Key features -->
+<div class="rd-wrap">
+  <h2 class="rd-title">✨ Key Features</h2>
+  <div class="rd-feat-grid">
+    <div class="rd-fcard"><h4>🔒 True redaction</h4><p>With flatten to image, each page is rebuilt as a picture so the text and data under every box is permanently destroyed — not just hidden behind a rectangle.</p></div>
+    <div class="rd-fcard"><h4>🖊️ Draw to redact</h4><p>Simply drag across the page to draw a redaction box exactly where you need it, then move and resize it to fit the sensitive content.</p></div>
+    <div class="rd-fcard"><h4>🎨 Five fill styles</h4><p>Choose black, white, a custom colour, blur or pixelate for every box — from a hard black bar to a softened, obscured region.</p></div>
+    <div class="rd-fcard"><h4>🔎 Find &amp; redact text</h4><p>Type a name, number or word and box every matching occurrence on the current page or across the whole document in one click.</p></div>
+    <div class="rd-fcard"><h4>🗂️ Pages &amp; thumbnails</h4><p>Navigate with page arrows, a go‑to‑page box and a live thumbnail strip that marks which pages already contain redactions.</p></div>
+    <div class="rd-fcard"><h4>↩️ Undo &amp; redo</h4><p>Every add, move, delete and find‑redact step can be undone and redone, so you can experiment without fear of losing work.</p></div>
+    <div class="rd-fcard"><h4>🔍 Zoom &amp; precise placement</h4><p>Zoom in for pixel‑accurate placement over small text, and duplicate a box to apply the same redaction repeatedly.</p></div>
+    <div class="rd-fcard"><h4>🧾 PDF info &amp; stats</h4><p>See file name, size, pages, version, author and dates, plus live counts of boxes per page, total redactions and pages affected.</p></div>
+    <div class="rd-fcard"><h4>🔐 100% private</h4><p>Everything runs locally with pdf.js and pdf‑lib. Your document is never uploaded — no server, no account, no tracking.</p></div>
+  </div>
+</div>
+
+<!-- Benefits -->
+<div class="rd-wrap">
+  <h2 class="rd-title">🎁 Why use it</h2>
+  <div class="rd-pill-row">
+    <span class="rd-pill">Hide Aadhaar / PAN / account numbers</span>
+    <span class="rd-pill">Remove signatures before sharing</span>
+    <span class="rd-pill">Legal &amp; court disclosures</span>
+    <span class="rd-pill">Medical &amp; HR records</span>
+    <span class="rd-pill">Contracts &amp; statements</span>
+    <span class="rd-pill">Irreversible, not just covered</span>
+    <span class="rd-pill">Works offline</span>
+    <span class="rd-pill">Free forever</span>
+  </div>
+</div>
+
+<!-- Related tools (ABOVE About) -->
+<div class="rd-wrap">
+  <h2 class="rd-title">🧰 Related Tools</h2>
+  <div class="rd-rel-grid">
+    <a class="rd-rel" href="pdf-watermark.html"><b>Watermark PDF</b><span>Stamp text or image watermarks across pages.</span></a>
+    <a class="rd-rel" href="pdf-edit.html"><b>Edit PDF</b><span>Add text, shapes and images anywhere on a page.</span></a>
+    <a class="rd-rel" href="pdf-sign.html"><b>Sign PDF</b><span>Draw, type or upload a signature onto a PDF.</span></a>
+    <a class="rd-rel" href="pdf-delete-pages.html"><b>Delete Pages</b><span>Remove unwanted pages from a PDF.</span></a>
+    <a class="rd-rel" href="pdf-compress.html"><b>Compress PDF</b><span>Reduce PDF file size for easy sharing.</span></a>
+    <a class="rd-rel" href="pdf-info.html"><b>PDF Info</b><span>Inspect metadata, pages and document details.</span></a>
+  </div>
+</div>
+
+<!-- About (bilingual) -->
 <div class="info-wrap">
   <div class="info-section">
     <div class="info-block">
       <h2>ℹ️ About This Tool</h2>
-      <p>This tool lets you draw solid boxes over sensitive parts of a PDF (like account numbers, signatures, or personal details) before sharing it. With the "flatten to image" option turned on, the page is rebuilt as a picture so the hidden text underneath is genuinely destroyed — not just covered up.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your PDF.</li>
-        <li>Click "Add Redaction Box" and drag/resize it over the sensitive content.</li>
-        <li>Repeat for any other pages that need it (use the page arrows to navigate).</li>
-        <li>Keep "Also flatten to image" checked for true redaction, then save and download.</li>
-      </ol>
+      <p>The <b>ApneSoftware PDF Redact</b> tool lets you permanently hide sensitive information in a PDF before you share, publish or file it. Redaction is very different from simply drawing a black box in most PDF editors: if the box is only laid on top of the page, the original text still exists underneath and can be selected, copied, or recovered by anyone who knows how. That single misunderstanding has caused countless real‑world data leaks, where “blacked‑out” names, salaries, account numbers and case details were exposed just by highlighting the page. This tool is built to prevent exactly that. Its recommended <b>flatten‑to‑image</b> mode rebuilds every page as a picture after your boxes are applied, so the data beneath them is genuinely destroyed — there is nothing left to select, copy or extract.</p>
+      <p>Using it is straightforward. Upload a PDF and it renders page by page directly in your browser. To hide something, you simply <b>drag across the page</b> to draw a redaction box over it — a name, a signature, an account number, an address — and then fine‑tune its position and size by dragging the box or its corner handle. You can add as many boxes as you like on any page, navigate between pages with the arrows, a go‑to‑page field or the live <b>thumbnail strip</b>, and zoom in for pixel‑accurate placement over small text. Every box can be <b>duplicated</b> to repeat the same redaction quickly, and a full <b>undo/redo</b> history means you can experiment freely without ever losing work.</p>
+      <p>Different jobs call for different concealment styles, so each box supports <b>five fill modes</b>. <b>Black</b> is the classic, unmistakable redaction bar expected on legal and government documents. <b>White</b> blends the box into a white background so it looks like the content was never there. A <b>custom colour</b> lets you match a coloured header or form field. <b>Blur</b> and <b>pixelate</b> soften a region so its shape is visible but its detail is unreadable — useful for obscuring faces, logos or signatures while showing that something was present. Because blur and pixelate genuinely alter the image, they always use the flatten pipeline, guaranteeing the underlying detail is gone.</p>
+      <p>For documents with the same sensitive term repeated many times, manually boxing each one is tedious and error‑prone. The built‑in <b>Find &amp; Redact</b> feature solves this: type a word, name or number and the tool locates every matching piece of text — on the current page, or across the entire document — and drops a redaction box precisely over each occurrence automatically. This is ideal for scrubbing a recurring client name, an identifier, or a phone number from a long report in seconds, and it draws on the same accurate text positioning that powers professional desktop redaction software.</p>
+      <p>Throughout, the tool keeps you informed. A <b>PDF information panel</b> shows the file name, size, page count, PDF version, author, creator and creation and modification dates, along with each page’s size and orientation, so you always know what you are working on. Live <b>statistics</b> report the number of boxes on the current page, the total number of redactions in the document, and how many pages are affected, and after saving you can see the file size before and after. When you are ready, one click flattens and downloads the finished PDF; if you deliberately want a lightweight, still‑vector output and understand the trade‑off, you can turn flattening off for a quick visual cover instead.</p>
+      <p>It is worth understanding why flattening is the safe default. A PDF is not a flat picture but a structured file that stores text, fonts, vector graphics and metadata as separate objects. Drawing a rectangle simply adds one more object on top; the text object beneath it is untouched and remains fully readable to any program that parses the file — including the copy‑paste function of a normal PDF viewer, search indexes, and text‑extraction tools. Even hidden layers, comments and document metadata can carry the very words you meant to remove. Genuine redaction must therefore delete that underlying content, not mask it. By rasterising each page to a high‑resolution image and discarding the original objects, this tool guarantees there is no residual text, no recoverable layer and no leftover metadata behind your boxes — the same principle professional redaction software follows. For the strongest result, review every page before saving, use Find &amp; Redact to catch repeated identifiers you might miss by eye, and keep flattening enabled so what you see truly is all that remains.</p>
+      <p>Above all, PDF Redact is <b>private by design</b>. Redaction is only meaningful if the document never leaves your control, so every step — rendering the pages, applying the boxes, flattening to image and saving — happens entirely on your own device using the open‑source pdf.js and pdf‑lib libraries. Nothing is uploaded to a server, nothing is stored, and no account or email is required; once the page has loaded you can even work offline. This is exactly the assurance that sensitive redaction demands, because the material you need to black out — identity documents, bank statements, medical and legal records, HR files — is precisely the material that must never be exposed to a third party. Whether you are a lawyer preparing a disclosure, a clerk processing public‑records requests, a business removing personal data before publishing a report, or an individual protecting your own details before emailing a form, this tool gives you genuine, irreversible redaction with nothing to install and no privacy compromise.</p>
     </div>
     <hr class="info-divider">
     <div class="info-block">
       <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल PDF के संवेदनशील हिस्सों (जैसे अकाउंट नंबर, हस्ताक्षर या निजी जानकारी) पर ठोस बॉक्स खींचकर ढकने देता है, शेयर करने से पहले। "flatten to image" विकल्प चालू रखने पर पेज को एक तस्वीर में बदल दिया जाता है, जिससे नीचे छुपा टेक्स्ट सच में मिट जाता है — सिर्फ ऊपर से ढका नहीं रहता।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी PDF अपलोड करें।</li>
-        <li>"Add Redaction Box" दबाएं और उसे संवेदनशील कंटेंट पर खींचें/साइज़ करें।</li>
-        <li>ज़रूरत हो तो दूसरे पेजों पर भी यही करें (पेज तीर से आगे-पीछे जाएं)।</li>
-        <li>असली रिडेक्शन के लिए "Also flatten to image" चालू रखें, फिर सेव करें और डाउनलोड करें।</li>
-      </ol>
+      <p><b>ApneSoftware PDF Redact</b> टूल आपको किसी PDF को शेयर, प्रकाशित या फ़ाइल करने से पहले उसमें मौजूद संवेदनशील जानकारी को स्थायी रूप से छिपाने देता है। ज़्यादातर PDF एडिटरों में सिर्फ़ काला बॉक्स खींचने और असली रिडेक्शन में बहुत बड़ा अंतर है: अगर बॉक्स केवल पेज के ऊपर रखा गया हो, तो मूल टेक्स्ट नीचे मौजूद रहता है और उसे चुना, कॉपी या रिकवर किया जा सकता है। इसी एक ग़लतफ़हमी से दुनिया भर में अनगिनत डेटा लीक हुए हैं, जहाँ “काले” किए गए नाम, वेतन, अकाउंट नंबर और केस विवरण सिर्फ़ पेज हाइलाइट करने से सामने आ गए। यह टूल ठीक इसी को रोकने के लिए बना है। इसका अनुशंसित <b>flatten‑to‑image</b> मोड आपके बॉक्स लगने के बाद हर पेज को एक तस्वीर के रूप में दोबारा बनाता है, जिससे उनके नीचे का डेटा सचमुच नष्ट हो जाता है — चुनने, कॉपी करने या निकालने के लिए कुछ नहीं बचता।</p>
+      <p>इसका उपयोग सरल है। PDF अपलोड करें और यह सीधे आपके ब्राउज़र में पेज‑दर‑पेज रेंडर होती है। कुछ छिपाने के लिए, आप बस पेज पर <b>खींचकर</b> उस पर एक रिडेक्शन बॉक्स बनाते हैं — कोई नाम, हस्ताक्षर, अकाउंट नंबर, पता — और फिर बॉक्स या उसके कोने के हैंडल को खींचकर उसकी स्थिति और आकार ठीक करते हैं। आप किसी भी पेज पर जितने चाहें बॉक्स जोड़ सकते हैं, तीरों, go‑to‑page फ़ील्ड या लाइव <b>थंबनेल स्ट्रिप</b> से पेजों के बीच जा सकते हैं, और छोटे टेक्स्ट पर सटीक स्थान के लिए ज़ूम कर सकते हैं। हर बॉक्स को <b>डुप्लिकेट</b> किया जा सकता है, और पूरा <b>undo/redo</b> इतिहास आपको बिना काम खोए स्वतंत्र रूप से प्रयोग करने देता है।</p>
+      <p>अलग‑अलग कामों के लिए अलग शैली चाहिए, इसलिए हर बॉक्स <b>पाँच फ़िल मोड</b> का समर्थन करता है। <b>Black</b> क्लासिक, स्पष्ट रिडेक्शन बार है जिसकी कानूनी और सरकारी दस्तावेज़ों पर अपेक्षा की जाती है। <b>White</b> बॉक्स को सफ़ेद पृष्ठभूमि में मिला देता है ताकि लगे कि सामग्री वहाँ कभी थी ही नहीं। एक <b>custom colour</b> रंगीन हेडर या फ़ॉर्म फ़ील्ड से मेल खाने देता है। <b>Blur</b> और <b>pixelate</b> किसी क्षेत्र को नरम कर देते हैं ताकि उसका आकार तो दिखे पर विवरण अपठनीय हो — चेहरे, लोगो या हस्ताक्षर छिपाने के लिए उपयोगी। चूँकि blur और pixelate वास्तव में छवि बदलते हैं, वे हमेशा flatten पाइपलाइन का उपयोग करते हैं।</p>
+      <p>जिन दस्तावेज़ों में वही संवेदनशील शब्द कई बार दोहराया जाता है, वहाँ हर एक को मैन्युअल रूप से बॉक्स करना थकाऊ और गलती‑भरा है। अंतर्निर्मित <b>Find &amp; Redact</b> सुविधा इसे हल करती है: कोई शब्द, नाम या नंबर टाइप करें और टूल हर मेल खाते टेक्स्ट को — वर्तमान पेज पर, या पूरे दस्तावेज़ में — ढूँढकर हर घटना पर अपने‑आप ठीक‑से रिडेक्शन बॉक्स लगा देता है। यह किसी लंबी रिपोर्ट से बार‑बार आने वाले नाम, पहचानकर्ता या फ़ोन नंबर को सेकंडों में हटाने के लिए आदर्श है।</p>
+      <p>पूरे समय टूल आपको सूचित रखता है। एक <b>PDF जानकारी पैनल</b> फ़ाइल नाम, आकार, पेज संख्या, PDF वर्शन, लेखक, निर्माता और तिथियाँ, साथ ही हर पेज का आकार और ओरिएंटेशन दिखाता है। लाइव <b>आँकड़े</b> वर्तमान पेज पर बॉक्स की संख्या, दस्तावेज़ में कुल रिडेक्शन और कितने पेज प्रभावित हैं, यह बताते हैं, और सेव करने के बाद आप पहले और बाद का फ़ाइल आकार देख सकते हैं। तैयार होने पर एक क्लिक फ़्लैटन करके तैयार PDF डाउनलोड कर देता है।</p>
+      <p>यह समझना ज़रूरी है कि फ़्लैटनिंग सुरक्षित डिफ़ॉल्ट क्यों है। PDF कोई सपाट तस्वीर नहीं, बल्कि एक संरचित फ़ाइल है जो टेक्स्ट, फ़ॉन्ट, वेक्टर ग्राफ़िक्स और मेटाडेटा को अलग‑अलग ऑब्जेक्ट के रूप में संग्रहीत करती है। सिर्फ़ आयत खींचने से बस एक और ऑब्जेक्ट ऊपर जुड़ जाता है; नीचे का टेक्स्ट ऑब्जेक्ट अछूता रहता है और किसी भी प्रोग्राम के लिए पूरी तरह पठनीय रहता है — जिसमें सामान्य PDF व्यूअर का copy‑paste, सर्च इंडेक्स और टेक्स्ट‑निष्कर्षण उपकरण शामिल हैं। यहाँ तक कि छिपी परतें, टिप्पणियाँ और मेटाडेटा भी वही शब्द ले जा सकते हैं जिन्हें आप हटाना चाहते थे। इसलिए असली रिडेक्शन को उस अंतर्निहित सामग्री को मिटाना होगा, ढकना नहीं। हर पेज को उच्च‑रिज़ॉल्यूशन छवि में बदलकर और मूल ऑब्जेक्ट हटाकर, यह टूल गारंटी देता है कि आपके बॉक्स के पीछे कोई अवशिष्ट टेक्स्ट, कोई रिकवर करने योग्य परत या बचा हुआ मेटाडेटा नहीं है। सर्वोत्तम परिणाम के लिए, सेव करने से पहले हर पेज की समीक्षा करें, दोहराए गए पहचानकर्ताओं को पकड़ने के लिए Find &amp; Redact का उपयोग करें, और फ़्लैटनिंग चालू रखें।</p>
+      <p>सबसे बढ़कर, PDF Redact <b>डिज़ाइन से ही निजी</b> है। रिडेक्शन तभी सार्थक है जब दस्तावेज़ कभी आपके नियंत्रण से बाहर न जाए, इसलिए हर चरण — पेज रेंडर करना, बॉक्स लगाना, छवि में फ़्लैटन करना और सेव करना — पूरी तरह आपके अपने डिवाइस पर ओपन‑सोर्स pdf.js और pdf‑lib लाइब्रेरी से होता है। कुछ भी सर्वर पर अपलोड नहीं होता, कुछ भी सेव नहीं होता, और किसी अकाउंट की ज़रूरत नहीं; पेज लोड होने के बाद आप ऑफ़लाइन भी काम कर सकते हैं। यही आश्वासन संवेदनशील रिडेक्शन माँगती है, क्योंकि जो सामग्री आपको काला करनी है — पहचान दस्तावेज़, बैंक विवरण, मेडिकल और कानूनी रिकॉर्ड, HR फ़ाइलें — ठीक वही है जो कभी किसी तीसरे पक्ष के सामने नहीं आनी चाहिए।</p>
     </div>
   </div>
+</div>
+
+<!-- How to use -->
+<div class="rd-wrap">
+  <h2 class="rd-title">📖 How To Use</h2>
+  <ol class="rd-steps">
+    <li><b>Upload your PDF.</b> Drag it into the drop zone or click to choose. It renders page by page with a thumbnail strip.</li>
+    <li><b>Mark sensitive content.</b> Drag across the page to draw a redaction box, or type a term and use <b>Find &amp; Redact</b> to box every match automatically.</li>
+    <li><b>Pick a fill.</b> Choose black, white, a custom colour, blur or pixelate, then move and resize each box to fit.</li>
+    <li><b>Check every page.</b> Use the arrows, go‑to‑page or thumbnails (pages with redactions are marked) to review the whole document.</li>
+    <li><b>Flatten &amp; download.</b> Keep <b>Also flatten to image</b> checked for true redaction, then click Save to download the cleaned PDF.</li>
+  </ol>
+</div>
+
+<!-- FAQ -->
+<div class="rd-wrap rd-faq">
+  <h2 class="rd-title">❓ Frequently Asked Questions</h2>
+  <div id="faqList"></div>
+</div>
+
+<!-- Privacy -->
+<div class="rd-wrap">
+  <h2 class="rd-title">🔒 Privacy</h2>
+  <p class="rd-sub">This tool redacts your document entirely inside your browser using the pdf.js and pdf‑lib libraries. Your PDF is <b>never uploaded</b> to any server, never stored, and never transmitted anywhere. No account, email or signup is required, and once the page has loaded you can even work offline. Because redaction exists precisely to protect the most sensitive material — identity documents, financial and medical records, legal files — this local‑only design keeps that information under your sole control from upload to download.</p>
+</div>
+
+<!-- Browser compatibility -->
+<div class="rd-wrap">
+  <h2 class="rd-title">🌐 Browser Compatibility</h2>
+  <p class="rd-sub">Works in all modern browsers — Google Chrome, Mozilla Firefox, Microsoft Edge, Safari, Brave and Opera — on Windows, macOS, Linux, Android and iOS. It relies only on JavaScript and the standard File, Blob and Canvas APIs plus pdf.js. Drawing and moving boxes works with both mouse and touch, so you can redact on a phone or tablet as well as a desktop. The blur and pixelate previews use CSS backdrop‑filter where available; the final flattened output applies them reliably regardless of browser.</p>
+</div>
+
+<!-- Supported formats -->
+<div class="rd-wrap">
+  <h2 class="rd-title">📄 Supported Formats</h2>
+  <p class="rd-sub"><b>Input:</b> standard PDF files (.pdf), including multi‑page and scanned documents. Find &amp; Redact needs a real text layer to locate words; on purely scanned PDFs you can still draw boxes manually. <b>Output:</b> a redacted PDF — flattened to image for true, irreversible redaction (recommended), or a lightweight vector overlay if you deliberately disable flattening. The output opens in any standard PDF viewer.</p>
 </div>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
@@ -140,266 +332,442 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+(function(){
+  pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  const $ = id => document.getElementById(id);
 
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-const redactStage = document.getElementById('redactStage');
-const overlayLayer = document.getElementById('overlayLayer');
-const bgCanvas = document.getElementById('bgCanvas');
+  const dropzone = $('dropzone');
+  const fileInput = $('fileInput');
+  const redactStage = $('redactStage');
+  const overlayLayer = $('overlayLayer');
+  const bgCanvas = $('bgCanvas');
 
-let currentFile = null;
-let pdfDocJs = null;
-let totalPages = 0;
-let currentPageIndex = 0;
-let renderScale = 1;
+  let currentFile = null;
+  let pdfDocJs = null;
+  let totalPages = 0;
+  let currentPageIndex = 0;
+  let fitScale = 1, zoom = 1;
+  let pageSizePt = {w:0,h:0};      // current page size in points (scale 1)
 
-let boxes = []; // {id, page, xPdf, yPdfTop, wPdf, hPdf, color}
-let idCounter = 1;
-let selectedId = null;
-let dragState = null;
+  let boxes = [];                   // {id,page,x,y,w,h,mode,color}  (x,y,w,h in PDF points, top-left origin)
+  let idCounter = 1;
+  let selectedId = null;
+  let dragState = null;
+  let drawState = null;
+  let curMode = 'black';
+  let history = [], future = [];
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
-});
+  function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function displayScale(){ return fitScale * zoom; }
+  function modeColor(m){ return m==='white'?'#ffffff':(m==='custom'? $('boxColor').value : '#000000'); }
 
-async function handleFile(file){
-  currentFile = file;
-  boxes = [];
-  selectedId = null;
-  const arrayBuf = await file.arrayBuffer();
-  pdfDocJs = await pdfjsLib.getDocument({data: arrayBuf}).promise;
-  totalPages = pdfDocJs.numPages;
-  currentPageIndex = 0;
-
-  const firstPage = await pdfDocJs.getPage(1);
-  const vp = firstPage.getViewport({ scale: 1 });
-  renderScale = Math.min(560 / vp.width, 1.4);
-
-  document.getElementById('editorArea').style.display = 'block';
-  await renderCurrentPage();
-}
-
-async function renderCurrentPage(){
-  const page = await pdfDocJs.getPage(currentPageIndex + 1);
-  const viewport = page.getViewport({ scale: renderScale });
-  bgCanvas.width = viewport.width;
-  bgCanvas.height = viewport.height;
-  const ctx = bgCanvas.getContext('2d');
-  await page.render({ canvasContext: ctx, viewport }).promise;
-
-  redactStage.style.width = viewport.width + 'px';
-  overlayLayer.style.width = viewport.width + 'px';
-  overlayLayer.style.height = viewport.height + 'px';
-
-  document.getElementById('pageInfo').textContent = `${currentPageIndex+1} / ${totalPages}`;
-  renderBoxes();
-  deselectAll();
-}
-
-document.getElementById('prevPageBtn').addEventListener('click', async ()=>{
-  if(currentPageIndex > 0){ currentPageIndex--; await renderCurrentPage(); }
-});
-document.getElementById('nextPageBtn').addEventListener('click', async ()=>{
-  if(currentPageIndex < totalPages - 1){ currentPageIndex++; await renderCurrentPage(); }
-});
-
-function renderBoxes(){
-  overlayLayer.innerHTML = '';
-  boxes.filter(b => b.page === currentPageIndex).forEach(b => buildBoxDom(b));
-}
-
-function buildBoxDom(b){
-  const box = document.createElement('div');
-  box.className = 'box';
-  box.dataset.id = b.id;
-  box.style.left = (b.xPdf * renderScale) + 'px';
-  box.style.top = (b.yPdfTop * renderScale) + 'px';
-  box.style.width = (b.wPdf * renderScale) + 'px';
-  box.style.height = (b.hPdf * renderScale) + 'px';
-  box.style.background = b.color;
-  if(selectedId === b.id) box.classList.add('selected');
-
-  const delBtn = document.createElement('button');
-  delBtn.className = 'box-del';
-  delBtn.textContent = '✕';
-  delBtn.addEventListener('mousedown', e=> e.stopPropagation());
-  delBtn.addEventListener('click', (e)=>{ e.stopPropagation(); deleteBox(b.id); });
-  box.appendChild(delBtn);
-
-  box.addEventListener('mousedown', e=> startDrag(e, b, box));
-  box.addEventListener('touchstart', e=> startDrag(e, b, box));
-
-  const resize = document.createElement('div');
-  resize.className = 'box-resize';
-  resize.addEventListener('mousedown', e=> startResize(e, b, box));
-  resize.addEventListener('touchstart', e=> startResize(e, b, box));
-  box.appendChild(resize);
-
-  overlayLayer.appendChild(box);
-}
-
-function startDrag(e, b, box){
-  const point = e.touches ? e.touches[0] : e;
-  dragState = { type:'move', b, box, startX: point.clientX, startY: point.clientY, origLeft: box.offsetLeft, origTop: box.offsetTop };
-  selectElement(b.id);
-  e.stopPropagation();
-  if(e.cancelable) e.preventDefault();
-}
-function startResize(e, b, box){
-  const point = e.touches ? e.touches[0] : e;
-  dragState = { type:'resize', b, box, startX: point.clientX, startY: point.clientY, startW: box.offsetWidth, startH: box.offsetHeight };
-  e.stopPropagation();
-  if(e.cancelable) e.preventDefault();
-}
-
-function onPointerMove(e){
-  if(!dragState) return;
-  const point = e.touches ? e.touches[0] : e;
-  const dx = point.clientX - dragState.startX;
-  const dy = point.clientY - dragState.startY;
-  const { b, box, type } = dragState;
-
-  if(type === 'move'){
-    let newLeft = dragState.origLeft + dx;
-    let newTop = dragState.origTop + dy;
-    newLeft = Math.max(0, Math.min(newLeft, overlayLayer.clientWidth - box.offsetWidth));
-    newTop = Math.max(0, Math.min(newTop, overlayLayer.clientHeight - box.offsetHeight));
-    box.style.left = newLeft + 'px';
-    box.style.top = newTop + 'px';
-    b.xPdf = newLeft / renderScale;
-    b.yPdfTop = newTop / renderScale;
-  } else if(type === 'resize'){
-    const newW = Math.max(10, dragState.startW + dx);
-    const newH = Math.max(10, dragState.startH + dy);
-    box.style.width = newW + 'px';
-    box.style.height = newH + 'px';
-    b.wPdf = newW / renderScale;
-    b.hPdf = newH / renderScale;
-  }
-  if(e.cancelable) e.preventDefault();
-}
-function onPointerUp(){ dragState = null; }
-
-document.addEventListener('mousemove', onPointerMove);
-document.addEventListener('mouseup', onPointerUp);
-document.addEventListener('touchmove', onPointerMove, { passive:false });
-document.addEventListener('touchend', onPointerUp);
-
-redactStage.addEventListener('mousedown', e=>{
-  if(e.target === bgCanvas) deselectAll();
-});
-
-function selectElement(id){
-  selectedId = id;
-  document.querySelectorAll('.box').forEach(el=>{
-    el.classList.toggle('selected', el.dataset.id == id);
+  setupDropzone(dropzone, fileInput, files => {
+    if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
   });
-}
-function deselectAll(){
-  selectedId = null;
-  document.querySelectorAll('.box').forEach(el => el.classList.remove('selected'));
-}
-function deleteBox(id){
-  boxes = boxes.filter(b => b.id != id);
-  if(selectedId == id) deselectAll();
-  renderBoxes();
-}
 
-document.getElementById('addBoxBtn').addEventListener('click', ()=>{
-  const color = document.getElementById('boxColor').value;
-  const b = { id: idCounter++, page: currentPageIndex, xPdf:40, yPdfTop:40, wPdf:160, hPdf:30, color };
-  boxes.push(b);
-  renderBoxes();
-  selectElement(b.id);
-});
-
-document.getElementById('boxColor').addEventListener('input', e=>{
-  const b = boxes.find(x => x.id == selectedId);
-  if(b){
-    b.color = e.target.value;
-    renderBoxes();
-    selectElement(selectedId);
-  }
-});
-
-function hexToRgb01(hex){
-  hex = hex.replace('#','');
-  const bigint = parseInt(hex, 16);
-  return { r: ((bigint>>16)&255)/255, g: ((bigint>>8)&255)/255, b: (bigint&255)/255 };
-}
-
-document.getElementById('saveBtn').addEventListener('click', async ()=>{
-  const status = document.getElementById('statusMsg');
-  if(boxes.length === 0){ status.textContent = '⚠️ Add at least one redaction box first'; return; }
-
-  status.textContent = '⏳ Building PDF...';
-  try{
-    const { PDFDocument, rgb } = PDFLib;
-    const bytes = await currentFile.arrayBuffer();
-    const flatten = document.getElementById('flattenCheck').checked;
-
-    if(!flatten){
-      // simple overlay mode: draw opaque boxes on top of vector PDF (text underneath still extractable)
-      const pdfDoc = await PDFDocument.load(bytes);
-      const pages = pdfDoc.getPages();
-      boxes.forEach(b => {
-        const page = pages[b.page];
-        if(!page) return;
-        const pageHeight = page.getHeight();
-        const color = hexToRgb01(b.color);
-        const y = pageHeight - b.yPdfTop - b.hPdf;
-        page.drawRectangle({ x: b.xPdf, y, width: b.wPdf, height: b.hPdf, color: rgb(color.r,color.g,color.b) });
-      });
-      const newBytes = await pdfDoc.save();
-      const blob = new Blob([newBytes], {type:'application/pdf'});
-      downloadBlob('redacted.pdf', blob);
-      status.textContent = '✅ Redacted (visual cover only) and downloaded!';
-    } else {
-      // true redaction: rasterize every page (with boxes burned in) so underlying text is destroyed
-      const pdf = await pdfjsLib.getDocument({data: bytes.slice(0)}).promise;
-      const newPdf = await PDFDocument.create();
-
-      for(let i=1; i<=pdf.numPages; i++){
-        status.textContent = `⏳ Flattening page ${i}/${pdf.numPages}...`;
-        const page = await pdf.getPage(i);
-        const viewport = page.getViewport({ scale: 2 });
-        const canvas = document.createElement('canvas');
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
-        const ctx = canvas.getContext('2d');
-        ctx.fillStyle = '#fff';
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-        await page.render({ canvasContext: ctx, viewport }).promise;
-
-        // draw this page's redaction boxes directly onto the canvas (scale = 2x of our renderScale-based coords)
-        const pageBoxes = boxes.filter(b => b.page === i-1);
-        pageBoxes.forEach(b => {
-          const sx = b.xPdf * 2; // xPdf/yPdf are in PDF points (scale 1); canvas is rendered at scale 2
-          const sy = b.yPdfTop * 2;
-          const sw = b.wPdf * 2;
-          const sh = b.hPdf * 2;
-          ctx.fillStyle = b.color;
-          ctx.fillRect(sx, sy, sw, sh);
-        });
-
-        const jpgDataUrl = canvas.toDataURL('image/jpeg', 0.9);
-        const jpgBytes = await fetch(jpgDataUrl).then(r => r.arrayBuffer());
-        const embeddedImg = await newPdf.embedJpg(jpgBytes);
-        const newPage = newPdf.addPage([viewport.width, viewport.height]);
-        newPage.drawImage(embeddedImg, { x:0, y:0, width: viewport.width, height: viewport.height });
-      }
-
-      status.textContent = '⏳ Saving...';
-      const finalBytes = await newPdf.save();
-      const blob = new Blob([finalBytes], {type:'application/pdf'});
-      downloadBlob('redacted.pdf', blob);
-      status.textContent = '✅ Truly redacted (flattened to image) and downloaded!';
+  async function handleFile(file){
+    currentFile = file;
+    boxes = []; selectedId = null; history=[]; future=[]; idCounter=1;
+    try{
+      const arrayBuf = await file.arrayBuffer();
+      pdfDocJs = await pdfjsLib.getDocument({data: arrayBuf.slice(0)}).promise;
+      totalPages = pdfDocJs.numPages;
+      currentPageIndex = 0;
+      const firstPage = await pdfDocJs.getPage(1);
+      const vp = firstPage.getViewport({ scale: 1 });
+      pageSizePt = {w:vp.width, h:vp.height};
+      fitScale = Math.min(620 / vp.width, 1.4);
+      zoom = 1;
+      await showInfo(file, arrayBuf);
+      $('fileNameLbl').textContent = '📄 ' + file.name;
+      $('fileRow').style.display = 'flex';
+      $('editorArea').style.display = 'block';
+      $('gotoPage').max = totalPages;
+      await renderCurrentPage();
+      await buildThumbs();
+      updateStats();
+      $('statusMsg').textContent = `✅ Loaded ${totalPages} page(s). Drag on the page to redact, or use Find & Redact.`;
+    }catch(e){
+      $('statusMsg').textContent = '❌ Error: '+e.message+' — the file may be corrupted or password‑protected.';
     }
-  }catch(err){
-    status.textContent = '❌ Error: ' + err.message;
   }
-});
+
+  async function showInfo(file, arrayBuf){
+    const el = $('infoArea'); el.style.display='grid';
+    let ver='—'; try{ const h=new TextDecoder().decode(new Uint8Array(arrayBuf.slice(0,16))); const m=/%PDF-(\d\.\d)/.exec(h); if(m) ver=m[1]; }catch(e){}
+    const orient = pageSizePt.w>pageSizePt.h?'Landscape':'Portrait';
+    const rows = [['File', escapeHtml(file.name)], ['Size', formatBytes(file.size)], ['Pages', totalPages], ['PDF ver', ver],
+      ['Page size', Math.round(pageSizePt.w)+'×'+Math.round(pageSizePt.h)+' pt'], ['Orientation', orient]];
+    try{
+      const doc = await PDFLib.PDFDocument.load(new Uint8Array(arrayBuf.slice(0)), {updateMetadata:false});
+      const fmt=d=>{try{return d?new Date(d).toLocaleDateString():'—';}catch(e){return '—';}};
+      const safe=fn=>{try{const v=fn();return v==null?'':v;}catch(e){return '';}};
+      rows.push(['Author', escapeHtml(safe(()=>doc.getAuthor()))||'—']);
+      rows.push(['Creator', escapeHtml(safe(()=>doc.getCreator()))||'—']);
+      rows.push(['Created', fmt(safe(()=>doc.getCreationDate()))]);
+      rows.push(['Modified', fmt(safe(()=>doc.getModificationDate()))]);
+    }catch(e){}
+    el.innerHTML = rows.map(([k,v])=>`<div class="rd-i"><b>${v||'—'}</b><span>${k}</span></div>`).join('');
+  }
+
+  async function renderCurrentPage(){
+    const page = await pdfDocJs.getPage(currentPageIndex + 1);
+    const vp1 = page.getViewport({ scale: 1 });
+    pageSizePt = {w:vp1.width, h:vp1.height};
+    const viewport = page.getViewport({ scale: displayScale() });
+    bgCanvas.width = viewport.width; bgCanvas.height = viewport.height;
+    await page.render({ canvasContext: bgCanvas.getContext('2d'), viewport }).promise;
+    redactStage.style.width = viewport.width + 'px';
+    redactStage.style.height = viewport.height + 'px';
+    overlayLayer.style.width = viewport.width + 'px';
+    overlayLayer.style.height = viewport.height + 'px';
+    $('pageInfo').textContent = `${currentPageIndex+1} / ${totalPages}`;
+    $('gotoPage').value = currentPageIndex+1;
+    $('zoomLbl').textContent = Math.round(displayScale()/fitScale*100)+'%';
+    renderBoxes();
+    highlightThumb();
+  }
+
+  function renderBoxes(){
+    overlayLayer.querySelectorAll('.rd-box').forEach(n=>n.remove());
+    boxes.filter(b => b.page === currentPageIndex).forEach(b => buildBoxDom(b));
+    updateStats();
+  }
+
+  function buildBoxDom(b){
+    const s = displayScale();
+    const box = document.createElement('div');
+    box.className = 'rd-box box mode-'+b.mode;
+    box.dataset.id = b.id;
+    box.style.left = (b.x*s)+'px'; box.style.top=(b.y*s)+'px';
+    box.style.width=(b.w*s)+'px'; box.style.height=(b.h*s)+'px';
+    if(b.mode==='black'||b.mode==='white'||b.mode==='custom') box.style.background=b.color;
+    if(selectedId===b.id) box.classList.add('selected');
+
+    const del = document.createElement('button');
+    del.className='rd-del box-del'; del.textContent='✕'; del.title='Delete';
+    del.addEventListener('mousedown', e=>e.stopPropagation());
+    del.addEventListener('click', e=>{ e.stopPropagation(); pushHistory(); deleteBox(b.id); });
+    box.appendChild(del);
+
+    box.addEventListener('mousedown', e=>startDrag(e,b,box));
+    box.addEventListener('touchstart', e=>startDrag(e,b,box), {passive:false});
+
+    const rz = document.createElement('div');
+    rz.className='rd-resize box-resize';
+    rz.addEventListener('mousedown', e=>startResize(e,b,box));
+    rz.addEventListener('touchstart', e=>startResize(e,b,box), {passive:false});
+    box.appendChild(rz);
+
+    overlayLayer.appendChild(box);
+  }
+
+  function startDrag(e,b,box){
+    const p = e.touches?e.touches[0]:e;
+    pushHistory();
+    dragState = {type:'move', b, box, startX:p.clientX, startY:p.clientY, origLeft:box.offsetLeft, origTop:box.offsetTop};
+    selectElement(b.id); e.stopPropagation(); if(e.cancelable) e.preventDefault();
+  }
+  function startResize(e,b,box){
+    const p = e.touches?e.touches[0]:e;
+    pushHistory();
+    dragState = {type:'resize', b, box, startX:p.clientX, startY:p.clientY, startW:box.offsetWidth, startH:box.offsetHeight};
+    e.stopPropagation(); if(e.cancelable) e.preventDefault();
+  }
+
+  function onPointerMove(e){
+    const p = e.touches?e.touches[0]:e;
+    const s = displayScale();
+    if(drawState){
+      const rect = overlayLayer.getBoundingClientRect();
+      const x = Math.max(0, Math.min(p.clientX-rect.left, overlayLayer.clientWidth));
+      const y = Math.max(0, Math.min(p.clientY-rect.top, overlayLayer.clientHeight));
+      drawState.cx=x; drawState.cy=y;
+      const l=Math.min(x,drawState.ox), t=Math.min(y,drawState.oy), w=Math.abs(x-drawState.ox), h=Math.abs(y-drawState.oy);
+      const r=drawState.rubber; r.style.left=l+'px'; r.style.top=t+'px'; r.style.width=w+'px'; r.style.height=h+'px';
+      if(e.cancelable) e.preventDefault(); return;
+    }
+    if(!dragState) return;
+    const dx=p.clientX-dragState.startX, dy=p.clientY-dragState.startY;
+    const {b,box,type}=dragState;
+    if(type==='move'){
+      let nl=Math.max(0,Math.min(dragState.origLeft+dx, overlayLayer.clientWidth-box.offsetWidth));
+      let nt=Math.max(0,Math.min(dragState.origTop+dy, overlayLayer.clientHeight-box.offsetHeight));
+      box.style.left=nl+'px'; box.style.top=nt+'px';
+      b.x=nl/s; b.y=nt/s;
+    }else{
+      const nw=Math.max(8,dragState.startW+dx), nh=Math.max(8,dragState.startH+dy);
+      box.style.width=nw+'px'; box.style.height=nh+'px';
+      b.w=nw/s; b.h=nh/s;
+    }
+    if(e.cancelable) e.preventDefault();
+  }
+  function onPointerUp(){
+    if(drawState){
+      const s=displayScale();
+      const l=Math.min(drawState.cx??drawState.ox, drawState.ox), t=Math.min(drawState.cy??drawState.oy, drawState.oy);
+      const w=Math.abs((drawState.cx??drawState.ox)-drawState.ox), h=Math.abs((drawState.cy??drawState.oy)-drawState.oy);
+      drawState.rubber.remove();
+      if(w>6 && h>6){
+        const b={id:idCounter++, page:currentPageIndex, x:l/s, y:t/s, w:w/s, h:h/s, mode:curMode, color:modeColor(curMode)};
+        boxes.push(b); renderBoxes(); selectElement(b.id);
+      }
+      drawState=null; return;
+    }
+    dragState=null;
+  }
+
+  document.addEventListener('mousemove', onPointerMove);
+  document.addEventListener('mouseup', onPointerUp);
+  document.addEventListener('touchmove', onPointerMove, {passive:false});
+  document.addEventListener('touchend', onPointerUp);
+
+  // draw-to-create on empty canvas
+  overlayLayer.addEventListener('mousedown', e=>{ if(e.target===overlayLayer) beginDraw(e); });
+  overlayLayer.addEventListener('touchstart', e=>{ if(e.target===overlayLayer) beginDraw(e); }, {passive:false});
+  function beginDraw(e){
+    const p=e.touches?e.touches[0]:e;
+    const rect=overlayLayer.getBoundingClientRect();
+    deselectAll();
+    pushHistory();
+    const rubber=document.createElement('div'); rubber.className='rd-rubber'; overlayLayer.appendChild(rubber);
+    drawState={ox:p.clientX-rect.left, oy:p.clientY-rect.top, cx:p.clientX-rect.left, cy:p.clientY-rect.top, rubber};
+    if(e.cancelable) e.preventDefault();
+  }
+
+  function selectElement(id){
+    selectedId=id;
+    overlayLayer.querySelectorAll('.rd-box').forEach(el=>el.classList.toggle('selected', el.dataset.id==id));
+    $('dupBtn').disabled = !id;
+  }
+  function deselectAll(){ selectedId=null; overlayLayer.querySelectorAll('.rd-box').forEach(el=>el.classList.remove('selected')); $('dupBtn').disabled=true; }
+  function deleteBox(id){ boxes=boxes.filter(b=>b.id!=id); if(selectedId==id) deselectAll(); renderBoxes(); refreshThumbDot(currentPageIndex); }
+
+  // history
+  function snapshot(){ return JSON.stringify(boxes); }
+  function pushHistory(){ history.push(snapshot()); if(history.length>60) history.shift(); future=[]; updateUndo(); }
+  function updateUndo(){ $('undoBtn').disabled=!history.length; $('redoBtn').disabled=!future.length; }
+  $('undoBtn').addEventListener('click', ()=>{ if(!history.length) return; future.push(snapshot()); boxes=JSON.parse(history.pop()); selectedId=null; renderBoxes(); rebuildAllThumbDots(); updateUndo(); });
+  $('redoBtn').addEventListener('click', ()=>{ if(!future.length) return; history.push(snapshot()); boxes=JSON.parse(future.pop()); selectedId=null; renderBoxes(); rebuildAllThumbDots(); updateUndo(); });
+
+  // toolbar
+  $('addBoxBtn').addEventListener('click', ()=>{
+    pushHistory();
+    const b={id:idCounter++, page:currentPageIndex, x:40, y:40, w:180, h:34, mode:curMode, color:modeColor(curMode)};
+    boxes.push(b); renderBoxes(); selectElement(b.id); refreshThumbDot(currentPageIndex);
+  });
+  $('dupBtn').addEventListener('click', ()=>{
+    const b=boxes.find(x=>x.id==selectedId); if(!b) return;
+    pushHistory();
+    const nb={...b, id:idCounter++, x:b.x+12, y:b.y+12}; boxes.push(nb); renderBoxes(); selectElement(nb.id);
+  });
+  $('modeGroup').addEventListener('click', e=>{
+    const btn=e.target.closest('button[data-mode]'); if(!btn) return;
+    curMode=btn.dataset.mode;
+    $('modeGroup').querySelectorAll('button').forEach(x=>x.classList.toggle('active', x===btn));
+    const b=boxes.find(x=>x.id==selectedId);
+    if(b){ pushHistory(); b.mode=curMode; b.color=modeColor(curMode); renderBoxes(); selectElement(b.id); }
+  });
+  $('boxColor').addEventListener('input', ()=>{
+    const b=boxes.find(x=>x.id==selectedId);
+    if(b && (b.mode==='custom')){ b.color=$('boxColor').value; renderBoxes(); selectElement(b.id); }
+  });
+  $('zoomInBtn').addEventListener('click', ()=>{ zoom=Math.min(3,zoom+0.25); renderCurrentPage(); });
+  $('zoomOutBtn').addEventListener('click', ()=>{ zoom=Math.max(0.5,zoom-0.25); renderCurrentPage(); });
+
+  $('prevPageBtn').addEventListener('click', async ()=>{ if(currentPageIndex>0){ currentPageIndex--; await renderCurrentPage(); } });
+  $('nextPageBtn').addEventListener('click', async ()=>{ if(currentPageIndex<totalPages-1){ currentPageIndex++; await renderCurrentPage(); } });
+  $('gotoPage').addEventListener('change', async ()=>{ let n=parseInt($('gotoPage').value)||1; n=Math.max(1,Math.min(totalPages,n)); currentPageIndex=n-1; await renderCurrentPage(); });
+
+  redactStage.addEventListener('mousedown', e=>{ if(e.target===bgCanvas) deselectAll(); });
+
+  // keyboard
+  document.addEventListener('keydown', e=>{
+    if(/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) return;
+    if((e.key==='Delete'||e.key==='Backspace') && selectedId){ e.preventDefault(); pushHistory(); deleteBox(selectedId); }
+    else if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='z'){ e.preventDefault(); $('undoBtn').click(); }
+    else if((e.ctrlKey||e.metaKey) && e.key.toLowerCase()==='y'){ e.preventDefault(); $('redoBtn').click(); }
+  });
+
+  // ============ FIND & REDACT ============
+  async function findRedact(allPages){
+    const q = $('findInput').value.trim();
+    if(!q){ $('statusMsg').textContent='⚠️ Type a word or number to find.'; return; }
+    pushHistory();
+    const pages = allPages ? Array.from({length:totalPages},(_,i)=>i) : [currentPageIndex];
+    let count=0;
+    for(const pi of pages){
+      const page = await pdfDocJs.getPage(pi+1);
+      const vp1 = page.getViewport({scale:1});
+      const tc = await page.getTextContent();
+      tc.items.forEach(it=>{
+        if(!it.str) return;
+        if(it.str.toLowerCase().includes(q.toLowerCase())){
+          const tr = it.transform; // [a,b,c,d,e,f]
+          const x = tr[4];
+          const h = it.height || Math.hypot(tr[2],tr[3]) || 10;
+          const w = it.width || (it.str.length* (h*0.5));
+          const yTop = vp1.height - tr[5] - h;
+          boxes.push({id:idCounter++, page:pi, x:x-1, y:yTop-1, w:w+2, h:h+2, mode:curMode, color:modeColor(curMode)});
+          count++;
+        }
+      });
+      refreshThumbDot(pi);
+    }
+    renderBoxes();
+    $('statusMsg').textContent = count? `✅ Added ${count} redaction box(es) for “${escapeHtml(q)}”.` : `⚠️ No matches for “${escapeHtml(q)}” (needs a real text layer).`;
+  }
+  $('findPageBtn').addEventListener('click', ()=>findRedact(false));
+  $('findAllBtn').addEventListener('click', ()=>findRedact(true));
+
+  // ============ STATS ============
+  function updateStats(){
+    $('statPage').textContent = boxes.filter(b=>b.page===currentPageIndex).length;
+    $('statTotal').textContent = boxes.length;
+    $('statPages').textContent = new Set(boxes.map(b=>b.page)).size;
+  }
+
+  // ============ THUMBNAILS ============
+  async function buildThumbs(){
+    const wrap=$('thumbs'); wrap.innerHTML='';
+    for(let i=0;i<totalPages;i++){
+      const div=document.createElement('div'); div.className='rd-thumb'; div.dataset.page=i;
+      div.innerHTML=`<span class="rd-tn">${i+1}</span><span class="rd-tdot"></span><canvas></canvas>`;
+      div.addEventListener('click', async ()=>{ currentPageIndex=i; await renderCurrentPage(); });
+      wrap.appendChild(div);
+      const page=await pdfDocJs.getPage(i+1);
+      const vp=page.getViewport({scale: 78/page.getViewport({scale:1}).width});
+      const c=div.querySelector('canvas'); c.width=vp.width; c.height=vp.height;
+      await page.render({canvasContext:c.getContext('2d'), viewport:vp}).promise;
+    }
+    highlightThumb(); rebuildAllThumbDots();
+  }
+  function highlightThumb(){ document.querySelectorAll('.rd-thumb').forEach(t=>t.classList.toggle('active', +t.dataset.page===currentPageIndex)); }
+  function refreshThumbDot(pi){ const t=document.querySelector(`.rd-thumb[data-page="${pi}"]`); if(t) t.classList.toggle('has-redaction', boxes.some(b=>b.page===pi)); }
+  function rebuildAllThumbDots(){ for(let i=0;i<totalPages;i++) refreshThumbDot(i); }
+
+  // replace / remove
+  $('replaceBtn').addEventListener('click', ()=>fileInput.click());
+  $('removeBtn').addEventListener('click', ()=>{
+    currentFile=null; pdfDocJs=null; boxes=[]; fileInput.value='';
+    $('editorArea').style.display='none'; $('infoArea').style.display='none'; $('fileRow').style.display='none';
+    $('statusMsg').textContent='';
+  });
+
+  function hexToRgb01(hex){ hex=hex.replace('#',''); const n=parseInt(hex,16); return {r:((n>>16)&255)/255,g:((n>>8)&255)/255,b:(n&255)/255}; }
+
+  // apply blur/pixelate/solid onto a rasterized canvas region (region coords already in canvas px)
+  function obscureRegion(ctx, canvas, mode, color, sx, sy, sw, sh){
+    sx=Math.max(0,Math.round(sx)); sy=Math.max(0,Math.round(sy));
+    sw=Math.round(sw); sh=Math.round(sh);
+    if(sw<=0||sh<=0) return;
+    if(mode==='blur'){
+      const tmp=document.createElement('canvas'); tmp.width=sw; tmp.height=sh;
+      tmp.getContext('2d').drawImage(canvas, sx,sy,sw,sh, 0,0,sw,sh);
+      ctx.save(); ctx.filter=`blur(${Math.max(4,Math.round(Math.min(sw,sh)/6))}px)`;
+      ctx.drawImage(tmp, 0,0,sw,sh, sx,sy,sw,sh); ctx.restore();
+    }else if(mode==='pixelate'){
+      const block=Math.max(4,Math.round(Math.min(sw,sh)/8));
+      const tw=Math.max(1,Math.round(sw/block)), th=Math.max(1,Math.round(sh/block));
+      const tmp=document.createElement('canvas'); tmp.width=tw; tmp.height=th;
+      const tctx=tmp.getContext('2d'); tctx.imageSmoothingEnabled=false;
+      tctx.drawImage(canvas, sx,sy,sw,sh, 0,0,tw,th);
+      ctx.save(); ctx.imageSmoothingEnabled=false;
+      ctx.drawImage(tmp, 0,0,tw,th, sx,sy,sw,sh); ctx.restore();
+    }else{
+      ctx.fillStyle = color; ctx.fillRect(sx,sy,sw,sh);
+    }
+  }
+
+  // ============ SAVE ============
+  $('saveBtn').addEventListener('click', async ()=>{
+    const status=$('statusMsg');
+    if(boxes.length===0){ status.textContent='⚠️ Add at least one redaction box first.'; return; }
+    const t0=performance.now();
+    const sizeBefore = currentFile.size;
+    status.textContent='⏳ Building PDF…';
+    try{
+      const { PDFDocument, rgb } = PDFLib;
+      const bytes = await currentFile.arrayBuffer();
+      const flatten = $('flattenCheck').checked;
+      const hasSoft = boxes.some(b=>b.mode==='blur'||b.mode==='pixelate');
+
+      let finalBytes;
+      if(!flatten && !hasSoft){
+        // vector overlay (solid only) — text underneath remains (visual cover)
+        const pdfDoc = await PDFDocument.load(bytes);
+        const pages = pdfDoc.getPages();
+        boxes.forEach(b=>{
+          const page=pages[b.page]; if(!page) return;
+          const ph=page.getHeight(); const c=hexToRgb01(b.color);
+          page.drawRectangle({x:b.x, y:ph-b.y-b.h, width:b.w, height:b.h, color:rgb(c.r,c.g,c.b)});
+        });
+        finalBytes = await pdfDoc.save();
+        status.textContent='✅ Redacted (visual cover only) and downloaded!';
+      }else{
+        // true redaction: rasterize each page with obscure regions burned in
+        const pdf = await pdfjsLib.getDocument({data:bytes.slice(0)}).promise;
+        const newPdf = await PDFDocument.create();
+        const SCALE=2;
+        for(let i=1;i<=pdf.numPages;i++){
+          status.textContent=`⏳ Flattening page ${i}/${pdf.numPages}…`;
+          const page=await pdf.getPage(i);
+          const viewport=page.getViewport({scale:SCALE});
+          const canvas=document.createElement('canvas'); canvas.width=viewport.width; canvas.height=viewport.height;
+          const ctx=canvas.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,canvas.width,canvas.height);
+          await page.render({canvasContext:ctx, viewport}).promise;
+          boxes.filter(b=>b.page===i-1).forEach(b=>{
+            obscureRegion(ctx, canvas, b.mode, b.color, b.x*SCALE, b.y*SCALE, b.w*SCALE, b.h*SCALE);
+          });
+          const jpg = await fetch(canvas.toDataURL('image/jpeg',0.92)).then(r=>r.arrayBuffer());
+          const img = await newPdf.embedJpg(jpg);
+          const np = newPdf.addPage([viewport.width, viewport.height]);
+          np.drawImage(img,{x:0,y:0,width:viewport.width,height:viewport.height});
+        }
+        status.textContent='⏳ Saving…';
+        finalBytes = await newPdf.save();
+      }
+      const blob=new Blob([finalBytes],{type:'application/pdf'});
+      downloadBlob((currentFile.name.replace(/\.pdf$/i,''))+'-redacted.pdf', blob);
+      const secs=((performance.now()-t0)/1000).toFixed(1);
+      status.textContent = `✅ Redacted & downloaded in ${secs}s · ${formatBytes(sizeBefore)} → ${formatBytes(blob.size)}${$('flattenCheck').checked||boxes.some(b=>b.mode==='blur'||b.mode==='pixelate')?' (truly flattened)':' (visual cover)'}`;
+      if(window.premToast) premToast('Redacted PDF saved ✔');
+    }catch(err){
+      status.textContent='❌ Error: '+err.message;
+    }
+  });
+
+  // ============ FAQ ============
+  const FAQ = [
+    ['What does redaction actually do?','It permanently hides sensitive content in a PDF. With flatten to image enabled, the page is rebuilt as a picture so the text and data under each box are destroyed — not just covered — and cannot be selected, copied or recovered.'],
+    ['Why is a plain black box not safe?','If a box is only drawn on top of the page, the original text still exists beneath it and can be revealed by selecting or copying the area, or by extracting the PDF’s text. That is how many “redacted” documents have leaked. Flattening removes that hidden layer.'],
+    ['Are my documents uploaded to a server?','No. Everything runs locally in your browser with pdf.js and pdf‑lib. Your file never leaves your device, nothing is stored, and no signup is needed.'],
+    ['How do I redact something?','Drag across the page to draw a box over the sensitive content, then move or resize it to fit. Add as many boxes as you need on any page.'],
+    ['What fill styles are available?','Black, white, a custom colour, blur and pixelate. Blur and pixelate obscure a region while keeping its shape visible, and always use the flatten pipeline.'],
+    ['What is Find & Redact?','Type a word, name or number and the tool automatically places a redaction box over every matching piece of text on the current page or across the whole document.'],
+    ['Does Find & Redact work on scanned PDFs?','It needs a real, selectable text layer to locate words. On purely scanned or image‑only PDFs there is no text to search, but you can still draw boxes manually.'],
+    ['Can I undo a mistake?','Yes. Full undo and redo cover every add, move, delete and find‑redact action. You can also press Delete to remove the selected box.'],
+    ['Should I keep "flatten to image" on?','Yes, for genuine redaction. Only turn it off if you specifically need a lightweight vector file and accept that the underlying text is merely covered, not removed.'],
+    ['Will flattening change how my PDF looks?','No. Each page looks identical; it is simply stored as a high‑resolution image, so the visible result is the same while the hidden data is gone.'],
+    ['Does flattening increase the file size?','It can, because pages become images. The status bar shows the size before and after so you know the result; you can compress the output afterwards if needed.'],
+    ['Can I redact multiple pages?','Yes. Navigate with the arrows, the go‑to‑page box or the thumbnail strip — pages that already contain redactions are marked with a red dot.'],
+    ['Can I zoom in for precise placement?','Yes. Zoom in to position boxes accurately over small text, then zoom out to review the whole page.'],
+    ['Does it work with password‑protected PDFs?','Encrypted PDFs usually cannot be opened for editing. Remove the password in your PDF viewer first, then upload the unlocked file.'],
+    ['Can I change a box’s colour after drawing it?','Yes. Select the box and choose a different fill mode or custom colour; the change applies to that box immediately.'],
+    ['Does it work on mobile?','Yes. You can draw, move and resize boxes with touch, and the layout adapts to phones and tablets.'],
+    ['Is there a page or file‑size limit?','There is no fixed limit; it depends on your device memory. Very large documents take longer to render and flatten because everything runs locally.'],
+    ['Can I redact images, signatures and QR codes?','Yes. Draw a box over any visual element — a photo, signature, stamp, barcode or QR code — and flattening removes it just like text.'],
+    ['Does the tool need the internet?','Only to load the page once. After that it runs entirely offline, which is ideal for handling confidential documents on a private machine.'],
+    ['Is this tool really free?','Yes. It is completely free with no watermark, no page limits, no account and no hidden charges.'],
+    ['Is my data safe?','Completely. Because nothing is uploaded, the sensitive material you redact never leaves your browser and is discarded when you close the tab.']
+  ];
+  const faqList=$('faqList');
+  FAQ.forEach(([q,a])=>{ const d=document.createElement('details'); d.innerHTML='<summary>'+q+'</summary><p>'+a+'</p>'; faqList.appendChild(d); });
+  try{ $('faqSchema').textContent = JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:FAQ.map(([q,a])=>({'@type':'Question',name:q,acceptedAnswer:{'@type':'Answer',text:a}}))}); }catch(e){}
+
+  // test hook
+  window.__rdHooks = { boxes:()=>boxes, addBoxAt:(page,x,y,w,h,mode)=>{ boxes.push({id:idCounter++,page,x,y,w,h,mode:mode||'black',color:modeColor(mode||'black')}); renderBoxes(); }, findRedact, save:()=>$('saveBtn').click() };
+})();
 </script>
 </body>
 </html>
