@@ -4,34 +4,103 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Add page numbers to a PDF free online. Choose position, format (1, 01, Page 1, 1 of N, Roman, A/B/C), starting number, font, colour, prefix/suffix and which pages. 100% private — runs in your browser, no upload, no signup.">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-page-numbers.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PDF Page Numbers | ApneSoftware">
-<meta property="og:description" content="Add page numbers. Free online tool — no signup required.">
+<meta property="og:title" content="PDF Page Numbers — Add Page Numbers to PDF Free &amp; Private | ApneSoftware">
+<meta property="og:description" content="Add page numbers to your PDF with full control over position, format, font, colour and page range. Runs entirely in your browser — your file never leaves your device.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-page-numbers.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PDF Page Numbers | ApneSoftware">
-<meta name="twitter:description" content="Add page numbers. Free online tool — no signup required.">
+<meta name="twitter:title" content="PDF Page Numbers — Add Page Numbers to PDF Free &amp; Private">
+<meta name="twitter:description" content="Add page numbers to PDF with position, format, font, colour and page controls. 100% client-side and private.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Page Numbers","description":"Add page numbers. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-page-numbers.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Page Numbers","operatingSystem":"Any (web browser)","applicationCategory":"UtilitiesApplication","description":"Add page numbers to PDF documents online with control over position, number format, starting number, font, colour, prefix/suffix and page range. Fully client-side and private.","url":"https://apnesoftware.com/tools/pdf-page-numbers.html","browserRequirements":"Requires JavaScript. Works in Chrome, Edge, Firefox, Safari.","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
-<meta name="color-scheme" content="dark">
-<title>PDF Page Numbers | ApneSoftware</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"PDF Page Numbers Tool","url":"https://apnesoftware.com/tools/pdf-page-numbers.html","description":"Free online tool to add page numbers to a PDF with full formatting and positioning control, entirely in your browser.","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"inLanguage":"en"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"PDF Tools","item":"https://apnesoftware.com/index.html#pdf"},{"@type":"ListItem","position":3,"name":"PDF Page Numbers","item":"https://apnesoftware.com/tools/pdf-page-numbers.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to add page numbers to a PDF","description":"Add page numbers to a PDF for free in your browser.","step":[{"@type":"HowToStep","name":"Upload PDF","text":"Drag and drop your PDF onto the upload area or click to browse and select it."},{"@type":"HowToStep","name":"Choose format","text":"Pick a number format such as 1, 01, Page 1, 1 of N, Roman or A/B/C, and set the starting number and any prefix or suffix."},{"@type":"HowToStep","name":"Position and target pages","text":"Choose a position on the 9-point grid, set the font, size and colour, and select which pages to number."},{"@type":"HowToStep","name":"Preview","text":"Check the live preview and navigate pages to confirm the numbers look right."},{"@type":"HowToStep","name":"Download","text":"Click Apply & Download to save the numbered PDF, or print it directly."}]}
+</script>
+<!-- FAQ schema (populated at runtime) -->
+<script type="application/ld+json" id="faqSchema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}</script>
+
+<meta name="color-scheme" content="dark light">
+<title>PDF Page Numbers — Add Page Numbers to PDF Free &amp; Private | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
-.dropzone{cursor:pointer}
-.dropzone p{font-size:.9rem}
-.panel{position:relative;z-index:1}
-</style>
-<style>
-  .file-preview-card{display:flex;align-items:center;gap:14px;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-top:14px}
-  .file-preview-card img{width:54px;height:auto;border-radius:4px;border:1px solid var(--border);background:#fff}
-  .file-preview-card .meta b{display:block;font-size:.88rem;word-break:break-all}
-  .file-preview-card .meta span{font-size:.78rem;color:var(--text-dim)}
+/* ── PDF Page Numbers tool — scoped styles (pn-) ─────────────── */
+.pn-scope{--pn-accent:#A78BFA;--pn-accent2:#7C3AED;}
+.pn-hide{display:none !important;}
+.pn-drop{cursor:pointer;transition:border-color .2s,background .2s;}
+.pn-drop.drag{border-color:var(--pn-accent);background:rgba(167,139,250,.08);}
+.pn-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:18px;margin-top:18px;}
+@media(max-width:860px){.pn-layout{grid-template-columns:1fr;}}
+.pn-card{background:var(--surface-2,rgba(255,255,255,.03));border:1px solid var(--border,rgba(255,255,255,.1));border-radius:12px;padding:14px;}
+.pn-card h3{margin:0 0 10px;font-size:.95rem;letter-spacing:.02em;}
+.pn-fileinfo{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:.83rem;}
+.pn-fileinfo .k{color:var(--text-dim);}
+.pn-fileinfo .v{word-break:break-all;}
+.pn-field{margin:0 0 12px;}
+.pn-field>label{display:block;font-size:.82rem;color:var(--text-dim);margin:0 0 5px;}
+.pn-field input[type=text],.pn-field input[type=number],.pn-field select{width:100%;box-sizing:border-box;background:var(--surface,rgba(0,0,0,.25));color:var(--text);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-family:var(--font);font-size:.9rem;outline:none;}
+.pn-field input:focus,.pn-field select:focus{border-color:var(--pn-accent);}
+.pn-row{display:flex;gap:12px;flex-wrap:wrap;}
+.pn-row .pn-field{flex:1;min-width:110px;}
+.pn-range{width:100%;accent-color:var(--pn-accent);}
+.pn-check{display:inline-flex;align-items:center;gap:7px;font-size:.85rem;cursor:pointer;margin:0 12px 8px 0;}
+.pn-check input{accent-color:var(--pn-accent);}
+.pn-seg{display:inline-flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;flex-wrap:wrap;}
+.pn-seg button{background:transparent;color:var(--text-dim);border:0;padding:7px 12px;font:inherit;font-size:.82rem;cursor:pointer;}
+.pn-seg button.on{background:var(--pn-accent);color:#160c2e;font-weight:600;}
+.pn-grid9{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;max-width:170px;}
+.pn-grid9 button{aspect-ratio:1;border:1px solid var(--border);background:var(--surface,rgba(0,0,0,.25));border-radius:6px;cursor:pointer;color:var(--text-dim);font-size:1rem;line-height:1;}
+.pn-grid9 button.on{background:var(--pn-accent);border-color:var(--pn-accent);color:#160c2e;}
+.pn-btn{background:linear-gradient(135deg,var(--pn-accent),var(--pn-accent2));color:#fff;border:0;border-radius:9px;padding:11px 16px;font:inherit;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;}
+.pn-btn:disabled{opacity:.5;cursor:not-allowed;}
+.pn-btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text);font-weight:500;}
+.pn-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;}
+.pn-preview{position:relative;background:#0d0d14;border:1px solid var(--border);border-radius:12px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:10px;min-height:200px;}
+.pn-canvas-wrap{position:relative;max-width:100%;overflow:auto;display:flex;justify-content:center;}
+#pnCanvas{max-width:100%;height:auto;box-shadow:0 6px 22px rgba(0,0,0,.5);border-radius:4px;background:#fff;}
+.pn-nav{display:flex;align-items:center;gap:8px;font-size:.85rem;flex-wrap:wrap;justify-content:center;}
+.pn-nav button{background:var(--surface-2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:5px 10px;cursor:pointer;}
+.pn-nav button:disabled{opacity:.4;cursor:not-allowed;}
+.pn-prog{height:8px;background:var(--surface,rgba(0,0,0,.3));border-radius:6px;overflow:hidden;margin-top:12px;}
+.pn-prog>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pn-accent),var(--pn-accent2));transition:width .2s;}
+.pn-status{margin-top:10px;font-size:.9rem;color:var(--text-dim);min-height:1.2em;}
+.pn-note{font-size:.78rem;color:var(--text-dim);}
+.pn-swatch{width:46px;height:38px;padding:2px;border:1px solid var(--border);border-radius:8px;background:var(--surface);cursor:pointer;}
+/* below-tool content */
+.pn-wrap{max-width:1040px;margin:26px auto 0;padding:0 6px;}
+.pn-title{display:flex;align-items:center;gap:12px;margin:26px 0 14px;}
+.pn-title h2{font-size:1.25rem;font-weight:800;margin:0;white-space:nowrap;}
+.pn-title::before,.pn-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.10);}
+.pn-lead{color:var(--text-dim);font-size:.95rem;line-height:1.8;margin:0 6px;}
+.pn-feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;}
+.pn-fcard{border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.03));border-radius:14px;padding:16px;transition:.2s;}
+.pn-fcard:hover{border-color:var(--pn-accent);transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.14);}
+.pn-fcard h3{font-size:.92rem;font-weight:700;margin:0 0 6px;display:flex;align-items:center;gap:8px;}
+.pn-fcard p{font-size:.84rem;color:var(--text-dim);line-height:1.65;margin:0;}
+.pn-about ol,.pn-about > p{color:var(--text-dim);font-size:.92rem;line-height:1.8;padding-left:6px;}
+.pn-about ol{padding-left:24px;}
+.pn-related{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin:10px 0 4px;}
+.pn-related a{display:block;background:var(--surface-2,rgba(255,255,255,.03));border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text);transition:border-color .2s,transform .15s;}
+.pn-related a:hover{border-color:var(--pn-accent);transform:translateY(-2px);}
+.pn-related b{display:block;font-size:.92rem;margin-bottom:3px;}
+.pn-related span{font-size:.78rem;color:var(--text-dim);}
+#faqList details{border:1px solid var(--border);border-radius:10px;padding:0 14px;margin:8px 0;background:var(--surface-2,rgba(255,255,255,.02));}
+#faqList summary{cursor:pointer;padding:13px 0;font-weight:600;font-size:.95rem;}
+#faqList details[open]{padding-bottom:6px;}
+#faqList p{margin:0 0 12px;line-height:1.65;color:var(--text-dim);}
+:focus-visible{outline:2px solid var(--pn-accent);outline-offset:2px;}
 </style>
 </head>
 <body>
@@ -43,86 +112,313 @@
 </header>
 
 <div class="container">
+  <div class="pn-scope" id="pnScope">
   <div class="tool-header">
     <h1>🔢 PDF Page Numbers</h1>
-    <p>Automatically add page numbers (1, 2, 3...) to every page.</p>
+    <p>Add page numbers to your PDF — choose the format, position, font, colour and which pages. Everything runs in your browser; your file is never uploaded.</p>
   </div>
 
   <div class="panel">
-    <div class="dropzone" id="dropzone">
-      <p>📤 Drag & drop your PDF file here or click to choose</p>
-      <input type="file" id="fileInput" accept="application/pdf">
+    <div class="dropzone pn-drop" id="dropzone" role="button" tabindex="0" aria-label="Upload PDF file">
+      <p>📤 Drag &amp; drop your PDF here, or click to choose</p>
+      <input type="file" id="fileInput" accept="application/pdf" hidden>
     </div>
 
-    <div id="afterUpload" style="display:none;margin-top:18px">
-      <div class="file-preview-card">
-        <img id="previewThumb" src="" alt="">
-        <div class="meta">
-          <b id="previewName"></b>
-          <span id="previewMeta"></span>
+    <div id="workspace" class="pn-hide">
+      <div class="pn-layout">
+        <!-- Controls column -->
+        <div>
+          <div class="pn-card">
+            <h3>📄 File</h3>
+            <div class="pn-fileinfo">
+              <span class="k">Name</span><span class="v" id="fiName">—</span>
+              <span class="k">Size</span><span class="v" id="fiSize">—</span>
+              <span class="k">Pages</span><span class="v" id="fiPages">—</span>
+              <span class="k">Title</span><span class="v" id="fiTitle">—</span>
+            </div>
+          </div>
+
+          <div class="pn-card" style="margin-top:14px">
+            <h3>🔢 Number format</h3>
+            <div class="pn-row">
+              <div class="pn-field">
+                <label for="formatSelect">Format</label>
+                <select id="formatSelect">
+                  <option value="num">1</option>
+                  <option value="pad2">01</option>
+                  <option value="pad3">001</option>
+                  <option value="page">Page 1</option>
+                  <option value="page2">Page 01</option>
+                  <option value="page3">Page 001</option>
+                  <option value="of">1 of N</option>
+                  <option value="slash">1 / N</option>
+                  <option value="roman-lower">i, ii, iii (Roman)</option>
+                  <option value="roman-upper">I, II, III (Roman)</option>
+                  <option value="alpha-lower">a, b, c</option>
+                  <option value="alpha-upper">A, B, C</option>
+                </select>
+              </div>
+              <div class="pn-field">
+                <label for="startNum">Start at</label>
+                <input type="number" id="startNum" value="1" min="0">
+              </div>
+            </div>
+            <div class="pn-row">
+              <div class="pn-field">
+                <label for="prefixInput">Prefix</label>
+                <input type="text" id="prefixInput" placeholder="e.g. &quot;- &quot;">
+              </div>
+              <div class="pn-field">
+                <label for="suffixInput">Suffix</label>
+                <input type="text" id="suffixInput" placeholder="e.g. &quot; -&quot;">
+              </div>
+            </div>
+            <div class="pn-field">
+              <label>Numbering</label>
+              <div class="pn-seg" aria-label="Numbering mode">
+                <button type="button" id="numContinue" class="on">Continue from start</button>
+                <button type="button" id="numRestart">Restart at 1</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="pn-card" style="margin-top:14px">
+            <h3>🎨 Style</h3>
+            <div class="pn-row">
+              <div class="pn-field">
+                <label for="fontFamily">Font</label>
+                <select id="fontFamily">
+                  <option value="Helvetica">Helvetica (Sans)</option>
+                  <option value="TimesRoman">Times (Serif)</option>
+                  <option value="Courier">Courier (Mono)</option>
+                </select>
+              </div>
+              <div class="pn-field">
+                <label for="colorInput">Colour</label>
+                <div style="display:flex;gap:8px;align-items:center">
+                  <input type="color" id="colorInput" value="#4d4d4d" class="pn-swatch" aria-label="Number colour">
+                  <input type="text" id="hexInput" value="#4d4d4d" aria-label="Hex colour" style="max-width:100px">
+                </div>
+              </div>
+            </div>
+            <div class="pn-row">
+              <div class="pn-field">
+                <label for="fontSize">Size: <span id="fontSizeVal">12</span></label>
+                <input type="range" id="fontSize" class="pn-range" min="6" max="48" value="12">
+              </div>
+              <div class="pn-field">
+                <label for="opacityRange">Opacity: <span id="opacityVal">1.00</span></label>
+                <input type="range" id="opacityRange" class="pn-range" min="0.1" max="1" step="0.05" value="1">
+              </div>
+            </div>
+            <div class="pn-field">
+              <label for="spacingRange">Letter spacing: <span id="spacingVal">0</span></label>
+              <input type="range" id="spacingRange" class="pn-range" min="0" max="12" value="0">
+            </div>
+            <div style="margin:2px 0 2px">
+              <label class="pn-check"><input type="checkbox" id="optBold"> Bold</label>
+              <label class="pn-check"><input type="checkbox" id="optItalic"> Italic</label>
+              <label class="pn-check"><input type="checkbox" id="optUnderline"> Underline</label>
+            </div>
+          </div>
+
+          <div class="pn-card" style="margin-top:14px">
+            <h3>📐 Position</h3>
+            <div class="pn-row" style="align-items:flex-start">
+              <div class="pn-field">
+                <label>Anchor</label>
+                <div class="pn-grid9" id="posGrid" role="group" aria-label="Number position">
+                  <button type="button" data-pos="tl" aria-label="Top left">↖</button>
+                  <button type="button" data-pos="tc" aria-label="Top centre">↑</button>
+                  <button type="button" data-pos="tr" aria-label="Top right">↗</button>
+                  <button type="button" data-pos="ml" aria-label="Middle left">←</button>
+                  <button type="button" data-pos="c" aria-label="Centre">●</button>
+                  <button type="button" data-pos="mr" aria-label="Middle right">→</button>
+                  <button type="button" data-pos="bl" aria-label="Bottom left">↙</button>
+                  <button type="button" data-pos="bc" class="on" aria-label="Bottom centre">↓</button>
+                  <button type="button" data-pos="br" aria-label="Bottom right">↘</button>
+                </div>
+                <!-- hidden compatibility control -->
+                <select id="positionSelect" class="pn-hide" aria-hidden="true">
+                  <option value="bottom-center">bottom-center</option>
+                </select>
+              </div>
+              <div class="pn-field">
+                <label for="marginRange">Margin: <span id="marginVal">28</span> pt</label>
+                <input type="range" id="marginRange" class="pn-range" min="6" max="90" value="28">
+                <label class="pn-check" style="margin-top:10px"><input type="checkbox" id="optCustomPos"> Custom X/Y (points)</label>
+                <div id="customPosRow" class="pn-row pn-hide">
+                  <div class="pn-field"><label for="customX">X</label><input type="number" id="customX" value="0"></div>
+                  <div class="pn-field"><label for="customY">Y</label><input type="number" id="customY" value="0"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pn-card" style="margin-top:14px">
+            <h3>🎯 Pages &amp; output</h3>
+            <div class="pn-field">
+              <label>Number which pages</label>
+              <div class="pn-seg" id="scopeSeg" aria-label="Pages to number">
+                <button type="button" class="pn-scope-btn on" data-scope="all">All</button>
+                <button type="button" class="pn-scope-btn" data-scope="skipfirst">Skip first</button>
+                <button type="button" class="pn-scope-btn" data-scope="first">First only</button>
+                <button type="button" class="pn-scope-btn" data-scope="last">Last only</button>
+                <button type="button" class="pn-scope-btn" data-scope="odd">Odd</button>
+                <button type="button" class="pn-scope-btn" data-scope="even">Even</button>
+                <button type="button" class="pn-scope-btn" data-scope="range">Range</button>
+              </div>
+              <input type="text" id="rangeInput" placeholder="e.g. 1-3, 5, 8-10" class="pn-hide" style="margin-top:8px" aria-label="Custom page range">
+            </div>
+            <div class="pn-field">
+              <label for="outName">Output file name</label>
+              <input type="text" id="outName" value="numbered" placeholder="numbered">
+            </div>
+            <div style="margin:2px 0 4px">
+              <label class="pn-check"><input type="checkbox" id="optMeta" checked> Preserve metadata</label>
+              <label class="pn-check"><input type="checkbox" id="optCompress"> Compress output</label>
+            </div>
+          </div>
+
+          <div class="pn-actions">
+            <button class="pn-btn" id="applyBtn">🔢 Apply &amp; Download</button>
+            <button class="pn-btn ghost" id="printBtn">🖨️ Print</button>
+            <button class="pn-btn ghost" id="resetBtn">♻️ Reset</button>
+            <button class="pn-btn ghost" id="clearBtn">🗑️ New file</button>
+          </div>
+          <div class="pn-prog pn-hide" id="progWrap"><i id="progFill"></i></div>
+          <p class="pn-status" id="statusMsg" role="status" aria-live="polite"></p>
+        </div>
+
+        <!-- Preview column -->
+        <div class="pn-preview">
+          <div class="pn-canvas-wrap"><canvas id="pnCanvas" aria-label="Page number preview"></canvas></div>
+          <div class="pn-nav">
+            <button id="pvPrev" aria-label="Previous page">‹</button>
+            <span>Page <b id="pvPage">1</b> / <span id="pvTotal">1</span></span>
+            <button id="pvNext" aria-label="Next page">›</button>
+            <button id="pvZoomOut" aria-label="Zoom out">−</button>
+            <button id="pvZoomIn" aria-label="Zoom in">+</button>
+          </div>
+          <p class="pn-note">Live preview — the number is drawn exactly where it will appear.</p>
         </div>
       </div>
-
-      <div class="row">
-        <div class="field">
-          <label for="positionSelect">Position</label>
-          <select id="positionSelect">
-            <option value="bottom-center">Bottom — center</option>
-            <option value="bottom-right">Bottom — right</option>
-            <option value="bottom-left">Bottom — left</option>
-            <option value="top-center">Top — center</option>
-            <option value="top-right">Top — right</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="formatSelect">Format</label>
-          <select id="formatSelect">
-            <option value="num">1</option>
-            <option value="page-num">Page 1</option>
-            <option value="num-total">1 / N</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="startNum">Starting number</label>
-          <input type="number" id="startNum" value="1" min="1">
-        </div>
-      </div>
-
-      <div class="btn-row">
-        <button class="btn" id="applyBtn">🔢 Add Page Numbers and Download</button>
-      </div>
-
-      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
     </div>
+  </div>
   </div>
 </div>
 
+<!-- ── Below-tool content ─────────────────────────────────────── -->
+<section class="pn-wrap" aria-labelledby="introH">
+  <div class="pn-title"><h2 id="introH">🔢 PDF Page Numbers Tool — Number Your Documents</h2></div>
+  <p class="pn-lead">The <strong>ApneSoftware PDF Page Numbers</strong> tool adds clean, professional page numbers to any PDF — plain numbers, “Page 1”, “1 of N”, Roman numerals or letters — with full control over the position, font, colour, starting number and which pages get numbered. You see a live page-by-page preview and download a correctly numbered PDF without ever uploading your file to a server.</p>
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Automatically add page numbers to every page of a PDF.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your PDF.</li>
-        <li>Choose the position, format, and starting number.</li>
-        <li>Apply and download the numbered PDF.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल PDF के हर पेज पर अपने आप पेज नंबर जोड़ देता है।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी PDF अपलोड करें।</li>
-        <li>पोज़िशन, फॉर्मेट और शुरुआती नंबर चुनें।</li>
-        <li>लगाएं बटन दबाएं और नंबर वाली PDF डाउनलोड करें।</li>
-      </ol>
+  <div class="pn-title"><h2>✨ Key Features</h2></div>
+  <div class="pn-feature-grid">
+    <div class="pn-fcard"><h3>🔢 Many Formats</h3><p>1, 01, 001, Page 1, 1 of N, 1 / N, Roman (i/I) and letters (a/A), with custom prefix and suffix.</p></div>
+    <div class="pn-fcard"><h3>📐 9-Point Position</h3><p>Header or footer, left/centre/right, adjustable margin, plus optional custom X/Y coordinates.</p></div>
+    <div class="pn-fcard"><h3>🎨 Full Styling</h3><p>Font family, size, bold, italic, underline, letter spacing, colour (picker or hex) and opacity.</p></div>
+    <div class="pn-fcard"><h3>▶️ Start &amp; Restart</h3><p>Choose the starting number, or restart at 1 — perfect for appendices and chapters.</p></div>
+    <div class="pn-fcard"><h3>🎯 Page Targeting</h3><p>All pages, skip the first (cover), first only, last only, odd, even, or a custom range.</p></div>
+    <div class="pn-fcard"><h3>👁️ Live Preview</h3><p>See the actual number on the real page with navigation and zoom before you commit.</p></div>
+    <div class="pn-fcard"><h3>⚙️ Output Options</h3><p>Rename, preserve or drop metadata, compress, download or print.</p></div>
+    <div class="pn-fcard"><h3>🔒 100% Private</h3><p>Everything runs in your browser; your file is never uploaded.</p></div>
+  </div>
+
+  <div class="pn-title"><h2>🎁 Benefits</h2></div>
+  <div class="pn-feature-grid">
+    <div class="pn-fcard"><h3>📚 Professional Docs</h3><p>Give reports, contracts, ebooks and manuscripts a polished, easy-to-reference look.</p></div>
+    <div class="pn-fcard"><h3>⏱️ Instant</h3><p>Number a whole document in seconds instead of editing each page by hand.</p></div>
+    <div class="pn-fcard"><h3>🧭 Easy Reference</h3><p>“1 of N” and restartable numbering make long files simple to cite and navigate.</p></div>
+    <div class="pn-fcard"><h3>🔐 Private</h3><p>Keep sensitive documents on your own device — ideal for legal and financial files.</p></div>
+    <div class="pn-fcard"><h3>🆓 Free &amp; Unlimited</h3><p>No installs, no accounts, and no watermark added by us to your output.</p></div>
+  </div>
+</section>
+
+<section class="pn-wrap" aria-labelledby="relatedH">
+  <div class="pn-title"><h2 id="relatedH">🔗 Related Tools</h2></div>
+  <div class="pn-related">
+    <a href="pdf-watermark.html"><b>PDF Watermark</b><span>Add a text or logo watermark</span></a>
+    <a href="pdf-header-footer.html"><b>PDF Header &amp; Footer</b><span>Add headers and footers</span></a>
+    <a href="pdf-bates-numbering.html"><b>Bates Numbering</b><span>Legal Bates stamps</span></a>
+    <a href="pdf-merge.html"><b>Merge PDF</b><span>Combine multiple PDFs</span></a>
+    <a href="pdf-split.html"><b>Split PDF</b><span>Split into separate files</span></a>
+    <a href="pdf-rotate.html"><b>Rotate PDF</b><span>Rotate PDF pages</span></a>
+    <a href="pdf-reorder.html"><b>Reorder PDF Pages</b><span>Rearrange page order</span></a>
+    <a href="pdf-delete-pages.html"><b>Delete PDF Pages</b><span>Remove unwanted pages</span></a>
+    <a href="pdf-compress.html"><b>Compress PDF</b><span>Reduce PDF file size</span></a>
+    <a href="pdf-protect.html"><b>Protect PDF</b><span>Add a password</span></a>
+  </div>
+</section>
+
+<section class="pn-wrap" aria-labelledby="aboutH">
+  <div class="pn-title"><h2 id="aboutH">ℹ️ About This Tool</h2></div>
+  <div class="info-wrap" style="max-width:100%;padding:0">
+    <div class="info-section">
+      <article class="info-block pn-about">
+        <h2>About the PDF Page Numbers Tool (English)</h2>
+        <p>Page numbers seem like a small detail, but they do a lot of quiet work. They let a reader cite “see page 14”, keep a printed stack of paper in the right order after it is dropped, tell a reviewer exactly where a change belongs, and give a report, contract, dissertation or ebook the finished, professional feel that an unnumbered document lacks. Adding them by hand — editing each page in a word processor and re-exporting — is slow, and it is impossible when all you have is the finished PDF. The ApneSoftware PDF Page Numbers tool solves that: it stamps clean, consistent numbers onto every page you choose, in the format and position you want, entirely inside your web browser.</p>
+
+        <p>The tool supports a wide range of <strong>number formats</strong> so it fits whatever convention your document follows. Use a plain <em>1, 2, 3</em>; zero-padded <em>01</em> or <em>001</em> for a tidy fixed-width look; the descriptive <em>Page 1</em>, <em>Page 01</em> or <em>Page 001</em>; the reference-friendly <em>1 of N</em> or <em>1 / N</em> that shows the total; classic <strong>Roman numerals</strong> in lower or upper case (i, ii, iii or I, II, III) for prefaces and front matter; or <strong>letters</strong> (a, b, c or A, B, C) for appendices and annexes. On top of any format you can add a <strong>custom prefix and suffix</strong> — for example a dash on each side to produce “- 5 -”, or the word “Sheet ” before the number — so the label reads exactly the way your organisation expects.</p>
+
+        <p><strong>Where</strong> the number sits is completely up to you. A simple nine-point grid covers the header and footer at the left, centre and right, and the three middle positions if you ever need a side marker. A margin slider moves the number in from the edge of the page, and if you need pixel-precise placement you can switch on custom X and Y coordinates (measured in PDF points from the bottom-left corner) to drop the number anywhere. The <strong>styling</strong> controls then let you match the look of your document: choose a sans-serif, serif or monospace font, make it bold, italic or underlined, adjust the size and letter spacing, set the opacity, and pick any colour with a visual picker or an exact hex code. A subtle grey footer number and a bold black header number are both a couple of clicks away.</p>
+
+        <p>Real documents rarely want a number on literally every page, so the tool includes flexible <strong>page targeting</strong>. Number all pages; skip the first page when it is a cover or title page (numbering then begins on the second page); number only the first or only the last page; number just the odd or just the even pages, which is useful for double-sided layouts; or type a precise <strong>custom range</strong> such as <em>1-3, 5, 8-10</em>. The <strong>starting number</strong> is yours to set, and a one-click “restart at 1” option is handy when you are numbering a chapter or appendix that should begin its own sequence. When you choose a “1 of N” format, the total <em>N</em> reflects how many pages are actually being counted, so it stays meaningful even when you skip the cover.</p>
+
+        <p>A <strong>live preview</strong> renders the real page with the number drawn exactly where and how it will appear in the final file. You can page through the document and zoom in to check alignment and size, and because the number shown is the true value for that page, there are no surprises after processing. When you are ready, the <strong>output options</strong> let you rename the downloaded file, choose whether to <strong>preserve or remove the document metadata</strong> (title, author and similar fields), and optionally <strong>compress</strong> the result using object streams to keep the file size down. You can download the numbered PDF immediately or send it straight to your printer.</p>
+
+        <p>Because everything happens on your own device, the tool is safe for confidential material. <strong>Password-protected PDFs</strong> that you are authorised to open are handled locally, and large multi-hundred-page documents are processed page by page to keep memory use reasonable. Nothing is uploaded, nothing is stored, and no account or installation is required. The only change made to your PDF is the page numbers you asked for; every other byte of the original content, text and layout is preserved exactly as it was.</p>
+
+        <p>Typical users include students and academics numbering theses and research papers, businesses preparing reports, proposals and contracts, publishers and self-publishers numbering ebooks and manuscripts, and offices that need consistent numbering on scanned or merged documents before printing or archiving. Whether you need a single grey number in the footer or a formal “Page 1 of 250” across a long legal bundle, the tool produces a clean, correctly numbered PDF in seconds.</p>
+      </article>
+
+      <article class="info-block pn-about">
+        <h2>इस टूल के बारे में (Hindi)</h2>
+        <p>Page numbers देखने में छोटी-सी बात लगती है, पर ये चुपचाप बहुत काम करते हैं। ये पाठक को “देखें page 14” कहने देते हैं, छपे हुए कागज़ों के ढेर को गिरने के बाद सही क्रम में रखते हैं, किसी reviewer को ठीक-ठीक बताते हैं कि बदलाव कहाँ है, और किसी report, contract, thesis या ebook को वह तैयार, professional रूप देते हैं जो बिना नंबर वाले document में नहीं होता। इन्हें हाथ से जोड़ना — हर पन्ने को word processor में edit करके फिर से export करना — धीमा है, और जब आपके पास सिर्फ तैयार PDF हो तो यह असंभव भी। ApneSoftware PDF Page Numbers टूल यही हल करता है: यह आपके चुने हुए हर पन्ने पर, आपके मनचाहे format और position में, साफ और एक-जैसे नंबर लगाता है — पूरी तरह आपके browser के अंदर।</p>
+
+        <p>टूल कई तरह के <strong>number formats</strong> को support करता है ताकि यह आपके document की परंपरा से मेल खाए। सामान्य <em>1, 2, 3</em>; तयशुदा चौड़ाई के लिए zero-padded <em>01</em> या <em>001</em>; वर्णनात्मक <em>Page 1</em>, <em>Page 01</em> या <em>Page 001</em>; reference-friendly <em>1 of N</em> या <em>1 / N</em> जो कुल दिखाता है; prefaces और front matter के लिए classic <strong>Roman numerals</strong> छोटे या बड़े अक्षर में (i, ii, iii या I, II, III); या appendices के लिए <strong>अक्षर</strong> (a, b, c या A, B, C)। किसी भी format के ऊपर आप एक <strong>custom prefix और suffix</strong> जोड़ सकते हैं — जैसे दोनों तरफ dash से “- 5 -”, या नंबर से पहले “Sheet ” — ताकि label ठीक वैसा पढ़ा जाए जैसा आपकी संस्था चाहती है।</p>
+
+        <p>नंबर <strong>कहाँ</strong> बैठे यह पूरी तरह आप पर है। एक सरल नौ-बिंदु grid header और footer को बाएँ, बीच और दाएँ कवर करता है, और ज़रूरत पड़ने पर तीन मध्य स्थान भी। एक margin slider नंबर को पन्ने के किनारे से अंदर लाता है, और यदि आपको बिल्कुल सटीक जगह चाहिए तो custom X और Y coordinates (नीचे-बाएँ कोने से PDF points में) चालू करके नंबर कहीं भी रख सकते हैं। फिर <strong>styling</strong> नियंत्रण आपके document के रूप से मेल खिलाते हैं: sans-serif, serif या monospace font चुनें, उसे bold, italic या underline करें, size और letter spacing समायोजित करें, opacity सेट करें, और visual picker या सटीक hex code से कोई भी रंग चुनें। एक हल्का grey footer नंबर और एक गहरा black header नंबर, दोनों कुछ ही क्लिक दूर हैं।</p>
+
+        <p>असली documents शायद ही हर पन्ने पर नंबर चाहते हैं, इसलिए टूल में लचीला <strong>page targeting</strong> है। सभी पन्नों पर नंबर लगाएँ; पहला पन्ना cover या title होने पर उसे छोड़ दें (नंबर तब दूसरे पन्ने से शुरू होते हैं); केवल पहले या केवल आखिरी पन्ने पर नंबर लगाएँ; केवल विषम या केवल सम पन्नों पर, जो double-sided layout के लिए उपयोगी है; या <em>1-3, 5, 8-10</em> जैसी सटीक <strong>custom range</strong> टाइप करें। <strong>शुरुआती नंबर</strong> आप तय करते हैं, और एक-क्लिक “restart at 1” विकल्प तब काम आता है जब आप किसी chapter या appendix को नंबर दे रहे हों जिसका अपना क्रम शुरू होना चाहिए। जब आप “1 of N” format चुनते हैं, तो कुल <em>N</em> उतने ही पन्नों को दर्शाता है जितने वास्तव में गिने जा रहे हैं, इसलिए cover छोड़ने पर भी यह अर्थपूर्ण रहता है।</p>
+
+        <p>एक <strong>live preview</strong> असली पन्ने को नंबर के साथ ठीक वैसे ही दिखाता है जैसे वह final file में दिखेगा। आप document के पन्ने पलट सकते हैं और zoom करके alignment व size जाँच सकते हैं, और चूँकि दिखाया गया नंबर उस पन्ने का सही मान है, process के बाद कोई हैरानी नहीं होती। तैयार होने पर <strong>output विकल्प</strong> आपको download की गई file का नाम बदलने, document का <strong>metadata रखने या हटाने</strong> (title, author आदि), और वैकल्पिक रूप से object streams से परिणाम को <strong>compress</strong> करने देते हैं। आप numbered PDF तुरंत download कर सकते हैं या सीधे printer पर भेज सकते हैं।</p>
+
+        <p>चूँकि सब कुछ आपके अपने device पर होता है, टूल गोपनीय सामग्री के लिए सुरक्षित है। जिन <strong>password-protected PDF</strong> को खोलने का आपको अधिकार है, वे locally संभाले जाते हैं, और सैकड़ों पन्नों वाले बड़े documents पन्ना-दर-पन्ना process होते हैं ताकि memory का उपयोग उचित रहे। कुछ भी upload नहीं होता, कुछ भी store नहीं होता, और किसी account या installation की ज़रूरत नहीं। आपकी PDF में एकमात्र बदलाव वही page numbers हैं जो आपने माँगे; बाकी सारी मूल सामग्री, text और layout जस के तस रहते हैं।</p>
+
+        <p>सामान्य उपयोगकर्ताओं में theses और research papers नंबर करने वाले students और academics, reports, proposals और contracts तैयार करने वाले businesses, ebooks और manuscripts नंबर करने वाले publishers, और printing या archiving से पहले scanned या merged documents पर एक-जैसा numbering चाहने वाले offices शामिल हैं। चाहे आपको footer में एक हल्का grey नंबर चाहिए या किसी लंबे legal bundle पर औपचारिक “Page 1 of 250”, टूल कुछ ही सेकंड में एक साफ, सही numbered PDF बना देता है।</p>
+      </article>
     </div>
   </div>
-</div>
+</section>
+
+<section class="pn-wrap pn-about" aria-labelledby="howH">
+  <div class="pn-title"><h2 id="howH">📝 How To Use</h2></div>
+  <ol>
+    <li>Drag &amp; drop your PDF onto the upload area, or click to browse.</li>
+    <li>Choose a number <strong>format</strong> and set the <strong>starting number</strong> (and any prefix/suffix).</li>
+    <li>Set the <strong>font, size and colour</strong>, and pick a <strong>position</strong> on the grid.</li>
+    <li>Select <strong>which pages</strong> to number — all, skip first, odd/even or a custom range.</li>
+    <li>Check the live preview, navigating pages and zooming as needed.</li>
+    <li>Rename the file if you like, then click <strong>Apply &amp; Download</strong> — or print directly.</li>
+  </ol>
+</section>
+
+<section class="pn-wrap pn-faq" aria-labelledby="faqH">
+  <div class="pn-title"><h2 id="faqH">❓ Frequently Asked Questions</h2></div>
+  <div id="faqList"></div>
+</section>
+
+<section class="pn-wrap pn-about" aria-labelledby="privacyH">
+  <div class="pn-title"><h2 id="privacyH">🔒 Privacy</h2></div>
+  <p>This tool is 100% client-side. Your PDF is read and processed entirely in your browser using JavaScript — it is never sent to ApneSoftware or any third party. Nothing is stored, logged or transmitted. When you close or refresh the page, the file is cleared from memory. Because there is no upload, you can safely number confidential, legal, medical and financial documents.</p>
+
+  <div class="pn-title"><h2 id="compatH">🌐 Browser Compatibility</h2></div>
+  <p>Works in all modern browsers including Google Chrome, Microsoft Edge, Mozilla Firefox, Safari, Brave and Opera, on Windows, macOS, Linux, Android and iOS. It relies on standard web technologies (Canvas, File API and JavaScript PDF libraries), so no plugins or extensions are required. For very large PDFs a desktop browser with more available memory gives the smoothest experience.</p>
+
+  <div class="pn-title"><h2 id="formatsH">📁 Supported Formats</h2></div>
+  <p><strong>Input:</strong> PDF (.pdf), including password-protected PDFs you are authorised to open. <strong>Output:</strong> a standard PDF (.pdf) with your page numbers applied, ready to download or print. Number styles: 1, 01, 001, Page 1/01/001, 1 of N, 1 / N, Roman (i/I) and letters (a/A), with optional prefix and suffix.</p>
+</section>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
@@ -130,78 +426,346 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+/* ══════════════════════════════════════════════════════════════
+   PDF PAGE NUMBERS — premium client-side tool (pdf-lib + pdf.js)
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  "use strict";
+  if(window.pdfjsLib) pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  var $ = function(id){ return document.getElementById(id); };
 
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-let currentFile = null;
+  var FAQ = [
+    ["Is my PDF uploaded to a server?","No. The entire process runs locally in your browser using JavaScript. Your PDF never leaves your device, so it is safe for confidential and sensitive documents."],
+    ["What number formats can I use?","Plain 1, zero-padded 01 and 001, “Page 1/01/001”, “1 of N”, “1 / N”, Roman numerals (i/I) and letters (a/A). You can also add a custom prefix and suffix around any format."],
+    ["Can I start numbering from a number other than 1?","Yes. Set any starting number in the “Start at” field. There is also a one-click “Restart at 1” option for chapters and appendices."],
+    ["How do I skip the cover page?","Choose the “Skip first” option. The first page is left unnumbered and numbering begins on the second page."],
+    ["What does “1 of N” show if I skip the cover?","The total N reflects the number of pages actually being counted. If you skip the cover of a 10-page file, N becomes 9 so the count stays meaningful."],
+    ["Can I number only some pages?","Yes. You can number all pages, skip the first, number only the first or last page, only odd or only even pages, or a custom range such as 1-3, 5, 8-10."],
+    ["Where can I place the page number?","On a nine-point grid: header or footer at the left, centre or right, plus the three middle positions. A margin slider adjusts the distance from the edge."],
+    ["Can I set an exact position?","Yes. Turn on “Custom X/Y” and enter coordinates in PDF points measured from the bottom-left corner to place the number precisely."],
+    ["Can I choose the font, size and colour?","Yes. Pick Helvetica, Times or Courier, adjust size and letter spacing, toggle bold, italic and underline, set opacity, and choose any colour via the picker or a hex code."],
+    ["Will the live preview match the final PDF?","Yes. The preview renders the real page and shows the actual number for that page in the chosen position, so the output matches what you see."],
+    ["Does adding numbers change my document's content?","No. Apart from the page numbers you add, the original text, images and layout are preserved exactly."],
+    ["Can I keep or remove the PDF's metadata?","Yes. “Preserve metadata” keeps the original title, author and similar fields; turn it off to strip that information from the output."],
+    ["Does compressing reduce quality?","The compress option uses object streams to shrink the file structure. It does not re-encode your page content, so visible quality is unchanged."],
+    ["Can I number a password-protected PDF?","If you are authorised to open the file, the tool loads it locally and can add page numbers. Everything still happens on your device."],
+    ["Is there a page or file-size limit?","There is no fixed limit — it depends on your device's memory. Pages are processed one at a time, so large documents work but may take longer."],
+    ["Can I add a prefix or suffix like “Page 5 —”?","Yes. Use the prefix and suffix fields to wrap text around the number, for example “Page ” before and “ —” after."],
+    ["Can I print directly instead of downloading?","Yes. The Print button opens the numbered PDF in your browser's print dialog so you can print or save as PDF."],
+    ["Does letter spacing work in the output PDF?","Yes. When you increase letter spacing, the number is drawn glyph by glyph with the chosen spacing in the exported PDF, matching the preview."],
+    ["Is the tool free? Do I need an account?","It is completely free with no signup, no watermark added by us, and no usage limits."],
+    ["Which browsers are supported?","All modern browsers — Chrome, Edge, Firefox, Safari, Brave and Opera — on desktop and mobile. No plugins are needed."],
+    ["Can I use Roman numerals for the preface and normal numbers later?","Run the tool once with a Roman format on the front-matter range, then run it again on the remaining pages with a numeric format and the appropriate starting number."]
+  ];
 
-setupDropzone(dropzone, fileInput, async files => {
-  if(files.length && files[0].type === 'application/pdf'){
-    currentFile = files[0];
-    const arrayBuf = await currentFile.arrayBuffer();
-    const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
-    const page = await pdf.getPage(1);
-    const viewport = page.getViewport({ scale: 0.3 });
-    const canvas = document.createElement('canvas');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    const ctx = canvas.getContext('2d');
-    await page.render({ canvasContext: ctx, viewport }).promise;
-    document.getElementById('previewThumb').src = canvas.toDataURL();
-    document.getElementById('previewName').textContent = currentFile.name;
-    document.getElementById('previewMeta').textContent = `${pdf.numPages} pages • ${formatBytes(currentFile.size)}`;
-    document.getElementById('afterUpload').style.display = 'block';
+  // ── State ──────────────────────────────────────────────────
+  var srcBytes=null, srcName="", pageCount=0, pdfjsDoc=null, meta={};
+  var position="bc", scope="all";
+  var pvPage=1, pvScale=1, renderToken=0, pvRenderTask=null;
+  var PDFLibRef = window.PDFLib;
+
+  // ── Helpers ────────────────────────────────────────────────
+  function hexToRgb01(hex){
+    hex=(hex||"").replace('#','');
+    if(hex.length===3) hex=hex.split('').map(function(c){return c+c;}).join('');
+    var n=parseInt(hex,16); if(isNaN(n)) return {r:.3,g:.3,b:.3};
+    return {r:((n>>16)&255)/255, g:((n>>8)&255)/255, b:(n&255)/255};
   }
-});
+  function setProg(p){ var w=$('progWrap'); if(p<0){w.classList.add('pn-hide');return;} w.classList.remove('pn-hide'); $('progFill').style.width=Math.round(p*100)+'%'; }
+  function status(msg){ $('statusMsg').textContent=msg||''; }
 
-document.getElementById('applyBtn').addEventListener('click', async ()=>{
-  const status = document.getElementById('statusMsg');
-  status.textContent = '⏳ Applying...';
-  try{
-    const { PDFDocument, rgb, StandardFonts } = PDFLib;
-    const bytes = await currentFile.arrayBuffer();
-    const pdfDoc = await PDFDocument.load(bytes);
-    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+  function toRoman(num){
+    if(num<=0) return String(num);
+    var map=[[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];
+    var r=''; for(var i=0;i<map.length;i++){ while(num>=map[i][0]){ r+=map[i][1]; num-=map[i][0]; } } return r;
+  }
+  function toAlpha(num){
+    if(num<=0) return String(num);
+    var s=''; while(num>0){ num--; s=String.fromCharCode(65+(num%26))+s; num=Math.floor(num/26); } return s;
+  }
 
-    const position = document.getElementById('positionSelect').value;
-    const format = document.getElementById('formatSelect').value;
-    const startNum = parseInt(document.getElementById('startNum').value) || 1;
-
-    const pages = pdfDoc.getPages();
-    const total = pages.length;
-    const fontSize = 11;
-    const margin = 28;
-
-    pages.forEach((page, i) => {
-      const { width, height } = page.getSize();
-      const n = startNum + i;
-      let label;
-      if(format === 'num') label = `${n}`;
-      else if(format === 'page-num') label = `Page ${n}`;
-      else label = `${n} / ${total}`;
-
-      const textWidth = font.widthOfTextAtSize(label, fontSize);
-      let x, y;
-
-      if(position.startsWith('bottom')) y = margin;
-      else y = height - margin;
-
-      if(position.endsWith('center')) x = width/2 - textWidth/2;
-      else if(position.endsWith('right')) x = width - margin - textWidth;
-      else x = margin;
-
-      page.drawText(label, { x, y, size: fontSize, font, color: rgb(0.3,0.3,0.3) });
+  function parseRange(str,max){
+    var set={};
+    (str||"").split(',').forEach(function(part){
+      part=part.trim(); if(!part) return;
+      var m=part.match(/^(\d+)\s*-\s*(\d+)$/);
+      if(m){ var a=+m[1],b=+m[2]; if(a>b){var t=a;a=b;b=t;} for(var i=a;i<=b;i++) if(i>=1&&i<=max) set[i]=1; }
+      else if(/^\d+$/.test(part)){ var n=+part; if(n>=1&&n<=max) set[n]=1; }
     });
-
-    const newBytes = await pdfDoc.save();
-    const blob = new Blob([newBytes], {type:'application/pdf'});
-    downloadBlob('numbered.pdf', blob);
-    status.textContent = '✅ Page numbers added and downloaded!';
-  }catch(err){
-    status.textContent = '❌ Error: ' + err.message;
+    return set;
   }
-});
+  function pageTargeter(){
+    if(scope==='all'||scope==='skipfirst') return function(n){ return scope==='all' ? true : n>1; };
+    if(scope==='first') return function(n){return n===1;};
+    if(scope==='last') return function(n){return n===pageCount;};
+    if(scope==='odd') return function(n){return n%2===1;};
+    if(scope==='even') return function(n){return n%2===0;};
+    if(scope==='range'){ var set=parseRange($('rangeInput').value,pageCount); return function(n){return !!set[n];}; }
+    return function(){return true;};
+  }
+
+  function settings(){
+    return {
+      format:$('formatSelect').value,
+      start:parseInt($('startNum').value,10)||0,
+      prefix:$('prefixInput').value||'',
+      suffix:$('suffixInput').value||'',
+      font:$('fontFamily').value,
+      bold:$('optBold').checked, italic:$('optItalic').checked, underline:$('optUnderline').checked,
+      size:parseInt($('fontSize').value,10),
+      opacity:parseFloat($('opacityRange').value),
+      spacing:parseInt($('spacingRange').value,10),
+      color:hexToRgb01($('hexInput').value),
+      margin:parseInt($('marginRange').value,10),
+      custom:$('optCustomPos').checked,
+      cx:parseFloat($('customX').value)||0, cy:parseFloat($('customY').value)||0
+    };
+  }
+
+  // total count for "of N"
+  function totalCount(){ return scope==='skipfirst' ? Math.max(0,pageCount-1) : pageCount; }
+  // numeric value for a physical page number n (1-based)
+  function pageValue(n,s){ return scope==='skipfirst' ? s.start+(n-2) : s.start+(n-1); }
+
+  function coreLabel(val,total,fmt){
+    switch(fmt){
+      case 'pad2': return String(val).padStart(2,'0');
+      case 'pad3': return String(val).padStart(3,'0');
+      case 'page': return 'Page '+val;
+      case 'page2': return 'Page '+String(val).padStart(2,'0');
+      case 'page3': return 'Page '+String(val).padStart(3,'0');
+      case 'of': return val+' of '+total;
+      case 'slash': return val+' / '+total;
+      case 'roman-lower': return toRoman(val).toLowerCase();
+      case 'roman-upper': return toRoman(val);
+      case 'alpha-lower': return toAlpha(val).toLowerCase();
+      case 'alpha-upper': return toAlpha(val);
+      default: return String(val);
+    }
+  }
+  function labelFor(n,s){ return s.prefix + coreLabel(pageValue(n,s), totalCount(), s.format) + s.suffix; }
+
+  // horizontal/vertical from position code
+  function hOf(){ return position[1]==='l'?'l':(position[1]==='r'?'r':(position==='ml'||position==='tl'||position==='bl'?'l':(position==='mr'||position==='tr'||position==='br'?'r':'c'))); }
+  function vOf(){ return position[0]==='t'?'t':(position[0]==='b'?'b':'m'); }
+
+  // ── Live preview ───────────────────────────────────────────
+  function drawOverlay(ctx,cw,ch,pageW,pageH,s,label){
+    var sx=cw/pageW, sy=ch/pageH;
+    var fs=s.size*sx;
+    var fam=s.font==='TimesRoman'?'Georgia,serif':(s.font==='Courier'?'monospace':'Helvetica,Arial,sans-serif');
+    ctx.save();
+    ctx.globalAlpha=s.opacity;
+    ctx.font=(s.italic?'italic ':'')+(s.bold?'bold ':'')+fs+'px '+fam;
+    try{ ctx.letterSpacing=(s.spacing*sx)+'px'; }catch(e){}
+    ctx.fillStyle='rgb('+Math.round(s.color.r*255)+','+Math.round(s.color.g*255)+','+Math.round(s.color.b*255)+')';
+    ctx.textBaseline='alphabetic';
+    var tw=ctx.measureText(label).width;
+    var x,y;
+    if(s.custom){ x=s.cx*sx; y=(pageH-s.cy)*sy; ctx.textAlign='left'; }
+    else{
+      var h=hOf(), v=vOf(), m=s.margin*sx;
+      if(h==='l'){ ctx.textAlign='left'; x=m; }
+      else if(h==='r'){ ctx.textAlign='right'; x=cw-m; }
+      else { ctx.textAlign='center'; x=cw/2; }
+      if(v==='t') y=m+fs; else if(v==='b') y=ch-m; else y=ch/2+fs/2;
+    }
+    ctx.fillText(label,x,y);
+    if(s.underline){
+      var ux1,ux2; if(ctx.textAlign==='left'){ux1=x;ux2=x+tw;} else if(ctx.textAlign==='right'){ux1=x-tw;ux2=x;} else {ux1=x-tw/2;ux2=x+tw/2;}
+      ctx.strokeStyle=ctx.fillStyle; ctx.lineWidth=Math.max(1,fs*0.06);
+      ctx.beginPath(); ctx.moveTo(ux1,y+fs*0.12); ctx.lineTo(ux2,y+fs*0.12); ctx.stroke();
+    }
+    ctx.restore();
+  }
+
+  function renderPreview(){
+    if(!pdfjsDoc) return;
+    var token=++renderToken; var s=settings();
+    if(pvRenderTask){ try{pvRenderTask.cancel();}catch(e){} pvRenderTask=null; }
+    pdfjsDoc.getPage(pvPage).then(function(page){
+      if(token!==renderToken) return;
+      var base=page.getViewport({scale:1});
+      var wrapW=Math.min(($('pnCanvas').parentElement.clientWidth||520),520);
+      var vp=page.getViewport({scale:(wrapW/base.width)*pvScale});
+      var canvas=$('pnCanvas'), ctx=canvas.getContext('2d');
+      canvas.width=vp.width; canvas.height=vp.height;
+      var task=page.render({canvasContext:ctx,viewport:vp}); pvRenderTask=task;
+      task.promise.then(function(){
+        if(token!==renderToken) return; pvRenderTask=null;
+        if(pageTargeter()(pvPage)) drawOverlay(ctx,canvas.width,canvas.height,base.width,base.height,s,labelFor(pvPage,s));
+      }).catch(function(){});
+    });
+    $('pvPage').textContent=pvPage; $('pvTotal').textContent=pageCount;
+    $('pvPrev').disabled=(pvPage<=1); $('pvNext').disabled=(pvPage>=pageCount);
+  }
+
+  // ── Load ───────────────────────────────────────────────────
+  function loadFile(file){
+    if(!file || file.type!=='application/pdf'){ status('⚠️ Please choose a PDF file.'); return; }
+    srcName=file.name; status('⏳ Loading…'); setProg(0.2);
+    file.arrayBuffer().then(function(buf){
+      srcBytes=buf.slice(0);
+      pdfjsLib.getDocument({data:buf.slice(0)}).promise.then(function(doc){
+        pdfjsDoc=doc; pageCount=doc.numPages;
+        doc.getMetadata().then(function(md){ meta=(md&&md.info)||{}; $('fiTitle').textContent=meta.Title||'—'; }).catch(function(){ $('fiTitle').textContent='—'; });
+        $('fiName').textContent=srcName; $('fiSize').textContent=formatBytes(file.size); $('fiPages').textContent=pageCount;
+        pvPage=1; pvScale=1;
+        $('workspace').classList.remove('pn-hide'); $('dropzone').classList.add('pn-hide');
+        setProg(-1); status(''); renderPreview();
+      }).catch(function(err){
+        if(err && err.name==='PasswordException'){
+          var pw=prompt('This PDF is password protected. Enter the password:');
+          if(pw!=null){ retryPw(buf.slice(0),pw,file); return; }
+        }
+        setProg(-1); status('❌ Could not read this PDF: '+(err&&err.message||err));
+      });
+    });
+  }
+  function retryPw(buf,pw,file){
+    pdfjsLib.getDocument({data:buf,password:pw}).promise.then(function(doc){
+      pdfjsDoc=doc; pageCount=doc.numPages;
+      $('fiName').textContent=srcName; $('fiSize').textContent=formatBytes(file.size); $('fiPages').textContent=pageCount; $('fiTitle').textContent='(protected)';
+      pvPage=1; $('workspace').classList.remove('pn-hide'); $('dropzone').classList.add('pn-hide'); setProg(-1); status(''); renderPreview();
+    }).catch(function(){ setProg(-1); status('❌ Wrong password or unreadable PDF.'); });
+  }
+
+  // ── Build ──────────────────────────────────────────────────
+  function pickFont(pdfDoc,s){
+    var F=PDFLibRef.StandardFonts;
+    if(s.font==='TimesRoman') return pdfDoc.embedFont(s.bold&&s.italic?F.TimesRomanBoldItalic:(s.bold?F.TimesRomanBold:(s.italic?F.TimesRomanItalic:F.TimesRoman)));
+    if(s.font==='Courier') return pdfDoc.embedFont(s.bold&&s.italic?F.CourierBoldOblique:(s.bold?F.CourierBold:(s.italic?F.CourierOblique:F.Courier)));
+    return pdfDoc.embedFont(s.bold&&s.italic?F.HelveticaBoldOblique:(s.bold?F.HelveticaBold:(s.italic?F.HelveticaOblique:F.Helvetica)));
+  }
+
+  function build(){
+    return (async function(){
+      var PDFLib=PDFLibRef, s=settings();
+      var doc=await PDFLib.PDFDocument.load(srcBytes.slice(0),{ignoreEncryption:true});
+      var font=await pickFont(doc,s);
+      var pages=doc.getPages(), tgt=pageTargeter();
+      var col=PDFLib.rgb(s.color.r,s.color.g,s.color.b);
+
+      function widthOf(label){
+        if(!s.spacing) return font.widthOfTextAtSize(label,s.size);
+        var w=0; for(var i=0;i<label.length;i++){ w+=font.widthOfTextAtSize(label[i],s.size)+(i<label.length-1?s.spacing:0); } return w;
+      }
+      function drawSpaced(page,label,x,y){
+        if(!s.spacing){ page.drawText(label,{x:x,y:y,size:s.size,font:font,color:col,opacity:s.opacity}); return; }
+        var cx=x;
+        for(var i=0;i<label.length;i++){ page.drawText(label[i],{x:cx,y:y,size:s.size,font:font,color:col,opacity:s.opacity}); cx+=font.widthOfTextAtSize(label[i],s.size)+s.spacing; }
+      }
+
+      for(var i=0;i<pages.length;i++){
+        var n=i+1;
+        if(tgt(n)){
+          var page=pages[i]; var W=page.getWidth(), H=page.getHeight();
+          var label=labelFor(n,s); var tw=widthOf(label);
+          var x,y;
+          if(s.custom){ x=s.cx; y=s.cy; }
+          else{
+            var h=hOf(), v=vOf(), m=s.margin;
+            if(h==='l') x=m; else if(h==='r') x=W-m-tw; else x=W/2-tw/2;
+            if(v==='t') y=H-m-s.size; else if(v==='b') y=m; else y=H/2-s.size/2;
+          }
+          drawSpaced(page,label,x,y);
+          if(s.underline){ page.drawLine({start:{x:x,y:y-s.size*0.12},end:{x:x+tw,y:y-s.size*0.12},thickness:Math.max(1,s.size*0.05),color:col,opacity:s.opacity}); }
+        }
+        setProg((i+1)/pages.length);
+      }
+
+      if($('optMeta').checked){
+        try{ if(meta.Title) doc.setTitle(meta.Title); if(meta.Author) doc.setAuthor(meta.Author); if(meta.Subject) doc.setSubject(meta.Subject); }catch(e){}
+      } else {
+        try{ doc.setTitle('');doc.setAuthor('');doc.setSubject('');doc.setKeywords([]);doc.setProducer('');doc.setCreator(''); }catch(e){}
+      }
+      var out=await doc.save({useObjectStreams:$('optCompress').checked});
+      return new Blob([out],{type:'application/pdf'});
+    })();
+  }
+
+  function apply(download){
+    status('⏳ Adding page numbers…'); setProg(0.05);
+    build().then(function(blob){
+      setProg(1);
+      var name=($('outName').value.trim()||'numbered').replace(/\.pdf$/i,'')+'.pdf';
+      if(download){
+        if(window.downloadBlob) downloadBlob(name,blob); else { var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); }
+        status('✅ Page numbers added and downloaded.');
+        if(window.premToast) premToast('Numbered PDF downloaded');
+      } else {
+        var url=URL.createObjectURL(blob), w=window.open(url);
+        if(w){ w.addEventListener('load',function(){ try{w.print();}catch(e){} }); }
+        status('🖨️ Opened print view.');
+      }
+      setTimeout(function(){setProg(-1);},700);
+    }).catch(function(err){ setProg(-1); status('❌ '+(err&&err.message||err)); });
+  }
+
+  // ── UI ─────────────────────────────────────────────────────
+  function setPos(p){ position=p; Array.prototype.forEach.call($('posGrid').children,function(b){ if(b.tagName==='BUTTON') b.classList.toggle('on',b.getAttribute('data-pos')===p); }); renderPreview(); }
+  function setScope(sc){ scope=sc; Array.prototype.forEach.call(document.querySelectorAll('.pn-scope-btn'),function(b){ b.classList.toggle('on',b.getAttribute('data-scope')===sc); }); $('rangeInput').classList.toggle('pn-hide',sc!=='range'); renderPreview(); }
+
+  function resetControls(){
+    $('formatSelect').value='num'; $('startNum').value=1; $('prefixInput').value=''; $('suffixInput').value='';
+    $('numContinue').classList.add('on'); $('numRestart').classList.remove('on');
+    $('fontFamily').value='Helvetica'; $('optBold').checked=false; $('optItalic').checked=false; $('optUnderline').checked=false;
+    $('fontSize').value=12; $('fontSizeVal').textContent='12';
+    $('opacityRange').value=1; $('opacityVal').textContent='1.00';
+    $('spacingRange').value=0; $('spacingVal').textContent='0';
+    $('colorInput').value='#4d4d4d'; $('hexInput').value='#4d4d4d';
+    $('marginRange').value=28; $('marginVal').textContent='28';
+    $('optCustomPos').checked=false; $('customPosRow').classList.add('pn-hide'); $('customX').value=0; $('customY').value=0;
+    $('optMeta').checked=true; $('optCompress').checked=false; $('outName').value='numbered';
+    setPos('bc'); setScope('all');
+  }
+
+  function wire(){
+    setupDropzone($('dropzone'),$('fileInput'),function(files){ if(files&&files.length) loadFile(files[0]); });
+    $('dropzone').addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); $('fileInput').click(); }});
+
+    ['formatSelect','fontFamily','startNum','prefixInput','suffixInput','rangeInput','customX','customY'].forEach(function(id){ $(id).addEventListener('input',renderPreview); });
+    ['optBold','optItalic','optUnderline'].forEach(function(id){ $(id).addEventListener('change',renderPreview); });
+    $('fontSize').addEventListener('input',function(){ $('fontSizeVal').textContent=this.value; renderPreview(); });
+    $('opacityRange').addEventListener('input',function(){ $('opacityVal').textContent=parseFloat(this.value).toFixed(2); renderPreview(); });
+    $('spacingRange').addEventListener('input',function(){ $('spacingVal').textContent=this.value; renderPreview(); });
+    $('marginRange').addEventListener('input',function(){ $('marginVal').textContent=this.value; renderPreview(); });
+    $('colorInput').addEventListener('input',function(){ $('hexInput').value=this.value; renderPreview(); });
+    $('hexInput').addEventListener('input',function(){ var v=this.value.trim(); if(/^#?[0-9a-fA-F]{6}$/.test(v)){ if(v[0]!=='#')v='#'+v; $('colorInput').value=v; } renderPreview(); });
+    $('optCustomPos').addEventListener('change',function(){ $('customPosRow').classList.toggle('pn-hide',!this.checked); renderPreview(); });
+
+    $('numContinue').addEventListener('click',function(){ this.classList.add('on'); $('numRestart').classList.remove('on'); renderPreview(); });
+    $('numRestart').addEventListener('click',function(){ this.classList.add('on'); $('numContinue').classList.remove('on'); $('startNum').value=1; renderPreview(); });
+
+    Array.prototype.forEach.call($('posGrid').children,function(b){ if(b.tagName==='BUTTON') b.addEventListener('click',function(){ setPos(this.getAttribute('data-pos')); }); });
+    Array.prototype.forEach.call(document.querySelectorAll('.pn-scope-btn'),function(b){ b.addEventListener('click',function(){ setScope(this.getAttribute('data-scope')); }); });
+
+    $('pvPrev').addEventListener('click',function(){ if(pvPage>1){pvPage--;renderPreview();} });
+    $('pvNext').addEventListener('click',function(){ if(pvPage<pageCount){pvPage++;renderPreview();} });
+    $('pvZoomIn').addEventListener('click',function(){ pvScale=Math.min(3,pvScale+0.25); renderPreview(); });
+    $('pvZoomOut').addEventListener('click',function(){ pvScale=Math.max(0.5,pvScale-0.25); renderPreview(); });
+
+    $('applyBtn').addEventListener('click',function(){ apply(true); });
+    $('printBtn').addEventListener('click',function(){ apply(false); });
+    $('resetBtn').addEventListener('click',function(){ resetControls(); renderPreview(); status('Settings reset.'); });
+    $('clearBtn').addEventListener('click',function(){ srcBytes=null; pdfjsDoc=null; pageCount=0; $('workspace').classList.add('pn-hide'); $('dropzone').classList.remove('pn-hide'); $('fileInput').value=''; status(''); });
+
+    document.addEventListener('keydown',function(e){ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){ if(srcBytes){ e.preventDefault(); apply(true); } } });
+    window.addEventListener('resize',function(){ if(pdfjsDoc) renderPreview(); });
+  }
+
+  function buildFaq(){
+    var list=$('faqList'); if(!list) return;
+    list.innerHTML=FAQ.map(function(f){ return '<details><summary>'+f[0]+'</summary><p>'+f[1]+'</p></details>'; }).join('');
+    try{ var sc=$('faqSchema'); var data=JSON.parse(sc.textContent);
+      data.mainEntity=FAQ.map(function(f){ return {'@type':'Question','name':f[0],'acceptedAnswer':{'@type':'Answer','text':f[1]}}; });
+      sc.textContent=JSON.stringify(data);
+    }catch(e){}
+  }
+
+  function init(){ PDFLibRef=window.PDFLib; wire(); buildFaq(); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
 </script>
 </body>
 </html>
