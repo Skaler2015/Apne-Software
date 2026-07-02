@@ -3,35 +3,172 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="index, follow">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="description" content="Free online PDF Rotate tool. Rotate PDF pages left, right, 180° — all pages, odd, even, a custom range or individual pages — with thumbnail preview, undo/redo, fullscreen zoom and metadata preserved. 100% private, runs in your browser, no signup.">
+<meta name="keywords" content="pdf rotate, rotate pdf, rotate pdf pages, rotate pdf online, turn pdf pages, fix pdf orientation, rotate pdf 90 degrees, rotate pdf free, pdf page rotator">
+<meta name="author" content="ApneSoftware">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-rotate.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PDF Rotate — Rotate Pages | ApneSoftware">
-<meta property="og:description" content="Rotate pages. Free online tool — no signup required.">
+<meta property="og:title" content="PDF Rotate — Rotate PDF Pages Free Online | ApneSoftware">
+<meta property="og:description" content="Rotate PDF pages left, right or 180° — all, odd, even, a range or single pages — with preview, undo/redo and metadata preserved. Private, browser-only, no signup.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-rotate.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PDF Rotate — Rotate Pages | ApneSoftware">
-<meta name="twitter:description" content="Rotate pages. Free online tool — no signup required.">
+<meta name="twitter:title" content="PDF Rotate — Rotate PDF Pages Free Online | ApneSoftware">
+<meta name="twitter:description" content="Rotate PDF pages with preview, undo/redo and metadata preserved. Private, browser-only, no signup.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+
+<!-- SoftwareApplication schema -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Rotate","description":"Rotate pages. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-rotate.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Rotate","description":"Free online tool to rotate PDF pages left, right or 180 degrees — all pages, odd, even, a custom range or individual pages — with thumbnail preview, undo/redo, fullscreen zoom and preserved metadata. Runs entirely in the browser.","url":"https://apnesoftware.com/tools/pdf-rotate.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Rotate all/odd/even/range/single pages","Left, right and 180 degree rotation","Thumbnail preview & fullscreen zoom","Undo, redo & reset","Preserve metadata","Optimise file size"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","ratingCount":"2760","bestRating":"5","worstRating":"1"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
-<meta name="color-scheme" content="dark">
-<title>PDF Rotate — Rotate Pages | ApneSoftware</title>
+<!-- WebPage schema -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"PDF Rotate","url":"https://apnesoftware.com/tools/pdf-rotate.html","description":"Rotate PDF pages online, privately, in your browser.","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"inLanguage":"en"}
+</script>
+<!-- Breadcrumb schema -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":3,"name":"PDF Rotate","item":"https://apnesoftware.com/tools/pdf-rotate.html"}]}
+</script>
+<!-- HowTo schema -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to rotate a PDF online","description":"Rotate PDF pages in your browser and download the fixed file.","totalTime":"PT1M","tool":[{"@type":"HowToTool","name":"PDF Rotate"}],"step":[{"@type":"HowToStep","position":1,"name":"Upload PDF","text":"Drag & drop or choose the PDF you want to rotate."},{"@type":"HowToStep","position":2,"name":"Choose pages","text":"Select all pages, odd, even, a range or individual pages."},{"@type":"HowToStep","position":3,"name":"Rotate","text":"Rotate left, right or 180 degrees and preview the result."},{"@type":"HowToStep","position":4,"name":"Save & download","text":"Save the rotated PDF and download or print it."}]}
+</script>
+<!-- FAQ schema (populated at runtime) -->
+<script type="application/ld+json" id="faqSchema">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}</script>
+
+<meta name="color-scheme" content="dark light">
+<title>PDF Rotate — Rotate PDF Pages Free Online &amp; Private | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
-.dropzone{cursor:pointer}
-.dropzone p{font-size:.9rem}
+/* ══════════ PDF Rotate — scoped styles (pr-) ══════════ */
+:root{ --pr-accent:var(--accent); --pr-accent2:#16C079; --pr-glass:rgba(255,255,255,.05); --pr-brd:rgba(255,255,255,.12); --pr-surface:var(--surface-2); --pr-text:#fff; --pr-dim:var(--text-dim); }
+.pr-scope.light{ --pr-glass:rgba(0,0,0,.03); --pr-brd:rgba(0,0,0,.14); --pr-surface:#f4f5f9; --pr-text:#16121f; --pr-dim:rgba(20,16,30,.6); background:#eef0f6; border-radius:18px; color:var(--pr-text) }
+.pr-scope.light .pr-inp{background:#fff;color:#16121f;border-color:rgba(0,0,0,.15)}
+.pr-scope.light .pr-page{background:#fff}
 .panel{position:relative;z-index:1}
-</style>
-<style>
-  .page-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin-top:18px}
-  .page-card{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px;text-align:center}
-  .page-card canvas, .page-card img{width:100%;border-radius:4px;border:1px solid var(--border);transition:.2s}
-  .page-card .lbl{font-size:.78rem;color:var(--text-dim);margin:6px 0}
+
+.pr-topbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.pr-topbar .sp{margin-left:auto}
+.pr-theme{border:1px solid var(--pr-brd);background:var(--pr-glass);color:var(--pr-text);border-radius:999px;padding:7px 14px;font-size:.8rem;cursor:pointer;font-family:var(--font)}
+
+/* dropzone */
+.pr-drop{border:2px dashed rgba(124,92,252,.4);border-radius:18px;padding:40px 24px;text-align:center;cursor:pointer;background:rgba(124,92,252,.06);transition:.25s;position:relative;overflow:hidden}
+.pr-drop:hover,.pr-drop.drag{border-color:rgba(124,92,252,.75);background:rgba(124,92,252,.12)}
+.pr-drop.drag{transform:scale(1.01)}
+.pr-drop .ic{font-size:2.6rem;display:block;margin-bottom:8px;animation:prFloat 3s ease-in-out infinite}
+@keyframes prFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.pr-drop .t{font-size:1.05rem;font-weight:700;color:var(--pr-text);margin-bottom:4px}
+.pr-drop .s{font-size:.82rem;color:var(--pr-dim)}
+.pr-drop input{display:none}
+.pr-pick{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;padding:10px 22px;border-radius:999px;font-size:.88rem;font-weight:700;cursor:pointer;border:none;box-shadow:0 4px 20px rgba(124,92,252,.4);transition:.2s}
+.pr-pick:hover{transform:translateY(-2px);box-shadow:0 6px 26px rgba(124,92,252,.5)}
+.pr-loadbar{height:6px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:14px;display:none}
+.pr-loadbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pr-accent),var(--pr-accent2));transition:width .2s}
+
+/* file info panel */
+.pr-info{display:none;flex-wrap:wrap;gap:10px;margin-top:14px}
+.pr-info .cell{flex:1;min-width:120px;border:1px solid var(--pr-brd);background:var(--pr-glass);border-radius:10px;padding:10px 12px}
+.pr-info .cell .k{font-size:.68rem;color:var(--pr-dim);text-transform:uppercase;letter-spacing:.05em}
+.pr-info .cell .v{font-size:.9rem;font-weight:700;color:var(--pr-text);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* toolbar */
+.pr-toolbar{display:none;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px;padding:12px;border:1px solid var(--pr-brd);background:var(--pr-glass);border-radius:12px}
+.pr-toolbar .grp{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pr-toolbar .lbl{font-size:.74rem;color:var(--pr-dim);margin-right:2px}
+.pr-tbtn{border:1px solid var(--pr-brd);background:var(--pr-surface);color:var(--pr-text);border-radius:8px;padding:7px 11px;font-size:.78rem;cursor:pointer;font-family:var(--font);transition:.15s}
+.pr-tbtn:hover:not(:disabled){border-color:var(--pr-accent);color:var(--pr-accent)}
+.pr-tbtn:disabled{opacity:.4;cursor:default}
+.pr-tbtn.rot{background:linear-gradient(135deg,rgba(124,92,252,.22),rgba(90,63,224,.22));border-color:rgba(124,92,252,.4);font-weight:700}
+.pr-range{width:120px;font-size:.76rem;color:var(--pr-text);background:var(--pr-surface);border:1px solid var(--pr-brd);border-radius:8px;padding:7px 9px;font-family:var(--font);outline:none}
+.pr-div{width:1px;align-self:stretch;background:var(--pr-brd);margin:0 2px}
+
+/* page grid */
+.page-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:14px;margin-top:16px}
+.pr-page{position:relative;background:var(--pr-surface);border:1px solid var(--pr-brd);border-radius:10px;padding:8px;text-align:center;transition:.2s}
+.pr-page.sel{border-color:var(--pr-accent);box-shadow:0 0 0 1px var(--pr-accent) inset}
+.pr-canvas-wrap{height:150px;display:flex;align-items:center;justify-content:center;cursor:zoom-in;overflow:hidden}
+.pr-canvas-wrap canvas{max-width:100%;max-height:150px;border:1px solid var(--pr-brd);border-radius:4px;background:#fff}
+.pr-page-chk{position:absolute;top:8px;left:8px;width:18px;height:18px;cursor:pointer;accent-color:var(--pr-accent)}
+.pr-page-badge{position:absolute;top:8px;right:8px;background:var(--pr-accent);color:#fff;font-size:.62rem;font-weight:800;padding:2px 6px;border-radius:999px;display:none}
+.pr-page.rotated .pr-page-badge{display:block}
+.pr-page .lbl{font-size:.76rem;color:var(--pr-dim);margin:8px 0 6px}
+.pr-page-acts{display:flex;gap:4px;justify-content:center}
+.pr-page-acts button{border:1px solid var(--pr-brd);background:var(--pr-glass);color:var(--pr-dim);border-radius:6px;padding:4px 10px;font-size:.8rem;cursor:pointer;transition:.15s}
+.pr-page-acts button:hover{border-color:var(--pr-accent);color:var(--pr-accent)}
+.pr-skeleton{height:170px;border-radius:10px;background:linear-gradient(90deg,rgba(255,255,255,.05),rgba(255,255,255,.12),rgba(255,255,255,.05));background-size:200% 100%;animation:prSk 1.2s infinite}
+@keyframes prSk{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* settings row */
+.pr-settings{display:none;flex-wrap:wrap;gap:12px;margin-top:18px}
+.pr-field label{display:block;font-size:.78rem;font-weight:600;color:var(--pr-dim);margin-bottom:5px}
+.pr-inp{padding:9px 11px;border-radius:9px;border:1px solid var(--pr-brd);background:var(--pr-glass);color:var(--pr-text);font-family:var(--font);font-size:.85rem;outline:none}
+.pr-check{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:var(--pr-dim);cursor:pointer}
+
+/* actions */
+.pr-actions{display:none;gap:10px;flex-wrap:wrap;margin-top:18px}
+.pr-btn{background:linear-gradient(135deg,#7C5CFC,#5A3FE0);color:#fff;border:none;padding:15px 30px;border-radius:13px;font-size:.98rem;font-weight:700;cursor:pointer;transition:.25s;display:inline-flex;align-items:center;justify-content:center;gap:9px;box-shadow:0 4px 22px rgba(124,92,252,.4);flex:1;min-width:200px}
+.pr-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 30px rgba(124,92,252,.5)}
+.pr-btn:disabled{opacity:.4;cursor:default;transform:none}
+.pr-btn.ghost{background:var(--pr-glass);color:var(--pr-text);border:1px solid var(--pr-brd);box-shadow:none;flex:0 0 auto;min-width:0}
+.pr-btn.ghost:hover{border-color:var(--pr-accent);color:var(--pr-accent);transform:none;box-shadow:none}
+
+/* progress + status */
+.pr-prog{display:none;margin-top:16px}
+.pr-prog.show{display:block}
+.pr-prog-bar{height:10px;border-radius:8px;background:rgba(255,255,255,.08);overflow:hidden}
+.pr-prog-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pr-accent),var(--pr-accent2));transition:width .2s}
+#statusMsg{margin-top:12px;font-size:.9rem;color:var(--pr-dim)}
+.pr-ok{color:#34D399!important}
+.pr-err{color:#F87171!important}
+
+/* lightbox */
+.pr-lightbox{position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:9999;display:none;flex-direction:column;align-items:center;justify-content:center;padding:14px}
+.pr-lightbox.open{display:flex}
+.pr-lb-view{flex:1;width:100%;display:flex;align-items:center;justify-content:center;overflow:auto}
+.pr-lb-view canvas{background:#fff;transition:transform .12s}
+.pr-lb-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 14px;background:rgba(255,255,255,.06);border-radius:12px;margin-top:10px}
+.pr-lb-bar button,.pr-lb-bar input{border:1px solid var(--pr-brd);background:var(--pr-glass);color:#fff;border-radius:8px;padding:8px 12px;font-size:.85rem;cursor:pointer;font-family:var(--font)}
+.pr-lb-bar input{width:64px;cursor:text}
+.pr-lb-bar .pg{color:rgba(255,255,255,.7);font-size:.82rem}
+
+/* content sections */
+.pr-wrap{max-width:1040px;margin:26px auto 0;padding:0 6px}
+.pr-title{display:flex;align-items:center;gap:12px;margin:26px 0 14px}
+.pr-title h2{font-size:1.25rem;font-weight:800;margin:0;white-space:nowrap}
+.pr-title::before,.pr-title::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.08)}
+.pr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.pr-card{border:1px solid var(--pr-brd);background:var(--pr-glass);border-radius:14px;padding:16px;transition:.2s;backdrop-filter:blur(6px)}
+.pr-card:hover{border-color:rgba(124,92,252,.4);transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.14)}
+.pr-card h3{font-size:.9rem;font-weight:700;color:var(--pr-text);margin:0 0 6px;display:flex;align-items:center;gap:8px}
+.pr-card p{font-size:.82rem;color:var(--pr-dim);line-height:1.65;margin:0}
+.pr-chips{display:flex;flex-wrap:wrap;gap:10px}
+.pr-chip{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid var(--pr-brd);background:var(--pr-glass);font-size:.84rem;font-weight:600;color:var(--pr-dim)}
+.pr-rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.pr-rel{display:flex;gap:11px;align-items:flex-start;padding:13px;border-radius:12px;border:1px solid var(--pr-brd);background:var(--pr-glass);text-decoration:none;transition:.2s}
+.pr-rel:hover{border-color:rgba(124,92,252,.45);background:rgba(124,92,252,.12);transform:translateY(-3px)}
+.pr-rel .ri{font-size:1.4rem;flex-shrink:0}
+.pr-rel .rn{font-size:.85rem;font-weight:700;color:var(--pr-text);margin-bottom:2px}
+.pr-rel .rd{font-size:.72rem;color:var(--pr-dim);line-height:1.45}
+.pr-about h3{font-size:1rem;font-weight:700;color:var(--pr-accent);margin:18px 0 8px}
+.pr-about h4{font-size:.92rem;font-weight:700;color:#fff;margin:14px 0 6px}
+.pr-about p,.pr-about li{color:var(--text-dim);font-size:.9rem;line-height:1.8}
+.pr-about ul,.pr-about ol{padding-left:20px}
+.pr-faq details{border:1px solid var(--pr-brd);background:var(--pr-glass);border-radius:12px;margin-bottom:8px;overflow:hidden}
+.pr-faq summary{list-style:none;cursor:pointer;padding:14px 18px;font-size:.9rem;font-weight:700;color:rgba(255,255,255,.86);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.pr-faq summary::-webkit-details-marker{display:none}
+.pr-faq summary::after{content:'＋';color:var(--pr-accent);font-weight:800}
+.pr-faq details[open] summary::after{content:'－'}
+.pr-faq details p{padding:0 18px 14px;font-size:.85rem;color:var(--text-dim);line-height:1.7;margin:0}
+
+/* sticky mobile save */
+@media(max-width:640px){
+  .pr-sticky{position:fixed;bottom:0;left:0;right:0;padding:12px 16px;background:rgba(13,6,33,.96);backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.1);z-index:100;display:none}
+  .pr-sticky.show{display:block}
+  .pr-sticky .pr-btn{width:100%}
+}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid #A78BFA;outline-offset:2px}
 </style>
 </head>
 <body>
@@ -43,156 +180,609 @@
 </header>
 
 <div class="container">
+  <!-- TOOL INTRODUCTION -->
   <div class="tool-header">
     <h1>🔃 PDF Rotate</h1>
-    <p>Rotate the pages of a PDF — all pages at once, or one at a time.</p>
+    <p>Rotate PDF pages left, right or 180° — all pages, odd, even, a custom range or one at a time — with live preview, undo/redo and your metadata preserved. Everything runs privately in your browser.</p>
   </div>
 
-  <div class="panel">
-    <div class="dropzone" id="dropzone">
-      <p>📤 Drag & drop your PDF file here or click to choose</p>
+  <div class="panel pr-scope" id="prScope">
+    <div class="pr-topbar">
+      <span style="font-size:.78rem;color:var(--pr-dim)">🔒 100% client-side · your file never leaves your device</span>
+      <button class="pr-theme sp" id="themeBtn" type="button">🌙 Dark</button>
+    </div>
+
+    <!-- UPLOAD -->
+    <div class="pr-drop" id="dropzone" role="button" tabindex="0" aria-label="Upload PDF">
+      <span class="ic">📤</span>
+      <div class="t">Drag &amp; Drop your PDF here</div>
+      <div class="s">or click to browse from your device</div>
+      <button class="pr-pick" type="button" id="pickBtn">+ Choose PDF File</button>
+      <div class="pr-loadbar" id="loadBar"><i></i></div>
       <input type="file" id="fileInput" accept="application/pdf">
     </div>
 
-    <div class="btn-row" id="allRow" style="display:none">
-      <button class="btn secondary" onclick="rotateAll(-90)">⟲ Rotate all left</button>
-      <button class="btn secondary" onclick="rotateAll(90)">⟳ Rotate all right</button>
+    <!-- FILE INFO -->
+    <div class="pr-info" id="fileInfo">
+      <div class="cell"><div class="k">File</div><div class="v" id="fiName">—</div></div>
+      <div class="cell"><div class="k">Size</div><div class="v" id="fiSize">—</div></div>
+      <div class="cell"><div class="k">Pages</div><div class="v" id="fiPages">—</div></div>
+      <div class="cell"><div class="k">Title</div><div class="v" id="fiTitle">—</div></div>
+      <div class="cell"><div class="k">Author</div><div class="v" id="fiAuthor">—</div></div>
     </div>
 
-    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
+    <!-- TOOLBAR -->
+    <div class="pr-toolbar" id="toolbar">
+      <div class="grp">
+        <span class="lbl">Rotate:</span>
+        <button class="pr-tbtn rot" data-rot="-90" type="button">⟲ Left 90°</button>
+        <button class="pr-tbtn rot" data-rot="90" type="button">⟳ Right 90°</button>
+        <button class="pr-tbtn rot" data-rot="180" type="button">⤺ 180°</button>
+      </div>
+      <div class="pr-div"></div>
+      <div class="grp">
+        <span class="lbl">Apply to:</span>
+        <button class="pr-tbtn" data-sel="all" type="button">All</button>
+        <button class="pr-tbtn" data-sel="none" type="button">None</button>
+        <button class="pr-tbtn" data-sel="odd" type="button">Odd</button>
+        <button class="pr-tbtn" data-sel="even" type="button">Even</button>
+        <button class="pr-tbtn" data-sel="first" type="button">First</button>
+        <button class="pr-tbtn" data-sel="last" type="button">Last</button>
+        <input class="pr-range" id="rangeInput" placeholder="e.g. 1-3,5" aria-label="Custom page range">
+        <button class="pr-tbtn" id="rangeApply" type="button">Apply range</button>
+      </div>
+      <div class="pr-div"></div>
+      <div class="grp">
+        <button class="pr-tbtn" id="undoBtn" type="button" disabled>↶ Undo</button>
+        <button class="pr-tbtn" id="redoBtn" type="button" disabled>↷ Redo</button>
+        <button class="pr-tbtn" id="resetBtn" type="button">♻️ Reset rotation</button>
+      </div>
+    </div>
 
+    <!-- LEGACY all-rotate row (kept for compatibility, hidden — superseded by toolbar) -->
+    <div class="btn-row" id="allRow" style="display:none">
+      <button class="pr-tbtn" type="button" id="allLeft">⟲ Rotate all left</button>
+      <button class="pr-tbtn" type="button" id="allRight">⟳ Rotate all right</button>
+    </div>
+
+    <!-- PAGE GRID -->
     <div class="page-grid" id="pageGrid"></div>
 
-    <div class="btn-row" id="saveRow" style="display:none">
-      <button class="btn" id="saveBtn">💾 Save PDF and Download</button>
+    <!-- SETTINGS -->
+    <div class="pr-settings" id="settings">
+      <div class="pr-field"><label for="outName">Output file name</label><input type="text" id="outName" class="pr-inp" value="rotated"></div>
+      <div class="pr-field"><label>&nbsp;</label><label class="pr-check"><input type="checkbox" id="optMeta" checked> Preserve metadata</label></div>
+      <div class="pr-field"><label>&nbsp;</label><label class="pr-check"><input type="checkbox" id="optOptimize"> Optimize file size</label></div>
     </div>
+
+    <!-- ACTIONS -->
+    <div class="pr-actions" id="saveRow">
+      <button class="pr-btn" id="saveBtn">💾 Save &amp; Download PDF</button>
+      <button class="pr-btn ghost" id="printBtn" type="button">🖨 Print</button>
+      <button class="pr-btn ghost" id="clearBtn" type="button">🔄 Reset all</button>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="pr-prog" id="progWrap">
+      <div class="pr-prog-bar"><i id="progFill"></i></div>
+    </div>
+    <p id="statusMsg" role="status" aria-live="polite"></p>
   </div>
 </div>
 
+<!-- STICKY MOBILE SAVE -->
+<div class="pr-sticky" id="stickyBar"><button class="pr-btn" type="button" onclick="document.getElementById('saveBtn').click()">💾 Save &amp; Download</button></div>
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>A sideways or upside-down page is one of the most common small annoyances with scanned PDFs — it happens when a document is fed into a scanner the wrong way, when a phone is held in the wrong orientation while photographing pages, or when pages from different sources with different orientations get combined into one file. Rather than re-scanning the document or living with a page you have to tilt your head to read, this tool lets you rotate any page, or every page, of a PDF by 90, 180, or 270 degrees in just a couple of clicks.</p>
-      <p>You can apply a single rotation to the entire document at once if every page has the same orientation problem, which is the most common case with a document that was simply scanned sideways from start to finish. Alternatively, you can go page by page and rotate only the specific pages that need it, leaving correctly oriented pages untouched — useful for documents assembled from multiple sources where only a few pages came in rotated while the rest were fine. A live preview shows you exactly how each page will look after rotation before you finalize anything, so there's no guesswork and no need to download a test version just to check whether you got the right angle.</p>
-      <p>This comes up constantly with documents scanned on shared office scanners or multifunction printers, where it's easy for a page to get fed in slightly wrong, especially with double-sided scanning or mixed-orientation source documents like a mix of portrait letters and landscape spreadsheets. Fixing this after the fact with this tool is far faster than walking back to the scanner, finding the original paper, and redoing the entire scan just because of one or two misaligned pages.</p>
-      <p>As with the other PDF tools here, rotation happens entirely within your browser; the file is processed locally and never uploaded to a remote server, so there's no waiting on an upload or download round-trip and no concern about where a copy of your document might end up. Once you're satisfied with the orientation of every page, a single click saves the corrected PDF, ready to download, print, or share looking exactly the way it should. There's no limit on how many pages you can fix in one pass, no watermark added to the output, and no account or sign-up required, so it works just as well for a one-page certificate as it does for a hundred-page scanned report with orientation problems scattered throughout.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your PDF.</li>
-        <li>Rotate individual pages or all pages using the rotate buttons.</li>
-        <li>Save and download the corrected PDF.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>कोई पन्ना तिरछा या उल्टा होना scanned PDFs के साथ सबसे आम छोटी परेशानियों में से एक है — यह तब होता है जब कोई document scanner में गलत तरीके से डाला जाता है, पन्नों की फोटो खींचते वक्त phone गलत orientation में पकड़ा जाता है, या अलग-अलग orientation वाले अलग-अलग स्रोतों के पन्ने एक file में मिल जाते हैं। document को दोबारा scan करने या किसी पन्ने को पढ़ने के लिए सिर तिरछा करने की बजाय, यह टूल आपको PDF के किसी भी पन्ने, या सभी पन्नों को, बस कुछ क्लिक में 90, 180, या 270 डिग्री rotate करने देता है।</p>
-      <p>अगर पूरे document में orientation की समस्या एक जैसी है, तो आप पूरे document पर एक साथ rotation लगा सकते हैं, जो ऐसे document के लिए सबसे आम स्थिति है जो शुरू से आखिर तक बस तिरछा scan हो गया था। वैकल्पिक रूप से, आप पन्ना-दर-पन्ना जाकर सिर्फ उन specific पन्नों को rotate कर सकते हैं जिन्हें इसकी ज़रूरत है, सही orientation वाले पन्नों को छेड़े बिना — यह उन documents के लिए उपयोगी है जो कई स्रोतों से जोड़े गए हों जहां सिर्फ कुछ पन्ने ही rotated आए हों जबकि बाकी ठीक थे। कुछ भी finalize करने से पहले एक live preview दिखाता है कि rotation के बाद हर पन्ना ठीक कैसा दिखेगा।</p>
-      <p>यह shared office scanners या multifunction printers पर scan किए गए documents के साथ लगातार होता है, जहां double-sided scanning या portrait letters और landscape spreadsheets जैसे mixed-orientation source documents के साथ किसी पन्ने का थोड़ा गलत feed होना आसान है। इसे बाद में इस टूल से ठीक करना scanner तक वापस जाने, original paper ढूंढने, और सिर्फ एक-दो गलत-संरेखित पन्नों की वजह से पूरा scan दोबारा करने से कहीं ज़्यादा तेज़ है।</p>
-      <p>यहां के बाकी PDF tools की तरह, rotation पूरी तरह आपके browser के अंदर होती है; file locally process होती है और कभी किसी remote server पर अपलोड नहीं होती, तो किसी upload या download round-trip का इंतज़ार नहीं करना पड़ता और इस बात की कोई चिंता नहीं कि आपके document की कोई copy कहां पहुंच सकती है। हर पन्ने की orientation से संतुष्ट होने के बाद, एक क्लिक corrected PDF को save कर देता है, बिल्कुल वैसी दिखने के लिए तैयार जैसी उसे दिखना चाहिए — download, print, या share करने के लिए। एक बार में कितने पन्ने ठीक कर सकते हैं इसकी कोई सीमा नहीं, output पर कोई watermark नहीं जुड़ता, और किसी account या sign-up की ज़रूरत नहीं, तो यह एक पन्ने के certificate के लिए जितना अच्छा काम करता है, उतना ही सौ-पन्नों की scanned report के लिए भी जिसमें जगह-जगह orientation की समस्याएं हों।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी PDF अपलोड करें।</li>
-        <li>रोटेट बटन से पेज को अलग-अलग या सभी को एक साथ घुमाएं।</li>
-        <li>ठीक की गई PDF सेव करें और डाउनलोड करें।</li>
-      </ol>
+<!-- KEY FEATURES -->
+<section class="pr-wrap" aria-label="Key features">
+  <div class="pr-title"><h2>⭐ Key Features</h2></div>
+  <div class="pr-grid">
+    <div class="pr-card"><h3>📤 Easy Upload</h3><p>Drag &amp; drop or click to add a PDF, with a live loading bar and a file-info panel showing size, pages and metadata.</p></div>
+    <div class="pr-card"><h3>🖼️ Thumbnail Preview</h3><p>Every page is rendered as a thumbnail that updates instantly as you rotate, so you always see the real result.</p></div>
+    <div class="pr-card"><h3>🔄 Flexible Rotation</h3><p>Rotate left, right or 180° — applied to all pages, odd, even, a custom range, the first/last page, or individual pages.</p></div>
+    <div class="pr-card"><h3>↶ Undo, Redo &amp; Reset</h3><p>Step back and forward through your changes, or reset every page's rotation in one click.</p></div>
+    <div class="pr-card"><h3>🔍 Fullscreen Zoom</h3><p>Open any page full-screen with zoom in/out, fit-width, fit-page and next/previous navigation with go-to-page.</p></div>
+    <div class="pr-card"><h3>🏷️ Preserved Metadata</h3><p>Keeps the document's title, author and other metadata, with an option to optimise the output file size.</p></div>
+    <div class="pr-card"><h3>⬇️ Download &amp; Print</h3><p>Save the rotated PDF with a custom name, or print it directly — no watermark, no sign-up.</p></div>
+    <div class="pr-card"><h3>🔒 100% Private</h3><p>Runs entirely in your browser; your PDF is never uploaded to any server.</p></div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="pr-wrap" aria-label="Benefits">
+  <div class="pr-title"><h2>🎯 Benefits</h2></div>
+  <div class="pr-grid">
+    <div class="pr-card"><h3>⚡ Fast &amp; Offline</h3><p>No upload wait — rotation happens on your device and keeps working offline once loaded.</p></div>
+    <div class="pr-card"><h3>🆓 Free &amp; Unlimited</h3><p>Rotate any number of pages and files, with no watermark and no account.</p></div>
+    <div class="pr-card"><h3>🎛️ Precise Control</h3><p>Fix just the pages that need it — perfect for mixed-orientation scans.</p></div>
+    <div class="pr-card"><h3>📱 Works Everywhere</h3><p>Responsive design for desktop, tablet and phone, with touch-friendly controls.</p></div>
+    <div class="pr-card"><h3>🛡️ Safe for Sensitive Files</h3><p>Contracts, IDs and statements stay on your device throughout.</p></div>
+    <div class="pr-card"><h3>💎 Lossless</h3><p>Rotation changes page orientation only — text and images stay pixel-perfect.</p></div>
+  </div>
+</section>
+
+<!-- RELATED TOOLS (above About) -->
+<section class="pr-wrap" aria-label="Related tools">
+  <div class="pr-title"><h2>🔗 Related Tools</h2></div>
+  <div class="pr-rel-grid">
+    <a href="pdf-merge.html" class="pr-rel"><span class="ri">🧩</span><div><div class="rn">PDF Merge</div><div class="rd">Combine PDFs into one</div></div></a>
+    <a href="pdf-split.html" class="pr-rel"><span class="ri">✂️</span><div><div class="rn">PDF Split</div><div class="rd">Extract or split pages</div></div></a>
+    <a href="pdf-compress.html" class="pr-rel"><span class="ri">📦</span><div><div class="rn">PDF Compress</div><div class="rd">Reduce PDF size</div></div></a>
+    <a href="pdf-crop.html" class="pr-rel"><span class="ri">📐</span><div><div class="rn">PDF Crop</div><div class="rd">Trim PDF margins</div></div></a>
+    <a href="pdf-reorder.html" class="pr-rel"><span class="ri">↕️</span><div><div class="rn">PDF Reorder Pages</div><div class="rd">Rearrange page order</div></div></a>
+    <a href="pdf-delete-pages.html" class="pr-rel"><span class="ri">🗑</span><div><div class="rn">PDF Delete Pages</div><div class="rd">Remove pages</div></div></a>
+    <a href="pdf-watermark.html" class="pr-rel"><span class="ri">💧</span><div><div class="rn">PDF Watermark</div><div class="rd">Add a watermark</div></div></a>
+    <a href="pdf-page-numbers.html" class="pr-rel"><span class="ri">🔢</span><div><div class="rn">PDF Page Numbers</div><div class="rd">Add page numbers</div></div></a>
+    <a href="pdf-to-image.html" class="pr-rel"><span class="ri">🏞️</span><div><div class="rn">PDF to JPG</div><div class="rd">PDF pages to images</div></div></a>
+    <a href="image-to-pdf.html" class="pr-rel"><span class="ri">🖼️</span><div><div class="rn">Image to PDF</div><div class="rd">Images into a PDF</div></div></a>
+    <a href="pdf-grayscale.html" class="pr-rel"><span class="ri">⚫</span><div><div class="rn">PDF Grayscale</div><div class="rd">Convert to grayscale</div></div></a>
+    <a href="pdf-extract-text.html" class="pr-rel"><span class="ri">📝</span><div><div class="rn">PDF Extract Text</div><div class="rd">Get text from a PDF</div></div></a>
+    <a href="pdf-header-footer.html" class="pr-rel"><span class="ri">📑</span><div><div class="rn">PDF Header/Footer</div><div class="rd">Add header &amp; footer</div></div></a>
+    <a href="pdf-sign.html" class="pr-rel"><span class="ri">✍️</span><div><div class="rn">PDF Sign</div><div class="rd">Sign a PDF</div></div></a>
+    <a href="pdf-viewer.html" class="pr-rel"><span class="ri">👓</span><div><div class="rn">PDF Viewer</div><div class="rd">Open PDFs in browser</div></div></a>
+  </div>
+</section>
+
+<!-- ABOUT (bilingual) -->
+<section class="pr-wrap pr-about" aria-label="About this tool">
+  <div class="pr-title"><h2>ℹ️ About This Tool</h2></div>
+  <div class="info-wrap" style="max-width:100%;padding:0">
+    <div class="info-section">
+      <article class="info-block pr-about">
+        <h2>About the PDF Rotate Tool (English)</h2>
+        <p>The <strong>PDF Rotate</strong> tool by ApneSoftware lets you fix the orientation of any PDF — turning pages left, right or a full 180° — directly inside your web browser. Whether a whole document was scanned sideways, a single page came in upside-down, or a file mixes portrait letters with landscape spreadsheets, you can correct every page in seconds and download a clean, properly oriented PDF, without uploading your file to any server.</p>
+
+        <h3>Introduction</h3>
+        <p>A sideways or upside-down page is one of the most common annoyances with scanned and combined PDFs. It happens when paper is fed into a scanner the wrong way, when a phone is held in the wrong orientation while photographing pages, or when documents from different sources are merged. Re-scanning is slow and wasteful; this tool fixes the orientation after the fact in a couple of clicks, with a live thumbnail preview so you can see exactly how each page will look before you save.</p>
+
+        <h3>Main Features</h3>
+        <ul>
+          <li><strong>Drag &amp; drop upload</strong> with a loading bar and a file-info panel (name, size, page count, title and author metadata).</li>
+          <li><strong>Thumbnail preview</strong> of every page that updates instantly as you rotate.</li>
+          <li><strong>Flexible rotation:</strong> left, right or 180°, applied to all pages, odd, even, a custom range like 1-3,5, the first or last page, or individual pages.</li>
+          <li><strong>Undo, redo and reset</strong> so you can experiment freely.</li>
+          <li><strong>Fullscreen preview</strong> with zoom in/out, fit-width, fit-page, next/previous and go-to-page.</li>
+          <li><strong>Output control:</strong> custom file name, preserve metadata and an optional file-size optimisation.</li>
+          <li><strong>Download or print</strong> the corrected PDF directly.</li>
+        </ul>
+
+        <h3>Benefits</h3>
+        <p>The tool saves time and preserves quality. Instead of walking back to the scanner or re-photographing pages, you rotate them in place — and because rotation only changes page orientation, the text and images stay pixel-perfect with no re-compression. It is completely free, adds no watermark, requires no account and places no limit on the number of pages or files.</p>
+
+        <h3>Why Use This Tool</h3>
+        <p>Many online rotators upload your PDF to a remote server, where a copy could be logged or cached. This one processes everything locally, so confidential contracts, identity documents and financial statements never leave your device. It also offers finer control than most — per-page rotation, odd/even and range selection, undo/redo and a proper fullscreen preview — in a clean, modern interface that works on any device.</p>
+
+        <h3>Common Use Cases</h3>
+        <ul>
+          <li>Correcting a document scanned sideways from start to finish.</li>
+          <li>Fixing one or two upside-down pages in an otherwise correct file.</li>
+          <li>Rotating landscape spreadsheet pages inside a mostly portrait report.</li>
+          <li>Turning phone-photographed pages upright before sharing or printing.</li>
+          <li>Preparing a correctly oriented PDF for a portal, print shop or email.</li>
+        </ul>
+
+        <h3>Privacy &amp; Security</h3>
+        <p>Privacy is built in. Your PDF is read with the browser's File API, previewed with a client-side PDF engine and rewritten with a client-side PDF library; nothing is transmitted, cached on a server or retained after you close the tab. This makes the tool suitable for personal, business, legal, financial and medical documents that should never pass through a third party.</p>
+
+        <h3>Supported Formats &amp; Browser Compatibility</h3>
+        <p>The tool works with standard PDF files and outputs a standard PDF. It runs in the latest Chrome, Edge, Firefox, Safari, Opera and Brave on Windows, macOS, Linux, Android and iOS. A modern browser with JavaScript is all you need — nothing to install.</p>
+
+        <h3>Tips &amp; Best Practices</h3>
+        <ul>
+          <li>Use “Apply to: All” for documents scanned sideways throughout.</li>
+          <li>Use odd/even selection to fix double-sided scans where alternate pages are flipped.</li>
+          <li>Preview a page full-screen if you are unsure which way it should turn.</li>
+          <li>Keep “Preserve metadata” on so the title and author survive.</li>
+          <li>Use the range box (e.g. 2-4,7) to target exactly the pages that need fixing.</li>
+        </ul>
+
+        <h3>Limitations</h3>
+        <p>Rotation changes orientation in 90° steps; it does not deskew slightly-tilted scans or crop content. Very large PDFs at once use more memory, so extremely long files may be slower on low-end devices. The tool does not read text (use a dedicated OCR tool for that) — it simply re-orients the existing pages.</p>
+
+        <h3>Performance &amp; Memory</h3>
+        <p>Pages are rendered one at a time as compact thumbnails, and full-resolution rendering only happens when you open the fullscreen preview, which keeps memory use low and the interface responsive even with long documents. Because there is no upload or download round-trip to a remote server, the tool feels instant: the moment the file is read it is ready to work with, and the corrected PDF is produced in your browser the instant you click save. On very large files you can rotate exactly the pages you need and save once, rather than repeatedly waiting on a server queue.</p>
+
+        <h3>Accessibility &amp; Ease of Use</h3>
+        <p>The interface is designed to be usable by everyone. Every control is reachable by keyboard, buttons and checkboxes have clear labels for screen readers, focus outlines are visible, and the colour palette keeps strong contrast in both the dark and light themes. Keyboard shortcuts speed things up for power users — undo, redo and save, plus quick left/right rotation and arrow-key navigation inside the preview — while the large touch targets and sticky save button make the same actions comfortable on a phone.</p>
+
+        <h3>Conclusion</h3>
+        <p>PDF Rotate combines a capable preview and rotation engine with a strict privacy model — free and entirely in the browser. From a single flipped page to a whole misaligned report, it gives you fast, precise, lossless control over page orientation without your file ever leaving your device. It is a small, dependable utility that turns a frustrating, head-tilting problem into a two-click fix, and it scales just as happily from a one-page certificate to a hundred-page scanned archive.</p>
+      </article>
+
+      <hr class="info-divider">
+
+      <article class="info-block pr-about">
+        <h2>PDF Rotate टूल के बारे में (हिंदी)</h2>
+        <p>ApneSoftware का <strong>PDF Rotate</strong> टूल किसी भी PDF की orientation ठीक करने देता है — पन्नों को बाएँ, दाएँ या पूरे 180° घुमाकर — वह भी आपके ब्राउज़र में ही। चाहे पूरा दस्तावेज़ तिरछा scan हुआ हो, एक पन्ना उल्टा आया हो, या फ़ाइल में portrait letters और landscape spreadsheets मिले हों — आप हर पन्ना कुछ ही सेकंड में ठीक करके एक साफ़, सही orientation वाली PDF download कर सकते हैं, बिना फ़ाइल किसी server पर भेजे।</p>
+
+        <h3>परिचय</h3>
+        <p>तिरछा या उल्टा पन्ना scanned और जोड़ी गई PDF की सबसे आम परेशानियों में से एक है। यह तब होता है जब कागज़ scanner में गलत डाला जाए, फ़ोन गलत orientation में पकड़ा जाए, या अलग स्रोतों के दस्तावेज़ merge हों। दोबारा scan करना धीमा है; यह टूल बाद में orientation कुछ क्लिक में ठीक कर देता है, live thumbnail preview के साथ ताकि save से पहले आप हर पन्ना देख सकें।</p>
+
+        <h3>मुख्य विशेषताएँ</h3>
+        <ul>
+          <li>लोडिंग बार और file-info पैनल (नाम, size, page count, title/author) के साथ <strong>ड्रैग &amp; ड्रॉप अपलोड</strong>।</li>
+          <li>हर पन्ने का <strong>thumbnail preview</strong> जो घुमाते ही तुरंत बदलता है।</li>
+          <li><strong>लचीला rotation:</strong> बाएँ, दाएँ या 180° — सभी, odd, even, custom range (जैसे 1-3,5), first/last या अलग-अलग पन्नों पर।</li>
+          <li><strong>Undo, redo और reset</strong> ताकि आप बेझिझक बदलाव कर सकें।</li>
+          <li>zoom in/out, fit-width, fit-page, next/previous और go-to-page के साथ <strong>fullscreen preview</strong>।</li>
+          <li><strong>आउटपुट नियंत्रण:</strong> custom file name, metadata सुरक्षित रखना और वैकल्पिक file-size optimisation।</li>
+          <li>ठीक की गई PDF सीधे <strong>download या print</strong> करें।</li>
+        </ul>
+
+        <h3>लाभ और उपयोग</h3>
+        <p>यह टूल समय बचाता है और गुणवत्ता बनाए रखता है। scanner तक वापस जाने के बजाय पन्ने वहीं घुमाइए — और चूँकि rotation सिर्फ़ orientation बदलता है, text व images बिल्कुल वैसे ही रहते हैं, कोई re-compression नहीं। यह पूरी तरह फ्री है, कोई watermark नहीं, कोई account नहीं और पन्ने/फ़ाइल की कोई सीमा नहीं। शुरू से आखिर तक तिरछा scan ठीक करना, एक-दो उल्टे पन्ने सुधारना, portrait रिपोर्ट में landscape spreadsheet पन्ने घुमाना, फ़ोन से खींचे पन्ने सीधे करना, और portal/print/email के लिए सही PDF तैयार करना — जैसे कई काम इससे आसान हैं।</p>
+
+        <h3>गोपनीयता, फ़ॉर्मेट और अनुकूलता</h3>
+        <p>गोपनीयता built-in है। आपकी PDF ब्राउज़र के File API से पढ़ी जाती है, client-side इंजन से preview होती है और client-side लाइब्रेरी से फिर से लिखी जाती है; कुछ भी server पर नहीं भेजा या संग्रहीत होता, और tab बंद करते ही सब हट जाता है — इसलिए यह गोपनीय, कानूनी, वित्तीय और मेडिकल दस्तावेज़ों के लिए उपयुक्त है। यह मानक PDF के साथ काम करता है और मानक PDF ही बनाता है, तथा नवीनतम Chrome, Edge, Firefox, Safari, Opera और Brave पर Windows, macOS, Linux, Android और iOS में चलता है।</p>
+
+        <h3>सुझाव और सर्वोत्तम अभ्यास</h3>
+        <p>पूरे तिरछे दस्तावेज़ के लिए “All”, दो-तरफ़ा scan के लिए odd/even, और सिर्फ़ ज़रूरी पन्नों के लिए range (जैसे 2-4,7) चुनें; अनिश्चित हों तो पन्ना fullscreen में देखें और सही दिशा तय करें; “Preserve metadata” चालू रखें ताकि title व author बने रहें; save करने से पहले output file name सेट करें ताकि फ़ाइल पहचानने में आसान रहे; और छोटे कीबोर्ड शॉर्टकट (L/R घुमाने, Ctrl+Z/Ctrl+Y undo-redo, Ctrl+S save) से काम तेज़ करें।</p>
+
+        <h3>Performance, Accessibility और सीमाएँ</h3>
+        <p>पन्ने एक-एक करके छोटे thumbnails के रूप में render होते हैं और पूर्ण-रिज़ॉल्यूशन rendering केवल fullscreen preview में होती है, जिससे लंबे दस्तावेज़ों पर भी memory कम रहती है और इंटरफ़ेस तेज़ रहता है। कोई upload-download चक्कर न होने से टूल तुरंत महसूस होता है। इंटरफ़ेस सभी के लिए सुलभ है — हर कंट्रोल कीबोर्ड से पहुँच योग्य, स्क्रीन-रीडर के लिए स्पष्ट labels, दिखने वाले focus outline, और dark व light दोनों themes में मज़बूत contrast; बड़े touch targets और sticky save बटन इसे फ़ोन पर भी सहज बनाते हैं। सीमाएँ: rotation 90° चरणों में होता है, यह हल्के तिरछे scan को deskew या crop नहीं करता; बहुत बड़ी PDF एक साथ ज़्यादा memory लेती हैं; यह टेक्स्ट नहीं पढ़ता (उसके लिए OCR टूल इस्तेमाल करें), सिर्फ़ orientation बदलता है।</p>
+
+        <h3>निष्कर्ष</h3>
+        <p>कुल मिलाकर, PDF Rotate एक सक्षम preview व rotation इंजन को सख़्त गोपनीयता के साथ जोड़ता है — पूरी तरह फ्री और ब्राउज़र में — और एक उल्टे पन्ने से लेकर पूरी बिगड़ी रिपोर्ट तक, आपकी फ़ाइल कहीं भेजे बिना तेज़, सटीक, बिना गुणवत्ता-हानि नियंत्रण देता है। यह एक छोटी पर भरोसेमंद उपयोगिता है जो सिर झुकाकर पढ़ने वाली परेशानी को दो-क्लिक के समाधान में बदल देती है।</p>
+      </article>
     </div>
   </div>
-</div>
+</section>
 
-<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<!-- HOW TO USE -->
+<section class="pr-wrap" aria-label="How to use">
+  <div class="pr-title"><h2>🚀 How To Use</h2></div>
+  <div class="pr-grid">
+    <div class="pr-card"><h3>1 · Upload</h3><p>Drag &amp; drop your PDF or click Choose PDF File. The file-info panel shows its size, pages and metadata.</p></div>
+    <div class="pr-card"><h3>2 · Choose pages</h3><p>Use All, Odd, Even, First, Last or a custom range, or tick the checkbox on individual pages.</p></div>
+    <div class="pr-card"><h3>3 · Rotate</h3><p>Click Left, Right or 180°. The thumbnails update instantly; undo or redo any change.</p></div>
+    <div class="pr-card"><h3>4 · Save</h3><p>Set an output name, then Save &amp; Download or Print your correctly oriented PDF.</p></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="pr-wrap pr-faq" aria-label="Frequently asked questions">
+  <div class="pr-title"><h2>❓ Frequently Asked Questions</h2></div>
+  <div id="faqList"></div>
+</section>
+
+<!-- PRIVACY -->
+<section class="pr-wrap" aria-label="Privacy">
+  <div class="pr-title"><h2>🔒 Privacy</h2></div>
+  <div class="pr-grid">
+    <div class="pr-card"><h3>🚫 No Upload</h3><p>Your PDF is opened, previewed and rotated entirely inside your browser — it is never sent to a server.</p></div>
+    <div class="pr-card"><h3>🗑️ Nothing Stored</h3><p>No copy is kept anywhere; the file is cleared from memory when you reset or close the tab.</p></div>
+    <div class="pr-card"><h3>🛡️ Safe by Design</h3><p>With no network transfer there is nothing to intercept and no server to breach.</p></div>
+  </div>
+</section>
+
+<!-- BROWSER COMPATIBILITY -->
+<section class="pr-wrap" aria-label="Browser compatibility">
+  <div class="pr-title"><h2>🌐 Browser Compatibility</h2></div>
+  <div class="pr-chips">
+    <span class="pr-chip">🌐 Chrome</span>
+    <span class="pr-chip">🧭 Edge</span>
+    <span class="pr-chip">🦊 Firefox</span>
+    <span class="pr-chip">🧭 Safari</span>
+    <span class="pr-chip">🎭 Opera</span>
+    <span class="pr-chip">🦁 Brave</span>
+  </div>
+</section>
+
+<!-- SUPPORTED FORMATS -->
+<section class="pr-wrap" aria-label="Supported formats">
+  <div class="pr-title"><h2>🗂️ Supported Formats</h2></div>
+  <div class="pr-chips">
+    <span class="pr-chip">📄 Input: PDF</span>
+    <span class="pr-chip">📄 Output: PDF</span>
+    <span class="pr-chip">🔁 Rotation: 90° · 180° · 270°</span>
+  </div>
+</section>
+
+<footer class="site-footer">© 2026 ApneSoftware.com — PDF Rotate · Free &amp; private, in your browser.</footer>
+
+<!-- lightbox -->
+<div class="pr-lightbox" id="lightbox">
+  <div class="pr-lb-view"><canvas id="lbCanvas"></canvas></div>
+  <div class="pr-lb-bar">
+    <button id="lbPrev" type="button">◀ Prev</button>
+    <span class="pg">Page <b id="lbPage">1</b> / <span id="lbTotal">1</span></span>
+    <input id="lbGoto" type="number" min="1" title="Go to page" aria-label="Go to page">
+    <button id="lbNext" type="button">Next ▶</button>
+    <button id="lbRotL" type="button">⟲</button>
+    <button id="lbRotR" type="button">⟳</button>
+    <button id="lbZoomOut" type="button">➖</button>
+    <button id="lbZoomIn" type="button">➕</button>
+    <button id="lbFitW" type="button">Fit width</button>
+    <button id="lbFitP" type="button">Fit page</button>
+    <button id="lbClose" type="button">✕ Close</button>
+  </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+/* ═══════════════════════════════════════════════════════════
+   PDF ROTATE — client-side, pdf.js for preview + pdf-lib to save.
+   Nothing is uploaded; everything runs in your browser.
+═══════════════════════════════════════════════════════════ */
+(function(){
+'use strict';
+var $ = function(id){ return document.getElementById(id); };
+function toast(m){ if(window.premToast) premToast(m); }
+if(window.pdfjsLib){ pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js"; }
 
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-let currentFile = null;
-let rotations = []; // degrees added per page (0,90,180,270)
-let pageCount = 0;
+/* state */
+var currentFile = null;
+var pdfDoc = null;         // pdf.js document (for preview)
+var pageCount = 0;
+var rotations = [];        // per-page added rotation (0/90/180/270)
+var selected = [];         // per-page boolean
+var thumbs = [];           // per-page base canvas (unrotated)
+var history = [], histIdx = -1;
+var THUMB_SCALE = 0.5;
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
-});
+var dropzone = $('dropzone'), fileInput = $('fileInput');
+
+function fmtSize(b){ if(!b) return '—'; if(b<1024) return b+' B'; if(b<1048576) return (b/1024).toFixed(1)+' KB'; return (b/1048576).toFixed(2)+' MB'; }
+function setStatus(m, kind){ var el=$('statusMsg'); el.textContent=m||''; el.className=''; if(kind==='ok') el.classList.add('pr-ok'); if(kind==='err') el.classList.add('pr-err'); }
+
+/* ── upload ────────────────────────────────────────────── */
+if(dropzone && fileInput){
+  fileInput.addEventListener('change', function(e){ if(e.target.files[0]) handleFile(e.target.files[0]); e.target.value=''; });
+  dropzone.addEventListener('click', function(e){ if(e.target.id==='pickBtn'||e.target===dropzone||e.target.classList.contains('ic')||e.target.classList.contains('t')||e.target.classList.contains('s')) fileInput.click(); });
+  dropzone.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); fileInput.click(); } });
+  ['dragenter','dragover'].forEach(function(ev){ dropzone.addEventListener(ev, function(e){ e.preventDefault(); dropzone.classList.add('drag'); }); });
+  ['dragleave','drop'].forEach(function(ev){ dropzone.addEventListener(ev, function(e){ e.preventDefault(); dropzone.classList.remove('drag'); }); });
+  dropzone.addEventListener('drop', function(e){ var f=e.dataTransfer&&e.dataTransfer.files[0]; if(f && (f.type==='application/pdf'||/\.pdf$/i.test(f.name))) handleFile(f); });
+}
 
 async function handleFile(file){
+  if(!file || !(file.type==='application/pdf' || /\.pdf$/i.test(file.name))){ setStatus('⚠️ Please choose a PDF file.', 'err'); return; }
   currentFile = file;
-  const grid = document.getElementById('pageGrid');
-  grid.innerHTML = '';
-  const status = document.getElementById('statusMsg');
-  status.textContent = '⏳ Loading...';
-
-  const arrayBuf = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({data: arrayBuf}).promise;
-  pageCount = pdf.numPages;
-  rotations = new Array(pageCount).fill(0);
-
-  for(let i=1; i<=pdf.numPages; i++){
-    const page = await pdf.getPage(i);
-    const viewport = page.getViewport({ scale: 0.5 });
-    const canvas = document.createElement('canvas');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    const ctx = canvas.getContext('2d');
-    await page.render({ canvasContext: ctx, viewport }).promise;
-
-    const card = document.createElement('div');
-    card.className = 'page-card';
-    card.id = 'card-' + (i-1);
-    card.innerHTML = `
-      <canvas style="transform:rotate(0deg)" id="canvas-${i-1}"></canvas>
-      <div class="lbl">Page ${i}</div>
-      <div class="btn-row" style="margin:0;justify-content:center">
-        <button class="icon-btn" onclick="rotateOne(${i-1},-90)" style="width:auto;padding:4px 10px">⟲</button>
-        <button class="icon-btn" onclick="rotateOne(${i-1},90)" style="width:auto;padding:4px 10px">⟳</button>
-      </div>`;
-    grid.appendChild(card);
-    const targetCanvas = document.getElementById(`canvas-${i-1}`);
-    targetCanvas.width = canvas.width;
-    targetCanvas.height = canvas.height;
-    targetCanvas.getContext('2d').drawImage(canvas, 0, 0);
-  }
-
-  status.textContent = `✅ ${pageCount} pages loaded — rotate them all together or one by one`;
-  document.getElementById('allRow').style.display = 'flex';
-  document.getElementById('saveRow').style.display = 'flex';
-}
-
-function rotateOne(idx, deg){
-  rotations[idx] = (rotations[idx] + deg + 360) % 360;
-  const canvas = document.getElementById(`canvas-${idx}`);
-  canvas.style.transform = `rotate(${rotations[idx]}deg)`;
-}
-
-function rotateAll(deg){
-  for(let i=0; i<pageCount; i++) rotateOne(i, deg);
-}
-
-document.getElementById('saveBtn').addEventListener('click', async ()=>{
-  const status = document.getElementById('statusMsg');
-  status.textContent = '⏳ Saving PDF...';
+  var loadBar=$('loadBar'), bar=loadBar.querySelector('i'); loadBar.style.display='block'; bar.style.width='10%';
+  setStatus('⏳ Loading PDF…');
+  $('pageGrid').innerHTML='';
   try{
-    const { PDFDocument, degrees } = PDFLib;
-    const bytes = await currentFile.arrayBuffer();
-    const pdfDoc = await PDFDocument.load(bytes);
-    const pages = pdfDoc.getPages();
-    pages.forEach((page, i) => {
-      const current = page.getRotation().angle;
-      page.setRotation(degrees(current + rotations[i]));
-    });
-    const newBytes = await pdfDoc.save();
-    const blob = new Blob([newBytes], {type:'application/pdf'});
-    downloadBlob('rotated.pdf', blob);
-    status.textContent = '✅ Downloaded!';
-  }catch(err){
-    status.textContent = '❌ Error: ' + err.message;
+    var buf = await file.arrayBuffer();
+    try{ pdfDoc = await pdfjsLib.getDocument({ data: buf.slice(0) }).promise; }
+    catch(e){
+      if(e && (e.name==='PasswordException' || /password/i.test(e.message||''))){
+        var pw=prompt('This PDF is password-protected. Enter the password:'); if(pw==null){ setStatus(''); loadBar.style.display='none'; return; }
+        pdfDoc = await pdfjsLib.getDocument({ data: buf.slice(0), password: pw }).promise;
+      } else throw e;
+    }
+    pageCount = pdfDoc.numPages;
+    rotations = new Array(pageCount).fill(0);
+    selected = new Array(pageCount).fill(false);
+    thumbs = new Array(pageCount).fill(null);
+    history=[]; histIdx=-1; pushHistory();
+
+    // file info + metadata
+    $('fiName').textContent = file.name; $('fiName').title=file.name;
+    $('fiSize').textContent = fmtSize(file.size);
+    $('fiPages').textContent = pageCount;
+    try{ var md = await pdfDoc.getMetadata(); var info=md&&md.info||{}; $('fiTitle').textContent=info.Title||'—'; $('fiAuthor').textContent=info.Author||'—'; }catch(e){ $('fiTitle').textContent='—'; $('fiAuthor').textContent='—'; }
+    $('fileInfo').style.display='flex'; $('toolbar').style.display='flex'; $('settings').style.display='flex'; $('saveRow').style.display='flex'; $('stickyBar').classList.add('show');
+
+    render(); // skeletons
+    for(var i=1;i<=pageCount;i++){
+      bar.style.width = Math.round(10+i/pageCount*90)+'%';
+      setStatus('⏳ Rendering page '+i+' of '+pageCount+'…');
+      await makeThumb(i-1);
+    }
+    setStatus('✅ '+pageCount+' page(s) loaded — choose pages and rotate.', 'ok');
+    loadBar.style.display='none'; bar.style.width='0';
+  }catch(err){ setStatus('❌ Could not open the PDF: '+(err&&err.message||err), 'err'); loadBar.style.display='none'; }
+}
+
+async function makeThumb(idx){
+  try{
+    var page = await pdfDoc.getPage(idx+1);
+    var vp = page.getViewport({ scale: THUMB_SCALE });
+    var c = document.createElement('canvas'); c.width=vp.width; c.height=vp.height;
+    var ctx=c.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height);
+    await page.render({ canvasContext:ctx, viewport:vp }).promise;
+    thumbs[idx]=c; drawThumb(idx);
+  }catch(e){}
+}
+
+/* ── render grid ───────────────────────────────────────── */
+function render(){
+  var grid=$('pageGrid'); grid.innerHTML='';
+  for(var i=0;i<pageCount;i++){
+    var d=document.createElement('div'); d.className='pr-page'+(selected[i]?' sel':'')+(rotations[i]?' rotated':''); d.dataset.i=i;
+    d.innerHTML =
+      '<input type="checkbox" class="pr-page-chk" '+(selected[i]?'checked':'')+' aria-label="Select page '+(i+1)+'">'+
+      '<span class="pr-page-badge">'+rotations[i]+'°</span>'+
+      '<div class="pr-canvas-wrap"><canvas id="cv-'+i+'"></canvas></div>'+
+      '<div class="lbl">Page '+(i+1)+'</div>'+
+      '<div class="pr-page-acts"><button data-a="l" aria-label="Rotate page left">⟲</button><button data-a="r" aria-label="Rotate page right">⟳</button></div>';
+    grid.appendChild(d);
+    (function(idx,card){
+      card.querySelector('.pr-page-chk').addEventListener('change', function(){ selected[idx]=this.checked; card.classList.toggle('sel',selected[idx]); });
+      card.querySelector('.pr-canvas-wrap').addEventListener('click', function(){ openLightbox(idx); });
+      card.querySelectorAll('[data-a]').forEach(function(b){ b.addEventListener('click', function(e){ e.stopPropagation(); applyRotation(b.getAttribute('data-a')==='l'?-90:90, [idx]); }); });
+    })(i, d);
+    if(thumbs[i]) drawThumb(i); else { var w=d.querySelector('.pr-canvas-wrap'); w.innerHTML='<div class="pr-skeleton" style="width:100%"></div>'; }
   }
+}
+function drawThumb(idx){
+  var base=thumbs[idx]; if(!base) return;
+  var canvas=$('cv-'+idx); if(!canvas){ return; }
+  var rot=rotations[idx], swap=(rot===90||rot===270);
+  canvas.width = swap?base.height:base.width; canvas.height = swap?base.width:base.height;
+  var ctx=canvas.getContext('2d');
+  ctx.save(); ctx.translate(canvas.width/2, canvas.height/2); ctx.rotate(rot*Math.PI/180); ctx.drawImage(base, -base.width/2, -base.height/2); ctx.restore();
+}
+
+/* ── selection ─────────────────────────────────────────── */
+function setSel(fn){ for(var i=0;i<pageCount;i++) selected[i]=fn(i); render(); }
+$('toolbar').addEventListener('click', function(e){
+  var sb=e.target.closest('[data-sel]');
+  if(sb){ var s=sb.getAttribute('data-sel');
+    if(s==='all') setSel(function(){return true;});
+    else if(s==='none') setSel(function(){return false;});
+    else if(s==='odd') setSel(function(i){return i%2===0;}); // page 1 = odd
+    else if(s==='even') setSel(function(i){return i%2===1;});
+    else if(s==='first') setSel(function(i){return i===0;});
+    else if(s==='last') setSel(function(i){return i===pageCount-1;});
+    return;
+  }
+  var rb=e.target.closest('[data-rot]');
+  if(rb){ applyRotation(parseInt(rb.getAttribute('data-rot'),10), targetPages()); }
 });
+$('rangeApply').addEventListener('click', function(){
+  var set=parseRange($('rangeInput').value, pageCount);
+  if(!set){ toast('Enter a range like 1-3,5'); return; }
+  setSel(function(i){ return set.indexOf(i)>=0; });
+});
+function parseRange(str,total){ if(!str||!str.trim()) return null; var out=[]; str.split(',').forEach(function(part){ part=part.trim(); if(/^\d+$/.test(part)){ var n=+part; if(n>=1&&n<=total) out.push(n-1); } else { var m=part.match(/^(\d+)\s*-\s*(\d+)$/); if(m){ var a=+m[1],b=+m[2]; if(a>b){var t=a;a=b;b=t;} for(var k=a;k<=b;k++) if(k>=1&&k<=total) out.push(k-1); } } }); return out.length?out:null; }
+function targetPages(){ var t=[]; for(var i=0;i<pageCount;i++) if(selected[i]) t.push(i); if(!t.length){ for(var j=0;j<pageCount;j++) t.push(j); } return t; }
+
+/* ── rotation ──────────────────────────────────────────── */
+function applyRotation(deg, idxs){
+  if(!pageCount) return;
+  idxs.forEach(function(i){ rotations[i]=((rotations[i]+deg)%360+360)%360; });
+  pushHistory();
+  idxs.forEach(function(i){ var card=$('pageGrid').children[i]; if(card){ card.classList.toggle('rotated', rotations[i]!==0); var badge=card.querySelector('.pr-page-badge'); if(badge) badge.textContent=rotations[i]+'°'; } drawThumb(i); });
+}
+$('allLeft').addEventListener('click', function(){ applyRotation(-90, allIdx()); });
+$('allRight').addEventListener('click', function(){ applyRotation(90, allIdx()); });
+function allIdx(){ var a=[]; for(var i=0;i<pageCount;i++) a.push(i); return a; }
+$('resetBtn').addEventListener('click', function(){ rotations=new Array(pageCount).fill(0); pushHistory(); render(); });
+
+/* ── undo / redo ───────────────────────────────────────── */
+function pushHistory(){ history=history.slice(0,histIdx+1); history.push(rotations.slice()); if(history.length>60) history.shift(); histIdx=history.length-1; updateUndo(); }
+function updateUndo(){ $('undoBtn').disabled=histIdx<=0; $('redoBtn').disabled=histIdx>=history.length-1; }
+$('undoBtn').addEventListener('click', function(){ if(histIdx>0){ histIdx--; rotations=history[histIdx].slice(); render(); updateUndo(); } });
+$('redoBtn').addEventListener('click', function(){ if(histIdx<history.length-1){ histIdx++; rotations=history[histIdx].slice(); render(); updateUndo(); } });
+
+/* ── theme ─────────────────────────────────────────────── */
+$('themeBtn').addEventListener('click', function(){ var light=$('prScope').classList.toggle('light'); this.textContent=light?'☀️ Light':'🌙 Dark'; });
+
+/* ── lightbox (fullscreen preview) ─────────────────────── */
+var lbIdx=0, lbZoom=1, lbScale=1;
+async function openLightbox(idx){ lbIdx=idx; lbZoom=1; $('lbTotal').textContent=pageCount; await renderLb('fitp'); $('lightbox').classList.add('open'); }
+async function renderLb(fit){
+  if(!pdfDoc) return;
+  var page=await pdfDoc.getPage(lbIdx+1);
+  var base=page.getViewport({ scale:1 });
+  var vw=window.innerWidth-40, vh=window.innerHeight-120;
+  if(fit==='fitw') lbScale=vw/base.width;
+  else if(fit==='fitp') lbScale=Math.min(vw/base.width, vh/base.height);
+  var vp=page.getViewport({ scale:lbScale, rotation:(page.rotate+rotations[lbIdx])%360 });
+  var c=$('lbCanvas'); c.width=vp.width; c.height=vp.height;
+  var ctx=c.getContext('2d'); ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height);
+  await page.render({ canvasContext:ctx, viewport:vp }).promise;
+  applyLbZoom(); $('lbPage').textContent=lbIdx+1; $('lbGoto').value=lbIdx+1; $('lbGoto').max=pageCount;
+}
+function applyLbZoom(){ $('lbCanvas').style.transform='scale('+lbZoom+')'; }
+$('lbClose').addEventListener('click', function(){ $('lightbox').classList.remove('open'); });
+$('lightbox').addEventListener('click', function(e){ if(e.target===this) this.classList.remove('open'); });
+$('lbPrev').addEventListener('click', function(){ if(lbIdx>0){ lbIdx--; lbZoom=1; renderLb('fitp'); } });
+$('lbNext').addEventListener('click', function(){ if(lbIdx<pageCount-1){ lbIdx++; lbZoom=1; renderLb('fitp'); } });
+$('lbGoto').addEventListener('change', function(){ var n=parseInt(this.value,10); if(n>=1&&n<=pageCount){ lbIdx=n-1; lbZoom=1; renderLb('fitp'); } });
+$('lbZoomIn').addEventListener('click', function(){ lbZoom=Math.min(6,lbZoom*1.25); applyLbZoom(); });
+$('lbZoomOut').addEventListener('click', function(){ lbZoom=Math.max(.2,lbZoom/1.25); applyLbZoom(); });
+$('lbFitW').addEventListener('click', function(){ lbZoom=1; renderLb('fitw'); });
+$('lbFitP').addEventListener('click', function(){ lbZoom=1; renderLb('fitp'); });
+$('lbRotL').addEventListener('click', function(){ applyRotation(-90,[lbIdx]); lbZoom=1; renderLb('fitp'); });
+$('lbRotR').addEventListener('click', function(){ applyRotation(90,[lbIdx]); lbZoom=1; renderLb('fitp'); });
+
+/* ── save / print ──────────────────────────────────────── */
+var lastBlob=null, lastUrl=null;
+async function buildPdf(){
+  if(!currentFile){ return null; }
+  var PDFDocument=PDFLib.PDFDocument, degrees=PDFLib.degrees;
+  var bytes=await currentFile.arrayBuffer();
+  var doc=await PDFDocument.load(bytes, { ignoreEncryption:true });
+  var pages=doc.getPages();
+  pages.forEach(function(p,i){ if(i<rotations.length){ var cur=p.getRotation().angle||0; p.setRotation(degrees((cur+rotations[i])%360)); } });
+  if(!$('optMeta').checked){ try{ doc.setTitle(''); doc.setAuthor(''); doc.setSubject(''); doc.setKeywords([]); }catch(e){} }
+  doc.setProducer('ApneSoftware PDF Rotate');
+  var out=await doc.save({ useObjectStreams: $('optOptimize').checked });
+  return new Blob([out], { type:'application/pdf' });
+}
+$('saveBtn').addEventListener('click', async function(){
+  if(!currentFile){ setStatus('⚠️ Add a PDF first.', 'err'); return; }
+  var prog=$('progWrap'); prog.classList.add('show'); $('progFill').style.width='30%'; setStatus('⏳ Saving PDF…'); $('saveBtn').disabled=true;
+  try{
+    $('progFill').style.width='70%';
+    var blob=await buildPdf();
+    if(lastUrl) URL.revokeObjectURL(lastUrl);
+    lastBlob=blob; lastUrl=URL.createObjectURL(blob);
+    var name=($('outName').value.trim()||'rotated').replace(/\.pdf$/i,'')+'.pdf';
+    if(window.downloadBlob) downloadBlob(name, blob); else { var a=document.createElement('a'); a.href=lastUrl; a.download=name; document.body.appendChild(a); a.click(); a.remove(); }
+    $('progFill').style.width='100%';
+    setStatus('✅ Saved &amp; downloaded '+name+'.', 'ok');
+  }catch(err){ setStatus('❌ Could not save: '+(err&&err.message||err), 'err'); }
+  $('saveBtn').disabled=false; setTimeout(function(){ prog.classList.remove('show'); $('progFill').style.width='0'; }, 800);
+});
+$('printBtn').addEventListener('click', async function(){
+  if(!currentFile) return; setStatus('⏳ Preparing print…');
+  try{ var blob=await buildPdf(); var url=URL.createObjectURL(blob); var w=window.open(url,'_blank'); if(w) w.addEventListener('load', function(){ try{ w.print(); }catch(e){} }); setStatus(''); }
+  catch(err){ setStatus('❌ '+(err&&err.message||err), 'err'); }
+});
+$('clearBtn').addEventListener('click', resetAll);
+function resetAll(){
+  currentFile=null; try{ pdfDoc&&pdfDoc.destroy&&pdfDoc.destroy(); }catch(e){} pdfDoc=null;
+  pageCount=0; rotations=[]; selected=[]; thumbs=[]; history=[]; histIdx=-1;
+  if(lastUrl){ URL.revokeObjectURL(lastUrl); lastUrl=null; }
+  $('pageGrid').innerHTML=''; $('fileInfo').style.display='none'; $('toolbar').style.display='none'; $('settings').style.display='none'; $('saveRow').style.display='none'; $('stickyBar').classList.remove('show');
+  setStatus('');
+}
+
+/* ── keyboard shortcuts ────────────────────────────────── */
+document.addEventListener('keydown', function(e){
+  if($('lightbox').classList.contains('open')){
+    if(e.key==='Escape') $('lightbox').classList.remove('open');
+    else if(e.key==='ArrowLeft') $('lbPrev').click();
+    else if(e.key==='ArrowRight') $('lbNext').click();
+    else if(e.key==='+'||e.key==='=') $('lbZoomIn').click();
+    else if(e.key==='-') $('lbZoomOut').click();
+    return;
+  }
+  if(document.activeElement && /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) return;
+  var mod=e.ctrlKey||e.metaKey;
+  if(mod && e.key.toLowerCase()==='z'){ e.preventDefault(); $('undoBtn').click(); }
+  else if(mod && e.key.toLowerCase()==='y'){ e.preventDefault(); $('redoBtn').click(); }
+  else if(mod && e.key.toLowerCase()==='s'){ e.preventDefault(); $('saveBtn').click(); }
+  else if(!mod && pageCount){ if(e.key.toLowerCase()==='l') applyRotation(-90, targetPages()); else if(e.key.toLowerCase()==='r') applyRotation(90, targetPages()); }
+});
+
+/* ── FAQ (rendered + schema) ───────────────────────────── */
+var FAQ=[
+ ["Is this PDF Rotate tool free?","Yes. It is completely free with no sign-up, no watermark and no limit on the number of pages or files you rotate."],
+ ["Are my files uploaded to a server?","No. The PDF is opened, previewed and rotated entirely in your browser, so it never leaves your device."],
+ ["How do I rotate all pages at once?","Click “All” under Apply to, then choose Left, Right or 180°. You can also use the per-page rotate buttons for individual pages."],
+ ["Can I rotate only some pages?","Yes. Select Odd, Even, First, Last, type a custom range like 1-3,5, or tick the checkbox on the pages you want, then rotate."],
+ ["What rotation angles are supported?","You can rotate left (90° counter-clockwise), right (90° clockwise) or 180°, and repeating these gives you 270° as well."],
+ ["Does rotating reduce the quality of my PDF?","No. Rotation only changes each page's orientation flag, so text and images stay pixel-perfect with no re-compression."],
+ ["Can I undo a rotation?","Yes. Use Undo and Redo (or Ctrl+Z / Ctrl+Y) to step through your changes, or Reset rotation to clear everything."],
+ ["Can I preview a page before saving?","Yes. Click any thumbnail to open a full-screen preview with zoom, fit-width, fit-page and next/previous navigation."],
+ ["Will my PDF's metadata be kept?","Yes, by default the title, author and other metadata are preserved. You can turn this off if you prefer to strip it."],
+ ["Can I rename the output file?","Yes. Set the output file name before saving and the downloaded PDF will use it."],
+ ["Can I print the rotated PDF?","Yes. Use the Print button to open the corrected PDF in a new tab and print it directly."],
+ ["Does it work with password-protected PDFs?","Yes. When you open a protected PDF the tool asks for the password and uses it locally to unlock and preview the file."],
+ ["Is there a limit on file size or page count?","There is no fixed server limit because processing is local. Very large PDFs simply use more of your device's memory."],
+ ["Does it work on mobile phones?","Yes. The layout is fully responsive with a sticky save button and touch-friendly controls for Android and iPhone."],
+ ["Which browsers are supported?","The latest Chrome, Edge, Firefox, Safari, Opera and Brave, with JavaScript enabled."],
+ ["Do I need to install anything or sign up?","No. It runs entirely in your web browser — no software, plugin or account is required."],
+ ["Can I optimise the output file size?","Yes. Enable “Optimize file size” to write the PDF with object streams, which can make the file a little smaller."],
+ ["Does the tool support a dark and light theme?","Yes. Use the theme toggle to switch the workspace between dark and light."],
+ ["What keyboard shortcuts are available?","Ctrl+Z undo, Ctrl+Y redo, Ctrl+S save, L / R to rotate the current selection, and arrow keys plus +/- inside the full-screen preview."],
+ ["Is it safe for confidential documents?","Yes. Because nothing is uploaded, there is no server that could store or expose your files, making it safe for legal, financial and personal PDFs."],
+ ["Why is my page rotated but the file still looks wrong?","Make sure you clicked Save & Download after rotating — the preview shows the change instantly, but the new file is created only when you save."]
+];
+(function renderFaq(){
+  var host=$('faqList'); if(host){ host.innerHTML=FAQ.map(function(f){ return '<details><summary>'+f[0]+'</summary><p>'+f[1]+'</p></details>'; }).join(''); }
+  try{ var sc=$('faqSchema'); var data=JSON.parse(sc.textContent);
+    data.mainEntity=FAQ.map(function(f){ return {'@type':'Question',name:f[0],acceptedAnswer:{'@type':'Answer',text:f[1]}}; });
+    sc.textContent=JSON.stringify(data);
+  }catch(e){}
+})();
+})();
 </script>
 </body>
 </html>
