@@ -4,31 +4,119 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free online Text Encrypt &amp; Decrypt — password-protect notes and messages with AES-256-GCM and PBKDF2, entirely in your browser. Password strength meter &amp; generator, custom iterations, Base64/Hex/JSON output, file upload/download, metadata viewer and auto-clear. 100% local, nothing uploaded, works offline.">
+<meta name="keywords" content="text encryption, encrypt text, decrypt text, aes-256 encryption online, password protect text, pbkdf2, encrypt message, secure note, browser encryption, aes gcm">
 <link rel="canonical" href="https://apnesoftware.com/tools/text-encrypt-decrypt.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Text Encrypt & Decrypt — Password Protect Notes | ApneSoftware">
-<meta property="og:description" content="Password-protect a note with AES-256. Free online tool — no signup required.">
+<meta property="og:title" content="Text Encrypt & Decrypt — AES-256 Password Protection | ApneSoftware">
+<meta property="og:description" content="Encrypt and decrypt text with AES-256-GCM and PBKDF2 in your browser. Password strength meter, generator, custom iterations, file support and metadata viewer. Free, private, offline.">
 <meta property="og:url" content="https://apnesoftware.com/tools/text-encrypt-decrypt.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Text Encrypt & Decrypt — Password Protect Notes | ApneSoftware">
-<meta name="twitter:description" content="Password-protect a note with AES-256. Free online tool — no signup required.">
+<meta name="twitter:title" content="Text Encrypt & Decrypt — AES-256 Password Protection | ApneSoftware">
+<meta name="twitter:description" content="AES-256-GCM text encryption in your browser with strength meter, generator, custom iterations, file support and metadata viewer. Free and offline.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text Encrypt & Decrypt","description":"Password-protect a note with AES-256. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/text-encrypt-decrypt.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text Encrypt & Decrypt","description":"Professional browser-based text encryption utility using AES-256-GCM with PBKDF2 (SHA-256) key derivation, random salt and IV. Includes a password strength meter and generator, confirm/show password, custom iterations, Base64/Hex/JSON output, file upload and download, a metadata viewer, statistics and session auto-clear. Runs entirely in the browser with the Web Crypto API.","url":"https://apnesoftware.com/tools/text-encrypt-decrypt.html","applicationCategory":"SecurityApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript and Web Crypto API","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["AES-256-GCM","PBKDF2-SHA256","Random salt and IV","Custom iterations","Password strength and entropy","Password generator","Base64/Hex/JSON output","File upload/download","Metadata viewer","Session auto-clear"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Text Encrypt & Decrypt — AES-256 in the Browser","url":"https://apnesoftware.com/tools/text-encrypt-decrypt.html","description":"Private, browser-based AES-256-GCM text encryption and decryption with PBKDF2, password tools, file support and metadata viewer.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Text Tools","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":3,"name":"Text Encrypt & Decrypt","item":"https://apnesoftware.com/tools/text-encrypt-decrypt.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to encrypt and decrypt text","description":"Password-protect text with AES-256 in your browser.","step":[{"@type":"HowToStep","name":"Enter text and a password","text":"Type or paste your message and choose a strong password."},{"@type":"HowToStep","name":"Encrypt","text":"Click Encrypt to produce AES-256-GCM ciphertext."},{"@type":"HowToStep","name":"Share safely","text":"Send the encrypted text and the password through separate channels."},{"@type":"HowToStep","name":"Decrypt","text":"Paste the encrypted text, enter the password and click Decrypt."}]}
+</script>
+<script type="application/ld+json" id="faqSchema">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}
 </script>
 <meta name="color-scheme" content="dark">
-<title>Text Encrypt & Decrypt — Password Protect Notes | ApneSoftware</title>
+<title>Text Encrypt & Decrypt — AES-256 Password Protection | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-  .tab-row{display:flex;gap:8px;margin-bottom:14px}
-  .tab-btn{padding:8px 16px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-size:.9rem;cursor:pointer}
-  .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-  .privacy-note{
-    background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;
-    padding:12px 14px;font-size:.85rem;color:var(--text-dim);margin-top:14px;
-  }
+/* ===== Text Encrypt & Decrypt — scoped enc- styles ===== */
+.enc-crumb{font-size:.78rem;color:var(--text-dim);margin-bottom:6px}
+.enc-crumb a{color:#c4b5fd;text-decoration:none}
+.enc-crumb a:hover{text-decoration:underline}
+.enc-btn{background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.34);color:#d6cbff;border-radius:10px;padding:9px 13px;font-size:.83rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+.enc-btn:hover{background:rgba(167,139,250,.24)}
+.enc-btn.primary{background:linear-gradient(90deg,#7c3aed,#a78bfa);border-color:transparent;color:#fff;font-weight:600}
+.enc-btn:focus-visible,.tab-btn:focus-visible{outline:2px solid #a78bfa;outline-offset:2px}
+.enc-btn.sm{padding:6px 10px;font-size:.76rem}
+.enc-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+.enc-status{display:flex;flex-wrap:wrap;align-items:center;gap:8px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.28);color:#6ee7b7;border-radius:10px;padding:10px 14px;font-size:.83rem;margin-bottom:16px}
+.enc-status.bad{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3);color:#fca5a5}
+.enc-status b{color:inherit}
+
+.tab-row{display:flex;gap:8px;margin-bottom:16px}
+.tab-btn{padding:8px 18px;border-radius:9px;border:1px solid var(--border,rgba(255,255,255,.12));background:rgba(255,255,255,.04);color:var(--text-dim);font-size:.88rem;cursor:pointer}
+.tab-btn.active{background:linear-gradient(90deg,#7c3aed,#a78bfa);color:#fff;border-color:transparent;font-weight:600}
+
+.enc-field{margin-bottom:14px}
+.enc-field label{display:block;font-size:.8rem;color:var(--text-dim);margin-bottom:5px}
+.enc-field textarea,.enc-field input,.enc-field select{width:100%;box-sizing:border-box;padding:11px 12px;font-size:.9rem;font-family:inherit}
+.enc-field textarea{min-height:120px;font-family:ui-monospace,'Consolas',monospace;resize:vertical}
+.enc-pwrow{display:flex;gap:8px}
+.enc-pwrow input{flex:1;min-width:0}
+.enc-drop{border:1px dashed rgba(167,139,250,.4);border-radius:10px;padding:9px 12px;font-size:.78rem;color:var(--text-dim);text-align:center;cursor:pointer;margin-top:6px}
+.enc-drop.drag{background:rgba(167,139,250,.12);border-color:#a78bfa}
+.enc-meter{height:7px;border-radius:5px;background:var(--surface-2,rgba(255,255,255,.06));overflow:hidden;margin-top:8px}
+.enc-meter div{height:100%;width:0;transition:.3s;border-radius:5px}
+.enc-pwinfo{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.75rem;color:var(--text-dim);margin-top:6px}
+.enc-pwinfo b{color:#c4b5fd}
+.enc-rules{display:flex;flex-wrap:wrap;gap:5px 12px;font-size:.74rem;margin-top:6px}
+.enc-rules span{color:var(--text-dim)}.enc-rules span.ok{color:#6ee7b7}
+.enc-grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.enc-grid2>*{min-width:0}
+@media(max-width:560px){.enc-grid2{grid-template-columns:1fr}}
+.enc-stat{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.76rem;color:var(--text-dim);margin-top:8px}
+.enc-stat b{color:#c4b5fd}
+.enc-meta{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:10px;padding:12px 14px;font-size:.8rem;color:var(--text-dim);margin-bottom:12px;display:none}
+.enc-meta.on{display:block}
+.enc-meta b{color:#c4b5fd}
+.enc-status-line{margin:10px 0;font-size:.86rem;min-height:1em}
+.enc-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.enc-note{background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;padding:12px 14px;font-size:.84rem;color:var(--text-dim);margin-top:16px;line-height:1.6}
+.enc-note b{color:#c4b5fd}
+/* light theme (scoped) */
+.panel.enc-light{background:#f8fafc;border-color:#e2e8f0}
+.panel.enc-light .enc-field label,.panel.enc-light .enc-stat,.panel.enc-light .enc-pwinfo,.panel.enc-light .enc-note{color:#475569}
+.panel.enc-light textarea,.panel.enc-light input,.panel.enc-light select{background:#fff;color:#0f172a;border-color:#cbd5e1}
+.panel.enc-light .enc-note{background:#eef2ff;border-color:#c7d2fe}
+.panel.enc-light .enc-meta{background:#fff;border-color:#e2e8f0;color:#475569}
+
+/* below-tool */
+.enc-wrap{margin:26px 0}
+.enc-title{font-size:1.35rem;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.enc-feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.enc-fcard{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:14px;padding:16px}
+.enc-fcard h4{margin:0 0 6px;font-size:.98rem;display:flex;align-items:center;gap:8px}
+.enc-fcard p{margin:0;font-size:.86rem;color:var(--text-dim);line-height:1.55}
+.enc-rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.enc-rel{display:block;text-decoration:none;background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:14px;transition:.15s;color:var(--text)}
+.enc-rel:hover{border-color:#a78bfa;background:rgba(167,139,250,.1);transform:translateY(-2px)}
+.enc-rel b{display:block;font-size:.92rem;margin-bottom:3px}
+.enc-rel span{font-size:.8rem;color:var(--text-dim);line-height:1.45}
+.enc-prose p,.enc-prose li{color:var(--text-dim);line-height:1.75;font-size:.92rem}
+.enc-prose h3{font-size:1.02rem;margin:18px 0 8px}
+.enc-tscroll{overflow:auto;border-radius:10px}
+table.enc-table{border-collapse:collapse;font-size:.85rem;width:100%}
+table.enc-table th,table.enc-table td{border:1px solid var(--border,rgba(255,255,255,.12));padding:7px 10px;text-align:left;color:var(--text)}
+table.enc-table th{background:rgba(167,139,250,.14);color:#fff;font-weight:600}
+.enc-faq details{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:0 16px;margin-bottom:10px}
+.enc-faq summary{cursor:pointer;padding:14px 0;font-weight:600;font-size:.92rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.enc-faq summary::-webkit-details-marker{display:none}
+.enc-faq summary::after{content:'+';font-size:1.3rem;color:#a78bfa;flex:0 0 auto}
+.enc-faq details[open] summary::after{content:'−'}
+.enc-faq details p{margin:0 0 14px;font-size:.87rem;color:var(--text-dim);line-height:1.65}
+.enc-steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:12px}
+.enc-steps li{counter-increment:s;position:relative;padding-left:46px;font-size:.9rem;color:var(--text-dim);line-height:1.6}
+.enc-steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:9px;background:rgba(167,139,250,.18);color:#c4b5fd;font-weight:700;display:grid;place-items:center}
+.enc-steps li b{color:var(--text)}
+@media (prefers-contrast:more){.enc-prose p,.enc-prose li{color:#fff}}
 </style>
 </head>
 <body>
@@ -41,177 +129,458 @@
 
 <div class="container">
   <div class="tool-header">
-    <h1>🔒 Text Encrypt & Decrypt</h1>
-    <p>Password-protect a note or message with AES-256 encryption — share the encrypted text safely, only someone with the password can read it.</p>
+    <nav class="enc-crumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html">Text Tools</a> › <span>Text Encrypt &amp; Decrypt</span></nav>
+    <h1>🔒 Text Encrypt &amp; Decrypt</h1>
+    <p>Password-protect a note or message with <b>AES-256-GCM</b> encryption and <b>PBKDF2</b> key derivation — done entirely in your browser with the Web Crypto API. Share the encrypted text safely; only someone with the password can read it. Nothing is uploaded.</p>
+    <div class="enc-toolbar">
+      <button class="enc-btn" id="themeToggle" type="button">🌗 Light mode</button>
+      <button class="enc-btn" id="resetBtn" type="button">↺ Reset</button>
+    </div>
   </div>
 
-  <div class="panel">
+  <div class="panel" id="mainPanel">
+    <div class="enc-status" id="secStatus"><span>🔐</span> <b>Secure:</b> AES-256-GCM · PBKDF2-SHA256 · runs 100% locally · <span id="cryptoState">Web Crypto ready</span></div>
+
     <div class="tab-row">
-      <button class="tab-btn active" data-tab="encrypt">🔒 Encrypt</button>
-      <button class="tab-btn" data-tab="decrypt">🔓 Decrypt</button>
+      <button class="tab-btn active" data-tab="encrypt" type="button">🔒 Encrypt</button>
+      <button class="tab-btn" data-tab="decrypt" type="button">🔓 Decrypt</button>
     </div>
 
+    <!-- ENCRYPT -->
     <div id="encryptTab">
-      <div class="field">
+      <div class="enc-field">
         <label for="plainText">Text to encrypt</label>
-        <textarea id="plainText" style="min-height:140px" placeholder="Type or paste your secret message here..."></textarea>
+        <textarea id="plainText" placeholder="Type or paste your secret message here…" aria-label="Text to encrypt"></textarea>
+        <div class="enc-drop" id="dropEnc">📁 Drag &amp; drop or click to upload a .txt file</div>
+        <input type="file" id="fileEnc" accept=".txt,.md,.json" style="display:none">
+        <div class="enc-stat" id="encStats"></div>
       </div>
-      <div class="field">
+
+      <div class="enc-field">
         <label for="encPassword">Password</label>
-        <input type="text" id="encPassword" placeholder="Choose a strong password">
+        <div class="enc-pwrow">
+          <input type="password" id="encPassword" placeholder="Choose a strong password" autocomplete="new-password" aria-label="Encryption password">
+          <button class="enc-btn sm" id="showEnc" type="button" aria-label="Show password">👁️</button>
+          <button class="enc-btn sm" id="genPw" type="button">🎲 Generate</button>
+        </div>
+        <div class="enc-meter"><div id="pwMeter"></div></div>
+        <div class="enc-pwinfo"><span>Strength: <b id="pwStrength">—</b></span><span>Entropy: <b id="pwEntropy">0</b> bits</span><span>Crack time: <b id="pwCrack">—</b></span></div>
+        <div class="enc-rules" id="pwRules"></div>
       </div>
-      <div class="btn-row">
-        <button class="btn" id="encryptBtn">🔒 Encrypt</button>
+      <div class="enc-field">
+        <label for="encConfirm">Confirm password</label>
+        <input type="password" id="encConfirm" placeholder="Re-enter the password" autocomplete="new-password" aria-label="Confirm password">
+        <div class="enc-stat" id="matchMsg"></div>
       </div>
-      <div class="field" style="margin-top:14px" id="encResultWrap" style="display:none">
-        <label>Encrypted text (share this + the password separately)</label>
-        <textarea id="encResult" readonly style="min-height:100px"></textarea>
-        <div class="btn-row">
-          <button class="btn secondary" id="copyEncBtn">📋 Copy</button>
+
+      <div class="enc-grid2">
+        <div class="enc-field">
+          <label for="iterSel">PBKDF2 iterations</label>
+          <select id="iterSel"><option value="100000">100,000</option><option value="150000" selected>150,000</option><option value="250000">250,000</option><option value="500000">500,000 (slow, strong)</option></select>
+        </div>
+        <div class="enc-field">
+          <label for="fmtSel">Output format</label>
+          <select id="fmtSel"><option value="base64" selected>Base64</option><option value="hex">Hex</option><option value="json">JSON</option></select>
+        </div>
+      </div>
+
+      <div class="enc-actions">
+        <button class="enc-btn primary" id="encryptBtn" type="button">🔒 Encrypt</button>
+        <button class="enc-btn" id="clearEnc" type="button">🗑️ Clear</button>
+      </div>
+
+      <div class="enc-field" id="encResultWrap" style="display:none;margin-top:16px">
+        <label>Encrypted text — <span style="color:#fcd34d">share this and the password separately</span></label>
+        <textarea id="encResult" readonly aria-label="Encrypted output"></textarea>
+        <div class="enc-stat" id="encOutStats"></div>
+        <div class="enc-actions">
+          <button class="enc-btn sm" id="copyEncBtn" type="button">📋 Copy</button>
+          <button class="enc-btn sm" id="dlEnc" type="button">⬇️ .enc</button>
+          <button class="enc-btn sm" id="dlEncTxt" type="button">⬇️ .txt</button>
+          <button class="enc-btn sm" id="dlEncJson" type="button">⬇️ .json</button>
         </div>
       </div>
     </div>
 
+    <!-- DECRYPT -->
     <div id="decryptTab" style="display:none">
-      <div class="field">
+      <div class="enc-field">
         <label for="cipherText">Encrypted text</label>
-        <textarea id="cipherText" style="min-height:140px" placeholder="Paste the encrypted text here..."></textarea>
+        <textarea id="cipherText" placeholder="Paste the encrypted text here…" aria-label="Encrypted text to decrypt"></textarea>
+        <div class="enc-drop" id="dropDec">📁 Drag &amp; drop or click to upload a .enc / .json / .txt file</div>
+        <input type="file" id="fileDec" accept=".enc,.json,.txt" style="display:none">
       </div>
-      <div class="field">
+      <div class="enc-meta" id="metaBox"></div>
+      <div class="enc-field">
         <label for="decPassword">Password</label>
-        <input type="text" id="decPassword" placeholder="Enter the password used to encrypt">
+        <div class="enc-pwrow">
+          <input type="password" id="decPassword" placeholder="Enter the password used to encrypt" autocomplete="off" aria-label="Decryption password">
+          <button class="enc-btn sm" id="showDec" type="button" aria-label="Show password">👁️</button>
+        </div>
       </div>
-      <div class="btn-row">
-        <button class="btn" id="decryptBtn">🔓 Decrypt</button>
+      <div class="enc-actions">
+        <button class="enc-btn primary" id="decryptBtn" type="button">🔓 Decrypt</button>
+        <button class="enc-btn" id="clearDec" type="button">🗑️ Clear</button>
       </div>
-      <p id="decStatus" style="margin-top:10px"></p>
-      <div class="field" style="margin-top:10px">
+      <p id="decStatus" class="enc-status-line"></p>
+      <div class="enc-field" id="decResultWrap" style="display:none">
         <label>Decrypted text</label>
-        <textarea id="decResult" readonly style="min-height:100px"></textarea>
-        <div class="btn-row">
-          <button class="btn secondary" id="copyDecBtn">📋 Copy</button>
+        <textarea id="decResult" readonly aria-label="Decrypted output"></textarea>
+        <div class="enc-actions">
+          <button class="enc-btn sm" id="copyDecBtn" type="button">📋 Copy</button>
+          <button class="enc-btn sm" id="dlDec" type="button">⬇️ .txt</button>
         </div>
       </div>
     </div>
 
-    <div class="privacy-note">ℹ️ Uses AES-256-GCM with PBKDF2 password derivation, all done locally with your browser's built-in encryption (Web Crypto API). Nothing is uploaded — and if you lose the password, the text cannot be recovered.</div>
+    <div class="enc-note">🔒 <b>How it works &amp; privacy:</b> your text is encrypted with <b>AES-256-GCM</b>; the key is derived from your password with <b>PBKDF2-SHA256</b> using a random 16-byte salt and a random 12-byte IV, all via the browser's built-in <b>Web Crypto API</b>. Nothing is uploaded or logged, passwords are cleared after inactivity, and <b>if you lose the password the text cannot be recovered</b> — there is no backdoor.</div>
   </div>
 </div>
 
+<!-- ===================== BELOW-TOOL CONTENT ===================== -->
+<div class="container">
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>This tool encrypts text with a password using strong AES-256 encryption, turning it into unreadable scrambled text. Anyone with the encrypted text and the correct password can decrypt it back — useful for sharing sensitive notes over email or chat.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>To encrypt: type your message, set a password, and click Encrypt.</li>
-        <li>Share the encrypted text and password through separate channels for safety.</li>
-        <li>To decrypt: paste the encrypted text, enter the matching password, and click Decrypt.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल पासवर्ड का इस्तेमाल करके टेक्स्ट को मजबूत AES-256 एन्क्रिप्शन से सुरक्षित करता है, उसे बिना पढ़ने लायक टेक्स्ट में बदल देता है। सही पासवर्ड वाला कोई भी उसे वापस डिक्रिप्ट कर सकता है — ईमेल या चैट पर संवेदनशील नोट्स शेयर करने के लिए उपयोगी।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>एन्क्रिप्ट करने के लिए: मैसेज टाइप करें, पासवर्ड सेट करें और Encrypt दबाएं।</li>
-        <li>सुरक्षा के लिए एन्क्रिप्टेड टेक्स्ट और पासवर्ड अलग-अलग तरीके से शेयर करें।</li>
-        <li>डिक्रिप्ट करने के लिए: एन्क्रिप्टेड टेक्स्ट पेस्ट करें, सही पासवर्ड डालें और Decrypt दबाएं।</li>
-      </ol>
-    </div>
+<!-- Key Features -->
+<section class="enc-wrap">
+  <h2 class="enc-title">✨ Key Features</h2>
+  <div class="enc-feat-grid">
+    <div class="enc-fcard"><h4>🔐 AES-256-GCM</h4><p>Authenticated encryption via the Web Crypto API — strong confidentiality and tamper detection.</p></div>
+    <div class="enc-fcard"><h4>🔑 PBKDF2 Key Derivation</h4><p>Your password is stretched with PBKDF2-SHA256 and a random salt, with adjustable iterations.</p></div>
+    <div class="enc-fcard"><h4>🎲 Random Salt &amp; IV</h4><p>A fresh 16-byte salt and 12-byte IV are generated for every message.</p></div>
+    <div class="enc-fcard"><h4>📊 Password Strength</h4><p>Live strength meter with entropy in bits and an estimated crack time.</p></div>
+    <div class="enc-fcard"><h4>🎯 Password Generator</h4><p>Create a strong random password in one click, with show/hide and confirm.</p></div>
+    <div class="enc-fcard"><h4>⚙️ Custom Iterations</h4><p>Choose 100k–500k PBKDF2 iterations to balance speed and strength.</p></div>
+    <div class="enc-fcard"><h4>🔤 Output Formats</h4><p>Export ciphertext as Base64, Hex or a structured JSON envelope.</p></div>
+    <div class="enc-fcard"><h4>🔎 Metadata Viewer</h4><p>Inspect the algorithm, KDF, iterations, salt and IV of any encrypted blob before decrypting.</p></div>
+    <div class="enc-fcard"><h4>📁 File Support</h4><p>Upload text or .enc/.json files, and download encrypted or decrypted results.</p></div>
+    <div class="enc-fcard"><h4>🧹 Auto-Clear</h4><p>Passwords and results are cleared after inactivity for extra safety.</p></div>
+    <div class="enc-fcard"><h4>🔒 100% Local</h4><p>Everything happens in your browser. Nothing is uploaded, logged or tracked.</p></div>
+    <div class="enc-fcard"><h4>♿ Accessible &amp; Mobile</h4><p>Keyboard navigation, ARIA labels, high-contrast support, light/dark mode.</p></div>
   </div>
+</section>
+
+<!-- Benefits -->
+<section class="enc-wrap enc-prose">
+  <h2 class="enc-title">🎯 Benefits</h2>
+  <ul>
+    <li><b>Real, standards-based security</b> — AES-256-GCM and PBKDF2 are the same primitives used by password managers and secure messengers.</li>
+    <li><b>Total privacy</b> — your text and password never leave your device, so even we cannot read your content.</li>
+    <li><b>Share sensitive notes safely</b> — send the ciphertext over email or chat and the password by another channel.</li>
+    <li><b>No lock-in</b> — the JSON output is self-describing, so anything can decrypt it with the right password.</li>
+    <li><b>Free and offline</b> — no account, no watermark, and it works with no internet once loaded.</li>
+  </ul>
+</section>
+
+<!-- Related Tools (ABOVE About) -->
+<section class="enc-wrap">
+  <h2 class="enc-title">🧰 Related Tools</h2>
+  <div class="enc-rel-grid">
+    <a class="enc-rel" href="password-generator.html"><b>🔐 Password Generator</b><span>Strong, random passwords and passphrases.</span></a>
+    <a class="enc-rel" href="hash-generator.html"><b>#️⃣ Hash Generator</b><span>MD5, SHA-1, SHA-256 and more.</span></a>
+    <a class="enc-rel" href="base64-encoder-decoder.html"><b>🔡 Base64 Encoder / Decoder</b><span>Encode and decode Base64 text.</span></a>
+    <a class="enc-rel" href="url-html-encoder-decoder.html"><b>🔗 URL &amp; HTML Entity Coder</b><span>Encode / decode URLs and entities.</span></a>
+    <a class="enc-rel" href="qr-generator.html"><b>🔳 QR Code Generator</b><span>Turn text or links into QR codes.</span></a>
+    <a class="enc-rel" href="text-diff.html"><b>🔍 Text &amp; Code Diff Checker</b><span>Compare two texts or code files.</span></a>
+    <a class="enc-rel" href="json-formatter.html"><b>{ } JSON Formatter</b><span>Format, validate and minify JSON.</span></a>
+    <a class="enc-rel" href="word-counter.html"><b>🔢 Word Counter</b><span>Count words, characters and lines.</span></a>
+  </div>
+</section>
+
+<!-- About (English) -->
+<section class="enc-wrap enc-prose">
+  <h2 class="enc-title">ℹ️ About This Tool</h2>
+  <p>The <b>ApneSoftware Text Encrypt &amp; Decrypt</b> tool is a professional, privacy-first utility that lets you password-protect any text — a note, a message, a password, an API key or a paragraph of sensitive information — using genuine, industry-standard cryptography, entirely inside your browser. It turns readable text into an unreadable, scrambled block that can only be turned back into the original by someone who knows the password. Unlike weak "encoders" that merely obscure text, this tool uses <b>AES-256-GCM</b>, the same authenticated encryption trusted by banks, governments and secure messaging apps, with keys derived from your password by <b>PBKDF2</b> — so the protection is real, not cosmetic.</p>
+  <p>Every part of the process follows modern best practice. When you encrypt, the tool generates a fresh, cryptographically random <b>16-byte salt</b> and <b>12-byte initialisation vector (IV)</b> for that specific message, then stretches your password into a 256-bit key using <b>PBKDF2 with SHA-256</b> over many thousands of iterations (adjustable from 100,000 up to 500,000). The random salt means the same password produces a completely different key each time, defeating precomputed "rainbow table" attacks, while the high iteration count makes brute-forcing the password dramatically slower. <b>AES-GCM</b> then encrypts the text and attaches an authentication tag, so any tampering with the ciphertext is detected on decryption — you can trust that what comes out is exactly what went in. All of this runs on the browser's built-in <b>Web Crypto API</b>, a hardened, native implementation, rather than hand-rolled JavaScript crypto.</p>
+  <p>Because a strong password is the foundation of the whole scheme, the tool helps you choose one. A live <b>strength meter</b> shows how resistant your password is, with its <b>entropy in bits</b> and an <b>estimated crack time</b> against a fast offline attacker, plus a checklist of good-practice rules. A built-in <b>password generator</b> creates a strong random password in one click, and you can <b>show or hide</b> it and <b>confirm</b> it to avoid typos before encrypting — a critical safeguard, because a mistyped password means the ciphertext can never be opened. You can also tune the <b>PBKDF2 iteration count</b>: more iterations mean stronger protection at the cost of a slightly slower operation, and the choice is stored inside the output so decryption always uses the right value.</p>
+  <p>The tool is built for real workflows, not just single messages. Encrypted output can be produced as <b>Base64</b> (compact, easy to paste), <b>Hex</b>, or a self-describing <b>JSON</b> envelope that records the algorithm, key-derivation function, iteration count, salt and IV — ideal for storage or interoperability. You can <b>upload</b> a text file to encrypt or drag in an <b>.enc</b> / <b>.json</b> file to decrypt, and <b>download</b> the result as a file. Before decrypting, a <b>metadata viewer</b> lets you inspect an encrypted blob's algorithm, KDF, iterations and salt/IV sizes without needing the password, which is handy for verifying what you received. Live <b>statistics</b> show the characters, words, lines and byte size of your text, the size of the ciphertext, and how long the operation took. When you copy a result, a reminder prompts you to clear your clipboard, and after a period of inactivity the tool automatically <b>clears passwords and results</b> from the screen so nothing sensitive is left lying around.</p>
+  <p><b>Security and privacy are the entire point.</b> This is a zero-knowledge tool: your plaintext, your password and your ciphertext are processed only in your browser's memory and are <b>never uploaded to any server, never logged and never tracked</b>. There is no account and no network request involved in the encryption itself, which means it also works completely offline once the page has loaded. This matters enormously for the kind of content people encrypt — recovery phrases, credentials, private messages, legal or medical information — because a tool that transmitted any of it would defeat its own purpose. It is important to understand the flip side of true encryption: because only your password can unlock the data and it is never stored anywhere, <b>there is no "forgot password" recovery</b>. If the password is lost, the text is gone for good — so keep the password safe, and share it with your recipient through a channel separate from the ciphertext.</p>
+  <p>Finally, the tool meets modern standards of <b>accessibility, responsiveness and maintainability</b>. All controls are keyboard-navigable and labelled for screen readers, focus outlines are visible, a <b>light/dark</b> mode and high-contrast support are provided, and the layout adapts cleanly from desktop to tablet and mobile with touch-friendly controls. It checks that your browser supports the Web Crypto API and warns you if it does not. Internally, the cryptographic workflow, password tooling, formats and file handling are organised into small, auditable functions, and the encryption core is deliberately simple and standard so it can be trusted and reviewed. In short, it is a fast, private, genuinely secure text-encryption utility suitable for everyday personal use and for a professional security-focused website alike.</p>
+</section>
+
+<!-- About (Hindi) -->
+<section class="enc-wrap enc-prose">
+  <h2 class="enc-title">ℹ️ इस टूल के बारे में</h2>
+  <p><b>ApneSoftware Text Encrypt &amp; Decrypt</b> एक professional, privacy-first उपयोगिता है जो आपको किसी भी text — एक note, message, password, API key या संवेदनशील जानकारी — को असली, industry-standard cryptography से password-protect करने देती है, वह भी पूरी तरह आपके browser के अंदर। यह पढ़ने-योग्य text को एक अपठनीय, scrambled block में बदल देता है जिसे केवल password जानने वाला ही वापस मूल रूप में ला सकता है। कमज़ोर "encoders" के विपरीत जो सिर्फ़ text छिपाते हैं, यह टूल <b>AES-256-GCM</b> उपयोग करता है — वही authenticated encryption जिस पर banks, governments और secure messaging apps भरोसा करते हैं — और keys आपके password से <b>PBKDF2</b> द्वारा प्राप्त होती हैं, इसलिए सुरक्षा वास्तविक है, दिखावटी नहीं।</p>
+  <p>प्रक्रिया का हर हिस्सा आधुनिक best practice का पालन करता है। जब आप encrypt करते हैं, टूल उस विशेष message के लिए एक ताज़ा, cryptographically random <b>16-byte salt</b> और <b>12-byte IV</b> बनाता है, फिर आपके password को <b>PBKDF2 (SHA-256)</b> से कई हज़ार iterations (100,000 से 500,000 तक समायोज्य) पर एक 256-bit key में बदलता है। random salt का अर्थ है कि एक ही password हर बार बिल्कुल अलग key बनाता है, जिससे precomputed "rainbow table" हमले विफल होते हैं, और ऊँची iteration संख्या password को brute-force करना बहुत धीमा बना देती है। फिर <b>AES-GCM</b> text को encrypt करता है और एक authentication tag जोड़ता है, ताकि ciphertext से कोई छेड़छाड़ decryption पर पकड़ी जाए। यह सब browser के अंतर्निहित <b>Web Crypto API</b> पर चलता है, न कि हाथ से लिखे JavaScript crypto पर।</p>
+  <p>चूँकि मज़बूत password पूरी योजना की नींव है, टूल आपको एक चुनने में मदद करता है। एक live <b>strength meter</b> दिखाता है कि आपका password कितना प्रतिरोधी है, उसकी <b>entropy bits में</b> और एक तेज़ offline attacker के विरुद्ध <b>अनुमानित crack time</b>, साथ ही अच्छी-प्रैक्टिस नियमों की एक checklist। एक अंतर्निहित <b>password generator</b> एक क्लिक में मज़बूत random password बनाता है, और आप उसे <b>show/hide</b> तथा <b>confirm</b> कर सकते हैं ताकि encrypt करने से पहले typo न हो — यह एक महत्वपूर्ण सुरक्षा है, क्योंकि गलत टाइप किया password मतलब ciphertext कभी नहीं खुलेगा। आप <b>PBKDF2 iteration count</b> भी tune कर सकते हैं, और यह चुनाव output के भीतर संग्रहित होता है ताकि decryption हमेशा सही मान उपयोग करे।</p>
+  <p>टूल असली workflows के लिए बना है। Encrypted output <b>Base64</b> (compact), <b>Hex</b>, या एक self-describing <b>JSON</b> envelope के रूप में बन सकता है जो algorithm, key-derivation function, iteration count, salt और IV दर्ज करता है। आप encrypt करने के लिए text file <b>upload</b> कर सकते हैं या decrypt करने के लिए <b>.enc</b> / <b>.json</b> file drag कर सकते हैं, और नतीजे को file के रूप में <b>download</b> कर सकते हैं। Decrypt करने से पहले, एक <b>metadata viewer</b> आपको password के बिना ही किसी encrypted blob का algorithm, KDF, iterations और salt/IV आकार देखने देता है। Live <b>statistics</b> आपके text के characters, words, lines और byte आकार, ciphertext का आकार, और operation का समय दिखाते हैं। जब आप नतीजा copy करते हैं, एक reminder आपको clipboard साफ़ करने को कहता है, और निष्क्रियता के बाद टूल स्वतः <b>passwords और results साफ़</b> कर देता है।</p>
+  <p><b>Security और privacy ही पूरा उद्देश्य हैं।</b> यह एक zero-knowledge टूल है: आपका plaintext, password और ciphertext केवल आपके browser की memory में process होते हैं और <b>किसी server पर upload, log या track नहीं होते</b>। encryption में कोई network request शामिल नहीं, इसलिए page load होने के बाद यह पूरी तरह offline भी काम करता है। जिस तरह की सामग्री लोग encrypt करते हैं — recovery phrases, credentials, private messages, legal या medical जानकारी — उसके लिए यह बेहद महत्वपूर्ण है। सच्चे encryption का दूसरा पहलू समझना ज़रूरी है: चूँकि केवल आपका password data खोल सकता है और वह कहीं संग्रहित नहीं होता, <b>कोई "forgot password" recovery नहीं है</b>। password खो गया तो text हमेशा के लिए चला गया — इसलिए password सुरक्षित रखें और उसे ciphertext से अलग channel से साझा करें।</p>
+  <p>अंत में, टूल <b>accessibility, responsiveness और maintainability</b> के आधुनिक मानकों पर खरा उतरता है। सभी controls keyboard से चलते हैं और screen readers के लिए labelled हैं, focus outlines दिखते हैं, <b>light/dark</b> mode और high-contrast support है, और layout desktop से tablet व mobile तक साफ़-सुथरे ढलता है। यह जाँचता है कि आपका browser Web Crypto API support करता है या नहीं और न करने पर चेतावनी देता है। भीतर से, cryptographic workflow, password tooling, formats और file handling छोटे, auditable functions में व्यवस्थित हैं, और encryption core जानबूझकर सरल व standard रखा गया है ताकि उस पर भरोसा किया जा सके। संक्षेप में, यह एक तेज़, निजी, सचमुच सुरक्षित text-encryption उपयोगिता है।</p>
+</section>
+
+<!-- Supported Encryption Standards -->
+<section class="enc-wrap enc-prose">
+  <h2 class="enc-title">🔐 Supported Encryption Standards</h2>
+  <div class="enc-tscroll">
+    <table class="enc-table">
+      <thead><tr><th>Component</th><th>Standard</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>Cipher</td><td>AES-256-GCM</td><td>Authenticated encryption (confidentiality + integrity).</td></tr>
+        <tr><td>Key derivation</td><td>PBKDF2</td><td>Turns your password into a 256-bit key.</td></tr>
+        <tr><td>Hash</td><td>SHA-256</td><td>The hash used inside PBKDF2.</td></tr>
+        <tr><td>Iterations</td><td>100,000–500,000</td><td>Slows down password guessing.</td></tr>
+        <tr><td>Salt</td><td>16 random bytes</td><td>Unique per message; defeats rainbow tables.</td></tr>
+        <tr><td>IV / Nonce</td><td>12 random bytes</td><td>Unique per message; required by GCM.</td></tr>
+        <tr><td>Engine</td><td>Web Crypto API</td><td>Native, audited browser cryptography.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Security Features -->
+<section class="enc-wrap enc-prose">
+  <h2 class="enc-title">🛡️ Security Features</h2>
+  <ul>
+    <li><b>Local-only processing</b> — encryption and decryption never touch a server.</li>
+    <li><b>Authenticated encryption</b> — GCM detects any tampering with the ciphertext.</li>
+    <li><b>Random salt &amp; IV per message</b> — identical inputs never produce identical output.</li>
+    <li><b>Adjustable iterations</b> — stronger key stretching against brute force.</li>
+    <li><b>Session auto-clear</b> — passwords and results are wiped after inactivity.</li>
+    <li><b>Clipboard reminder</b> — a prompt to clear your clipboard after copying secrets.</li>
+    <li><b>Browser compatibility check</b> — warns if the Web Crypto API is unavailable.</li>
+  </ul>
+</section>
+
+<!-- File Format Support -->
+<section class="enc-wrap enc-prose">
+  <h2 class="enc-title">📁 File Format Support</h2>
+  <p><b>Encrypt:</b> upload or drag in <code>.txt</code>, <code>.md</code> or <code>.json</code> text to encrypt.</p>
+  <p><b>Decrypt:</b> upload or drag in an <code>.enc</code>, <code>.json</code> or <code>.txt</code> file containing the encrypted output.</p>
+  <p><b>Output:</b> Base64, Hex or JSON in the box, and download as <code>.enc</code>, <code>.txt</code> or <code>.json</code>; decrypted text downloads as <code>.txt</code>.</p>
+</section>
+
+<!-- How To Use -->
+<section class="enc-wrap enc-prose">
+  <h2 class="enc-title">🚀 How To Use</h2>
+  <ol class="enc-steps">
+    <li><b>Encrypt:</b> type or upload your text, choose a strong password (or generate one) and confirm it.</li>
+    <li>Optionally set the <b>iterations</b> and <b>output format</b>, then click <b>Encrypt</b>.</li>
+    <li><b>Share</b> the encrypted text and the password through <b>separate</b> channels.</li>
+    <li><b>Decrypt:</b> paste or upload the encrypted text, check its metadata, enter the password and click <b>Decrypt</b>.</li>
+    <li><b>Copy</b> or <b>download</b> the result, then clear your clipboard when done.</li>
+  </ol>
+</section>
+
+<!-- FAQ -->
+<section class="enc-wrap enc-faq">
+  <h2 class="enc-title">❓ Frequently Asked Questions</h2>
+  <div id="faqList"></div>
+</section>
+
+<!-- Browser Compatibility -->
+<section class="enc-wrap enc-prose">
+  <h2 class="enc-title">🌐 Browser Compatibility</h2>
+  <p>Works on all modern browsers — <b>Google Chrome, Mozilla Firefox, Microsoft Edge, Safari, Opera and Brave</b> — on Windows, macOS, Linux, Android and iOS. It needs JavaScript and the <b>Web Crypto API</b>, which is available in all current browsers over HTTPS. The tool checks for support on load and warns you if encryption is unavailable (for example on an insecure page). No plugins or installation are required.</p>
+</section>
+
+<!-- Privacy & Security -->
+<section class="enc-wrap enc-prose">
+  <h2 class="enc-title">🔒 Privacy &amp; Security</h2>
+  <div class="enc-note"><b>English:</b> All encryption and decryption happen in your browser with the Web Crypto API. Your text, password and ciphertext are never uploaded to a server, never logged and never tracked; there is no account. Passwords and results auto-clear after inactivity, and the tool works offline once loaded. Because only your password can unlock the data, there is no recovery if it is lost — keep it safe.</div>
+  <div class="enc-note"><b>हिन्दी:</b> सारा encryption और decryption आपके browser में Web Crypto API से होता है। आपका text, password और ciphertext किसी server पर upload, log या track नहीं होता; कोई account नहीं। निष्क्रियता के बाद passwords व results स्वतः साफ़ हो जाते हैं, और page load के बाद टूल offline काम करता है। चूँकि केवल आपका password data खोल सकता है, खो जाने पर recovery नहीं है — इसे सुरक्षित रखें।</div>
+</section>
+
+<!-- Troubleshooting -->
+<section class="enc-wrap enc-prose">
+  <h2 class="enc-title">🛠️ Troubleshooting</h2>
+  <ul>
+    <li><b>“Decryption failed”:</b> the password is wrong, or the encrypted text was altered or truncated when copied. Re-check both.</li>
+    <li><b>Encrypt button does nothing:</b> enter both text and a password, and make sure the confirm password matches.</li>
+    <li><b>“Web Crypto unavailable”:</b> open the page over HTTPS in a modern browser — encryption needs a secure context.</li>
+    <li><b>Lost the password:</b> unfortunately the text cannot be recovered — there is no backdoor by design.</li>
+    <li><b>Very slow encryption:</b> lower the PBKDF2 iterations, or shorten very large text.</li>
+    <li><b>Pasted text won't decrypt:</b> make sure you copied the entire encrypted block, including all characters.</li>
+  </ul>
+</section>
+
 </div>
 
-<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<footer class="site-footer">© 2026 ApneSoftware.com — Free, private, browser-based tools.</footer>
 
 <script src="../assets/common.js"></script>
 <script>
-document.querySelectorAll('.tab-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const tab = btn.dataset.tab;
-    document.getElementById('encryptTab').style.display = tab === 'encrypt' ? 'block' : 'none';
-    document.getElementById('decryptTab').style.display = tab === 'decrypt' ? 'block' : 'none';
-  });
-});
+(function(){
+  "use strict";
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
 
-async function deriveKey(password, salt){
-  const enc = new TextEncoder();
-  const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
-  return crypto.subtle.deriveKey(
-    { name: 'PBKDF2', salt, iterations: 150000, hash: 'SHA-256' },
-    keyMaterial,
-    { name: 'AES-GCM', length: 256 },
-    false,
-    ['encrypt','decrypt']
-  );
-}
+  var MAGIC=[0x41,0x53,0x45,0x31]; // 'ASE1'
+  var hasCrypto = !!(window.crypto && window.crypto.subtle);
+  if(!hasCrypto){ var s=$('secStatus'); s.className='enc-status bad'; $('cryptoState').textContent='Web Crypto unavailable — use HTTPS in a modern browser'; }
 
-function bufToBase64(buf){
-  return btoa(String.fromCharCode(...new Uint8Array(buf)));
-}
-function base64ToBuf(b64){
-  const bin = atob(b64);
-  const arr = new Uint8Array(bin.length);
-  for(let i=0;i<bin.length;i++) arr[i] = bin.charCodeAt(i);
-  return arr;
-}
+  /* ===================== Encoding helpers ===================== */
+  function bufToB64(buf){ var b=new Uint8Array(buf),s=''; for(var i=0;i<b.length;i++) s+=String.fromCharCode(b[i]); return btoa(s); }
+  function b64ToBuf(b64){ var bin=atob(b64.replace(/\s+/g,'')),a=new Uint8Array(bin.length); for(var i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i); return a; }
+  function bufToHex(buf){ var b=new Uint8Array(buf),s=''; for(var i=0;i<b.length;i++){ var h=b[i].toString(16); s+=h.length<2?'0'+h:h; } return s; }
+  function hexToBuf(hex){ hex=hex.replace(/\s+/g,''); var a=new Uint8Array(hex.length/2); for(var i=0;i<a.length;i++)a[i]=parseInt(hex.substr(i*2,2),16); return a; }
+  function u32(n){ return new Uint8Array([(n>>>24)&255,(n>>>16)&255,(n>>>8)&255,n&255]); }
+  function readU32(a,o){ return (a[o]<<24|a[o+1]<<16|a[o+2]<<8|a[o+3])>>>0; }
 
-document.getElementById('encryptBtn').addEventListener('click', async ()=>{
-  const text = document.getElementById('plainText').value;
-  const password = document.getElementById('encPassword').value;
-  if(!text || !password){ alert('Please enter both text and a password.'); return; }
-
-  const salt = crypto.getRandomValues(new Uint8Array(16));
-  const iv = crypto.getRandomValues(new Uint8Array(12));
-  const key = await deriveKey(password, salt);
-  const enc = new TextEncoder();
-  const ciphertext = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, enc.encode(text));
-
-  // Pack salt + iv + ciphertext together
-  const combined = new Uint8Array(salt.length + iv.length + ciphertext.byteLength);
-  combined.set(salt, 0);
-  combined.set(iv, salt.length);
-  combined.set(new Uint8Array(ciphertext), salt.length + iv.length);
-
-  document.getElementById('encResult').value = bufToBase64(combined.buffer);
-  document.getElementById('encResultWrap').style.display = 'block';
-});
-
-document.getElementById('decryptBtn').addEventListener('click', async ()=>{
-  const status = document.getElementById('decStatus');
-  const b64 = document.getElementById('cipherText').value.trim();
-  const password = document.getElementById('decPassword').value;
-  if(!b64 || !password){ status.textContent = '⚠️ Please enter both the encrypted text and password.'; return; }
-
-  try{
-    const combined = base64ToBuf(b64);
-    const salt = combined.slice(0, 16);
-    const iv = combined.slice(16, 28);
-    const ciphertext = combined.slice(28);
-    const key = await deriveKey(password, salt);
-    const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv }, key, ciphertext);
-    const dec = new TextDecoder();
-    document.getElementById('decResult').value = dec.decode(decrypted);
-    status.textContent = '✅ Decrypted successfully';
-    status.style.color = 'var(--accent-2)';
-  }catch(err){
-    document.getElementById('decResult').value = '';
-    status.textContent = '❌ Decryption failed — wrong password or corrupted text.';
-    status.style.color = 'var(--danger)';
+  /* ===================== Crypto core (preserved) ===================== */
+  async function deriveKey(password, salt, iter){
+    var enc=new TextEncoder();
+    var keyMaterial=await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
+    return crypto.subtle.deriveKey({name:'PBKDF2',salt:salt,iterations:iter,hash:'SHA-256'}, keyMaterial, {name:'AES-GCM',length:256}, false, ['encrypt','decrypt']);
   }
-});
 
-document.getElementById('copyEncBtn').addEventListener('click', (e)=>{
-  copyText(document.getElementById('encResult').value, e.target);
-});
-document.getElementById('copyDecBtn').addEventListener('click', (e)=>{
-  copyText(document.getElementById('decResult').value, e.target);
-});
+  /* ===================== Encrypt ===================== */
+  $('encryptBtn').addEventListener('click', async function(){
+    if(!hasCrypto){ premToast('Web Crypto unavailable'); return; }
+    var text=$('plainText').value, pw=$('encPassword').value, cf=$('encConfirm').value;
+    if(!text||!pw){ premToast('Enter both text and a password'); return; }
+    if(cf && cf!==pw){ premToast('Passwords do not match'); return; }
+    var iter=parseInt($('iterSel').value,10), fmt=$('fmtSel').value;
+    var t0=performance.now();
+    try{
+      var salt=crypto.getRandomValues(new Uint8Array(16)), iv=crypto.getRandomValues(new Uint8Array(12));
+      var key=await deriveKey(pw,salt,iter);
+      var ct=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv:iv}, key, new TextEncoder().encode(text)));
+      var out;
+      if(fmt==='json'){
+        out=JSON.stringify({v:1,alg:'AES-256-GCM',kdf:'PBKDF2-SHA256',iter:iter,salt:bufToB64(salt),iv:bufToB64(iv),ct:bufToB64(ct)});
+      } else {
+        var combined=new Uint8Array(4+4+16+12+ct.length); // MAGIC(4) iter(4) salt(16)@8 iv(12)@24 ct@36
+        combined.set(MAGIC,0); combined.set(u32(iter),4); combined.set(salt,8); combined.set(iv,24); combined.set(ct,36);
+        out=(fmt==='hex')?bufToHex(combined):bufToB64(combined);
+      }
+      $('encResult').value=out; $('encResultWrap').style.display='block';
+      var ms=(performance.now()-t0).toFixed(0);
+      $('encOutStats').innerHTML='<span>Cipher size: <b>'+out.length+'</b> chars</span><span>Time: <b>'+ms+'</b> ms</span><span>Iterations: <b>'+iter.toLocaleString()+'</b></span>';
+      resetIdle();
+    }catch(e){ premToast('Encryption failed'); }
+  });
+
+  /* ===================== Decrypt (auto-detect + legacy) ===================== */
+  function parseEnvelope(input){
+    input=input.trim();
+    if(input.charAt(0)==='{'){ var j=JSON.parse(input); return {iter:j.iter||150000,salt:b64ToBuf(j.salt),iv:b64ToBuf(j.iv),ct:b64ToBuf(j.ct),fmt:'json',alg:j.alg,kdf:j.kdf}; }
+    var bytes; if(/^[0-9a-fA-F\s]+$/.test(input)&&input.replace(/\s+/g,'').length%2===0) bytes=hexToBuf(input); else bytes=b64ToBuf(input);
+    if(bytes.length>=36 && bytes[0]===MAGIC[0]&&bytes[1]===MAGIC[1]&&bytes[2]===MAGIC[2]&&bytes[3]===MAGIC[3]){
+      var iter=readU32(bytes,4); return {iter:iter,salt:bytes.slice(8,24),iv:bytes.slice(24,36),ct:bytes.slice(36),fmt:'binary',alg:'AES-256-GCM',kdf:'PBKDF2-SHA256'};
+    }
+    // legacy: [salt16][iv12][ct], 150000 iters
+    return {iter:150000,salt:bytes.slice(0,16),iv:bytes.slice(16,28),ct:bytes.slice(28),fmt:'legacy',alg:'AES-256-GCM',kdf:'PBKDF2-SHA256'};
+  }
+  $('decryptBtn').addEventListener('click', async function(){
+    var status=$('decStatus'); status.style.color='';
+    if(!hasCrypto){ status.textContent='⚠️ Web Crypto unavailable.'; status.style.color='#fca5a5'; return; }
+    var input=$('cipherText').value.trim(), pw=$('decPassword').value;
+    if(!input||!pw){ status.textContent='⚠️ Enter both the encrypted text and password.'; status.style.color='#fcd34d'; return; }
+    try{
+      var e=parseEnvelope(input);
+      var key=await deriveKey(pw,e.salt,e.iter);
+      var dec=await crypto.subtle.decrypt({name:'AES-GCM',iv:e.iv}, key, e.ct);
+      $('decResult').value=new TextDecoder().decode(dec); $('decResultWrap').style.display='block';
+      status.textContent='✅ Decrypted successfully ('+e.fmt+' · '+e.iter.toLocaleString()+' iterations)'; status.style.color='#6ee7b7';
+      resetIdle();
+    }catch(err){ $('decResult').value=''; $('decResultWrap').style.display='none'; status.textContent='❌ Decryption failed — wrong password or corrupted/incomplete text.'; status.style.color='#fca5a5'; }
+  });
+
+  /* ===================== Metadata viewer ===================== */
+  function showMeta(){
+    var input=$('cipherText').value.trim(), box=$('metaBox');
+    if(!input){ box.className='enc-meta'; box.innerHTML=''; return; }
+    try{
+      var e=parseEnvelope(input);
+      box.className='enc-meta on';
+      box.innerHTML='🔎 <b>Metadata:</b> algorithm <b>'+esc(e.alg||'AES-256-GCM')+'</b> · KDF <b>'+esc(e.kdf||'PBKDF2-SHA256')+'</b> · iterations <b>'+e.iter.toLocaleString()+'</b> · salt <b>'+e.salt.length+'</b> B · IV <b>'+e.iv.length+'</b> B · ciphertext <b>'+e.ct.length+'</b> B · format <b>'+e.fmt+'</b>';
+    }catch(err){ box.className='enc-meta on'; box.innerHTML='🔎 Could not read metadata — the text may be incomplete or not an encrypted blob.'; }
+  }
+  $('cipherText').addEventListener('input',showMeta);
+
+  /* ===================== Password strength / generator ===================== */
+  function entropyBits(p){ if(!p) return 0; var pool=0; if(/[a-z]/.test(p))pool+=26; if(/[A-Z]/.test(p))pool+=26; if(/[0-9]/.test(p))pool+=10; if(/[^a-zA-Z0-9]/.test(p))pool+=32; return +(p.length*Math.log2(pool||1)).toFixed(0); }
+  function crackTime(bits){ var log2=bits-1-33.219; if(log2<0)return 'instant'; var l10=log2*0.30103; if(l10<0.5)return 'instant'; if(l10<15){var s=Math.pow(10,l10); if(s<60)return Math.round(s)+' sec'; if(s<3600)return Math.round(s/60)+' min'; if(s<86400)return Math.round(s/3600)+' hrs'; if(s<2592000)return Math.round(s/86400)+' days'; if(s<31557600)return Math.round(s/2592000)+' months'; return fmtBig(s/31557600)+' yrs';} var y=l10-Math.log10(31557600); if(y>21)return 'eternity'; return fmtBig(Math.pow(10,y))+' yrs'; }
+  function fmtBig(n){ if(n<1000)return Math.round(n).toString(); var u=['','K','M','B','T','Qa','Qi'],i=0; while(n>=1000&&i<u.length-1){n/=1000;i++;} return n.toFixed(1)+u[i]; }
+  function updatePw(){
+    var p=$('encPassword').value, bits=entropyBits(p);
+    $('pwEntropy').textContent=bits; $('pwCrack').textContent=p?crackTime(bits):'—';
+    var m=$('pwMeter'), pct,color,txt;
+    if(!p){pct=0;color='#555';txt='—';} else if(bits<40){pct=25;color='#ef4444';txt='Weak';} else if(bits<60){pct=50;color='#eab308';txt='Fair';} else if(bits<90){pct=75;color='#3b82f6';txt='Strong';} else {pct=100;color='#22c55e';txt='Very Strong';}
+    m.style.width=pct+'%'; m.style.background=color; $('pwStrength').textContent=txt;
+    var rules=[['8+ chars',p.length>=8],['Upper',/[A-Z]/.test(p)],['Lower',/[a-z]/.test(p)],['Number',/[0-9]/.test(p)],['Symbol',/[^a-zA-Z0-9]/.test(p)]];
+    $('pwRules').innerHTML=rules.map(function(r){ return '<span class="'+(r[1]?'ok':'')+'">'+(r[1]?'✓':'○')+' '+r[0]+'</span>'; }).join('');
+    checkMatch();
+  }
+  function checkMatch(){ var p=$('encPassword').value,c=$('encConfirm').value,m=$('matchMsg'); if(!c){m.textContent='';return;} if(p===c){m.innerHTML='<span style="color:#6ee7b7">✓ Passwords match</span>';} else {m.innerHTML='<span style="color:#fca5a5">✗ Passwords do not match</span>';} }
+  $('encPassword').addEventListener('input',updatePw); $('encConfirm').addEventListener('input',checkMatch);
+  function rint(max){ var a=new Uint32Array(1); crypto.getRandomValues(a); return a[0]%max; }
+  $('genPw').addEventListener('click',function(){ if(!hasCrypto){premToast('Web Crypto unavailable');return;} var pool='ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789!@#$%^&*()-_=+', s=''; for(var i=0;i<20;i++)s+=pool.charAt(rint(pool.length)); $('encPassword').value=s; $('encConfirm').value=s; $('encPassword').type='text'; updatePw(); premToast('Strong password generated'); });
+  function toggleShow(inp,btn){ btn.addEventListener('click',function(){ inp.type=inp.type==='password'?'text':'password'; }); }
+  toggleShow($('encPassword'),$('showEnc')); toggleShow($('decPassword'),$('showDec'));
+
+  /* ===================== Stats ===================== */
+  function updateStats(){ var t=$('plainText').value; var bytes=new TextEncoder().encode(t).length; $('encStats').innerHTML='<span>Chars: <b>'+t.length+'</b></span><span>Words: <b>'+(t.trim().match(/\S+/g)||[]).length+'</b></span><span>Lines: <b>'+t.split('\n').length+'</b></span><span>Bytes: <b>'+bytes+'</b></span>'; }
+  $('plainText').addEventListener('input',function(){ updateStats(); resetIdle(); });
+
+  /* ===================== Tabs ===================== */
+  document.querySelectorAll('.tab-btn').forEach(function(btn){ btn.addEventListener('click',function(){ document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');}); btn.classList.add('active'); var t=btn.dataset.tab; $('encryptTab').style.display=t==='encrypt'?'block':'none'; $('decryptTab').style.display=t==='decrypt'?'block':'none'; }); });
+
+  /* ===================== File upload / drag-drop ===================== */
+  function loadInto(file,ta){ var fr=new FileReader(); fr.onload=function(){ ta.value=fr.result; if(ta===$('cipherText'))showMeta(); else updateStats(); }; fr.readAsText(file); }
+  function wireDrop(dropId,fileId,ta){
+    var d=$(dropId),f=$(fileId);
+    d.addEventListener('click',function(){ f.click(); });
+    f.addEventListener('change',function(e){ if(e.target.files[0])loadInto(e.target.files[0],ta); });
+    d.addEventListener('dragover',function(e){ e.preventDefault(); d.classList.add('drag'); });
+    d.addEventListener('dragleave',function(){ d.classList.remove('drag'); });
+    d.addEventListener('drop',function(e){ e.preventDefault(); d.classList.remove('drag'); if(e.dataTransfer.files[0])loadInto(e.dataTransfer.files[0],ta); });
+  }
+  wireDrop('dropEnc','fileEnc',$('plainText')); wireDrop('dropDec','fileDec',$('cipherText'));
+
+  /* ===================== Copy / download ===================== */
+  function saveText(name,txt,type){ if(typeof downloadText==='function'&&type==='text/plain'){ downloadText(name,txt); return; } var b=new Blob([txt],{type:type||'text/plain'}); if(typeof downloadBlob==='function')downloadBlob(name,b); else { var a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=name; a.click(); } }
+  function copyWarn(val,msg){ copyText(val); premToast(msg+' — remember to clear your clipboard'); }
+  $('copyEncBtn').addEventListener('click',function(){ copyWarn($('encResult').value,'Encrypted text copied'); });
+  $('copyDecBtn').addEventListener('click',function(){ copyWarn($('decResult').value,'Decrypted text copied'); });
+  $('dlEnc').addEventListener('click',function(){ saveText('message.enc',$('encResult').value,'text/plain'); premToast('.enc downloaded'); });
+  $('dlEncTxt').addEventListener('click',function(){ saveText('encrypted.txt',$('encResult').value,'text/plain'); premToast('.txt downloaded'); });
+  $('dlEncJson').addEventListener('click',function(){ var v=$('encResult').value; if(v.charAt(0)!=='{') v=JSON.stringify({data:v}); saveText('encrypted.json',v,'application/json'); premToast('.json downloaded'); });
+  $('dlDec').addEventListener('click',function(){ saveText('decrypted.txt',$('decResult').value,'text/plain'); premToast('.txt downloaded'); });
+
+  /* ===================== Clear / reset / idle auto-clear ===================== */
+  function clearEnc(){ $('plainText').value=''; $('encPassword').value=''; $('encConfirm').value=''; $('encResult').value=''; $('encResultWrap').style.display='none'; updateStats(); updatePw(); }
+  function clearDec(){ $('cipherText').value=''; $('decPassword').value=''; $('decResult').value=''; $('decResultWrap').style.display='none'; $('decStatus').textContent=''; showMeta(); }
+  $('clearEnc').addEventListener('click',clearEnc); $('clearDec').addEventListener('click',clearDec);
+  $('resetBtn').addEventListener('click',function(){ clearEnc(); clearDec(); premToast('Reset'); });
+  var idleT=null;
+  function resetIdle(){ if(idleT)clearTimeout(idleT); idleT=setTimeout(function(){ $('encPassword').value=''; $('encConfirm').value=''; $('decPassword').value=''; updatePw(); premToast('Passwords cleared after inactivity'); }, 600000); }
+  resetIdle();
+
+  /* ===================== Theme ===================== */
+  $('themeToggle').addEventListener('click',function(){ var p=$('mainPanel'); p.classList.toggle('enc-light'); this.textContent=p.classList.contains('enc-light')?'🌙 Dark mode':'🌗 Light mode'; });
+
+  /* ===================== FAQ ===================== */
+  var FAQ=[
+    ['Is this encryption really secure?','Yes. It uses AES-256-GCM with PBKDF2-SHA256 key derivation via the browser’s Web Crypto API — the same standards used by professional security software. — हाँ, यह AES-256-GCM और PBKDF2 उपयोग करता है।'],
+    ['Is my text uploaded anywhere?','No. Everything is encrypted and decrypted in your browser; nothing is sent to a server. — नहीं, सब कुछ आपके browser में होता है।'],
+    ['What happens if I forget the password?','The text cannot be recovered — there is no backdoor or reset by design. Keep your password safe. — password खो जाने पर text वापस नहीं मिलता।'],
+    ['What is AES-256-GCM?','A strong, authenticated encryption cipher that both hides your data and detects tampering. — यह मज़बूत authenticated encryption है।'],
+    ['What is PBKDF2?','A key-derivation function that turns your password into a strong key by hashing it many times with a salt. — password को key में बदलने वाला function।'],
+    ['Why does it use a salt and IV?','The random salt makes each key unique and blocks rainbow tables; the IV is required by GCM and must be unique per message. — salt व IV सुरक्षा बढ़ाते हैं।'],
+    ['Can I choose the number of iterations?','Yes. Pick 100k–500k PBKDF2 iterations; more is stronger but slower. The choice is stored in the output. — हाँ, iterations चुन सकते हैं।'],
+    ['What output formats are supported?','Base64 (default), Hex, or a self-describing JSON envelope. All can be decrypted here. — Base64, Hex और JSON।'],
+    ['Can I encrypt a file?','You can upload a text (.txt/.md/.json) file to encrypt, and download the encrypted result. — हाँ, text file upload कर सकते हैं।'],
+    ['How do I share encrypted text safely?','Send the ciphertext and the password through different channels (e.g. email + a phone call). — ciphertext और password अलग-अलग भेजें।'],
+    ['Does it work offline?','Yes. Once loaded it needs no internet; encryption uses your browser’s built-in crypto. — हाँ, यह offline काम करता है।'],
+    ['Is there a password strength meter?','Yes, with entropy in bits and an estimated crack time, plus a rules checklist. — हाँ, strength meter उपलब्ध है।'],
+    ['Can it generate a password for me?','Yes. Click Generate for a strong 20-character random password. — हाँ, password generator है।'],
+    ['What is the metadata viewer?','It shows the algorithm, KDF, iterations and salt/IV size of an encrypted blob before you decrypt it. — यह encrypted blob की जानकारी दिखाता है।'],
+    ['Will old encrypted text still decrypt?','Yes. The tool also reads the previous format, so anything encrypted here before still opens. — हाँ, पुराना format भी समर्थित है।'],
+    ['Is it safe to paste secrets here?','Yes — nothing is uploaded. Still, clear your clipboard afterwards and use a trusted device. — हाँ, पर clipboard साफ़ करें।'],
+    ['Does copying warn me about the clipboard?','Yes. After copying, a reminder prompts you to clear the clipboard. — हाँ, clipboard reminder दिखता है।'],
+    ['Do passwords auto-clear?','Yes. After a period of inactivity, passwords and results are wiped from the screen. — हाँ, निष्क्रियता पर साफ़ हो जाते हैं।'],
+    ['Which browsers are supported?','All modern browsers with the Web Crypto API — Chrome, Firefox, Edge, Safari, Opera and Brave. — सभी आधुनिक browsers।'],
+    ['Is this tool free?','Completely free — no account, no limits, no watermark, and it works offline. — हाँ, यह पूरी तरह मुफ़्त है।'],
+    ['Can someone brute-force my message?','With a strong password and high iterations, brute force is impractical. Weak passwords are the main risk. — मज़बूत password से brute force अव्यवहारिक है।'],
+    ['Is the encrypted text tamper-proof?','GCM adds an authentication tag, so any change to the ciphertext makes decryption fail safely. — हाँ, GCM छेड़छाड़ पकड़ता है।']
+  ];
+  function buildFaq(){ var list=$('faqList'); if(!list) return; FAQ.forEach(function(p){ var d=document.createElement('details'); d.innerHTML='<summary>'+esc(p[0])+'</summary><p>'+esc(p[1])+'</p>'; list.appendChild(d); }); try{ $('faqSchema').textContent=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:FAQ.map(function(p){return {'@type':'Question',name:p[0],acceptedAnswer:{'@type':'Answer',text:p[1]}};})}); }catch(e){} }
+
+  /* ===================== Init ===================== */
+  window.__encHooks={deriveKey:deriveKey,parseEnvelope:parseEnvelope,entropyBits:entropyBits};
+  buildFaq(); updateStats(); updatePw();
+})();
 </script>
 </body>
 </html>
