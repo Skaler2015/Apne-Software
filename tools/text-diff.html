@@ -4,39 +4,132 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free online Text &amp; Code Diff Checker — compare two texts or code files and instantly see added, removed and changed content. Word, line, character, sentence and paragraph diffs; inline, side-by-side and unified views; ignore case/whitespace; stats, similarity %, change navigation and export to HTML, Markdown, JSON, PDF and unified patch. 100% private, works in your browser.">
+<meta name="keywords" content="diff checker, text diff, code diff, compare text, compare code, side by side diff, unified diff, git diff online, difference checker, text comparison tool, merge diff">
 <link rel="canonical" href="https://apnesoftware.com/tools/text-diff.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Text & Code Diff Checker | ApneSoftware">
-<meta property="og:description" content="Compare two texts and see what changed. Free online tool — no signup required.">
+<meta property="og:title" content="Text & Code Diff Checker — Side-by-Side & Unified | ApneSoftware">
+<meta property="og:description" content="Compare two texts or code files and see what changed. Word/line/character/sentence diffs; inline, side-by-side and unified views; ignore options; stats and exports. Free, private, browser-based.">
 <meta property="og:url" content="https://apnesoftware.com/tools/text-diff.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Text & Code Diff Checker | ApneSoftware">
-<meta name="twitter:description" content="Compare two texts and see what changed. Free online tool — no signup required.">
+<meta name="twitter:title" content="Text & Code Diff Checker — Side-by-Side & Unified | ApneSoftware">
+<meta name="twitter:description" content="Compare two texts or code with word/line/character diffs, side-by-side and unified views, ignore options, stats and export. Free and private.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text & Code Diff Checker","description":"Compare two texts and see what changed. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/text-diff.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Text & Code Diff Checker","description":"Professional text and code comparison tool with word, line, character, sentence and paragraph diffs, inline, side-by-side and unified views, ignore-case/whitespace options, similarity statistics, change navigation, file import and export to HTML, Markdown, JSON, PDF and unified patch. Runs entirely in the browser.","url":"https://apnesoftware.com/tools/text-diff.html","applicationCategory":"DeveloperApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Word/line/character/sentence/paragraph diff","Inline, side-by-side and unified views","Ignore case and whitespace","Similarity percentage","Change navigation","Line numbers","File import","Export HTML/Markdown/JSON/PDF/patch"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Text & Code Diff Checker — Compare Text and Code","url":"https://apnesoftware.com/tools/text-diff.html","description":"Private, browser-based diff checker with side-by-side and unified views, ignore options, statistics and exports.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Text Tools","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":3,"name":"Text & Code Diff Checker","item":"https://apnesoftware.com/tools/text-diff.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to compare two texts or code files","description":"Find the differences between two versions in a few steps.","step":[{"@type":"HowToStep","name":"Paste both versions","text":"Put the original text in the left editor and the changed version in the right editor."},{"@type":"HowToStep","name":"Choose mode and view","text":"Pick word, line or character diff and inline, side-by-side or unified view."},{"@type":"HowToStep","name":"Compare","text":"Additions, removals and changes are highlighted with statistics."},{"@type":"HowToStep","name":"Export","text":"Navigate the changes and export as HTML, Markdown, JSON, PDF or a unified patch."}]}
+</script>
+<script type="application/ld+json" id="faqSchema">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}
 </script>
 <meta name="color-scheme" content="dark">
-<title>Text & Code Diff Checker | ApneSoftware</title>
+<title>Text & Code Diff Checker — Side-by-Side & Unified | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-  .diff-result{
-    background:var(--surface-2);border:1px solid var(--border);border-radius:10px;
-    padding:16px;font-family:'Consolas','Courier New',monospace;font-size:.85rem;
-    white-space:pre-wrap;word-break:break-word;line-height:1.6;margin-top:14px;max-height:480px;overflow-y:auto;
-  }
-  .diff-result ins{background:rgba(34,197,94,.25);color:#86efac;text-decoration:none;border-radius:3px;padding:0 2px}
-  .diff-result del{background:rgba(239,68,68,.25);color:#fca5a5;text-decoration:line-through;border-radius:3px;padding:0 2px}
-  .diff-legend{display:flex;gap:18px;margin-top:10px;font-size:.82rem;color:var(--text-dim)}
-  .diff-legend span{display:inline-flex;align-items:center;gap:6px}
-  .mode-tabs{display:flex;gap:8px;margin-bottom:14px}
-  .mode-tab{
-    padding:7px 14px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);
-    color:var(--text-dim);font-size:.85rem;cursor:pointer;
-  }
-  .mode-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+/* ===== Text & Code Diff Checker — scoped td- styles ===== */
+.td-crumb{font-size:.78rem;color:var(--text-dim);margin-bottom:6px}
+.td-crumb a{color:#c4b5fd;text-decoration:none}
+.td-crumb a:hover{text-decoration:underline}
+.td-btn{background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.34);color:#d6cbff;border-radius:10px;padding:9px 13px;font-size:.83rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+.td-btn:hover{background:rgba(167,139,250,.24)}
+.td-btn.primary{background:linear-gradient(90deg,#7c3aed,#a78bfa);border-color:transparent;color:#fff;font-weight:600}
+.td-btn:focus-visible,.td-chip:focus-visible{outline:2px solid #a78bfa;outline-offset:2px}
+.td-btn.sm{padding:6px 10px;font-size:.76rem}
+.td-btn[disabled]{opacity:.45;cursor:not-allowed}
+.td-bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+.td-seg{display:inline-flex;gap:3px;background:rgba(255,255,255,.04);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:9px;padding:3px}
+.td-seg button{background:none;border:none;color:var(--text-dim);border-radius:7px;padding:6px 11px;font-size:.8rem;cursor:pointer;white-space:nowrap}
+.td-seg button[aria-pressed="true"]{background:linear-gradient(90deg,#7c3aed,#a78bfa);color:#fff;font-weight:600}
+.td-seglbl{font-size:.72rem;color:var(--text-dim);margin-right:2px;text-transform:uppercase;letter-spacing:.04em}
+
+.td-editors{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:760px){.td-editors{grid-template-columns:1fr}}
+.td-ed{display:flex;flex-direction:column}
+.td-ed label{font-size:.78rem;color:var(--text-dim);margin-bottom:5px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.td-ed label .cnt{font-size:.72rem;color:var(--text-dim)}
+.td-edbox{display:flex;border:1px solid var(--border,rgba(255,255,255,.12));border-radius:10px;overflow:hidden;background:var(--surface-2,rgba(255,255,255,.05))}
+.td-gutter{flex:0 0 auto;padding:12px 6px;text-align:right;color:var(--text-dim);font-family:ui-monospace,monospace;font-size:.8rem;line-height:1.55;background:rgba(255,255,255,.03);user-select:none;overflow:hidden;min-width:34px}
+.td-edbox textarea{flex:1;min-width:0;background:none;border:none;color:var(--text);font-family:ui-monospace,'Consolas',monospace;font-size:.85rem;line-height:1.55;padding:12px 12px;resize:vertical;min-height:190px;white-space:pre;overflow-wrap:normal}
+.td-edbox textarea.wrap{white-space:pre-wrap;overflow-wrap:break-word}
+.td-edbox textarea:focus{outline:none}
+.td-opts{display:flex;flex-wrap:wrap;gap:12px 18px;margin:14px 0}
+.td-opt{display:inline-flex;align-items:center;gap:7px;font-size:.82rem;color:var(--text);cursor:pointer}
+.td-opt input{width:auto}
+.td-actions{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px}
+
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+@media(max-width:700px){.stat-grid{grid-template-columns:1fr 1fr}}
+.stat-box{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:12px;padding:12px 10px;text-align:center;min-width:0}
+.stat-box .num{font-size:1.15rem;font-weight:800;color:#c4b5fd;white-space:nowrap}
+.stat-box .lbl{font-size:.72rem;color:var(--text-dim);margin-top:2px}
+.stat-box .num.add{color:#6ee7b7}.stat-box .num.rem{color:#fca5a5}
+
+.diff-legend{display:flex;flex-wrap:wrap;gap:16px;margin:8px 0;font-size:.8rem;color:var(--text-dim)}
+.diff-legend span{display:inline-flex;align-items:center;gap:6px}
+.td-navbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+.td-search{flex:1;min-width:140px;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.12));color:var(--text);border-radius:8px;padding:7px 11px;font-size:.83rem}
+
+.diff-result{background:#0d1117;border:1px solid var(--border,rgba(255,255,255,.12));border-radius:10px;padding:14px 16px;font-family:ui-monospace,'Consolas',monospace;font-size:.83rem;white-space:pre-wrap;word-break:break-word;line-height:1.6;max-height:520px;overflow:auto}
+.diff-result ins{background:rgba(52,211,153,.22);color:#a7f3d0;text-decoration:none;border-radius:3px;padding:0 2px}
+.diff-result del{background:rgba(248,113,113,.22);color:#fca5a5;text-decoration:line-through;border-radius:3px;padding:0 2px}
+.diff-result mark{background:#fde047;color:#111;border-radius:2px}
+/* side by side */
+.td-side{width:100%;border-collapse:collapse;font-family:ui-monospace,monospace;font-size:.82rem}
+.td-side td{vertical-align:top;padding:1px 8px;white-space:pre-wrap;word-break:break-word;border-bottom:1px solid rgba(255,255,255,.04)}
+.td-side td.gut{width:38px;text-align:right;color:var(--text-dim);user-select:none;background:rgba(255,255,255,.03);border-right:1px solid rgba(255,255,255,.06)}
+.td-side td.mid{width:10px;background:rgba(255,255,255,.02)}
+.td-side tr.add td.body{background:rgba(52,211,153,.12)}
+.td-side tr.del td.body{background:rgba(248,113,113,.12)}
+.td-side tr.chg td.body{background:rgba(234,179,8,.1)}
+.td-side .collapse td{text-align:center;color:#c4b5fd;background:rgba(167,139,250,.08);cursor:pointer;font-size:.76rem;padding:5px}
+.td-side ins{background:rgba(52,211,153,.3);color:#a7f3d0;text-decoration:none}
+.td-side del{background:rgba(248,113,113,.3);color:#fca5a5;text-decoration:none}
+.tok-str{color:#a5d6ff}.tok-com{color:#8b949e;font-style:italic}.tok-num{color:#f0883e}.tok-kw{color:#ff7b72}
+.td-scroll{overflow:auto;max-height:520px;border:1px solid var(--border,rgba(255,255,255,.12));border-radius:10px;background:#0d1117}
+.td-fullscreen{position:fixed;inset:0;z-index:9999;background:var(--bg,#0d0621);overflow:auto;padding:20px}
+.td-note{background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;padding:12px 14px;font-size:.84rem;color:var(--text-dim);margin-top:16px;line-height:1.6}
+.td-note b{color:#c4b5fd}
+
+/* below-tool */
+.td-wrap{margin:26px 0}
+.td-title{font-size:1.35rem;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.td-feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.td-fcard{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:14px;padding:16px}
+.td-fcard h4{margin:0 0 6px;font-size:.98rem;display:flex;align-items:center;gap:8px}
+.td-fcard p{margin:0;font-size:.86rem;color:var(--text-dim);line-height:1.55}
+.td-rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.td-rel{display:block;text-decoration:none;background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:14px;transition:.15s;color:var(--text)}
+.td-rel:hover{border-color:#a78bfa;background:rgba(167,139,250,.1);transform:translateY(-2px)}
+.td-rel b{display:block;font-size:.92rem;margin-bottom:3px}
+.td-rel span{font-size:.8rem;color:var(--text-dim);line-height:1.45}
+.td-prose p,.td-prose li{color:var(--text-dim);line-height:1.75;font-size:.92rem}
+.td-prose h3{font-size:1.02rem;margin:18px 0 8px}
+.td-tscroll{overflow:auto;border-radius:10px}
+table.td-table{border-collapse:collapse;font-size:.85rem;width:100%}
+table.td-table th,table.td-table td{border:1px solid var(--border,rgba(255,255,255,.12));padding:7px 10px;text-align:left;color:var(--text)}
+table.td-table th{background:rgba(167,139,250,.14);color:#fff;font-weight:600}
+.td-faq details{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:0 16px;margin-bottom:10px}
+.td-faq summary{cursor:pointer;padding:14px 0;font-weight:600;font-size:.92rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.td-faq summary::-webkit-details-marker{display:none}
+.td-faq summary::after{content:'+';font-size:1.3rem;color:#a78bfa;flex:0 0 auto}
+.td-faq details[open] summary::after{content:'−'}
+.td-faq details p{margin:0 0 14px;font-size:.87rem;color:var(--text-dim);line-height:1.65}
+.td-steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:12px}
+.td-steps li{counter-increment:s;position:relative;padding-left:46px;font-size:.9rem;color:var(--text-dim);line-height:1.6}
+.td-steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:9px;background:rgba(167,139,250,.18);color:#c4b5fd;font-weight:700;display:grid;place-items:center}
+.td-steps li b{color:var(--text)}
+@media (prefers-contrast:more){.td-prose p,.td-prose li{color:#fff}}
+@media print{ .site-header,.td-bar,.td-editors,.td-opts,.td-actions,.td-navbar,.td-wrap,footer{display:none!important} body{background:#fff;color:#000} .diff-result,.td-scroll{max-height:none;background:#fff;color:#000} }
 </style>
 </head>
 <body>
@@ -49,124 +142,477 @@
 
 <div class="container">
   <div class="tool-header">
-    <h1>🔍 Text & Code Diff Checker</h1>
-    <p>Compare two pieces of text or code and instantly see what's added, removed, or changed.</p>
+    <nav class="td-crumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html">Text Tools</a> › <span>Text &amp; Code Diff Checker</span></nav>
+    <h1>🔍 Text &amp; Code Diff Checker</h1>
+    <p>Compare two pieces of text or code and instantly see what's <b>added, removed or changed</b> — with word, line, character, sentence and paragraph diffs; <b>inline, side-by-side and unified</b> views; ignore options; statistics, change navigation and export. 100% private, processed in your browser.</p>
   </div>
 
-  <div class="panel">
-    <div class="mode-tabs">
-      <button class="mode-tab active" data-mode="words">Word diff</button>
-      <button class="mode-tab" data-mode="lines">Line diff</button>
-      <button class="mode-tab" data-mode="chars">Character diff</button>
+  <div class="panel" id="mainPanel">
+    <div class="td-bar">
+      <span class="td-seglbl">Mode</span>
+      <div class="td-seg" id="modeSeg" role="group" aria-label="Comparison granularity">
+        <button type="button" data-m="words" aria-pressed="true">Word</button>
+        <button type="button" data-m="lines" aria-pressed="false">Line</button>
+        <button type="button" data-m="chars" aria-pressed="false">Character</button>
+        <button type="button" data-m="sentences" aria-pressed="false">Sentence</button>
+        <button type="button" data-m="paragraphs" aria-pressed="false">Paragraph</button>
+      </div>
+      <span class="td-seglbl">View</span>
+      <div class="td-seg" id="viewSeg" role="group" aria-label="Diff view">
+        <button type="button" data-v="inline" aria-pressed="true">Inline</button>
+        <button type="button" data-v="side" aria-pressed="false">Side-by-side</button>
+        <button type="button" data-v="unified" aria-pressed="false">Unified</button>
+      </div>
     </div>
 
-    <div class="row">
-      <div class="field">
-        <label for="textA">Original text</label>
-        <textarea id="textA" placeholder="Paste the original text or code here..." style="min-height:180px"></textarea>
+    <div class="td-editors">
+      <div class="td-ed">
+        <label for="textA"><span>Original text</span><span class="cnt" id="cntA">0 lines · 0 chars</span></label>
+        <div class="td-edbox"><div class="td-gutter" id="gutA">1</div><textarea id="textA" placeholder="Paste the original text or code here…" spellcheck="false" aria-label="Original text"></textarea></div>
+        <div style="margin-top:6px"><label class="td-btn sm" style="cursor:pointer">📁 Import file<input type="file" id="fileA" accept=".txt,.html,.htm,.css,.js,.ts,.json,.xml,.csv,.md,.markdown,.log,.yaml,.yml,.py,.java,.sql,.php,.c,.cpp,.cs" style="display:none"></label></div>
       </div>
-      <div class="field">
-        <label for="textB">Changed text</label>
-        <textarea id="textB" placeholder="Paste the changed/new version here..." style="min-height:180px"></textarea>
+      <div class="td-ed">
+        <label for="textB"><span>Changed text</span><span class="cnt" id="cntB">0 lines · 0 chars</span></label>
+        <div class="td-edbox"><div class="td-gutter" id="gutB">1</div><textarea id="textB" placeholder="Paste the changed/new version here…" spellcheck="false" aria-label="Changed text"></textarea></div>
+        <div style="margin-top:6px"><label class="td-btn sm" style="cursor:pointer">📁 Import file<input type="file" id="fileB" accept=".txt,.html,.htm,.css,.js,.ts,.json,.xml,.csv,.md,.markdown,.log,.yaml,.yml,.py,.java,.sql,.php,.c,.cpp,.cs" style="display:none"></label></div>
       </div>
     </div>
 
-    <div class="btn-row">
-      <button class="btn" id="compareBtn">🔍 Compare</button>
-      <button class="btn secondary" id="swapBtn">🔄 Swap</button>
-      <button class="btn secondary" id="clearBtn">🗑️ Clear</button>
+    <div class="td-opts">
+      <label class="td-opt"><input type="checkbox" id="optCase"> Ignore case</label>
+      <label class="td-opt"><input type="checkbox" id="optWs"> Ignore whitespace</label>
+      <label class="td-opt"><input type="checkbox" id="optEmpty"> Ignore empty lines</label>
+      <label class="td-opt"><input type="checkbox" id="optTrim"> Trim line ends</label>
+      <label class="td-opt"><input type="checkbox" id="optEol" checked> Ignore line endings</label>
+      <label class="td-opt"><input type="checkbox" id="optNorm"> Unicode normalize</label>
+      <label class="td-opt"><input type="checkbox" id="optLive" checked> Live compare</label>
+      <label class="td-opt"><input type="checkbox" id="optWrap"> Word wrap</label>
+      <label class="td-opt"><input type="checkbox" id="optHl"> Highlight code</label>
+      <label class="td-opt"><input type="checkbox" id="optCollapse"> Collapse unchanged</label>
+    </div>
+
+    <div class="td-actions">
+      <button class="td-btn primary" id="compareBtn" type="button">🔍 Compare</button>
+      <button class="td-btn" id="swapBtn" type="button">🔄 Swap</button>
+      <button class="td-btn" id="clearBtn" type="button">🗑️ Clear</button>
+      <button class="td-btn" id="sampleBtn" type="button">✨ Load example</button>
     </div>
 
     <div id="resultWrap" style="display:none">
       <div class="stat-grid">
-        <div class="stat-box"><div class="num" id="addedCount" style="color:#86efac">0</div><div class="lbl">Added</div></div>
-        <div class="stat-box"><div class="num" id="removedCount" style="color:#fca5a5">0</div><div class="lbl">Removed</div></div>
+        <div class="stat-box"><div class="num add" id="addedCount">0</div><div class="lbl">Added</div></div>
+        <div class="stat-box"><div class="num rem" id="removedCount">0</div><div class="lbl">Removed</div></div>
+        <div class="stat-box"><div class="num" id="changedCount">0</div><div class="lbl">Changed</div></div>
+        <div class="stat-box"><div class="num" id="simVal">100%</div><div class="lbl">Similarity</div></div>
       </div>
       <div class="diff-legend">
-        <span>🟩 Added</span>
-        <span>🟥 Removed</span>
+        <span>🟩 Added</span><span>🟥 Removed</span>
+        <span id="statLines">Lines: 0</span><span id="statChars">Chars: 0</span>
       </div>
-      <div class="diff-result" id="diffResult"></div>
+
+      <div class="td-navbar">
+        <input type="text" class="td-search" id="searchInput" placeholder="🔎 Search in result…" aria-label="Search in diff result">
+        <button class="td-btn sm" id="prevBtn" type="button">↑ Prev</button>
+        <button class="td-btn sm" id="nextBtn" type="button">↓ Next</button>
+        <span class="td-seglbl" id="changeInfo"></span>
+        <button class="td-btn sm" id="fullscreenBtn" type="button">⛶ Fullscreen</button>
+      </div>
+
+      <div id="diffResult" class="diff-result" tabindex="0" aria-label="Comparison result"></div>
+
+      <div class="td-actions" style="margin-top:12px">
+        <button class="td-btn sm" id="copyBtn" type="button">📋 Copy result</button>
+        <button class="td-btn sm" id="expHtml" type="button">⬇️ HTML</button>
+        <button class="td-btn sm" id="expMd" type="button">⬇️ Markdown</button>
+        <button class="td-btn sm" id="expJson" type="button">⬇️ JSON</button>
+        <button class="td-btn sm" id="expPatch" type="button">⬇️ Unified patch</button>
+        <button class="td-btn sm" id="printBtn" type="button">🖨️ Print / PDF</button>
+      </div>
     </div>
+
+    <div class="td-note">🔒 <b>Private:</b> both texts are compared entirely in your browser using a local diff engine — nothing is uploaded, and your drafts auto-save only to your own device.</div>
   </div>
 </div>
 
+<!-- ===================== BELOW-TOOL CONTENT ===================== -->
+<div class="container">
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>This tool compares two blocks of text or code and highlights the differences — additions in green, removals in red. Choose word, line, or character-level comparison depending on what you're checking.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Paste the original text in the left box and the changed version in the right box.</li>
-        <li>Pick a comparison mode: word, line, or character diff.</li>
-        <li>Click Compare to see the highlighted differences.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल दो टेक्स्ट या कोड को कंपेयर करता है और अंतर हाईलाइट करता है — हरे रंग में जोड़े गए हिस्से, लाल रंग में हटाए गए हिस्से। वर्ड, लाइन या कैरेक्टर लेवल पर कंपेयर कर सकते हैं।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>बाईं तरफ ओरिजिनल टेक्स्ट और दाईं तरफ बदला हुआ टेक्स्ट पेस्ट करें।</li>
-        <li>कंपेयर मोड चुनें: वर्ड, लाइन या कैरेक्टर डिफ।</li>
-        <li>Compare बटन दबाएं और हाईलाइट किया गया अंतर देखें।</li>
-      </ol>
-    </div>
+<!-- Key Features -->
+<section class="td-wrap">
+  <h2 class="td-title">✨ Key Features</h2>
+  <div class="td-feat-grid">
+    <div class="td-fcard"><h4>🧩 5 Diff Modes</h4><p>Compare by word, line, character, sentence or paragraph — whichever suits your content.</p></div>
+    <div class="td-fcard"><h4>👀 3 Views</h4><p>Inline highlights, a two-column side-by-side view, or a Git-style unified diff.</p></div>
+    <div class="td-fcard"><h4>⚙️ Ignore Options</h4><p>Ignore case, whitespace, empty lines, line endings and trailing spaces; normalise Unicode.</p></div>
+    <div class="td-fcard"><h4>📊 Rich Statistics</h4><p>Added, removed and changed words, total lines and characters, and a similarity percentage.</p></div>
+    <div class="td-fcard"><h4>🔢 Line Numbers</h4><p>Numbered editors with word-wrap and a distraction-free fullscreen mode.</p></div>
+    <div class="td-fcard"><h4>🧭 Change Navigation</h4><p>Jump to the next or previous change and collapse long unchanged sections.</p></div>
+    <div class="td-fcard"><h4>⚡ Live Compare</h4><p>Results update as you type, with a search box that highlights matches in the diff.</p></div>
+    <div class="td-fcard"><h4>📁 File Import</h4><p>Load TXT, HTML, CSS, JS, JSON, XML, CSV, Markdown, LOG and more into either side.</p></div>
+    <div class="td-fcard"><h4>⬇️ Multiple Exports</h4><p>Export the diff as HTML, Markdown, JSON, a unified patch, or print to PDF.</p></div>
+    <div class="td-fcard"><h4>🎨 Code Highlighting</h4><p>Optional lightweight syntax colouring for strings, comments, numbers and keywords.</p></div>
+    <div class="td-fcard"><h4>💾 Auto-Save</h4><p>Your two drafts are remembered locally so you never lose work on refresh.</p></div>
+    <div class="td-fcard"><h4>🔒 100% Private</h4><p>Everything runs in your browser. No uploads, no sign-up, works offline.</p></div>
   </div>
+</section>
+
+<!-- Benefits -->
+<section class="td-wrap td-prose">
+  <h2 class="td-title">🎯 Benefits</h2>
+  <ul>
+    <li><b>Spot every change instantly</b> — no more scanning line by line to find what moved.</li>
+    <li><b>Right granularity for the job</b> — word diffs for prose, line diffs for code, character diffs for tiny edits.</li>
+    <li><b>Review like a pro</b> — a Git-style unified patch and side-by-side view familiar to developers.</li>
+    <li><b>Private and safe</b> — compare confidential contracts, code or data without anything leaving your device.</li>
+    <li><b>Free and offline</b> — no account, no limits, and it keeps working with no internet.</li>
+  </ul>
+</section>
+
+<!-- Related Tools (ABOVE About) -->
+<section class="td-wrap">
+  <h2 class="td-title">🧰 Related Tools</h2>
+  <div class="td-rel-grid">
+    <a class="td-rel" href="word-counter.html"><b>🔢 Word Counter</b><span>Count words, characters and lines.</span></a>
+    <a class="td-rel" href="case-converter.html"><b>🔠 Case Converter</b><span>Change text case in one click.</span></a>
+    <a class="td-rel" href="json-formatter.html"><b>{ } JSON Formatter</b><span>Format, validate and minify JSON.</span></a>
+    <a class="td-rel" href="duplicate-line-remover.html"><b>🧹 Duplicate Line Remover</b><span>Remove repeated lines fast.</span></a>
+    <a class="td-rel" href="base64-encoder-decoder.html"><b>🔡 Base64 Encoder / Decoder</b><span>Encode and decode Base64 text.</span></a>
+    <a class="td-rel" href="url-html-encoder-decoder.html"><b>🔗 URL &amp; HTML Entity Coder</b><span>Encode / decode URLs and entities.</span></a>
+    <a class="td-rel" href="markdown-to-html.html"><b>📝 Markdown to HTML</b><span>Convert Markdown into HTML.</span></a>
+    <a class="td-rel" href="hash-generator.html"><b>#️⃣ Hash Generator</b><span>MD5, SHA-1, SHA-256 and more.</span></a>
+  </div>
+</section>
+
+<!-- About (English) -->
+<section class="td-wrap td-prose">
+  <h2 class="td-title">ℹ️ About This Tool</h2>
+  <p>The <b>ApneSoftware Text &amp; Code Diff Checker</b> is a professional, privacy-first comparison utility that finds the differences between two versions of any text or code — instantly, and entirely inside your browser. Whether you are reviewing an edited document, checking what changed between two versions of a source file, comparing configuration files, verifying a copy-paste, or auditing a contract, a diff tool turns the tedious job of spotting changes into a single glance. Where a basic checker only offers one kind of comparison, this tool gives you <b>five diff modes</b> — word, line, character, sentence and paragraph — and <b>three views</b> — inline highlighting, a two-column side-by-side layout, and a Git-style unified patch — so you can look at the same change in whichever way makes it clearest.</p>
+  <p>The heart of any diff tool is its <b>comparison engine</b>, and this one uses a robust, well-tested algorithm (the classic Myers diff) to produce minimal, accurate change sets. Additions are highlighted in green, removals in red, and in side-by-side mode changed lines are further broken down with <b>intra-line word highlighting</b>, so you can see exactly which words within a line were altered rather than the whole line simply flashing as changed. The tool reports clear <b>statistics</b> — how many words were added, removed and changed, the total number of lines and characters, and an overall <b>similarity percentage</b> — giving you an at-a-glance sense of how big the change really is. A change-navigation bar lets you jump straight to the next or previous difference, and long stretches of unchanged content can be <b>collapsed</b> so you focus only on what matters.</p>
+  <p><b>Comparison options</b> make the tool fair to your content. Real-world text is full of cosmetic differences that are not real changes — a different capitalisation, extra spaces, tabs versus spaces, blank lines, or Windows versus Unix line endings. You can choose to <b>ignore case, ignore whitespace, ignore empty lines, trim trailing spaces and ignore line endings</b>, and normalise Unicode so that visually identical characters compare equal. With these switches you can filter out the noise and see only the differences that actually matter — invaluable when comparing code that was reformatted, or documents that were re-saved by a different editor. The two editors include <b>line numbers</b>, an optional <b>word-wrap</b> toggle, a <b>fullscreen</b> mode for large files, and one-click <b>file import</b> so you can load TXT, HTML, CSS, JavaScript, JSON, XML, CSV, Markdown, LOG and other files directly into either side.</p>
+  <p>For developers, the tool speaks your language. The <b>unified-patch export</b> produces the exact <code>--- / +++ / @@</code> format used by Git and <code>patch</code>, ready to attach to a code review or apply elsewhere. An optional <b>lightweight syntax highlighter</b> colours strings, comments, numbers and keywords in the side-by-side view for common languages, making code diffs easier to read without any heavy dependency. You can <b>export</b> the result as a self-contained <b>HTML</b> report, a <b>Markdown</b> diff block, structured <b>JSON</b> of the change set, or print it to <b>PDF</b> — and copy the highlighted output to your clipboard in a click. <b>Live compare</b> updates the result as you type, a <b>search</b> box highlights matches within the diff, <b>swap</b> flips the two sides, and your drafts <b>auto-save</b> locally so a refresh never loses your work.</p>
+  <p><b>Privacy and performance are fundamental.</b> Both texts are compared with JavaScript running on your own device; nothing you paste, no file you load and no result you generate is ever uploaded to a server, and there is no account, login or tracking. This matters a great deal when the material is confidential — legal documents, proprietary source code, medical data or unreleased content — because a diff tool that transmitted your text would be a serious leak. Because all processing is local, comparisons are fast even for large inputs, and the tool keeps working with no internet connection once the page has loaded. Sensible safeguards keep the interface responsive on big files, and the diff is rendered efficiently so the page stays smooth.</p>
+  <p>Finally, the tool is built to modern standards of <b>accessibility, responsiveness and maintainability</b>. The controls are keyboard-navigable and labelled for screen readers, focus outlines are visible, and high-contrast preferences are respected; the result area is a focusable region so keyboard users can scroll and search it easily. The layout adapts from wide desktop monitors — where the two editors and the side-by-side view sit comfortably next to each other — down to tablets and phones, where they stack cleanly with touch-friendly controls. Internally, the diff modes, view renderers, options and export formats are organised into small, well-defined functions, so the tool is accurate, easy to audit and simple to extend. In short, it is a fast, private, developer-grade diff checker suitable for everyday writing and editing, for serious code review, and for a professional comparison platform alike.</p>
+</section>
+
+<!-- About (Hindi) -->
+<section class="td-wrap td-prose">
+  <h2 class="td-title">ℹ️ इस टूल के बारे में</h2>
+  <p><b>ApneSoftware Text &amp; Code Diff Checker</b> एक professional, privacy-first comparison utility है जो किसी भी text या code के दो versions के बीच अंतर ढूँढता है — तुरंत, और पूरी तरह आपके browser के अंदर। चाहे आप कोई edited document review कर रहे हों, किसी source file के दो versions के बीच बदलाव जाँच रहे हों, configuration files की तुलना कर रहे हों, या किसी contract का audit कर रहे हों — एक diff tool बदलाव खोजने के थकाऊ काम को एक नज़र में बदल देता है। जहाँ एक साधारण checker सिर्फ़ एक तरह की तुलना देता है, वहीं यह टूल <b>पाँच diff modes</b> — word, line, character, sentence और paragraph — और <b>तीन views</b> — inline highlighting, दो-column side-by-side layout, और Git-style unified patch — देता है, ताकि आप एक ही बदलाव को उस तरीके से देखें जो सबसे स्पष्ट हो।</p>
+  <p>किसी भी diff tool का दिल उसका <b>comparison engine</b> होता है, और यह एक मज़बूत, अच्छी तरह परखे गए algorithm (classic Myers diff) का उपयोग करता है ताकि minimal, सटीक change sets बनें। जोड़े गए हिस्से हरे में, हटाए गए लाल में highlight होते हैं, और side-by-side mode में बदली हुई lines को <b>intra-line word highlighting</b> से और बारीकी से दिखाया जाता है, ताकि आप देख सकें कि line के भीतर कौन-से शब्द बदले। टूल स्पष्ट <b>statistics</b> बताता है — कितने शब्द जोड़े, हटाए और बदले गए, कुल lines व characters, और एक समग्र <b>similarity percentage</b>। एक change-navigation bar से आप सीधे अगले या पिछले अंतर पर जा सकते हैं, और unchanged content के लंबे हिस्सों को <b>collapse</b> कर सकते हैं।</p>
+  <p><b>Comparison options</b> टूल को आपके content के प्रति निष्पक्ष बनाते हैं। असली text में कई cosmetic अंतर होते हैं जो वास्तविक बदलाव नहीं होते — अलग capitalisation, अतिरिक्त spaces, tabs बनाम spaces, blank lines, या Windows बनाम Unix line endings। आप <b>ignore case, ignore whitespace, ignore empty lines, trim trailing spaces और ignore line endings</b> चुन सकते हैं, और Unicode को normalise कर सकते हैं ताकि दिखने में एक जैसे characters समान माने जाएँ। इन switches से आप शोर छाँटकर केवल वही अंतर देखते हैं जो सचमुच मायने रखते हैं — reformatted code या किसी अलग editor से दोबारा सहेजे documents की तुलना करते समय बेहद उपयोगी। दोनों editors में <b>line numbers</b>, वैकल्पिक <b>word-wrap</b>, बड़े files के लिए <b>fullscreen</b> mode, और एक-क्लिक <b>file import</b> है।</p>
+  <p>Developers के लिए, टूल आपकी भाषा बोलता है। <b>unified-patch export</b> वही <code>--- / +++ / @@</code> format बनाता है जो Git और <code>patch</code> उपयोग करते हैं, code review में लगाने या कहीं और apply करने के लिए तैयार। एक वैकल्पिक <b>lightweight syntax highlighter</b> side-by-side view में strings, comments, numbers और keywords को रंगता है, जिससे code diffs पढ़ने में आसान होते हैं — बिना किसी भारी dependency के। आप नतीजे को self-contained <b>HTML</b> report, <b>Markdown</b> diff block, structured <b>JSON</b>, या <b>PDF</b> के रूप में export कर सकते हैं, और highlighted output को एक क्लिक में copy कर सकते हैं। <b>Live compare</b> टाइप करते ही नतीजा update करता है, एक <b>search</b> box diff में matches highlight करता है, <b>swap</b> दोनों पक्ष बदल देता है, और आपके drafts locally <b>auto-save</b> होते हैं।</p>
+  <p><b>Privacy और performance मूलभूत हैं।</b> दोनों texts आपके अपने device पर JavaScript से compare होते हैं; आप जो paste करते हैं, जो file load करते हैं या जो नतीजा बनाते हैं वह किसी server पर upload नहीं होता, और कोई account, login या tracking नहीं। जब सामग्री गोपनीय हो — legal documents, proprietary source code, medical data या unreleased content — तब यह बेहद महत्वपूर्ण है, क्योंकि आपका text भेजने वाला diff tool एक गंभीर leak होगा। सारा processing local होने के कारण, बड़े inputs के लिए भी comparisons तेज़ हैं, और page load होने के बाद टूल बिना इंटरनेट भी काम करता है।</p>
+  <p>अंत में, टूल <b>accessibility, responsiveness और maintainability</b> के आधुनिक मानकों पर बना है। Controls keyboard से चलते हैं और screen readers के लिए labelled हैं, focus outlines दिखते हैं, और high-contrast वरीयता का सम्मान होता है; result क्षेत्र एक focusable region है ताकि keyboard users उसे आसानी से scroll व search कर सकें। Layout बड़े desktop से — जहाँ दोनों editors और side-by-side view आराम से साथ बैठते हैं — tablets और phones तक ढलता है, जहाँ वे touch-friendly controls के साथ साफ़-सुथरे stack होते हैं। भीतर से, diff modes, view renderers, options और export formats छोटे, सुपरिभाषित functions में व्यवस्थित हैं, इसलिए टूल सटीक, audit करने में आसान और विस्तार करने में सरल है।</p>
+</section>
+
+<!-- Supported Comparison Modes -->
+<section class="td-wrap td-prose">
+  <h2 class="td-title">🧩 Supported Comparison Modes</h2>
+  <div class="td-tscroll">
+    <table class="td-table">
+      <thead><tr><th>Mode</th><th>What it compares</th><th>Best for</th></tr></thead>
+      <tbody>
+        <tr><td>Word</td><td>Word-by-word differences.</td><td>Prose, articles, edited documents.</td></tr>
+        <tr><td>Line</td><td>Whole-line additions and removals.</td><td>Source code and config files.</td></tr>
+        <tr><td>Character</td><td>Every single character.</td><td>Tiny edits, IDs, hashes.</td></tr>
+        <tr><td>Sentence</td><td>Sentence-level changes.</td><td>Copywriting and translations.</td></tr>
+        <tr><td>Paragraph</td><td>Block/paragraph changes.</td><td>Long-form content and drafts.</td></tr>
+        <tr><td>Inline view</td><td>One flow with green/red marks.</td><td>Quick reading of changes.</td></tr>
+        <tr><td>Side-by-side view</td><td>Two aligned columns.</td><td>Detailed review of code.</td></tr>
+        <tr><td>Unified view</td><td>Git-style +/− patch.</td><td>Pull requests and patches.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- File Format Support -->
+<section class="td-wrap td-prose">
+  <h2 class="td-title">📁 File Format Support</h2>
+  <p>Import either side directly from a file. Because the tool compares plain text, it works with any text-based format, including:</p>
+  <ul>
+    <li><b>Text &amp; docs:</b> TXT, Markdown (.md), LOG, CSV</li>
+    <li><b>Web:</b> HTML, CSS, JS, TypeScript</li>
+    <li><b>Data:</b> JSON, XML, YAML</li>
+    <li><b>Code:</b> Python, Java, C, C++, C#, PHP, SQL and more</li>
+  </ul>
+  <p>Export the comparison as HTML, Markdown, JSON, a unified patch, or print it to PDF.</p>
+</section>
+
+<!-- How To Use -->
+<section class="td-wrap td-prose">
+  <h2 class="td-title">🚀 How To Use</h2>
+  <ol class="td-steps">
+    <li>Paste the <b>original</b> text on the left and the <b>changed</b> version on the right (or import files).</li>
+    <li>Pick a <b>mode</b> (word/line/character/sentence/paragraph) and a <b>view</b> (inline/side-by-side/unified).</li>
+    <li>Turn on any <b>ignore options</b> to filter out cosmetic differences.</li>
+    <li>Read the highlighted result and the <b>statistics</b>; use <b>Next/Prev</b> to jump between changes.</li>
+    <li><b>Copy</b> or <b>export</b> the result as HTML, Markdown, JSON, a unified patch or PDF.</li>
+  </ol>
+</section>
+
+<!-- FAQ -->
+<section class="td-wrap td-faq">
+  <h2 class="td-title">❓ Frequently Asked Questions</h2>
+  <div id="faqList"></div>
+</section>
+
+<!-- Browser Compatibility -->
+<section class="td-wrap td-prose">
+  <h2 class="td-title">🌐 Browser Compatibility</h2>
+  <p>Works on all modern browsers — <b>Google Chrome, Mozilla Firefox, Microsoft Edge, Safari, Opera and Brave</b> — on Windows, macOS, Linux, Android and iOS. It needs JavaScript enabled, with no plugins or installation. File import uses the standard File API, copy uses the Clipboard API with a fallback, and exports use standard downloads supported everywhere.</p>
+</section>
+
+<!-- Privacy & Security -->
+<section class="td-wrap td-prose">
+  <h2 class="td-title">🔒 Privacy &amp; Security</h2>
+  <div class="td-note"><b>English:</b> Both texts are compared entirely in your browser. Nothing you paste, no file you import and no result you generate is ever uploaded to a server; there is no account and nothing is tracked. Your two drafts auto-save only to your browser's local storage, which you can clear anytime. The tool works offline once loaded, so confidential content never leaves your device.</div>
+  <div class="td-note"><b>हिन्दी:</b> दोनों texts पूरी तरह आपके browser में compare होते हैं। आप जो paste करते हैं, जो file import करते हैं या जो नतीजा बनाते हैं वह किसी server पर upload नहीं होता; कोई account नहीं और कुछ भी track नहीं होता। आपके दो drafts सिर्फ़ आपके browser के local storage में auto-save होते हैं, जिन्हें आप कभी भी साफ़ कर सकते हैं। page load होने के बाद टूल offline काम करता है।</div>
+</section>
+
+<!-- Troubleshooting -->
+<section class="td-wrap td-prose">
+  <h2 class="td-title">🛠️ Troubleshooting</h2>
+  <ul>
+    <li><b>“No differences found”:</b> the two texts are identical after your ignore options — turn some off to see cosmetic differences.</li>
+    <li><b>Everything shows as changed:</b> your line endings or indentation differ — enable “Ignore line endings” and “Ignore whitespace”.</li>
+    <li><b>Side-by-side looks off for prose:</b> it aligns by line; switch to Word or Inline for free-flowing text.</li>
+    <li><b>Large files feel slow:</b> use Line mode and turn off live compare, then click Compare once.</li>
+    <li><b>Copy did nothing:</b> some browsers block the clipboard until you interact — click once and retry, or use an export.</li>
+    <li><b>Diff engine failed to load:</b> check your connection and refresh — the comparison library loads from a CDN.</li>
+  </ul>
+</section>
+
 </div>
 
-<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<footer class="site-footer">© 2026 ApneSoftware.com — Free, private, browser-based tools.</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsdiff/8.0.2/diff.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-let mode = 'words';
+(function(){
+  "use strict";
+  function $(id){ return document.getElementById(id); }
+  function el(tag,cls){ var e=document.createElement(tag); if(cls) e.className=cls; return e; }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
 
-document.querySelectorAll('.mode-tab').forEach(tab=>{
-  tab.addEventListener('click', ()=>{
-    document.querySelectorAll('.mode-tab').forEach(t=>t.classList.remove('active'));
-    tab.classList.add('active');
-    mode = tab.dataset.mode;
-  });
-});
+  var mode='words', view='inline';
+  var lastDiff=null, lastPatch='', changeEls=[], changeIdx=-1;
+  var LS='tdState';
 
-document.getElementById('compareBtn').addEventListener('click', ()=>{
-  const a = document.getElementById('textA').value;
-  const b = document.getElementById('textB').value;
+  /* ===================== Normalisation ===================== */
+  function opt(id){ return $(id).checked; }
+  function anyOptOn(){ return ['optCase','optWs','optEmpty','optTrim','optNorm'].some(function(id){return $(id).checked;}); }
+  function normalize(text){
+    var t=String(text);
+    if(opt('optNorm')){ try{ t=t.normalize('NFC'); }catch(e){} }
+    if(opt('optEol')) t=t.replace(/\r\n/g,'\n').replace(/\r/g,'\n');
+    if(opt('optWs')) t=t.replace(/\t/g,'    ');
+    if(opt('optCase')) t=t.toLowerCase();
+    if(opt('optTrim')||opt('optEmpty')){
+      var lines=t.split('\n');
+      if(opt('optTrim')) lines=lines.map(function(l){ return l.replace(/[ \t]+$/,''); });
+      if(opt('optEmpty')) lines=lines.filter(function(l){ return l.trim()!==''; });
+      t=lines.join('\n');
+    }
+    return t;
+  }
 
-  let diff;
-  if(mode === 'words') diff = Diff.diffWords(a, b);
-  else if(mode === 'lines') diff = Diff.diffLines(a, b);
-  else diff = Diff.diffChars(a, b);
+  /* ===================== Compare ===================== */
+  function jsdiffOpts(){ var o={}; if(opt('optCase')) o.ignoreCase=true; if(opt('optWs')) o.ignoreWhitespace=true; return o; }
+  function runDiff(a,b){
+    var o=jsdiffOpts();
+    switch(mode){
+      case 'lines': return Diff.diffLines(a,b,{ignoreWhitespace:opt('optWs'),ignoreCase:opt('optCase'),newlineIsToken:false});
+      case 'chars': return Diff.diffChars(a,b,{ignoreCase:opt('optCase')});
+      case 'sentences': return Diff.diffSentences(a,b,o);
+      case 'paragraphs': return Diff.diffArrays(a.split(/\n\s*\n/), b.split(/\n\s*\n/));
+      default: return Diff.diffWords(a,b,o);
+    }
+  }
+  function compare(){
+    if(typeof Diff==='undefined'){ $('diffResult').textContent='Diff engine failed to load — check your connection and refresh.'; $('resultWrap').style.display='block'; return; }
+    var a=normalize($('textA').value), b=normalize($('textB').value);
+    if($('textA').value===''&&$('textB').value===''){ $('resultWrap').style.display='none'; return; }
+    var diff=runDiff(a,b); lastDiff=diff;
+    // stats
+    var added=0,removed=0;
+    diff.forEach(function(p){ var c=p.count||1; if(p.added) added+=c; else if(p.removed) removed+=c; });
+    var wa=Diff.diffWords(a,b,jsdiffOpts()); var addW=0,remW=0,chg=0;
+    wa.forEach(function(p){ var n=(p.value.match(/\S+/g)||[]).length; if(p.added){addW+=n;} else if(p.removed){remW+=n;} });
+    chg=Math.min(addW,remW);
+    $('addedCount').textContent = (mode==='words'?addW:added);
+    $('removedCount').textContent = (mode==='words'?remW:removed);
+    $('changedCount').textContent = chg;
+    // similarity via char diff
+    var cd=Diff.diffChars(a,b), same=0,total=Math.max(a.length,b.length,1);
+    cd.forEach(function(p){ if(!p.added&&!p.removed) same+=p.value.length; });
+    var sim=Math.round(same/total*100);
+    $('simVal').textContent=sim+'%';
+    $('statLines').textContent='Lines: '+(b.split('\n').length);
+    $('statChars').textContent='Chars: '+b.length;
+    // patch
+    lastPatch=Diff.createTwoFilesPatch('original','changed',a,b,'','');
+    // render
+    renderView(diff,a,b);
+    $('resultWrap').style.display='block';
+    collectChanges(); highlightSearch();
+    saveState();
+  }
 
-  let added = 0, removed = 0;
-  const html = diff.map(part => {
-    const escaped = part.value.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    if(part.added){ added += part.count || 1; return '<ins>' + escaped + '</ins>'; }
-    if(part.removed){ removed += part.count || 1; return '<del>' + escaped + '</del>'; }
-    return escaped;
-  }).join('');
+  /* ===================== Rendering ===================== */
+  function hlCode(s){ if(!opt('optHl')) return esc(s);
+    var out=esc(s);
+    out=out.replace(/(&quot;[^&]*?&quot;|&#39;[^&]*?&#39;|`[^`]*?`)/g,'<span class="tok-str">$1</span>');
+    out=out.replace(/(\/\/[^\n]*|#[^\n]*)/g,'<span class="tok-com">$1</span>');
+    out=out.replace(/\b(\d+(?:\.\d+)?)\b/g,'<span class="tok-num">$1</span>');
+    out=out.replace(/\b(function|return|if|else|for|while|var|let|const|class|import|export|def|public|private|void|int|string|new|null|true|false|SELECT|FROM|WHERE|INSERT|UPDATE)\b/g,'<span class="tok-kw">$1</span>');
+    return out;
+  }
+  function renderView(diff,a,b){
+    var noChange=diff.every(function(p){ return !p.added && !p.removed; });
+    if(noChange){ var r0=$('diffResult'); r0.className='diff-result'; r0.innerHTML='<div style="color:#6ee7b7">✓ No differences found — the two texts are identical'+(anyOptOn()?' (with your ignore options applied)':'')+'.</div>'; return; }
+    if(view==='unified'){ renderUnified(); return; }
+    if(view==='side'){ renderSide(a,b); return; }
+    // inline
+    var html=diff.map(function(p){
+      var val = (mode==='paragraphs') ? p.value.join('\n\n') : p.value;
+      var e=esc(val);
+      if(p.added) return '<ins>'+e+'</ins>';
+      if(p.removed) return '<del>'+e+'</del>';
+      return e;
+    }).join('');
+    var r=$('diffResult'); r.className='diff-result'; r.innerHTML=html||'No differences found — the two texts are identical.';
+  }
+  function renderUnified(){
+    var lines=lastPatch.split('\n');
+    var html=lines.map(function(l){
+      var e=esc(l);
+      if(/^\+\+\+|^---/.test(l)) return '<div style="color:#c4b5fd">'+e+'</div>';
+      if(/^@@/.test(l)) return '<div style="color:#a78bfa;font-weight:600">'+e+'</div>';
+      if(/^\+/.test(l)) return '<ins style="display:block">'+e+'</ins>';
+      if(/^-/.test(l)) return '<del style="display:block">'+e+'</del>';
+      return '<div>'+e+'</div>';
+    }).join('');
+    var r=$('diffResult'); r.className='diff-result'; r.innerHTML=html;
+  }
+  function renderSide(a,b){
+    var parts=Diff.diffLines(a,b,{ignoreWhitespace:opt('optWs'),ignoreCase:opt('optCase')});
+    var rows=[], ln=1, rn=1, i=0;
+    function splitLines(v){ var arr=v.split('\n'); if(arr.length&&arr[arr.length-1]==='') arr.pop(); return arr; }
+    while(i<parts.length){
+      var p=parts[i];
+      if(!p.added&&!p.removed){ splitLines(p.value).forEach(function(line){ rows.push({l:{n:ln++,t:line},r:{n:rn++,t:line},cls:''}); }); i++; continue; }
+      if(p.removed && parts[i+1] && parts[i+1].added){
+        var L=splitLines(p.value), R=splitLines(parts[i+1].value), mx=Math.max(L.length,R.length);
+        for(var k=0;k<mx;k++){
+          var lt=L[k],rt=R[k];
+          if(lt!==undefined&&rt!==undefined){ var wd=wordHtml(lt,rt); rows.push({l:{n:ln++,t:lt,html:wd.l},r:{n:rn++,t:rt,html:wd.r},cls:'chg'}); }
+          else if(lt!==undefined){ rows.push({l:{n:ln++,t:lt},r:{n:'',t:''},cls:'del'}); }
+          else { rows.push({l:{n:'',t:''},r:{n:rn++,t:rt},cls:'add'}); }
+        }
+        i+=2; continue;
+      }
+      if(p.removed){ splitLines(p.value).forEach(function(line){ rows.push({l:{n:ln++,t:line},r:{n:'',t:''},cls:'del'}); }); i++; continue; }
+      splitLines(p.value).forEach(function(line){ rows.push({l:{n:'',t:''},r:{n:rn++,t:line},cls:'add'}); }); i++;
+    }
+    // collapse unchanged runs
+    var out=[], run=[];
+    function flushRun(){ if(!opt('optCollapse')||run.length<=6){ run.forEach(function(r){out.push(r);}); } else { out.push(run[0]); out.push(run[1]); out.push({collapse:run.length-4}); out.push(run[run.length-2]); out.push(run[run.length-1]); } run=[]; }
+    rows.forEach(function(r){ if(r.cls===''){ run.push(r); } else { flushRun(); out.push(r); } }); flushRun();
+    var html='<table class="td-side"><tbody>'+out.map(function(r){
+      if(r.collapse) return '<tr class="collapse"><td colspan="4">⋯ '+r.collapse+' unchanged lines ⋯</td></tr>';
+      var lh=r.l.html||hlCode(r.l.t||''), rh=r.r.html||hlCode(r.r.t||'');
+      return '<tr class="'+r.cls+'"><td class="gut">'+r.l.n+'</td><td class="body">'+lh+'</td><td class="gut">'+r.r.n+'</td><td class="body">'+rh+'</td></tr>';
+    }).join('')+'</tbody></table>';
+    var res=$('diffResult'); res.className=''; res.innerHTML='<div class="td-scroll">'+html+'</div>';
+  }
+  function wordHtml(l,r){
+    var wd=Diff.diffWords(l,r,jsdiffOpts()), lh='',rh='';
+    wd.forEach(function(p){ var e=esc(p.value); if(p.added) rh+='<ins>'+e+'</ins>'; else if(p.removed) lh+='<del>'+e+'</del>'; else { lh+=e; rh+=e; } });
+    return {l:lh,r:rh};
+  }
 
-  document.getElementById('diffResult').innerHTML = html || 'No differences found — the two texts are identical.';
-  document.getElementById('addedCount').textContent = added;
-  document.getElementById('removedCount').textContent = removed;
-  document.getElementById('resultWrap').style.display = 'block';
-});
+  /* ===================== Change navigation ===================== */
+  function collectChanges(){ var r=$('diffResult'); changeEls=Array.prototype.slice.call(r.querySelectorAll('ins,del,tr.add,tr.del,tr.chg')); changeIdx=-1; $('changeInfo').textContent=changeEls.length?(changeEls.length+' changes'):''; }
+  function goChange(dir){ if(!changeEls.length) return; changeIdx=(changeIdx+dir+changeEls.length)%changeEls.length; var e=changeEls[changeIdx]; e.scrollIntoView({behavior:'smooth',block:'center'}); $('changeInfo').textContent=(changeIdx+1)+' / '+changeEls.length; }
+  $('nextBtn').addEventListener('click',function(){ goChange(1); });
+  $('prevBtn').addEventListener('click',function(){ goChange(-1); });
 
-document.getElementById('swapBtn').addEventListener('click', ()=>{
-  const a = document.getElementById('textA');
-  const b = document.getElementById('textB');
-  const tmp = a.value; a.value = b.value; b.value = tmp;
-});
+  /* ===================== Search ===================== */
+  function highlightSearch(){ var q=$('searchInput').value; if(!q) return; var r=$('diffResult'); var walker=document.createTreeWalker(r,NodeFilter.SHOW_TEXT,null); var nodes=[],n; while((n=walker.nextNode())) nodes.push(n); var rx=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi'); nodes.forEach(function(node){ if(rx.test(node.nodeValue)){ var span=el('span'); span.innerHTML=esc(node.nodeValue).replace(rx,function(m){return '<mark>'+esc(m)+'</mark>';}); node.parentNode.replaceChild(span,node); } }); }
+  $('searchInput').addEventListener('input',function(){ if(lastDiff) compare(); });
 
-document.getElementById('clearBtn').addEventListener('click', ()=>{
-  document.getElementById('textA').value = '';
-  document.getElementById('textB').value = '';
-  document.getElementById('resultWrap').style.display = 'none';
-});
+  /* ===================== Line numbers & counts ===================== */
+  function updateGutter(ta,gut,cnt){ var lines=ta.value.split('\n').length; var s=''; for(var i=1;i<=lines;i++) s+=i+'\n'; gut.textContent=s||'1'; if(cnt) cnt.textContent=lines+' lines · '+ta.value.length+' chars'; }
+  function syncScroll(ta,gut){ gut.scrollTop=ta.scrollTop; }
+  ['A','B'].forEach(function(x){ var ta=$('text'+x),gut=$('gut'+x),cnt=$('cnt'+x); ta.addEventListener('input',function(){ updateGutter(ta,gut,cnt); if(opt('optLive')) debounceCompare(); saveState(); }); ta.addEventListener('scroll',function(){ syncScroll(ta,gut); }); });
+  var dbT=null; function debounceCompare(){ if(dbT)clearTimeout(dbT); dbT=setTimeout(compare,300); }
+
+  /* ===================== Mode / view / options ===================== */
+  $('modeSeg').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b)return; mode=b.dataset.m; $('modeSeg').querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');}); compare(); });
+  $('viewSeg').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b)return; view=b.dataset.v; $('viewSeg').querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');}); compare(); });
+  ['optCase','optWs','optEmpty','optTrim','optEol','optNorm','optCollapse','optHl'].forEach(function(id){ $(id).addEventListener('change',compare); });
+  $('optWrap').addEventListener('change',function(){ $('textA').classList.toggle('wrap',this.checked); $('textB').classList.toggle('wrap',this.checked); });
+
+  /* ===================== Buttons ===================== */
+  $('compareBtn').addEventListener('click',compare);
+  $('swapBtn').addEventListener('click',function(){ var t=$('textA').value; $('textA').value=$('textB').value; $('textB').value=t; updateGutter($('textA'),$('gutA'),$('cntA')); updateGutter($('textB'),$('gutB'),$('cntB')); compare(); });
+  $('clearBtn').addEventListener('click',function(){ $('textA').value=''; $('textB').value=''; updateGutter($('textA'),$('gutA'),$('cntA')); updateGutter($('textB'),$('gutB'),$('cntB')); $('resultWrap').style.display='none'; saveState(); });
+  $('sampleBtn').addEventListener('click',function(){ $('textA').value='function greet(name) {\n  return "Hello " + name;\n}\nconst x = 10;'; $('textB').value='function greet(name, title) {\n  return "Hello " + title + " " + name;\n}\nconst x = 12;'; updateGutter($('textA'),$('gutA'),$('cntA')); updateGutter($('textB'),$('gutB'),$('cntB')); compare(); });
+  $('fullscreenBtn').addEventListener('click',function(){ var p=$('mainPanel'); p.classList.toggle('td-fullscreen'); this.textContent=p.classList.contains('td-fullscreen')?'✕ Exit':'⛶ Fullscreen'; });
+
+  function fileLoad(input,ta,gut,cnt){ input.addEventListener('change',function(ev){ var f=ev.target.files&&ev.target.files[0]; if(!f)return; var fr=new FileReader(); fr.onload=function(){ ta.value=fr.result; updateGutter(ta,gut,cnt); compare(); }; fr.readAsText(f); }); }
+  fileLoad($('fileA'),$('textA'),$('gutA'),$('cntA'));
+  fileLoad($('fileB'),$('textB'),$('gutB'),$('cntB'));
+
+  /* ===================== Export ===================== */
+  function saveBlob(name,txt,type){ if(typeof downloadText==='function'&&type==='text/plain'){ downloadText(name,txt); return; } var b=new Blob([txt],{type:type||'text/plain'}); if(typeof downloadBlob==='function') downloadBlob(name,b); else { var a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=name; a.click(); } }
+  $('copyBtn').addEventListener('click',function(){ copyText($('diffResult').innerText); premToast('Result copied'); });
+  $('expHtml').addEventListener('click',function(){ var css='ins{background:#d4f8e0;text-decoration:none}del{background:#ffd7d7}body{font-family:monospace;white-space:pre-wrap}'; var html='<!doctype html><meta charset="utf-8"><title>Diff</title><style>'+css+'</style>'+$('diffResult').innerHTML; saveBlob('diff.html',html,'text/html'); premToast('HTML downloaded'); });
+  $('expMd').addEventListener('click',function(){ if(!lastPatch){premToast('Compare first');return;} saveBlob('diff.md','```diff\n'+lastPatch+'\n```\n','text/markdown'); premToast('Markdown downloaded'); });
+  $('expJson').addEventListener('click',function(){ if(!lastDiff){premToast('Compare first');return;} saveBlob('diff.json',JSON.stringify({mode:mode,parts:lastDiff.map(function(p){return {value:p.value,added:!!p.added,removed:!!p.removed};})},null,2),'application/json'); premToast('JSON downloaded'); });
+  $('expPatch').addEventListener('click',function(){ if(!lastPatch){premToast('Compare first');return;} saveBlob('changes.patch',lastPatch,'text/plain'); premToast('Patch downloaded'); });
+  $('printBtn').addEventListener('click',function(){ window.print(); });
+
+  /* ===================== Persistence ===================== */
+  function saveState(){ try{ localStorage.setItem(LS,JSON.stringify({a:$('textA').value,b:$('textB').value,mode:mode,view:view})); }catch(e){} }
+  function loadState(){ try{ var s=JSON.parse(localStorage.getItem(LS)); if(s){ if(s.a)$('textA').value=s.a; if(s.b)$('textB').value=s.b; if(s.mode)mode=s.mode; if(s.view)view=s.view; } }catch(e){} }
+
+  /* ===================== FAQ ===================== */
+  var FAQ=[
+    ['What is a diff checker?','A tool that compares two texts or code files and highlights what was added, removed or changed. — यह दो texts की तुलना कर बदलाव highlight करता है।'],
+    ['Is this diff checker free?','Yes, completely free — no account, no limits, no watermark, and it works offline. — हाँ, यह पूरी तरह मुफ़्त है।'],
+    ['Is my text private?','Completely. Comparison happens in your browser; nothing you paste or import is uploaded. — पूरी तरह; कुछ भी upload नहीं होता।'],
+    ['What is the difference between word, line and character diff?','Word compares word-by-word (good for prose), line compares whole lines (good for code), character compares every character (good for tiny edits). — word, line और character अलग-अलग granularity हैं।'],
+    ['What is a side-by-side diff?','It shows the two versions in two aligned columns with changed words highlighted within each line. — दो-column aligned तुलना।'],
+    ['What is a unified diff?','The Git-style +/− patch format used in code review and by the patch command. — Git-style +/− patch।'],
+    ['Can I ignore case and whitespace?','Yes. Toggle ignore case, ignore whitespace, empty lines, line endings and trailing spaces. — हाँ, कई ignore options हैं।'],
+    ['Can I compare code files?','Yes. Import files (JS, CSS, HTML, JSON, Python, etc.) or paste code; line mode and highlighting help. — हाँ, code files तुलना कर सकते हैं।'],
+    ['Does it update as I type?','Yes, with Live compare on, the diff updates automatically (debounced). — हाँ, Live compare से।'],
+    ['What is the similarity percentage?','The share of characters that are unchanged between the two texts, from 0% to 100%. — दोनों में समान characters का प्रतिशत।'],
+    ['Can I export the result?','Yes — as HTML, Markdown, JSON, a unified patch, or print to PDF; you can also copy it. — हाँ, कई export विकल्प हैं।'],
+    ['What is a unified patch file?','A .patch/.diff file that other developers or the patch/git tools can apply to reproduce your changes. — patch file जिसे apply किया जा सकता है।'],
+    ['Can I import files to compare?','Yes. Use “Import file” on either side to load TXT, HTML, CSS, JS, JSON, CSV, MD, LOG and more. — हाँ, file import उपलब्ध है।'],
+    ['Does it handle large files?','Yes, within browser memory. For very large inputs, use Line mode and turn off live compare. — हाँ, बड़े files के लिए Line mode उपयोग करें।'],
+    ['What does “Ignore line endings” do?','It treats Windows (CRLF) and Unix (LF) line breaks as the same, so they aren’t flagged as changes. — CRLF और LF को समान मानता है।'],
+    ['Can I navigate between changes?','Yes. Use Next and Previous to jump to each difference, and collapse unchanged sections. — हाँ, Next/Prev navigation है।'],
+    ['Is there syntax highlighting?','An optional lightweight highlighter colours strings, comments, numbers and keywords in side-by-side view. — हाँ, वैकल्पिक highlighting है।'],
+    ['Will my drafts be saved?','Yes, both editors auto-save to your browser’s local storage, so a refresh won’t lose your work. — हाँ, drafts auto-save होते हैं।'],
+    ['Does it work offline?','Yes, once the page and the small diff library have loaded it runs entirely offline. — हाँ, यह offline काम करता है।'],
+    ['Can I swap the two sides?','Yes. The Swap button flips original and changed instantly. — हाँ, Swap बटन से।'],
+    ['Why does everything show as changed?','Usually different indentation or line endings — enable Ignore whitespace and Ignore line endings. — indentation/line endings के कारण।'],
+    ['Is it good for comparing JSON or XML?','Yes. Use line mode; for cleaner results, format the JSON/XML first with a formatter. — हाँ, line mode उपयोग करें।']
+  ];
+  function buildFaq(){ var list=$('faqList'); if(!list) return; FAQ.forEach(function(p){ var d=el('details'); d.innerHTML='<summary>'+esc(p[0])+'</summary><p>'+esc(p[1])+'</p>'; list.appendChild(d); }); try{ $('faqSchema').textContent=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:FAQ.map(function(p){return {'@type':'Question',name:p[0],acceptedAnswer:{'@type':'Answer',text:p[1]}};})}); }catch(e){} }
+
+  /* ===================== Init ===================== */
+  window.__tdHooks={compare:compare,setMode:function(m){mode=m;},setView:function(v){view=v;},runDiff:runDiff};
+  buildFaq(); loadState();
+  $('modeSeg').querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.m===mode?'true':'false');});
+  $('viewSeg').querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.v===view?'true':'false');});
+  updateGutter($('textA'),$('gutA'),$('cntA')); updateGutter($('textB'),$('gutB'),$('cntB'));
+  if($('textA').value||$('textB').value) compare();
+})();
 </script>
 </body>
 </html>
