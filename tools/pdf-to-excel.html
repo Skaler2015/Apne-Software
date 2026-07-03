@@ -425,6 +425,35 @@
     }catch(e){ return null; }
   }
 
+  // is a string a number, currency amount or date (used to find the real data rows)
+  const NUMDATE=/^[₹$€£]?\s?-?[\d,]+(\.\d+)?%?$|^\d{1,2}[-\/.]\d{1,2}[-\/.]\d{2,4}$/;
+  function itemSpan(it){ const l=it.transform[4]; const w=it.width || itemHeight(it)*0.5*String(it.str).length; return [l, l+w]; }
+
+  // ---- find column x-ranges from vertical whitespace gaps (projection profile) ----
+  function detectColumnRanges(colItems){
+    if(!colItems.length) return [];
+    const bin=2;
+    let minX=Infinity, maxX=-Infinity;
+    const spans=colItems.map(it=>{ const s=itemSpan(it); if(s[0]<minX)minX=s[0]; if(s[1]>maxX)maxX=s[1]; return s; });
+    if(!isFinite(minX) || maxX<=minX) return [];
+    const n=Math.ceil((maxX-minX)/bin)+2;
+    const cov=new Array(n).fill(0);
+    spans.forEach(([l,r])=>{ let a=Math.floor((l-minX)/bin), b=Math.ceil((r-minX)/bin); if(a<0)a=0; for(let i=a;i<b&&i<n;i++) cov[i]++; });
+    const minGapBins=Math.max(2, Math.round(5/bin)); // ignore gaps narrower than ~5px (inter-word)
+    const cols=[]; let i=0;
+    while(i<n){
+      while(i<n && cov[i]===0) i++;
+      if(i>=n) break;
+      const start=i;
+      while(i<n){
+        if(cov[i]===0){ let j=i; while(j<n && cov[j]===0) j++; if(j-i>=minGapBins) break; i=j; }
+        else i++;
+      }
+      cols.push([minX+start*bin, minX+Math.min(i,n)*bin]);
+    }
+    return cols;
+  }
+
   // ---- position-based grid detection from a PDF text layer (returns values + per-cell style) ----
   function itemsToGrid(items, styles){
     items=items.filter(it=>it.str!==undefined && String(it.str).trim().length);
@@ -438,22 +467,28 @@
       if(lastY===null || Math.abs(y-lastY)>rowTol){ cur=[]; rows.push(cur); }
       cur.push(it); lastY=y;
     });
-    // global column anchors from left edges
-    const charW=median(items.map(it=>{ const w=it.width||itemHeight(it)*0.5*String(it.str).length; return w/Math.max(1,String(it.str).length); }))||5;
-    const gapThresh=Math.max(8, charW*2.2);
-    const lefts=items.map(it=>it.transform[4]).sort((a,b)=>a-b);
-    const anchors=[]; let start=lefts[0], prev=lefts[0];
-    for(let i=1;i<lefts.length;i++){ if(lefts[i]-prev>gapThresh){ anchors.push(start); start=lefts[i]; } prev=lefts[i]; }
-    anchors.push(start);
-    const assign=x=>{ let bi=0, bd=Infinity; for(let i=0;i<anchors.length;i++){ const d=Math.abs(x-anchors[i]); if(x>=anchors[i]-gapThresh*0.5 && d<bd){ bd=d; bi=i; } }
-      if(bd===Infinity){ for(let i=0;i<anchors.length;i++){ const d=Math.abs(x-anchors[i]); if(d<bd){ bd=d; bi=i; } } } return bi; };
+
+    // Determine table columns from the DATA rows only (many cells, mostly numbers/dates),
+    // so the top info-block and merged headers do not distort the grid. Numbers are often
+    // right-aligned, so we detect columns from whitespace gaps between the occupied x-ranges.
+    const dataRows=rows.filter(r=>{ const nb=r.filter(it=>String(it.str).trim()); if(nb.length<4) return false;
+      const num=nb.filter(it=>NUMDATE.test(String(it.str).trim().replace(/\s+/g,''))).length; return num/nb.length>=0.4; });
+    let cols=detectColumnRanges((dataRows.length>=2?dataRows:rows).flat());
+    if(cols.length<2) cols=detectColumnRanges(items);
+    if(cols.length<1) cols=[[ -1e9, 1e9 ]];
+
+    const centers=cols.map(c=>(c[0]+c[1])/2);
+    const assign=it=>{ const s=itemSpan(it); const cx=(s[0]+s[1])/2;
+      for(let i=0;i<cols.length;i++){ if(cx>=cols[i][0]-1 && cx<=cols[i][1]+1) return i; }
+      let bi=0, bd=Infinity; for(let i=0;i<cols.length;i++){ const d=Math.abs(cx-centers[i]); if(d<bd){ bd=d; bi=i; } } return bi; };
+
     // build value grid + parallel style grid
     const grid=[]; const sgrid=[];
     rows.forEach(row=>{
       const rowSorted=[...row].sort((a,b)=>a.transform[4]-b.transform[4]);
-      const cells=new Array(anchors.length).fill('');
-      const cst=new Array(anchors.length).fill(null);
-      rowSorted.forEach(it=>{ const ci=assign(it.transform[4]);
+      const cells=new Array(cols.length).fill('');
+      const cst=new Array(cols.length).fill(null);
+      rowSorted.forEach(it=>{ const ci=assign(it);
         cells[ci]=cells[ci]?cells[ci]+' '+it.str:it.str;
         const st=cst[ci]||(cst[ci]={size:0,bold:false,color:null});
         st.size=Math.max(st.size, Math.round(itemHeight(it)));
@@ -597,7 +632,7 @@
   }
   const EXT={xlsx:'xlsx', xls:'xls', csv:'csv', ods:'ods'};
 
-  window.__p2eHooks={ extractTables, itemsToGrid, ocrRows, buildWorkbook, workbookBlob, parseRange, coerceCell, dropEmptyCols, pageColors, applyStyles };
+  window.__p2eHooks={ extractTables, itemsToGrid, detectColumnRanges, ocrRows, buildWorkbook, workbookBlob, parseRange, coerceCell, dropEmptyCols, pageColors, applyStyles };
 
   // ---- preview ----
   async function preview(file, pagesData){
