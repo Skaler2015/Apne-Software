@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Free online SWP (Systematic Withdrawal Plan) Calculator. Work out monthly income from a mutual fund corpus, how long it lasts, remaining balance, total withdrawals and interest — with inflation, annual withdrawal increase, tax, a full withdrawal schedule, Canvas charts and CSV/PDF export. 100% private, in your browser, no signup.">
+<meta name="keywords" content="swp calculator, systematic withdrawal plan calculator, swp mutual fund calculator, monthly income calculator, retirement withdrawal calculator, swp calculator india, corpus withdrawal calculator">
+<link rel="canonical" href="https://apnesoftware.com/tools/swp-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SWP Calculator — Systematic Withdrawal Plan, Monthly Income &amp; Schedule | ApneSoftware">
+<meta property="og:description" content="Calculate SWP monthly income, how long your corpus lasts, remaining balance and total withdrawals — with inflation, annual increase, tax, a full schedule, charts and CSV/PDF export. 100% private, no signup.">
+<meta property="og:url" content="https://apnesoftware.com/tools/swp-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SWP Calculator — Systematic Withdrawal Plan &amp; Schedule | ApneSoftware">
+<meta name="twitter:description" content="Calculate SWP monthly income, how long your corpus lasts, remaining balance and total withdrawals — with inflation, tax, a full schedule, charts and CSV/PDF export.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SWP Calculator","description":"Systematic Withdrawal Plan (SWP) calculator that works out the monthly income from a mutual fund corpus, how long the corpus lasts, the remaining balance, total withdrawals and interest earned, with inflation, annual withdrawal increase, tax, a full withdrawal schedule, Canvas charts and CSV and PDF export — entirely in your browser. No signup, no uploads.","url":"https://apnesoftware.com/tools/swp-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires a modern web browser with JavaScript enabled","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Monthly, quarterly, half-yearly and yearly withdrawals","How long the corpus lasts and exhaustion date","Inflation and annual withdrawal increase","Tax estimate on gains","Full withdrawal schedule with search, sort and pagination","Canvas charts","CSV and PDF export","Runs fully in the browser"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"SWP Calculator","url":"https://apnesoftware.com/tools/swp-calculator.html","description":"Free browser-based Systematic Withdrawal Plan calculator with schedule, charts, inflation and tax.","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"inLanguage":["en","hi"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"Calculators","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":3,"name":"SWP Calculator","item":"https://apnesoftware.com/tools/swp-calculator.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to calculate a Systematic Withdrawal Plan (SWP)","description":"Work out SWP income, longevity and remaining corpus in your browser.","step":[{"@type":"HowToStep","name":"Enter your corpus","text":"Set the initial investment and the amount you want to withdraw each period."},{"@type":"HowToStep","name":"Set assumptions","text":"Choose the withdrawal frequency, expected annual return, duration, and optionally inflation, annual increase and tax."},{"@type":"HowToStep","name":"Read the results","text":"See the monthly income, total withdrawals, remaining corpus and whether the money lasts, with charts."},{"@type":"HowToStep","name":"Review the schedule","text":"Open the month-by-month withdrawal schedule and export or share it."}]}
+</script>
+<script type="application/ld+json" id="faqSchema">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}
+</script>
+<meta name="color-scheme" content="dark">
+<title>SWP Calculator — Systematic Withdrawal Plan, Monthly Income &amp; Schedule | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+/* ===== SWP Calculator — scoped swp- styles ===== */
+.swp-crumb{font-size:.78rem;color:var(--text-dim);margin-bottom:6px}
+.swp-crumb a{color:#c4b5fd;text-decoration:none}
+.swp-crumb a:hover{text-decoration:underline}
+.swp-updated{font-size:.74rem;color:var(--text-dim);margin-top:2px}
+.swp-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+.swp-btn{background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.34);color:#d6cbff;border-radius:10px;padding:9px 14px;font-size:.84rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+.swp-btn:hover{background:rgba(167,139,250,.24)}
+.swp-btn.primary{background:linear-gradient(90deg,#7c3aed,#a78bfa);border-color:transparent;color:#fff;font-weight:600}
+.swp-btn.primary:hover{filter:brightness(1.08)}
+.swp-btn:focus-visible{outline:2px solid #a78bfa;outline-offset:2px}
+
+.swp-three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media(max-width:720px){.swp-three{grid-template-columns:1fr}}
+.swp-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:720px){.swp-two{grid-template-columns:1fr}}
+.swp-ctrl{margin-bottom:14px}
+.swp-ctrl .swp-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+.swp-ctrl label{font-size:.85rem;color:var(--text-dim)}
+.swp-val{display:flex;align-items:center;gap:6px}
+.swp-val input{width:140px;max-width:44vw;text-align:right;padding:6px 10px;font-size:.95rem;font-weight:700}
+.swp-val input::-webkit-outer-spin-button,.swp-val input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.swp-val input[type=number]{-moz-appearance:textfield;appearance:textfield}
+.swp-val .u{color:var(--text-dim);font-size:.8rem}
+input[type=range]{width:100%;accent-color:#a78bfa;height:6px;cursor:pointer}
+.swp-field label{display:block;font-size:.8rem;color:var(--text-dim);margin-bottom:4px}
+.swp-field select{width:100%;padding:8px 10px;font-size:.9rem}
+.swp-err{color:#fca5a5;font-size:.78rem;margin-top:4px;min-height:1em}
+.swp-input-bad{border-color:#f87171!important}
+
+.stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:6px 0 4px}
+@media(max-width:820px){.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.stat-grid{grid-template-columns:1fr}}
+.stat-box{background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);border-radius:12px;padding:14px 10px;text-align:center;min-width:0;animation:swpPop .35s ease}
+@keyframes swpPop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.stat-box .num{font-size:clamp(1rem,2.3vw,1.28rem);font-weight:800;color:#c4b5fd;line-height:1.2;white-space:nowrap}
+.stat-box .lbl{font-size:.76rem;color:var(--text-dim);margin-top:3px;line-height:1.25}
+.stat-box.alt{background:rgba(255,255,255,.03);border-color:var(--border,rgba(255,255,255,.1))}
+.stat-box.alt .num{color:var(--text);font-size:clamp(.9rem,2vw,1.08rem)}
+.stat-box.good{background:rgba(52,211,153,.1);border-color:rgba(52,211,153,.3)}
+.stat-box.good .num{color:#6ee7b7}
+.stat-box.bad{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.3)}
+.stat-box.bad .num{color:#fca5a5}
+
+.swp-charts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+@media(max-width:720px){.swp-charts{grid-template-columns:1fr}}
+.swp-chartbox{background:rgba(255,255,255,.02);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:12px}
+.swp-chartbox h4{margin:0 0 8px;font-size:.82rem;color:var(--text-dim)}
+.swp-chartbox canvas{width:100%;height:200px;display:block}
+.swp-clegend{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:.76rem;color:var(--text-dim)}
+.swp-clegend span{display:inline-flex;align-items:center;gap:6px}
+.swp-clegend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+.swp-tablewrap{margin-top:18px}
+.swp-tbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:8px}
+.swp-tbar .swp-search{background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.12));color:var(--text);border-radius:8px;padding:6px 10px;font-size:.8rem;min-width:150px}
+.swp-tbar .swp-count{font-size:.78rem;color:var(--text-dim);margin-left:auto}
+.swp-tscroll{overflow:auto;max-height:460px;border:1px solid var(--border,rgba(255,255,255,.1));border-radius:10px}
+table.swp-table{border-collapse:collapse;font-size:.8rem;width:100%;min-width:640px}
+table.swp-table th,table.swp-table td{border:1px solid var(--border,rgba(255,255,255,.12));padding:6px 10px;text-align:right;white-space:nowrap;color:var(--text)}
+table.swp-table th{background:rgba(167,139,250,.14);color:#fff;position:sticky;top:0;font-weight:600;cursor:pointer;user-select:none}
+table.swp-table th[aria-sort]::after{content:' ⇅';opacity:.5;font-size:.7rem}
+table.swp-table th[aria-sort="ascending"]::after{content:' ↑';opacity:1}
+table.swp-table th[aria-sort="descending"]::after{content:' ↓';opacity:1}
+table.swp-table td:first-child,table.swp-table th:first-child{text-align:left}
+.swp-pager{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:10px;font-size:.8rem;color:var(--text-dim)}
+.swp-pager button{background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text);border-radius:8px;padding:5px 12px;cursor:pointer}
+.swp-pager button:disabled{opacity:.4;cursor:default}
+
+.swp-note{background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;padding:12px 14px;font-size:.85rem;color:var(--text-dim);margin-top:16px}
+
+/* below-tool */
+.swp-wrap{margin:26px 0}
+.swp-title{font-size:1.35rem;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.swp-sub{color:var(--text-dim);font-size:.92rem;margin:0 0 18px;line-height:1.6}
+.swp-feat-grid,.swp-cmp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.swp-fcard,.swp-cmpcard{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:14px;padding:16px}
+.swp-fcard h4,.swp-cmpcard h4{margin:0 0 6px;font-size:.98rem;display:flex;align-items:center;gap:8px}
+.swp-fcard p{margin:0;font-size:.86rem;color:var(--text-dim);line-height:1.55}
+.swp-cmpcard p{margin:4px 0 0;font-size:.82rem;color:var(--text-dim);line-height:1.5}
+.swp-cmpcard .pro{color:#86efac}.swp-cmpcard .con{color:#fca5a5}
+.swp-rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.swp-rel{display:block;text-decoration:none;background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:14px;transition:.15s;color:var(--text)}
+.swp-rel:hover{border-color:#a78bfa;background:rgba(167,139,250,.1);transform:translateY(-2px)}
+.swp-rel b{display:block;font-size:.92rem;margin-bottom:3px}
+.swp-rel span{font-size:.8rem;color:var(--text-dim);line-height:1.45}
+.swp-faq details{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:0 16px;margin-bottom:10px}
+.swp-faq summary{cursor:pointer;padding:14px 0;font-weight:600;font-size:.92rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.swp-faq summary::-webkit-details-marker{display:none}
+.swp-faq summary::after{content:'+';font-size:1.3rem;color:#a78bfa;flex:0 0 auto}
+.swp-faq details[open] summary::after{content:'−'}
+.swp-faq details p{margin:0 0 14px;font-size:.87rem;color:var(--text-dim);line-height:1.65}
+.swp-steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:12px}
+.swp-steps li{counter-increment:s;position:relative;padding-left:46px;font-size:.9rem;color:var(--text-dim);line-height:1.6}
+.swp-steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:9px;background:rgba(167,139,250,.18);color:#c4b5fd;font-weight:700;display:grid;place-items:center}
+.swp-steps li b{color:var(--text)}
+.swp-formula{background:#0d1117;border:1px solid var(--border,rgba(255,255,255,.12));border-radius:10px;padding:14px 16px;font-family:ui-monospace,Menlo,monospace;font-size:.86rem;color:#c9d1d9;overflow-x:auto;line-height:1.7}
+.swp-pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.swp-pill{background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);color:#d6cbff;border-radius:999px;padding:5px 12px;font-size:.8rem}
+.swp-footlinks{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;font-size:.82rem;margin:10px 0}
+.swp-footlinks a{color:#c4b5fd;text-decoration:none}
+@media print{ .site-header,.swp-toolbar,.swp-btn,.swp-charts,.swp-tbar,.swp-pager,.swp-wrap,input[type=range],footer{display:none!important} body{background:#fff;color:#000} .panel{box-shadow:none} }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="tool-header">
+    <nav class="swp-crumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html">Calculators</a> › <span>SWP Calculator</span></nav>
+    <h1>💸 SWP Calculator</h1>
+    <p>Plan a <b>Systematic Withdrawal Plan</b> — see your regular income from a corpus, how long it lasts, the remaining balance and total withdrawals, with inflation, annual increase, tax, a full schedule and charts.</p>
+    <div class="swp-updated" id="updated">Last updated: —</div>
+    <div class="swp-toolbar">
+      <button class="swp-btn" id="shareBtn" type="button">🔗 Share</button>
+      <button class="swp-btn" id="printBtn" type="button">🖨️ Print</button>
+      <button class="swp-btn" id="resetBtn" type="button">↺ Reset</button>
+      <button class="swp-btn" id="exampleBtn" type="button">✨ Load example</button>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="swp-two">
+      <div class="swp-ctrl">
+        <div class="swp-top"><label for="initial">💰 Initial investment</label>
+          <div class="swp-val"><span class="u" id="curSym1">₹</span><input type="number" id="initial" value="1000000" min="0" step="10000" aria-label="Initial investment"></div></div>
+        <input type="range" id="initialR" min="10000" max="50000000" step="10000" value="1000000" aria-label="Initial investment slider">
+        <div class="swp-err" id="errInitial" role="alert"></div>
+      </div>
+      <div class="swp-ctrl">
+        <div class="swp-top"><label for="withdraw">📤 Withdrawal amount</label>
+          <div class="swp-val"><span class="u" id="curSym2">₹</span><input type="number" id="withdraw" value="8000" min="0" step="500" aria-label="Withdrawal amount"></div></div>
+        <input type="range" id="withdrawR" min="500" max="500000" step="500" value="8000" aria-label="Withdrawal amount slider">
+        <div class="swp-err" id="errWithdraw" role="alert"></div>
+      </div>
+    </div>
+
+    <div class="swp-three">
+      <div class="swp-ctrl">
+        <div class="swp-top"><label for="rate">📈 Expected return</label>
+          <div class="swp-val"><input type="number" id="rate" value="10" step="0.5" min="1" max="30" aria-label="Expected annual return"><span class="u">% p.a.</span></div></div>
+        <input type="range" id="rateR" min="1" max="30" step="0.5" value="10" aria-label="Return slider">
+      </div>
+      <div class="swp-ctrl">
+        <div class="swp-top"><label for="years">🗓️ Duration</label>
+          <div class="swp-val"><input type="number" id="years" value="20" step="1" min="1" max="50" aria-label="Duration years"><span class="u">yr</span></div></div>
+        <input type="range" id="yearsR" min="1" max="50" step="1" value="20" aria-label="Duration slider">
+      </div>
+      <div class="swp-field swp-ctrl">
+        <label for="freq">🔁 Withdrawal frequency</label>
+        <select id="freq"><option value="12">Monthly</option><option value="4">Quarterly</option><option value="2">Half-yearly</option><option value="1">Yearly</option></select>
+      </div>
+    </div>
+
+    <div class="swp-three">
+      <div class="swp-ctrl">
+        <div class="swp-top"><label for="inflation">🛡️ Inflation</label>
+          <div class="swp-val"><input type="number" id="inflation" value="6" step="0.5" min="0" max="15" aria-label="Inflation rate"><span class="u">%</span></div></div>
+        <input type="range" id="inflationR" min="0" max="15" step="0.5" value="6" aria-label="Inflation slider">
+      </div>
+      <div class="swp-ctrl">
+        <div class="swp-top"><label for="wIncrease">➕ Annual withdrawal increase</label>
+          <div class="swp-val"><input type="number" id="wIncrease" value="0" step="1" min="0" max="20" aria-label="Annual withdrawal increase"><span class="u">%</span></div></div>
+        <input type="range" id="wIncreaseR" min="0" max="20" step="1" value="0" aria-label="Withdrawal increase slider">
+      </div>
+      <div class="swp-two swp-ctrl" style="margin-bottom:0">
+        <div class="swp-field"><label for="tax">🧾 Tax on gains (%)</label>
+          <div class="swp-val" style="justify-content:flex-start"><input type="number" id="tax" value="0" min="0" max="40" step="1" style="width:100%;text-align:left" aria-label="Tax rate"></div></div>
+        <div class="swp-field"><label for="currency">💱 Currency</label>
+          <select id="currency"><option value="INR">₹ INR</option><option value="USD">$ USD</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="AED">AED</option><option value="CAD">C$ CAD</option><option value="AUD">A$ AUD</option></select></div>
+      </div>
+    </div>
+
+    <div class="swp-toolbar" style="margin-bottom:6px">
+      <button class="swp-btn primary" id="calcBtn" type="button">🧮 Calculate</button>
+      <button class="swp-btn" id="copyBtn" type="button">📋 Copy result</button>
+      <button class="swp-btn" id="csvBtn" type="button">⬇️ Download CSV</button>
+      <button class="swp-btn" id="pdfBtn" type="button">📄 Download PDF</button>
+    </div>
+
+    <div class="stat-grid" id="statGrid">
+      <div class="stat-box"><div class="num" id="siInitial">₹0</div><div class="lbl">Initial investment</div></div>
+      <div class="stat-box"><div class="num" id="siWithdrawn">₹0</div><div class="lbl">Total withdrawn</div></div>
+      <div class="stat-box"><div class="num" id="siInterest">₹0</div><div class="lbl">Total interest earned</div></div>
+      <div class="stat-box good"><div class="num" id="siFinal">₹0</div><div class="lbl">Remaining corpus</div></div>
+      <div class="stat-box alt"><div class="num" id="siProfit">₹0</div><div class="lbl">Total profit</div></div>
+      <div class="stat-box alt"><div class="num" id="siGrowth">0%</div><div class="lbl">Growth %</div></div>
+      <div class="stat-box alt"><div class="num" id="siPeriod">0</div><div class="lbl">Withdrawal period</div></div>
+      <div class="stat-box alt"><div class="num" id="siEff">0%</div><div class="lbl">Effective yield</div></div>
+      <div class="stat-box alt"><div class="num" id="siExhaust">—</div><div class="lbl">Corpus exhaustion</div></div>
+    </div>
+
+    <div class="swp-charts">
+      <div class="swp-chartbox"><h4>Remaining corpus over time</h4><canvas id="corpusChart" height="200"></canvas>
+        <div class="swp-clegend"><span><i style="background:#a78bfa"></i> Corpus balance</span></div></div>
+      <div class="swp-chartbox"><h4>Yearly withdrawal vs interest</h4><canvas id="barsChart" height="200"></canvas>
+        <div class="swp-clegend"><span><i style="background:#34d399"></i> Interest earned</span><span><i style="background:#f472b6"></i> Withdrawn</span></div></div>
+    </div>
+
+    <div class="swp-tablewrap">
+      <div class="swp-tbar">
+        <input class="swp-search" id="tableSearch" type="search" placeholder="🔎 Search month/year…" aria-label="Search schedule">
+        <button class="swp-btn" id="tableCsvBtn" type="button">⬇️ CSV</button>
+        <button class="swp-btn" id="tablePrintBtn" type="button">🖨️ Print table</button>
+        <span class="swp-count" id="tableCount"></span>
+      </div>
+      <div class="swp-tscroll"><table class="swp-table" id="schedTable"><thead><tr>
+        <th data-k="m" aria-sort="ascending">Month</th><th data-k="year">Year</th><th data-k="opening">Opening balance</th>
+        <th data-k="interest">Interest earned</th><th data-k="withdrawal">Withdrawal</th><th data-k="closing">Closing balance</th>
+      </tr></thead><tbody id="schedBody"></tbody></table></div>
+      <div class="swp-pager" id="pager"></div>
+    </div>
+
+    <div class="swp-note" id="statusNote">ℹ️ This is an estimate based on a constant assumed return — actual returns vary and are not guaranteed. Taxes shown are a simple estimate on gains; consult a SEBI-registered advisor before investing. Everything is calculated in your browser and nothing is uploaded.</div>
+  </div>
+</div>
+
+<!-- ===================== BELOW-TOOL CONTENT ===================== -->
+
+<!-- Key features -->
+<div class="swp-wrap">
+  <h2 class="swp-title">✨ Key Features</h2>
+  <div class="swp-feat-grid">
+    <div class="swp-fcard"><h4>💸 Regular income</h4><p>See exactly how much regular income your corpus can pay and how long it will last at monthly, quarterly, half-yearly or yearly frequency.</p></div>
+    <div class="swp-fcard"><h4>⏳ Corpus longevity</h4><p>Find out whether your money lasts the full duration, and if not, the estimated month your corpus runs out.</p></div>
+    <div class="swp-fcard"><h4>🛡️ Inflation-aware</h4><p>Model an annual increase in your withdrawal to keep pace with inflation, and see the effect on how long the corpus survives.</p></div>
+    <div class="swp-fcard"><h4>🧾 Tax estimate</h4><p>Apply a tax rate to the gains for a rough after-tax picture of what an SWP really delivers.</p></div>
+    <div class="swp-fcard"><h4>📊 Canvas charts</h4><p>Lightweight, library-free charts show the remaining corpus over time and each year's withdrawals versus interest.</p></div>
+    <div class="swp-fcard"><h4>🗓️ Full schedule</h4><p>A month-by-month table with search, sortable columns and pagination shows every opening balance, interest, withdrawal and closing balance.</p></div>
+    <div class="swp-fcard"><h4>📤 Export &amp; share</h4><p>Download the schedule as CSV, print a PDF report, copy the result, or share a link that reopens your exact inputs.</p></div>
+    <div class="swp-fcard"><h4>💾 Auto-save</h4><p>Your inputs are remembered on this device, so the calculator opens where you left off.</p></div>
+    <div class="swp-fcard"><h4>🔒 100% private</h4><p>Every calculation runs in your browser. Nothing is uploaded, stored on a server or shared — no account needed.</p></div>
+  </div>
+</div>
+
+<!-- Benefits -->
+<div class="swp-wrap">
+  <h2 class="swp-title">🎁 Why use it</h2>
+  <div class="swp-pill-row">
+    <span class="swp-pill">Plan retirement income</span>
+    <span class="swp-pill">Check how long money lasts</span>
+    <span class="swp-pill">Beat inflation with step-up</span>
+    <span class="swp-pill">Compare SWP vs FD</span>
+    <span class="swp-pill">See tax impact</span>
+    <span class="swp-pill">Export the schedule</span>
+    <span class="swp-pill">Works offline</span>
+    <span class="swp-pill">Free forever</span>
+  </div>
+</div>
+
+<!-- Related calculators (ABOVE About) -->
+<div class="swp-wrap">
+  <h2 class="swp-title">🧰 Related Calculators</h2>
+  <div class="swp-rel-grid">
+    <a class="swp-rel" href="sip-calculator.html"><b>SIP Calculator</b><span>Grow a corpus with regular investing.</span></a>
+    <a class="swp-rel" href="emi-calculator.html"><b>EMI Calculator</b><span>Loan EMI and amortization schedule.</span></a>
+    <a class="swp-rel" href="fd-calculator.html"><b>FD Calculator</b><span>Fixed-deposit maturity and interest.</span></a>
+    <a class="swp-rel" href="rd-calculator.html"><b>RD Calculator</b><span>Recurring-deposit returns.</span></a>
+    <a class="swp-rel" href="ppf-calculator.html"><b>PPF Calculator</b><span>Public Provident Fund maturity.</span></a>
+    <a class="swp-rel" href="compound-interest-calculator.html"><b>Compound Interest</b><span>How money grows with compounding.</span></a>
+    <a class="swp-rel" href="simple-interest-calculator.html"><b>Simple Interest</b><span>Quick simple-interest sums.</span></a>
+    <a class="swp-rel" href="income-tax-calculator.html"><b>Income Tax</b><span>Estimate your Indian income tax.</span></a>
+  </div>
+</div>
+
+<!-- About (bilingual) -->
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>ℹ️ About This Tool</h2>
+      <p>The <b>ApneSoftware SWP Calculator</b> is a complete, professional tool for planning a <b>Systematic Withdrawal Plan</b> — the mirror image of a SIP. Where a SIP builds a corpus by investing a fixed amount regularly, an SWP does the opposite: you keep a lump sum invested in a mutual fund and withdraw a fixed amount at regular intervals, while the money that remains keeps growing. It is one of the most popular and tax-efficient ways for retirees and anyone wanting a steady cash flow to turn a pile of savings into a monthly “salary”. This calculator shows you exactly how that works on your own numbers: how much income you can safely draw, how long the corpus will last, what remains at the end, and how inflation, returns and withdrawal size change the outcome — all instantly, privately and free.</p>
+      <p><b>What is an SWP?</b> A Systematic Withdrawal Plan is an instruction to a mutual fund to redeem a fixed amount (or a fixed number of units) from your investment on a chosen schedule — monthly, quarterly, half-yearly or yearly — and pay it to your bank account. The rest of your money stays invested and continues to earn returns. Because you are only selling a small slice each period, the bulk of the corpus can keep compounding, which is what allows a well-planned SWP to provide an income for many years, and sometimes to leave the original capital largely intact.</p>
+      <p><b>How SWP works and the formula.</b> Each period the calculator first adds the return your remaining balance earned, then subtracts your withdrawal. In symbols, for a monthly plan the balance evolves as: new balance = (old balance × (1 + monthly return)) − withdrawal. The monthly return is the annual expected return divided by twelve. The calculator repeats this month by month for the whole duration, building the full schedule you can see in the table. Two things determine whether your money lasts: your <b>withdrawal rate</b> relative to the corpus, and the <b>return</b> the fund earns. If the return you earn each period is larger than the amount you pull out relative to the balance, the corpus can even grow while paying you; if you withdraw faster than it earns, the balance falls and eventually reaches zero — the “corpus exhaustion” point this tool highlights.</p>
+      <p><b>Benefits and advantages.</b> An SWP gives you a <b>predictable, regular income</b> you control — you choose the amount and frequency and can change or stop it any time. It is generally more <b>tax-efficient</b> than the interest from a fixed deposit, because each withdrawal is treated as a partial redemption where only the gain portion is taxable, and long-term capital gains on equity funds enjoy favourable treatment. It keeps your money <b>invested and growing</b> rather than sitting idle, offers <b>flexibility</b> a pension or annuity does not, and — with an equity or hybrid fund — gives a real chance of <b>beating inflation</b> over the long run, unlike a fixed deposit whose real value erodes. You can also raise the withdrawal each year to match rising costs, which this calculator models directly.</p>
+      <p><b>Limitations, disadvantages and risk factors.</b> The flip side is <b>market risk</b>: returns are not guaranteed, and a run of poor years early in the plan — the “sequence-of-returns” risk — can shorten how long your money lasts far more than the same poor years later. Withdraw too aggressively and the corpus can be depleted; the widely cited “4% rule” exists precisely because a sustainable withdrawal rate matters. There may be <b>exit loads</b> in the first year and small <b>expense ratios</b>, and <b>taxes</b> apply to gains. This calculator assumes a constant return for simplicity, which real markets never deliver, so treat its figures as a planning estimate, not a promise.</p>
+      <p><b>Real example.</b> Suppose you invest ₹50,00,000 in a balanced fund expected to return 10% a year and withdraw ₹30,000 a month. The fund earns roughly ₹41,600 in the first month (₹50,00,000 × 10% ÷ 12) and you take out ₹30,000, so the balance actually <b>rises</b> to about ₹50,11,600 — your income is more than covered by growth, and the corpus grows for years. Now withdraw ₹60,000 a month instead: the monthly earning is still about ₹41,600 but you take ₹60,000, so the balance falls each month and the tool will show it exhausting well before a long horizon. Trying both in this calculator, and adding a yearly increase for inflation, makes the trade-off between income and longevity vivid.</p>
+      <p><b>Retirement planning and who should use SWP.</b> An SWP is especially suited to <b>retirees</b> and near-retirees who have built a corpus and now need it to pay a monthly income, to <b>senior citizens</b> who want more tax-efficiency than an FD, and to anyone with a lump sum — a bonus, an inheritance, the proceeds of a property or a matured investment — who wants a disciplined income rather than spending it down haphazardly. It also suits people who want income but wish to stay invested for growth. The right withdrawal rate depends on your corpus, expected return, other income and how long the money must last; a common starting point is to keep withdrawals near or below the expected return so the capital is not eroded, and to review it every year.</p>
+      <p><b>Tax information.</b> In India, each SWP withdrawal from an equity mutual fund is a redemption, and only the <b>capital-gains</b> portion of that withdrawal is taxable — not the whole amount. Gains on equity funds held over a year are long-term (LTCG) and taxed at a concessional rate above an annual exemption, while shorter holdings are short-term (STCG). Debt fund taxation differs and has changed in recent years. This makes SWPs generally more tax-friendly than FD interest, which is fully taxable at your slab. This tool includes only a <b>simple tax estimate</b> on total gains for a rough picture; your actual tax depends on fund type, holding period and current rules, so confirm with a tax adviser.</p>
+      <p><b>Inflation impact, best practices and common mistakes.</b> Inflation quietly raises your cost of living, so a fixed withdrawal buys less each year; the calculator's <b>annual withdrawal increase</b> lets you keep your income's purchasing power steady, at the cost of the corpus lasting a little less long. Best practices: choose a <b>sustainable withdrawal rate</b>, favour <b>hybrid or equity-oriented funds</b> for a long horizon so growth can outpace withdrawals, keep <b>one to two years of withdrawals in a safer buffer</b> to ride out bad markets, and <b>review annually</b>. Common mistakes include withdrawing too much too soon, ignoring inflation, forgetting exit loads and taxes, and panicking during downturns. Use this tool to test scenarios, then confirm your plan with a qualified, SEBI-registered financial advisor before relying on real money.</p>
+    </div>
+    <hr class="info-divider">
+    <div class="info-block">
+      <h2>ℹ️ इस टूल के बारे में</h2>
+      <p><b>ApneSoftware SWP Calculator</b> एक पूर्ण, पेशेवर टूल है जो <b>Systematic Withdrawal Plan</b> की योजना बनाने के लिए है — यह SIP का उल्टा रूप है। जहाँ SIP नियमित रूप से एक तय रकम निवेश करके corpus बनाता है, वहाँ SWP उल्टा करता है: आप एक lump sum को mutual fund में निवेशित रखते हैं और नियमित अंतराल पर एक तय रकम निकालते हैं, जबकि बची हुई राशि बढ़ती रहती है। यह retirees और किसी भी ऐसे व्यक्ति के लिए, जो स्थिर नकद‑प्रवाह चाहता है, बचत के ढेर को मासिक “वेतन” में बदलने के सबसे लोकप्रिय और tax‑efficient तरीकों में से एक है। यह calculator आपके अपने आँकड़ों पर दिखाता है कि यह कैसे काम करता है: आप कितनी आय सुरक्षित रूप से ले सकते हैं, corpus कितने समय चलेगा, अंत में क्या बचेगा।</p>
+      <p><b>SWP क्या है?</b> Systematic Withdrawal Plan एक निर्देश है जिसमें mutual fund आपकी चुनी हुई अनुसूची पर — monthly, quarterly, half‑yearly या yearly — आपके निवेश से एक तय रकम redeem करके आपके बैंक खाते में भेजता है। बाकी पैसा निवेशित रहकर return कमाता रहता है। चूँकि आप हर अवधि में सिर्फ़ एक छोटा हिस्सा बेचते हैं, corpus का बड़ा भाग compound होता रहता है, जिससे एक अच्छी योजना वाला SWP कई सालों तक आय दे सकता है।</p>
+      <p><b>SWP कैसे काम करता है और formula।</b> हर अवधि calculator पहले आपकी बची राशि पर कमाया return जोड़ता है, फिर आपकी निकासी घटाता है। monthly योजना के लिए: नई राशि = (पुरानी राशि × (1 + मासिक return)) − निकासी। मासिक return वार्षिक अपेक्षित return को बारह से भाग देकर मिलता है। calculator इसे पूरी अवधि के लिए महीने‑दर‑महीने दोहराता है और वही schedule बनाता है जो तालिका में दिखती है। दो चीज़ें तय करती हैं कि पैसा कितने समय चलेगा: corpus के सापेक्ष आपकी <b>निकासी दर</b>, और fund का <b>return</b>।</p>
+      <p><b>लाभ और फायदे।</b> SWP आपको <b>पूर्वानुमेय, नियमित आय</b> देता है जिस पर आपका नियंत्रण है — रकम और आवृत्ति आप चुनते हैं और कभी भी बदल या रोक सकते हैं। यह आम तौर पर FD के ब्याज से अधिक <b>tax‑efficient</b> है, क्योंकि हर निकासी एक आंशिक redemption मानी जाती है जिसमें केवल gain का हिस्सा कर‑योग्य होता है। यह आपके पैसे को <b>निवेशित और बढ़ता</b> रखता है, pension/annuity से अधिक <b>लचीलापन</b> देता है, और equity या hybrid fund के साथ लंबी अवधि में <b>inflation को हराने</b> का वास्तविक अवसर देता है।</p>
+      <p><b>सीमाएँ, नुकसान और जोखिम।</b> दूसरी ओर <b>market risk</b> है: return की गारंटी नहीं, और योजना के शुरुआती वर्षों में खराब return — “sequence‑of‑returns” जोखिम — पैसे की उम्र को बहुत कम कर सकते हैं। बहुत आक्रामक निकासी से corpus जल्दी समाप्त हो सकता है; प्रसिद्ध “4% नियम” इसी कारण है। पहले साल में <b>exit load</b> और छोटे <b>expense ratio</b> हो सकते हैं, और gains पर <b>कर</b> लगता है। यह calculator सरलता के लिए स्थिर return मानता है, इसलिए इसके आँकड़ों को एक योजना‑अनुमान मानें, वादा नहीं।</p>
+      <p><b>वास्तविक उदाहरण।</b> मान लें आप ₹50,00,000 एक balanced fund में लगाते हैं जिससे 10% वार्षिक return अपेक्षित है और हर महीने ₹30,000 निकालते हैं। fund पहले महीने लगभग ₹41,600 कमाता है और आप ₹30,000 लेते हैं, तो राशि असल में लगभग ₹50,11,600 तक <b>बढ़</b> जाती है — आपकी आय growth से ढक जाती है। अब हर महीने ₹60,000 निकालें: मासिक कमाई ~₹41,600 है पर आप ₹60,000 लेते हैं, तो राशि हर महीने घटती है और टूल इसे जल्दी समाप्त होते दिखाएगा।</p>
+      <p><b>रिटायरमेंट योजना और किसे SWP उपयोग करना चाहिए।</b> SWP खासकर <b>retirees</b> और सेवानिवृत्ति के करीब लोगों के लिए उपयुक्त है जिन्होंने corpus बनाया है और अब उससे मासिक आय चाहिए, <b>वरिष्ठ नागरिकों</b> के लिए जो FD से अधिक कर‑दक्षता चाहते हैं, और किसी भी lump sum वाले के लिए — bonus, विरासत, संपत्ति या परिपक्व निवेश। सही निकासी दर आपके corpus, अपेक्षित return, अन्य आय और अवधि पर निर्भर करती है; एक सामान्य शुरुआत यह है कि निकासी को अपेक्षित return के आसपास या उससे कम रखें।</p>
+      <p><b>कर जानकारी।</b> भारत में equity mutual fund से हर SWP निकासी एक redemption है, और उसका केवल <b>capital‑gains</b> हिस्सा कर‑योग्य होता है — पूरी रकम नहीं। एक साल से अधिक रखे equity fund पर लाभ long‑term (LTCG) होते हैं और वार्षिक छूट के ऊपर रियायती दर पर कर लगते हैं, जबकि कम अवधि पर short‑term (STCG)। इससे SWP आम तौर पर FD ब्याज से अधिक कर‑अनुकूल होते हैं। यह टूल केवल कुल gains पर एक <b>सरल कर अनुमान</b> देता है; आपका वास्तविक कर fund प्रकार, holding अवधि और मौजूदा नियमों पर निर्भर करता है।</p>
+      <p><b>Inflation असर, सर्वोत्तम अभ्यास और सामान्य गलतियाँ।</b> Inflation चुपचाप जीवन‑यापन की लागत बढ़ाती है, इसलिए एक तय निकासी हर साल कम खरीदती है; calculator की <b>वार्षिक निकासी वृद्धि</b> आपकी आय की क्रय‑शक्ति स्थिर रखती है, इस कीमत पर कि corpus थोड़ा कम चलेगा। सर्वोत्तम अभ्यास: <b>टिकाऊ निकासी दर</b> चुनें, लंबी अवधि के लिए <b>hybrid/equity fund</b> को प्राथमिकता दें, <b>एक‑दो साल की निकासी सुरक्षित buffer</b> में रखें, और <b>हर साल समीक्षा</b> करें। सामान्य गलतियाँ: बहुत जल्दी बहुत ज़्यादा निकालना, inflation को नज़रअंदाज़ करना, exit load और कर भूलना, और गिरावट में घबराना। इस टूल से scenarios आज़माएँ, फिर किसी योग्य SEBI‑registered सलाहकार से पुष्टि करें।</p>
+    </div>
+  </div>
+</div>
+
+<!-- How to use -->
+<div class="swp-wrap">
+  <h2 class="swp-title">📖 How To Use</h2>
+  <ol class="swp-steps">
+    <li><b>Enter your corpus.</b> Set the initial investment and the amount you want to withdraw each period, using the sliders or exact figures.</li>
+    <li><b>Set assumptions.</b> Choose the withdrawal frequency, expected annual return and duration.</li>
+    <li><b>Add options.</b> Optionally set inflation, an annual withdrawal increase, a tax rate and your currency.</li>
+    <li><b>Read the results.</b> Total withdrawn, interest earned, remaining corpus, profit, growth and the exhaustion date update instantly, with charts.</li>
+    <li><b>Review the schedule.</b> Search, sort and page through the month-by-month table.</li>
+    <li><b>Export or share.</b> Copy the result, download CSV, print a PDF, or share a link that reopens your inputs.</li>
+  </ol>
+</div>
+
+<!-- Formula -->
+<div class="swp-wrap">
+  <h2 class="swp-title">🧮 SWP Formula</h2>
+  <p class="swp-sub">Each period, the balance earns a return and then the withdrawal is deducted. With <b>B</b> the balance, <b>r</b> the periodic return (annual% ÷ 12 ÷ 100 for monthly), and <b>W</b> the withdrawal:</p>
+  <div class="swp-formula">Interest = B × r
+New balance = B + Interest − W
+
+Repeat every month until the duration ends or the balance reaches 0.
+Total withdrawn = Σ W        Total interest = Σ Interest
+Remaining corpus = final balance
+Total profit = Total withdrawn + Remaining corpus − Initial investment (= Total interest)</div>
+  <p class="swp-sub" style="margin-top:12px"><b>Worked example.</b> Initial ₹50,00,000, return 10% (so r = 0.10 ⁄ 12 ≈ 0.8333% per month), withdrawal ₹30,000/month. Month 1 interest = 50,00,000 × 0.008333 ≈ ₹41,667; new balance = 50,00,000 + 41,667 − 30,000 = ₹50,11,667. Because the interest (₹41,667) exceeds the withdrawal (₹30,000), the corpus grows — a sustainable SWP. Raise the withdrawal above the interest and the balance falls each month until it is exhausted.</p>
+</div>
+
+<!-- Comparison -->
+<div class="swp-wrap">
+  <h2 class="swp-title">⚖️ SWP vs Other Income Options</h2>
+  <div class="swp-cmp-grid">
+    <div class="swp-cmpcard"><h4>📈 SIP</h4><p class="pro">✔ Builds a corpus over time through regular investing.</p><p class="con">✗ Accumulation, not income — the opposite of SWP; you pay in rather than draw out.</p></div>
+    <div class="swp-cmpcard"><h4>🏦 Fixed Deposit</h4><p class="pro">✔ Guaranteed, predictable interest and capital safety.</p><p class="con">✗ Interest fully taxable at slab; lower growth; real value eroded by inflation.</p></div>
+    <div class="swp-cmpcard"><h4>🔁 Recurring Deposit</h4><p class="pro">✔ Disciplined saving with assured returns.</p><p class="con">✗ For building savings, not drawing income; modest, fully-taxed returns.</p></div>
+    <div class="swp-cmpcard"><h4>💼 Savings Account</h4><p class="pro">✔ Fully liquid and safe.</p><p class="con">✗ Very low interest that rarely beats inflation; not an income strategy.</p></div>
+    <div class="swp-cmpcard"><h4>👵 Pension / Annuity</h4><p class="pro">✔ Guaranteed lifelong income.</p><p class="con">✗ Rigid, usually lower payout, little liquidity; capital typically not returned.</p></div>
+    <div class="swp-cmpcard"><h4>🏠 Rental Income</h4><p class="pro">✔ Regular income plus possible property appreciation.</p><p class="con">✗ Illiquid, needs a large outlay, upkeep and tenants; income can be irregular.</p></div>
+    <div class="swp-cmpcard"><h4>📮 Monthly Income Scheme</h4><p class="pro">✔ Steady, low-risk government-backed payout.</p><p class="con">✗ Fixed, fully taxable interest; caps on investment; limited growth.</p></div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="swp-wrap swp-faq">
+  <h2 class="swp-title">❓ Frequently Asked Questions</h2>
+  <div id="faqList"></div>
+</div>
+
+<!-- Privacy -->
+<div class="swp-wrap">
+  <h2 class="swp-title">🔒 Privacy &amp; Security</h2>
+  <p class="swp-sub">Every calculation, chart, schedule and export runs entirely inside your browser in JavaScript. Nothing you enter — amounts, returns, or any figure — is <b>ever uploaded</b> to a server, stored remotely, or shared. Your inputs are saved only in this browser (local storage) so the tool reopens where you left off, and you can clear them with Reset. No account is required and the calculator works offline.</p>
+</div>
+
+<!-- Browser compatibility -->
+<div class="swp-wrap">
+  <h2 class="swp-title">🌐 Browser Compatibility</h2>
+  <p class="swp-sub">Works in all modern browsers — Chrome, Firefox, Edge, Safari, Brave and Opera — on Windows, macOS, Linux, Android and iOS. It uses only standard HTML5, CSS3 and vanilla JavaScript, with HTML Canvas charts and the browser's own print for PDF. The layout is mobile-first and adapts to phones, tablets and desktops; charts resize automatically and the schedule scrolls on small screens.</p>
+</div>
+
+<!-- Supported types -->
+<div class="swp-wrap">
+  <h2 class="swp-title">🏦 Supported Withdrawal Types</h2>
+  <p class="swp-sub">The same maths applies to any periodic withdrawal, so the calculator works for <b>monthly, quarterly, half-yearly and yearly</b> SWPs from equity, debt or hybrid mutual funds, with an optional <b>annual increase</b> to counter inflation. It estimates growth at a constant assumed return; it is not a live NAV tracker and does not fetch real fund data.</p>
+</div>
+
+<!-- Limitations -->
+<div class="swp-wrap">
+  <h2 class="swp-title">⚠️ Limitations</h2>
+  <p class="swp-sub">This is a planning estimate, not a guarantee. It assumes a constant return, while real markets fluctuate and the order of good and bad years (sequence risk) affects how long money lasts. It does not model exit loads, expense ratios, or the exact capital-gains tax rules; the tax field is a simple estimate on total gains. Currency selection changes only the display symbol. Always read scheme documents and consult a SEBI-registered financial advisor before acting on real money.</p>
+</div>
+
+<!-- Troubleshooting -->
+<div class="swp-wrap">
+  <h2 class="swp-title">🛠️ Troubleshooting</h2>
+  <p class="swp-sub"><b>Results are blank or ₹0:</b> ensure the initial investment and duration are greater than zero. <b>Corpus exhausts too fast:</b> your withdrawal is larger than the balance can sustain — lower it, raise the expected return, or shorten the duration. <b>Corpus never runs out:</b> your withdrawal is below what the corpus earns, so it grows — that is fine and expected. <b>Numbers look too good:</b> lower the expected return and remember taxes and costs are only estimated. <b>CSV/PDF button does nothing:</b> allow downloads/pop-ups for this site and retry. <b>Share link didn't restore values:</b> copy the entire URL including everything after the “?”.</p>
+</div>
+
+<footer class="site-footer">
+  <div class="swp-footlinks">
+    <a href="../index.html">All Calculators</a>
+    <a href="sip-calculator.html">SIP Calculator</a>
+    <a href="../index.html">Privacy Policy</a>
+    <a href="../index.html">Terms</a>
+    <a href="../index.html">Contact</a>
+  </div>
+  <div>© 2026 ApneSoftware.com — For education only; not financial advice.</div>
+</footer>
+
+<script src="../assets/common.js"></script>
+<script>
+(function(){
+  'use strict';
+  var $ = function(id){ return document.getElementById(id); };
+  var CUR = {INR:'₹',USD:'$',EUR:'€',GBP:'£',AED:'AED ',CAD:'C$',AUD:'A$'};
+  var FREQLBL = {12:'Monthly',4:'Quarterly',2:'Half-yearly',1:'Yearly'};
+  var STORE = 'swpInputs';
+  var IDS = ['initial','withdraw','rate','years','freq','inflation','wIncrease','tax','currency'];
+
+  // ---- helpers ----
+  function num(id){ return parseFloat($(id).value) || 0; }
+  function curSym(){ return CUR[$('currency').value] || '₹'; }
+  function fmt(n){ var v = Math.round(n); var str = $('currency').value==='INR' ? v.toLocaleString('en-IN') : v.toLocaleString('en-US'); return curSym()+str; }
+  function toast(msg){ if(window.premToast){ premToast(msg); } else { var t=document.createElement('div'); t.textContent=msg; t.style.cssText='position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#7c3aed;color:#fff;padding:10px 16px;border-radius:10px;z-index:9999;font-size:.85rem'; document.body.appendChild(t); setTimeout(function(){t.remove();},1800); } }
+
+  // ---- core SWP engine ----
+  function computeSWP(o){
+    var P = o.initial, mRate = o.annualReturn/100/12, totalMonths = Math.round(o.years*12);
+    var monthsPerW = Math.max(1, Math.round(12/o.freq));
+    var bal = P, totalW = 0, totalInt = 0, exhaustMonth = 0;
+    var rows = [];
+    for(var m=1; m<=totalMonths; m++){
+      var opening = bal;
+      var interest = bal*mRate; bal += interest; totalInt += interest;
+      var yearIdx = Math.floor((m-1)/12);
+      var w = 0;
+      if(m % monthsPerW === 0){ var wAmt = o.withdrawal * Math.pow(1+o.wIncrease/100, yearIdx); w = Math.min(wAmt, bal); bal -= w; totalW += w; }
+      rows.push({m:m, year:Math.ceil(m/12), opening:opening, interest:interest, withdrawal:w, closing:bal});
+      if(bal <= 0.005){ exhaustMonth = m; break; }
+    }
+    var finalBal = Math.max(0, bal);
+    var taxAmt = (o.taxRate||0)/100 * totalInt;
+    return { rows:rows, totalW:totalW, totalInt:totalInt, finalBal:finalBal, exhaustMonth:exhaustMonth,
+      invested:P, taxAmt:taxAmt, totalProfit: totalW + finalBal - P, growthPct: P>0 ? (totalW+finalBal-P)/P*100 : 0,
+      effYield: P>0 ? (totalW/(o.years||1))/P*100 : 0, months: rows.length };
+  }
+  function readOpts(){ return { initial:num('initial'), withdrawal:num('withdraw'), annualReturn:num('rate'),
+    years:num('years'), freq:+$('freq').value, inflation:num('inflation'), wIncrease:num('wIncrease'), taxRate:num('tax') }; }
+  window.__swpHooks = { computeSWP: computeSWP, readOpts: readOpts };
+
+  // ---- validation ----
+  function validate(o){
+    var ok = true;
+    function bad(id, errId, msg){ $(id).classList.add('swp-input-bad'); $(errId).textContent = msg; ok = false; }
+    function good(id, errId){ $(id).classList.remove('swp-input-bad'); $(errId).textContent=''; }
+    if(o.initial <= 0) bad('initial','errInitial','Initial investment must be greater than 0.'); else good('initial','errInitial');
+    if(o.withdrawal <= 0) bad('withdraw','errWithdraw','Withdrawal amount must be greater than 0.');
+    else if(o.withdrawal > o.initial) bad('withdraw','errWithdraw','Withdrawal is larger than the whole corpus.');
+    else good('withdraw','errWithdraw');
+    return ok;
+  }
+
+  // ---- charts (Canvas, no libraries) ----
+  function setupCanvas(cv){ var dpr = window.devicePixelRatio||1; var w = cv.clientWidth||300, h = cv.clientHeight||200;
+    cv.width = w*dpr; cv.height = h*dpr; var ctx = cv.getContext('2d'); ctx.setTransform(dpr,0,0,dpr,0,0); return {ctx:ctx,w:w,h:h}; }
+  function drawCorpus(rows){
+    var cv = $('corpusChart'); var s = setupCanvas(cv); var ctx=s.ctx, W=s.w, H=s.h, pad=6;
+    ctx.clearRect(0,0,W,H); if(rows.length<2) return;
+    var maxV = 0, i; for(i=0;i<rows.length;i++){ if(rows[i].opening>maxV) maxV=rows[i].opening; } if(rows[i-1].closing>maxV)maxV=rows[i-1].closing; if(maxV<=0)maxV=1;
+    var xOf=function(k){ return pad + (k/(rows.length-1))*(W-2*pad); };
+    var yOf=function(v){ return pad + (1-v/maxV)*(H-2*pad); };
+    // baseline grid
+    ctx.strokeStyle='rgba(255,255,255,.08)'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(pad,H-pad); ctx.lineTo(W-pad,H-pad); ctx.stroke();
+    // area + line
+    ctx.beginPath(); ctx.moveTo(xOf(0), H-pad);
+    for(i=0;i<rows.length;i++){ ctx.lineTo(xOf(i), yOf(rows[i].closing)); }
+    ctx.lineTo(xOf(rows.length-1), H-pad); ctx.closePath(); ctx.fillStyle='rgba(167,139,250,.22)'; ctx.fill();
+    ctx.beginPath(); for(i=0;i<rows.length;i++){ var x=xOf(i), y=yOf(rows[i].closing); if(i===0)ctx.moveTo(x,y); else ctx.lineTo(x,y); }
+    ctx.strokeStyle='#a78bfa'; ctx.lineWidth=2; ctx.stroke();
+  }
+  function drawBars(rows){
+    var cv = $('barsChart'); var s = setupCanvas(cv); var ctx=s.ctx, W=s.w, H=s.h, pad=6;
+    ctx.clearRect(0,0,W,H); if(!rows.length) return;
+    // aggregate by year
+    var years={}, order=[];
+    rows.forEach(function(r){ if(!years[r.year]){ years[r.year]={i:0,w:0}; order.push(r.year); } years[r.year].i+=r.interest; years[r.year].w+=r.withdrawal; });
+    var maxV=1; order.forEach(function(y){ maxV=Math.max(maxV, years[y].i, years[y].w); });
+    var n=order.length, gw=(W-2*pad)/n, bw=Math.min(14, gw*0.36);
+    order.forEach(function(y,idx){ var cx=pad+idx*gw+gw/2; var yi=years[y];
+      var hi=(yi.i/maxV)*(H-2*pad), hw=(yi.w/maxV)*(H-2*pad);
+      ctx.fillStyle='#34d399'; ctx.fillRect(cx-bw-1, H-pad-hi, bw, hi);
+      ctx.fillStyle='#f472b6'; ctx.fillRect(cx+1, H-pad-hw, bw, hw);
+    });
+    ctx.strokeStyle='rgba(255,255,255,.08)'; ctx.beginPath(); ctx.moveTo(pad,H-pad); ctx.lineTo(W-pad,H-pad); ctx.stroke();
+  }
+
+  // ---- schedule table (search / sort / paginate) ----
+  var allRows=[], viewRows=[], sortKey='m', sortDir=1, page=1, PER=12;
+  function buildTable(rows){ allRows=rows; applyTable(); }
+  function applyTable(){
+    var q=($('tableSearch').value||'').toLowerCase().trim();
+    viewRows = allRows.filter(function(r){ return !q || String(r.m).indexOf(q)>=0 || ('year '+r.year).indexOf(q)>=0 || String(r.year).indexOf(q)>=0; });
+    viewRows.sort(function(a,b){ return (a[sortKey]-b[sortKey])*sortDir; });
+    var pages=Math.max(1, Math.ceil(viewRows.length/PER)); if(page>pages)page=pages;
+    var slice=viewRows.slice((page-1)*PER, page*PER);
+    var h='';
+    slice.forEach(function(r){ h+='<tr><td>'+r.m+'</td><td>Year '+r.year+'</td><td>'+fmt(r.opening)+'</td><td>'+fmt(r.interest)+'</td><td>'+fmt(r.withdrawal)+'</td><td>'+fmt(r.closing)+'</td></tr>'; });
+    $('schedBody').innerHTML = h || '<tr><td colspan="6" style="text-align:center;color:var(--text-dim)">No rows</td></tr>';
+    $('tableCount').textContent = viewRows.length+' month(s)';
+    var pg='<button id="pgPrev" '+(page<=1?'disabled':'')+'>‹ Prev</button><span>Page '+page+' / '+pages+'</span><button id="pgNext" '+(page>=pages?'disabled':'')+'>Next ›</button>';
+    $('pager').innerHTML=pg;
+    var pv=$('pgPrev'), nx=$('pgNext');
+    if(pv) pv.onclick=function(){ if(page>1){page--;applyTable();} };
+    if(nx) nx.onclick=function(){ if(page<pages){page++;applyTable();} };
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('#schedTable th'), function(th){
+    th.addEventListener('click', function(){ var k=th.getAttribute('data-k'); if(sortKey===k){ sortDir*=-1; } else { sortKey=k; sortDir=1; }
+      Array.prototype.forEach.call(document.querySelectorAll('#schedTable th'), function(x){ x.removeAttribute('aria-sort'); });
+      th.setAttribute('aria-sort', sortDir===1?'ascending':'descending'); page=1; applyTable(); });
+  });
+  $('tableSearch').addEventListener('input', function(){ page=1; applyTable(); });
+
+  // ---- main calc + render ----
+  var last=null;
+  function render(){
+    var o=readOpts(); validate(o);
+    var res=computeSWP(o); last=res;
+    $('siInitial').textContent=fmt(res.invested);
+    $('siWithdrawn').textContent=fmt(res.totalW);
+    $('siInterest').textContent=fmt(res.totalInt);
+    $('siFinal').textContent=fmt(res.finalBal);
+    $('siProfit').textContent=fmt(res.totalProfit);
+    $('siGrowth').textContent=Math.round(res.growthPct)+'%';
+    $('siEff').textContent=(res.effYield||0).toFixed(1)+'%';
+    var months=res.months, yrs=Math.floor(months/12), mo=months%12;
+    $('siPeriod').textContent=(yrs?yrs+'y ':'')+(mo?mo+'m':(yrs?'':'0m'));
+    var exBox=$('siExhaust').parentElement;
+    if(res.exhaustMonth){ var d=new Date(); d.setMonth(d.getMonth()+res.exhaustMonth);
+      $('siExhaust').textContent=d.toLocaleDateString('en-IN',{month:'short',year:'numeric'}); exBox.className='stat-box bad'; }
+    else { $('siExhaust').textContent='Lasts full term'; exBox.className='stat-box good'; }
+    var fb=$('siFinal').parentElement; fb.className='stat-box '+(res.finalBal>0?'good':'bad');
+    drawCorpus(res.rows); drawBars(res.rows); buildTable(res.rows);
+    $('curSym1').textContent=curSym(); $('curSym2').textContent=curSym();
+    saveInputs();
+  }
+
+  // ---- slider <-> input sync ----
+  function syncPair(inputId, sliderId){ var inp=$(inputId), sl=$(sliderId);
+    inp.addEventListener('input', function(){ sl.value=Math.min(+sl.max, Math.max(+sl.min, num(inputId)||0)); render(); });
+    sl.addEventListener('input', function(){ inp.value=sl.value; render(); });
+  }
+  syncPair('initial','initialR'); syncPair('withdraw','withdrawR'); syncPair('rate','rateR');
+  syncPair('years','yearsR'); syncPair('inflation','inflationR'); syncPair('wIncrease','wIncreaseR');
+  ['freq','tax','currency'].forEach(function(id){ $(id).addEventListener('input', render); });
+  $('calcBtn').addEventListener('click', function(){ render(); toast('Calculated ✔'); });
+
+  // ---- persistence ----
+  function saveInputs(){ try{ var o={}; IDS.forEach(function(id){ o[id]=$(id).value; }); localStorage.setItem(STORE, JSON.stringify(o)); }catch(e){} }
+  function loadInputs(){ try{ var o=JSON.parse(localStorage.getItem(STORE)||'null'); if(o){ IDS.forEach(function(id){ if(o[id]!=null && $(id)) $(id).value=o[id]; }); return true; } }catch(e){} return false; }
+
+  // ---- reset / example ----
+  var DEFAULTS={initial:1000000,withdraw:8000,rate:10,years:20,freq:12,inflation:6,wIncrease:0,tax:0,currency:'INR'};
+  $('resetBtn').addEventListener('click', function(){ Object.keys(DEFAULTS).forEach(function(id){ $(id).value=DEFAULTS[id]; }); try{localStorage.removeItem(STORE);}catch(e){} syncAll(); render(); toast('Reset done'); });
+  $('exampleBtn').addEventListener('click', function(){ var ex={initial:5000000,withdraw:30000,rate:10,years:25,freq:12,inflation:6,wIncrease:5,tax:10,currency:'INR'}; Object.keys(ex).forEach(function(id){ $(id).value=ex[id]; }); syncAll(); render(); toast('Example loaded'); });
+  function syncAll(){ [['initial','initialR'],['withdraw','withdrawR'],['rate','rateR'],['years','yearsR'],['inflation','inflationR'],['wIncrease','wIncreaseR']].forEach(function(p){ $(p[1]).value=Math.min(+$(p[1]).max,Math.max(+$(p[1]).min,num(p[0])||0)); }); }
+
+  // ---- exports ----
+  function scheduleCsv(){ var rows=[['Month','Year','Opening','Interest','Withdrawal','Closing']];
+    (last?last.rows:[]).forEach(function(r){ rows.push([r.m, r.year, Math.round(r.opening), Math.round(r.interest), Math.round(r.withdrawal), Math.round(r.closing)]); });
+    return rows.map(function(r){ return r.join(','); }).join('\r\n'); }
+  function resultText(){ if(!last) return ''; var o=readOpts();
+    return 'SWP Calculator\nInitial: '+fmt(last.invested)+'\nWithdrawal: '+fmt(o.withdrawal)+' ('+FREQLBL[o.freq]+')\nReturn: '+o.annualReturn+'%  Duration: '+o.years+'y\nTotal withdrawn: '+fmt(last.totalW)+'\nInterest earned: '+fmt(last.totalInt)+'\nRemaining corpus: '+fmt(last.finalBal)+'\nExhaustion: '+$('siExhaust').textContent; }
+  $('csvBtn').addEventListener('click', function(){ downloadText('swp-schedule.csv', 'SWP Summary\r\nInitial,'+Math.round(last.invested)+'\r\nTotal withdrawn,'+Math.round(last.totalW)+'\r\nInterest earned,'+Math.round(last.totalInt)+'\r\nRemaining corpus,'+Math.round(last.finalBal)+'\r\n\r\n'+scheduleCsv(), 'text/csv'); });
+  $('tableCsvBtn').addEventListener('click', function(){ downloadText('swp-schedule.csv', scheduleCsv(), 'text/csv'); });
+  $('copyBtn').addEventListener('click', function(){ var t=resultText(); if(navigator.clipboard){ navigator.clipboard.writeText(t).then(function(){toast('Result copied ✔');}, function(){ prompt('Copy:', t); }); } else prompt('Copy:', t); });
+  $('printBtn').addEventListener('click', function(){ window.print(); });
+  $('pdfBtn').addEventListener('click', function(){ window.print(); });
+  $('tablePrintBtn').addEventListener('click', function(){ window.print(); });
+
+  // ---- share ----
+  function buildShare(){ var o=readOpts(); var q=new URLSearchParams({p:o.initial,w:o.withdrawal,r:o.annualReturn,y:o.years,f:o.freq,inf:o.inflation,wi:o.wIncrease,t:o.taxRate,c:$('currency').value}); return location.origin+location.pathname+'?'+q.toString(); }
+  $('shareBtn').addEventListener('click', function(){ var url=buildShare();
+    if(navigator.share){ navigator.share({title:'SWP Plan',url:url}).catch(function(){}); return; }
+    if(navigator.clipboard){ navigator.clipboard.writeText(url).then(function(){toast('Share link copied ✔');}, function(){ prompt('Copy link:', url); }); } else prompt('Copy link:', url); });
+  function loadFromUrl(){ var q=new URLSearchParams(location.search); if(!q.has('p')) return false;
+    var map={p:'initial',w:'withdraw',r:'rate',y:'years',f:'freq',inf:'inflation',wi:'wIncrease',t:'tax',c:'currency'};
+    Object.keys(map).forEach(function(k){ if(q.has(k) && $(map[k])) $(map[k]).value=q.get(k); }); return true; }
+
+  // ---- resize charts ----
+  var rt; window.addEventListener('resize', function(){ clearTimeout(rt); rt=setTimeout(function(){ if(last){ drawCorpus(last.rows); drawBars(last.rows); } }, 150); });
+
+  // ---- last-updated ----
+  $('updated').textContent = 'Last updated: ' + new Date(document.lastModified).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+
+  // ---- init ----
+  if(!loadFromUrl()) loadInputs();
+  syncAll(); render();
+
+  // ===== FAQ (30) =====
+  var FAQ=[
+    ['What is SWP?','A Systematic Withdrawal Plan (SWP) lets you withdraw a fixed amount from a mutual fund investment at regular intervals — monthly, quarterly, half-yearly or yearly — while the rest stays invested and keeps growing. It turns a lump sum into a steady, controllable income.'],
+    ['How does SWP work?','You keep a corpus invested. Each period the fund earns a return and you redeem a fixed amount, which is paid to your bank. The remaining units continue to grow, so a well-planned SWP can pay income for many years.'],
+    ['How is SWP different from SIP?','A SIP is accumulation — you invest a fixed amount regularly to build a corpus. An SWP is distribution — you withdraw a fixed amount regularly from a corpus. They are mirror images of each other.'],
+    ['Is SWP safe?','SWP itself is just a withdrawal method; the safety depends on the underlying fund. Equity funds carry market risk, debt and hybrid funds less so. Returns are not guaranteed, so choose the fund and withdrawal rate to match your risk tolerance.'],
+    ['Can SWP generate monthly income?','Yes. Choosing monthly frequency pays you a fixed amount every month, which is why SWPs are popular for retirement and regular-income needs.'],
+    ['Can I stop or change an SWP anytime?','Yes. You can start, pause, increase, decrease or stop an SWP whenever you like, and redeem the remaining corpus. This flexibility is a major advantage over annuities.'],
+    ['Does inflation affect SWP?','Yes. A fixed withdrawal buys less over time as prices rise. Use the annual withdrawal increase option to keep your income’s purchasing power steady, keeping in mind it makes the corpus last a little less long.'],
+    ['Is SWP taxable?','Each withdrawal is a partial redemption, so only the capital-gains portion is taxable, not the whole amount. Equity fund long-term gains get concessional treatment. This is generally more tax-efficient than fully-taxed FD interest.'],
+    ['What is the ideal withdrawal rate?','A common guideline is to keep annual withdrawals near or below the expected return so the capital is not eroded — often cited around 4–6% of the corpus a year — but the right rate depends on your return, horizon and other income.'],
+    ['Who should invest in SWP?','Retirees and near-retirees needing regular income, senior citizens wanting tax-efficiency over an FD, and anyone with a lump sum who wants a disciplined, flexible income while staying invested for growth.'],
+    ['Can senior citizens use SWP?','Yes. SWPs are widely used by senior citizens for a monthly income that is often more tax-efficient than FD interest, with the flexibility to adjust withdrawals as needs change.'],
+    ['What happens if my corpus becomes zero?','If you withdraw faster than the fund earns, the balance falls to zero and the income stops. This calculator highlights the estimated exhaustion month so you can adjust before it happens.'],
+    ['Can I increase withdrawals every year?','Yes. Set the annual withdrawal increase percentage to raise your income each year in line with inflation. The tool shows how this affects longevity.'],
+    ['Is SWP better than FD?','For income, SWP is often more tax-efficient and has growth potential that can beat inflation, but it carries market risk. An FD is guaranteed but fully taxed and its real value erodes. The right choice depends on your risk appetite.'],
+    ['Can SWP be used for retirement planning?','Yes — it is one of the most popular retirement-income strategies. You build a corpus (often via SIP) and then use an SWP to draw a monthly income from it after retiring.'],
+    ['How is SWP income calculated?','Each period, interest = balance × periodic rate; new balance = balance + interest − withdrawal. The calculator repeats this monthly to build the full schedule and totals.'],
+    ['Does SWP guarantee returns?','No. Returns depend on the fund and market, and are not guaranteed. The calculator assumes a constant rate for planning; treat the figures as an estimate.'],
+    ['What frequency should I choose?','Most people choose monthly to mirror a salary. Quarterly, half-yearly or yearly suit those who need income less often or want to leave more invested between withdrawals.'],
+    ['Can I withdraw a percentage instead of a fixed amount?','This calculator uses a fixed amount, which is the most common SWP type. Some funds also offer appreciation-only or fixed-units SWPs; the underlying maths is similar.'],
+    ['What return rate should I assume?','Use a realistic, conservative figure. Long-term diversified equity has historically averaged around 10–12% before tax, hybrid funds less, debt funds lower still — none guaranteed.'],
+    ['Does the calculator include taxes?','Only as a simple estimate on total gains. Actual tax depends on fund type, holding period and current rules (LTCG/STCG), so confirm with a tax adviser.'],
+    ['What is sequence-of-returns risk?','It is the risk that poor returns early in your withdrawal phase deplete the corpus faster than the same poor returns later. It is a key reason to keep withdrawals sustainable and hold a safe buffer.'],
+    ['Can I model a step-up SWP?','Yes. The annual withdrawal increase field raises your withdrawal each year, letting you plan an inflation-linked, rising income.'],
+    ['Is my data uploaded anywhere?','No. Everything runs in your browser; nothing is sent to a server. Inputs are saved only in your browser’s local storage and can be cleared with Reset.'],
+    ['Can I export the schedule?','Yes. Download the month-by-month schedule as CSV, print a PDF report, or copy the summary result. You can also share a link that reopens your inputs.'],
+    ['Will an SWP beat inflation?','It can, if the fund’s return exceeds inflation plus your withdrawal rate. That is why long-horizon SWPs often use equity or hybrid funds rather than pure debt.'],
+    ['How long will my money last?','That depends on the corpus, withdrawal amount and return. The tool shows whether it lasts the full duration and, if not, the estimated exhaustion date.'],
+    ['Is there an exit load on SWP?','Some funds charge an exit load if you redeem within a year of investing. Check your fund; this calculator does not deduct exit loads.'],
+    ['Can I use SWP for a child’s education or other goals?','Yes. Any goal needing a phased payout — education fees, a series of expenses — can use an SWP, though goals with a single future lump sum are usually better served by a SIP or lump-sum investment.'],
+    ['Is this tool free?','Yes. It is completely free with no watermark, no limits, no account and no hidden charges, and it works offline once loaded.']
+  ];
+  var faqList=$('faqList');
+  FAQ.forEach(function(pair){ var d=document.createElement('details'); d.innerHTML='<summary>'+pair[0]+'</summary><p>'+pair[1]+'</p>'; faqList.appendChild(d); });
+  try{ $('faqSchema').textContent=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:FAQ.map(function(p){ return {'@type':'Question',name:p[0],acceptedAnswer:{'@type':'Answer',text:p[1]}}; })}); }catch(e){}
+})();
+</script>
+</body>
+</html>
