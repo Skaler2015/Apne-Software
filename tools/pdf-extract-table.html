@@ -4,39 +4,120 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free online Extract Table from PDF tool. Pull tables out of a PDF with position-based table detection, review and edit them in the browser, then export to CSV, Excel (XLSX/XLS/ODS), JSON, XML, HTML or Markdown. Multiple tables per page, page ranges, empty row/column removal, batch export and traditional OCR (English &amp; Hindi) for scanned PDFs. 100% private, no uploads.">
+<meta name="keywords" content="extract table from pdf, pdf table extractor, pdf to csv, pdf table to excel, pdf table to json, extract data from pdf, pdf table detection, tabula alternative, hindi pdf table, free pdf table extractor">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-extract-table.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Extract Table from PDF | ApneSoftware">
-<meta property="og:description" content="Pull a table out as CSV. Free online tool — no signup required.">
+<meta property="og:title" content="Extract Table from PDF — Export to CSV, Excel, JSON | ApneSoftware">
+<meta property="og:description" content="Pull tables out of a PDF, review and edit them, then export to CSV, Excel, JSON, XML, HTML or Markdown. Multiple tables, page ranges and OCR for scanned PDFs. 100% private, no uploads.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-extract-table.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Extract Table from PDF | ApneSoftware">
-<meta name="twitter:description" content="Pull a table out as CSV. Free online tool — no signup required.">
+<meta name="twitter:title" content="Extract Table from PDF — Export to CSV, Excel, JSON | ApneSoftware">
+<meta name="twitter:description" content="Pull tables out of a PDF, review and edit them, then export to CSV, Excel, JSON, XML, HTML or Markdown. Multiple tables and OCR for scanned PDFs. 100% private, no uploads.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Extract Table from PDF","description":"Pull a table out as CSV. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-extract-table.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Extract Table from PDF","description":"Extract tables from a PDF entirely in your browser using position-based table detection, review and edit the result, and export to CSV, Excel (XLSX/XLS/ODS), JSON, XML, HTML or Markdown. Detects multiple tables per page, supports page ranges, empty row/column removal, batch export and traditional OCR (English and Hindi) for scanned PDFs. No uploads, no signup.","url":"https://apnesoftware.com/tools/pdf-extract-table.html","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires a modern web browser with JavaScript enabled","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Position-based table detection","Detect multiple tables per page","Editable table preview (add/delete rows and columns)","Export CSV, XLSX, XLS, ODS, JSON, XML, HTML and Markdown","Page range and all-pages extraction","Empty row and column removal","OCR for scanned PDFs (English and Hindi)","Runs fully in the browser"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Extract Table from PDF Tool","url":"https://apnesoftware.com/tools/pdf-extract-table.html","description":"Free browser-based tool to detect, edit and export tables from PDF files.","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"inLanguage":["en","hi"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"Extract Table from PDF","item":"https://apnesoftware.com/tools/pdf-extract-table.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to extract a table from a PDF","description":"Detect, edit and export tables from a PDF in your browser.","step":[{"@type":"HowToStep","name":"Upload the PDF","text":"Drag a PDF into the drop zone or click to choose it."},{"@type":"HowToStep","name":"Choose pages","text":"Pick a single page, a custom page range or all pages, and enable OCR if the PDF is scanned."},{"@type":"HowToStep","name":"Extract","text":"Click Extract. The tool detects the tables from the text positions and shows them for review."},{"@type":"HowToStep","name":"Review and edit","text":"Fix any cell, add or delete rows and columns, and remove empty rows or columns."},{"@type":"HowToStep","name":"Export","text":"Copy the table or download it as CSV, Excel, JSON, XML, HTML or Markdown."}]}
+</script>
+<script type="application/ld+json" id="faqSchema">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}
 </script>
 <meta name="color-scheme" content="dark">
-<title>Extract Table from PDF | ApneSoftware</title>
+<title>Extract Table from PDF — Export to CSV, Excel, JSON | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
+/* ===== Extract Table from PDF — scoped pet- styles ===== */
 .dropzone{cursor:pointer}
 .dropzone p{font-size:.9rem}
 .panel{position:relative;z-index:1}
-</style>
-<style>
-  .limit-note{
-    background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:8px;
-    padding:12px 14px;font-size:.85rem;color:#fbbf24;margin-top:14px;
-  }
-  .table-wrap{overflow-x:auto;margin-top:18px;border:1px solid var(--border);border-radius:8px}
-  table.extracted{border-collapse:collapse;width:100%;font-size:.82rem}
-  table.extracted td{border:1px solid var(--border);padding:6px 10px;color:var(--text);white-space:nowrap}
-  table.extracted tr:first-child td{background:var(--surface-2);font-weight:700}
-  .page-select{margin-top:14px}
+.pet-badges{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:10px;font-size:.78rem;color:var(--text-dim)}
+.pet-badges span{display:inline-flex;align-items:center;gap:5px}
+
+.pet-info{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:12px}
+.pet-info .pet-i{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:10px;padding:8px 10px;font-size:.78rem}
+.pet-info .pet-i b{display:block;color:var(--text);font-size:.82rem}
+.pet-info .pet-i span{color:var(--text-dim)}
+.pet-scan{border-radius:8px;padding:10px 12px;font-size:.82rem;margin-top:10px;display:none}
+.pet-scan.show{display:block}
+.pet-scan.warn{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.3);color:#fcd34d}
+.pet-scan.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#86efac}
+
+.pet-card{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:14px 16px;margin-top:16px}
+.pet-card h3{margin:0 0 12px;font-size:.92rem;display:flex;align-items:center;gap:8px}
+.pet-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.pet-checkline{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px}
+.pet-checkline label{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--text)}
+.pet-checkline input{width:auto}
+
+.pet-progress{height:8px;border-radius:5px;background:rgba(255,255,255,.1);margin-top:14px;overflow:hidden;display:none}
+.pet-progress.show{display:block}
+.pet-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7c3aed,#a78bfa);border-radius:5px;transition:width .25s}
+.pet-btnrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.pet-cancel{background:rgba(248,113,113,.12);border:1px solid rgba(248,113,113,.35);color:#fca5a5;border-radius:10px;padding:0 16px;cursor:pointer;font-size:.85rem;display:none}
+.pet-cancel.show{display:inline-flex;align-items:center;height:42px}
+
+.pet-preview{display:none;grid-template-columns:300px 1fr;gap:14px;margin-top:16px}
+.pet-preview.show{display:grid}
+@media(max-width:860px){.pet-preview.show{grid-template-columns:1fr}}
+.pet-pvbox{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:12px;min-width:0}
+.pet-pvbox h4{margin:0 0 8px;font-size:.8rem;color:var(--text-dim)}
+.pet-pvbox canvas{max-width:100%;height:auto;border-radius:6px;background:#fff}
+
+.pet-tables{min-width:0}
+.pet-tcard{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:12px;margin-bottom:14px;min-width:0}
+.pet-tbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.pet-tbar .pet-tname{font-size:.82rem;color:var(--text-dim);margin-right:auto}
+.pet-tbtn{background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.32);color:#d6cbff;border-radius:8px;padding:5px 10px;font-size:.76rem;cursor:pointer}
+.pet-tbtn:hover{background:rgba(167,139,250,.22)}
+.pet-search{background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.12));color:var(--text);border-radius:8px;padding:5px 10px;font-size:.76rem;width:150px}
+.pet-twrap{overflow:auto;max-height:460px;border:1px solid var(--border,rgba(255,255,255,.1));border-radius:8px}
+table.pet-table{border-collapse:collapse;font-size:.8rem;width:max-content;min-width:100%}
+table.pet-table td,table.pet-table th{border:1px solid var(--border,rgba(255,255,255,.14));padding:5px 9px;color:var(--text);white-space:nowrap;vertical-align:top}
+table.pet-table td[contenteditable]{outline:none;min-width:40px;cursor:text}
+table.pet-table td[contenteditable]:focus{background:rgba(167,139,250,.14)}
+table.pet-table tr.pet-row.hdr td{background:rgba(167,139,250,.16);font-weight:700;color:#fff}
+table.pet-table .pet-ctl{background:rgba(255,255,255,.04);color:#fca5a5;cursor:pointer;text-align:center;white-space:nowrap;position:sticky;user-select:none;font-size:.72rem}
+table.pet-table tr.pet-ctlrow td{position:sticky;top:0;z-index:2}
+table.pet-table td.pet-rowdel{position:sticky;left:0;z-index:1}
+tr.pet-hl td[contenteditable]{background:rgba(250,204,21,.18)}
+
+.limit-note{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:12px 14px;font-size:.85rem;color:#fbbf24;margin-top:14px}
+
+/* ===== Below-tool content ===== */
+.pet-wrap{margin:26px 0}
+.pet-title{font-size:1.35rem;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.pet-sub{color:var(--text-dim);font-size:.92rem;margin:0 0 18px;line-height:1.6}
+.pet-feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.pet-fcard{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:14px;padding:16px}
+.pet-fcard h4{margin:0 0 6px;font-size:.98rem;display:flex;align-items:center;gap:8px}
+.pet-fcard p{margin:0;font-size:.86rem;color:var(--text-dim);line-height:1.55}
+.pet-rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.pet-rel{display:block;text-decoration:none;background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:14px;transition:.15s;color:var(--text)}
+.pet-rel:hover{border-color:#a78bfa;background:rgba(167,139,250,.1);transform:translateY(-2px)}
+.pet-rel b{display:block;font-size:.92rem;margin-bottom:3px}
+.pet-rel span{font-size:.8rem;color:var(--text-dim);line-height:1.45}
+.pet-faq details{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:0 16px;margin-bottom:10px}
+.pet-faq summary{cursor:pointer;padding:14px 0;font-weight:600;font-size:.92rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.pet-faq summary::-webkit-details-marker{display:none}
+.pet-faq summary::after{content:'+';font-size:1.3rem;color:#a78bfa;flex:0 0 auto}
+.pet-faq details[open] summary::after{content:'−'}
+.pet-faq details p{margin:0 0 14px;font-size:.87rem;color:var(--text-dim);line-height:1.65}
+.pet-steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:12px}
+.pet-steps li{counter-increment:s;position:relative;padding-left:46px;font-size:.9rem;color:var(--text-dim);line-height:1.6}
+.pet-steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:9px;background:rgba(167,139,250,.18);color:#c4b5fd;font-weight:700;display:grid;place-items:center}
+.pet-steps li b{color:var(--text)}
+.pet-pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.pet-pill{background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);color:#d6cbff;border-radius:999px;padding:5px 12px;font-size:.8rem}
 </style>
 </head>
 <body>
@@ -50,193 +131,511 @@
 <div class="container">
   <div class="tool-header">
     <h1>📋 Extract Table from PDF</h1>
-    <p>Pull a table out of a PDF page and review it, then copy or download as CSV.</p>
+    <p>Pull tables out of a PDF with position-based <b>table detection</b>, review and <b>edit</b> them, then export to <b>CSV, Excel, JSON, XML, HTML or Markdown</b>. Detects <b>multiple tables</b> per page, supports page ranges and optional <b>OCR</b> (English &amp; Hindi) for scanned PDFs. Everything runs in your browser; your file is never uploaded.</p>
   </div>
 
   <div class="panel">
     <div class="dropzone" id="dropzone">
       <p>📤 Drag a PDF file here or click to choose</p>
       <input type="file" id="fileInput" accept="application/pdf">
+      <div class="pet-badges"><span>📄 PDF only</span><span>🔒 Secure processing</span><span>🚫 No server upload</span></div>
     </div>
 
-    <div class="field page-select" id="pageSelectField" style="display:none">
-      <label for="pageSelect">Page</label>
-      <select id="pageSelect"></select>
-    </div>
+    <div class="pet-info" id="infoArea" style="display:none"></div>
+    <div class="pet-scan" id="scanNote"></div>
 
-    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
-    <div class="limit-note">⚠️ Note: this works best on simple, clearly-spaced tables. Complex tables (merged cells, multi-column page layouts) may not split into rows/columns perfectly — please review the result below before using it.</div>
+    <div id="afterUpload" style="display:none">
+      <div class="pet-card">
+        <h3>⚙️ Extraction settings</h3>
+        <div class="pet-grid">
+          <div class="field"><label for="pageMode">Pages</label>
+            <select id="pageMode"><option value="one">This page</option><option value="all">All pages</option><option value="custom">Custom range…</option></select></div>
+          <div class="field"><label for="pageSelect">Page</label>
+            <select id="pageSelect"></select></div>
+          <div class="field"><label for="pageRange">Custom range (e.g. 1-3,5)</label>
+            <input type="text" id="pageRange" placeholder="1-3,5" disabled></div>
+          <div class="field"><label for="exportFormat">Export format</label>
+            <select id="exportFormat"><option value="csv">CSV (.csv)</option><option value="xlsx">Excel (.xlsx)</option><option value="xls">Excel 97–2003 (.xls)</option><option value="ods">OpenDocument (.ods)</option><option value="json">JSON (.json)</option><option value="xml">XML (.xml)</option><option value="html">HTML (.html)</option><option value="md">Markdown (.md)</option></select></div>
+          <div class="field"><label for="ocrLang">OCR language (scanned PDFs)</label>
+            <select id="ocrLang"><option value="eng">English</option><option value="hin">Hindi (हिन्दी)</option><option value="eng+hin">English + Hindi</option></select></div>
+        </div>
+        <div class="pet-checkline">
+          <label><input type="checkbox" id="firstHeader" checked> First row is header</label>
+          <label><input type="checkbox" id="ignoreEmptyRows" checked> Remove empty rows</label>
+          <label><input type="checkbox" id="ignoreEmptyCols" checked> Remove empty columns</label>
+          <label><input type="checkbox" id="useOcr"> Use OCR for scanned pages</label>
+        </div>
+      </div>
 
-    <div class="btn-row" id="actionRow" style="display:none">
-      <button class="btn secondary" id="copyBtn">📋 Copy as Text</button>
-      <button class="btn secondary" id="csvBtn">⬇️ Download CSV</button>
-    </div>
+      <div class="pet-progress" id="progress"><i></i></div>
 
-    <div class="table-wrap" id="tableWrap" style="display:none">
-      <table class="extracted" id="resultTable"></table>
+      <div class="pet-btnrow">
+        <button class="btn" id="extractBtn">📋 Extract Tables</button>
+        <button class="pet-cancel" id="cancelBtn" type="button">✖ Cancel</button>
+      </div>
+
+      <div class="pet-preview" id="preview">
+        <div class="pet-pvbox"><h4>PDF page</h4><canvas id="pvCanvas"></canvas></div>
+        <div class="pet-tables" id="tablesWrap"></div>
+      </div>
+
+      <div class="btn-row" id="actionRow" style="display:none;margin-top:14px">
+        <button class="btn secondary" id="copyBtn">📋 Copy as Text</button>
+        <button class="btn" id="csvBtn">⬇️ Download <span id="dlLabel">CSV</span></button>
+      </div>
+
+      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem" role="status" aria-live="polite"></p>
+      <table class="extracted" id="resultTable" hidden></table>
+      <div class="limit-note">ℹ️ Tables are reconstructed from the position of the text on each page, and a page can contain several tables. Review the result and fix anything before exporting — you can edit any cell, add or delete rows and columns, and remove empty ones. For scanned PDFs (no selectable text), enable OCR above. See “Limitations” below.</div>
     </div>
   </div>
 </div>
 
+<!-- ===================== BELOW-TOOL CONTENT ===================== -->
 
+<!-- Key features -->
+<div class="pet-wrap">
+  <h2 class="pet-title">✨ Key Features</h2>
+  <div class="pet-feat-grid">
+    <div class="pet-fcard"><h4>🧭 Position-based table detection</h4><p>Rows are grouped by vertical position and columns are found from the whitespace between them, so even right-aligned numbers line up.</p></div>
+    <div class="pet-fcard"><h4>🗂️ Multiple tables per page</h4><p>A page is split into regions at blank bands, so several separate tables on one page are detected as separate tables.</p></div>
+    <div class="pet-fcard"><h4>✏️ Editable preview</h4><p>Review the detected table and fix anything: edit any cell, add or delete rows and columns, and remove empty ones before exporting.</p></div>
+    <div class="pet-fcard"><h4>🗃️ Eight export formats</h4><p>Download as CSV, Excel (XLSX/XLS/ODS), JSON, XML, HTML or Markdown — whichever suits your next step.</p></div>
+    <div class="pet-fcard"><h4>🎯 Page ranges &amp; all pages</h4><p>Extract from one page, a custom range like 1-3,5, or every page in the document at once.</p></div>
+    <div class="pet-fcard"><h4>🧾 Header detection</h4><p>Optionally treat the first row as a header — used for JSON keys, the Markdown header row and Excel styling.</p></div>
+    <div class="pet-fcard"><h4>🔎 Scanned-PDF OCR</h4><p>For image-only PDFs, built-in optical character recognition reads the table text in English, Hindi or both — no AI service.</p></div>
+    <div class="pet-fcard"><h4>🔦 Search &amp; highlight</h4><p>Search within an extracted table to quickly find and highlight the rows you need before exporting.</p></div>
+    <div class="pet-fcard"><h4>👁️ Side-by-side preview</h4><p>See the PDF page next to the detected tables so you can compare and confirm before you export.</p></div>
+    <div class="pet-fcard"><h4>🔒 100% private</h4><p>Detection, editing and export run locally with pdf.js, SheetJS and Tesseract. Your PDF is never uploaded — no server, no account.</p></div>
+  </div>
+</div>
+
+<!-- Benefits -->
+<div class="pet-wrap">
+  <h2 class="pet-title">🎁 Why use it</h2>
+  <div class="pet-pill-row">
+    <span class="pet-pill">Get tables out of reports</span>
+    <span class="pet-pill">Statements &amp; invoices to CSV</span>
+    <span class="pet-pill">Feed data into Excel or code</span>
+    <span class="pet-pill">Export tables as JSON/XML</span>
+    <span class="pet-pill">Scanned tables via OCR</span>
+    <span class="pet-pill">Edit before you export</span>
+    <span class="pet-pill">No watermark</span>
+    <span class="pet-pill">Free forever</span>
+  </div>
+</div>
+
+<!-- Related tools (ABOVE About) -->
+<div class="pet-wrap">
+  <h2 class="pet-title">🧰 Related Tools</h2>
+  <div class="pet-rel-grid">
+    <a class="pet-rel" href="pdf-to-excel.html"><b>PDF to Excel</b><span>Convert a whole PDF's tables into an Excel workbook.</span></a>
+    <a class="pet-rel" href="pdf-extract-text.html"><b>Extract Text</b><span>Pull all selectable text out of a PDF.</span></a>
+    <a class="pet-rel" href="csv-viewer.html"><b>CSV Viewer</b><span>Open and browse CSV data as a table.</span></a>
+    <a class="pet-rel" href="csv-json-converter.html"><b>CSV ↔ JSON</b><span>Convert between CSV and JSON data.</span></a>
+    <a class="pet-rel" href="excel-to-pdf.html"><b>Excel to PDF</b><span>Turn an Excel spreadsheet into a PDF.</span></a>
+    <a class="pet-rel" href="csv-to-pdf.html"><b>CSV to PDF</b><span>Render CSV data into a clean PDF table.</span></a>
+    <a class="pet-rel" href="pdf-to-word.html"><b>PDF to Word</b><span>Convert a PDF's text into an editable Word file.</span></a>
+    <a class="pet-rel" href="pdf-ocr.html"><b>PDF OCR</b><span>Make a scanned PDF searchable with OCR.</span></a>
+  </div>
+</div>
+
+<!-- About (bilingual) -->
 <div class="info-wrap">
   <div class="info-section">
     <div class="info-block">
       <h2>ℹ️ About This Tool</h2>
-      <p>This tool detects table-like rows and columns on a chosen page of a PDF by analyzing text position, shows you a preview, and lets you copy it or download it as a CSV file.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your PDF.</li>
-        <li>Pick the page that has the table you want.</li>
-        <li>Review the extracted table below.</li>
-        <li>Copy it or download as CSV.</li>
-      </ol>
+      <p>The <b>ApneSoftware Extract Table from PDF</b> tool detects the tables inside a PDF, lets you review and edit them, and exports them to whatever format you need — CSV, Excel, JSON, XML, HTML or Markdown — entirely inside your browser and without uploading the file anywhere. PDF is a fixed, final-form format designed for faithful display, not for data. The moment you need the <b>data</b> that a table holds — to total a column, sort a list, import it into a database, feed it to a script, or paste it into a spreadsheet — you hit a wall, because copy-pasting a table out of a PDF usually collapses a neat grid into a jumble of runs. This tool bridges that gap: it reads the text out of your PDF together with the exact position of every fragment, reconstructs the rows and columns from that geometry, and hands you a real, editable table you can correct and then export cleanly.</p>
+      <p>At its core the tool uses <b>pdf.js</b>, the same engine that renders PDFs inside Firefox, to read each selected page and pull out every piece of text along with its coordinates, width and font. From that raw data it rebuilds the tables in a few stages. First it groups fragments into <b>rows</b> by their vertical position, using a tolerance derived from the text size so a single visual line is not split in two. Then it works out the <b>columns</b>: rather than guessing column breaks line by line — which makes columns drift — it looks at the horizontal whitespace between the text of the data rows and places a column boundary at every consistent gap, so columns line up straight down the page and right-aligned numbers group correctly. Crucially, it also <b>segments each page into regions</b>: where a large blank band separates two blocks of content, they are treated as <b>separate tables</b>, each with its own columns. That means a page holding, say, a transaction table and a summary box below it yields two correctly-structured tables instead of one mangled grid.</p>
+      <p>Real documents rarely give up their structure easily, so the tool is built to be honest and controllable rather than a black box. Once a page is processed you see each detected table rendered as an editable grid right next to a picture of the PDF page, so you can compare them. Detection is very good for clearly-spaced tables — the columnar reports, bank and card statements, price lists, invoices and schedules that make up the vast majority of real needs — but no purely automatic method is perfect on every layout, which is why <b>editing</b> is a first-class feature here. You can click into any cell and correct it, <b>add or delete rows and columns</b>, and strip out empty rows and columns with a single option. This review-and-fix step, inspired by desktop tools like Tabula and the table tools in Adobe Acrobat, Foxit and Nitro, is what turns a good-enough automatic guess into exactly the table you want — and because it all happens locally and instantly, it is fast.</p>
+      <p>Export is deliberately broad because different jobs need different shapes. <b>CSV</b> is the universal choice that imports into virtually any application. <b>Excel</b> output comes in the modern <b>.xlsx</b> workbook (with a bold, shaded header row and auto-fitted columns), the older <b>.xls</b> binary for legacy software, and the <b>.ods</b> OpenDocument format for LibreOffice and OpenOffice. For developers, <b>JSON</b> turns the table into an array of records (using the first row as keys when you mark it as a header) and <b>XML</b> produces a clean, structured document. For the web and documentation, <b>HTML</b> gives you a ready-to-embed table and <b>Markdown</b> produces a pipe table that drops straight into a README, a wiki or a GitHub comment. You can also simply <b>copy</b> the table as tab-separated text and paste it directly into Excel or Google Sheets. When you extract from several pages, the export bundles every detected table together — separate sheets in an Excel workbook, or one file per table where the format calls for it.</p>
+      <p>Not every PDF contains real, selectable text. Many documents — especially scanned statements, receipts, forms and older records — are actually <b>images of pages</b> with no text layer underneath, and a plain extractor produces nothing from them. To handle these, the tool includes traditional <b>optical character recognition (OCR)</b> powered by the open-source Tesseract engine. When you enable OCR, each scanned page is rendered to an image and read, and the recognised words are grouped back into rows and columns by their positions, so even a scanned table becomes a usable, editable grid. You can choose the recognition language — <b>English</b>, <b>Hindi</b>, or both together — which is essential for Indian documents, and the tool detects on upload whether a PDF looks scanned and suggests turning OCR on. This is classic pattern-matching OCR that runs on your own device, not a generative AI service.</p>
+      <p>The whole experience is designed to feel like the professional tools people already know while remaining completely free and private. When you add a file the tool reports its page count and whether it contains selectable text; a <b>progress bar</b> shows extraction advancing page by page, which matters especially for OCR; a <b>cancel</b> button lets you stop a long job; and a <b>search</b> box inside each table lets you find and highlight rows before exporting. You can extract from a single page, a custom range like 1-3,5, or the whole document. Throughout, the interface adapts to phones and tablets, the tables scroll on small screens, and the status line explains clearly what happened — including a helpful message if a page turns out to be a scan and OCR was not enabled.</p>
+      <p>It is worth being realistic about what any PDF table extractor can and cannot do, because it saves a lot of frustration. A PDF stores <b>positioned glyphs</b>, not a logical table: it knows a character sits at a point on the page, but it does not necessarily record that a group of numbers forms a table, which cells are merged, or where one column ends and the next begins. Rebuilding the table means <b>inferring</b> that lost structure from the geometry, and that inference is excellent for clearly-spaced tables but imperfect for heavily designed pages with merged cells, nested tables, or borderless multi-column layouts, which may need a quick tidy-up using the editing tools. This tool is deliberately tuned for the common, high-value case: getting clean, aligned data out of ordinary tables so you can use it — and where automation falls short, the editing step lets you finish the job by hand.</p>
+      <p>Above all, this tool is <b>private by design</b>. Every step — reading the PDF, detecting the tables, recognising text with OCR, and building the export file — happens entirely on your own device using pdf.js, SheetJS and Tesseract. Nothing is uploaded to a server, nothing is stored, and no account or email is required; after the libraries have loaded you can even work offline. This matters enormously for a data tool, because the PDFs people extract tables from are so often sensitive — bank and card statements, invoices, payroll, tax and medical documents, official records — and uploading them to an online extractor, as many free services quietly do, would expose exactly the data that ought to stay private. Here, that never happens. Whether you are an accountant pulling figures from statements, an analyst gathering data from reports, a developer wiring PDF tables into a pipeline, a researcher compiling numbers, or anyone who needs the data out of a PDF, this tool gives you fast, structure-aware, private table extraction with nothing to install.</p>
     </div>
     <hr class="info-divider">
     <div class="info-block">
       <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>यह टूल PDF के चुने हुए पेज पर टेक्स्ट की पोज़िशन देखकर टेबल जैसी रो और कॉलम पहचानता है, प्रीव्यू दिखाता है, और कॉपी या CSV फाइल के रूप में डाउनलोड करने देता है।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी PDF अपलोड करें।</li>
-        <li>जिस पेज पर टेबल है वो चुनें।</li>
-        <li>नीचे निकाली गई टेबल चेक करें।</li>
-        <li>कॉपी करें या CSV डाउनलोड करें।</li>
-      </ol>
+      <p><b>ApneSoftware Extract Table from PDF</b> टूल किसी PDF के अंदर मौजूद टेबल को पहचानता है, आपको उन्हें देखने और संपादित करने देता है, और जिस भी प्रारूप की ज़रूरत हो उसमें निर्यात करता है — CSV, Excel, JSON, XML, HTML या Markdown — पूरी तरह आपके ब्राउज़र के अंदर और फ़ाइल को कहीं अपलोड किए बिना। PDF एक स्थिर, अंतिम‑रूप प्रारूप है जो दिखाने के लिए बना है, डेटा के लिए नहीं। जैसे ही आपको टेबल का <b>डेटा</b> चाहिए — किसी कॉलम का योग, सूची क्रमबद्ध करना, डेटाबेस में इम्पोर्ट करना, किसी स्क्रिप्ट को देना, या स्प्रेडशीट में पेस्ट करना — आप एक दीवार से टकराते हैं, क्योंकि PDF से टेबल कॉपी‑पेस्ट करने पर अक्सर सुंदर ग्रिड बिखर जाता है। यह टूल उस खाई को पाटता है: यह टेक्स्ट को हर टुकड़े की सटीक स्थिति के साथ पढ़ता है, उसी ज्यामिति से रो और कॉलम पुनर्निर्मित करता है, और आपको एक असली, संपादन‑योग्य टेबल देता है।</p>
+      <p>मूल रूप से यह टूल <b>pdf.js</b> का उपयोग करता है — वही इंजन जो Firefox में PDF रेंडर करता है — हर चुने पेज को पढ़कर हर टेक्स्ट टुकड़े को उसके निर्देशांक, चौड़ाई और फ़ॉन्ट के साथ निकालने के लिए। उस डेटा से यह टेबल कई चरणों में बनाता है। पहले यह टुकड़ों को उनकी ऊर्ध्वाधर स्थिति के आधार पर <b>रो</b> में समूहित करता है। फिर यह <b>कॉलम</b> तय करता है: हर पंक्ति पर अलग अनुमान लगाने के बजाय, यह डेटा rows के टेक्स्ट के बीच की खाली जगह देखता है और हर लगातार अंतराल पर कॉलम‑सीमा रखता है, ताकि कॉलम सीधे रहें और right‑aligned संख्याएँ सही समूहित हों। सबसे ज़रूरी — यह हर पेज को <b>regions में बाँटता</b> है: जहाँ बड़ी खाली पट्टी दो हिस्सों को अलग करती है, उन्हें <b>अलग टेबल</b> माना जाता है।</p>
+      <p>असली दस्तावेज़ आसानी से अपनी संरचना नहीं देते, इसलिए यह टूल black box नहीं, बल्कि ईमानदार और नियंत्रण‑योग्य बनाया गया है। पेज process होने पर हर पहचानी टेबल एक editable ग्रिड के रूप में PDF पेज की तस्वीर के बगल में दिखती है। पहचान स्पष्ट‑स्थान वाली टेबलों के लिए बहुत अच्छी है — रिपोर्ट, बैंक व कार्ड स्टेटमेंट, price lists, इनवॉइस — पर कोई भी स्वचालित तरीका हर layout पर परफ़ेक्ट नहीं होता, इसलिए यहाँ <b>संपादन</b> एक प्रमुख सुविधा है। आप किसी भी cell में क्लिक करके सुधार सकते हैं, <b>rows और columns जोड़/हटा</b> सकते हैं, और खाली rows/columns एक विकल्प से हटा सकते हैं। यह review‑and‑fix चरण — Tabula, Adobe Acrobat, Foxit और Nitro जैसे टूल से प्रेरित — अच्छे‑खासे अनुमान को बिल्कुल वही टेबल बना देता है जो आप चाहते हैं।</p>
+      <p>निर्यात जानबूझकर व्यापक रखा गया है क्योंकि अलग कामों को अलग आकार चाहिए। <b>CSV</b> सार्वभौमिक विकल्प है। <b>Excel</b> आउटपुट आधुनिक <b>.xlsx</b> (bold, shaded header और auto‑fit columns के साथ), पुराना <b>.xls</b>, और LibreOffice के लिए <b>.ods</b> में मिलता है। डेवलपर्स के लिए <b>JSON</b> टेबल को records की array में बदलता है (header चिह्नित करने पर पहली row keys बनती है) और <b>XML</b> एक साफ़ structured दस्तावेज़ देता है। वेब व documentation के लिए <b>HTML</b> तैयार table देता है और <b>Markdown</b> एक pipe table बनाता है जो README या GitHub comment में सीधे चलता है। आप टेबल को tab‑separated text के रूप में <b>कॉपी</b> करके Excel या Google Sheets में पेस्ट भी कर सकते हैं।</p>
+      <p>हर PDF में असली, चयन‑योग्य टेक्स्ट नहीं होता। बहुत से दस्तावेज़ — खासकर स्कैन किए स्टेटमेंट, रसीदें, फ़ॉर्म और पुराने रिकॉर्ड — असल में पेजों की <b>तस्वीरें</b> होती हैं। इन्हें संभालने के लिए, टूल में ओपन‑सोर्स Tesseract द्वारा संचालित पारंपरिक <b>OCR</b> शामिल है। OCR चालू करने पर हर स्कैन पेज एक छवि में रेंडर होकर पढ़ा जाता है, और पहचाने शब्द उनकी स्थिति से rows और columns में वापस समूहित होते हैं। आप भाषा — <b>अंग्रेज़ी</b>, <b>हिंदी</b>, या दोनों — चुन सकते हैं। यह पारंपरिक OCR है जो आपके डिवाइस पर चलता है, कोई AI सेवा नहीं।</p>
+      <p>पूरा अनुभव पेशेवर टूल जैसा बनाया गया है, फिर भी पूरी तरह मुफ़्त और निजी। फ़ाइल जोड़ने पर टूल पेज संख्या और यह बताता है कि टेक्स्ट चयन‑योग्य है या नहीं; एक <b>प्रगति पट्टी</b> extraction को पेज‑दर‑पेज दिखाती है; एक <b>कैंसल</b> बटन लंबे काम को रोकता है; और हर टेबल में एक <b>search</b> box rows खोजने व highlight करने देता है। आप एक पेज, 1-3,5 जैसी custom range, या पूरा दस्तावेज़ extract कर सकते हैं। पूरे समय interface फ़ोन और टैबलेट के अनुसार ढलता है।</p>
+      <p>यह वास्तविक होना उपयोगी है कि कोई भी PDF table extractor क्या कर सकता है और क्या नहीं। PDF <b>स्थित ग्लिफ़</b> संग्रहीत करता है, तार्किक टेबल नहीं। टेबल फिर से बनाने का अर्थ है उस खोई संरचना का ज्यामिति से <b>अनुमान</b> लगाना, और यह अनुमान स्पष्ट‑स्थान वाली टेबलों के लिए उत्कृष्ट है पर merged cells, nested tables या borderless बहु‑कॉलम layout वाले पेजों के लिए अपूर्ण — जिन्हें editing tools से जल्दी ठीक किया जा सकता है।</p>
+      <p>सबसे बढ़कर, यह टूल <b>डिज़ाइन से ही निजी</b> है। हर चरण — PDF पढ़ना, टेबल पहचानना, OCR, और export फ़ाइल बनाना — पूरी तरह आपके डिवाइस पर pdf.js, SheetJS और Tesseract से होता है। कुछ भी सर्वर पर अपलोड नहीं होता, कुछ भी सेव नहीं होता, और किसी अकाउंट की ज़रूरत नहीं। यह किसी डेटा टूल के लिए बहुत मायने रखता है, क्योंकि जिन PDF से लोग टेबल निकालते हैं वे अक्सर संवेदनशील होती हैं — बैंक व कार्ड स्टेटमेंट, इनवॉइस, वेतन, कर व मेडिकल दस्तावेज़। यहाँ वह कभी नहीं होता। चाहे आप अकाउंटेंट हों, विश्लेषक, डेवलपर, शोधकर्ता, या कोई भी जिसे PDF से डेटा चाहिए — यह टूल आपको तेज़, संरचना‑जागरूक, निजी table extraction देता है, बिना कुछ इंस्टॉल किए।</p>
     </div>
   </div>
+</div>
+
+<!-- How to use -->
+<div class="pet-wrap">
+  <h2 class="pet-title">📖 How To Use</h2>
+  <ol class="pet-steps">
+    <li><b>Upload your PDF.</b> Drag it into the drop zone or click to choose. The tool shows the page count and whether it has selectable text.</li>
+    <li><b>Choose pages.</b> Pick a single page, a custom range like 1-3,5, or all pages. For a scanned PDF, tick <b>Use OCR</b> and choose the language.</li>
+    <li><b>Extract.</b> Click <b>Extract Tables</b>. Tables are detected from the text positions and shown next to the PDF page.</li>
+    <li><b>Review &amp; edit.</b> Fix any cell, add or delete rows and columns, remove empty ones, and search to highlight rows.</li>
+    <li><b>Export.</b> Copy the table, or choose a format (CSV, Excel, JSON, XML, HTML, Markdown) and download.</li>
+  </ol>
+</div>
+
+<!-- FAQ -->
+<div class="pet-wrap pet-faq">
+  <h2 class="pet-title">❓ Frequently Asked Questions</h2>
+  <div id="faqList"></div>
+</div>
+
+<!-- Privacy & Security -->
+<div class="pet-wrap">
+  <h2 class="pet-title">🔒 Privacy &amp; Security</h2>
+  <p class="pet-sub">This tool extracts tables entirely inside your browser using pdf.js, SheetJS and (for scanned files) the Tesseract OCR engine. Your file is <b>never uploaded</b> to any server, never stored, and never transmitted anywhere. No account, email or signup is required, and once the libraries have loaded you can work offline. Because the PDFs people extract tables from — bank and card statements, invoices, payroll, tax and medical documents — frequently contain sensitive financial and personal data, this local-only design keeps them under your sole control from upload to export.</p>
+</div>
+
+<!-- Browser compatibility -->
+<div class="pet-wrap">
+  <h2 class="pet-title">🌐 Browser Compatibility</h2>
+  <p class="pet-sub">Works in all modern browsers — Google Chrome, Mozilla Firefox, Microsoft Edge, Safari, Brave and Opera — on Windows, macOS, Linux, Android and iOS. It relies only on JavaScript and the standard File, Blob and Canvas APIs. On phones and tablets the layout stacks into a single column and the tables scroll horizontally, with touch-friendly controls. OCR downloads a language model once (a few megabytes) and then works offline for that language.</p>
+</div>
+
+<!-- Supported PDF types -->
+<div class="pet-wrap">
+  <h2 class="pet-title">🧷 Supported PDF Types</h2>
+  <p class="pet-sub"><b>Text PDFs</b> (with selectable, machine-readable text) extract directly and most accurately — including Hindi and other Unicode text. <b>Scanned / image-only PDFs</b> have no text layer; enable OCR to read the table text from the page images (English, Hindi or both). <b>Mixed PDFs</b> that contain both are handled page by page. <b>Password-protected PDFs</b> must be unlocked first with our Unlock PDF tool.</p>
+</div>
+
+<!-- Supported export formats -->
+<div class="pet-wrap">
+  <h2 class="pet-title">📄 Supported Export Formats</h2>
+  <p class="pet-sub"><b>CSV</b> — a universal plain-text table that imports into almost anything. <b>Excel (.xlsx)</b> — a styled, editable workbook (one sheet per table). <b>Excel 97–2003 (.xls)</b> and <b>ODS</b> — for legacy software and LibreOffice. <b>JSON</b> — an array of records (first row as keys when marked as a header) for developers. <b>XML</b> — a clean structured document. <b>HTML</b> — a ready-to-embed web table. <b>Markdown</b> — a pipe table for READMEs, wikis and GitHub. You can also copy the table as tab-separated text to paste straight into a spreadsheet.</p>
+</div>
+
+<!-- Limitations -->
+<div class="pet-wrap">
+  <h2 class="pet-title">⚠️ Limitations</h2>
+  <p class="pet-sub">Because it rebuilds tables from the position of the text, detection focuses on <b>data and grid structure</b>. Preserved: cell values, row and column arrangement of clearly-spaced tables, Unicode/Hindi text, and multiple tables per page. Approximated or not fully automatic: <b>merged cells</b> (a spanning value lands in one cell), nested tables, borderless multi-column layouts, and cells whose text wraps onto several lines (joined with spaces). Original fonts, colours and borders from the PDF are not carried into the data formats; the Excel export applies a clean default style. That is exactly why the preview is <b>editable</b> — fix any imperfect split before exporting. OCR accuracy depends on scan quality.</p>
+</div>
+
+<!-- Troubleshooting -->
+<div class="pet-wrap">
+  <h2 class="pet-title">🛠️ Troubleshooting</h2>
+  <p class="pet-sub"><b>“No table found on this page.”</b> The page may be a scan — tick <b>Use OCR</b> and choose the language, then extract again; or the page simply has no tabular text. <b>Columns look merged or split:</b> the table is likely borderless or unevenly spaced — use the edit tools to add/delete a column or fix a cell. <b>Numbers look odd or codes lost leading zeros:</b> exported CSV keeps text as-is; in Excel, format the column as text if needed. <b>Hindi text looks wrong:</b> for text PDFs it is preserved as-is; for scans, choose the Hindi (or English + Hindi) OCR language. <b>OCR is slow:</b> it runs locally and the language model downloads once; large scans take longer — use Cancel to stop. <b>“This PDF is encrypted.”</b> Remove the password with our Unlock PDF tool first.</p>
 </div>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+(function(){
+  pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  const $ = id => document.getElementById(id);
+  let pdfDoc=null, pdfBytes=null, tables=[], cancelFlag=false;
 
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-let pdfDocJs = null;
-let currentRows = [];
-
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type === 'application/pdf') handleFile(files[0]);
-});
-
-function extractRows(items){
-  const sorted = [...items].sort((a,b) => b.transform[5] - a.transform[5]);
-  const rows = [];
-  let currentRow = [];
-  let lastY = null;
-
-  sorted.forEach(item => {
-    const y = item.transform[5];
-    if(lastY !== null && Math.abs(y - lastY) > 4){
-      if(currentRow.length) rows.push(currentRow);
-      currentRow = [];
-    }
-    currentRow.push(item);
-    lastY = y;
+  setupDropzone($('dropzone'), $('fileInput'), list=>{
+    if(list.length && (list[0].type==='application/pdf'||/\.pdf$/i.test(list[0].name))) loadFile(list[0]);
   });
-  if(currentRow.length) rows.push(currentRow);
+  $('pageMode').addEventListener('change',e=>{ $('pageRange').disabled = e.target.value!=='custom'; });
+  $('exportFormat').addEventListener('change',e=>{ $('dlLabel').textContent=e.target.value.toUpperCase(); });
 
-  return rows.map(row => {
-    const sortedRow = [...row].sort((a,b) => a.transform[4] - b.transform[4]);
-    const cells = [];
-    let cellText = sortedRow[0].str;
-    let lastEndX = sortedRow[0].transform[4] + (sortedRow[0].width || sortedRow[0].str.length*5);
+  function esc(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
-    for(let i=1; i<sortedRow.length; i++){
-      const item = sortedRow[i];
-      const gap = item.transform[4] - lastEndX;
-      if(gap > 10){
-        cells.push(cellText.trim());
-        cellText = item.str;
-      } else {
-        cellText += item.str;
-      }
-      lastEndX = item.transform[4] + (item.width || item.str.length*5);
-    }
-    cells.push(cellText.trim());
-    return cells;
-  });
-}
-
-async function handleFile(file){
-  const status = document.getElementById('statusMsg');
-  status.textContent = '⏳ Loading PDF...';
-  try{
-    const arrayBuf = await file.arrayBuffer();
-    pdfDocJs = await pdfjsLib.getDocument({data: arrayBuf}).promise;
-
-    const sel = document.getElementById('pageSelect');
-    sel.innerHTML = '';
-    for(let i=1; i<=pdfDocJs.numPages; i++){
-      const opt = document.createElement('option');
-      opt.value = i;
-      opt.textContent = 'Page ' + i;
-      sel.appendChild(opt);
-    }
-    document.getElementById('pageSelectField').style.display = 'block';
-    status.textContent = '';
-    await extractFromPage(1);
-  }catch(err){
-    status.textContent = '❌ Error: ' + err.message;
+  async function loadFile(file){
+    try{
+      pdfBytes=await file.arrayBuffer();
+      let ver='—'; try{ const h=new TextDecoder('latin1').decode(new Uint8Array(pdfBytes.slice(0,1024))); const m=/%PDF-(\d\.\d)/.exec(h); if(m) ver=m[1]; }catch(e){}
+      pdfDoc=await pdfjsLib.getDocument({data:pdfBytes.slice(0)}).promise;
+      window.__petFileName=file.name;
+      const sel=$('pageSelect'); sel.innerHTML='';
+      for(let i=1;i<=pdfDoc.numPages;i++){ const o=document.createElement('option'); o.value=i; o.textContent='Page '+i; sel.appendChild(o); }
+      let textChars=0; const sample=Math.min(pdfDoc.numPages,3);
+      for(let i=1;i<=sample;i++){ const p=await pdfDoc.getPage(i); const tc=await p.getTextContent(); textChars+=tc.items.reduce((s,it)=>s+it.str.length,0); }
+      const scanned=textChars<20;
+      $('infoArea').style.display='grid';
+      $('infoArea').innerHTML=[['File',esc(file.name)],['Size',formatBytes(file.size)],['Pages',pdfDoc.numPages],['PDF version',ver],['Type',scanned?'Scanned / image':'Text PDF']]
+        .map(([k,v])=>`<div class="pet-i"><b>${v}</b><span>${k}</span></div>`).join('');
+      const note=$('scanNote'); note.classList.add('show');
+      if(scanned){ note.className='pet-scan warn show'; note.textContent='🔎 This PDF appears to be scanned. Enable “Use OCR for scanned pages” and pick a language.'; $('useOcr').checked=true; }
+      else { note.className='pet-scan ok show'; note.textContent='✓ This PDF contains selectable text and will extract directly.'; }
+      $('afterUpload').style.display='block';
+      $('statusMsg').textContent=''; $('preview').classList.remove('show'); $('actionRow').style.display='none';
+    }catch(e){ $('scanNote').className='pet-scan warn show'; $('scanNote').classList.add('show'); $('scanNote').textContent='⚠️ Could not read this PDF — it may be encrypted. Unlock it first.'; }
   }
-}
 
-document.getElementById('pageSelect').addEventListener('change', e=>{
-  extractFromPage(parseInt(e.target.value));
-});
+  // ===== detection engine =====
+  function median(a){ if(!a.length) return 0; const s=[...a].sort((x,y)=>x-y); return s[Math.floor(s.length/2)]; }
+  function itemHeight(it){ return it.height||Math.hypot(it.transform[2],it.transform[3])||10; }
+  function itemSpan(it){ const l=it.transform[4]; const w=it.width||itemHeight(it)*0.5*String(it.str).length; return [l,l+w]; }
+  const NUMDATE=/^[₹$€£]?\s?-?[\d,]+(\.\d+)?%?$|^\d{1,2}[-\/.]\d{1,2}[-\/.]\d{2,4}$/;
+  function isDataRow(r){ const nb=r.filter(it=>String(it.str).trim()); if(nb.length<4) return false;
+    const num=nb.filter(it=>NUMDATE.test(String(it.str).trim().replace(/\s+/g,''))).length; return num/nb.length>=0.4; }
+  function mergeRanges(rs){ if(!rs.length) return []; rs=rs.map(r=>r.slice()).sort((a,b)=>a[0]-b[0]);
+    const out=[rs[0]]; for(let i=1;i<rs.length;i++){ const last=out[out.length-1]; if(rs[i][0]<=last[1]+1) last[1]=Math.max(last[1],rs[i][1]); else out.push(rs[i]); } return out; }
+  function overlapsAny(span, ranges){ for(const r of ranges){ if(span[0]<r[1] && span[1]>r[0]) return true; } return false; }
+  function detectColumns(rowsOfItems, thresholdFrac){
+    if(!rowsOfItems.length) return [];
+    const bin=2; let minX=Infinity,maxX=-Infinity;
+    const rowSpans=rowsOfItems.map(r=>r.map(it=>{ const s=itemSpan(it); if(s[0]<minX)minX=s[0]; if(s[1]>maxX)maxX=s[1]; return s; }));
+    if(!isFinite(minX)||maxX<=minX) return [];
+    const n=Math.ceil((maxX-minX)/bin)+2; const cov=new Array(n).fill(0);
+    rowSpans.forEach(spans=>{ const seen=new Set(); spans.forEach(([l,r])=>{ let a=Math.floor((l-minX)/bin),b=Math.ceil((r-minX)/bin); if(a<0)a=0; for(let i=a;i<b&&i<n;i++) seen.add(i); }); seen.forEach(i=>cov[i]++); });
+    const thresh=Math.max(0,Math.floor(rowsOfItems.length*(thresholdFrac||0)));
+    const occ=i=>cov[i]>thresh; const minGapBins=Math.max(2,Math.round(5/bin));
+    const cols=[]; let i=0;
+    while(i<n){ while(i<n&&!occ(i)) i++; if(i>=n) break; const start=i;
+      while(i<n){ if(!occ(i)){ let j=i; while(j<n&&!occ(j)) j++; if(j-i>=minGapBins) break; i=j; } else i++; }
+      cols.push([minX+start*bin, minX+Math.min(i,n)*bin]); }
+    return cols;
+  }
+  // returns an array of tables: [{rows:[[cell,...]], header:bool}]
+  function itemsToTables(items){
+    items=items.filter(it=>it.str!==undefined && String(it.str).trim().length);
+    if(!items.length) return [];
+    const medH=median(items.map(itemHeight))||10; const rowTol=Math.max(3,medH*0.6);
+    const sorted=[...items].sort((a,b)=> (b.transform[5]-a.transform[5])||(a.transform[4]-b.transform[4]));
+    const rows=[]; const rowY=[]; let cur=null,lastY=null;
+    sorted.forEach(it=>{ const y=it.transform[5]; if(lastY===null||Math.abs(y-lastY)>rowTol){ cur=[]; rows.push(cur); rowY.push(y); } cur.push(it); lastY=y; });
+    const gaps=[]; for(let i=1;i<rows.length;i++) gaps.push(rowY[i-1]-rowY[i]);
+    const medGap=median(gaps.filter(g=>g>0))||medH*1.5;
+    const regionThresh=Math.max(medGap+3*medH, medH*3.5);
+    const regions=[]; let curR=[0];
+    for(let i=1;i<rows.length;i++){ if((rowY[i-1]-rowY[i])>regionThresh){ regions.push(curR); curR=[i]; } else curR.push(i); }
+    if(curR.length) regions.push(curR);
+    const tables=[];
+    regions.forEach(regIdx=>{
+      const regRows=regIdx.map(i=>rows[i]); const regIsData=regRows.map(isDataRow);
+      const dl=[]; regIsData.forEach((d,i)=>{ if(d) dl.push(i); });
+      let cols;
+      if(dl.length>=1){
+        const dataRows=dl.map(i=>regRows[i]);
+        const dataCols=detectColumns(dataRows, dataRows.length>=5?0.15:0);
+        const firstD=dl[0]; const band=[];
+        for(let r=firstD-1;r>=0 && band.length<4;r--){ if(regIsData[r]) break; band.push(r); }
+        const extra=[]; band.forEach(r=>regRows[r].forEach(it=>{ const s=itemSpan(it); if((s[1]-s[0])>130) return; if(overlapsAny(s,dataCols)) return; extra.push(s); }));
+        cols=mergeRanges(dataCols.concat(mergeRanges(extra)));
+      } else { cols=detectColumns(regRows,0); }
+      if(cols.length<1) cols=[[-1e9,1e9]];
+      const centers=cols.map(c=>(c[0]+c[1])/2);
+      const assign=it=>{ const s=itemSpan(it); const cx=(s[0]+s[1])/2;
+        for(let i=0;i<cols.length;i++){ if(cx>=cols[i][0]-1&&cx<=cols[i][1]+1) return i; }
+        let bi=0,bd=Infinity; for(let i=0;i<cols.length;i++){ const d=Math.abs(cx-centers[i]); if(d<bd){bd=d;bi=i;} } return bi; };
+      const grid=regRows.map(row=>{ const rs=[...row].sort((a,b)=>a.transform[4]-b.transform[4]); const cells=new Array(cols.length).fill('');
+        rs.forEach(it=>{ const ci=assign(it); cells[ci]=cells[ci]?cells[ci]+' '+it.str:it.str; }); return cells.map(c=>c.replace(/\s+/g,' ').trim()); });
+      if(grid.some(r=>r.some(c=>c))) tables.push({rows:grid});
+    });
+    return tables;
+  }
+  async function ocrTables(page, lang, onProg){
+    const vp=page.getViewport({scale:2}); const c=document.createElement('canvas'); c.width=vp.width; c.height=vp.height;
+    await page.render({canvasContext:c.getContext('2d'), viewport:vp}).promise;
+    const { data }=await Tesseract.recognize(c, lang||'eng', onProg?{logger:onProg}:undefined);
+    const rows=[];
+    (data.lines||[]).forEach(line=>{ const words=(line.words||[]).filter(w=>w.text&&w.text.trim()); if(!words.length) return;
+      words.sort((a,b)=>a.bbox.x0-b.bbox.x0); const lineW=(line.bbox?(line.bbox.x1-line.bbox.x0):600); const gap=Math.max(18,lineW*0.03);
+      const cells=[]; let cell=words[0].text; let lastX1=words[0].bbox.x1;
+      for(let i=1;i<words.length;i++){ const w=words[i]; if(w.bbox.x0-lastX1>gap){ cells.push(cell.trim()); cell=w.text; } else cell+=' '+w.text; lastX1=w.bbox.x1; }
+      cells.push(cell.trim()); rows.push(cells); });
+    return rows.length?[{rows}]:[];
+  }
+  function trimTable(rows, dropRows, dropCols){
+    let g=rows.map(r=>r.slice());
+    if(dropRows) g=g.filter(r=>r.some(c=>String(c).trim()));
+    if(dropCols && g.length){ const nc=g.reduce((m,r)=>Math.max(m,r.length),0); const keep=[];
+      for(let c=0;c<nc;c++){ if(g.some(r=>String(r[c]!=null?r[c]:'').trim())) keep.push(c); }
+      g=g.map(r=>keep.map(c=>r[c]!=null?r[c]:'')); }
+    return g;
+  }
+  function parseRange(mode, custom, total){
+    let out=[];
+    if(mode==='all'){ for(let i=1;i<=total;i++) out.push(i); }
+    else if(mode==='one'){ out=[parseInt($('pageSelect').value)||1]; }
+    else { String(custom||'').split(',').forEach(part=>{ part=part.trim(); if(!part) return; const m=/^(\d+)\s*-\s*(\d+)$/.exec(part);
+      if(m){ let a=+m[1],b=+m[2]; if(a>b){const t=a;a=b;b=t;} for(let i=a;i<=b;i++) out.push(i); } else if(/^\d+$/.test(part)) out.push(+part); });
+      out=Array.from(new Set(out)).filter(n=>n>=1&&n<=total).sort((a,b)=>a-b); if(!out.length) out=[1]; }
+    return out;
+  }
 
-async function extractFromPage(pageNum){
-  const status = document.getElementById('statusMsg');
-  status.textContent = `⏳ Extracting table from page ${pageNum}...`;
-  try{
-    const page = await pdfDocJs.getPage(pageNum);
-    const content = await page.getTextContent();
-    currentRows = content.items.length ? extractRows(content.items) : [];
+  window.__petHooks={ itemsToTables, detectColumns, parseRange, trimTable, ocrTables };
 
-    if(!currentRows.length){
-      status.textContent = '⚠️ No selectable text/table found on this page.';
-      document.getElementById('tableWrap').style.display = 'none';
-      document.getElementById('actionRow').style.display = 'none';
-      return;
-    }
-
-    const table = document.getElementById('resultTable');
-    table.innerHTML = '';
-    currentRows.forEach(row => {
-      const tr = document.createElement('tr');
-      row.forEach(cell => {
-        const td = document.createElement('td');
-        td.textContent = cell;
-        tr.appendChild(td);
-      });
+  // ===== rendering (editable) =====
+  function readTables(){
+    const out=[]; document.querySelectorAll('#tablesWrap .pet-table').forEach(tbl=>{
+      const rows=[]; tbl.querySelectorAll('tr.pet-row').forEach(tr=>{ const cells=[]; tr.querySelectorAll('td.pet-cell').forEach(td=>cells.push(td.textContent)); rows.push(cells); });
+      out.push(rows);
+    });
+    return out;
+  }
+  function renderTables(list){
+    const wrap=$('tablesWrap'); wrap.innerHTML='';
+    if(!list.length){ wrap.innerHTML='<div class="pet-tcard">No tables detected. Try another page, or enable OCR for scanned PDFs.</div>'; $('actionRow').style.display='none'; return; }
+    list.forEach((tbl,ti)=>{
+      const card=document.createElement('div'); card.className='pet-tcard';
+      const bar=document.createElement('div'); bar.className='pet-tbar';
+      bar.innerHTML=`<span class="pet-tname">Table ${ti+1} · ${tbl.rows.length}×${tbl.rows.reduce((m,r)=>Math.max(m,r.length),0)}${tbl.page?(' · page '+tbl.page):''}</span>`;
+      const mk=(t,fn)=>{ const b=document.createElement('button'); b.className='pet-tbtn'; b.type='button'; b.textContent=t; b.addEventListener('click',fn); return b; };
+      const search=document.createElement('input'); search.className='pet-search'; search.placeholder='🔎 Search…';
+      search.addEventListener('input',()=>{ const q=search.value.toLowerCase(); card.querySelectorAll('tr.pet-row').forEach(tr=>{ const hit=q&&Array.from(tr.querySelectorAll('td.pet-cell')).some(td=>td.textContent.toLowerCase().includes(q)); tr.classList.toggle('pet-hl',!!hit); }); });
+      bar.appendChild(mk('➕ Row',()=>{ addRow(table); }));
+      bar.appendChild(mk('➕ Col',()=>{ addCol(table); }));
+      bar.appendChild(search);
+      card.appendChild(bar);
+      const tw=document.createElement('div'); tw.className='pet-twrap';
+      const table=document.createElement('table'); table.className='pet-table';
+      buildTableDom(table, tbl.rows);
+      tw.appendChild(table); card.appendChild(tw); wrap.appendChild(card);
+    });
+    $('actionRow').style.display='flex';
+  }
+  function buildTableDom(table, rows){
+    table.innerHTML='';
+    const ncols=rows.reduce((m,r)=>Math.max(m,r.length),0);
+    // column-delete control row
+    const ctl=document.createElement('tr'); ctl.className='pet-ctlrow';
+    const corner=document.createElement('td'); corner.className='pet-ctl'; corner.textContent=''; ctl.appendChild(corner);
+    for(let c=0;c<ncols;c++){ const td=document.createElement('td'); td.className='pet-ctl'; td.title='Delete column'; td.textContent='✕';
+      td.addEventListener('click',()=>{ table.querySelectorAll('tr.pet-row').forEach(tr=>{ const cell=tr.querySelectorAll('td.pet-cell')[c]; if(cell) cell.remove(); }); reindexCols(table); }); ctl.appendChild(td); }
+    table.appendChild(ctl);
+    rows.forEach((row,ri)=>{
+      const tr=document.createElement('tr'); tr.className='pet-row'+(ri===0&&$('firstHeader').checked?' hdr':'');
+      const del=document.createElement('td'); del.className='pet-ctl pet-rowdel'; del.title='Delete row'; del.textContent='✕';
+      del.addEventListener('click',()=>{ tr.remove(); markHeader(table); }); tr.appendChild(del);
+      for(let c=0;c<ncols;c++){ const td=document.createElement('td'); td.className='pet-cell'; td.contentEditable='true'; td.textContent=row[c]!=null?row[c]:''; tr.appendChild(td); }
       table.appendChild(tr);
     });
-
-    document.getElementById('tableWrap').style.display = 'block';
-    document.getElementById('actionRow').style.display = 'flex';
-    status.textContent = `✅ Found ${currentRows.length} row(s) — please review before using.`;
-  }catch(err){
-    status.textContent = '❌ Error: ' + err.message;
   }
-}
+  function reindexCols(table){ /* delete-column handlers rebuilt on next render; nothing needed live */ }
+  function markHeader(table){ const first=table.querySelector('tr.pet-row'); table.querySelectorAll('tr.pet-row').forEach(tr=>tr.classList.remove('hdr')); if(first&&$('firstHeader').checked) first.classList.add('hdr'); }
+  function addRow(table){ const ncols=table.querySelectorAll('tr.pet-ctlrow td.pet-ctl').length-1; const tr=document.createElement('tr'); tr.className='pet-row';
+    const del=document.createElement('td'); del.className='pet-ctl pet-rowdel'; del.title='Delete row'; del.textContent='✕'; del.addEventListener('click',()=>{ tr.remove(); }); tr.appendChild(del);
+    for(let c=0;c<ncols;c++){ const td=document.createElement('td'); td.className='pet-cell'; td.contentEditable='true'; tr.appendChild(td); } table.appendChild(tr); }
+  function addCol(table){ const rows=readTables(); // rebuild with one more col on this table
+    const idx=Array.from(document.querySelectorAll('#tablesWrap .pet-table')).indexOf(table);
+    const data=rows[idx].map(r=>{ r=r.slice(); r.push(''); return r; }); buildTableDom(table, data); }
 
-function rowsToCsv(rows){
-  return rows.map(row => row.map(cell => {
-    const escaped = String(cell).replace(/"/g,'""');
-    return /[",\n]/.test(escaped) ? `"${escaped}"` : escaped;
-  }).join(',')).join('\n');
-}
+  // ===== extract =====
+  $('cancelBtn').addEventListener('click',()=>{ cancelFlag=true; $('statusMsg').textContent='⏹️ Cancelling…'; });
+  $('firstHeader').addEventListener('change',()=>{ document.querySelectorAll('#tablesWrap .pet-table').forEach(markHeader); });
 
-document.getElementById('copyBtn').addEventListener('click', (e)=>{
-  copyText(rowsToCsv(currentRows), e.target);
-});
-document.getElementById('csvBtn').addEventListener('click', ()=>{
-  downloadText('extracted-table.csv', rowsToCsv(currentRows), 'text/csv');
-});
+  async function renderPageCanvas(pn){
+    try{ const page=await pdfDoc.getPage(pn); const vp0=page.getViewport({scale:1}); const scale=Math.min(1.4,290/vp0.width);
+      const vp=page.getViewport({scale}); const c=$('pvCanvas'); c.width=vp.width; c.height=vp.height; await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise; }catch(e){}
+  }
+
+  $('extractBtn').addEventListener('click', async ()=>{
+    if(!pdfDoc){ $('statusMsg').textContent='⚠️ Add a PDF first.'; return; }
+    const pages=parseRange($('pageMode').value, $('pageRange').value, pdfDoc.numPages);
+    const useOcr=$('useOcr').checked, ocrLang=$('ocrLang').value;
+    const dropRows=$('ignoreEmptyRows').checked, dropCols=$('ignoreEmptyCols').checked;
+    const prog=$('progress'); prog.classList.add('show'); prog.querySelector('i').style.width='4%';
+    $('extractBtn').disabled=true; $('cancelBtn').classList.add('show'); cancelFlag=false;
+    const t0=performance.now(); tables=[];
+    try{
+      for(let idx=0;idx<pages.length;idx++){
+        if(cancelFlag) throw new Error('Cancelled');
+        const pn=pages[idx];
+        $('statusMsg').textContent=`⏳ Page ${pn} (${idx+1}/${pages.length})${useOcr?' · OCR':''}…`;
+        prog.querySelector('i').style.width=Math.round(((idx+0.5)/pages.length)*92)+'%';
+        const page=await pdfDoc.getPage(pn);
+        const tc=await page.getTextContent();
+        const textChars=tc.items.reduce((s,it)=>s+String(it.str).length,0);
+        let pageTables;
+        if(textChars<10 && useOcr && window.Tesseract){ pageTables=await ocrTables(page, ocrLang); }
+        else { pageTables=itemsToTables(tc.items); }
+        pageTables.forEach(t=>{ const rows=trimTable(t.rows, dropRows, dropCols);
+          const ncols=rows.reduce((m,r)=>Math.max(m,r.length),0);
+          if(rows.length && ncols>=2) tables.push({rows, page:pn}); });
+      }
+      await renderPageCanvas(pages[0]);
+      renderTables(tables);
+      prog.querySelector('i').style.width='100%';
+      $('preview').classList.add('show');
+      const secs=((performance.now()-t0)/1000).toFixed(1);
+      $('statusMsg').textContent = tables.length ? `✅ Found ${tables.length} table(s) across ${pages.length} page(s) in ${secs}s — review and edit before export.` : '⚠️ No tables detected. Try another page or enable OCR.';
+      if(window.premToast && tables.length) premToast('Tables extracted ✔');
+    }catch(err){ $('statusMsg').textContent = err.message==='Cancelled' ? '⏹️ Cancelled.' : '❌ '+err.message; }
+    finally{ $('extractBtn').disabled=false; $('cancelBtn').classList.remove('show'); setTimeout(()=>prog.classList.remove('show'),600); }
+  });
+
+  // ===== export =====
+  function csvCell(s){ s=String(s); return /[",\n\r]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; }
+  function tableToCsv(rows){ return rows.map(r=>r.map(csvCell).join(',')).join('\r\n'); }
+  function tableToTsv(rows){ return rows.map(r=>r.map(c=>String(c).replace(/\t/g,' ')).join('\t')).join('\n'); }
+  function headerKeys(rows){ const first=rows[0]||[]; return first.map((h,i)=>{ h=String(h).trim(); return h||('col'+(i+1)); }); }
+  function tableToJson(rows, header){ if(header && rows.length>1){ const keys=headerKeys(rows); return rows.slice(1).map(r=>{ const o={}; keys.forEach((k,i)=>o[k]=r[i]!=null?r[i]:''); return o; }); } return rows; }
+  function xmlEsc(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c])); }
+  function tableToXml(rows, header){ const keys=header?headerKeys(rows):null; const body=(header?rows.slice(1):rows).map(r=>{
+      const cells=r.map((c,i)=>{ const tag=keys?keys[i].replace(/[^A-Za-z0-9_]/g,'_').replace(/^(\d)/,'_$1'):'cell'; return `<${tag}>${xmlEsc(c)}</${tag}>`; }).join(''); return `  <row>${cells}</row>`; }).join('\n');
+    return `<?xml version="1.0" encoding="UTF-8"?>\n<table>\n${body}\n</table>`; }
+  function tableToHtml(rows, header){ const r2=(cells,tag)=>'<tr>'+cells.map(c=>`<${tag}>${xmlEsc(c)}</${tag}>`).join('')+'</tr>';
+    let out='<table border="1" cellspacing="0" cellpadding="4">\n'; if(header&&rows.length){ out+='<thead>'+r2(rows[0],'th')+'</thead>\n<tbody>\n'; rows.slice(1).forEach(r=>out+=r2(r,'td')+'\n'); out+='</tbody>'; }
+    else { rows.forEach(r=>out+=r2(r,'td')+'\n'); } out+='\n</table>'; return out; }
+  function tableToMd(rows, header){ if(!rows.length) return ''; const nc=rows.reduce((m,r)=>Math.max(m,r.length),0); const pad=r=>{ r=r.slice(); while(r.length<nc)r.push(''); return r.map(c=>String(c).replace(/\|/g,'\\|')); };
+    const head=header?rows[0]:Array.from({length:nc},(_,i)=>'Col '+(i+1)); const bodyRows=header?rows.slice(1):rows;
+    let out='| '+pad(head).join(' | ')+' |\n'+'| '+Array(nc).fill('---').join(' | ')+' |\n'; bodyRows.forEach(r=>out+='| '+pad(r).join(' | ')+' |\n'); return out; }
+
+  function buildWorkbook(all, header){
+    const wb=XLSX.utils.book_new();
+    all.forEach((rows,i)=>{ const ws=XLSX.utils.aoa_to_sheet(rows);
+      const nc=rows.reduce((m,r)=>Math.max(m,r.length),0);
+      ws['!cols']=Array.from({length:nc},(_,c)=>{ let mx=6; rows.forEach(r=>{ const v=String(r[c]!=null?r[c]:''); if(v.length>mx)mx=v.length; }); return {wch:Math.min(60,mx+2)}; });
+      const B={style:'thin',color:{rgb:'D0D0D0'}};
+      rows.forEach((r,ri)=>{ for(let c=0;c<nc;c++){ const a=XLSX.utils.encode_cell({r:ri,c}); if(!ws[a]) continue;
+        ws[a].s={ font:{bold:header&&ri===0}, border:{top:B,bottom:B,left:B,right:B}, alignment:{vertical:'center'} };
+        if(header&&ri===0) ws[a].s.fill={patternType:'solid',fgColor:{rgb:'ECEAF6'}}; } });
+      XLSX.utils.book_append_sheet(wb, ws, ('Table '+(i+1)).slice(0,31)); });
+    if(!wb.SheetNames.length) XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet([['']]),'Table 1');
+    return wb;
+  }
+  function baseName(){ return (window.__petFileName||'table').replace(/\.pdf$/i,''); }
+
+  function doExport(){
+    const all=readTables(); if(!all.length){ $('statusMsg').textContent='⚠️ Nothing to export.'; return; }
+    const fmt=$('exportFormat').value; const header=$('firstHeader').checked; const nm=baseName();
+    if(fmt==='xlsx'||fmt==='xls'||fmt==='ods'){ const wb=buildWorkbook(all, header); const out=XLSX.write(wb,{bookType:fmt,type:'array'}); downloadBlob(nm+'.'+fmt, new Blob([out],{type:'application/octet-stream'})); return; }
+    let text='', ext=fmt, mime='text/plain';
+    if(fmt==='csv'){ text=all.map(tableToCsv).join('\r\n\r\n'); mime='text/csv'; }
+    else if(fmt==='json'){ text=JSON.stringify(all.length===1?tableToJson(all[0],header):all.map(r=>tableToJson(r,header)), null, 2); mime='application/json'; }
+    else if(fmt==='xml'){ text=all.length===1?tableToXml(all[0],header):('<?xml version="1.0" encoding="UTF-8"?>\n<tables>\n'+all.map(r=>tableToXml(r,header).replace(/^<\?xml[^>]*>\n/,'')).join('\n')+'\n</tables>'); mime='application/xml'; }
+    else if(fmt==='html'){ text='<!doctype html><meta charset="utf-8">\n'+all.map(r=>tableToHtml(r,header)).join('\n<br>\n'); mime='text/html'; }
+    else if(fmt==='md'){ text=all.map((r,i)=>(all.length>1?('### Table '+(i+1)+'\n\n'):'')+tableToMd(r,header)).join('\n\n'); ext='md'; mime='text/markdown'; }
+    downloadText(nm+'.'+ext, text, mime);
+  }
+  $('csvBtn').addEventListener('click', doExport);
+  $('copyBtn').addEventListener('click', (e)=>{ const all=readTables(); if(!all.length) return; copyText(all.map(tableToTsv).join('\n\n'), e.target); });
+
+  // ===== FAQ =====
+  const FAQ=[
+    ['How does the table detection work?','It reads the position of every piece of text, groups fragments into rows by their vertical position, and finds columns from the whitespace between the data rows — so columns line up even when numbers are right-aligned.'],
+    ['Can it find more than one table on a page?','Yes. Each page is split into regions at large blank bands, so several separate tables on one page are detected as separate tables that you can review and export individually.'],
+    ['Is my PDF uploaded to a server?','No. Detection, editing, OCR and export all run in your browser with pdf.js, SheetJS and Tesseract. Your file never leaves your device.'],
+    ['Can I edit the table before exporting?','Yes. Click any cell to edit it, add or delete rows and columns with the buttons, and remove empty rows and columns. This is the intended way to fix an imperfect split.'],
+    ['What formats can I export to?','CSV, Excel (XLSX, XLS, ODS), JSON, XML, HTML and Markdown. You can also copy the table as tab-separated text and paste it into a spreadsheet.'],
+    ['Does it work on scanned PDFs?','Yes, with OCR. Tick “Use OCR for scanned pages” and choose the language; the tool reads the table text from the page images. Text PDFs extract directly without OCR.'],
+    ['Which OCR languages are supported?','English, Hindi, or both together. Choose the one that matches your scanned document for the best accuracy.'],
+    ['Can I extract tables from every page at once?','Yes. Choose “All pages”, or a custom range like 1-3,5. Every detected table is included in the export — as separate sheets in an Excel workbook, for example.'],
+    ['How does the JSON export use my header?','If “First row is header” is ticked, the first row becomes the keys and each following row becomes an object. Otherwise the table is exported as an array of arrays.'],
+    ['Does it preserve Hindi and other Unicode text?','Yes. For text PDFs, Unicode content including Hindi is preserved exactly. For scans, choose the Hindi (or English + Hindi) OCR language.'],
+    ['Why are some columns merged or split wrongly?','Borderless tables or uneven spacing can confuse detection. Use the edit tools to add or delete a column, or fix the affected cells — it is usually a quick fix.'],
+    ['Does it handle merged cells?','A value that spans several columns lands in one cell rather than being duplicated. You can adjust it in the editable preview before exporting.'],
+    ['Is there a Markdown table export?','Yes. Markdown produces a pipe table that drops straight into a README, a wiki page or a GitHub comment, using the first row as the header when marked.'],
+    ['Can I remove empty rows and columns automatically?','Yes. “Remove empty rows” and “Remove empty columns” are on by default and strip the blank gaps that PDF layouts often leave behind.'],
+    ['Does OCR work offline?','After the language model downloads once (a few megabytes), OCR for that language runs entirely offline on your device.'],
+    ['Is there a file size or page limit?','There is no fixed limit; it depends on your device memory. Large PDFs and OCR of high-resolution scans take longer because everything runs locally — use Cancel to stop.'],
+    ['Can it open password-protected PDFs?','Not directly. Remove the password first with our Unlock PDF tool, then extract from the unlocked file.'],
+    ['Does it change my original PDF?','No. Your PDF is only read to detect the tables; the original file is never modified.'],
+    ['Can I search within an extracted table?','Yes. Each table has a search box that finds and highlights matching rows so you can locate the data you need before exporting.'],
+    ['Does it work on mobile?','Yes. The layout adapts to phones and tablets, the tables scroll sideways, and you can extract a table straight from a PDF on your device.'],
+    ['Is this tool really free?','Yes. It is completely free with no watermark, no limits, no account and no hidden charges.'],
+    ['Is my data safe?','Completely. Because nothing is uploaded, your documents never leave your browser and are discarded when you close the tab.']
+  ];
+  const faqList=$('faqList');
+  FAQ.forEach(([q,a])=>{ const d=document.createElement('details'); d.innerHTML='<summary>'+q+'</summary><p>'+a+'</p>'; faqList.appendChild(d); });
+  try{ $('faqSchema').textContent=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:FAQ.map(([q,a])=>({'@type':'Question',name:q,acceptedAnswer:{'@type':'Answer',text:a}}))}); }catch(e){}
+})();
 </script>
 </body>
 </html>
