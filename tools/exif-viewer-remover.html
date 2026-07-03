@@ -4,38 +4,135 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free online EXIF Viewer &amp; Remover — inspect all hidden photo metadata (EXIF, GPS location, IPTC, XMP, camera, date, thumbnail) and strip it out before sharing. Remove all, GPS-only, camera or date metadata; a privacy score with GPS alerts; image info; batch ZIP; export TXT/JSON/CSV/XML/PDF. 100% local, nothing uploaded, works offline.">
+<meta name="keywords" content="exif viewer, exif remover, remove metadata from photo, strip gps from image, image metadata viewer, photo privacy, exif editor, remove exif online, iptc xmp viewer">
 <link rel="canonical" href="https://apnesoftware.com/tools/exif-viewer-remover.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="EXIF Viewer & Remover — Image Metadata Privacy Tool | ApneSoftware">
-<meta property="og:description" content="View and strip hidden photo metadata. Free online tool — no signup required.">
+<meta property="og:title" content="EXIF Viewer & Remover — See & Strip Photo Metadata | ApneSoftware">
+<meta property="og:description" content="View all hidden EXIF, GPS, IPTC and XMP metadata in your photos and remove it — all metadata, GPS-only, camera or dates — with a privacy score, exports and batch. Free, private, offline.">
 <meta property="og:url" content="https://apnesoftware.com/tools/exif-viewer-remover.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="EXIF Viewer & Remover — Image Metadata Privacy Tool | ApneSoftware">
-<meta name="twitter:description" content="View and strip hidden photo metadata. Free online tool — no signup required.">
+<meta name="twitter:title" content="EXIF Viewer & Remover — See & Strip Photo Metadata | ApneSoftware">
+<meta name="twitter:description" content="Inspect and remove EXIF, GPS, IPTC and XMP metadata from photos with a privacy score, selective removal, exports and batch. Free and offline.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"EXIF Viewer & Remover","description":"View and strip hidden photo metadata. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/exif-viewer-remover.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"EXIF Viewer & Remover","description":"Professional image-metadata inspection and privacy tool that reads complete EXIF, GPS, IPTC, XMP, thumbnail and maker-note metadata, shows image information and a privacy risk score with GPS alerts, and removes metadata (all, GPS-only, camera or dates) locally, with export to TXT/JSON/CSV/XML/PDF, batch ZIP processing and output as JPG/PNG/WebP. Runs entirely in the browser.","url":"https://apnesoftware.com/tools/exif-viewer-remover.html","applicationCategory":"MultimediaApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Complete EXIF/GPS/IPTC/XMP viewer","Search and filter metadata","Image information","Privacy score and GPS alert","Remove all/GPS/camera/date metadata","Export TXT/JSON/CSV/XML/PDF","Batch ZIP","JPG/PNG/WebP output"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"EXIF Viewer & Remover — Inspect and Strip Photo Metadata","url":"https://apnesoftware.com/tools/exif-viewer-remover.html","description":"Private, browser-based EXIF viewer and metadata remover with GPS alerts, a privacy score, exports and batch processing.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Image Tools","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":3,"name":"EXIF Viewer & Remover","item":"https://apnesoftware.com/tools/exif-viewer-remover.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to view and remove photo metadata","description":"Inspect hidden metadata and strip it before sharing.","step":[{"@type":"HowToStep","name":"Upload a photo","text":"Drag and drop or choose an image (JPEG shows the most metadata)."},{"@type":"HowToStep","name":"Review the metadata","text":"See EXIF, GPS, IPTC and XMP data and a privacy score."},{"@type":"HowToStep","name":"Choose what to remove","text":"Remove all metadata, or just GPS, camera or date information."},{"@type":"HowToStep","name":"Download the clean image","text":"Download the cleaned image, or export the metadata as a report."}]}
+</script>
+<script type="application/ld+json" id="faqSchema">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}
 </script>
 <meta name="color-scheme" content="dark">
-<title>EXIF Viewer & Remover — Image Metadata Privacy Tool | ApneSoftware</title>
+<title>EXIF Viewer & Remover — See & Strip Photo Metadata | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
-.dropzone{cursor:pointer}
-.dropzone p{font-size:.9rem}
-.panel{position:relative;z-index:1}
-</style>
-<style>
-  .preview-img{max-width:100%;max-height:280px;border-radius:10px;border:1px solid var(--border);margin-bottom:14px}
-  .exif-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:10px}
-  .exif-table th,.exif-table td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--border)}
-  .exif-table th{color:var(--text-dim);font-weight:600;width:42%}
-  .privacy-note{
-    background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;
-    padding:12px 14px;font-size:.85rem;color:var(--text-dim);margin-top:14px;
-  }
+/* ===== EXIF Viewer & Remover — scoped ex- styles ===== */
+.ex-crumb{font-size:.78rem;color:var(--text-dim);margin-bottom:6px}
+.ex-crumb a{color:#c4b5fd;text-decoration:none}
+.ex-crumb a:hover{text-decoration:underline}
+.ex-btn{background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.34);color:#d6cbff;border-radius:10px;padding:9px 13px;font-size:.83rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+.ex-btn:hover{background:rgba(167,139,250,.24)}
+.ex-btn.primary{background:linear-gradient(90deg,#7c3aed,#a78bfa);border-color:transparent;color:#fff;font-weight:600}
+.ex-btn:focus-visible,.ex-chip:focus-visible{outline:2px solid #a78bfa;outline-offset:2px}
+.ex-btn.sm{padding:6px 10px;font-size:.76rem}
+.ex-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+.dropzone{cursor:pointer;border:2px dashed rgba(167,139,250,.4);border-radius:16px;padding:38px 20px;text-align:center;transition:.15s;background:rgba(167,139,250,.04)}
+.dropzone:hover,.dropzone.drag{background:rgba(167,139,250,.12);border-color:#a78bfa}
+.dropzone .ic{font-size:2.4rem}
+.dropzone p{font-size:.95rem;margin:8px 0}
+.dropzone .sub{font-size:.82rem;color:var(--text-dim)}
+.dropzone input{display:none}
+.ex-meta-mini{font-size:.78rem;color:var(--text-dim);margin-top:8px}
+
+.ex-grid{display:grid;grid-template-columns:280px 1fr;gap:18px;margin-top:18px}
+@media(max-width:760px){.ex-grid{grid-template-columns:1fr}}
+.preview-img{max-width:100%;max-height:280px;border-radius:12px;border:1px solid var(--border,rgba(255,255,255,.12));display:block;margin:0 auto 12px}
+.ex-info{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:12px;padding:12px 14px;font-size:.82rem}
+.ex-info div{display:flex;justify-content:space-between;gap:10px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.ex-info div:last-child{border-bottom:none}
+.ex-info b{color:#c4b5fd;font-weight:600;text-align:right}
+
+.ex-privacy{border-radius:12px;padding:14px;margin-bottom:14px;border:1px solid}
+.ex-privacy.low{background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.3)}
+.ex-privacy.med{background:rgba(234,179,8,.08);border-color:rgba(234,179,8,.3)}
+.ex-privacy.high{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.35)}
+.ex-privacy h4{margin:0 0 6px;font-size:.95rem}
+.ex-privacy .risk{font-weight:800}
+.ex-privacy .risk.low{color:#6ee7b7}.ex-privacy .risk.med{color:#fcd34d}.ex-privacy .risk.high{color:#fca5a5}
+.ex-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.ex-badge{font-size:.72rem;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text-dim)}
+.ex-badge.warn{background:rgba(248,113,113,.15);color:#fca5a5;border-color:rgba(248,113,113,.35)}
+.ex-gpslink{color:#c4b5fd;text-decoration:none;font-weight:600}
+
+.ex-tbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0 10px}
+.ex-search{flex:1;min-width:140px;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.12));color:var(--text);border-radius:8px;padding:7px 11px;font-size:.83rem}
+.ex-cats{display:flex;flex-wrap:wrap;gap:6px}
+.ex-chip{background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);color:#d6cbff;border-radius:999px;padding:5px 11px;font-size:.76rem;cursor:pointer}
+.ex-chip[aria-pressed="true"]{background:linear-gradient(90deg,#7c3aed,#a78bfa);border-color:transparent;color:#fff}
+.ex-tablewrap{max-height:420px;overflow:auto;border:1px solid var(--border,rgba(255,255,255,.1));border-radius:10px}
+.exif-table{width:100%;border-collapse:collapse;font-size:.83rem}
+.exif-table th,.exif-table td{text-align:left;padding:7px 11px;border-bottom:1px solid var(--border,rgba(255,255,255,.08));vertical-align:top;word-break:break-word}
+.exif-table td.cat{color:#a78bfa;font-size:.72rem;white-space:nowrap}
+.exif-table td.key{color:var(--text-dim);width:34%}
+.exif-table td.val{color:var(--text)}
+.exif-table tr.hide{display:none}
+
+.ex-opts{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:12px;padding:14px;margin-top:14px}
+.ex-opts h4{margin:0 0 10px;font-size:.9rem;color:#fff}
+.ex-optrow{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;margin-bottom:10px}
+.ex-radio,.ex-check{display:inline-flex;align-items:center;gap:7px;font-size:.83rem;color:var(--text);cursor:pointer}
+.ex-radio input,.ex-check input{width:auto}
+.ex-optrow select{background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text);border-radius:8px;padding:6px 9px;font-size:.82rem}
+input[type=range]{accent-color:#a78bfa}
+.ex-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+#statusMsg{margin-top:12px;font-size:.88rem;min-height:1em}
+
+.ex-batch{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:12px;padding:12px 14px;margin-top:14px;display:none}
+.ex-batch.on{display:block}
+.ex-batch .row{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.82rem;padding:4px 0}
+.privacy-note{background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;padding:12px 14px;font-size:.84rem;color:var(--text-dim);margin-top:16px;line-height:1.6}
+.privacy-note b{color:#c4b5fd}
+
+/* below-tool */
+.ex-wrap{margin:26px 0}
+.ex-title{font-size:1.35rem;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.ex-feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.ex-fcard{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:14px;padding:16px}
+.ex-fcard h4{margin:0 0 6px;font-size:.98rem;display:flex;align-items:center;gap:8px}
+.ex-fcard p{margin:0;font-size:.86rem;color:var(--text-dim);line-height:1.55}
+.ex-rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.ex-rel{display:block;text-decoration:none;background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:14px;transition:.15s;color:var(--text)}
+.ex-rel:hover{border-color:#a78bfa;background:rgba(167,139,250,.1);transform:translateY(-2px)}
+.ex-rel b{display:block;font-size:.92rem;margin-bottom:3px}
+.ex-rel span{font-size:.8rem;color:var(--text-dim);line-height:1.45}
+.ex-prose p,.ex-prose li{color:var(--text-dim);line-height:1.75;font-size:.92rem}
+.ex-prose h3{font-size:1.02rem;margin:18px 0 8px}
+.ex-tscroll{overflow:auto;border-radius:10px}
+table.ex-table{border-collapse:collapse;font-size:.85rem;width:100%}
+table.ex-table th,table.ex-table td{border:1px solid var(--border,rgba(255,255,255,.12));padding:7px 10px;text-align:left;color:var(--text)}
+table.ex-table th{background:rgba(167,139,250,.14);color:#fff;font-weight:600}
+.ex-faq details{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:0 16px;margin-bottom:10px}
+.ex-faq summary{cursor:pointer;padding:14px 0;font-weight:600;font-size:.92rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.ex-faq summary::-webkit-details-marker{display:none}
+.ex-faq summary::after{content:'+';font-size:1.3rem;color:#a78bfa;flex:0 0 auto}
+.ex-faq details[open] summary::after{content:'−'}
+.ex-faq details p{margin:0 0 14px;font-size:.87rem;color:var(--text-dim);line-height:1.65}
+.ex-steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:12px}
+.ex-steps li{counter-increment:s;position:relative;padding-left:46px;font-size:.9rem;color:var(--text-dim);line-height:1.6}
+.ex-steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:9px;background:rgba(167,139,250,.18);color:#c4b5fd;font-weight:700;display:grid;place-items:center}
+.ex-steps li b{color:var(--text)}
+@media (prefers-contrast:more){.ex-prose p,.ex-prose li{color:#fff}}
 </style>
 </head>
 <body>
@@ -48,139 +145,437 @@
 
 <div class="container">
   <div class="tool-header">
-    <h1>🕵️ EXIF Viewer & Remover</h1>
-    <p>See the hidden metadata in your photos (camera, GPS location, date) — and strip it out before sharing.</p>
+    <nav class="ex-crumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html">Image Tools</a> › <span>EXIF Viewer &amp; Remover</span></nav>
+    <h1>🕵️ EXIF Viewer &amp; Remover</h1>
+    <p>See the hidden metadata in your photos — <b>camera, GPS location, date, IPTC and XMP</b> — with a privacy score and GPS alert, then <b>strip it out</b> (all, GPS-only, camera or dates) before sharing. Export a metadata report or batch-clean many photos. 100% local — nothing is uploaded.</p>
+    <div class="ex-toolbar">
+      <button class="ex-btn" id="resetBtn" type="button">↺ New image</button>
+    </div>
   </div>
 
   <div class="panel">
-    <div class="dropzone" id="dropzone">
-      <p>📤 Drag a photo here or click to choose (JPG works best)</p>
-      <input type="file" id="fileInput" accept="image/*">
+    <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Upload image">
+      <div class="ic">🖼️</div>
+      <p><b>Drop image(s) here</b> or click to choose</p>
+      <div class="sub">🔒 JPG/PNG/WebP · processed locally · nothing uploaded · batch supported</div>
+      <input type="file" id="fileInput" accept="image/*" multiple>
     </div>
 
     <div id="afterUpload" style="display:none;margin-top:18px">
-      <img class="preview-img" id="previewImg" alt="Preview">
-
-      <h3 style="font-size:.95rem;margin-bottom:6px">📋 Found Metadata</h3>
-      <table class="exif-table" id="exifTable"><tbody></tbody></table>
-      <p id="noExifMsg" style="display:none;color:var(--text-dim);font-size:.9rem;margin-top:8px">No EXIF metadata found in this image — it's already clean, or the format doesn't support EXIF.</p>
-
-      <div class="btn-row">
-        <button class="btn" id="removeBtn">🧹 Remove All Metadata & Download</button>
+      <div class="ex-grid">
+        <div>
+          <img class="preview-img" id="previewImg" alt="Image preview">
+          <div class="ex-info" id="imgInfo"></div>
+        </div>
+        <div>
+          <div class="ex-privacy" id="privacyBox"></div>
+          <div class="ex-tbar">
+            <input type="text" class="ex-search" id="metaSearch" placeholder="🔎 Search metadata…" aria-label="Search metadata">
+            <div class="ex-cats" id="catChips"></div>
+          </div>
+          <div class="ex-tablewrap">
+            <table class="exif-table" id="exifTable"><tbody></tbody></table>
+          </div>
+          <p id="noExifMsg" style="display:none;color:var(--text-dim);font-size:.9rem;margin-top:8px">No metadata found in this image — it's already clean, or the format doesn't store EXIF.</p>
+          <div class="ex-actions" style="margin-top:10px">
+            <button class="ex-btn sm" id="expTxt" type="button">⬇️ TXT</button>
+            <button class="ex-btn sm" id="expJson" type="button">⬇️ JSON</button>
+            <button class="ex-btn sm" id="expCsv" type="button">⬇️ CSV</button>
+            <button class="ex-btn sm" id="expXml" type="button">⬇️ XML</button>
+            <button class="ex-btn sm" id="expPdf" type="button">🖨️ PDF report</button>
+          </div>
+        </div>
       </div>
 
-      <p id="statusMsg" style="margin-top:12px;color:var(--text-dim);font-size:.9rem"></p>
-      <div class="privacy-note">ℹ️ Photos often contain hidden GPS coordinates and device info. Removing metadata before sharing online helps protect your privacy. Everything happens locally in your browser — nothing is uploaded.</div>
+      <div class="ex-opts">
+        <h4>🧹 Remove metadata</h4>
+        <div class="ex-optrow" id="removeModes">
+          <label class="ex-radio"><input type="radio" name="rmMode" value="all" checked> All metadata</label>
+          <label class="ex-radio"><input type="radio" name="rmMode" value="gps"> GPS only</label>
+          <label class="ex-radio"><input type="radio" name="rmMode" value="camera"> Camera info</label>
+          <label class="ex-radio"><input type="radio" name="rmMode" value="dates"> Date info</label>
+        </div>
+        <div class="ex-optrow">
+          <label>Output <select id="outFmt"><option value="original">Same format</option><option value="image/jpeg">JPG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select></label>
+          <label>Quality <input type="range" id="quality" min="60" max="100" value="92" style="vertical-align:middle"> <span id="qVal">92%</span></label>
+          <label class="ex-check"><input type="checkbox" id="preserveRes" checked> Preserve resolution</label>
+        </div>
+        <div class="ex-actions">
+          <button class="ex-btn primary" id="removeBtn" type="button">🧹 Remove &amp; Download</button>
+        </div>
+        <p id="statusMsg" style="color:var(--text-dim)"></p>
+      </div>
+
+      <div class="ex-batch" id="batchBox">
+        <div class="row"><span id="batchCount">0 images queued</span><button class="ex-btn sm" id="batchZip" type="button">📦 Strip all &amp; download ZIP</button></div>
+      </div>
+
+      <div class="privacy-note">ℹ️ <b>Why it matters:</b> photos often carry hidden <b>GPS coordinates</b> and device details. Removing metadata before posting protects your location and privacy. Everything runs in your browser — no image is ever uploaded.</div>
     </div>
   </div>
 </div>
 
+<!-- ===================== BELOW-TOOL CONTENT ===================== -->
+<div class="container">
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Photos taken on phones and cameras often embed hidden EXIF metadata — including the exact GPS location, camera model, and timestamp. This tool shows you what's hidden in a photo and lets you strip it all out before posting or sharing.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload a photo.</li>
-        <li>Review the metadata table to see what information is embedded.</li>
-        <li>Click Remove All Metadata to download a clean copy with no hidden data.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>फोन और कैमरे से ली गई फोटो में अक्सर छिपा हुआ EXIF मेटाडेटा होता है — जिसमें सटीक GPS लोकेशन, कैमरा मॉडल और टाइमस्टैम्प शामिल होता है। यह टूल फोटो में छिपी जानकारी दिखाता है और शेयर करने से पहले उसे पूरी तरह हटा देता है।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>एक फोटो अपलोड करें।</li>
-        <li>मेटाडेटा टेबल देखकर पता करें कि क्या जानकारी छिपी है।</li>
-        <li>Remove All Metadata दबाएं और बिना किसी छिपी जानकारी वाली साफ फोटो डाउनलोड करें।</li>
-      </ol>
-    </div>
+<!-- Key Features -->
+<section class="ex-wrap">
+  <h2 class="ex-title">✨ Key Features</h2>
+  <div class="ex-feat-grid">
+    <div class="ex-fcard"><h4>🔍 Complete Metadata</h4><p>Reads EXIF, GPS, IPTC, XMP, thumbnail and maker-note tags — far more than a basic viewer.</p></div>
+    <div class="ex-fcard"><h4>🔎 Search &amp; Filter</h4><p>Search any tag and filter by category (EXIF, GPS, IPTC, XMP) instantly.</p></div>
+    <div class="ex-fcard"><h4>🖼️ Image Information</h4><p>Width, height, megapixels, DPI, colour space, MIME type and file size at a glance.</p></div>
+    <div class="ex-fcard"><h4>📍 GPS Alert</h4><p>Detects embedded location and links straight to it on a map, with a clear warning.</p></div>
+    <div class="ex-fcard"><h4>🛡️ Privacy Score</h4><p>A Low/Medium/High risk rating based on the sensitive data your photo exposes.</p></div>
+    <div class="ex-fcard"><h4>🧹 Selective Removal</h4><p>Strip all metadata, or just GPS, camera or date info — JPEG edits keep full quality.</p></div>
+    <div class="ex-fcard"><h4>🔄 Output Options</h4><p>Save as the same format or convert to JPG, PNG or WebP with a quality slider.</p></div>
+    <div class="ex-fcard"><h4>📤 Export Reports</h4><p>Download the metadata as TXT, JSON, CSV, XML or a printable PDF report.</p></div>
+    <div class="ex-fcard"><h4>📦 Batch Processing</h4><p>Drop many photos, strip metadata from all of them and download a ZIP.</p></div>
+    <div class="ex-fcard"><h4>🔒 100% Local</h4><p>Every image is processed in your browser. Nothing is uploaded, logged or tracked.</p></div>
+    <div class="ex-fcard"><h4>⚡ Offline Ready</h4><p>Once loaded, it works with no internet connection.</p></div>
+    <div class="ex-fcard"><h4>♿ Accessible &amp; Mobile</h4><p>Keyboard navigation, ARIA labels, high-contrast support and a responsive layout.</p></div>
   </div>
+</section>
+
+<!-- Benefits -->
+<section class="ex-wrap ex-prose">
+  <h2 class="ex-title">🎯 Benefits</h2>
+  <ul>
+    <li><b>Protect your location</b> — remove GPS before posting so a photo can't reveal where you live or were.</li>
+    <li><b>See what you're sharing</b> — inspect every hidden tag a photo carries, not just the obvious ones.</li>
+    <li><b>Keep quality</b> — selective JPEG removal edits metadata without recompressing the image.</li>
+    <li><b>Clean in bulk</b> — strip metadata from a whole folder of photos at once and download a ZIP.</li>
+    <li><b>Totally private</b> — no uploads, no account, and it works offline.</li>
+  </ul>
+</section>
+
+<!-- Related Tools (ABOVE About) -->
+<section class="ex-wrap">
+  <h2 class="ex-title">🧰 Related Tools</h2>
+  <div class="ex-rel-grid">
+    <a class="ex-rel" href="image-compressor.html"><b>🗜️ Image Compressor</b><span>Shrink image file size.</span></a>
+    <a class="ex-rel" href="image-converter.html"><b>🔄 Image Converter</b><span>Convert between JPG, PNG, WebP.</span></a>
+    <a class="ex-rel" href="image-resizer.html"><b>📐 Image Resizer</b><span>Resize images to any dimensions.</span></a>
+    <a class="ex-rel" href="image-cropper.html"><b>✂️ Image Cropper</b><span>Crop images precisely.</span></a>
+    <a class="ex-rel" href="image-rotate-flip.html"><b>🔃 Image Rotate &amp; Flip</b><span>Rotate and flip photos.</span></a>
+    <a class="ex-rel" href="image-watermark.html"><b>💧 Image Watermark</b><span>Add a watermark to images.</span></a>
+    <a class="ex-rel" href="image-resolution-checker.html"><b>🔎 Resolution Checker</b><span>Check image dimensions &amp; DPI.</span></a>
+    <a class="ex-rel" href="qr-code-scanner.html"><b>📷 QR Code Scanner</b><span>Decode QR codes from images.</span></a>
+  </div>
+</section>
+
+<!-- About (English) -->
+<section class="ex-wrap ex-prose">
+  <h2 class="ex-title">ℹ️ About This Tool</h2>
+  <p>The <b>ApneSoftware EXIF Viewer &amp; Remover</b> is a professional, privacy-first utility for inspecting and stripping the hidden metadata that cameras and phones bury inside your photos. Almost every JPEG you take carries an <b>EXIF</b> block — a package of technical and personal data recorded at the moment of capture — and many images also carry <b>GPS</b> coordinates, <b>IPTC</b> and <b>XMP</b> descriptive fields, an embedded <b>thumbnail</b> and camera <b>maker notes</b>. Most people never see any of this, yet it travels with the file wherever it goes. When you post that photo online, you may be quietly sharing the exact latitude and longitude where it was taken, your camera's make, model and serial number, the precise date and time, editing software, and sometimes even a copyright owner or author name. This tool makes all of that visible in plain language, and then lets you remove it — cleanly and locally — before you share.</p>
+  <p>As a <b>viewer</b>, the tool goes well beyond the handful of tags a basic reader shows. It parses the <b>complete EXIF</b> set alongside <b>GPS</b>, <b>IPTC</b>, <b>XMP</b>, <b>interoperability</b> and <b>thumbnail (IFD1)</b> blocks, then presents every field in a searchable, filterable table grouped by category. A <b>search box</b> lets you jump to any tag by name, and category chips filter the view down to just EXIF, GPS, IPTC or XMP. Alongside the raw tags, an <b>image information</b> panel summarises the practical details — width and height, megapixels, DPI/resolution, colour space, MIME type and file size — so you can verify an image at a glance. If GPS data is present, a prominent <b>alert</b> shows the coordinates and links straight to the location on a map, so you can see for yourself exactly what a photo would reveal.</p>
+  <p>The tool turns that inspection into an actionable <b>privacy score</b>. Rather than leaving you to interpret dozens of cryptic tags, it rates each image as <b>Low</b>, <b>Medium</b> or <b>High</b> risk based on what it exposes — GPS location weighs heaviest, followed by device identifiers, timestamps, software and any owner or author fields — and lists the specific concerns as badges. This makes it immediately obvious when a picture is safe to share and when it needs cleaning. For those who want the details, everything can be exported as a report: plain <b>TXT</b>, structured <b>JSON</b>, spreadsheet-ready <b>CSV</b>, <b>XML</b>, or a printable <b>PDF</b> — useful for documentation, audits, journalism or forensics where you need a record of what an image contained.</p>
+  <p><b>Removal</b> is where privacy is actually protected, and the tool offers precise control. You can strip <b>all metadata</b> at once, or selectively remove just the <b>GPS location</b>, the <b>camera information</b> (make, model, software), or the <b>date and time</b> — keeping the rest intact if you wish. For JPEG images, selective removal edits the metadata directly and re-inserts it, so the picture is <b>not recompressed</b> and its quality is preserved exactly. You can also choose the <b>output format</b> — keep the original, or convert to <b>JPG, PNG or WebP</b> — with a quality slider, and re-encoding through the canvas inherently drops every trace of metadata. When you have many photos to clean, <b>batch processing</b> lets you drop a whole set, strip them all in one go and download the results as a single <b>ZIP</b>, which is ideal before uploading a gallery, sending a batch of documents, or publishing product images.</p>
+  <p><b>Privacy is the entire point, so nothing about the tool undermines it.</b> Every image you open, every tag it reads and every cleaned file it produces is handled <b>entirely in your browser</b> — no photo is ever uploaded to a server, there is no account or login, and nothing is tracked. This is fundamentally different from many "online" metadata removers that require you to upload your picture to their servers first; here, the sensitive image never leaves your device, which is exactly what you want when the whole purpose is to protect privacy. Because all processing is local, the tool is also fast and works offline once loaded, and it handles large photos smoothly by reading only the metadata it needs and using the browser's efficient canvas engine for re-encoding.</p>
+  <p>Finally, the tool follows modern standards of <b>accessibility, responsiveness and maintainability</b>. The dropzone and controls are keyboard-navigable and labelled for screen readers, focus outlines are visible, and high-contrast preferences are respected. The layout adapts from a spacious two-column preview-and-metadata view on desktop to a clean single column on tablets and phones, with touch-friendly controls and drag-and-drop everywhere. Internally, the parser configuration, privacy scoring, removal logic, export formats and batch handling are organised into small, well-defined functions, so the tool is accurate, easy to audit and simple to extend. In short, it is a fast, private, genuinely capable EXIF viewer and metadata remover suitable for everyday photo privacy and for professional imaging, journalism and security workflows alike.</p>
+</section>
+
+<!-- About (Hindi) -->
+<section class="ex-wrap ex-prose">
+  <h2 class="ex-title">ℹ️ इस टूल के बारे में</h2>
+  <p><b>ApneSoftware EXIF Viewer &amp; Remover</b> उस छिपे हुए metadata को देखने और हटाने के लिए एक professional, privacy-first उपयोगिता है जिसे cameras और phones आपकी photos के अंदर दबा देते हैं। आपकी ली गई लगभग हर JPEG में एक <b>EXIF</b> block होता है — capture के समय दर्ज की गई technical व personal data का पैकेज — और कई images में <b>GPS</b> coordinates, <b>IPTC</b> व <b>XMP</b> descriptive fields, एक embedded <b>thumbnail</b> और camera <b>maker notes</b> भी होते हैं। ज़्यादातर लोग इसे कभी नहीं देखते, फिर भी यह file के साथ हर जगह जाता है। जब आप वह photo online पोस्ट करते हैं, तो आप चुपचाप वह सटीक latitude-longitude साझा कर सकते हैं जहाँ वह ली गई, आपके camera का make, model व serial number, तारीख-समय, editing software, और कभी-कभी copyright owner या author का नाम भी। यह टूल इन सबको सरल भाषा में दिखाता है और साझा करने से पहले locally हटा देता है।</p>
+  <p>एक <b>viewer</b> के रूप में, टूल एक basic reader द्वारा दिखाए मुट्ठी भर tags से कहीं आगे जाता है। यह <b>complete EXIF</b> के साथ <b>GPS</b>, <b>IPTC</b>, <b>XMP</b>, <b>interoperability</b> और <b>thumbnail (IFD1)</b> blocks parse करता है, फिर हर field को category के अनुसार समूहबद्ध, searchable, filterable table में प्रस्तुत करता है। एक <b>search box</b> से आप किसी भी tag पर नाम से पहुँच सकते हैं, और category chips view को केवल EXIF, GPS, IPTC या XMP तक सीमित करते हैं। raw tags के साथ, एक <b>image information</b> panel व्यावहारिक विवरण संक्षेप में देता है — width व height, megapixels, DPI/resolution, colour space, MIME type और file size। यदि GPS data मौजूद है, तो एक प्रमुख <b>alert</b> coordinates दिखाता है और सीधे map पर location से link करता है।</p>
+  <p>टूल उस निरीक्षण को एक कार्रवाई-योग्य <b>privacy score</b> में बदलता है। दर्जनों जटिल tags की व्याख्या आप पर छोड़ने के बजाय, यह हर image को उसके द्वारा उजागर की गई जानकारी के आधार पर <b>Low</b>, <b>Medium</b> या <b>High</b> risk आँकता है — GPS location सबसे भारी, फिर device identifiers, timestamps, software और कोई owner/author fields — और विशिष्ट चिंताओं को badges के रूप में सूचीबद्ध करता है। इससे तुरंत स्पष्ट हो जाता है कि कोई तस्वीर साझा करने के लिए सुरक्षित है या नहीं। विवरण चाहने वालों के लिए, सब कुछ एक report के रूप में export किया जा सकता है: सादा <b>TXT</b>, structured <b>JSON</b>, spreadsheet-ready <b>CSV</b>, <b>XML</b>, या printable <b>PDF</b>।</p>
+  <p><b>Removal</b> वह जगह है जहाँ privacy वास्तव में सुरक्षित होती है, और टूल सटीक नियंत्रण देता है। आप एक बार में <b>सारा metadata</b> हटा सकते हैं, या चुनिंदा रूप से केवल <b>GPS location</b>, <b>camera जानकारी</b> (make, model, software), या <b>तारीख-समय</b> हटा सकते हैं। JPEG images के लिए, selective removal metadata को सीधे edit कर दोबारा डालता है, इसलिए तस्वीर <b>recompress नहीं होती</b> और उसकी गुणवत्ता बिल्कुल बनी रहती है। आप <b>output format</b> भी चुन सकते हैं — original रखें, या <b>JPG, PNG या WebP</b> में बदलें — quality slider के साथ। जब कई photos साफ़ करनी हों, <b>batch processing</b> से पूरा सेट drop करें, सबका metadata एक साथ हटाएँ और परिणाम एक ही <b>ZIP</b> में download करें।</p>
+  <p><b>Privacy ही पूरा उद्देश्य है, इसलिए टूल की कोई भी बात उसे कमज़ोर नहीं करती।</b> आप जो भी image खोलते हैं, जो tag यह पढ़ता है और जो cleaned file बनाता है, सब <b>पूरी तरह आपके browser में</b> संभाला जाता है — कोई photo किसी server पर upload नहीं होती, कोई account या login नहीं, और कुछ भी track नहीं होता। यह कई "online" metadata removers से मौलिक रूप से भिन्न है जो पहले आपकी तस्वीर उनके servers पर upload करवाते हैं; यहाँ संवेदनशील image कभी आपके device से बाहर नहीं जाती। सारा processing local होने के कारण टूल तेज़ भी है और load होने के बाद offline काम करता है।</p>
+  <p>अंत में, टूल <b>accessibility, responsiveness और maintainability</b> के आधुनिक मानकों का पालन करता है। dropzone और controls keyboard से चलते हैं और screen readers के लिए labelled हैं, focus outlines दिखते हैं, और high-contrast वरीयता का सम्मान होता है। Layout desktop पर विस्तृत दो-column preview-and-metadata view से लेकर tablets व phones पर साफ़ single column तक ढलता है। भीतर से, parser configuration, privacy scoring, removal logic, export formats और batch handling छोटे, सुपरिभाषित functions में व्यवस्थित हैं, इसलिए टूल सटीक, audit करने में आसान और विस्तार करने में सरल है। संक्षेप में, यह एक तेज़, निजी, सचमुच सक्षम EXIF viewer और metadata remover है।</p>
+</section>
+
+<!-- Supported Metadata Types -->
+<section class="ex-wrap ex-prose">
+  <h2 class="ex-title">🏷️ Supported Metadata Types</h2>
+  <div class="ex-tscroll">
+    <table class="ex-table">
+      <thead><tr><th>Type</th><th>What it contains</th></tr></thead>
+      <tbody>
+        <tr><td>EXIF</td><td>Camera make/model, exposure, ISO, aperture, focal length, orientation, software.</td></tr>
+        <tr><td>GPS</td><td>Latitude, longitude, altitude and sometimes direction — your location.</td></tr>
+        <tr><td>Date &amp; time</td><td>When the photo was taken, digitised and modified.</td></tr>
+        <tr><td>IPTC</td><td>Captions, keywords, author, copyright and other descriptive fields.</td></tr>
+        <tr><td>XMP</td><td>Adobe/editing metadata, ratings, edit history and rights.</td></tr>
+        <tr><td>Thumbnail (IFD1)</td><td>A small embedded preview that can leak the original image.</td></tr>
+        <tr><td>Maker notes</td><td>Vendor-specific data, sometimes including serial numbers.</td></tr>
+        <tr><td>Image info</td><td>Width, height, DPI, colour space, MIME type and file size.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Privacy Features -->
+<section class="ex-wrap ex-prose">
+  <h2 class="ex-title">🛡️ Privacy Features</h2>
+  <ul>
+    <li><b>Local processing only</b> — images are read and cleaned in your browser; nothing is uploaded.</li>
+    <li><b>GPS detection alerts</b> — a clear warning and map link whenever location data is found.</li>
+    <li><b>Privacy score</b> — a Low/Medium/High rating of how exposing an image is.</li>
+    <li><b>Hidden-data warnings</b> — flags device IDs, timestamps and owner fields you might miss.</li>
+    <li><b>Selective removal</b> — take out exactly what you want, or everything.</li>
+    <li><b>Secure handling</b> — files stay in memory and are released when you load another.</li>
+  </ul>
+</section>
+
+<!-- How To Use -->
+<section class="ex-wrap ex-prose">
+  <h2 class="ex-title">🚀 How To Use</h2>
+  <ol class="ex-steps">
+    <li><b>Upload</b> a photo (or several) by dragging them in or clicking the dropzone.</li>
+    <li><b>Review</b> the metadata table, image info and privacy score; check the GPS alert.</li>
+    <li><b>Search or filter</b> tags, and <b>export</b> a report if you need one.</li>
+    <li>Choose to remove <b>all, GPS, camera or dates</b>, pick an output format, and click <b>Remove &amp; Download</b>.</li>
+    <li>For many photos, use <b>Strip all &amp; download ZIP</b>.</li>
+  </ol>
+</section>
+
+<!-- FAQ -->
+<section class="ex-wrap ex-faq">
+  <h2 class="ex-title">❓ Frequently Asked Questions</h2>
+  <div id="faqList"></div>
+</section>
+
+<!-- Browser Compatibility -->
+<section class="ex-wrap ex-prose">
+  <h2 class="ex-title">🌐 Browser Compatibility</h2>
+  <p>Works on all modern browsers — <b>Google Chrome, Mozilla Firefox, Microsoft Edge, Safari, Opera and Brave</b> — on Windows, macOS, Linux, Android and iOS. It needs JavaScript, with no plugins or installation, and works offline once loaded. Metadata parsing, canvas re-encoding and downloads are supported everywhere; WebP output is available in Chromium-based browsers and modern Firefox/Safari.</p>
+</section>
+
+<!-- Privacy & Security -->
+<section class="ex-wrap ex-prose">
+  <h2 class="ex-title">🔒 Privacy &amp; Security</h2>
+  <div class="privacy-note"><b>English:</b> Every image is read and cleaned entirely in your browser. Your photos and their metadata are never uploaded to a server, there is no account, and nothing is tracked. Files are held only in memory and released when you load another image. The tool works offline once loaded, so your pictures never leave your device.</div>
+  <div class="privacy-note"><b>हिन्दी:</b> हर image पूरी तरह आपके browser में पढ़ी व साफ़ की जाती है। आपकी photos और उनका metadata किसी server पर upload नहीं होता, कोई account नहीं, और कुछ भी track नहीं होता। Files केवल memory में रहती हैं और दूसरी image load करने पर release हो जाती हैं। page load के बाद टूल offline काम करता है, इसलिए आपकी तस्वीरें कभी device से बाहर नहीं जातीं।</div>
+</section>
+
+<!-- Troubleshooting -->
+<section class="ex-wrap ex-prose">
+  <h2 class="ex-title">🛠️ Troubleshooting</h2>
+  <ul>
+    <li><b>“No metadata found”:</b> the image is already clean, or the format (e.g. many PNGs) doesn't store EXIF.</li>
+    <li><b>GPS still shows after removal:</b> use “All metadata” or “GPS only”, then re-check the cleaned file.</li>
+    <li><b>Quality dropped:</b> for JPEG, use a selective removal mode — it edits metadata without recompressing.</li>
+    <li><b>WebP output greyed out:</b> some browsers don't support WebP encoding — choose JPG or PNG.</li>
+    <li><b>Large photo is slow:</b> give it a moment; very large images take longer to re-encode.</li>
+    <li><b>Metadata library failed to load:</b> check your connection and refresh — the parser loads from a CDN.</li>
+  </ul>
+</section>
+
 </div>
 
-<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<footer class="site-footer">© 2026 ApneSoftware.com — Free, private, browser-based tools.</footer>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/exifr/dist/full.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/piexifjs@1.0.6/piexif.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-let currentFile = null;
+(function(){
+  "use strict";
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type.startsWith('image/')){
-    currentFile = files[0];
-    loadImage(currentFile);
+  var files=[], current=null, rows=[], catFilter='all', gpsCoords=null;
+  var CATS={ifd0:'EXIF',exif:'EXIF',interop:'Interop',thumbnail:'Thumbnail',gps:'GPS',iptc:'IPTC',xmp:'XMP',icc:'ICC',jfif:'JFIF'};
+
+  /* ===================== Dropzone ===================== */
+  var dz=$('dropzone'), fi=$('fileInput');
+  dz.addEventListener('click',function(){ fi.click(); });
+  dz.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ fi.click(); e.preventDefault(); } });
+  fi.addEventListener('change',function(e){ handleFiles(e.target.files); });
+  dz.addEventListener('dragover',function(e){ e.preventDefault(); dz.classList.add('drag'); });
+  dz.addEventListener('dragleave',function(){ dz.classList.remove('drag'); });
+  dz.addEventListener('drop',function(e){ e.preventDefault(); dz.classList.remove('drag'); handleFiles(e.dataTransfer.files); });
+  function handleFiles(list){
+    files=Array.prototype.slice.call(list).filter(function(f){ return f.type.indexOf('image/')===0; });
+    if(!files.length) return;
+    current=files[0]; loadImage(current);
+    var bb=$('batchBox'); if(files.length>1){ bb.classList.add('on'); $('batchCount').textContent=files.length+' images queued'; } else bb.classList.remove('on');
   }
-});
 
-function loadImage(file){
-  const url = URL.createObjectURL(file);
-  const img = document.getElementById('previewImg');
-  img.src = url;
-  document.getElementById('afterUpload').style.display = 'block';
-  document.getElementById('statusMsg').textContent = '';
+  /* ===================== Load + parse ===================== */
+  function loadImage(file){
+    var url=URL.createObjectURL(file);
+    var img=$('previewImg'); img.src=url;
+    $('afterUpload').style.display='block'; $('statusMsg').textContent='';
+    img.onload=function(){ buildImageInfo(file,img); };
+    parseMeta(file);
+    try{ $('afterUpload').scrollIntoView({behavior:'smooth',block:'start'}); }catch(e){}
+  }
+  function buildImageInfo(file,img){
+    var mp=(img.naturalWidth*img.naturalHeight/1e6).toFixed(1);
+    var kb=file.size<1048576? (file.size/1024).toFixed(0)+' KB' : (file.size/1048576).toFixed(2)+' MB';
+    var info=[['Dimensions',img.naturalWidth+' × '+img.naturalHeight+' px'],['Megapixels',mp+' MP'],['File size',kb],['Type',file.type||'—'],['Aspect',ratio(img.naturalWidth,img.naturalHeight)]];
+    $('imgInfo').innerHTML=info.map(function(r){ return '<div><span>'+esc(r[0])+'</span><b>'+esc(r[1])+'</b></div>'; }).join('');
+  }
+  function ratio(w,h){ function g(a,b){return b?g(b,a%b):a;} var d=g(w,h); return d?(w/d)+':'+(h/d):'—'; }
 
-  img.onload = () => {
-    EXIF.getData(img, function(){
-      const allTags = EXIF.getAllTags(this);
-      renderExif(allTags);
+  function parseMeta(file){
+    rows=[]; gpsCoords=null;
+    if(typeof exifr==='undefined'){ renderRows(); $('statusMsg').textContent='Metadata library failed to load.'; return; }
+    var opts={mergeOutput:false,translateKeys:true,translateValues:true,reviveValues:true,sanitize:true,silentErrors:true,tiff:true,ifd0:true,exif:true,gps:true,interop:true,ifd1:true,iptc:true,xmp:true,jfif:true,icc:true};
+    exifr.parse(file,opts).then(function(out){
+      out=out||{};
+      Object.keys(out).forEach(function(block){
+        var data=out[block]; if(!data||typeof data!=='object') return;
+        var cat=CATS[block]||block;
+        Object.keys(data).forEach(function(k){ var v=data[k]; if(v===undefined||v===null) return; rows.push({cat:cat,key:k,val:fmtVal(v)}); });
+      });
+      return exifr.gps(file).catch(function(){return null;});
+    }).then(function(g){ if(g&&g.latitude!=null){ gpsCoords={lat:g.latitude,lng:g.longitude}; } buildChips(); renderRows(); buildPrivacy(); })
+    .catch(function(){ buildChips(); renderRows(); buildPrivacy(); });
+  }
+  function fmtVal(v){ if(v instanceof Date) return v.toISOString(); if(Array.isArray(v)) return v.map(fmtVal).join(', '); if(typeof v==='object'){ try{return JSON.stringify(v);}catch(e){return String(v);} } return String(v); }
+
+  /* ===================== Render table ===================== */
+  function buildChips(){
+    var cats=['all']; rows.forEach(function(r){ if(cats.indexOf(r.cat)<0)cats.push(r.cat); });
+    var c=$('catChips'); c.innerHTML='';
+    cats.forEach(function(cat){ var b=document.createElement('button'); b.className='ex-chip'; b.type='button'; b.textContent=cat==='all'?'All':cat; b.setAttribute('aria-pressed',cat===catFilter?'true':'false'); b.addEventListener('click',function(){ catFilter=cat; c.querySelectorAll('.ex-chip').forEach(function(x){x.setAttribute('aria-pressed','false');}); b.setAttribute('aria-pressed','true'); renderRows(); }); c.appendChild(b); });
+  }
+  function renderRows(){
+    var tb=$('exifTable').querySelector('tbody'), q=($('metaSearch').value||'').toLowerCase();
+    tb.innerHTML='';
+    var shown=0;
+    rows.forEach(function(r){
+      if(catFilter!=='all'&&r.cat!==catFilter) return;
+      if(q&&(r.key+' '+r.val).toLowerCase().indexOf(q)<0) return;
+      var tr=document.createElement('tr');
+      tr.innerHTML='<td class="cat">'+esc(r.cat)+'</td><td class="key">'+esc(r.key)+'</td><td class="val">'+esc(r.val)+'</td>';
+      tb.appendChild(tr); shown++;
     });
-  };
-}
+    $('noExifMsg').style.display=rows.length===0?'block':'none';
+  }
+  $('metaSearch').addEventListener('input',renderRows);
 
-function renderExif(tags){
-  const tbody = document.querySelector('#exifTable tbody');
-  tbody.innerHTML = '';
-  const keys = Object.keys(tags || {});
-  const interesting = ['Make','Model','DateTime','DateTimeOriginal','ExposureTime','FNumber','ISOSpeedRatings','FocalLength','GPSLatitude','GPSLongitude','Software','Orientation','PixelXDimension','PixelYDimension'];
-  let shown = 0;
+  /* ===================== Privacy score ===================== */
+  function buildPrivacy(){
+    var has=function(cat){ return rows.some(function(r){return r.cat===cat;}); };
+    var hasKey=function(re){ return rows.some(function(r){return re.test(r.key);}); };
+    var risk=0, badges=[];
+    if(gpsCoords){ risk+=50; badges.push(['📍 GPS location','warn']); }
+    else if(has('GPS')){ risk+=40; badges.push(['📍 GPS data','warn']); }
+    if(hasKey(/Make|Model|LensModel/i)){ risk+=15; badges.push(['📷 Camera/device','']); }
+    if(hasKey(/Serial|BodySerial|OwnerName|Artist|Author|Copyright/i)){ risk+=20; badges.push(['👤 Owner/serial','warn']); }
+    if(hasKey(/DateTime/i)){ risk+=10; badges.push(['🕒 Date &amp; time','']); }
+    if(hasKey(/Software|ProcessingSoftware/i)){ risk+=5; badges.push(['🛠️ Software','']); }
+    if(has('XMP')||has('IPTC')){ risk+=5; badges.push(['🏷️ IPTC/XMP','']); }
+    var level=risk>=45?'high':risk>=15?'med':'low', box=$('privacyBox');
+    box.className='ex-privacy '+level;
+    var lbl=level==='high'?'High':level==='med'?'Medium':'Low';
+    var html='<h4>🛡️ Privacy risk: <span class="risk '+level+'">'+lbl+'</span></h4>';
+    if(gpsCoords){ html+='<div style="font-size:.84rem;color:#fca5a5">⚠️ This photo reveals a location — <a class="ex-gpslink" href="https://www.openstreetmap.org/?mlat='+gpsCoords.lat+'&mlon='+gpsCoords.lng+'#map=15/'+gpsCoords.lat+'/'+gpsCoords.lng+'" target="_blank" rel="noopener">view on map ('+gpsCoords.lat.toFixed(5)+', '+gpsCoords.lng.toFixed(5)+')</a></div>'; }
+    else if(rows.length===0){ html+='<div style="font-size:.84rem;color:#6ee7b7">✓ No metadata detected — this image looks clean.</div>'; }
+    else { html+='<div style="font-size:.84rem;color:var(--text-dim)">'+rows.length+' metadata fields found. Remove them before sharing publicly.</div>'; }
+    if(badges.length) html+='<div class="ex-badges">'+badges.map(function(b){return '<span class="ex-badge '+b[1]+'">'+b[0]+'</span>';}).join('')+'</div>';
+    box.innerHTML=html;
+  }
 
-  interesting.forEach(key=>{
-    if(tags[key] !== undefined){
-      const tr = document.createElement('tr');
-      tr.innerHTML = '<th>'+key+'</th><td>'+formatTagValue(key, tags[key])+'</td>';
-      tbody.appendChild(tr);
-      shown++;
+  /* ===================== Removal ===================== */
+  $('quality').addEventListener('input',function(){ $('qVal').textContent=this.value+'%'; });
+  function readDataUrl(file){ return new Promise(function(res){ var fr=new FileReader(); fr.onload=function(){res(fr.result);}; fr.readAsDataURL(file); }); }
+  function dataUrlToBlob(u){ var arr=u.split(','),mime=arr[0].match(/:(.*?);/)[1],bin=atob(arr[1]),n=bin.length,a=new Uint8Array(n); while(n--)a[n]=bin.charCodeAt(n); return new Blob([a],{type:mime}); }
+
+  function selectiveJpeg(dataUrl,mode){
+    var ex=piexif.load(dataUrl);
+    if(mode==='gps'){ ex['GPS']={}; }
+    else if(mode==='camera'){ del(ex['0th'],[piexif.ImageIFD.Make,piexif.ImageIFD.Model,piexif.ImageIFD.Software,piexif.ImageIFD.Artist]); del(ex['Exif'],[piexif.ExifIFD.LensMake,piexif.ExifIFD.LensModel,piexif.ExifIFD.BodySerialNumber,piexif.ExifIFD.LensSerialNumber]); }
+    else if(mode==='dates'){ del(ex['0th'],[piexif.ImageIFD.DateTime]); del(ex['Exif'],[piexif.ExifIFD.DateTimeOriginal,piexif.ExifIFD.DateTimeDigitized]); }
+    return piexif.insert(piexif.dump(ex),dataUrl);
+  }
+  function del(o,keys){ if(!o)return; keys.forEach(function(k){ delete o[k]; }); }
+
+  $('removeBtn').addEventListener('click',function(){
+    if(!current){ premToast('Upload an image first'); return; }
+    var mode=document.querySelector('input[name=rmMode]:checked').value;
+    var outFmt=$('outFmt').value, status=$('statusMsg');
+    status.style.color='var(--text-dim)'; status.textContent='⏳ Removing metadata…';
+    var isJpeg=/jpe?g/i.test(current.type);
+    var keepFmt=(outFmt==='original');
+    // Selective removal on JPEG without recompression (piexif)
+    if(isJpeg && keepFmt && typeof piexif!=='undefined'){
+      readDataUrl(current).then(function(u){
+        try{
+          var out = (mode==='all')? piexif.remove(u) : selectiveJpeg(u,mode);
+          var blob=dataUrlToBlob(out);
+          saveBlob('cleaned.jpg',blob);
+          status.style.color='#6ee7b7'; status.textContent='✅ Downloaded — '+(mode==='all'?'all metadata removed':mode+' metadata removed')+' (quality preserved).';
+        }catch(err){ canvasClean(outFmt,status); }
+      });
+      return;
     }
+    canvasClean(outFmt,status);
+  });
+  function canvasClean(outFmt,status){
+    var img=new Image();
+    img.onload=function(){
+      var c=document.createElement('canvas'); c.width=img.naturalWidth; c.height=img.naturalHeight;
+      c.getContext('2d').drawImage(img,0,0);
+      var type = outFmt==='original'? (/(png|webp)/i.test(current.type)?current.type:'image/jpeg') : outFmt;
+      var ext = type.indexOf('png')>=0?'png':type.indexOf('webp')>=0?'webp':'jpg';
+      c.toBlob(function(blob){ if(!blob){ status.textContent='Export not supported in this browser'; return; } saveBlob('cleaned.'+ext,blob); status.style.color='#6ee7b7'; status.textContent='✅ Downloaded — all metadata removed (re-encoded as '+ext.toUpperCase()+').'; }, type, parseInt($('quality').value,10)/100);
+    };
+    img.src=URL.createObjectURL(current);
+  }
+  function saveBlob(name,blob){ if(typeof downloadBlob==='function') downloadBlob(name,blob); else { var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); } }
+
+  /* ===================== Batch ===================== */
+  $('batchZip').addEventListener('click',function(){
+    if(typeof JSZip==='undefined'){ premToast('ZIP unavailable'); return; }
+    var zip=new JSZip(), done=0, status=$('statusMsg'); status.style.color='var(--text-dim)'; status.textContent='⏳ Cleaning '+files.length+' images…';
+    var tasks=files.map(function(f,i){
+      return new Promise(function(res){
+        if(/jpe?g/i.test(f.type)&&typeof piexif!=='undefined'){ readDataUrl(f).then(function(u){ try{ var out=piexif.remove(u); zip.file('clean-'+(i+1)+'.jpg',dataUrlToBlob(out)); }catch(e){} res(); }); }
+        else { var img=new Image(); img.onload=function(){ var c=document.createElement('canvas'); c.width=img.naturalWidth; c.height=img.naturalHeight; c.getContext('2d').drawImage(img,0,0); c.toBlob(function(b){ if(b)zip.file('clean-'+(i+1)+'.'+((f.type||'').indexOf('png')>=0?'png':'jpg'),b); res(); },/(png)/i.test(f.type)?'image/png':'image/jpeg',0.92); }; img.onerror=res; img.src=URL.createObjectURL(f); }
+      });
+    });
+    Promise.all(tasks).then(function(){ zip.generateAsync({type:'blob'}).then(function(c){ saveBlob('cleaned-images.zip',c); status.style.color='#6ee7b7'; status.textContent='✅ '+files.length+' cleaned images downloaded as ZIP.'; }); });
   });
 
-  if(shown === 0){
-    document.getElementById('noExifMsg').style.display = 'block';
-  } else {
-    document.getElementById('noExifMsg').style.display = 'none';
-  }
-}
+  /* ===================== Export metadata ===================== */
+  function saveText(name,txt,type){ if(typeof downloadText==='function'&&type==='text/plain'){ downloadText(name,txt); return; } saveBlob(name,new Blob([txt],{type:type||'text/plain'})); }
+  $('expTxt').addEventListener('click',function(){ saveText('metadata.txt',rows.map(function(r){return '['+r.cat+'] '+r.key+': '+r.val;}).join('\n'),'text/plain'); premToast('TXT downloaded'); });
+  $('expJson').addEventListener('click',function(){ saveText('metadata.json',JSON.stringify(rows,null,2),'application/json'); premToast('JSON downloaded'); });
+  $('expCsv').addEventListener('click',function(){ saveText('metadata.csv','Category,Tag,Value\r\n'+rows.map(function(r){return [r.cat,r.key,r.val].map(function(c){return '"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\r\n'),'text/csv'); premToast('CSV downloaded'); });
+  $('expXml').addEventListener('click',function(){ saveText('metadata.xml','<metadata>\n'+rows.map(function(r){return '  <tag category="'+esc(r.cat)+'" name="'+esc(r.key)+'">'+esc(r.val)+'</tag>';}).join('\n')+'\n</metadata>','application/xml'); premToast('XML downloaded'); });
+  $('expPdf').addEventListener('click',function(){ var w=window.open('','_blank'); if(!w){window.print();return;} var body='<h1>Image Metadata Report</h1><p>'+esc(current?current.name:'')+'</p><table border="1" cellpadding="6" style="border-collapse:collapse"><tr><th>Category</th><th>Tag</th><th>Value</th></tr>'+rows.map(function(r){return '<tr><td>'+esc(r.cat)+'</td><td>'+esc(r.key)+'</td><td>'+esc(r.val)+'</td></tr>';}).join('')+'</table>'; w.document.write('<!doctype html><meta charset="utf-8"><title>Metadata Report</title><style>body{font-family:system-ui,Arial;max-width:800px;margin:30px auto;padding:0 16px}th{background:#eee}</style>'+body); w.document.close(); w.focus(); setTimeout(function(){w.print();},350); });
 
-function formatTagValue(key, val){
-  if(Array.isArray(val)) return val.map(v => (v && v.numerator !== undefined) ? (v.numerator+'/'+v.denominator) : v).join(', ');
-  return String(val);
-}
+  /* ===================== Reset ===================== */
+  $('resetBtn').addEventListener('click',function(){ files=[]; current=null; rows=[]; $('afterUpload').style.display='none'; $('batchBox').classList.remove('on'); fi.value=''; });
 
-document.getElementById('removeBtn').addEventListener('click', ()=>{
-  const status = document.getElementById('statusMsg');
-  status.textContent = '⏳ Removing metadata...';
+  /* ===================== FAQ ===================== */
+  var FAQ=[
+    ['What is EXIF metadata?','EXIF is hidden data cameras and phones store inside a photo — such as camera model, settings, date and often GPS location. — EXIF फोटो में छिपा data है।'],
+    ['Why should I remove metadata?','To protect your privacy — photos can reveal your exact location, device and when they were taken. — privacy की सुरक्षा के लिए।'],
+    ['Is my photo uploaded anywhere?','No. Everything is read and cleaned in your browser; no image is uploaded. — नहीं, कुछ भी upload नहीं होता।'],
+    ['What metadata can this tool read?','Complete EXIF, GPS, IPTC, XMP, thumbnail and maker-note data, plus image info. — पूरा EXIF, GPS, IPTC, XMP आदि।'],
+    ['Can I remove only the GPS location?','Yes. Choose “GPS only” to strip location while keeping other tags. — हाँ, केवल GPS हटा सकते हैं।'],
+    ['Does removal reduce image quality?','For JPEG selective removal, no — it edits metadata without recompressing. — JPEG में गुणवत्ता कम नहीं होती।'],
+    ['What is a privacy score?','A Low/Medium/High rating of how much sensitive data your photo exposes. — यह जोखिम स्तर बताता है।'],
+    ['Does it detect GPS location?','Yes, and it shows the coordinates with a link to view them on a map. — हाँ, GPS पकड़ता है।'],
+    ['Can I export the metadata?','Yes — as TXT, JSON, CSV, XML or a printable PDF report. — हाँ, कई formats में export उपलब्ध।'],
+    ['Can I clean many photos at once?','Yes. Drop multiple images and use “Strip all & download ZIP”. — हाँ, batch ZIP उपलब्ध है।'],
+    ['Which formats are supported?','JPG, PNG and WebP for input; JPG/PNG/WebP for output. — JPG, PNG, WebP समर्थित हैं।'],
+    ['Do PNG files have EXIF?','Usually not — PNG rarely stores EXIF, so it often shows as already clean. — PNG में आमतौर पर EXIF नहीं होता।'],
+    ['Is it free?','Yes, completely free — no account, no limits, no watermark, works offline. — हाँ, यह पूरी तरह मुफ़्त है।'],
+    ['Can I convert format while cleaning?','Yes. Choose JPG, PNG or WebP as the output format. — हाँ, format बदल सकते हैं।'],
+    ['Does it keep resolution?','Yes. Resolution is preserved; only metadata is removed. — हाँ, resolution बनी रहती है।'],
+    ['What are IPTC and XMP?','Descriptive metadata standards for captions, authors, keywords and rights. — ये descriptive metadata standards हैं।'],
+    ['Can screenshots have metadata?','Sometimes device or software tags, but usually no GPS. — कभी-कभी device tags हो सकते हैं।'],
+    ['Is the thumbnail removed too?','Yes — “All metadata” removes the embedded thumbnail as well. — हाँ, thumbnail भी हट जाता है।'],
+    ['Does it work offline?','Yes, once the page and its libraries have loaded. — हाँ, यह offline काम करता है।'],
+    ['Will social media remove EXIF for me?','Many platforms strip some metadata, but not always all — clean it yourself to be sure. — सभी platforms भरोसेमंद नहीं।'],
+    ['Can I search the metadata?','Yes. Use the search box and category filters to find any tag. — हाँ, search व filter उपलब्ध हैं।'],
+    ['Is removal reversible?','No. Once removed, metadata is gone from the downloaded copy — your original file is untouched. — नहीं, पर मूल file अछूती रहती है।']
+  ];
+  function buildFaq(){ var list=$('faqList'); if(!list) return; FAQ.forEach(function(p){ var d=document.createElement('details'); d.innerHTML='<summary>'+esc(p[0])+'</summary><p>'+esc(p[1])+'</p>'; list.appendChild(d); }); try{ $('faqSchema').textContent=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:FAQ.map(function(p){return {'@type':'Question',name:p[0],acceptedAnswer:{'@type':'Answer',text:p[1]}};})}); }catch(e){} }
 
-  const img = new Image();
-  img.onload = ()=>{
-    const canvas = document.createElement('canvas');
-    canvas.width = img.naturalWidth;
-    canvas.height = img.naturalHeight;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0);
-
-    canvas.toBlob((blob)=>{
-      const ext = (currentFile.type === 'image/png') ? 'png' : 'jpg';
-      downloadBlob('cleaned.' + ext, blob);
-      status.textContent = '✅ Clean image downloaded — all metadata removed!';
-    }, currentFile.type === 'image/png' ? 'image/png' : 'image/jpeg', 0.95);
-  };
-  img.src = URL.createObjectURL(currentFile);
-});
+  /* ===================== Init ===================== */
+  window.__exHooks={parseMeta:parseMeta,handleFiles:handleFiles,getRows:function(){return rows;},getGps:function(){return gpsCoords;}};
+  buildFaq();
+})();
 </script>
 </body>
 </html>
