@@ -4,23 +4,138 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free online EMI Calculator for home, car, bike, personal, education, business and gold loans. Get the monthly EMI, total interest and a full amortization schedule with charts, down payment, processing fee, GST and insurance, prepayment savings, loan comparison, and CSV / Excel / PDF export. 100% private, in your browser, no signup.">
+<meta name="keywords" content="emi calculator, loan emi calculator, home loan emi, car loan emi, personal loan emi, amortization schedule, prepayment calculator, loan comparison, emi calculator india, monthly installment calculator">
 <link rel="canonical" href="https://apnesoftware.com/tools/emi-calculator.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="EMI Calculator — Work Out Your Loan EMI | ApneSoftware">
-<meta property="og:description" content="Work out your loan EMI. Free online tool — no signup required.">
+<meta property="og:title" content="EMI Calculator — Loan EMI, Interest &amp; Amortization Schedule | ApneSoftware">
+<meta property="og:description" content="Calculate loan EMI for home, car, personal and more — with amortization schedule, charts, fees, prepayment savings, loan comparison and CSV/Excel/PDF export. 100% private, no signup.">
 <meta property="og:url" content="https://apnesoftware.com/tools/emi-calculator.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="EMI Calculator — Work Out Your Loan EMI | ApneSoftware">
-<meta name="twitter:description" content="Work out your loan EMI. Free online tool — no signup required.">
+<meta name="twitter:title" content="EMI Calculator — Loan EMI, Interest &amp; Amortization Schedule | ApneSoftware">
+<meta name="twitter:description" content="Calculate loan EMI with amortization schedule, charts, fees, prepayment savings, loan comparison and CSV/Excel/PDF export. 100% private, no signup.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"EMI Calculator","description":"Work out your loan EMI. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/emi-calculator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"EMI Calculator","description":"Calculate the EMI for home, car, bike, personal, education, business and gold loans entirely in your browser, with a full amortization schedule, principal-vs-interest and balance charts, down payment, processing fee, GST and insurance, prepayment savings, loan comparison, flexible tenure and EMI frequency, and CSV, Excel and PDF export. No signup, no uploads.","url":"https://apnesoftware.com/tools/emi-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires a modern web browser with JavaScript enabled","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["EMI for home, car, bike, personal, education, business and gold loans","Full amortization schedule with dates","Principal vs interest and outstanding-balance charts","Down payment, processing fee, GST and insurance","Prepayment and lump-sum savings","Loan comparison","Flexible tenure and EMI frequency","CSV, Excel and PDF export","Runs fully in the browser"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"EMI Calculator","url":"https://apnesoftware.com/tools/emi-calculator.html","description":"Free browser-based EMI calculator with amortization schedule, charts, fees, prepayment and loan comparison.","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"inLanguage":["en","hi"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"EMI Calculator","item":"https://apnesoftware.com/tools/emi-calculator.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to calculate loan EMI","description":"Work out a loan EMI and amortization schedule in your browser.","step":[{"@type":"HowToStep","name":"Choose the loan type","text":"Pick home, car, bike, personal, education, business or gold loan."},{"@type":"HowToStep","name":"Enter the details","text":"Set the loan amount, interest rate and tenure, and optionally the down payment, fees, GST and EMI frequency."},{"@type":"HowToStep","name":"Read the results","text":"See the monthly EMI, total interest, total payment and charts instantly."},{"@type":"HowToStep","name":"Review the schedule","text":"Open the amortization schedule to see how each payment splits into principal and interest, and add prepayments to see the savings."},{"@type":"HowToStep","name":"Export or compare","text":"Download the schedule as CSV or Excel, print a PDF report, or add the scenario to the comparison table."}]}
+</script>
+<script type="application/ld+json" id="faqSchema">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}
 </script>
 <meta name="color-scheme" content="dark">
-<title>EMI Calculator — Work Out Your Loan EMI | ApneSoftware</title>
+<title>EMI Calculator — Loan EMI, Interest &amp; Amortization Schedule | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
+<style>
+/* ===== EMI Calculator — scoped emi- styles ===== */
+.emi-types{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.emi-type{background:rgba(255,255,255,.04);border:1px solid var(--border,rgba(255,255,255,.1));color:var(--text);border-radius:999px;padding:7px 14px;font-size:.82rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+.emi-type:hover{border-color:#a78bfa}
+.emi-type.active{background:rgba(167,139,250,.2);border-color:#a78bfa;color:#fff}
+
+.emi-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}
+@media(max-width:820px){.emi-layout{grid-template-columns:1fr}}
+.emi-ctrl{margin-bottom:16px}
+.emi-ctrl .emi-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+.emi-ctrl label{font-size:.85rem;color:var(--text-dim)}
+.emi-val{display:flex;align-items:center;gap:6px}
+.emi-val input{width:130px;text-align:right;padding:6px 10px;font-size:.95rem;font-weight:700}
+.emi-val .u{color:var(--text-dim);font-size:.8rem}
+input[type=range]{width:100%;accent-color:#a78bfa;height:6px;cursor:pointer}
+.emi-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.emi-adv{margin-top:6px;border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;overflow:hidden}
+.emi-adv>summary{cursor:pointer;padding:12px 14px;font-size:.88rem;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.emi-adv>summary::-webkit-details-marker{display:none}
+.emi-adv>summary::after{content:'▾';color:#a78bfa}
+.emi-adv[open]>summary::after{content:'▴'}
+.emi-adv .emi-advbody{padding:4px 14px 14px}
+.emi-field{margin-bottom:10px}
+.emi-field label{display:block;font-size:.8rem;color:var(--text-dim);margin-bottom:4px}
+.emi-field input,.emi-field select{width:100%;padding:8px 10px;font-size:.9rem}
+.emi-grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.emi-grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+@media(max-width:520px){.emi-grid3{grid-template-columns:1fr 1fr}}
+
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:4px}
+.stat-box{background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);border-radius:12px;padding:14px;text-align:center}
+.stat-box .num{font-size:1.25rem;font-weight:800;color:#c4b5fd}
+.stat-box .lbl{font-size:.76rem;color:var(--text-dim);margin-top:3px}
+.stat-box.alt{background:rgba(255,255,255,.03);border-color:var(--border,rgba(255,255,255,.1))}
+.stat-box.alt .num{color:var(--text);font-size:1.05rem}
+
+.emi-charts{display:grid;grid-template-columns:180px 1fr;gap:16px;margin-top:18px;align-items:center}
+@media(max-width:560px){.emi-charts{grid-template-columns:1fr}}
+.emi-legend{display:flex;flex-direction:column;gap:8px;margin-top:10px;font-size:.82rem}
+.emi-legend span{display:inline-flex;align-items:center;gap:8px;color:var(--text-dim)}
+.emi-legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.emi-areawrap{background:rgba(255,255,255,.02);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:12px}
+.emi-areawrap h4{margin:0 0 6px;font-size:.8rem;color:var(--text-dim)}
+
+.emi-save{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:#86efac;border-radius:10px;padding:10px 12px;font-size:.85rem;margin-top:14px;display:none}
+.emi-save.show{display:block}
+
+.emi-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.emi-btn{background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.34);color:#d6cbff;border-radius:10px;padding:9px 14px;font-size:.84rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.emi-btn:hover{background:rgba(167,139,250,.24)}
+
+.emi-sched{margin-top:18px}
+.emi-tabs{display:flex;gap:8px;margin-bottom:10px}
+.emi-tab{background:none;border:1px solid var(--border,rgba(255,255,255,.12));color:var(--text-dim);border-radius:8px;padding:6px 12px;font-size:.8rem;cursor:pointer}
+.emi-tab.active{background:rgba(167,139,250,.16);border-color:#a78bfa;color:#fff}
+.emi-twrap{overflow:auto;max-height:420px;border:1px solid var(--border,rgba(255,255,255,.1));border-radius:10px}
+table.emi-table{border-collapse:collapse;font-size:.8rem;width:100%;min-width:520px}
+table.emi-table th,table.emi-table td{border:1px solid var(--border,rgba(255,255,255,.12));padding:6px 10px;text-align:right;white-space:nowrap;color:var(--text)}
+table.emi-table th{background:rgba(167,139,250,.14);color:#fff;position:sticky;top:0;font-weight:600}
+table.emi-table td:first-child,table.emi-table th:first-child{text-align:left}
+table.emi-table tr.yr{cursor:pointer}
+table.emi-table tr.yr td{background:rgba(255,255,255,.04);font-weight:600}
+table.emi-table tr.mo td{color:var(--text-dim);font-size:.76rem}
+
+.emi-cmp{margin-top:18px;overflow:auto}
+.emi-cmp table{border-collapse:collapse;font-size:.82rem;width:100%;min-width:480px}
+.emi-cmp th,.emi-cmp td{border:1px solid var(--border,rgba(255,255,255,.12));padding:8px 10px;text-align:right;color:var(--text)}
+.emi-cmp th:first-child,.emi-cmp td:first-child{text-align:left;color:var(--text-dim)}
+.emi-cmp .del{color:#fca5a5;cursor:pointer}
+
+.limit-note{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:12px 14px;font-size:.85rem;color:#fbbf24;margin-top:14px}
+
+/* ===== Below-tool content ===== */
+.emi-wrap{margin:26px 0}
+.emi-title{font-size:1.35rem;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.emi-sub{color:var(--text-dim);font-size:.92rem;margin:0 0 18px;line-height:1.6}
+.emi-feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.emi-fcard{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:14px;padding:16px}
+.emi-fcard h4{margin:0 0 6px;font-size:.98rem;display:flex;align-items:center;gap:8px}
+.emi-fcard p{margin:0;font-size:.86rem;color:var(--text-dim);line-height:1.55}
+.emi-rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.emi-rel{display:block;text-decoration:none;background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:14px;transition:.15s;color:var(--text)}
+.emi-rel:hover{border-color:#a78bfa;background:rgba(167,139,250,.1);transform:translateY(-2px)}
+.emi-rel b{display:block;font-size:.92rem;margin-bottom:3px}
+.emi-rel span{font-size:.8rem;color:var(--text-dim);line-height:1.45}
+.emi-faq details{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:0 16px;margin-bottom:10px}
+.emi-faq summary{cursor:pointer;padding:14px 0;font-weight:600;font-size:.92rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.emi-faq summary::-webkit-details-marker{display:none}
+.emi-faq summary::after{content:'+';font-size:1.3rem;color:#a78bfa;flex:0 0 auto}
+.emi-faq details[open] summary::after{content:'−'}
+.emi-faq details p{margin:0 0 14px;font-size:.87rem;color:var(--text-dim);line-height:1.65}
+.emi-steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:12px}
+.emi-steps li{counter-increment:s;position:relative;padding-left:46px;font-size:.9rem;color:var(--text-dim);line-height:1.6}
+.emi-steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:9px;background:rgba(167,139,250,.18);color:#c4b5fd;font-weight:700;display:grid;place-items:center}
+.emi-steps li b{color:var(--text)}
+.emi-formula{background:#0d1117;border:1px solid var(--border,rgba(255,255,255,.12));border-radius:10px;padding:14px 16px;font-family:ui-monospace,Menlo,monospace;font-size:.86rem;color:#c9d1d9;overflow-x:auto;line-height:1.7}
+.emi-pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.emi-pill{background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);color:#d6cbff;border-radius:999px;padding:5px 12px;font-size:.8rem}
+@media print{ .site-header,.emi-actions,.emi-types,.emi-adv,.emi-tabs,footer,.emi-wrap,.emi-cmp .del,input[type=range]{display:none!important} body{background:#fff;color:#000} .panel{box-shadow:none} }
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -33,101 +148,470 @@
 <div class="container">
   <div class="tool-header">
     <h1>💰 EMI Calculator</h1>
-    <p>Calculate the monthly installment (EMI) for a home loan, car loan or personal loan.</p>
+    <p>Calculate the monthly EMI, total interest and full <b>amortization schedule</b> for a home, car, bike, personal, education, business or gold loan — with charts, fees, prepayment savings, loan comparison and CSV / Excel / PDF export.</p>
   </div>
 
   <div class="panel">
-    <div class="field">
-      <label for="principal">Loan amount (₹)</label>
-      <input type="number" id="principal" value="500000">
-    </div>
-    <div class="row">
-      <div class="field">
-        <label for="rate">Interest rate (annual %)</label>
-        <input type="number" id="rate" value="9" step="0.1">
+    <div class="emi-types" id="loanTypes" role="tablist" aria-label="Loan type"></div>
+
+    <div class="emi-layout">
+      <div>
+        <div class="emi-ctrl">
+          <div class="emi-top"><label for="principal">Loan amount</label>
+            <div class="emi-val"><span class="u" id="curSym1">₹</span><input type="number" id="principal" value="500000" min="0" step="1000" aria-label="Loan amount"></div></div>
+          <input type="range" id="principalR" min="10000" max="20000000" step="10000" value="500000" aria-label="Loan amount slider">
+        </div>
+        <div class="emi-two">
+          <div class="emi-ctrl">
+            <div class="emi-top"><label for="rate">Interest rate</label>
+              <div class="emi-val"><input type="number" id="rate" value="9" step="0.05" min="0" aria-label="Interest rate"><span class="u">% p.a.</span></div></div>
+            <input type="range" id="rateR" min="1" max="30" step="0.05" value="9" aria-label="Interest rate slider">
+          </div>
+          <div class="emi-ctrl">
+            <div class="emi-top"><label for="tenure">Tenure</label>
+              <div class="emi-val"><input type="number" id="tenure" value="5" step="1" min="0" aria-label="Tenure years"><span class="u">yr</span>
+                <input type="number" id="tenureM" value="0" step="1" min="0" max="11" style="width:56px" aria-label="Tenure months"><span class="u">mo</span></div></div>
+            <input type="range" id="tenureR" min="1" max="360" step="1" value="60" aria-label="Tenure months slider">
+          </div>
+        </div>
+
+        <details class="emi-adv">
+          <summary>➕ Fees, frequency &amp; prepayment</summary>
+          <div class="emi-advbody">
+            <div class="emi-grid3">
+              <div class="emi-field"><label for="downPay">Down payment</label><input type="number" id="downPay" value="0" min="0" step="1000"></div>
+              <div class="emi-field"><label for="procFee">Processing fee (%)</label><input type="number" id="procFee" value="0" min="0" step="0.1"></div>
+              <div class="emi-field"><label for="gst">GST on fee (%)</label><input type="number" id="gst" value="18" min="0" step="0.1"></div>
+              <div class="emi-field"><label for="insurance">Insurance</label><input type="number" id="insurance" value="0" min="0" step="500"></div>
+              <div class="emi-field"><label for="freq">EMI frequency</label>
+                <select id="freq"><option value="12">Monthly</option><option value="4">Quarterly</option><option value="2">Half-yearly</option><option value="1">Yearly</option></select></div>
+              <div class="emi-field"><label for="startDate">Loan start</label><input type="month" id="startDate"></div>
+              <div class="emi-field"><label for="extraEmi">Extra per EMI</label><input type="number" id="extraEmi" value="0" min="0" step="500"></div>
+              <div class="emi-field"><label for="lumpSum">Lump-sum prepay</label><input type="number" id="lumpSum" value="0" min="0" step="1000"></div>
+              <div class="emi-field"><label for="lumpAt">…at EMI no.</label><input type="number" id="lumpAt" value="12" min="1" step="1"></div>
+              <div class="emi-field"><label for="currency">Currency</label>
+                <select id="currency"><option value="INR">₹ INR</option><option value="USD">$ USD</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option><option value="AED">AED</option></select></div>
+            </div>
+          </div>
+        </details>
       </div>
-      <div class="field">
-        <label for="tenure">Tenure (years)</label>
-        <input type="number" id="tenure" value="5">
+
+      <div>
+        <div class="stat-grid">
+          <div class="stat-box"><div class="num" id="emiVal">₹0</div><div class="lbl" id="emiLbl">Monthly EMI</div></div>
+          <div class="stat-box"><div class="num" id="totalInterest">₹0</div><div class="lbl">Total interest</div></div>
+          <div class="stat-box"><div class="num" id="totalAmount">₹0</div><div class="lbl">Total payment</div></div>
+          <div class="stat-box alt"><div class="num" id="feeVal">₹0</div><div class="lbl">Fees &amp; charges</div></div>
+          <div class="stat-box alt"><div class="num" id="totalCost">₹0</div><div class="lbl">Total cost of loan</div></div>
+          <div class="stat-box alt"><div class="num" id="payoffDate">—</div><div class="lbl">Payoff</div></div>
+        </div>
+
+        <div class="emi-charts">
+          <div>
+            <svg id="donut" viewBox="0 0 120 120" width="160" height="160" role="img" aria-label="Principal vs interest chart"></svg>
+          </div>
+          <div>
+            <div class="emi-legend">
+              <span><i style="background:#7c3aed"></i> Principal <b id="lgPrin" style="color:var(--text);margin-left:auto"></b></span>
+              <span><i style="background:#f472b6"></i> Interest <b id="lgInt" style="color:var(--text);margin-left:auto"></b></span>
+            </div>
+            <div class="emi-areawrap" style="margin-top:10px">
+              <h4>Outstanding balance over time</h4>
+              <svg id="area" viewBox="0 0 300 90" width="100%" height="90" preserveAspectRatio="none" role="img" aria-label="Outstanding balance chart"></svg>
+            </div>
+          </div>
+        </div>
+        <div class="emi-save" id="prepaySave"></div>
       </div>
     </div>
 
-    <div class="stat-grid">
-      <div class="stat-box"><div class="num" id="emiVal">₹0</div><div class="lbl">Monthly EMI</div></div>
-      <div class="stat-box"><div class="num" id="totalInterest">₹0</div><div class="lbl">Total interest</div></div>
-      <div class="stat-box"><div class="num" id="totalAmount">₹0</div><div class="lbl">Total payment</div></div>
+    <div class="emi-actions">
+      <button class="emi-btn" id="csvBtn" type="button">⬇️ CSV</button>
+      <button class="emi-btn" id="xlsxBtn" type="button">⬇️ Excel</button>
+      <button class="emi-btn" id="printBtn" type="button">🖨️ Print / PDF</button>
+      <button class="emi-btn" id="shareBtn" type="button">🔗 Share</button>
+      <button class="emi-btn" id="addCmpBtn" type="button">➕ Add to comparison</button>
     </div>
+
+    <div class="emi-sched">
+      <div class="emi-tabs">
+        <button class="emi-tab active" id="tabYear" type="button">Yearly</button>
+        <button class="emi-tab" id="tabMonth" type="button">Full schedule</button>
+      </div>
+      <div class="emi-twrap"><table class="emi-table" id="schedTable"></table></div>
+    </div>
+
+    <div class="emi-cmp" id="cmpWrap" style="display:none">
+      <h3 style="font-size:.95rem;margin:18px 0 8px">📊 Loan comparison</h3>
+      <table id="cmpTable"></table>
+    </div>
+
+    <div class="limit-note">ℹ️ This is a mathematical estimate using the standard reducing-balance EMI formula that Indian banks and NBFCs use. Your actual EMI can differ slightly due to the lender's rounding, the exact day-count, and charges not entered here. Nothing you type is uploaded — every calculation runs in your browser.</div>
   </div>
 </div>
 
+<!-- ===================== BELOW-TOOL CONTENT ===================== -->
 
+<!-- Key features -->
+<div class="emi-wrap">
+  <h2 class="emi-title">✨ Key Features</h2>
+  <div class="emi-feat-grid">
+    <div class="emi-fcard"><h4>🏦 Every loan type</h4><p>Presets for home, car, bike, personal, education, business and gold loans set sensible amounts, rates and tenures to start from.</p></div>
+    <div class="emi-fcard"><h4>🎚️ Sliders &amp; precise inputs</h4><p>Drag a slider or type an exact figure — amount, rate and a flexible tenure in years and months stay in sync.</p></div>
+    <div class="emi-fcard"><h4>📉 Amortization schedule</h4><p>See every payment split into principal and interest, grouped by year and expandable to each EMI, with real dates.</p></div>
+    <div class="emi-fcard"><h4>📊 Charts</h4><p>A principal-vs-interest donut and an outstanding-balance graph show where your money goes at a glance.</p></div>
+    <div class="emi-fcard"><h4>🧾 Fees &amp; charges</h4><p>Add down payment, processing fee, GST and insurance to see the true total cost of the loan, not just the EMI.</p></div>
+    <div class="emi-fcard"><h4>⚡ Prepayment savings</h4><p>Add an extra amount to every EMI or a one-time lump sum and instantly see the interest saved and tenure cut.</p></div>
+    <div class="emi-fcard"><h4>🔁 Flexible frequency</h4><p>Calculate monthly, quarterly, half-yearly or yearly instalments, and choose your currency.</p></div>
+    <div class="emi-fcard"><h4>⚖️ Loan comparison</h4><p>Save several scenarios side by side and compare EMI, total interest and total cost before you decide.</p></div>
+    <div class="emi-fcard"><h4>📤 Export &amp; share</h4><p>Download the schedule as CSV or Excel, print a clean PDF report, or share a link that reopens your exact inputs.</p></div>
+    <div class="emi-fcard"><h4>🔒 100% private</h4><p>Everything is calculated in your browser. Nothing is uploaded, stored or shared — no account, no server.</p></div>
+  </div>
+</div>
+
+<!-- Benefits -->
+<div class="emi-wrap">
+  <h2 class="emi-title">🎁 Why use it</h2>
+  <div class="emi-pill-row">
+    <span class="emi-pill">Plan a home or car loan</span>
+    <span class="emi-pill">Compare lender offers</span>
+    <span class="emi-pill">See total interest upfront</span>
+    <span class="emi-pill">Test prepayment savings</span>
+    <span class="emi-pill">Budget your monthly outflow</span>
+    <span class="emi-pill">Export a schedule</span>
+    <span class="emi-pill">Works offline</span>
+    <span class="emi-pill">Free forever</span>
+  </div>
+</div>
+
+<!-- Related tools (ABOVE About) -->
+<div class="emi-wrap">
+  <h2 class="emi-title">🧰 Related Tools</h2>
+  <div class="emi-rel-grid">
+    <a class="emi-rel" href="sip-calculator.html"><b>SIP Calculator</b><span>Project the future value of monthly investments.</span></a>
+    <a class="emi-rel" href="fd-calculator.html"><b>FD Calculator</b><span>Work out fixed-deposit maturity and interest.</span></a>
+    <a class="emi-rel" href="rd-calculator.html"><b>RD Calculator</b><span>Estimate recurring-deposit returns.</span></a>
+    <a class="emi-rel" href="compound-interest-calculator.html"><b>Compound Interest</b><span>See how money grows with compounding.</span></a>
+    <a class="emi-rel" href="simple-interest-calculator.html"><b>Simple Interest</b><span>Quick simple-interest calculations.</span></a>
+    <a class="emi-rel" href="gst-calculator.html"><b>GST Calculator</b><span>Add or remove GST from an amount.</span></a>
+    <a class="emi-rel" href="income-tax-calculator.html"><b>Income Tax</b><span>Estimate your Indian income tax.</span></a>
+    <a class="emi-rel" href="percentage-discount-calculator.html"><b>Percentage &amp; Discount</b><span>Percentages, discounts and more.</span></a>
+  </div>
+</div>
+
+<!-- About (bilingual) -->
 <div class="info-wrap">
   <div class="info-section">
     <div class="info-block">
       <h2>ℹ️ About This Tool</h2>
-      <p>An EMI, or Equated Monthly Installment, is the fixed amount you pay every month toward a loan until the entire principal and interest are cleared. Whether you're planning to buy a home, a car, or simply need a personal loan to cover an expense, understanding your EMI before you sign any paperwork is one of the smartest financial habits you can build. This calculator uses the standard EMI formula based on reducing balance interest, the same method banks and NBFCs in India use to compute your monthly obligation, so the number you see here will closely match what a lender quotes you.</p>
-      <p>The tool takes three simple inputs: the loan amount (principal), the annual interest rate offered by your bank, and the tenure in years. Within milliseconds, it works out your monthly EMI, the total interest you'll pay across the life of the loan, and the total amount you'll eventually repay, including both principal and interest. Seeing the total interest figure side by side with the principal is often eye-opening; on a long-tenure home loan it isn't unusual for the interest paid to come close to or even exceed the original loan amount, which is exactly why comparing tenure options matters so much.</p>
-      <p>This calculator is especially useful when you're shopping around for the best loan offer. Banks rarely make it easy to compare apples to apples, since one lender might quote a slightly lower rate but a longer tenure, while another offers a shorter tenure with a marginally higher rate. By plugging in each offer here, you can see exactly how the monthly outflow and total cost differ, and make a decision based on real numbers rather than marketing brochures. It's equally handy for existing borrowers who want to check what their EMI would look like if they prepaid part of the loan or refinanced at a lower rate.</p>
-      <p>A few practical tips: always use the same interest rate basis your lender quotes (most Indian banks quote annual reducing-rate interest), and remember that this is a mathematical estimate — your actual EMI may include processing fees, insurance premiums, or GST charges added by the lender, which this calculator does not account for. For the clearest picture, run a few different tenure lengths side by side; a shorter tenure means a higher monthly EMI but substantially lower total interest, while a longer tenure eases monthly cash flow at the cost of paying more overall. This entire calculation happens instantly in your browser, with nothing sent to any server, so you're free to experiment with as many loan scenarios as you like before making a decision.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Enter the loan amount.</li>
-        <li>Enter the interest rate and tenure (years).</li>
-        <li>See your monthly EMI, total interest, and total payment instantly.</li>
-      </ol>
+      <p>The <b>ApneSoftware EMI Calculator</b> is a complete, professional-grade loan planning tool that runs entirely in your browser. An EMI, or Equated Monthly Installment, is the fixed amount you pay every month towards a loan until both the principal and the interest are fully cleared. Whether you are buying a home, a car or a bike, funding an education, growing a business, or borrowing against gold, knowing your EMI — and the true cost of the loan — before you sign anything is one of the smartest financial habits you can build. This calculator uses the standard <b>reducing-balance</b> EMI formula that banks and NBFCs across India use, so the figure you see closely matches what a lender will quote, and it goes far beyond a single number: it shows the full amortization schedule, the split between principal and interest, the effect of fees, and the savings from prepaying.</p>
+      <p>At its simplest, the tool takes three inputs — the <b>loan amount</b> (principal), the <b>annual interest rate</b>, and the <b>tenure</b> — and instantly returns your monthly EMI, the total interest paid over the life of the loan, and the total amount repaid. Every input has both a slider and a precise number field, so you can either drag to explore or type an exact figure, and the tenure accepts years and months together for real-world loan terms. Seeing the total interest next to the principal is often eye-opening: on a long home loan it is common for the interest to approach or even exceed the amount borrowed, which is exactly why the calculator makes it so easy to test different tenures and rates.</p>
+      <p>Beyond the basics, the calculator behaves like the tools used inside banks. It offers ready <b>loan-type presets</b> — home, car, bike, personal, education, business and gold — that start you at sensible amounts, rates and tenures. It lets you add the real-world <b>costs</b> that a bare EMI hides: a <b>down payment</b>, a <b>processing fee</b> (with <b>GST</b> on that fee), and <b>insurance</b>, so the “Total cost of loan” card reflects what you will actually spend, not just the instalments. You can switch the <b>EMI frequency</b> between monthly, quarterly, half-yearly and yearly for loans that are not billed monthly, choose your <b>currency</b>, and set a <b>loan start date</b> so the schedule shows the real month of each payment and an accurate payoff date.</p>
+      <p>The heart of a serious loan tool is its <b>amortization schedule</b>, and this calculator builds a full one. It lists, for every single instalment, how much goes to interest and how much reduces the principal, and how the outstanding balance falls over time. Because a month-by-month table can be long, the schedule is grouped by <b>year</b> with a one-line summary you can expand to reveal the individual EMIs beneath it. This makes a subtle but important truth visible: in the early years of a loan most of your EMI is interest and only a little touches the principal, while in the later years the balance falls quickly. Understanding that curve is the key to making good decisions about prepayment and tenure.</p>
+      <p>Prepayment is where borrowers save the most money, and the calculator models it directly. You can add an <b>extra amount to every EMI</b>, or make a <b>one-time lump-sum</b> payment at a chosen instalment number, and the tool immediately recalculates the schedule and shows you two things that matter: the <b>interest you save</b> and the <b>months you cut</b> off the loan. Because interest on a reducing-balance loan is charged on the outstanding principal, even modest, early prepayments have an outsized effect — a fact that lenders rarely advertise but which this calculator makes plain in rupees and months. For anyone with a home loan, experimenting here can reveal savings worth lakhs over the term.</p>
+      <p>To help you choose between offers, the calculator includes a <b>comparison</b> feature. After setting up a scenario you can add it to a comparison table and then change the inputs and add another, lining up two or three loans side by side to compare EMI, total interest and total cost on real numbers rather than marketing claims. And because good decisions often need to be shared or kept, the tool lets you <b>export</b> the amortization schedule as a <b>CSV</b> or <b>Excel</b> file, <b>print</b> a clean PDF report through your browser, or generate a <b>share link</b> that encodes your exact inputs so a colleague, partner or advisor opens the very same calculation. Charts — a principal-versus-interest <b>donut</b> and an outstanding-<b>balance graph</b> — turn the numbers into a picture you can grasp instantly.</p>
+      <p>A word on accuracy and honesty, because a financial tool is only as good as its transparency. This calculator computes the mathematically correct EMI for the inputs you provide, using the same reducing-balance method your lender uses. Small differences from a bank's quote are normal and come from things outside a formula: lenders round the EMI, use exact day-counts rather than equal months, may compound or apply rates slightly differently, and add charges that vary by product and profile. Floating-rate loans change over time, so any calculator's figure for them is a snapshot at today's rate. The tool is upfront about all of this: it is built to give you an accurate, unbiased estimate for planning and comparison, not to replace the sanctioned figure on your loan agreement. Used that way — to understand, compare and plan — it is genuinely powerful.</p>
+      <p>Above all, this calculator is <b>private and free</b>. Every calculation, chart, schedule and export happens entirely on your own device; nothing you type is uploaded to a server, stored, or shared, and no account or email is required. After the page loads you can even use it offline. This matters for a financial tool, because loan planning involves personal numbers — your income, your borrowing, your savings goals — that you should not have to hand to a website to get a straight answer. Here you never do. Whether you are a first-time borrower trying to understand what you can afford, an existing borrower weighing a prepayment, or simply someone comparing two offers before a big decision, the ApneSoftware EMI Calculator gives you bank-grade numbers, a full schedule, clear charts and honest guidance — instantly, privately and at no cost.</p>
     </div>
     <hr class="info-divider">
     <div class="info-block">
       <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>EMI यानी Equated Monthly Installment वह तय रकम है जो आप हर महीने अपने लोन की पूरी अदायगी होने तक चुकाते हैं — चाहे principal हो या उस पर लगने वाला ब्याज। चाहे आप घर खरीदने की सोच रहे हों, कार लेना चाहते हों, या किसी ज़रूरत के लिए personal loan लेना चाहते हों, कागज़ात पर साइन करने से पहले अपनी EMI को समझ लेना सबसे समझदारी भरी आदतों में से एक है। यह calculator उसी standard EMI formula (reducing balance interest) पर आधारित है जो भारत के बैंक और NBFC इस्तेमाल करते हैं, इसलिए यहां दिखने वाला नंबर लगभग वैसा ही होगा जैसा कोई lender आपको बताएगा।</p>
-      <p>इस टूल में सिर्फ तीन चीज़ें डालनी होती हैं: loan amount (principal), बैंक द्वारा दी गई annual interest rate, और साल में tenure। चंद सेकंड में यह आपकी मासिक EMI, पूरे लोन की अवधि में लगने वाला total interest, और principal+interest मिलाकर total amount दिखा देता है। Total interest का आंकड़ा principal के बराबर रखकर देखना अक्सर चौंकाने वाला होता है — लंबी अवधि वाले home loan में कई बार कुल ब्याज मूल रकम के बराबर या उससे भी ज़्यादा हो जाता है, इसी वजह से अलग-अलग tenure को compare करना इतना ज़रूरी है।</p>
-      <p>यह calculator तब सबसे ज़्यादा काम आता है जब आप सबसे अच्छे लोन offer की तलाश में हों। बैंक शायद ही कभी apples-to-apples compare करना आसान बनाते हैं — एक बैंक थोड़ी कम rate पर ज़्यादा tenure ऑफर करता है, तो दूसरा कम tenure पर थोड़ी ज़्यादा rate। हर offer को यहां डालकर आप देख सकते हैं कि मासिक खर्च और total cost में असल में कितना फर्क पड़ता है, और मार्केटिंग ब्रोशर की जगह असली नंबरों पर भरोसा करके फैसला ले सकते हैं। यह उन मौजूदा borrowers के लिए भी उपयोगी है जो यह देखना चाहते हैं कि अगर वे लोन का कुछ हिस्सा prepay करें या कम rate पर refinance करें तो उनकी EMI कैसी दिखेगी।</p>
-      <p>कुछ व्यावहारिक सुझाव: हमेशा वही interest rate basis इस्तेमाल करें जो आपका lender बताता है (ज़्यादातर भारतीय बैंक annual reducing-rate interest बताते हैं), और याद रखें कि यह सिर्फ एक गणितीय अनुमान है — आपकी असली EMI में processing fees, insurance premium, या GST जैसे charges भी जुड़ सकते हैं जो यह calculator शामिल नहीं करता। साफ तस्वीर के लिए अलग-अलग tenure की लंबाई आज़माएं — छोटी tenure में मासिक EMI ज़्यादा पर total interest काफी कम होता है, जबकि लंबी tenure मासिक बोझ कम करती है पर overall ज़्यादा पैसा देना पड़ता है। यह पूरी calculation आपके browser में तुरंत होती है, किसी server पर कुछ नहीं भेजा जाता, तो फैसला लेने से पहले जितने चाहें उतने scenarios बेझिझक आज़माएं।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>लोन की रकम डालें।</li>
-        <li>ब्याज दर और अवधि (सालों में) डालें।</li>
-        <li>अपनी मासिक EMI, कुल ब्याज, और कुल भुगतान तुरंत देखें।</li>
-      </ol>
+      <p><b>ApneSoftware EMI Calculator</b> एक पूर्ण, पेशेवर‑स्तर का लोन प्लानिंग टूल है जो पूरी तरह आपके ब्राउज़र में चलता है। EMI यानी Equated Monthly Installment वह तय रकम है जो आप हर महीने अपने लोन के पूरे principal और ब्याज के चुकने तक देते हैं। चाहे घर, कार या बाइक खरीदनी हो, पढ़ाई का खर्च हो, व्यवसाय बढ़ाना हो, या सोने पर लोन लेना हो — कागज़ पर साइन करने से पहले अपनी EMI और लोन की असली लागत जान लेना सबसे समझदारी भरी आदतों में से एक है। यह calculator वही <b>reducing‑balance</b> EMI formula इस्तेमाल करता है जो भारत के बैंक और NBFC उपयोग करते हैं, इसलिए यहाँ दिखने वाला आँकड़ा lender के बताए आँकड़े के करीब होता है — और यह केवल एक संख्या से कहीं आगे जाता है।</p>
+      <p>सबसे सरल रूप में, टूल तीन इनपुट लेता है — <b>loan amount</b> (principal), <b>वार्षिक ब्याज दर</b>, और <b>tenure</b> — और तुरंत आपकी मासिक EMI, पूरे लोन का कुल ब्याज, और कुल चुकाई गई रकम देता है। हर इनपुट में slider और सटीक number field दोनों हैं, और tenure सालों व महीनों दोनों में लिया जा सकता है। Principal के बगल में कुल ब्याज देखना अक्सर चौंकाने वाला होता है: लंबे home loan में कई बार ब्याज मूल रकम के बराबर या उससे ज़्यादा हो जाता है, इसीलिए यह टूल अलग‑अलग tenure और rate आज़माना आसान बनाता है।</p>
+      <p>बुनियादी बातों से आगे, यह calculator बैंकों के टूल जैसा व्यवहार करता है। इसमें तैयार <b>loan‑type presets</b> हैं — home, car, bike, personal, education, business और gold — जो उचित रकम, rate और tenure से शुरुआत कराते हैं। यह वे असली <b>खर्चे</b> जोड़ने देता है जो सिर्फ़ EMI छिपा देती है: <b>down payment</b>, <b>processing fee</b> (उस पर <b>GST</b>), और <b>insurance</b> — ताकि “Total cost of loan” कार्ड दिखाए कि आप असल में कितना खर्च करेंगे। आप <b>EMI frequency</b> को monthly, quarterly, half‑yearly या yearly कर सकते हैं, <b>currency</b> चुन सकते हैं, और <b>loan start date</b> सेट कर सकते हैं ताकि schedule हर भुगतान का असली महीना और सही payoff तारीख दिखाए।</p>
+      <p>किसी गंभीर लोन टूल का दिल उसका <b>amortization schedule</b> होता है, और यह calculator पूरा schedule बनाता है। यह हर किस्त के लिए बताता है कि कितना ब्याज में गया और कितने से principal घटा, और समय के साथ बकाया राशि कैसे गिरती है। चूँकि महीने‑दर‑महीने तालिका लंबी हो सकती है, schedule को <b>साल</b> के अनुसार समूहित किया जाता है जिसे खोलकर नीचे की अलग‑अलग EMI देखी जा सकती हैं। इससे एक सूक्ष्म पर महत्वपूर्ण सच दिखता है: लोन के शुरुआती सालों में आपकी अधिकांश EMI ब्याज होती है और principal बहुत कम घटता है, जबकि बाद के सालों में बकाया तेज़ी से गिरता है।</p>
+      <p>Prepayment में borrower सबसे ज़्यादा पैसा बचाते हैं, और यह calculator इसे सीधे मॉडल करता है। आप <b>हर EMI में अतिरिक्त रकम</b> जोड़ सकते हैं, या किसी चुनी हुई किस्त पर <b>एकमुश्त lump‑sum</b> भुगतान कर सकते हैं, और टूल तुरंत schedule दोबारा गिनकर दो ज़रूरी चीज़ें दिखाता है: <b>बचा हुआ ब्याज</b> और <b>कम हुए महीने</b>। चूँकि reducing‑balance लोन में ब्याज बकाया principal पर लगता है, थोड़ा‑सा जल्दी किया prepayment भी बड़ा असर डालता है — जिसे यह calculator रुपयों और महीनों में साफ़ दिखा देता है।</p>
+      <p>offers में से चुनने में मदद के लिए, calculator में एक <b>comparison</b> सुविधा है। एक scenario सेट करने के बाद आप उसे comparison तालिका में जोड़ सकते हैं, फिर इनपुट बदलकर दूसरा जोड़ सकते हैं, और दो‑तीन लोन को EMI, कुल ब्याज व कुल लागत पर साथ‑साथ compare कर सकते हैं। और चूँकि अच्छे फैसले अक्सर साझा या सहेजने पड़ते हैं, टूल amortization schedule को <b>CSV</b> या <b>Excel</b> के रूप में <b>export</b> करने देता है, ब्राउज़र से साफ़ <b>PDF रिपोर्ट प्रिंट</b> करने देता है, या एक <b>share link</b> बनाता है जो आपके ठीक वही इनपुट खोल देता है। charts — principal‑बनाम‑interest <b>donut</b> और बकाया‑<b>balance graph</b> — संख्याओं को एक तस्वीर में बदल देते हैं।</p>
+      <p>सटीकता और ईमानदारी पर एक बात, क्योंकि कोई भी वित्तीय टूल उतना ही अच्छा है जितनी उसकी पारदर्शिता। यह calculator आपके इनपुट के लिए गणितीय रूप से सही EMI गिनता है, वही reducing‑balance तरीका जो आपका lender उपयोग करता है। बैंक के quote से छोटे अंतर सामान्य हैं — lender EMI को round करते हैं, समान महीनों की जगह सटीक day‑count उपयोग करते हैं, दरें थोड़ा अलग लागू कर सकते हैं, और ऐसे charges जोड़ते हैं जो product व profile के अनुसार बदलते हैं। Floating‑rate लोन समय के साथ बदलते हैं, इसलिए उनके लिए किसी भी calculator का आँकड़ा आज की दर का एक स्नैपशॉट है। टूल इन सबके बारे में स्पष्ट है: यह योजना और तुलना के लिए एक सटीक, निष्पक्ष अनुमान देने के लिए बना है।</p>
+      <p>सबसे बढ़कर, यह calculator <b>निजी और मुफ़्त</b> है। हर गणना, chart, schedule और export पूरी तरह आपके अपने डिवाइस पर होता है; आपकी टाइप की कोई चीज़ सर्वर पर अपलोड, सेव या साझा नहीं होती, और किसी अकाउंट की ज़रूरत नहीं। पेज लोड होने के बाद आप ऑफ़लाइन भी उपयोग कर सकते हैं। यह किसी वित्तीय टूल के लिए मायने रखता है, क्योंकि लोन प्लानिंग में आपकी आय, उधार और बचत जैसी निजी संख्याएँ शामिल होती हैं जिन्हें सीधा उत्तर पाने के लिए किसी वेबसाइट को देना नहीं चाहिए। यहाँ आपको कभी नहीं देना पड़ता।</p>
     </div>
   </div>
 </div>
 
+<!-- How to use -->
+<div class="emi-wrap">
+  <h2 class="emi-title">📖 How To Use</h2>
+  <ol class="emi-steps">
+    <li><b>Choose the loan type.</b> Tap Home, Car, Personal, Education and so on to start from sensible defaults.</li>
+    <li><b>Enter the details.</b> Set the loan amount, interest rate and tenure with the sliders or exact figures.</li>
+    <li><b>Add fees &amp; frequency (optional).</b> Open the advanced panel for down payment, processing fee, GST, insurance, EMI frequency, currency and start date.</li>
+    <li><b>Read the results &amp; charts.</b> The EMI, total interest, total payment, fees and total cost update instantly, with charts.</li>
+    <li><b>Try prepayment.</b> Add an extra EMI amount or a lump sum to see the interest saved and tenure cut.</li>
+    <li><b>Review, export or compare.</b> Open the amortization schedule, then export CSV/Excel, print a PDF, share a link, or add the scenario to the comparison table.</li>
+  </ol>
+</div>
+
+<!-- EMI Formula -->
+<div class="emi-wrap">
+  <h2 class="emi-title">🧮 EMI Formula</h2>
+  <p class="emi-sub">The EMI is calculated with the standard reducing-balance formula, where <b>P</b> is the principal, <b>r</b> is the periodic interest rate (annual rate ÷ number of instalments per year ÷ 100), and <b>n</b> is the number of instalments:</p>
+  <div class="emi-formula">EMI = P × r × (1 + r)ⁿ ⁄ ((1 + r)ⁿ − 1)
+
+Total payment = EMI × n
+Total interest = Total payment − P</div>
+  <p class="emi-sub" style="margin-top:12px">For a monthly loan, r = annual% ⁄ 12 ⁄ 100 and n = years × 12. If the rate is 0, the EMI is simply P ⁄ n. This is the same reducing-balance method used by banks and NBFCs, where interest each period is charged only on the <b>outstanding</b> principal — which is why your early EMIs are mostly interest and your later EMIs are mostly principal.</p>
+</div>
+
+<!-- Amortization explanation -->
+<div class="emi-wrap">
+  <h2 class="emi-title">📉 Amortization Schedule Explained</h2>
+  <p class="emi-sub">An amortization schedule breaks every EMI into two parts. Each period, the <b>interest</b> portion equals the outstanding balance × the periodic rate, and the rest of the EMI — the <b>principal</b> portion — reduces the balance. Because the balance shrinks over time, the interest portion falls and the principal portion grows with every payment, even though the EMI itself stays the same. Early in the loan most of your money is servicing interest; late in the loan almost all of it is repaying principal. The schedule below shows this month by month, grouped by year so it is easy to scan, and a <b>prepayment</b> (extra EMI or lump sum) shortens the schedule by knocking down the balance faster, which cuts the total interest you pay.</p>
+</div>
+
+<!-- FAQ -->
+<div class="emi-wrap emi-faq">
+  <h2 class="emi-title">❓ Frequently Asked Questions</h2>
+  <div id="faqList"></div>
+</div>
+
+<!-- Privacy & Security -->
+<div class="emi-wrap">
+  <h2 class="emi-title">🔒 Privacy &amp; Security</h2>
+  <p class="emi-sub">Every calculation, chart, amortization schedule and export runs entirely inside your browser in JavaScript. Nothing you enter — loan amounts, rates, income or any other figure — is <b>ever uploaded</b> to a server, stored, or shared. No account, email or signup is required, and once the page has loaded you can use the calculator offline. Loan planning involves personal financial information, and this local-only design means those numbers never leave your device.</p>
+</div>
+
+<!-- Browser compatibility -->
+<div class="emi-wrap">
+  <h2 class="emi-title">🌐 Browser Compatibility</h2>
+  <p class="emi-sub">Works in all modern browsers — Google Chrome, Mozilla Firefox, Microsoft Edge, Safari, Brave and Opera — on Windows, macOS, Linux, Android and iOS. It uses only standard HTML, CSS and JavaScript, with inline SVG charts and the browser's own print for PDF export. On phones and tablets the layout stacks into a single column, the sliders are touch-friendly and the schedule scrolls horizontally.</p>
+</div>
+
+<!-- Supported loan types -->
+<div class="emi-wrap">
+  <h2 class="emi-title">🏦 Supported Loan Types</h2>
+  <p class="emi-sub">The same reducing-balance method applies to every consumer loan, so the calculator works for <b>home loans</b>, <b>car and bike loans</b>, <b>personal loans</b>, <b>education loans</b>, <b>business loans</b> and <b>gold loans</b>, as well as any other fixed-rate instalment loan. The loan-type presets simply set typical starting amounts, rates and tenures; you can override any of them. For <b>floating-rate</b> loans the result is a snapshot at the rate you enter, since the actual rate will change over the term.</p>
+</div>
+
+<!-- Limitations -->
+<div class="emi-wrap">
+  <h2 class="emi-title">⚠️ Limitations</h2>
+  <p class="emi-sub">This is an estimate for planning, not the sanctioned figure on a loan agreement. It uses equal calendar periods rather than exact day-counts, so it can differ slightly from a lender that computes daily or applies its own rounding. It does not model changing (floating) rates over time, moratorium or step-up EMIs, late-payment penalties, or charges you do not enter. GST is applied only to the processing fee you specify. Prepayment results assume the extra amount reduces the principal immediately and ignore any prepayment penalty your lender may charge. Always confirm the final EMI and total cost with your lender before signing.</p>
+</div>
+
+<!-- Troubleshooting -->
+<div class="emi-wrap">
+  <h2 class="emi-title">🛠️ Troubleshooting</h2>
+  <p class="emi-sub"><b>EMI shows ₹0 or blank:</b> make sure the loan amount and tenure are greater than zero. <b>Number looks different from my bank's:</b> check you used the same rate basis and tenure, and remember lenders round and add charges. <b>Schedule is empty:</b> a zero tenure or amount produces no instalments — adjust the inputs. <b>Prepayment shows no saving:</b> the extra amount or lump sum may be zero, or the lump-sum instalment number may be beyond the loan term. <b>Excel button does nothing:</b> your browser may have blocked the download — allow downloads for this site and retry, or use CSV. <b>Share link didn't restore values:</b> make sure the whole URL, including everything after the “?”, was copied.</p>
+</div>
+
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-function formatINR(num){
-  return '₹' + Math.round(num).toLocaleString('en-IN');
-}
+(function(){
+  const $ = id => document.getElementById(id);
+  const CUR={INR:'₹',USD:'$',EUR:'€',GBP:'£',AED:'AED '};
+  const PRESETS={
+    home:{n:'🏠 Home',p:3000000,r:8.5,y:20,max:50000000},
+    car:{n:'🚗 Car',p:800000,r:9.5,y:7,max:5000000},
+    bike:{n:'🏍️ Bike',p:120000,r:11,y:3,max:1000000},
+    personal:{n:'👤 Personal',p:500000,r:14,y:5,max:5000000},
+    education:{n:'🎓 Education',p:1000000,r:10.5,y:8,max:10000000},
+    business:{n:'💼 Business',p:2000000,r:15,y:5,max:50000000},
+    gold:{n:'🪙 Gold',p:300000,r:12,y:2,max:5000000}
+  };
+  let activeType='home', cmp=[];
 
-function calculate(){
-  const P = parseFloat(document.getElementById('principal').value) || 0;
-  const annualRate = parseFloat(document.getElementById('rate').value) || 0;
-  const years = parseFloat(document.getElementById('tenure').value) || 0;
+  // build loan-type chips
+  Object.keys(PRESETS).forEach((k,i)=>{ const b=document.createElement('button'); b.className='emi-type'+(i===0?' active':''); b.type='button'; b.dataset.k=k; b.setAttribute('role','tab'); b.textContent=PRESETS[k].n;
+    b.addEventListener('click',()=>{ activeType=k; document.querySelectorAll('.emi-type').forEach(x=>x.classList.remove('active')); b.classList.add('active'); applyPreset(k); }); $('loanTypes').appendChild(b); });
+  function applyPreset(k){ const p=PRESETS[k]; $('principalR').max=p.max; $('principal').value=p.p; $('rate').value=p.r; setTenure(p.y*12); syncFromInputs(); calc(); }
 
-  const r = annualRate / 12 / 100;
-  const n = years * 12;
+  // default start date = current month
+  (function(){ const d=new Date(); $('startDate').value=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'); })();
 
-  let emi = 0;
-  if(r === 0 && n > 0){
-    emi = P / n;
-  } else if(n > 0){
-    emi = P * r * Math.pow(1+r, n) / (Math.pow(1+r, n) - 1);
+  function num(id){ return parseFloat($(id).value)||0; }
+  function setTenure(months){ $('tenure').value=Math.floor(months/12); $('tenureM').value=months%12; $('tenureR').value=Math.min(360,Math.max(1,months)); }
+  function tenureMonths(){ return Math.max(0, Math.round(num('tenure')*12+num('tenureM'))); }
+  function curSym(){ return CUR[$('currency').value]||'₹'; }
+  function fmt(n){ const s=curSym(); const v=Math.round(n); const str=$('currency').value==='INR'?v.toLocaleString('en-IN'):v.toLocaleString('en-US'); return s+str; }
+
+  // sync sliders <-> inputs
+  function syncFromInputs(){ $('principalR').value=Math.min(+$('principalR').max, Math.max(+$('principalR').min, num('principal')||0)); $('rateR').value=Math.min(30,Math.max(1,num('rate')||1)); $('tenureR').value=Math.min(360,Math.max(1,tenureMonths()||1)); $('curSym1').textContent=curSym(); }
+  $('principalR').addEventListener('input',()=>{ $('principal').value=$('principalR').value; calc(); });
+  $('rateR').addEventListener('input',()=>{ $('rate').value=$('rateR').value; calc(); });
+  $('tenureR').addEventListener('input',()=>{ setTenure(+$('tenureR').value); calc(); });
+
+  // ===== core engine =====
+  function computeLoan(o){
+    const perYear=o.freq||12; const r=(o.annualRate/100)/perYear;
+    const nTotal=Math.max(0, Math.round(o.months/12*perYear));
+    let emi=0;
+    if(nTotal>0){ emi = r===0 ? o.principal/nTotal : o.principal*r*Math.pow(1+r,nTotal)/(Math.pow(1+r,nTotal)-1); }
+    const baseTotal=emi*nTotal, baseInterest=Math.max(0,baseTotal-o.principal);
+    // schedule with prepayment
+    const sched=[]; let bal=o.principal, totalInt=0; const cap=nTotal*5+60;
+    const extra=Math.max(0,o.extraEMI||0), lump=Math.max(0,o.lumpSum||0), lumpAt=o.lumpAt||0;
+    for(let p=1; bal>0.005 && p<=cap && nTotal>0; p++){
+      const interest=bal*r; let principalPart=emi-interest+extra;
+      if(lumpAt&&p===lumpAt) principalPart+=lump;
+      if(principalPart>bal) principalPart=bal;
+      if(principalPart<0) principalPart=0;
+      const payment=interest+principalPart; bal-=principalPart; totalInt+=interest;
+      sched.push({p, payment, interest, principal:principalPart, balance:Math.max(0,bal)});
+      if(bal<=0.005) break;
+    }
+    const monthsPerPeriod=12/perYear;
+    const fees=(o.procFeePct/100*o.principal); const gstAmt=fees*(o.gstPct/100);
+    const feesTotal=fees+gstAmt+(o.insurance||0);
+    return { emi, nTotal, periods:sched.length, schedule:sched, totalInterest:totalInt, totalPayment:totalInt+o.principal,
+      baseInterest, interestSaved:Math.max(0,baseInterest-totalInt), monthsSaved:Math.max(0,nTotal-sched.length)*monthsPerPeriod,
+      fees, gstAmt, feesTotal, totalCost:o.principal+totalInt+feesTotal+(o.downPayment||0), monthsPerPeriod, perYear };
+  }
+  function opts(){ return { principal:num('principal'), annualRate:num('rate'), months:tenureMonths(), freq:+$('freq').value,
+    downPayment:num('downPay'), procFeePct:num('procFee'), gstPct:num('gst'), insurance:num('insurance'),
+    extraEMI:num('extraEmi'), lumpSum:num('lumpSum'), lumpAt:Math.round(num('lumpAt')) }; }
+  window.__emiHooks={ computeLoan, opts };
+
+  // ===== charts =====
+  function donut(prin, intr){
+    const total=prin+intr||1; const pf=prin/total; const c=2*Math.PI*45;
+    $('donut').innerHTML=
+      `<circle cx="60" cy="60" r="45" fill="none" stroke="#f472b6" stroke-width="18"/>`+
+      `<circle cx="60" cy="60" r="45" fill="none" stroke="#7c3aed" stroke-width="18" stroke-dasharray="${(c*pf).toFixed(2)} ${c.toFixed(2)}" transform="rotate(-90 60 60)"/>`+
+      `<text x="60" y="57" text-anchor="middle" fill="var(--text)" font-size="13" font-weight="700">${Math.round(pf*100)}%</text>`+
+      `<text x="60" y="72" text-anchor="middle" fill="var(--text-dim)" font-size="8">principal</text>`;
+  }
+  function area(sched, P){
+    if(!sched.length){ $('area').innerHTML=''; return; }
+    const W=300,H=90,pad=4; const n=sched.length; const maxB=P||1;
+    const pts=sched.map((s,i)=>{ const x=pad+(i/(n-1||1))*(W-2*pad); const y=pad+(1-s.balance/maxB)*(H-2*pad); return x.toFixed(1)+','+y.toFixed(1); });
+    const line='M'+pad+','+(pad)+' '+'L'+pts.join(' L');
+    const fill='M'+pad+','+(H-pad)+' L'+pts.join(' L')+' L'+(W-pad)+','+(H-pad)+' Z';
+    $('area').innerHTML=`<path d="${fill}" fill="rgba(124,58,237,.25)"/><polyline points="${pts.join(' ')}" fill="none" stroke="#a78bfa" stroke-width="2"/>`;
   }
 
-  const totalAmount = emi * n;
-  const totalInterest = totalAmount - P;
+  // ===== schedule =====
+  let schedMode='year', lastResult=null;
+  function startDateObj(){ const v=$('startDate').value; if(/^\d{4}-\d{2}$/.test(v)){ const [y,m]=v.split('-').map(Number); return new Date(y,m-1,1);} return new Date(); }
+  function periodDate(idx, mpp){ const d=startDateObj(); d.setMonth(d.getMonth()+Math.round(idx*mpp)); return d.toLocaleDateString('en-IN',{month:'short',year:'numeric'}); }
+  function renderSchedule(res){
+    const t=$('schedTable'); const mpp=res.monthsPerPeriod;
+    if(!res.schedule.length){ t.innerHTML='<tr><td>No instalments — check amount and tenure.</td></tr>'; return; }
+    if(schedMode==='month'){
+      let h='<tr><th>#</th><th>Date</th><th>EMI</th><th>Principal</th><th>Interest</th><th>Balance</th></tr>';
+      res.schedule.forEach(s=>{ h+=`<tr class="mo"><td>${s.p}</td><td>${periodDate(s.p,mpp)}</td><td>${fmt(s.payment)}</td><td>${fmt(s.principal)}</td><td>${fmt(s.interest)}</td><td>${fmt(s.balance)}</td></tr>`; });
+      t.innerHTML=h; return;
+    }
+    // yearly grouped
+    const perY=res.perYear; let h='<tr><th>Year</th><th>Principal</th><th>Interest</th><th>Total paid</th><th>Balance</th></tr>';
+    let yr=0;
+    for(let i=0;i<res.schedule.length;i+=perY){ yr++; const grp=res.schedule.slice(i,i+perY);
+      const pr=grp.reduce((a,b)=>a+b.principal,0), it=grp.reduce((a,b)=>a+b.interest,0), pay=grp.reduce((a,b)=>a+b.payment,0);
+      const bal=grp[grp.length-1].balance;
+      h+=`<tr class="yr" data-i="${i}"><td>▸ Year ${yr}</td><td>${fmt(pr)}</td><td>${fmt(it)}</td><td>${fmt(pay)}</td><td>${fmt(bal)}</td></tr>`;
+      h+=`<tbody class="det" data-det="${i}" style="display:none">`;
+      grp.forEach(s=>{ h+=`<tr class="mo"><td>&nbsp;&nbsp;#${s.p} · ${periodDate(s.p,mpp)}</td><td>${fmt(s.principal)}</td><td>${fmt(s.interest)}</td><td>${fmt(s.payment)}</td><td>${fmt(s.balance)}</td></tr>`; });
+      h+='</tbody>';
+    }
+    t.innerHTML=h;
+    t.querySelectorAll('tr.yr').forEach(row=>row.addEventListener('click',()=>{ const d=t.querySelector('tbody[data-det="'+row.dataset.i+'"]'); if(d){ const open=d.style.display!=='none'; d.style.display=open?'none':''; row.querySelector('td').textContent=(open?'▸':'▾')+row.querySelector('td').textContent.slice(1); } }));
+  }
+  $('tabYear').addEventListener('click',()=>{ schedMode='year'; $('tabYear').classList.add('active'); $('tabMonth').classList.remove('active'); if(lastResult) renderSchedule(lastResult); });
+  $('tabMonth').addEventListener('click',()=>{ schedMode='month'; $('tabMonth').classList.add('active'); $('tabYear').classList.remove('active'); if(lastResult) renderSchedule(lastResult); });
 
-  document.getElementById('emiVal').textContent = formatINR(emi);
-  document.getElementById('totalInterest').textContent = formatINR(totalInterest);
-  document.getElementById('totalAmount').textContent = formatINR(totalAmount);
-}
+  // ===== main calc =====
+  function calc(){
+    const o=opts(); const res=computeLoan(o); lastResult=res;
+    const freqLbl={12:'Monthly EMI',4:'Quarterly EMI',2:'Half-yearly EMI',1:'Yearly EMI'}[o.freq]||'EMI';
+    $('emiLbl').textContent=freqLbl;
+    $('emiVal').textContent=fmt(res.emi);
+    $('totalInterest').textContent=fmt(res.totalInterest);
+    $('totalAmount').textContent=fmt(res.totalPayment);
+    $('feeVal').textContent=fmt(res.feesTotal);
+    $('totalCost').textContent=fmt(res.totalCost);
+    $('payoffDate').textContent=res.schedule.length?periodDate(res.schedule.length,res.monthsPerPeriod):'—';
+    $('lgPrin').textContent=fmt(o.principal); $('lgInt').textContent=fmt(res.totalInterest);
+    donut(o.principal, res.totalInterest); area(res.schedule, o.principal);
+    const ps=$('prepaySave');
+    if(res.interestSaved>1){ ps.classList.add('show'); ps.innerHTML=`💡 Prepayment saves <b>${fmt(res.interestSaved)}</b> in interest and finishes about <b>${Math.round(res.monthsSaved)}</b> month(s) early.`; }
+    else ps.classList.remove('show');
+    renderSchedule(res);
+    $('curSym1').textContent=curSym();
+  }
 
-['principal','rate','tenure'].forEach(id => {
-  document.getElementById(id).addEventListener('input', calculate);
-});
-calculate();
+  ['principal','rate','tenure','tenureM','freq','downPay','procFee','gst','insurance','extraEmi','lumpSum','lumpAt','currency','startDate'].forEach(id=>{
+    $(id).addEventListener('input',()=>{ syncFromInputs(); calc(); });
+  });
+
+  // ===== export =====
+  function scheduleRows(res){ const mpp=res.monthsPerPeriod; const rows=[['#','Date','EMI','Principal','Interest','Balance']];
+    res.schedule.forEach(s=>rows.push([s.p, periodDate(s.p,mpp), Math.round(s.payment), Math.round(s.principal), Math.round(s.interest), Math.round(s.balance)])); return rows; }
+  function summaryRows(res){ const o=opts(); return [
+    ['EMI Calculator — Summary'],['Loan type',PRESETS[activeType].n.replace(/^\S+\s/,'')],['Currency',$('currency').value],
+    ['Loan amount',Math.round(o.principal)],['Interest rate (%)',o.annualRate],['Tenure (months)',o.months],['EMI frequency/yr',o.freq],
+    ['EMI',Math.round(res.emi)],['Total interest',Math.round(res.totalInterest)],['Total payment',Math.round(res.totalPayment)],
+    ['Processing fee',Math.round(res.fees)],['GST on fee',Math.round(res.gstAmt)],['Insurance',Math.round(o.insurance)],
+    ['Down payment',Math.round(o.downPayment)],['Total cost of loan',Math.round(res.totalCost)],
+    ['Interest saved by prepayment',Math.round(res.interestSaved)],[]
+  ]; }
+  $('csvBtn').addEventListener('click',()=>{ const rows=summaryRows(lastResult).concat(scheduleRows(lastResult));
+    const csv=rows.map(r=>r.map(c=>{ c=String(c); return /[",\n]/.test(c)?'"'+c.replace(/"/g,'""')+'"':c; }).join(',')).join('\r\n');
+    downloadText('emi-schedule.csv', csv, 'text/csv'); });
+  $('xlsxBtn').addEventListener('click',()=>{ try{ const wb=XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(summaryRows(lastResult)), 'Summary');
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(scheduleRows(lastResult)), 'Schedule');
+    const out=XLSX.write(wb,{bookType:'xlsx',type:'array'}); downloadBlob('emi-schedule.xlsx', new Blob([out],{type:'application/octet-stream'}));
+  }catch(e){ alert('Excel export failed: '+e.message); } });
+  $('printBtn').addEventListener('click',()=>window.print());
+
+  // ===== share via URL =====
+  function buildShare(){ const o=opts(); const q=new URLSearchParams({t:activeType,p:o.principal,r:o.annualRate,m:o.months,f:o.freq,dp:o.downPayment,pf:o.procFeePct,g:o.gstPct,ins:o.insurance,ee:o.extraEMI,ls:o.lumpSum,la:o.lumpAt,c:$('currency').value}); return location.origin+location.pathname+'?'+q.toString(); }
+  $('shareBtn').addEventListener('click', async ()=>{ const url=buildShare();
+    try{ if(navigator.share){ await navigator.share({title:'EMI Calculation',url}); return; } }catch(e){}
+    try{ await navigator.clipboard.writeText(url); if(window.premToast) premToast('Share link copied ✔'); else alert('Share link copied to clipboard'); }catch(e){ prompt('Copy this link:', url); } });
+  function loadFromUrl(){ const q=new URLSearchParams(location.search); if(!q.has('p')) return false;
+    if(q.get('t')&&PRESETS[q.get('t')]){ activeType=q.get('t'); document.querySelectorAll('.emi-type').forEach(x=>x.classList.toggle('active',x.dataset.k===activeType)); }
+    const set=(id,k)=>{ if(q.has(k)) $(id).value=q.get(k); };
+    set('principal','p'); set('rate','r'); set('freq','f'); set('downPay','dp'); set('procFee','pf'); set('gst','g'); set('insurance','ins'); set('extraEmi','ee'); set('lumpSum','ls'); set('lumpAt','la'); set('currency','c');
+    if(q.has('m')) setTenure(+q.get('m')); return true; }
+
+  // ===== comparison =====
+  $('addCmpBtn').addEventListener('click',()=>{ const o=opts(); const res=computeLoan(o);
+    cmp.push({label:PRESETS[activeType].n.replace(/^\S+\s/,'')+' '+fmt(o.principal), emi:res.emi, interest:res.totalInterest, total:res.totalPayment, cost:res.totalCost});
+    if(cmp.length>4) cmp.shift(); renderCmp(); });
+  function renderCmp(){ if(!cmp.length){ $('cmpWrap').style.display='none'; return; } $('cmpWrap').style.display='block';
+    let h='<tr><th>Scenario</th>'+cmp.map((c,i)=>`<th>#${i+1} <span class="del" data-i="${i}">✕</span></th>`).join('')+'</tr>';
+    const row=(lbl,key,f)=>{ h+='<tr><td>'+lbl+'</td>'+cmp.map(c=>'<td>'+f(c[key])+'</td>').join('')+'</tr>'; };
+    h+='<tr><td>Loan</td>'+cmp.map(c=>'<td>'+c.label+'</td>').join('')+'</tr>';
+    row('EMI','emi',fmt); row('Total interest','interest',fmt); row('Total payment','total',fmt); row('Total cost','cost',fmt);
+    $('cmpTable').innerHTML=h;
+    $('cmpTable').querySelectorAll('.del').forEach(d=>d.addEventListener('click',()=>{ cmp.splice(+d.dataset.i,1); renderCmp(); }));
+  }
+
+  // init
+  if(!loadFromUrl()) applyPreset('home'); else { syncFromInputs(); calc(); }
+
+  // ===== FAQ =====
+  const FAQ=[
+    ['What is an EMI?','An EMI (Equated Monthly Installment) is the fixed amount you pay each month towards a loan until both the principal and the interest are fully repaid. Each EMI is part interest and part principal.'],
+    ['How is the EMI calculated?','With the reducing-balance formula EMI = P·r·(1+r)ⁿ ⁄ ((1+r)ⁿ−1), where P is the principal, r is the monthly rate (annual% ⁄ 12 ⁄ 100) and n is the number of months. Interest each month is charged only on the outstanding balance.'],
+    ['Will this match my bank’s EMI exactly?','It will be very close. Small differences come from the lender rounding the EMI, using exact day-counts, applying charges, or a slightly different rate basis. Use this for planning and confirm the final figure with your lender.'],
+    ['Is my data uploaded anywhere?','No. Every calculation, chart and export runs in your browser. Nothing you type is sent to a server, stored or shared, and you can use the tool offline.'],
+    ['What is an amortization schedule?','A table showing how each EMI splits into interest and principal and how the balance falls over time. Early EMIs are mostly interest; later EMIs are mostly principal.'],
+    ['How does prepayment save money?','Because interest is charged on the outstanding balance, paying extra reduces that balance sooner, so less interest accrues afterwards. Add an extra EMI amount or a lump sum to see the interest saved and months cut.'],
+    ['Can I calculate for a home, car or personal loan?','Yes. The same method applies to home, car, bike, personal, education, business and gold loans. The presets just set typical starting values you can change.'],
+    ['Does it handle down payment and fees?','Yes. Add a down payment, a processing fee (with GST) and insurance to see the true total cost of the loan, not just the EMI.'],
+    ['Can I change the EMI frequency?','Yes. Choose monthly, quarterly, half-yearly or yearly instalments; the formula and schedule adjust accordingly.'],
+    ['Which currencies are supported?','Rupee, Dollar, Euro, Pound and AED for display. The maths is identical for any currency.'],
+    ['Can I export the schedule?','Yes. Download it as CSV or Excel, or print a clean PDF report using your browser’s print dialog.'],
+    ['Can I compare two loan offers?','Yes. Set up one scenario, click “Add to comparison”, change the inputs and add another, then compare EMI, interest and total cost side by side.'],
+    ['What does “total cost of loan” include?','The principal plus total interest plus fees (processing fee, GST and insurance) plus any down payment — the full amount you part with.'],
+    ['Does a shorter tenure really cost less?','Yes overall. A shorter tenure means a higher EMI but much less total interest; a longer tenure lowers the EMI but increases total interest. Compare a few to decide.'],
+    ['Does it account for floating (changing) rates?','No — it uses the single rate you enter. For a floating-rate loan the result is a snapshot at today’s rate; re-run it if your rate changes.'],
+    ['Can I share my calculation?','Yes. The Share button creates a link that encodes your inputs, so anyone who opens it sees the same calculation. Nothing is stored on a server.'],
+    ['Why is my early EMI mostly interest?','Because interest is charged on the large outstanding balance at the start. As the balance falls, the interest portion shrinks and more of each EMI repays principal.'],
+    ['Is there a limit on loan amount or tenure?','No practical limit — enter any amount and tenure. The sliders cover common ranges, but you can type larger values directly.'],
+    ['Does it work on mobile?','Yes. The layout adapts to phones and tablets, the sliders are touch-friendly and the schedule scrolls sideways.'],
+    ['Is this tool really free?','Yes. It is completely free with no watermark, no limits, no account and no hidden charges.'],
+    ['Is prepayment penalty included?','No. Many floating-rate personal and home loans have no prepayment penalty, but some do — check your agreement, as the tool assumes none.'],
+    ['Can I save my calculations?','Use the Share link to bookmark or save a scenario, and the comparison table to keep several side by side during a session.']
+  ];
+  const faqList=$('faqList');
+  FAQ.forEach(([q,a])=>{ const d=document.createElement('details'); d.innerHTML='<summary>'+q+'</summary><p>'+a+'</p>'; faqList.appendChild(d); });
+  try{ $('faqSchema').textContent=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:FAQ.map(([q,a])=>({'@type':'Question',name:q,acceptedAnswer:{'@type':'Answer',text:a}}))}); }catch(e){}
+})();
 </script>
 </body>
 </html>
