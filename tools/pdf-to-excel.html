@@ -430,23 +430,28 @@
   function itemSpan(it){ const l=it.transform[4]; const w=it.width || itemHeight(it)*0.5*String(it.str).length; return [l, l+w]; }
 
   // ---- find column x-ranges from vertical whitespace gaps (projection profile) ----
-  function detectColumnRanges(colItems){
-    if(!colItems.length) return [];
+  // Works on ROWS and counts how many rows cross each x-band, so a band crossed by only a
+  // small fraction of rows (e.g. a couple of summary lines with a different layout) is still
+  // treated as whitespace and cannot merge the real columns.
+  function detectColumns(rowsOfItems, thresholdFrac){
+    if(!rowsOfItems.length) return [];
     const bin=2;
     let minX=Infinity, maxX=-Infinity;
-    const spans=colItems.map(it=>{ const s=itemSpan(it); if(s[0]<minX)minX=s[0]; if(s[1]>maxX)maxX=s[1]; return s; });
+    const rowSpans=rowsOfItems.map(r=>r.map(it=>{ const s=itemSpan(it); if(s[0]<minX)minX=s[0]; if(s[1]>maxX)maxX=s[1]; return s; }));
     if(!isFinite(minX) || maxX<=minX) return [];
     const n=Math.ceil((maxX-minX)/bin)+2;
     const cov=new Array(n).fill(0);
-    spans.forEach(([l,r])=>{ let a=Math.floor((l-minX)/bin), b=Math.ceil((r-minX)/bin); if(a<0)a=0; for(let i=a;i<b&&i<n;i++) cov[i]++; });
+    rowSpans.forEach(spans=>{ const seen=new Set(); spans.forEach(([l,r])=>{ let a=Math.floor((l-minX)/bin), b=Math.ceil((r-minX)/bin); if(a<0)a=0; for(let i=a;i<b&&i<n;i++) seen.add(i); }); seen.forEach(i=>cov[i]++); });
+    const thresh=Math.max(0, Math.floor(rowsOfItems.length*(thresholdFrac||0)));
+    const occ=i=>cov[i]>thresh;
     const minGapBins=Math.max(2, Math.round(5/bin)); // ignore gaps narrower than ~5px (inter-word)
     const cols=[]; let i=0;
     while(i<n){
-      while(i<n && cov[i]===0) i++;
+      while(i<n && !occ(i)) i++;
       if(i>=n) break;
       const start=i;
       while(i<n){
-        if(cov[i]===0){ let j=i; while(j<n && cov[j]===0) j++; if(j-i>=minGapBins) break; i=j; }
+        if(!occ(i)){ let j=i; while(j<n && !occ(j)) j++; if(j-i>=minGapBins) break; i=j; }
         else i++;
       }
       cols.push([minX+start*bin, minX+Math.min(i,n)*bin]);
@@ -454,49 +459,76 @@
     return cols;
   }
 
+  function mergeRanges(rs){ if(!rs.length) return []; rs=rs.map(r=>r.slice()).sort((a,b)=>a[0]-b[0]);
+    const out=[rs[0]]; for(let i=1;i<rs.length;i++){ const last=out[out.length-1]; if(rs[i][0]<=last[1]+1) last[1]=Math.max(last[1],rs[i][1]); else out.push(rs[i]); } return out; }
+  function overlapsAny(span, ranges){ for(const r of ranges){ if(span[0]<r[1] && span[1]>r[0]) return true; } return false; }
+  function isDataRow(r){ const nb=r.filter(it=>String(it.str).trim()); if(nb.length<4) return false;
+    const num=nb.filter(it=>NUMDATE.test(String(it.str).trim().replace(/\s+/g,''))).length; return num/nb.length>=0.4; }
+
   // ---- position-based grid detection from a PDF text layer (returns values + per-cell style) ----
   function itemsToGrid(items, styles){
     items=items.filter(it=>it.str!==undefined && String(it.str).trim().length);
     if(!items.length) return { grid:[], styles:[] };
     const medH=median(items.map(itemHeight))||10;
     const rowTol=Math.max(3, medH*0.6);
-    // rows by Y (top to bottom)
+    // rows by Y (top to bottom), remembering each row's Y
     const sorted=[...items].sort((a,b)=> (b.transform[5]-a.transform[5]) || (a.transform[4]-b.transform[4]));
-    const rows=[]; let cur=null; let lastY=null;
+    const rows=[]; const rowY=[]; let cur=null; let lastY=null;
     sorted.forEach(it=>{ const y=it.transform[5];
-      if(lastY===null || Math.abs(y-lastY)>rowTol){ cur=[]; rows.push(cur); }
+      if(lastY===null || Math.abs(y-lastY)>rowTol){ cur=[]; rows.push(cur); rowY.push(y); }
       cur.push(it); lastY=y;
     });
 
-    // Determine table columns from the DATA rows only (many cells, mostly numbers/dates),
-    // so the top info-block and merged headers do not distort the grid. Numbers are often
-    // right-aligned, so we detect columns from whitespace gaps between the occupied x-ranges.
-    const dataRows=rows.filter(r=>{ const nb=r.filter(it=>String(it.str).trim()); if(nb.length<4) return false;
-      const num=nb.filter(it=>NUMDATE.test(String(it.str).trim().replace(/\s+/g,''))).length; return num/nb.length>=0.4; });
-    let cols=detectColumnRanges((dataRows.length>=2?dataRows:rows).flat());
-    if(cols.length<2) cols=detectColumnRanges(items);
-    if(cols.length<1) cols=[[ -1e9, 1e9 ]];
+    // Split the page into vertical REGIONS at large blank bands, so a separate table lower on
+    // the page (e.g. a "Statement Summary" box) gets its own columns and cannot distort the
+    // main transaction table above it.
+    const gaps=[]; for(let i=1;i<rows.length;i++) gaps.push(rowY[i-1]-rowY[i]);
+    const medGap=median(gaps.filter(g=>g>0))||medH*1.5;
+    const regionThresh=Math.max(medGap+3*medH, medH*3.5);
+    const regions=[]; let curR=[0];
+    for(let i=1;i<rows.length;i++){ if((rowY[i-1]-rowY[i])>regionThresh){ regions.push(curR); curR=[i]; } else curR.push(i); }
+    if(curR.length) regions.push(curR);
 
-    const centers=cols.map(c=>(c[0]+c[1])/2);
-    const assign=it=>{ const s=itemSpan(it); const cx=(s[0]+s[1])/2;
-      for(let i=0;i<cols.length;i++){ if(cx>=cols[i][0]-1 && cx<=cols[i][1]+1) return i; }
-      let bi=0, bd=Infinity; for(let i=0;i<cols.length;i++){ const d=Math.abs(cx-centers[i]); if(d<bd){ bd=d; bi=i; } } return bi; };
-
-    // build value grid + parallel style grid
     const grid=[]; const sgrid=[];
-    rows.forEach(row=>{
-      const rowSorted=[...row].sort((a,b)=>a.transform[4]-b.transform[4]);
-      const cells=new Array(cols.length).fill('');
-      const cst=new Array(cols.length).fill(null);
-      rowSorted.forEach(it=>{ const ci=assign(it);
-        cells[ci]=cells[ci]?cells[ci]+' '+it.str:it.str;
-        const st=cst[ci]||(cst[ci]={size:0,bold:false,color:null});
-        st.size=Math.max(st.size, Math.round(itemHeight(it)));
-        st.bold=st.bold||fontBold(it, styles);
-        if(it._color && (!st.color || st.color==='000000')) st.color=it._color;
+    regions.forEach(regIdx=>{
+      const regRows=regIdx.map(i=>rows[i]);
+      const regIsData=regRows.map(isDataRow);
+      const dl=[]; regIsData.forEach((d,i)=>{ if(d) dl.push(i); });
+      let cols;
+      if(dl.length>=1){
+        // Columns from this region's DATA rows via whitespace gaps (right-aligned numbers group
+        // correctly). Then the header row above adds columns that are EMPTY in the data (e.g. a
+        // Debit column in a credits-only statement) without disturbing the detected columns.
+        const dataRows=dl.map(i=>regRows[i]);
+        const dataCols=detectColumns(dataRows, dataRows.length>=5?0.15:0);
+        const firstD=dl[0]; const band=[];
+        for(let r=firstD-1;r>=0 && band.length<4;r--){ if(regIsData[r]) break; band.push(r); }
+        const extra=[];
+        band.forEach(r=>regRows[r].forEach(it=>{ const s=itemSpan(it); if((s[1]-s[0])>130) return; if(overlapsAny(s,dataCols)) return; extra.push(s); }));
+        cols=mergeRanges(dataCols.concat(mergeRanges(extra)));
+      } else {
+        cols=detectColumns(regRows, 0);
+      }
+      if(cols.length<1) cols=[[ -1e9, 1e9 ]];
+      const centers=cols.map(c=>(c[0]+c[1])/2);
+      const assign=it=>{ const s=itemSpan(it); const cx=(s[0]+s[1])/2;
+        for(let i=0;i<cols.length;i++){ if(cx>=cols[i][0]-1 && cx<=cols[i][1]+1) return i; }
+        let bi=0, bd=Infinity; for(let i=0;i<cols.length;i++){ const d=Math.abs(cx-centers[i]); if(d<bd){ bd=d; bi=i; } } return bi; };
+
+      regRows.forEach(row=>{
+        const rowSorted=[...row].sort((a,b)=>a.transform[4]-b.transform[4]);
+        const cells=new Array(cols.length).fill('');
+        const cst=new Array(cols.length).fill(null);
+        rowSorted.forEach(it=>{ const ci=assign(it);
+          cells[ci]=cells[ci]?cells[ci]+' '+it.str:it.str;
+          const st=cst[ci]||(cst[ci]={size:0,bold:false,color:null});
+          st.size=Math.max(st.size, Math.round(itemHeight(it)));
+          st.bold=st.bold||fontBold(it, styles);
+          if(it._color && (!st.color || st.color==='000000')) st.color=it._color;
+        });
+        grid.push(cells.map(c=>c.replace(/\s+/g,' ').trim()));
+        sgrid.push(cst);
       });
-      grid.push(cells.map(c=>c.replace(/\s+/g,' ').trim()));
-      sgrid.push(cst);
     });
     return { grid, styles:sgrid };
   }
@@ -632,7 +664,7 @@
   }
   const EXT={xlsx:'xlsx', xls:'xls', csv:'csv', ods:'ods'};
 
-  window.__p2eHooks={ extractTables, itemsToGrid, detectColumnRanges, ocrRows, buildWorkbook, workbookBlob, parseRange, coerceCell, dropEmptyCols, pageColors, applyStyles };
+  window.__p2eHooks={ extractTables, itemsToGrid, detectColumns, ocrRows, buildWorkbook, workbookBlob, parseRange, coerceCell, dropEmptyCols, pageColors, applyStyles };
 
   // ---- preview ----
   async function preview(file, pagesData){
