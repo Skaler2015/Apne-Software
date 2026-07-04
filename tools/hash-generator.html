@@ -4,39 +4,130 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free online Hash Generator &amp; checksum tool — compute CRC32, Adler-32, MD5, SHA-1, SHA-256, SHA-384, SHA-512, SHA3-256 and SHA3-512 for text or files. Verify file integrity by comparing an expected hash, choose algorithms, switch upper/lowercase, see file info and processing time, and export results as TXT/JSON/CSV. 100% local, nothing uploaded, works offline.">
+<meta name="keywords" content="hash generator, md5, sha256, sha512, sha3, crc32, checksum, file hash, verify hash, compare hash, file integrity, online hash tool, adler32">
 <link rel="canonical" href="https://apnesoftware.com/tools/hash-generator.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hash Generator — MD5, SHA-1, SHA-256, SHA-512 | ApneSoftware">
-<meta property="og:description" content="MD5, SHA-1, SHA-256, SHA-384, SHA-512. Free online tool — no signup required.">
+<meta property="og:title" content="Hash Generator &amp; Checksum — MD5, SHA-256, SHA-512, SHA3, CRC32 | ApneSoftware">
+<meta property="og:description" content="Compute MD5, SHA-1/256/384/512, SHA3 and CRC32 hashes for text or files, verify integrity by comparing hashes, and export TXT/JSON/CSV. Free, private, offline.">
 <meta property="og:url" content="https://apnesoftware.com/tools/hash-generator.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Hash Generator — MD5, SHA-1, SHA-256, SHA-512 | ApneSoftware">
-<meta name="twitter:description" content="MD5, SHA-1, SHA-256, SHA-384, SHA-512. Free online tool — no signup required.">
+<meta name="twitter:title" content="Hash Generator &amp; Checksum — MD5, SHA-256, SHA-512, SHA3, CRC32 | ApneSoftware">
+<meta name="twitter:description" content="Hash text or files with MD5, SHA-1/256/384/512, SHA3 and CRC32, verify integrity by comparing hashes, and export TXT/JSON/CSV. Free, private, offline.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Hash Generator","description":"MD5, SHA-1, SHA-256, SHA-384, SHA-512. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/hash-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Hash Generator","description":"Professional browser-based hash and checksum generator that computes CRC32, Adler-32, MD5, SHA-1, SHA-256, SHA-384, SHA-512, SHA3-256 and SHA3-512 for text or files, verifies file integrity by comparing an expected hash, shows file information and processing time, supports upper/lowercase formatting and exports results as TXT/JSON/CSV. Runs entirely in the browser.","url":"https://apnesoftware.com/tools/hash-generator.html","applicationCategory":"DeveloperApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["MD5, SHA-1/256/384/512 hashing","SHA3-256 and SHA3-512","CRC32 and Adler-32 checksums","Text and file hashing","Hash comparison and verification","File info and processing time","Upper/lowercase formatting","Export TXT/JSON/CSV","100% local processing"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Hash Generator &amp; Checksum Tool — MD5, SHA-256, SHA-512, SHA3, CRC32","url":"https://apnesoftware.com/tools/hash-generator.html","description":"Private, browser-based hash generator and checksum verifier for text and files with multiple algorithms, comparison and export.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Developer &amp; Utility","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":3,"name":"Hash Generator","item":"https://apnesoftware.com/tools/hash-generator.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to generate and verify a hash","description":"Compute checksums for text or files and verify integrity.","step":[{"@type":"HowToStep","name":"Choose text or file","text":"Enter text or drop a file to hash."},{"@type":"HowToStep","name":"Pick algorithms","text":"Select the hash algorithms you need, such as SHA-256 or MD5."},{"@type":"HowToStep","name":"Generate","text":"Compute the hashes instantly in your browser."},{"@type":"HowToStep","name":"Verify or export","text":"Paste an expected hash to verify a match, or export the results."}]}
+</script>
+<script type="application/ld+json" id="faqSchema">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}
 </script>
 <meta name="color-scheme" content="dark">
-<title>Hash Generator — MD5, SHA-1, SHA-256, SHA-512 | ApneSoftware</title>
+<title>Hash Generator &amp; Checksum — MD5, SHA-256, SHA-512, SHA3, CRC32 | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
-.dropzone{cursor:pointer}
-.dropzone p{font-size:.9rem}
-.panel{position:relative;z-index:1}
-</style>
-<style>
-  .hash-row{
-    display:flex;align-items:center;gap:10px;padding:12px;background:var(--surface-2);
-    border:1px solid var(--border);border-radius:8px;margin-bottom:10px;flex-wrap:wrap;
-  }
-  .hash-row .algo{font-weight:700;min-width:78px;color:var(--accent)}
-  .hash-row .val{font-family:'Consolas','Courier New',monospace;font-size:.82rem;word-break:break-all;flex:1;min-width:200px}
-  .tab-row{display:flex;gap:8px;margin-bottom:14px}
-  .tab-btn{padding:7px 14px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-size:.85rem;cursor:pointer}
-  .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+/* ===== Hash Generator — scoped hg- styles ===== */
+.hg-crumb{font-size:.78rem;color:var(--text-dim);margin-bottom:6px}
+.hg-crumb a{color:#c4b5fd;text-decoration:none}
+.hg-crumb a:hover{text-decoration:underline}
+.hg-btn{background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.34);color:#d6cbff;border-radius:10px;padding:9px 13px;font-size:.83rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+.hg-btn:hover{background:rgba(167,139,250,.24)}
+.hg-btn.primary{background:linear-gradient(90deg,#7c3aed,#a78bfa);border-color:transparent;color:#fff;font-weight:600}
+.hg-btn:focus-visible,.hg-tab:focus-visible,.hg-chip:focus-visible{outline:2px solid #a78bfa;outline-offset:2px}
+.hg-btn.sm{padding:6px 10px;font-size:.76rem}
+.hg-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+.hg-tabs{display:flex;gap:8px;margin-bottom:14px}
+.hg-tab{padding:8px 16px;border-radius:9px;border:1px solid var(--border,rgba(255,255,255,.14));background:rgba(255,255,255,.05);color:var(--text-dim);font-size:.85rem;cursor:pointer;display:inline-flex;align-items:center;gap:7px;font-weight:600}
+.hg-tab[aria-selected="true"]{background:linear-gradient(90deg,#7c3aed,#a78bfa);border-color:transparent;color:#fff}
+.hg-label{font-size:.8rem;color:var(--text-dim);margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:.03em}
+#textInput{width:100%;min-height:130px;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text);border-radius:10px;padding:12px;font-size:.9rem;resize:vertical;font-family:inherit}
+
+.dropzone{cursor:pointer;border:2px dashed rgba(167,139,250,.4);border-radius:16px;padding:34px 20px;text-align:center;transition:.15s;background:rgba(167,139,250,.04)}
+.dropzone:hover,.dropzone.drag{background:rgba(167,139,250,.12);border-color:#a78bfa}
+.dropzone .ic{font-size:2.2rem}
+.dropzone p{font-size:.95rem;margin:8px 0}
+.dropzone .sub{font-size:.82rem;color:var(--text-dim)}
+.dropzone input{display:none}
+#fileNameMsg{margin-top:8px;color:#c4b5fd;font-size:.85rem}
+
+.hg-algos{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:12px;padding:12px 14px;margin:14px 0}
+.hg-algos h4{margin:0 0 10px;font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;color:#c4b5fd}
+.hg-chips{display:flex;flex-wrap:wrap;gap:7px}
+.hg-chip{font-size:.78rem;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text-dim);cursor:pointer;font-weight:600}
+.hg-chip[aria-pressed="true"]{background:linear-gradient(90deg,#7c3aed,#a78bfa);border-color:transparent;color:#fff}
+.hg-optrow{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:12px}
+.hg-check{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--text);cursor:pointer}
+.hg-check input{width:auto;accent-color:#a78bfa}
+.hg-verify{flex:1;min-width:180px;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text);border-radius:8px;padding:8px 11px;font-size:.82rem;font-family:'Consolas','Courier New',monospace}
+
+.hg-progress{height:8px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;margin:12px 0;display:none}
+.hg-progress.on{display:block}
+.hg-progress b{display:block;height:100%;width:0;background:linear-gradient(90deg,#7c3aed,#a78bfa);transition:width .1s}
+
+#statusMsg{margin-top:10px;font-size:.86rem;min-height:1em}
+.hg-info{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:12px;padding:10px 14px;font-size:.8rem;margin:14px 0;display:none}
+.hg-info.on{display:block}
+.hg-info div{display:flex;justify-content:space-between;gap:10px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.hg-info div:last-child{border-bottom:none}
+.hg-info b{color:#c4b5fd;font-weight:600;text-align:right;word-break:break-all}
+
+#resultWrap{margin-top:6px}
+.hg-resulthead{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-bottom:10px}
+.hg-resulthead h3{margin:0;font-size:.95rem}
+.hg-card{display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.12));border-radius:10px;margin-bottom:9px;flex-wrap:wrap}
+.hg-card.match{border-color:rgba(52,211,153,.55);background:rgba(52,211,153,.08)}
+.hg-card.nomatch{border-color:rgba(248,113,113,.5);background:rgba(248,113,113,.06)}
+.hg-algo{font-weight:700;min-width:92px;color:#a78bfa;font-size:.85rem}
+.hg-algo small{display:block;color:var(--text-dim);font-weight:400;font-size:.68rem;text-transform:none}
+.hg-val{font-family:'Consolas','Courier New',monospace;font-size:.8rem;word-break:break-all;flex:1;min-width:200px;color:var(--text)}
+.hg-badge{font-size:.7rem;padding:2px 8px;border-radius:999px;font-weight:700}
+.hg-badge.ok{background:rgba(52,211,153,.18);color:#6ee7b7}
+.hg-badge.no{background:rgba(248,113,113,.18);color:#fca5a5}
+.hg-cardbtn{background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.34);color:#d6cbff;border-radius:8px;padding:6px 9px;font-size:.76rem;cursor:pointer}
+.hg-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.privacy-note{background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;padding:12px 14px;font-size:.84rem;color:var(--text-dim);margin-top:16px;line-height:1.6}
+.privacy-note b{color:#c4b5fd}
+
+/* below-tool */
+.hg-wrap{margin:26px 0}
+.hg-title{font-size:1.35rem;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.hg-feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.hg-fcard{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:14px;padding:16px}
+.hg-fcard h4{margin:0 0 6px;font-size:.98rem;display:flex;align-items:center;gap:8px}
+.hg-fcard p{margin:0;font-size:.86rem;color:var(--text-dim);line-height:1.55}
+.hg-rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.hg-rel{display:block;text-decoration:none;background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:14px;transition:.15s;color:var(--text)}
+.hg-rel:hover{border-color:#a78bfa;background:rgba(167,139,250,.1);transform:translateY(-2px)}
+.hg-rel b{display:block;font-size:.92rem;margin-bottom:3px}
+.hg-rel span{font-size:.8rem;color:var(--text-dim);line-height:1.45}
+.hg-prose p,.hg-prose li{color:var(--text-dim);line-height:1.75;font-size:.92rem}
+.hg-prose h3{font-size:1.02rem;margin:18px 0 8px}
+.hg-tscroll{overflow:auto;border-radius:10px}
+table.hg-table{border-collapse:collapse;font-size:.85rem;width:100%}
+table.hg-table th,table.hg-table td{border:1px solid var(--border,rgba(255,255,255,.12));padding:7px 10px;text-align:left;color:var(--text)}
+table.hg-table th{background:rgba(167,139,250,.14);color:#fff;font-weight:600}
+.hg-faq details{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:0 16px;margin-bottom:10px}
+.hg-faq summary{cursor:pointer;padding:14px 0;font-weight:600;font-size:.92rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.hg-faq summary::-webkit-details-marker{display:none}
+.hg-faq summary::after{content:'+';font-size:1.3rem;color:#a78bfa;flex:0 0 auto}
+.hg-faq details[open] summary::after{content:'−'}
+.hg-faq details p{margin:0 0 14px;font-size:.87rem;color:var(--text-dim);line-height:1.65}
+.hg-steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:12px}
+.hg-steps li{counter-increment:s;position:relative;padding-left:46px;font-size:.9rem;color:var(--text-dim);line-height:1.6}
+.hg-steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:9px;background:rgba(167,139,250,.18);color:#c4b5fd;font-weight:700;display:grid;place-items:center}
+.hg-steps li b{color:var(--text)}
+@media (prefers-contrast:more){.hg-prose p,.hg-prose li{color:#fff}}
 </style>
 </head>
 <body>
@@ -49,180 +140,415 @@
 
 <div class="container">
   <div class="tool-header">
-    <h1>#️⃣ Hash Generator</h1>
-    <p>Generate MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes for text or files — instantly, in your browser.</p>
+    <nav class="hg-crumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html">Developer &amp; Utility</a> › <span>Hash Generator</span></nav>
+    <h1>#️⃣ Hash Generator &amp; Checksum</h1>
+    <p>Compute <b>CRC32, MD5, SHA-1, SHA-256, SHA-384, SHA-512 and SHA3</b> hashes for text or files — <b>verify file integrity</b> by comparing an expected hash, pick algorithms, switch case and export the results. 100% local — nothing is uploaded.</p>
+    <div class="hg-toolbar">
+      <button class="hg-btn" id="resetBtn" type="button">↺ Clear</button>
+    </div>
   </div>
 
   <div class="panel">
-    <div class="tab-row">
-      <button class="tab-btn active" data-tab="text">📝 Text</button>
-      <button class="tab-btn" data-tab="file">📁 File</button>
+    <div class="hg-tabs" role="tablist" aria-label="Input mode">
+      <button class="hg-tab" id="tabText" role="tab" aria-selected="true" type="button">📝 Text</button>
+      <button class="hg-tab" id="tabFile" role="tab" aria-selected="false" type="button">📁 File</button>
     </div>
 
     <div id="textTab">
-      <div class="field">
-        <label for="textInput">Text to hash</label>
-        <textarea id="textInput" style="min-height:120px" placeholder="Type or paste text here..."></textarea>
-      </div>
-      <div class="btn-row">
-        <button class="btn" id="hashTextBtn">#️⃣ Generate Hashes</button>
-      </div>
+      <label class="hg-label" for="textInput">Text to hash</label>
+      <textarea id="textInput" placeholder="Type or paste text here…" aria-label="Text to hash"></textarea>
     </div>
 
     <div id="fileTab" style="display:none">
-      <div class="dropzone" id="dropzone">
-        <p>📤 Drag a file here or click to choose</p>
-        <input type="file" id="fileInput">
+      <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Upload file">
+        <div class="ic">📄</div>
+        <p><b>Drop a file here</b> or click to choose</p>
+        <div class="sub">🔒 any file type · processed locally · nothing uploaded</div>
+        <input type="file" id="fileInput" multiple>
       </div>
-      <p id="fileNameMsg" style="margin-top:8px;color:var(--text-dim);font-size:.88rem"></p>
+      <p id="fileNameMsg"></p>
     </div>
 
-    <div id="resultWrap" style="display:none;margin-top:18px">
-      <div class="hash-row"><span class="algo">MD5</span><span class="val" id="hashMD5"></span><button class="btn secondary copyHashBtn" data-target="hashMD5">📋</button></div>
-      <div class="hash-row"><span class="algo">SHA-1</span><span class="val" id="hashSHA1"></span><button class="btn secondary copyHashBtn" data-target="hashSHA1">📋</button></div>
-      <div class="hash-row"><span class="algo">SHA-256</span><span class="val" id="hashSHA256"></span><button class="btn secondary copyHashBtn" data-target="hashSHA256">📋</button></div>
-      <div class="hash-row"><span class="algo">SHA-384</span><span class="val" id="hashSHA384"></span><button class="btn secondary copyHashBtn" data-target="hashSHA384">📋</button></div>
-      <div class="hash-row"><span class="algo">SHA-512</span><span class="val" id="hashSHA512"></span><button class="btn secondary copyHashBtn" data-target="hashSHA512">📋</button></div>
+    <div class="hg-algos">
+      <h4>Algorithms</h4>
+      <div class="hg-chips" id="algoChips"></div>
+      <div class="hg-optrow">
+        <label class="hg-check"><input type="checkbox" id="upperCase"> Uppercase</label>
+        <input type="text" class="hg-verify" id="verifyInput" placeholder="🔍 Paste a hash to verify / compare…" aria-label="Hash to verify">
+      </div>
     </div>
-    <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+
+    <div class="hg-toolbar">
+      <button class="hg-btn primary" id="hashTextBtn" type="button">#️⃣ Generate Hashes</button>
+    </div>
+
+    <div class="hg-progress" id="progress"><b id="progressBar"></b></div>
+    <p id="statusMsg" style="color:var(--text-dim)"></p>
+
+    <div class="hg-info" id="fileInfo"></div>
+
+    <div id="resultWrap" style="display:none">
+      <div class="hg-resulthead">
+        <h3>🔑 Results</h3>
+        <div class="hg-actions">
+          <button class="hg-btn sm" id="copyAllBtn" type="button">📋 Copy all</button>
+          <button class="hg-btn sm" id="expTxt" type="button">⬇️ TXT</button>
+          <button class="hg-btn sm" id="expJson" type="button">⬇️ JSON</button>
+          <button class="hg-btn sm" id="expCsv" type="button">⬇️ CSV</button>
+        </div>
+      </div>
+      <div id="resultCards"></div>
+      <!-- Preserved legacy hash value nodes (kept for compatibility; populated at runtime) -->
+      <div style="display:none" aria-hidden="true">
+        <span id="hashMD5"></span><span id="hashSHA1"></span><span id="hashSHA256"></span><span id="hashSHA384"></span><span id="hashSHA512"></span>
+      </div>
+    </div>
+
+    <div class="privacy-note">🔒 <b>Private by design:</b> hashing runs entirely in your browser via the Web Crypto API and local code. Nothing is uploaded to a server, and the tool works offline once loaded.</div>
   </div>
 </div>
 
+<!-- ===================== BELOW-TOOL CONTENT ===================== -->
+<div class="container">
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Hashes are fixed-length fingerprints of data, commonly used to verify file integrity or check passwords. This tool computes MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes for any text or file, entirely in your browser.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Switch between Text and File mode.</li>
-        <li>Enter text or upload a file.</li>
-        <li>View all five hash values and copy any one you need.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>Hash डेटा का एक फिक्स्ड-लेंथ फिंगरप्रिंट होता है, जिसका इस्तेमाल आम तौर पर फाइल की अखंडता जांचने या पासवर्ड चेक करने के लिए किया जाता है। यह टूल किसी भी टेक्स्ट या फाइल के लिए MD5, SHA-1, SHA-256, SHA-384, और SHA-512 हैश पूरी तरह ब्राउज़र में जनरेट करता है।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>Text या File मोड चुनें।</li>
-        <li>टेक्स्ट डालें या फाइल अपलोड करें।</li>
-        <li>सभी पांच हैश वैल्यू देखें और जो चाहिए वो कॉपी करें।</li>
-      </ol>
-    </div>
+<!-- Key Features -->
+<section class="hg-wrap">
+  <h2 class="hg-title">✨ Key Features</h2>
+  <div class="hg-feat-grid">
+    <div class="hg-fcard"><h4>🧮 Many Algorithms</h4><p>CRC32, Adler-32, MD5, SHA-1, SHA-256, SHA-384, SHA-512, SHA3-256 and SHA3-512 in one place.</p></div>
+    <div class="hg-fcard"><h4>📝 Text &amp; Files</h4><p>Hash typed text or any file — documents, archives, installers, images and more.</p></div>
+    <div class="hg-fcard"><h4>✅ Verify Integrity</h4><p>Paste an expected hash and instantly see which algorithm matches — or that none do.</p></div>
+    <div class="hg-fcard"><h4>🎛️ Pick What You Need</h4><p>Toggle exactly the algorithms you want; skip the rest for a clean result set.</p></div>
+    <div class="hg-fcard"><h4>🔡 Case Formatting</h4><p>Switch every hash between lowercase and UPPERCASE with one checkbox.</p></div>
+    <div class="hg-fcard"><h4>📊 File Information</h4><p>See name, size, type, last-modified date and the exact processing time.</p></div>
+    <div class="hg-fcard"><h4>📈 Progress Bar</h4><p>Large files show a real read-progress bar so you always know where it's at.</p></div>
+    <div class="hg-fcard"><h4>📋 Copy &amp; Export</h4><p>Copy one hash, copy all, or export the full result set as TXT, JSON or CSV.</p></div>
+    <div class="hg-fcard"><h4>⚡ Web Crypto Speed</h4><p>SHA hashing uses the browser's native, hardware-accelerated crypto engine.</p></div>
+    <div class="hg-fcard"><h4>🔒 100% Local</h4><p>Text and files are hashed in your browser. Nothing is uploaded, logged or tracked.</p></div>
+    <div class="hg-fcard"><h4>📴 Offline Ready</h4><p>Once loaded, it works with no internet connection.</p></div>
+    <div class="hg-fcard"><h4>♿ Accessible &amp; Mobile</h4><p>Keyboard navigation, ARIA labels, high-contrast support and a responsive layout.</p></div>
   </div>
+</section>
+
+<!-- Benefits -->
+<section class="hg-wrap hg-prose">
+  <h2 class="hg-title">🎯 Benefits</h2>
+  <ul>
+    <li><b>Trust your downloads</b> — check a file's checksum against the one a publisher lists to confirm it wasn't corrupted or tampered with.</li>
+    <li><b>Debug faster</b> — generate reference hashes for test data, fixtures and API payloads in seconds.</li>
+    <li><b>Cover every case</b> — legacy MD5/CRC32 for compatibility, modern SHA-256/SHA3 for security.</li>
+    <li><b>Keep it private</b> — sensitive files never leave your device, so hashing confidential data is safe.</li>
+    <li><b>Work anywhere</b> — no account, no install, and it works offline.</li>
+  </ul>
+</section>
+
+<!-- Related Tools (ABOVE About) -->
+<section class="hg-wrap">
+  <h2 class="hg-title">🧰 Related Tools</h2>
+  <div class="hg-rel-grid">
+    <a class="hg-rel" href="text-encrypt-decrypt.html"><b>🔐 Text Encrypt / Decrypt</b><span>AES encryption in your browser.</span></a>
+    <a class="hg-rel" href="password-generator.html"><b>🔑 Password Generator</b><span>Strong random passwords.</span></a>
+    <a class="hg-rel" href="base64-encoder-decoder.html"><b>🔤 Base64 Encoder / Decoder</b><span>Encode &amp; decode Base64.</span></a>
+    <a class="hg-rel" href="url-html-encoder-decoder.html"><b>🔗 URL &amp; HTML Entity Coder</b><span>Encode &amp; decode URLs / HTML.</span></a>
+    <a class="hg-rel" href="uuid-generator.html"><b>🆔 UUID Generator</b><span>Generate unique IDs.</span></a>
+    <a class="hg-rel" href="regex-tester.html"><b>🔎 Regex Tester</b><span>Build &amp; test regular expressions.</span></a>
+    <a class="hg-rel" href="csv-json-converter.html"><b>🔄 CSV ↔ JSON Converter</b><span>Convert between CSV and JSON.</span></a>
+    <a class="hg-rel" href="timestamp-converter.html"><b>⏱️ Timestamp Converter</b><span>Convert Unix timestamps.</span></a>
+  </div>
+</section>
+
+<!-- About (English) -->
+<section class="hg-wrap hg-prose">
+  <h2 class="hg-title">ℹ️ About This Tool</h2>
+  <p>The <b>ApneSoftware Hash Generator &amp; Checksum</b> is a professional, privacy-first utility that computes cryptographic hashes and checksums for any text or file, entirely inside your browser. A hash is a fixed-length "fingerprint" of data: feed in any input — a word, a paragraph, a 4&nbsp;GB disk image — and the algorithm returns a short string of hexadecimal characters that is effectively unique to that exact input. Change a single byte and the hash changes completely and unpredictably. This simple property underpins a huge amount of everyday computing: verifying that a download arrived intact, confirming that a file has not been altered, indexing and de-duplicating data, storing passwords safely, signing software releases, and powering version-control systems and blockchains. This tool puts that capability at your fingertips with no installation, no signup and, crucially, no upload.</p>
+  <p>It works in two modes. In <b>text mode</b>, you type or paste any string and instantly get its hash across every algorithm you select — perfect for generating reference values, checking an API signature, or understanding how hashing behaves. In <b>file mode</b>, you drag in a file of any type and size and the tool reads it locally and computes its checksums, showing a real <b>progress bar</b> while large files are read. Either way, the results appear as clean, copyable cards, and a <b>file information</b> panel reports the name, size, MIME type, last-modified date, each hash's length and the exact <b>processing time</b>, so you have full context for what you just computed.</p>
+  <p>The tool supports a carefully chosen range of algorithms that covers both <b>compatibility and security</b>. For fast integrity checks and legacy systems it offers <b>CRC32</b> and <b>Adler-32</b> checksums and the classic <b>MD5</b> and <b>SHA-1</b> digests. For modern, collision-resistant security it offers the <b>SHA-2</b> family — <b>SHA-256, SHA-384 and SHA-512</b> — and the newest standard, <b>SHA-3</b> (SHA3-256 and SHA3-512). The SHA algorithms run on the browser's native <b>Web Crypto API</b>, which is hardware-accelerated and audited, so they are both fast and trustworthy; MD5, CRC32 and Adler-32 are computed by compact, test-vector-verified local code. You choose exactly which algorithms to run by toggling them, keeping your results focused, and you can flip every value between lowercase and <b>UPPERCASE</b> to match whatever a checksum file or documentation expects.</p>
+  <p>One of the most useful features is <b>verification</b>. When you download software, an ISO, or a database backup, the publisher often lists an official checksum. Paste that expected value into the <b>verify box</b> and the tool compares it — case-insensitively — against every hash it computed, then clearly marks the matching algorithm with a green <b>Match</b> badge, or tells you that nothing matched. This turns an error-prone manual eyeball comparison of 64 hex characters into a single, reliable, instant check. It is the fastest way to confirm that a file you downloaded is byte-for-byte identical to the one the author published, which protects you against corrupted transfers and tampered mirrors alike.</p>
+  <p>Because results are meant to be used, the tool makes them easy to move around. Every card has a one-click <b>copy</b> button, a <b>Copy all</b> action gathers every hash at once, and you can <b>export</b> the whole result set as a plain <b>TXT</b> list, structured <b>JSON</b> or spreadsheet-ready <b>CSV</b> — handy for documentation, release notes, audits, or attaching checksums alongside distributed files. The interface is fully <b>responsive</b>, collapsing neatly from a wide desktop layout to a single-column mobile view with touch-friendly controls and drag-and-drop, and it follows accessibility best practices with keyboard navigation, ARIA labelling, visible focus outlines and high-contrast support.</p>
+  <p><b>Privacy is the whole point of doing this in the browser.</b> Many "online hash" websites work by uploading your file to a server that computes the hash and sends it back — which is exactly what you do not want when the file is a private key, a confidential document or an unreleased build. This tool never does that. Your text and files are read into memory, hashed locally with JavaScript and the Web Crypto API, and never transmitted anywhere; there is no account, no logging and no analytics on your content. Nothing is stored between sessions, and because everything is local, the tool keeps working <b>offline</b> once the page has loaded. In short, it is a fast, complete, genuinely private hashing and checksum workbench — suitable for developers, sysadmins, security professionals and anyone who needs to trust a file — that runs entirely on your own machine.</p>
+</section>
+
+<!-- About (Hindi) -->
+<section class="hg-wrap hg-prose">
+  <h2 class="hg-title">ℹ️ इस टूल के बारे में</h2>
+  <p><b>ApneSoftware Hash Generator &amp; Checksum</b> एक professional, privacy-first उपयोगिता है जो किसी भी text या file के लिए cryptographic hashes व checksums पूरी तरह आपके browser के अंदर बनाती है। Hash डेटा का एक fixed-length "fingerprint" है: कोई भी input दें — एक शब्द, एक अनुच्छेद, या 4&nbsp;GB की disk image — और algorithm hexadecimal अक्षरों की एक छोटी string लौटाता है जो उस सटीक input के लिए लगभग अद्वितीय होती है। एक भी byte बदलें और hash पूरी तरह और अप्रत्याशित रूप से बदल जाता है। यह सरल गुण रोज़मर्रा की computing के बड़े हिस्से का आधार है: download सही आया या नहीं जाँचना, file बदली तो नहीं यह पुष्टि करना, data की de-duplication, passwords सुरक्षित रखना, software releases sign करना, और version-control व blockchains को शक्ति देना। यह टूल यह क्षमता बिना installation, बिना signup और सबसे महत्वपूर्ण — बिना upload के देता है।</p>
+  <p>यह दो modes में काम करता है। <b>text mode</b> में, आप कोई भी string टाइप या paste करते हैं और चुने हर algorithm में तुरंत उसका hash पाते हैं — reference मान बनाने, API signature जाँचने, या hashing का व्यवहार समझने के लिए बढ़िया। <b>file mode</b> में, आप किसी भी प्रकार व आकार की file drag करते हैं और टूल उसे locally पढ़कर उसके checksums बनाता है, बड़ी files पढ़ते समय एक वास्तविक <b>progress bar</b> दिखाते हुए। दोनों ही तरह, परिणाम साफ़, copy-योग्य cards के रूप में आते हैं, और एक <b>file information</b> panel name, size, MIME type, last-modified तारीख, हर hash की लंबाई और सटीक <b>processing time</b> बताता है।</p>
+  <p>टूल algorithms की एक सोच-समझकर चुनी श्रेणी समर्थित करता है जो <b>compatibility और security</b> दोनों को कवर करती है। तेज़ integrity जाँच व legacy systems के लिए यह <b>CRC32</b> व <b>Adler-32</b> checksums और classic <b>MD5</b> व <b>SHA-1</b> digests देता है। आधुनिक, collision-resistant security के लिए यह <b>SHA-2</b> परिवार — <b>SHA-256, SHA-384 व SHA-512</b> — और नवीनतम मानक <b>SHA-3</b> (SHA3-256 व SHA3-512) देता है। SHA algorithms browser के native <b>Web Crypto API</b> पर चलते हैं, जो hardware-accelerated व audited है; MD5, CRC32 व Adler-32 compact, test-vector-सत्यापित local code से बनते हैं। आप toggle कर तय करते हैं कि कौन-से algorithms चलें, और हर मान को lowercase व <b>UPPERCASE</b> के बीच बदल सकते हैं।</p>
+  <p>सबसे उपयोगी सुविधाओं में से एक है <b>verification</b>। जब आप कोई software, ISO या database backup download करते हैं, publisher अक्सर एक आधिकारिक checksum देता है। उस अपेक्षित मान को <b>verify box</b> में paste करें और टूल उसे — case-insensitive — अपने बनाए हर hash से तुलना करता है, फिर मेल खाते algorithm को हरे <b>Match</b> badge से चिह्नित करता है, या बताता है कि कुछ मेल नहीं खाया। यह 64 hex अक्षरों की त्रुटि-प्रवण manual तुलना को एक भरोसेमंद, तुरंत जाँच में बदल देता है — यह पुष्टि करने का सबसे तेज़ तरीका कि download की गई file लेखक द्वारा प्रकाशित file के byte-दर-byte समान है।</p>
+  <p>चूँकि परिणाम उपयोग के लिए हैं, टूल उन्हें आसानी से इधर-उधर ले जाने योग्य बनाता है। हर card पर एक-click <b>copy</b> button है, एक <b>Copy all</b> क्रिया सारे hashes एक साथ लेती है, और आप पूरे result set को सादे <b>TXT</b>, structured <b>JSON</b> या spreadsheet-ready <b>CSV</b> के रूप में <b>export</b> कर सकते हैं — documentation, release notes, audits, या files के साथ checksums संलग्न करने के लिए उपयोगी। Interface पूरी तरह <b>responsive</b> है, wide desktop layout से touch-friendly single-column mobile view तक साफ़-सुथरा ढलता है, और keyboard navigation, ARIA labelling, दृश्य focus outlines व high-contrast समर्थन के साथ accessibility सर्वोत्तम प्रथाओं का पालन करता है।</p>
+  <p><b>यह सब browser में करने का पूरा उद्देश्य privacy है।</b> कई "online hash" websites आपकी file एक server पर upload कर hash बनाकर वापस भेजती हैं — जो तब बिल्कुल नहीं चाहिए जब file एक private key, गोपनीय दस्तावेज़ या अप्रकाशित build हो। यह टूल कभी ऐसा नहीं करता। आपका text व files memory में पढ़े जाते हैं, JavaScript व Web Crypto API से locally hash होते हैं, और कहीं transmit नहीं होते; कोई account नहीं, कोई logging नहीं, आपकी सामग्री पर कोई analytics नहीं। sessions के बीच कुछ store नहीं होता, और सब कुछ local होने के कारण page load होने के बाद टूल <b>offline</b> काम करता रहता है। संक्षेप में, यह एक तेज़, पूर्ण, सचमुच निजी hashing व checksum workbench है।</p>
+</section>
+
+<!-- Supported Algorithms -->
+<section class="hg-wrap hg-prose">
+  <h2 class="hg-title">🧮 Supported Algorithms</h2>
+  <div class="hg-tscroll">
+    <table class="hg-table">
+      <thead><tr><th>Algorithm</th><th>Output length</th><th>Typical use</th></tr></thead>
+      <tbody>
+        <tr><td>CRC32</td><td>8 hex (32-bit)</td><td>Fast error-checking in ZIP, PNG and network frames.</td></tr>
+        <tr><td>Adler-32</td><td>8 hex (32-bit)</td><td>Lightweight checksum used by zlib.</td></tr>
+        <tr><td>MD5</td><td>32 hex (128-bit)</td><td>Legacy file checksums; not for security.</td></tr>
+        <tr><td>SHA-1</td><td>40 hex (160-bit)</td><td>Legacy signatures and Git object IDs.</td></tr>
+        <tr><td>SHA-256</td><td>64 hex (256-bit)</td><td>The modern default for integrity &amp; security.</td></tr>
+        <tr><td>SHA-384</td><td>96 hex (384-bit)</td><td>Higher-strength SHA-2 for certificates.</td></tr>
+        <tr><td>SHA-512</td><td>128 hex (512-bit)</td><td>Strong hashing, fast on 64-bit systems.</td></tr>
+        <tr><td>SHA3-256</td><td>64 hex (256-bit)</td><td>Newest NIST standard, different internal design.</td></tr>
+        <tr><td>SHA3-512</td><td>128 hex (512-bit)</td><td>Maximum-strength SHA-3 digest.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Verification Guide -->
+<section class="hg-wrap hg-prose">
+  <h2 class="hg-title">✅ Verification Guide</h2>
+  <ol class="hg-steps">
+    <li><b>Find the official checksum</b> published next to the download (often labelled MD5, SHA-256 or “SHA256SUMS”).</li>
+    <li><b>Switch to File mode</b> and drop in the file you downloaded.</li>
+    <li>Make sure the <b>matching algorithm</b> is enabled (e.g. SHA-256).</li>
+    <li><b>Paste the expected hash</b> into the verify box and generate.</li>
+    <li>A green <b>Match</b> badge means the file is authentic and intact; <b>no match</b> means it was corrupted or altered — download it again from a trusted source.</li>
+  </ol>
+</section>
+
+<!-- Privacy & Security -->
+<section class="hg-wrap hg-prose">
+  <h2 class="hg-title">🔒 Privacy &amp; Security</h2>
+  <div class="privacy-note"><b>English:</b> Every hash is computed entirely in your browser using the Web Crypto API and local JavaScript. Your text and files are never uploaded to a server, there is no account, and nothing is tracked or stored between sessions. The tool works offline once loaded, so even a private key or confidential file never leaves your device.</div>
+  <div class="privacy-note"><b>हिन्दी:</b> हर hash पूरी तरह आपके browser में Web Crypto API व local JavaScript से बनता है। आपका text व files किसी server पर upload नहीं होतीं, कोई account नहीं, और sessions के बीच कुछ भी track या store नहीं होता। page load के बाद टूल offline काम करता है, इसलिए private key या गोपनीय file भी कभी device से बाहर नहीं जाती।</div>
+</section>
+
+<!-- How To Use -->
+<section class="hg-wrap hg-prose">
+  <h2 class="hg-title">🚀 How To Use</h2>
+  <ol class="hg-steps">
+    <li>Choose <b>Text</b> or <b>File</b> mode and enter your text or drop a file.</li>
+    <li>Toggle the <b>algorithms</b> you want (SHA-256 is a good default).</li>
+    <li>Optionally paste an expected hash into the <b>verify box</b> to compare.</li>
+    <li>Click <b>Generate Hashes</b> and read the result cards; toggle <b>Uppercase</b> if needed.</li>
+    <li><b>Copy</b> one or all hashes, or <b>export</b> them as TXT, JSON or CSV.</li>
+  </ol>
+</section>
+
+<!-- FAQ -->
+<section class="hg-wrap hg-faq">
+  <h2 class="hg-title">❓ Frequently Asked Questions</h2>
+  <div id="faqList"></div>
+</section>
+
+<!-- Troubleshooting -->
+<section class="hg-wrap hg-prose">
+  <h2 class="hg-title">🛠️ Troubleshooting</h2>
+  <ul>
+    <li><b>Hash doesn't match the publisher's:</b> confirm you selected the same algorithm and that the download finished — re-download if it still differs.</li>
+    <li><b>Different case:</b> hashes are the same value regardless of case — toggle Uppercase to match the format you're comparing against.</li>
+    <li><b>Whitespace changes the text hash:</b> a trailing space or newline changes the input — hashes are exact, so trim if needed.</li>
+    <li><b>SHA3 options missing:</b> the SHA3 library loads from a CDN; check your connection and refresh, or use SHA-256/512 offline.</li>
+    <li><b>Very large file is slow:</b> reading a multi-GB file takes time and memory — the progress bar shows it's working.</li>
+    <li><b>MD5 for passwords:</b> don't — MD5 and SHA-1 are broken for security; use SHA-256/SHA-3 and a proper password hash for real auth.</li>
+  </ul>
+</section>
+
 </div>
 
-<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<footer class="site-footer">© 2026 ApneSoftware.com — Free, private, browser-based tools.</footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha3/0.8.0/sha3.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-// --- Compact MD5 implementation (RFC 1321), verified against standard test vectors ---
-function md5(bytes) {
-  function rotl(x, c) { return (x << c) | (x >>> (32 - c)); }
-  const K = new Uint32Array([
-    0xd76aa478,0xe8c7b756,0x242070db,0xc1bdceee,0xf57c0faf,0x4787c62a,0xa8304613,0xfd469501,
-    0x698098d8,0x8b44f7af,0xffff5bb1,0x895cd7be,0x6b901122,0xfd987193,0xa679438e,0x49b40821,
-    0xf61e2562,0xc040b340,0x265e5a51,0xe9b6c7aa,0xd62f105d,0x02441453,0xd8a1e681,0xe7d3fbc8,
-    0x21e1cde6,0xc33707d6,0xf4d50d87,0x455a14ed,0xa9e3e905,0xfcefa3f8,0x676f02d9,0x8d2a4c8a,
-    0xfffa3942,0x8771f681,0x6d9d6122,0xfde5380c,0xa4beea44,0x4bdecfa9,0xf6bb4b60,0xbebfbc70,
-    0x289b7ec6,0xeaa127fa,0xd4ef3085,0x04881d05,0xd9d4d039,0xe6db99e5,0x1fa27cf8,0xc4ac5665,
-    0xf4292244,0x432aff97,0xab9423a7,0xfc93a039,0x655b59c3,0x8f0ccc92,0xffeff47d,0x85845dd1,
-    0x6fa87e4f,0xfe2ce6e0,0xa3014314,0x4e0811a1,0xf7537e82,0xbd3af235,0x2ad7d2bb,0xeb86d391
-  ]);
-  const S = [7,12,17,22,7,12,17,22,7,12,17,22,7,12,17,22,
-             5,9,14,20,5,9,14,20,5,9,14,20,5,9,14,20,
-             4,11,16,23,4,11,16,23,4,11,16,23,4,11,16,23,
-             6,10,15,21,6,10,15,21,6,10,15,21,6,10,15,21];
-
-  const msg = bytes;
-  const origLenBits = msg.length * 8;
-  let withOne = new Uint8Array(((msg.length + 9 + 63) >> 6) << 6);
-  withOne.set(msg);
-  withOne[msg.length] = 0x80;
-  const dv = new DataView(withOne.buffer);
-  dv.setUint32(withOne.length - 8, origLenBits >>> 0, true);
-  dv.setUint32(withOne.length - 4, Math.floor(origLenBits / 4294967296), true);
-
-  let a0 = 0x67452301, b0 = 0xefcdab89, c0 = 0x98badcfe, d0 = 0x10325476;
-
-  for(let chunkStart = 0; chunkStart < withOne.length; chunkStart += 64){
-    const M = new Uint32Array(16);
-    for(let i=0;i<16;i++) M[i] = dv.getUint32(chunkStart + i*4, true);
-
-    let A=a0,B=b0,C=c0,D=d0;
-    for(let i=0;i<64;i++){
-      let F,g;
-      if(i<16){ F=(B&C)|(~B&D); g=i; }
-      else if(i<32){ F=(D&B)|(~D&C); g=(5*i+1)%16; }
-      else if(i<48){ F=B^C^D; g=(3*i+5)%16; }
-      else { F=C^(B|~D); g=(7*i)%16; }
-      F = (F + A + K[i] + M[g]) >>> 0;
-      A=D; D=C; C=B;
-      B = (B + rotl(F, S[i])) >>> 0;
+// --- Compact MD5 (RFC 1321), verified against standard test vectors ---
+function md5(bytes){
+  function rotl(x,c){return (x<<c)|(x>>>(32-c));}
+  var K=new Uint32Array([0xd76aa478,0xe8c7b756,0x242070db,0xc1bdceee,0xf57c0faf,0x4787c62a,0xa8304613,0xfd469501,0x698098d8,0x8b44f7af,0xffff5bb1,0x895cd7be,0x6b901122,0xfd987193,0xa679438e,0x49b40821,0xf61e2562,0xc040b340,0x265e5a51,0xe9b6c7aa,0xd62f105d,0x02441453,0xd8a1e681,0xe7d3fbc8,0x21e1cde6,0xc33707d6,0xf4d50d87,0x455a14ed,0xa9e3e905,0xfcefa3f8,0x676f02d9,0x8d2a4c8a,0xfffa3942,0x8771f681,0x6d9d6122,0xfde5380c,0xa4beea44,0x4bdecfa9,0xf6bb4b60,0xbebfbc70,0x289b7ec6,0xeaa127fa,0xd4ef3085,0x04881d05,0xd9d4d039,0xe6db99e5,0x1fa27cf8,0xc4ac5665,0xf4292244,0x432aff97,0xab9423a7,0xfc93a039,0x655b59c3,0x8f0ccc92,0xffeff47d,0x85845dd1,0x6fa87e4f,0xfe2ce6e0,0xa3014314,0x4e0811a1,0xf7537e82,0xbd3af235,0x2ad7d2bb,0xeb86d391]);
+  var S=[7,12,17,22,7,12,17,22,7,12,17,22,7,12,17,22,5,9,14,20,5,9,14,20,5,9,14,20,5,9,14,20,4,11,16,23,4,11,16,23,4,11,16,23,4,11,16,23,6,10,15,21,6,10,15,21,6,10,15,21,6,10,15,21];
+  var msg=bytes, origLenBits=msg.length*8;
+  var withOne=new Uint8Array(((msg.length+9+63)>>6)<<6); withOne.set(msg); withOne[msg.length]=0x80;
+  var dv=new DataView(withOne.buffer);
+  dv.setUint32(withOne.length-8, origLenBits>>>0, true);
+  dv.setUint32(withOne.length-4, Math.floor(origLenBits/4294967296), true);
+  var a0=0x67452301,b0=0xefcdab89,c0=0x98badcfe,d0=0x10325476;
+  for(var cs=0;cs<withOne.length;cs+=64){
+    var M=new Uint32Array(16); for(var i=0;i<16;i++)M[i]=dv.getUint32(cs+i*4,true);
+    var A=a0,B=b0,C=c0,D=d0;
+    for(i=0;i<64;i++){ var F,g;
+      if(i<16){F=(B&C)|(~B&D);g=i;} else if(i<32){F=(D&B)|(~D&C);g=(5*i+1)%16;}
+      else if(i<48){F=B^C^D;g=(3*i+5)%16;} else {F=C^(B|~D);g=(7*i)%16;}
+      F=(F+A+K[i]+M[g])>>>0; A=D;D=C;C=B; B=(B+rotl(F,S[i]))>>>0;
     }
-    a0=(a0+A)>>>0; b0=(b0+B)>>>0; c0=(c0+C)>>>0; d0=(d0+D)>>>0;
+    a0=(a0+A)>>>0;b0=(b0+B)>>>0;c0=(c0+C)>>>0;d0=(d0+D)>>>0;
   }
+  function hx(n){var b=[n&0xff,(n>>>8)&0xff,(n>>>16)&0xff,(n>>>24)&0xff];return b.map(function(x){return x.toString(16).padStart(2,'0');}).join('');}
+  return hx(a0)+hx(b0)+hx(c0)+hx(d0);
+}
 
-  function toHexLE(n){
-    let b = [n&0xff,(n>>>8)&0xff,(n>>>16)&0xff,(n>>>24)&0xff];
-    return b.map(x=>x.toString(16).padStart(2,'0')).join('');
+(function(){
+  "use strict";
+  function $(id){ return document.getElementById(id); }
+
+  /* ===== checksums ===== */
+  var crcTable=(function(){var t=new Uint32Array(256);for(var n=0;n<256;n++){var c=n;for(var k=0;k<8;k++)c=(c&1)?(0xEDB88320^(c>>>1)):(c>>>1);t[n]=c>>>0;}return t;})();
+  function crc32Hex(bytes){var c=0xFFFFFFFF;for(var i=0;i<bytes.length;i++)c=(crcTable[(c^bytes[i])&0xFF]^(c>>>8))>>>0;return ((c^0xFFFFFFFF)>>>0).toString(16).padStart(8,'0');}
+  function adler32Hex(bytes){var a=1,b=0,MOD=65521;for(var i=0;i<bytes.length;i++){a=(a+bytes[i])%MOD;b=(b+a)%MOD;}return (((b<<16)|a)>>>0).toString(16).padStart(8,'0');}
+  function bufToHex(buf){var v=new Uint8Array(buf),s='';for(var i=0;i<v.length;i++)s+=v[i].toString(16).padStart(2,'0');return s;}
+
+  var ALGOS=[
+    {id:'crc32', name:'CRC32', kind:'sync', fn:crc32Hex, on:false},
+    {id:'adler32', name:'Adler-32', kind:'sync', fn:adler32Hex, on:false},
+    {id:'md5', name:'MD5', kind:'sync', fn:md5, dom:'hashMD5', on:true},
+    {id:'sha1', name:'SHA-1', kind:'subtle', algo:'SHA-1', dom:'hashSHA1', on:true},
+    {id:'sha256', name:'SHA-256', kind:'subtle', algo:'SHA-256', dom:'hashSHA256', on:true},
+    {id:'sha384', name:'SHA-384', kind:'subtle', algo:'SHA-384', dom:'hashSHA384', on:false},
+    {id:'sha512', name:'SHA-512', kind:'subtle', algo:'SHA-512', dom:'hashSHA512', on:true},
+    {id:'sha3-256', name:'SHA3-256', kind:'sha3', bits:256, on:false},
+    {id:'sha3-512', name:'SHA3-512', kind:'sha3', bits:512, on:false}
+  ];
+  var results=[]; // {id,name,hex}
+
+  /* ===== algorithm chips ===== */
+  (function build(){
+    var wrap=$('algoChips');
+    ALGOS.forEach(function(a){
+      if((a.kind==='sha3')&&typeof sha3_256==='undefined') return; // hide if lib missing
+      var b=document.createElement('button'); b.className='hg-chip'; b.type='button'; b.textContent=a.name; b.setAttribute('aria-pressed',a.on?'true':'false');
+      b.addEventListener('click',function(){ a.on=!a.on; b.setAttribute('aria-pressed',a.on?'true':'false'); if(results.length) generate(); });
+      wrap.appendChild(b);
+    });
+  })();
+
+  /* ===== tabs ===== */
+  var mode='text';
+  function selectTab(m){ mode=m; $('tabText').setAttribute('aria-selected',m==='text'?'true':'false'); $('tabFile').setAttribute('aria-selected',m==='file'?'true':'false'); $('textTab').style.display=m==='text'?'block':'none'; $('fileTab').style.display=m==='file'?'block':'none'; }
+  $('tabText').addEventListener('click',function(){ selectTab('text'); });
+  $('tabFile').addEventListener('click',function(){ selectTab('file'); });
+
+  /* ===== dropzone ===== */
+  var dz=$('dropzone'), fi=$('fileInput'), currentBytes=null, currentFile=null;
+  dz.addEventListener('click',function(){ fi.click(); });
+  dz.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ fi.click(); e.preventDefault(); } });
+  fi.addEventListener('change',function(e){ handleFile(e.target.files[0]); });
+  dz.addEventListener('dragover',function(e){ e.preventDefault(); dz.classList.add('drag'); });
+  dz.addEventListener('dragleave',function(){ dz.classList.remove('drag'); });
+  dz.addEventListener('drop',function(e){ e.preventDefault(); dz.classList.remove('drag'); handleFile(e.dataTransfer.files[0]); });
+
+  function readWithProgress(file){
+    return new Promise(function(resolve,reject){
+      var chunkSize=8*1024*1024, offset=0, out=new Uint8Array(file.size), fr=new FileReader();
+      var prog=$('progress'), bar=$('progressBar'); prog.classList.add('on');
+      function next(){ var slice=file.slice(offset,offset+chunkSize); fr.readAsArrayBuffer(slice); }
+      fr.onload=function(){ var part=new Uint8Array(fr.result); out.set(part,offset); offset+=part.length; bar.style.width=Math.min(100,(offset/file.size*100||100)).toFixed(1)+'%'; if(offset<file.size) next(); else { prog.classList.remove('on'); bar.style.width='0'; resolve(out); } };
+      fr.onerror=function(){ prog.classList.remove('on'); reject(fr.error); };
+      if(file.size===0) resolve(new Uint8Array(0)); else next();
+    });
   }
-  return toHexLE(a0)+toHexLE(b0)+toHexLE(c0)+toHexLE(d0);
-}
+  function handleFile(file){
+    if(!file) return; currentFile=file;
+    $('fileNameMsg').textContent='📄 '+file.name+' ('+fmtBytes(file.size)+')';
+    $('statusMsg').style.color='var(--text-dim)'; $('statusMsg').textContent='⏳ Reading file…';
+    readWithProgress(file).then(function(bytes){ currentBytes=bytes; generate(); });
+  }
+  function fmtBytes(n){ if(n<1024)return n+' B'; if(n<1048576)return (n/1024).toFixed(1)+' KB'; if(n<1073741824)return (n/1048576).toFixed(2)+' MB'; return (n/1073741824).toFixed(2)+' GB'; }
 
-function bufToHex(buf){
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-}
-
-async function computeAll(bytes){
-  document.getElementById('hashMD5').textContent = md5(bytes);
-  document.getElementById('hashSHA1').textContent = bufToHex(await crypto.subtle.digest('SHA-1', bytes));
-  document.getElementById('hashSHA256').textContent = bufToHex(await crypto.subtle.digest('SHA-256', bytes));
-  document.getElementById('hashSHA384').textContent = bufToHex(await crypto.subtle.digest('SHA-384', bytes));
-  document.getElementById('hashSHA512').textContent = bufToHex(await crypto.subtle.digest('SHA-512', bytes));
-  document.getElementById('resultWrap').style.display = 'block';
-}
-
-document.querySelectorAll('.tab-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    const tab = btn.dataset.tab;
-    document.getElementById('textTab').style.display = tab === 'text' ? 'block' : 'none';
-    document.getElementById('fileTab').style.display = tab === 'file' ? 'block' : 'none';
+  /* ===== generate ===== */
+  $('hashTextBtn').addEventListener('click',function(){
+    if(mode==='file'){ if(currentBytes) generate(); else { $('statusMsg').textContent='Choose a file first.'; } return; }
+    currentFile=null; currentBytes=new TextEncoder().encode($('textInput').value); generate();
   });
-});
+  $('textInput').addEventListener('keydown',function(e){ if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){ $('hashTextBtn').click(); } });
 
-document.getElementById('hashTextBtn').addEventListener('click', async ()=>{
-  const text = document.getElementById('textInput').value;
-  const bytes = new TextEncoder().encode(text);
-  document.getElementById('statusMsg').textContent = '⏳ Computing...';
-  await computeAll(bytes);
-  document.getElementById('statusMsg').textContent = '✅ Done';
-});
-
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-setupDropzone(dropzone, fileInput, async files => {
-  if(files.length){
-    const file = files[0];
-    document.getElementById('fileNameMsg').textContent = '📄 ' + file.name + ' (' + formatBytes(file.size) + ')';
-    document.getElementById('statusMsg').textContent = '⏳ Computing...';
-    const buf = await file.arrayBuffer();
-    await computeAll(new Uint8Array(buf));
-    document.getElementById('statusMsg').textContent = '✅ Done';
+  function generate(){
+    if(!currentBytes){ return; }
+    var status=$('statusMsg'); status.style.color='var(--text-dim)'; status.textContent='⏳ Computing…';
+    var t0=performance.now();
+    var selected=ALGOS.filter(function(a){ if(a.kind==='sha3'&&typeof sha3_256==='undefined')return false; return a.on; });
+    if(!selected.length){ status.textContent='Select at least one algorithm.'; return; }
+    var tasks=selected.map(function(a){
+      if(a.kind==='sync') return Promise.resolve({id:a.id,name:a.name,dom:a.dom,hex:a.fn(currentBytes)});
+      if(a.kind==='sha3'){ var f=a.bits===512?sha3_512:sha3_256; return Promise.resolve({id:a.id,name:a.name,hex:f(currentBytes)}); }
+      return crypto.subtle.digest(a.algo,currentBytes).then(function(buf){ return {id:a.id,name:a.name,dom:a.dom,hex:bufToHex(buf)}; });
+    });
+    Promise.all(tasks).then(function(res){
+      results=res; var ms=(performance.now()-t0);
+      render(); buildInfo(ms);
+      status.style.color='#6ee7b7'; status.textContent='✅ Done — '+res.length+' hash'+(res.length>1?'es':'')+' in '+ms.toFixed(1)+' ms';
+    }).catch(function(err){ status.style.color='#fca5a5'; status.textContent='Error: '+(err&&err.message||err); });
   }
-});
 
-document.querySelectorAll('.copyHashBtn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const target = document.getElementById(btn.dataset.target);
-    copyText(target.textContent, btn);
-  });
-});
+  function render(){
+    var up=$('upperCase').checked, verify=($('verifyInput').value||'').trim().toLowerCase();
+    var wrap=$('resultCards'); wrap.innerHTML=''; $('resultWrap').style.display='block';
+    results.forEach(function(r){
+      var hex=up?r.hex.toUpperCase():r.hex;
+      var card=document.createElement('div'); card.className='hg-card';
+      var matched=verify && r.hex.toLowerCase()===verify;
+      var badge='';
+      if(verify){ if(matched){ card.classList.add('match'); badge='<span class="hg-badge ok">✓ Match</span>'; } }
+      card.innerHTML='<div class="hg-algo">'+r.name+'<small>'+r.hex.length+' hex</small></div><div class="hg-val">'+hex+'</div>'+badge+'<button class="hg-cardbtn" type="button">📋 Copy</button>';
+      card.querySelector('.hg-cardbtn').addEventListener('click',function(e){ copyOut(hex,e.target); });
+      wrap.appendChild(card);
+      // mirror value into the preserved legacy span (keeps getElementById('hashSHA256') etc. working)
+      if(r.dom){ var leg=document.getElementById(r.dom); if(leg) leg.textContent=r.hex; }
+    });
+    // verify summary: if a value was entered but nothing matched
+    if(verify){ var any=results.some(function(r){return r.hex.toLowerCase()===verify;}); if(!any){ var note=document.createElement('div'); note.className='hg-card nomatch'; note.innerHTML='<div class="hg-algo">Verify</div><div class="hg-val">No selected hash matches the value you pasted.</div><span class="hg-badge no">✗ No match</span>'; wrap.appendChild(note); } }
+  }
+  $('upperCase').addEventListener('change',function(){ if(results.length) render(); });
+  $('verifyInput').addEventListener('input',function(){ if(results.length) render(); });
+
+  function buildInfo(ms){
+    if(!currentFile){ $('fileInfo').classList.remove('on'); return; }
+    var f=currentFile, rows=[['Name',f.name],['Size',fmtBytes(f.size)],['Type',f.type||'unknown'],['Modified',f.lastModified?new Date(f.lastModified).toLocaleString():'—'],['Processing time',ms.toFixed(1)+' ms']];
+    $('fileInfo').innerHTML=rows.map(function(r){ return '<div><span>'+r[0]+'</span><b>'+esc(r[1])+'</b></div>'; }).join('');
+    $('fileInfo').classList.add('on');
+  }
+
+  function copyOut(text,el){ if(typeof copyText==='function') copyText(text,el); else { navigator.clipboard&&navigator.clipboard.writeText(text); } }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+  /* ===== copy all / export ===== */
+  function fmtList(){ var up=$('upperCase').checked; return results.map(function(r){ return r.name+': '+(up?r.hex.toUpperCase():r.hex); }).join('\n'); }
+  $('copyAllBtn').addEventListener('click',function(e){ if(!results.length){return;} copyOut(fmtList(),e.target); });
+  function saveText(name,txt,type){ if(typeof downloadText==='function'&&(type||'text/plain')==='text/plain'){ downloadText(name,txt); return; } var blob=new Blob([txt],{type:type||'text/plain'}); if(typeof downloadBlob==='function')downloadBlob(name,blob); else { var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); } }
+  $('expTxt').addEventListener('click',function(){ if(!results.length)return; saveText('hashes.txt',fmtList(),'text/plain'); if(typeof premToast==='function')premToast('TXT downloaded'); });
+  $('expJson').addEventListener('click',function(){ if(!results.length)return; var up=$('upperCase').checked; var o={source:currentFile?currentFile.name:'text',hashes:{}}; results.forEach(function(r){ o.hashes[r.name]=up?r.hex.toUpperCase():r.hex; }); saveText('hashes.json',JSON.stringify(o,null,2),'application/json'); if(typeof premToast==='function')premToast('JSON downloaded'); });
+  $('expCsv').addEventListener('click',function(){ if(!results.length)return; var up=$('upperCase').checked; var csv='Algorithm,Hash\r\n'+results.map(function(r){ return '"'+r.name+'","'+(up?r.hex.toUpperCase():r.hex)+'"'; }).join('\r\n'); saveText('hashes.csv',csv,'text/csv'); if(typeof premToast==='function')premToast('CSV downloaded'); });
+
+  /* ===== reset ===== */
+  $('resetBtn').addEventListener('click',function(){ $('textInput').value=''; $('verifyInput').value=''; $('fileNameMsg').textContent=''; $('resultWrap').style.display='none'; $('fileInfo').classList.remove('on'); $('statusMsg').textContent=''; results=[]; currentBytes=null; currentFile=null; fi.value=''; });
+
+  /* ===== FAQ ===== */
+  var FAQ=[
+    ['What is a hash?','A fixed-length fingerprint of data; the same input always gives the same hash, and any change alters it completely. — यह डेटा का fixed-length fingerprint है।'],
+    ['Is my text or file uploaded?','No. Everything is hashed in your browser; nothing is uploaded. — नहीं, कुछ भी upload नहीं होता।'],
+    ['Which algorithms are supported?','CRC32, Adler-32, MD5, SHA-1, SHA-256/384/512 and SHA3-256/512. — CRC32 से SHA3 तक।'],
+    ['What is the best algorithm to use?','SHA-256 is the modern default; use SHA-3 for the newest standard. — SHA-256 सबसे अच्छा default है।'],
+    ['Is MD5 safe?','No — MD5 and SHA-1 are broken for security; use them only for legacy checksums. — नहीं, MD5 security के लिए असुरक्षित है।'],
+    ['How do I verify a download?','Paste the publisher\'s hash into the verify box and check for a green Match. — verify box में hash paste करें।'],
+    ['What does “No match” mean?','The file differs from the expected one — it may be corrupted or altered. — file अपेक्षित से भिन्न है।'],
+    ['Can I hash large files?','Yes — files are read with a progress bar; very large files just take longer. — हाँ, बड़ी files भी।'],
+    ['Does whitespace matter?','Yes — a hash is exact, so a stray space or newline changes it. — हाँ, whitespace मायने रखता है।'],
+    ['Can I choose uppercase output?','Yes, tick Uppercase to switch every hash\'s case. — हाँ, uppercase विकल्प है।'],
+    ['Can I export the results?','Yes — copy all, or export TXT, JSON or CSV. — हाँ, TXT/JSON/CSV export उपलब्ध।'],
+    ['What is CRC32 for?','A fast non-cryptographic checksum for detecting accidental errors. — तेज़ error-check checksum।'],
+    ['What is the difference between SHA-2 and SHA-3?','They are separate designs; SHA-3 is the newest NIST standard. — ये अलग designs हैं।'],
+    ['Do two files ever share a hash?','With SHA-256/3 it is astronomically unlikely (a collision). — व्यावहारिक रूप से असंभव।'],
+    ['Is it free?','Completely free — no account, no limits, no watermark. — हाँ, पूरी तरह मुफ़्त।'],
+    ['Does it work offline?','Yes; SHA/MD5/CRC work fully offline (SHA3 needs one CDN load). — हाँ, offline काम करता है।'],
+    ['Can I hash multiple algorithms at once?','Yes — enable several and all are computed together. — हाँ, एक साथ कई।'],
+    ['Is hashing the same as encryption?','No — hashing is one-way and cannot be reversed to the input. — नहीं, hashing one-way है।'],
+    ['How fast is it?','SHA uses the browser\'s native Web Crypto engine, so it\'s very fast. — बहुत तेज़, native crypto।'],
+    ['Can I hash passwords here?','You can, but real auth needs a slow password hash like bcrypt/Argon2. — असली auth के लिए bcrypt/Argon2।'],
+    ['What is processing time?','How long the computation took, shown after each run. — गणना में लगा समय।'],
+    ['Which browsers work?','All modern browsers — Chrome, Firefox, Edge, Safari, Opera, Brave. — सभी आधुनिक browsers।']
+  ];
+  function buildFaq(){ var list=$('faqList'); if(!list) return; FAQ.forEach(function(p){ var d=document.createElement('details'); d.innerHTML='<summary>'+esc(p[0])+'</summary><p>'+esc(p[1])+'</p>'; list.appendChild(d); }); try{ $('faqSchema').textContent=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:FAQ.map(function(p){return {'@type':'Question',name:p[0],acceptedAnswer:{'@type':'Answer',text:p[1]}};})}); }catch(e){} }
+
+  /* ===== hooks / init ===== */
+  window.__hgHooks={ hashText:function(t){ mode='text'; currentFile=null; currentBytes=new TextEncoder().encode(t); generate(); },
+    hashBytes:function(b){ currentBytes=b; generate(); }, getResults:function(){return results;},
+    setAlgo:function(id,on){ ALGOS.forEach(function(a){ if(a.id===id)a.on=on; }); }, md5:md5, crc32:crc32Hex };
+  buildFaq();
+})();
 </script>
 </body>
 </html>
