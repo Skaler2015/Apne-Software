@@ -370,6 +370,8 @@ body.light-mode textarea{background:rgba(255,255,255,.8)!important;color:#1a0a35
     <nav class="main-tabs" role="tablist" aria-label="Tool sections" style="margin:0">
       <button class="main-tab active" data-tab="tabBarcode" role="tab" aria-selected="true">📊 Barcode</button>
       <button class="main-tab"        data-tab="tabQR"      role="tab">🔲 QR Code</button>
+      <button class="main-tab"        data-tab="tabScan"    role="tab">📷 Scan</button>
+      <button class="main-tab"        data-tab="tabLabel"   role="tab">🏷 Label</button>
       <button class="main-tab"        data-tab="tabBatch"   role="tab">📋 Batch</button>
     </nav>
     <div class="theme-row">
@@ -403,10 +405,16 @@ body.light-mode textarea{background:rgba(255,255,255,.8)!important;color:#1a0a35
             <option value="EAN13">EAN-13 (13 digits)</option>
             <option value="EAN8">EAN-8 (8 digits)</option>
             <option value="UPC">UPC-A (12 digits)</option>
+            <option value="UPCE">UPC-E (6/8 digits)</option>
             <option value="ITF14">ITF-14 (14 digits)</option>
+            <option value="ITF">ITF (even digits)</option>
             <option value="MSI">MSI</option>
+            <option value="MSI10">MSI (mod 10)</option>
+            <option value="MSI11">MSI (mod 11)</option>
             <option value="pharmacode">Pharmacode</option>
             <option value="codabar">Codabar</option>
+            <option value="EAN5">EAN-5 (5 digits)</option>
+            <option value="EAN2">EAN-2 (2 digits)</option>
           </select>
         </div>
       </div>
@@ -521,6 +529,12 @@ body.light-mode textarea{background:rgba(255,255,255,.8)!important;color:#1a0a35
         <button class="act-btn tg" id="shareTg"   aria-label="Share on Telegram">Telegram</button>
         <button class="act-btn"    id="copyLink"  aria-label="Copy link">🔗 Copy Link</button>
       </div>
+
+      <!-- Barcode Info -->
+      <div class="bc-info" id="barcodeInfo" style="margin-top:14px;display:none">
+        <div class="sec-title" style="margin-bottom:8px">🔎 Barcode Information</div>
+        <div class="bc-info-grid" id="bcInfoGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px"></div>
+      </div>
     </div>
 
     <!-- History Panel -->
@@ -597,6 +611,67 @@ body.light-mode textarea{background:rgba(255,255,255,.8)!important;color:#1a0a35
     </div>
   </div>
 
+  <!-- ══════════════ TAB: SCAN ══════════════ -->
+  <div class="tab-panel" id="tabScan" role="tabpanel">
+    <div class="panel">
+      <div class="sec-title">📷 Barcode &amp; QR Scanner</div>
+      <p style="font-size:.84rem;color:var(--text-dim);margin-bottom:12px">Decode a barcode or QR code from your camera or an image — CODE128, EAN/UPC, CODE39, QR and more. Everything is decoded in your browser; no image is uploaded.</p>
+      <div class="dl-row" style="margin-bottom:10px">
+        <button class="act-btn primary" id="scanCamBtn" aria-label="Start camera scan">📷 Start Camera</button>
+        <button class="act-btn danger"  id="scanStopBtn" aria-label="Stop camera" style="display:none">⏹ Stop</button>
+        <button class="act-btn"          id="scanUploadBtn" aria-label="Upload image">🖼 Upload Image</button>
+        <input type="file" id="scanFile" accept="image/*" style="display:none">
+      </div>
+      <div class="batch-drop" id="scanDrop" tabindex="0" role="button" aria-label="Drop an image to scan">📥 Drop a barcode / QR image here, or click to choose</div>
+      <div style="position:relative;margin-top:12px">
+        <video id="scanVideo" playsinline style="display:none;width:100%;max-height:320px;border-radius:12px;background:#000"></video>
+      </div>
+      <div class="err-box" id="scanErr" role="alert"></div>
+      <div id="scanResult" style="display:none;margin-top:12px">
+        <div class="sec-title" style="margin-bottom:8px">✅ Decoded Result</div>
+        <div class="bc-info-grid" style="display:grid;grid-template-columns:1fr;gap:8px">
+          <div class="color-row" style="margin:0;flex-direction:column;align-items:stretch;gap:8px">
+            <div><span style="font-size:.72rem;color:var(--text-dim)">Value</span><div id="scanValue" style="font-family:ui-monospace,monospace;font-weight:700;word-break:break-all"></div></div>
+            <div><span style="font-size:.72rem;color:var(--text-dim)">Format</span><div id="scanFormat" style="font-weight:600"></div></div>
+          </div>
+        </div>
+        <div class="dl-row" style="margin-top:10px">
+          <button class="act-btn" id="scanCopy" aria-label="Copy decoded value">📋 Copy</button>
+          <button class="act-btn primary" id="scanUseBarcode" aria-label="Use in barcode generator">➡ Use in Barcode</button>
+          <button class="act-btn" id="scanUseQr" aria-label="Use in QR generator">➡ Use in QR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ TAB: LABEL ══════════════ -->
+  <div class="tab-panel" id="tabLabel" role="tabpanel">
+    <div class="panel">
+      <div class="sec-title">🏷 Product Label Designer</div>
+      <p style="font-size:.84rem;color:var(--text-dim);margin-bottom:12px">Design a print-ready product / shelf / shipping label with a barcode, product details and price. Print it or download as PNG.</p>
+      <div class="style-grid">
+        <div class="field"><label for="lblCompany">Company name</label><input type="text" id="lblCompany" value="ApneSoftware" autocomplete="off"></div>
+        <div class="field"><label for="lblProduct">Product name</label><input type="text" id="lblProduct" value="Sample Product" autocomplete="off"></div>
+        <div class="field"><label for="lblSku">SKU</label><input type="text" id="lblSku" value="SKU-00123" autocomplete="off"></div>
+        <div class="field"><label for="lblPrice">Price</label><input type="text" id="lblPrice" value="₹499.00" autocomplete="off"></div>
+        <div class="field"><label for="lblBatch">Batch no.</label><input type="text" id="lblBatch" value="B-2026-07" autocomplete="off"></div>
+        <div class="field"><label for="lblExpiry">Expiry</label><input type="text" id="lblExpiry" value="2027-12" autocomplete="off"></div>
+        <div class="field"><label for="lblValue">Barcode value</label><input type="text" id="lblValue" value="123456789012" autocomplete="off"></div>
+        <div class="field"><label for="lblFormat">Barcode format</label>
+          <select id="lblFormat"><option value="CODE128">CODE128</option><option value="EAN13">EAN-13</option><option value="UPC">UPC-A</option><option value="CODE39">CODE39</option><option value="EAN8">EAN-8</option></select>
+        </div>
+      </div>
+      <div class="bc-preview-wrap" id="lblPreviewWrap" style="margin-top:14px">
+        <div id="lblCard" style="background:#fff;color:#111;width:340px;max-width:100%;border:1px solid #ddd;border-radius:8px;padding:16px;text-align:left;font-family:Arial,Helvetica,sans-serif"></div>
+      </div>
+      <div class="dl-row" style="margin-top:12px">
+        <button class="act-btn primary" id="lblBuild" aria-label="Build label">🔄 Build label</button>
+        <button class="act-btn" id="lblPrint" aria-label="Print label">🖨 Print</button>
+        <button class="act-btn" id="lblPng" aria-label="Download label PNG">⬇ PNG</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ══════════════ TAB: BATCH ══════════════ -->
   <div class="tab-panel" id="tabBatch" role="tabpanel">
     <div class="panel">
@@ -650,6 +725,26 @@ body.light-mode textarea{background:rgba(255,255,255,.8)!important;color:#1a0a35
 </div><!-- /container -->
 
 
+<!-- ── RELATED TOOLS ── -->
+<div class="info-wrap">
+  <div class="info-section">
+    <div class="info-block">
+      <h2>🔗 Related Tools</h2>
+      <p style="color:var(--text-dim);font-size:.9rem;margin-bottom:4px">More free, non-AI, browser-based developer &amp; utility tools.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-top:6px">
+        <a href="qr-code-generator.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);text-decoration:none;font-size:.88rem;font-weight:600">🔳 QR Code Generator</a>
+        <a href="qr-code-scanner.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);text-decoration:none;font-size:.88rem;font-weight:600">📷 QR Code Scanner</a>
+        <a href="color-picker.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);text-decoration:none;font-size:.88rem;font-weight:600">🎨 Color Picker</a>
+        <a href="hash-generator.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);text-decoration:none;font-size:.88rem;font-weight:600">🔒 Hash Generator</a>
+        <a href="base64-encoder-decoder.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);text-decoration:none;font-size:.88rem;font-weight:600">🔤 Base64 Encoder</a>
+        <a href="url-html-encoder-decoder.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);text-decoration:none;font-size:.88rem;font-weight:600">🔗 URL/HTML Encoder</a>
+        <a href="csv-json-converter.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);text-decoration:none;font-size:.88rem;font-weight:600">🔁 CSV ↔ JSON</a>
+        <a href="regex-tester.html" style="display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);text-decoration:none;font-size:.88rem;font-weight:600">🧩 Regex Tester</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ── INFO SECTION ── -->
 <div class="info-wrap">
   <div class="info-section">
@@ -666,7 +761,11 @@ body.light-mode textarea{background:rgba(255,255,255,.8)!important;color:#1a0a35
 
       <p>The QR Code generator creates 2D barcodes that can store URLs, contact information, WiFi credentials, plain text, and more. QR codes are scannable by any modern smartphone camera without a dedicated app, making them ideal for marketing materials, product packaging, menus, and contactless information sharing. You can customize the QR color, background color, size, and error correction level.</p>
 
-      <p>All barcode generation happens entirely in your browser — no data is ever sent to any server. Your barcode values and history are private. The recent barcodes history feature saves your last 20 generated barcodes in LocalStorage for quick regeneration.</p>
+      <p>This suite goes well beyond generation. The built-in <strong>Scanner</strong> decodes a barcode or QR code from your device camera or from any image you upload or drag in — CODE128, EAN/UPC, CODE39, QR and more — and lets you copy the decoded value or send it straight into the generator to re-create or modify it. A <strong>Barcode Information</strong> panel shows the barcode type, character count, encoding class (numeric, alphanumeric or full ASCII), the check digit for EAN/UPC-family codes, and which scanners the symbology is intended for, so you can confirm a code is valid before printing thousands of labels. Because everything runs locally, none of the images you scan or values you encode ever leave your device.</p>
+
+      <p>The <strong>Product Label Designer</strong> turns a raw barcode into a finished, print-ready label. Enter a company name, product name, SKU, price, batch number and expiry, choose the barcode symbology, and the tool composes a tidy label with the barcode embedded — ready to print on a thermal, Zebra, Dymo or Brother label printer, or to download as a PNG for a design tool or an A4 label sheet. This is exactly what retail shelves, warehouse bins, pharmacy packaging and shipping cartons need, and it removes the usual round-trip through a separate design application.</p>
+
+      <p>All barcode generation happens entirely in your browser — no data is ever sent to any server. Your barcode values and history are private. The recent barcodes history feature saves your last 20 generated barcodes in LocalStorage for quick regeneration, and you can regenerate any of them with a single click. The whole suite is built with lightweight, well-established libraries (JsBarcode for 1D symbologies, a QR engine for 2D, and a standards-based decoder for scanning), so it loads fast, works on phones and desktops alike, and keeps working offline once the page has loaded.</p>
 
       <h3>📖 How to Use:</h3>
       <ol>
@@ -702,6 +801,33 @@ body.light-mode textarea{background:rgba(255,255,255,.8)!important;color:#1a0a35
         <li><strong>Manufacturing:</strong> Part tracking, quality control labels.</li>
         <li><strong>Education:</strong> Student ID cards, library cards.</li>
         <li><strong>Marketing:</strong> QR codes on flyers, menus, business cards.</li>
+      </ul>
+
+      <h3>🖨 Printing Guide:</h3>
+      <ul>
+        <li><strong>Thermal / Zebra / Dymo / Brother label printers:</strong> Download the SVG (or the label PNG) and print at 100% scale — never "fit to page", which distorts the bars and can make a code unscannable. Match the label size to your media (e.g. 40×20 mm, 4×6 in).</li>
+        <li><strong>A4 / Letter label sheets:</strong> Use the Batch tab's "Print A4" to lay many barcodes onto a standard sheet, then feed pre-cut label stock through a normal laser or inkjet printer.</li>
+        <li><strong>Quiet zone &amp; contrast:</strong> Keep a white margin (quiet zone) on both sides and use dark bars on a light background — the scanner needs the contrast. Avoid printing barcodes on coloured or reflective surfaces.</li>
+        <li><strong>Resolution:</strong> Prefer SVG for print because it is resolution-independent; if you must use a raster, use the largest size preset and 300 DPI or higher.</li>
+        <li><strong>Verify before a big run:</strong> Print one label, scan it with the built-in Scanner or a phone, and confirm it decodes to the exact value before printing the whole batch.</li>
+      </ul>
+
+      <h3>🧪 Examples:</h3>
+      <ul>
+        <li><strong>Retail product:</strong> EAN-13 <code>4006381333931</code> → scannable at any supermarket POS.</li>
+        <li><strong>Inventory item:</strong> CODE128 <code>WH-A12-SHELF-045</code> → any ASCII, ideal for internal SKUs.</li>
+        <li><strong>Shipping carton:</strong> ITF-14 <code>10012345678902</code> → outer-case marking.</li>
+        <li><strong>Marketing QR:</strong> encode <code>https://apnesoftware.com</code> → scannable by any phone camera.</li>
+      </ul>
+
+      <h3>🛠 Troubleshooting:</h3>
+      <ul>
+        <li><strong>"Invalid input for this format":</strong> EAN-13 needs exactly 13 digits, UPC-A 12, EAN-8 8. Use CODE128 if your data has letters or a variable length.</li>
+        <li><strong>Barcode won't scan after printing:</strong> You likely scaled it — reprint at 100%, keep the quiet-zone margins, and ensure dark-on-light contrast.</li>
+        <li><strong>Scanner finds nothing in an image:</strong> Use a sharp, well-lit, straight-on photo where the whole code and its white margins are visible; blurry or angled shots often fail.</li>
+        <li><strong>Camera won't start:</strong> Grant the browser camera permission and use HTTPS; otherwise use Upload Image, which works everywhere.</li>
+        <li><strong>Check digit mismatch:</strong> For EAN/UPC the last digit is a computed check digit — enter the full correct number, or let a GS1 calculator work it out.</li>
+        <li><strong>History or theme not saved:</strong> These live in your browser's LocalStorage; private/incognito mode or clearing site data will reset them.</li>
       </ul>
 
       <!-- FAQ English -->
@@ -765,6 +891,7 @@ body.light-mode textarea{background:rgba(255,255,255,.8)!important;color:#1a0a35
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.3/JsBarcode.all.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js"></script>
 <script src="../assets/common.js"></script>
 
 <script>
@@ -902,10 +1029,12 @@ function generate(saveHistory = true) {
       barcodeSvg.style.display = '';
 
       if (saveHistory) pushHistory(text, format);
+      renderBarcodeInfo(text, format);
 
     } catch (err) {
       loadingSpinner.style.display = 'none';
       barcodeSvg.style.display = '';
+      var bi = document.getElementById('barcodeInfo'); if (bi) bi.style.display = 'none';
       showErr('❌ ' + (err.message || 'Invalid input for this format.'));
     }
   });
@@ -1199,6 +1328,94 @@ document.querySelectorAll('.main-tab').forEach(tab => {
   tab.addEventListener('click', () => switchTab(tab.dataset.tab));
 });
 
+// ── BARCODE INFO PANEL ────────────────────────────────────────
+function fmtName(f){ var m={CODE128:'CODE128',CODE39:'CODE39',EAN13:'EAN-13',EAN8:'EAN-8',UPC:'UPC-A',UPCE:'UPC-E',ITF14:'ITF-14',ITF:'ITF',MSI:'MSI',MSI10:'MSI (mod 10)',MSI11:'MSI (mod 11)',pharmacode:'Pharmacode',codabar:'Codabar',EAN5:'EAN-5',EAN2:'EAN-2'}; return m[f]||f; }
+function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function renderBarcodeInfo(text, format){
+  var info=document.getElementById('barcodeInfo'), grid=document.getElementById('bcInfoGrid'); if(!info||!grid) return;
+  var enc = /^[0-9]+$/.test(text)?'Numeric only' : /^[A-Za-z0-9 \-\.\$\/\+%]+$/.test(text)?'Alphanumeric' : 'Full ASCII';
+  var checkDigit='n/a';
+  if(['EAN13','EAN8','UPC','UPCE','ITF14'].indexOf(format)>=0) checkDigit=text.slice(-1)+' (mod-10)';
+  var compat=(['EAN13','EAN8','UPC','UPCE'].indexOf(format)>=0)?'Retail POS scanners':(format.indexOf('ITF')>=0)?'Carton / logistics':(format==='pharmacode')?'Pharma scanners':(format==='codabar')?'Libraries / blood banks':'Handheld & 2D imagers';
+  var rows=[['Type',fmtName(format)],['Characters',text.length],['Encoding',enc],['Check digit',checkDigit],['Scan use',compat],['Standard','GS1 / ISO where applicable']];
+  grid.innerHTML=rows.map(function(r){ return '<div class="batch-card" style="text-align:left;padding:8px 10px"><div style="font-size:.68rem;color:var(--text-dim)">'+escHtml(r[0])+'</div><div style="font-weight:700;font-size:.85rem">'+escHtml(r[1])+'</div></div>'; }).join('');
+  info.style.display='block';
+}
+
+// ── SCANNER (ZXing) ───────────────────────────────────────────
+(function(){
+  var reader=null;
+  function zxOK(){ return typeof ZXing!=='undefined' && ZXing.BrowserMultiFormatReader; }
+  function fmtZ(f){ try{ return (ZXing.BarcodeFormat && ZXing.BarcodeFormat[f]) || 'Barcode'; }catch(e){ return 'Barcode'; } }
+  function errShow(m){ var e=document.getElementById('scanErr'); e.textContent='⚠️ '+m; e.classList.add('show'); }
+  function errHide(){ var e=document.getElementById('scanErr'); e.textContent=''; e.classList.remove('show'); }
+  function showResult(text, fmt){ errHide();
+    document.getElementById('scanValue').textContent=text;
+    document.getElementById('scanFormat').textContent=fmt||'Detected';
+    document.getElementById('scanResult').style.display='block';
+    if(typeof toast==='function') toast('✅ Decoded', 'success');
+  }
+  function fromImage(file){ if(!zxOK()){ errShow('Scanner library not loaded — check your connection and reload.'); return; }
+    errHide(); var url=URL.createObjectURL(file); var r=new ZXing.BrowserMultiFormatReader();
+    r.decodeFromImageUrl(url).then(function(res){ showResult(res.getText(), fmtZ(res.getBarcodeFormat())); })
+     .catch(function(){ errShow('No barcode or QR code found in that image.'); })
+     .then(function(){ URL.revokeObjectURL(url); });
+  }
+  function startCam(){ if(!zxOK()){ errShow('Scanner library not loaded — check your connection.'); return; }
+    errHide(); var video=document.getElementById('scanVideo'); video.style.display='block';
+    reader=new ZXing.BrowserMultiFormatReader();
+    reader.decodeFromVideoDevice(null, video, function(result,err){ if(result){ showResult(result.getText(), fmtZ(result.getBarcodeFormat())); stopCam(); } })
+      .catch(function(){ errShow('Cannot access the camera. Grant permission or use Upload Image.'); stopCam(); });
+    document.getElementById('scanCamBtn').style.display='none'; document.getElementById('scanStopBtn').style.display='';
+  }
+  function stopCam(){ if(reader){ try{ reader.reset(); }catch(e){} reader=null; } var v=document.getElementById('scanVideo'); if(v)v.style.display='none';
+    var a=document.getElementById('scanCamBtn'), b=document.getElementById('scanStopBtn'); if(a)a.style.display=''; if(b)b.style.display='none'; }
+
+  document.getElementById('scanCamBtn').addEventListener('click',startCam);
+  document.getElementById('scanStopBtn').addEventListener('click',stopCam);
+  document.getElementById('scanUploadBtn').addEventListener('click',function(){ document.getElementById('scanFile').click(); });
+  document.getElementById('scanFile').addEventListener('change',function(e){ if(e.target.files[0]) fromImage(e.target.files[0]); });
+  var drop=document.getElementById('scanDrop');
+  drop.addEventListener('click',function(){ document.getElementById('scanFile').click(); });
+  ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); drop.classList.add('drag-over'); }); });
+  ['dragleave','drop'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); drop.classList.remove('drag-over'); }); });
+  drop.addEventListener('drop',function(e){ var f=e.dataTransfer.files[0]; if(f) fromImage(f); });
+  document.getElementById('scanCopy').addEventListener('click',function(e){ if(typeof copyText==='function') copyText(document.getElementById('scanValue').textContent,e.target); });
+  document.getElementById('scanUseBarcode').addEventListener('click',function(){ document.getElementById('barcodeText').value=document.getElementById('scanValue').textContent; switchTab('tabBarcode'); generate(true); });
+  document.getElementById('scanUseQr').addEventListener('click',function(){ document.getElementById('qrText').value=document.getElementById('scanValue').textContent; switchTab('tabQR'); if(typeof generateQR==='function') generateQR(); });
+})();
+
+// ── LABEL DESIGNER ────────────────────────────────────────────
+(function(){
+  function v(id){ return document.getElementById(id).value; }
+  function build(){ var card=document.getElementById('lblCard'); var val=v('lblValue').trim()||'000000000000'; var fmt=v('lblFormat');
+    card.innerHTML='<div style="font-size:11px;color:#666;font-weight:700;text-transform:uppercase;letter-spacing:.04em">'+escHtml(v('lblCompany'))+'</div>'+
+      '<div style="font-size:17px;font-weight:800;margin:2px 0 6px;color:#111">'+escHtml(v('lblProduct'))+'</div>'+
+      '<div style="display:flex;justify-content:space-between;font-size:12px;color:#333"><span>SKU: '+escHtml(v('lblSku'))+'</span><span style="font-weight:800;font-size:16px">'+escHtml(v('lblPrice'))+'</span></div>'+
+      '<div style="display:flex;justify-content:space-between;font-size:11px;color:#666;margin-top:2px"><span>Batch: '+escHtml(v('lblBatch'))+'</span><span>Exp: '+escHtml(v('lblExpiry'))+'</span></div>'+
+      '<svg id="lblBarcode" style="width:100%;margin-top:8px"></svg>';
+    try{ JsBarcode('#lblBarcode', val, {format:fmt,width:2,height:50,fontSize:12,margin:4,displayValue:true}); }
+    catch(e){ document.getElementById('lblBarcode').outerHTML='<div style="color:#c00;font-size:12px;margin-top:8px">⚠️ Invalid value for '+escHtml(fmt)+'.</div>'; }
+  }
+  function png(){ var c=document.createElement('canvas'); c.width=700; c.height=380; var ctx=c.getContext('2d');
+    ctx.fillStyle='#fff'; ctx.fillRect(0,0,c.width,c.height);
+    ctx.fillStyle='#666'; ctx.font='bold 20px Arial'; ctx.fillText(v('lblCompany').toUpperCase(),28,44);
+    ctx.fillStyle='#111'; ctx.font='800 34px Arial'; ctx.fillText(v('lblProduct'),28,88);
+    ctx.font='22px Arial'; ctx.fillStyle='#333'; ctx.fillText('SKU: '+v('lblSku'),28,128);
+    ctx.textAlign='right'; ctx.fillStyle='#111'; ctx.font='800 30px Arial'; ctx.fillText(v('lblPrice'),c.width-28,128); ctx.textAlign='left';
+    ctx.font='18px Arial'; ctx.fillStyle='#666'; ctx.fillText('Batch: '+v('lblBatch'),28,160);
+    ctx.textAlign='right'; ctx.fillText('Exp: '+v('lblExpiry'),c.width-28,160); ctx.textAlign='left';
+    try{ var tmp=document.createElement('canvas'); JsBarcode(tmp, v('lblValue')||'000', {format:v('lblFormat'),width:2,height:90,fontSize:16,margin:6,displayValue:true}); ctx.drawImage(tmp,(c.width-tmp.width)/2,185); }catch(e){}
+    c.toBlob(function(b){ if(b&&typeof downloadBlob==='function') downloadBlob('label.png',b); if(typeof toast==='function') toast('⬇ Label PNG saved','success'); });
+  }
+  function prnt(){ build(); var w=window.open('','_blank'); if(!w)return; w.document.write('<html><head><title>Label</title></head><body style="margin:0;display:flex;justify-content:center;padding:24px;font-family:Arial">'+document.getElementById('lblCard').outerHTML+'</body></html>'); w.document.close(); setTimeout(function(){ w.focus(); w.print(); },350); }
+  document.getElementById('lblBuild').addEventListener('click',build);
+  document.getElementById('lblPng').addEventListener('click',function(){ build(); setTimeout(png,50); });
+  document.getElementById('lblPrint').addEventListener('click',prnt);
+  ['lblCompany','lblProduct','lblSku','lblPrice','lblBatch','lblExpiry','lblValue','lblFormat'].forEach(function(id){ document.getElementById(id).addEventListener('input',build); });
+  build();
+})();
+
 // ── QR CODE ───────────────────────────────────────────────────
 function generateQR() {
   const text = $('qrText').value.trim();
@@ -1421,6 +1638,15 @@ const faqs = [
   ['Can I use these barcodes commercially?','Yes. For internal use (inventory, logistics, custom labels), these barcodes work perfectly. For globally registered retail EAN/UPC codes, you need an official GS1-registered company prefix.'],
   ['Is this tool free?','Yes, completely free. No signup, no watermark, no limits.'],
   ['What is error correction in QR codes?','Error correction allows a QR code to be partially damaged and still scan correctly. Level L = 7% recovery, M = 15%, Q = 25%, H = 30%. Higher levels create denser QR codes.'],
+  ['Can I scan a barcode with this tool?','Yes. Open the Scan tab and either start your camera or upload/drag in an image. The tool decodes CODE128, EAN/UPC, CODE39, QR and more entirely in your browser, then lets you copy the value or send it to the generator.'],
+  ['Which barcode formats are supported?','1D formats include CODE128, CODE39, EAN-13, EAN-8, EAN-5, EAN-2, UPC-A, UPC-E, ITF-14, ITF, MSI (and mod 10/11), Pharmacode and Codabar, plus 2D QR codes. Choose the one that matches your industry standard.'],
+  ['What does the Barcode Information panel show?','After you generate a barcode it displays the type, character count, the encoding class (numeric, alphanumeric or full ASCII), the check digit for EAN/UPC-family codes, and which scanners the symbology targets — a quick validity check before printing.'],
+  ['How do I make a product label?','Use the Label tab: enter the company, product, SKU, price, batch and expiry, pick a barcode format, and the tool builds a print-ready label with the barcode embedded. Print it or download it as a PNG.'],
+  ['Which printers work with these barcodes?','Any printer works. For dedicated label printers (thermal, Zebra, Dymo, Brother) print the SVG or PNG at 100% scale; for A4 label sheets use the Batch tab. Always print at true size so the bars stay scannable.'],
+  ['Why must I print at 100% scale?','Scaling or "fit to page" changes the bar widths and the quiet-zone margins, which can make a barcode unreadable. Printing at 100% preserves the exact geometry scanners expect.'],
+  ['What is a check digit?','A check digit is an extra digit calculated from the others to catch data-entry errors. EAN-13, EAN-8, UPC and ITF-14 include one as their last digit; the tool shows it in the Barcode Information panel.'],
+  ['What is the quiet zone?','The quiet zone is the blank margin required on both sides of a barcode. Without it, scanners may fail to read the code, so keep a clear white border and avoid cramming barcodes against other elements.'],
+  ['Can I generate GS1 retail barcodes?','You can generate the EAN/UPC symbol for any number, which is perfect for internal use. For barcodes sold in shops worldwide, the number itself must come from a GS1-registered company prefix that you obtain from GS1.'],
 ];
 const hiFaqs = [
   ['CODE128 क्या है?','CODE128 सबसे versatile 1D barcode format है। यह letters, numbers, और symbols सहित किसी भी ASCII character को support करता है। Inventory, logistics, और shipping labels के लिए ideal।'],
@@ -1433,6 +1659,16 @@ const hiFaqs = [
   ['क्या यह tool commercial use के लिए है?','Internal use (inventory, logistics, custom labels) के लिए बिल्कुल। Globally registered retail EAN/UPC codes के लिए GS1-registered company prefix ज़रूरी है।'],
   ['क्या यह tool free है?','हाँ, पूरी तरह free। कोई signup नहीं, कोई watermark नहीं।'],
   ['Transparent background क्या है?','Transparent background enable करने पर barcode की background transparent हो जाती है। SVG download में यह सबसे अच्छा काम करता है।'],
+  ['क्या मैं इस tool से barcode scan कर सकता हूँ?','हाँ। Scan tab खोलें और या तो camera शुरू करें या image upload/drag करें। tool CODE128, EAN/UPC, CODE39, QR आदि को पूरी तरह आपके browser में decode करता है, फिर value copy करने या generator में भेजने देता है।'],
+  ['कौन-से barcode formats support हैं?','1D formats में CODE128, CODE39, EAN-13/8/5/2, UPC-A/E, ITF-14/ITF, MSI (mod 10/11 सहित), Pharmacode और Codabar, साथ ही 2D QR codes। अपने industry standard से मेल खाता चुनें।'],
+  ['Barcode Information panel क्या दिखाता है?','barcode बनाने के बाद यह type, character count, encoding class (numeric/alphanumeric/ASCII), EAN/UPC codes का check digit, और symbology किन scanners के लिए है दिखाता है — printing से पहले एक तेज़ validity जाँच।'],
+  ['मैं product label कैसे बनाऊँ?','Label tab इस्तेमाल करें: company, product, SKU, price, batch और expiry डालें, barcode format चुनें, और tool barcode सहित एक print-ready label बना देता है। इसे print करें या PNG download करें।'],
+  ['कौन-से printers इन barcodes के साथ काम करते हैं?','कोई भी printer। dedicated label printers (thermal, Zebra, Dymo, Brother) के लिए SVG या PNG 100% scale पर print करें; A4 label sheets के लिए Batch tab। हमेशा true size पर print करें ताकि bars scannable रहें।'],
+  ['100% scale पर print करना क्यों ज़रूरी है?','Scaling या "fit to page" bar widths और quiet-zone margins बदल देता है, जिससे barcode अपठनीय हो सकता है। 100% पर print करने से वह exact geometry बनी रहती है जो scanners अपेक्षा करते हैं।'],
+  ['Check digit क्या है?','Check digit एक अतिरिक्त अंक है जो बाकी अंकों से गणना करके data-entry errors पकड़ता है। EAN-13/8, UPC और ITF-14 में यह आखिरी अंक होता है; tool इसे Barcode Information panel में दिखाता है।'],
+  ['Quiet zone क्या है?','Quiet zone barcode के दोनों ओर आवश्यक खाली margin है। इसके बिना scanners पढ़ने में विफल हो सकते हैं, इसलिए एक साफ़ सफ़ेद border रखें।'],
+  ['क्या मैं GS1 retail barcodes बना सकता हूँ?','आप किसी भी number के लिए EAN/UPC symbol बना सकते हैं, जो internal use के लिए बढ़िया है। दुनिया भर की दुकानों में बिकने वाले barcodes के लिए, number खुद GS1-registered company prefix से आना चाहिए।'],
+  ['क्या यह tool offline काम करता है?','हाँ। एक बार page load होने के बाद barcode और QR generation offline काम करती है। केवल scanner की decode library के लिए पहली बार internet चाहिए; उसके बाद सब कुछ आपके browser में चलता है।'],
 ];
 
 function buildFAQs(containerId, items) {
