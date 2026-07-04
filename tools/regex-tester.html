@@ -4,42 +4,130 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free online Regex Tester — test regular expressions live against your text with instant match highlighting, capture groups, all flags (g i m s u y d), replace &amp; split modes, match statistics, execution time, ready-made patterns (email, URL, IP, PAN, Aadhaar, GST, IFSC, PIN) and export to TXT/CSV/JSON. 100% local, nothing uploaded, works offline.">
+<meta name="keywords" content="regex tester, regular expression tester, regex online, test regex, regex match highlight, regex replace, regex flags, javascript regex, regex examples, regex validator">
 <link rel="canonical" href="https://apnesoftware.com/tools/regex-tester.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Regex Tester | ApneSoftware">
-<meta property="og:description" content="Test regular expressions live with highlights. Free online tool — no signup required.">
+<meta property="og:title" content="Regex Tester — Test Regular Expressions Live | ApneSoftware">
+<meta property="og:description" content="Test regex live with highlighted matches, capture groups, all flags, replace &amp; split modes, statistics, ready-made patterns and export. Free, private, offline.">
 <meta property="og:url" content="https://apnesoftware.com/tools/regex-tester.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Regex Tester | ApneSoftware">
-<meta name="twitter:description" content="Test regular expressions live with highlights. Free online tool — no signup required.">
+<meta name="twitter:title" content="Regex Tester — Test Regular Expressions Live | ApneSoftware">
+<meta name="twitter:description" content="Live regex testing with highlighted matches, capture groups, all flags, replace/split modes, statistics, ready-made patterns and export. Free, private, offline.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Regex Tester","description":"Test regular expressions live with highlights. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/regex-tester.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Regex Tester","description":"Professional browser-based regular expression tester that tests regex live against your text with instant match highlighting, numbered and named capture groups, all flags (g, i, m, s, u, y, d), replace and split modes, match statistics with execution time and a complexity score, a library of ready-made patterns (email, URL, IP, date, PAN, Aadhaar, GST, IFSC, PIN and more), local history and export to TXT/CSV/JSON. Runs entirely in the browser.","url":"https://apnesoftware.com/tools/regex-tester.html","applicationCategory":"DeveloperApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Live match highlighting","Capture groups","All regex flags g i m s u y d","Replace and split modes","Match statistics and timing","Ready-made pattern library","Local history","Export TXT/CSV/JSON"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Regex Tester — Test Regular Expressions Live","url":"https://apnesoftware.com/tools/regex-tester.html","description":"Private, browser-based regular expression tester with live highlighting, capture groups, replace/split modes, statistics and export.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Developer & Utility","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":3,"name":"Regex Tester","item":"https://apnesoftware.com/tools/regex-tester.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to test a regular expression","description":"Test and debug regex against your own text.","step":[{"@type":"HowToStep","name":"Enter a pattern","text":"Type your regular expression, or load a ready-made one."},{"@type":"HowToStep","name":"Choose flags","text":"Toggle flags like global, case-insensitive or multiline."},{"@type":"HowToStep","name":"Paste test text","text":"Paste the text to match; matches highlight instantly."},{"@type":"HowToStep","name":"Refine or replace","text":"Review matches and groups, or switch to replace or split mode."}]}
+</script>
+<script type="application/ld+json" id="faqSchema">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}
 </script>
 <meta name="color-scheme" content="dark">
-<title>Regex Tester | ApneSoftware</title>
+<title>Regex Tester — Test Regular Expressions Live | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-  .regex-input-row{display:flex;align-items:center;gap:0;font-family:'Consolas','Courier New',monospace}
-  .regex-slash{color:var(--text-dim);font-size:1.1rem;padding:0 4px}
-  .regex-input-row input[type=text]{font-family:inherit}
-  .flags-row{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap}
-  .flags-row label{display:flex;align-items:center;gap:6px;font-size:.85rem;color:var(--text-dim);cursor:pointer}
-  .flags-row input{width:auto}
-  .highlight-box{
-    background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:14px;
-    font-family:'Consolas','Courier New',monospace;font-size:.85rem;white-space:pre-wrap;word-break:break-word;
-    line-height:1.7;margin-top:10px;max-height:300px;overflow-y:auto;
-  }
-  .highlight-box mark{background:rgba(124,92,252,.35);color:#cfe0ff;border-radius:3px;padding:0 1px}
-  .match-item{
-    background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;
-    margin-bottom:8px;font-family:'Consolas','Courier New',monospace;font-size:.82rem;
-  }
-  .match-item .idx{color:var(--accent);font-weight:700;margin-right:8px}
-  .status-err{color:var(--danger);font-weight:600}
+/* ===== Regex Tester — scoped rx- styles ===== */
+.rx-crumb{font-size:.78rem;color:var(--text-dim);margin-bottom:6px}
+.rx-crumb a{color:#c4b5fd;text-decoration:none}
+.rx-crumb a:hover{text-decoration:underline}
+.rx-btn{background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.34);color:#d6cbff;border-radius:10px;padding:9px 13px;font-size:.83rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+.rx-btn:hover{background:rgba(167,139,250,.24)}
+.rx-btn.primary{background:linear-gradient(90deg,#7c3aed,#a78bfa);border-color:transparent;color:#fff;font-weight:600}
+.rx-btn.danger{color:#fca5a5;border-color:rgba(248,113,113,.4)}
+.rx-btn:focus-visible,.rx-tab:focus-visible,.rx-flag:focus-visible,.rx-ex:focus-visible{outline:2px solid #a78bfa;outline-offset:2px}
+.rx-btn.sm{padding:6px 10px;font-size:.76rem}
+.rx-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+.rx-label{display:block;font-size:.8rem;color:var(--text-dim);margin-bottom:6px;text-transform:uppercase;letter-spacing:.03em}
+.rx-patrow{display:flex;align-items:center;gap:0;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));border-radius:10px;padding:4px 10px;font-family:'Consolas','Courier New',monospace}
+.rx-patrow.err{border-color:rgba(248,113,113,.55)}
+.rx-patrow.ok{border-color:rgba(52,211,153,.4)}
+.rx-slash{color:#a78bfa;font-size:1.1rem;padding:0 5px;font-weight:700}
+#regexPattern{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:inherit;font-size:.9rem;padding:8px 2px}
+#flagsDisplay{color:#c4b5fd;font-size:.9rem;min-width:10px}
+
+.rx-flags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.rx-flag{display:inline-flex;align-items:center;gap:5px;font-size:.76rem;padding:5px 10px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text-dim);cursor:pointer;font-weight:600}
+.rx-flag input{width:auto;accent-color:#a78bfa}
+.rx-flag.on{background:rgba(167,139,250,.18);border-color:#a78bfa;color:#c4b5fd}
+
+.rx-exbar{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;align-items:center}
+.rx-exbar .lbl{font-size:.76rem;color:var(--text-dim)}
+.rx-ex{font-size:.75rem;padding:4px 10px;border-radius:999px;background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.28);color:#d6cbff;cursor:pointer}
+.rx-ex:hover{background:rgba(167,139,250,.22)}
+
+.rx-tabs{display:flex;gap:7px;margin:14px 0 10px;flex-wrap:wrap}
+.rx-tab{padding:7px 15px;border-radius:999px;border:1px solid var(--border,rgba(255,255,255,.14));background:rgba(255,255,255,.05);color:var(--text-dim);font-size:.82rem;cursor:pointer;font-weight:600}
+.rx-tab[aria-selected="true"]{background:linear-gradient(90deg,#7c3aed,#a78bfa);border-color:transparent;color:#fff}
+
+#testString,.rx-ta{width:100%;min-height:150px;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text);border-radius:10px;padding:12px;font-family:'Consolas','Courier New',monospace;font-size:.85rem;resize:vertical;line-height:1.6}
+.rx-repl{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text);border-radius:10px;padding:10px 12px;font-family:'Consolas','Courier New',monospace;font-size:.85rem}
+#status{margin:10px 0;font-size:.85rem;min-height:1em}
+#status.err{color:#fca5a5;font-weight:600}
+#status.ok{color:#6ee7b7}
+
+.rx-stats{display:none;flex-wrap:wrap;gap:8px;margin:12px 0}
+.rx-stats.on{display:flex}
+.stat-chip{padding:4px 11px;border-radius:999px;font-size:.74rem;font-weight:600;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text-dim)}
+.stat-chip b{color:#c4b5fd}
+.stat-chip.cx-low b{color:#6ee7b7}.stat-chip.cx-med b{color:#fcd34d}.stat-chip.cx-high b{color:#fca5a5}
+
+.rx-sub{font-size:.9rem;margin:16px 0 6px;display:flex;align-items:center;gap:8px}
+.highlight-box{background:rgba(0,0,0,.25);border:1px solid var(--border,rgba(255,255,255,.12));border-radius:10px;padding:14px;font-family:'Consolas','Courier New',monospace;font-size:.85rem;white-space:pre-wrap;word-break:break-word;line-height:1.8;max-height:320px;overflow:auto;color:var(--text)}
+.highlight-box mark{background:rgba(167,139,250,.4);color:#fff;border-radius:3px;padding:0 2px}
+.highlight-box mark:nth-of-type(even){background:rgba(52,211,153,.35)}
+#matchList{display:flex;flex-direction:column;gap:7px}
+.match-item{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:8px;padding:9px 12px;font-family:'Consolas','Courier New',monospace;font-size:.8rem;word-break:break-word}
+.match-item .idx{color:#a78bfa;font-weight:700;margin-right:8px}
+.match-item .grp{display:block;margin-top:4px;color:var(--text-dim);font-size:.75rem}
+.match-item .grp b{color:#c4b5fd}
+.rx-replout{background:rgba(0,0,0,.25);border:1px solid var(--border,rgba(255,255,255,.12));border-radius:10px;padding:14px;font-family:'Consolas','Courier New',monospace;font-size:.85rem;white-space:pre-wrap;word-break:break-word;line-height:1.7;max-height:300px;overflow:auto;color:var(--text)}
+.rx-hist{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.rx-histchip{font-size:.74rem;padding:4px 10px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text-dim);cursor:pointer;font-family:'Consolas','Courier New',monospace;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rx-histchip:hover{border-color:#a78bfa;color:#c4b5fd}
+.privacy-note{background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;padding:12px 14px;font-size:.84rem;color:var(--text-dim);margin-top:16px;line-height:1.6}
+.privacy-note b{color:#c4b5fd}
+
+/* below-tool */
+.rx-wrap{margin:26px 0}
+.rx-title{font-size:1.35rem;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.rx-feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.rx-fcard{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:14px;padding:16px}
+.rx-fcard h4{margin:0 0 6px;font-size:.98rem;display:flex;align-items:center;gap:8px}
+.rx-fcard p{margin:0;font-size:.86rem;color:var(--text-dim);line-height:1.55}
+.rx-rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.rx-rel{display:block;text-decoration:none;background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:14px;transition:.15s;color:var(--text)}
+.rx-rel:hover{border-color:#a78bfa;background:rgba(167,139,250,.1);transform:translateY(-2px)}
+.rx-rel b{display:block;font-size:.92rem;margin-bottom:3px}
+.rx-rel span{font-size:.8rem;color:var(--text-dim);line-height:1.45}
+.rx-prose p,.rx-prose li{color:var(--text-dim);line-height:1.75;font-size:.92rem}
+.rx-prose h3{font-size:1.02rem;margin:18px 0 8px}
+.rx-tscroll{overflow:auto;border-radius:10px}
+table.rx-table{border-collapse:collapse;font-size:.85rem;width:100%}
+table.rx-table th,table.rx-table td{border:1px solid var(--border,rgba(255,255,255,.12));padding:7px 10px;text-align:left;color:var(--text)}
+table.rx-table th{background:rgba(167,139,250,.14);color:#fff;font-weight:600}
+table.rx-table td code{color:#c4b5fd;font-family:'Consolas','Courier New',monospace}
+.rx-faq details{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:0 16px;margin-bottom:10px}
+.rx-faq summary{cursor:pointer;padding:14px 0;font-weight:600;font-size:.92rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.rx-faq summary::-webkit-details-marker{display:none}
+.rx-faq summary::after{content:'+';font-size:1.3rem;color:#a78bfa;flex:0 0 auto}
+.rx-faq details[open] summary::after{content:'−'}
+.rx-faq details p{margin:0 0 14px;font-size:.87rem;color:var(--text-dim);line-height:1.65}
+.rx-steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:12px}
+.rx-steps li{counter-increment:s;position:relative;padding-left:46px;font-size:.9rem;color:var(--text-dim);line-height:1.6}
+.rx-steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:9px;background:rgba(167,139,250,.18);color:#c4b5fd;font-weight:700;display:grid;place-items:center}
+.rx-steps li b{color:var(--text)}
+@media (prefers-contrast:more){.rx-prose p,.rx-prose li{color:#fff}}
 </style>
 </head>
 <body>
@@ -52,159 +140,423 @@
 
 <div class="container">
   <div class="tool-header">
+    <nav class="rx-crumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html">Developer &amp; Utility</a> › <span>Regex Tester</span></nav>
     <h1>🧩 Regex Tester</h1>
-    <p>Test regular expressions live against your own text, with matches highlighted and listed.</p>
+    <p>Test regular expressions live against your own text — with <b>highlighted matches, capture groups, all flags, replace &amp; split modes, statistics</b> and ready-made patterns. 100% local — nothing is uploaded.</p>
   </div>
 
   <div class="panel">
-    <div class="field">
-      <label for="regexPattern">Regular expression</label>
-      <div class="regex-input-row">
-        <span class="regex-slash">/</span>
-        <input type="text" id="regexPattern" placeholder="e.g. \b\w+@\w+\.\w+\b" style="flex:1">
-        <span class="regex-slash">/</span>
-        <span id="flagsDisplay" class="regex-slash"></span>
-      </div>
-      <div class="flags-row">
-        <label><input type="checkbox" id="flagG" checked> g (global)</label>
-        <label><input type="checkbox" id="flagI"> i (case-insensitive)</label>
-        <label><input type="checkbox" id="flagM"> m (multiline)</label>
-        <label><input type="checkbox" id="flagS"> s (dotall)</label>
-      </div>
+    <label class="rx-label" for="regexPattern">Regular expression</label>
+    <div class="rx-patrow" id="patRow">
+      <span class="rx-slash">/</span>
+      <input type="text" id="regexPattern" placeholder="e.g. \b\w+@\w+\.\w+\b" spellcheck="false" autocomplete="off" aria-label="Regular expression pattern">
+      <span class="rx-slash">/</span>
+      <span id="flagsDisplay"></span>
+    </div>
+    <div class="rx-flags" id="flagChips">
+      <label class="rx-flag on"><input type="checkbox" id="flagG" checked> g <span style="opacity:.6">global</span></label>
+      <label class="rx-flag"><input type="checkbox" id="flagI"> i <span style="opacity:.6">ignore-case</span></label>
+      <label class="rx-flag"><input type="checkbox" id="flagM"> m <span style="opacity:.6">multiline</span></label>
+      <label class="rx-flag"><input type="checkbox" id="flagS"> s <span style="opacity:.6">dotall</span></label>
+      <label class="rx-flag"><input type="checkbox" id="flagU"> u <span style="opacity:.6">unicode</span></label>
+      <label class="rx-flag"><input type="checkbox" id="flagY"> y <span style="opacity:.6">sticky</span></label>
+      <label class="rx-flag"><input type="checkbox" id="flagD"> d <span style="opacity:.6">indices</span></label>
     </div>
 
-    <div class="field">
-      <label for="testString">Test string</label>
-      <textarea id="testString" style="min-height:160px" placeholder="Paste the text you want to test your regex against..."></textarea>
+    <div class="rx-exbar">
+      <span class="lbl">⚡ Try:</span>
+      <span id="exampleChips"></span>
     </div>
+
+    <div class="rx-tabs" role="tablist" aria-label="Mode">
+      <button class="rx-tab" id="tabMatch" role="tab" aria-selected="true" type="button">🔍 Match</button>
+      <button class="rx-tab" id="tabReplace" role="tab" aria-selected="false" type="button">🔁 Replace</button>
+      <button class="rx-tab" id="tabSplit" role="tab" aria-selected="false" type="button">✂️ Split</button>
+    </div>
+
+    <div id="replaceRow" style="display:none;margin-bottom:12px">
+      <label class="rx-label" for="replaceInput">Replacement (use $1, $2, $&amp; …)</label>
+      <input type="text" id="replaceInput" class="rx-repl" placeholder="e.g. [$&amp;]" spellcheck="false" autocomplete="off">
+    </div>
+
+    <label class="rx-label" for="testString">Test string</label>
+    <textarea id="testString" placeholder="Paste the text you want to test your regex against…" spellcheck="false"></textarea>
 
     <p id="status"></p>
 
-    <h3 style="font-size:.9rem;margin:14px 0 4px">👁️ Highlighted matches</h3>
-    <div class="highlight-box" id="highlightBox">Matches will be highlighted here.</div>
+    <div class="rx-stats" id="statsRow">
+      <span class="stat-chip">Matches: <b id="stMatches">0</b></span>
+      <span class="stat-chip">Unique: <b id="stUnique">0</b></span>
+      <span class="stat-chip">Duplicates: <b id="stDup">0</b></span>
+      <span class="stat-chip">Groups: <b id="stGroups">0</b></span>
+      <span class="stat-chip">Chars: <b id="stChars">0</b></span>
+      <span class="stat-chip">Time: <b id="stTime">—</b></span>
+      <span class="stat-chip" id="cxChip">Complexity: <b id="stCx">—</b></span>
+    </div>
 
-    <h3 style="font-size:.9rem;margin:16px 0 4px">📋 Match list (<span id="matchCount">0</span>)</h3>
-    <div id="matchList"></div>
+    <!-- MATCH view -->
+    <div id="matchView">
+      <h3 class="rx-sub">👁️ Highlighted matches</h3>
+      <div class="highlight-box" id="highlightBox">Matches will be highlighted here.</div>
+      <div class="rx-toolbar">
+        <button class="rx-btn sm" id="copyMatchesBtn" type="button">📋 Copy matches</button>
+        <button class="rx-btn sm" id="expTxt" type="button">⬇ TXT</button>
+        <button class="rx-btn sm" id="expCsv" type="button">⬇ CSV</button>
+        <button class="rx-btn sm" id="expJson" type="button">⬇ JSON</button>
+      </div>
+      <h3 class="rx-sub">📋 Match list (<span id="matchCount">0</span>)</h3>
+      <div id="matchList"></div>
+    </div>
+
+    <!-- REPLACE view -->
+    <div id="replaceView" style="display:none">
+      <h3 class="rx-sub">🔁 Replace preview</h3>
+      <div class="rx-replout" id="replaceOut">Replacement result appears here.</div>
+      <div class="rx-toolbar"><button class="rx-btn sm" id="copyReplBtn" type="button">📋 Copy result</button></div>
+    </div>
+
+    <!-- SPLIT view -->
+    <div id="splitView" style="display:none">
+      <h3 class="rx-sub">✂️ Split result (<span id="splitCount">0</span>)</h3>
+      <div id="splitList"></div>
+    </div>
+
+    <div style="margin-top:16px">
+      <div class="rx-sub" style="justify-content:space-between">
+        <span>🕒 Recent patterns</span>
+        <button class="rx-btn danger sm" id="clearHistBtn" type="button">🗑 Clear</button>
+      </div>
+      <div class="rx-hist" id="histChips"><span style="color:var(--text-dim);font-size:.8rem">No history yet.</span></div>
+    </div>
+
+    <div class="privacy-note">🔒 <b>Private by design:</b> your pattern and test text are matched entirely in your browser with the native JavaScript regex engine. Nothing is uploaded, and the tool works offline once loaded.</div>
   </div>
 </div>
 
+<!-- ===================== BELOW-TOOL CONTENT ===================== -->
+<div class="container">
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Write and test regular expressions against real text, with instant visual feedback. Matches are highlighted directly in your text and listed below with their position and any captured groups.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Type your regular expression pattern.</li>
-        <li>Choose flags — global, case-insensitive, multiline, or dotall.</li>
-        <li>Paste your test text and see matches highlighted live.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>असली टेक्स्ट पर रेगुलर एक्सप्रेशन लिखें और टेस्ट करें, तुरंत विजुअल फीडबैक के साथ। मैच आपके टेक्स्ट में सीधे हाईलाइट होते हैं और नीचे उनकी पोजीशन और कैप्चर्ड ग्रुप्स के साथ लिस्ट किए जाते हैं।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपना रेगुलर एक्सप्रेशन पैटर्न टाइप करें।</li>
-        <li>फ्लैग्स चुनें — global, case-insensitive, multiline, या dotall।</li>
-        <li>टेस्ट टेक्स्ट पेस्ट करें और लाइव हाईलाइट किए गए मैच देखें।</li>
-      </ol>
-    </div>
+<!-- Key Features -->
+<section class="rx-wrap">
+  <h2 class="rx-title">✨ Key Features</h2>
+  <div class="rx-feat-grid">
+    <div class="rx-fcard"><h4>👁️ Live Highlighting</h4><p>Matches light up in your text as you type, with alternating colours so adjacent matches are clear.</p></div>
+    <div class="rx-fcard"><h4>🎚️ All Flags</h4><p>Toggle g, i, m, s, u, y and d — global, ignore-case, multiline, dotall, unicode, sticky and indices.</p></div>
+    <div class="rx-fcard"><h4>🎯 Capture Groups</h4><p>Every match lists its numbered and named capture groups and its index in the text.</p></div>
+    <div class="rx-fcard"><h4>🔁 Replace Mode</h4><p>Preview a replacement live using $1, $&amp; and named references before you commit.</p></div>
+    <div class="rx-fcard"><h4>✂️ Split Mode</h4><p>Split text by your pattern and see each resulting piece listed.</p></div>
+    <div class="rx-fcard"><h4>📊 Statistics</h4><p>Total, unique and duplicate matches, group count, characters tested, timing and a complexity score.</p></div>
+    <div class="rx-fcard"><h4>⚡ Ready-Made Patterns</h4><p>One-click email, URL, IP, date, plus India-specific PAN, Aadhaar, GST, IFSC and PIN patterns.</p></div>
+    <div class="rx-fcard"><h4>✅ Instant Validation</h4><p>Invalid patterns are flagged immediately with the exact error message.</p></div>
+    <div class="rx-fcard"><h4>📤 Export</h4><p>Copy matches or export them as TXT, CSV or JSON for reports and tests.</p></div>
+    <div class="rx-fcard"><h4>🕒 History</h4><p>Recent patterns are remembered locally so you can restore them in a click.</p></div>
+    <div class="rx-fcard"><h4>🔒 100% Local</h4><p>Everything runs in your browser. Nothing is uploaded, logged or tracked.</p></div>
+    <div class="rx-fcard"><h4>♿ Accessible &amp; Mobile</h4><p>Keyboard navigation, ARIA labels, high-contrast support and a responsive layout.</p></div>
   </div>
+</section>
+
+<!-- Benefits -->
+<section class="rx-wrap rx-prose">
+  <h2 class="rx-title">🎯 Benefits</h2>
+  <ul>
+    <li><b>Build patterns faster</b> — instant feedback means you refine a regex in seconds instead of guessing.</li>
+    <li><b>Debug with confidence</b> — highlighted matches and group breakdowns show exactly what your pattern captures.</li>
+    <li><b>Validate real data</b> — ready-made India-specific patterns (PAN, Aadhaar, GST, IFSC, PIN) save you writing them from scratch.</li>
+    <li><b>Do more than match</b> — replace and split modes turn a tester into a mini text-processing workbench.</li>
+    <li><b>Stay private</b> — your text never leaves the browser, and it works offline.</li>
+  </ul>
+</section>
+
+<!-- Related Tools (ABOVE About) -->
+<section class="rx-wrap">
+  <h2 class="rx-title">🧰 Related Tools</h2>
+  <div class="rx-rel-grid">
+    <a class="rx-rel" href="hash-generator.html"><b>#️⃣ Hash Generator</b><span>MD5, SHA, CRC32 checksums.</span></a>
+    <a class="rx-rel" href="base64-encoder-decoder.html"><b>🔢 Base64 Encoder / Decoder</b><span>Encode &amp; decode Base64.</span></a>
+    <a class="rx-rel" href="url-html-encoder-decoder.html"><b>🔗 URL &amp; HTML Entity Coder</b><span>Encode &amp; decode URLs / HTML.</span></a>
+    <a class="rx-rel" href="csv-json-converter.html"><b>🔄 CSV ↔ JSON Converter</b><span>Convert between CSV and JSON.</span></a>
+    <a class="rx-rel" href="text-encrypt-decrypt.html"><b>🔐 Text Encrypt / Decrypt</b><span>AES encryption in your browser.</span></a>
+    <a class="rx-rel" href="uuid-generator.html"><b>🆔 UUID Generator</b><span>Generate unique IDs.</span></a>
+    <a class="rx-rel" href="timestamp-converter.html"><b>⏱️ Timestamp Converter</b><span>Convert Unix timestamps.</span></a>
+    <a class="rx-rel" href="text-diff.html"><b>🔎 Text &amp; Code Diff</b><span>Compare two texts.</span></a>
+  </div>
+</section>
+
+<!-- About (English) -->
+<section class="rx-wrap rx-prose">
+  <h2 class="rx-title">ℹ️ About This Tool</h2>
+  <p>The <b>ApneSoftware Regex Tester</b> is a professional, privacy-first workbench for writing, testing and debugging <b>regular expressions</b> directly in your browser. A regular expression — regex for short — is a compact pattern language for describing text: it lets you find, validate, extract, replace and split strings based on rules rather than fixed values. Regex is one of the most powerful tools a developer, data analyst, tester or writer can learn, but it is also famously easy to get wrong. A pattern that looks correct can silently miss edge cases, match too much, or fail on real-world input. The cure is fast feedback, and that is exactly what this tool provides: type a pattern, paste some text, and watch every match light up instantly, complete with the groups it captured and the statistics of what happened.</p>
+  <p>At the centre is a <b>live testing engine</b> built on the browser's own JavaScript regex engine, so the results you see here are the same results your code will get. As you type, the tool compiles your pattern, validates it, and — if it is valid — runs it against your test string and <b>highlights every match</b> in place, using alternating colours so that adjacent matches remain distinct. Below the highlight view, a <b>match list</b> enumerates each match with its position in the text and a full breakdown of its <b>capture groups</b>, both numbered (<code>$1</code>, <code>$2</code>) and named (<code>(?&lt;year&gt;…)</code>). If your pattern is invalid, the tool shows the precise error message from the engine — a missing bracket, an unterminated group, an invalid escape — so you can fix it immediately instead of hunting blind.</p>
+  <p>Every regex <b>flag</b> is a single click away. The <b>g</b> (global) flag finds all matches rather than just the first; <b>i</b> makes matching case-insensitive; <b>m</b> (multiline) makes <code>^</code> and <code>$</code> match at line breaks; <b>s</b> (dotall) lets <code>.</code> match newlines; <b>u</b> (unicode) enables full Unicode and <code>\p{…}</code> property escapes; <b>y</b> (sticky) anchors matching to a position; and <b>d</b> (indices) records the start and end of each capture. The current flags are shown right after the closing slash, exactly as you would write the literal, so the pattern you build here maps one-to-one onto the code you paste into your project.</p>
+  <p>The tool goes well beyond matching. In <b>Replace mode</b> you supply a replacement string — with support for <code>$1</code>, <code>$&amp;</code> and named group references — and see a live preview of the transformed text, which is perfect for bulk edits, reformatting and data cleanup. In <b>Split mode</b> the pattern becomes a delimiter and the text is broken into a clean list of pieces, ideal for parsing CSVs, logs and structured strings. A <b>statistics</b> panel summarises each run: total matches, how many are unique versus duplicated, the number of capture groups, the characters tested, the <b>execution time</b> in milliseconds, and a rough <b>complexity score</b> that flags patterns likely to be slow or prone to catastrophic backtracking. Together these turn guesswork into measurement.</p>
+  <p>To help you start quickly, the tester ships with a library of <b>ready-made patterns</b> for the things people match most often — email addresses, URLs, IPv4 and IPv6 addresses, dates, times, hex colours and more — plus a set tuned for Indian data, including <b>PAN, Aadhaar, GST, IFSC and PIN codes</b>. Load one with a single click, adapt it to your needs, and keep going. A local <b>history</b> remembers your recent patterns so you can jump back to earlier attempts, and you can <b>copy</b> the matched values or <b>export</b> them as TXT, CSV or JSON for documentation, test fixtures or bug reports. Below the tool you will also find a concise <b>regex guide</b> and <b>flags reference</b> so the syntax is always at hand.</p>
+  <p><b>Privacy is built in.</b> Unlike some online testers that send your pattern and data to a server, this tool does everything <b>locally</b>: your regex and test text are processed entirely in your browser and never uploaded, there is no account, and nothing about your content is logged or tracked. The only thing stored is an optional local history you can clear at any time. Because it is fully client-side, it also works <b>offline</b> once loaded, and it follows accessibility best practices with keyboard navigation, ARIA labelling, visible focus outlines and high-contrast support. In short, it is a fast, complete, genuinely private regular-expression workbench — powerful enough for serious debugging, approachable enough for learning — that runs entirely on your own machine.</p>
+</section>
+
+<!-- About (Hindi) -->
+<section class="rx-wrap rx-prose">
+  <h2 class="rx-title">ℹ️ इस टूल के बारे में</h2>
+  <p><b>ApneSoftware Regex Tester</b> <b>regular expressions</b> लिखने, test करने व debug करने के लिए एक professional, privacy-first workbench है जो सीधे आपके browser में चलता है। एक regular expression — संक्षेप में regex — text वर्णन करने की एक संक्षिप्त pattern भाषा है: यह आपको निश्चित मानों के बजाय नियमों के आधार पर strings खोजने, validate करने, निकालने, replace करने व split करने देती है। Regex एक developer, data analyst, tester या लेखक के लिए सबसे शक्तिशाली उपकरणों में से एक है, पर इसे ग़लत करना भी बेहद आसान है। जो pattern सही लगता है वह चुपचाप edge cases छोड़ सकता है, बहुत ज़्यादा match कर सकता है, या असली input पर विफल हो सकता है। इसका इलाज है तेज़ feedback, और यही यह टूल देता है: एक pattern टाइप करें, कुछ text paste करें, और हर match को तुरंत जलते देखें।</p>
+  <p>केंद्र में एक <b>live testing engine</b> है जो browser के अपने JavaScript regex engine पर बना है, इसलिए यहाँ दिखते परिणाम वही हैं जो आपके code को मिलेंगे। आपके टाइप करते ही टूल आपका pattern compile करता है, validate करता है, और — यदि यह मान्य है — उसे आपके test string पर चलाकर हर match को जगह पर <b>highlight</b> करता है, बारी-बारी रंगों से ताकि पास-पास के matches अलग दिखें। highlight view के नीचे एक <b>match list</b> हर match को उसकी स्थिति व <b>capture groups</b> के पूरे विवरण के साथ गिनाती है, दोनों numbered (<code>$1</code>, <code>$2</code>) व named। यदि pattern अमान्य है, टूल engine का सटीक error message दिखाता है।</p>
+  <p>हर regex <b>flag</b> एक click दूर है। <b>g</b> (global) पहला नहीं बल्कि सभी matches ढूँढता है; <b>i</b> case-insensitive बनाता है; <b>m</b> (multiline) <code>^</code> व <code>$</code> को line breaks पर match कराता है; <b>s</b> (dotall) <code>.</code> को newlines match कराता है; <b>u</b> (unicode) पूर्ण Unicode व <code>\p{…}</code> escapes सक्षम करता है; <b>y</b> (sticky) matching को एक स्थिति पर anchor करता है; और <b>d</b> (indices) हर capture का आरंभ-अंत दर्ज करता है। वर्तमान flags समापन slash के ठीक बाद दिखते हैं, बिल्कुल जैसे आप literal लिखते हैं।</p>
+  <p>टूल matching से कहीं आगे जाता है। <b>Replace mode</b> में आप एक replacement string देते हैं — <code>$1</code>, <code>$&amp;</code> व named group references के समर्थन के साथ — और रूपांतरित text का live preview देखते हैं, जो bulk edits, reformatting व data cleanup के लिए बढ़िया है। <b>Split mode</b> में pattern एक delimiter बन जाता है और text टुकड़ों की एक साफ़ सूची में टूट जाता है, CSVs, logs व structured strings parse करने के लिए आदर्श। एक <b>statistics</b> panel हर run का सार देता है: कुल matches, कितने unique बनाम duplicate, capture groups की संख्या, tested characters, <b>execution time</b> milliseconds में, और एक मोटा <b>complexity score</b>।</p>
+  <p>जल्दी शुरू करने में मदद के लिए, tester <b>ready-made patterns</b> की एक library के साथ आता है — email addresses, URLs, IPv4 व IPv6 addresses, dates, times, hex colours व अधिक — साथ ही भारतीय data के लिए एक सेट, जिसमें <b>PAN, Aadhaar, GST, IFSC व PIN codes</b> शामिल हैं। किसी को एक click से load करें, अपनी ज़रूरत अनुसार बदलें, और आगे बढ़ें। एक local <b>history</b> आपके हाल के patterns याद रखती है, और आप matched मानों को <b>copy</b> या TXT, CSV या JSON के रूप में <b>export</b> कर सकते हैं।</p>
+  <p><b>Privacy अंतर्निहित है।</b> कुछ online testers के विपरीत जो आपका pattern व data server पर भेजते हैं, यह टूल सब कुछ <b>locally</b> करता है: आपका regex व test text पूरी तरह आपके browser में process होते हैं और कभी upload नहीं होते, कोई account नहीं, और आपकी सामग्री के बारे में कुछ भी log या track नहीं होता। केवल एक वैकल्पिक local history store होती है जिसे आप कभी भी साफ़ कर सकते हैं। पूरी तरह client-side होने के कारण यह load होने के बाद <b>offline</b> भी काम करता है, और keyboard navigation, ARIA labelling, दृश्य focus outlines व high-contrast समर्थन के साथ accessibility सर्वोत्तम प्रथाओं का पालन करता है। संक्षेप में, यह एक तेज़, पूर्ण, सचमुच निजी regular-expression workbench है।</p>
+</section>
+
+<!-- Regex Guide -->
+<section class="rx-wrap rx-prose">
+  <h2 class="rx-title">📘 Regex Guide</h2>
+  <div class="rx-tscroll">
+    <table class="rx-table">
+      <thead><tr><th>Token</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td><code>.</code></td><td>Any character except newline (or any, with the s flag).</td></tr>
+        <tr><td><code>\d \w \s</code></td><td>A digit, word character, or whitespace (uppercase = negation).</td></tr>
+        <tr><td><code>[abc] [^abc]</code></td><td>A character in / not in the set; ranges like <code>[a-z]</code>.</td></tr>
+        <tr><td><code>* + ?</code></td><td>Zero-or-more, one-or-more, optional (add <code>?</code> for lazy).</td></tr>
+        <tr><td><code>{2} {2,} {2,5}</code></td><td>Exactly, at least, or a range of repetitions.</td></tr>
+        <tr><td><code>^ $ \b</code></td><td>Start, end, and word-boundary anchors.</td></tr>
+        <tr><td><code>( ) (?: )</code></td><td>Capturing and non-capturing groups.</td></tr>
+        <tr><td><code>(?&lt;name&gt; )</code></td><td>Named capture group.</td></tr>
+        <tr><td><code>a|b</code></td><td>Alternation — match a or b.</td></tr>
+        <tr><td><code>(?= ) (?! )</code></td><td>Look-ahead: followed / not followed by.</td></tr>
+        <tr><td><code>(?&lt;= ) (?&lt;! )</code></td><td>Look-behind: preceded / not preceded by.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Flags Guide -->
+<section class="rx-wrap rx-prose">
+  <h2 class="rx-title">🎚️ Flags Guide</h2>
+  <div class="rx-tscroll">
+    <table class="rx-table">
+      <thead><tr><th>Flag</th><th>Name</th><th>Effect</th></tr></thead>
+      <tbody>
+        <tr><td><code>g</code></td><td>Global</td><td>Find all matches, not just the first.</td></tr>
+        <tr><td><code>i</code></td><td>Ignore-case</td><td>Match letters regardless of case.</td></tr>
+        <tr><td><code>m</code></td><td>Multiline</td><td><code>^</code> and <code>$</code> match at each line break.</td></tr>
+        <tr><td><code>s</code></td><td>Dotall</td><td><code>.</code> also matches newline characters.</td></tr>
+        <tr><td><code>u</code></td><td>Unicode</td><td>Full Unicode &amp; <code>\p{…}</code> property escapes.</td></tr>
+        <tr><td><code>y</code></td><td>Sticky</td><td>Match only at <code>lastIndex</code>.</td></tr>
+        <tr><td><code>d</code></td><td>Indices</td><td>Record start/end indices of each group.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Common Examples -->
+<section class="rx-wrap rx-prose">
+  <h2 class="rx-title">🧪 Common Examples</h2>
+  <div class="rx-tscroll">
+    <table class="rx-table">
+      <thead><tr><th>Matches</th><th>Pattern</th></tr></thead>
+      <tbody>
+        <tr><td>Email</td><td><code>[\w.+-]+@[\w-]+\.[\w.-]+</code></td></tr>
+        <tr><td>URL</td><td><code>https?:\/\/[^\s]+</code></td></tr>
+        <tr><td>IPv4</td><td><code>\b(?:\d{1,3}\.){3}\d{1,3}\b</code></td></tr>
+        <tr><td>Date (YYYY-MM-DD)</td><td><code>\d{4}-\d{2}-\d{2}</code></td></tr>
+        <tr><td>Hex colour</td><td><code>#[0-9a-fA-F]{3,6}\b</code></td></tr>
+        <tr><td>PAN (India)</td><td><code>[A-Z]{5}[0-9]{4}[A-Z]</code></td></tr>
+        <tr><td>Aadhaar (India)</td><td><code>\b\d{4}\s?\d{4}\s?\d{4}\b</code></td></tr>
+        <tr><td>GSTIN (India)</td><td><code>\d{2}[A-Z]{5}\d{4}[A-Z][A-Z0-9]Z[A-Z0-9]</code></td></tr>
+        <tr><td>IFSC (India)</td><td><code>[A-Z]{4}0[A-Z0-9]{6}</code></td></tr>
+        <tr><td>PIN code (India)</td><td><code>\b[1-9][0-9]{5}\b</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- How To Use -->
+<section class="rx-wrap rx-prose">
+  <h2 class="rx-title">🚀 How To Use</h2>
+  <ol class="rx-steps">
+    <li>Type a <b>pattern</b> in the slash field, or click a <b>ready-made</b> example to load one.</li>
+    <li>Toggle the <b>flags</b> you need — start with <b>g</b> for all matches.</li>
+    <li>Paste your <b>test string</b>; matches highlight instantly with a match list and statistics.</li>
+    <li>Switch to <b>Replace</b> or <b>Split</b> mode to transform the text.</li>
+    <li><b>Copy</b> or <b>export</b> the matches, and reuse a pattern later from history.</li>
+  </ol>
+</section>
+
+<!-- FAQ -->
+<section class="rx-wrap rx-faq">
+  <h2 class="rx-title">❓ Frequently Asked Questions</h2>
+  <div id="faqList"></div>
+</section>
+
+<!-- Troubleshooting -->
+<section class="rx-wrap rx-prose">
+  <h2 class="rx-title">🛠️ Troubleshooting</h2>
+  <ul>
+    <li><b>“Invalid regex” error:</b> read the message — it's usually an unescaped bracket, a stray <code>\</code>, or an unterminated group.</li>
+    <li><b>Only one match shows:</b> enable the <b>g</b> (global) flag to find all matches.</li>
+    <li><b>Nothing matches:</b> check case (use <b>i</b>), and that special characters like <code>.</code> and <code>(</code> are escaped.</li>
+    <li><b>Matches span lines unexpectedly:</b> the <b>s</b> flag makes <code>.</code> match newlines — turn it off if you don't want that.</li>
+    <li><b>Browser feels stuck on big text:</b> a pattern with nested quantifiers can backtrack catastrophically — simplify it (the complexity score warns you).</li>
+    <li><b>Named groups don't work:</b> use the syntax <code>(?&lt;name&gt;…)</code> and reference them as <code>$&lt;name&gt;</code> in replacements.</li>
+    <li><b>“Invalid flags”:</b> some flags conflict (for example you can't combine certain modes) — remove the offending flag.</li>
+  </ul>
+</section>
+
 </div>
 
-<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<footer class="site-footer">© 2026 ApneSoftware.com — Free, private, browser-based tools.</footer>
 
 <script src="../assets/common.js"></script>
 <script>
-function escapeHtml(s){
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+(function(){
+  "use strict";
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
 
-function getFlags(){
-  let flags = '';
-  if(document.getElementById('flagG').checked) flags += 'g';
-  if(document.getElementById('flagI').checked) flags += 'i';
-  if(document.getElementById('flagM').checked) flags += 'm';
-  if(document.getElementById('flagS').checked) flags += 's';
-  return flags;
-}
+  var mode='match', lastMatches=[];
+  var FLAGCHK=[['flagG','g'],['flagI','i'],['flagM','m'],['flagS','s'],['flagU','u'],['flagY','y'],['flagD','d']];
 
-function runTest(){
-  const status = document.getElementById('status');
-  const pattern = document.getElementById('regexPattern').value;
-  const text = document.getElementById('testString').value;
-  const flags = getFlags();
-  document.getElementById('flagsDisplay').textContent = flags;
+  var EXAMPLES=[
+    ['Email','[\\w.+-]+@[\\w-]+\\.[\\w.-]+','gi','Contact us at hello@apnesoftware.com or sales@example.co.in.'],
+    ['URL','https?:\\/\\/[^\\s]+','gi','Visit https://apnesoftware.com and http://example.org/page?x=1 today.'],
+    ['IPv4','\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b','g','Server 192.168.1.10 pinged 8.8.8.8 and 10.0.0.1.'],
+    ['Date','\\d{4}-\\d{2}-\\d{2}','g','Logs from 2026-07-04 to 2026-08-01 were archived.'],
+    ['Time','\\b([01]?\\d|2[0-3]):[0-5]\\d\\b','g','Meeting at 09:30, lunch 13:00, standup 17:45.'],
+    ['Hex colour','#[0-9a-fA-F]{3,6}\\b','g','Palette: #7c3aed, #a78bfa, #fff and #34d399.'],
+    ['PAN','[A-Z]{5}[0-9]{4}[A-Z]','g','PAN ABCPD1234E belongs to the account holder.'],
+    ['Aadhaar','\\b\\d{4}\\s?\\d{4}\\s?\\d{4}\\b','g','Aadhaar 1234 5678 9012 verified.'],
+    ['GSTIN','\\d{2}[A-Z]{5}\\d{4}[A-Z][A-Z0-9]Z[A-Z0-9]','g','GSTIN 22ABCDE1234F1Z5 is active.'],
+    ['IFSC','[A-Z]{4}0[A-Z0-9]{6}','g','Transfer to IFSC SBIN0001234 or HDFC0000123.'],
+    ['PIN code','\\b[1-9][0-9]{5}\\b','g','Delivery to 110001 and 560034 confirmed.'],
+    ['Capture groups','(\\w+)@(\\w+)','g','Split alice@corp and bob@team into user and domain.']
+  ];
 
-  if(!pattern){
-    document.getElementById('highlightBox').textContent = 'Matches will be highlighted here.';
-    document.getElementById('matchList').innerHTML = '';
-    document.getElementById('matchCount').textContent = '0';
-    status.textContent = '';
-    return;
+  /* ===== example chips ===== */
+  (function(){ var c=$('exampleChips'); EXAMPLES.forEach(function(e){ var b=document.createElement('button'); b.className='rx-ex'; b.type='button'; b.textContent=e[0]; b.addEventListener('click',function(){ $('regexPattern').value=e[1]; setFlags(e[2]); if(!$('testString').value.trim()||b.dataset.force)$('testString').value=e[3]; run(); }); c.appendChild(b); }); })();
+  function setFlags(flags){ FLAGCHK.forEach(function(f){ $(f[0]).checked=flags.indexOf(f[1])>=0; }); syncFlagUI(); }
+
+  function getFlags(){ var s=''; FLAGCHK.forEach(function(f){ if($(f[0]).checked)s+=f[1]; }); return s; }
+  function syncFlagUI(){ FLAGCHK.forEach(function(f){ $(f[0]).closest('.rx-flag').classList.toggle('on',$(f[0]).checked); }); }
+
+  /* ===== tabs ===== */
+  function selMode(m){ mode=m; $('tabMatch').setAttribute('aria-selected',m==='match'?'true':'false'); $('tabReplace').setAttribute('aria-selected',m==='replace'?'true':'false'); $('tabSplit').setAttribute('aria-selected',m==='split'?'true':'false'); $('matchView').style.display=m==='match'?'block':'none'; $('replaceView').style.display=m==='replace'?'block':'none'; $('splitView').style.display=m==='split'?'block':'none'; $('replaceRow').style.display=m==='replace'?'block':'none'; run(); }
+  $('tabMatch').addEventListener('click',function(){ selMode('match'); });
+  $('tabReplace').addEventListener('click',function(){ selMode('replace'); });
+  $('tabSplit').addEventListener('click',function(){ selMode('split'); });
+
+  /* ===== complexity heuristic ===== */
+  function complexity(p){ var score=0; score+=Math.min(20,p.length/8); score+=(p.match(/[*+]/g)||[]).length*3; score+=(p.match(/\{\d+,?\d*\}/g)||[]).length*2; score+=(p.match(/\(/g)||[]).length*1.5; score+=(p.match(/\(\?=|\(\?!|\(\?<=|\(\?<!/g)||[]).length*4; if(/(\.\*|\.\+|\(\.\*\)|\(\.\+\))[*+]/.test(p)||/(\(\w[^)]*[*+]\))[*+]/.test(p))score+=15; return score; }
+
+  /* ===== main run ===== */
+  function run(){
+    var pattern=$('regexPattern').value, text=$('testString').value, flags=getFlags();
+    $('flagsDisplay').textContent=flags; syncFlagUI();
+    var status=$('status'), patRow=$('patRow');
+    if(!pattern){ status.textContent=''; status.className=''; patRow.className='rx-patrow'; reset(); return; }
+    var re;
+    try{ re=new RegExp(pattern,flags); status.textContent='✅ Valid regular expression'; status.className='ok'; patRow.className='rx-patrow ok'; }
+    catch(err){ status.textContent='❌ Invalid regex: '+err.message; status.className='err'; patRow.className='rx-patrow err'; reset(); return; }
+    saveHist(pattern);
+    if(mode==='replace'){ runReplace(pattern,flags,text); return; }
+    if(mode==='split'){ runSplit(re,text); return; }
+    runMatch(pattern,flags,text);
   }
 
-  let regex;
-  try{
-    regex = new RegExp(pattern, flags.includes('g') ? flags : flags + 'g');
-    status.textContent = '✅ Valid regular expression';
-    status.className = '';
-  }catch(err){
-    status.textContent = '❌ Invalid regex: ' + err.message;
-    status.className = 'status-err';
-    document.getElementById('highlightBox').textContent = '';
-    document.getElementById('matchList').innerHTML = '';
-    document.getElementById('matchCount').textContent = '0';
-    return;
+  function reset(){ $('highlightBox').textContent='Matches will be highlighted here.'; $('matchList').innerHTML=''; $('matchCount').textContent='0'; $('statsRow').classList.remove('on'); $('replaceOut').textContent='Replacement result appears here.'; $('splitList').innerHTML=''; $('splitCount').textContent='0'; lastMatches=[]; }
+
+  function iterRegex(pattern,flags){ var f=flags; if(f.indexOf('g')<0&&f.indexOf('y')<0)f+='g'; return new RegExp(pattern,f); }
+
+  function runMatch(pattern,flags,text){
+    if(!text){ reset(); return; }
+    var t0=performance.now();
+    var re=iterRegex(pattern,flags), matches=[], last=0, hi='', m, guard=0, wantAll=flags.indexOf('g')>=0||flags.indexOf('y')>=0;
+    while((m=re.exec(text))!==null && guard<20000){ guard++; matches.push(m); hi+=esc(text.slice(last,m.index))+'<mark>'+esc(m[0])+'</mark>'; last=m.index+m[0].length; if(m[0].length===0)re.lastIndex++; if(!wantAll)break; }
+    hi+=esc(text.slice(last));
+    var ms=(performance.now()-t0);
+    lastMatches=matches;
+    $('highlightBox').innerHTML=hi||'(no matches)';
+    $('matchCount').textContent=matches.length;
+    var list=$('matchList'); list.innerHTML='';
+    matches.slice(0,300).forEach(function(mt,i){
+      var div=document.createElement('div'); div.className='match-item';
+      var html='<span class="idx">#'+(i+1)+'</span>'+esc(JSON.stringify(mt[0]))+' <span style="color:var(--text-dim)">@ '+mt.index+'</span>';
+      if(mt.length>1){ var gs=[]; for(var g=1;g<mt.length;g++)gs.push('<b>$'+g+'</b>='+(mt[g]===undefined?'∅':esc(JSON.stringify(mt[g])))); html+='<span class="grp">'+gs.join(' · ')+'</span>'; }
+      if(mt.groups){ var ng=[]; for(var k in mt.groups)ng.push('<b>'+esc(k)+'</b>='+(mt.groups[k]===undefined?'∅':esc(JSON.stringify(mt.groups[k])))); if(ng.length)html+='<span class="grp">named: '+ng.join(' · ')+'</span>'; }
+      div.innerHTML=html; list.appendChild(div);
+    });
+    // stats
+    var uniq={}, dup=0; matches.forEach(function(x){ if(uniq[x[0]])dup++; else uniq[x[0]]=1; });
+    var groupCount=0; try{ groupCount=(new RegExp(pattern+'|')).exec('').length-1; }catch(e){}
+    $('stMatches').textContent=matches.length; $('stUnique').textContent=Object.keys(uniq).length; $('stDup').textContent=dup;
+    $('stGroups').textContent=groupCount; $('stChars').textContent=text.length.toLocaleString('en-IN'); $('stTime').textContent=ms<1?'<1 ms':ms.toFixed(1)+' ms';
+    var cx=complexity(pattern), lvl=cx>=30?'high':cx>=14?'med':'low';
+    $('stCx').textContent=cx>=30?'High':cx>=14?'Medium':'Low'; $('cxChip').className='stat-chip cx-'+lvl;
+    $('statsRow').classList.add('on');
   }
 
-  if(!text){
-    document.getElementById('highlightBox').textContent = 'Matches will be highlighted here.';
-    document.getElementById('matchList').innerHTML = '';
-    document.getElementById('matchCount').textContent = '0';
-    return;
+  function runReplace(pattern,flags,text){
+    $('statsRow').classList.remove('on');
+    if(!text){ $('replaceOut').textContent='Replacement result appears here.'; return; }
+    try{ var f=flags.indexOf('g')<0?flags+'g':flags; var re=new RegExp(pattern,f); var out=text.replace(re,$('replaceInput').value); $('replaceOut').textContent=out; }
+    catch(err){ $('replaceOut').textContent='Error: '+err.message; }
+  }
+  function runSplit(re,text){
+    $('statsRow').classList.remove('on');
+    var parts=text.length?text.split(re):[]; $('splitCount').textContent=parts.length;
+    var list=$('splitList'); list.innerHTML='';
+    parts.slice(0,500).forEach(function(p,i){ var d=document.createElement('div'); d.className='match-item'; d.innerHTML='<span class="idx">#'+(i+1)+'</span>'+esc(JSON.stringify(p)); list.appendChild(d); });
   }
 
-  let matches = [];
-  let lastIndex = 0;
-  let highlighted = '';
-  let m;
-  let safetyCounter = 0;
+  /* ===== history ===== */
+  var HKEY='rxhist_v1';
+  function loadHist(){ try{ return JSON.parse(localStorage.getItem(HKEY))||[]; }catch(e){ return []; } }
+  function saveHist(p){ if(!p)return; var h=loadHist(); if(h[0]===p)return; h=h.filter(function(x){return x!==p;}); h.unshift(p); h=h.slice(0,12); try{ localStorage.setItem(HKEY,JSON.stringify(h)); }catch(e){} renderHist(); }
+  function renderHist(){ var h=loadHist(), c=$('histChips'); if(!h.length){ c.innerHTML='<span style="color:var(--text-dim);font-size:.8rem">No history yet.</span>'; return; } c.innerHTML=''; h.forEach(function(p){ var b=document.createElement('button'); b.className='rx-histchip'; b.type='button'; b.textContent='/'+p+'/'; b.title=p; b.addEventListener('click',function(){ $('regexPattern').value=p; run(); }); c.appendChild(b); }); }
+  $('clearHistBtn').addEventListener('click',function(){ localStorage.removeItem(HKEY); renderHist(); });
 
-  while((m = regex.exec(text)) !== null && safetyCounter < 5000){
-    safetyCounter++;
-    matches.push(m);
-    highlighted += escapeHtml(text.slice(lastIndex, m.index));
-    highlighted += '<mark>' + escapeHtml(m[0]) + '</mark>';
-    lastIndex = m.index + m[0].length;
-    if(m[0].length === 0) regex.lastIndex++; // avoid infinite loop on zero-length match
-    if(!flags.includes('g')) break;
-  }
-  highlighted += escapeHtml(text.slice(lastIndex));
+  /* ===== copy / export ===== */
+  function copyOut(t,el){ if(typeof copyText==='function')copyText(t,el); else if(navigator.clipboard)navigator.clipboard.writeText(t); }
+  function matchValues(){ return lastMatches.map(function(m){return m[0];}); }
+  $('copyMatchesBtn').addEventListener('click',function(e){ if(!lastMatches.length){ if(typeof premToast==='function')premToast('No matches'); return; } copyOut(matchValues().join('\n'),e.target); if(typeof premToast==='function')premToast('Matches copied'); });
+  $('copyReplBtn').addEventListener('click',function(e){ copyOut($('replaceOut').textContent,e.target); if(typeof premToast==='function')premToast('Result copied'); });
+  function save(name,txt,type){ var blob=new Blob([txt],{type:type||'text/plain'}); if(typeof downloadBlob==='function')downloadBlob(name,blob); else { var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); } }
+  $('expTxt').addEventListener('click',function(){ if(!lastMatches.length)return; save('matches.txt',matchValues().join('\n'),'text/plain'); });
+  $('expCsv').addEventListener('click',function(){ if(!lastMatches.length)return; var csv='index,match,groups\r\n'+lastMatches.map(function(m,i){ var g=m.slice(1).map(function(x){return x===undefined?'':x;}).join('|'); return [i+1,m[0],g].map(function(c){return '"'+String(c).replace(/"/g,'""')+'"';}).join(','); }).join('\r\n'); save('matches.csv',csv,'text/csv'); });
+  $('expJson').addEventListener('click',function(){ if(!lastMatches.length)return; var arr=lastMatches.map(function(m,i){ return {index:i+1,match:m[0],at:m.index,groups:m.slice(1),named:m.groups||null}; }); save('matches.json',JSON.stringify(arr,null,2),'application/json'); });
 
-  document.getElementById('highlightBox').innerHTML = highlighted || '(empty)';
-  document.getElementById('matchCount').textContent = matches.length;
+  /* ===== bindings ===== */
+  ['regexPattern','testString','replaceInput'].forEach(function(id){ $(id).addEventListener('input',run); });
+  FLAGCHK.forEach(function(f){ $(f[0]).addEventListener('change',run); });
 
-  const listEl = document.getElementById('matchList');
-  listEl.innerHTML = '';
-  matches.slice(0, 200).forEach((mt, i)=>{
-    const div = document.createElement('div');
-    div.className = 'match-item';
-    let groupsTxt = '';
-    if(mt.length > 1){
-      groupsTxt = ' — groups: ' + mt.slice(1).map(g => g === undefined ? '(undefined)' : JSON.stringify(g)).join(', ');
-    }
-    div.innerHTML = '<span class="idx">#'+(i+1)+'</span>'+escapeHtml(JSON.stringify(mt[0]))+' at index '+mt.index + escapeHtml(groupsTxt);
-    listEl.appendChild(div);
-  });
-}
+  /* ===== FAQ ===== */
+  var FAQ=[
+    ['What is a regular expression?','A pattern language for finding, validating, extracting and replacing text by rules. — यह text खोजने-बदलने की pattern भाषा है।'],
+    ['Is my text uploaded anywhere?','No. Matching runs in your browser; nothing is uploaded. — नहीं, कुछ भी upload नहीं होता।'],
+    ['Which regex engine is used?','The browser\'s native JavaScript engine, so results match your code. — browser का JavaScript engine।'],
+    ['What do the flags mean?','g all matches, i ignore-case, m multiline, s dotall, u unicode, y sticky, d indices. — ये regex flags हैं।'],
+    ['Why do I only see one match?','Enable the g (global) flag to find every match. — g flag चालू करें।'],
+    ['How do capture groups work?','Parentheses capture parts of a match; each is listed as $1, $2 or by name. — कोष्ठक भाग capture करते हैं।'],
+    ['Can I replace text?','Yes — use Replace mode with $1, $& and named references for a live preview. — हाँ, Replace mode है।'],
+    ['Can I split text by a pattern?','Yes — Split mode breaks text wherever the pattern matches. — हाँ, Split mode है।'],
+    ['Do you have ready-made patterns?','Yes — email, URL, IP, date, and PAN/Aadhaar/GST/IFSC/PIN for India. — हाँ, तैयार patterns हैं।'],
+    ['What is the complexity score?','A heuristic warning about patterns that may be slow or backtrack badly. — यह जोखिम का संकेत है।'],
+    ['Can I export the matches?','Yes — copy them, or export as TXT, CSV or JSON. — हाँ, TXT/CSV/JSON export।'],
+    ['Does it remember my patterns?','Yes — recent patterns are stored locally and restorable. — हाँ, local history रहती है।'],
+    ['Is regex the same in every language?','Mostly similar, but flavours differ; this uses JavaScript rules. — flavours में अंतर होता है।'],
+    ['What is a named group?','A group written (?<name>…) that you can reference by name. — नामित capture group।'],
+    ['How do I match a literal dot?','Escape it as \\. — otherwise . matches any character. — \\. से literal dot मिलाएँ।'],
+    ['Is it free?','Completely free — no account, no limits, no watermark. — हाँ, पूरी तरह मुफ़्त।'],
+    ['Does it work offline?','Yes, once the page has loaded it works without internet. — हाँ, offline काम करता है।'],
+    ['Why did my browser freeze?','A pattern with nested quantifiers can backtrack catastrophically — simplify it. — जटिल pattern से बचें।'],
+    ['What is the difference between greedy and lazy?','Greedy (*) matches as much as possible; lazy (*?) as little. — greedy बनाम lazy।'],
+    ['Can I test Unicode text?','Yes — enable the u flag for full Unicode and \\p{…} escapes. — हाँ, u flag से Unicode।'],
+    ['How many matches are shown?','All are counted; the list shows up to a few hundred for speed. — सभी गिने जाते हैं।'],
+    ['Which browsers are supported?','All modern browsers — Chrome, Firefox, Edge, Safari, Opera, Brave. — सभी आधुनिक browsers।']
+  ];
+  function buildFaq(){ var list=$('faqList'); if(!list)return; FAQ.forEach(function(p){ var d=document.createElement('details'); d.innerHTML='<summary>'+esc(p[0])+'</summary><p>'+esc(p[1])+'</p>'; list.appendChild(d); }); try{ $('faqSchema').textContent=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:FAQ.map(function(p){return {'@type':'Question',name:p[0],acceptedAnswer:{'@type':'Answer',text:p[1]}};})}); }catch(e){} }
 
-['regexPattern','testString','flagG','flagI','flagM','flagS'].forEach(id=>{
-  document.getElementById(id).addEventListener('input', runTest);
-});
+  /* ===== init / hooks ===== */
+  window.__rxHooks={ run:run, setPattern:function(p){ $('regexPattern').value=p; }, setText:function(t){ $('testString').value=t; }, setMode:selMode, setFlags:setFlags, getMatches:function(){ return lastMatches.map(function(m){return {match:m[0],index:m.index,groups:m.slice(1)};}); }, getStatus:function(){ return $('status').textContent; } };
+  buildFaq(); renderHist(); syncFlagUI();
+})();
 </script>
 </body>
 </html>
