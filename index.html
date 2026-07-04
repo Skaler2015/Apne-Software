@@ -671,7 +671,7 @@ function renderCatCards(){
   const wrap = document.getElementById('catCardsGrid');
   wrap.innerHTML='';
   toolsData.categories.forEach(cat=>{
-    const toolsInCat = toolsData.tools.filter(t=>t.category===cat.id&&t.published);
+    const toolsInCat = toolsData.tools.filter(t=>toolInCategory(t,cat.id)&&t.published);
     const count = toolsInCat.length;
     const featuredTool = toolsData.tools.find(t=>t.id===FEATURED_TOOL_PER_CAT[cat.id])||toolsInCat[0];
     const card = document.createElement('a');
@@ -769,11 +769,11 @@ async function renderSidebars(){
 
   // Right sidebar — categories
   const cats=[...toolsData.categories].sort((a,b)=>{
-    return toolsData.tools.filter(t=>t.category===b.id&&t.published).length -
-           toolsData.tools.filter(t=>t.category===a.id&&t.published).length;
+    return toolsData.tools.filter(t=>toolInCategory(t,b.id)&&t.published).length -
+           toolsData.tools.filter(t=>toolInCategory(t,a.id)&&t.published).length;
   });
   document.getElementById('rsbCategories').innerHTML=cats.map(c=>{
-    const count=toolsData.tools.filter(t=>t.category===c.id&&t.published).length;
+    const count=toolsData.tools.filter(t=>toolInCategory(t,c.id)&&t.published).length;
     return `<div class="rsb-row" style="cursor:pointer" onclick="setCategory('${c.id}');document.getElementById('browseSection').scrollIntoView({behavior:'smooth'})"><span class="rsb-name">${c.icon} ${c.name}</span><span class="rsb-count">${count}</span></div>`;
   }).join('');
 
@@ -811,7 +811,7 @@ const PAGE_SIZE=12;
 let visibleCount=PAGE_SIZE;
 
 function getFilteredTools(){
-  return toolsData.tools.filter(t=>t.published&&(currentCategory==='all'||t.category===currentCategory));
+  return toolsData.tools.filter(t=>t.published&&(currentCategory==='all'||toolInCategory(t,currentCategory)));
 }
 
 function render(){
@@ -938,7 +938,7 @@ function renderAdvResults(q){
   const results = toolsData.tools.filter(t => t.published && (
     t.name.toLowerCase().includes(ql) ||
     t.description?.toLowerCase().includes(ql) ||
-    t.category?.toLowerCase().includes(ql)
+    toolCategories(t).some(c => c.toLowerCase().includes(ql))
   )).slice(0, 8);
 
   const catMap = {'pdf':'📄 PDF','image':'🖼️ Image','text':'📝 Text','calculator':'🧮 Calculator','developer':'⚙️ Developer'};

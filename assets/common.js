@@ -1,5 +1,18 @@
 // Common helper functions used across tools
 
+// ---- Multi-category read helpers ----------------------------------------
+// A tool can belong to more than one category. Its categories live in the
+// `categories` array (baked into tools-data.json by assets/categorize.js);
+// older/unmigrated entries fall back to the single `category` string. These
+// helpers are self-contained so every tool page works without categorize.js.
+function toolCategories(t){
+  if(t && Array.isArray(t.categories) && t.categories.length) return t.categories;
+  return t && t.category ? [t.category] : [];
+}
+function toolInCategory(t, catId){
+  return toolCategories(t).indexOf(catId) !== -1;
+}
+
 function copyText(text, btnEl){
   navigator.clipboard.writeText(text).then(()=>{
     if(btnEl){
@@ -158,11 +171,11 @@ function formatBytes(bytes){
       nav.className = 'mega-nav';
 
       data.categories.forEach(cat=>{
-        const toolsInCat = data.tools.filter(t=>t.category===cat.id && t.published);
+        const toolsInCat = data.tools.filter(t=>toolInCategory(t,cat.id) && t.published);
         if(!toolsInCat.length) return;
 
         const matchingTool = toolsInCat.find(t => fileName && t.url.endsWith('/'+fileName));
-        if(matchingTool) activeCategoryId = cat.id;
+        if(matchingTool) activeCategoryId = matchingTool.category || cat.id;
 
         const item = document.createElement('div');
         item.className = 'mega-nav-item';
@@ -246,7 +259,7 @@ function formatBytes(bytes){
 
       const drawerCatsWrap = drawer.querySelector('.drawer-categories');
       data.categories.forEach(cat=>{
-        const toolsInCat = data.tools.filter(t=>t.category===cat.id && t.published);
+        const toolsInCat = data.tools.filter(t=>toolInCategory(t,cat.id) && t.published);
         if(!toolsInCat.length) return;
         const sec = document.createElement('div');
         sec.className = 'drawer-cat' + (cat.id === activeCategoryId ? ' open' : '');
@@ -304,7 +317,7 @@ function formatBytes(bytes){
 
       const lsbCats = sidebar.querySelector('.lsb-cats');
       data.categories.forEach(cat => {
-        const toolsInCat = data.tools.filter(t => t.category === cat.id && t.published);
+        const toolsInCat = data.tools.filter(t => toolInCategory(t, cat.id) && t.published);
         if (!toolsInCat.length) return;
 
         const isActive = cat.id === activeCategoryId;
@@ -368,12 +381,15 @@ function formatBytes(bytes){
       const slugMatch = window.location.pathname.match(/\/tools\/([a-z0-9-]+)\.html$/i);
       const currentSlug = slugMatch ? slugMatch[1] : '';
       
-      // Find current tool's category
+      // Find current tool's categories (a tool can belong to several)
       const currentTool = data.tools.find(t => t.id === currentSlug);
-      const currentCat = currentTool ? currentTool.category : '';
-      
-      // Related tools = same category, exclude current
-      const related = data.tools.filter(t => t.published && t.category === currentCat && t.id !== currentSlug).slice(0, 8);
+      const currentCats = currentTool ? toolCategories(currentTool) : [];
+
+      // Related tools = share at least one category, exclude current
+      const related = data.tools.filter(t =>
+        t.published && t.id !== currentSlug &&
+        toolCategories(t).some(c => currentCats.indexOf(c) !== -1)
+      ).slice(0, 8);
       
       // Popular tools (show some across all categories)
       const popular = ['pdf-merge','image-compressor','qr-generator','word-counter','emi-calculator','password-generator','pdf-compress','image-resizer'];
