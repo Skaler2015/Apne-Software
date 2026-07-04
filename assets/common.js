@@ -813,3 +813,19 @@ function premToast(msg, duration){
   document.body.appendChild(t);
   setTimeout(() => t.remove(), duration || 3000);
 }
+
+/* ===================== StatCounter analytics =====================
+   Site-wide, invisible tracker (project 13334460). Loaded once per
+   page via this shared script, so it applies to every tool page. */
+(function(){
+  try{
+    window.sc_project = 13334460;
+    window.sc_invisible = 1;
+    window.sc_security = "a5854dc7";
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = 'https://www.statcounter.com/counter/counter.js';
+    (document.head || document.documentElement).appendChild(s);
+  }catch(e){}
+})();
