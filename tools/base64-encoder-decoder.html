@@ -4,373 +4,161 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
-<meta name="description" content="Free online Base64 Encoder & Decoder — Encode text or files to Base64, decode Base64 to text, image, PDF, audio, video. URL-safe Base64, Data URI, image preview, history. No signup needed.">
+<meta name="description" content="Free online Base64 Encoder &amp; Decoder — encode text or files to Base64 (and Base32, Hex, Binary, Octal, Decimal, ASCII85), decode Base64 back to text, image, PDF, audio or video with live preview. URL-safe mode, Base64 validator &amp; padding repair, Data URI / HTML / CSS snippets, batch ZIP, TXT/JSON/CSV export and history. 100% local, nothing uploaded, works offline.">
+<meta name="keywords" content="base64 encoder, base64 decoder, base64 to image, data uri generator, url-safe base64, base32, hex encoder, base64 validator, decode base64, encode file base64, ascii85">
 <link rel="canonical" href="https://apnesoftware.com/tools/base64-encoder-decoder.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Base64 Encoder & Decoder — Free Online Tool | ApneSoftware">
-<meta property="og:description" content="Encode text or files to Base64 and decode Base64 to text, image, PDF, audio. URL-safe mode, Data URI, image preview, history. 100% client-side, private, free.">
+<meta property="og:title" content="Base64 Encoder &amp; Decoder — Encode/Decode Text &amp; Files | ApneSoftware">
+<meta property="og:description" content="Encode text or files to Base64/Base32/Hex, decode Base64 to text, image, PDF, audio or video with preview, plus URL-safe mode, a validator, Data URI snippets, batch ZIP and export. Free, private, offline.">
 <meta property="og:url" content="https://apnesoftware.com/tools/base64-encoder-decoder.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Base64 Encoder & Decoder — Free Online Tool | ApneSoftware">
-<meta name="twitter:description" content="Encode/decode Base64 instantly. Image preview, PDF preview, URL-safe mode, Data URI, history. 100% client-side.">
+<meta name="twitter:title" content="Base64 Encoder &amp; Decoder — Encode/Decode Text &amp; Files | ApneSoftware">
+<meta name="twitter:description" content="Encode/decode Base64 (and Base32, Hex, ASCII85) for text and files with live preview, validator, Data URI snippets, batch ZIP and export. Free, private, offline.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
-
 <script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@graph":[
-    {
-      "@type":"WebApplication",
-      "name":"Base64 Encoder & Decoder",
-      "url":"https://apnesoftware.com/tools/base64-encoder-decoder.html",
-      "description":"Free online Base64 encoder and decoder. Encode text or files to Base64, decode Base64 to text, image, PDF, audio, video. URL-safe Base64, Data URI generator, image preview, conversion history.",
-      "applicationCategory":"UtilityApplication",
-      "operatingSystem":"Any",
-      "browserRequirements":"Requires JavaScript",
-      "offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},
-      "provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"},
-      "featureList":["Text to Base64","File to Base64","Drag & Drop","Decode Base64 to Text","Decode to File","Image Preview","PDF Preview","Audio Player","Video Player","URL-Safe Base64","Data URI","History","Copy","Download"]
-    },
-    {
-      "@type":"BreadcrumbList",
-      "itemListElement":[
-        {"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},
-        {"@type":"ListItem","position":2,"name":"Developer Tools","item":"https://apnesoftware.com/category/developer.html"},
-        {"@type":"ListItem","position":3,"name":"Base64 Encoder & Decoder","item":"https://apnesoftware.com/tools/base64-encoder-decoder.html"}
-      ]
-    },
-    {
-      "@type":"HowTo",
-      "name":"How to Encode Text or File to Base64",
-      "step":[
-        {"@type":"HowToStep","position":1,"name":"Select Mode","text":"Click 'Encode' tab to encode or 'Decode' tab to decode."},
-        {"@type":"HowToStep","position":2,"name":"Enter Input","text":"For encoding: type text or drag & drop a file. For decoding: paste a Base64 string."},
-        {"@type":"HowToStep","position":3,"name":"Process","text":"Click Encode or Decode. The result appears instantly with a live preview."},
-        {"@type":"HowToStep","position":4,"name":"Use Result","text":"Copy the result, download it, or use the generated Data URI / HTML snippet directly."}
-      ]
-    },
-    {
-      "@type":"FAQPage",
-      "mainEntity":[
-        {"@type":"Question","name":"What is Base64 encoding?","acceptedAnswer":{"@type":"Answer","text":"Base64 is a binary-to-text encoding scheme that represents binary data using 64 printable ASCII characters. It is used to transmit binary data over text-based protocols like email (MIME), embed images in HTML/CSS, and store binary data in JSON."}},
-        {"@type":"Question","name":"Is Base64 encryption?","acceptedAnswer":{"@type":"Answer","text":"No. Base64 is encoding, not encryption. It does not provide security. Anyone can decode a Base64 string without a key. Use it only for data transport, not for securing sensitive information."}},
-        {"@type":"Question","name":"What is URL-safe Base64?","acceptedAnswer":{"@type":"Answer","text":"URL-safe Base64 replaces + with - and / with _ to avoid issues when Base64 strings are used in URLs or file names. It is commonly used in JWT tokens and web applications."}},
-        {"@type":"Question","name":"What is a Data URI?","acceptedAnswer":{"@type":"Answer","text":"A Data URI (data: URL) embeds file data directly in a URL. Example: data:image/png;base64,iVBORw0K... This lets you embed images directly in HTML/CSS without a separate file request."}},
-        {"@type":"Question","name":"Can I encode images to Base64?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the File tab, drag or select any image file, and click Encode. The tool generates the Base64 string, Data URI, and an HTML img tag you can use directly."}},
-        {"@type":"Question","name":"Is my data safe?","acceptedAnswer":{"@type":"Answer","text":"Yes. All encoding and decoding happens entirely in your browser. No data is uploaded to any server. Your files and text never leave your device."}},
-        {"@type":"Question","name":"What file size is supported?","acceptedAnswer":{"@type":"Answer","text":"The tool works well for files up to 10 MB. Very large files may slow down the browser. For files over 10 MB, a warning is shown."}},
-        {"@type":"Question","name":"How do I decode a Base64 image?","acceptedAnswer":{"@type":"Answer","text":"Switch to the Decode tab, paste the Base64 string (with or without the data: prefix), and the tool will automatically detect it as an image, show a preview, and let you download it."}},
-        {"@type":"Question","name":"What is the difference between Base64 and Hex encoding?","acceptedAnswer":{"@type":"Answer","text":"Base64 uses 64 characters (A-Z, a-z, 0-9, +, /) and produces a string about 33% larger than the original. Hex uses 16 characters (0-9, a-f) and produces a string 100% larger. Base64 is more space-efficient for embedding binary data in text."}},
-        {"@type":"Question","name":"Is this tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free with no signup, no limits, and no watermarks."}}
-      ]
-    }
-  ]
-}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Base64 Encoder & Decoder","description":"Professional browser-based Base64 encoder and decoder that encodes text or files to Base64, Base32, Hex, Binary, Octal, Decimal and ASCII85, decodes Base64 back to text or a downloadable file with automatic image/PDF/audio/video preview, supports URL-safe Base64, a Base64 validator with padding repair, Data URI / HTML / CSS / JSON snippets, batch ZIP encoding, TXT/JSON/CSV export and conversion history. Runs entirely in the browser.","url":"https://apnesoftware.com/tools/base64-encoder-decoder.html","applicationCategory":"DeveloperApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Text and file to Base64","Base32, Hex, Binary, Octal, Decimal, ASCII85","Decode with image/PDF/audio/video preview","URL-safe Base64","Base64 validator and padding repair","Data URI / HTML / CSS snippets","Batch ZIP encoding","TXT/JSON/CSV export and history","100% local processing"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
-
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Base64 Encoder & Decoder — Encode and Decode Text & Files","url":"https://apnesoftware.com/tools/base64-encoder-decoder.html","description":"Private, browser-based Base64 encoder/decoder with multiple formats, live preview, a validator, snippets, batch ZIP and export.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Developer & Utility","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":3,"name":"Base64 Encoder & Decoder","item":"https://apnesoftware.com/tools/base64-encoder-decoder.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to encode and decode Base64","description":"Encode text or files to Base64 and decode Base64 back to text or files.","step":[{"@type":"HowToStep","name":"Choose encode or decode","text":"Pick the Encode or Decode tab."},{"@type":"HowToStep","name":"Enter input","text":"Type text or drop a file to encode, or paste a Base64 string to decode."},{"@type":"HowToStep","name":"Process","text":"Run it — the result and a live preview appear instantly."},{"@type":"HowToStep","name":"Use the result","text":"Copy, download, grab a Data URI snippet, or export the output."}]}
+</script>
+<script type="application/ld+json" id="faqSchema">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}
+</script>
 <meta name="color-scheme" content="dark">
-<title>Base64 Encoder & Decoder — Free Online Tool | ApneSoftware</title>
+<title>Base64 Encoder &amp; Decoder — Encode/Decode Text &amp; Files | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
-
 <style>
-/* =====================================================================
-   BASE64 ENCODER & DECODER — PREMIUM STYLES v2.0
-   Extends ../assets/style.css  |  No core overrides
-   ===================================================================== */
+/* ===== Base64 Encoder & Decoder — scoped b6- styles ===== */
+.b6-crumb{font-size:.78rem;color:var(--text-dim);margin-bottom:6px}
+.b6-crumb a{color:#c4b5fd;text-decoration:none}
+.b6-crumb a:hover{text-decoration:underline}
+.b6-btn{background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.34);color:#d6cbff;border-radius:10px;padding:9px 13px;font-size:.83rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+.b6-btn:hover{background:rgba(167,139,250,.24)}
+.b6-btn.primary{background:linear-gradient(90deg,#7c3aed,#a78bfa);border-color:transparent;color:#fff;font-weight:600}
+.b6-btn.danger{color:#fca5a5;border-color:rgba(248,113,113,.4)}
+.b6-btn.danger:hover{background:rgba(248,113,113,.12)}
+.b6-btn.success{background:rgba(52,211,153,.15);color:#6ee7b7;border-color:rgba(52,211,153,.35)}
+.b6-btn:focus-visible,.b6-tab:focus-visible,.b6-mode:focus-visible,.b6-snip:focus-visible{outline:2px solid #a78bfa;outline-offset:2px}
+.b6-btn.sm{padding:6px 10px;font-size:.76rem}
+.b6-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 
-/* ── Light mode ──────────────────────────────────────────────────────── */
-body.light-mode {
-  --bg:#f4f0ff; --surface:rgba(0,0,0,.06); --surface-2:rgba(0,0,0,.04);
-  --border:rgba(0,0,0,.12); --text:#1a0a35; --text-dim:rgba(26,10,53,.6);
-  color-scheme:light;
-  background:linear-gradient(135deg,#f4f0ff,#e8e0ff,#eaf0ff) !important;
-}
-body.light-mode .site-header { background:rgba(240,238,255,.9) !important; }
-body.light-mode textarea, body.light-mode input[type=text] {
-  background:rgba(255,255,255,.85) !important; color:#1a0a35 !important;
-}
+.b6-tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.b6-tab{padding:8px 18px;border-radius:999px;border:1px solid var(--border,rgba(255,255,255,.14));background:rgba(255,255,255,.05);color:var(--text-dim);font-size:.85rem;cursor:pointer;font-weight:700;display:inline-flex;align-items:center;gap:7px}
+.b6-tab[aria-selected="true"]{background:linear-gradient(90deg,#7c3aed,#a78bfa);border-color:transparent;color:#fff}
+.b6-modes{display:flex;gap:7px;margin-bottom:12px;flex-wrap:wrap}
+.b6-mode{padding:6px 14px;border-radius:999px;border:1px solid var(--border,rgba(255,255,255,.14));background:transparent;color:var(--text-dim);font-size:.82rem;font-weight:600;cursor:pointer}
+.b6-mode[aria-pressed="true"]{background:rgba(167,139,250,.18);color:#c4b5fd;border-color:#a78bfa}
 
-/* ── Breadcrumb ──────────────────────────────────────────────────────── */
-.breadcrumb {
-  display:flex; align-items:center; gap:6px; flex-wrap:wrap;
-  font-size:.78rem; color:var(--text-dim); margin-bottom:12px;
-}
-.breadcrumb a { color:var(--accent); text-decoration:none; }
-.breadcrumb a:hover { text-decoration:underline; }
-.breadcrumb span { opacity:.5; }
+.b6-opts{display:flex;gap:12px 16px;flex-wrap:wrap;align-items:center;padding:10px 14px;background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:10px;margin-bottom:12px}
+.b6-opts label{display:flex;align-items:center;gap:6px;font-size:.82rem;font-weight:600;cursor:pointer;color:var(--text)}
+.b6-opts input[type=checkbox]{accent-color:#a78bfa}
+.b6-opts select{background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text);border-radius:8px;padding:5px 8px;font-size:.8rem}
 
-/* ── Main tab pills ──────────────────────────────────────────────────── */
-.tab-row {
-  display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap;
-  align-items:center;
-}
-.tab-btn {
-  padding:9px 20px; border-radius:999px; border:1px solid var(--border);
-  background:var(--surface-2); color:var(--text-dim);
-  font-size:.88rem; font-weight:700; cursor:pointer; font-family:var(--font);
-  transition:.2s;
-}
-.tab-btn:hover { border-color:var(--accent); color:var(--accent); }
-.tab-btn.active {
-  background:linear-gradient(135deg,var(--accent),#5A3FE0);
-  color:#fff; border-color:transparent;
-  box-shadow:0 4px 16px rgba(124,92,252,.4);
-}
-.tab-theme { margin-left:auto; display:flex; gap:6px; }
-.th-btn {
-  padding:6px 11px; border-radius:8px; font-size:.75rem; font-weight:600;
-  border:1px solid var(--border); background:var(--surface);
-  color:var(--text-dim); cursor:pointer; font-family:var(--font); transition:.15s;
-}
-.th-btn.active, .th-btn:hover {
-  background:var(--accent); color:#fff; border-color:var(--accent);
-}
+.b6-label{display:block;font-size:.8rem;color:var(--text-dim);margin-bottom:6px}
+.b6-label small{color:#c4b5fd;margin-left:6px}
+textarea.b6-ta{width:100%;min-height:140px;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text);border-radius:10px;padding:12px;font-family:'Consolas','Courier New',monospace;font-size:.84rem;word-break:break-all;resize:vertical}
+textarea.b6-out{min-height:150px}
+textarea.nowrap{white-space:pre;overflow-x:auto;word-break:normal}
 
-/* ── Sub-mode buttons ────────────────────────────────────────────────── */
-.mode-row { display:flex; gap:7px; margin-bottom:14px; flex-wrap:wrap; }
-.mode-btn {
-  padding:6px 14px; border-radius:999px; border:1px solid var(--border);
-  background:transparent; color:var(--text-dim); font-size:.82rem;
-  font-weight:600; cursor:pointer; font-family:var(--font); transition:.15s;
-}
-.mode-btn:hover { border-color:var(--accent); color:var(--accent); }
-.mode-btn.active {
-  background:rgba(124,92,252,.18); color:var(--accent);
-  border-color:var(--accent);
-}
+.dropzone{cursor:pointer;border:2px dashed rgba(167,139,250,.4);border-radius:16px;padding:32px 20px;text-align:center;transition:.15s;background:rgba(167,139,250,.04)}
+.dropzone:hover,.dropzone.drag,.dropzone.drag-over{background:rgba(167,139,250,.12);border-color:#a78bfa}
+.dropzone .ic{font-size:2.1rem}
+.dropzone p{font-size:.92rem;margin:8px 0}
+.dropzone .sub{font-size:.8rem;color:var(--text-dim)}
+.dropzone input{display:none}
+.file-card{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:12px;padding:12px 14px;margin-top:10px;display:none;gap:12px;align-items:center}
+.file-card.show{display:flex}
+.file-icon{font-size:1.8rem}
+.file-details .fn{font-size:.9rem;font-weight:700}
+.file-details .fm{font-size:.75rem;color:var(--text-dim);margin-top:3px}
+.file-warn{color:#fcd34d;font-weight:600}
 
-/* ── Textarea (monospace output) ─────────────────────────────────────── */
-textarea.mono {
-  font-family:'Consolas','Courier New',monospace;
-  font-size:.85rem; word-break:break-all; resize:vertical;
-}
-textarea.nowrap { white-space:pre; overflow-x:auto; word-break:normal; }
+.prog-wrap{height:7px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;margin:10px 0;display:none}
+.prog-wrap.show{display:block}
+.prog-bar{height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#7c3aed,#a78bfa);transition:width .25s}
 
-/* ── Options bar (URL-safe, auto-encode, etc) ────────────────────────── */
-.opts-bar {
-  display:flex; gap:12px; flex-wrap:wrap; align-items:center;
-  padding:10px 14px; background:var(--surface-2);
-  border:1px solid var(--border); border-radius:10px; margin-bottom:12px;
-}
-.opts-bar label {
-  display:flex; align-items:center; gap:6px;
-  font-size:.82rem; font-weight:600; cursor:pointer; user-select:none;
-}
-.opts-bar input[type=checkbox] { accent-color:var(--accent); }
+.detect-badge{display:none;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;font-size:.78rem;font-weight:700;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.3);color:#6ee7b7;margin-bottom:10px}
+.detect-badge.show{display:inline-flex}
+.b6-valid{display:none;margin-top:10px;padding:10px 13px;border-radius:10px;font-size:.82rem;border:1px solid}
+.b6-valid.show{display:block}
+.b6-valid.ok{background:rgba(52,211,153,.08);border-color:rgba(52,211,153,.3);color:#6ee7b7}
+.b6-valid.bad{background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.35);color:#fca5a5}
 
-/* ── File info card ──────────────────────────────────────────────────── */
-.file-card {
-  background:var(--surface-2); border:1px solid var(--border);
-  border-radius:12px; padding:14px 16px; margin-top:10px;
-  display:none; gap:14px; flex-wrap:wrap; align-items:center;
-}
-.file-card.show { display:flex; animation:fadeUp .25s ease; }
-.file-icon { font-size:2rem; flex-shrink:0; }
-.file-details { flex:1; min-width:120px; }
-.file-details .fn { font-size:.9rem; font-weight:700; }
-.file-details .fm { font-size:.75rem; color:var(--text-dim); margin-top:3px; }
-.file-warn { color:#FBBF24; font-size:.78rem; font-weight:600; }
+.stats-row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;display:none}
+.stat-chip{padding:4px 10px;border-radius:999px;font-size:.74rem;font-weight:600;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text-dim)}
+.stat-chip b{color:#c4b5fd}
+.output-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin:16px 0 6px}
+.output-header .lbl{font-size:.92rem;font-weight:700}
+.act-row{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
 
-/* ── Progress bar ────────────────────────────────────────────────────── */
-.prog-wrap {
-  height:6px; background:var(--surface); border-radius:999px;
-  overflow:hidden; margin:10px 0; display:none;
-}
-.prog-wrap.show { display:block; }
-.prog-bar {
-  height:100%; width:0; border-radius:999px;
-  background:linear-gradient(90deg,var(--accent),var(--accent-2));
-  transition:width .3s;
-}
+.preview-wrap{margin-top:12px;border-radius:12px;border:1px solid var(--border,rgba(255,255,255,.12));background:rgba(255,255,255,.03);display:none;padding:12px;text-align:center}
+.preview-wrap.show{display:block}
+.preview-wrap img{max-width:100%;max-height:320px;border-radius:8px;object-fit:contain}
+.preview-wrap audio,.preview-wrap video{width:100%;border-radius:8px;margin-top:6px}
+.preview-wrap iframe{width:100%;height:340px;border:none;border-radius:8px;background:#fff}
 
-/* ── Stats row ───────────────────────────────────────────────────────── */
-.stats-row {
-  display:flex; gap:10px; flex-wrap:wrap; margin:8px 0;
-}
-.stat-chip {
-  padding:4px 10px; border-radius:999px; font-size:.75rem; font-weight:600;
-  background:var(--surface-2); border:1px solid var(--border); color:var(--text-dim);
-}
-.stat-chip b { color:var(--accent); }
+.b6-snips{display:none;margin-top:16px}
+.b6-snips.show{display:block}
+.snippet-tabs{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.b6-snip{padding:5px 12px;border-radius:999px;font-size:.75rem;font-weight:600;border:1px solid var(--border,rgba(255,255,255,.14));background:rgba(255,255,255,.05);color:var(--text-dim);cursor:pointer}
+.b6-snip[aria-pressed="true"]{background:linear-gradient(90deg,#7c3aed,#a78bfa);border-color:transparent;color:#fff}
+.snippet-box{font-family:'Consolas','Courier New',monospace;font-size:.78rem;padding:12px;border-radius:8px;background:rgba(0,0,0,.35);border:1px solid var(--border,rgba(255,255,255,.12));overflow:auto;white-space:pre;line-height:1.6;color:#d6cbff;max-height:140px}
+.sec-title{font-size:.9rem;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:8px}
 
-/* ── Output header bar ───────────────────────────────────────────────── */
-.output-header {
-  display:flex; justify-content:space-between; align-items:center;
-  flex-wrap:wrap; gap:8px; margin-bottom:6px;
-}
-.output-header .lbl { font-size:.88rem; font-weight:700; }
+.hist-list{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.hist-item{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:10px;padding:10px 13px;flex-wrap:wrap}
+.hist-icon{font-size:1.3rem}
+.hist-meta{flex:1;min-width:120px}
+.hist-op{font-size:.8rem;font-weight:700}
+.hist-sub{font-size:.72rem;color:var(--text-dim);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:240px}
+.hist-time{font-size:.7rem;color:var(--text-dim)}
+.hist-acts{display:flex;gap:5px}
+.hist-btn{padding:4px 9px;border-radius:999px;font-size:.72rem;font-weight:600;border:1px solid var(--border,rgba(255,255,255,.14));background:none;color:var(--text-dim);cursor:pointer}
+.hist-btn:hover{border-color:#a78bfa;color:#c4b5fd}
+#statusMsg{margin-top:10px;font-size:.85rem;min-height:1em}
+.kbd{display:inline-flex;font-size:.72rem;font-family:monospace;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));border-radius:5px;padding:2px 6px;color:var(--text-dim)}
+.privacy-note{background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;padding:12px 14px;font-size:.84rem;color:var(--text-dim);margin-top:16px;line-height:1.6}
+.privacy-note b{color:#c4b5fd}
 
-/* ── Action buttons ──────────────────────────────────────────────────── */
-.act-row {
-  display:flex; gap:7px; flex-wrap:wrap; margin-top:10px;
-}
-.act-btn {
-  display:inline-flex; align-items:center; gap:5px;
-  padding:8px 14px; border-radius:999px;
-  border:1px solid var(--border); background:var(--surface);
-  color:var(--text); font-size:.8rem; font-weight:600;
-  cursor:pointer; font-family:var(--font); transition:.2s; white-space:nowrap;
-}
-.act-btn:hover { background:rgba(124,92,252,.2); border-color:var(--accent); color:var(--accent); }
-.act-btn.primary {
-  background:linear-gradient(135deg,var(--accent),#5A3FE0);
-  color:#fff; border-color:transparent;
-  box-shadow:0 4px 14px rgba(124,92,252,.35);
-}
-.act-btn.primary:hover { transform:translateY(-1px); box-shadow:0 6px 22px rgba(124,92,252,.5); }
-.act-btn.success { background:rgba(22,192,121,.15); color:#16C079; border-color:rgba(22,192,121,.3); }
-.act-btn.danger  { color:#F87171; border-color:rgba(248,113,113,.4); }
-.act-btn.danger:hover { background:rgba(248,113,113,.12); }
-
-/* ── Detect badge ────────────────────────────────────────────────────── */
-.detect-badge {
-  display:inline-flex; align-items:center; gap:6px;
-  padding:4px 12px; border-radius:999px; font-size:.78rem; font-weight:700;
-  background:rgba(22,192,121,.12); border:1px solid rgba(22,192,121,.25);
-  color:#16C079; margin-bottom:10px; display:none;
-}
-.detect-badge.show { display:inline-flex; animation:fadeUp .2s ease; }
-
-/* ── Preview area ────────────────────────────────────────────────────── */
-.preview-wrap {
-  margin-top:12px; border-radius:12px; overflow:hidden;
-  border:1px solid var(--border); background:var(--surface-2);
-  display:none; padding:12px; text-align:center;
-}
-.preview-wrap.show { display:block; animation:fadeUp .3s ease; }
-.preview-wrap img {
-  max-width:100%; max-height:320px; border-radius:8px;
-  box-shadow:0 4px 20px rgba(0,0,0,.3); object-fit:contain;
-}
-.preview-wrap audio,
-.preview-wrap video { width:100%; border-radius:8px; margin-top:6px; }
-.preview-wrap iframe {
-  width:100%; height:340px; border:none; border-radius:8px;
-}
-
-/* ── Code snippet tabs ───────────────────────────────────────────────── */
-.snippet-tabs { display:flex; gap:6px; margin-bottom:8px; flex-wrap:wrap; }
-.snip-tab {
-  padding:5px 12px; border-radius:999px; font-size:.75rem; font-weight:600;
-  border:1px solid var(--border); background:var(--surface);
-  color:var(--text-dim); cursor:pointer; font-family:var(--font); transition:.15s;
-}
-.snip-tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
-.snippet-box {
-  font-family:'Consolas','Courier New',monospace;
-  font-size:.78rem; padding:12px; border-radius:8px;
-  background:rgba(0,0,0,.25); border:1px solid var(--border);
-  overflow-x:auto; white-space:pre; line-height:1.6;
-  color:var(--text); max-height:120px; overflow-y:auto;
-}
-body.light-mode .snippet-box { background:rgba(0,0,0,.06); }
-
-/* ── History ──────────────────────────────────────────────────────────  */
-.hist-list { display:flex; flex-direction:column; gap:8px; margin-top:8px; }
-.hist-item {
-  display:flex; align-items:center; gap:10px;
-  background:var(--surface-2); border:1px solid var(--border);
-  border-radius:10px; padding:10px 14px; flex-wrap:wrap;
-  cursor:pointer; transition:.15s;
-}
-.hist-item:hover { border-color:var(--accent); }
-.hist-icon { font-size:1.4rem; flex-shrink:0; }
-.hist-meta { flex:1; min-width:120px; }
-.hist-op   { font-size:.8rem; font-weight:700; }
-.hist-sub  { font-size:.72rem; color:var(--text-dim); margin-top:2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:220px; }
-.hist-time { font-size:.7rem; color:var(--text-dim); flex-shrink:0; }
-.hist-acts { display:flex; gap:5px; flex-shrink:0; }
-.hist-btn  { padding:4px 9px; border-radius:999px; font-size:.72rem; font-weight:600; border:1px solid var(--border); background:none; color:var(--text-dim); cursor:pointer; font-family:var(--font); transition:.15s; }
-.hist-btn:hover { border-color:var(--accent); color:var(--accent); }
-
-/* ── Trust pills ──────────────────────────────────────────────────────  */
-.trust-row {
-  display:flex; gap:8px; flex-wrap:wrap; margin:14px 0;
-}
-.trust-pill {
-  display:flex; align-items:center; gap:5px;
-  padding:5px 12px; border-radius:999px; font-size:.78rem; font-weight:600;
-  background:rgba(22,192,121,.1); border:1px solid rgba(22,192,121,.25);
-  color:#16C079;
-}
-
-/* ── Related tools ────────────────────────────────────────────────────  */
-.related-grid {
-  display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-  gap:8px; margin-top:10px;
-}
-.related-card {
-  display:flex; align-items:center; gap:8px;
-  background:var(--surface-2); border:1px solid var(--border);
-  border-radius:10px; padding:10px 12px; text-decoration:none;
-  color:var(--text); font-size:.82rem; font-weight:600; transition:.2s;
-}
-.related-card:hover { border-color:var(--accent); color:var(--accent); transform:translateY(-1px); }
-
-/* ── FAQ ──────────────────────────────────────────────────────────────  */
-.faq-list { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
-.faq-item { border:1px solid var(--border); border-radius:10px; overflow:hidden; }
-.faq-q {
-  padding:12px 16px; font-weight:700; font-size:.87rem;
-  cursor:pointer; display:flex; justify-content:space-between;
-  align-items:center; background:var(--surface-2); transition:.15s; gap:10px;
-}
-.faq-q:hover { background:rgba(124,92,252,.1); }
-.faq-arrow { transition:.3s; font-style:normal; flex-shrink:0; }
-.faq-item.open .faq-arrow { transform:rotate(180deg); }
-.faq-a {
-  display:none; padding:12px 16px; font-size:.84rem;
-  color:var(--text-dim); line-height:1.75; border-top:1px solid var(--border);
-}
-.faq-item.open .faq-a { display:block; animation:fadeUp .2s ease; }
-
-/* ── Toast ────────────────────────────────────────────────────────────  */
-.toast {
-  position:fixed; bottom:22px; right:22px; z-index:9999;
-  padding:10px 20px; border-radius:999px; font-size:.84rem; font-weight:700;
-  box-shadow:0 4px 20px rgba(0,0,0,.35); pointer-events:none;
-  animation:toastIn .3s ease both;
-}
-.toast.ok  { background:#16C079; color:#fff; }
-.toast.err { background:#F87171; color:#fff; }
-.toast.inf { background:var(--accent); color:#fff; }
-@keyframes toastIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── Keyboard shortcut badge ──────────────────────────────────────────  */
-.kbd {
-  display:inline-flex; align-items:center; gap:3px;
-  font-size:.72rem; font-family:monospace;
-  background:var(--surface-2); border:1px solid var(--border);
-  border-radius:5px; padding:2px 6px; color:var(--text-dim);
-}
-
-/* ── Section title ────────────────────────────────────────────────────  */
-.sec-title {
-  font-size:.92rem; font-weight:700;
-  padding-bottom:8px; border-bottom:1px solid var(--border);
-  margin-bottom:12px; display:flex; align-items:center; gap:8px;
-}
-
-/* ── Animations ───────────────────────────────────────────────────────  */
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── Responsive ───────────────────────────────────────────────────────  */
-@media(max-width:600px){
-  .tab-btn { padding:8px 14px; font-size:.82rem; }
-  .act-btn  { padding:7px 11px; font-size:.76rem; }
-  .tab-theme { margin-left:0; }
-  .act-row  { gap:5px; }
-  .opts-bar { gap:8px; }
-  textarea  { min-height:110px !important; }
-}
-
-@media print {
-  .site-header, .tab-row, .act-row, .act-btn,
-  .opts-bar, footer { display:none !important; }
-  textarea { border:1px solid #ccc !important; }
-}
+/* below-tool */
+.b6-wrap{margin:26px 0}
+.b6-title{font-size:1.35rem;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.b6-feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.b6-fcard{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:14px;padding:16px}
+.b6-fcard h4{margin:0 0 6px;font-size:.98rem;display:flex;align-items:center;gap:8px}
+.b6-fcard p{margin:0;font-size:.86rem;color:var(--text-dim);line-height:1.55}
+.b6-rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.b6-rel{display:block;text-decoration:none;background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:14px;transition:.15s;color:var(--text)}
+.b6-rel:hover{border-color:#a78bfa;background:rgba(167,139,250,.1);transform:translateY(-2px)}
+.b6-rel b{display:block;font-size:.92rem;margin-bottom:3px}
+.b6-rel span{font-size:.8rem;color:var(--text-dim);line-height:1.45}
+.b6-prose p,.b6-prose li{color:var(--text-dim);line-height:1.75;font-size:.92rem}
+.b6-prose h3{font-size:1.02rem;margin:18px 0 8px}
+.b6-tscroll{overflow:auto;border-radius:10px}
+table.b6-table{border-collapse:collapse;font-size:.85rem;width:100%}
+table.b6-table th,table.b6-table td{border:1px solid var(--border,rgba(255,255,255,.12));padding:7px 10px;text-align:left;color:var(--text)}
+table.b6-table th{background:rgba(167,139,250,.14);color:#fff;font-weight:600}
+.b6-faq details{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:0 16px;margin-bottom:10px}
+.b6-faq summary{cursor:pointer;padding:14px 0;font-weight:600;font-size:.92rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.b6-faq summary::-webkit-details-marker{display:none}
+.b6-faq summary::after{content:'+';font-size:1.3rem;color:#a78bfa;flex:0 0 auto}
+.b6-faq details[open] summary::after{content:'−'}
+.b6-faq details p{margin:0 0 14px;font-size:.87rem;color:var(--text-dim);line-height:1.65}
+.b6-steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:12px}
+.b6-steps li{counter-increment:s;position:relative;padding-left:46px;font-size:.9rem;color:var(--text-dim);line-height:1.6}
+.b6-steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:9px;background:rgba(167,139,250,.18);color:#c4b5fd;font-weight:700;display:grid;place-items:center}
+.b6-steps li b{color:var(--text)}
+.toast{position:fixed;bottom:22px;right:22px;z-index:9999;padding:10px 18px;border-radius:999px;font-size:.84rem;font-weight:700;box-shadow:0 4px 20px rgba(0,0,0,.35);pointer-events:none}
+.toast.ok{background:#16C079;color:#fff}.toast.err{background:#F87171;color:#fff}.toast.inf{background:#7c3aed;color:#fff}
+@media (prefers-contrast:more){.b6-prose p,.b6-prose li{color:#fff}}
 </style>
 </head>
 <body>
@@ -382,898 +170,534 @@ body.light-mode .snippet-box { background:rgba(0,0,0,.06); }
 </header>
 
 <div class="container">
-
-  <!-- Breadcrumb -->
-  <nav class="breadcrumb" aria-label="Breadcrumb">
-    <a href="../index.html">🏠 Home</a>
-    <span>›</span>
-    <a href="../category/developer.html">Developer Tools</a>
-    <span>›</span>
-    <span>Base64 Encoder & Decoder</span>
-  </nav>
-
   <div class="tool-header">
-    <h1>🔢 Base64 Encoder & Decoder</h1>
-    <p>Encode text or files to Base64 — decode Base64 to text, image, PDF, audio or video. URL-safe mode, Data URI generator, preview & history included.</p>
+    <nav class="b6-crumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html">Developer &amp; Utility</a> › <span>Base64 Encoder &amp; Decoder</span></nav>
+    <h1>🔢 Base64 Encoder &amp; Decoder</h1>
+    <p>Encode text or files to <b>Base64</b> (or Base32, Hex, Binary, ASCII85) and decode Base64 back to <b>text, image, PDF, audio or video</b> with live preview. URL-safe mode, a <b>validator</b>, Data URI snippets, batch ZIP and export. 100% local — nothing is uploaded.</p>
   </div>
 
-  <!-- ── MAIN PANEL ── -->
   <div class="panel">
-
-    <!-- Tabs + Theme -->
-    <div class="tab-row">
-      <button class="tab-btn active" data-tab="encode" aria-label="Encode tab">➡️ Encode</button>
-      <button class="tab-btn"        data-tab="decode" aria-label="Decode tab">⬅️ Decode</button>
-      <div class="tab-theme" role="group" aria-label="Theme">
-        <button class="th-btn active" data-theme="dark"  title="Dark theme">🌙</button>
-        <button class="th-btn"        data-theme="light" title="Light theme">☀️</button>
-      </div>
+    <div class="b6-tabs" role="tablist" aria-label="Mode">
+      <button class="b6-tab" id="tabEncode" role="tab" aria-selected="true" type="button">➡️ Encode</button>
+      <button class="b6-tab" id="tabDecode" role="tab" aria-selected="false" type="button">⬅️ Decode</button>
     </div>
 
-    <!-- ══ ENCODE TAB ══ -->
+    <!-- ENCODE -->
     <div id="encodeTab">
-
-      <!-- Text / File mode -->
-      <div class="mode-row">
-        <button class="mode-btn active" data-mode="text" aria-label="Text mode">📝 Text</button>
-        <button class="mode-btn"        data-mode="file" aria-label="File mode">📁 File</button>
+      <div class="b6-modes">
+        <button class="b6-mode" id="modeText" data-mode="text" aria-pressed="true" type="button">📝 Text</button>
+        <button class="b6-mode" id="modeFile" data-mode="file" aria-pressed="false" type="button">📁 File</button>
+      </div>
+      <div class="b6-opts">
+        <label title="Output format">Format
+          <select id="b6Format">
+            <option value="base64" selected>Base64</option>
+            <option value="base32">Base32</option>
+            <option value="hex">Hex</option>
+            <option value="binary">Binary</option>
+            <option value="octal">Octal</option>
+            <option value="decimal">Decimal</option>
+            <option value="ascii85">ASCII85</option>
+          </select>
+        </label>
+        <label title="Replaces + with - and / with _"><input type="checkbox" id="urlSafeEnc"> URL-safe</label>
+        <label title="Encode as you type (text mode)"><input type="checkbox" id="autoEnc"> Auto-encode</label>
+        <label><input type="checkbox" id="removeWs"> Remove whitespace</label>
       </div>
 
-      <!-- Options bar -->
-      <div class="opts-bar">
-        <label title="Replaces + with - and / with _ for URL safety">
-          <input type="checkbox" id="urlSafeEnc"> URL-safe Base64
-        </label>
-        <label title="Encodes as you type (text mode only)">
-          <input type="checkbox" id="autoEnc"> Auto-encode (live)
-        </label>
-        <label>
-          <input type="checkbox" id="removeWs"> Remove whitespace from input
-        </label>
-      </div>
-
-      <!-- TEXT MODE -->
       <div id="encTextMode">
-        <div class="field">
-          <label for="encInput">
-            Text to encode
-            <small style="font-weight:400;color:var(--text-dim);margin-left:6px" id="encCharCount"></small>
-          </label>
-          <textarea id="encInput" class="mono" style="min-height:140px"
-            placeholder="Type or paste text here…"
-            aria-label="Text to encode"
-            spellcheck="false" autocomplete="off"></textarea>
-        </div>
+        <label class="b6-label" for="encInput">Text to encode <small id="encCharCount"></small></label>
+        <textarea id="encInput" class="b6-ta" placeholder="Type or paste text here…" spellcheck="false" autocomplete="off" aria-label="Text to encode"></textarea>
       </div>
 
-      <!-- FILE MODE -->
       <div id="encFileMode" style="display:none">
         <div class="dropzone" id="encDropzone" role="button" tabindex="0" aria-label="Drop file or click to upload">
-          <p>📤 Drag & drop a file here, or click to choose</p>
-          <input type="file" id="encFileInput" aria-label="Choose file to encode">
+          <div class="ic">📄</div>
+          <p><b>Drag &amp; drop file(s) here</b> or click to choose</p>
+          <div class="sub">🔒 any file type · processed locally · batch supported</div>
+          <input type="file" id="encFileInput" multiple aria-label="Choose file to encode">
         </div>
-        <!-- File info card -->
         <div class="file-card" id="encFileCard">
           <div class="file-icon" id="encFileIcon">📄</div>
-          <div class="file-details">
-            <div class="fn" id="encFileName">—</div>
-            <div class="fm" id="encFileMeta">—</div>
-          </div>
+          <div class="file-details"><div class="fn" id="encFileName">—</div><div class="fm" id="encFileMeta">—</div></div>
         </div>
       </div>
 
-      <!-- Progress -->
       <div class="prog-wrap" id="encProg"><div class="prog-bar" id="encProgBar"></div></div>
-
-      <!-- Encode button -->
-      <div class="act-row" style="margin-top:12px">
-        <button class="act-btn primary" id="encodeBtn" aria-label="Encode to Base64">➡️ Encode to Base64</button>
-        <button class="act-btn danger"  id="clearEncBtn" aria-label="Clear input">✕ Clear Input</button>
+      <div class="b6-toolbar">
+        <button class="b6-btn primary" id="encodeBtn" type="button">➡️ Encode</button>
+        <button class="b6-btn" id="batchZipBtn" type="button" style="display:none">📦 Batch ZIP</button>
+        <button class="b6-btn danger" id="clearEncBtn" type="button">✕ Clear</button>
       </div>
     </div>
 
-    <!-- ══ DECODE TAB ══ -->
+    <!-- DECODE -->
     <div id="decodeTab" style="display:none">
-
-      <!-- Options bar -->
-      <div class="opts-bar">
-        <label title="Tries to detect image/PDF/audio/video and shows preview">
-          <input type="checkbox" id="smartDetect" checked> Smart detection & preview
-        </label>
-        <label>
-          <input type="checkbox" id="urlSafeDec"> Input is URL-safe Base64
-        </label>
+      <div class="b6-opts">
+        <label title="Detect image/PDF/audio/video and preview"><input type="checkbox" id="smartDetect" checked> Smart detection &amp; preview</label>
+        <label><input type="checkbox" id="urlSafeDec"> Input is URL-safe</label>
       </div>
-
-      <!-- Auto-detect badge -->
       <div class="detect-badge" id="detectBadge">🔍 Detected: <span id="detectLabel">—</span></div>
-
-      <div class="field">
-        <label for="decInput">
-          Base64 to decode
-          <small style="font-weight:400;color:var(--text-dim);margin-left:6px" id="decCharCount"></small>
-        </label>
-        <textarea id="decInput" class="mono" style="min-height:140px"
-          placeholder="Paste Base64 string here (with or without data: prefix)…"
-          aria-label="Base64 to decode"
-          spellcheck="false" autocomplete="off"></textarea>
-      </div>
-
-      <!-- Progress -->
+      <label class="b6-label" for="decInput">Base64 to decode <small id="decCharCount"></small></label>
+      <textarea id="decInput" class="b6-ta" placeholder="Paste Base64 here (with or without the data: prefix)…" spellcheck="false" autocomplete="off" aria-label="Base64 to decode"></textarea>
       <div class="prog-wrap" id="decProg"><div class="prog-bar" id="decProgBar"></div></div>
-
-      <!-- Decode buttons -->
-      <div class="act-row" style="margin-top:12px">
-        <button class="act-btn primary" id="decodeBtn"     aria-label="Decode as text">⬅️ Decode as Text</button>
-        <button class="act-btn"         id="decodeFileBtn" aria-label="Decode and download file">⬇️ Decode & Download File</button>
-        <button class="act-btn danger"  id="clearDecBtn"   aria-label="Clear decode input">✕ Clear</button>
+      <div class="b6-toolbar">
+        <button class="b6-btn primary" id="decodeBtn" type="button">⬅️ Decode as Text</button>
+        <button class="b6-btn" id="decodeFileBtn" type="button">⬇️ Decode &amp; Download File</button>
+        <button class="b6-btn" id="b6ValidateBtn" type="button">✅ Validate / Repair</button>
+        <button class="b6-btn danger" id="clearDecBtn" type="button">✕ Clear</button>
       </div>
-
-      <!-- Preview section -->
+      <div class="b6-valid" id="b6Valid"></div>
       <div class="preview-wrap" id="previewWrap">
         <div style="font-size:.8rem;font-weight:700;color:var(--text-dim);margin-bottom:8px;text-align:left">👁 Preview</div>
         <div id="previewContent"></div>
-        <div class="act-row" style="margin-top:10px">
-          <button class="act-btn success" id="dlPreviewBtn" aria-label="Download preview">⬇ Download</button>
-        </div>
+        <div class="act-row"><button class="b6-btn success sm" id="dlPreviewBtn" type="button">⬇ Download</button></div>
       </div>
     </div>
 
-    <!-- ══ SHARED OUTPUT ══ -->
-    <div style="margin-top:18px">
+    <!-- SHARED OUTPUT -->
+    <div>
       <div class="output-header">
         <div class="lbl">📤 Result</div>
-        <div style="display:flex;gap:6px;align-items:center">
-          <label style="font-size:.76rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:4px">
-            <input type="checkbox" id="wrapToggle" style="accent-color:var(--accent)"> Word wrap
-          </label>
-        </div>
+        <label style="font-size:.76rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:4px"><input type="checkbox" id="wrapToggle" style="accent-color:#a78bfa"> Word wrap</label>
       </div>
-
-      <!-- Stats -->
-      <div class="stats-row" id="statsRow" style="display:none">
+      <div class="stats-row" id="statsRow">
         <span class="stat-chip">Chars: <b id="statChars">0</b></span>
         <span class="stat-chip">Bytes: <b id="statBytes">0</b></span>
         <span class="stat-chip">Ratio: <b id="statRatio">—</b></span>
         <span class="stat-chip">Time: <b id="statTime">—</b></span>
       </div>
-
-      <textarea id="outputText" class="mono nowrap" readonly style="min-height:160px"
-        aria-label="Result output" placeholder="Result will appear here…"></textarea>
-
-      <!-- Output action buttons -->
+      <textarea id="outputText" class="b6-ta b6-out nowrap" readonly placeholder="Result will appear here…" aria-label="Result output"></textarea>
       <div class="act-row">
-        <button class="act-btn primary" id="copyBtn"    aria-label="Copy result">📋 Copy</button>
-        <button class="act-btn"         id="dlTxtBtn"   aria-label="Download as TXT">⬇ Download TXT</button>
-        <button class="act-btn"         id="expandBtn"  aria-label="Expand output">⛶ Expand</button>
-        <button class="act-btn danger"  id="clearOutBtn" aria-label="Clear output">✕ Clear Output</button>
+        <button class="b6-btn primary" id="copyBtn" type="button">📋 Copy</button>
+        <button class="b6-btn" id="dlTxtBtn" type="button">⬇ TXT</button>
+        <button class="b6-btn" id="expJson" type="button">⬇ JSON</button>
+        <button class="b6-btn" id="expCsv" type="button">⬇ CSV</button>
+        <button class="b6-btn" id="expandBtn" type="button">⛶ Expand</button>
+        <button class="b6-btn danger" id="clearOutBtn" type="button">✕ Clear Output</button>
       </div>
 
-      <!-- Snippets (Data URI, HTML img, CSS bg) -->
-      <div id="snippetSection" style="display:none;margin-top:16px">
+      <div class="b6-snips" id="snippetSection">
         <div class="sec-title">🧩 Generated Code Snippets</div>
-        <div class="snippet-tabs">
-          <button class="snip-tab active" data-snip="datauri">Data URI</button>
-          <button class="snip-tab"        data-snip="htmlimg">HTML &lt;img&gt;</button>
-          <button class="snip-tab"        data-snip="cssbg">CSS background</button>
-          <button class="snip-tab"        data-snip="json">JSON object</button>
+        <div class="snippet-tabs" id="snipTabs">
+          <button class="b6-snip" data-snip="datauri" aria-pressed="true" type="button">Data URI</button>
+          <button class="b6-snip" data-snip="htmlimg" aria-pressed="false" type="button">HTML &lt;img&gt;</button>
+          <button class="b6-snip" data-snip="cssbg" aria-pressed="false" type="button">CSS background</button>
+          <button class="b6-snip" data-snip="json" aria-pressed="false" type="button">JSON object</button>
         </div>
         <div class="snippet-box" id="snippetBox"></div>
-        <div class="act-row" style="margin-top:6px">
-          <button class="act-btn" id="copySnipBtn" aria-label="Copy snippet">📋 Copy Snippet</button>
-        </div>
+        <div class="act-row"><button class="b6-btn sm" id="copySnipBtn" type="button">📋 Copy Snippet</button></div>
       </div>
 
-      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.85rem"></p>
-
-      <!-- Keyboard shortcuts hint -->
+      <p id="statusMsg" style="color:var(--text-dim)"></p>
       <div style="margin-top:8px;font-size:.75rem;color:var(--text-dim);display:flex;gap:10px;flex-wrap:wrap">
         <span><kbd class="kbd">Ctrl+Enter</kbd> Encode</span>
         <span><kbd class="kbd">Ctrl+Shift+Enter</kbd> Decode</span>
         <span><kbd class="kbd">Ctrl+L</kbd> Clear all</span>
       </div>
     </div>
-  </div><!-- /panel -->
+  </div>
 
-  <!-- ── HISTORY PANEL ── -->
   <div class="panel" style="margin-top:10px">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px">
-      <div class="sec-title" style="margin:0;border:none;padding:0">
-        🕒 History <small style="font-weight:400;font-size:.72rem;color:var(--text-dim)">(last 10)</small>
-      </div>
-      <button class="act-btn danger" id="clearHistBtn" style="padding:5px 11px;font-size:.75rem">🗑 Clear</button>
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:6px">
+      <div class="sec-title" style="margin:0">🕒 History <small style="font-weight:400;font-size:.72rem;color:var(--text-dim)">(last 10, local)</small></div>
+      <button class="b6-btn danger sm" id="clearHistBtn" type="button">🗑 Clear</button>
     </div>
-    <div class="hist-list" id="histList">
-      <p style="color:var(--text-dim);font-size:.85rem">No history yet. Encode or decode something to see it here.</p>
-    </div>
+    <div class="hist-list" id="histList"><p style="color:var(--text-dim);font-size:.85rem">No history yet. Encode or decode something to see it here.</p></div>
   </div>
 
-  <!-- Trust pills -->
-  <div class="trust-row">
-    <div class="trust-pill">🔒 100% Client-Side</div>
-    <div class="trust-pill">🚫 No Upload to Server</div>
-    <div class="trust-pill">⚡ Instant Processing</div>
-    <div class="trust-pill">🆓 Free Forever</div>
-    <div class="trust-pill">🛡 Privacy Friendly</div>
-  </div>
-
-</div><!-- /container -->
-
-
-<!-- ── INFO SECTION ── -->
-<div class="info-wrap">
-  <div class="info-section">
-
-    <!-- ENGLISH -->
-    <div class="info-block">
-      <h2>ℹ️ About This Tool — Base64 Encoder & Decoder</h2>
-      <p>Base64 is a binary-to-text encoding scheme that converts binary data into a sequence of 64 printable ASCII characters. The name comes from the fact that it uses a 64-character alphabet consisting of A–Z, a–z, 0–9, and the two symbols + and /. Every 3 bytes of binary data are encoded into 4 Base64 characters, making the output approximately 33% larger than the original. Base64 is not encryption — it is purely an encoding format used to safely transmit binary data over systems that handle only text, such as email (MIME), HTTP headers, JSON APIs, and HTML/CSS.</p>
-      <p>The most common real-world use of Base64 is embedding binary files directly into text documents. When you see an image embedded in an HTML email rather than linked from a URL, that image is almost certainly stored as Base64 in the email source. When web developers embed small icons or fonts directly in CSS files using the <code>url(data:image/png;base64,...)</code> syntax, they are using Base64 Data URIs to eliminate an extra HTTP request. When you authenticate with a web API using HTTP Basic Auth, your username and password are Base64-encoded in the Authorization header. JSON Web Tokens (JWTs) use Base64url encoding (a URL-safe variant) for their header and payload sections.</p>
-      <p>This tool gives you a complete Base64 workflow: encode any text or file to Base64, decode any Base64 string back to text or a downloadable file, automatically detect and preview images/PDFs/audio/video embedded in Base64, generate Data URIs and HTML/CSS code snippets, and maintain a history of your last 10 conversions for quick access.</p>
-      <p>The <strong>URL-safe Base64</strong> mode replaces the standard + and / characters with - and _ respectively, and omits padding characters (=). This variant is used in JWT tokens, OAuth flows, URL parameters, and file names where the standard + and / characters would cause encoding problems or need to be percent-encoded. Always use URL-safe Base64 when embedding Base64 values in URLs or file names.</p>
-      <p>The <strong>Smart Detection</strong> feature automatically identifies what type of content is encoded in a Base64 string. It recognizes image formats (PNG, JPEG, GIF, WebP, SVG), PDFs, audio (MP3, WAV, OGG), video (MP4, WebM), ZIP files, JSON, HTML, and plain text. When an image is detected, a live preview is displayed. When a PDF is detected, an embedded PDF preview is shown. Audio and video are played directly in the browser.</p>
-
-      <h3>📖 How to Use:</h3>
-      <ol>
-        <li><strong>Encode text:</strong> Select the Encode tab → Text mode, type or paste your text, click "Encode to Base64".</li>
-        <li><strong>Encode a file:</strong> Select the Encode tab → File mode, drag & drop or select a file, click "Encode to Base64".</li>
-        <li><strong>Decode:</strong> Select the Decode tab, paste your Base64 string (with or without the data: prefix), click "Decode as Text" or "Decode & Download File".</li>
-        <li><strong>Preview:</strong> Enable Smart Detection and decode an image/PDF Base64 — a live preview appears automatically.</li>
-        <li><strong>Keyboard shortcuts:</strong> Ctrl+Enter to encode, Ctrl+Shift+Enter to decode, Ctrl+L to clear all.</li>
-      </ol>
-
-      <h3>🔧 Common Use Cases:</h3>
-      <ul>
-        <li><strong>Web Development:</strong> Embed small images/icons directly in HTML or CSS to eliminate HTTP requests.</li>
-        <li><strong>Email:</strong> MIME email attachments are Base64-encoded. Decode email source to extract attachments.</li>
-        <li><strong>API Development:</strong> Many APIs transmit binary data (images, PDFs) as Base64 in JSON responses.</li>
-        <li><strong>JWT Tokens:</strong> Decode the payload of a JWT token (URL-safe Base64) to inspect its contents.</li>
-        <li><strong>HTTP Basic Auth:</strong> Credentials in Authorization headers are Base64-encoded.</li>
-        <li><strong>Data URIs:</strong> Generate data:image/... URIs for use in HTML, CSS, or JavaScript.</li>
-        <li><strong>Debugging:</strong> Inspect Base64-encoded data from API responses, cookies, or network traffic.</li>
-      </ul>
-
-      <!-- Related tools -->
-      <h3 style="margin-top:18px">🔗 Related Tools</h3>
-      <div class="related-grid">
-        <a class="related-card" href="csv-json-converter.html">🔄 JSON Formatter</a>
-        <a class="related-card" href="code-preview.html">👁 Code Preview</a>
-        <a class="related-card" href="css-beautifier-minifier.html">🎨 CSS Beautifier</a>
-        <a class="related-card" href="barcode-generator.html">📊 Barcode Generator</a>
-        <a class="related-card" href="qr-generator.html">🔲 QR Generator</a>
-        <a class="related-card" href="exif-viewer-remover.html">📷 EXIF Viewer</a>
-        <a class="related-card" href="fancy-text-generator.html">✨ Text Encoder</a>
-      </div>
-
-      <!-- FAQ -->
-      <h3 style="margin-top:20px">❓ Frequently Asked Questions</h3>
-      <div class="faq-list" id="faqEn"></div>
-    </div>
-
-    <hr class="info-divider">
-
-    <!-- HINDI -->
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में — Base64 Encoder & Decoder</h2>
-      <p>Base64 एक binary-to-text encoding scheme है जो binary data को 64 printable ASCII characters की sequence में convert करती है। इसका नाम इसलिए है क्योंकि यह 64-character alphabet use करती है — A–Z, a–z, 0–9, और + तथा /। हर 3 bytes binary data को 4 Base64 characters में encode किया जाता है, जिससे output original से लगभग 33% बड़ा हो जाता है। Base64 encryption नहीं है — यह सिर्फ एक encoding format है जो binary data को text-only systems के through safely transmit करने के लिए use होती है।</p>
-      <p>Base64 का सबसे common real-world use binary files को text documents में directly embed करना है। जब आप HTML email में कोई image URL से नहीं बल्कि directly embedded देखते हैं, तो वो almost certainly Base64 में store होती है। जब web developers CSS files में small icons या fonts को <code>url(data:image/png;base64,...)</code> syntax से embed करते हैं, तो वो Base64 Data URIs use कर रहे होते हैं। JSON Web Tokens (JWTs) अपने header और payload sections के लिए Base64url encoding (URL-safe variant) use करते हैं।</p>
-      <p>यह tool एक complete Base64 workflow देता है: किसी भी text या file को Base64 में encode करें, किसी भी Base64 string को text या downloadable file में decode करें, Base64 में embedded images/PDFs/audio/video automatically detect करके preview करें, Data URIs और HTML/CSS code snippets generate करें, और quick access के लिए last 10 conversions की history रखें।</p>
-      <p><strong>URL-safe Base64</strong> mode standard + और / characters को क्रमशः - और _ से replace करता है, और padding characters (=) omit करता है। यह variant JWT tokens, OAuth flows, URL parameters, और file names में use होता है।</p>
-      <p><strong>Smart Detection</strong> feature automatically identify करता है कि Base64 string में किस type का content encode है — images (PNG, JPEG, GIF, WebP, SVG), PDFs, audio (MP3, WAV), video (MP4, WebM), ZIP files, JSON, HTML, plain text। Image detect होने पर live preview दिखती है, PDF के लिए embedded preview, audio/video browser में directly play होता है।</p>
-
-      <h3>📖 इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li><strong>Text encode करें:</strong> Encode tab → Text mode, text type या paste करें, "Encode to Base64" click करें।</li>
-        <li><strong>File encode करें:</strong> Encode tab → File mode, drag & drop या file select करें, "Encode to Base64" click करें।</li>
-        <li><strong>Decode करें:</strong> Decode tab, Base64 string paste करें (data: prefix के साथ या बिना), "Decode as Text" या "Decode & Download File" click करें।</li>
-        <li><strong>Preview:</strong> Smart Detection enable करके image/PDF Base64 decode करें — live preview automatically आती है।</li>
-        <li><strong>Keyboard shortcuts:</strong> Ctrl+Enter encode, Ctrl+Shift+Enter decode, Ctrl+L सब clear।</li>
-      </ol>
-
-      <h3>🔧 Common Use Cases:</h3>
-      <ul>
-        <li><strong>Web Development:</strong> Small images/icons directly HTML या CSS में embed करें।</li>
-        <li><strong>Email:</strong> MIME email attachments Base64-encoded होते हैं।</li>
-        <li><strong>API Development:</strong> JSON responses में binary data (images, PDFs) Base64 में होता है।</li>
-        <li><strong>JWT Tokens:</strong> JWT token का payload decode करके उसका content inspect करें।</li>
-        <li><strong>HTTP Basic Auth:</strong> Authorization headers में credentials Base64-encoded होते हैं।</li>
-        <li><strong>Data URIs:</strong> HTML, CSS, या JavaScript में use के लिए data:image/... URIs generate करें।</li>
-      </ul>
-
-      <div class="faq-list" id="faqHi"></div>
-    </div>
-
-  </div>
+  <div class="privacy-note">🔒 <b>Private by design:</b> all encoding and decoding happens in your browser. Your text and files are never uploaded to a server, and the tool works offline once loaded.</div>
 </div>
 
-<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<!-- ===================== BELOW-TOOL CONTENT ===================== -->
+<div class="container">
+
+<!-- Key Features -->
+<section class="b6-wrap">
+  <h2 class="b6-title">✨ Key Features</h2>
+  <div class="b6-feat-grid">
+    <div class="b6-fcard"><h4>🔤 Text &amp; File Encoding</h4><p>Encode typed text or any file to Base64 — and to Base32, Hex, Binary, Octal, Decimal or ASCII85.</p></div>
+    <div class="b6-fcard"><h4>🖼️ Decode with Preview</h4><p>Decode Base64 back to text or a file, with automatic image, PDF, audio and video preview.</p></div>
+    <div class="b6-fcard"><h4>🔗 URL-safe Base64</h4><p>Switch to the URL-safe alphabet used in JWTs, OAuth and query strings, with padding handled.</p></div>
+    <div class="b6-fcard"><h4>✅ Validator &amp; Repair</h4><p>Detect invalid characters, fix missing padding and normalise a Base64 string in one click.</p></div>
+    <div class="b6-fcard"><h4>🧩 Data URI &amp; Snippets</h4><p>Generate a Data URI plus ready HTML &lt;img&gt;, CSS background and JSON snippets.</p></div>
+    <div class="b6-fcard"><h4>🔎 Smart Detection</h4><p>Sniffs magic bytes to identify PNG, JPEG, GIF, WebP, PDF, MP3, WAV, MP4, ZIP, JSON and HTML.</p></div>
+    <div class="b6-fcard"><h4>📦 Batch ZIP</h4><p>Drop many files, encode them all and download the Base64 results as a single ZIP.</p></div>
+    <div class="b6-fcard"><h4>📊 Live Stats</h4><p>Character and byte counts, size ratio and processing time for every conversion.</p></div>
+    <div class="b6-fcard"><h4>📤 Copy &amp; Export</h4><p>Copy the result or a snippet, or export as TXT, JSON or CSV.</p></div>
+    <div class="b6-fcard"><h4>🕒 History</h4><p>Your last 10 conversions are kept locally for quick restore — never sent anywhere.</p></div>
+    <div class="b6-fcard"><h4>🔒 100% Local</h4><p>Everything runs in your browser. Nothing is uploaded, logged or tracked.</p></div>
+    <div class="b6-fcard"><h4>♿ Accessible &amp; Mobile</h4><p>Keyboard shortcuts, ARIA labels, high-contrast support and a responsive layout.</p></div>
+  </div>
+</section>
+
+<!-- Benefits -->
+<section class="b6-wrap b6-prose">
+  <h2 class="b6-title">🎯 Benefits</h2>
+  <ul>
+    <li><b>Embed without extra requests</b> — turn an icon or font into a Data URI you can paste straight into HTML or CSS.</li>
+    <li><b>Debug APIs and tokens</b> — decode Base64 payloads from JSON responses, cookies or JWTs in seconds.</li>
+    <li><b>Move binary through text</b> — safely carry images and files across email, JSON and URLs.</li>
+    <li><b>Stay private</b> — sensitive files never leave your device, so encoding confidential data is safe.</li>
+    <li><b>Work anywhere</b> — no account, no install, and it works offline.</li>
+  </ul>
+</section>
+
+<!-- Related Tools (ABOVE About) -->
+<section class="b6-wrap">
+  <h2 class="b6-title">🧰 Related Tools</h2>
+  <div class="b6-rel-grid">
+    <a class="b6-rel" href="hash-generator.html"><b>#️⃣ Hash Generator</b><span>MD5, SHA, CRC32 checksums.</span></a>
+    <a class="b6-rel" href="url-html-encoder-decoder.html"><b>🔗 URL &amp; HTML Entity Coder</b><span>Encode &amp; decode URLs / HTML.</span></a>
+    <a class="b6-rel" href="text-encrypt-decrypt.html"><b>🔐 Text Encrypt / Decrypt</b><span>AES encryption in your browser.</span></a>
+    <a class="b6-rel" href="csv-json-converter.html"><b>🔄 CSV ↔ JSON Converter</b><span>Convert between CSV and JSON.</span></a>
+    <a class="b6-rel" href="regex-tester.html"><b>🔎 Regex Tester</b><span>Build &amp; test regular expressions.</span></a>
+    <a class="b6-rel" href="uuid-generator.html"><b>🆔 UUID Generator</b><span>Generate unique IDs.</span></a>
+    <a class="b6-rel" href="timestamp-converter.html"><b>⏱️ Timestamp Converter</b><span>Convert Unix timestamps.</span></a>
+    <a class="b6-rel" href="qr-generator.html"><b>🔳 QR Code Generator</b><span>Create QR codes.</span></a>
+  </div>
+</section>
+
+<!-- About (English) -->
+<section class="b6-wrap b6-prose">
+  <h2 class="b6-title">ℹ️ About This Tool</h2>
+  <p>The <b>ApneSoftware Base64 Encoder &amp; Decoder</b> is a professional, privacy-first utility for converting data between binary and text, entirely inside your browser. <b>Base64</b> is a binary-to-text encoding scheme that represents arbitrary binary data using 64 printable ASCII characters — the letters A–Z and a–z, the digits 0–9, and the symbols <code>+</code> and <code>/</code>. Every three bytes of input become four Base64 characters, so the encoded output is roughly 33% larger than the original. Crucially, Base64 is <b>encoding, not encryption</b>: it adds no security whatsoever, because anyone can decode it without a key. Its job is simply to let binary data travel safely through channels that were designed for text — email, HTTP headers, JSON, HTML and CSS — without the raw bytes being corrupted along the way.</p>
+  <p>That single idea powers an enormous amount of everyday software. When an image is embedded directly inside an HTML email instead of linked from a server, it is stored as Base64 in the message source. When a front-end developer inlines a small icon or font in a stylesheet using <code>url(data:image/png;base64,…)</code>, they are using a Base64 <b>Data URI</b> to avoid an extra network request. When an app authenticates with HTTP Basic Auth, the username and password are Base64-encoded in the Authorization header. And when you inspect a <b>JSON Web Token</b> (JWT), its header and payload are Base64url — a URL-safe variant. This tool gives you a complete workbench for all of these: encode text or files, decode strings back to text or downloadable files, preview what a Base64 blob actually contains, and generate the exact snippets you need to use it.</p>
+  <p>In <b>encode mode</b> you can type or paste text, or drag in one or more files of any type. Beyond standard Base64 you can output the same bytes as <b>Base32, hexadecimal, binary, octal, decimal or ASCII85</b>, which is invaluable when a protocol or debugger expects a particular representation. A <b>URL-safe</b> option swaps <code>+</code> and <code>/</code> for <code>-</code> and <code>_</code> and drops padding, exactly as JWTs and OAuth flows require. Convenience options let you encode live as you type or strip whitespace from the input first. For files, an information panel shows the name, size, MIME type and last-modified date, a progress bar tracks larger files, and a <b>batch</b> mode encodes a whole set of files and packages the results into a single downloadable <b>ZIP</b>.</p>
+  <p>In <b>decode mode</b> you paste a Base64 string — with or without a <code>data:</code> prefix — and the tool converts it back. Its <b>Smart Detection</b> engine reads the leading bytes to identify the content: image formats (PNG, JPEG, GIF, WebP, SVG), PDFs, audio (MP3, WAV, OGG), video (MP4, WebM), ZIP archives, JSON, HTML and plain text. When it recognises media, a <b>live preview</b> appears right in the page — images render, PDFs open in an embedded viewer, and audio and video play inline — so you can confirm a blob is what you expect before downloading it as a properly-named file. A dedicated <b>validator</b> checks a string for invalid characters, repairs missing <code>=</code> padding and normalises URL-safe input, turning a common source of "invalid Base64" errors into a one-click fix.</p>
+  <p>Because results are meant to be used, the tool makes them easy to take away. Every conversion reports <b>live statistics</b> — character count, byte count, size ratio and processing time — and the output can be <b>copied</b>, downloaded as <b>TXT</b>, or exported as <b>JSON</b> or <b>CSV</b>. For images and PDFs it also builds ready-to-paste <b>Data URI, HTML &lt;img&gt;, CSS background and JSON</b> snippets. A local <b>history</b> keeps your last ten conversions so you can restore or re-copy them quickly, and the whole interface supports <b>keyboard shortcuts</b> (Ctrl+Enter to encode, Ctrl+Shift+Enter to decode, Ctrl+L to clear) along with a light and dark appearance.</p>
+  <p><b>Privacy is the reason this runs in the browser.</b> Many "online Base64" sites work by uploading your file to a server that does the conversion — which is exactly what you do not want when the data is a private key, a confidential document or an internal API response. This tool never uploads anything. Your text and files are read into memory, converted locally with JavaScript, and never transmitted; there is no account, no logging and no analytics on your content, and nothing is stored beyond the optional local history you can clear at any time. Because all processing is local, it also keeps working <b>offline</b> once loaded, and it follows accessibility best practices with keyboard navigation, ARIA labelling, visible focus outlines and high-contrast support. In short, it is a fast, complete, genuinely private Base64 workbench for developers, testers and anyone who needs to move data between binary and text with confidence.</p>
+</section>
+
+<!-- About (Hindi) -->
+<section class="b6-wrap b6-prose">
+  <h2 class="b6-title">ℹ️ इस टूल के बारे में</h2>
+  <p><b>ApneSoftware Base64 Encoder &amp; Decoder</b> data को binary व text के बीच बदलने के लिए एक professional, privacy-first उपयोगिता है जो पूरी तरह आपके browser के अंदर चलती है। <b>Base64</b> एक binary-to-text encoding है जो किसी भी binary data को 64 printable ASCII characters से दर्शाती है — A–Z, a–z, अंक 0–9, और चिह्न <code>+</code> व <code>/</code>। हर तीन bytes चार Base64 characters बनते हैं, इसलिए encoded output मूल से लगभग 33% बड़ा होता है। महत्वपूर्ण बात — Base64 <b>encoding है, encryption नहीं</b>: यह कोई security नहीं देती, क्योंकि कोई भी इसे बिना key के decode कर सकता है। इसका काम केवल binary data को उन माध्यमों से सुरक्षित ले जाना है जो text के लिए बने हैं — email, HTTP headers, JSON, HTML व CSS।</p>
+  <p>यही एक विचार रोज़मर्रा के बहुत सारे software को शक्ति देता है। जब कोई image HTML email के अंदर सीधे embed होती है, वह source में Base64 के रूप में होती है। जब कोई front-end developer stylesheet में एक छोटा icon या font <code>url(data:image/png;base64,…)</code> से inline करता है, वह एक अतिरिक्त network request बचाने के लिए Base64 <b>Data URI</b> उपयोग कर रहा होता है। जब कोई app HTTP Basic Auth से authenticate करता है, username व password Authorization header में Base64-encoded होते हैं। और जब आप एक <b>JWT</b> देखते हैं, उसका header व payload Base64url — एक URL-safe variant — होता है। यह टूल इन सबके लिए एक पूर्ण workbench देता है।</p>
+  <p><b>encode mode</b> में आप text टाइप या paste कर सकते हैं, या किसी भी प्रकार की एक-या-अनेक files drag कर सकते हैं। standard Base64 के अलावा आप उन्हीं bytes को <b>Base32, hexadecimal, binary, octal, decimal या ASCII85</b> के रूप में output कर सकते हैं, जो तब बहुत उपयोगी है जब कोई protocol या debugger कोई विशेष रूप चाहता है। एक <b>URL-safe</b> विकल्प <code>+</code> व <code>/</code> को <code>-</code> व <code>_</code> से बदलता है और padding हटाता है, ठीक जैसा JWTs व OAuth चाहते हैं। सुविधा विकल्प आपको टाइप करते ही live encode करने या पहले whitespace हटाने देते हैं। files के लिए एक information panel नाम, size, MIME type व last-modified तारीख दिखाता है, एक progress bar बड़ी files को ट्रैक करता है, और एक <b>batch</b> mode पूरे सेट को encode कर परिणाम एक ही <b>ZIP</b> में पैक करता है।</p>
+  <p><b>decode mode</b> में आप एक Base64 string paste करते हैं — <code>data:</code> prefix के साथ या बिना — और टूल उसे वापस बदल देता है। इसका <b>Smart Detection</b> engine शुरुआती bytes पढ़कर content पहचानता है: image formats (PNG, JPEG, GIF, WebP, SVG), PDFs, audio (MP3, WAV, OGG), video (MP4, WebM), ZIP, JSON, HTML व plain text। जब यह media पहचानता है, page में ही एक <b>live preview</b> दिखता है — images render होते हैं, PDFs embedded viewer में खुलते हैं, और audio व video inline चलते हैं — ताकि download से पहले आप पुष्टि कर सकें। एक समर्पित <b>validator</b> string में अमान्य characters जाँचता है, गायब <code>=</code> padding ठीक करता है और URL-safe input को normalise करता है।</p>
+  <p>चूँकि परिणाम उपयोग के लिए हैं, टूल उन्हें आसानी से ले जाने योग्य बनाता है। हर conversion <b>live statistics</b> बताता है — character count, byte count, size ratio व processing time — और output को <b>copy</b>, <b>TXT</b> में download, या <b>JSON</b> व <b>CSV</b> में export किया जा सकता है। images व PDFs के लिए यह तैयार <b>Data URI, HTML &lt;img&gt;, CSS background व JSON</b> snippets भी बनाता है। एक local <b>history</b> आपकी अंतिम दस conversions रखती है, और पूरा interface <b>keyboard shortcuts</b> (Ctrl+Enter encode, Ctrl+Shift+Enter decode, Ctrl+L clear) व light/dark रूप समर्थित करता है।</p>
+  <p><b>यह सब browser में चलने का कारण privacy है।</b> कई "online Base64" sites आपकी file एक server पर upload करके conversion करती हैं — जो तब बिल्कुल नहीं चाहिए जब data एक private key, गोपनीय दस्तावेज़ या आंतरिक API response हो। यह टूल कभी कुछ upload नहीं करता। आपका text व files memory में पढ़े जाते हैं, JavaScript से locally बदले जाते हैं, और कहीं transmit नहीं होते; कोई account नहीं, कोई logging नहीं, आपकी सामग्री पर कोई analytics नहीं, और वैकल्पिक local history के अलावा कुछ store नहीं होता जिसे आप कभी भी साफ़ कर सकते हैं। सब कुछ local होने के कारण यह load होने के बाद <b>offline</b> काम करता है, और keyboard navigation, ARIA labelling व high-contrast समर्थन के साथ accessibility सर्वोत्तम प्रथाओं का पालन करता है।</p>
+</section>
+
+<!-- Encoding Formats -->
+<section class="b6-wrap b6-prose">
+  <h2 class="b6-title">🔡 Encoding Formats</h2>
+  <div class="b6-tscroll">
+    <table class="b6-table">
+      <thead><tr><th>Format</th><th>Alphabet / form</th><th>Typical use</th></tr></thead>
+      <tbody>
+        <tr><td>Base64</td><td>A–Z a–z 0–9 + /</td><td>The standard for embedding binary in text (email, JSON, HTML).</td></tr>
+        <tr><td>Base64 URL-safe</td><td>A–Z a–z 0–9 - _</td><td>JWTs, OAuth, URL parameters and file names.</td></tr>
+        <tr><td>Base32</td><td>A–Z 2–7</td><td>Case-insensitive IDs, TOTP secrets and DNS-safe data.</td></tr>
+        <tr><td>Hex (Base16)</td><td>0–9 a–f</td><td>Hashes, colours, byte dumps and debugging.</td></tr>
+        <tr><td>Binary</td><td>8-bit groups</td><td>Teaching, bit-level inspection and low-level protocols.</td></tr>
+        <tr><td>Octal</td><td>base-8 per byte</td><td>Legacy Unix permissions and escape sequences.</td></tr>
+        <tr><td>Decimal</td><td>0–255 per byte</td><td>Byte-value inspection and quick maths.</td></tr>
+        <tr><td>ASCII85</td><td>85-character set</td><td>PostScript/PDF; ~25% overhead vs Base64's ~33%.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Validation Guide -->
+<section class="b6-wrap b6-prose">
+  <h2 class="b6-title">✅ Validation Guide</h2>
+  <ol class="b6-steps">
+    <li>Paste your Base64 into the <b>Decode</b> box and click <b>Validate / Repair</b>.</li>
+    <li>The tool flags any <b>invalid characters</b> (anything outside the Base64 alphabet).</li>
+    <li>It restores missing <code>=</code> <b>padding</b> so the length is a multiple of four.</li>
+    <li>If the string uses <code>-</code> and <code>_</code>, it <b>normalises</b> the URL-safe alphabet back to standard.</li>
+    <li>A green message means it's valid and ready to decode; a red one explains exactly what's wrong.</li>
+  </ol>
+</section>
+
+<!-- Privacy & Security -->
+<section class="b6-wrap b6-prose">
+  <h2 class="b6-title">🔒 Privacy &amp; Security</h2>
+  <div class="privacy-note"><b>English:</b> All encoding and decoding happens entirely in your browser with JavaScript. Your text and files are never uploaded to a server, there is no account, and nothing is tracked. The only data stored is an optional local history you can clear anytime, and the tool works offline once loaded — so even a private key or confidential file never leaves your device. Remember Base64 is encoding, not encryption; don't rely on it for security.</div>
+  <div class="privacy-note"><b>हिन्दी:</b> सारी encoding व decoding पूरी तरह आपके browser में JavaScript से होती है। आपका text व files किसी server पर upload नहीं होतीं, कोई account नहीं, और कुछ भी track नहीं होता। केवल एक वैकल्पिक local history store होती है जिसे आप कभी भी साफ़ कर सकते हैं, और page load के बाद टूल offline काम करता है — इसलिए private key या गोपनीय file भी कभी device से बाहर नहीं जाती। याद रखें Base64 encoding है, encryption नहीं; security के लिए इस पर निर्भर न रहें।</div>
+</section>
+
+<!-- How To Use -->
+<section class="b6-wrap b6-prose">
+  <h2 class="b6-title">🚀 How To Use</h2>
+  <ol class="b6-steps">
+    <li>Pick <b>Encode</b> or <b>Decode</b>.</li>
+    <li>To encode: choose <b>Text</b> or <b>File</b>, enter your input, pick a format, and click <b>Encode</b>.</li>
+    <li>To decode: paste a Base64 string and click <b>Decode as Text</b> or <b>Decode &amp; Download File</b>.</li>
+    <li>Use <b>Smart Detection</b> to preview images, PDFs, audio and video before saving.</li>
+    <li><b>Copy</b>, download, grab a <b>Data URI</b> snippet, or export as TXT/JSON/CSV.</li>
+  </ol>
+</section>
+
+<!-- FAQ -->
+<section class="b6-wrap b6-faq">
+  <h2 class="b6-title">❓ Frequently Asked Questions</h2>
+  <div id="faqList"></div>
+</section>
+
+<!-- Troubleshooting -->
+<section class="b6-wrap b6-prose">
+  <h2 class="b6-title">🛠️ Troubleshooting</h2>
+  <ul>
+    <li><b>“Invalid characters in Base64”:</b> click Validate / Repair — the string may be URL-safe or missing padding.</li>
+    <li><b>Decoded text looks like gibberish:</b> the data isn't text — use “Decode &amp; Download File”, or check Smart Detection.</li>
+    <li><b>No preview appears:</b> enable Smart detection, and confirm the data really is an image/PDF/audio/video.</li>
+    <li><b>Very large file is slow:</b> encoding multi-MB files takes time and memory — the progress bar shows it's working.</li>
+    <li><b>URL-safe string won't decode:</b> tick “Input is URL-safe”, or run Validate / Repair to normalise it.</li>
+    <li><b>Copied Data URI too long for a URL:</b> Data URIs suit HTML/CSS embedding, not query strings — link the file instead.</li>
+    <li><b>History disappeared:</b> it's stored locally in your browser and clears if you wipe site data or use private mode.</li>
+  </ul>
+</section>
+
+</div>
+
+<footer class="site-footer">© 2026 ApneSoftware.com — Free, private, browser-based tools.</footer>
 <div id="toastArea" aria-live="polite"></div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-/* =======================================================================
-   BASE64 ENCODER & DECODER — PREMIUM JS v2.0
-   All client-side | Modular | No memory leaks | ES6+
-   ======================================================================= */
 'use strict';
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 
-// ── DOM REFS ──────────────────────────────────────────────────────────────
-const $ = id => document.getElementById(id);
+  var encInput=$('encInput'), decInput=$('decInput'), outputText=$('outputText'), statusMsg=$('statusMsg');
+  var encFiles=[], lastB64='', lastMime='', currentSnipKey='datauri', autoEncTimer=null;
 
-const encInput      = $('encInput');
-const encodeBtn     = $('encodeBtn');
-const decInput      = $('decInput');
-const decodeBtn     = $('decodeBtn');
-const decodeFileBtn = $('decodeFileBtn');
-const outputText    = $('outputText');
-const statusMsg     = $('statusMsg');
-const encCharCount  = $('encCharCount');
-const decCharCount  = $('decCharCount');
-const statsRow      = $('statsRow');
-const statChars     = $('statChars');
-const statBytes     = $('statBytes');
-const statRatio     = $('statRatio');
-const statTime      = $('statTime');
-const detectBadge   = $('detectBadge');
-const detectLabel   = $('detectLabel');
-const previewWrap   = $('previewWrap');
-const previewContent= $('previewContent');
-const snippetSection= $('snippetSection');
-const snippetBox    = $('snippetBox');
+  function toast(msg,type,dur){ var a=$('toastArea'); var t=document.createElement('div'); t.className='toast '+(type||'ok'); t.textContent=msg; a.appendChild(t); setTimeout(function(){t.remove();}, dur||2200); }
+  function setStatus(msg,ok){ statusMsg.textContent=msg; statusMsg.style.color=(ok===false)?'#fca5a5':(msg?'#6ee7b7':'var(--text-dim)'); }
+  function showProgress(w,b,pct){ var W=$(w),B=$(b); W.classList.add('show'); B.style.width=pct+'%'; if(pct>=100)setTimeout(function(){W.classList.remove('show');B.style.width='0';},500); }
+  function fmtBytes(n){ if(typeof formatBytes==='function')return formatBytes(n); if(n<1024)return n+' B'; if(n<1048576)return (n/1024).toFixed(1)+' KB'; return (n/1048576).toFixed(2)+' MB'; }
 
-// ── STATE ─────────────────────────────────────────────────────────────────
-let encFile        = null;   // currently selected file for encoding
-let lastB64        = '';     // last successful Base64 result
-let lastMime       = '';     // detected MIME type
-let currentSnipKey = 'datauri';
-let autoEncTimer   = null;
+  /* ===== byte helpers ===== */
+  function bufToBase64(buf){ var bytes=new Uint8Array(buf),chunk=0x8000,bin=''; for(var i=0;i<bytes.length;i+=chunk)bin+=String.fromCharCode.apply(null,bytes.subarray(i,i+chunk)); return btoa(bin); }
+  function b64toUint8(b64){ var bin=atob(b64),bytes=new Uint8Array(bin.length); for(var i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i); return bytes; }
+  function toUrlSafe(b64){ return b64.replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''); }
+  function fromUrlSafe(b64){ b64=b64.replace(/-/g,'+').replace(/_/g,'/'); while(b64.length%4)b64+='='; return b64; }
+  function stripDataUri(str){ var m=str.match(/^data:([^;]+);base64,([\s\S]+)$/); return m?{mime:m[1],b64:m[2]}:{mime:'',b64:str}; }
 
-// ── TOAST ─────────────────────────────────────────────────────────────────
-function toast(msg, type = 'ok', dur = 2500) {
-  const a = $('toastArea');
-  const t = document.createElement('div');
-  t.className = `toast ${type}`;
-  t.textContent = msg;
-  a.appendChild(t);
-  setTimeout(() => t.remove(), dur);
-}
+  /* ===== alternate encodings ===== */
+  function toHex(bytes){ var s=''; for(var i=0;i<bytes.length;i++)s+=bytes[i].toString(16).padStart(2,'0'); return s; }
+  function toBinary(bytes){ var a=[]; for(var i=0;i<bytes.length;i++)a.push(bytes[i].toString(2).padStart(8,'0')); return a.join(' '); }
+  function toOctal(bytes){ var a=[]; for(var i=0;i<bytes.length;i++)a.push(bytes[i].toString(8).padStart(3,'0')); return a.join(' '); }
+  function toDecimal(bytes){ var a=[]; for(var i=0;i<bytes.length;i++)a.push(bytes[i]); return a.join(' '); }
+  function toBase32(bytes){ var A='ABCDEFGHIJKLMNOPQRSTUVWXYZ234567',out='',bits=0,val=0; for(var i=0;i<bytes.length;i++){ val=(val<<8)|bytes[i]; bits+=8; while(bits>=5){ out+=A[(val>>>(bits-5))&31]; bits-=5; } } if(bits>0)out+=A[(val<<(5-bits))&31]; while(out.length%8)out+='='; return out; }
+  function toAscii85(bytes){ var out=''; for(var i=0;i<bytes.length;i+=4){ var n=Math.min(4,bytes.length-i),block=0; for(var j=0;j<4;j++)block=(block*256+(j<n?bytes[i+j]:0)); var chars=new Array(5),b=block; for(var k=4;k>=0;k--){ chars[k]=String.fromCharCode(33+(b%85)); b=Math.floor(b/85); } out+=chars.slice(0,n+1).join(''); } return out; }
 
-// ── STATUS ────────────────────────────────────────────────────────────────
-function setStatus(msg, ok = true) {
-  statusMsg.textContent = msg;
-  statusMsg.style.color = ok ? 'var(--accent-2)' : '#F87171';
-}
-
-// ── PROGRESS ──────────────────────────────────────────────────────────────
-function showProgress(wrapId, barId, pct) {
-  const w = $(wrapId), b = $(barId);
-  w.classList.add('show');
-  b.style.width = pct + '%';
-  if (pct >= 100) setTimeout(() => { w.classList.remove('show'); b.style.width = '0'; }, 600);
-}
-
-// ── BUF → BASE64 (chunked, handles large files) ───────────────────────────
-function bufToBase64(buf) {
-  const bytes = new Uint8Array(buf);
-  const chunk = 0x8000;
-  let bin = '';
-  for (let i = 0; i < bytes.length; i += chunk)
-    bin += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
-  return btoa(bin);
-}
-
-// ── MAKE URL-SAFE ─────────────────────────────────────────────────────────
-function toUrlSafe(b64) { return b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
-function fromUrlSafe(b64) {
-  b64 = b64.replace(/-/g, '+').replace(/_/g, '/');
-  while (b64.length % 4) b64 += '=';
-  return b64;
-}
-
-// ── STRIP DATA URI PREFIX ─────────────────────────────────────────────────
-function stripDataUri(str) {
-  const m = str.match(/^data:([^;]+);base64,(.+)$/s);
-  return m ? { mime: m[1], b64: m[2] } : { mime: '', b64: str };
-}
-
-// ── DETECT CONTENT TYPE ───────────────────────────────────────────────────
-function detectType(b64raw) {
-  try {
-    // Check data URI prefix first
-    const pfx = b64raw.match(/^data:([^;]+);base64,/);
-    if (pfx) return pfx[1];
-
-    // Decode first few bytes to sniff magic numbers
-    const clean = b64raw.replace(/\s/g, '').replace(/-/g, '+').replace(/_/g, '/');
-    const bin = atob(clean.slice(0, 40));
-    const bytes = Array.from(bin, c => c.charCodeAt(0));
-
-    if (bytes[0] === 0xFF && bytes[1] === 0xD8) return 'image/jpeg';
-    if (bytes[0] === 0x89 && bytes[1] === 0x50 && bytes[2] === 0x4E && bytes[3] === 0x47) return 'image/png';
-    if (bytes[0] === 0x47 && bytes[1] === 0x49 && bytes[2] === 0x46) return 'image/gif';
-    if (bytes[0] === 0x52 && bytes[1] === 0x49 && bytes[2] === 0x46 && bytes[3] === 0x46) return 'image/webp';
-    if (bytes[0] === 0x25 && bytes[1] === 0x50 && bytes[2] === 0x44 && bytes[3] === 0x46) return 'application/pdf';
-    if (bytes[0] === 0x50 && bytes[1] === 0x4B) return 'application/zip';
-    if (bytes[0] === 0xFF && bytes[1] === 0xFB) return 'audio/mpeg';
-    if (bytes[0] === 0x49 && bytes[1] === 0x44 && bytes[2] === 0x33) return 'audio/mpeg';
-    if (bytes[0] === 0x52 && bytes[1] === 0x49 && bytes[2] === 0x46 && bytes[6] === 0x57) return 'audio/wav';
-    if (bytes[0] === 0x1A && bytes[1] === 0x45) return 'video/webm';
-    // Try text
-    const txt = new TextDecoder().decode(new Uint8Array(bytes));
-    if (txt.trimStart().startsWith('{') || txt.trimStart().startsWith('[')) return 'application/json';
-    if (txt.trimStart().toLowerCase().startsWith('<!doctype html') || txt.trimStart().startsWith('<html')) return 'text/html';
-    if (txt.trimStart().startsWith('<svg')) return 'image/svg+xml';
-    return 'text/plain';
-  } catch { return 'text/plain'; }
-}
-
-// ── MIME → icon ───────────────────────────────────────────────────────────
-function mimeIcon(mime) {
-  if (mime.startsWith('image')) return '🖼️';
-  if (mime.startsWith('video')) return '🎥';
-  if (mime.startsWith('audio')) return '🎵';
-  if (mime === 'application/pdf') return '📄';
-  if (mime === 'application/zip') return '🗜️';
-  if (mime === 'application/json') return '{ }';
-  return '📄';
-}
-
-// ── FILE ICON by extension ────────────────────────────────────────────────
-function fileExtIcon(name) {
-  const ext = (name || '').split('.').pop().toLowerCase();
-  const map = {
-    png:'🖼️', jpg:'🖼️', jpeg:'🖼️', gif:'🖼️', svg:'🖼️', webp:'🖼️',
-    pdf:'📄', zip:'🗜️', mp3:'🎵', wav:'🎵', ogg:'🎵',
-    mp4:'🎥', webm:'🎥', json:'{ }', html:'🌐', css:'🎨', js:'⚡',
-    txt:'📝', csv:'📊', doc:'📝', docx:'📝', xls:'📊', xlsx:'📊'
-  };
-  return map[ext] || '📄';
-}
-
-// ── UPDATE OUTPUT STATS ───────────────────────────────────────────────────
-function updateStats(b64, inputLen, ms) {
-  statsRow.style.display = 'flex';
-  statChars.textContent = b64.length.toLocaleString('en-IN');
-  statBytes.textContent = Math.round(b64.length * 0.75).toLocaleString('en-IN');
-  statRatio.textContent = inputLen ? (((b64.length / inputLen) - 1) * 100).toFixed(1) + '% larger' : '—';
-  statTime.textContent  = ms < 1 ? '<1ms' : ms + 'ms';
-}
-
-// ── DOWNLOAD HELPER ───────────────────────────────────────────────────────
-function dlBlob(filename, blob) {
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = filename;
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-}
-
-// ── RENDER PREVIEW ────────────────────────────────────────────────────────
-function renderPreview(b64, mime) {
-  if (!$('smartDetect').checked) { previewWrap.classList.remove('show'); return; }
-  if (!mime || mime === 'text/plain' || mime === 'application/json') {
-    previewWrap.classList.remove('show'); return;
-  }
-
-  const dataUri = `data:${mime};base64,${b64}`;
-  let html = '';
-
-  if (mime.startsWith('image')) {
-    html = `<img src="${dataUri}" alt="Preview" loading="lazy">`;
-  } else if (mime === 'application/pdf') {
-    html = `<iframe src="${dataUri}" title="PDF Preview" aria-label="PDF preview"></iframe>`;
-  } else if (mime.startsWith('audio')) {
-    html = `<audio controls src="${dataUri}">Your browser does not support audio.</audio>`;
-  } else if (mime.startsWith('video')) {
-    html = `<video controls src="${dataUri}" style="max-height:280px">Your browser does not support video.</video>`;
-  }
-
-  previewContent.innerHTML = html;
-  previewWrap.classList.add('show');
-
-  // Store for download
-  $('dlPreviewBtn').onclick = () => {
-    const ext = mime.split('/')[1].replace('jpeg','jpg').split('+')[0];
-    dlBlob(`decoded.${ext}`, new Blob([b64toUint8(b64)], { type: mime }));
-    toast('✅ File downloaded!');
-  };
-}
-
-function b64toUint8(b64) {
-  const bin = atob(b64);
-  const bytes = new Uint8Array(bin.length);
-  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-  return bytes;
-}
-
-// ── RENDER SNIPPETS ───────────────────────────────────────────────────────
-function renderSnippets(b64, mime, filename) {
-  if (!mime || !b64) { snippetSection.style.display = 'none'; return; }
-  if (!mime.startsWith('image') && mime !== 'application/pdf') {
-    snippetSection.style.display = 'none'; return;
-  }
-  snippetSection.style.display = 'block';
-  updateSnippet(b64, mime, filename || 'file');
-}
-
-function buildSnippet(key, b64, mime, filename) {
-  const uri = `data:${mime};base64,${b64}`;
-  switch (key) {
-    case 'datauri': return uri;
-    case 'htmlimg': return `<img src="${uri}" alt="${filename}" width="300">`;
-    case 'cssbg':   return `.element {\n  background-image: url("${uri}");\n  background-size: cover;\n}`;
-    case 'json':    return JSON.stringify({ filename, mimeType: mime, base64: b64.slice(0, 60) + '…' }, null, 2);
-    default: return uri;
-  }
-}
-
-function updateSnippet(b64, mime, filename) {
-  if (!b64 || !mime) return;
-  snippetBox.textContent = buildSnippet(currentSnipKey, b64, mime, filename);
-}
-
-// ── HISTORY ───────────────────────────────────────────────────────────────
-const HIST_KEY = 'b64hist_v2';
-function loadHist() { try { return JSON.parse(localStorage.getItem(HIST_KEY)) || []; } catch { return []; } }
-function saveHist(h){ try { localStorage.setItem(HIST_KEY, JSON.stringify(h.slice(0,10))); } catch {} }
-
-function pushHist(op, input, output, mime) {
-  const h = loadHist();
-  h.unshift({ op, input: (input || '').slice(0, 80), output: (output || '').slice(0, 120), mime, time: new Date().toLocaleString('en-IN') });
-  saveHist(h);
-  renderHist();
-}
-
-function renderHist() {
-  const h = loadHist();
-  const list = $('histList');
-  if (!h.length) {
-    list.innerHTML = '<p style="color:var(--text-dim);font-size:.85rem">No history yet.</p>';
-    return;
-  }
-  list.innerHTML = h.map((e, i) => `
-    <div class="hist-item" data-idx="${i}">
-      <div class="hist-icon">${e.mime ? mimeIcon(e.mime) : (e.op === 'encode' ? '➡️' : '⬅️')}</div>
-      <div class="hist-meta">
-        <div class="hist-op">${e.op === 'encode' ? '➡️ Encoded' : '⬅️ Decoded'}</div>
-        <div class="hist-sub" title="${e.input}">${e.input || '—'}</div>
-      </div>
-      <div class="hist-time">${e.time}</div>
-      <div class="hist-acts">
-        <button class="hist-btn" data-action="restore" data-idx="${i}" title="Restore">↩</button>
-        <button class="hist-btn" data-action="copy"    data-idx="${i}" title="Copy output">📋</button>
-        <button class="hist-btn" data-action="del"     data-idx="${i}" title="Delete">🗑</button>
-      </div>
-    </div>`).join('');
-
-  list.querySelectorAll('.hist-btn').forEach(btn => {
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      const idx = parseInt(btn.dataset.idx, 10);
-      const h   = loadHist();
-      if (btn.dataset.action === 'restore') {
-        outputText.value = h[idx].output;
-        toast('↩ Restored', 'inf');
-      } else if (btn.dataset.action === 'copy') {
-        navigator.clipboard.writeText(h[idx].output).then(() => toast('✅ Copied!'));
-      } else {
-        h.splice(idx, 1); saveHist(h); renderHist();
-        toast('🗑 Deleted', 'inf');
-      }
-    });
-  });
-}
-
-$('clearHistBtn').addEventListener('click', () => {
-  localStorage.removeItem(HIST_KEY); renderHist(); toast('🗑 History cleared', 'inf');
-});
-
-// ── TABS ──────────────────────────────────────────────────────────────────
-document.querySelectorAll('.tab-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const tab = btn.dataset.tab;
-    $('encodeTab').style.display = tab === 'encode' ? 'block' : 'none';
-    $('decodeTab').style.display = tab === 'decode' ? 'block' : 'none';
-    clearAll();
-  });
-});
-
-// ── MODE BUTTONS ──────────────────────────────────────────────────────────
-document.querySelectorAll('.mode-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const mode = btn.dataset.mode;
-    $('encTextMode').style.display = mode === 'text' ? 'block' : 'none';
-    $('encFileMode').style.display = mode === 'file' ? 'block' : 'none';
-  });
-});
-
-// ── FILE UPLOAD ───────────────────────────────────────────────────────────
-const encDropzone  = $('encDropzone');
-const encFileInput = $('encFileInput');
-
-// Use site's setupDropzone if available, else manual fallback
-if (typeof setupDropzone === 'function') {
-  setupDropzone(encDropzone, encFileInput, files => handleFileSelect(files[0]));
-} else {
-  encDropzone.addEventListener('click', () => encFileInput.click());
-  encDropzone.addEventListener('dragover',  e => { e.preventDefault(); encDropzone.classList.add('drag-over'); });
-  encDropzone.addEventListener('dragleave', () => encDropzone.classList.remove('drag-over'));
-  encDropzone.addEventListener('drop', e => {
-    e.preventDefault(); encDropzone.classList.remove('drag-over');
-    handleFileSelect(e.dataTransfer.files[0]);
-  });
-  encFileInput.addEventListener('change', () => handleFileSelect(encFileInput.files[0]));
-}
-
-function handleFileSelect(file) {
-  if (!file) return;
-  encFile = file;
-  const card = $('encFileCard');
-  $('encFileIcon').textContent   = fileExtIcon(file.name);
-  $('encFileName').textContent   = file.name;
-  $('encFileMeta').innerHTML     = `${typeof formatBytes === 'function' ? formatBytes(file.size) : (file.size/1024).toFixed(1)+'KB'} · ${file.type || 'unknown type'} · Modified: ${new Date(file.lastModified).toLocaleDateString('en-IN')}`;
-  if (file.size > 10 * 1024 * 1024)
-    $('encFileMeta').innerHTML += ' <span class="file-warn">⚠️ Large file — may be slow</span>';
-  card.classList.add('show');
-}
-
-// ── CHAR COUNTERS ─────────────────────────────────────────────────────────
-encInput.addEventListener('input', () => {
-  encCharCount.textContent = `${encInput.value.length.toLocaleString('en-IN')} chars`;
-  if ($('autoEnc').checked) {
-    clearTimeout(autoEncTimer);
-    autoEncTimer = setTimeout(doEncode, 450);
-  }
-});
-decInput.addEventListener('input', () => {
-  decCharCount.textContent = `${decInput.value.length.toLocaleString('en-IN')} chars`;
-  if ($('smartDetect').checked) liveDetect();
-});
-
-// ── LIVE DETECT IN DECODE INPUT ───────────────────────────────────────────
-function liveDetect() {
-  const raw = decInput.value.trim();
-  if (!raw) { detectBadge.classList.remove('show'); return; }
-  const { mime, b64 } = stripDataUri(raw);
-  const detected = mime || detectType(raw);
-  if (detected) {
-    detectLabel.textContent = detected;
-    detectBadge.classList.add('show');
-  }
-}
-
-// ── ENCODE ────────────────────────────────────────────────────────────────
-async function doEncode() {
-  const isFile = document.querySelector('.mode-btn.active')?.dataset.mode === 'file';
-  const t0 = performance.now();
-
-  if (isFile) {
-    if (!encFile) { setStatus('⚠️ Please choose a file first.', false); toast('⚠️ No file selected', 'err'); return; }
-    showProgress('encProg', 'encProgBar', 40);
-    const buf = await encFile.arrayBuffer();
-    showProgress('encProg', 'encProgBar', 80);
-    let b64 = bufToBase64(buf);
-    if ($('urlSafeEnc').checked) b64 = toUrlSafe(b64);
-    const ms = Math.round(performance.now() - t0);
-    outputText.value = b64;
-    lastB64  = b64;
-    lastMime = encFile.type || 'application/octet-stream';
-    updateStats(b64, encFile.size, ms);
-    showProgress('encProg', 'encProgBar', 100);
-    setStatus(`✅ Encoded: ${encFile.name} (${typeof formatBytes === 'function' ? formatBytes(encFile.size) : encFile.size + 'B'})`);
-    toast('✅ File encoded!');
-    pushHist('encode', encFile.name, b64, lastMime);
-    renderSnippets(b64, lastMime, encFile.name);
-
-  } else {
-    let text = encInput.value;
-    if (!text) { setStatus('⚠️ Please enter text to encode.', false); return; }
-    if ($('removeWs').checked) text = text.replace(/\s+/g, '');
-    const bytes = new TextEncoder().encode(text);
-    let b64 = bufToBase64(bytes.buffer);
-    if ($('urlSafeEnc').checked) b64 = toUrlSafe(b64);
-    const ms = Math.round(performance.now() - t0);
-    outputText.value = b64;
-    lastB64  = b64;
-    lastMime = 'text/plain';
-    updateStats(b64, bytes.length, ms);
-    setStatus(`✅ Encoded — ${text.length.toLocaleString()} chars → ${b64.length.toLocaleString()} Base64 chars`);
-    toast('✅ Encoded!');
-    pushHist('encode', text.slice(0, 80), b64, 'text/plain');
-    snippetSection.style.display = 'none';
-  }
-  statsRow.style.display = 'flex';
-}
-
-// ── DECODE ────────────────────────────────────────────────────────────────
-function doDecode(asFile) {
-  const raw = decInput.value.trim();
-  if (!raw) { setStatus('⚠️ Please paste a Base64 string.', false); toast('⚠️ Input is empty', 'err'); return; }
-
-  try {
-    // Handle data URI prefix
-    const { mime: uriMime, b64: rawB64 } = stripDataUri(raw);
-    let b64 = rawB64.replace(/\s/g, '');
-    if ($('urlSafeDec').checked || b64.includes('-') || b64.includes('_')) {
-      b64 = fromUrlSafe(b64);
+  function encodeBytes(bytes,fmt,urlSafe){
+    switch(fmt){
+      case 'base32': return toBase32(bytes);
+      case 'hex': return toHex(bytes);
+      case 'binary': return toBinary(bytes);
+      case 'octal': return toOctal(bytes);
+      case 'decimal': return toDecimal(bytes);
+      case 'ascii85': return toAscii85(bytes);
+      default: var b=bufToBase64(bytes.buffer||bytes); return urlSafe?toUrlSafe(b):b;
     }
+  }
 
-    // Validate
-    if (!/^[A-Za-z0-9+/]*={0,2}$/.test(b64)) {
-      throw new Error('Invalid characters in Base64 string.');
-    }
+  /* ===== detection ===== */
+  function detectType(b64raw){
+    try{
+      var pfx=b64raw.match(/^data:([^;]+);base64,/); if(pfx)return pfx[1];
+      var clean=b64raw.replace(/\s/g,'').replace(/-/g,'+').replace(/_/g,'/'); while(clean.length%4)clean+='=';
+      var bin=atob(clean.slice(0,44)); var by=Array.prototype.map.call(bin,function(c){return c.charCodeAt(0);});
+      if(by[0]===0xFF&&by[1]===0xD8)return 'image/jpeg';
+      if(by[0]===0x89&&by[1]===0x50&&by[2]===0x4E&&by[3]===0x47)return 'image/png';
+      if(by[0]===0x47&&by[1]===0x49&&by[2]===0x46)return 'image/gif';
+      if(by[0]===0x52&&by[1]===0x49&&by[2]===0x46&&by[3]===0x46&&by[8]===0x57)return 'image/webp';
+      if(by[0]===0x25&&by[1]===0x50&&by[2]===0x44&&by[3]===0x46)return 'application/pdf';
+      if(by[0]===0x50&&by[1]===0x4B)return 'application/zip';
+      if(by[0]===0xFF&&(by[1]===0xFB||by[1]===0xF3||by[1]===0xF2))return 'audio/mpeg';
+      if(by[0]===0x49&&by[1]===0x44&&by[2]===0x33)return 'audio/mpeg';
+      if(by[0]===0x52&&by[1]===0x49&&by[2]===0x46&&by[8]===0x57)return 'audio/wav';
+      if(by[0]===0x1A&&by[1]===0x45&&by[2]===0xDF)return 'video/webm';
+      if(by[4]===0x66&&by[5]===0x74&&by[6]===0x79&&by[7]===0x70)return 'video/mp4';
+      var txt=new TextDecoder().decode(new Uint8Array(by));
+      var t=txt.replace(/^\s+/,'');
+      if(t[0]==='{'||t[0]==='[')return 'application/json';
+      if(/^<!doctype html/i.test(t)||/^<html/i.test(t))return 'text/html';
+      if(/^<svg/i.test(t))return 'image/svg+xml';
+      return 'text/plain';
+    }catch(e){ return 'text/plain'; }
+  }
+  function mimeIcon(m){ m=m||''; if(m.indexOf('image')===0)return '🖼️'; if(m.indexOf('video')===0)return '🎥'; if(m.indexOf('audio')===0)return '🎵'; if(m==='application/pdf')return '📄'; if(m==='application/zip')return '🗜️'; if(m==='application/json')return '{ }'; return '📄'; }
+  function fileExtIcon(name){ var ext=(name||'').split('.').pop().toLowerCase(); var map={png:'🖼️',jpg:'🖼️',jpeg:'🖼️',gif:'🖼️',svg:'🖼️',webp:'🖼️',pdf:'📄',zip:'🗜️',mp3:'🎵',wav:'🎵',ogg:'🎵',mp4:'🎥',webm:'🎥',json:'{ }',html:'🌐',css:'🎨',js:'⚡',txt:'📝',csv:'📊'}; return map[ext]||'📄'; }
 
-    showProgress('decProg', 'decProgBar', 50);
-    const bin   = atob(b64);
-    const bytes = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-    showProgress('decProg', 'decProgBar', 100);
+  /* ===== stats ===== */
+  function updateStats(outLen,inputLen,ms,bytesEst){ $('statsRow').style.display='flex'; $('statChars').textContent=outLen.toLocaleString('en-IN'); $('statBytes').textContent=(bytesEst!=null?bytesEst:Math.round(outLen*0.75)).toLocaleString('en-IN'); $('statRatio').textContent=inputLen?(((outLen/inputLen)-1)*100).toFixed(1)+'% larger':'—'; $('statTime').textContent=ms<1?'<1ms':ms+'ms'; }
+  function dlBlob(name,blob){ if(typeof downloadBlob==='function'){ downloadBlob(name,blob); return; } var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); setTimeout(function(){URL.revokeObjectURL(a.href);},1000); }
 
-    // Detect type
-    const mime = uriMime || detectType(b64);
-    lastB64  = b64;
-    lastMime = mime;
+  /* ===== preview & snippets ===== */
+  function renderPreview(b64,mime){
+    var pw=$('previewWrap'); if(!$('smartDetect').checked){ pw.classList.remove('show'); return; }
+    if(!mime||mime==='text/plain'||mime==='application/json'){ pw.classList.remove('show'); return; }
+    var uri='data:'+mime+';base64,'+b64, html='';
+    if(mime.indexOf('image')===0)html='<img src="'+uri+'" alt="Decoded image preview" loading="lazy">';
+    else if(mime==='application/pdf')html='<iframe src="'+uri+'" title="PDF preview"></iframe>';
+    else if(mime.indexOf('audio')===0)html='<audio controls src="'+uri+'"></audio>';
+    else if(mime.indexOf('video')===0)html='<video controls src="'+uri+'" style="max-height:280px"></video>';
+    else { pw.classList.remove('show'); return; }
+    $('previewContent').innerHTML=html; pw.classList.add('show');
+    $('dlPreviewBtn').onclick=function(){ var ext=mime.split('/')[1].replace('jpeg','jpg').split('+')[0]; dlBlob('decoded.'+ext,new Blob([b64toUint8(b64)],{type:mime})); toast('✅ File downloaded!'); };
+  }
+  function buildSnippet(key,b64,mime,filename){ var uri='data:'+mime+';base64,'+b64; switch(key){ case 'htmlimg':return '<img src="'+uri+'" alt="'+filename+'" width="300">'; case 'cssbg':return '.element {\n  background-image: url("'+uri+'");\n  background-size: cover;\n}'; case 'json':return JSON.stringify({filename:filename,mimeType:mime,base64:b64.slice(0,60)+'…'},null,2); default:return uri; } }
+  function updateSnippet(){ if(!lastB64||!lastMime)return; $('snippetBox').textContent=buildSnippet(currentSnipKey,lastB64,lastMime,'file'); }
+  function renderSnippets(b64,mime){ var ss=$('snippetSection'); if(!mime||!b64||(mime.indexOf('image')!==0&&mime!=='application/pdf')){ ss.classList.remove('show'); return; } ss.classList.add('show'); updateSnippet(); }
 
-    // Update detect badge
-    detectLabel.textContent = mime;
-    detectBadge.classList.add('show');
+  /* ===== history ===== */
+  var HKEY='b64hist_v3';
+  function loadHist(){ try{return JSON.parse(localStorage.getItem(HKEY))||[];}catch(e){return [];} }
+  function saveHist(h){ try{localStorage.setItem(HKEY,JSON.stringify(h.slice(0,10)));}catch(e){} }
+  function pushHist(op,input,output,mime){ var h=loadHist(); h.unshift({op:op,input:(input||'').slice(0,80),output:(output||'').slice(0,160),mime:mime,time:new Date().toLocaleString('en-IN')}); saveHist(h); renderHist(); }
+  function renderHist(){ var h=loadHist(),list=$('histList'); if(!h.length){ list.innerHTML='<p style="color:var(--text-dim);font-size:.85rem">No history yet.</p>'; return; }
+    list.innerHTML=h.map(function(e,i){ return '<div class="hist-item"><div class="hist-icon">'+(e.mime?mimeIcon(e.mime):(e.op==='encode'?'➡️':'⬅️'))+'</div><div class="hist-meta"><div class="hist-op">'+(e.op==='encode'?'➡️ Encoded':'⬅️ Decoded')+'</div><div class="hist-sub" title="'+esc(e.input)+'">'+esc(e.input||'—')+'</div></div><div class="hist-time">'+esc(e.time)+'</div><div class="hist-acts"><button class="hist-btn" data-a="restore" data-i="'+i+'" title="Restore">↩</button><button class="hist-btn" data-a="copy" data-i="'+i+'" title="Copy">📋</button><button class="hist-btn" data-a="del" data-i="'+i+'" title="Delete">🗑</button></div></div>'; }).join('');
+    list.querySelectorAll('.hist-btn').forEach(function(btn){ btn.addEventListener('click',function(){ var i=parseInt(btn.dataset.i,10),h=loadHist(); if(btn.dataset.a==='restore'){ outputText.value=h[i].output; toast('↩ Restored','inf'); } else if(btn.dataset.a==='copy'){ navigator.clipboard.writeText(h[i].output).then(function(){toast('✅ Copied!');}); } else { h.splice(i,1); saveHist(h); renderHist(); toast('🗑 Deleted','inf'); } }); });
+  }
+  $('clearHistBtn').addEventListener('click',function(){ localStorage.removeItem(HKEY); renderHist(); toast('🗑 History cleared','inf'); });
 
-    if (asFile) {
-      // Download as file
-      const ext = mime.split('/')[1].replace('jpeg','jpg').replace('plain','txt').split('+')[0] || 'bin';
-      dlBlob(`decoded.${ext}`, new Blob([bytes], { type: mime }));
-      setStatus(`✅ File downloaded as decoded.${ext}`);
-      toast('✅ File downloaded!');
-      pushHist('decode', raw.slice(0, 80), `[File: decoded.${ext}]`, mime);
+  /* ===== tabs & modes ===== */
+  function selTab(t){ $('tabEncode').setAttribute('aria-selected',t==='encode'?'true':'false'); $('tabDecode').setAttribute('aria-selected',t==='decode'?'true':'false'); $('encodeTab').style.display=t==='encode'?'block':'none'; $('decodeTab').style.display=t==='decode'?'block':'none'; clearAll(); }
+  $('tabEncode').addEventListener('click',function(){ selTab('encode'); });
+  $('tabDecode').addEventListener('click',function(){ selTab('decode'); });
+  function selMode(m){ $('modeText').setAttribute('aria-pressed',m==='text'?'true':'false'); $('modeFile').setAttribute('aria-pressed',m==='file'?'true':'false'); $('encTextMode').style.display=m==='text'?'block':'none'; $('encFileMode').style.display=m==='file'?'block':'none'; }
+  $('modeText').addEventListener('click',function(){ selMode('text'); });
+  $('modeFile').addEventListener('click',function(){ selMode('file'); });
+
+  /* ===== file upload ===== */
+  var dz=$('encDropzone'), fin=$('encFileInput');
+  function onFiles(list){ encFiles=Array.prototype.slice.call(list).filter(function(f){return f;}); if(!encFiles.length)return; var f=encFiles[0]; $('encFileIcon').textContent=fileExtIcon(f.name); $('encFileName').textContent=encFiles.length>1?(encFiles.length+' files selected'):f.name; $('encFileMeta').innerHTML=fmtBytes(f.size)+' · '+(f.type||'unknown')+' · '+new Date(f.lastModified).toLocaleDateString('en-IN')+(f.size>10485760?' <span class="file-warn">⚠️ large</span>':''); $('encFileCard').classList.add('show'); $('batchZipBtn').style.display=encFiles.length>1?'inline-flex':'none'; }
+  dz.addEventListener('click',function(){ fin.click(); });
+  dz.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ fin.click(); e.preventDefault(); } });
+  dz.addEventListener('dragover',function(e){ e.preventDefault(); dz.classList.add('drag'); });
+  dz.addEventListener('dragleave',function(){ dz.classList.remove('drag'); });
+  dz.addEventListener('drop',function(e){ e.preventDefault(); dz.classList.remove('drag'); onFiles(e.dataTransfer.files); });
+  fin.addEventListener('change',function(){ onFiles(fin.files); });
+
+  /* ===== char counters + auto ===== */
+  encInput.addEventListener('input',function(){ $('encCharCount').textContent=encInput.value.length.toLocaleString('en-IN')+' chars'; if($('autoEnc').checked){ clearTimeout(autoEncTimer); autoEncTimer=setTimeout(doEncode,400); } });
+  decInput.addEventListener('input',function(){ $('decCharCount').textContent=decInput.value.length.toLocaleString('en-IN')+' chars'; if($('smartDetect').checked)liveDetect(); });
+  function liveDetect(){ var raw=decInput.value.trim(); var db=$('detectBadge'); if(!raw){ db.classList.remove('show'); return; } var s=stripDataUri(raw); var det=s.mime||detectType(raw); if(det){ $('detectLabel').textContent=det; db.classList.add('show'); } }
+
+  /* ===== encode ===== */
+  function doEncode(){
+    var isFile=$('modeFile').getAttribute('aria-pressed')==='true';
+    var fmt=$('b6Format').value, urlSafe=$('urlSafeEnc').checked, t0=performance.now();
+    if(isFile){
+      if(!encFiles.length){ setStatus('⚠️ Please choose a file first.',false); toast('⚠️ No file selected','err'); return; }
+      var f=encFiles[0]; showProgress('encProg','encProgBar',40);
+      f.arrayBuffer().then(function(buf){ showProgress('encProg','encProgBar',80); var bytes=new Uint8Array(buf); var out=encodeBytes(bytes,fmt,urlSafe); var ms=Math.round(performance.now()-t0); outputText.value=out; lastB64=(fmt==='base64'&&!urlSafe)?out:bufToBase64(bytes.buffer); lastMime=f.type||'application/octet-stream'; updateStats(out.length,f.size,ms,f.size); showProgress('encProg','encProgBar',100); setStatus('✅ Encoded: '+f.name+' ('+fmtBytes(f.size)+') → '+fmt); toast('✅ File encoded!'); pushHist('encode',f.name,out,lastMime); renderSnippets(lastB64,lastMime); });
     } else {
-      // Decode as text
-      const text = new TextDecoder('utf-8', { fatal: false }).decode(bytes);
-      outputText.value = text;
-      updateStats(b64, bytes.length, 0);
-      setStatus(`✅ Decoded — ${bytes.length.toLocaleString()} bytes → ${text.length.toLocaleString()} chars (${mime})`);
-      toast('✅ Decoded!');
-      pushHist('decode', raw.slice(0, 80), text.slice(0, 120), mime);
+      var text=encInput.value; if(!text){ setStatus('⚠️ Please enter text to encode.',false); return; }
+      if($('removeWs').checked)text=text.replace(/\s+/g,'');
+      var bytes2=new TextEncoder().encode(text); var out2=encodeBytes(bytes2,fmt,urlSafe); var ms2=Math.round(performance.now()-t0);
+      outputText.value=out2; lastB64=(fmt==='base64'&&!urlSafe)?out2:bufToBase64(bytes2.buffer); lastMime='text/plain';
+      updateStats(out2.length,bytes2.length,ms2,bytes2.length); setStatus('✅ Encoded — '+text.length.toLocaleString()+' chars → '+out2.length.toLocaleString()+' '+fmt+' chars'); toast('✅ Encoded!'); pushHist('encode',text.slice(0,80),out2,'text/plain'); $('snippetSection').classList.remove('show');
     }
-
-    // Render preview
-    renderPreview(b64, mime);
-    renderSnippets(b64, mime, 'decoded-file');
-
-  } catch (err) {
-    previewWrap.classList.remove('show');
-    snippetSection.style.display = 'none';
-    setStatus('❌ ' + (err.message || 'Invalid Base64 input.'), false);
-    toast('❌ Invalid Base64', 'err');
   }
-}
 
-// ── WORD WRAP TOGGLE ──────────────────────────────────────────────────────
-$('wrapToggle').addEventListener('change', () => {
-  outputText.classList.toggle('nowrap', !$('wrapToggle').checked);
-});
+  /* ===== decode ===== */
+  function doDecode(asFile){
+    var raw=decInput.value.trim(); if(!raw){ setStatus('⚠️ Please paste a Base64 string.',false); toast('⚠️ Input is empty','err'); return; }
+    try{
+      var s=stripDataUri(raw), b64=s.b64.replace(/\s/g,'');
+      if($('urlSafeDec').checked||b64.indexOf('-')>=0||b64.indexOf('_')>=0)b64=fromUrlSafe(b64);
+      while(b64.length%4)b64+='=';
+      if(!/^[A-Za-z0-9+/]*={0,2}$/.test(b64))throw new Error('Invalid characters in Base64 string. Try Validate / Repair.');
+      showProgress('decProg','decProgBar',50);
+      var bytes=b64toUint8(b64); showProgress('decProg','decProgBar',100);
+      var mime=s.mime||detectType(b64); lastB64=b64; lastMime=mime;
+      $('detectLabel').textContent=mime; $('detectBadge').classList.add('show');
+      if(asFile){ var ext=(mime.split('/')[1]||'bin').replace('jpeg','jpg').replace('plain','txt').split('+')[0]; dlBlob('decoded.'+ext,new Blob([bytes],{type:mime})); setStatus('✅ File downloaded as decoded.'+ext); toast('✅ File downloaded!'); pushHist('decode',raw.slice(0,80),'[File: decoded.'+ext+']',mime); }
+      else { var text=new TextDecoder('utf-8',{fatal:false}).decode(bytes); outputText.value=text; updateStats(text.length,bytes.length,0,bytes.length); setStatus('✅ Decoded — '+bytes.length.toLocaleString()+' bytes → '+text.length.toLocaleString()+' chars ('+mime+')'); toast('✅ Decoded!'); pushHist('decode',raw.slice(0,80),text.slice(0,160),mime); }
+      renderPreview(b64,mime); renderSnippets(b64,mime);
+    }catch(err){ $('previewWrap').classList.remove('show'); $('snippetSection').classList.remove('show'); setStatus('❌ '+(err.message||'Invalid Base64 input.'),false); toast('❌ Invalid Base64','err'); }
+  }
 
-// ── EXPAND OUTPUT ─────────────────────────────────────────────────────────
-$('expandBtn').addEventListener('click', () => {
-  const big = outputText.style.minHeight === '400px';
-  outputText.style.minHeight = big ? '160px' : '400px';
-  $('expandBtn').textContent = big ? '⛶ Expand' : '⊡ Shrink';
-});
-
-// ── CLEAR FUNCTIONS ───────────────────────────────────────────────────────
-function clearAll() {
-  outputText.value      = '';
-  encInput.value        = '';
-  decInput.value        = '';
-  lastB64 = lastMime    = '';
-  encFile               = null;
-  statsRow.style.display    = 'none';
-  previewWrap.classList.remove('show');
-  snippetSection.style.display = 'none';
-  detectBadge.classList.remove('show');
-  $('encFileCard').classList.remove('show');
-  statusMsg.textContent = '';
-  encCharCount.textContent  = '';
-  decCharCount.textContent  = '';
-}
-
-encodeBtn.addEventListener('click', doEncode);
-decodeBtn.addEventListener('click', () => doDecode(false));
-decodeFileBtn.addEventListener('click', () => doDecode(true));
-$('clearEncBtn').addEventListener('click', () => { encInput.value = ''; encFile = null; $('encFileCard').classList.remove('show'); encCharCount.textContent = ''; });
-$('clearDecBtn').addEventListener('click', () => { decInput.value = ''; detectBadge.classList.remove('show'); previewWrap.classList.remove('show'); decCharCount.textContent = ''; });
-$('clearOutBtn').addEventListener('click', () => { outputText.value = ''; statsRow.style.display='none'; snippetSection.style.display='none'; setStatus(''); });
-
-// ── COPY ──────────────────────────────────────────────────────────────────
-$('copyBtn').addEventListener('click', () => {
-  if (!outputText.value) { toast('⚠️ Nothing to copy', 'err'); return; }
-  navigator.clipboard.writeText(outputText.value).then(() => toast('✅ Copied to clipboard!'));
-});
-
-// ── DOWNLOAD TXT ──────────────────────────────────────────────────────────
-$('dlTxtBtn').addEventListener('click', () => {
-  if (!outputText.value) { toast('⚠️ Nothing to download', 'err'); return; }
-  dlBlob('base64-result.txt', new Blob([outputText.value], { type: 'text/plain' }));
-  toast('✅ Downloaded!');
-});
-
-// ── SNIPPET TABS ──────────────────────────────────────────────────────────
-document.querySelectorAll('.snip-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.snip-tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    currentSnipKey = tab.dataset.snip;
-    updateSnippet(lastB64, lastMime, 'file');
+  /* ===== validator ===== */
+  $('b6ValidateBtn').addEventListener('click',function(){
+    var box=$('b6Valid'), raw=decInput.value.trim(); box.className='b6-valid show';
+    if(!raw){ box.classList.add('bad'); box.innerHTML='⚠️ Nothing to validate — paste a Base64 string first.'; return; }
+    var s=stripDataUri(raw), b64=s.b64.replace(/\s/g,''), notes=[];
+    if(b64.indexOf('-')>=0||b64.indexOf('_')>=0){ b64=fromUrlSafe(b64); notes.push('normalised URL-safe alphabet (- _ → + /)'); }
+    var bad=b64.replace(/=+$/,'').match(/[^A-Za-z0-9+/]/g);
+    if(bad){ box.classList.add('bad'); box.innerHTML='❌ Invalid: found '+bad.length+' character(s) outside the Base64 alphabet (e.g. "'+esc(bad[0])+'").'; return; }
+    var pad=0; while((b64.length+pad)%4)pad++;
+    if(pad){ b64+='='.repeat(pad); notes.push('added '+pad+' padding character(s)'); }
+    decInput.value=(s.mime?('data:'+s.mime+';base64,'):'')+b64;
+    box.classList.add('ok'); box.innerHTML='✅ Valid Base64'+(notes.length?' — repaired: '+notes.join(', ')+'.':' — no changes needed.');
+    liveDetect();
   });
-});
 
-$('copySnipBtn').addEventListener('click', () => {
-  navigator.clipboard.writeText(snippetBox.textContent).then(() => toast('✅ Snippet copied!'));
-});
-
-// ── KEYBOARD SHORTCUTS ────────────────────────────────────────────────────
-document.addEventListener('keydown', e => {
-  if (e.ctrlKey && e.shiftKey && e.key === 'Enter') { e.preventDefault(); doDecode(false); }
-  else if (e.ctrlKey && e.key === 'Enter') { e.preventDefault(); doEncode(); }
-  else if (e.ctrlKey && e.key.toLowerCase() === 'l') { e.preventDefault(); clearAll(); toast('🔄 Cleared', 'inf'); }
-});
-
-// ── THEME ─────────────────────────────────────────────────────────────────
-document.querySelectorAll('.th-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.th-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.body.classList.toggle('light-mode', btn.dataset.theme === 'light');
+  /* ===== batch zip ===== */
+  $('batchZipBtn').addEventListener('click',function(){
+    if(typeof JSZip==='undefined'){ toast('ZIP unavailable','err'); return; }
+    if(!encFiles.length){ toast('No files','err'); return; }
+    var fmt=$('b6Format').value, urlSafe=$('urlSafeEnc').checked, zip=new JSZip();
+    setStatus('⏳ Encoding '+encFiles.length+' files…');
+    Promise.all(encFiles.map(function(f){ return f.arrayBuffer().then(function(buf){ zip.file(f.name+'.'+(fmt==='base64'?'base64':fmt)+'.txt', encodeBytes(new Uint8Array(buf),fmt,urlSafe)); }); }))
+    .then(function(){ return zip.generateAsync({type:'blob'}); })
+    .then(function(blob){ dlBlob('base64-encoded.zip',blob); setStatus('✅ '+encFiles.length+' files encoded to ZIP.'); toast('✅ ZIP downloaded!'); });
   });
-});
 
-// ── FAQ ───────────────────────────────────────────────────────────────────
-const faqs = [
-  ['What is Base64 encoding?','Base64 converts binary data into 64 printable ASCII characters (A–Z, a–z, 0–9, +, /). Every 3 bytes of input produce 4 characters of Base64. The output is about 33% larger than the original.'],
-  ['Is Base64 a form of encryption?','No. Base64 is encoding, not encryption. It provides no security — anyone can decode it without a key. Use it only for data transport, not for protecting sensitive information.'],
-  ['What is URL-safe Base64?','URL-safe Base64 replaces + with - and / with _ to avoid encoding problems in URLs and file names. Used in JWT tokens, OAuth flows, and web APIs. Enable it via the "URL-safe" checkbox.'],
-  ['What is a Data URI?','A Data URI embeds file data directly in a URL: data:image/png;base64,iVBOR… This lets you use images and fonts in HTML/CSS without separate file requests.'],
-  ['How do I encode an image to Base64?','Use the File mode, drag or select your image, and click Encode. The tool shows the Base64 result plus a Data URI and HTML img tag you can use directly.'],
-  ['Is my data safe?','Yes — 100% client-side. Nothing is uploaded to any server. Your files and text are processed entirely in your browser and never leave your device.'],
-  ['What file size is supported?','Works well up to 10 MB. Larger files may be slow due to browser limitations. A warning is shown for files over 10 MB.'],
-  ['How do I decode a Base64 image?','Switch to the Decode tab, paste the Base64 string (with or without the data: prefix). Smart Detection will identify it as an image, show a preview, and let you download it.'],
-  ['What is the difference between Encode and Decode?','Encoding converts original data → Base64 text. Decoding converts Base64 text → original data. They are inverse operations.'],
-  ['Is this tool free?','Yes, completely free with no signup, no ads, no watermarks, and no limitations.']
-];
-const hiFaqs = [
-  ['Base64 encoding क्या है?','Base64 binary data को 64 printable ASCII characters में convert करती है। हर 3 input bytes 4 Base64 characters बनाते हैं। Output original से ~33% बड़ा होता है।'],
-  ['क्या Base64 encryption है?','नहीं। Base64 encoding है, encryption नहीं। इसमें कोई security नहीं — कोई भी इसे बिना key के decode कर सकता है। Sensitive data secure करने के लिए इसका use न करें।'],
-  ['URL-safe Base64 क्या है?','URL-safe Base64 में + को - और / को _ से replace किया जाता है। JWT tokens, OAuth flows, और URLs में use होता है।'],
-  ['Data URI क्या है?','Data URI file data को directly URL में embed करती है: data:image/png;base64,... HTML/CSS में images/fonts को बिना separate file request के use करने देती है।'],
-  ['Image को Base64 में कैसे encode करें?','File mode चुनें, image drag करें या select करें, "Encode to Base64" click करें। Data URI और HTML img tag automatically generate होते हैं।'],
-  ['क्या मेरा data safe है?','हाँ — 100% client-side। कुछ भी server पर upload नहीं होता। आपकी files और text browser में process होते हैं और device से बाहर नहीं जाते।'],
-  ['कितनी file size support है?','10 MB तक अच्छा काम करता है। बड़ी files के लिए browser slow हो सकता है। 10 MB से बड़ी files पर warning दिखती है।'],
-  ['Base64 image को decode कैसे करें?','Decode tab पर जाएं, Base64 string paste करें (data: prefix के साथ या बिना)। Smart Detection image identify करेगा, preview दिखाएगा, और download option देगा।'],
-  ['Encode और Decode में क्या फ़र्क है?','Encoding: original data → Base64 text। Decoding: Base64 text → original data। ये inverse operations हैं।'],
-  ['क्या यह tool free है?','हाँ, पूरी तरह free — कोई signup नहीं, कोई ad नहीं, कोई watermark नहीं, कोई limitation नहीं।']
-];
+  /* ===== output actions ===== */
+  $('wrapToggle').addEventListener('change',function(){ outputText.classList.toggle('nowrap',!this.checked); });
+  $('expandBtn').addEventListener('click',function(){ var big=outputText.style.minHeight==='400px'; outputText.style.minHeight=big?'150px':'400px'; this.textContent=big?'⛶ Expand':'⊡ Shrink'; });
+  function clearAll(){ outputText.value=''; encInput.value=''; decInput.value=''; lastB64=''; lastMime=''; encFiles=[]; $('statsRow').style.display='none'; $('previewWrap').classList.remove('show'); $('snippetSection').classList.remove('show'); $('detectBadge').classList.remove('show'); $('encFileCard').classList.remove('show'); $('b6Valid').className='b6-valid'; $('batchZipBtn').style.display='none'; statusMsg.textContent=''; $('encCharCount').textContent=''; $('decCharCount').textContent=''; }
+  $('encodeBtn').addEventListener('click',doEncode);
+  $('decodeBtn').addEventListener('click',function(){ doDecode(false); });
+  $('decodeFileBtn').addEventListener('click',function(){ doDecode(true); });
+  $('clearEncBtn').addEventListener('click',function(){ encInput.value=''; encFiles=[]; $('encFileCard').classList.remove('show'); $('encCharCount').textContent=''; $('batchZipBtn').style.display='none'; });
+  $('clearDecBtn').addEventListener('click',function(){ decInput.value=''; $('detectBadge').classList.remove('show'); $('previewWrap').classList.remove('show'); $('b6Valid').className='b6-valid'; $('decCharCount').textContent=''; });
+  $('clearOutBtn').addEventListener('click',function(){ outputText.value=''; $('statsRow').style.display='none'; $('snippetSection').classList.remove('show'); setStatus(''); });
+  $('copyBtn').addEventListener('click',function(){ if(!outputText.value){ toast('⚠️ Nothing to copy','err'); return; } navigator.clipboard.writeText(outputText.value).then(function(){toast('✅ Copied to clipboard!');}); });
+  $('dlTxtBtn').addEventListener('click',function(){ if(!outputText.value){ toast('⚠️ Nothing to download','err'); return; } dlBlob('base64-result.txt',new Blob([outputText.value],{type:'text/plain'})); toast('✅ Downloaded!'); });
+  $('expJson').addEventListener('click',function(){ if(!outputText.value){ toast('⚠️ Nothing to export','err'); return; } dlBlob('base64-result.json',new Blob([JSON.stringify({format:$('b6Format').value,mime:lastMime,length:outputText.value.length,output:outputText.value},null,2)],{type:'application/json'})); toast('✅ JSON downloaded!'); });
+  $('expCsv').addEventListener('click',function(){ if(!outputText.value){ toast('⚠️ Nothing to export','err'); return; } var csv='field,value\r\n"format","'+$('b6Format').value+'"\r\n"length","'+outputText.value.length+'"\r\n"output","'+outputText.value.replace(/"/g,'""')+'"'; dlBlob('base64-result.csv',new Blob([csv],{type:'text/csv'})); toast('✅ CSV downloaded!'); });
 
-function buildFAQs(cid, items) {
-  const c = $(cid); if (!c) return;
-  items.forEach(([q, a]) => {
-    const item = document.createElement('div');
-    item.className = 'faq-item';
-    item.innerHTML = `<div class="faq-q" tabindex="0" role="button" aria-expanded="false">${q}<i class="faq-arrow">▾</i></div><div class="faq-a">${a}</div>`;
-    const qEl = item.querySelector('.faq-q');
-    const toggle = () => { item.classList.toggle('open'); qEl.setAttribute('aria-expanded', item.classList.contains('open')); };
-    qEl.addEventListener('click', toggle);
-    qEl.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); toggle(); }});
-    c.appendChild(item);
-  });
-}
-buildFAQs('faqEn', faqs);
-buildFAQs('faqHi', hiFaqs);
+  /* ===== snippet tabs ===== */
+  $('snipTabs').querySelectorAll('.b6-snip').forEach(function(tab){ tab.addEventListener('click',function(){ $('snipTabs').querySelectorAll('.b6-snip').forEach(function(t){t.setAttribute('aria-pressed','false');}); tab.setAttribute('aria-pressed','true'); currentSnipKey=tab.dataset.snip; updateSnippet(); }); });
+  $('copySnipBtn').addEventListener('click',function(){ navigator.clipboard.writeText($('snippetBox').textContent).then(function(){toast('✅ Snippet copied!');}); });
 
-// ── INIT ──────────────────────────────────────────────────────────────────
-renderHist();
+  /* ===== keyboard shortcuts ===== */
+  document.addEventListener('keydown',function(e){ if(e.ctrlKey&&e.shiftKey&&e.key==='Enter'){ e.preventDefault(); doDecode(false); } else if(e.ctrlKey&&e.key==='Enter'){ e.preventDefault(); doEncode(); } else if(e.ctrlKey&&e.key.toLowerCase()==='l'){ e.preventDefault(); clearAll(); toast('🔄 Cleared','inf'); } });
+
+  /* ===== FAQ ===== */
+  var FAQ=[
+    ['What is Base64 encoding?','It represents binary data using 64 printable ASCII characters; every 3 bytes become 4 characters, ~33% larger. — यह binary को 64 ASCII characters में दर्शाती है।'],
+    ['Is Base64 encryption?','No — it is encoding, not encryption, and adds no security. Anyone can decode it. — नहीं, यह encryption नहीं है।'],
+    ['Is my data uploaded anywhere?','No. Everything is processed in your browser; nothing is uploaded. — नहीं, कुछ भी upload नहीं होता।'],
+    ['What is URL-safe Base64?','It swaps + and / for - and _ and drops padding, for URLs and JWTs. — URLs व JWTs के लिए variant।'],
+    ['What is a Data URI?','A data: URL that embeds file bytes directly, e.g. in HTML or CSS. — file को सीधे URL में embed करता है।'],
+    ['How do I encode an image?','Use File mode, drop the image, and click Encode — you also get a Data URI and img tag. — File mode से image encode करें।'],
+    ['How do I decode a Base64 image?','Paste it in Decode; Smart Detection shows a preview and a download button. — Decode में paste करें, preview मिलेगा।'],
+    ['What other formats are supported?','Base32, Hex, Binary, Octal, Decimal and ASCII85, besides Base64. — Base32, Hex, ASCII85 आदि।'],
+    ['What is the validator for?','It flags invalid characters, fixes padding and normalises URL-safe input. — यह Base64 जाँचता व ठीक करता है।'],
+    ['Why do I get “invalid characters”?','The string may be URL-safe or missing padding — click Validate / Repair. — Validate / Repair दबाएँ।'],
+    ['Can I encode multiple files?','Yes — drop several and click Batch ZIP to download all results. — हाँ, batch ZIP उपलब्ध है।'],
+    ['Can I export the result?','Yes — copy, or export as TXT, JSON or CSV. — हाँ, TXT/JSON/CSV export।'],
+    ['What file size is supported?','It works well into the multi-MB range; very large files just take longer. — बड़ी files भी, थोड़ा धीमा।'],
+    ['What is the difference from Hex?','Base64 uses 64 symbols (~33% larger); Hex uses 16 (100% larger). — Hex 16 symbols use करता है।'],
+    ['Does it keep a history?','Yes — your last 10 conversions are stored locally and can be cleared. — हाँ, local history रहती है।'],
+    ['Is it free?','Completely free — no account, no limits, no watermark. — हाँ, पूरी तरह मुफ़्त।'],
+    ['Does it work offline?','Yes; core encode/decode works fully offline (ZIP needs one CDN load). — हाँ, offline काम करता है।'],
+    ['What are the keyboard shortcuts?','Ctrl+Enter encode, Ctrl+Shift+Enter decode, Ctrl+L clear all. — कुछ keyboard shortcuts हैं।'],
+    ['Can I decode a JWT?','Yes — paste the Base64url payload segment and decode as text. — हाँ, JWT payload decode करें।'],
+    ['Does encoding change my file?','No — it is fully reversible; decoding restores the exact bytes. — नहीं, यह पूरी तरह प्रतिवर्ती है।'],
+    ['Which browsers are supported?','All modern browsers — Chrome, Firefox, Edge, Safari, Opera, Brave. — सभी आधुनिक browsers।'],
+    ['Is there a size limit for previews?','Previews use Data URIs, so extremely large media may be slow to render. — बहुत बड़ी media धीमी हो सकती है।']
+  ];
+  function buildFaq(){ var list=$('faqList'); if(!list)return; FAQ.forEach(function(p){ var d=document.createElement('details'); d.innerHTML='<summary>'+esc(p[0])+'</summary><p>'+esc(p[1])+'</p>'; list.appendChild(d); }); try{ $('faqSchema').textContent=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:FAQ.map(function(p){return {'@type':'Question',name:p[0],acceptedAnswer:{'@type':'Answer',text:p[1]}};})}); }catch(e){} }
+
+  /* ===== hooks / init ===== */
+  window.__b6Hooks={ encodeBytes:encodeBytes, detectType:detectType, doEncode:doEncode, doDecode:doDecode,
+    setText:function(t){ encInput.value=t; }, setDecode:function(t){ decInput.value=t; }, setFormat:function(f){ $('b6Format').value=f; },
+    getOutput:function(){ return outputText.value; }, feedFiles:onFiles };
+  buildFaq(); renderHist();
+})();
 </script>
 </body>
 </html>
