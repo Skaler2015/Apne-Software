@@ -4,34 +4,119 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free online Photo Filters &amp; editor — apply 17+ filter presets (grayscale, sepia, vintage, warm, cool, noir, cinematic, autumn and more), fine-tune brightness, contrast, saturation, hue and blur, add vignette and film grain, rotate/flip, compare before/after, view a live histogram, and export to PNG/JPG/WebP with a quality slider. 100% local, nothing uploaded, works offline.">
+<meta name="keywords" content="photo filters, image filters online, photo editor, grayscale sepia vintage, brightness contrast, vignette grain, before after compare, edit photo online, css filters">
 <link rel="canonical" href="https://apnesoftware.com/tools/photo-filters.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Photo Filters | ApneSoftware">
-<meta property="og:description" content="Grayscale, sepia, vintage & more, plus adjustments. Free online tool — no signup required.">
+<meta property="og:title" content="Photo Filters — Filter &amp; Adjust Photos Online | ApneSoftware">
+<meta property="og:description" content="Apply filter presets, fine-tune brightness/contrast/saturation/hue/blur, add vignette &amp; grain, compare before/after with a live histogram, and export PNG/JPG/WebP. Free, private, offline.">
 <meta property="og:url" content="https://apnesoftware.com/tools/photo-filters.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Photo Filters | ApneSoftware">
-<meta name="twitter:description" content="Grayscale, sepia, vintage & more, plus adjustments. Free online tool — no signup required.">
+<meta name="twitter:title" content="Photo Filters — Filter &amp; Adjust Photos Online | ApneSoftware">
+<meta name="twitter:description" content="Filter presets, brightness/contrast/saturation/hue/blur adjustments, vignette &amp; grain, before/after compare, histogram and multi-format export. Free, private, offline.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Photo Filters","description":"Grayscale, sepia, vintage & more, plus adjustments. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/photo-filters.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Photo Filters","description":"Professional browser-based photo filter and editing tool that applies 17+ filter presets (grayscale, sepia, vintage, warm, cool, noir, vibrant, cinematic, autumn, summer, winter and more), fine-tunes brightness, contrast, saturation, hue and blur, adds a vignette and film grain, rotates and flips, compares before and after, shows a live luminance histogram, and exports to PNG, JPG or WebP with a quality slider. Runs entirely in the browser.","url":"https://apnesoftware.com/tools/photo-filters.html","applicationCategory":"MultimediaApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["17+ filter presets","Brightness/contrast/saturation/hue/blur","Vignette and film grain","Rotate and flip","Before/after compare","Live histogram","PNG/JPG/WebP export","100% local processing"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Photo Filters — Filter and Adjust Photos Online","url":"https://apnesoftware.com/tools/photo-filters.html","description":"Private, browser-based photo filter tool with presets, adjustments, effects, before/after compare, histogram and multi-format export.","inLanguage":"en","isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/"},{"@type":"ListItem","position":2,"name":"Image Tools","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":3,"name":"Photo Filters","item":"https://apnesoftware.com/tools/photo-filters.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to apply photo filters","description":"Filter and adjust a photo in your browser.","step":[{"@type":"HowToStep","name":"Upload a photo","text":"Drag and drop or choose a JPG, PNG or WebP file."},{"@type":"HowToStep","name":"Pick a filter","text":"Choose a preset from the filter gallery."},{"@type":"HowToStep","name":"Fine-tune","text":"Adjust brightness, contrast, saturation, hue, blur, vignette and grain."},{"@type":"HowToStep","name":"Export","text":"Compare before/after, then download as PNG, JPG or WebP."}]}
+</script>
+<script type="application/ld+json" id="faqSchema">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[]}
 </script>
 <meta name="color-scheme" content="dark">
-<title>Photo Filters | ApneSoftware</title>
+<title>Photo Filters — Filter &amp; Adjust Photos Online | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
-.dropzone{cursor:pointer}
-.dropzone p{font-size:.9rem}
-.panel{position:relative;z-index:1}
-</style>
-<style>
-  #previewCanvas{max-width:100%;border-radius:10px;border:1px solid var(--border)}
-  .preset-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-  .preset-btn{padding:7px 14px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-size:.85rem;cursor:pointer}
-  .preset-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+/* ===== Photo Filters — scoped pf- styles ===== */
+.pf-crumb{font-size:.78rem;color:var(--text-dim);margin-bottom:6px}
+.pf-crumb a{color:#c4b5fd;text-decoration:none}
+.pf-crumb a:hover{text-decoration:underline}
+.pf-btn{background:rgba(167,139,250,.14);border:1px solid rgba(167,139,250,.34);color:#d6cbff;border-radius:10px;padding:9px 13px;font-size:.83rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+.pf-btn:hover{background:rgba(167,139,250,.24)}
+.pf-btn.primary{background:linear-gradient(90deg,#7c3aed,#a78bfa);border-color:transparent;color:#fff;font-weight:600}
+.pf-btn:focus-visible,.pf-thumb:focus-visible,.pf-chip:focus-visible{outline:2px solid #a78bfa;outline-offset:2px}
+.pf-btn.sm{padding:6px 10px;font-size:.76rem}
+.pf-toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+.dropzone{cursor:pointer;border:2px dashed rgba(167,139,250,.4);border-radius:16px;padding:34px 20px;text-align:center;transition:.15s;background:rgba(167,139,250,.04)}
+.dropzone:hover,.dropzone.drag{background:rgba(167,139,250,.12);border-color:#a78bfa}
+.dropzone .ic{font-size:2.2rem}
+.dropzone p{font-size:.95rem;margin:8px 0}
+.dropzone .sub{font-size:.82rem;color:var(--text-dim)}
+.dropzone input{display:none}
+
+.pf-grid{display:grid;grid-template-columns:1fr 320px;gap:18px;margin-top:16px}
+@media(max-width:900px){.pf-grid{grid-template-columns:1fr}}
+.pf-stage{background:rgba(0,0,0,.3);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:14px;padding:12px;display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0}
+#previewCanvas{max-width:100%;max-height:56vh;height:auto;border-radius:8px;border:1px solid var(--border,rgba(255,255,255,.12))}
+.pf-stagebar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+
+.pf-side{min-width:0}
+.pf-card{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.1));border-radius:12px;padding:12px 14px;margin-bottom:12px}
+.pf-card h4{margin:0 0 9px;font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;color:#c4b5fd}
+.pf-thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:8px;max-height:250px;overflow:auto}
+.pf-thumb{cursor:pointer;border:2px solid transparent;border-radius:8px;overflow:hidden;background:rgba(255,255,255,.04);text-align:center;padding-bottom:2px}
+.pf-thumb[aria-pressed="true"]{border-color:#a78bfa}
+.pf-thumb canvas{width:100%;height:48px;object-fit:cover;display:block;border-radius:6px 6px 0 0;background:#222}
+.pf-thumb span{font-size:.62rem;color:var(--text-dim);display:block;padding-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pf-thumb[aria-pressed="true"] span{color:#c4b5fd}
+.pf-field{margin-bottom:8px}
+.pf-field:last-child{margin-bottom:0}
+.pf-field label{display:flex;justify-content:space-between;font-size:.78rem;color:var(--text-dim);margin-bottom:4px}
+.pf-field label .v{color:#c4b5fd;font-weight:600}
+.pf-field input[type=range]{width:100%;accent-color:#a78bfa}
+.pf-field select{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text);border-radius:8px;padding:7px 9px;font-size:.82rem}
+.pf-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pf-chips{display:flex;flex-wrap:wrap;gap:6px}
+.pf-chip{font-size:.76rem;padding:6px 10px;border-radius:8px;background:rgba(255,255,255,.05);border:1px solid var(--border,rgba(255,255,255,.14));color:var(--text-dim);cursor:pointer;font-weight:600}
+.pf-chip:hover{border-color:#a78bfa;color:#c4b5fd}
+#pfHisto{width:100%;height:70px;background:rgba(0,0,0,.35);border-radius:8px;display:block}
+.pf-info{font-size:.76rem;color:var(--text-dim)}
+.pf-info div{display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.pf-info div:last-child{border-bottom:none}
+.pf-info b{color:#c4b5fd}
+#statusMsg{margin-top:8px;font-size:.85rem;min-height:1em}
+.privacy-note{background:rgba(124,92,252,.08);border:1px solid rgba(124,92,252,.25);border-radius:8px;padding:12px 14px;font-size:.84rem;color:var(--text-dim);margin-top:16px;line-height:1.6}
+.privacy-note b{color:#c4b5fd}
+
+/* below-tool */
+.pf-wrap{margin:26px 0}
+.pf-title{font-size:1.35rem;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.pf-feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.pf-fcard{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:14px;padding:16px}
+.pf-fcard h4{margin:0 0 6px;font-size:.98rem;display:flex;align-items:center;gap:8px}
+.pf-fcard p{margin:0;font-size:.86rem;color:var(--text-dim);line-height:1.55}
+.pf-rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.pf-rel{display:block;text-decoration:none;background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:14px;transition:.15s;color:var(--text)}
+.pf-rel:hover{border-color:#a78bfa;background:rgba(167,139,250,.1);transform:translateY(-2px)}
+.pf-rel b{display:block;font-size:.92rem;margin-bottom:3px}
+.pf-rel span{font-size:.8rem;color:var(--text-dim);line-height:1.45}
+.pf-prose p,.pf-prose li{color:var(--text-dim);line-height:1.75;font-size:.92rem}
+.pf-prose h3{font-size:1.02rem;margin:18px 0 8px}
+.pf-tscroll{overflow:auto;border-radius:10px}
+table.pf-table{border-collapse:collapse;font-size:.85rem;width:100%}
+table.pf-table th,table.pf-table td{border:1px solid var(--border,rgba(255,255,255,.12));padding:7px 10px;text-align:left;color:var(--text)}
+table.pf-table th{background:rgba(167,139,250,.14);color:#fff;font-weight:600}
+.pf-faq details{background:rgba(255,255,255,.03);border:1px solid var(--border,rgba(255,255,255,.08));border-radius:12px;padding:0 16px;margin-bottom:10px}
+.pf-faq summary{cursor:pointer;padding:14px 0;font-weight:600;font-size:.92rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.pf-faq summary::-webkit-details-marker{display:none}
+.pf-faq summary::after{content:'+';font-size:1.3rem;color:#a78bfa;flex:0 0 auto}
+.pf-faq details[open] summary::after{content:'−'}
+.pf-faq details p{margin:0 0 14px;font-size:.87rem;color:var(--text-dim);line-height:1.65}
+.pf-steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;gap:12px}
+.pf-steps li{counter-increment:s;position:relative;padding-left:46px;font-size:.9rem;color:var(--text-dim);line-height:1.6}
+.pf-steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:32px;height:32px;border-radius:9px;background:rgba(167,139,250,.18);color:#c4b5fd;font-weight:700;display:grid;place-items:center}
+.pf-steps li b{color:var(--text)}
+@media (prefers-contrast:more){.pf-prose p,.pf-prose li{color:#fff}}
 </style>
 </head>
 <body>
@@ -44,186 +129,453 @@
 
 <div class="container">
   <div class="tool-header">
+    <nav class="pf-crumb" aria-label="Breadcrumb"><a href="../index.html">Home</a> › <a href="../index.html">Image Tools</a> › <span>Photo Filters</span></nav>
     <h1>🎨 Photo Filters</h1>
-    <p>Apply quick filters — grayscale, sepia, vintage, and more — plus fine-tune brightness and contrast.</p>
+    <p>Apply <b>17+ filter presets</b> — grayscale, sepia, vintage, cinematic, autumn and more — then fine-tune <b>brightness, contrast, saturation, hue, blur</b> and add <b>vignette &amp; grain</b>, with before/after compare and a live histogram. 100% local — nothing is uploaded.</p>
+    <div class="pf-toolbar">
+      <button class="pf-btn" id="newImgBtn" type="button">↺ New image</button>
+    </div>
   </div>
 
   <div class="panel">
-    <div class="dropzone" id="dropzone">
-      <p>📤 Drag an image here or click to choose</p>
+    <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Upload image">
+      <div class="ic">🖼️</div>
+      <p><b>Drop an image here</b> or click to choose</p>
+      <div class="sub">🔒 JPG/PNG/WebP · processed locally · nothing uploaded</div>
       <input type="file" id="fileInput" accept="image/*">
     </div>
 
-    <div id="afterUpload" style="display:none;margin-top:18px">
-      <div class="preset-row">
-        <button class="preset-btn active" data-preset="none">None</button>
-        <button class="preset-btn" data-preset="grayscale">Grayscale</button>
-        <button class="preset-btn" data-preset="sepia">Sepia</button>
-        <button class="preset-btn" data-preset="vintage">Vintage</button>
-        <button class="preset-btn" data-preset="invert">Invert</button>
-        <button class="preset-btn" data-preset="cool">Cool</button>
-        <button class="preset-btn" data-preset="warm">Warm</button>
+    <div id="afterUpload" style="display:none">
+      <div class="pf-grid">
+        <div class="pf-stage">
+          <canvas id="previewCanvas" aria-label="Filtered image preview"></canvas>
+          <div class="pf-stagebar">
+            <button class="pf-btn sm" id="compareBtn" type="button">◐ Hold to compare</button>
+            <button class="pf-chip" id="rotLeftBtn" type="button">↺ 90°</button>
+            <button class="pf-chip" id="rotRightBtn" type="button">↻ 90°</button>
+            <button class="pf-chip" id="flipHBtn" type="button">↔</button>
+            <button class="pf-chip" id="flipVBtn" type="button">↕</button>
+          </div>
+        </div>
+
+        <div class="pf-side">
+          <div class="pf-card">
+            <h4>Filters</h4>
+            <div class="pf-thumbs" id="filterThumbs"></div>
+          </div>
+
+          <div class="pf-card">
+            <h4>Adjustments</h4>
+            <div class="pf-field"><label for="brightnessSlider">Brightness <span class="v" id="brightnessVal">100</span>%</label><input type="range" id="brightnessSlider" min="0" max="200" value="100"></div>
+            <div class="pf-field"><label for="contrastSlider">Contrast <span class="v" id="contrastVal">100</span>%</label><input type="range" id="contrastSlider" min="0" max="200" value="100"></div>
+            <div class="pf-field"><label for="saturationSlider">Saturation <span class="v" id="saturationVal">100</span>%</label><input type="range" id="saturationSlider" min="0" max="200" value="100"></div>
+            <div class="pf-field"><label for="hueSlider">Hue <span class="v" id="hueVal">0</span>°</label><input type="range" id="hueSlider" min="0" max="360" value="0"></div>
+            <div class="pf-field"><label for="blurSlider">Blur <span class="v" id="blurVal">0</span>px</label><input type="range" id="blurSlider" min="0" max="20" value="0"></div>
+          </div>
+
+          <div class="pf-card">
+            <h4>Effects</h4>
+            <div class="pf-field"><label for="vignetteSlider">Vignette <span class="v" id="vignetteVal">0</span>%</label><input type="range" id="vignetteSlider" min="0" max="100" value="0"></div>
+            <div class="pf-field"><label for="grainSlider">Film grain <span class="v" id="grainVal">0</span>%</label><input type="range" id="grainSlider" min="0" max="100" value="0"></div>
+          </div>
+
+          <div class="pf-card">
+            <h4>Histogram</h4>
+            <canvas id="pfHisto" width="280" height="70" aria-label="Luminance histogram"></canvas>
+          </div>
+
+          <div class="pf-card">
+            <h4>History &amp; output</h4>
+            <div class="pf-chips" style="margin-bottom:9px">
+              <button class="pf-chip" id="undoBtn" type="button">⟲ Undo</button>
+              <button class="pf-chip" id="redoBtn" type="button">⟳ Redo</button>
+              <button class="pf-chip" id="resetBtn" type="button">↩ Reset All</button>
+            </div>
+            <div class="pf-row2">
+              <div class="pf-field"><label for="outFmt">Format</label><select id="outFmt"><option value="image/jpeg" selected>JPG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select></div>
+              <div class="pf-field"><label for="quality">Quality <span class="v" id="qualityVal">92</span>%</label><input type="range" id="quality" min="60" max="100" value="92"></div>
+            </div>
+          </div>
+
+          <div class="pf-card">
+            <h4>Image info</h4>
+            <div class="pf-info" id="imgInfo"></div>
+          </div>
+        </div>
       </div>
 
-      <div class="row" style="margin-top:14px">
-        <div class="field">
-          <label for="brightnessSlider">Brightness: <span id="brightnessVal">100</span>%</label>
-          <input type="range" id="brightnessSlider" min="0" max="200" value="100">
-        </div>
-        <div class="field">
-          <label for="contrastSlider">Contrast: <span id="contrastVal">100</span>%</label>
-          <input type="range" id="contrastSlider" min="0" max="200" value="100">
-        </div>
-        <div class="field">
-          <label for="saturationSlider">Saturation: <span id="saturationVal">100</span>%</label>
-          <input type="range" id="saturationSlider" min="0" max="200" value="100">
-        </div>
-        <div class="field">
-          <label for="blurSlider">Blur: <span id="blurVal">0</span>px</label>
-          <input type="range" id="blurSlider" min="0" max="20" value="0">
-        </div>
+      <div class="pf-toolbar">
+        <button class="pf-btn primary" id="downloadBtn" type="button">⬇️ Download</button>
       </div>
+      <p id="statusMsg" style="color:var(--text-dim)"></p>
 
-      <canvas id="previewCanvas"></canvas>
-
-      <div class="btn-row">
-        <button class="btn" id="downloadBtn">⬇️ Download</button>
-        <button class="btn secondary" id="resetBtn">↩️ Reset All</button>
-      </div>
-      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
+      <div class="privacy-note">🔒 <b>Private by design:</b> your photo is filtered entirely in your browser using an HTML canvas. Nothing is uploaded to a server, and the tool works offline once loaded.</div>
     </div>
   </div>
 </div>
 
+<!-- ===================== BELOW-TOOL CONTENT ===================== -->
+<div class="container">
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Apply quick photo filters like grayscale, sepia, and vintage tones, and fine-tune brightness, contrast, saturation, and blur — a simple in-browser photo editor with no software to install.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload a photo.</li>
-        <li>Pick a filter preset, then fine-tune with the sliders if you like.</li>
-        <li>Click Download to save the edited photo.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>Grayscale, sepia और vintage जैसे क्विक फोटो फिल्टर लगाएं, और brightness, contrast, saturation, blur को फाइन-ट्यून करें — बिना कोई सॉफ्टवेयर इंस्टॉल किए, सीधे ब्राउज़र में सिंपल फोटो एडिटर।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>एक फोटो अपलोड करें।</li>
-        <li>फिल्टर प्रीसेट चुनें, फिर चाहें तो स्लाइडर से फाइन-ट्यून करें।</li>
-        <li>Download दबाकर एडिट की हुई फोटो सेव करें।</li>
-      </ol>
-    </div>
+<!-- Key Features -->
+<section class="pf-wrap">
+  <h2 class="pf-title">✨ Key Features</h2>
+  <div class="pf-feat-grid">
+    <div class="pf-fcard"><h4>🎞️ 17+ Filter Presets</h4><p>Grayscale, sepia, vintage, warm, cool, noir, vibrant, cinematic, autumn, summer, winter and more.</p></div>
+    <div class="pf-fcard"><h4>🖼️ Live Thumbnails</h4><p>Every preset shows a live preview of your photo, so you pick the right look at a glance.</p></div>
+    <div class="pf-fcard"><h4>🎚️ Precise Adjustments</h4><p>Brightness, contrast, saturation, hue and blur, each with a live slider.</p></div>
+    <div class="pf-fcard"><h4>🌑 Vignette &amp; Grain</h4><p>Add a soft vignette and authentic film grain for a cinematic finish.</p></div>
+    <div class="pf-fcard"><h4>🔄 Rotate &amp; Flip</h4><p>Quick 90° rotation and horizontal/vertical flip built in.</p></div>
+    <div class="pf-fcard"><h4>◐ Before / After</h4><p>Hold the compare button to instantly see the original versus your edit.</p></div>
+    <div class="pf-fcard"><h4>📊 Live Histogram</h4><p>A luminance histogram updates as you edit, so you can balance exposure.</p></div>
+    <div class="pf-fcard"><h4>🔄 Undo / Redo / Reset</h4><p>Step back and forth through edits, or reset everything in one click.</p></div>
+    <div class="pf-fcard"><h4>🔄 Multi-Format Export</h4><p>Save as JPG, PNG or WebP with a quality slider.</p></div>
+    <div class="pf-fcard"><h4>📐 Full Resolution</h4><p>Filters apply to the image's real pixels — no quality-losing downscale.</p></div>
+    <div class="pf-fcard"><h4>🔒 100% Local</h4><p>Every edit is processed in your browser. Nothing is uploaded, logged or tracked.</p></div>
+    <div class="pf-fcard"><h4>♿ Accessible &amp; Mobile</h4><p>Keyboard navigation, ARIA labels, high-contrast support and a responsive layout.</p></div>
   </div>
+</section>
+
+<!-- Benefits -->
+<section class="pf-wrap pf-prose">
+  <h2 class="pf-title">🎯 Benefits</h2>
+  <ul>
+    <li><b>One-tap looks</b> — a preset transforms the mood of a photo instantly, no editing skill needed.</li>
+    <li><b>Fine control when you want it</b> — sliders and a histogram let you balance a shot precisely.</li>
+    <li><b>Consistent feeds</b> — apply the same filter to every photo for a cohesive social look.</li>
+    <li><b>Cinematic finish</b> — vignette and grain add the polish that makes an image feel intentional.</li>
+    <li><b>Totally private</b> — your photos never leave the browser, and it works offline.</li>
+  </ul>
+</section>
+
+<!-- Related Tools (ABOVE About) -->
+<section class="pf-wrap">
+  <h2 class="pf-title">🧰 Related Tools</h2>
+  <div class="pf-rel-grid">
+    <a class="pf-rel" href="image-cropper.html"><b>✂️ Image Cropper</b><span>Crop images precisely.</span></a>
+    <a class="pf-rel" href="image-rotate-flip.html"><b>🔄 Image Rotate &amp; Flip</b><span>Rotate and flip photos.</span></a>
+    <a class="pf-rel" href="image-compressor.html"><b>🗜️ Image Compressor</b><span>Shrink image file size.</span></a>
+    <a class="pf-rel" href="image-resizer.html"><b>📐 Image Resizer</b><span>Resize images to any dimensions.</span></a>
+    <a class="pf-rel" href="image-converter.html"><b>🔄 Image Converter</b><span>Convert between JPG, PNG, WebP.</span></a>
+    <a class="pf-rel" href="image-watermark.html"><b>💧 Image Watermark</b><span>Add text or logo watermarks.</span></a>
+    <a class="pf-rel" href="image-border-frame.html"><b>🖼️ Border &amp; Frame Adder</b><span>Add borders and frames.</span></a>
+    <a class="pf-rel" href="image-rounded-corners.html"><b>⭕ Rounded &amp; Circle Crop</b><span>Round corners or circle-crop.</span></a>
+  </div>
+</section>
+
+<!-- About (English) -->
+<section class="pf-wrap pf-prose">
+  <h2 class="pf-title">ℹ️ About This Tool</h2>
+  <p>The <b>ApneSoftware Photo Filters</b> tool is a professional, privacy-first photo editor that lets you filter, adjust and finish your images directly in the browser. A good filter can transform a photo in an instant — turning a flat snapshot into something warm and nostalgic, cool and modern, or dramatic and cinematic — and thoughtful adjustments to brightness, contrast and colour can rescue an under-exposed shot or make a great one sing. Usually that means opening heavyweight editing software or uploading a private photo to an online editor. This tool removes all of that. It gives you a rich gallery of one-tap filters, precise manual controls, tasteful effects and a live histogram, and it does everything locally — no installation, no signup and no upload. Your photo is loaded into the page, edited on an HTML canvas, and handed straight back to you.</p>
+  <p>The centrepiece is the <b>filter gallery</b>. Rather than guessing from names, every preset is rendered as a <b>live thumbnail of your own photo</b>, so you can see exactly how <b>grayscale</b>, <b>sepia</b>, <b>vintage</b>, <b>warm</b>, <b>cool</b>, <b>noir</b>, <b>vibrant</b>, <b>soft</b>, <b>retro</b>, <b>film</b>, <b>matte</b>, <b>cinematic</b>, <b>autumn</b>, <b>summer</b>, <b>winter</b> and more will look before you commit. One tap applies the look, and you can switch between presets freely. These filters are built from real image operations — tone curves, saturation and hue shifts, and subtle contrast changes — composed to feel like the classic film and social-media looks people love, all rendered with the browser's fast, hardware-accelerated canvas filters so previews stay smooth even on large photos.</p>
+  <p>When you want more than a one-tap look, the <b>adjustment</b> panel gives you precise, manual control. <b>Brightness</b> and <b>contrast</b> fix exposure and punch; <b>saturation</b> makes colours richer or more muted; a full <b>hue</b> rotation re-tints the whole image for creative effects; and <b>blur</b> softens for a dreamy feel or to de-emphasise a busy background. Each slider updates the preview instantly, and a <b>live luminance histogram</b> shows the distribution of tones from shadows to highlights — the same tool professional editors use to judge exposure and avoid clipping. Watching the histogram as you push brightness or contrast takes the guesswork out of getting a balanced result.</p>
+  <p>To give images a finished, editorial feel, the tool includes two classic <b>effects</b>. A <b>vignette</b> gently darkens the edges of the frame to draw the eye toward the centre, and adjustable <b>film grain</b> overlays authentic texture that makes a digital photo feel like it was shot on film. Both are controlled by sliders so you can go from a whisper to a strong effect. There are also quick <b>rotate</b> and <b>flip</b> controls for fixing orientation or mirroring a shot, and a <b>before/after</b> compare button — hold it down to instantly reveal the untouched original, so you can judge exactly what your edit is doing. Full <b>undo</b>, <b>redo</b> and <b>reset</b> mean you can experiment freely and step back at any time; nothing is committed until you download.</p>
+  <p><b>Output is flexible and high quality.</b> Every filter and adjustment is applied to the image's <b>full native resolution</b>, not the on-screen preview, so there is no quality-losing downscale — a filtered 4000-pixel photo stays sharp. You can export as <b>JPG</b> (small files ideal for the web and social), <b>PNG</b> (lossless) or <b>WebP</b> (the best size-to-quality balance in modern browsers), with a <b>quality slider</b> controlling compression. An <b>image-information</b> panel reports the dimensions, aspect ratio, orientation and file size, so you always know what you are producing, and the whole workspace is responsive, collapsing from a two-panel desktop layout to a single, touch-friendly column on phones.</p>
+  <p><b>Speed and workflow</b> matter as much as the result. Because everything runs on the browser's own graphics pipeline, previews update the moment you move a slider or tap a preset — there is no round-trip to a server, no spinner and no queue. You can layer a preset with manual adjustments, dial in a vignette and grain, rotate or flip, and compare against the original as many times as you like, all in real time. The <b>history</b> system records each meaningful change so you can walk backward and forward through your edits without fear of losing a good version, and a single <b>Reset All</b> returns to the untouched photo whenever you want a clean start. This makes the tool comfortable both for a quick one-tap fix on a phone and for a careful, iterative edit on a desktop, where the two-panel layout keeps the image large while every control stays within reach.</p>
+  <p>The tool is also built for real-world use across many kinds of images. Portraits benefit from gentle contrast and a soft matte fade; landscapes come alive with the warm or vibrant presets and a touch of vignette; product shots stay clean and neutral with light exposure tuning; and moody, cinematic edits suit street and travel photography. Because the filters are transparent, deterministic operations rather than a black-box model, the same settings always produce the same result — which is exactly what you need when you want a <b>consistent look</b> across a set of photos for a shop listing, a portfolio or a social feed. You are always in full control of the outcome.</p>
+  <p><b>Privacy is fundamental.</b> Unlike many online photo editors that send your image to a server to process it, this tool does everything <b>locally</b>. Your photo is read into the browser, drawn onto a canvas, filtered and exported back to you — it never leaves your device, there is no account, and nothing about your image is tracked or stored. That makes it safe for personal photos, brand assets and client work alike, and it means the tool keeps working <b>offline</b> once the page has loaded. The interface follows modern accessibility standards too, with keyboard-operable controls, ARIA labelling, visible focus outlines and high-contrast support. Note that these are genuine, deterministic image filters and adjustments — there are no AI features, so what you see is exactly the maths applied to your pixels, fast and repeatable. In short, it is a quick, capable, genuinely private photo-filter studio that lives entirely in your browser — powerful enough for a polished edit, simple enough for a one-tap look.</p>
+</section>
+
+<!-- About (Hindi) -->
+<section class="pf-wrap pf-prose">
+  <h2 class="pf-title">ℹ️ इस टूल के बारे में</h2>
+  <p><b>ApneSoftware Photo Filters</b> टूल एक professional, privacy-first photo editor है जो आपको अपनी images को सीधे browser में filter, adjust व finish करने देता है। एक अच्छा filter किसी photo को पल भर में बदल सकता है — एक सपाट snapshot को गर्म व nostalgic, ठंडा व आधुनिक, या नाटकीय व cinematic बना सकता है — और brightness, contrast व colour के सोच-समझे adjustments एक under-exposed shot को बचा सकते हैं। आमतौर पर इसका मतलब भारी editing software खोलना या एक निजी photo किसी online editor पर upload करना होता है। यह टूल यह सब हटा देता है। यह एक-tap filters की समृद्ध gallery, सटीक manual controls, सुरुचिपूर्ण effects व एक live histogram देता है, और सब कुछ locally करता है — बिना installation, बिना signup व बिना upload के।</p>
+  <p>मुख्य आकर्षण <b>filter gallery</b> है। नामों से अंदाज़ा लगाने के बजाय, हर preset आपकी अपनी photo के <b>live thumbnail</b> के रूप में render होता है, ताकि आप ठीक-ठीक देख सकें कि <b>grayscale</b>, <b>sepia</b>, <b>vintage</b>, <b>warm</b>, <b>cool</b>, <b>noir</b>, <b>vibrant</b>, <b>soft</b>, <b>retro</b>, <b>film</b>, <b>matte</b>, <b>cinematic</b>, <b>autumn</b>, <b>summer</b>, <b>winter</b> व अन्य कैसे दिखेंगे। एक tap वह look लगा देता है, और आप presets के बीच स्वतंत्र रूप से बदल सकते हैं। ये filters असली image operations से बने हैं — tone curves, saturation व hue shifts, व सूक्ष्म contrast बदलाव — जो browser के तेज़, hardware-accelerated canvas filters से render होते हैं।</p>
+  <p>जब आप एक-tap look से आगे चाहें, <b>adjustment</b> panel सटीक, manual नियंत्रण देता है। <b>Brightness</b> व <b>contrast</b> exposure व punch ठीक करते हैं; <b>saturation</b> रंगों को समृद्ध या मंद बनाता है; एक पूर्ण <b>hue</b> rotation पूरी image को फिर से रंगता है; और <b>blur</b> एक स्वप्निल भाव के लिए या व्यस्त background को कम महत्व देने के लिए नरम करता है। हर slider preview को तुरंत अपडेट करता है, और एक <b>live luminance histogram</b> shadows से highlights तक tones का वितरण दिखाता है — वही उपकरण जो professional editors exposure आँकने के लिए उपयोग करते हैं।</p>
+  <p>images को एक पूर्ण, editorial भाव देने के लिए, टूल में दो classic <b>effects</b> शामिल हैं। एक <b>vignette</b> frame के किनारों को धीरे-से गहरा करता है ताकि नज़र केंद्र की ओर खिंचे, और समायोज्य <b>film grain</b> प्रामाणिक texture डालता है जो एक digital photo को film पर खींची गई जैसी बनाता है। दोनों sliders से नियंत्रित हैं। orientation ठीक करने या shot mirror करने के लिए त्वरित <b>rotate</b> व <b>flip</b> नियंत्रण भी हैं, और एक <b>before/after</b> compare button — दबाकर रखें तो अछूता मूल तुरंत दिख जाता है। पूर्ण <b>undo</b>, <b>redo</b> व <b>reset</b> का मतलब है कि आप स्वतंत्र रूप से प्रयोग कर सकते हैं।</p>
+  <p><b>Output लचीला व उच्च गुणवत्ता का है।</b> हर filter व adjustment image के <b>पूर्ण native resolution</b> पर लागू होता है, on-screen preview पर नहीं, इसलिए कोई गुणवत्ता-घटाता downscale नहीं। आप <b>JPG</b> (web व social के लिए आदर्श छोटी files), <b>PNG</b> (lossless) या <b>WebP</b> के रूप में export कर सकते हैं, एक <b>quality slider</b> compression नियंत्रित करता है। एक <b>image-information</b> panel आयाम, aspect ratio, orientation व file size बताता है, और पूरा workspace responsive है।</p>
+  <p><b>गति व workflow</b> उतने ही मायने रखते हैं जितना परिणाम। चूँकि सब कुछ browser के अपने graphics pipeline पर चलता है, जैसे ही आप slider हिलाते हैं या preset पर tap करते हैं preview तुरंत अपडेट होता है — कोई server round-trip नहीं, कोई spinner नहीं। आप एक preset को manual adjustments के साथ मिला सकते हैं, vignette व grain डाल सकते हैं, rotate या flip कर सकते हैं, और मूल से जितनी बार चाहें तुलना कर सकते हैं। <b>history</b> प्रणाली हर बदलाव दर्ज करती है ताकि आप आगे-पीछे चल सकें, और एक <b>Reset All</b> कभी भी साफ़ शुरुआत पर लौटा देता है।</p>
+  <p>यह टूल कई प्रकार की images के लिए बना है। portraits को हल्का contrast व soft matte भाव सूट करता है; landscapes warm या vibrant presets व थोड़े vignette से जीवंत हो जाते हैं; product shots हल्की exposure tuning से साफ़ रहते हैं; और cinematic edits street व travel photography के लिए उपयुक्त हैं। चूँकि filters पारदर्शी, deterministic operations हैं, वही settings हमेशा वही परिणाम देते हैं — जो एक set की photos में <b>एक जैसा look</b> चाहने पर बिल्कुल ज़रूरी है। आप हमेशा परिणाम पर पूर्ण नियंत्रण में रहते हैं।</p>
+  <p><b>Privacy मौलिक है।</b> कई online photo editors के विपरीत जो आपकी image server पर भेजते हैं, यह टूल सब कुछ <b>locally</b> करता है। आपकी photo browser में पढ़ी जाती है, canvas पर बनाई जाती है, filter व export की जाती है — यह कभी आपके device से बाहर नहीं जाती, कोई account नहीं, और आपकी image के बारे में कुछ भी track या store नहीं होता। यह व्यक्तिगत photos, brand assets व client काम सबके लिए सुरक्षित बनाता है, और page load होने के बाद टूल <b>offline</b> काम करता है। Interface भी आधुनिक accessibility मानकों का पालन करता है। ध्यान दें कि ये असली, deterministic image filters व adjustments हैं — कोई AI feature नहीं, इसलिए जो आप देखते हैं वह आपके pixels पर लगा हुआ सटीक गणित है। संक्षेप में, यह एक तेज़, सक्षम, सचमुच निजी photo-filter studio है।</p>
+</section>
+
+<!-- Supported Formats -->
+<section class="pf-wrap pf-prose">
+  <h2 class="pf-title">🖼️ Supported Formats</h2>
+  <div class="pf-tscroll">
+    <table class="pf-table">
+      <thead><tr><th>Format</th><th>Input</th><th>Output</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>JPG / JPEG</td><td>✔</td><td>✔</td><td>Small files ideal for web and social.</td></tr>
+        <tr><td>PNG</td><td>✔</td><td>✔</td><td>Lossless; keeps transparency.</td></tr>
+        <tr><td>WebP</td><td>✔</td><td>✔</td><td>Best size-to-quality; supported in modern browsers.</td></tr>
+        <tr><td>GIF (static)</td><td>✔</td><td>PNG/JPG</td><td>First frame is filtered; export as PNG or JPG.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Filter Guide -->
+<section class="pf-wrap pf-prose">
+  <h2 class="pf-title">🎞️ Filter Guide</h2>
+  <div class="pf-tscroll">
+    <table class="pf-table">
+      <thead><tr><th>Filter</th><th>Look</th></tr></thead>
+      <tbody>
+        <tr><td>Grayscale / Noir</td><td>Black &amp; white; Noir adds punchy contrast.</td></tr>
+        <tr><td>Sepia / Vintage / Retro</td><td>Warm, aged, nostalgic tones.</td></tr>
+        <tr><td>Warm / Autumn / Summer</td><td>Golden, sunny, high-energy colour.</td></tr>
+        <tr><td>Cool / Winter</td><td>Blue, crisp, calm tones.</td></tr>
+        <tr><td>Vibrant</td><td>Bold, saturated punch for social posts.</td></tr>
+        <tr><td>Soft / Matte</td><td>Low-contrast, gentle, editorial fade.</td></tr>
+        <tr><td>Film / Cinematic</td><td>Movie-style contrast and colour grade.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Adjustment Guide -->
+<section class="pf-wrap pf-prose">
+  <h2 class="pf-title">🎚️ Adjustment Guide</h2>
+  <ul>
+    <li><b>Brightness</b> — overall lightness; watch the histogram so highlights don't clip.</li>
+    <li><b>Contrast</b> — the gap between darks and lights; adds punch or a soft, flat look.</li>
+    <li><b>Saturation</b> — colour intensity; lower for muted, higher for vivid.</li>
+    <li><b>Hue</b> — rotates all colours for creative re-tinting.</li>
+    <li><b>Blur</b> — softens the image; a touch adds a dreamy feel.</li>
+    <li><b>Vignette &amp; Grain</b> — darken the edges and add film texture for an editorial finish.</li>
+  </ul>
+</section>
+
+<!-- Export Guide -->
+<section class="pf-wrap pf-prose">
+  <h2 class="pf-title">💾 Export Guide</h2>
+  <ul>
+    <li><b>JPG</b> — best for photos and social; use the quality slider to balance size and detail.</li>
+    <li><b>PNG</b> — lossless and transparency-friendly, but larger files.</li>
+    <li><b>WebP</b> — smaller than JPG at similar quality in modern browsers.</li>
+    <li><b>Quality slider</b> — affects JPG and WebP; 90–95% is a good default.</li>
+    <li>Exports are rendered at <b>full resolution</b>, so downloads keep every detail.</li>
+  </ul>
+</section>
+
+<!-- How To Use -->
+<section class="pf-wrap pf-prose">
+  <h2 class="pf-title">🚀 How To Use</h2>
+  <ol class="pf-steps">
+    <li><b>Upload</b> a photo by dragging it in or clicking the dropzone.</li>
+    <li>Pick a <b>filter</b> from the gallery — each shows a live preview of your photo.</li>
+    <li><b>Fine-tune</b> brightness, contrast, saturation, hue and blur; add vignette or grain.</li>
+    <li>Hold <b>Compare</b> to check before/after; watch the histogram for balance.</li>
+    <li>Pick a <b>format</b> and click <b>Download</b>. Use undo/redo/reset freely.</li>
+  </ol>
+</section>
+
+<!-- FAQ -->
+<section class="pf-wrap pf-faq">
+  <h2 class="pf-title">❓ Frequently Asked Questions</h2>
+  <div id="faqList"></div>
+</section>
+
+<!-- Troubleshooting -->
+<section class="pf-wrap pf-prose">
+  <h2 class="pf-title">🛠️ Troubleshooting</h2>
+  <ul>
+    <li><b>Filter looks too strong:</b> lower saturation/contrast, or switch to a softer preset like Matte or Soft.</li>
+    <li><b>Photo is too dark/bright after editing:</b> use the histogram and the Brightness/Contrast sliders to rebalance.</li>
+    <li><b>Grain isn't visible:</b> increase the Film grain slider; it's subtle at low values.</li>
+    <li><b>Colours look wrong:</b> the Hue slider rotates all colours — set it back to 0° to restore natural tones.</li>
+    <li><b>WebP export unavailable:</b> some older browsers can't encode WebP — choose JPG or PNG.</li>
+    <li><b>Result looks lower resolution:</b> it isn't — filters use full native pixels; the preview is just scaled to fit.</li>
+    <li><b>Large photo feels slow:</b> effects like blur and grain take longer on very large images — give it a moment.</li>
+  </ul>
+</section>
+
 </div>
 
-<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+<footer class="site-footer">© 2026 ApneSoftware.com — Free, private, browser-based tools.</footer>
 
 <script src="../assets/common.js"></script>
 <script>
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-const canvas = document.getElementById('previewCanvas');
-const ctx = canvas.getContext('2d');
-let img = new Image();
-let preset = 'none';
+(function(){
+  "use strict";
+  function $(id){ return document.getElementById(id); }
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type.startsWith('image/')){
-    img.onload = ()=>{
-      document.getElementById('afterUpload').style.display = 'block';
-      draw();
-    };
-    img.src = URL.createObjectURL(files[0]);
+  var canvas=$('previewCanvas'), ctx=canvas.getContext('2d');
+  var img=new Image(), currentFile=null, noiseTile=null, thumbSrc=null, comparing=false;
+  var st={preset:'none',brightness:100,contrast:100,saturation:100,hue:0,blur:0,vignette:0,grain:0,rotate:0,flipH:false,flipV:false};
+  var undoStack=[], redoStack=[];
+
+  var PRESETS=[
+    ['Original','none',''],
+    ['Grayscale','grayscale','grayscale(1)'],
+    ['Sepia','sepia','sepia(.8)'],
+    ['Vintage','vintage','sepia(.4) saturate(.7) contrast(.95) brightness(.95)'],
+    ['Warm','warm','saturate(1.25) sepia(.2) hue-rotate(-10deg)'],
+    ['Cool','cool','saturate(1.1) hue-rotate(190deg) brightness(1.02)'],
+    ['Invert','invert','invert(1)'],
+    ['Noir','noir','grayscale(1) contrast(1.35) brightness(.9)'],
+    ['Vibrant','vibrant','saturate(1.6) contrast(1.1)'],
+    ['Soft','soft','brightness(1.05) contrast(.9) saturate(.95)'],
+    ['Retro','retro','sepia(.35) saturate(1.3) contrast(.9) hue-rotate(-15deg)'],
+    ['Film','film','contrast(1.12) saturate(.9) sepia(.15) brightness(1.02)'],
+    ['Matte','matte','contrast(.82) brightness(1.1) saturate(.9)'],
+    ['Cinematic','cinematic','contrast(1.2) saturate(1.1) sepia(.2) hue-rotate(-8deg) brightness(.98)'],
+    ['Autumn','autumn','sepia(.4) saturate(1.4) hue-rotate(-20deg) contrast(1.05)'],
+    ['Summer','summer','saturate(1.4) brightness(1.05) contrast(1.05) hue-rotate(-5deg)'],
+    ['Winter','winter','saturate(.9) brightness(1.05) hue-rotate(185deg) contrast(1.05)']
+  ];
+  function presetCSS(id){ for(var i=0;i<PRESETS.length;i++)if(PRESETS[i][1]===id)return PRESETS[i][2]; return ''; }
+
+  /* ===== upload ===== */
+  var dz=$('dropzone'), fi=$('fileInput');
+  dz.addEventListener('click',function(){ fi.click(); });
+  dz.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ fi.click(); e.preventDefault(); } });
+  fi.addEventListener('change',function(e){ handleFile(e.target.files[0]); });
+  dz.addEventListener('dragover',function(e){ e.preventDefault(); dz.classList.add('drag'); });
+  dz.addEventListener('dragleave',function(){ dz.classList.remove('drag'); });
+  dz.addEventListener('drop',function(e){ e.preventDefault(); dz.classList.remove('drag'); handleFile(e.dataTransfer.files[0]); });
+  function handleFile(f){ if(!f||f.type.indexOf('image/')!==0) return; currentFile=f; loadSrc(URL.createObjectURL(f)); }
+  function loadSrc(url){ img.onload=function(){ undoStack=[]; redoStack=[]; buildThumbSrc(); buildThumbs(); $('afterUpload').style.display='block'; draw(); try{$('afterUpload').scrollIntoView({behavior:'smooth',block:'start'});}catch(e){} }; img.src=url; }
+
+  /* ===== filter string ===== */
+  function filterStr(withPreset){
+    var parts=[];
+    if(withPreset){ var pc=presetCSS(st.preset); if(pc)parts.push(pc); }
+    parts.push('brightness('+st.brightness+'%)');
+    parts.push('contrast('+st.contrast+'%)');
+    parts.push('saturate('+st.saturation+'%)');
+    if(st.hue)parts.push('hue-rotate('+st.hue+'deg)');
+    if(st.blur)parts.push('blur('+st.blur+'px)');
+    return parts.join(' ');
   }
-});
 
-document.querySelectorAll('.preset-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    preset = btn.dataset.preset;
-    draw();
-  });
-});
+  /* ===== noise tile ===== */
+  function makeNoise(){ var n=document.createElement('canvas'); n.width=n.height=128; var x=n.getContext('2d'); var d=x.createImageData(128,128); for(var i=0;i<d.data.length;i+=4){ var v=Math.random()*255|0; d.data[i]=d.data[i+1]=d.data[i+2]=v; d.data[i+3]=255; } x.putImageData(d,0,0); return n; }
 
-['brightnessSlider','contrastSlider','saturationSlider','blurSlider'].forEach(id=>{
-  document.getElementById(id).addEventListener('input', ()=>{
-    document.getElementById('brightnessVal').textContent = document.getElementById('brightnessSlider').value;
-    document.getElementById('contrastVal').textContent = document.getElementById('contrastSlider').value;
-    document.getElementById('saturationVal').textContent = document.getElementById('saturationSlider').value;
-    document.getElementById('blurVal').textContent = document.getElementById('blurSlider').value;
-    draw();
-  });
-});
-
-function presetFilterCSS(){
-  switch(preset){
-    case 'grayscale': return 'grayscale(100%)';
-    case 'sepia': return 'sepia(80%)';
-    case 'invert': return 'invert(90%)';
-    case 'cool': return 'saturate(120%) hue-rotate(170deg)';
-    case 'warm': return 'saturate(120%) hue-rotate(-15deg)';
-    case 'vintage': return 'sepia(40%) saturate(70%) contrast(95%) brightness(95%)';
-    default: return '';
+  /* ===== render ===== */
+  function renderTo(c,original){
+    if(!img.naturalWidth) return;
+    var w=img.naturalWidth, h=img.naturalHeight, rot=st.rotate, swap=(rot===90||rot===270);
+    var W=swap?h:w, H=swap?w:h;
+    c.width=W; c.height=H; var x=c.getContext('2d'); x.clearRect(0,0,W,H);
+    x.save();
+    x.translate(W/2,H/2); x.rotate(rot*Math.PI/180); x.scale(st.flipH?-1:1, st.flipV?-1:1);
+    x.filter=original?'none':filterStr(true);
+    x.drawImage(img,-w/2,-h/2,w,h);
+    x.restore(); x.filter='none';
+    if(original) return;
+    // vignette
+    if(st.vignette>0){ var g=x.createRadialGradient(W/2,H/2,Math.min(W,H)*0.25,W/2,H/2,Math.max(W,H)*0.72); g.addColorStop(0,'rgba(0,0,0,0)'); g.addColorStop(1,'rgba(0,0,0,'+(st.vignette/100*0.85).toFixed(3)+')'); x.fillStyle=g; x.fillRect(0,0,W,H); }
+    // grain
+    if(st.grain>0){ if(!noiseTile)noiseTile=makeNoise(); x.save(); x.globalAlpha=st.grain/100*0.5; x.globalCompositeOperation='overlay'; var pat=x.createPattern(noiseTile,'repeat'); x.fillStyle=pat; x.fillRect(0,0,W,H); x.restore(); }
   }
-}
+  function draw(){ renderTo(canvas,comparing); buildInfo(); if(!comparing)drawHisto(); }
 
-function draw(){
-  if(!img.naturalWidth) return;
-  canvas.width = img.naturalWidth;
-  canvas.height = img.naturalHeight;
+  function buildInfo(){
+    if(!img.naturalWidth) return;
+    var w=canvas.width, h=canvas.height;
+    function g(a,b){return b?g(b,a%b):a;} var d=g(w,h);
+    var kb='—'; if(currentFile){ kb=currentFile.size<1048576?(currentFile.size/1024).toFixed(0)+' KB':(currentFile.size/1048576).toFixed(2)+' MB'; }
+    var rows=[['Dimensions',w+' × '+h+' px'],['Megapixels',(w*h/1e6).toFixed(1)+' MP'],['Aspect',d?(w/d)+':'+(h/d):'—'],['Orientation',w>h?'Landscape':w<h?'Portrait':'Square'],['Source file',kb]];
+    $('imgInfo').innerHTML=rows.map(function(r){ return '<div><span>'+r[0]+'</span><b>'+r[1]+'</b></div>'; }).join('');
+  }
 
-  const b = document.getElementById('brightnessSlider').value;
-  const c = document.getElementById('contrastSlider').value;
-  const s = document.getElementById('saturationSlider').value;
-  const blur = document.getElementById('blurSlider').value;
+  /* ===== histogram ===== */
+  function drawHisto(){
+    var hc=$('pfHisto'); if(!hc)return; var hx=hc.getContext('2d');
+    // sample from a small copy of the current preview
+    var sw=160, sh=Math.max(1,Math.round(160*canvas.height/canvas.width)); if(!isFinite(sh)||sh<1)sh=1;
+    var t=document.createElement('canvas'); t.width=sw; t.height=sh; t.getContext('2d').drawImage(canvas,0,0,sw,sh);
+    var data; try{ data=t.getContext('2d').getImageData(0,0,sw,sh).data; }catch(e){ return; }
+    var bins=new Array(256).fill(0), max=0;
+    for(var i=0;i<data.length;i+=4){ var lum=(0.299*data[i]+0.587*data[i+1]+0.114*data[i+2])|0; bins[lum]++; }
+    for(i=0;i<256;i++)if(bins[i]>max)max=bins[i];
+    hx.clearRect(0,0,hc.width,hc.height); hx.fillStyle='rgba(167,139,250,.7)';
+    var bw=hc.width/256;
+    for(i=0;i<256;i++){ var bh=max?bins[i]/max*hc.height:0; hx.fillRect(i*bw,hc.height-bh,Math.max(1,bw),bh); }
+  }
 
-  const filters = [
-    presetFilterCSS(),
-    `brightness(${b}%)`,
-    `contrast(${c}%)`,
-    `saturate(${s}%)`,
-    `blur(${blur}px)`
-  ].filter(Boolean).join(' ');
+  /* ===== thumbnails ===== */
+  function buildThumbSrc(){ var tw=64, th=Math.max(1,Math.round(64*img.naturalHeight/img.naturalWidth)); var c=document.createElement('canvas'); c.width=tw; c.height=th; c.getContext('2d').drawImage(img,0,0,tw,th); thumbSrc=c; }
+  function buildThumbs(){
+    var wrap=$('filterThumbs'); wrap.innerHTML='';
+    PRESETS.forEach(function(p){
+      var d=document.createElement('button'); d.className='pf-thumb'; d.type='button'; d.setAttribute('aria-pressed',p[1]===st.preset?'true':'false');
+      var c=document.createElement('canvas'); c.width=thumbSrc.width; c.height=thumbSrc.height; var x=c.getContext('2d'); x.filter=p[2]||'none'; x.drawImage(thumbSrc,0,0); x.filter='none';
+      var s=document.createElement('span'); s.textContent=p[0];
+      d.appendChild(c); d.appendChild(s);
+      d.addEventListener('click',function(){ pushHist(); st.preset=p[1]; wrap.querySelectorAll('.pf-thumb').forEach(function(z){z.setAttribute('aria-pressed','false');}); d.setAttribute('aria-pressed','true'); draw(); });
+      wrap.appendChild(d);
+    });
+  }
 
-  ctx.filter = filters;
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.drawImage(img, 0, 0);
-  ctx.filter = 'none';
-}
+  /* ===== adjustments ===== */
+  function bindRange(id,valId,key){ var el=$(id),v=$(valId); el.addEventListener('input',function(){ st[key]=parseInt(el.value,10); if(v)v.textContent=el.value; draw(); }); el.addEventListener('change',function(){ pushHist(); }); }
+  bindRange('brightnessSlider','brightnessVal','brightness'); bindRange('contrastSlider','contrastVal','contrast');
+  bindRange('saturationSlider','saturationVal','saturation'); bindRange('hueSlider','hueVal','hue');
+  bindRange('blurSlider','blurVal','blur'); bindRange('vignetteSlider','vignetteVal','vignette'); bindRange('grainSlider','grainVal','grain');
+  $('quality').addEventListener('input',function(){ $('qualityVal').textContent=this.value; });
 
-document.getElementById('resetBtn').addEventListener('click', ()=>{
-  preset = 'none';
-  document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelector('.preset-btn[data-preset="none"]').classList.add('active');
-  ['brightnessSlider','contrastSlider','saturationSlider'].forEach(id=> document.getElementById(id).value = 100);
-  document.getElementById('blurSlider').value = 0;
-  document.getElementById('brightnessVal').textContent = 100;
-  document.getElementById('contrastVal').textContent = 100;
-  document.getElementById('saturationVal').textContent = 100;
-  document.getElementById('blurVal').textContent = 0;
-  draw();
-});
+  /* ===== rotate/flip ===== */
+  $('rotLeftBtn').addEventListener('click',function(){ pushHist(); st.rotate=((st.rotate-90)%360+360)%360; draw(); });
+  $('rotRightBtn').addEventListener('click',function(){ pushHist(); st.rotate=(st.rotate+90)%360; draw(); });
+  $('flipHBtn').addEventListener('click',function(){ pushHist(); st.flipH=!st.flipH; draw(); });
+  $('flipVBtn').addEventListener('click',function(){ pushHist(); st.flipV=!st.flipV; draw(); });
 
-document.getElementById('downloadBtn').addEventListener('click', ()=>{
-  canvas.toBlob((blob)=>{
-    downloadBlob('filtered.jpg', blob);
-    document.getElementById('statusMsg').textContent = '✅ Downloaded!';
-  }, 'image/jpeg', 0.95);
-});
+  /* ===== compare (hold) ===== */
+  var cb=$('compareBtn');
+  function startCmp(e){ comparing=true; draw(); if(e)e.preventDefault(); }
+  function endCmp(){ if(comparing){ comparing=false; draw(); } }
+  cb.addEventListener('mousedown',startCmp); cb.addEventListener('touchstart',startCmp,{passive:false});
+  window.addEventListener('mouseup',endCmp); window.addEventListener('touchend',endCmp);
+  cb.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ comparing=!comparing; draw(); e.preventDefault(); } });
+
+  /* ===== history ===== */
+  function pushHist(){ undoStack.push(JSON.stringify(st)); if(undoStack.length>60)undoStack.shift(); redoStack=[]; }
+  function syncUI(){ ['brightness','contrast','saturation','hue','blur','vignette','grain'].forEach(function(k){ var id={brightness:'brightnessSlider',contrast:'contrastSlider',saturation:'saturationSlider',hue:'hueSlider',blur:'blurSlider',vignette:'vignetteSlider',grain:'grainSlider'}[k]; var vid={brightness:'brightnessVal',contrast:'contrastVal',saturation:'saturationVal',hue:'hueVal',blur:'blurVal',vignette:'vignetteVal',grain:'grainVal'}[k]; if($(id)){ $(id).value=st[k]; } if($(vid)){ $(vid).textContent=st[k]; } }); $('filterThumbs').querySelectorAll('.pf-thumb').forEach(function(z,i){ z.setAttribute('aria-pressed',PRESETS[i][1]===st.preset?'true':'false'); }); }
+  $('undoBtn').addEventListener('click',function(){ if(undoStack.length){ redoStack.push(JSON.stringify(st)); st=JSON.parse(undoStack.pop()); syncUI(); draw(); } });
+  $('redoBtn').addEventListener('click',function(){ if(redoStack.length){ undoStack.push(JSON.stringify(st)); st=JSON.parse(redoStack.pop()); syncUI(); draw(); } });
+  $('resetBtn').addEventListener('click',function(){ pushHist(); st={preset:'none',brightness:100,contrast:100,saturation:100,hue:0,blur:0,vignette:0,grain:0,rotate:0,flipH:false,flipV:false}; syncUI(); draw(); });
+
+  /* ===== export ===== */
+  function saveBlob(name,blob){ if(typeof downloadBlob==='function')downloadBlob(name,blob); else { var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); } }
+  $('downloadBtn').addEventListener('click',function(){
+    var c=document.createElement('canvas'); renderTo(c,false);
+    var fmt=$('outFmt').value, ext=fmt.indexOf('png')>=0?'png':fmt.indexOf('webp')>=0?'webp':'jpg';
+    c.toBlob(function(blob){ if(!blob){ $('statusMsg').textContent='Export not supported in this browser.'; return; } saveBlob('filtered.'+ext,blob); $('statusMsg').style.color='#6ee7b7'; $('statusMsg').textContent='✅ Downloaded filtered.'+ext+' ('+c.width+'×'+c.height+')'; }, fmt, parseInt($('quality').value,10)/100);
+  });
+  $('newImgBtn').addEventListener('click',function(){ $('afterUpload').style.display='none'; fi.value=''; currentFile=null; });
+
+  /* ===== FAQ ===== */
+  function esc(s){ return String(s).replace(/[&<>]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;'}[c];}); }
+  var FAQ=[
+    ['Is my photo uploaded anywhere?','No. Filtering happens in your browser; nothing is uploaded. — नहीं, कुछ भी upload नहीं होता।'],
+    ['How many filters are there?','17+ presets, each shown as a live thumbnail of your photo. — 17+ presets हैं।'],
+    ['Can I fine-tune after a filter?','Yes — brightness, contrast, saturation, hue and blur sliders. — हाँ, sliders से।'],
+    ['What is the histogram for?','It shows the spread of tones so you can balance exposure. — यह exposure संतुलित करने में मदद करता है।'],
+    ['Can I add a vignette?','Yes — the Vignette slider darkens the edges. — हाँ, vignette slider है।'],
+    ['What is film grain?','A texture overlay that gives a film-like look. — film जैसा texture।'],
+    ['Can I compare before and after?','Yes — hold the Compare button to see the original. — हाँ, compare button दबाकर रखें।'],
+    ['Can I rotate or flip?','Yes — quick 90° rotate and horizontal/vertical flip. — हाँ, rotate व flip।'],
+    ['Does filtering reduce quality?','No — it uses full-resolution pixels, not the preview. — नहीं, पूर्ण resolution।'],
+    ['Which formats can I export?','JPG, PNG and WebP, with a quality slider. — JPG, PNG, WebP।'],
+    ['Can I undo a change?','Yes — Undo, Redo and Reset All are available. — हाँ, undo/redo/reset।'],
+    ['Are these AI filters?','No — they are deterministic image maths, no AI. — नहीं, कोई AI नहीं।'],
+    ['Why does the Hue slider change all colours?','Hue rotates the whole colour wheel; set 0° for natural. — hue पूरा रंग घुमाता है।'],
+    ['Can I use it on mobile?','Yes — the layout adapts and controls are touch-friendly. — हाँ, mobile पर चलता है।'],
+    ['Is it free?','Completely free — no account, no limits, no watermark. — हाँ, पूरी तरह मुफ़्त।'],
+    ['Does it work offline?','Yes, once the page has loaded it works without internet. — हाँ, offline काम करता है।'],
+    ['Does it change my original file?','No — it downloads a new copy; your original is untouched. — मूल file अछूती रहती है।'],
+    ['Why is my export darker than the preview?','A strong vignette darkens edges — reduce it if needed. — vignette कम करें।'],
+    ['Can I apply the same look to many photos?','Edit each one; note the slider values to repeat the look. — मानों को दोहराएँ।'],
+    ['How big an image can it handle?','Large photos work; blur/grain on huge images take a moment. — बड़ी images भी।'],
+    ['Does it keep transparency?','Export as PNG or WebP to keep any transparency. — PNG/WebP से।'],
+    ['Which browsers are supported?','All modern browsers — Chrome, Firefox, Edge, Safari, Opera, Brave. — सभी आधुनिक browsers।']
+  ];
+  function buildFaq(){ var list=$('faqList'); if(!list)return; FAQ.forEach(function(p){ var d=document.createElement('details'); d.innerHTML='<summary>'+esc(p[0])+'</summary><p>'+esc(p[1])+'</p>'; list.appendChild(d); }); try{ $('faqSchema').textContent=JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:FAQ.map(function(p){return {'@type':'Question',name:p[0],acceptedAnswer:{'@type':'Answer',text:p[1]}};})}); }catch(e){} }
+
+  /* ===== hooks / init ===== */
+  window.__pfHooks={ loadSrc:loadSrc, setPreset:function(p){ st.preset=p; syncUI(); draw(); }, setAdj:function(k,v){ st[k]=v; syncUI(); draw(); }, setCompare:function(b){ comparing=b; draw(); }, getState:function(){ return {preset:st.preset,w:canvas.width,h:canvas.height}; }, renderCanvas:function(orig){ var c=document.createElement('canvas'); renderTo(c,!!orig); return c; }, pixelAt:function(px,py,orig){ var c=document.createElement('canvas'); renderTo(c,!!orig); return Array.from(c.getContext('2d').getImageData(px,py,1,1).data); }, histogramMax:function(){ var hc=$('pfHisto'); return hc.getContext('2d').getImageData(0,0,hc.width,hc.height).data.reduce(function(a,b){return a+b;},0); } };
+  buildFaq();
+})();
 </script>
 <!-- Default Statcounter code for Apne Software
 https://apnesoftware.com -->
 <script type="text/javascript">
-var sc_project=13334460; 
-var sc_invisible=1; 
-var sc_security="a5854dc7"; 
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
 </script>
 <script type="text/javascript"
 src="https://www.statcounter.com/counter/counter.js"
