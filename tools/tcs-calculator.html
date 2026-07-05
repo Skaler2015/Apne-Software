@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Free Professional TCS Calculator for India (FY 2025-26 & 2026-27) — Sale of Goods 206C(1H), Motor Vehicle, Scrap, Timber, Forest Produce, Coal, Minerals, Alcohol, Tendu Leaves, Foreign Remittance (LRS) and Overseas Tour Package. PAN/206CC higher-rate handling, GST-inclusive taxable value, reverse calculator, rate comparison, history, and export to PDF/Excel/CSV. 100% private, browser-only, no signup.">
+<meta name="keywords" content="TCS calculator India, TCS on sale of goods 206C(1H), TCS on motor vehicle, TCS on scrap, TCS on foreign remittance LRS, TCS overseas tour package, TCS rates FY 2025-26, TCS threshold limits, Section 206CC">
+<link rel="canonical" href="https://apnesoftware.com/tools/tcs-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Professional TCS Calculator (India) | ApneSoftware">
+<meta property="og:description" content="Calculate TCS instantly for sale of goods, motor vehicles, scrap, foreign remittance (LRS), overseas tour packages and more — with PAN/206CC and GST-inclusive handling. Free, private, browser-only.">
+<meta property="og:url" content="https://apnesoftware.com/tools/tcs-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Professional TCS Calculator (India) | ApneSoftware">
+<meta name="twitter:description" content="TCS on goods, motor vehicles, scrap, foreign remittance, overseas tour packages — instant, free, private, browser-only.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Professional TCS Calculator","description":"Professional in-browser TCS (Tax Collected at Source) calculator for India covering Section 206C(1H) sale of goods, motor vehicles, scrap, timber, forest produce, coal, minerals, alcohol, tendu leaves, foreign remittance under LRS, and overseas tour packages, with PAN/Section 206CC higher-rate handling, GST-inclusive taxable value, reverse calculator and rate comparison.","url":"https://apnesoftware.com/tools/tcs-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Sixteen TCS categories including 206C(1H), motor vehicle, scrap, LRS and overseas tour package","Automatic threshold and rate determination","PAN unavailable — Section 206CC higher-rate handling","GST-inclusive taxable value for goods per CBDT Circular 17/2020","Reverse calculator and old-vs-new rate comparison","Calculation history","Export to PDF, Excel, CSV, copy and share"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Professional TCS Calculator","url":"https://apnesoftware.com/tools/tcs-calculator.html","description":"Browser-based TCS calculator for India covering sale of goods, motor vehicles, scrap, foreign remittance (LRS) and overseas tour packages.","inLanguage":["en","hi"],"isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".tool-header p"]}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"Calculators & Converters","item":"https://apnesoftware.com/index.html#cat-calculator"},{"@type":"ListItem","position":3,"name":"TCS Calculator","item":"https://apnesoftware.com/tools/tcs-calculator.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to calculate TCS in India","description":"Determine the applicable TCS category, rate and amount for a transaction.","step":[{"@type":"HowToStep","name":"Enter basic information","text":"Choose the financial year, transaction date, buyer PAN availability and seller turnover."},{"@type":"HowToStep","name":"Select TCS category","text":"Pick the applicable category — sale of goods, motor vehicle, scrap, LRS remittance, overseas tour package or another notified category."},{"@type":"HowToStep","name":"Enter transaction details","text":"Enter the sale amount, GST, freight, insurance, packing and other charges."},{"@type":"HowToStep","name":"Review the result","text":"See the applicable threshold, rate, TCS amount and invoice total update instantly."}]}
+</script>
+<meta name="color-scheme" content="dark light">
+<title>Professional TCS Calculator (India) | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* ===== TCS Calculator — scoped tc- prefix ===== */
+  .tc-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;align-items:start}
+  #tc-formSide,#tc-resultSide{min-width:0}
+  #tc-resultSide{position:sticky;top:16px}
+  @media(max-width:900px){ .tc-grid{grid-template-columns:1fr} #tc-resultSide{position:static} }
+
+  .tc-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .tc-tab{padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.82rem;font-weight:600;font-family:inherit}
+  .tc-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .tc-tab[hidden]{display:none}
+  .tc-pane{display:none}
+  .tc-pane.active{display:block}
+
+  .tc-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px}
+  .tc-card h3{margin:0 0 10px;font-size:.95rem}
+  .tc-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:10px}
+  .tc-field label{display:block;font-size:.76rem;color:var(--text-dim);margin-bottom:4px;display:flex;align-items:center;gap:4px}
+  .tc-field input,.tc-field select{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.88rem}
+  .tc-field[hidden]{display:none}
+  .tc-tip{cursor:help;color:var(--text-dim);border:1px solid var(--border);border-radius:999px;width:15px;height:15px;font-size:.65rem;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .tc-checkline{display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:22px;font-size:.85rem}
+  .tc-checkline input{width:auto}
+  .tc-err{font-size:.72rem;color:#fca5a5;margin-top:2px;display:none}
+  .tc-field.tc-invalid input{border-color:#f87171}
+  .tc-field.tc-invalid .tc-err{display:block}
+
+  .tc-stat-cards{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .tc-stat-cards .stat-box{flex:1;min-width:120px}
+
+  .tc-engine-box{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:10px 0}
+  .tc-engine-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--border);font-size:.86rem}
+  .tc-engine-row:last-child{border-bottom:none}
+  .tc-engine-row span:last-child{font-weight:700;color:var(--accent)}
+
+  .tc-waterfall{display:flex;flex-direction:column;gap:2px;margin:12px 0}
+  .tc-wf-row{display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;font-size:.86rem;background:var(--surface-2)}
+  .tc-wf-row.tc-wf-total{background:rgba(var(--accent-rgb),.18);font-weight:800;font-size:.95rem}
+
+  .tc-formula-box{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px;font-family:'Consolas','Courier New',monospace;font-size:.8rem;white-space:pre-wrap;margin-top:10px}
+
+  .tc-chart-wrap{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px;margin-top:12px}
+  .tc-chart-wrap h4{font-size:.82rem;color:var(--text-dim);font-weight:600;margin-bottom:8px}
+  .tc-chart-wrap canvas{width:100%;height:auto;display:block}
+  .tc-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:.76rem;color:var(--text-dim)}
+  .tc-legend span{display:inline-flex;align-items:center;gap:5px}
+  .tc-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+  .tc-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .tc-flag{padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600;border:1px solid var(--border)}
+  .tc-flag.ok{background:rgba(22,192,121,.15);color:#7ef0bd;border-color:rgba(22,192,121,.4)}
+  .tc-flag.warn{background:rgba(248,113,113,.15);color:#fca5a5;border-color:rgba(248,113,113,.4)}
+  .tc-flag.neutral{background:var(--surface-2);color:var(--text-dim)}
+  .tc-note{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.3);border-radius:10px;padding:10px 12px;font-size:.8rem;color:#fde68a;margin-top:10px}
+  .tc-muted{color:var(--text-dim);font-size:.8rem;margin-top:6px}
+
+  .tc-history-item{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);margin-bottom:6px;font-size:.84rem}
+  .tc-history-item button{background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);cursor:pointer;padding:4px 8px}
+
+  .tc-share-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .tc-share-btn{padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);cursor:pointer;font-size:.8rem;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+
+  body.tc-large-font #tc-formSide,body.tc-large-font #tc-resultSide{font-size:1.1rem}
+  body.tc-high-contrast{filter:contrast(1.2) brightness(1.06)}
+
+  /* ===== Light mode — scoped strictly to the tool's own content, not the shared site chrome ===== */
+  body.tc-light :is(.container,.tc-content){
+    --bg:#f4f2fb; --surface:#ffffff; --surface-2:#efeaf9; --border:rgba(20,10,45,.14); --border-strong:rgba(20,10,45,.24);
+    --text:#1c1533; --text-dim:rgba(28,21,51,.68);
+  }
+  body.tc-light .container,
+  body.tc-light .tc-content{
+    background:#f4f2fb; border-radius:18px; padding:20px 22px; box-shadow:0 8px 32px rgba(20,10,45,.12);
+  }
+  body.tc-light :is(.container,.tc-content) h1,
+  body.tc-light :is(.container,.tc-content) h2,
+  body.tc-light :is(.container,.tc-content) h3,
+  body.tc-light :is(.container,.tc-content) h4,
+  body.tc-light :is(.container,.tc-content) h5,
+  body.tc-light :is(.container,.tc-content) h6{color:var(--text)}
+  body.tc-light :is(.container,.tc-content) p{color:var(--text-dim)}
+  body.tc-light :is(.container,.tc-content) label{color:var(--text-dim)}
+  body.tc-light :is(.container,.tc-content) textarea,
+  body.tc-light :is(.container,.tc-content) input[type=text],
+  body.tc-light :is(.container,.tc-content) input[type=number],
+  body.tc-light :is(.container,.tc-content) input[type=date],
+  body.tc-light :is(.container,.tc-content) select{
+    background:#ffffff;border:1px solid rgba(20,10,45,.2);color:var(--text)
+  }
+  body.tc-light :is(.container,.tc-content) input::placeholder,
+  body.tc-light :is(.container,.tc-content) textarea::placeholder{color:rgba(28,21,51,.4)}
+  body.tc-light :is(.container,.tc-content) select option{background:#ffffff;color:var(--text)}
+  body.tc-light :is(.container,.tc-content) .panel{background:#ffffff!important;border:1px solid rgba(20,10,45,.1)!important;box-shadow:0 8px 28px rgba(20,10,45,.08)!important}
+  body.tc-light :is(.container,.tc-content) table th{background:rgba(20,10,45,.06);color:var(--text)}
+  body.tc-light :is(.container,.tc-content) table td{color:var(--text-dim);border-color:rgba(20,10,45,.1)}
+  body.tc-light :is(.container,.tc-content) .tc-tab{color:var(--text-dim)}
+  body.tc-light :is(.container,.tc-content) .tc-tab.active{color:#fff}
+  body.tc-light :is(.container,.tc-content) .btn.secondary{background:var(--surface-2);border-color:var(--border);color:var(--text)}
+
+  .related-grid a .ri{margin-right:6px}
+  .tc-content h2{font-size:1.15rem;margin:26px 0 10px;white-space:normal}
+  .tc-content h2 .tc-num{white-space:nowrap}
+  .tc-content h3{font-size:1rem;margin:18px 0 8px}
+  .tc-content p,.tc-content li{font-size:.92rem;line-height:1.72}
+  .tc-content ul,.tc-content ol{padding-left:20px}
+  .tc-content table{width:100%;border-collapse:collapse;font-size:.86rem;margin:12px 0}
+  .tc-content table th,.tc-content table td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border)}
+  .tc-content table th{color:#c4b5fd}
+  .tc-hi{color:var(--accent);font-weight:600}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="tc-muted" style="margin-bottom:10px" aria-label="Breadcrumb">
+    <a href="../index.html" style="color:#c4b5fd;text-decoration:none">Home</a> ›
+    <a href="../index.html#cat-calculator" style="color:#c4b5fd;text-decoration:none">Calculators &amp; Converters</a> ›
+    TCS Calculator
+  </nav>
+
+  <div class="tool-header">
+    <h1>🧾 Professional TCS Calculator</h1>
+    <p>Instantly calculate TCS (Tax Collected at Source) on sale of goods, motor vehicles, scrap, foreign remittance (LRS), overseas tour packages and more — with PAN/206CC and GST-inclusive handling. 100% in your browser.</p>
+
+    <div class="tc-row" style="margin-top:14px">
+      <div class="tc-field">
+        <label for="tc-fy">Financial Year</label>
+        <select id="tc-fy"><option value="2026-27">FY 2026-27</option><option value="2025-26">FY 2025-26</option></select>
+      </div>
+      <div class="tc-field">
+        <label for="tc-language">Language</label>
+        <select id="tc-language"><option value="en">English</option><option value="hi">हिन्दी</option></select>
+      </div>
+      <div class="tc-field">
+        <label for="tc-theme">Theme</label>
+        <select id="tc-theme"><option value="dark">🌙 Dark</option><option value="light">☀️ Light</option></select>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="tc-calcBtn" type="button">🧮 Calculate</button>
+      <button class="btn secondary" id="tc-resetBtn" type="button">↺ Reset</button>
+      <button class="btn secondary" id="tc-printBtn" type="button">🖨️ Print</button>
+      <button class="btn secondary" id="tc-pdfBtn" type="button">📄 PDF</button>
+      <button class="btn secondary" id="tc-xlsxBtn" type="button">📊 Excel</button>
+      <button class="btn secondary" id="tc-csvBtn" type="button">📑 CSV</button>
+      <button class="btn secondary" id="tc-copyBtn" type="button">📋 Copy Result</button>
+    </div>
+    <div class="tc-share-row">
+      <a class="tc-share-btn" id="tc-shareWhatsapp" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a class="tc-share-btn" id="tc-shareFacebook" href="#" target="_blank" rel="noopener">📘 Facebook</a>
+      <a class="tc-share-btn" id="tc-shareTwitter" href="#" target="_blank" rel="noopener">🐦 X</a>
+      <a class="tc-share-btn" id="tc-shareLinkedin" href="#" target="_blank" rel="noopener">💼 LinkedIn</a>
+      <a class="tc-share-btn" id="tc-shareEmail" href="#">✉️ Email</a>
+    </div>
+    <div id="tc-statusMsg" class="tc-muted" role="status" aria-live="polite"></div>
+  </div>
+
+  <div class="tc-grid">
+    <div id="tc-formSide">
+      <div class="panel">
+        <div class="tc-tabs" role="tablist">
+          <button class="tc-tab active" id="tc-tabBasic" role="tab" aria-selected="true">🏷️ Basic Info &amp; Category</button>
+          <button class="tc-tab" id="tc-tabTransaction" role="tab" aria-selected="false">💰 Transaction Details</button>
+          <button class="tc-tab" id="tc-tabReverse" role="tab" aria-selected="false">🔄 Reverse Calculator</button>
+          <button class="tc-tab" id="tc-tabCompare" role="tab" aria-selected="false">⚖️ Comparison Mode</button>
+          <button class="tc-tab" id="tc-tabHistory" role="tab" aria-selected="false">🕘 History</button>
+          <button class="tc-tab" id="tc-tabSettings" role="tab" aria-selected="false">⚙️ Settings</button>
+        </div>
+
+        <!-- ===== Tab: Basic Info & Category (Steps 1-2) ===== -->
+        <div class="tc-pane active" id="tc-paneBasic">
+          <div class="tc-card">
+            <h3>🏷️ Basic Information</h3>
+            <div class="tc-row">
+              <div class="tc-field"><label for="tc-transactionDate">Transaction Date</label><input type="date" id="tc-transactionDate"></div>
+              <div class="tc-field"><label for="tc-invoiceDate">Invoice Date</label><input type="date" id="tc-invoiceDate"></div>
+              <div class="tc-field"><label for="tc-sellerName">Seller Name (Optional)</label><input type="text" id="tc-sellerName" placeholder="Seller name"></div>
+              <div class="tc-field"><label for="tc-buyerName">Buyer Name (Optional)</label><input type="text" id="tc-buyerName" placeholder="Buyer name"></div>
+              <div class="tc-field">
+                <label for="tc-pan">Buyer PAN Available</label>
+                <select id="tc-pan"><option value="yes">PAN Available</option><option value="no">PAN Not Available</option></select>
+              </div>
+              <div class="tc-field"><label for="tc-panNumber">PAN Number (Optional)</label><input type="text" id="tc-panNumber" placeholder="ABCDE1234F" maxlength="10"></div>
+              <div class="tc-field"><label for="tc-sellerTurnover">Seller Turnover (Previous FY, ₹)</label><input type="number" id="tc-sellerTurnover" min="0" value="0"></div>
+              <div class="tc-field">
+                <label for="tc-currency">Currency</label>
+                <select id="tc-currency"><option value="INR">INR (₹)</option></select>
+              </div>
+            </div>
+          </div>
+
+          <div class="tc-card">
+            <h3>📂 TCS Category</h3>
+            <div class="tc-row">
+              <div class="tc-field" style="grid-column:1/-1">
+                <label for="tc-category">Select TCS Category</label>
+                <select id="tc-category">
+                  <option value="goods206C1H">Sale of Goods u/s 206C(1H)</option>
+                  <option value="motorVehicle">Motor Vehicle</option>
+                  <option value="scrap">Scrap</option>
+                  <option value="timberForestLease">Timber (Forest Lease)</option>
+                  <option value="timberOther">Timber (Other than Forest Lease)</option>
+                  <option value="forestProduce">Forest Produce (other than Timber/Tendu)</option>
+                  <option value="coal">Coal</option>
+                  <option value="lignite">Lignite</option>
+                  <option value="ironOre">Iron Ore</option>
+                  <option value="minerals">Minerals</option>
+                  <option value="alcohol">Alcohol</option>
+                  <option value="tenduLeaves">Tendu Leaves</option>
+                  <option value="lrs">Foreign Remittance (LRS)</option>
+                  <option value="overseasTour">Overseas Tour Package</option>
+                  <option value="forex">Forex (Other Remittance)</option>
+                  <option value="other">Any Other Applicable Category</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Transaction Details (Step 3 + category-specific sub-fields) ===== -->
+        <div class="tc-pane" id="tc-paneTransaction">
+          <div class="tc-card" id="tc-goodsFieldsCard">
+            <h3>💰 Transaction Details</h3>
+            <div class="tc-row">
+              <div class="tc-field"><label for="tc-saleAmount">Sale Amount (₹)</label><input type="number" id="tc-saleAmount" min="0" value="0"></div>
+              <div class="tc-field">
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+                  <input type="checkbox" id="tc-gstApplicable" style="width:auto"> GST Applicable
+                </label>
+              </div>
+              <div class="tc-field" id="tc-gstAmountField" hidden><label for="tc-gstAmount">GST Amount (₹)</label><input type="number" id="tc-gstAmount" min="0" value="0"></div>
+              <div class="tc-field"><label for="tc-freight">Freight (₹)</label><input type="number" id="tc-freight" min="0" value="0"></div>
+              <div class="tc-field"><label for="tc-insurance">Insurance (₹)</label><input type="number" id="tc-insurance" min="0" value="0"></div>
+              <div class="tc-field"><label for="tc-packing">Packing Charges (₹)</label><input type="number" id="tc-packing" min="0" value="0"></div>
+              <div class="tc-field"><label for="tc-otherCharges">Other Charges (₹)</label><input type="number" id="tc-otherCharges" min="0" value="0"></div>
+              <div class="tc-field"><label for="tc-discount">Discount (₹)</label><input type="number" id="tc-discount" min="0" value="0"></div>
+              <div class="tc-field"><label for="tc-previousReceipts">Previous Receipts This FY (₹) <span class="tc-tip" title="Aggregate amount already received from this buyer earlier in the same financial year — used for the threshold check.">?</span></label><input type="number" id="tc-previousReceipts" min="0" value="0"></div>
+            </div>
+            <p class="tc-muted" id="tc-noExtraFieldsMsg">This category has no additional section-specific fields.</p>
+          </div>
+
+          <div class="tc-card" id="tc-motorVehicleCard" hidden>
+            <h3>🚗 Motor Vehicle Details</h3>
+            <div class="tc-row">
+              <div class="tc-field"><label for="tc-vehicleValue">Vehicle Value (₹)</label><input type="number" id="tc-vehicleValue" min="0" value="0"></div>
+            </div>
+          </div>
+
+          <div class="tc-card" id="tc-lrsCard" hidden>
+            <h3>🌍 LRS / Overseas Tour Details</h3>
+            <div class="tc-row">
+              <div class="tc-field" id="tc-purposeField">
+                <label for="tc-purpose">Purpose</label>
+                <select id="tc-purpose">
+                  <option value="education">Education</option>
+                  <option value="medical">Medical</option>
+                  <option value="tour">Tour</option>
+                  <option value="investment">Investment</option>
+                  <option value="gift">Gift</option>
+                  <option value="business">Business</option>
+                  <option value="others">Others</option>
+                </select>
+              </div>
+              <div class="tc-field" id="tc-loanFundedField">
+                <label class="tc-checkline"><input type="checkbox" id="tc-loanFunded"> Education Loan-Funded (0.5% rate)</label>
+              </div>
+              <div class="tc-field"><label for="tc-previousRemittance">Previous Remittance This FY (₹)</label><input type="number" id="tc-previousRemittance" min="0" value="0"></div>
+              <div class="tc-field"><label for="tc-currentRemittance">Current Remittance (₹)</label><input type="number" id="tc-currentRemittance" min="0" value="0"></div>
+            </div>
+          </div>
+
+          <div class="tc-card" id="tc-otherFieldsCard" hidden>
+            <h3>🔧 Custom Rate &amp; Threshold</h3>
+            <div class="tc-row">
+              <div class="tc-field"><label for="tc-customRate">Custom TCS Rate (%)</label><input type="number" id="tc-customRate" min="0" max="30" value="1"></div>
+              <div class="tc-field"><label for="tc-customThreshold">Custom Threshold (₹)</label><input type="number" id="tc-customThreshold" min="0" value="0"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Reverse Calculator (Step 14) ===== -->
+        <div class="tc-pane" id="tc-paneReverse">
+          <div class="tc-card">
+            <h3>🔄 Reverse Calculator</h3>
+            <p class="tc-muted">Enter the final invoice amount (sale value + TCS already collected) to work backward to the base and TCS amounts, using the rate currently determined on the Transaction Details tab.</p>
+            <div class="tc-row">
+              <div class="tc-field"><label for="tc-reverseFinalAmount">Final / Invoice Amount (₹)</label><input type="number" id="tc-reverseFinalAmount" min="0" value="0"></div>
+            </div>
+            <button class="btn secondary" id="tc-reverseCalcBtn" type="button">🔄 Calculate Reverse</button>
+            <div class="tc-engine-box" id="tc-reverseResult" style="margin-top:10px"></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Comparison Mode (Step 15) ===== -->
+        <div class="tc-pane" id="tc-paneCompare">
+          <div class="tc-card">
+            <h3>⚖️ Rate Comparison</h3>
+            <p class="tc-muted">Compare TCS liability on the current taxable amount under an old rate versus a new rate.</p>
+            <div class="tc-row">
+              <div class="tc-field"><label for="tc-oldRate">Old Rate (%)</label><input type="number" id="tc-oldRate" min="0" max="30" value="1" step="0.1"></div>
+              <div class="tc-field"><label for="tc-newRate">New Rate (%)</label><input type="number" id="tc-newRate" min="0" max="30" value="5" step="0.1"></div>
+            </div>
+            <button class="btn secondary" id="tc-compareBtn" type="button">⚖️ Compare</button>
+            <div class="tc-engine-box" id="tc-compareResult" style="margin-top:10px"></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: History (Step 19) ===== -->
+        <div class="tc-pane" id="tc-paneHistory">
+          <div class="tc-card">
+            <h3>🕘 Calculation History</h3>
+            <div class="tc-row">
+              <div class="tc-field"><label for="tc-historySearch">Search History</label><input type="text" id="tc-historySearch" placeholder="Search by category or amount..."></div>
+            </div>
+            <div class="btn-row" style="margin-bottom:10px">
+              <button class="btn secondary" id="tc-clearHistoryBtn" type="button">🗑️ Clear History</button>
+            </div>
+            <div id="tc-historyList"></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Settings ===== -->
+        <div class="tc-pane" id="tc-paneSettings">
+          <div class="tc-card">
+            <h3>⚙️ Accessibility Preferences</h3>
+            <div class="tc-row">
+              <div class="tc-field"><label class="tc-checkline"><input type="checkbox" id="tc-highContrast"> High Contrast</label></div>
+              <div class="tc-field"><label class="tc-checkline"><input type="checkbox" id="tc-largeFont"> Large Fonts</label></div>
+            </div>
+            <p class="tc-muted">Language, theme, and accessibility preferences are remembered in this browser for your next visit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tc-resultSide">
+      <div class="panel">
+        <h3 style="margin:0 0 10px;font-size:1rem">📊 Summary Card</h3>
+        <div class="tc-stat-cards" id="tc-summaryCards"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🧠 Detailed Result</h3>
+        <div class="tc-engine-box" id="tc-detailedResult"></div>
+        <div class="tc-flags" id="tc-resultFlags"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🧮 Formula &amp; Calculation Waterfall</h3>
+        <div class="tc-formula-box" id="tc-formulaBox"></div>
+        <div class="tc-waterfall" id="tc-waterfall"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">📊 Charts</h3>
+        <div class="tc-chart-wrap"><h4>Amount Distribution</h4><canvas id="tc-chartDistribution" width="500" height="220"></canvas><div class="tc-legend" id="tc-legendDistribution"></div></div>
+        <div class="tc-chart-wrap"><h4>TCS Breakdown</h4><canvas id="tc-chartBreakdown" width="500" height="220"></canvas></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tc-content">
+
+<h2><span class="tc-num">1.</span>&nbsp;Introduction</h2>
+<p>Tax Collected at Source (TCS) reverses the usual roles in India's tax-collection machinery: instead of the payer withholding tax (as with TDS), the <em>seller</em> collects an additional amount from the <em>buyer</em> at the point of sale for specific notified transactions — sale of goods above a threshold, motor vehicles above ₹10 lakh, scrap, forest produce, foreign remittances under the Liberalised Remittance Scheme, and overseas tour packages among them. Working out which category applies, whether a threshold has been crossed, what happens if the buyer hasn't furnished PAN, and how GST factors into the taxable value is exactly the kind of layered calculation that benefits from a dedicated tool. The <strong>Professional TCS Calculator</strong> covers all of this — instantly, in your browser, with nothing ever uploaded.</p>
+
+<h2><span class="tc-num">2.</span>&nbsp;Calculator Features</h2>
+<p>Sixteen dedicated categories are built in, each with its own rate and threshold logic, alongside dedicated sub-calculators for Sale of Goods, Foreign Remittance (LRS), Motor Vehicle, a Reverse Calculator that works backward from a known invoice total, and a Comparison Mode for evaluating an old rate against a new one. Every field recalculates instantly as you type, with a full dashboard, a step-by-step formula box, calculation history, and export to PDF, Excel, CSV, print or direct social sharing.</p>
+
+<h2><span class="tc-num">3.</span>&nbsp;Basic Information</h2>
+<p>Enter the transaction date, invoice date, optional seller and buyer names, whether the buyer has furnished PAN, the seller's turnover in the preceding financial year (relevant specifically for Section 206C(1H)), and the currency (INR).</p>
+
+<h2><span class="tc-num">4.</span>&nbsp;TCS Category Selection</h2>
+<p>Choose from Sale of Goods u/s 206C(1H), Motor Vehicle, Scrap, Timber (forest lease or otherwise), Forest Produce, Coal, Lignite, Iron Ore, Minerals, Alcohol, Tendu Leaves, Foreign Remittance (LRS), Overseas Tour Package, Forex, or a fully customisable Other category with your own rate and threshold.</p>
+
+<h2><span class="tc-num">5.</span>&nbsp;Transaction Details</h2>
+<p>Sale Amount, GST Amount, Freight, Insurance, Packing Charges, Other Charges and Discount combine automatically into the Gross Amount — and, unlike TDS, GST is <strong>included</strong> in the taxable value for TCS on goods, per CBDT Circular 17/2020.</p>
+
+<h2><span class="tc-num">6.</span>&nbsp;Threshold Calculation</h2>
+<p>The calculator tracks previous receipts or remittances this financial year against the category's threshold, determines whether it has been crossed, and computes TCS only on the taxable portion — the amount actually exceeding the threshold, not the full transaction value.</p>
+
+<h2><span class="tc-num">7.</span>&nbsp;PAN Validation</h2>
+<p>Selecting "PAN Not Available" automatically applies Section 206CC: TCS is collected at the higher of twice the specified rate or 1% — a different, and often misunderstood, rule from TDS's flat 20% under Section 206AA.</p>
+
+<h2><span class="tc-num">8.</span>&nbsp;GST Option</h2>
+<p>Tick "GST Applicable" to add a GST Amount field; for goods-based categories this amount is included in the taxable value automatically, recalculating instantly as you adjust it.</p>
+
+<h2><span class="tc-num">9.</span>&nbsp;TCS Rate</h2>
+<p>The applicable rate is auto-selected from the category table, with a fully custom rate and threshold available under "Any Other Applicable Category" for transactions this calculator doesn't explicitly enumerate.</p>
+
+<h2><span class="tc-num">10.</span>&nbsp;Live Calculation</h2>
+<p>Every field updates the Taxable Amount, TCS Rate, TCS Amount, Invoice Total, Grand Total and Effective Tax Percentage instantly as you type — no separate "calculate" step required, though the button is there for anyone who prefers an explicit action.</p>
+
+<h2><span class="tc-num">11.</span>&nbsp;Formula Section</h2>
+<p>The Formula box shows the exact calculation — <code>TCS = Taxable Amount × Applicable Rate</code> — with every intermediate value substituted in, so nothing about your own result is a black box.</p>
+
+<h2><span class="tc-num">12.</span>&nbsp;Detailed Result</h2>
+<p>The Detailed Result panel shows the Applicable Section, Applicable Threshold, Taxable Value, Rate, Collected Tax, Invoice Value, Final Payable Amount and any relevant Remarks for your specific transaction.</p>
+
+<h2><span class="tc-num">13.</span>&nbsp;Sale of Goods Calculator</h2>
+<p>For Section 206C(1H), enter the seller's previous-year turnover and the current sale amount; the calculator checks both the ₹10 crore turnover condition and the ₹50 lakh aggregate-receipts threshold before applying TCS.</p>
+
+<h2><span class="tc-num">14.</span>&nbsp;LRS Calculator</h2>
+<p>Choose a purpose — Education, Medical, Tour, Investment, Gift, Business or Others — enter previous and current remittance, and the calculator applies the correct rate: nil up to ₹7 lakh, then 0.5% for loan-funded education, 5% for education/medical, or 20% for any other purpose.</p>
+
+<h2><span class="tc-num">15.</span>&nbsp;Motor Vehicle Calculator</h2>
+<p>Enter the vehicle's sale value; TCS of 1% applies automatically once it exceeds ₹10 lakh, doubling to 2% if the buyer hasn't furnished PAN.</p>
+
+<h2><span class="tc-num">16.</span>&nbsp;Reverse Calculator</h2>
+<p>Already know the final invoice amount? Enter it on the Reverse Calculator tab to work backward to the base amount and the TCS embedded within it, using the currently determined rate.</p>
+
+<h2><span class="tc-num">17.</span>&nbsp;Comparison Mode</h2>
+<p>Compare an old TCS rate against a new one on the same taxable amount, showing the exact additional tax or savings the rate change represents.</p>
+
+<h2><span class="tc-num">18.</span>&nbsp;Summary Card</h2>
+<p>A compact dashboard shows Total Amount, Taxable Amount, Collected Tax and Effective Tax at a glance, updating live with every input change.</p>
+
+<h2><span class="tc-num">19.</span>&nbsp;Download Options</h2>
+<p>Download a PDF summary, export the full figures to Excel or CSV, or print a clean report with the site's navigation automatically hidden.</p>
+
+<h2><span class="tc-num">20.</span>&nbsp;Share Options</h2>
+<p>Copy a plain-text summary to your clipboard, or share it directly to WhatsApp, Facebook, X (Twitter), LinkedIn or email with one click.</p>
+
+<h2><span class="tc-num">21.</span>&nbsp;History</h2>
+<p>Every calculation is saved to a searchable history in this browser's local storage, so you can revisit a previous transaction's figures or clear the list entirely whenever you choose.</p>
+
+<h2><span class="tc-num">22.</span>&nbsp;Validation</h2>
+<p>Negative amounts are rejected, blank required fields and invalid custom rates are flagged, and PAN input is checked against the standard five-letter/four-digit/one-letter format before you rely on it.</p>
+
+<!-- ===== Related Tools (ABOVE About — required order) ===== -->
+<h2><span class="tc-num">23.</span>&nbsp;Related Tools</h2>
+<div class="related-grid">
+  <a href="gst-calculator.html"><span class="ri">🧮</span> GST Calculator</a>
+  <a href="tds-calculator.html"><span class="ri">🧾</span> TDS Calculator</a>
+  <a href="income-tax-calculator.html"><span class="ri">💰</span> Income Tax Calculator</a>
+  <a href="advance-tax-calculator.html"><span class="ri">🧾</span> Advance Tax Calculator</a>
+  <a href="salary-calculator.html"><span class="ri">💼</span> Salary Calculator</a>
+  <a href="hra-calculator.html"><span class="ri">🏠</span> HRA Calculator</a>
+  <a href="sip-calculator.html"><span class="ri">📈</span> SIP Calculator</a>
+  <a href="swp-calculator.html"><span class="ri">📉</span> SWP Calculator</a>
+  <a href="emi-calculator.html"><span class="ri">🏦</span> EMI Calculator</a>
+  <a href="fd-calculator.html"><span class="ri">🏛️</span> FD Calculator</a>
+  <a href="ppf-calculator.html"><span class="ri">🪙</span> PPF Calculator</a>
+  <a href="gratuity-calculator.html"><span class="ri">🎁</span> Gratuity Calculator</a>
+</div>
+
+<!-- ===== About This Tool — bilingual, interleaved paragraph-by-paragraph (EN + HI together) ===== -->
+<h2><span class="tc-num">24.</span>&nbsp;About This Tool | इस टूल के बारे में</h2>
+
+<h3>What is TCS? | TCS क्या है?</h3>
+<p>Tax Collected at Source (TCS) is a tax that the <strong>seller</strong> collects from the <strong>buyer</strong> at the time of specified transactions — sale of goods above a threshold, motor vehicles, scrap, forest produce, foreign remittances under the Liberalised Remittance Scheme, and overseas tour packages, among others — and deposits with the government on the buyer's behalf.</p>
+<p>Tax Collected at Source (TCS) एक ऐसा कर है जिसे <strong>विक्रेता (Seller)</strong> कुछ निर्धारित लेन-देन के समय — जैसे किसी threshold से ऊपर माल की बिक्री, motor vehicles, scrap, वन उत्पाद, Liberalised Remittance Scheme के तहत विदेशी remittance, और overseas tour packages — <strong>खरीदार (Buyer)</strong> से एकत्र करता है और खरीदार की ओर से सरकार के पास जमा करता है।</p>
+
+<h3>Who should use this calculator? | इस कैलकुलेटर का उपयोग कौन करे?</h3>
+<p>This calculator is useful for Chartered Accountants, tax professionals, businesses, traders, exporters/importers dealing in notified goods, and individuals remitting money abroad under the LRS or booking an overseas tour package.</p>
+<p>यह कैलकुलेटर चार्टर्ड अकाउंटेंट, टैक्स प्रोफेशनल, व्यवसाय, व्यापारी, notified goods में dealing करने वाले exporters/importers, तथा LRS के तहत विदेश पैसा भेजने या overseas tour package बुक करने वाले व्यक्तियों के लिए उपयोगी है।</p>
+
+<h3>Meaning and objectives of TCS | TCS का अर्थ और उद्देश्य</h3>
+<p>TCS widens the tax net by capturing high-value transactions at the source, creates a documented paper trail linking buyer and seller through Form 27EQ and Form 27D, and gives the buyer credit for the tax collected against their own final tax liability when they file their return.</p>
+<p>TCS उच्च-मूल्य वाले लेन-देन को स्रोत पर ही पकड़कर tax net को व्यापक बनाता है, Form 27EQ और Form 27D के माध्यम से खरीदार और विक्रेता को जोड़ने वाला एक दस्तावेज़ी trail बनाता है, और खरीदार को अपना return file करते समय एकत्र किए गए tax का credit देता है।</p>
+
+<h3>Applicability of TCS | TCS की प्रयोज्यता</h3>
+<p>TCS applies to a specific list of notified goods and transactions under Section 206C — it is not a general tax on all sales, but a targeted mechanism for particular high-value or historically under-reported categories such as scrap, forest produce, motor vehicles above ₹10 lakh, and large-value goods transactions above ₹50 lakh in aggregate.</p>
+<p>TCS Section 206C के तहत notified goods और लेन-देन की एक विशिष्ट सूची पर लागू होता है — यह सभी बिक्री पर एक सामान्य कर नहीं बल्कि scrap, वन उत्पाद, ₹10 lakh से ऊपर के motor vehicles, और ₹50 lakh aggregate से ऊपर के बड़े-मूल्य वाले माल लेन-देन जैसी विशेष श्रेणियों के लिए एक लक्षित व्यवस्था है।</p>
+
+<h3>Latest rules and rates | नवीनतम नियम और दरें</h3>
+<p>This calculator reflects the rates and thresholds published for FY 2025-26 and FY 2026-27: 0.1% for sale of goods u/s 206C(1H) above ₹50 lakh aggregate (only if the seller's prior-year turnover exceeded ₹10 crore), 1% for motor vehicles above ₹10 lakh, 1% for scrap/coal/lignite/iron ore/minerals/alcohol, 2.5% for timber and forest produce, 5% for tendu leaves, and a tiered structure for LRS remittances and overseas tour packages built around the ₹7 lakh annual threshold.</p>
+<p>यह कैलकुलेटर FY 2025-26 और FY 2026-27 के लिए प्रकाशित दरों और thresholds को दर्शाता है: 206C(1H) के तहत माल की बिक्री पर ₹50 lakh aggregate से ऊपर 0.1% (केवल यदि विक्रेता का पिछले वर्ष का turnover ₹10 crore से अधिक था), motor vehicles पर ₹10 lakh से ऊपर 1%, scrap/coal/lignite/iron ore/minerals/alcohol पर 1%, timber और वन उत्पाद पर 2.5%, tendu leaves पर 5%, और LRS remittances व overseas tour packages के लिए ₹7 lakh वार्षिक threshold पर आधारित एक स्तरीय संरचना।</p>
+
+<h3>Threshold limits | Threshold सीमाएँ</h3>
+<p>Most categories have no minimum threshold at all — scrap, timber, forest produce, coal, minerals, alcohol and tendu leaves attract TCS from the very first rupee. Sale of goods u/s 206C(1H), motor vehicles, LRS remittances and overseas tour packages, however, only attract TCS once their respective threshold — ₹50 lakh, ₹10 lakh, and ₹7 lakh — is crossed, and even then, only on the amount exceeding that threshold, not the full transaction.</p>
+<p>अधिकतर श्रेणियों में कोई न्यूनतम threshold ही नहीं है — scrap, timber, वन उत्पाद, coal, minerals, alcohol और tendu leaves पर पहले रुपये से ही TCS लागू होता है। हालाँकि, 206C(1H) के तहत माल की बिक्री, motor vehicles, LRS remittances और overseas tour packages पर TCS तभी लागू होता है जब उनकी संबंधित threshold — ₹50 lakh, ₹10 lakh, और ₹7 lakh — पार हो जाए, और तब भी केवल उस threshold से अधिक राशि पर, पूरे लेन-देन पर नहीं।</p>
+
+<h3>Sections governing TCS | TCS को नियंत्रित करने वाले sections</h3>
+<p>Section 206C(1) covers scrap, forest produce, timber, coal, minerals and alcohol; Section 206C(1F) covers motor vehicles above ₹10 lakh; Section 206C(1G) covers LRS remittances and overseas tour packages; Section 206C(1H) covers sale of goods generally; and Section 206CC governs the higher rate when the buyer hasn't furnished PAN.</p>
+<p>Section 206C(1) scrap, वन उत्पाद, timber, coal, minerals और alcohol को cover करता है; Section 206C(1F) ₹10 lakh से ऊपर के motor vehicles को cover करता है; Section 206C(1G) LRS remittances और overseas tour packages को cover करता है; Section 206C(1H) सामान्य रूप से माल की बिक्री को cover करता है; और Section 206CC खरीदार द्वारा PAN न देने पर उच्च दर को नियंत्रित करता है।</p>
+
+<h3>Worked example | उदाहरण सहित समझें</h3>
+<p>A seller with ₹15 crore turnover last year sells goods worth ₹65 lakh to one buyer this year with no prior receipts — the ₹50 lakh threshold is crossed, so TCS at 0.1% applies only on the ₹15 lakh excess, giving ₹1,500 TCS, not ₹65,000.</p>
+<p>पिछले साल ₹15 crore turnover वाला एक विक्रेता इस साल एक खरीदार को ₹65 lakh का माल बेचता है, पिछली कोई receipt नहीं — ₹50 lakh की threshold पार हो जाती है, इसलिए 0.1% पर TCS केवल ₹15 lakh अतिरिक्त राशि पर लागू होता है, यानी ₹1,500 TCS, न कि ₹65,000।</p>
+
+<h3>The TCS formula | TCS का फॉर्मूला</h3>
+<p>The core formula is simple once the taxable amount is correctly identified: <code>TCS = Taxable Amount × Applicable Rate</code>, where the Taxable Amount already accounts for any threshold exclusion, and the Applicable Rate already accounts for Section 206CC's higher rate if PAN is missing.</p>
+<p>सही taxable amount पहचानने के बाद मूल फॉर्मूला सरल है: <code>TCS = Taxable Amount × Applicable Rate</code>, जहाँ Taxable Amount पहले से ही किसी threshold exclusion को ध्यान में रखता है, और Applicable Rate PAN न होने पर Section 206CC की उच्च दर को पहले से ही ध्यान में रखता है।</p>
+
+<h3>Benefits of TCS | TCS के लाभ</h3>
+<p>TCS gives the government real-time visibility into high-value transactions, discourages under-reporting by embedding the tax collection into the transaction itself, and gives the buyer an automatic credit against their own tax liability rather than a separate compliance burden.</p>
+<p>TCS सरकार को उच्च-मूल्य लेन-देन की वास्तविक-समय दृश्यता देता है, tax collection को लेन-देन में ही शामिल करके under-reporting को हतोत्साहित करता है, और खरीदार को एक अलग compliance बोझ के बजाय अपनी tax liability के विरुद्ध एक स्वचालित credit देता है।</p>
+
+<h3>Limitations of this calculator | इस कैलकुलेटर की सीमाएँ</h3>
+<p>This tool provides a fast, transparent estimate using the standard rules that apply to the overwhelming majority of transactions; it does not replace professional advice for unusual fact patterns, multiple simultaneous categories on one invoice, or disputed PAN/turnover figures — always verify with a chartered accountant or the official portal for anything materially significant.</p>
+<p>यह टूल अधिकतर लेन-देन पर लागू होने वाले मानक नियमों का उपयोग करके एक तेज़, पारदर्शी अनुमान देता है; यह असामान्य मामलों, एक invoice पर कई श्रेणियों, या विवादित PAN/turnover आँकड़ों के लिए पेशेवर सलाह का विकल्प नहीं है — किसी भी महत्वपूर्ण मामले के लिए हमेशा CA या आधिकारिक portal से पुष्टि करें।</p>
+
+<h3>Common mistakes | आम गलतियाँ</h3>
+<p>The most frequent errors this calculator helps avoid: forgetting that GST is included (not excluded) in the taxable value for goods; applying TCS on the full amount instead of only the excess above threshold; missing the Section 206CC higher rate when PAN is unavailable; and confusing the LRS purpose-based rate tiers.</p>
+<p>यह कैलकुलेटर जिन आम गलतियों से बचाता है: यह भूल जाना कि माल के लिए taxable value में GST शामिल है (excluded नहीं); पूरी राशि पर TCS लगाना बजाय threshold से ऊपर की अतिरिक्त राशि पर; PAN न होने पर Section 206CC की उच्च दर भूल जाना; और LRS के purpose-based rate tiers में भ्रमित होना।</p>
+
+<h3>Due dates | नियत तिथियाँ</h3>
+<p>TCS collected during a calendar month must be deposited with the government by the 7th of the following month, and the quarterly TCS return (Form 27EQ) must be filed within the prescribed deadline after each quarter closes.</p>
+<p>किसी कैलेंडर महीने में एकत्र किया गया TCS अगले महीने की 7 तारीख तक सरकार के पास जमा किया जाना चाहिए, और तिमाही TCS return (Form 27EQ) हर तिमाही समाप्त होने के बाद निर्धारित समय सीमा के भीतर file किया जाना चाहिए।</p>
+
+<h3>Return filing (Form 27EQ) | Return फाइलिंग (Form 27EQ)</h3>
+<p>Sellers who collect TCS must file Form 27EQ quarterly on the TRACES/e-filing system, after which Form 27D certificates are issued to buyers, who use them to claim credit for the TCS collected when filing their own income tax return.</p>
+<p>TCS एकत्र करने वाले विक्रेताओं को TRACES/e-filing प्रणाली पर तिमाही Form 27EQ file करना होता है, जिसके बाद खरीदारों को Form 27D certificates जारी किए जाते हैं, जिनका उपयोग वे अपना income tax return file करते समय एकत्र किए गए TCS का credit claim करने के लिए करते हैं।</p>
+
+<h3>Interest on late deposit | विलंबित जमा पर ब्याज</h3>
+<p>Interest at 1% per month (or part of a month) applies on TCS collected but deposited late, calculated from the date it was collected until the date it is actually deposited with the government.</p>
+<p>एकत्र किए गए पर विलंब से जमा किए गए TCS पर प्रति माह (या महीने के हिस्से पर) 1% ब्याज लागू होता है, जिसकी गणना उस तारीख से की जाती है जब यह एकत्र किया गया था जब तक कि यह वास्तव में सरकार के पास जमा नहीं हो जाता।</p>
+
+<h3>Penalty for non-compliance | गैर-अनुपालन पर जुर्माना</h3>
+<p>Failure to collect TCS when required, or failing to deposit it after collection, can attract penalty proceedings under the Income Tax Act in addition to the interest charge, and repeated defaults can affect the seller's own compliance standing with the department.</p>
+<p>आवश्यकता होने पर TCS एकत्र न करना, या एकत्र करने के बाद जमा न करना, ब्याज के अलावा Income Tax Act के तहत जुर्माना कार्यवाही को आकर्षित कर सकता है, और बार-बार चूक विक्रेता की अपनी compliance स्थिति को प्रभावित कर सकती है।</p>
+
+<h3>Important notes on GST treatment | GST treatment पर महत्वपूर्ण नोट्स</h3>
+<p>Per CBDT Circular 17/2020, TCS on the sale of goods under Section 206C(1H) is levied on the entire sale consideration including GST — this is the opposite convention from TDS under Section 194Q, where GST is typically excluded from the taxable base when shown separately on the invoice.</p>
+<p>CBDT Circular 17/2020 के अनुसार, Section 206C(1H) के तहत माल की बिक्री पर TCS GST सहित पूरी बिक्री राशि पर लगाया जाता है — यह TDS (Section 194Q) से विपरीत परंपरा है, जहाँ invoice पर अलग से दिखाए जाने पर GST को आमतौर पर taxable base से बाहर रखा जाता है।</p>
+
+<h3>Best practices for sellers | विक्रेताओं के लिए सर्वोत्तम प्रथाएँ</h3>
+<p>Track cumulative receipts from each buyer across the financial year (not just the current invoice), confirm PAN status before finalising the rate, mention TCS separately on the invoice for transparency, and reconcile collected TCS against deposited amounts every month rather than waiting until quarter-end.</p>
+<p>पूरे वित्तीय वर्ष में हर खरीदार से cumulative receipts को track करें (न कि केवल मौजूदा invoice को), rate finalize करने से पहले PAN स्थिति की पुष्टि करें, पारदर्शिता के लिए invoice पर TCS को अलग से mention करें, और तिमाही अंत तक इंतज़ार करने के बजाय हर महीने एकत्र किए गए TCS का जमा राशि से मिलान करें।</p>
+
+<h3>Conclusion | निष्कर्ष</h3>
+<p>TCS compliance hinges on correctly identifying the applicable category, tracking cumulative thresholds accurately, and applying the right rate given PAN availability — exactly what the Professional TCS Calculator is built to automate, transparently and entirely within your own browser.</p>
+<p>TCS compliance सही श्रेणी की पहचान करने, cumulative thresholds को सही तरीक़े से track करने, और PAN उपलब्धता के अनुसार सही दर लागू करने पर निर्भर करता है — बिल्कुल वही जो Professional TCS Calculator पारदर्शी रूप से और पूरी तरह आपके अपने browser के भीतर स्वचालित करने के लिए बनाया गया है।</p>
+
+<!-- ===== FAQ (immediately after About — required order, bilingual interleaved) ===== -->
+<h2><span class="tc-num">25.</span>&nbsp;Frequently Asked Questions | अक्सर पूछे जाने वाले प्रश्न</h2>
+<div class="tc-faq" id="tcFaq">
+
+<details><summary>What is TCS? | TCS क्या है?</summary><p>TCS is a tax the seller collects from the buyer on specified transactions and deposits with the government on the buyer's behalf. / TCS एक ऐसा कर है जो विक्रेता खरीदार से निर्धारित लेन-देन पर एकत्र करके सरकार के पास जमा करता है।</p></details>
+<details><summary>Which categories does this calculator cover? | यह कैलकुलेटर कौन-सी श्रेणियाँ कवर करता है?</summary><p>Sale of goods 206C(1H), motor vehicle, scrap, timber, forest produce, coal, lignite, iron ore, minerals, alcohol, tendu leaves, LRS, overseas tour package, forex and a custom "Other" category. / माल की बिक्री 206C(1H), motor vehicle, scrap, timber, वन उत्पाद, coal, lignite, iron ore, minerals, alcohol, tendu leaves, LRS, overseas tour package, forex और custom "Other" श्रेणी।</p></details>
+<details><summary>What is the TCS rate for sale of goods u/s 206C(1H)? | 206C(1H) के तहत माल की बिक्री पर TCS दर क्या है?</summary><p>0.1%, applicable only if the seller's turnover in the preceding FY exceeded ₹10 crore and aggregate receipts from a buyer exceed ₹50 lakh in the year. / 0.1%, केवल यदि विक्रेता का पिछले FY का turnover ₹10 crore से अधिक था और खरीदार से aggregate receipts ₹50 lakh से अधिक हैं।</p></details>
+<details><summary>What is the TCS rate for motor vehicles? | Motor vehicles पर TCS दर क्या है?</summary><p>1%, applicable once the vehicle's sale value exceeds ₹10 lakh. / वाहन का बिक्री मूल्य ₹10 lakh से अधिक होने पर 1%।</p></details>
+<details><summary>What is the TCS rate for scrap? | Scrap पर TCS दर क्या है?</summary><p>1%, with no minimum threshold — applicable from the first rupee. / 1%, कोई न्यूनतम threshold नहीं — पहले रुपये से लागू।</p></details>
+<details><summary>What is the TCS rate for timber and forest produce? | Timber और वन उत्पाद पर TCS दर क्या है?</summary><p>2.5% for timber (forest lease or otherwise) and other forest produce, with no threshold. / Timber और अन्य वन उत्पाद पर 2.5%, कोई threshold नहीं।</p></details>
+<details><summary>What is the TCS rate for coal, lignite, iron ore and minerals? | Coal, lignite, iron ore और minerals पर TCS दर क्या है?</summary><p>1% each, with no threshold. / प्रत्येक पर 1%, कोई threshold नहीं।</p></details>
+<details><summary>What is the TCS rate for alcohol? | Alcohol पर TCS दर क्या है?</summary><p>1%, with no threshold, for liquor meant for human consumption. / मानव उपभोग के लिए शराब पर 1%, कोई threshold नहीं।</p></details>
+<details><summary>What is the TCS rate for tendu leaves? | Tendu leaves पर TCS दर क्या है?</summary><p>5%, with no threshold. / 5%, कोई threshold नहीं।</p></details>
+<details><summary>What is the TCS rate on foreign remittance under LRS? | LRS के तहत विदेशी remittance पर TCS दर क्या है?</summary><p>Nil up to ₹7 lakh aggregate per year; beyond that, 0.5% for loan-funded education, 5% for education/medical, and 20% for any other purpose. / ₹7 lakh तक शून्य; उसके बाद loan-funded education पर 0.5%, education/medical पर 5%, और अन्य किसी भी उद्देश्य के लिए 20%।</p></details>
+<details><summary>What is the TCS rate on overseas tour packages? | Overseas tour packages पर TCS दर क्या है?</summary><p>5% up to ₹7 lakh aggregate per year, and 20% on the amount above ₹7 lakh. / ₹7 lakh तक 5%, और ₹7 lakh से ऊपर की राशि पर 20%।</p></details>
+<details><summary>What happens if the buyer doesn't have a PAN? | यदि खरीदार के पास PAN नहीं है तो क्या होता है?</summary><p>Section 206CC applies the higher of twice the specified rate or 1% — not a flat 20% as under TDS. / Section 206CC लागू होता है: निर्दिष्ट दर की दोगुनी या 1%, जो भी अधिक हो — TDS की तरह 20% नहीं।</p></details>
+<details><summary>Is GST included in the taxable value for TCS? | क्या TCS के लिए taxable value में GST शामिल है?</summary><p>Yes, for sale of goods under 206C(1H) — per CBDT Circular 17/2020, TCS is calculated on the GST-inclusive amount, unlike TDS. / हाँ, 206C(1H) के तहत माल की बिक्री के लिए — CBDT Circular 17/2020 के अनुसार, TCS GST-सहित राशि पर गणना की जाती है, TDS के विपरीत।</p></details>
+<details><summary>Does TCS apply on the full transaction amount or only the excess? | क्या TCS पूरी लेन-देन राशि पर लागू होता है या केवल अतिरिक्त राशि पर?</summary><p>For threshold-based categories (206C(1H), motor vehicle, LRS, overseas tour), only on the amount exceeding the threshold. / Threshold-based श्रेणियों के लिए, केवल threshold से अधिक राशि पर।</p></details>
+<details><summary>What is the Reverse Calculator for? | Reverse Calculator किसके लिए है?</summary><p>It works backward from a known final invoice amount to the base amount and embedded TCS, using the currently determined rate. / यह मौजूदा निर्धारित दर का उपयोग करके ज्ञात final invoice amount से base amount और embedded TCS तक वापस काम करता है।</p></details>
+<details><summary>What is Comparison Mode for? | Comparison Mode किसके लिए है?</summary><p>It compares TCS liability on the same taxable amount under an old rate versus a new rate, showing the exact additional tax or savings. / यह same taxable amount पर पुरानी दर बनाम नई दर के तहत TCS liability की तुलना करता है।</p></details>
+<details><summary>Does the calculator track calculation history? | क्या कैलकुलेटर calculation history track करता है?</summary><p>Yes, every calculation is saved to a searchable history in this browser's local storage, clearable anytime. / हाँ, हर calculation इस browser के local storage में एक searchable history में सेव होता है।</p></details>
+<details><summary>What is Form 27EQ? | Form 27EQ क्या है?</summary><p>The quarterly TCS return sellers file on the TRACES/e-filing system reporting all TCS collected during that quarter. / तिमाही TCS return जो विक्रेता TRACES/e-filing प्रणाली पर file करते हैं।</p></details>
+<details><summary>What is Form 27D? | Form 27D क्या है?</summary><p>The TCS certificate issued to the buyer, used to claim credit for TCS collected when filing their income tax return. / खरीदार को जारी किया गया TCS certificate, जिसका उपयोग income tax return में TCS credit claim करने के लिए किया जाता है।</p></details>
+<details><summary>What is the due date for depositing TCS? | TCS जमा करने की नियत तिथि क्या है?</summary><p>The 7th of the month following the month of collection. / एकत्र करने वाले महीने के अगले महीने की 7 तारीख।</p></details>
+<details><summary>What interest applies on late TCS deposit? | विलंबित TCS जमा पर कौन-सा ब्याज लागू होता है?</summary><p>1% per month or part of a month, from the collection date until actual deposit. / एकत्र करने की तारीख से वास्तविक जमा तक प्रति माह या महीने के हिस्से पर 1%।</p></details>
+<details><summary>Can the seller's turnover affect whether 206C(1H) applies? | क्या विक्रेता का turnover 206C(1H) की प्रयोज्यता को प्रभावित करता है?</summary><p>Yes — 206C(1H) only applies if the seller's turnover in the preceding FY exceeded ₹10 crore, regardless of the current sale amount. / हाँ — 206C(1H) केवल तभी लागू होता है जब विक्रेता का पिछले FY का turnover ₹10 crore से अधिक था।</p></details>
+<details><summary>What is the education loan-funded LRS rate? | Education loan-funded LRS दर क्या है?</summary><p>0.5% above ₹7 lakh, provided the remittance is funded by a loan from an eligible financial institution. / ₹7 lakh से ऊपर 0.5%, बशर्ते remittance एक eligible financial institution के loan से funded हो।</p></details>
+<details><summary>Is there a difference between education/medical LRS and other purposes? | क्या education/medical LRS और अन्य उद्देश्यों में अंतर है?</summary><p>Yes — education (non-loan)/medical is 5% above ₹7 lakh, while investment/gift/business/other purposes are 20% above ₹7 lakh. / हाँ — education (non-loan)/medical पर ₹7 lakh से ऊपर 5%, जबकि investment/gift/business/other purposes पर ₹7 lakh से ऊपर 20%।</p></details>
+<details><summary>Does this calculator support Excel and CSV export? | क्या यह कैलकुलेटर Excel और CSV export को support करता है?</summary><p>Yes, alongside PDF, print, copy and direct social sharing. / हाँ, PDF, print, copy और direct social sharing के साथ।</p></details>
+<details><summary>Can I share my result on WhatsApp or social media? | क्या मैं अपना result WhatsApp या social media पर share कर सकता हूँ?</summary><p>Yes — dedicated share buttons for WhatsApp, Facebook, X, LinkedIn and email are built in. / हाँ — WhatsApp, Facebook, X, LinkedIn और email के लिए dedicated share buttons मौजूद हैं।</p></details>
+<details><summary>Does this tool validate PAN format? | क्या यह टूल PAN format validate करता है?</summary><p>Yes — it checks the standard five-letter/four-digit/one-letter PAN pattern, though it doesn't verify the PAN against any government registry. / हाँ — यह standard five-letter/four-digit/one-letter PAN pattern जाँचता है, पर सरकारी registry से PAN verify नहीं करता।</p></details>
+<details><summary>Does the calculator support both light and dark mode? | क्या कैलकुलेटर light और dark दोनों mode को support करता है?</summary><p>Yes — a Theme selector in the header switches between them instantly, remembered for your next visit. / हाँ — header में एक Theme selector तुरंत उनके बीच switch करता है।</p></details>
+<details><summary>Is my data uploaded anywhere? | क्या मेरा data कहीं upload होता है?</summary><p>No — every calculation runs entirely in your browser; nothing is ever sent to a server. / नहीं — हर calculation पूरी तरह आपके browser में चलता है।</p></details>
+<details><summary>Does this tool use any AI? | क्या इस टूल में कोई AI इस्तेमाल होता है?</summary><p>No — every rate, threshold and formula is deterministic, hand-written logic from the published provisions of Section 206C. / नहीं — हर rate, threshold और formula Section 206C के प्रकाशित प्रावधानों से deterministic, hand-written logic है।</p></details>
+<details><summary>Is this calculator a substitute for professional tax advice? | क्या यह कैलकुलेटर पेशेवर tax सलाह का विकल्प है?</summary><p>No — it's a fast, transparent estimate; for unusual situations always confirm with a chartered accountant or the official portal. / नहीं — यह एक तेज़, पारदर्शी अनुमान है; असामान्य स्थितियों के लिए हमेशा CA या आधिकारिक portal से पुष्टि करें।</p></details>
+<details><summary>Does it work offline? | क्या यह offline काम करता है?</summary><p>Yes, once loaded — PDF/Excel export load small libraries once on first use. / हाँ, लोड होने के बाद — PDF/Excel export पहली बार इस्तेमाल पर छोटी libraries लोड करते हैं।</p></details>
+<details><summary>Can I customise the rate for a category not listed? | क्या मैं किसी अनलिस्टेड श्रेणी के लिए दर customise कर सकता हूँ?</summary><p>Yes — select "Any Other Applicable Category" and enter your own custom rate and threshold. / हाँ — "Any Other Applicable Category" चुनें और अपनी custom rate और threshold दर्ज करें।</p></details>
+<details><summary>Is this calculator accessible for keyboard and screen-reader users? | क्या यह कैलकुलेटर keyboard और screen-reader users के लिए accessible है?</summary><p>Yes — every control is a native, keyboard-operable HTML element with ARIA live status updates, plus High Contrast and Large Fonts toggles. / हाँ — हर control एक native, keyboard-operable HTML element है, साथ ही High Contrast और Large Fonts toggles।</p></details>
+<details><summary>Does this tool work on mobile devices? | क्या यह टूल mobile devices पर काम करता है?</summary><p>Yes — the layout is fully responsive with touch-friendly controls and no horizontal scrolling. / हाँ — layout पूरी तरह responsive है, touch-friendly controls के साथ, कोई horizontal scrolling नहीं।</p></details>
+<details><summary>What happens to my history if I clear my browser data? | अगर मैं browser data clear करूँ तो मेरी history का क्या होता है?</summary><p>History is stored only in this browser's local storage, so clearing site data or using a private window removes it. / History केवल इस browser के local storage में सेव होती है।</p></details>
+<details><summary>Does the calculator show the exact formula used? | क्या कैलकुलेटर इस्तेमाल किया गया exact formula दिखाता है?</summary><p>Yes — the Formula box shows TCS = Taxable Amount × Applicable Rate with your own figures substituted in. / हाँ — Formula box आपके अपने आँकड़ों के साथ TCS = Taxable Amount × Applicable Rate दिखाता है।</p></details>
+
+</div>
+
+<!-- ===== Troubleshooting ===== -->
+<h2><span class="tc-num">26.</span>&nbsp;Troubleshooting</h2>
+<ul>
+  <li><strong>TCS shows ₹0 even though I entered an amount:</strong> the taxable amount hasn't crossed the applicable threshold yet — check the Detailed Result panel for the exact threshold being applied.</li>
+  <li><strong>206C(1H) shows "not applicable":</strong> the seller's turnover field must exceed ₹10 crore for this section to apply, regardless of the current sale amount — it's a genuine legal condition, not a bug.</li>
+  <li><strong>The rate looks higher than the standard rate:</strong> check whether "PAN Not Available" is selected — Section 206CC applies the higher of twice the rate or 1%.</li>
+  <li><strong>Motor Vehicle / LRS fields aren't showing:</strong> switch the TCS Category to the relevant option on the Basic Info tab to reveal its specific fields on the Transaction Details tab.</li>
+  <li><strong>PDF or Excel export does nothing:</strong> these features load a small external library the first time you use them — check your internet connection and try again.</li>
+  <li><strong>Light mode looks odd on the site header or sidebar:</strong> by design, the Light/Dark toggle only affects the calculator's own panels, keeping the shared dark navigation consistent across every tool.</li>
+  <li><strong>History list is empty after a calculation:</strong> click "Calculate" explicitly to save an entry — live recalculation while typing doesn't add a new history row for every keystroke.</li>
+  <li><strong>Charts appear empty:</strong> a chart with no data (for example, zero taxable amount) correctly shows "No data to display" rather than a misleading empty circle.</li>
+</ul>
+
+</div>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is TCS?", "acceptedAnswer": {"@type": "Answer", "text": "TCS is a tax the seller collects from the buyer on specified transactions and deposits with the government on the buyer's behalf."}}, {"@type": "Question", "name": "Which categories does this calculator cover?", "acceptedAnswer": {"@type": "Answer", "text": "Sale of goods 206C(1H), motor vehicle, scrap, timber, forest produce, coal, lignite, iron ore, minerals, alcohol, tendu leaves, LRS, overseas tour package, forex and a custom Other category."}}, {"@type": "Question", "name": "What is the TCS rate for sale of goods u/s 206C(1H)?", "acceptedAnswer": {"@type": "Answer", "text": "0.1%, applicable only if the seller's turnover in the preceding FY exceeded ₹10 crore and aggregate receipts from a buyer exceed ₹50 lakh in the year."}}, {"@type": "Question", "name": "What is the TCS rate for motor vehicles?", "acceptedAnswer": {"@type": "Answer", "text": "1%, applicable once the vehicle's sale value exceeds ₹10 lakh."}}, {"@type": "Question", "name": "What is the TCS rate for scrap?", "acceptedAnswer": {"@type": "Answer", "text": "1%, with no minimum threshold — applicable from the first rupee."}}, {"@type": "Question", "name": "What is the TCS rate for timber and forest produce?", "acceptedAnswer": {"@type": "Answer", "text": "2.5% for timber (forest lease or otherwise) and other forest produce, with no threshold."}}, {"@type": "Question", "name": "What is the TCS rate for coal, lignite, iron ore and minerals?", "acceptedAnswer": {"@type": "Answer", "text": "1% each, with no threshold."}}, {"@type": "Question", "name": "What is the TCS rate for alcohol?", "acceptedAnswer": {"@type": "Answer", "text": "1%, with no threshold, for liquor meant for human consumption."}}, {"@type": "Question", "name": "What is the TCS rate for tendu leaves?", "acceptedAnswer": {"@type": "Answer", "text": "5%, with no threshold."}}, {"@type": "Question", "name": "What is the TCS rate on foreign remittance under LRS?", "acceptedAnswer": {"@type": "Answer", "text": "Nil up to ₹7 lakh aggregate per year; beyond that, 0.5% for loan-funded education, 5% for education/medical, and 20% for any other purpose."}}, {"@type": "Question", "name": "What is the TCS rate on overseas tour packages?", "acceptedAnswer": {"@type": "Answer", "text": "5% up to ₹7 lakh aggregate per year, and 20% on the amount above ₹7 lakh."}}, {"@type": "Question", "name": "What happens if the buyer doesn't have a PAN?", "acceptedAnswer": {"@type": "Answer", "text": "Section 206CC applies the higher of twice the specified rate or 1% — not a flat 20% as under TDS."}}, {"@type": "Question", "name": "Is GST included in the taxable value for TCS?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for sale of goods under 206C(1H) — per CBDT Circular 17/2020, TCS is calculated on the GST-inclusive amount, unlike TDS."}}, {"@type": "Question", "name": "Does TCS apply on the full transaction amount or only the excess?", "acceptedAnswer": {"@type": "Answer", "text": "For threshold-based categories (206C(1H), motor vehicle, LRS, overseas tour), only on the amount exceeding the threshold."}}, {"@type": "Question", "name": "What is the Reverse Calculator for?", "acceptedAnswer": {"@type": "Answer", "text": "It works backward from a known final invoice amount to the base amount and embedded TCS, using the currently determined rate."}}, {"@type": "Question", "name": "What is Comparison Mode for?", "acceptedAnswer": {"@type": "Answer", "text": "It compares TCS liability on the same taxable amount under an old rate versus a new rate, showing the exact additional tax or savings."}}, {"@type": "Question", "name": "Does the calculator track calculation history?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, every calculation is saved to a searchable history in this browser's local storage, clearable anytime."}}, {"@type": "Question", "name": "What is Form 27EQ?", "acceptedAnswer": {"@type": "Answer", "text": "The quarterly TCS return sellers file on the TRACES/e-filing system reporting all TCS collected during that quarter."}}, {"@type": "Question", "name": "What is Form 27D?", "acceptedAnswer": {"@type": "Answer", "text": "The TCS certificate issued to the buyer, used to claim credit for TCS collected when filing their income tax return."}}, {"@type": "Question", "name": "What is the due date for depositing TCS?", "acceptedAnswer": {"@type": "Answer", "text": "The 7th of the month following the month of collection."}}, {"@type": "Question", "name": "What interest applies on late TCS deposit?", "acceptedAnswer": {"@type": "Answer", "text": "1% per month or part of a month, from the collection date until actual deposit."}}, {"@type": "Question", "name": "Can the seller's turnover affect whether 206C(1H) applies?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — 206C(1H) only applies if the seller's turnover in the preceding FY exceeded ₹10 crore, regardless of the current sale amount."}}, {"@type": "Question", "name": "What is the education loan-funded LRS rate?", "acceptedAnswer": {"@type": "Answer", "text": "0.5% above ₹7 lakh, provided the remittance is funded by a loan from an eligible financial institution."}}, {"@type": "Question", "name": "Is there a difference between education/medical LRS and other purposes?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — education (non-loan) or medical is 5% above ₹7 lakh, while investment, gift, business and other purposes are 20% above ₹7 lakh."}}, {"@type": "Question", "name": "Does this calculator support Excel and CSV export?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, alongside PDF, print, copy and direct social sharing."}}, {"@type": "Question", "name": "Can I share my result on WhatsApp or social media?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — dedicated share buttons for WhatsApp, Facebook, X, LinkedIn and email are built in."}}, {"@type": "Question", "name": "Does this tool validate PAN format?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — it checks the standard five-letter/four-digit/one-letter PAN pattern, though it doesn't verify the PAN against any government registry."}}, {"@type": "Question", "name": "Does the calculator support both light and dark mode?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — a Theme selector in the header switches between them instantly, remembered for your next visit."}}, {"@type": "Question", "name": "Is my data uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No — every calculation runs entirely in your browser; nothing is ever sent to a server."}}, {"@type": "Question", "name": "Does this tool use any AI?", "acceptedAnswer": {"@type": "Answer", "text": "No — every rate, threshold and formula is deterministic, hand-written logic from the published provisions of Section 206C."}}, {"@type": "Question", "name": "Is this calculator a substitute for professional tax advice?", "acceptedAnswer": {"@type": "Answer", "text": "No — it's a fast, transparent estimate; for unusual situations always confirm with a chartered accountant or the official portal."}}, {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, once loaded — PDF/Excel export load small libraries once on first use."}}, {"@type": "Question", "name": "Can I customise the rate for a category not listed?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — select Any Other Applicable Category and enter your own custom rate and threshold."}}, {"@type": "Question", "name": "Is this calculator accessible for keyboard and screen-reader users?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — every control is a native, keyboard-operable HTML element with ARIA live status updates, plus High Contrast and Large Fonts toggles."}}, {"@type": "Question", "name": "Does this tool work on mobile devices?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — the layout is fully responsive with touch-friendly controls and no horizontal scrolling."}}, {"@type": "Question", "name": "What happens to my history if I clear my browser data?", "acceptedAnswer": {"@type": "Answer", "text": "History is stored only in this browser's local storage, so clearing site data or using a private window removes it."}}, {"@type": "Question", "name": "Does the calculator show the exact formula used?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — the Formula box shows TCS = Taxable Amount times Applicable Rate with your own figures substituted in."}}]}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"TCS in India — Meaning, Categories, Rates, Threshold Limits, Form 27EQ/27D, Interest & Penalty","description":"A complete guide to TCS in India: what it is, categories covering goods, motor vehicles, scrap, LRS remittances and overseas tour packages, current rates and thresholds, PAN and 206CC rules, Form 27EQ/27D, interest, penalty and best practices.","author":{"@type":"Organization","name":"ApneSoftware"},"publisher":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"},"mainEntityOfPage":"https://apnesoftware.com/tools/tcs-calculator.html","inLanguage":["en","hi"]}
+</script>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<script src="../assets/common.js"></script>
+<script>
+/* ===================== TCS Calculator Engine (pure logic, no DOM) ===================== */
+'use strict';
+
+/* ===== Category rate/threshold table (Section 206C, FY 2025-26 & 2026-27 reference values) =====
+   Rates and thresholds reflect published provisions as of FY 2025-26/2026-27. They are revised
+   periodically by the Union Budget and CBDT notifications — always verify current figures on the
+   Income Tax Department's e-filing portal before relying on them for actual compliance. */
+var CATEGORY_DEFS = {
+  'goods206C1H': { label: 'Sale of Goods u/s 206C(1H)', rate: 0.001, threshold: 5000000, sellerTurnoverLimit: 100000000 },
+  'motorVehicle': { label: 'Motor Vehicle (206C(1F))', rate: 0.01, threshold: 1000000 },
+  'scrap': { label: 'Scrap', rate: 0.01, threshold: 0 },
+  'timberForestLease': { label: 'Timber (Forest Lease)', rate: 0.025, threshold: 0 },
+  'timberOther': { label: 'Timber (Other than Forest Lease)', rate: 0.025, threshold: 0 },
+  'forestProduce': { label: 'Forest Produce (other than Timber/Tendu)', rate: 0.025, threshold: 0 },
+  'coal': { label: 'Coal', rate: 0.01, threshold: 0 },
+  'lignite': { label: 'Lignite', rate: 0.01, threshold: 0 },
+  'ironOre': { label: 'Iron Ore', rate: 0.01, threshold: 0 },
+  'minerals': { label: 'Minerals (notified)', rate: 0.01, threshold: 0 },
+  'alcohol': { label: 'Alcohol (liquor for human consumption)', rate: 0.01, threshold: 0 },
+  'tenduLeaves': { label: 'Tendu Leaves', rate: 0.05, threshold: 0 },
+  'lrs': { label: 'Foreign Remittance (LRS) u/s 206C(1G)', threshold: 700000 },
+  'overseasTour': { label: 'Overseas Tour Package', threshold: 700000, rateBelow: 0.05, rateAbove: 0.20 },
+  'forex': { label: 'Forex (other remittance)', rate: 0.20, threshold: 700000 },
+  'other': { label: 'Other Payments', rate: 0.01, threshold: 0 }
+};
+
+/* Section 206CC: if the buyer has not furnished PAN, TCS is collected at the higher of
+   (a) twice the specified rate, or (b) 1% — not a flat 20% as under TDS's 206AA. */
+function applyNoPanRule(rate, panAvailable){
+  if(panAvailable) return rate;
+  return Math.max(rate * 2, 0.01);
+}
+
+/* Taxable base for TCS on goods: per CBDT Circular 17/2020, GST IS included in the sale
+   consideration for 206C(1H)/generic goods categories — the opposite convention from TDS,
+   where GST is excluded. This function returns the gross (GST-inclusive) amount unchanged;
+   the "gstIncluded" toggle only matters for how the UI aggregates fields into that gross figure. */
+function grossAmountFromParts(parts){
+  parts = parts || {};
+  var sale = Math.max(0, parts.saleAmount||0);
+  var gst = Math.max(0, parts.gstAmount||0);
+  var freight = Math.max(0, parts.freight||0);
+  var insurance = Math.max(0, parts.insurance||0);
+  var packing = Math.max(0, parts.packing||0);
+  var other = Math.max(0, parts.other||0);
+  var discount = Math.max(0, parts.discount||0);
+  return Math.max(0, sale + gst + freight + insurance + packing + other - discount);
+}
+
+/* ===================== Sale of Goods u/s 206C(1H) and generic flat-rate categories ===================== */
+function computeGoodsTCS(category, inp){
+  inp = inp || {};
+  var def = CATEGORY_DEFS[category] || CATEGORY_DEFS.other;
+  var rate = category === 'other' ? (inp.customRate!=null ? inp.customRate/100 : 0.01) : def.rate;
+  var threshold = category === 'other' ? (inp.customThreshold||0) : def.threshold;
+
+  var gross = grossAmountFromParts(inp);
+  var previousReceipts = Math.max(0, inp.previousReceipts||0);
+  var aggregate = previousReceipts + gross;
+
+  var notes = [];
+  var thresholdCrossed = true;
+  var taxable = gross;
+
+  if(category === 'goods206C1H'){
+    var turnoverOk = Math.max(0, inp.sellerTurnover||0) > def.sellerTurnoverLimit;
+    if(!turnoverOk){
+      thresholdCrossed = false;
+      notes.push("Section 206C(1H) applies only if the seller's turnover in the preceding financial year exceeded ₹10 crore.");
+    } else if(aggregate <= threshold){
+      thresholdCrossed = false;
+    } else {
+      // TCS applies only on the amount exceeding the ₹50 lakh aggregate threshold
+      taxable = Math.max(0, aggregate - threshold) > gross ? gross : Math.max(0, aggregate - threshold);
+    }
+  } else if(threshold > 0){
+    thresholdCrossed = aggregate > threshold;
+    taxable = thresholdCrossed ? Math.max(0, Math.min(gross, aggregate - threshold)) : 0;
+  }
+
+  var effectiveRate = thresholdCrossed ? applyNoPanRule(rate, inp.panAvailable !== false) : 0;
+  if(thresholdCrossed && inp.panAvailable === false) notes.push('PAN not available — Section 206CC applies the higher of twice the rate or 1%.');
+
+  var tcsAmount = thresholdCrossed ? taxable * effectiveRate : 0;
+  var invoiceTotal = gross + tcsAmount;
+
+  return {
+    category: category, label: def.label, gross: gross, previousReceipts: previousReceipts, aggregate: aggregate,
+    threshold: threshold, thresholdCrossed: thresholdCrossed, taxable: taxable, rate: effectiveRate,
+    tcsAmount: tcsAmount, invoiceTotal: invoiceTotal, notes: notes
+  };
+}
+
+/* ===================== Motor Vehicle u/s 206C(1F) ===================== */
+function computeMotorVehicleTCS(inp){
+  inp = inp || {};
+  var def = CATEGORY_DEFS.motorVehicle;
+  var value = Math.max(0, inp.vehicleValue||0);
+  var thresholdCrossed = value > def.threshold;
+  var rate = thresholdCrossed ? applyNoPanRule(def.rate, inp.panAvailable !== false) : 0;
+  var tcsAmount = thresholdCrossed ? value * rate : 0;
+  var notes = [];
+  if(thresholdCrossed && inp.panAvailable === false) notes.push('PAN not available — Section 206CC applies the higher of twice the rate or 1%.');
+  return {
+    category: 'motorVehicle', label: def.label, gross: value, threshold: def.threshold,
+    thresholdCrossed: thresholdCrossed, taxable: thresholdCrossed ? value : 0, rate: rate,
+    tcsAmount: tcsAmount, invoiceTotal: value + tcsAmount, notes: notes
+  };
+}
+
+/* ===================== LRS (Liberalised Remittance Scheme) u/s 206C(1G) =====================
+   Nil up to the ₹7,00,000 aggregate threshold per financial year; beyond that, the rate depends
+   on purpose: 0.5% for education funded by an eligible loan, 5% for education (not loan-funded)
+   or medical treatment, and 20% for any other purpose (investment, gift, business, etc.). */
+function resolveLrsRate(purpose, loanFunded){
+  if(purpose === 'education') return loanFunded ? 0.005 : 0.05;
+  if(purpose === 'medical') return 0.05;
+  return 0.20; // investment, gift, business, others
+}
+function computeLrsTCS(inp){
+  inp = inp || {};
+  var threshold = CATEGORY_DEFS.lrs.threshold;
+  var previous = Math.max(0, inp.previousRemittance||0);
+  var current = Math.max(0, inp.currentRemittance||0);
+  var aggregate = previous + current;
+  var thresholdCrossed = aggregate > threshold;
+  var taxable = thresholdCrossed ? Math.max(0, Math.min(current, aggregate - threshold)) : 0;
+  var baseRate = resolveLrsRate(inp.purpose, inp.loanFunded);
+  var rate = thresholdCrossed ? applyNoPanRule(baseRate, inp.panAvailable !== false) : 0;
+  var tcsAmount = taxable * rate;
+  var notes = [];
+  if(inp.purpose === 'education' && inp.loanFunded) notes.push('Education remittance funded by an eligible financial-institution loan qualifies for the reduced 0.5% rate.');
+  if(thresholdCrossed && inp.panAvailable === false) notes.push('PAN not available — Section 206CC applies the higher of twice the rate or 1%.');
+  return {
+    category: 'lrs', label: CATEGORY_DEFS.lrs.label, purpose: inp.purpose, gross: current, previousRemittance: previous,
+    aggregate: aggregate, threshold: threshold, thresholdCrossed: thresholdCrossed, taxable: taxable, rate: rate,
+    tcsAmount: tcsAmount, invoiceTotal: current + tcsAmount, notes: notes
+  };
+}
+
+/* ===================== Overseas Tour Package ===================== */
+function computeOverseasTourTCS(inp){
+  inp = inp || {};
+  var def = CATEGORY_DEFS.overseasTour;
+  var previous = Math.max(0, inp.previousRemittance||0);
+  var current = Math.max(0, inp.currentRemittance||0);
+  var aggregate = previous + current;
+  var threshold = def.threshold;
+  var notes = [];
+  var belowPortion = Math.max(0, Math.min(current, threshold - previous));
+  var abovePortion = Math.max(0, current - belowPortion);
+  var belowRate = applyNoPanRule(def.rateBelow, inp.panAvailable !== false);
+  var aboveRate = applyNoPanRule(def.rateAbove, inp.panAvailable !== false);
+  var tcsAmount = (belowPortion * belowRate) + (abovePortion * aboveRate);
+  var effRate = current > 0 ? tcsAmount / current : 0;
+  if(inp.panAvailable === false) notes.push('PAN not available — Section 206CC applies the higher of twice the rate or 1%.');
+  return {
+    category: 'overseasTour', label: def.label, gross: current, previousRemittance: previous, aggregate: aggregate,
+    threshold: threshold, thresholdCrossed: aggregate > threshold, taxable: current, rate: effRate,
+    tcsAmount: tcsAmount, invoiceTotal: current + tcsAmount, notes: notes,
+    belowPortion: belowPortion, abovePortion: abovePortion
+  };
+}
+
+/* ===================== Reverse calculator: derive base amount from a known final/invoice total ===================== */
+function computeReverseTCS(finalAmount, rate){
+  finalAmount = Math.max(0, finalAmount||0);
+  rate = Math.max(0, rate||0);
+  var baseAmount = finalAmount / (1 + rate);
+  var tcsAmount = finalAmount - baseAmount;
+  return { finalAmount: finalAmount, baseAmount: baseAmount, taxableAmount: baseAmount, tcsAmount: tcsAmount, rate: rate };
+}
+
+/* ===================== Comparison: old rate vs new rate on the same taxable amount ===================== */
+function computeComparisonTCS(taxableAmount, oldRate, newRate){
+  taxableAmount = Math.max(0, taxableAmount||0);
+  var oldTax = taxableAmount * Math.max(0, oldRate||0);
+  var newTax = taxableAmount * Math.max(0, newRate||0);
+  var diff = newTax - oldTax;
+  return { taxableAmount: taxableAmount, oldRate: oldRate, newRate: newRate, oldTax: oldTax, newTax: newTax,
+    difference: diff, additionalTax: diff > 0 ? diff : 0, savings: diff < 0 ? -diff : 0 };
+}
+
+/* ===================== Currency formatting ===================== */
+function fmtINR(n){
+  if(!isFinite(n)) n = 0;
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+
+/* ===================== PAN format validation (syntax only, not a real PAN registry check) ===================== */
+function isValidPanFormat(pan){
+  return /^[A-Z]{5}[0-9]{4}[A-Z]$/.test(String(pan||'').toUpperCase());
+}
+
+/* ===================== Expose ===================== */
+var TCSEngine = {
+  CATEGORY_DEFS: CATEGORY_DEFS, applyNoPanRule: applyNoPanRule, grossAmountFromParts: grossAmountFromParts,
+  computeGoodsTCS: computeGoodsTCS, computeMotorVehicleTCS: computeMotorVehicleTCS,
+  resolveLrsRate: resolveLrsRate, computeLrsTCS: computeLrsTCS, computeOverseasTourTCS: computeOverseasTourTCS,
+  computeReverseTCS: computeReverseTCS, computeComparisonTCS: computeComparisonTCS,
+  fmtINR: fmtINR, isValidPanFormat: isValidPanFormat
+};
+
+if(typeof module !== 'undefined' && module.exports) module.exports = TCSEngine;
+if(typeof window !== 'undefined') window.TCSEngine = TCSEngine;
+
+</script>
+<script>
+(function(){
+'use strict';
+var E = window.TCSEngine;
+function $(id){ return document.getElementById(id); }
+function fmt(n){ return E.fmtINR(n); }
+function num(id){ var el = $(id); if(!el) return 0; var v = parseFloat(el.value); return isFinite(v) && v > 0 ? v : 0; }
+function lsGet(key, fallback){ try{ var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } }
+function lsSet(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+function status(msg){ $('tc-statusMsg').textContent = msg; }
+
+/* ===================== Tabs ===================== */
+var tabs = [['tc-tabBasic','tc-paneBasic'],['tc-tabTransaction','tc-paneTransaction'],['tc-tabReverse','tc-paneReverse'],['tc-tabCompare','tc-paneCompare'],['tc-tabHistory','tc-paneHistory'],['tc-tabSettings','tc-paneSettings']];
+tabs.forEach(function(pair){
+  $(pair[0]).addEventListener('click', function(){
+    tabs.forEach(function(p2){
+      $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected','false');
+      $(p2[1]).classList.remove('active');
+    });
+    $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected','true');
+    $(pair[1]).classList.add('active');
+  });
+});
+
+/* ===================== Category field visibility ===================== */
+var GOODS_CATEGORIES = ['goods206C1H','scrap','timberForestLease','timberOther','forestProduce','coal','lignite','ironOre','minerals','alcohol','tenduLeaves','other'];
+var LRS_LIKE = ['lrs','overseasTour','forex'];
+
+function applyCategoryVisibility(){
+  var category = $('tc-category').value;
+  $('tc-goodsFieldsCard').hidden = GOODS_CATEGORIES.indexOf(category) === -1;
+  $('tc-motorVehicleCard').hidden = category !== 'motorVehicle';
+  $('tc-lrsCard').hidden = LRS_LIKE.indexOf(category) === -1;
+  $('tc-otherFieldsCard').hidden = category !== 'other';
+  $('tc-purposeField').hidden = category !== 'lrs';
+  $('tc-loanFundedField').hidden = category !== 'lrs';
+  compute();
+}
+$('tc-category').addEventListener('change', applyCategoryVisibility);
+$('tc-gstApplicable').addEventListener('change', function(){ $('tc-gstAmountField').hidden = !this.checked; compute(); });
+
+/* ===================== Build engine input & compute ===================== */
+var lastResult = null;
+function compute(){
+  var category = $('tc-category').value;
+  var panAvailable = $('tc-pan').value === 'yes';
+  var result;
+
+  if(category === 'motorVehicle'){
+    result = E.computeMotorVehicleTCS({ vehicleValue: num('tc-vehicleValue'), panAvailable: panAvailable });
+  } else if(category === 'lrs'){
+    result = E.computeLrsTCS({
+      purpose: $('tc-purpose').value, loanFunded: $('tc-loanFunded').checked,
+      previousRemittance: num('tc-previousRemittance'), currentRemittance: num('tc-currentRemittance'), panAvailable: panAvailable
+    });
+  } else if(category === 'overseasTour'){
+    result = E.computeOverseasTourTCS({ previousRemittance: num('tc-previousRemittance'), currentRemittance: num('tc-currentRemittance'), panAvailable: panAvailable });
+  } else if(category === 'forex'){
+    result = E.computeLrsTCS({ purpose: 'others', previousRemittance: num('tc-previousRemittance'), currentRemittance: num('tc-currentRemittance'), panAvailable: panAvailable });
+  } else {
+    result = E.computeGoodsTCS(category, {
+      saleAmount: num('tc-saleAmount'), gstAmount: $('tc-gstApplicable').checked ? num('tc-gstAmount') : 0,
+      freight: num('tc-freight'), insurance: num('tc-insurance'), packing: num('tc-packing'), other: num('tc-otherCharges'), discount: num('tc-discount'),
+      previousReceipts: num('tc-previousReceipts'), sellerTurnover: num('tc-sellerTurnover'), panAvailable: panAvailable,
+      customRate: num('tc-customRate'), customThreshold: num('tc-customThreshold')
+    });
+  }
+
+  lastResult = result;
+  renderSummary();
+  renderDetailed();
+  renderFormula();
+  renderCharts();
+  updateShareLinks();
+}
+
+/* ===================== Summary Card ===================== */
+function statCard(label, value){ return '<div class="stat-box"><div class="num">' + value + '</div><div class="lbl">' + label + '</div></div>'; }
+function renderSummary(){
+  var r = lastResult;
+  var effRate = r.gross > 0 ? (r.tcsAmount / r.gross * 100) : 0;
+  $('tc-summaryCards').innerHTML =
+    statCard('Total Amount', fmt(r.invoiceTotal)) +
+    statCard('Taxable Amount', fmt(r.taxable)) +
+    statCard('Collected Tax (TCS)', fmt(r.tcsAmount)) +
+    statCard('Effective Tax %', effRate.toFixed(2) + '%');
+}
+
+/* ===================== Detailed Result ===================== */
+function row(label, value){ return '<div class="tc-engine-row"><span>' + label + '</span><span>' + value + '</span></div>'; }
+function renderDetailed(){
+  var r = lastResult;
+  var html = row('Applicable Section/Category', r.label) +
+    row('Applicable Threshold', fmt(r.threshold||0)) +
+    row('Taxable Value', fmt(r.taxable)) +
+    row('Rate Applied', (r.rate*100).toFixed(3) + '%') +
+    row('Collected Tax (TCS)', fmt(r.tcsAmount)) +
+    row('Invoice Value (Gross)', fmt(r.gross)) +
+    row('Final Payable Amount', fmt(r.invoiceTotal));
+  $('tc-detailedResult').innerHTML = html;
+
+  var flags = [];
+  flags.push(r.thresholdCrossed ? '<span class="tc-flag warn">TCS applicable — threshold crossed</span>' : '<span class="tc-flag ok">Below threshold — no TCS</span>');
+  if($('tc-pan').value === 'no') flags.push('<span class="tc-flag neutral">PAN not available (206CC)</span>');
+  $('tc-resultFlags').innerHTML = flags.join('') + (r.notes && r.notes.length ? r.notes.map(function(n){ return '<div class="tc-muted" style="width:100%;margin-top:4px">' + n + '</div>'; }).join('') : '');
+}
+
+/* ===================== Formula & Waterfall ===================== */
+function renderFormula(){
+  var r = lastResult;
+  var lines = [
+    'TCS = Taxable Amount × Applicable Rate',
+    '    = ' + fmt(r.taxable) + ' × ' + (r.rate*100).toFixed(3) + '%',
+    '    = ' + fmt(r.tcsAmount)
+  ];
+  $('tc-formulaBox').textContent = lines.join('\n');
+
+  function wf(label, value, isTotal){ return '<div class="tc-wf-row' + (isTotal?' tc-wf-total':'') + '"><span>' + label + '</span><span>' + value + '</span></div>'; }
+  var rows = [];
+  rows.push(wf('Gross / Invoice Value', fmt(r.gross)));
+  if(r.gross !== r.taxable) rows.push(wf('Threshold-Excluded Amount', '− ' + fmt(Math.max(0, r.gross - r.taxable))));
+  rows.push(wf('Taxable Amount', fmt(r.taxable), true));
+  rows.push(wf('TCS Rate', (r.rate*100).toFixed(3) + '%'));
+  rows.push(wf('TCS Collected', '+ ' + fmt(r.tcsAmount)));
+  rows.push(wf('Final Payable Amount', fmt(r.invoiceTotal), true));
+  $('tc-waterfall').innerHTML = rows.join('');
+}
+
+/* ===================== Canvas charts (hand-rolled, no external library) ===================== */
+var PALETTE = ['#7C5CFC','#16C079','#F59E0B','#F87171','#38BDF8','#A78BFA'];
+function drawPie(canvasId, legendId, data, doughnut){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var total = data.reduce(function(s,d){ return s + Math.max(0,d.value); }, 0);
+  var cx = w/2, cy = h/2, radius = Math.min(w,h)/2 - 10;
+  if(total <= 0){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', cx, cy);
+    if(legendId) $(legendId).innerHTML = '';
+    return;
+  }
+  var start = -Math.PI/2;
+  data.forEach(function(d, i){
+    var slice = (Math.max(0,d.value) / total) * Math.PI * 2;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, radius, start, start + slice); ctx.closePath();
+    ctx.fillStyle = PALETTE[i % PALETTE.length]; ctx.fill();
+    start += slice;
+  });
+  if(doughnut){ ctx.beginPath(); ctx.arc(cx, cy, radius*0.55, 0, Math.PI*2); ctx.fillStyle = '#160b2e'; ctx.fill(); }
+  if(legendId){
+    $(legendId).innerHTML = data.map(function(d,i){
+      return '<span><i style="background:' + PALETTE[i%PALETTE.length] + '"></i>' + d.label + ': ' + fmt(d.value) + '</span>';
+    }).join('');
+  }
+}
+function drawBar(canvasId, data){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var total = data.reduce(function(s,d){return s+Math.max(0,d.value);},0);
+  if(total <= 0){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', w/2, h/2);
+    return;
+  }
+  var max = Math.max.apply(null, data.map(function(d){ return d.value; }).concat([1]));
+  var barW = w / data.length * 0.6;
+  var gap = w / data.length;
+  data.forEach(function(d, i){
+    var barH = (Math.max(0,d.value) / max) * (h - 40);
+    var x = i * gap + (gap - barW)/2;
+    var y = h - 24 - barH;
+    ctx.fillStyle = PALETTE[i % PALETTE.length];
+    ctx.fillRect(x, y, barW, barH);
+    ctx.fillStyle = '#aaa'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(d.label, x + barW/2, h - 8);
+  });
+}
+function renderCharts(){
+  var r = lastResult;
+  drawPie('tc-chartDistribution', 'tc-legendDistribution', [
+    {label:'Net Amount', value: Math.max(0, r.gross - r.tcsAmount)}, {label:'TCS', value: r.tcsAmount}
+  ], true);
+  drawBar('tc-chartBreakdown', [
+    {label:'Gross', value: r.gross}, {label:'Taxable', value: r.taxable}, {label:'TCS', value: r.tcsAmount}
+  ]);
+}
+
+/* ===================== Reverse Calculator ===================== */
+$('tc-reverseCalcBtn').addEventListener('click', function(){
+  if(!lastResult){ compute(); }
+  var finalAmount = num('tc-reverseFinalAmount');
+  var rate = lastResult ? lastResult.rate : 0;
+  var rr = E.computeReverseTCS(finalAmount, rate);
+  $('tc-reverseResult').innerHTML =
+    row('Final / Invoice Amount', fmt(rr.finalAmount)) +
+    row('Rate Used', (rr.rate*100).toFixed(3) + '%') +
+    row('Base Amount', fmt(rr.baseAmount)) +
+    row('Taxable Amount', fmt(rr.taxableAmount)) +
+    row('TCS Amount', fmt(rr.tcsAmount));
+});
+
+/* ===================== Comparison Mode ===================== */
+$('tc-compareBtn').addEventListener('click', function(){
+  if(!lastResult){ compute(); }
+  var taxable = lastResult ? lastResult.taxable : 0;
+  var oldRate = num('tc-oldRate') / 100;
+  var newRate = num('tc-newRate') / 100;
+  var cr = E.computeComparisonTCS(taxable, oldRate, newRate);
+  $('tc-compareResult').innerHTML =
+    row('Taxable Amount', fmt(cr.taxableAmount)) +
+    row('Old Rate Tax', fmt(cr.oldTax)) +
+    row('New Rate Tax', fmt(cr.newTax)) +
+    row('Additional Tax', fmt(cr.additionalTax)) +
+    row('Savings', fmt(cr.savings));
+});
+
+/* ===================== History ===================== */
+var HISTORY_KEY = 'tcs_history';
+function loadHistory(){ return lsGet(HISTORY_KEY, []); }
+function saveHistory(list){ lsSet(HISTORY_KEY, list.slice(0, 50)); }
+function addToHistory(){
+  if(!lastResult) return;
+  var list = loadHistory();
+  list.unshift({
+    ts: new Date().toISOString(), category: lastResult.label, gross: lastResult.gross,
+    taxable: lastResult.taxable, rate: lastResult.rate, tcsAmount: lastResult.tcsAmount, invoiceTotal: lastResult.invoiceTotal
+  });
+  saveHistory(list);
+  renderHistory();
+}
+function renderHistory(filter){
+  var list = loadHistory();
+  if(filter){
+    var f = filter.toLowerCase();
+    list = list.filter(function(item){
+      return item.category.toLowerCase().indexOf(f) !== -1 || String(item.tcsAmount).indexOf(f) !== -1 || String(item.gross).indexOf(f) !== -1;
+    });
+  }
+  var wrap = $('tc-historyList');
+  if(!list.length){ wrap.innerHTML = '<p class="tc-muted">No calculations saved yet.</p>'; return; }
+  wrap.innerHTML = list.map(function(item, i){
+    var d = new Date(item.ts);
+    return '<div class="tc-history-item"><span>' + item.category + ' — ' + fmt(item.gross) + ' → TCS ' + fmt(item.tcsAmount) + '<br><span class="tc-muted">' + d.toLocaleString() + '</span></span></div>';
+  }).join('');
+}
+$('tc-historySearch').addEventListener('input', function(){ renderHistory(this.value); });
+$('tc-clearHistoryBtn').addEventListener('click', function(){
+  if(!confirm('Clear all saved calculation history?')) return;
+  saveHistory([]); renderHistory();
+  status('🗑️ History cleared.');
+});
+
+/* ===================== Buttons ===================== */
+$('tc-calcBtn').addEventListener('click', function(){ compute(); addToHistory(); status('✅ Calculation updated and saved to history.'); });
+$('tc-resetBtn').addEventListener('click', function(){
+  if(!confirm('Reset all fields to default?')) return;
+  document.querySelectorAll('#tc-formSide input[type=number]').forEach(function(el){ el.value = el.id === 'tc-customRate' ? 1 : 0; });
+  document.querySelectorAll('#tc-formSide input[type=text]').forEach(function(el){ el.value = ''; });
+  document.querySelectorAll('#tc-formSide input[type=checkbox]').forEach(function(el){ el.checked = false; });
+  $('tc-category').value = 'goods206C1H'; $('tc-pan').value = 'yes'; $('tc-gstAmountField').hidden = true;
+  applyCategoryVisibility();
+  $('tc-reverseResult').innerHTML = ''; $('tc-compareResult').innerHTML = '';
+  compute();
+  status('↺ Reset complete.');
+});
+$('tc-printBtn').addEventListener('click', function(){ window.print(); });
+
+function buildTextSummary(){
+  var r = lastResult;
+  return [
+    'TCS Calculation Summary', 'Category: ' + r.label, 'Gross Amount: ' + fmt(r.gross),
+    'Taxable Amount: ' + fmt(r.taxable), 'Rate: ' + (r.rate*100).toFixed(3) + '%',
+    'TCS Amount: ' + fmt(r.tcsAmount), 'Final Payable: ' + fmt(r.invoiceTotal)
+  ].join('\n');
+}
+$('tc-copyBtn').addEventListener('click', function(){
+  if(!lastResult){ status('⚠️ Calculate first.'); return; }
+  var text = buildTextSummary();
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ status('📋 Copied to clipboard.'); });
+  }
+});
+$('tc-pdfBtn').addEventListener('click', function(){
+  if(typeof html2pdf === 'undefined'){ alert('PDF engine failed to load — check your connection and refresh.'); return; }
+  html2pdf().from($('tc-resultSide')).set({filename:'tcs-summary.pdf', margin:10}).save();
+});
+$('tc-xlsxBtn').addEventListener('click', function(){
+  if(typeof XLSX === 'undefined'){ alert('Excel engine failed to load — check your connection and refresh.'); return; }
+  var r = lastResult;
+  var rows = [['Metric','Value'], ['Category', r.label], ['Gross Amount', r.gross], ['Taxable Amount', r.taxable],
+    ['Rate %', r.rate*100], ['TCS Amount', r.tcsAmount], ['Final Payable', r.invoiceTotal]];
+  var ws = XLSX.utils.aoa_to_sheet(rows);
+  var wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'TCS');
+  XLSX.writeFile(wb, 'tcs-summary.xlsx');
+});
+$('tc-csvBtn').addEventListener('click', function(){
+  var r = lastResult;
+  if(!r){ status('⚠️ Calculate first.'); return; }
+  var rows = [['Metric','Value'], ['Category', r.label], ['Gross Amount', r.gross], ['Taxable Amount', r.taxable],
+    ['Rate %', (r.rate*100).toFixed(3)], ['TCS Amount', r.tcsAmount], ['Final Payable', r.invoiceTotal]];
+  var csv = rows.map(function(row){ return row.map(function(c){ return /[",\n]/.test(c) ? ('"'+String(c).replace(/"/g,'""')+'"') : c; }).join(','); }).join('\r\n');
+  downloadBlob('tcs-summary.csv', new Blob([csv], {type:'text/csv'}));
+});
+
+/* ===================== Share links ===================== */
+function updateShareLinks(){
+  if(!lastResult) return;
+  var text = buildTextSummary();
+  var url = location.href;
+  $('tc-shareWhatsapp').href = 'https://wa.me/?text=' + encodeURIComponent(text + '\n' + url);
+  $('tc-shareFacebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+  $('tc-shareTwitter').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
+  $('tc-shareLinkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
+  $('tc-shareEmail').href = 'mailto:?subject=' + encodeURIComponent('TCS Calculation Summary') + '&body=' + encodeURIComponent(text + '\n\n' + url);
+}
+
+/* ===================== PAN format validation ===================== */
+$('tc-panNumber').addEventListener('blur', function(){
+  var field = this.closest('.tc-field');
+  if(this.value && !E.isValidPanFormat(this.value)){
+    field.classList.add('tc-invalid');
+    if(!field.querySelector('.tc-err')){
+      var err = document.createElement('div'); err.className = 'tc-err'; err.style.display = 'block';
+      err.textContent = 'Invalid PAN format (expected ABCDE1234F).';
+      field.appendChild(err);
+    }
+  } else {
+    field.classList.remove('tc-invalid');
+  }
+});
+
+/* ===================== Validation on inputs ===================== */
+document.querySelectorAll('#tc-formSide input, #tc-formSide select').forEach(function(el){
+  el.addEventListener('input', compute);
+  el.addEventListener('change', compute);
+});
+
+/* ===================== Settings: theme / language / accessibility ===================== */
+var I18N = {
+  en: {
+    tabBasic:'🏷️ Basic Info & Category', tabTransaction:'💰 Transaction Details', tabReverse:'🔄 Reverse Calculator',
+    tabCompare:'⚖️ Comparison Mode', tabHistory:'🕘 History', tabSettings:'⚙️ Settings',
+    calc:'🧮 Calculate', reset:'↺ Reset', print:'🖨️ Print', pdf:'📄 PDF', xlsx:'📊 Excel', csv:'📑 CSV', copy:'📋 Copy Result'
+  },
+  hi: {
+    tabBasic:'🏷️ मूल जानकारी और श्रेणी', tabTransaction:'💰 लेन-देन विवरण', tabReverse:'🔄 रिवर्स कैलकुलेटर',
+    tabCompare:'⚖️ तुलना मोड', tabHistory:'🕘 इतिहास', tabSettings:'⚙️ सेटिंग्स',
+    calc:'🧮 गणना करें', reset:'↺ रीसेट', print:'🖨️ प्रिंट', pdf:'📄 PDF', xlsx:'📊 Excel', csv:'📑 CSV', copy:'📋 परिणाम कॉपी करें'
+  }
+};
+function applyLanguage(lang){
+  var t = I18N[lang] || I18N.en;
+  $('tc-tabBasic').textContent = t.tabBasic;
+  $('tc-tabTransaction').textContent = t.tabTransaction;
+  $('tc-tabReverse').textContent = t.tabReverse;
+  $('tc-tabCompare').textContent = t.tabCompare;
+  $('tc-tabHistory').textContent = t.tabHistory;
+  $('tc-tabSettings').textContent = t.tabSettings;
+  $('tc-calcBtn').textContent = t.calc;
+  $('tc-resetBtn').textContent = t.reset;
+  $('tc-printBtn').textContent = t.print;
+  $('tc-pdfBtn').textContent = t.pdf;
+  $('tc-xlsxBtn').textContent = t.xlsx;
+  $('tc-csvBtn').textContent = t.csv;
+  $('tc-copyBtn').textContent = t.copy;
+}
+$('tc-language').addEventListener('change', function(){ applyLanguage(this.value); lsSet('tcs_lang', this.value); });
+$('tc-theme').addEventListener('change', function(){ document.body.classList.toggle('tc-light', this.value === 'light'); lsSet('tcs_theme', this.value); });
+$('tc-highContrast').addEventListener('change', function(){ document.body.classList.toggle('tc-high-contrast', this.checked); lsSet('tcs_hc', this.checked); });
+$('tc-largeFont').addEventListener('change', function(){ document.body.classList.toggle('tc-large-font', this.checked); lsSet('tcs_lf', this.checked); });
+
+/* ===================== Init ===================== */
+applyCategoryVisibility();
+
+var savedLang = lsGet('tcs_lang', 'en'); $('tc-language').value = savedLang; applyLanguage(savedLang);
+var savedTheme = lsGet('tcs_theme', 'dark'); $('tc-theme').value = savedTheme; document.body.classList.toggle('tc-light', savedTheme === 'light');
+var savedHc = lsGet('tcs_hc', false); $('tc-highContrast').checked = savedHc; document.body.classList.toggle('tc-high-contrast', savedHc);
+var savedLf = lsGet('tcs_lf', false); $('tc-largeFont').checked = savedLf; document.body.classList.toggle('tc-large-font', savedLf);
+
+if(!$('tc-transactionDate').value) $('tc-transactionDate').value = new Date().toISOString().slice(0,10);
+if(!$('tc-invoiceDate').value) $('tc-invoiceDate').value = new Date().toISOString().slice(0,10);
+
+renderHistory();
+compute();
+
+})();
+
+</script>
+<!-- Default Statcounter code for Apne Software
+https://apnesoftware.com -->
+<script type="text/javascript">
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13334460/0/a5854dc7/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+</body>
+</html>
