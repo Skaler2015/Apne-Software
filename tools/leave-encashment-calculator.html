@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Free Professional Leave Encashment Calculator for India — instantly calculate daily salary, eligible leave, gross encashment and Section 10(10AA) tax exemption for government, private, PSU, contract and daily-wage employees across retirement, resignation, superannuation and death settlement. Bilingual, printable, exportable, 100% private and browser-only.">
+<meta name="keywords" content="leave encashment calculator, leave encashment tax exemption, Section 10(10AA), leave encashment on retirement, leave encashment on resignation, government employee leave encashment, private employee leave encashment, earned leave calculator India">
+<link rel="canonical" href="https://apnesoftware.com/tools/leave-encashment-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Professional Leave Encashment Calculator (India) | ApneSoftware">
+<meta property="og:description" content="Calculate leave encashment and its Section 10(10AA) tax exemption instantly — for government, private, PSU, contract and daily-wage employees, on retirement, resignation, superannuation or death settlement. Free, private, browser-only.">
+<meta property="og:url" content="https://apnesoftware.com/tools/leave-encashment-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Professional Leave Encashment Calculator (India) | ApneSoftware">
+<meta name="twitter:description" content="Daily salary, eligible leave, gross encashment and Section 10(10AA) tax exemption — instant, free, private, browser-only.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Professional Leave Encashment Calculator","description":"Professional in-browser leave encashment calculator for India covering government, private, PSU, contract and daily-wage employees, with Section 10(10AA) tax exemption for retirement, resignation, superannuation and death settlement, calculation history, charts and export.","url":"https://apnesoftware.com/tools/leave-encashment-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Daily salary and eligible leave computation","Section 10(10AA) tax exemption for government and non-government employees","Support for retirement, resignation, superannuation, death settlement and during-service encashment","Calculation history","Interactive charts","Export to PDF, Excel, CSV, copy and print"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Professional Leave Encashment Calculator","url":"https://apnesoftware.com/tools/leave-encashment-calculator.html","description":"Browser-based leave encashment calculator for India with Section 10(10AA) tax exemption for government, private, PSU, contract and daily-wage employees.","inLanguage":["en","hi"],"isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".tool-header p"]}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"Calculators & Converters","item":"https://apnesoftware.com/index.html#cat-calculator"},{"@type":"ListItem","position":3,"name":"Leave Encashment Calculator","item":"https://apnesoftware.com/tools/leave-encashment-calculator.html"}]}
+</script>
+<meta name="color-scheme" content="dark light">
+<title>Professional Leave Encashment Calculator (India) | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* ===== Leave Encashment Calculator — scoped le- prefix ===== */
+
+  /* Numbers must never wrap across lines, anywhere in this tool. */
+  .le-nowrap,
+  .le-content .num, .le-stat-cards .num, .le-engine-row span:last-child,
+  .le-content table td, .le-content table th,
+  .le-formula-box, .le-wf-row span:last-child{
+    white-space:nowrap; word-break:keep-all; overflow-wrap:normal;
+  }
+
+  .le-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;align-items:start}
+  #le-formSide,#le-resultSide{min-width:0}
+  #le-resultSide{position:sticky;top:16px}
+  @media(max-width:900px){ .le-grid{grid-template-columns:1fr} #le-resultSide{position:static} }
+
+  .le-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .le-tab{padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.82rem;font-weight:600;font-family:inherit}
+  .le-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .le-pane{display:none}
+  .le-pane.active{display:block}
+
+  .le-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;backdrop-filter:blur(10px)}
+  .le-card h3{margin:0 0 10px;font-size:.95rem}
+  .le-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:10px}
+  .le-field label{display:block;font-size:.76rem;color:var(--text-dim);margin-bottom:4px;display:flex;align-items:center;gap:4px}
+  .le-tip{cursor:help;color:var(--text-dim);border:1px solid var(--border);border-radius:999px;width:15px;height:15px;font-size:.65rem;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .le-field input,.le-field select{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.88rem}
+  .le-err{font-size:.72rem;color:#fca5a5;margin-top:2px;display:none}
+  .le-field.le-invalid input{border-color:#f87171}
+  .le-field.le-invalid .le-err{display:block}
+
+  .le-stat-cards{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .le-stat-cards .stat-box{flex:1;min-width:130px}
+  .le-stat-cards .stat-box.le-highlight{background:linear-gradient(135deg,rgba(124,92,252,.25),rgba(22,192,121,.18));border:1px solid var(--accent)}
+
+  .le-engine-box{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:10px 0}
+  .le-engine-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--border);font-size:.86rem;gap:10px}
+  .le-engine-row:last-child{border-bottom:none}
+  .le-engine-row span:last-child{font-weight:700;color:var(--accent)}
+
+  .le-wf-row{display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;font-size:.86rem;background:var(--surface-2);margin-bottom:2px;gap:10px}
+  .le-wf-row.le-wf-total{background:rgba(var(--accent-rgb),.18);font-weight:800;font-size:.95rem}
+
+  .le-formula-box{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px;font-family:'Consolas','Courier New',monospace;font-size:.8rem;white-space:pre-wrap;margin-top:10px}
+
+  .le-chart-wrap{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px;margin-top:12px}
+  .le-chart-wrap h4{font-size:.82rem;color:var(--text-dim);font-weight:600;margin-bottom:8px}
+  .le-chart-wrap canvas{width:100%;height:auto;display:block}
+  .le-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:.76rem;color:var(--text-dim)}
+  .le-legend span{display:inline-flex;align-items:center;gap:5px}
+  .le-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+  .le-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .le-flag{padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600;border:1px solid var(--border)}
+  .le-flag.ok{background:rgba(22,192,121,.15);color:#7ef0bd;border-color:rgba(22,192,121,.4)}
+  .le-flag.warn{background:rgba(248,113,113,.15);color:#fca5a5;border-color:rgba(248,113,113,.4)}
+  .le-muted{color:var(--text-dim);font-size:.8rem;margin-top:6px}
+
+  .le-history-item{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);margin-bottom:6px;font-size:.84rem}
+  .le-share-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .le-share-btn{padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);cursor:pointer;font-size:.8rem;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+
+  body.le-large-font #le-formSide,body.le-large-font #le-resultSide{font-size:1.1rem}
+  body.le-high-contrast{filter:contrast(1.2) brightness(1.06)}
+
+  /* ===== Light mode — scoped strictly to the tool's own content ===== */
+  body.le-light :is(.container,.le-content){
+    --bg:#f4f2fb; --surface:#ffffff; --surface-2:#efeaf9; --border:rgba(20,10,45,.14); --border-strong:rgba(20,10,45,.24);
+    --text:#1c1533; --text-dim:rgba(28,21,51,.68);
+  }
+  body.le-light .container,
+  body.le-light .le-content{
+    background:#f4f2fb; border-radius:18px; padding:20px 22px; box-shadow:0 8px 32px rgba(20,10,45,.12);
+  }
+  body.le-light :is(.container,.le-content) h1,
+  body.le-light :is(.container,.le-content) h2,
+  body.le-light :is(.container,.le-content) h3,
+  body.le-light :is(.container,.le-content) h4,
+  body.le-light :is(.container,.le-content) h5,
+  body.le-light :is(.container,.le-content) h6{color:var(--text)}
+  body.le-light :is(.container,.le-content) p{color:var(--text-dim)}
+  body.le-light :is(.container,.le-content) label{color:var(--text-dim)}
+  body.le-light :is(.container,.le-content) textarea,
+  body.le-light :is(.container,.le-content) input[type=text],
+  body.le-light :is(.container,.le-content) input[type=number],
+  body.le-light :is(.container,.le-content) input[type=date],
+  body.le-light :is(.container,.le-content) select{
+    background:#ffffff;border:1px solid rgba(20,10,45,.2);color:var(--text)
+  }
+  body.le-light :is(.container,.le-content) select option{background:#ffffff;color:var(--text)}
+  body.le-light :is(.container,.le-content) .panel{background:#ffffff!important;border:1px solid rgba(20,10,45,.1)!important;box-shadow:0 8px 28px rgba(20,10,45,.08)!important}
+  body.le-light :is(.container,.le-content) table th{background:rgba(20,10,45,.06);color:var(--text)}
+  body.le-light :is(.container,.le-content) table td{color:var(--text-dim);border-color:rgba(20,10,45,.1)}
+  body.le-light :is(.container,.le-content) .le-tab{color:var(--text-dim)}
+  body.le-light :is(.container,.le-content) .le-tab.active{color:#fff}
+  body.le-light :is(.container,.le-content) .btn.secondary{background:var(--surface-2);border-color:var(--border);color:var(--text)}
+
+  .related-grid a .ri{margin-right:6px}
+  .le-content h2{font-size:1.15rem;margin:26px 0 10px}
+  .le-content h3{font-size:1rem;margin:18px 0 8px}
+  .le-content p,.le-content li{font-size:.92rem;line-height:1.72}
+  .le-content ul,.le-content ol{padding-left:20px}
+  .le-content table{width:100%;border-collapse:collapse;font-size:.86rem;margin:12px 0}
+  .le-content table th,.le-content table td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border)}
+  .le-content table th{color:#c4b5fd}
+
+  /* Two-column bilingual layout (English left, Hindi right) — stacks on narrow screens. */
+  .le-bilingual{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px dashed var(--border)}
+  .le-bilingual:last-child{border-bottom:none}
+  .le-bilingual h4{grid-column:1/-1;margin:0 0 6px;font-size:1rem;color:#c4b5fd}
+  .le-bilingual .le-en p, .le-bilingual .le-hi p{margin:0;font-size:.92rem;line-height:1.72}
+  @media(max-width:800px){ .le-bilingual{grid-template-columns:1fr;gap:8px} }
+
+  .le-example-card{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:14px}
+  .le-example-card h4{margin:0 0 10px;font-size:.92rem;color:var(--accent)}
+
+  .le-faq-item{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+  .le-faq-item .le-bilingual{border-bottom:none;padding-bottom:0;margin-bottom:0}
+  .le-faq-item .le-en strong, .le-faq-item .le-hi strong{display:block;margin-bottom:4px}
+
+  .le-footer-note{display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:.82rem;color:var(--text-dim);font-style:italic;padding:14px;background:var(--surface-2);border-radius:12px;margin-top:20px}
+  @media(max-width:700px){.le-footer-note{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="le-muted" style="margin-bottom:10px" aria-label="Breadcrumb">
+    <a href="../index.html" style="color:#c4b5fd;text-decoration:none">Home</a> ›
+    <a href="../index.html#cat-calculator" style="color:#c4b5fd;text-decoration:none">Calculators &amp; Converters</a> ›
+    Leave Encashment Calculator
+  </nav>
+
+  <div class="tool-header">
+    <h1>🏖️ Professional Leave Encashment Calculator</h1>
+    <p>Instantly calculate daily salary, eligible leave, gross encashment and Section 10(10AA) tax exemption — for government, private, PSU, contract and daily-wage employees, on retirement, resignation, superannuation or death settlement. 100% in your browser.</p>
+
+    <div class="le-row" style="margin-top:14px">
+      <div class="le-field">
+        <label for="le-language">Language / भाषा</label>
+        <select id="le-language"><option value="en">English</option><option value="hi">हिन्दी</option></select>
+      </div>
+      <div class="le-field">
+        <label for="le-theme">Theme</label>
+        <select id="le-theme"><option value="dark">🌙 Dark</option><option value="light">☀️ Light</option><option value="auto">🖥️ Auto</option></select>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="le-calcBtn" type="button">🧮 Calculate</button>
+      <button class="btn secondary" id="le-exampleBtn" type="button">📋 Load Example</button>
+      <button class="btn secondary" id="le-resetBtn" type="button">↺ Reset</button>
+      <button class="btn secondary" id="le-printBtn" type="button">🖨️ Print</button>
+      <button class="btn secondary" id="le-pdfBtn" type="button">📄 PDF</button>
+      <button class="btn secondary" id="le-xlsxBtn" type="button">📊 Excel</button>
+      <button class="btn secondary" id="le-csvBtn" type="button">📑 CSV</button>
+      <button class="btn secondary" id="le-copyBtn" type="button">📋 Copy Result</button>
+    </div>
+    <div class="le-share-row">
+      <a class="le-share-btn" id="le-shareWhatsapp" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a class="le-share-btn" id="le-shareFacebook" href="#" target="_blank" rel="noopener">📘 Facebook</a>
+      <a class="le-share-btn" id="le-shareTwitter" href="#" target="_blank" rel="noopener">🐦 X</a>
+      <a class="le-share-btn" id="le-shareEmail" href="#">✉️ Email</a>
+    </div>
+    <div id="le-statusMsg" class="le-muted" role="status" aria-live="polite"></div>
+  </div>
+
+  <div class="le-grid">
+    <div id="le-formSide">
+      <div class="panel">
+        <div class="le-tabs" role="tablist">
+          <button class="le-tab active" id="le-tabEmployee" role="tab" aria-selected="true">👤 Employee &amp; Salary</button>
+          <button class="le-tab" id="le-tabLeave" role="tab" aria-selected="false">🏖️ Leave Details</button>
+          <button class="le-tab" id="le-tabHistory" role="tab" aria-selected="false">🕘 History</button>
+          <button class="le-tab" id="le-tabSettings" role="tab" aria-selected="false">⚙️ Settings</button>
+        </div>
+
+        <!-- ===== Tab: Employee & Salary ===== -->
+        <div class="le-pane active" id="le-paneEmployee">
+          <div class="le-card">
+            <h3>👤 Employee Details</h3>
+            <div class="le-row">
+              <div class="le-field"><label for="le-employeeName">Employee Name (Optional)</label><input type="text" id="le-employeeName" placeholder="Employee name"></div>
+              <div class="le-field">
+                <label for="le-employeeType">Employee Type</label>
+                <select id="le-employeeType">
+                  <option value="government">Government</option>
+                  <option value="private" selected>Private</option>
+                  <option value="psu">PSU</option>
+                  <option value="contract">Contract</option>
+                  <option value="dailyWage">Daily Wage</option>
+                  <option value="custom">Custom</option>
+                </select>
+              </div>
+              <div class="le-field">
+                <label for="le-encashmentType">Encashment Type</label>
+                <select id="le-encashmentType">
+                  <option value="duringService">During Service</option>
+                  <option value="retirement" selected>Retirement</option>
+                  <option value="resignation">Resignation</option>
+                  <option value="death">Death Settlement</option>
+                  <option value="superannuation">Superannuation</option>
+                </select>
+              </div>
+              <div class="le-field">
+                <label for="le-currency">Currency</label>
+                <select id="le-currency">
+                  <option value="INR" selected>INR (₹)</option>
+                  <option value="USD">USD ($)</option>
+                  <option value="EUR">EUR (€)</option>
+                  <option value="AED">AED (د.إ)</option>
+                  <option value="GBP">GBP (£)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="le-card">
+            <h3>💰 Salary Details</h3>
+            <div class="le-row">
+              <div class="le-field"><label for="le-basicSalary">Basic Salary (Monthly)</label><input type="number" id="le-basicSalary" min="0" value="40000"></div>
+              <div class="le-field"><label for="le-da">Dearness Allowance (DA)</label><input type="number" id="le-da" min="0" value="8000"></div>
+              <div class="le-field"><label for="le-grossSalary">Gross Salary (Reference)</label><input type="number" id="le-grossSalary" min="0" value="0"></div>
+              <div class="le-field"><label for="le-otherAllowances">Other Allowances (Reference)</label><input type="number" id="le-otherAllowances" min="0" value="0"></div>
+              <div class="le-field">
+                <label for="le-workingDaysFormula">Working Days Formula</label>
+                <select id="le-workingDaysFormula"><option value="30" selected>30 Days</option><option value="26">26 Days</option><option value="custom">Custom</option></select>
+              </div>
+              <div class="le-field" id="le-customDaysField" hidden><label for="le-customDays">Custom Working Days</label><input type="number" id="le-customDays" min="1" max="31" value="30"></div>
+              <div class="le-field"><label for="le-taxRate">Your Tax Rate on Taxable Portion (%) <span class="le-tip" title="Applied to the taxable amount only (after exemption) to estimate Net Payable — enter your own marginal/average income-tax rate; leave at 0 to see the pre-tax figure and compute tax separately.">?</span></label><input type="number" id="le-taxRate" min="0" max="42.74" value="0" step="0.1"></div>
+            </div>
+            <div class="le-err" id="le-salaryErr" style="display:none">Salary values cannot be negative.</div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Leave Details ===== -->
+        <div class="le-pane" id="le-paneLeave">
+          <div class="le-card">
+            <h3>🏖️ Leave &amp; Service Details</h3>
+            <div class="le-row">
+              <div class="le-field"><label for="le-yearsOfService">Years of Service</label><input type="number" id="le-yearsOfService" min="0" value="20"></div>
+              <div class="le-field"><label for="le-monthsOfService">Months of Service</label><input type="number" id="le-monthsOfService" min="0" max="11" value="0"></div>
+              <div class="le-field"><label for="le-totalEarnedLeave">Total Earned Leave (Days)</label><input type="number" id="le-totalEarnedLeave" min="0" value="300"></div>
+              <div class="le-field"><label for="le-leaveUsed">Leave Used (Days)</label><input type="number" id="le-leaveUsed" min="0" value="0"></div>
+              <div class="le-field"><label for="le-carryForwardLeave">Carry Forward Leave (Days)</label><input type="number" id="le-carryForwardLeave" min="0" value="0"></div>
+              <div class="le-field"><label for="le-maxEncashmentLimit">Maximum Encashment Limit (Days)</label><input type="number" id="le-maxEncashmentLimit" min="0" value="300"></div>
+            </div>
+            <div class="le-err" id="le-leaveErr" style="display:none">Leave used cannot exceed total earned leave plus carry forward.</div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: History ===== -->
+        <div class="le-pane" id="le-paneHistory">
+          <div class="le-card">
+            <h3>🕘 Calculation History</h3>
+            <div class="le-row">
+              <div class="le-field"><label for="le-historySearch">Search History</label><input type="text" id="le-historySearch" placeholder="Search by employee, type or amount..."></div>
+            </div>
+            <div class="btn-row" style="margin-bottom:10px">
+              <button class="btn secondary" id="le-clearHistoryBtn" type="button">🗑️ Clear History</button>
+            </div>
+            <div id="le-historyList"></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Settings ===== -->
+        <div class="le-pane" id="le-paneSettings">
+          <div class="le-card">
+            <h3>⚙️ Display Settings</h3>
+            <div class="le-row">
+              <div class="le-field">
+                <label for="le-decimalPlaces">Decimal Places</label>
+                <select id="le-decimalPlaces"><option value="0" selected>0</option><option value="2">2</option><option value="3">3</option></select>
+              </div>
+              <div class="le-field">
+                <label for="le-roundOff">Round Off</label>
+                <select id="le-roundOff"><option value="none" selected>No Round</option><option value="up">Round Up</option><option value="down">Round Down</option><option value="nearest">Nearest</option></select>
+              </div>
+              <div class="le-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:22px"><input type="checkbox" id="le-highContrast" style="width:auto"> High Contrast</label></div>
+              <div class="le-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:22px"><input type="checkbox" id="le-largeFont" style="width:auto"> Large Fonts</label></div>
+            </div>
+            <p class="le-muted">Preferences are remembered in this browser for your next visit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="le-resultSide">
+      <div class="panel">
+        <h3 style="margin:0 0 10px;font-size:1rem">📊 Live Result Card</h3>
+        <div class="le-stat-cards" id="le-summaryCards"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🧠 Tax Exemption Basis (Section 10(10AA))</h3>
+        <div class="le-engine-box" id="le-taxBasisBox"></div>
+        <div class="le-flags" id="le-resultFlags"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🧮 Formula &amp; Calculation Steps</h3>
+        <div class="le-formula-box" id="le-formulaBox"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">📋 Salary &amp; Leave Summary</h3>
+        <table id="le-summaryTable"><tbody></tbody></table>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">📊 Charts</h3>
+        <div class="le-chart-wrap"><h4>Salary Breakdown</h4><canvas id="le-chartSalary" width="500" height="220"></canvas><div class="le-legend" id="le-legendSalary"></div></div>
+        <div class="le-chart-wrap"><h4>Encashment vs Tax Breakdown</h4><canvas id="le-chartEncashment" width="500" height="220"></canvas></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="le-content">
+
+<h2>🧰 Related Tools</h2>
+<div class="related-grid">
+  <a href="gratuity-calculator.html"><span class="ri">🎁</span> Gratuity Calculator</a>
+  <a href="salary-calculator.html"><span class="ri">💼</span> Salary Calculator</a>
+  <a href="income-tax-calculator.html"><span class="ri">💰</span> Income Tax Calculator</a>
+  <a href="hra-calculator.html"><span class="ri">🏠</span> HRA Calculator</a>
+  <a href="pf-calculator.html"><span class="ri">🏦</span> PF Calculator</a>
+  <a href="tds-calculator.html"><span class="ri">🧾</span> TDS Calculator</a>
+  <a href="tcs-calculator.html"><span class="ri">🧾</span> TCS Calculator</a>
+</div>
+
+<!-- ===== About This Tool — bilingual TWO-COLUMN layout (English left, Hindi right) ===== -->
+<h2>ℹ️ About This Tool | इस टूल के बारे में</h2>
+
+<div class="le-bilingual">
+  <h4>What is Leave Encashment? | Leave Encashment क्या है?</h4>
+  <div class="le-en"><p>Leave Encashment is the monetary payment an employer makes to an employee in exchange for unused earned leave, whether paid out during service, at resignation, at retirement, at superannuation, or to the legal heirs on death. Instead of the leave lapsing unused, it is converted into cash based on the employee's salary and the number of eligible leave days.</p></div>
+  <div class="le-hi"><p>Leave Encashment वह मौद्रिक भुगतान है जो एक employer किसी employee को उसके untuk इस्तेमाल न हुए earned leave के बदले करता है, चाहे यह service के दौरान, resignation पर, retirement पर, superannuation पर, या death पर legal heirs को दिया जाए। बिना इस्तेमाल हुई leave लैप्स होने के बजाय, इसे employee की salary और eligible leave days की संख्या के आधार पर नकद में बदल दिया जाता है।</p></div>
+</div>
+
+<div class="le-bilingual">
+  <h4>Benefits of Leave Encashment | Leave Encashment के लाभ</h4>
+  <div class="le-en"><p>It rewards employees for not exhausting their leave, provides a meaningful lump sum at retirement or resignation when it's often needed most, and — for government employees and in several other qualifying cases — carries significant income-tax exemption under Section 10(10AA), making it more valuable than an equivalent amount of regular taxable salary.</p></div>
+  <div class="le-hi"><p>यह employees को उनकी leave खत्म न करने के लिए reward करता है, retirement या resignation पर एक सार्थक lump sum प्रदान करता है जब इसकी सबसे अधिक ज़रूरत होती है, और — government employees के लिए तथा कई अन्य योग्य मामलों में — Section 10(10AA) के तहत महत्वपूर्ण income-tax exemption रखता है, जिससे यह नियमित taxable salary की समान राशि से अधिक मूल्यवान बन जाता है।</p></div>
+</div>
+
+<div class="le-bilingual">
+  <h4>Who can use this calculator? | इस कैलकुलेटर का उपयोग कौन कर सकता है?</h4>
+  <div class="le-en"><p>HR professionals, payroll teams, chartered accountants, and any government, private, PSU, contract or daily-wage employee who wants to estimate their leave encashment and its tax treatment before retirement, resignation or while planning their finances.</p></div>
+  <div class="le-hi"><p>HR professionals, payroll teams, chartered accountants, और कोई भी government, private, PSU, contract या daily-wage employee जो retirement, resignation से पहले या अपनी finances की योजना बनाते समय अपने leave encashment और उसके tax treatment का अनुमान लगाना चाहता है।</p></div>
+</div>
+
+<div class="le-bilingual">
+  <h4>Government Employee Rules | Government Employee के नियम</h4>
+  <div class="le-en"><p>Central and state government employees enjoy a significant advantage: leave encashment received on retirement or superannuation is <strong>fully exempt</strong> from income tax under Section 10(10AA)(i), with no upper monetary cap — a benefit not extended to non-government employees.</p></div>
+  <div class="le-hi"><p>Central और state government employees को एक महत्वपूर्ण लाभ मिलता है: retirement या superannuation पर मिलने वाला leave encashment Section 10(10AA)(i) के तहत income tax से <strong>पूरी तरह exempt</strong> होता है, बिना किसी upper monetary cap के — यह लाभ non-government employees को नहीं मिलता।</p></div>
+</div>
+
+<div class="le-bilingual">
+  <h4>Private Company Rules | Private Company के नियम</h4>
+  <div class="le-en"><p>For private, PSU, contract and daily-wage employees, Section 10(10AA)(ii) exempts only the <em>least</em> of: the actual leave encashment received, 10 months' average salary, the cash equivalent of leave balance (capped at 30 days per completed year of service), and a statutory lifetime limit currently set at ₹25,00,000 — anything beyond that least figure is fully taxable as salary income.</p></div>
+  <div class="le-hi"><p>Private, PSU, contract और daily-wage employees के लिए, Section 10(10AA)(ii) केवल इनमें से <em>सबसे कम</em> को exempt करता है: प्राप्त actual leave encashment, 10 महीनों की average salary, leave balance का cash equivalent (सेवा के प्रत्येक पूर्ण वर्ष के लिए 30 दिन तक सीमित), और वर्तमान में ₹25,00,000 पर निर्धारित एक statutory lifetime limit — उस सबसे कम आँकड़े से अधिक कुछ भी salary income के रूप में पूरी तरह taxable है।</p></div>
+</div>
+
+<div class="le-bilingual">
+  <h4>Leave Encashment Formula | Leave Encashment का फॉर्मूला</h4>
+  <div class="le-en"><p>Daily Salary = (Basic Salary + DA) ÷ Working Days (30 or 26); Leave Encashment = Daily Salary × Eligible Leave Days, where Eligible Leave Days = Total Earned Leave − Leave Used + Carry Forward Leave, capped at the Maximum Encashment Limit.</p></div>
+  <div class="le-hi"><p>Daily Salary = (Basic Salary + DA) ÷ Working Days (30 या 26); Leave Encashment = Daily Salary × Eligible Leave Days, जहाँ Eligible Leave Days = Total Earned Leave − Leave Used + Carry Forward Leave, Maximum Encashment Limit तक सीमित।</p></div>
+</div>
+
+<div class="le-bilingual">
+  <h4>Tax Rules | Tax नियम</h4>
+  <div class="le-en"><p>Encashment taken <em>during service</em> is always fully taxable, regardless of employer type. Encashment on <em>death settlement</em> is always fully exempt, since it's paid to legal heirs rather than being the deceased's own income. Encashment on retirement, resignation or superannuation follows the government/non-government split described above.</p></div>
+  <div class="le-hi"><p><em>Service के दौरान</em> लिया गया encashment हमेशा पूरी तरह taxable होता है, चाहे employer कोई भी हो। <em>Death settlement</em> पर encashment हमेशा पूरी तरह exempt होता है, क्योंकि यह legal heirs को दिया जाता है। Retirement, resignation या superannuation पर encashment ऊपर बताए गए government/non-government विभाजन का पालन करता है।</p></div>
+</div>
+
+<div class="le-bilingual">
+  <h4>Worked Example | उदाहरण सहित समझें</h4>
+  <div class="le-en"><p>A private employee with Basic+DA of <span class="le-nowrap">₹58,000</span>/month, 20 years of service and 300 eligible leave days has a daily salary of <span class="le-nowrap">₹1,933</span> and gross encashment of <span class="le-nowrap">₹5,80,000</span> — but the leave-based limit (30 days × 20 years = 600 days, capped at the 300 available) equals the full gross amount here, so the entire <span class="le-nowrap">₹5,80,000</span> may qualify for exemption, subject to the 10-months-average and statutory caps also being checked.</p></div>
+  <div class="le-hi"><p>Basic+DA <span class="le-nowrap">₹58,000</span>/month, 20 वर्षों की सेवा और 300 eligible leave days वाले एक private employee की daily salary <span class="le-nowrap">₹1,933</span> है और gross encashment <span class="le-nowrap">₹5,80,000</span> है — पर leave-based limit (30 दिन × 20 वर्ष = 600 दिन, उपलब्ध 300 तक सीमित) यहाँ पूरी gross राशि के बराबर है, इसलिए पूरी <span class="le-nowrap">₹5,80,000</span> राशि exemption के लिए योग्य हो सकती है, 10-महीने-average और statutory caps की जाँच के अधीन।</p></div>
+</div>
+
+<div class="le-bilingual">
+  <h4>Advantages | फ़ायदे</h4>
+  <div class="le-en"><p>Converts an otherwise lapsed benefit into real cash, often arrives tax-exempt or partially exempt precisely when an employee needs funds most, and is calculated using a transparent, auditable formula rather than employer discretion.</p></div>
+  <div class="le-hi"><p>अन्यथा lapse होने वाले लाभ को असली नकद में बदल देता है, अक्सर ठीक तब tax-exempt या आंशिक रूप से exempt होकर मिलता है जब employee को funds की सबसे अधिक ज़रूरत होती है, और employer के विवेक के बजाय एक पारदर्शी, auditable फॉर्मूले का उपयोग करके गणना की जाती है।</p></div>
+</div>
+
+<div class="le-bilingual">
+  <h4>Limitations | सीमाएँ</h4>
+  <div class="le-en"><p>This calculator uses current salary as a proxy for the "10 months' average salary" test since it does not collect a full monthly salary history, and it does not model employer-specific leave policies that may cap encashable leave below the statutory maximum — always confirm final figures against your employer's HR policy and a tax professional.</p></div>
+  <div class="le-hi"><p>यह कैलकुलेटर "10 महीनों की average salary" test के लिए वर्तमान salary को proxy के रूप में उपयोग करता है क्योंकि यह पूरी monthly salary history एकत्र नहीं करता, और यह employer-specific leave policies को मॉडल नहीं करता जो encashable leave को statutory maximum से नीचे सीमित कर सकती हैं — अंतिम आँकड़ों की पुष्टि हमेशा अपनी employer की HR policy और एक tax professional से करें।</p></div>
+</div>
+
+<div class="le-bilingual">
+  <h4>Common Mistakes | आम गलतियाँ</h4>
+  <div class="le-en"><p>Assuming all leave encashment is tax-free just because a colleague's was; forgetting that the 30-days-per-year-of-service cap can bind well below the actual leave balance for shorter service periods; and confusing "during service" encashment (always taxable) with retirement encashment (potentially exempt).</p></div>
+  <div class="le-hi"><p>यह मान लेना कि सभी leave encashment tax-free है सिर्फ़ इसलिए कि किसी colleague का था; यह भूल जाना कि 30-दिन-प्रति-वर्ष-सेवा cap कम सेवा अवधि के लिए वास्तविक leave balance से काफ़ी नीचे बाँध सकता है; और "during service" encashment (हमेशा taxable) को retirement encashment (संभावित रूप से exempt) के साथ भ्रमित करना।</p></div>
+</div>
+
+<div class="le-bilingual">
+  <h4>Best Practices | सर्वोत्तम प्रथाएँ</h4>
+  <div class="le-en"><p>Track your leave balance throughout your career rather than discovering it at retirement, understand your specific employer's encashment policy (some cap encashable leave well below 300 days), and run the numbers under both the old and new tax regimes before deciding when to time your resignation or retirement.</p></div>
+  <div class="le-hi"><p>अपने पूरे करियर में अपना leave balance track करें बजाय इसके कि retirement पर पता चले, अपने specific employer की encashment policy को समझें (कुछ encashable leave को 300 दिनों से काफ़ी नीचे सीमित करती हैं), और अपना resignation या retirement कब करना है यह तय करने से पहले old और new दोनों tax regimes के तहत आँकड़े चलाएँ।</p></div>
+</div>
+
+<div class="le-bilingual">
+  <h4>Important Notes | महत्वपूर्ण नोट्स</h4>
+  <div class="le-en"><p>The ₹25,00,000 statutory exemption limit under Section 10(10AA) is a <em>lifetime, cumulative</em> limit across all employers a non-government employee works for, not a per-employer or per-year limit — a detail many employees overlook when changing jobs.</p></div>
+  <div class="le-hi"><p>Section 10(10AA) के तहत ₹25,00,000 की statutory exemption limit एक non-government employee के सभी employers में <em>lifetime, cumulative</em> limit है, प्रति-employer या प्रति-वर्ष limit नहीं — यह एक ऐसा विवरण है जिसे कई employees नौकरी बदलते समय नज़रअंदाज़ कर देते हैं।</p></div>
+</div>
+
+<div class="le-bilingual">
+  <h4>Tips | सुझाव</h4>
+  <div class="le-en"><p>If you're planning resignation versus waiting for retirement/superannuation, remember only the latter category unlocks Section 10(10AA) exemption for non-government employees — resignation is treated the same as retirement for this purpose, but "during service" encashment (like an annual leave-encashment scheme) is not.</p></div>
+  <div class="le-hi"><p>यदि आप resignation बनाम retirement/superannuation का इंतज़ार करने की योजना बना रहे हैं, याद रखें कि केवल बाद वाली श्रेणी non-government employees के लिए Section 10(10AA) exemption unlock करती है — इस उद्देश्य के लिए resignation को retirement जैसा ही माना जाता है, पर "during service" encashment (जैसे वार्षिक leave-encashment scheme) को नहीं।</p></div>
+</div>
+
+<div class="le-bilingual">
+  <h4>Conclusion | निष्कर्ष</h4>
+  <div class="le-en"><p>Leave encashment can be a substantial, and substantially tax-advantaged, part of an employee's total compensation — understanding exactly how much is exempt versus taxable, and why, is what the Professional Leave Encashment Calculator is built to make instantly transparent, entirely within your own browser.</p></div>
+  <div class="le-hi"><p>Leave encashment एक employee के total compensation का एक substantial, और substantially tax-advantaged, हिस्सा हो सकता है — ठीक-ठीक कितना exempt बनाम taxable है, और क्यों, यह समझना ही वह है जिसे Professional Leave Encashment Calculator तुरंत पारदर्शी बनाने के लिए बनाया गया है, पूरी तरह आपके अपने browser के भीतर।</p></div>
+</div>
+
+<!-- ===== Real-Life Examples — bilingual side-by-side ===== -->
+<h2>📘 Real-Life Examples | वास्तविक उदाहरण</h2>
+
+<div class="le-example-card">
+  <h4>1. Government Employee — Retirement | Government Employee — Retirement</h4>
+  <div class="le-bilingual">
+    <div class="le-en"><p>A central government employee retiring with Basic+DA of <span class="le-nowrap">₹80,000</span>/month and 300 days of earned leave receives <span class="le-nowrap">₹8,00,000</span> in leave encashment — fully exempt from tax under Section 10(10AA)(i), with no cap.</p></div>
+    <div class="le-hi"><p>Basic+DA <span class="le-nowrap">₹80,000</span>/month और 300 दिनों की earned leave के साथ retire होने वाला एक central government employee <span class="le-nowrap">₹8,00,000</span> का leave encashment प्राप्त करता है — Section 10(10AA)(i) के तहत बिना किसी cap के पूरी तरह tax-exempt।</p></div>
+  </div>
+</div>
+
+<div class="le-example-card">
+  <h4>2. Private Employee — Retirement | Private Employee — Retirement</h4>
+  <div class="le-bilingual">
+    <div class="le-en"><p>A private-sector employee with Basic+DA of <span class="le-nowrap">₹45,000</span>/month, 25 years of service, and 300 leave days receives <span class="le-nowrap">₹4,50,000</span> gross — the leave-based cap (30×25=750 days, but only 300 available) doesn't bind, so the full amount typically qualifies for exemption after the 10-month-average and statutory checks.</p></div>
+    <div class="le-hi"><p>Basic+DA <span class="le-nowrap">₹45,000</span>/month, 25 वर्षों की सेवा, और 300 leave days वाला एक private-sector employee <span class="le-nowrap">₹4,50,000</span> gross प्राप्त करता है — leave-based cap (30×25=750 दिन, पर केवल 300 उपलब्ध) यहाँ बाध्य नहीं करता, इसलिए पूरी राशि आमतौर पर 10-महीने-average और statutory जाँच के बाद exemption के लिए योग्य होती है।</p></div>
+  </div>
+</div>
+
+<div class="le-example-card">
+  <h4>3. Private Employee — Resignation, Short Service | Private Employee — Resignation, कम सेवा</h4>
+  <div class="le-bilingual">
+    <div class="le-en"><p>An employee resigning after just 4 years, Basic+DA <span class="le-nowrap">₹60,000</span>/month, 100 leave days: the leave-based cap of 30×4=120 days doesn't bind here either, but a shorter tenure generally means a smaller leave balance in the first place.</p></div>
+    <div class="le-hi"><p>केवल 4 वर्षों बाद resign करने वाला एक employee, Basic+DA <span class="le-nowrap">₹60,000</span>/month, 100 leave days: 30×4=120 दिनों का leave-based cap यहाँ भी बाध्य नहीं करता, पर कम कार्यकाल का सामान्यतः मतलब है कि पहले से ही एक छोटा leave balance।</p></div>
+  </div>
+</div>
+
+<div class="le-example-card">
+  <h4>4. High Earner — Statutory Cap Binds | High Earner — Statutory Cap लागू</h4>
+  <div class="le-bilingual">
+    <div class="le-en"><p>A senior private-sector executive with Basic+DA of <span class="le-nowrap">₹6,00,000</span>/month and 300 leave days has a gross encashment of <span class="le-nowrap">₹60,00,000</span> — here the <span class="le-nowrap">₹25,00,000</span> statutory limit binds, so only <span class="le-nowrap">₹25,00,000</span> is exempt and <span class="le-nowrap">₹35,00,000</span> is fully taxable.</p></div>
+    <div class="le-hi"><p>Basic+DA <span class="le-nowrap">₹6,00,000</span>/month और 300 leave days वाले एक senior private-sector executive का gross encashment <span class="le-nowrap">₹60,00,000</span> है — यहाँ <span class="le-nowrap">₹25,00,000</span> की statutory limit लागू होती है, इसलिए केवल <span class="le-nowrap">₹25,00,000</span> exempt है और <span class="le-nowrap">₹35,00,000</span> पूरी तरह taxable है।</p></div>
+  </div>
+</div>
+
+<div class="le-example-card">
+  <h4>5. PSU Employee — Superannuation | PSU Employee — Superannuation</h4>
+  <div class="le-bilingual">
+    <div class="le-en"><p>A PSU employee (treated as non-government for this exemption) with Basic+DA <span class="le-nowrap">₹50,000</span>/month, 30 years of service, 300 leave days: gross encashment <span class="le-nowrap">₹5,00,000</span>, generally fully exempt since none of the four caps bind at this salary level.</p></div>
+    <div class="le-hi"><p>Basic+DA <span class="le-nowrap">₹50,000</span>/month, 30 वर्षों की सेवा, 300 leave days वाला एक PSU employee (इस exemption के लिए non-government माना जाता है): gross encashment <span class="le-nowrap">₹5,00,000</span>, आमतौर पर इस salary स्तर पर चारों caps में से कोई भी बाध्य न होने से पूरी तरह exempt।</p></div>
+  </div>
+</div>
+
+<div class="le-example-card">
+  <h4>6. During-Service Encashment | Service के दौरान Encashment</h4>
+  <div class="le-bilingual">
+    <div class="le-en"><p>An employee encashing 15 leave days mid-career under an annual scheme, Basic+DA <span class="le-nowrap">₹40,000</span>/month: gross encashment <span class="le-nowrap">₹20,000</span>, fully taxable as salary income regardless of employee type — no Section 10(10AA) exemption applies.</p></div>
+    <div class="le-hi"><p>करियर के बीच में एक वार्षिक scheme के तहत 15 leave days encash करने वाला एक employee, Basic+DA <span class="le-nowrap">₹40,000</span>/month: gross encashment <span class="le-nowrap">₹20,000</span>, employee type चाहे जो भी हो salary income के रूप में पूरी तरह taxable — कोई Section 10(10AA) exemption लागू नहीं होता।</p></div>
+  </div>
+</div>
+
+<div class="le-example-card">
+  <h4>7. Death Settlement | Death Settlement</h4>
+  <div class="le-bilingual">
+    <div class="le-en"><p>Legal heirs of a deceased private employee receiving <span class="le-nowrap">₹3,00,000</span> in leave encashment — fully exempt from tax, since it is not treated as the deceased's own taxable income.</p></div>
+    <div class="le-hi"><p>एक मृत private employee के legal heirs को <span class="le-nowrap">₹3,00,000</span> का leave encashment मिलता है — पूरी तरह tax-exempt, क्योंकि इसे मृतक की अपनी taxable income नहीं माना जाता।</p></div>
+  </div>
+</div>
+
+<div class="le-example-card">
+  <h4>8. Contract Employee | Contract Employee</h4>
+  <div class="le-bilingual">
+    <div class="le-en"><p>A contract employee completing a 3-year assignment, Basic+DA <span class="le-nowrap">₹35,000</span>/month, 60 leave days: gross encashment <span class="le-nowrap">₹70,000</span>, treated under the same non-government exemption rules as a private employee upon contract completion (treated similarly to resignation/retirement for this purpose).</p></div>
+    <div class="le-hi"><p>3 साल का assignment पूरा करने वाला एक contract employee, Basic+DA <span class="le-nowrap">₹35,000</span>/month, 60 leave days: gross encashment <span class="le-nowrap">₹70,000</span>, contract पूरा होने पर private employee जैसे ही non-government exemption नियमों के तहत माना जाता है।</p></div>
+  </div>
+</div>
+
+<div class="le-example-card">
+  <h4>9. Daily Wage Worker | Daily Wage Worker</h4>
+  <div class="le-bilingual">
+    <div class="le-en"><p>A daily-wage worker whose employer credits a monthly-equivalent Basic+DA of <span class="le-nowrap">₹18,000</span> and 20 leave days: gross encashment <span class="le-nowrap">₹12,000</span>, small enough that none of the four exemption caps bind, so it is generally fully exempt on retirement/resignation.</p></div>
+    <div class="le-hi"><p>एक daily-wage worker जिसका employer मासिक-समकक्ष Basic+DA <span class="le-nowrap">₹18,000</span> और 20 leave days credit करता है: gross encashment <span class="le-nowrap">₹12,000</span>, इतना छोटा कि चारों exemption caps में से कोई बाध्य नहीं होता, इसलिए retirement/resignation पर यह आमतौर पर पूरी तरह exempt होता है।</p></div>
+  </div>
+</div>
+
+<div class="le-example-card">
+  <h4>10. Multiple Employers — Lifetime Cap | कई Employers — Lifetime Cap</h4>
+  <div class="le-bilingual">
+    <div class="le-en"><p>An employee who already claimed <span class="le-nowrap">₹20,00,000</span> of exemption from a previous employer has only <span class="le-nowrap">₹5,00,000</span> of the statutory <span class="le-nowrap">₹25,00,000</span> lifetime limit left for their current employer's encashment — a detail this calculator's Important Notes section specifically flags.</p></div>
+    <div class="le-hi"><p>एक employee जिसने पहले से किसी previous employer से <span class="le-nowrap">₹20,00,000</span> की exemption claim कर ली है, उसके पास अपने वर्तमान employer के encashment के लिए statutory <span class="le-nowrap">₹25,00,000</span> lifetime limit में से केवल <span class="le-nowrap">₹5,00,000</span> बचा है — यह एक ऐसा विवरण है जिसे इस कैलकुलेटर का Important Notes सेक्शन विशेष रूप से बताता है।</p></div>
+  </div>
+</div>
+
+<!-- ===== FAQ — bilingual side-by-side ===== -->
+<h2>❓ Frequently Asked Questions | अक्सर पूछे जाने वाले प्रश्न</h2>
+<div class="le-faq" id="leFaq">
+
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>What is leave encashment?</strong><p>Payment received in exchange for unused earned leave.</p></div><div class="le-hi"><strong>Leave encashment क्या है?</strong><p>बिना इस्तेमाल हुई earned leave के बदले प्राप्त भुगतान।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Is leave encashment taxable?</strong><p>It depends on employee type and encashment type — see the Tax Rules section above.</p></div><div class="le-hi"><strong>क्या leave encashment taxable है?</strong><p>यह employee type और encashment type पर निर्भर करता है।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Is government employee leave encashment fully exempt?</strong><p>Yes, on retirement/superannuation, with no monetary cap.</p></div><div class="le-hi"><strong>क्या government employee का leave encashment पूरी तरह exempt है?</strong><p>हाँ, retirement/superannuation पर, बिना किसी monetary cap के।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>What is the exemption limit for private employees?</strong><p>The least of actual encashment, 10 months' average salary, leave-based limit, and ₹25,00,000.</p></div><div class="le-hi"><strong>Private employees के लिए exemption limit क्या है?</strong><p>Actual encashment, 10 महीनों की average salary, leave-based limit, और ₹25,00,000 में से सबसे कम।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>What is the current statutory exemption limit?</strong><p>₹25,00,000, a lifetime cumulative limit across all employers.</p></div><div class="le-hi"><strong>वर्तमान statutory exemption limit क्या है?</strong><p>₹25,00,000, सभी employers में एक lifetime cumulative limit।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Is encashment during service taxable?</strong><p>Yes, always fully taxable regardless of employee type.</p></div><div class="le-hi"><strong>क्या service के दौरान encashment taxable है?</strong><p>हाँ, employee type चाहे जो भी हो हमेशा पूरी तरह taxable।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Is leave encashment on death taxable?</strong><p>No, it is fully exempt when paid to legal heirs.</p></div><div class="le-hi"><strong>क्या death पर leave encashment taxable है?</strong><p>नहीं, legal heirs को दिए जाने पर यह पूरी तरह exempt है।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>How is daily salary calculated?</strong><p>(Basic Salary + DA) divided by working days (30 or 26).</p></div><div class="le-hi"><strong>Daily salary की गणना कैसे होती है?</strong><p>(Basic Salary + DA) को working days (30 या 26) से भाग देकर।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>What is eligible leave?</strong><p>Total earned leave minus leave used plus carry forward, capped at the maximum encashment limit.</p></div><div class="le-hi"><strong>Eligible leave क्या है?</strong><p>Total earned leave घटा leave used जोड़ carry forward, maximum encashment limit तक सीमित।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Is resignation treated like retirement for exemption?</strong><p>Yes, both fall under the same non-government exemption rules.</p></div><div class="le-hi"><strong>क्या exemption के लिए resignation को retirement जैसा माना जाता है?</strong><p>हाँ, दोनों एक ही non-government exemption नियमों के अंतर्गत आते हैं।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Does PSU count as government for this exemption?</strong><p>No, PSU employees are treated as non-government for Section 10(10AA).</p></div><div class="le-hi"><strong>क्या PSU इस exemption के लिए government माना जाता है?</strong><p>नहीं, PSU employees को Section 10(10AA) के लिए non-government माना जाता है।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>What is the 30-days-per-year rule?</strong><p>The leave-based exemption limit caps leave balance at 30 days per completed year of service.</p></div><div class="le-hi"><strong>30-दिन-प्रति-वर्ष नियम क्या है?</strong><p>Leave-based exemption limit leave balance को सेवा के प्रत्येक पूर्ण वर्ष के लिए 30 दिन तक सीमित करती है।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Can I customise the working days formula?</strong><p>Yes — choose 30 days, 26 days, or enter a fully custom value.</p></div><div class="le-hi"><strong>क्या मैं working days formula customise कर सकता हूँ?</strong><p>हाँ — 30 दिन, 26 दिन चुनें, या पूरी तरह custom value दर्ज करें।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Does the calculator support multiple currencies?</strong><p>Yes — INR, USD, EUR, AED and GBP, though the tax exemption rules are specific to India.</p></div><div class="le-hi"><strong>क्या कैलकुलेटर कई currencies को support करता है?</strong><p>हाँ — INR, USD, EUR, AED और GBP, पर tax exemption नियम भारत के लिए विशिष्ट हैं।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Does this tool save my calculation history?</strong><p>Yes, in a searchable, clearable history stored in this browser's local storage.</p></div><div class="le-hi"><strong>क्या यह टूल मेरा calculation history सेव करता है?</strong><p>हाँ, इस browser के local storage में एक searchable, clearable history में।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Can I export my result?</strong><p>Yes — PDF, Excel, CSV, print, copy, and direct social sharing are all supported.</p></div><div class="le-hi"><strong>क्या मैं अपना result export कर सकता हूँ?</strong><p>हाँ — PDF, Excel, CSV, print, copy, और direct social sharing सभी समर्थित हैं।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>What rounding options are available?</strong><p>No Round, Round Up, Round Down, and Nearest, with 0, 2 or 3 decimal places.</p></div><div class="le-hi"><strong>कौन-से rounding options उपलब्ध हैं?</strong><p>No Round, Round Up, Round Down, और Nearest, 0, 2 या 3 decimal places के साथ।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Is my data uploaded anywhere?</strong><p>No — every calculation runs entirely in your browser.</p></div><div class="le-hi"><strong>क्या मेरा data कहीं upload होता है?</strong><p>नहीं — हर calculation पूरी तरह आपके browser में चलता है।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Does this tool use AI?</strong><p>No — every formula is deterministic, hand-written logic from Section 10(10AA).</p></div><div class="le-hi"><strong>क्या इस टूल में AI इस्तेमाल होता है?</strong><p>नहीं — हर formula Section 10(10AA) से deterministic, hand-written logic है।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Is this a substitute for professional tax advice?</strong><p>No — always confirm with a chartered accountant for significant amounts.</p></div><div class="le-hi"><strong>क्या यह पेशेवर tax सलाह का विकल्प है?</strong><p>नहीं — महत्वपूर्ण राशियों के लिए हमेशा CA से पुष्टि करें।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>What is "Load Example" for?</strong><p>It fills the form with realistic sample data so you can explore the calculator instantly.</p></div><div class="le-hi"><strong>"Load Example" किसके लिए है?</strong><p>यह form को realistic sample data से भर देता है ताकि आप कैलकुलेटर तुरंत explore कर सकें।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Does theme "Auto" follow my system setting?</strong><p>Yes — it follows your device's light/dark preference automatically.</p></div><div class="le-hi"><strong>क्या "Auto" theme मेरी system setting का पालन करती है?</strong><p>हाँ — यह आपके device की light/dark प्राथमिकता का स्वतः पालन करती है।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Does numeric display ever wrap awkwardly?</strong><p>No — all figures use nowrap styling so amounts always stay on one line.</p></div><div class="le-hi"><strong>क्या numeric display कभी अजीब तरीक़े से wrap होता है?</strong><p>नहीं — सभी आँकड़े nowrap styling इस्तेमाल करते हैं ताकि राशियाँ हमेशा एक ही line पर रहें।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Is this calculator accessible?</strong><p>Yes — keyboard navigable, screen-reader labelled, with high-contrast and large-font options.</p></div><div class="le-hi"><strong>क्या यह कैलकुलेटर accessible है?</strong><p>हाँ — keyboard navigable, screen-reader labelled, high-contrast और large-font विकल्पों के साथ।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Does it work on mobile?</strong><p>Yes — fully responsive with touch-friendly controls and no horizontal scrolling.</p></div><div class="le-hi"><strong>क्या यह mobile पर काम करता है?</strong><p>हाँ — पूरी तरह responsive, touch-friendly controls के साथ, कोई horizontal scrolling नहीं।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Does it work offline?</strong><p>Yes, once loaded — PDF/Excel export load small libraries once on first use.</p></div><div class="le-hi"><strong>क्या यह offline काम करता है?</strong><p>हाँ, लोड होने के बाद — PDF/Excel export पहली बार इस्तेमाल पर छोटी libraries लोड करते हैं।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>What happens if leave used exceeds total earned leave?</strong><p>Eligible leave is clamped to zero rather than going negative.</p></div><div class="le-hi"><strong>अगर leave used, total earned leave से अधिक हो जाए तो क्या होता है?</strong><p>Eligible leave नकारात्मक होने के बजाय शून्य पर clamp हो जाती है।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Can negative salary values be entered?</strong><p>No — negative salary and leave values are rejected with a validation warning.</p></div><div class="le-hi"><strong>क्या negative salary values दर्ज की जा सकती हैं?</strong><p>नहीं — negative salary और leave values को validation warning के साथ reject कर दिया जाता है।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Does the calculator show every calculation step?</strong><p>Yes — the Formula box shows daily salary, eligible leave, gross encashment and exemption caps step by step.</p></div><div class="le-hi"><strong>क्या कैलकुलेटर हर calculation step दिखाता है?</strong><p>हाँ — Formula box daily salary, eligible leave, gross encashment और exemption caps को चरण-दर-चरण दिखाता है।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>What if my employer caps encashable leave below 300 days?</strong><p>Enter that cap in the Maximum Encashment Limit field — the calculator respects it automatically.</p></div><div class="le-hi"><strong>अगर मेरा employer encashable leave को 300 दिनों से नीचे सीमित करता है तो?</strong><p>उस cap को Maximum Encashment Limit field में दर्ज करें — कैलकुलेटर इसे स्वचालित रूप से मानता है।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Is carry-forward leave included in the calculation?</strong><p>Yes — it adds to eligible leave days alongside total earned leave, minus leave already used.</p></div><div class="le-hi"><strong>क्या carry-forward leave गणना में शामिल है?</strong><p>हाँ — यह total earned leave के साथ eligible leave days में जुड़ता है, पहले से इस्तेमाल हुई leave घटाकर।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>Can I share my result directly on WhatsApp?</strong><p>Yes — a dedicated WhatsApp share button is built into the header.</p></div><div class="le-hi"><strong>क्या मैं अपना result सीधे WhatsApp पर share कर सकता हूँ?</strong><p>हाँ — header में एक dedicated WhatsApp share button मौजूद है।</p></div></div></div>
+<div class="le-faq-item"><div class="le-bilingual"><div class="le-en"><strong>What is Dearness Allowance (DA) and why does it matter?</strong><p>DA is a cost-of-living adjustment added to basic salary, and it's included in the daily-salary calculation for leave encashment.</p></div><div class="le-hi"><strong>Dearness Allowance (DA) क्या है और यह क्यों मायने रखता है?</strong><p>DA basic salary में जोड़ा गया एक cost-of-living adjustment है, और यह leave encashment की daily-salary गणना में शामिल है।</p></div></div></div>
+
+</div>
+
+<!-- ===== Footer note — bilingual side-by-side ===== -->
+<div class="le-footer-note">
+  <div>This calculator provides estimated Leave Encashment values. Final calculations depend on your employer's leave policy, applicable laws, tax rules and employment terms.</div>
+  <div>यह कैलकुलेटर अनुमानित Leave Encashment मान प्रदान करता है। अंतिम गणना आपके employer की leave policy, लागू कानूनों, tax नियमों और employment शर्तों पर निर्भर करती है।</div>
+</div>
+
+</div>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is leave encashment?", "acceptedAnswer": {"@type": "Answer", "text": "Payment received in exchange for unused earned leave."}}, {"@type": "Question", "name": "Is leave encashment taxable?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on employee type and encashment type."}}, {"@type": "Question", "name": "Is government employee leave encashment fully exempt?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, on retirement or superannuation, with no monetary cap."}}, {"@type": "Question", "name": "What is the exemption limit for private employees?", "acceptedAnswer": {"@type": "Answer", "text": "The least of actual encashment, 10 months' average salary, the leave-based limit, and 25,00,000 rupees."}}, {"@type": "Question", "name": "What is the current statutory exemption limit?", "acceptedAnswer": {"@type": "Answer", "text": "25,00,000 rupees, a lifetime cumulative limit across all employers."}}, {"@type": "Question", "name": "Is encashment during service taxable?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, always fully taxable regardless of employee type."}}, {"@type": "Question", "name": "Is leave encashment on death taxable?", "acceptedAnswer": {"@type": "Answer", "text": "No, it is fully exempt when paid to legal heirs."}}, {"@type": "Question", "name": "How is daily salary calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Basic Salary plus DA divided by working days, either 30 or 26."}}, {"@type": "Question", "name": "What is eligible leave?", "acceptedAnswer": {"@type": "Answer", "text": "Total earned leave minus leave used plus carry forward, capped at the maximum encashment limit."}}, {"@type": "Question", "name": "Is resignation treated like retirement for exemption?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, both fall under the same non-government exemption rules."}}, {"@type": "Question", "name": "Does PSU count as government for this exemption?", "acceptedAnswer": {"@type": "Answer", "text": "No, PSU employees are treated as non-government for Section 10(10AA)."}}, {"@type": "Question", "name": "What is the 30-days-per-year rule?", "acceptedAnswer": {"@type": "Answer", "text": "The leave-based exemption limit caps leave balance at 30 days per completed year of service."}}, {"@type": "Question", "name": "Can I customise the working days formula?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, choose 30 days, 26 days, or enter a fully custom value."}}, {"@type": "Question", "name": "Does the calculator support multiple currencies?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, INR, USD, EUR, AED and GBP, though the tax exemption rules are specific to India."}}, {"@type": "Question", "name": "Does this tool save my calculation history?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in a searchable, clearable history stored in this browser's local storage."}}, {"@type": "Question", "name": "Can I export my result?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, PDF, Excel, CSV, print, copy, and direct social sharing are all supported."}}, {"@type": "Question", "name": "What rounding options are available?", "acceptedAnswer": {"@type": "Answer", "text": "No Round, Round Up, Round Down, and Nearest, with 0, 2 or 3 decimal places."}}, {"@type": "Question", "name": "Is my data uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No, every calculation runs entirely in your browser."}}, {"@type": "Question", "name": "Does this tool use AI?", "acceptedAnswer": {"@type": "Answer", "text": "No, every formula is deterministic, hand-written logic from Section 10(10AA)."}}, {"@type": "Question", "name": "Is this a substitute for professional tax advice?", "acceptedAnswer": {"@type": "Answer", "text": "No, always confirm with a chartered accountant for significant amounts."}}, {"@type": "Question", "name": "What is Load Example for?", "acceptedAnswer": {"@type": "Answer", "text": "It fills the form with realistic sample data so you can explore the calculator instantly."}}, {"@type": "Question", "name": "Does theme Auto follow my system setting?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, it follows your device's light or dark preference automatically."}}, {"@type": "Question", "name": "Does numeric display ever wrap awkwardly?", "acceptedAnswer": {"@type": "Answer", "text": "No, all figures use nowrap styling so amounts always stay on one line."}}, {"@type": "Question", "name": "Is this calculator accessible?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, keyboard navigable, screen-reader labelled, with high-contrast and large-font options."}}, {"@type": "Question", "name": "Does it work on mobile?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, fully responsive with touch-friendly controls and no horizontal scrolling."}}, {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, once loaded; PDF and Excel export load small libraries once on first use."}}, {"@type": "Question", "name": "What happens if leave used exceeds total earned leave?", "acceptedAnswer": {"@type": "Answer", "text": "Eligible leave is clamped to zero rather than going negative."}}, {"@type": "Question", "name": "Can negative salary values be entered?", "acceptedAnswer": {"@type": "Answer", "text": "No, negative salary and leave values are rejected with a validation warning."}}, {"@type": "Question", "name": "Does the calculator show every calculation step?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the Formula box shows daily salary, eligible leave, gross encashment and exemption caps step by step."}}, {"@type": "Question", "name": "What if my employer caps encashable leave below 300 days?", "acceptedAnswer": {"@type": "Answer", "text": "Enter that cap in the Maximum Encashment Limit field and the calculator respects it automatically."}}, {"@type": "Question", "name": "Is carry-forward leave included in the calculation?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, it adds to eligible leave days alongside total earned leave, minus leave already used."}}, {"@type": "Question", "name": "Can I share my result directly on WhatsApp?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, a dedicated WhatsApp share button is built into the header."}}, {"@type": "Question", "name": "What is Dearness Allowance and why does it matter?", "acceptedAnswer": {"@type": "Answer", "text": "DA is a cost-of-living adjustment added to basic salary, and it is included in the daily-salary calculation for leave encashment."}}]}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Leave Encashment in India — Meaning, Rules, Formula, Section 10(10AA) Tax Exemption","description":"A complete guide to leave encashment in India: what it is, government vs private employee rules, the calculation formula, Section 10(10AA) tax exemption, worked examples, common mistakes and best practices.","author":{"@type":"Organization","name":"ApneSoftware"},"publisher":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"},"mainEntityOfPage":"https://apnesoftware.com/tools/leave-encashment-calculator.html","inLanguage":["en","hi"]}
+</script>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<script src="../assets/common.js"></script>
+<script>
+/* ===================== Leave Encashment Calculator Engine (pure logic, no DOM) ===================== */
+'use strict';
+
+var STATUTORY_EXEMPTION_LIMIT = 2500000; /* Section 10(10AA) lifetime cap for non-government employees, current limit */
+
+/* ===================== Rounding ===================== */
+function applyRounding(value, mode, decimals){
+  decimals = decimals != null ? decimals : 2;
+  var factor = Math.pow(10, decimals);
+  if(mode === 'up') return Math.ceil(value * factor) / factor;
+  if(mode === 'down') return Math.floor(value * factor) / factor;
+  if(mode === 'nearest') return Math.round(value * factor) / factor;
+  return Math.round(value * factor) / factor; /* 'none' still needs a sane display precision */
+}
+
+/* ===================== Daily salary ===================== */
+function computeDailySalary(basic, da, workingDaysDivisor){
+  basic = Math.max(0, basic||0);
+  da = Math.max(0, da||0);
+  workingDaysDivisor = workingDaysDivisor > 0 ? workingDaysDivisor : 30;
+  return (basic + da) / workingDaysDivisor;
+}
+
+/* ===================== Eligible leave (computed, not raw input) ===================== */
+function computeEligibleLeave(totalEarnedLeave, leaveUsed, carryForwardLeave, maxEncashmentLimit){
+  var balance = Math.max(0, (totalEarnedLeave||0) - (leaveUsed||0) + (carryForwardLeave||0));
+  if(maxEncashmentLimit > 0) balance = Math.min(balance, maxEncashmentLimit);
+  return balance;
+}
+
+/* ===================== Section 10(10AA) tax exemption ===================== */
+/* Government employees: leave encashment on retirement/superannuation is fully exempt.
+   Death settlement: fully exempt (paid to legal heirs).
+   During service: fully taxable, no exemption.
+   Resignation/retirement/superannuation (non-government): exemption = least of
+     (a) actual leave encashment received,
+     (b) 10 months' average salary (Basic+DA is used as the proxy for "average of last 10
+         months", since this calculator does not collect a monthly salary history),
+     (c) cash equivalent of leave balance capped at 30 days per completed year of service,
+     (d) the statutory lifetime limit (currently ₹25,00,000). */
+function computeTaxExemption(inp){
+  inp = inp || {};
+  var isGovernment = inp.employeeType === 'government';
+  var grossEncashment = Math.max(0, inp.grossEncashment||0);
+  var dailySalary = Math.max(0, inp.dailySalary||0);
+  var yearsOfService = Math.max(0, inp.yearsOfService||0);
+  var eligibleLeaveDays = Math.max(0, inp.eligibleLeaveDays||0);
+
+  if(inp.encashmentType === 'death'){
+    return { exemption: grossEncashment, taxable: 0, basis: 'Death settlement — fully exempt from tax.' };
+  }
+  if(inp.encashmentType === 'duringService'){
+    return { exemption: 0, taxable: grossEncashment, basis: 'Encashment during service is fully taxable as salary income.' };
+  }
+  if(isGovernment){
+    return { exemption: grossEncashment, taxable: 0, basis: 'Government employee — leave encashment on retirement is fully exempt u/s 10(10AA).' };
+  }
+
+  var tenMonthsAvgSalary = dailySalary * 30 * 10;
+  var leaveDaysCapped = Math.min(eligibleLeaveDays, 30 * yearsOfService);
+  var leaveBasedLimit = dailySalary * leaveDaysCapped;
+  var exemption = Math.min(grossEncashment, tenMonthsAvgSalary, leaveBasedLimit, STATUTORY_EXEMPTION_LIMIT);
+  exemption = Math.max(0, exemption);
+  var taxable = Math.max(0, grossEncashment - exemption);
+  return {
+    exemption: exemption, taxable: taxable,
+    basis: 'Non-government employee — exemption u/s 10(10AA) is the least of actual encashment, 10 months\' average salary, leave-based limit (30 days/year of service) and the ₹25,00,000 statutory cap.',
+    tenMonthsAvgSalary: tenMonthsAvgSalary, leaveBasedLimit: leaveBasedLimit, statutoryLimit: STATUTORY_EXEMPTION_LIMIT
+  };
+}
+
+/* ===================== Main computation ===================== */
+function computeLeaveEncashment(inp){
+  inp = inp || {};
+  var dailySalary = computeDailySalary(inp.basicSalary, inp.da, inp.workingDaysDivisor);
+  var eligibleLeaveDays = computeEligibleLeave(inp.totalEarnedLeave, inp.leaveUsed, inp.carryForwardLeave, inp.maxEncashmentLimit);
+  var grossEncashment = dailySalary * eligibleLeaveDays;
+
+  var taxResult = computeTaxExemption({
+    employeeType: inp.employeeType, encashmentType: inp.encashmentType, grossEncashment: grossEncashment,
+    dailySalary: dailySalary, yearsOfService: inp.yearsOfService, eligibleLeaveDays: eligibleLeaveDays
+  });
+
+  var netAmount = grossEncashment - taxResult.taxable * (inp.taxRate!=null ? inp.taxRate : 0);
+  /* netAmount above only deducts tax on the taxable portion at the given marginal rate;
+     if no tax rate is supplied, net amount equals gross encashment (tax computed separately
+     at the individual's own slab rate when filing a return). */
+
+  return {
+    dailySalary: dailySalary,
+    eligibleLeaveDays: eligibleLeaveDays,
+    grossEncashment: grossEncashment,
+    exemption: taxResult.exemption,
+    taxableAmount: taxResult.taxable,
+    taxBasis: taxResult.basis,
+    tenMonthsAvgSalary: taxResult.tenMonthsAvgSalary,
+    leaveBasedLimit: taxResult.leaveBasedLimit,
+    statutoryLimit: taxResult.statutoryLimit,
+    netAmount: netAmount
+  };
+}
+
+/* ===================== Currency formatting ===================== */
+var CURRENCY_SYMBOLS = { INR:'₹', USD:'$', EUR:'€', AED:'د.إ', GBP:'£' };
+function fmtCurrency(n, currency, decimals){
+  currency = currency || 'INR';
+  decimals = decimals != null ? decimals : 0;
+  if(!isFinite(n)) n = 0;
+  var symbol = CURRENCY_SYMBOLS[currency] || '';
+  var locale = currency === 'INR' ? 'en-IN' : 'en-US';
+  return symbol + n.toLocaleString(locale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+}
+
+/* ===================== Expose ===================== */
+var LeaveEncashmentEngine = {
+  STATUTORY_EXEMPTION_LIMIT: STATUTORY_EXEMPTION_LIMIT,
+  applyRounding: applyRounding,
+  computeDailySalary: computeDailySalary,
+  computeEligibleLeave: computeEligibleLeave,
+  computeTaxExemption: computeTaxExemption,
+  computeLeaveEncashment: computeLeaveEncashment,
+  fmtCurrency: fmtCurrency
+};
+
+if(typeof module !== 'undefined' && module.exports) module.exports = LeaveEncashmentEngine;
+if(typeof window !== 'undefined') window.LeaveEncashmentEngine = LeaveEncashmentEngine;
+
+</script>
+<script>
+(function(){
+'use strict';
+var E = window.LeaveEncashmentEngine;
+function $(id){ return document.getElementById(id); }
+function num(id){ var el = $(id); if(!el) return 0; var v = parseFloat(el.value); return isFinite(v) && v > 0 ? v : 0; }
+function lsGet(key, fallback){ try{ var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } }
+function lsSet(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+function status(msg){ $('le-statusMsg').textContent = msg; }
+function fmt(n){
+  var currency = $('le-currency').value;
+  var decimals = parseInt($('le-decimalPlaces').value, 10) || 0;
+  var mode = $('le-roundOff').value;
+  var rounded = E.applyRounding(n, mode, decimals);
+  return E.fmtCurrency(rounded, currency, decimals);
+}
+function nowrap(text){ return '<span class="le-nowrap">' + text + '</span>'; }
+
+/* ===================== Tabs ===================== */
+var tabs = [['le-tabEmployee','le-paneEmployee'],['le-tabLeave','le-paneLeave'],['le-tabHistory','le-paneHistory'],['le-tabSettings','le-paneSettings']];
+tabs.forEach(function(pair){
+  $(pair[0]).addEventListener('click', function(){
+    tabs.forEach(function(p2){
+      $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected','false');
+      $(p2[1]).classList.remove('active');
+    });
+    $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected','true');
+    $(pair[1]).classList.add('active');
+  });
+});
+
+$('le-workingDaysFormula').addEventListener('change', function(){
+  $('le-customDaysField').hidden = this.value !== 'custom';
+  compute();
+});
+
+/* ===================== Compute ===================== */
+var lastResult = null;
+function workingDaysDivisor(){
+  var v = $('le-workingDaysFormula').value;
+  if(v === 'custom') return num('le-customDays') || 30;
+  return parseInt(v, 10);
+}
+function validateInputs(){
+  var salaryErr = num('le-basicSalary') < 0 || num('le-da') < 0;
+  $('le-salaryErr').style.display = salaryErr ? 'block' : 'none';
+  var leaveErr = num('le-leaveUsed') > (num('le-totalEarnedLeave') + num('le-carryForwardLeave'));
+  $('le-leaveErr').style.display = leaveErr ? 'block' : 'none';
+  return !salaryErr;
+}
+function compute(){
+  validateInputs();
+  var inp = {
+    basicSalary: num('le-basicSalary'), da: num('le-da'), workingDaysDivisor: workingDaysDivisor(),
+    totalEarnedLeave: num('le-totalEarnedLeave'), leaveUsed: num('le-leaveUsed'),
+    carryForwardLeave: num('le-carryForwardLeave'), maxEncashmentLimit: num('le-maxEncashmentLimit'),
+    employeeType: $('le-employeeType').value, encashmentType: $('le-encashmentType').value,
+    yearsOfService: num('le-yearsOfService') + num('le-monthsOfService')/12,
+    taxRate: num('le-taxRate') / 100
+  };
+  lastResult = E.computeLeaveEncashment(inp);
+  lastResult.grossSalary = num('le-grossSalary');
+  lastResult.otherAllowances = num('le-otherAllowances');
+
+  renderSummary();
+  renderTaxBasis();
+  renderFormula();
+  renderSummaryTable();
+  renderCharts();
+  updateShareLinks();
+}
+
+/* ===================== Summary Card ===================== */
+function statCard(label, value, highlight){ return '<div class="stat-box' + (highlight?' le-highlight':'') + '"><div class="num">' + value + '</div><div class="lbl">' + label + '</div></div>'; }
+function renderSummary(){
+  var r = lastResult;
+  $('le-summaryCards').innerHTML =
+    statCard('Daily Salary', fmt(r.dailySalary)) +
+    statCard('Eligible Leave', r.eligibleLeaveDays.toFixed(0) + ' Days') +
+    statCard('Leave Encashment (Gross)', fmt(r.grossEncashment)) +
+    statCard('Tax Exemption', fmt(r.exemption)) +
+    statCard('Taxable Amount', fmt(r.taxableAmount)) +
+    statCard('Net Payable', fmt(r.netAmount), true);
+}
+
+/* ===================== Tax basis box ===================== */
+function row(label, value){ return '<div class="le-engine-row"><span>' + label + '</span><span>' + value + '</span></div>'; }
+function renderTaxBasis(){
+  var r = lastResult;
+  var html = row('Basis', r.taxBasis);
+  if(r.tenMonthsAvgSalary != null){
+    html += row('10 Months\' Average Salary', fmt(r.tenMonthsAvgSalary));
+    html += row('Leave-Based Limit', fmt(r.leaveBasedLimit));
+    html += row('Statutory Limit', fmt(r.statutoryLimit));
+  }
+  $('le-taxBasisBox').innerHTML = html;
+
+  var flags = [];
+  flags.push(r.exemption > 0 ? '<span class="le-flag ok">Exemption applicable: ' + fmt(r.exemption) + '</span>' : '<span class="le-flag warn">Fully taxable</span>');
+  $('le-resultFlags').innerHTML = flags.join('');
+}
+
+/* ===================== Formula box ===================== */
+function renderFormula(){
+  var r = lastResult;
+  var lines = [
+    'Daily Salary = (Basic Salary + DA) / Working Days',
+    '             = (' + fmt($('le-basicSalary').value) + ' + ' + fmt($('le-da').value) + ') / ' + workingDaysDivisor(),
+    '             = ' + fmt(r.dailySalary),
+    '',
+    'Eligible Leave = Total Earned Leave - Leave Used + Carry Forward (capped at max limit)',
+    '               = ' + r.eligibleLeaveDays.toFixed(0) + ' Days',
+    '',
+    'Leave Encashment = Daily Salary x Eligible Leave',
+    '                 = ' + fmt(r.dailySalary) + ' x ' + r.eligibleLeaveDays.toFixed(0) + ' Days',
+    '                 = ' + fmt(r.grossEncashment),
+    '',
+    'Tax Exemption = ' + fmt(r.exemption),
+    'Taxable Amount = Gross Encashment - Exemption = ' + fmt(r.taxableAmount),
+    '',
+    'Net Payable = Gross Encashment - (Taxable Amount x Your Tax Rate)',
+    '            = ' + fmt(r.grossEncashment) + ' - (' + fmt(r.taxableAmount) + ' x ' + (num('le-taxRate')) + '%)',
+    '            = ' + fmt(r.netAmount)
+  ];
+  $('le-formulaBox').textContent = lines.join('\n');
+}
+
+/* ===================== Summary table ===================== */
+function renderSummaryTable(){
+  var r = lastResult;
+  var rows = [
+    ['Basic Salary', fmt(num('le-basicSalary'))], ['DA', fmt(num('le-da'))],
+    ['Gross Salary (Reference)', fmt(r.grossSalary)], ['Other Allowances (Reference)', fmt(r.otherAllowances)],
+    ['Daily Salary', fmt(r.dailySalary)], ['Total Earned Leave', num('le-totalEarnedLeave').toFixed(0) + ' Days'],
+    ['Leave Used', num('le-leaveUsed').toFixed(0) + ' Days'], ['Carry Forward Leave', num('le-carryForwardLeave').toFixed(0) + ' Days'],
+    ['Eligible Leave', r.eligibleLeaveDays.toFixed(0) + ' Days'], ['Gross Encashment', fmt(r.grossEncashment)],
+    ['Tax Exemption', fmt(r.exemption)], ['Taxable Amount', fmt(r.taxableAmount)], ['Net Payable', fmt(r.netAmount)]
+  ];
+  var tbody = document.querySelector('#le-summaryTable tbody');
+  tbody.innerHTML = rows.map(function(pair){ return '<tr><td>' + pair[0] + '</td><td>' + pair[1] + '</td></tr>'; }).join('');
+}
+
+/* ===================== Canvas charts ===================== */
+var PALETTE = ['#7C5CFC','#16C079','#F59E0B','#F87171','#38BDF8','#A78BFA'];
+function drawPie(canvasId, legendId, data, doughnut){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var total = data.reduce(function(s,d){ return s + Math.max(0,d.value); }, 0);
+  var cx = w/2, cy = h/2, radius = Math.min(w,h)/2 - 10;
+  if(total <= 0){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', cx, cy);
+    if(legendId) $(legendId).innerHTML = '';
+    return;
+  }
+  var start = -Math.PI/2;
+  data.forEach(function(d, i){
+    var slice = (Math.max(0,d.value) / total) * Math.PI * 2;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, radius, start, start + slice); ctx.closePath();
+    ctx.fillStyle = PALETTE[i % PALETTE.length]; ctx.fill();
+    start += slice;
+  });
+  if(doughnut){ ctx.beginPath(); ctx.arc(cx, cy, radius*0.55, 0, Math.PI*2); ctx.fillStyle = '#160b2e'; ctx.fill(); }
+  if(legendId){
+    $(legendId).innerHTML = data.map(function(d,i){
+      return '<span><i style="background:' + PALETTE[i%PALETTE.length] + '"></i>' + d.label + ': ' + fmt(d.value) + '</span>';
+    }).join('');
+  }
+}
+function drawBar(canvasId, data){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var total = data.reduce(function(s,d){return s+Math.max(0,d.value);},0);
+  if(total <= 0){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', w/2, h/2);
+    return;
+  }
+  var max = Math.max.apply(null, data.map(function(d){ return d.value; }).concat([1]));
+  var barW = w / data.length * 0.6;
+  var gap = w / data.length;
+  data.forEach(function(d, i){
+    var barH = (Math.max(0,d.value) / max) * (h - 40);
+    var x = i * gap + (gap - barW)/2;
+    var y = h - 24 - barH;
+    ctx.fillStyle = PALETTE[i % PALETTE.length];
+    ctx.fillRect(x, y, barW, barH);
+    ctx.fillStyle = '#aaa'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(d.label, x + barW/2, h - 8);
+  });
+}
+function renderCharts(){
+  var r = lastResult;
+  drawPie('le-chartSalary', 'le-legendSalary', [
+    {label:'Basic', value: num('le-basicSalary')}, {label:'DA', value: num('le-da')}, {label:'Other Allowances', value: r.otherAllowances}
+  ]);
+  drawBar('le-chartEncashment', [
+    {label:'Gross', value: r.grossEncashment}, {label:'Exempt', value: r.exemption}, {label:'Taxable', value: r.taxableAmount}
+  ]);
+}
+
+/* ===================== History ===================== */
+var HISTORY_KEY = 'le_history';
+function loadHistory(){ return lsGet(HISTORY_KEY, []); }
+function saveHistory(list){ lsSet(HISTORY_KEY, list.slice(0, 50)); }
+function addToHistory(){
+  if(!lastResult) return;
+  var list = loadHistory();
+  list.unshift({
+    ts: new Date().toISOString(), name: $('le-employeeName').value || '(unnamed)',
+    type: $('le-employeeType').value, encashmentType: $('le-encashmentType').value,
+    gross: lastResult.grossEncashment, exemption: lastResult.exemption, taxable: lastResult.taxableAmount
+  });
+  saveHistory(list);
+  renderHistory();
+}
+function renderHistory(filter){
+  var list = loadHistory();
+  if(filter){
+    var f = filter.toLowerCase();
+    list = list.filter(function(item){
+      return item.name.toLowerCase().indexOf(f) !== -1 || item.type.toLowerCase().indexOf(f) !== -1 || String(item.gross).indexOf(f) !== -1;
+    });
+  }
+  var wrap = $('le-historyList');
+  if(!list.length){ wrap.innerHTML = '<p class="le-muted">No calculations saved yet.</p>'; return; }
+  wrap.innerHTML = list.map(function(item){
+    var d = new Date(item.ts);
+    return '<div class="le-history-item"><span>' + item.name + ' (' + item.type + ', ' + item.encashmentType + ') — ' + fmt(item.gross) + '<br><span class="le-muted">' + d.toLocaleString() + '</span></span></div>';
+  }).join('');
+}
+$('le-historySearch').addEventListener('input', function(){ renderHistory(this.value); });
+$('le-clearHistoryBtn').addEventListener('click', function(){
+  if(!confirm('Clear all saved calculation history?')) return;
+  saveHistory([]); renderHistory();
+  status('🗑️ History cleared.');
+});
+
+/* ===================== Buttons ===================== */
+$('le-calcBtn').addEventListener('click', function(){ compute(); addToHistory(); status('✅ Calculation updated and saved to history.'); });
+$('le-exampleBtn').addEventListener('click', function(){
+  $('le-employeeName').value = 'Rahul Sharma';
+  $('le-employeeType').value = 'private';
+  $('le-encashmentType').value = 'retirement';
+  $('le-basicSalary').value = 45000; $('le-da').value = 9000; $('le-grossSalary').value = 65000; $('le-otherAllowances').value = 5000;
+  $('le-workingDaysFormula').value = '30'; $('le-customDaysField').hidden = true; $('le-taxRate').value = 0;
+  $('le-yearsOfService').value = 22; $('le-monthsOfService').value = 6;
+  $('le-totalEarnedLeave').value = 300; $('le-leaveUsed').value = 0; $('le-carryForwardLeave').value = 0; $('le-maxEncashmentLimit').value = 300;
+  compute();
+  status('📋 Example data loaded.');
+});
+$('le-resetBtn').addEventListener('click', function(){
+  if(!confirm('Reset all fields to default?')) return;
+  $('le-employeeName').value = '';
+  $('le-employeeType').value = 'private'; $('le-encashmentType').value = 'retirement';
+  $('le-basicSalary').value = 40000; $('le-da').value = 8000; $('le-grossSalary').value = 0; $('le-otherAllowances').value = 0;
+  $('le-workingDaysFormula').value = '30'; $('le-customDaysField').hidden = true;
+  $('le-yearsOfService').value = 20; $('le-monthsOfService').value = 0;
+  $('le-totalEarnedLeave').value = 300; $('le-leaveUsed').value = 0; $('le-carryForwardLeave').value = 0; $('le-maxEncashmentLimit').value = 300;
+  compute();
+  status('↺ Reset complete.');
+});
+$('le-printBtn').addEventListener('click', function(){ window.print(); });
+
+function buildTextSummary(){
+  var r = lastResult;
+  return [
+    'Leave Encashment Calculation Summary',
+    'Daily Salary: ' + fmt(r.dailySalary), 'Eligible Leave: ' + r.eligibleLeaveDays.toFixed(0) + ' Days',
+    'Gross Encashment: ' + fmt(r.grossEncashment), 'Tax Exemption: ' + fmt(r.exemption),
+    'Taxable Amount: ' + fmt(r.taxableAmount), 'Net Payable: ' + fmt(r.netAmount)
+  ].join('\n');
+}
+$('le-copyBtn').addEventListener('click', function(){
+  if(!lastResult){ status('⚠️ Calculate first.'); return; }
+  var text = buildTextSummary();
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ status('📋 Copied to clipboard.'); });
+  }
+});
+$('le-pdfBtn').addEventListener('click', function(){
+  if(typeof html2pdf === 'undefined'){ alert('PDF engine failed to load — check your connection and refresh.'); return; }
+  html2pdf().from($('le-resultSide')).set({filename:'leave-encashment-summary.pdf', margin:10}).save();
+});
+$('le-xlsxBtn').addEventListener('click', function(){
+  if(typeof XLSX === 'undefined'){ alert('Excel engine failed to load — check your connection and refresh.'); return; }
+  var r = lastResult;
+  var rows = [['Metric','Value'], ['Daily Salary', r.dailySalary], ['Eligible Leave (Days)', r.eligibleLeaveDays],
+    ['Gross Encashment', r.grossEncashment], ['Tax Exemption', r.exemption], ['Taxable Amount', r.taxableAmount], ['Net Payable', r.netAmount]];
+  var ws = XLSX.utils.aoa_to_sheet(rows);
+  var wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Leave Encashment');
+  XLSX.writeFile(wb, 'leave-encashment-summary.xlsx');
+});
+$('le-csvBtn').addEventListener('click', function(){
+  if(!lastResult){ status('⚠️ Calculate first.'); return; }
+  var r = lastResult;
+  var rows = [['Metric','Value'], ['Daily Salary', r.dailySalary], ['Eligible Leave (Days)', r.eligibleLeaveDays],
+    ['Gross Encashment', r.grossEncashment], ['Tax Exemption', r.exemption], ['Taxable Amount', r.taxableAmount], ['Net Payable', r.netAmount]];
+  var csv = rows.map(function(row){ return row.map(function(c){ return /[",\n]/.test(c) ? ('"'+String(c).replace(/"/g,'""')+'"') : c; }).join(','); }).join('\r\n');
+  downloadBlob('leave-encashment-summary.csv', new Blob([csv], {type:'text/csv'}));
+});
+
+/* ===================== Share links ===================== */
+function updateShareLinks(){
+  if(!lastResult) return;
+  var text = buildTextSummary();
+  var url = location.href;
+  $('le-shareWhatsapp').href = 'https://wa.me/?text=' + encodeURIComponent(text + '\n' + url);
+  $('le-shareFacebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+  $('le-shareTwitter').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
+  $('le-shareEmail').href = 'mailto:?subject=' + encodeURIComponent('Leave Encashment Calculation Summary') + '&body=' + encodeURIComponent(text + '\n\n' + url);
+}
+
+/* ===================== Validation on inputs ===================== */
+document.querySelectorAll('#le-formSide input, #le-formSide select').forEach(function(el){
+  el.addEventListener('input', compute);
+  el.addEventListener('change', compute);
+});
+
+/* ===================== Settings: theme (dark/light/auto) / language / accessibility ===================== */
+var I18N = {
+  en: {
+    tabEmployee:'👤 Employee & Salary', tabLeave:'🏖️ Leave Details', tabHistory:'🕘 History', tabSettings:'⚙️ Settings',
+    calc:'🧮 Calculate', example:'📋 Load Example', reset:'↺ Reset', print:'🖨️ Print', pdf:'📄 PDF', xlsx:'📊 Excel', csv:'📑 CSV', copy:'📋 Copy Result'
+  },
+  hi: {
+    tabEmployee:'👤 Employee और Salary', tabLeave:'🏖️ Leave विवरण', tabHistory:'🕘 इतिहास', tabSettings:'⚙️ सेटिंग्स',
+    calc:'🧮 गणना करें', example:'📋 उदाहरण लोड करें', reset:'↺ रीसेट', print:'🖨️ प्रिंट', pdf:'📄 PDF', xlsx:'📊 Excel', csv:'📑 CSV', copy:'📋 परिणाम कॉपी करें'
+  }
+};
+function applyLanguage(lang){
+  var t = I18N[lang] || I18N.en;
+  $('le-tabEmployee').textContent = t.tabEmployee;
+  $('le-tabLeave').textContent = t.tabLeave;
+  $('le-tabHistory').textContent = t.tabHistory;
+  $('le-tabSettings').textContent = t.tabSettings;
+  $('le-calcBtn').textContent = t.calc;
+  $('le-exampleBtn').textContent = t.example;
+  $('le-resetBtn').textContent = t.reset;
+  $('le-printBtn').textContent = t.print;
+  $('le-pdfBtn').textContent = t.pdf;
+  $('le-xlsxBtn').textContent = t.xlsx;
+  $('le-csvBtn').textContent = t.csv;
+  $('le-copyBtn').textContent = t.copy;
+}
+$('le-language').addEventListener('change', function(){ applyLanguage(this.value); lsSet('le_lang', this.value); });
+
+function applyTheme(mode){
+  var isLight;
+  if(mode === 'auto') isLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  else isLight = mode === 'light';
+  document.body.classList.toggle('le-light', !!isLight);
+}
+$('le-theme').addEventListener('change', function(){ applyTheme(this.value); lsSet('le_theme', this.value); });
+if(window.matchMedia){
+  window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(){
+    if($('le-theme').value === 'auto') applyTheme('auto');
+  });
+}
+$('le-highContrast').addEventListener('change', function(){ document.body.classList.toggle('le-high-contrast', this.checked); lsSet('le_hc', this.checked); });
+$('le-largeFont').addEventListener('change', function(){ document.body.classList.toggle('le-large-font', this.checked); lsSet('le_lf', this.checked); });
+$('le-decimalPlaces').addEventListener('change', compute);
+$('le-roundOff').addEventListener('change', compute);
+$('le-currency').addEventListener('change', compute);
+
+/* ===================== Init ===================== */
+var savedLang = lsGet('le_lang', 'en'); $('le-language').value = savedLang; applyLanguage(savedLang);
+var savedTheme = lsGet('le_theme', 'dark'); $('le-theme').value = savedTheme; applyTheme(savedTheme);
+var savedHc = lsGet('le_hc', false); $('le-highContrast').checked = savedHc; document.body.classList.toggle('le-high-contrast', savedHc);
+var savedLf = lsGet('le_lf', false); $('le-largeFont').checked = savedLf; document.body.classList.toggle('le-large-font', savedLf);
+
+renderHistory();
+compute();
+
+})();
+
+</script>
+<!-- Default Statcounter code for Apne Software
+https://apnesoftware.com -->
+<script type="text/javascript">
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13334460/0/a5854dc7/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+</body>
+</html>
