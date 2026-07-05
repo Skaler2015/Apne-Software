@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Free Professional TDS Calculator for India (FY 2025-26 & 2026-27) — Salary (192), Contractor (194C), Professional Fees (194J), Commission (194H), Rent (194I), Property Purchase (194IA), Interest (194A), Dividend (194), E-commerce (194O) and Virtual Digital Assets (194S). PAN/206AA, lower-deduction certificates, Form 15G/15H, multiple payments, charts and export to PDF/Excel. 100% private, browser-only, no signup.">
+<meta name="keywords" content="TDS calculator India, TDS on salary 192, TDS on contractor 194C, TDS on professional fees 194J, TDS on rent 194I, TDS on commission 194H, TDS on property purchase 194IA, TDS on interest 194A, TDS on dividend, TDS on crypto 194S, TDS rates FY 2025-26, TDS threshold limits, Form 15G 15H, Form 26AS TRACES">
+<link rel="canonical" href="https://apnesoftware.com/tools/tds-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Professional TDS Calculator (India) | ApneSoftware">
+<meta property="og:description" content="Calculate TDS instantly for salary, contractor, professional fees, rent, commission, property purchase, interest, dividend, e-commerce and crypto payments — with PAN/206AA and lower-deduction certificate handling. Free, private, browser-only.">
+<meta property="og:url" content="https://apnesoftware.com/tools/tds-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Professional TDS Calculator (India) | ApneSoftware">
+<meta name="twitter:description" content="TDS on salary, contractor, professional fees, rent, commission, property, interest, dividend, e-commerce and crypto — instant, free, private, browser-only.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Professional TDS Calculator","description":"Professional in-browser TDS (Tax Deducted at Source) calculator for India covering Section 192 (Salary), 194C (Contractor), 194J (Professional/Technical Fees), 194H (Commission), 194I (Rent), 194IA (Property Purchase), 194A (Interest), 194 (Dividend), 194O (E-commerce) and 194S (Virtual Digital Assets), with PAN/Section 206AA higher-rate handling, Section 197 lower/nil deduction certificates, Form 15G/15H, multiple-payment aggregation and charts.","url":"https://apnesoftware.com/tools/tds-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Ten TDS section types (192, 194C, 194J, 194H, 194I, 194IA, 194A, 194, 194O, 194S) plus custom Other Payments","Automatic threshold and rate determination","PAN unavailable — Section 206AA higher-rate handling","Section 197 lower/nil deduction certificate override","Form 15G/15H self-declaration handling","GST-exclusive taxable base calculation","Multiple payment mode with aggregate threshold tracking","Interactive charts","Export to PDF, Excel, copy and share"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Professional TDS Calculator","url":"https://apnesoftware.com/tools/tds-calculator.html","description":"Browser-based TDS calculator for India covering salary, contractor, professional fees, rent, commission, property purchase, interest, dividend, e-commerce and crypto payments.","inLanguage":["en","hi"],"isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".tool-header p"]}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"Calculators & Converters","item":"https://apnesoftware.com/index.html#cat-calculator"},{"@type":"ListItem","position":3,"name":"TDS Calculator","item":"https://apnesoftware.com/tools/tds-calculator.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to calculate TDS in India","description":"Determine the applicable TDS section, rate and amount for a payment.","step":[{"@type":"HowToStep","name":"Choose the TDS type","text":"Select the payment type — Salary, Contractor, Professional Fees, Commission, Rent, Property Purchase, Interest, Dividend, E-commerce, Virtual Digital Assets or Other."},{"@type":"HowToStep","name":"Enter taxpayer details","text":"Choose taxpayer type, residential status, PAN availability, and any lower/nil deduction certificate or Form 15G/15H."},{"@type":"HowToStep","name":"Enter payment details","text":"Enter the gross amount, whether GST is included, the payment date and any earlier payments this year."},{"@type":"HowToStep","name":"Review the result","text":"See the applicable section, threshold, TDS rate, TDS amount and net payable amount update instantly."}]}
+</script>
+<meta name="color-scheme" content="dark light">
+<title>Professional TDS Calculator (India) | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* ===== TDS Calculator — scoped td- prefix ===== */
+  .td-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;align-items:start}
+  #td-formSide,#td-resultSide{min-width:0}
+  #td-resultSide{position:sticky;top:16px}
+  @media(max-width:900px){ .td-grid{grid-template-columns:1fr} #td-resultSide{position:static} }
+
+  .td-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .td-tab{padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.82rem;font-weight:600;font-family:inherit}
+  .td-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .td-tab[hidden]{display:none}
+  .td-pane{display:none}
+  .td-pane.active{display:block}
+
+  .td-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px}
+  .td-card h3{margin:0 0 10px;font-size:.95rem}
+  .td-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:10px}
+  .td-field label{display:block;font-size:.76rem;color:var(--text-dim);margin-bottom:4px;display:flex;align-items:center;gap:4px}
+  .td-field input,.td-field select{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.88rem}
+  .td-field[hidden]{display:none}
+  .td-tip{cursor:help;color:var(--text-dim);border:1px solid var(--border);border-radius:999px;width:15px;height:15px;font-size:.65rem;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .td-checkline{display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:22px;font-size:.85rem}
+  .td-checkline input{width:auto}
+  .td-err{font-size:.72rem;color:#fca5a5;margin-top:2px;display:none}
+  .td-field.td-invalid input{border-color:#f87171}
+  .td-field.td-invalid .td-err{display:block}
+
+  .td-stat-cards{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .td-stat-cards .stat-box{flex:1;min-width:120px}
+
+  .td-engine-box{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:10px 0}
+  .td-engine-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--border);font-size:.86rem}
+  .td-engine-row:last-child{border-bottom:none}
+  .td-engine-row span:last-child{font-weight:700;color:var(--accent)}
+
+  .td-waterfall{display:flex;flex-direction:column;gap:2px;margin:12px 0}
+  .td-wf-row{display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;font-size:.86rem;background:var(--surface-2)}
+  .td-wf-row.td-wf-total{background:rgba(var(--accent-rgb),.18);font-weight:800;font-size:.95rem}
+  .td-wf-row.td-wf-sub span:last-child{color:#fca5a5}
+
+  .td-chart-wrap{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px;margin-top:12px}
+  .td-chart-wrap h4{font-size:.82rem;color:var(--text-dim);font-weight:600;margin-bottom:8px}
+  .td-chart-wrap canvas{width:100%;height:auto;display:block}
+  .td-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:.76rem;color:var(--text-dim)}
+  .td-legend span{display:inline-flex;align-items:center;gap:5px}
+  .td-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+  .td-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .td-flag{padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600;border:1px solid var(--border)}
+  .td-flag.ok{background:rgba(22,192,121,.15);color:#7ef0bd;border-color:rgba(22,192,121,.4)}
+  .td-flag.warn{background:rgba(248,113,113,.15);color:#fca5a5;border-color:rgba(248,113,113,.4)}
+  .td-flag.neutral{background:var(--surface-2);color:var(--text-dim)}
+
+  .td-note{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.3);border-radius:10px;padding:10px 12px;font-size:.8rem;color:#fde68a;margin-top:10px}
+  .td-muted{color:var(--text-dim);font-size:.8rem;margin-top:6px}
+
+  .td-multi-table{width:100%;border-collapse:collapse;font-size:.84rem;margin:10px 0}
+  .td-multi-table th,.td-multi-table td{padding:8px 8px;text-align:left;border-bottom:1px solid var(--border)}
+  .td-multi-table th{color:#c4b5fd;font-weight:700;font-size:.74rem;text-transform:uppercase;letter-spacing:.03em}
+  .td-multi-table input{width:100%;padding:6px 8px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.82rem}
+  .td-multi-remove{background:none;border:1px solid var(--border);color:#fca5a5;border-radius:6px;cursor:pointer;padding:4px 8px;font-size:.78rem}
+  .td-multi-total{font-weight:800;background:rgba(var(--accent-rgb),.12)}
+
+  body.td-large-font #td-formSide,body.td-large-font #td-resultSide{font-size:1.1rem}
+  body.td-high-contrast{filter:contrast(1.2) brightness(1.06)}
+
+  /* ===== Light mode — scoped strictly to the tool's own content, not the shared site chrome ===== */
+  body.td-light :is(.container,.td-content){
+    --bg:#f4f2fb; --surface:#ffffff; --surface-2:#efeaf9; --border:rgba(20,10,45,.14); --border-strong:rgba(20,10,45,.24);
+    --text:#1c1533; --text-dim:rgba(28,21,51,.68);
+  }
+  /* .container/.td-content sit directly on the page's dark gradient background (no background
+     of their own in the base stylesheet), so light mode must give them a genuine solid
+     background here — otherwise the newly-dark text would render dark-on-dark. */
+  body.td-light .container,
+  body.td-light .td-content{
+    background:#f4f2fb;
+    border-radius:18px;
+    padding:20px 22px;
+    box-shadow:0 8px 32px rgba(20,10,45,.12);
+  }
+  body.td-light :is(.container,.td-content) h1,
+  body.td-light :is(.container,.td-content) h2,
+  body.td-light :is(.container,.td-content) h3,
+  body.td-light :is(.container,.td-content) h4,
+  body.td-light :is(.container,.td-content) h5,
+  body.td-light :is(.container,.td-content) h6{color:var(--text)}
+  body.td-light :is(.container,.td-content) p{color:var(--text-dim)}
+  body.td-light :is(.container,.td-content) label{color:var(--text-dim)}
+  body.td-light :is(.container,.td-content) textarea,
+  body.td-light :is(.container,.td-content) input[type=text],
+  body.td-light :is(.container,.td-content) input[type=number],
+  body.td-light :is(.container,.td-content) input[type=date],
+  body.td-light :is(.container,.td-content) select{
+    background:#ffffff;border:1px solid rgba(20,10,45,.2);color:var(--text)
+  }
+  body.td-light :is(.container,.td-content) input::placeholder,
+  body.td-light :is(.container,.td-content) textarea::placeholder{color:rgba(28,21,51,.4)}
+  body.td-light :is(.container,.td-content) select option{background:#ffffff;color:var(--text)}
+  body.td-light :is(.container,.td-content) .panel{background:#ffffff!important;border:1px solid rgba(20,10,45,.1)!important;box-shadow:0 8px 28px rgba(20,10,45,.08)!important}
+  body.td-light :is(.container,.td-content) table th{background:rgba(20,10,45,.06);color:var(--text)}
+  body.td-light :is(.container,.td-content) table td{color:var(--text-dim);border-color:rgba(20,10,45,.1)}
+  body.td-light :is(.container,.td-content) .td-tab{color:var(--text-dim)}
+  body.td-light :is(.container,.td-content) .td-tab.active{color:#fff}
+  body.td-light :is(.container,.td-content) .btn.secondary{background:var(--surface-2);border-color:var(--border);color:var(--text)}
+
+  .related-grid a .ri{margin-right:6px}
+  .td-content h2{font-size:1.15rem;margin:26px 0 10px}
+  .td-content h3{font-size:1rem;margin:18px 0 8px}
+  .td-content p,.td-content li{font-size:.92rem;line-height:1.72}
+  .td-content ul,.td-content ol{padding-left:20px}
+  .td-content table{width:100%;border-collapse:collapse;font-size:.86rem;margin:12px 0}
+  .td-content table th,.td-content table td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border)}
+  .td-content table th{color:#c4b5fd}
+  .td-lang-note{font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:-4px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="td-muted" style="margin-bottom:10px" aria-label="Breadcrumb">
+    <a href="../index.html" style="color:#c4b5fd;text-decoration:none">Home</a> ›
+    <a href="../index.html#cat-calculator" style="color:#c4b5fd;text-decoration:none">Calculators &amp; Converters</a> ›
+    TDS Calculator
+  </nav>
+
+  <div class="tool-header">
+    <h1>🧾 Professional TDS Calculator</h1>
+    <p>Instantly calculate TDS (Tax Deducted at Source) on salary, contractor payments, professional fees, commission, rent, property purchase, interest, dividend, e-commerce and virtual digital assets — with PAN/206AA and Section 197 handling. 100% in your browser.</p>
+
+    <div class="td-row" style="margin-top:14px">
+      <div class="td-field">
+        <label for="td-fy">Financial Year</label>
+        <select id="td-fy">
+          <option value="2026-27">FY 2026-27</option>
+          <option value="2025-26">FY 2025-26</option>
+        </select>
+      </div>
+      <div class="td-field">
+        <label for="td-ay">Assessment Year</label>
+        <select id="td-ay" disabled>
+          <option value="2027-28">AY 2027-28</option>
+          <option value="2026-27">AY 2026-27</option>
+        </select>
+      </div>
+      <div class="td-field">
+        <label for="td-language">Language</label>
+        <select id="td-language"><option value="en">English</option><option value="hi">हिन्दी</option></select>
+      </div>
+      <div class="td-field">
+        <label for="td-theme">Theme</label>
+        <select id="td-theme"><option value="dark">🌙 Dark</option><option value="light">☀️ Light</option></select>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="td-calcBtn" type="button">🧮 Calculate</button>
+      <button class="btn secondary" id="td-resetBtn" type="button">↺ Reset</button>
+      <button class="btn secondary" id="td-printBtn" type="button">🖨️ Print</button>
+      <button class="btn secondary" id="td-pdfBtn" type="button">📄 Download PDF</button>
+      <button class="btn secondary" id="td-xlsxBtn" type="button">📊 Download Excel</button>
+      <button class="btn secondary" id="td-copyBtn" type="button">📋 Copy Result</button>
+      <button class="btn secondary" id="td-shareBtn" type="button">🔗 Share</button>
+    </div>
+    <div id="td-statusMsg" class="td-muted" role="status" aria-live="polite"></div>
+  </div>
+
+  <div class="td-grid">
+    <div id="td-formSide">
+      <div class="panel">
+        <div class="td-tabs" role="tablist">
+          <button class="td-tab active" id="td-tabType" role="tab" aria-selected="true">🏷️ TDS Type &amp; Taxpayer</button>
+          <button class="td-tab" id="td-tabPayment" role="tab" aria-selected="false">💰 Payment Details</button>
+          <button class="td-tab" id="td-tabSalary" role="tab" aria-selected="false">💼 Salary Details</button>
+          <button class="td-tab" id="td-tabMulti" role="tab" aria-selected="false">📅 Multiple Payments</button>
+          <button class="td-tab" id="td-tabSettings" role="tab" aria-selected="false">⚙️ Settings</button>
+        </div>
+
+        <!-- ===== Tab: TDS Type & Taxpayer (Steps 1-2) ===== -->
+        <div class="td-pane active" id="td-paneType">
+          <div class="td-card">
+            <h3>🏷️ TDS Type</h3>
+            <div class="td-row">
+              <div class="td-field" style="grid-column:1/-1">
+                <label for="td-section">Payment / TDS Type</label>
+                <select id="td-section">
+                  <option value="192">Salary (Section 192)</option>
+                  <option value="194C">Contractor Payments (Section 194C)</option>
+                  <option value="194J">Professional / Technical Fees (Section 194J)</option>
+                  <option value="194H">Commission / Brokerage (Section 194H)</option>
+                  <option value="194I">Rent (Section 194I)</option>
+                  <option value="194IA">Property Purchase (Section 194IA)</option>
+                  <option value="194A">Interest (Section 194A)</option>
+                  <option value="194">Dividend (Section 194)</option>
+                  <option value="194O">E-commerce Participant (Section 194O)</option>
+                  <option value="194S">Virtual Digital Assets / Crypto (Section 194S)</option>
+                  <option value="other">Other Payments</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="td-card">
+            <h3>👤 Taxpayer Details</h3>
+            <div class="td-row">
+              <div class="td-field" id="td-taxpayerTypeField">
+                <label for="td-taxpayerType">Taxpayer / Deductee Type</label>
+                <select id="td-taxpayerType">
+                  <option value="individual">Individual</option>
+                  <option value="huf">HUF</option>
+                  <option value="firm">Partnership Firm / LLP</option>
+                  <option value="company">Company</option>
+                  <option value="other">Other (AOP/BOI/Trust etc.)</option>
+                </select>
+              </div>
+              <div class="td-field">
+                <label for="td-residential">Residential Status</label>
+                <select id="td-residential">
+                  <option value="resident">Resident</option>
+                  <option value="nri">Non-Resident (NRI)</option>
+                </select>
+              </div>
+              <div class="td-field">
+                <label for="td-pan">PAN Availability</label>
+                <select id="td-pan">
+                  <option value="yes">PAN Available</option>
+                  <option value="no">PAN Not Available</option>
+                </select>
+              </div>
+            </div>
+            <div class="td-row">
+              <div class="td-field">
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+                  <input type="checkbox" id="td-certActive" style="width:auto"> Lower/Nil Deduction Certificate (Sec 197)
+                </label>
+              </div>
+              <div class="td-field" id="td-certRateField" hidden>
+                <label for="td-certRate">Certificate Rate (%)</label>
+                <input type="number" id="td-certRate" min="0" max="30" value="0">
+              </div>
+              <div class="td-field" id="td-form15gField" hidden>
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+                  <input type="checkbox" id="td-form15g" style="width:auto"> Form 15G/15H Submitted
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Payment Details (Step 3 + dynamic section-specific fields) ===== -->
+        <div class="td-pane" id="td-panePayment">
+          <div class="td-card">
+            <h3>💰 Payment Details</h3>
+            <div class="td-row">
+              <div class="td-field"><label for="td-grossAmount">Gross Amount (₹)</label><input type="number" id="td-grossAmount" min="0" value="0"></div>
+              <div class="td-field">
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+                  <input type="checkbox" id="td-gstIncluded" style="width:auto"> GST Included in Amount
+                </label>
+              </div>
+              <div class="td-field" id="td-gstRateField" hidden><label for="td-gstRate">GST Rate (%)</label><input type="number" id="td-gstRate" min="0" max="28" value="18"></div>
+              <div class="td-field"><label for="td-paymentDate">Payment Date</label><input type="date" id="td-paymentDate"></div>
+              <div class="td-field"><label for="td-numPayments">Number of Payments (FY)</label><input type="number" id="td-numPayments" min="1" value="1"></div>
+              <div class="td-field">
+                <label for="td-frequency">Payment Frequency</label>
+                <select id="td-frequency"><option value="oneTime">One-time</option><option value="monthly">Monthly</option><option value="quarterly">Quarterly</option><option value="custom">Custom</option></select>
+              </div>
+              <div class="td-field"><label for="td-previousPayments">Previous Payments This FY (₹) <span class="td-tip" title="Amount already paid to this payee earlier in the same financial year — used to check whether the aggregate threshold has been crossed.">?</span></label><input type="number" id="td-previousPayments" min="0" value="0"></div>
+            </div>
+          </div>
+
+          <div class="td-card" id="td-sectionSpecificCard">
+            <h3>🔧 Section-Specific Details</h3>
+            <div class="td-row">
+              <div class="td-field" id="td-natureOfServiceField" hidden>
+                <label for="td-natureOfService">Nature of Service (194J)</label>
+                <select id="td-natureOfService"><option value="professional">Professional Service (10%)</option><option value="technical">Technical / Call-Centre Service (2%)</option></select>
+              </div>
+              <div class="td-field" id="td-rentTypeField" hidden>
+                <label for="td-rentType">Rent Type (194I)</label>
+                <select id="td-rentType"><option value="landBuilding">Land / Building / Furniture (10%)</option><option value="plantMachinery">Plant / Machinery / Equipment (2%)</option></select>
+              </div>
+              <div class="td-field" id="td-payerTypeField" hidden>
+                <label for="td-payerType">Payer Type (194A)</label>
+                <select id="td-payerType"><option value="bank">Bank / Post Office</option><option value="other">Other (e.g. company deposit)</option></select>
+              </div>
+              <div class="td-field" id="td-seniorCitizenField" hidden>
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:22px">
+                  <input type="checkbox" id="td-seniorCitizen" style="width:auto"> Senior Citizen (60+)
+                </label>
+              </div>
+              <div class="td-field" id="td-specifiedPersonField" hidden>
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:22px">
+                  <input type="checkbox" id="td-specifiedPerson" style="width:auto"> Specified Person <span class="td-tip" title="A 'specified person' under Section 194S has business/professional turnover above the tax-audit limits or is an individual/HUF for whom a lower ₹50,000 threshold applies; others use the ₹10,000 threshold.">?</span>
+                </label>
+              </div>
+              <div class="td-field" id="td-customRateField" hidden><label for="td-customRate">Custom TDS Rate (%)</label><input type="number" id="td-customRate" min="0" max="30" value="10"></div>
+              <div class="td-field" id="td-customThresholdField" hidden><label for="td-customThreshold">Custom Threshold (₹)</label><input type="number" id="td-customThreshold" min="0" value="0"></div>
+              <p class="td-muted" id="td-noExtraFieldsMsg">This payment type has no additional section-specific fields.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Salary Details (Step 4, Section 192 only) ===== -->
+        <div class="td-pane" id="td-paneSalary">
+          <div class="td-card">
+            <h3>💼 Salary Details (Section 192)</h3>
+            <div class="td-row">
+              <div class="td-field">
+                <label for="td-regime">Tax Regime</label>
+                <select id="td-regime"><option value="new">New Regime</option><option value="old">Old Regime</option></select>
+              </div>
+              <div class="td-field">
+                <label for="td-age">Age</label>
+                <select id="td-age"><option value="below60">Below 60</option><option value="senior">Senior Citizen (60-80)</option><option value="super">Super Senior Citizen (80+)</option></select>
+              </div>
+              <div class="td-field"><label for="td-annualSalary">Annual Salary (₹)</label><input type="number" id="td-annualSalary" min="0" value="0"></div>
+              <div class="td-field"><label for="td-bonus">Bonus (₹)</label><input type="number" id="td-bonus" min="0" value="0"></div>
+              <div class="td-field"><label for="td-allowances">Allowances (₹)</label><input type="number" id="td-allowances" min="0" value="0"></div>
+              <div class="td-field"><label for="td-otherIncomeSalary">Other Income (₹)</label><input type="number" id="td-otherIncomeSalary" min="0" value="0"></div>
+              <div class="td-field"><label for="td-eligibleDeductions">Eligible Deductions (Old Regime, ₹)</label><input type="number" id="td-eligibleDeductions" min="0" value="0"></div>
+              <div class="td-field"><label for="td-tdsAlready">TDS Already Deducted (₹)</label><input type="number" id="td-tdsAlready" min="0" value="0"></div>
+            </div>
+            <p class="td-muted" id="td-salaryStdNote"></p>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Multiple Payments (Step 7) ===== -->
+        <div class="td-pane" id="td-paneMulti">
+          <div class="td-card">
+            <h3>📅 Multiple Payment Mode</h3>
+            <label style="display:flex;align-items:center;gap:6px;cursor:pointer;margin-bottom:10px">
+              <input type="checkbox" id="td-multiEnabled" style="width:auto"> Enable multiple payment mode for this calculation
+            </label>
+            <div class="btn-row" style="margin-bottom:10px">
+              <button class="btn secondary" id="td-addRowBtn" type="button">➕ Add Payment Row</button>
+              <button class="btn secondary" id="td-autoGenBtn" type="button">⚡ Auto-generate from Payment Details</button>
+              <button class="btn secondary" id="td-clearRowsBtn" type="button">🗑️ Clear Rows</button>
+            </div>
+            <div style="overflow-x:auto">
+              <table class="td-multi-table" id="td-multiTable">
+                <thead><tr><th>#</th><th>Date</th><th>Amount (₹)</th><th>TDS (₹)</th><th>Net (₹)</th><th></th></tr></thead>
+                <tbody id="td-multiTbody"></tbody>
+                <tfoot><tr class="td-multi-total"><td colspan="2">Total</td><td id="td-multiTotalAmount">₹0</td><td id="td-multiTotalTDS">₹0</td><td id="td-multiTotalNet">₹0</td><td></td></tr></tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Settings ===== -->
+        <div class="td-pane" id="td-paneSettings">
+          <div class="td-card">
+            <h3>⚙️ Accessibility Preferences</h3>
+            <div class="td-row">
+              <div class="td-field">
+                <label class="td-checkline"><input type="checkbox" id="td-highContrast"> High Contrast</label>
+              </div>
+              <div class="td-field">
+                <label class="td-checkline"><input type="checkbox" id="td-largeFont"> Large Fonts</label>
+              </div>
+            </div>
+            <p class="td-muted">Language, theme and accessibility preferences are remembered in this browser for your next visit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="td-resultSide">
+      <div class="panel">
+        <h3 style="margin:0 0 10px;font-size:1rem">📊 Dashboard Summary</h3>
+        <div class="td-stat-cards" id="td-dashCards"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🧠 TDS Engine Determination</h3>
+        <div class="td-engine-box" id="td-engineBox"></div>
+        <div class="td-flags" id="td-engineFlags"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🧮 Calculation Waterfall</h3>
+        <div class="td-waterfall" id="td-waterfall"></div>
+
+        <div id="td-multiSummaryWrap" style="display:none">
+          <h3 style="margin:16px 0 6px;font-size:.95rem">📅 Multiple Payment Summary</h3>
+          <div id="td-multiSummary"></div>
+        </div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">📊 Charts</h3>
+        <div class="td-chart-wrap"><h4>Payment Distribution</h4><canvas id="td-chartPayment" width="500" height="220"></canvas><div class="td-legend" id="td-legendPayment"></div></div>
+        <div class="td-chart-wrap"><h4>TDS Breakdown</h4><canvas id="td-chartBreakdown" width="500" height="220"></canvas></div>
+        <div class="td-chart-wrap" id="td-trendWrap" style="display:none"><h4>Payment-wise Trend</h4><canvas id="td-chartTrend" width="500" height="220"></canvas></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="td-content">
+
+<h2>📄 Introduction</h2>
+<p>Tax Deducted at Source (TDS) is one of the most common — and most frequently miscalculated — compliance tasks for any business, professional, or individual who makes payments in India. Every payer needs to know instantly: is TDS applicable to this payment at all, which section governs it, what rate applies given the payee's PAN status and any certificate they hold, and what the resulting net payment actually is. Doing this by hand across ten different sections, each with its own threshold, rate and PAN/certificate rules, is exactly the kind of repetitive, error-prone calculation a purpose-built tool should handle. The <strong>Professional TDS Calculator</strong> covers Salary, Contractor, Professional Fees, Commission, Rent, Property Purchase, Interest, Dividend, E-commerce and Virtual Digital Asset payments — instantly, in your browser, with nothing ever uploaded.</p>
+
+<h2>✨ Features</h2>
+<p>Pick a <strong>TDS type</strong> and the calculator switches its entire rate/threshold engine, showing only the fields relevant to that section. Enter <strong>taxpayer details</strong> — taxpayer type, residential status, PAN availability, a Section 197 lower/nil deduction certificate, or a Form 15G/15H self-declaration — and the engine applies each override in the correct priority order. Enter <strong>payment details</strong> — gross amount, whether GST is already included, the payment date, and any payments already made to the same payee earlier in the year — and the applicable threshold, rate, TDS amount and net payable update instantly. A dedicated <strong>Salary tab</strong> computes annual tax liability from slabs for Section 192. <strong>Multiple Payment Mode</strong> lets you add unlimited payment rows and see the aggregate threshold crossed and TDS caught up automatically, exactly as it would apply to a recurring payee across a financial year.</p>
+
+<h2>🏷️ TDS Types Covered</h2>
+<p>Ten dedicated sections are built in: <strong>192 (Salary)</strong>, <strong>194C (Contractor Payments)</strong>, <strong>194J (Professional/Technical Fees)</strong>, <strong>194H (Commission/Brokerage)</strong>, <strong>194I (Rent)</strong>, <strong>194IA (Property Purchase)</strong>, <strong>194A (Interest)</strong>, <strong>194 (Dividend)</strong>, <strong>194O (E-commerce Participant)</strong> and <strong>194S (Virtual Digital Assets/Crypto)</strong>, plus a flexible <strong>Other Payments</strong> option with a custom rate and threshold for anything not explicitly listed.</p>
+
+<h2>🧠 The TDS Engine</h2>
+<p>Behind every calculation, the engine resolves the applicable threshold and rate for the selected section and taxpayer context, then applies overrides in a clear priority order: a Form 15G/15H self-declaration (interest and dividend only) zeroes TDS outright, subject to the declarant's own eligibility; a Section 197 lower/nil deduction certificate overrides the standard rate with the certificate rate; otherwise, if the threshold isn't crossed, no TDS applies; and if it is crossed but the payee has no PAN, Section 206AA raises the rate to the higher of 20% or the section's own rate. Every one of these steps, and the resulting rate and amount, is shown transparently in the "TDS Engine Determination" panel — nothing is a black box.</p>
+
+<h2>📐 Rates &amp; Threshold Limits</h2>
+<table>
+<tr><th>Section</th><th>Nature</th><th>Rate</th><th>Threshold</th></tr>
+<tr><td>192</td><td>Salary</td><td>Average of slab rates</td><td>Basic exemption limit</td></tr>
+<tr><td>194C</td><td>Contractor</td><td>1% (Individual/HUF), 2% (others)</td><td>₹30,000 single / ₹1,00,000 aggregate</td></tr>
+<tr><td>194J</td><td>Professional/Technical Fees</td><td>10% professional, 2% technical</td><td>₹50,000</td></tr>
+<tr><td>194H</td><td>Commission/Brokerage</td><td>2%</td><td>₹20,000</td></tr>
+<tr><td>194I</td><td>Rent</td><td>10% land/building, 2% plant/machinery</td><td>₹6,00,000 (annual)</td></tr>
+<tr><td>194IA</td><td>Property Purchase</td><td>1%</td><td>₹50,00,000</td></tr>
+<tr><td>194A</td><td>Interest</td><td>10%</td><td>₹50,000 bank (₹1,00,000 senior citizen) / ₹10,000 others</td></tr>
+<tr><td>194</td><td>Dividend</td><td>10%</td><td>₹10,000</td></tr>
+<tr><td>194O</td><td>E-commerce</td><td>0.1%</td><td>₹5,00,000</td></tr>
+<tr><td>194S</td><td>Virtual Digital Assets</td><td>1%</td><td>₹50,000 specified person / ₹10,000 others</td></tr>
+</table>
+<p class="td-muted">These reflect published rates and threshold limits as of FY 2025-26/2026-27. Rates and thresholds are revised periodically by the Union Budget and CBDT notifications — always verify the current figures on the Income Tax Department's e-filing portal before relying on them for actual compliance.</p>
+
+<h2>🪪 PAN Rules &amp; Section 206AA</h2>
+<p>Section 206AA requires a higher TDS rate — the higher of 20% or the section's own rate — whenever the payee hasn't furnished their PAN, once the section's threshold is otherwise crossed. This calculator applies that rule automatically the moment you select "PAN Not Available," and flags it clearly in the Engine Determination panel so you can see exactly why the rate jumped.</p>
+
+<h2>📜 Form 16, Form 16A, Form 26AS &amp; TRACES</h2>
+<p><strong>Form 16</strong> is the annual TDS certificate an employer issues for salary TDS under Section 192, covering the whole financial year. <strong>Form 16A</strong> is the equivalent certificate for all non-salary TDS — contractor payments, professional fees, rent, interest and the rest — issued quarterly. <strong>Form 26AS</strong> (now largely superseded in day-to-day use by the Annual Information Statement, but still referenced widely) is the consolidated tax-credit statement showing every TDS/TCS entry against your PAN, and <strong>TRACES</strong> (TDS Reconciliation Analysis and Correction Enabling System) is the government portal where deductors file TDS returns, generate Form 16/16A, and deductees can view and reconcile their credited TDS.</p>
+
+<h2>💸 Refund Process</h2>
+<p>If the TDS deducted across the year exceeds your actual tax liability, the excess becomes a refund, claimed by filing your income tax return and reconciling it against your Form 26AS/AIS entries — the refund is processed and credited directly to your bank account by the Income Tax Department after the return is verified and processed.</p>
+
+<h2>⚠️ Common Mistakes</h2>
+<p>The most frequent errors this calculator helps avoid: deducting TDS on the GST-inclusive amount instead of the taxable base; missing the aggregate threshold when a payee receives several small payments across the year that individually stay under a single-payment limit; forgetting to apply the Section 206AA higher rate when PAN isn't available; and applying the standard rate despite a valid Section 197 certificate or Form 15G/15H declaration on file.</p>
+
+<h2>🧰 Related Tools</h2>
+<div class="related-grid">
+  <a href="income-tax-calculator.html"><span class="ri">💰</span> Income Tax Calculator</a>
+  <a href="advance-tax-calculator.html"><span class="ri">🧾</span> Advance Tax Calculator</a>
+  <a href="salary-calculator.html"><span class="ri">💼</span> Salary Calculator</a>
+  <a href="hra-calculator.html"><span class="ri">🏠</span> HRA Calculator</a>
+  <a href="gst-calculator.html"><span class="ri">🧮</span> GST Calculator</a>
+  <a href="emi-calculator.html"><span class="ri">🏦</span> EMI Calculator</a>
+  <a href="sip-calculator.html"><span class="ri">📈</span> SIP Calculator</a>
+  <a href="swp-calculator.html"><span class="ri">📉</span> SWP Calculator</a>
+  <a href="ppf-calculator.html"><span class="ri">🪙</span> PPF Calculator</a>
+</div>
+
+<!-- ===== About (English) ===== -->
+<h2>ℹ️ About This Tool</h2>
+<p>Tax Deducted at Source, universally known as <strong>TDS</strong>, is India's mechanism for collecting income tax at the exact moment a payment is made rather than waiting for the recipient to file a return months later. Whoever pays — an employer, a company hiring a contractor, a tenant paying rent above a threshold, a bank crediting interest — is legally required to deduct a specified percentage of the payment and deposit it with the government on the payee's behalf, issuing a certificate (Form 16 or 16A) that the payee later uses to claim credit for that tax when filing their own return. The <strong>Professional TDS Calculator</strong> is built to answer the question every payer and payee actually has in the moment: for this specific payment, under this specific section, with this specific PAN and certificate situation, exactly how much TDS applies?</p>
+
+<p>The calculator covers ten distinct sections, each governed by its own combination of rate and threshold. <strong>Section 192</strong> handles salary, where TDS isn't a flat percentage of the gross payment but rather the employee's estimated annual tax liability — computed from the applicable slab rates under the old or new regime, after standard deduction and any admissible deductions — spread across the year's paychecks. <strong>Section 194C</strong> covers payments to contractors and sub-contractors, at 1% for individual or HUF contractors and 2% for everyone else, once a single payment exceeds ₹30,000 or the aggregate paid to that contractor during the year exceeds ₹1,00,000. <strong>Section 194J</strong> covers professional and technical fees, at 10% for genuinely professional services (legal, medical, engineering, accountancy, and similar) but a reduced 2% for technical services and call-centre operations, once the ₹50,000 threshold is crossed. <strong>Section 194H</strong> covers commission and brokerage at 2% above a ₹20,000 threshold. <strong>Section 194I</strong> covers rent, split into 10% for land, building and furniture and a reduced 2% for plant, machinery and equipment, once the annual threshold is crossed. <strong>Section 194IA</strong> applies a flat 1% to the sale consideration whenever an immovable property transaction crosses ₹50 lakh. <strong>Section 194A</strong> covers interest other than on securities — typically bank fixed deposits — at 10%, with a threshold that depends on whether the payer is a bank or post office (with a higher limit for senior citizens) or another kind of payer entirely. <strong>Section 194</strong> covers dividend income at 10% above a modest ₹10,000 threshold. <strong>Section 194O</strong> covers payments an e-commerce operator makes to a participant seller on its platform, at a low 0.1% rate above a ₹5 lakh threshold. And <strong>Section 194S</strong>, one of the newer sections, covers the transfer of virtual digital assets — cryptocurrency and similar assets — at 1%, with the threshold depending on whether the payer qualifies as a "specified person" under the Act.</p>
+
+<p>Underneath all ten sections sits a single, consistent engine for resolving the actual rate and threshold that apply to your specific payment. It starts by computing the correct taxable base — excluding the GST component if you've indicated the gross amount includes it, since GST charged separately on an invoice is not part of the sum on which TDS is calculated, per CBDT's own clarification. It then checks the relevant threshold: a straightforward single-payment or annual-aggregate limit for most sections, or the combined single-payment-or-aggregate rule that Section 194C specifically uses. From there, three overrides are applied in a strict, transparent order. A <strong>Form 15G/15H self-declaration</strong> — available for interest and dividend payments to residents whose total income is expected to remain below the taxable threshold — zeroes the TDS entirely, provided the declarant genuinely meets the eligibility conditions, which remain their own responsibility to confirm. A <strong>Section 197 lower or nil deduction certificate</strong>, obtained in advance from the Assessing Officer, overrides the standard rate with whatever rate the certificate specifies, whether that's a reduced percentage or zero. And if neither applies, but the payee hasn't furnished their PAN, <strong>Section 206AA</strong> steps in to raise the effective rate to the higher of 20% or the section's own rate — a rule this calculator applies automatically and flags clearly, since it's one of the most commonly missed compliance points in manual TDS calculations.</p>
+
+<p>For payees who receive several payments from the same payer across a financial year — a retainer paid monthly, quarterly rent, recurring commission — the <strong>Multiple Payment Mode</strong> models exactly how TDS obligations evolve as the cumulative total crosses a threshold partway through the year. Add as many payment rows as you need, each with its own date and amount, and the calculator tracks the running cumulative total against the threshold, applying TDS from the point of crossing onward and, for the specific payment that triggers the crossing, a one-time catch-up that reflects the tax that should have applied on the amount already paid without deduction. An "auto-generate" helper can build out a full year's worth of rows automatically from the payment amount, frequency and count you specify in the Payment Details tab, saving you from entering each row by hand for a simple recurring schedule.</p>
+
+<p>Every calculation surfaces instantly across a full dashboard: gross amount, taxable amount, the applicable TDS rate, the TDS amount itself, the resulting net payment, and the effective TDS percentage on the gross figure, backed by a calculation waterfall that shows exactly how the final number was reached and two charts — a payment-distribution view and a TDS-breakdown view — that update the moment any input changes. Results export cleanly to PDF or Excel, copy to your clipboard as a plain-text summary, share directly through your device's native share sheet, or print with the site's navigation automatically hidden for a clean physical or PDF copy. A Light/Dark theme toggle and an English/Hindi language toggle for the interface, alongside High Contrast and Large Font accessibility options, make the tool comfortable to use in whichever setting and language suits you. And, as with every tool on this site, all of it runs entirely inside your own browser: no payment figure, PAN status, or certificate detail is ever uploaded anywhere, there's no account or sign-up, and there is no AI-powered functionality anywhere in the calculator — every result is the output of deterministic, auditable, hand-written logic straight from the published provisions of the Income Tax Act.</p>
+
+<!-- ===== About (Hindi) ===== -->
+<h2>ℹ️ इस टूल के बारे में (हिंदी में)</h2>
+<p class="td-lang-note">The same guide in Hindi / यही जानकारी हिंदी में।</p>
+<p><strong>TDS (Tax Deducted at Source)</strong> भारत की वह व्यवस्था है जिसमें income tax को उसी समय काट लिया जाता है जब भुगतान किया जाता है, बजाय इसके कि receiver महीनों बाद return file करे। जो भी भुगतान करता है — एक employer, एक contractor को hire करने वाली company, threshold से ऊपर किराया देने वाला tenant, interest credit करने वाला bank — उसे कानूनी रूप से भुगतान का एक निर्धारित प्रतिशत काटकर सरकार के पास जमा करना होता है, और payee को एक certificate (Form 16 या 16A) देना होता है जिसे payee बाद में अपना return file करते समय उस tax का credit claim करने के लिए इस्तेमाल करता है। <strong>Professional TDS Calculator</strong> उस सवाल का जवाब देने के लिए बनाया गया है जो हर payer और payee के मन में असल में होता है: इस specific भुगतान के लिए, इस specific section के तहत, इस specific PAN और certificate स्थिति के साथ, ठीक-ठीक कितना TDS लागू होता है?</p>
+
+<p>यह calculator दस अलग-अलग sections को cover करता है, हर एक का अपना rate और threshold का संयोजन है। <strong>Section 192</strong> salary को handle करता है, जहाँ TDS gross भुगतान का एक flat प्रतिशत नहीं बल्कि employee की अनुमानित वार्षिक tax liability है — जो old या new regime के तहत लागू slab rates से, standard deduction और किसी भी स्वीकार्य deductions के बाद, गणना की जाती है — और साल के paychecks में फैली होती है। <strong>Section 194C</strong> contractors और sub-contractors को किए गए भुगतान को cover करता है, individual या HUF contractors के लिए 1% और बाकी सभी के लिए 2%, जब कोई एक भुगतान ₹30,000 से अधिक हो या उस contractor को साल भर में दिया गया कुल योग ₹1,00,000 से अधिक हो जाए। <strong>Section 194J</strong> professional और technical fees को cover करता है, वास्तविक professional services (legal, medical, engineering, accountancy) के लिए 10% पर, पर technical services और call-centre operations के लिए घटा हुआ 2%, जब ₹50,000 की threshold पार हो जाए। <strong>Section 194H</strong> commission और brokerage को ₹20,000 threshold से ऊपर 2% पर cover करता है। <strong>Section 194I</strong> किराए को cover करता है, land, building और furniture के लिए 10% और plant, machinery और equipment के लिए घटा हुआ 2%, जब वार्षिक threshold पार हो जाए। <strong>Section 194IA</strong> property की बिक्री राशि पर एक flat 1% लागू करता है जब भी कोई immovable property transaction ₹50 lakh पार करे। <strong>Section 194A</strong> securities के अलावा interest को cover करता है — आमतौर पर bank fixed deposits — 10% पर, जिसकी threshold इस बात पर निर्भर करती है कि payer bank या post office है (senior citizens के लिए ऊँची सीमा के साथ) या कोई और तरह का payer। <strong>Section 194</strong> dividend income को एक मामूली ₹10,000 threshold से ऊपर 10% पर cover करता है। <strong>Section 194O</strong> एक e-commerce operator द्वारा अपने platform पर एक participant seller को किए गए भुगतान को cover करता है, ₹5 lakh threshold से ऊपर कम 0.1% rate पर। और <strong>Section 194S</strong>, नए sections में से एक, virtual digital assets — cryptocurrency और इसी तरह की assets — के transfer को 1% पर cover करता है, जिसकी threshold इस बात पर निर्भर करती है कि payer Act के तहत एक "specified person" के रूप में qualify करता है या नहीं।</p>
+
+<p>इन सभी दस sections के नीचे आपके specific भुगतान पर लागू होने वाले वास्तविक rate और threshold को हल करने के लिए एक ही, consistent engine है। यह पहले सही taxable base की गणना करता है — यदि आपने बताया है कि gross amount में GST शामिल है तो GST component को छोड़कर, क्योंकि invoice पर अलग से लगाया गया GST उस राशि का हिस्सा नहीं है जिस पर TDS की गणना की जाती है, CBDT के अपने स्पष्टीकरण के अनुसार। फिर यह संबंधित threshold जाँचता है: अधिकतर sections के लिए एक सीधा single-payment या annual-aggregate limit, या Section 194C के इस्तेमाल किए जाने वाले combined single-payment-or-aggregate नियम। इसके बाद, तीन overrides एक सख्त, transparent क्रम में लागू होते हैं। एक <strong>Form 15G/15H self-declaration</strong> — residents के लिए interest और dividend भुगतानों के लिए उपलब्ध जिनकी कुल आय taxable threshold से नीचे रहने की उम्मीद है — TDS को पूरी तरह शून्य कर देता है, बशर्ते declarant वास्तव में eligibility conditions को पूरा करता हो, जो उनकी अपनी जिम्मेदारी बनी रहती है। एक <strong>Section 197 lower या nil deduction certificate</strong>, Assessing Officer से पहले से प्राप्त किया गया, standard rate को certificate में निर्दिष्ट rate से override करता है, चाहे वह एक घटा हुआ प्रतिशत हो या शून्य। और यदि कोई भी लागू नहीं होता, पर payee ने अपना PAN नहीं दिया है, तो <strong>Section 206AA</strong> effective rate को 20% या section के अपने rate में से जो भी अधिक हो, उस तक बढ़ा देता है — एक नियम जो यह calculator स्वचालित रूप से लागू करता है और स्पष्ट रूप से flag करता है, क्योंकि यह manual TDS गणनाओं में सबसे आम तौर पर छूटे जाने वाले compliance बिंदुओं में से एक है।</p>
+
+<p>उन payees के लिए जिन्हें एक ही payer से एक financial year में कई भुगतान मिलते हैं — मासिक रूप से भुगतान किया गया retainer, तिमाही किराया, आवर्ती commission — <strong>Multiple Payment Mode</strong> ठीक-ठीक दिखाता है कि जब cumulative total साल के बीच में एक threshold पार करता है तो TDS obligations कैसे विकसित होती हैं। जितनी चाहें उतनी payment rows जोड़ें, हर एक की अपनी date और amount के साथ, और calculator running cumulative total को threshold के विरुद्ध track करता है, crossing point से आगे TDS लागू करता है और, जिस specific भुगतान से crossing होती है, उसके लिए एक one-time catch-up लागू करता है जो उस tax को दर्शाता है जो बिना deduction के पहले से भुगतान की गई राशि पर लागू होना चाहिए था। एक "auto-generate" helper Payment Details tab में आपके द्वारा निर्दिष्ट भुगतान राशि, frequency और गिनती से एक पूरे साल की rows स्वचालित रूप से बना सकता है, जिससे एक साधारण आवर्ती schedule के लिए हर row को हाथ से दर्ज करने से बचा जा सकता है।</p>
+
+<p>हर गणना तुरंत एक पूरे dashboard पर दिखाई देती है: gross amount, taxable amount, लागू TDS rate, TDS amount स्वयं, परिणामी net payment, और gross figure पर effective TDS प्रतिशत, एक calculation waterfall के साथ जो ठीक-ठीक दिखाता है कि final number कैसे पहुँचा गया, और दो charts — एक payment-distribution view और एक TDS-breakdown view — जो किसी भी input के बदलते ही update होते हैं। Results साफ़-सुथरे तरीके से PDF या Excel में export होते हैं, आपके clipboard पर plain-text summary के रूप में copy होते हैं, आपके device की native share sheet के through सीधे share होते हैं, या site के navigation को स्वचालित रूप से छिपाकर एक साफ़ physical या PDF copy के लिए print होते हैं। एक Light/Dark theme toggle और interface के लिए एक English/Hindi language toggle, High Contrast और Large Font accessibility विकल्पों के साथ, टूल को जिस भी setting और भाषा में आपको सुविधाजनक लगे उसमें इस्तेमाल करने योग्य बनाते हैं। और, इस साइट के हर टूल की तरह, यह सब पूरी तरह आपके अपने browser के अंदर चलता है: कोई भी payment figure, PAN स्थिति, या certificate detail कभी कहीं upload नहीं होता, कोई account या sign-up नहीं है, और calculator में कहीं भी कोई AI-powered functionality नहीं है — हर परिणाम Income Tax Act के प्रकाशित प्रावधानों से सीधे deterministic, auditable, hand-written logic का output है।</p>
+
+<!-- ===== FAQ (immediately after About — required order) ===== -->
+<h2>❓ Frequently Asked Questions</h2>
+<div class="td-faq" id="tdFaq">
+
+<details><summary>What is TDS?</summary><p>TDS (Tax Deducted at Source) is a mechanism where the payer of certain specified payments — salary, contractor fees, rent, interest, commission and more — deducts income tax at a prescribed rate before making the payment, and deposits it with the government on the payee's behalf. / TDS एक व्यवस्था है जिसमें भुगतान करने वाला भुगतान से पहले एक निर्धारित rate पर income tax काट लेता है और सरकार के पास जमा कर देता है।</p></details>
+<details><summary>Why does TDS exist?</summary><p>It ensures a steady flow of tax revenue throughout the year rather than a lump sum after everyone files their return, and it widens the tax net by capturing income at the source, reducing the chance of it going unreported. / यह पूरे साल स्थिर tax राजस्व सुनिश्चित करता है और आय को स्रोत पर ही पकड़ लेता है।</p></details>
+<details><summary>Which sections does this calculator cover?</summary><p>Section 192 (Salary), 194C (Contractor), 194J (Professional/Technical Fees), 194H (Commission), 194I (Rent), 194IA (Property Purchase), 194A (Interest), 194 (Dividend), 194O (E-commerce) and 194S (Virtual Digital Assets), plus a customisable "Other Payments" option. / यह calculator दस sections और एक customisable "Other Payments" विकल्प को cover करता है।</p></details>
+<details><summary>How is TDS on salary (Section 192) calculated?</summary><p>Unlike other sections, salary TDS isn't a flat percentage — it's the employee's estimated annual income tax liability (computed from slab rates under the chosen regime, after standard deduction and eligible deductions), spread proportionately across the year's salary payments. / Salary TDS flat प्रतिशत नहीं बल्कि slab rates से गणना की गई वार्षिक tax liability है, जो साल के भुगतानों में बँटी होती है।</p></details>
+<details><summary>What is the TDS rate and threshold for contractor payments (194C)?</summary><p>1% for individual/HUF contractors, 2% for others, applicable once a single payment exceeds ₹30,000 or the aggregate paid to that contractor during the financial year exceeds ₹1,00,000. / व्यक्ति/HUF ठेकेदारों के लिए 1%, बाकी के लिए 2%, ₹30,000 (एकल) या ₹1,00,000 (aggregate) की threshold पर।</p></details>
+<details><summary>What is the TDS rate for professional fees (194J)?</summary><p>10% for professional services (legal, medical, engineering, accountancy and similar) and a reduced 2% for technical services and call-centre operations, once the ₹50,000 annual threshold is crossed. / Professional services के लिए 10%, technical services के लिए 2%, ₹50,000 threshold पर।</p></details>
+<details><summary>What is the TDS rate for commission (194H)?</summary><p>2%, applicable once payments to the same payee exceed ₹20,000 in the financial year. / ₹20,000 threshold पार करने पर 2%।</p></details>
+<details><summary>What is the TDS rate for rent (194I)?</summary><p>10% for land, building and furniture; a reduced 2% for plant, machinery and equipment; applicable once the annual threshold of ₹6,00,000 is crossed. / Land/building/furniture के लिए 10%, plant/machinery के लिए 2%, ₹6,00,000 वार्षिक threshold पर।</p></details>
+<details><summary>What is the TDS rate for property purchase (194IA)?</summary><p>A flat 1% of the sale consideration, applicable whenever the transaction value is ₹50 lakh or more. / बिक्री राशि पर flat 1%, जब लेन-देन ₹50 lakh या अधिक हो।</p></details>
+<details><summary>What is the TDS rate for interest (194A)?</summary><p>10%, with a threshold of ₹50,000 (₹1,00,000 for senior citizens) when the payer is a bank or post office, or ₹10,000 for other payers such as company deposits. / 10%, bank/post office के लिए ₹50,000 (senior citizen ₹1,00,000), अन्य के लिए ₹10,000।</p></details>
+<details><summary>What is the TDS rate for dividend income?</summary><p>10%, applicable once dividend paid to a shareholder exceeds ₹10,000 in the financial year. / ₹10,000 threshold पार करने पर 10%।</p></details>
+<details><summary>What is the TDS rate under Section 194O for e-commerce?</summary><p>0.1% of the gross amount an e-commerce operator pays to a participant seller, applicable once payments exceed ₹5,00,000 in the financial year. / e-commerce operator द्वारा seller को भुगतान पर ₹5,00,000 threshold पर 0.1%।</p></details>
+<details><summary>What is the TDS rate for virtual digital assets / crypto (194S)?</summary><p>1%, with a threshold of ₹50,000 for a "specified person" or ₹10,000 for others. / "specified person" के लिए ₹50,000, अन्य के लिए ₹10,000 threshold पर 1%।</p></details>
+<details><summary>What happens if the payee doesn't have a PAN?</summary><p>Section 206AA requires the higher of 20% or the section's own applicable rate to be deducted instead of the standard rate, once the threshold is otherwise crossed. This calculator applies it automatically when you select "PAN Not Available." / PAN न होने पर Section 206AA के तहत 20% या लागू rate में से जो अधिक हो, वह काटा जाता है।</p></details>
+<details><summary>What is a Lower/Nil Deduction Certificate?</summary><p>Issued under Section 197 by the Assessing Officer, it authorises the payer to deduct TDS at a reduced rate — or not at all — for a specific payee, usually because their actual tax liability is lower than what standard TDS would deduct. Enter the certificate rate and this calculator applies it in place of the standard rate. / Section 197 के तहत Assessing Officer द्वारा जारी certificate, जो कम या शून्य rate पर TDS काटने की अनुमति देता है।</p></details>
+<details><summary>What is Form 15G/15H and when does it apply?</summary><p>Form 15G (for those below 60) and Form 15H (for senior citizens) are self-declarations that the declarant's total income is expected to remain below the taxable threshold, submitted to avoid TDS on interest or dividend income. This calculator zeroes TDS for 194A/194 when the checkbox is ticked, but eligibility remains the declarant's own responsibility to confirm. / Form 15G (60 से कम) और 15H (senior citizen) self-declarations हैं जो interest/dividend पर TDS से बचने के लिए जमा किए जाते हैं।</p></details>
+<details><summary>Does the calculator account for GST when computing TDS?</summary><p>Yes — if you tick "GST Included in Amount," the calculator backs out the GST component (at the rate you specify, default 18%) before computing TDS, since CBDT clarifies that TDS should be calculated on the amount excluding GST when GST is shown separately on the invoice. / GST Included टिक करने पर calculator TDS की गणना से पहले GST component हटा देता है।</p></details>
+<details><summary>What is Multiple Payment Mode?</summary><p>It lets you add unlimited payment rows with their own dates and amounts, tracking the cumulative total against the section's threshold and applying TDS — including a one-time catch-up on the crossing payment — exactly as it evolves for a payee who receives several payments across the year. / यह असीमित payment rows जोड़ने देता है और threshold पार होने पर TDS की गणना करता है।</p></details>
+<details><summary>What does "Auto-generate from Payment Details" do?</summary><p>It builds a full set of payment rows automatically using the Gross Amount, Number of Payments and Payment Frequency you've entered in the Payment Details tab, saving you from typing each row by hand for a simple recurring schedule. / यह Payment Details tab के आँकड़ों से payment rows स्वचालित रूप से बना देता है।</p></details>
+<details><summary>Can I calculate TDS for NRI (non-resident) payments?</summary><p>Selecting "Non-Resident (NRI)" shows a note that cross-border payments are generally governed by Section 195 (rates under the Act or the applicable DTAA), not the domestic rates shown here — this calculator's domestic-rate engine is a reference point only for such payments, not a substitute for Section 195 analysis. / NRI चुनने पर एक नोट दिखता है कि cross-border भुगतान आमतौर पर Section 195 के तहत आते हैं, domestic rates के तहत नहीं।</p></details>
+<details><summary>What is Form 16?</summary><p>The annual TDS certificate an employer issues to an employee for salary TDS deducted under Section 192 across the whole financial year, used when filing the employee's income tax return. / Employer द्वारा जारी वार्षिक salary TDS certificate।</p></details>
+<details><summary>What is Form 16A?</summary><p>The TDS certificate for all non-salary deductions — contractor payments, professional fees, rent, interest, commission and the rest — issued quarterly by the deductor. / गैर-salary TDS deductions के लिए तिमाही certificate।</p></details>
+<details><summary>What is Form 26AS / AIS?</summary><p>Form 26AS is the consolidated tax-credit statement showing every TDS/TCS entry recorded against your PAN; it's now supplemented by the more detailed Annual Information Statement (AIS), and both should be reconciled against your own records before filing your return. / यह आपके PAN पर दर्ज हर TDS/TCS entry दिखाने वाला consolidated statement है।</p></details>
+<details><summary>What is TRACES?</summary><p>TRACES (TDS Reconciliation Analysis and Correction Enabling System) is the official portal where deductors file TDS returns and generate Form 16/16A, and deductees can view, verify and reconcile their TDS credits online. / यह TDS returns file करने और certificates बनाने के लिए सरकारी portal है।</p></details>
+<details><summary>How do I get a TDS refund if too much was deducted?</summary><p>File your income tax return, reporting the TDS shown in your Form 26AS/AIS against your actual tax liability for the year — if TDS exceeds what you actually owe, the excess is refunded directly to your bank account after the return is processed. / अपना income tax return file करें; ज़्यादा कटे TDS का refund बैंक खाते में सीधे जमा होता है।</p></details>
+<details><summary>What are the benefits of TDS?</summary><p>It spreads tax collection evenly through the year for the government, creates a documented, traceable paper trail for both payer and payee, and often reduces or eliminates the payee's own advance-tax or self-assessment burden since a large share of their liability is already collected upfront. / यह tax collection को पूरे साल फैला देता है और एक दस्तावेज़ी trail बनाता है।</p></details>
+<details><summary>What common mistakes does this calculator help avoid?</summary><p>Deducting TDS on the GST-inclusive amount instead of the taxable base; missing an aggregate threshold crossed by several small payments; forgetting the Section 206AA higher rate when PAN is missing; and applying the standard rate despite a valid Section 197 certificate or Form 15G/15H on file. / GST-सहित राशि पर TDS काटना, aggregate threshold भूल जाना, PAN न होने पर higher rate भूल जाना जैसी ग़लतियों से बचाता है।</p></details>
+<details><summary>Is TDS the same as income tax?</summary><p>No — TDS is a mechanism for collecting income tax in advance at the point of payment; the amount deducted is credited against the payee's total income tax liability for the year when they file their return, not a separate tax in itself. / TDS अलग tax नहीं बल्कि income tax को पहले से इकट्ठा करने की व्यवस्था है।</p></details>
+<details><summary>Does this calculator file my TDS return or generate Form 16/16A?</summary><p>No — it calculates the applicable rate, threshold and amount for a given payment so you know what to deduct, but actual TDS return filing and certificate generation happen on the TRACES portal, using your TAN. / यह TDS amount की गणना करता है, पर actual return filing TRACES portal पर होती है।</p></details>
+<details><summary>Are my payment figures and PAN details uploaded anywhere?</summary><p>No. Every figure — gross amount, PAN status, certificate rate, taxpayer type — is processed entirely in your browser using JavaScript. Nothing is sent to any server, there is no account or sign-up, and no calculation is logged or tracked. / सभी आँकड़े आपके browser में ही processed होते हैं, कहीं upload नहीं होते।</p></details>
+<details><summary>Does this tool use any AI?</summary><p>No. Every rate, threshold and override rule is deterministic, hand-written logic taken directly from the published provisions of the Income Tax Act, cross-checked against this site's existing Income Tax and Advance Tax Calculators for consistency. There is no AI model or machine-learning component anywhere. / इसमें कहीं भी कोई AI या machine learning शामिल नहीं है।</p></details>
+<details><summary>Is this calculator a substitute for professional tax advice?</summary><p>No. It's built to give a fast, private, transparent estimate using the standard rules that apply to the overwhelming majority of payments, with clear notes wherever a simplification or an assumption (like the default 18% GST rate) has been made. For complex situations, cross-border payments, or anything involving significant sums, verify with a chartered accountant or the Income Tax Department's e-filing portal. / यह पेशेवर tax सलाह का विकल्प नहीं है; जटिल मामलों के लिए CA से सलाह लें।</p></details>
+<details><summary>Can I export or share my TDS calculation?</summary><p>Yes — download a PDF summary, export the full figures to Excel, copy a plain-text summary to your clipboard, use your device's native share sheet, or print a clean report with site navigation automatically hidden. / PDF/Excel export, copy, share और print सभी उपलब्ध हैं।</p></details>
+<details><summary>Is this calculator accessible for keyboard and screen-reader users?</summary><p>Yes — every control is a native, keyboard-operable HTML element, status updates use ARIA live regions, and High Contrast and Large Fonts toggles are available in Settings, alongside a genuine Light/Dark theme toggle. / Keyboard navigation, screen reader labels, high contrast, large fonts और theme toggle सभी उपलब्ध हैं।</p></details>
+<details><summary>Does it work offline?</summary><p>Yes, once the page has loaded. PDF and Excel export each load a small library once when first used; the core TDS calculation itself needs no ongoing connection. / लोड होने के बाद यह मुख्यतः offline काम करता है।</p></details>
+
+</div>
+
+<!-- ===== Troubleshooting ===== -->
+<h2>🛠️ Troubleshooting</h2>
+<ul>
+  <li><strong>TDS shows ₹0 even though I entered an amount:</strong> the taxable amount hasn't crossed the applicable threshold for that section yet — check the "TDS Engine Determination" panel for the exact threshold being applied.</li>
+  <li><strong>The rate looks higher than the standard rate:</strong> check whether "PAN Not Available" is selected — Section 206AA raises the rate to the higher of 20% or the standard rate once the threshold is crossed.</li>
+  <li><strong>Salary Details tab is empty or hidden:</strong> it only applies to Section 192 — switch the TDS Type to "Salary" to access it.</li>
+  <li><strong>Section-specific fields aren't showing:</strong> some sections (194H, 194, 194IA, 194O) have no extra fields beyond Payment Details — that's expected, not a bug.</li>
+  <li><strong>Multiple Payment table shows no rows:</strong> tick "Enable multiple payment mode," then use "Add Payment Row" or "Auto-generate from Payment Details."</li>
+  <li><strong>PDF or Excel export does nothing:</strong> these features load a small external library the first time you use them — check your internet connection and try again.</li>
+  <li><strong>Light mode looks odd on the site header or sidebar:</strong> by design, the Light/Dark toggle only affects the calculator's own panels, keeping the site's shared dark navigation consistent across every tool.</li>
+  <li><strong>Charts appear empty:</strong> a chart with no data (for example, zero gross amount) correctly shows "No data to display" rather than a misleading empty circle.</li>
+</ul>
+
+</div>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is TDS?", "acceptedAnswer": {"@type": "Answer", "text": "TDS (Tax Deducted at Source) is a mechanism where the payer of certain specified payments — salary, contractor fees, rent, interest, commission and more — deducts income tax at a prescribed rate before making the payment, and deposits it with the government on the payee's behalf."}}, {"@type": "Question", "name": "Why does TDS exist?", "acceptedAnswer": {"@type": "Answer", "text": "It ensures a steady flow of tax revenue throughout the year rather than a lump sum after everyone files their return, and it widens the tax net by capturing income at the source, reducing the chance of it going unreported."}}, {"@type": "Question", "name": "Which sections does this calculator cover?", "acceptedAnswer": {"@type": "Answer", "text": "Section 192 (Salary), 194C (Contractor), 194J (Professional/Technical Fees), 194H (Commission), 194I (Rent), 194IA (Property Purchase), 194A (Interest), 194 (Dividend), 194O (E-commerce) and 194S (Virtual Digital Assets), plus a customisable Other Payments option."}}, {"@type": "Question", "name": "How is TDS on salary (Section 192) calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Unlike other sections, salary TDS isn't a flat percentage — it's the employee's estimated annual income tax liability, computed from slab rates under the chosen regime after standard deduction and eligible deductions, spread proportionately across the year's salary payments."}}, {"@type": "Question", "name": "What is the TDS rate and threshold for contractor payments (194C)?", "acceptedAnswer": {"@type": "Answer", "text": "1% for individual/HUF contractors, 2% for others, applicable once a single payment exceeds ₹30,000 or the aggregate paid to that contractor during the financial year exceeds ₹1,00,000."}}, {"@type": "Question", "name": "What is the TDS rate for professional fees (194J)?", "acceptedAnswer": {"@type": "Answer", "text": "10% for professional services such as legal, medical, engineering and accountancy, and a reduced 2% for technical services and call-centre operations, once the ₹50,000 annual threshold is crossed."}}, {"@type": "Question", "name": "What is the TDS rate for commission (194H)?", "acceptedAnswer": {"@type": "Answer", "text": "2%, applicable once payments to the same payee exceed ₹20,000 in the financial year."}}, {"@type": "Question", "name": "What is the TDS rate for rent (194I)?", "acceptedAnswer": {"@type": "Answer", "text": "10% for land, building and furniture; a reduced 2% for plant, machinery and equipment; applicable once the annual threshold of ₹6,00,000 is crossed."}}, {"@type": "Question", "name": "What is the TDS rate for property purchase (194IA)?", "acceptedAnswer": {"@type": "Answer", "text": "A flat 1% of the sale consideration, applicable whenever the transaction value is ₹50 lakh or more."}}, {"@type": "Question", "name": "What is the TDS rate for interest (194A)?", "acceptedAnswer": {"@type": "Answer", "text": "10%, with a threshold of ₹50,000 (₹1,00,000 for senior citizens) when the payer is a bank or post office, or ₹10,000 for other payers such as company deposits."}}, {"@type": "Question", "name": "What is the TDS rate for dividend income?", "acceptedAnswer": {"@type": "Answer", "text": "10%, applicable once dividend paid to a shareholder exceeds ₹10,000 in the financial year."}}, {"@type": "Question", "name": "What is the TDS rate under Section 194O for e-commerce?", "acceptedAnswer": {"@type": "Answer", "text": "0.1% of the gross amount an e-commerce operator pays to a participant seller, applicable once payments exceed ₹5,00,000 in the financial year."}}, {"@type": "Question", "name": "What is the TDS rate for virtual digital assets / crypto (194S)?", "acceptedAnswer": {"@type": "Answer", "text": "1%, with a threshold of ₹50,000 for a specified person or ₹10,000 for others."}}, {"@type": "Question", "name": "What happens if the payee doesn't have a PAN?", "acceptedAnswer": {"@type": "Answer", "text": "Section 206AA requires the higher of 20% or the section's own applicable rate to be deducted instead of the standard rate, once the threshold is otherwise crossed. This calculator applies it automatically when PAN Not Available is selected."}}, {"@type": "Question", "name": "What is a Lower/Nil Deduction Certificate?", "acceptedAnswer": {"@type": "Answer", "text": "Issued under Section 197 by the Assessing Officer, it authorises the payer to deduct TDS at a reduced rate, or not at all, for a specific payee, usually because their actual tax liability is lower than what standard TDS would deduct."}}, {"@type": "Question", "name": "What is Form 15G/15H and when does it apply?", "acceptedAnswer": {"@type": "Answer", "text": "Form 15G (for those below 60) and Form 15H (for senior citizens) are self-declarations that the declarant's total income is expected to remain below the taxable threshold, submitted to avoid TDS on interest or dividend income."}}, {"@type": "Question", "name": "Does the calculator account for GST when computing TDS?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — if GST Included in Amount is ticked, the calculator backs out the GST component before computing TDS, since TDS should be calculated on the amount excluding GST when it is shown separately on the invoice."}}, {"@type": "Question", "name": "What is Multiple Payment Mode?", "acceptedAnswer": {"@type": "Answer", "text": "It lets you add unlimited payment rows with their own dates and amounts, tracking the cumulative total against the section's threshold and applying TDS, including a one-time catch-up on the crossing payment, as it evolves for a payee receiving several payments across the year."}}, {"@type": "Question", "name": "What does Auto-generate from Payment Details do?", "acceptedAnswer": {"@type": "Answer", "text": "It builds a full set of payment rows automatically using the Gross Amount, Number of Payments and Payment Frequency entered in the Payment Details tab, saving manual entry for a simple recurring schedule."}}, {"@type": "Question", "name": "Can I calculate TDS for NRI (non-resident) payments?", "acceptedAnswer": {"@type": "Answer", "text": "Selecting Non-Resident (NRI) shows a note that cross-border payments are generally governed by Section 195 rates under the Act or the applicable DTAA, not the domestic rates shown by this calculator's engine."}}, {"@type": "Question", "name": "What is Form 16?", "acceptedAnswer": {"@type": "Answer", "text": "The annual TDS certificate an employer issues to an employee for salary TDS deducted under Section 192 across the whole financial year, used when filing the employee's income tax return."}}, {"@type": "Question", "name": "What is Form 16A?", "acceptedAnswer": {"@type": "Answer", "text": "The TDS certificate for all non-salary deductions — contractor payments, professional fees, rent, interest, commission and the rest — issued quarterly by the deductor."}}, {"@type": "Question", "name": "What is Form 26AS / AIS?", "acceptedAnswer": {"@type": "Answer", "text": "Form 26AS is the consolidated tax-credit statement showing every TDS/TCS entry recorded against your PAN, now supplemented by the more detailed Annual Information Statement (AIS)."}}, {"@type": "Question", "name": "What is TRACES?", "acceptedAnswer": {"@type": "Answer", "text": "TRACES (TDS Reconciliation Analysis and Correction Enabling System) is the official portal where deductors file TDS returns and generate Form 16/16A, and deductees can view and reconcile their TDS credits online."}}, {"@type": "Question", "name": "How do I get a TDS refund if too much was deducted?", "acceptedAnswer": {"@type": "Answer", "text": "File your income tax return reporting the TDS shown in your Form 26AS/AIS against your actual tax liability for the year — if TDS exceeds what you owe, the excess is refunded directly to your bank account after the return is processed."}}, {"@type": "Question", "name": "What are the benefits of TDS?", "acceptedAnswer": {"@type": "Answer", "text": "It spreads tax collection evenly through the year for the government, creates a documented, traceable paper trail for both payer and payee, and often reduces the payee's own advance-tax or self-assessment burden."}}, {"@type": "Question", "name": "What common mistakes does this calculator help avoid?", "acceptedAnswer": {"@type": "Answer", "text": "Deducting TDS on the GST-inclusive amount instead of the taxable base, missing an aggregate threshold crossed by several small payments, forgetting the Section 206AA higher rate when PAN is missing, and applying the standard rate despite a valid Section 197 certificate or Form 15G/15H on file."}}, {"@type": "Question", "name": "Is TDS the same as income tax?", "acceptedAnswer": {"@type": "Answer", "text": "No — TDS is a mechanism for collecting income tax in advance at the point of payment; the amount deducted is credited against the payee's total income tax liability for the year when they file their return."}}, {"@type": "Question", "name": "Does this calculator file my TDS return or generate Form 16/16A?", "acceptedAnswer": {"@type": "Answer", "text": "No — it calculates the applicable rate, threshold and amount for a given payment; actual TDS return filing and certificate generation happen on the TRACES portal using your TAN."}}, {"@type": "Question", "name": "Are my payment figures and PAN details uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. Every figure is processed entirely in your browser using JavaScript. Nothing is sent to any server, there is no account or sign-up, and no calculation is logged or tracked."}}, {"@type": "Question", "name": "Does this tool use any AI?", "acceptedAnswer": {"@type": "Answer", "text": "No. Every rate, threshold and override rule is deterministic, hand-written logic taken directly from the published provisions of the Income Tax Act, cross-checked against this site's existing Income Tax and Advance Tax Calculators for consistency."}}, {"@type": "Question", "name": "Is this calculator a substitute for professional tax advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. It gives a fast, private, transparent estimate using standard rules with clear notes wherever a simplification has been made; for complex or cross-border situations, verify with a chartered accountant or the official e-filing portal."}}, {"@type": "Question", "name": "Can I export or share my TDS calculation?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — download a PDF summary, export the full figures to Excel, copy a plain-text summary to your clipboard, use your device's native share sheet, or print a clean report with site navigation automatically hidden."}}, {"@type": "Question", "name": "Is this calculator accessible for keyboard and screen-reader users?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — every control is a native, keyboard-operable HTML element, status updates use ARIA live regions, and High Contrast, Large Fonts and a genuine Light/Dark theme toggle are all available."}}, {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, once the page has loaded. PDF and Excel export each load a small library once when first used; the core TDS calculation itself needs no ongoing connection."}}]}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"TDS in India — Meaning, Sections, Rates, Threshold Limits, Form 16/16A, Refunds","description":"A complete guide to TDS in India: what it is, the sections covering salary, contractor, professional fees, rent, interest, dividend, e-commerce and crypto payments, current rates and thresholds, PAN and 206AA rules, Form 16/16A/26AS, TRACES, refunds, benefits and common mistakes.","author":{"@type":"Organization","name":"ApneSoftware"},"publisher":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"},"mainEntityOfPage":"https://apnesoftware.com/tools/tds-calculator.html","inLanguage":["en","hi"]}
+</script>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<script src="../assets/common.js"></script>
+<script>
+/* ===================== TDS Calculator Engine (pure logic, no DOM) ===================== */
+'use strict';
+
+/* ===== Income-tax slabs (reused verbatim from income-tax-calculator.html / advance-tax-calculator.html for cross-tool consistency) ===== */
+var FY = {
+  '2026-27':{ newStd:75000, oldStd:50000,
+    newSlabs:[[400000,0],[800000,0.05],[1200000,0.10],[1600000,0.15],[2000000,0.20],[2400000,0.25],[Infinity,0.30]],
+    newRebateLimit:1200000, newRebateMax:60000 },
+  '2025-26':{ newStd:75000, oldStd:50000,
+    newSlabs:[[400000,0],[800000,0.05],[1200000,0.10],[1600000,0.15],[2000000,0.20],[2400000,0.25],[Infinity,0.30]],
+    newRebateLimit:1200000, newRebateMax:60000 }
+};
+function oldSlabs(age){
+  if(age === 'super') return [[500000,0],[1000000,0.20],[Infinity,0.30]];
+  if(age === 'senior') return [[300000,0],[500000,0.05],[1000000,0.20],[Infinity,0.30]];
+  return [[250000,0],[500000,0.05],[1000000,0.20],[Infinity,0.30]];
+}
+var OLD_REBATE_LIMIT = 500000, OLD_REBATE_MAX = 12500;
+
+function slabTax(income, slabs){
+  var tax = 0, prev = 0;
+  for(var i=0;i<slabs.length;i++){
+    var limit = slabs[i][0], rate = slabs[i][1];
+    if(income > prev){ tax += (Math.min(income, limit) - prev) * rate; prev = limit; }
+    else break;
+  }
+  return tax;
+}
+function taxAfterRebate(taxable, regime, fyKey, age){
+  var f = FY[fyKey] || FY['2026-27'];
+  var slabs, base, rebate = 0;
+  if(regime === 'new'){
+    slabs = f.newSlabs; base = slabTax(taxable, slabs);
+    if(taxable <= f.newRebateLimit) rebate = Math.min(base, f.newRebateMax);
+  } else {
+    slabs = oldSlabs(age); base = slabTax(taxable, slabs);
+    if(taxable <= OLD_REBATE_LIMIT) rebate = Math.min(base, OLD_REBATE_MAX);
+  }
+  return { base: base, rebate: rebate, afterRebate: base - rebate };
+}
+function cessOn(afterRebate){ return afterRebate * 0.04; }
+
+/* ===== Section 192 — Salary TDS ===== */
+function computeSalaryTDS(inp){
+  var f = FY[inp.fy] || FY['2026-27'];
+  var gross = Math.max(0, inp.annualSalary||0) + Math.max(0,inp.bonus||0) + Math.max(0,inp.allowances||0);
+  var stdDeduction = inp.regime === 'new' ? f.newStd : f.oldStd;
+  stdDeduction = Math.min(stdDeduction, gross);
+  var otherIncome = Math.max(0, inp.otherIncome||0);
+  var eligibleDeductions = inp.regime === 'old' ? Math.max(0, inp.eligibleDeductions||0) : 0;
+  var taxable = Math.max(0, gross + otherIncome - stdDeduction - eligibleDeductions);
+  var r = taxAfterRebate(taxable, inp.regime, inp.fy, inp.age);
+  var cess = cessOn(r.afterRebate);
+  var annualLiability = r.afterRebate + cess;
+  if(!inp.panAvailable && taxable > 0){
+    annualLiability = Math.max(annualLiability, taxable * 0.20);
+  }
+  var alreadyDeducted = Math.max(0, inp.tdsAlreadyDeducted||0);
+  var balanceTDS = Math.max(0, annualLiability - alreadyDeducted);
+  return {
+    section:'192', gross: gross, otherIncome: otherIncome, stdDeduction: stdDeduction, eligibleDeductions: eligibleDeductions,
+    taxable: taxable, baseTax: r.base, rebate: r.rebate, afterRebate: r.afterRebate, cess: cess,
+    annualLiability: annualLiability, alreadyDeducted: alreadyDeducted, balanceTDS: balanceTDS,
+    monthlyTDS: annualLiability / 12, effectiveRate: taxable > 0 ? (annualLiability/taxable) : 0
+  };
+}
+
+/* ===== Non-salary section rate/threshold table (FY 2025-26 & 2026-27 reference values) ===== */
+var SECTION_DEFS = {
+  '194C':{ label:'Contractor Payments (194C)', singleThreshold:30000, aggregateThreshold:100000 },
+  '194J':{ label:'Professional / Technical Fees (194J)', threshold:50000 },
+  '194H':{ label:'Commission / Brokerage (194H)', rate:0.02, threshold:20000 },
+  '194I':{ label:'Rent (194I)', threshold:600000 },
+  '194IA':{ label:'Property Purchase (194IA)', rate:0.01, threshold:5000000 },
+  '194A':{ label:'Interest (194A)', rate:0.10 },
+  '194':{ label:'Dividend (Section 194)', rate:0.10, threshold:10000 },
+  '194O':{ label:'E-commerce Participant (194O)', rate:0.001, threshold:500000 },
+  '194S':{ label:'Virtual Digital Assets / Crypto (194S)' },
+  'other':{ label:'Other Payments' }
+};
+
+/* Resolve {rate, threshold, singleThreshold} for a non-salary section given form context. */
+function resolveRateThreshold(section, opts){
+  opts = opts || {};
+  switch(section){
+    case '194C':
+      return {
+        rate: (opts.taxpayerType === 'individual' || opts.taxpayerType === 'huf') ? 0.01 : 0.02,
+        threshold: SECTION_DEFS['194C'].aggregateThreshold,
+        singleThreshold: SECTION_DEFS['194C'].singleThreshold
+      };
+    case '194J':
+      return { rate: opts.natureOfService === 'technical' ? 0.02 : 0.10, threshold: SECTION_DEFS['194J'].threshold, singleThreshold:null };
+    case '194H':
+      return { rate: SECTION_DEFS['194H'].rate, threshold: SECTION_DEFS['194H'].threshold, singleThreshold:null };
+    case '194I':
+      return { rate: opts.rentType === 'plantMachinery' ? 0.02 : 0.10, threshold: SECTION_DEFS['194I'].threshold, singleThreshold:null };
+    case '194IA':
+      return { rate: SECTION_DEFS['194IA'].rate, threshold: SECTION_DEFS['194IA'].threshold, singleThreshold:null };
+    case '194A':
+      var thr = opts.payerType === 'bank' ? (opts.seniorCitizen ? 100000 : 50000) : 10000;
+      return { rate: SECTION_DEFS['194A'].rate, threshold: thr, singleThreshold:null };
+    case '194':
+      return { rate: SECTION_DEFS['194'].rate, threshold: SECTION_DEFS['194'].threshold, singleThreshold:null };
+    case '194O':
+      return { rate: SECTION_DEFS['194O'].rate, threshold: SECTION_DEFS['194O'].threshold, singleThreshold:null };
+    case '194S':
+      return { rate: 0.01, threshold: opts.specifiedPerson ? 50000 : 10000, singleThreshold:null };
+    case 'other':
+      return { rate: (opts.customRate!=null? opts.customRate/100 : 0.10), threshold: (opts.customThreshold!=null? opts.customThreshold : 0), singleThreshold:null };
+    default:
+      return { rate: 0.10, threshold: 0, singleThreshold:null };
+  }
+}
+
+/* Taxable base for TDS: exclude GST component if shown separately on the invoice (standard CBDT treatment). */
+function taxableBase(grossAmount, gstIncluded, gstRatePct){
+  grossAmount = Math.max(0, grossAmount||0);
+  if(!gstIncluded) return grossAmount;
+  var rate = (gstRatePct!=null ? gstRatePct : 18) / 100;
+  return grossAmount / (1 + rate);
+}
+
+/* Single-payment (non-aggregated) non-salary TDS computation. */
+function computeNonSalaryTDS(section, inp){
+  inp = inp || {};
+  var rt = resolveRateThreshold(section, inp);
+  var taxable = taxableBase(inp.grossAmount, inp.gstIncluded, inp.gstRatePct);
+  var previousPayments = Math.max(0, inp.previousPayments||0);
+  var aggregate = taxable + previousPayments;
+  var notes = [];
+
+  var thresholdCrossed;
+  if(rt.singleThreshold != null){
+    thresholdCrossed = taxable > rt.singleThreshold || aggregate > rt.threshold;
+  } else {
+    thresholdCrossed = aggregate > rt.threshold;
+  }
+
+  var rate = rt.rate;
+  var form15GApplicable = (section === '194A' || section === '194') && inp.form15G15H;
+
+  if(form15GApplicable){
+    rate = 0; thresholdCrossed = false;
+    notes.push('Form 15G/15H submitted — no TDS deducted, subject to the declarant meeting eligibility conditions.');
+  } else if(inp.lowerCertificate && inp.lowerCertificate.active){
+    rate = Math.max(0, (inp.lowerCertificate.rate||0)) / 100;
+    thresholdCrossed = true;
+    notes.push('Lower/Nil deduction certificate under Section 197 applied — overrides the standard rate.');
+  } else if(!thresholdCrossed){
+    rate = 0;
+  } else if(!inp.panAvailable){
+    var higher = Math.max(rate, 0.20);
+    if(higher !== rate) notes.push('PAN not available — higher rate under Section 206AA applied (20% or the applicable rate, whichever is higher).');
+    rate = higher;
+  }
+
+  if(inp.residentialStatus === 'nri'){
+    notes.push('Payments to non-residents are generally governed by Section 195 (rates under the Act or applicable DTAA), not the domestic rate shown here — consult a CA for cross-border payments.');
+  }
+
+  var tdsAmount = thresholdCrossed ? taxable * rate : 0;
+  var netPayable = (inp.grossAmount||0) - tdsAmount;
+
+  return {
+    section: section, label: (SECTION_DEFS[section]||{}).label || section,
+    taxable: taxable, aggregate: aggregate, threshold: rt.threshold, singleThreshold: rt.singleThreshold,
+    thresholdCrossed: thresholdCrossed, rate: rate, tdsAmount: tdsAmount, netPayable: netPayable, notes: notes
+  };
+}
+
+/* ===== Multiple payment mode: cumulative aggregate-threshold TDS across unlimited rows =====
+   Once the aggregate (or, for 194C, any single payment) crosses the threshold, TDS is deducted
+   on the entire cumulative taxable amount at the applicable rate; the crossing row carries a
+   one-time catch-up for the amount already paid without deduction, and subsequent rows are
+   taxed incrementally. This mirrors how deductors commonly true-up TDS once a threshold is
+   crossed mid-year for a recurring payee. */
+function computeMultiPaymentTDS(rows, section, inp){
+  inp = inp || {};
+  var rt = resolveRateThreshold(section, inp);
+  var cum = 0, cumTDS = 0, crossed = false;
+  var out = rows.map(function(row){
+    var amt = taxableBase(row.amount, inp.gstIncluded, inp.gstRatePct);
+    cum += amt;
+    if(!crossed){
+      if((rt.singleThreshold != null && amt > rt.singleThreshold) || cum > rt.threshold) crossed = true;
+    }
+    var rate = rt.rate;
+    var effectiveCrossed = crossed;
+
+    if((section === '194A' || section === '194') && inp.form15G15H){
+      effectiveCrossed = false; rate = 0;
+    } else if(inp.lowerCertificate && inp.lowerCertificate.active){
+      rate = Math.max(0, (inp.lowerCertificate.rate||0)) / 100; effectiveCrossed = true;
+    } else if(effectiveCrossed && !inp.panAvailable){
+      rate = Math.max(rate, 0.20);
+    }
+
+    var totalDue = effectiveCrossed ? cum * rate : 0;
+    var rowTDS = Math.max(0, totalDue - cumTDS);
+    cumTDS = totalDue;
+    return { date: row.date, amount: row.amount, taxable: amt, cumulative: cum, thresholdCrossed: effectiveCrossed, rate: rate, tds: rowTDS, cumulativeTDS: cumTDS, netPayable: row.amount - rowTDS };
+  });
+  return { rows: out, totalGross: rows.reduce(function(s,r){return s+(r.amount||0);},0), totalTaxable: cum, totalTDS: cumTDS, threshold: rt.threshold, singleThreshold: rt.singleThreshold, rate: rt.rate };
+}
+
+/* ===================== Currency formatting ===================== */
+function fmtINR(n){
+  if(!isFinite(n)) n = 0;
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+
+/* ===================== Validation ===================== */
+function validateInputs(fields){
+  var errors = [];
+  Object.keys(fields).forEach(function(k){
+    var v = fields[k];
+    if(typeof v === 'number' && v < 0) errors.push(k + ' cannot be negative.');
+  });
+  return errors;
+}
+
+/* ===================== Expose ===================== */
+var TDSEngine = {
+  FY: FY, oldSlabs: oldSlabs, slabTax: slabTax, taxAfterRebate: taxAfterRebate, cessOn: cessOn,
+  computeSalaryTDS: computeSalaryTDS,
+  SECTION_DEFS: SECTION_DEFS, resolveRateThreshold: resolveRateThreshold, taxableBase: taxableBase,
+  computeNonSalaryTDS: computeNonSalaryTDS, computeMultiPaymentTDS: computeMultiPaymentTDS,
+  fmtINR: fmtINR, validateInputs: validateInputs
+};
+
+if(typeof module !== 'undefined' && module.exports) module.exports = TDSEngine;
+if(typeof window !== 'undefined') window.TDSEngine = TDSEngine;
+
+</script>
+<script>
+(function(){
+'use strict';
+var E = window.TDSEngine;
+function $(id){ return document.getElementById(id); }
+function fmt(n){ return E.fmtINR(n); }
+function num(id){ var el = $(id); if(!el) return 0; var v = parseFloat(el.value); return isFinite(v) && v > 0 ? v : 0; }
+
+/* ===================== Persistence ===================== */
+function lsGet(key, fallback){ try{ var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } }
+function lsSet(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+
+/* ===================== Tabs ===================== */
+var tabs = [['td-tabType','td-paneType'],['td-tabPayment','td-panePayment'],['td-tabSalary','td-paneSalary'],['td-tabMulti','td-paneMulti'],['td-tabSettings','td-paneSettings']];
+function activateTab(pair){
+  tabs.forEach(function(p2){
+    $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected','false');
+    $(p2[1]).classList.remove('active');
+  });
+  $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected','true');
+  $(pair[1]).classList.add('active');
+}
+tabs.forEach(function(pair){ $(pair[0]).addEventListener('click', function(){ activateTab(pair); }); });
+
+/* ===================== FY / AY sync ===================== */
+var AY_MAP = {'2026-27':'2027-28', '2025-26':'2026-27'};
+$('td-fy').addEventListener('change', function(){
+  $('td-ay').value = AY_MAP[$('td-fy').value];
+  compute();
+});
+
+/* ===================== TDS Type field show/hide (Step 1) ===================== */
+var SECTION_FIELD_MAP = {
+  '194J': ['td-natureOfServiceField'],
+  '194I': ['td-rentTypeField'],
+  '194A': ['td-payerTypeField','td-seniorCitizenField'],
+  '194S': ['td-specifiedPersonField'],
+  'other': ['td-customRateField','td-customThresholdField']
+};
+var ALL_SPECIFIC_FIELDS = ['td-natureOfServiceField','td-rentTypeField','td-payerTypeField','td-seniorCitizenField','td-specifiedPersonField','td-customRateField','td-customThresholdField'];
+
+function applySectionVisibility(){
+  var section = $('td-section').value;
+  var isSalary = section === '192';
+
+  $('td-tabSalary').hidden = !isSalary;
+  if(!isSalary && $('td-tabSalary').classList.contains('active')) activateTab(tabs[1]);
+  if(isSalary && $('td-panePayment').classList.contains('active')){ /* keep as-is */ }
+
+  ALL_SPECIFIC_FIELDS.forEach(function(id){ $(id).hidden = true; });
+  var toShow = SECTION_FIELD_MAP[section] || [];
+  toShow.forEach(function(id){ $(id).hidden = false; });
+  $('td-noExtraFieldsMsg').style.display = toShow.length ? 'none' : 'block';
+
+  var form15Applicable = section === '194A' || section === '194';
+  $('td-form15gField').hidden = !form15Applicable;
+  if(!form15Applicable) $('td-form15g').checked = false;
+
+  compute();
+}
+$('td-section').addEventListener('change', applySectionVisibility);
+
+/* ===================== Certificate / GST toggle fields ===================== */
+$('td-certActive').addEventListener('change', function(){ $('td-certRateField').hidden = !this.checked; compute(); });
+$('td-gstIncluded').addEventListener('change', function(){ $('td-gstRateField').hidden = !this.checked; compute(); });
+
+/* ===================== Build engine input from form ===================== */
+function buildOpts(){
+  return {
+    taxpayerType: $('td-taxpayerType').value,
+    residentialStatus: $('td-residential').value,
+    panAvailable: $('td-pan').value === 'yes',
+    lowerCertificate: { active: $('td-certActive').checked, rate: num('td-certRate') },
+    form15G15H: $('td-form15g').checked,
+    grossAmount: num('td-grossAmount'),
+    gstIncluded: $('td-gstIncluded').checked,
+    gstRatePct: num('td-gstRate'),
+    previousPayments: num('td-previousPayments'),
+    natureOfService: $('td-natureOfService').value,
+    rentType: $('td-rentType').value,
+    payerType: $('td-payerType').value,
+    seniorCitizen: $('td-seniorCitizen').checked,
+    specifiedPerson: $('td-specifiedPerson').checked,
+    customRate: num('td-customRate'),
+    customThreshold: num('td-customThreshold')
+  };
+}
+
+/* ===================== Main compute ===================== */
+var lastResult = null;
+function compute(){
+  var section = $('td-section').value;
+  var opts = buildOpts();
+  var multiEnabled = $('td-multiEnabled').checked && multiRows.length > 0;
+
+  var result;
+  if(section === '192'){
+    result = E.computeSalaryTDS({
+      fy: $('td-fy').value, regime: $('td-regime').value, age: $('td-age').value,
+      annualSalary: num('td-annualSalary'), bonus: num('td-bonus'), allowances: num('td-allowances'),
+      otherIncome: num('td-otherIncomeSalary'), eligibleDeductions: num('td-eligibleDeductions'),
+      tdsAlreadyDeducted: num('td-tdsAlready'), panAvailable: opts.panAvailable
+    });
+    var f = E.FY[$('td-fy').value] || E.FY['2026-27'];
+    $('td-salaryStdNote').textContent = 'Standard Deduction applied: ' + fmt(result.stdDeduction) + ' (' + ($('td-regime').value === 'new' ? 'New' : 'Old') + ' Regime).';
+  } else if(multiEnabled){
+    result = E.computeMultiPaymentTDS(multiRows, section, opts);
+  } else {
+    result = E.computeNonSalaryTDS(section, opts);
+  }
+
+  lastResult = { section: section, multiEnabled: multiEnabled, opts: opts, result: result };
+
+  renderDashboard();
+  renderEngineBox();
+  renderWaterfall();
+  renderMultiTable();
+  renderCharts();
+}
+
+/* ===================== Dashboard ===================== */
+function statCard(label, value, cls){
+  return '<div class="stat-box' + (cls?(' '+cls):'') + '"><div class="num">' + value + '</div><div class="lbl">' + label + '</div></div>';
+}
+function renderDashboard(){
+  var l = lastResult, html;
+  if(l.section === '192'){
+    var r = l.result;
+    html =
+      statCard('Gross Salary', fmt(r.gross)) +
+      statCard('Taxable Amount', fmt(r.taxable)) +
+      statCard('Effective TDS Rate', (r.effectiveRate*100).toFixed(2)+'%') +
+      statCard('Annual TDS Liability', fmt(r.annualLiability)) +
+      statCard('TDS Already Deducted', fmt(r.alreadyDeducted)) +
+      statCard('Balance TDS Payable', fmt(r.balanceTDS));
+  } else if(l.multiEnabled){
+    var m = l.result;
+    var effRate = m.totalGross > 0 ? (m.totalTDS/m.totalGross*100) : 0;
+    html =
+      statCard('Total Gross Amount', fmt(m.totalGross)) +
+      statCard('Total Taxable Amount', fmt(m.totalTaxable)) +
+      statCard('TDS Rate', (m.rate*100).toFixed(2)+'%') +
+      statCard('Total TDS Deducted', fmt(m.totalTDS)) +
+      statCard('Net Payment', fmt(m.totalGross - m.totalTDS)) +
+      statCard('Effective TDS %', effRate.toFixed(2)+'%');
+  } else {
+    var nr = l.result;
+    var effRate = opts_grossSafe(l.opts.grossAmount) > 0 ? (nr.tdsAmount/l.opts.grossAmount*100) : 0;
+    html =
+      statCard('Gross Amount', fmt(l.opts.grossAmount)) +
+      statCard('Taxable Amount', fmt(nr.taxable)) +
+      statCard('TDS Rate', (nr.rate*100).toFixed(2)+'%') +
+      statCard('TDS Deducted', fmt(nr.tdsAmount)) +
+      statCard('Net Payment', fmt(nr.netPayable)) +
+      statCard('Effective TDS %', effRate.toFixed(2)+'%');
+  }
+  $('td-dashCards').innerHTML = html;
+}
+function opts_grossSafe(v){ return v > 0 ? v : 0; }
+
+/* ===================== Engine Determination panel ===================== */
+function row(label, value){ return '<div class="td-engine-row"><span>' + label + '</span><span>' + value + '</span></div>'; }
+function renderEngineBox(){
+  var l = lastResult;
+  var html, flags = [];
+  if(l.section === '192'){
+    var r = l.result;
+    html = row('Section', '192 (Salary)') + row('Rate Basis', 'Average of applicable slab rates') + row('Effective Rate', (r.effectiveRate*100).toFixed(2)+'%');
+    flags.push(r.balanceTDS > 0 ? '<span class="td-flag warn">Balance TDS due: '+fmt(r.balanceTDS)+'</span>' : '<span class="td-flag ok">Fully deducted</span>');
+  } else if(l.multiEnabled){
+    var m = l.result;
+    html = row('Section', m.rows.length ? (E.SECTION_DEFS[l.section]||{}).label || l.section : l.section) +
+      row('Applicable Threshold', fmt(m.threshold) + (m.singleThreshold!=null?(' (single: '+fmt(m.singleThreshold)+')'):'')) +
+      row('TDS Rate', (m.rate*100).toFixed(2)+'%');
+    flags.push(m.totalTDS > 0 ? '<span class="td-flag warn">Threshold crossed — TDS applies</span>' : '<span class="td-flag ok">Threshold not yet crossed</span>');
+  } else {
+    var nr = l.result;
+    html = row('Applicable Section', nr.label) +
+      row('Applicable Threshold', fmt(nr.threshold) + (nr.singleThreshold!=null?(' (single: '+fmt(nr.singleThreshold)+')'):'')) +
+      row('TDS Rate Applied', (nr.rate*100).toFixed(2)+'%') +
+      row('Threshold Crossed', nr.thresholdCrossed ? 'Yes' : 'No');
+    flags.push(nr.thresholdCrossed ? '<span class="td-flag warn">TDS applicable</span>' : '<span class="td-flag ok">Below threshold — no TDS</span>');
+    if(!l.opts.panAvailable) flags.push('<span class="td-flag neutral">PAN not available (206AA)</span>');
+    if(l.opts.lowerCertificate.active) flags.push('<span class="td-flag neutral">Sec 197 certificate applied</span>');
+    if(l.opts.form15G15H) flags.push('<span class="td-flag neutral">Form 15G/15H submitted</span>');
+    nr.notes.forEach(function(n){ html += '<div class="td-muted" style="margin-top:6px">'+n+'</div>'; });
+  }
+  $('td-engineBox').innerHTML = html;
+  $('td-engineFlags').innerHTML = flags.join('');
+}
+
+/* ===================== Waterfall ===================== */
+function renderWaterfall(){
+  var l = lastResult;
+  var rows = [];
+  function wf(label, value, isSub, isTotal){
+    return '<div class="td-wf-row' + (isSub?' td-wf-sub':'') + (isTotal?' td-wf-total':'') + '"><span>' + label + '</span><span>' + value + '</span></div>';
+  }
+  if(l.section === '192'){
+    var r = l.result;
+    rows.push(wf('Gross Salary', fmt(r.gross)));
+    rows.push(wf('Less: Standard Deduction', '− ' + fmt(r.stdDeduction), true));
+    if(r.eligibleDeductions > 0) rows.push(wf('Less: Eligible Deductions', '− ' + fmt(r.eligibleDeductions), true));
+    rows.push(wf('Taxable Income', fmt(r.taxable), false, true));
+    rows.push(wf('Tax as per Slabs', fmt(r.baseTax)));
+    if(r.rebate > 0) rows.push(wf('Less: Section 87A Rebate', '− ' + fmt(r.rebate), true));
+    rows.push(wf('Add: Health & Education Cess (4%)', fmt(r.cess)));
+    rows.push(wf('Annual TDS Liability', fmt(r.annualLiability), false, true));
+    rows.push(wf('Less: TDS Already Deducted', '− ' + fmt(r.alreadyDeducted), true));
+    rows.push(wf('Balance TDS Payable', fmt(r.balanceTDS), false, true));
+  } else if(l.multiEnabled){
+    var m = l.result;
+    rows.push(wf('Total Gross Amount', fmt(m.totalGross)));
+    rows.push(wf('Total Taxable Amount', fmt(m.totalTaxable)));
+    rows.push(wf('TDS Rate', (m.rate*100).toFixed(2)+'%'));
+    rows.push(wf('Total TDS Deducted', '− ' + fmt(m.totalTDS), true));
+    rows.push(wf('Net Payment', fmt(m.totalGross - m.totalTDS), false, true));
+  } else {
+    var nr = l.result;
+    rows.push(wf('Gross Amount', fmt(l.opts.grossAmount)));
+    if(l.opts.gstIncluded) rows.push(wf('Less: GST Component', '− ' + fmt(l.opts.grossAmount - nr.taxable), true));
+    rows.push(wf('Taxable Amount', fmt(nr.taxable), false, true));
+    rows.push(wf('TDS Rate', (nr.rate*100).toFixed(2)+'%'));
+    rows.push(wf('TDS Deducted', '− ' + fmt(nr.tdsAmount), true));
+    rows.push(wf('Net Payable Amount', fmt(nr.netPayable), false, true));
+  }
+  $('td-waterfall').innerHTML = rows.join('');
+}
+
+/* ===================== Multiple Payment rows ===================== */
+var multiRows = [];
+function addRow(date, amount){
+  multiRows.push({ date: date || new Date().toISOString().slice(0,10), amount: amount || 0 });
+  renderMultiInputs();
+  compute();
+}
+function removeRow(idx){ multiRows.splice(idx,1); renderMultiInputs(); compute(); }
+function renderMultiInputs(){
+  var tbody = $('td-multiTbody');
+  tbody.innerHTML = '';
+  multiRows.forEach(function(row, i){
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td>' + (i+1) + '</td>' +
+      '<td><input type="date" class="td-row-date" data-idx="'+i+'" value="'+row.date+'"></td>' +
+      '<td><input type="number" class="td-row-amount" data-idx="'+i+'" min="0" value="'+row.amount+'"></td>' +
+      '<td class="td-row-tds">₹0</td><td class="td-row-net">₹0</td>' +
+      '<td><button type="button" class="td-multi-remove" data-idx="'+i+'">✕</button></td>';
+    tbody.appendChild(tr);
+  });
+  tbody.querySelectorAll('.td-row-date').forEach(function(el){ el.addEventListener('change', function(){ multiRows[+this.dataset.idx].date = this.value; compute(); }); });
+  tbody.querySelectorAll('.td-row-amount').forEach(function(el){ el.addEventListener('input', function(){ multiRows[+this.dataset.idx].amount = parseFloat(this.value)||0; compute(); }); });
+  tbody.querySelectorAll('.td-multi-remove').forEach(function(el){ el.addEventListener('click', function(){ removeRow(+this.dataset.idx); }); });
+}
+function renderMultiTable(){
+  var l = lastResult;
+  if(!(l.multiEnabled)){
+    $('td-multiTotalAmount').textContent = fmt(0);
+    $('td-multiTotalTDS').textContent = fmt(0);
+    $('td-multiTotalNet').textContent = fmt(0);
+    return;
+  }
+  var m = l.result;
+  var tbody = $('td-multiTbody');
+  m.rows.forEach(function(r, i){
+    var tr = tbody.children[i];
+    if(!tr) return;
+    tr.querySelector('.td-row-tds').textContent = fmt(r.tds);
+    tr.querySelector('.td-row-net').textContent = fmt(r.netPayable);
+  });
+  $('td-multiTotalAmount').textContent = fmt(m.totalGross);
+  $('td-multiTotalTDS').textContent = fmt(m.totalTDS);
+  $('td-multiTotalNet').textContent = fmt(m.totalGross - m.totalTDS);
+}
+
+$('td-addRowBtn').addEventListener('click', function(){ addRow(); });
+$('td-clearRowsBtn').addEventListener('click', function(){ if(!confirm('Clear all payment rows?')) return; multiRows = []; renderMultiInputs(); compute(); });
+$('td-multiEnabled').addEventListener('change', function(){
+  $('td-trendWrap').style.display = this.checked ? 'block' : 'none';
+  $('td-multiSummaryWrap').style.display = this.checked ? 'block' : 'none';
+  compute();
+});
+$('td-autoGenBtn').addEventListener('click', function(){
+  var count = Math.max(1, Math.round(num('td-numPayments')) || 1);
+  var amount = num('td-grossAmount');
+  var freq = $('td-frequency').value;
+  var startDate = $('td-paymentDate').value ? new Date($('td-paymentDate').value) : new Date();
+  multiRows = [];
+  for(var i=0;i<count;i++){
+    var d = new Date(startDate);
+    if(freq === 'monthly') d.setMonth(d.getMonth()+i);
+    else if(freq === 'quarterly') d.setMonth(d.getMonth()+i*3);
+    else if(i>0) d.setMonth(d.getMonth()+i);
+    multiRows.push({ date: d.toISOString().slice(0,10), amount: amount });
+  }
+  $('td-multiEnabled').checked = true;
+  $('td-trendWrap').style.display = 'block';
+  $('td-multiSummaryWrap').style.display = 'block';
+  renderMultiInputs();
+  compute();
+  $('td-statusMsg').textContent = '⚡ Generated ' + count + ' payment rows.';
+});
+
+/* ===================== Canvas charts (hand-rolled, no external library) ===================== */
+var PALETTE = ['#7C5CFC','#16C079','#F59E0B','#F87171','#38BDF8','#A78BFA','#FB923C','#34D399'];
+function drawPie(canvasId, legendId, data, doughnut){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var total = data.reduce(function(s,d){ return s + Math.max(0,d.value); }, 0);
+  var cx = w/2, cy = h/2, radius = Math.min(w,h)/2 - 10;
+  if(total <= 0){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', cx, cy);
+    if(legendId) $(legendId).innerHTML = '';
+    return;
+  }
+  var start = -Math.PI/2;
+  data.forEach(function(d, i){
+    var slice = (Math.max(0,d.value) / total) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, radius, start, start + slice);
+    ctx.closePath();
+    ctx.fillStyle = PALETTE[i % PALETTE.length];
+    ctx.fill();
+    start += slice;
+  });
+  if(doughnut){
+    ctx.beginPath(); ctx.arc(cx, cy, radius*0.55, 0, Math.PI*2); ctx.fillStyle = '#160b2e'; ctx.fill();
+  }
+  if(legendId){
+    $(legendId).innerHTML = data.map(function(d,i){
+      return '<span><i style="background:' + PALETTE[i%PALETTE.length] + '"></i>' + d.label + ': ' + fmt(d.value) + '</span>';
+    }).join('');
+  }
+}
+function drawBar(canvasId, data){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var total = data.reduce(function(s,d){return s+Math.max(0,d.value);},0);
+  if(total <= 0){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', w/2, h/2);
+    return;
+  }
+  var max = Math.max.apply(null, data.map(function(d){ return d.value; }).concat([1]));
+  var barW = w / data.length * 0.6;
+  var gap = w / data.length;
+  data.forEach(function(d, i){
+    var barH = (Math.max(0,d.value) / max) * (h - 40);
+    var x = i * gap + (gap - barW)/2;
+    var y = h - 24 - barH;
+    ctx.fillStyle = PALETTE[i % PALETTE.length];
+    ctx.fillRect(x, y, barW, barH);
+    ctx.fillStyle = '#aaa'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(d.label, x + barW/2, h - 8);
+  });
+}
+function drawLine(canvasId, data){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  if(!data.length){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', w/2, h/2);
+    return;
+  }
+  var max = Math.max.apply(null, data.map(function(d){return d.value;}).concat([1]));
+  var stepX = data.length > 1 ? (w-40) / (data.length-1) : 0;
+  ctx.beginPath();
+  data.forEach(function(d,i){
+    var x = 20 + i*stepX;
+    var y = h - 24 - (d.value/max)*(h-44);
+    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  });
+  ctx.strokeStyle = PALETTE[0]; ctx.lineWidth = 2; ctx.stroke();
+  data.forEach(function(d,i){
+    var x = 20 + i*stepX;
+    var y = h - 24 - (d.value/max)*(h-44);
+    ctx.beginPath(); ctx.arc(x,y,3,0,Math.PI*2); ctx.fillStyle = PALETTE[1]; ctx.fill();
+  });
+}
+
+function renderCharts(){
+  var l = lastResult;
+  if(l.section === '192'){
+    var r = l.result;
+    drawPie('td-chartPayment', 'td-legendPayment', [
+      {label:'Net After TDS', value: Math.max(0, r.gross - r.balanceTDS)}, {label:'TDS', value: r.balanceTDS}
+    ], true);
+    drawBar('td-chartBreakdown', [
+      {label:'Tax', value: r.baseTax - r.rebate}, {label:'Cess', value: r.cess}, {label:'Already Deducted', value: r.alreadyDeducted}
+    ]);
+  } else if(l.multiEnabled){
+    var m = l.result;
+    drawPie('td-chartPayment', 'td-legendPayment', [
+      {label:'Net Payment', value: Math.max(0, m.totalGross - m.totalTDS)}, {label:'TDS', value: m.totalTDS}
+    ], true);
+    drawBar('td-chartBreakdown', [
+      {label:'Gross', value: m.totalGross}, {label:'Taxable', value: m.totalTaxable}, {label:'TDS', value: m.totalTDS}
+    ]);
+    drawLine('td-chartTrend', m.rows.map(function(r,i){ return {label:'#'+(i+1), value: r.tds}; }));
+  } else {
+    var nr = l.result;
+    drawPie('td-chartPayment', 'td-legendPayment', [
+      {label:'Net Payment', value: Math.max(0, nr.netPayable)}, {label:'TDS', value: nr.tdsAmount}
+    ], true);
+    drawBar('td-chartBreakdown', [
+      {label:'Gross', value: l.opts.grossAmount}, {label:'Taxable', value: nr.taxable}, {label:'TDS', value: nr.tdsAmount}
+    ]);
+  }
+}
+
+/* ===================== Validation on inputs ===================== */
+document.querySelectorAll('#td-formSide input, #td-formSide select').forEach(function(el){
+  el.addEventListener('input', compute);
+  el.addEventListener('change', compute);
+});
+
+/* ===================== Buttons ===================== */
+$('td-calcBtn').addEventListener('click', function(){ compute(); $('td-statusMsg').textContent = '✅ Calculation updated.'; });
+$('td-resetBtn').addEventListener('click', function(){
+  if(!confirm('Reset all fields to default?')) return;
+  document.querySelectorAll('#td-formSide input[type=number]').forEach(function(el){ el.value = 0; });
+  document.querySelectorAll('#td-formSide input[type=checkbox]').forEach(function(el){ el.checked = false; });
+  document.querySelectorAll('#td-formSide input[type=date]').forEach(function(el){ el.value = ''; });
+  $('td-section').value = '192'; $('td-numPayments').value = 1; $('td-gstRate').value = 18; $('td-certRate').value = 0; $('td-customRate').value = 10;
+  multiRows = []; renderMultiInputs();
+  applySectionVisibility();
+  $('td-multiEnabled').dispatchEvent(new Event('change'));
+  compute();
+  $('td-statusMsg').textContent = '↺ Reset complete.';
+});
+$('td-printBtn').addEventListener('click', function(){ window.print(); });
+
+function buildTextSummary(){
+  var l = lastResult;
+  var lines = ['TDS Calculation Summary', 'Section: ' + l.section];
+  if(l.section === '192'){
+    var r = l.result;
+    lines.push('Gross Salary: ' + fmt(r.gross), 'Taxable Income: ' + fmt(r.taxable), 'Annual TDS Liability: ' + fmt(r.annualLiability), 'Balance TDS Payable: ' + fmt(r.balanceTDS));
+  } else if(l.multiEnabled){
+    var m = l.result;
+    lines.push('Total Gross: ' + fmt(m.totalGross), 'Total TDS: ' + fmt(m.totalTDS), 'Net Payment: ' + fmt(m.totalGross - m.totalTDS));
+  } else {
+    var nr = l.result;
+    lines.push('Gross Amount: ' + fmt(l.opts.grossAmount), 'Taxable Amount: ' + fmt(nr.taxable), 'TDS Rate: ' + (nr.rate*100).toFixed(2)+'%', 'TDS Amount: ' + fmt(nr.tdsAmount), 'Net Payable: ' + fmt(nr.netPayable));
+  }
+  return lines.join('\n');
+}
+$('td-copyBtn').addEventListener('click', function(e){
+  var text = buildTextSummary();
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ $('td-statusMsg').textContent = '📋 Copied to clipboard.'; });
+  }
+});
+$('td-shareBtn').addEventListener('click', function(){
+  var text = buildTextSummary();
+  if(navigator.share){ navigator.share({title:'TDS Calculation', text:text}).catch(function(){}); }
+  else if(navigator.clipboard){ navigator.clipboard.writeText(text); $('td-statusMsg').textContent = '📋 Copied — share sheet not available on this browser.'; }
+});
+$('td-pdfBtn').addEventListener('click', function(){
+  if(typeof html2pdf === 'undefined'){ alert('PDF engine failed to load — check your connection and refresh.'); return; }
+  html2pdf().from($('td-resultSide')).set({filename:'tds-summary.pdf', margin:10}).save();
+});
+$('td-xlsxBtn').addEventListener('click', function(){
+  if(typeof XLSX === 'undefined'){ alert('Excel engine failed to load — check your connection and refresh.'); return; }
+  var l = lastResult;
+  var rows = [['Metric','Value']];
+  if(l.section === '192'){
+    var r = l.result;
+    rows.push(['Gross Salary', r.gross], ['Taxable Income', r.taxable], ['Annual TDS Liability', r.annualLiability], ['Already Deducted', r.alreadyDeducted], ['Balance TDS Payable', r.balanceTDS]);
+  } else if(l.multiEnabled){
+    var m = l.result;
+    rows.push(['Total Gross', m.totalGross], ['Total Taxable', m.totalTaxable], ['TDS Rate %', m.rate*100], ['Total TDS', m.totalTDS], ['Net Payment', m.totalGross - m.totalTDS]);
+  } else {
+    var nr = l.result;
+    rows.push(['Gross Amount', l.opts.grossAmount], ['Taxable Amount', nr.taxable], ['TDS Rate %', nr.rate*100], ['TDS Amount', nr.tdsAmount], ['Net Payable', nr.netPayable]);
+  }
+  var ws = XLSX.utils.aoa_to_sheet(rows);
+  var wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'TDS');
+  XLSX.writeFile(wb, 'tds-summary.xlsx');
+});
+
+/* ===================== Settings: theme / language / accessibility ===================== */
+var I18N = {
+  en: {
+    tabType:'🏷️ TDS Type & Taxpayer', tabPayment:'💰 Payment Details', tabSalary:'💼 Salary Details', tabMulti:'📅 Multiple Payments', tabSettings:'⚙️ Settings',
+    calc:'🧮 Calculate', reset:'↺ Reset', print:'🖨️ Print', pdf:'📄 Download PDF', xlsx:'📊 Download Excel', copy:'📋 Copy Result', share:'🔗 Share'
+  },
+  hi: {
+    tabType:'🏷️ TDS प्रकार और करदाता', tabPayment:'💰 भुगतान विवरण', tabSalary:'💼 वेतन विवरण', tabMulti:'📅 कई भुगतान', tabSettings:'⚙️ सेटिंग्स',
+    calc:'🧮 गणना करें', reset:'↺ रीसेट', print:'🖨️ प्रिंट', pdf:'📄 PDF डाउनलोड', xlsx:'📊 Excel डाउनलोड', copy:'📋 परिणाम कॉपी करें', share:'🔗 शेयर'
+  }
+};
+function applyLanguage(lang){
+  var t = I18N[lang] || I18N.en;
+  $('td-tabType').textContent = t.tabType;
+  $('td-tabPayment').textContent = t.tabPayment;
+  $('td-tabSalary').textContent = t.tabSalary;
+  $('td-tabMulti').textContent = t.tabMulti;
+  $('td-tabSettings').textContent = t.tabSettings;
+  $('td-calcBtn').textContent = t.calc;
+  $('td-resetBtn').textContent = t.reset;
+  $('td-printBtn').textContent = t.print;
+  $('td-pdfBtn').textContent = t.pdf;
+  $('td-xlsxBtn').textContent = t.xlsx;
+  $('td-copyBtn').textContent = t.copy;
+  $('td-shareBtn').textContent = t.share;
+}
+$('td-language').addEventListener('change', function(){ applyLanguage(this.value); lsSet('tds_lang', this.value); });
+
+$('td-theme').addEventListener('change', function(){
+  document.body.classList.toggle('td-light', this.value === 'light');
+  lsSet('tds_theme', this.value);
+});
+$('td-highContrast').addEventListener('change', function(){
+  document.body.classList.toggle('td-high-contrast', this.checked);
+  lsSet('tds_hc', this.checked);
+});
+$('td-largeFont').addEventListener('change', function(){
+  document.body.classList.toggle('td-large-font', this.checked);
+  lsSet('tds_lf', this.checked);
+});
+
+/* ===================== Init ===================== */
+applySectionVisibility();
+
+var savedLang = lsGet('tds_lang', 'en');
+$('td-language').value = savedLang;
+applyLanguage(savedLang);
+
+var savedTheme = lsGet('tds_theme', 'dark');
+$('td-theme').value = savedTheme;
+document.body.classList.toggle('td-light', savedTheme === 'light');
+
+var savedHc = lsGet('tds_hc', false);
+$('td-highContrast').checked = savedHc;
+document.body.classList.toggle('td-high-contrast', savedHc);
+
+var savedLf = lsGet('tds_lf', false);
+$('td-largeFont').checked = savedLf;
+document.body.classList.toggle('td-large-font', savedLf);
+
+if(!$('td-paymentDate').value) $('td-paymentDate').value = new Date().toISOString().slice(0,10);
+
+compute();
+
+})();
+
+</script>
+<!-- Default Statcounter code for Apne Software
+https://apnesoftware.com -->
+<script type="text/javascript">
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13334460/0/a5854dc7/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+</body>
+</html>
