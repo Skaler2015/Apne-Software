@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Free Income Tax Surcharge Calculator for India (FY 2023-24 to FY 2026-27) — instant Surcharge, Marginal Relief and Health & Education Cess for Individuals, HUF, Firms, LLPs, Domestic and Foreign Companies and Co-operative Societies. 100% private, browser-only, no AI.">
+<meta name="keywords" content="surcharge calculator income tax, marginal relief calculator, income tax surcharge rate FY 2025-26, surcharge on companies, surcharge on individual income tax, health and education cess calculator, surcharge slab India">
+<link rel="canonical" href="https://apnesoftware.com/tools/surcharge-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Surcharge Calculator (India, FY-wise) | ApneSoftware">
+<meta property="og:description" content="Calculate Income Tax Surcharge, Marginal Relief and Cess instantly for Individuals, HUF, Companies, Firms and LLPs. Free, private, browser-only.">
+<meta property="og:url" content="https://apnesoftware.com/tools/surcharge-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Surcharge Calculator (India, FY-wise) | ApneSoftware">
+<meta name="twitter:description" content="Income Tax Surcharge, Marginal Relief and Cess — instant, free, private, browser-only.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Surcharge Calculator","description":"Professional in-browser Income Tax Surcharge Calculator for India with FY-wise slabs for Individuals, HUF, AOP, BOI, Firms, LLPs, Domestic Companies, Foreign Companies, Co-operative Societies and Local Authorities, including automatic Marginal Relief and Health & Education Cess.","url":"https://apnesoftware.com/tools/surcharge-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["FY-wise Surcharge slab engine for all taxpayer types","Automatic Marginal Relief calculation","Health and Education Cess (4%)","15% surcharge cap for specified capital gains and dividend income","Interactive charts and calculation history","Export to PDF, Excel, CSV, print, copy and share"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Surcharge Calculator","url":"https://apnesoftware.com/tools/surcharge-calculator.html","description":"Browser-based Income Tax Surcharge Calculator for India with FY-wise slabs, Marginal Relief and Cess for all taxpayer types.","inLanguage":["en","hi"],"isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".tool-header p"]}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"Calculators & Converters","item":"https://apnesoftware.com/index.html#cat-calculator"},{"@type":"ListItem","position":3,"name":"Surcharge Calculator","item":"https://apnesoftware.com/tools/surcharge-calculator.html"}]}
+</script>
+<meta name="color-scheme" content="dark light">
+<title>Surcharge Calculator (India, FY-wise) | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* ===== Surcharge Calculator — scoped sc- prefix ===== */
+
+  /* All figures must always remain on one line, using Indian tabular-number formatting. */
+  .sc-num, .sc-content .num, .sc-stat-cards .num, .sc-engine-row span:last-child,
+  .sc-content table td, .sc-content table th, .sc-formula-box, .sc-history-item .sc-amt{
+    white-space:nowrap; word-break:keep-all; overflow-wrap:normal;
+    font-variant-numeric: tabular-nums; font-feature-settings:"tnum" 1;
+  }
+
+  .sc-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;align-items:start}
+  #sc-formSide,#sc-resultSide{min-width:0}
+  #sc-resultSide{position:sticky;top:16px}
+  @media(max-width:900px){ .sc-grid{grid-template-columns:1fr} #sc-resultSide{position:static} }
+
+  .sc-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .sc-tab{padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.82rem;font-weight:600;font-family:inherit}
+  .sc-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .sc-pane{display:none}
+  .sc-pane.active{display:block}
+
+  .sc-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;backdrop-filter:blur(10px);
+    transition:transform .18s ease, box-shadow .18s ease}
+  .sc-card:hover{box-shadow:0 10px 30px rgba(124,92,252,.12)}
+  .sc-card h3{margin:0 0 10px;font-size:.95rem}
+  .sc-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:10px}
+  .sc-field label{display:block;font-size:.76rem;color:var(--text-dim);margin-bottom:4px}
+  .sc-field input,.sc-field select{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.88rem;transition:border-color .15s ease, box-shadow .15s ease}
+  .sc-field input:focus,.sc-field select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,252,.2)}
+  .sc-note{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.3);border-radius:10px;padding:10px 12px;font-size:.8rem;color:#fde68a;margin-top:10px}
+  .sc-err{display:none;color:#fca5a5;font-size:.78rem;margin-top:6px}
+
+  .sc-stat-cards{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .sc-stat-cards .stat-box{flex:1;min-width:140px}
+  .sc-stat-cards .stat-box.sc-highlight{background:linear-gradient(135deg,rgba(124,92,252,.25),rgba(22,192,121,.18));border:1px solid var(--accent)}
+  .sc-stat-cards .stat-box.sc-refund{background:linear-gradient(135deg,rgba(22,192,121,.28),rgba(56,189,248,.16));border:1px solid #16C079}
+
+  .sc-engine-box{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:10px 0}
+  .sc-engine-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--border);font-size:.86rem;gap:10px}
+  .sc-engine-row:last-child{border-bottom:none}
+  .sc-engine-row span:last-child{font-weight:700;color:var(--accent)}
+
+  .sc-steps{display:flex;flex-direction:column;gap:4px;margin:10px 0}
+  .sc-step{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:.84rem;text-align:center}
+  .sc-step-arrow{text-align:center;color:var(--text-dim);font-size:.9rem}
+
+  .sc-formula-box{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px;font-family:'Consolas','Courier New',monospace;font-size:.8rem;white-space:pre-wrap;margin-top:10px}
+
+  .sc-chart-wrap{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px;margin-top:12px}
+  .sc-chart-wrap h4{font-size:.82rem;color:var(--text-dim);font-weight:600;margin-bottom:8px}
+  .sc-chart-wrap canvas{width:100%;height:auto;display:block}
+  .sc-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:.76rem;color:var(--text-dim)}
+  .sc-legend span{display:inline-flex;align-items:center;gap:5px}
+  .sc-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+  .sc-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .sc-flag{padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600;border:1px solid var(--border)}
+  .sc-flag.ok{background:rgba(22,192,121,.15);color:#7ef0bd;border-color:rgba(22,192,121,.4)}
+  .sc-flag.warn{background:rgba(248,113,113,.15);color:#fca5a5;border-color:rgba(248,113,113,.4)}
+  .sc-flag.neutral{background:var(--surface-2);color:var(--text-dim)}
+  .sc-muted{color:var(--text-dim);font-size:.8rem;margin-top:6px}
+
+  .sc-history-item{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);margin-bottom:6px;font-size:.84rem}
+  .sc-share-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .sc-share-btn{padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);cursor:pointer;font-size:.8rem;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:transform .15s ease, background .15s ease}
+  .sc-share-btn:hover{transform:translateY(-2px);background:var(--surface)}
+
+  /* Premium gradient buttons with animated hover */
+  .btn.sc-gradient{background:linear-gradient(135deg,#7C5CFC,#16C079);border:none;box-shadow:0 6px 20px rgba(124,92,252,.35);transition:transform .15s ease, box-shadow .15s ease}
+  .btn.sc-gradient:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.5)}
+
+  /* Sticky Calculate button on mobile */
+  #sc-stickyCalc{display:none}
+  @media(max-width:760px){
+    #sc-stickyCalc{
+      display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 14px;
+      background:linear-gradient(180deg,rgba(15,10,30,0),rgba(15,10,30,.96) 30%);
+      justify-content:center;
+    }
+    #sc-stickyCalc button{width:100%;max-width:420px;padding:13px 18px;font-size:.95rem;border-radius:999px}
+    body{padding-bottom:70px}
+  }
+
+  body.sc-large-font #sc-formSide,body.sc-large-font #sc-resultSide{font-size:1.1rem}
+  body.sc-high-contrast{filter:contrast(1.2) brightness(1.06)}
+
+  /* ===== Light mode — scoped strictly to the tool's own content ===== */
+  body.sc-light :is(.container,.sc-content){
+    --bg:#f4f2fb; --surface:#ffffff; --surface-2:#efeaf9; --border:rgba(20,10,45,.14); --border-strong:rgba(20,10,45,.24);
+    --text:#1c1533; --text-dim:rgba(28,21,51,.68);
+  }
+  body.sc-light .container,
+  body.sc-light .sc-content{
+    background:#f4f2fb; border-radius:18px; padding:20px 22px; box-shadow:0 8px 32px rgba(20,10,45,.12);
+  }
+  body.sc-light :is(.container,.sc-content) h1,
+  body.sc-light :is(.container,.sc-content) h2,
+  body.sc-light :is(.container,.sc-content) h3,
+  body.sc-light :is(.container,.sc-content) h4,
+  body.sc-light :is(.container,.sc-content) h5,
+  body.sc-light :is(.container,.sc-content) h6{color:var(--text)}
+  body.sc-light :is(.container,.sc-content) p{color:var(--text-dim)}
+  body.sc-light :is(.container,.sc-content) label{color:var(--text-dim)}
+  body.sc-light :is(.container,.sc-content) textarea,
+  body.sc-light :is(.container,.sc-content) input[type=text],
+  body.sc-light :is(.container,.sc-content) input[type=number],
+  body.sc-light :is(.container,.sc-content) input[type=date],
+  body.sc-light :is(.container,.sc-content) select{
+    background:#ffffff;border:1px solid rgba(20,10,45,.2);color:var(--text)
+  }
+  body.sc-light :is(.container,.sc-content) select option{background:#ffffff;color:var(--text)}
+  body.sc-light :is(.container,.sc-content) .panel{background:#ffffff!important;border:1px solid rgba(20,10,45,.1)!important;box-shadow:0 8px 28px rgba(20,10,45,.08)!important}
+  body.sc-light :is(.container,.sc-content) table th{background:rgba(20,10,45,.06);color:var(--text)}
+  body.sc-light :is(.container,.sc-content) table td{color:var(--text-dim);border-color:rgba(20,10,45,.1)}
+  body.sc-light :is(.container,.sc-content) .sc-tab{color:var(--text-dim)}
+  body.sc-light :is(.container,.sc-content) .sc-tab.active{color:#fff}
+  body.sc-light :is(.container,.sc-content) .btn.secondary{background:var(--surface-2);border-color:var(--border);color:var(--text)}
+
+  .related-grid a .ri{margin-right:6px}
+  .sc-content h2{font-size:1.15rem;margin:26px 0 10px}
+  .sc-content h3{font-size:1rem;margin:18px 0 8px}
+  .sc-content p,.sc-content li{font-size:.92rem;line-height:1.8}
+  .sc-content ul,.sc-content ol{padding-left:20px}
+  .sc-content table{width:100%;border-collapse:collapse;font-size:.86rem;margin:12px 0}
+  .sc-content table th,.sc-content table td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  .sc-content table th{color:#c4b5fd}
+
+  .sc-faq-item{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+  .sc-faq-item strong{color:#c4b5fd}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="sc-muted" style="margin-bottom:10px" aria-label="Breadcrumb">
+    <a href="../index.html" style="color:#c4b5fd;text-decoration:none">Home</a> ›
+    <a href="../index.html#cat-calculator" style="color:#c4b5fd;text-decoration:none">Calculators &amp; Converters</a> ›
+    Surcharge Calculator
+  </nav>
+
+  <div class="tool-header">
+    <h1>📈 Surcharge Calculator</h1>
+    <p>Calculate Income Tax Surcharge instantly for Individuals, HUF, Companies, LLPs and other taxpayers.</p>
+
+    <div class="sc-row" style="margin-top:14px">
+      <div class="sc-field">
+        <label for="sc-language">Language / भाषा</label>
+        <select id="sc-language"><option value="en">English</option><option value="hi">हिन्दी</option></select>
+      </div>
+      <div class="sc-field">
+        <label for="sc-theme">Theme</label>
+        <select id="sc-theme"><option value="dark">🌙 Dark</option><option value="light">☀️ Light</option></select>
+      </div>
+      <div class="sc-field">
+        <label for="sc-fy">Financial Year</label>
+        <select id="sc-fy">
+          <option value="2026-27">FY 2026-27</option>
+          <option value="2025-26" selected>FY 2025-26</option>
+          <option value="2024-25">FY 2024-25</option>
+          <option value="2023-24">FY 2023-24</option>
+        </select>
+      </div>
+      <div class="sc-field">
+        <label for="sc-ay">Assessment Year (Auto)</label>
+        <input type="text" id="sc-ay" readonly>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn sc-gradient" id="sc-calcBtn" type="button">🧮 Calculate</button>
+      <button class="btn secondary" id="sc-resetBtn" type="button">↺ Reset</button>
+      <button class="btn secondary" id="sc-printBtn" type="button">🖨️ Print</button>
+      <button class="btn secondary" id="sc-pdfBtn" type="button">📄 Download PDF</button>
+      <button class="btn secondary" id="sc-xlsxBtn" type="button">📊 Download Excel</button>
+      <button class="btn secondary" id="sc-csvBtn" type="button">📁 Download CSV</button>
+      <button class="btn secondary" id="sc-copyBtn" type="button">📋 Copy Results</button>
+    </div>
+    <div class="sc-share-row">
+      <a class="sc-share-btn" id="sc-shareWhatsapp" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a class="sc-share-btn" id="sc-shareFacebook" href="#" target="_blank" rel="noopener">📘 Facebook</a>
+      <a class="sc-share-btn" id="sc-shareLinkedin" href="#" target="_blank" rel="noopener">💼 LinkedIn</a>
+      <a class="sc-share-btn" id="sc-shareTwitter" href="#" target="_blank" rel="noopener">🐦 X</a>
+      <button class="sc-share-btn" id="sc-copyLinkBtn" type="button">🔗 Copy Link</button>
+    </div>
+    <div id="sc-statusMsg" class="sc-muted" role="status" aria-live="polite"></div>
+  </div>
+
+  <div class="sc-grid">
+    <div id="sc-formSide">
+      <div class="panel">
+        <div class="sc-tabs" role="tablist">
+          <button class="sc-tab active" id="sc-tabIncome" role="tab" aria-selected="true">📋 Taxpayer &amp; Income</button>
+          <button class="sc-tab" id="sc-tabTax" role="tab" aria-selected="false">💳 Tax &amp; Payments</button>
+          <button class="sc-tab" id="sc-tabHistory" role="tab" aria-selected="false">🕘 History</button>
+          <button class="sc-tab" id="sc-tabSettings" role="tab" aria-selected="false">⚙️ Settings</button>
+        </div>
+
+        <!-- ===== Tab: Taxpayer & Income ===== -->
+        <div class="sc-pane active" id="sc-paneIncome">
+          <div class="sc-card">
+            <h3>👤 Taxpayer Profile</h3>
+            <div class="sc-row">
+              <div class="sc-field">
+                <label for="sc-taxpayerType">Taxpayer Type</label>
+                <select id="sc-taxpayerType">
+                  <option value="individual">Individual</option>
+                  <option value="huf">HUF</option>
+                  <option value="aop">AOP</option>
+                  <option value="boi">BOI</option>
+                  <option value="firm">Firm</option>
+                  <option value="llp">LLP</option>
+                  <option value="domesticCompany">Domestic Company</option>
+                  <option value="foreignCompany">Foreign Company</option>
+                  <option value="coOperativeSociety">Co-operative Society</option>
+                  <option value="localAuthority">Local Authority</option>
+                </select>
+              </div>
+              <div class="sc-field">
+                <label for="sc-residentialStatus">Residential Status</label>
+                <select id="sc-residentialStatus">
+                  <option value="resident">Resident</option>
+                  <option value="rnor">Resident but Not Ordinarily Resident (RNOR)</option>
+                  <option value="nonResident">Non-Resident</option>
+                </select>
+              </div>
+              <div class="sc-field">
+                <label for="sc-ageCategory">Age Category</label>
+                <select id="sc-ageCategory">
+                  <option value="below60">Below 60 years</option>
+                  <option value="senior">60 - 80 years (Senior Citizen)</option>
+                  <option value="superSenior">Above 80 years (Super Senior Citizen)</option>
+                </select>
+              </div>
+              <div class="sc-field">
+                <label for="sc-regime">Tax Regime</label>
+                <select id="sc-regime">
+                  <option value="new">New Regime</option>
+                  <option value="old">Old Regime</option>
+                </select>
+              </div>
+            </div>
+            <p class="sc-muted">Age Category applies to Individual/HUF under the Old Regime only. Residential Status is used for reference and does not change the Surcharge slab itself.</p>
+          </div>
+
+          <div class="sc-card">
+            <h3>💰 Income Details (Annual)</h3>
+            <div class="sc-row">
+              <div class="sc-field"><label for="sc-salary">Salary Income</label><input type="number" id="sc-salary" min="0" value="1500000"></div>
+              <div class="sc-field"><label for="sc-houseProperty">House Property Income</label><input type="number" id="sc-houseProperty" min="0" value="0"></div>
+              <div class="sc-field"><label for="sc-business">Business Income</label><input type="number" id="sc-business" min="0" value="0"></div>
+              <div class="sc-field"><label for="sc-capitalGain">Capital Gain (Other)</label><input type="number" id="sc-capitalGain" min="0" value="0"></div>
+              <div class="sc-field"><label for="sc-stcg">Short Term Capital Gain (Sec 111A)</label><input type="number" id="sc-stcg" min="0" value="0"></div>
+              <div class="sc-field"><label for="sc-ltcg">Long Term Capital Gain (Sec 112A)</label><input type="number" id="sc-ltcg" min="0" value="0"></div>
+              <div class="sc-field"><label for="sc-otherSources">Other Sources</label><input type="number" id="sc-otherSources" min="0" value="0"></div>
+              <div class="sc-field"><label for="sc-agriculturalIncome">Agricultural Income</label><input type="number" id="sc-agriculturalIncome" min="0" value="0"></div>
+              <div class="sc-field"><label for="sc-dividendIncome">Dividend Income</label><input type="number" id="sc-dividendIncome" min="0" value="0"></div>
+              <div class="sc-field"><label for="sc-foreignIncome">Foreign Income</label><input type="number" id="sc-foreignIncome" min="0" value="0"></div>
+              <div class="sc-field"><label for="sc-exemptIncome">Exempt Income</label><input type="number" id="sc-exemptIncome" min="0" value="0"></div>
+            </div>
+            <div class="sc-err" id="sc-incomeErr">Income values cannot be negative.</div>
+            <div class="sc-engine-box"><div class="sc-engine-row"><span>Total Income (Auto)</span><span id="sc-totalIncomeDisplay">₹0</span></div></div>
+            <p class="sc-muted">Agricultural Income is shown for reference only and is not added to taxable Total Income, consistent with its constitutional exemption under Entry 46 of the State List.</p>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Tax & Payments ===== -->
+        <div class="sc-pane" id="sc-paneTax">
+          <div class="sc-card">
+            <h3>🧾 Income Tax</h3>
+            <div class="sc-row">
+              <div class="sc-field">
+                <label for="sc-manualTax">Income Tax (Auto + Manual Override)</label>
+                <input type="number" id="sc-manualTax" min="0" placeholder="Leave blank to auto-calculate">
+              </div>
+            </div>
+            <div class="sc-engine-box"><div class="sc-engine-row"><span>Auto-Calculated Income Tax</span><span id="sc-autoTaxDisplay">₹0</span></div></div>
+            <p class="sc-muted">Auto-calculation uses standard slab rates for Individual/HUF/AOP/BOI (with Section 87A rebate) and representative flat rates for Firms, LLPs, Companies and Co-operative Societies. Override with your exact computed tax for a precise Surcharge result.</p>
+          </div>
+          <div class="sc-card">
+            <h3>💳 Taxes Already Paid</h3>
+            <div class="sc-row">
+              <div class="sc-field"><label for="sc-advanceTax">Advance Tax Paid</label><input type="number" id="sc-advanceTax" min="0" value="0"></div>
+              <div class="sc-field"><label for="sc-tds">TDS</label><input type="number" id="sc-tds" min="0" value="0"></div>
+              <div class="sc-field"><label for="sc-tcs">TCS</label><input type="number" id="sc-tcs" min="0" value="0"></div>
+              <div class="sc-field"><label for="sc-selfAssessmentTax">Self Assessment Tax</label><input type="number" id="sc-selfAssessmentTax" min="0" value="0"></div>
+            </div>
+            <div class="sc-err" id="sc-taxErr">Tax and payment values cannot be negative.</div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: History ===== -->
+        <div class="sc-pane" id="sc-paneHistory">
+          <div class="sc-card">
+            <h3>🕘 Calculation History</h3>
+            <div class="btn-row" style="margin-bottom:10px">
+              <button class="btn secondary" id="sc-clearHistoryBtn" type="button">🗑️ Clear History</button>
+            </div>
+            <div id="sc-historyList"></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Settings ===== -->
+        <div class="sc-pane" id="sc-paneSettings">
+          <div class="sc-card">
+            <h3>⚙️ Accessibility Preferences</h3>
+            <div class="sc-row">
+              <div class="sc-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="sc-highContrast" style="width:auto"> High Contrast</label></div>
+              <div class="sc-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="sc-largeFont" style="width:auto"> Large Fonts</label></div>
+            </div>
+            <p class="sc-muted">Preferences are remembered in this browser for your next visit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sc-resultSide">
+      <div class="panel">
+        <h3 style="margin:0 0 10px;font-size:1rem">📊 Surcharge Summary</h3>
+        <div class="sc-stat-cards" id="sc-summaryCards"></div>
+        <div class="sc-flags" id="sc-resultFlags"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🧠 Applicable Surcharge Rule</h3>
+        <div class="sc-engine-box" id="sc-slabBox"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🧮 Calculation Steps</h3>
+        <div class="sc-steps" id="sc-stepsBox"></div>
+        <div class="sc-formula-box" id="sc-formulaBox"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">📋 Detailed Breakdown</h3>
+        <table id="sc-breakdownTable"><tbody></tbody></table>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">📊 Charts</h3>
+        <div class="sc-chart-wrap"><h4>Tax vs Surcharge vs Cess</h4><canvas id="sc-chartComposition" width="500" height="220"></canvas><div class="sc-legend" id="sc-legendComposition"></div></div>
+        <div class="sc-chart-wrap"><h4>Gross Tax vs Paid vs Net Payable</h4><canvas id="sc-chartPayable" width="500" height="220"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:16px">
+    <h3 style="margin:0 0 10px;font-size:1rem">📚 Surcharge Rate Reference Tables</h3>
+    <h4 style="font-size:.9rem;margin:10px 0 6px">Individual / HUF / AOP / BOI — Surcharge Slabs</h4>
+    <table>
+      <tr><th>Total Income</th><th>Surcharge Rate</th></tr>
+      <tr><td>Up to ₹50 Lakh</td><td>0%</td></tr>
+      <tr><td>₹50 Lakh – ₹1 Crore</td><td>10%</td></tr>
+      <tr><td>₹1 Crore – ₹2 Crore</td><td>15%</td></tr>
+      <tr><td>₹2 Crore – ₹5 Crore</td><td>25%</td></tr>
+      <tr><td>Above ₹5 Crore</td><td>37% (Old Regime) / 25% (New Regime)</td></tr>
+    </table>
+    <h4 style="font-size:.9rem;margin:14px 0 6px">Firm / LLP / Local Authority</h4>
+    <table>
+      <tr><th>Total Income</th><th>Surcharge Rate</th></tr>
+      <tr><td>Up to ₹1 Crore</td><td>0%</td></tr>
+      <tr><td>Above ₹1 Crore</td><td>12%</td></tr>
+    </table>
+    <h4 style="font-size:.9rem;margin:14px 0 6px">Domestic Company</h4>
+    <table>
+      <tr><th>Total Income</th><th>Surcharge Rate</th></tr>
+      <tr><td>Up to ₹1 Crore</td><td>0%</td></tr>
+      <tr><td>₹1 Crore – ₹10 Crore</td><td>7%</td></tr>
+      <tr><td>Above ₹10 Crore</td><td>12%</td></tr>
+      <tr><td>Opting Section 115BAA / 115BAB</td><td>Flat 10% (any income level)</td></tr>
+    </table>
+    <h4 style="font-size:.9rem;margin:14px 0 6px">Foreign Company</h4>
+    <table>
+      <tr><th>Total Income</th><th>Surcharge Rate</th></tr>
+      <tr><td>Up to ₹1 Crore</td><td>0%</td></tr>
+      <tr><td>₹1 Crore – ₹10 Crore</td><td>2%</td></tr>
+      <tr><td>Above ₹10 Crore</td><td>5%</td></tr>
+    </table>
+    <h4 style="font-size:.9rem;margin:14px 0 6px">Co-operative Society</h4>
+    <table>
+      <tr><th>Total Income</th><th>Surcharge Rate</th></tr>
+      <tr><td>Up to ₹1 Crore</td><td>0%</td></tr>
+      <tr><td>₹1 Crore – ₹10 Crore</td><td>7%</td></tr>
+      <tr><td>Above ₹10 Crore</td><td>12%</td></tr>
+      <tr><td>Opting Section 115BAD / 115BAE</td><td>Flat 10% (any income level)</td></tr>
+    </table>
+    <h4 style="font-size:.9rem;margin:14px 0 6px">Marginal Relief — How It Works</h4>
+    <p class="sc-muted" style="font-size:.86rem">Marginal Relief ensures that when your Total Income crosses a Surcharge threshold, the extra tax and Surcharge you pay never exceeds the extra income earned above that threshold. Formula: <span class="sc-num">Marginal Relief = (Tax + Surcharge at your actual income) − (Tax + Surcharge at the threshold + Income above the threshold)</span>. This calculator applies it automatically at every threshold crossing for every taxpayer type where the Surcharge rate steps up — it does not apply to flat-rate Surcharge regimes (Section 115BAA/115BAB/115BAD/115BAE) since there is no rate step-up to relieve.</p>
+  </div>
+</div>
+
+<div class="sc-content">
+
+<h2>1. Related Tools</h2>
+<div class="related-grid">
+  <a href="income-tax-calculator.html"><span class="ri">💰</span> Income Tax Calculator</a>
+  <a href="tds-calculator.html"><span class="ri">🧾</span> TDS Calculator</a>
+  <a href="tcs-calculator.html"><span class="ri">🧾</span> TCS Calculator</a>
+  <a href="advance-tax-calculator.html"><span class="ri">🧾</span> Advance Tax Calculator</a>
+  <a href="salary-calculator.html"><span class="ri">💼</span> Salary Calculator</a>
+  <a href="hra-calculator.html"><span class="ri">🏠</span> HRA Calculator</a>
+  <a href="gratuity-calculator.html"><span class="ri">🎁</span> Gratuity Calculator</a>
+  <a href="leave-encashment-calculator.html"><span class="ri">🏖️</span> Leave Encashment Calculator</a>
+  <a href="professional-tax-calculator.html"><span class="ri">🏛️</span> Professional Tax Calculator</a>
+  <a href="pf-calculator.html"><span class="ri">🏦</span> PF Calculator</a>
+</div>
+
+<h2>2. About This Tool | इस टूल के बारे में</h2>
+
+<p>यह टूल आपकी आय के अनुसार लागू Income Tax Surcharge, Marginal Relief, Health &amp; Education Cess तथा कुल Tax Liability की सटीक गणना करता है। | This tool accurately calculates Income Tax Surcharge, Marginal Relief, Health &amp; Education Cess and Total Tax Liability based on your income.</p>
+
+<p>Surcharge, आयकर पर लगाया जाने वाला एक अतिरिक्त कर है, जो तभी लागू होता है जब आपकी कुल आय एक निश्चित सीमा से अधिक हो जाती है। | Surcharge is an additional tax levied on top of Income Tax, applicable only once your Total Income crosses a specified threshold.</p>
+
+<p>यह कैलकुलेटर Individual, HUF, AOP, BOI, Firm, LLP, Domestic Company, Foreign Company, Co-operative Society और Local Authority — सभी प्रकार के taxpayers को सपोर्ट करता है। | This calculator supports every major taxpayer type — Individual, HUF, AOP, BOI, Firm, LLP, Domestic Company, Foreign Company, Co-operative Society and Local Authority.</p>
+
+<p>Individual, HUF, AOP और BOI के लिए Surcharge की दरें ₹50 लाख से ऊपर 10%, ₹1 करोड़ से ऊपर 15%, ₹2 करोड़ से ऊपर 25%, और ₹5 करोड़ से ऊपर पुरानी व्यवस्था में 37% तथा नई व्यवस्था में अधिकतम 25% हैं। | For Individuals, HUF, AOP and BOI, Surcharge rates are 10% above ₹50 Lakh, 15% above ₹1 Crore, 25% above ₹2 Crore, and 37% above ₹5 Crore under the Old Regime, capped at a maximum of 25% under the New Regime.</p>
+
+<p>Firms, LLPs और Local Authorities पर ₹1 करोड़ से अधिक आय होने पर एक फ्लैट 12% Surcharge लागू होता है। | Firms, LLPs and Local Authorities attract a flat 12% Surcharge once their income exceeds ₹1 Crore.</p>
+
+<p>Domestic Companies पर सामान्य व्यवस्था में ₹1 करोड़ से ₹10 करोड़ के बीच 7% और ₹10 करोड़ से ऊपर 12% Surcharge लगता है, जबकि Section 115BAA/115BAB चुनने वाली कंपनियों पर आय स्तर की परवाह किए बिना फ्लैट 10% Surcharge लागू होता है। | Domestic Companies under the normal regime attract 7% Surcharge between ₹1 Crore and ₹10 Crore, and 12% above ₹10 Crore, while companies opting for Section 115BAA/115BAB pay a flat 10% Surcharge regardless of income level.</p>
+
+<p>Marginal Relief यह सुनिश्चित करता है कि जब आपकी आय किसी Surcharge सीमा को थोड़ा भी पार करती है, तो अतिरिक्त कर की राशि उस सीमा से ऊपर अर्जित अतिरिक्त आय से अधिक न हो। | Marginal Relief ensures that when your income crosses a Surcharge threshold by even a small margin, the additional tax payable never exceeds the additional income earned above that threshold.</p>
+
+<p>Health &amp; Education Cess हमेशा Income Tax और Surcharge के योग पर 4% की दर से लगाया जाता है, चाहे taxpayer कोई भी हो। | Health &amp; Education Cess is always levied at 4% on the sum of Income Tax and Surcharge, regardless of the taxpayer type.</p>
+
+<p>New Tax Regime में Surcharge की अधिकतम दर 25% तक सीमित है, जबकि Old Regime में यह ₹5 करोड़ से अधिक आय पर 37% तक जा सकती है — यह अंतर विशेष रूप से बहुत उच्च आय वाले Individuals के लिए महत्वपूर्ण है। | The New Tax Regime caps the maximum Surcharge rate at 25%, whereas the Old Regime can go up to 37% for income above ₹5 Crore — a distinction that matters most for very high-income Individuals.</p>
+
+<p>Section 111A के तहत Short Term Capital Gain, Section 112A के तहत Long Term Capital Gain, और Dividend Income पर लगने वाला Surcharge, आय ₹2 करोड़ से अधिक होने पर भी अधिकतम 15% तक सीमित रहता है। | Surcharge on Short Term Capital Gain under Section 111A, Long Term Capital Gain under Section 112A, and Dividend Income remains capped at a maximum of 15%, even if your Total Income exceeds ₹2 Crore.</p>
+
+<p>यह कैलकुलेटर हर Financial Year के लिए अलग स्लैब का उपयोग करता है, क्योंकि New Regime की स्लैब दरें और Rebate सीमा हर साल बदल सकती हैं — जैसे FY 2025-26 से Rebate सीमा ₹12 लाख तक बढ़ा दी गई है। | This calculator uses distinct slabs for each Financial Year, since New Regime slab rates and rebate limits can change annually — for instance, the rebate limit was raised to ₹12 Lakh starting FY 2025-26.</p>
+
+<p>Total Income स्वतः ही Salary, House Property, Business, Capital Gain, Other Sources, Dividend और Foreign Income को जोड़कर तथा Exempt Income को घटाकर गणना की जाती है। | Total Income is automatically calculated by summing Salary, House Property, Business, Capital Gain, Other Sources, Dividend and Foreign Income, and subtracting Exempt Income.</p>
+
+<p>Income Tax फ़ील्ड को खाली छोड़ने पर यह टूल मानक स्लैब के अनुसार अनुमानित कर स्वतः गणना कर देता है, लेकिन आप अपनी सटीक गणना की गई राशि दर्ज करके इसे मैन्युअल रूप से बदल भी सकते हैं। | Leaving the Income Tax field blank lets this tool auto-suggest an estimated tax using standard slabs, but you can also manually override it by entering your own precisely computed figure.</p>
+
+<p>Net Tax Payable, Gross Tax Liability में से Advance Tax, TDS, TCS और Self Assessment Tax घटाकर निकाला जाता है; यदि भुगतान की गई राशि अधिक हो, तो शेष राशि Refund के रूप में दिखाई जाती है। | Net Tax Payable is derived by subtracting Advance Tax, TDS, TCS and Self Assessment Tax from the Gross Tax Liability; if the amount already paid is higher, the excess is shown as a Refund.</p>
+
+<p>अपने परिणाम को PDF, Excel या CSV के रूप में डाउनलोड करें, सीधे प्रिंट करें, या WhatsApp, Facebook, LinkedIn, X और Copy Link के माध्यम से तुरंत साझा करें। | Download your result as PDF, Excel or CSV, print it directly, or share it instantly via WhatsApp, Facebook, LinkedIn, X and Copy Link.</p>
+
+<p>हर गणना पूरी तरह आपके ब्राउज़र के भीतर होती है — कोई भी आय या कर संबंधी जानकारी कभी किसी सर्वर पर अपलोड नहीं की जाती, और यह टूल किसी भी AI-आधारित सुविधा का उपयोग नहीं करता। | Every calculation runs entirely within your browser — no income or tax-related data is ever uploaded to a server, and this tool does not use any AI-powered features.</p>
+
+<h2>3. Frequently Asked Questions | अक्सर पूछे जाने वाले प्रश्न</h2>
+<div class="sc-faq" id="scFaq">
+
+<div class="sc-faq-item"><p><strong>Q. What is Surcharge on Income Tax? | Surcharge (अधिभार) क्या है?</strong><br>An additional charge levied on Income Tax once Total Income crosses a specified threshold. | आय एक निश्चित सीमा पार करने पर Income Tax पर लगाया जाने वाला एक अतिरिक्त शुल्क।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. Who is liable to pay Surcharge? | Surcharge देने के लिए कौन उत्तरदायी है?</strong><br>Any taxpayer — Individual, HUF, Firm, LLP, Company or others — whose Total Income exceeds the applicable threshold for their category. | कोई भी taxpayer — Individual, HUF, Firm, LLP, Company या अन्य — जिनकी Total Income उनकी श्रेणी की लागू सीमा से अधिक हो।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. What is the Surcharge rate for Individuals? | Individuals के लिए Surcharge दर क्या है?</strong><br>10% above ₹50 Lakh, 15% above ₹1 Crore, 25% above ₹2 Crore, and 37% (Old Regime) or 25% (New Regime) above ₹5 Crore. | ₹50 लाख से ऊपर 10%, ₹1 करोड़ से ऊपर 15%, ₹2 करोड़ से ऊपर 25%, और ₹5 करोड़ से ऊपर Old Regime में 37% या New Regime में 25%।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. What is the maximum Surcharge rate? | अधिकतम Surcharge दर क्या है?</strong><br>37% under the Old Regime for Individuals above ₹5 Crore; capped at 25% under the New Regime. | Old Regime में ₹5 करोड़ से ऊपर Individuals के लिए 37%; New Regime में अधिकतम 25% तक सीमित।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. What is Marginal Relief? | Marginal Relief क्या है?</strong><br>A relief that ensures extra tax payable never exceeds the extra income earned when crossing a Surcharge threshold. | एक राहत जो सुनिश्चित करती है कि Surcharge सीमा पार करते समय देय अतिरिक्त कर, अर्जित अतिरिक्त आय से अधिक न हो।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. How is Marginal Relief calculated? | Marginal Relief की गणना कैसे होती है?</strong><br>It equals (Tax + Surcharge at actual income) minus (Tax + Surcharge at the threshold plus the income above it). | यह (वास्तविक आय पर Tax + Surcharge) माइनस (सीमा पर Tax + Surcharge जमा सीमा से ऊपर की आय) के बराबर है।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. What is the Surcharge rate for Companies? | Companies के लिए Surcharge दर क्या है?</strong><br>Domestic Companies pay 7% (₹1-10 Crore) or 12% (above ₹10 Crore); Section 115BAA/115BAB companies pay a flat 10%. | Domestic Companies 7% (₹1-10 करोड़) या 12% (₹10 करोड़ से ऊपर) देती हैं; Section 115BAA/115BAB कंपनियाँ फ्लैट 10% देती हैं।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. What is the Surcharge rate for Firms and LLPs? | Firms और LLPs के लिए Surcharge दर क्या है?</strong><br>A flat 12% once Total Income exceeds ₹1 Crore; nil below that. | Total Income ₹1 करोड़ से अधिक होने पर फ्लैट 12%; उससे नीचे शून्य।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. What is Health &amp; Education Cess? | Health &amp; Education Cess क्या है?</strong><br>A 4% charge on the sum of Income Tax and Surcharge, applicable to every taxpayer type. | Income Tax और Surcharge के योग पर 4% शुल्क, जो हर taxpayer प्रकार पर लागू होता है।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. Does the New Tax Regime have a different Surcharge cap? | क्या New Tax Regime में Surcharge cap अलग है?</strong><br>Yes — the New Regime caps the maximum Surcharge at 25%, unlike the Old Regime's 37% for income above ₹5 Crore. | हाँ — New Regime में अधिकतम Surcharge 25% तक सीमित है, जबकि Old Regime में ₹5 करोड़ से ऊपर यह 37% तक जाता है।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. Is Surcharge capped for Capital Gains and Dividend Income? | क्या Capital Gains और Dividend Income पर Surcharge सीमित है?</strong><br>Yes — Surcharge on STCG (111A), LTCG (112A) and Dividend Income is capped at 15%, even if Total Income exceeds ₹2 Crore. | हाँ — STCG (111A), LTCG (112A) और Dividend Income पर Surcharge अधिकतम 15% तक सीमित है, भले ही Total Income ₹2 करोड़ से अधिक हो।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. What is the Surcharge threshold for Individuals? | Individuals के लिए Surcharge की सीमा क्या है?</strong><br>Surcharge first applies once Total Income exceeds ₹50 Lakh. | Total Income ₹50 लाख से अधिक होने पर ही Surcharge सबसे पहले लागू होता है।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. How is Total Income calculated? | Total Income की गणना कैसे होती है?</strong><br>By summing all income heads (Salary, House Property, Business, Capital Gains, Other Sources, Dividend, Foreign Income) and subtracting Exempt Income. | सभी आय शीर्षकों (Salary, House Property, Business, Capital Gains, Other Sources, Dividend, Foreign Income) को जोड़कर और Exempt Income घटाकर।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. Can I override the auto-calculated Income Tax? | क्या मैं auto-calculated Income Tax को override कर सकता हूँ?</strong><br>Yes — enter your own exact figure in the Income Tax field to use it instead of the auto-suggested value. | हाँ — अपनी सटीक राशि Income Tax फ़ील्ड में दर्ज करें ताकि auto-suggested मान की जगह उसका उपयोग हो।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. What is Net Tax Payable? | Net Tax Payable क्या है?</strong><br>The Gross Tax Liability minus all taxes already paid (Advance Tax, TDS, TCS, Self Assessment Tax). | Gross Tax Liability में से पहले से भुगतान किए गए सभी करों (Advance Tax, TDS, TCS, Self Assessment Tax) को घटाकर।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. When is a Refund due? | Refund कब देय होता है?</strong><br>When taxes already paid exceed the Gross Tax Liability, the excess amount is shown as a Refund. | जब पहले से भुगतान किए गए कर Gross Tax Liability से अधिक हों, तो अतिरिक्त राशि Refund के रूप में दिखाई जाती है।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. Does Agricultural Income attract Surcharge? | क्या Agricultural Income पर Surcharge लगता है?</strong><br>No — Agricultural Income is exempt from Income Tax and is not included in Total Income for Surcharge purposes. | नहीं — Agricultural Income, Income Tax से मुक्त है और Surcharge के लिए Total Income में शामिल नहीं की जाती।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. Does Surcharge apply to Foreign Companies? | क्या Foreign Companies पर Surcharge लागू होता है?</strong><br>Yes — at a lower rate of 2% (₹1-10 Crore) or 5% (above ₹10 Crore) compared to Domestic Companies. | हाँ — Domestic Companies की तुलना में कम दर पर, 2% (₹1-10 करोड़) या 5% (₹10 करोड़ से ऊपर)।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. Is this calculator accurate for all Financial Years? | क्या यह कैलकुलेटर सभी Financial Years के लिए सटीक है?</strong><br>It supports FY 2023-24 to FY 2026-27 with year-specific slabs, but rates are always subject to the annual Finance Act — verify with a professional for compliance-critical filings. | यह FY 2023-24 से FY 2026-27 तक वर्ष-विशिष्ट slabs के साथ समर्थन करता है, लेकिन दरें हमेशा वार्षिक Finance Act के अधीन हैं — compliance-critical filings के लिए किसी professional से पुष्टि करें।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. Can I download my calculation report? | क्या मैं अपनी calculation report download कर सकता हूँ?</strong><br>Yes — as PDF, Excel or CSV, or print it directly from your browser. | हाँ — PDF, Excel या CSV के रूप में, या सीधे अपने browser से print कर सकते हैं।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. Is my data uploaded anywhere? | क्या मेरा data कहीं upload होता है?</strong><br>No — every calculation runs entirely inside your browser and nothing is sent to a server. | नहीं — हर calculation पूरी तरह आपके browser के भीतर चलता है और कुछ भी server पर नहीं भेजा जाता।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. Does this tool use any AI? | क्या इस टूल में कोई AI इस्तेमाल होता है?</strong><br>No — every Surcharge slab, Marginal Relief formula and Cess calculation is deterministic, hand-written logic based on published Income Tax provisions. | नहीं — हर Surcharge slab, Marginal Relief formula और Cess गणना, प्रकाशित Income Tax प्रावधानों पर आधारित deterministic, hand-written logic है।</p></div>
+
+<div class="sc-faq-item"><p><strong>Q. Is this calculator a substitute for professional advice? | क्या यह पेशेवर सलाह का विकल्प है?</strong><br>No — always consult a Chartered Accountant or tax professional before making financial decisions. | नहीं — वित्तीय निर्णय लेने से पहले हमेशा किसी Chartered Accountant या tax professional से सलाह लें।</p></div>
+
+</div>
+
+</div>
+
+<p class="sc-muted" style="font-size:.85rem;text-align:center;padding:0 4px 4px">This calculator provides estimates based on the latest available Income Tax rules. Please consult a Chartered Accountant or tax professional before making financial decisions.</p>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Surcharge on Income Tax?", "acceptedAnswer": {"@type": "Answer", "text": "An additional charge levied on Income Tax once Total Income crosses a specified threshold."}}, {"@type": "Question", "name": "Who is liable to pay Surcharge?", "acceptedAnswer": {"@type": "Answer", "text": "Any taxpayer, including Individuals, HUF, Firms, LLPs, Companies or others, whose Total Income exceeds the applicable threshold for their category."}}, {"@type": "Question", "name": "What is the Surcharge rate for Individuals?", "acceptedAnswer": {"@type": "Answer", "text": "10% above 50 lakh rupees, 15% above 1 crore, 25% above 2 crore, and 37% under the Old Regime or 25% under the New Regime above 5 crore."}}, {"@type": "Question", "name": "What is the maximum Surcharge rate?", "acceptedAnswer": {"@type": "Answer", "text": "37% under the Old Regime for Individuals above 5 crore rupees; capped at 25% under the New Regime."}}, {"@type": "Question", "name": "What is Marginal Relief?", "acceptedAnswer": {"@type": "Answer", "text": "A relief that ensures extra tax payable never exceeds the extra income earned when crossing a Surcharge threshold."}}, {"@type": "Question", "name": "How is Marginal Relief calculated?", "acceptedAnswer": {"@type": "Answer", "text": "It equals the tax plus surcharge at actual income minus the tax plus surcharge at the threshold plus the income above it."}}, {"@type": "Question", "name": "What is the Surcharge rate for Companies?", "acceptedAnswer": {"@type": "Answer", "text": "Domestic Companies pay 7 percent between 1 and 10 crore, or 12 percent above 10 crore; Section 115BAA and 115BAB companies pay a flat 10 percent."}}, {"@type": "Question", "name": "What is the Surcharge rate for Firms and LLPs?", "acceptedAnswer": {"@type": "Answer", "text": "A flat 12 percent once Total Income exceeds 1 crore rupees; nil below that."}}, {"@type": "Question", "name": "What is Health and Education Cess?", "acceptedAnswer": {"@type": "Answer", "text": "A 4 percent charge on the sum of Income Tax and Surcharge, applicable to every taxpayer type."}}, {"@type": "Question", "name": "Does the New Tax Regime have a different Surcharge cap?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the New Regime caps the maximum Surcharge at 25 percent, unlike the Old Regime's 37 percent for income above 5 crore."}}, {"@type": "Question", "name": "Is Surcharge capped for Capital Gains and Dividend Income?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, Surcharge on specified short and long term capital gains and dividend income is capped at 15 percent, even if Total Income exceeds 2 crore."}}, {"@type": "Question", "name": "What is the Surcharge threshold for Individuals?", "acceptedAnswer": {"@type": "Answer", "text": "Surcharge first applies once Total Income exceeds 50 lakh rupees."}}, {"@type": "Question", "name": "How is Total Income calculated?", "acceptedAnswer": {"@type": "Answer", "text": "By summing all income heads and subtracting Exempt Income."}}, {"@type": "Question", "name": "Can I override the auto-calculated Income Tax?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, enter your own exact figure in the Income Tax field to use it instead of the auto-suggested value."}}, {"@type": "Question", "name": "What is Net Tax Payable?", "acceptedAnswer": {"@type": "Answer", "text": "The Gross Tax Liability minus all taxes already paid, including Advance Tax, TDS, TCS and Self Assessment Tax."}}, {"@type": "Question", "name": "When is a Refund due?", "acceptedAnswer": {"@type": "Answer", "text": "When taxes already paid exceed the Gross Tax Liability, the excess amount is shown as a Refund."}}, {"@type": "Question", "name": "Does Agricultural Income attract Surcharge?", "acceptedAnswer": {"@type": "Answer", "text": "No, Agricultural Income is exempt from Income Tax and is not included in Total Income for Surcharge purposes."}}, {"@type": "Question", "name": "Does Surcharge apply to Foreign Companies?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, at a lower rate of 2 percent or 5 percent compared to Domestic Companies."}}, {"@type": "Question", "name": "Is this calculator accurate for all Financial Years?", "acceptedAnswer": {"@type": "Answer", "text": "It supports FY 2023-24 to FY 2026-27 with year specific slabs, but rates are always subject to the annual Finance Act."}}, {"@type": "Question", "name": "Can I download my calculation report?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, as PDF, Excel or CSV, or print it directly from your browser."}}, {"@type": "Question", "name": "Is my data uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No, every calculation runs entirely inside your browser and nothing is sent to a server."}}, {"@type": "Question", "name": "Does this tool use any AI?", "acceptedAnswer": {"@type": "Answer", "text": "No, every Surcharge slab, Marginal Relief formula and Cess calculation is deterministic, hand-written logic based on published Income Tax provisions."}}, {"@type": "Question", "name": "Is this calculator a substitute for professional advice?", "acceptedAnswer": {"@type": "Answer", "text": "No, always consult a Chartered Accountant or tax professional before making financial decisions."}}]}
+</script>
+
+<footer class="site-footer">© apnesoftware.COM — Surcharge Calculator — Fast • Accurate • Secure • Mobile Friendly • SEO Optimized</footer>
+
+<div id="sc-stickyCalc"><button class="btn sc-gradient" id="sc-stickyCalcBtn" type="button">🧮 Calculate</button></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<script src="../assets/common.js"></script>
+<script>
+/* ===================== Surcharge Calculator Engine (pure logic, no DOM) =====================
+   Surcharge slabs, Marginal Relief and auto income-tax suggestions reflect published Income Tax
+   provisions as of FY 2023-24 through FY 2026-27. The Finance Act can revise rates, thresholds and
+   rebate limits every year — always verify current figures with a Chartered Accountant or the
+   Income Tax Department before relying on this for compliance-critical filings. */
+'use strict';
+
+var FY_LIST = ['2023-24', '2024-25', '2025-26', '2026-27'];
+
+function fyToAy(fy) {
+  var parts = fy.split('-');
+  var startYear = parseInt(parts[0], 10);
+  var endYYNext = (startYear + 2).toString().slice(-2);
+  return (startYear + 1) + '-' + endYYNext;
+}
+
+function individualSurchargeSlabs(regime) {
+  var top = regime === 'new' ? 0.25 : 0.37;
+  return [
+    { threshold: 0, rate: 0 },
+    { threshold: 5000000, rate: 0.10 },
+    { threshold: 10000000, rate: 0.15 },
+    { threshold: 20000000, rate: 0.25 },
+    { threshold: 50000000, rate: top }
+  ];
+}
+function firmLikeSurchargeSlabs() {
+  return [{ threshold: 0, rate: 0 }, { threshold: 10000000, rate: 0.12 }];
+}
+function domesticCompanySurchargeSlabs(regime) {
+  if (regime === 'new') return [{ threshold: 0, rate: 0.10 }];
+  return [{ threshold: 0, rate: 0 }, { threshold: 10000000, rate: 0.07 }, { threshold: 100000000, rate: 0.12 }];
+}
+function foreignCompanySurchargeSlabs() {
+  return [{ threshold: 0, rate: 0 }, { threshold: 10000000, rate: 0.02 }, { threshold: 100000000, rate: 0.05 }];
+}
+function coOperativeSurchargeSlabs(regime) {
+  if (regime === 'new') return [{ threshold: 0, rate: 0.10 }];
+  return [{ threshold: 0, rate: 0 }, { threshold: 10000000, rate: 0.07 }, { threshold: 100000000, rate: 0.12 }];
+}
+function getSurchargeSlabs(taxpayerType, regime) {
+  switch (taxpayerType) {
+    case 'individual': case 'huf': case 'aop': case 'boi': return individualSurchargeSlabs(regime);
+    case 'firm': case 'llp': case 'localAuthority': return firmLikeSurchargeSlabs();
+    case 'domesticCompany': return domesticCompanySurchargeSlabs(regime);
+    case 'foreignCompany': return foreignCompanySurchargeSlabs();
+    case 'coOperativeSociety': return coOperativeSurchargeSlabs(regime);
+    default: return individualSurchargeSlabs(regime);
+  }
+}
+function slabRateFor(totalIncome, slabs) {
+  var rate = 0;
+  for (var i = 0; i < slabs.length; i++) { if (totalIncome > slabs[i].threshold) rate = slabs[i].rate; }
+  return rate;
+}
+function activeSlabIndex(totalIncome, slabs) {
+  var idx = -1;
+  for (var i = 0; i < slabs.length; i++) { if (totalIncome > slabs[i].threshold) idx = i; }
+  return idx;
+}
+function computeSurchargeWithRelief(totalIncome, taxBeforeSurcharge, slabs, taxAtThresholdFn) {
+  var idx = activeSlabIndex(totalIncome, slabs);
+  if (idx <= 0 || slabs[idx].rate === 0) {
+    return { rate: idx >= 0 ? slabs[idx].rate : 0, surcharge: idx >= 0 ? taxBeforeSurcharge * slabs[idx].rate : 0, marginalRelief: 0 };
+  }
+  var rate = slabs[idx].rate;
+  var prevRate = slabs[idx - 1].rate;
+  var threshold = slabs[idx].threshold;
+  var normalSurcharge = taxBeforeSurcharge * rate;
+  var normalTotal = taxBeforeSurcharge + normalSurcharge;
+  var taxAtThreshold = taxAtThresholdFn ? taxAtThresholdFn(threshold) : taxBeforeSurcharge;
+  var cappedTotal = taxAtThreshold + (taxAtThreshold * prevRate) + (totalIncome - threshold);
+  var marginalRelief = 0;
+  if (normalTotal > cappedTotal) marginalRelief = normalTotal - cappedTotal;
+  var surcharge = normalSurcharge - marginalRelief;
+  if (surcharge < 0) surcharge = 0;
+  return { rate: rate, surcharge: surcharge, marginalRelief: marginalRelief };
+}
+
+var OLD_REGIME_SLABS = {
+  below60: [[250000, 0], [500000, 0.05], [1000000, 0.20], [Infinity, 0.30]],
+  senior: [[300000, 0], [500000, 0.05], [1000000, 0.20], [Infinity, 0.30]],
+  superSenior: [[500000, 0], [1000000, 0.20], [Infinity, 0.30]]
+};
+function newRegimeSlabs(fy) {
+  if (fy === '2025-26' || fy === '2026-27') {
+    return [[400000, 0], [800000, 0.05], [1200000, 0.10], [1600000, 0.15], [2000000, 0.20], [2400000, 0.25], [Infinity, 0.30]];
+  }
+  return [[300000, 0], [600000, 0.05], [900000, 0.10], [1200000, 0.15], [1500000, 0.20], [Infinity, 0.30]];
+}
+function slabTax(income, bands) {
+  var tax = 0, lower = 0;
+  for (var i = 0; i < bands.length; i++) {
+    var upper = bands[i][0], rate = bands[i][1];
+    if (income > lower) tax += (Math.min(income, upper) - lower) * rate;
+    lower = upper;
+    if (income <= upper) break;
+  }
+  return Math.max(0, tax);
+}
+function rebate87A(normalIncome, fy, regime, tax) {
+  if (regime === 'new') {
+    var limit = (fy === '2025-26' || fy === '2026-27') ? 1200000 : 700000;
+    var cap = (fy === '2025-26' || fy === '2026-27') ? 60000 : 25000;
+    if (normalIncome <= limit) return Math.min(tax, cap);
+    return 0;
+  }
+  if (normalIncome <= 500000) return Math.min(tax, 12500);
+  return 0;
+}
+function computeAutoIncomeTax(inp) {
+  var normalIncome = Math.max(0, inp.totalIncome - inp.stcg111A - inp.ltcg112A);
+  var bands = inp.regime === 'new' ? newRegimeSlabs(inp.fy) : (OLD_REGIME_SLABS[inp.ageCategory] || OLD_REGIME_SLABS.below60);
+  var normalTax = slabTax(normalIncome, bands);
+  var rebate = rebate87A(normalIncome, inp.fy, inp.regime, normalTax);
+  normalTax = Math.max(0, normalTax - rebate);
+  var stcgTax = inp.stcg111A * 0.20;
+  var ltcgTaxable = Math.max(0, inp.ltcg112A - 125000);
+  var ltcgTax = ltcgTaxable * 0.125;
+  return { normalIncome: normalIncome, normalTax: normalTax, stcgTax: stcgTax, ltcgTax: ltcgTax, total: normalTax + stcgTax + ltcgTax };
+}
+var FLAT_RATES = {
+  firm: 0.30, llp: 0.30, localAuthority: 0.30,
+  domesticCompany: { old: 0.25, new: 0.22 },
+  foreignCompany: { fy2325: 0.40, fy2526: 0.35 },
+  coOperativeSociety: { old: 0.30, new: 0.22 }
+};
+function computeAutoIncomeTaxNonIndividual(taxpayerType, totalIncome, regime, fy) {
+  if (taxpayerType === 'foreignCompany') {
+    var rate = (fy === '2025-26' || fy === '2026-27') ? FLAT_RATES.foreignCompany.fy2526 : FLAT_RATES.foreignCompany.fy2325;
+    return totalIncome * rate;
+  }
+  if (taxpayerType === 'domesticCompany') return totalIncome * (regime === 'new' ? FLAT_RATES.domesticCompany.new : FLAT_RATES.domesticCompany.old);
+  if (taxpayerType === 'coOperativeSociety') return totalIncome * (regime === 'new' ? FLAT_RATES.coOperativeSociety.new : FLAT_RATES.coOperativeSociety.old);
+  return totalIncome * (FLAT_RATES[taxpayerType] || 0.30);
+}
+function computeSurcharge(inp) {
+  var taxpayerType = inp.taxpayerType;
+  var regime = inp.regime || 'new';
+  var fy = inp.fy || '2025-26';
+  var totalIncome = inp.totalIncome;
+  var isIndividualLike = (taxpayerType === 'individual' || taxpayerType === 'huf' || taxpayerType === 'aop' || taxpayerType === 'boi');
+
+  var incomeTaxBeforeSurcharge, autoBreakup = null;
+  if (inp.manualTax != null && inp.manualTax !== '' && !isNaN(inp.manualTax)) {
+    incomeTaxBeforeSurcharge = Number(inp.manualTax);
+  } else if (isIndividualLike) {
+    autoBreakup = computeAutoIncomeTax({ totalIncome: totalIncome, stcg111A: inp.stcg || 0, ltcg112A: inp.ltcg || 0, regime: regime, fy: fy, ageCategory: inp.ageCategory || 'below60' });
+    incomeTaxBeforeSurcharge = autoBreakup.total;
+  } else {
+    incomeTaxBeforeSurcharge = computeAutoIncomeTaxNonIndividual(taxpayerType, totalIncome, regime, fy);
+  }
+
+  var slabs = getSurchargeSlabs(taxpayerType, regime);
+  var specialIncome = isIndividualLike ? (inp.stcg || 0) + (inp.ltcg || 0) + (inp.dividendIncome || 0) : 0;
+  var normalRate = slabRateFor(totalIncome, slabs);
+  var useSpecialCap = isIndividualLike && specialIncome > 0 && normalRate > 0.15;
+
+  var result;
+  if (useSpecialCap) {
+    var specialTaxPortion = autoBreakup ? (autoBreakup.stcgTax + autoBreakup.ltcgTax) : 0;
+    var normalIncomeBase = autoBreakup ? autoBreakup.normalIncome : Math.max(0, totalIncome - (inp.stcg || 0) - (inp.ltcg || 0));
+    var normalTaxBase = autoBreakup ? autoBreakup.normalTax : Math.max(0, incomeTaxBeforeSurcharge - specialTaxPortion);
+    var dividendTaxPortion = 0;
+    if (normalIncomeBase > 0 && inp.dividendIncome > 0) dividendTaxPortion = normalTaxBase * (Math.min(inp.dividendIncome, normalIncomeBase) / normalIncomeBase);
+    var cappedTaxPortion = specialTaxPortion + dividendTaxPortion;
+    var ordinaryTaxPortion = Math.max(0, incomeTaxBeforeSurcharge - cappedTaxPortion);
+    var scaleFactor = ordinaryTaxPortion / Math.max(1, incomeTaxBeforeSurcharge - cappedTaxPortion);
+    var ordinaryResult = computeSurchargeWithRelief(totalIncome, ordinaryTaxPortion, slabs, function (threshold) {
+      return isIndividualLike ? computeAutoIncomeTax({ totalIncome: threshold, stcg111A: 0, ltcg112A: 0, regime: regime, fy: fy, ageCategory: inp.ageCategory || 'below60' }).total * scaleFactor : ordinaryTaxPortion;
+    });
+    var cappedRate = Math.min(normalRate, 0.15);
+    var cappedSurcharge = cappedTaxPortion * cappedRate;
+    result = { rate: normalRate, surcharge: ordinaryResult.surcharge + cappedSurcharge, marginalRelief: ordinaryResult.marginalRelief, specialCapApplied: true };
+  } else {
+    result = computeSurchargeWithRelief(totalIncome, incomeTaxBeforeSurcharge, slabs, function (threshold) {
+      if (isIndividualLike) return computeAutoIncomeTax({ totalIncome: threshold, stcg111A: 0, ltcg112A: 0, regime: regime, fy: fy, ageCategory: inp.ageCategory || 'below60' }).total;
+      return computeAutoIncomeTaxNonIndividual(taxpayerType, threshold, regime, fy);
+    });
+    result.specialCapApplied = false;
+  }
+
+  var grossTaxBeforeCess = incomeTaxBeforeSurcharge + result.surcharge;
+  var cess = grossTaxBeforeCess * 0.04;
+  var grossTaxLiability = grossTaxBeforeCess + cess;
+  var taxPaid = (inp.advanceTax || 0) + (inp.tds || 0) + (inp.tcs || 0) + (inp.selfAssessmentTax || 0);
+  var netTaxPayable = grossTaxLiability - taxPaid;
+  var refund = 0;
+  if (netTaxPayable < 0) { refund = -netTaxPayable; netTaxPayable = 0; }
+
+  return {
+    totalIncome: totalIncome, incomeTax: incomeTaxBeforeSurcharge, surchargeRate: result.rate, surcharge: result.surcharge,
+    marginalRelief: result.marginalRelief, specialCapApplied: result.specialCapApplied, cess: cess,
+    grossTaxLiability: grossTaxLiability, taxPaid: taxPaid, netTaxPayable: netTaxPayable, refund: refund, autoBreakup: autoBreakup
+  };
+}
+function computeTotalIncome(inp) {
+  var sum = (inp.salary || 0) + (inp.houseProperty || 0) + (inp.business || 0) + (inp.capitalGain || 0) +
+    (inp.stcg || 0) + (inp.ltcg || 0) + (inp.otherSources || 0) + (inp.dividendIncome || 0) + (inp.foreignIncome || 0);
+  sum -= (inp.exemptIncome || 0);
+  return Math.max(0, sum);
+}
+function fmtINR(n) {
+  n = Math.round(n || 0);
+  var neg = n < 0; n = Math.abs(n);
+  var s = n.toString();
+  var lastThree = s.substring(s.length - 3);
+  var other = s.substring(0, s.length - 3);
+  if (other !== '') { lastThree = ',' + lastThree; other = other.replace(/\B(?=(\d{2})+(?!\d))/g, ','); }
+  return (neg ? '-' : '') + '₹' + other + lastThree;
+}
+
+var SurchargeEngine = {
+  FY_LIST: FY_LIST, fyToAy: fyToAy, getSurchargeSlabs: getSurchargeSlabs, slabRateFor: slabRateFor,
+  computeSurchargeWithRelief: computeSurchargeWithRelief, computeAutoIncomeTax: computeAutoIncomeTax,
+  computeAutoIncomeTaxNonIndividual: computeAutoIncomeTaxNonIndividual, computeSurcharge: computeSurcharge,
+  computeTotalIncome: computeTotalIncome, fmtINR: fmtINR
+};
+if (typeof module !== 'undefined' && module.exports) module.exports = SurchargeEngine;
+if (typeof window !== 'undefined') window.SurchargeEngine = SurchargeEngine;
+</script>
+<script>
+(function(){
+'use strict';
+var E = window.SurchargeEngine;
+function $(id){ return document.getElementById(id); }
+function num(id){ var el = $(id); if(!el) return 0; var v = parseFloat(el.value); return isFinite(v) && v > 0 ? v : 0; }
+function lsGet(key, fallback){ try{ var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } }
+function lsSet(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+function status(msg){ $('sc-statusMsg').textContent = msg; }
+function fmt(n){ return E.fmtINR(n); }
+
+/* ===================== Tabs ===================== */
+var tabs = [['sc-tabIncome','sc-paneIncome'],['sc-tabTax','sc-paneTax'],['sc-tabHistory','sc-paneHistory'],['sc-tabSettings','sc-paneSettings']];
+tabs.forEach(function(pair){
+  $(pair[0]).addEventListener('click', function(){
+    tabs.forEach(function(p2){
+      $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected','false');
+      $(p2[1]).classList.remove('active');
+    });
+    $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected','true');
+    $(pair[1]).classList.add('active');
+  });
+});
+
+/* ===================== Assessment Year auto-fill ===================== */
+function updateAY(){ $('sc-ay').value = 'AY ' + E.fyToAy($('sc-fy').value); }
+$('sc-fy').addEventListener('change', function(){ updateAY(); compute(); });
+
+/* ===================== Validation ===================== */
+var incomeIds = ['sc-salary','sc-houseProperty','sc-business','sc-capitalGain','sc-stcg','sc-ltcg','sc-otherSources','sc-agriculturalIncome','sc-dividendIncome','sc-foreignIncome','sc-exemptIncome'];
+var taxIds = ['sc-advanceTax','sc-tds','sc-tcs','sc-selfAssessmentTax'];
+function validateInputs(){
+  var incomeNeg = incomeIds.some(function(id){ var v = parseFloat($(id).value); return isFinite(v) && v < 0; });
+  var taxNeg = taxIds.some(function(id){ var v = parseFloat($(id).value); return isFinite(v) && v < 0; })
+    || (function(){ var v = parseFloat($('sc-manualTax').value); return isFinite(v) && v < 0; })();
+  $('sc-incomeErr').style.display = incomeNeg ? 'block' : 'none';
+  $('sc-taxErr').style.display = taxNeg ? 'block' : 'none';
+  return !incomeNeg && !taxNeg;
+}
+
+/* ===================== Main compute ===================== */
+var lastResult = null;
+function compute(){
+  validateInputs();
+  var inp = {
+    taxpayerType: $('sc-taxpayerType').value,
+    regime: $('sc-regime').value,
+    fy: $('sc-fy').value,
+    ageCategory: $('sc-ageCategory').value,
+    salary: num('sc-salary'), houseProperty: num('sc-houseProperty'), business: num('sc-business'),
+    capitalGain: num('sc-capitalGain'), stcg: num('sc-stcg'), ltcg: num('sc-ltcg'),
+    otherSources: num('sc-otherSources'), dividendIncome: num('sc-dividendIncome'),
+    foreignIncome: num('sc-foreignIncome'), exemptIncome: num('sc-exemptIncome'),
+    advanceTax: num('sc-advanceTax'), tds: num('sc-tds'), tcs: num('sc-tcs'), selfAssessmentTax: num('sc-selfAssessmentTax')
+  };
+  inp.totalIncome = E.computeTotalIncome(inp);
+  $('sc-totalIncomeDisplay').textContent = fmt(inp.totalIncome);
+
+  var manualRaw = $('sc-manualTax').value;
+  inp.manualTax = (manualRaw !== '' && isFinite(parseFloat(manualRaw))) ? parseFloat(manualRaw) : null;
+
+  var result = E.computeSurcharge(inp);
+
+  /* Show the auto-suggested tax even when a manual override is present, for transparency */
+  var autoOnly = E.computeSurcharge(Object.assign({}, inp, { manualTax: null }));
+  $('sc-autoTaxDisplay').textContent = fmt(autoOnly.incomeTax);
+
+  lastResult = { inp: inp, result: result, taxpayerType: inp.taxpayerType, regime: inp.regime, fy: inp.fy };
+
+  renderSummary();
+  renderSlabBox();
+  renderSteps();
+  renderBreakdownTable();
+  renderCharts();
+  updateShareLinks();
+}
+
+/* ===================== Summary cards ===================== */
+function statCard(label, value, cls){ return '<div class="stat-box' + (cls?' '+cls:'') + '"><div class="num">' + value + '</div><div class="lbl">' + label + '</div></div>'; }
+function renderSummary(){
+  var r = lastResult.result;
+  $('sc-summaryCards').innerHTML =
+    statCard('Total Income', fmt(r.totalIncome)) +
+    statCard('Income Tax', fmt(r.incomeTax)) +
+    statCard('Surcharge', fmt(r.surcharge), 'sc-highlight') +
+    statCard('Marginal Relief', fmt(r.marginalRelief)) +
+    statCard('Health &amp; Education Cess', fmt(r.cess)) +
+    statCard('Gross Tax Liability', fmt(r.grossTaxLiability), 'sc-highlight') +
+    statCard('Tax Paid', fmt(r.taxPaid)) +
+    statCard('Net Tax Payable', fmt(r.netTaxPayable)) +
+    statCard('Refund', fmt(r.refund), r.refund > 0 ? 'sc-refund' : '');
+
+  var flags = [];
+  flags.push(r.surchargeRate > 0 ? '<span class="sc-flag warn">Surcharge Applicable @ ' + (r.surchargeRate*100).toFixed(0) + '%</span>' : '<span class="sc-flag ok">No Surcharge Applicable</span>');
+  if (r.marginalRelief > 0) flags.push('<span class="sc-flag neutral">Marginal Relief Applied</span>');
+  if (r.specialCapApplied) flags.push('<span class="sc-flag neutral">15% Cap Applied (Capital Gains / Dividend)</span>');
+  if (r.refund > 0) flags.push('<span class="sc-flag ok">Refund Due</span>');
+  $('sc-resultFlags').innerHTML = flags.join('');
+}
+
+/* ===================== Slab / rule box ===================== */
+function row(label, value){ return '<div class="sc-engine-row"><span>' + label + '</span><span>' + value + '</span></div>'; }
+function renderSlabBox(){
+  var r = lastResult.result;
+  var html = row('Taxpayer Type', $('sc-taxpayerType').selectedOptions[0].textContent);
+  html += row('Tax Regime', $('sc-regime').selectedOptions[0].textContent);
+  html += row('Financial Year', 'FY ' + lastResult.fy + ' (' + $('sc-ay').value + ')');
+  html += row('Applicable Surcharge Rate', (r.surchargeRate*100).toFixed(0) + '%');
+  $('sc-slabBox').innerHTML = html;
+}
+
+/* ===================== Calculation steps ===================== */
+function renderSteps(){
+  var r = lastResult.result;
+  var steps = [
+    'Total Income: ' + fmt(r.totalIncome),
+    'Income Tax (before Surcharge): ' + fmt(r.incomeTax),
+    'Surcharge @ ' + (r.surchargeRate*100).toFixed(0) + '%: ' + fmt(r.surcharge + r.marginalRelief),
+    'Less Marginal Relief: ' + fmt(r.marginalRelief),
+    'Health & Education Cess (4%): ' + fmt(r.cess),
+    'Gross Tax Liability: ' + fmt(r.grossTaxLiability),
+    'Less Tax Paid: ' + fmt(r.taxPaid),
+    r.refund > 0 ? 'Refund Due: ' + fmt(r.refund) : 'Net Tax Payable: ' + fmt(r.netTaxPayable)
+  ];
+  $('sc-stepsBox').innerHTML = steps.map(function(s, i){
+    return '<div class="sc-step">' + s + '</div>' + (i < steps.length-1 ? '<div class="sc-step-arrow">↓</div>' : '');
+  }).join('');
+  $('sc-formulaBox').textContent =
+    'Gross Tax Liability = Income Tax + Surcharge (after Marginal Relief) + Cess (4%)\n' +
+    'Net Tax Payable = Gross Tax Liability - (Advance Tax + TDS + TCS + Self Assessment Tax)\n' +
+    'Marginal Relief = (Tax + Surcharge at actual income) - (Tax + Surcharge at threshold + excess income)';
+}
+
+/* ===================== Breakdown table ===================== */
+function renderBreakdownTable(){
+  var r = lastResult.result;
+  var rows = [
+    ['Total Income', fmt(r.totalIncome)], ['Income Tax', fmt(r.incomeTax)],
+    ['Surcharge Rate', (r.surchargeRate*100).toFixed(0) + '%'], ['Surcharge (after Relief)', fmt(r.surcharge)],
+    ['Marginal Relief', fmt(r.marginalRelief)], ['Health & Education Cess', fmt(r.cess)],
+    ['Gross Tax Liability', fmt(r.grossTaxLiability)], ['Tax Paid', fmt(r.taxPaid)],
+    ['Net Tax Payable', fmt(r.netTaxPayable)], ['Refund', fmt(r.refund)]
+  ];
+  document.querySelector('#sc-breakdownTable tbody').innerHTML = rows.map(function(p){ return '<tr><td>' + p[0] + '</td><td>' + p[1] + '</td></tr>'; }).join('');
+}
+
+/* ===================== Canvas charts ===================== */
+var PALETTE = ['#7C5CFC','#16C079','#F59E0B','#F87171','#38BDF8','#A78BFA'];
+function drawPie(canvasId, legendId, data, doughnut){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var total = data.reduce(function(s,d){ return s + Math.max(0,d.value); }, 0);
+  var cx = w/2, cy = h/2, radius = Math.min(w,h)/2 - 10;
+  if(total <= 0){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', cx, cy);
+    if(legendId) $(legendId).innerHTML = '';
+    return;
+  }
+  var start = -Math.PI/2;
+  data.forEach(function(d, i){
+    var slice = (Math.max(0,d.value) / total) * Math.PI * 2;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, radius, start, start + slice); ctx.closePath();
+    ctx.fillStyle = PALETTE[i % PALETTE.length]; ctx.fill();
+    start += slice;
+  });
+  if(doughnut){ ctx.beginPath(); ctx.arc(cx, cy, radius*0.55, 0, Math.PI*2); ctx.fillStyle = '#160b2e'; ctx.fill(); }
+  if(legendId){
+    $(legendId).innerHTML = data.map(function(d,i){
+      return '<span><i style="background:' + PALETTE[i%PALETTE.length] + '"></i>' + d.label + ': ' + fmt(d.value) + '</span>';
+    }).join('');
+  }
+}
+function drawBar(canvasId, data){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var total = data.reduce(function(s,d){return s+Math.max(0,d.value);},0);
+  if(total <= 0){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', w/2, h/2);
+    return;
+  }
+  var max = Math.max.apply(null, data.map(function(d){ return d.value; }).concat([1]));
+  var barW = w / data.length * 0.6;
+  var gap = w / data.length;
+  data.forEach(function(d, i){
+    var barH = (Math.max(0,d.value) / max) * (h - 40);
+    var x = i * gap + (gap - barW)/2;
+    var y = h - 24 - barH;
+    ctx.fillStyle = PALETTE[i % PALETTE.length];
+    ctx.fillRect(x, y, barW, barH);
+    ctx.fillStyle = '#aaa'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(d.label, x + barW/2, h - 8);
+  });
+}
+function renderCharts(){
+  var r = lastResult.result;
+  drawPie('sc-chartComposition', 'sc-legendComposition', [
+    {label:'Income Tax', value: r.incomeTax}, {label:'Surcharge', value: r.surcharge}, {label:'Cess', value: r.cess}
+  ], true);
+  drawBar('sc-chartPayable', [
+    {label:'Gross Tax', value: r.grossTaxLiability}, {label:'Tax Paid', value: r.taxPaid}, {label:'Net Payable', value: r.netTaxPayable}
+  ]);
+}
+
+/* ===================== History ===================== */
+var HISTORY_KEY = 'sc_history';
+function loadHistory(){ return lsGet(HISTORY_KEY, []); }
+function saveHistory(list){ lsSet(HISTORY_KEY, list.slice(0, 50)); }
+function addToHistory(){
+  if(!lastResult) return;
+  var list = loadHistory();
+  var r = lastResult.result;
+  list.unshift({ ts: new Date().toISOString(), taxpayerType: $('sc-taxpayerType').selectedOptions[0].textContent,
+    fy: lastResult.fy, totalIncome: r.totalIncome, surcharge: r.surcharge, netTaxPayable: r.netTaxPayable });
+  saveHistory(list);
+  renderHistory();
+}
+function renderHistory(){
+  var list = loadHistory();
+  var wrap = $('sc-historyList');
+  if(!list.length){ wrap.innerHTML = '<p class="sc-muted">No calculations saved yet.</p>'; return; }
+  wrap.innerHTML = list.map(function(item){
+    var d = new Date(item.ts);
+    return '<div class="sc-history-item"><span>' + item.taxpayerType + ' (FY ' + item.fy + ') — Income ' + fmt(item.totalIncome) + ' → Surcharge <span class="sc-amt">' + fmt(item.surcharge) + '</span><br><span class="sc-muted">' + d.toLocaleString() + '</span></span></div>';
+  }).join('');
+}
+$('sc-clearHistoryBtn').addEventListener('click', function(){
+  if(!confirm('Clear all saved calculation history?')) return;
+  saveHistory([]); renderHistory();
+  status('🗑️ History cleared.');
+});
+
+/* ===================== Buttons ===================== */
+function doCalculate(){ compute(); addToHistory(); status('✅ Calculation updated and saved to history.'); }
+$('sc-calcBtn').addEventListener('click', doCalculate);
+$('sc-stickyCalcBtn').addEventListener('click', doCalculate);
+$('sc-resetBtn').addEventListener('click', function(){
+  if(!confirm('Reset all fields to default?')) return;
+  incomeIds.concat(taxIds).forEach(function(id){ $(id).value = 0; });
+  $('sc-salary').value = 1500000;
+  $('sc-manualTax').value = '';
+  $('sc-taxpayerType').value = 'individual';
+  $('sc-residentialStatus').value = 'resident';
+  $('sc-ageCategory').value = 'below60';
+  $('sc-regime').value = 'new';
+  compute();
+  status('↺ Reset complete.');
+});
+$('sc-printBtn').addEventListener('click', function(){ window.print(); });
+
+function buildTextSummary(){
+  var r = lastResult.result;
+  return [
+    'Surcharge Calculation Summary', 'Taxpayer Type: ' + $('sc-taxpayerType').selectedOptions[0].textContent,
+    'Financial Year: FY ' + lastResult.fy, 'Total Income: ' + fmt(r.totalIncome), 'Income Tax: ' + fmt(r.incomeTax),
+    'Surcharge: ' + fmt(r.surcharge), 'Marginal Relief: ' + fmt(r.marginalRelief), 'Cess: ' + fmt(r.cess),
+    'Gross Tax Liability: ' + fmt(r.grossTaxLiability), 'Tax Paid: ' + fmt(r.taxPaid),
+    'Net Tax Payable: ' + fmt(r.netTaxPayable), 'Refund: ' + fmt(r.refund)
+  ].join('\n');
+}
+$('sc-copyBtn').addEventListener('click', function(){
+  if(!lastResult){ status('⚠️ Calculate first.'); return; }
+  var text = buildTextSummary();
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ status('📋 Copied to clipboard.'); });
+  }
+});
+$('sc-pdfBtn').addEventListener('click', function(){
+  if(typeof html2pdf === 'undefined'){ alert('PDF engine failed to load — check your connection and refresh.'); return; }
+  html2pdf().from($('sc-resultSide')).set({filename:'surcharge-calculation-summary.pdf', margin:10}).save();
+});
+$('sc-xlsxBtn').addEventListener('click', function(){
+  if(typeof XLSX === 'undefined'){ alert('Excel engine failed to load — check your connection and refresh.'); return; }
+  var r = lastResult.result;
+  var rows = [['Metric','Value'], ['Taxpayer Type', $('sc-taxpayerType').selectedOptions[0].textContent], ['Financial Year', lastResult.fy],
+    ['Total Income', r.totalIncome], ['Income Tax', r.incomeTax], ['Surcharge', r.surcharge], ['Marginal Relief', r.marginalRelief],
+    ['Cess', r.cess], ['Gross Tax Liability', r.grossTaxLiability], ['Tax Paid', r.taxPaid], ['Net Tax Payable', r.netTaxPayable], ['Refund', r.refund]];
+  var ws = XLSX.utils.aoa_to_sheet(rows);
+  var wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Surcharge Summary');
+  XLSX.writeFile(wb, 'surcharge-calculation-summary.xlsx');
+});
+$('sc-csvBtn').addEventListener('click', function(){
+  if(!lastResult){ status('⚠️ Calculate first.'); return; }
+  var r = lastResult.result;
+  var rows = [['Metric','Value'], ['Taxpayer Type', $('sc-taxpayerType').selectedOptions[0].textContent], ['Financial Year', lastResult.fy],
+    ['Total Income', r.totalIncome], ['Income Tax', r.incomeTax], ['Surcharge', r.surcharge], ['Marginal Relief', r.marginalRelief],
+    ['Cess', r.cess], ['Gross Tax Liability', r.grossTaxLiability], ['Tax Paid', r.taxPaid], ['Net Tax Payable', r.netTaxPayable], ['Refund', r.refund]];
+  var csv = rows.map(function(row){ return row.map(function(v){ return '"' + String(v).replace(/"/g,'""') + '"'; }).join(','); }).join('\n');
+  var blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'surcharge-calculation-summary.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+/* ===================== Share links ===================== */
+function updateShareLinks(){
+  if(!lastResult) return;
+  var text = buildTextSummary();
+  var url = location.href;
+  $('sc-shareWhatsapp').href = 'https://wa.me/?text=' + encodeURIComponent(text + '\n' + url);
+  $('sc-shareFacebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+  $('sc-shareTwitter').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
+  $('sc-shareLinkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
+}
+$('sc-copyLinkBtn').addEventListener('click', function(){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(location.href).then(function(){ status('🔗 Link copied to clipboard.'); });
+  }
+});
+
+/* ===================== Validation on inputs ===================== */
+document.querySelectorAll('#sc-formSide input, #sc-formSide select').forEach(function(el){
+  el.addEventListener('input', compute);
+  el.addEventListener('change', compute);
+});
+
+/* ===================== Settings: theme / language / accessibility ===================== */
+var I18N = {
+  en: {
+    tabIncome:'📋 Taxpayer & Income', tabTax:'💳 Tax & Payments', tabHistory:'🕘 History', tabSettings:'⚙️ Settings',
+    calc:'🧮 Calculate', reset:'↺ Reset', print:'🖨️ Print', pdf:'📄 Download PDF', xlsx:'📊 Download Excel', csv:'📁 Download CSV', copy:'📋 Copy Results'
+  },
+  hi: {
+    tabIncome:'📋 Taxpayer और Income', tabTax:'💳 Tax और Payments', tabHistory:'🕘 इतिहास', tabSettings:'⚙️ सेटिंग्स',
+    calc:'🧮 गणना करें', reset:'↺ रीसेट', print:'🖨️ प्रिंट', pdf:'📄 PDF डाउनलोड करें', xlsx:'📊 Excel डाउनलोड करें', csv:'📁 CSV डाउनलोड करें', copy:'📋 परिणाम कॉपी करें'
+  }
+};
+function applyLanguage(lang){
+  var t = I18N[lang] || I18N.en;
+  $('sc-tabIncome').textContent = t.tabIncome;
+  $('sc-tabTax').textContent = t.tabTax;
+  $('sc-tabHistory').textContent = t.tabHistory;
+  $('sc-tabSettings').textContent = t.tabSettings;
+  $('sc-calcBtn').textContent = t.calc;
+  $('sc-resetBtn').textContent = t.reset;
+  $('sc-printBtn').textContent = t.print;
+  $('sc-pdfBtn').textContent = t.pdf;
+  $('sc-xlsxBtn').textContent = t.xlsx;
+  $('sc-csvBtn').textContent = t.csv;
+  $('sc-copyBtn').textContent = t.copy;
+}
+$('sc-language').addEventListener('change', function(){ applyLanguage(this.value); lsSet('sc_lang', this.value); });
+$('sc-theme').addEventListener('change', function(){ document.body.classList.toggle('sc-light', this.value === 'light'); lsSet('sc_theme', this.value); });
+$('sc-highContrast').addEventListener('change', function(){ document.body.classList.toggle('sc-high-contrast', this.checked); lsSet('sc_hc', this.checked); });
+$('sc-largeFont').addEventListener('change', function(){ document.body.classList.toggle('sc-large-font', this.checked); lsSet('sc_lf', this.checked); });
+
+/* ===================== Init ===================== */
+var savedLang = lsGet('sc_lang', 'en'); $('sc-language').value = savedLang; applyLanguage(savedLang);
+var savedTheme = lsGet('sc_theme', 'dark'); $('sc-theme').value = savedTheme; document.body.classList.toggle('sc-light', savedTheme === 'light');
+var savedHc = lsGet('sc_hc', false); $('sc-highContrast').checked = savedHc; document.body.classList.toggle('sc-high-contrast', savedHc);
+var savedLf = lsGet('sc_lf', false); $('sc-largeFont').checked = savedLf; document.body.classList.toggle('sc-large-font', savedLf);
+
+updateAY();
+renderHistory();
+compute();
+
+})();
+</script>
+<script type="text/javascript">
+	var sc_project_id = 100000000;
+	var sc_invisible = 1;
+	var sc_security = "0000000";
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+
+</body>
+</html>
