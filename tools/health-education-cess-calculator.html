@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Free Health & Education Cess Calculator for India (FY 2023-24 to FY 2026-27) — instant 4% Cess on Income Tax and Surcharge, with Rebate u/s 87A, Relief u/s 89, MAT/AMT Credit and Net Tax Payable or Refund. 100% private, browser-only, no AI.">
+<meta name="keywords" content="health and education cess calculator, 4% cess income tax, cess on income tax and surcharge, health education cess FY 2025-26, total tax liability calculator, net tax payable calculator India">
+<link rel="canonical" href="https://apnesoftware.com/tools/health-education-cess-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Health & Education Cess Calculator (India, FY-wise) | ApneSoftware">
+<meta property="og:description" content="Calculate 4% Health & Education Cess instantly on Income Tax and Surcharge, with Net Tax Payable or Refund. Free, private, browser-only.">
+<meta property="og:url" content="https://apnesoftware.com/tools/health-education-cess-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Health & Education Cess Calculator (India, FY-wise) | ApneSoftware">
+<meta name="twitter:description" content="4% Health & Education Cess on Income Tax and Surcharge — instant, free, private, browser-only.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Health & Education Cess Calculator","description":"Professional in-browser Health & Education Cess Calculator for India that computes the 4% Cess on Income Tax and Surcharge, along with Rebate u/s 87A, Relief u/s 89, MAT/AMT Credit and Net Tax Payable or Refund, across FY 2023-24 to FY 2026-27.","url":"https://apnesoftware.com/tools/health-education-cess-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["4% Health & Education Cess computation on Income Tax and Surcharge","Rebate u/s 87A, Relief u/s 89 and MAT/AMT Credit adjustments","Net Tax Payable and Refund calculation","Step-by-step calculation breakdown with worked example","Export to PDF, Excel, CSV, print, copy and share"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Health & Education Cess Calculator","url":"https://apnesoftware.com/tools/health-education-cess-calculator.html","description":"Browser-based Health & Education Cess Calculator for India computing 4% Cess on Income Tax and Surcharge.","inLanguage":["en","hi"],"isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".tool-header p"]}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"Calculators & Converters","item":"https://apnesoftware.com/index.html#cat-calculator"},{"@type":"ListItem","position":3,"name":"Health & Education Cess Calculator","item":"https://apnesoftware.com/tools/health-education-cess-calculator.html"}]}
+</script>
+<meta name="color-scheme" content="dark light">
+<title>Health & Education Cess Calculator (India, FY-wise) | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* ===== Health & Education Cess Calculator — scoped hec- prefix ===== */
+
+  /* All figures must always remain on one line, using Indian tabular-number formatting. */
+  .hec-num, .hec-content .num, .hec-stat-cards .num, .hec-engine-row span:last-child,
+  .hec-content table td, .hec-content table th, .hec-formula-box, .hec-history-item .hec-amt{
+    white-space:nowrap; word-break:keep-all; overflow-wrap:normal;
+    font-variant-numeric: tabular-nums; font-feature-settings:"tnum" 1;
+  }
+
+  .hec-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;align-items:start}
+  #hec-formSide,#hec-resultSide{min-width:0}
+  #hec-resultSide{position:sticky;top:16px}
+  @media(max-width:900px){ .hec-grid{grid-template-columns:1fr} #hec-resultSide{position:static} }
+
+  .hec-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .hec-tab{padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.82rem;font-weight:600;font-family:inherit}
+  .hec-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .hec-pane{display:none}
+  .hec-pane.active{display:block}
+
+  .hec-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;backdrop-filter:blur(10px);
+    transition:transform .18s ease, box-shadow .18s ease}
+  .hec-card:hover{box-shadow:0 10px 30px rgba(124,92,252,.12)}
+  .hec-card h3{margin:0 0 10px;font-size:.95rem}
+  .hec-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:10px}
+  .hec-field label{display:block;font-size:.76rem;color:var(--text-dim);margin-bottom:4px}
+  .hec-field input,.hec-field select{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.88rem;transition:border-color .15s ease, box-shadow .15s ease}
+  .hec-field input:focus,.hec-field select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,252,.2)}
+  .hec-note{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.3);border-radius:10px;padding:10px 12px;font-size:.8rem;color:#fde68a;margin-top:10px}
+  .hec-err{display:none;color:#fca5a5;font-size:.78rem;margin-top:6px}
+
+  .hec-stat-cards{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .hec-stat-cards .stat-box{flex:1;min-width:150px}
+  .hec-stat-cards .stat-box.hec-highlight{background:linear-gradient(135deg,rgba(124,92,252,.25),rgba(22,192,121,.18));border:1px solid var(--accent)}
+  .hec-stat-cards .stat-box.hec-refund{background:linear-gradient(135deg,rgba(22,192,121,.28),rgba(56,189,248,.16));border:1px solid #16C079}
+
+  .hec-engine-box{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:10px 0}
+  .hec-engine-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--border);font-size:.86rem;gap:10px}
+  .hec-engine-row:last-child{border-bottom:none}
+  .hec-engine-row span:last-child{font-weight:700;color:var(--accent)}
+
+  .hec-steps{display:flex;flex-direction:column;gap:4px;margin:10px 0}
+  .hec-step{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:.84rem;text-align:center}
+  .hec-step-arrow{text-align:center;color:var(--text-dim);font-size:.9rem}
+
+  .hec-formula-box{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px;font-family:'Consolas','Courier New',monospace;font-size:.8rem;white-space:pre-wrap;margin-top:10px}
+
+  .hec-chart-wrap{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px;margin-top:12px}
+  .hec-chart-wrap h4{font-size:.82rem;color:var(--text-dim);font-weight:600;margin-bottom:8px}
+  .hec-chart-wrap canvas{width:100%;height:auto;display:block}
+  .hec-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:.76rem;color:var(--text-dim)}
+  .hec-legend span{display:inline-flex;align-items:center;gap:5px}
+  .hec-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+  .hec-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .hec-flag{padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600;border:1px solid var(--border)}
+  .hec-flag.ok{background:rgba(22,192,121,.15);color:#7ef0bd;border-color:rgba(22,192,121,.4)}
+  .hec-flag.warn{background:rgba(248,113,113,.15);color:#fca5a5;border-color:rgba(248,113,113,.4)}
+  .hec-flag.neutral{background:var(--surface-2);color:var(--text-dim)}
+  .hec-muted{color:var(--text-dim);font-size:.8rem;margin-top:6px}
+
+  .hec-history-item{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);margin-bottom:6px;font-size:.84rem}
+  .hec-share-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .hec-share-btn{padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);cursor:pointer;font-size:.8rem;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:transform .15s ease, background .15s ease}
+  .hec-share-btn:hover{transform:translateY(-2px);background:var(--surface)}
+
+  /* Premium gradient buttons with animated hover */
+  .btn.hec-gradient{background:linear-gradient(135deg,#7C5CFC,#16C079);border:none;box-shadow:0 6px 20px rgba(124,92,252,.35);transition:transform .15s ease, box-shadow .15s ease}
+  .btn.hec-gradient:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.5)}
+
+  /* Sticky Calculate button on mobile */
+  #hec-stickyCalc{display:none}
+  @media(max-width:760px){
+    #hec-stickyCalc{
+      display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 14px;
+      background:linear-gradient(180deg,rgba(15,10,30,0),rgba(15,10,30,.96) 30%);
+      justify-content:center;
+    }
+    #hec-stickyCalc button{width:100%;max-width:420px;padding:13px 18px;font-size:.95rem;border-radius:999px}
+    body{padding-bottom:70px}
+  }
+
+  body.hec-large-font #hec-formSide,body.hec-large-font #hec-resultSide{font-size:1.1rem}
+  body.hec-high-contrast{filter:contrast(1.2) brightness(1.06)}
+
+  /* ===== Light mode — scoped strictly to the tool's own content ===== */
+  body.hec-light :is(.container,.hec-content){
+    --bg:#f4f2fb; --surface:#ffffff; --surface-2:#efeaf9; --border:rgba(20,10,45,.14); --border-strong:rgba(20,10,45,.24);
+    --text:#1c1533; --text-dim:rgba(28,21,51,.68);
+  }
+  body.hec-light .container,
+  body.hec-light .hec-content{
+    background:#f4f2fb; border-radius:18px; padding:20px 22px; box-shadow:0 8px 32px rgba(20,10,45,.12);
+  }
+  body.hec-light :is(.container,.hec-content) h1,
+  body.hec-light :is(.container,.hec-content) h2,
+  body.hec-light :is(.container,.hec-content) h3,
+  body.hec-light :is(.container,.hec-content) h4,
+  body.hec-light :is(.container,.hec-content) h5,
+  body.hec-light :is(.container,.hec-content) h6{color:var(--text)}
+  body.hec-light :is(.container,.hec-content) p{color:var(--text-dim)}
+  body.hec-light :is(.container,.hec-content) label{color:var(--text-dim)}
+  body.hec-light :is(.container,.hec-content) textarea,
+  body.hec-light :is(.container,.hec-content) input[type=text],
+  body.hec-light :is(.container,.hec-content) input[type=number],
+  body.hec-light :is(.container,.hec-content) input[type=date],
+  body.hec-light :is(.container,.hec-content) select{
+    background:#ffffff;border:1px solid rgba(20,10,45,.2);color:var(--text)
+  }
+  body.hec-light :is(.container,.hec-content) select option{background:#ffffff;color:var(--text)}
+  body.hec-light :is(.container,.hec-content) .panel{background:#ffffff!important;border:1px solid rgba(20,10,45,.1)!important;box-shadow:0 8px 28px rgba(20,10,45,.08)!important}
+  body.hec-light :is(.container,.hec-content) table th{background:rgba(20,10,45,.06);color:var(--text)}
+  body.hec-light :is(.container,.hec-content) table td{color:var(--text-dim);border-color:rgba(20,10,45,.1)}
+  body.hec-light :is(.container,.hec-content) .hec-tab{color:var(--text-dim)}
+  body.hec-light :is(.container,.hec-content) .hec-tab.active{color:#fff}
+  body.hec-light :is(.container,.hec-content) .btn.secondary{background:var(--surface-2);border-color:var(--border);color:var(--text)}
+
+  .related-grid a .ri{margin-right:6px}
+  .hec-content h2{font-size:1.15rem;margin:26px 0 10px}
+  .hec-content h3{font-size:1rem;margin:18px 0 8px}
+  .hec-content p,.hec-content li{font-size:.92rem;line-height:1.8}
+  .hec-content ul,.hec-content ol{padding-left:20px}
+  .hec-content table{width:100%;border-collapse:collapse;font-size:.86rem;margin:12px 0}
+  .hec-content table th,.hec-content table td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  .hec-content table th{color:#c4b5fd}
+
+  .hec-faq-item{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+  .hec-faq-item strong{color:#c4b5fd}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="hec-muted" style="margin-bottom:10px" aria-label="Breadcrumb">
+    <a href="../index.html" style="color:#c4b5fd;text-decoration:none">Home</a> ›
+    <a href="../index.html#cat-calculator" style="color:#c4b5fd;text-decoration:none">Calculators &amp; Converters</a> ›
+    Health &amp; Education Cess Calculator
+  </nav>
+
+  <div class="tool-header">
+    <h1>❤️‍🩹 Health &amp; Education Cess Calculator</h1>
+    <p>Calculate 4% Health &amp; Education Cess instantly based on Income Tax and Surcharge under the latest Indian Income Tax Rules.</p>
+
+    <div class="hec-row" style="margin-top:14px">
+      <div class="hec-field">
+        <label for="hec-language">Language / भाषा</label>
+        <select id="hec-language"><option value="en">English</option><option value="hi">हिन्दी</option></select>
+      </div>
+      <div class="hec-field">
+        <label for="hec-theme">Theme</label>
+        <select id="hec-theme"><option value="dark">🌙 Dark</option><option value="light">☀️ Light</option></select>
+      </div>
+      <div class="hec-field">
+        <label for="hec-fy">Financial Year</label>
+        <select id="hec-fy">
+          <option value="2026-27">FY 2026-27</option>
+          <option value="2025-26" selected>FY 2025-26</option>
+          <option value="2024-25">FY 2024-25</option>
+          <option value="2023-24">FY 2023-24</option>
+        </select>
+      </div>
+      <div class="hec-field">
+        <label for="hec-ay">Assessment Year (Auto)</label>
+        <input type="text" id="hec-ay" readonly>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn hec-gradient" id="hec-calcBtn" type="button">🧮 Calculate</button>
+      <button class="btn secondary" id="hec-resetBtn" type="button">↺ Reset</button>
+      <button class="btn secondary" id="hec-printBtn" type="button">🖨️ Print</button>
+      <button class="btn secondary" id="hec-pdfBtn" type="button">📄 Download PDF</button>
+      <button class="btn secondary" id="hec-xlsxBtn" type="button">📊 Download Excel</button>
+      <button class="btn secondary" id="hec-csvBtn" type="button">📁 Download CSV</button>
+      <button class="btn secondary" id="hec-copyBtn" type="button">📋 Copy Results</button>
+    </div>
+    <div class="hec-share-row">
+      <a class="hec-share-btn" id="hec-shareWhatsapp" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a class="hec-share-btn" id="hec-shareFacebook" href="#" target="_blank" rel="noopener">📘 Facebook</a>
+      <a class="hec-share-btn" id="hec-shareLinkedin" href="#" target="_blank" rel="noopener">💼 LinkedIn</a>
+      <a class="hec-share-btn" id="hec-shareTwitter" href="#" target="_blank" rel="noopener">🐦 X</a>
+      <button class="hec-share-btn" id="hec-copyLinkBtn" type="button">🔗 Copy Link</button>
+    </div>
+    <div id="hec-statusMsg" class="hec-muted" role="status" aria-live="polite"></div>
+  </div>
+
+  <div class="hec-grid">
+    <div id="hec-formSide">
+      <div class="panel">
+        <div class="hec-tabs" role="tablist">
+          <button class="hec-tab active" id="hec-tabIncome" role="tab" aria-selected="true">📋 Tax Details</button>
+          <button class="hec-tab" id="hec-tabCredits" role="tab" aria-selected="false">💳 Credits &amp; Payments</button>
+          <button class="hec-tab" id="hec-tabHistory" role="tab" aria-selected="false">🕘 History</button>
+          <button class="hec-tab" id="hec-tabSettings" role="tab" aria-selected="false">⚙️ Settings</button>
+        </div>
+
+        <!-- ===== Tab: Tax Details ===== -->
+        <div class="hec-pane active" id="hec-paneIncome">
+          <div class="hec-card">
+            <h3>👤 Taxpayer Profile</h3>
+            <div class="hec-row">
+              <div class="hec-field">
+                <label for="hec-taxpayerType">Taxpayer Type</label>
+                <select id="hec-taxpayerType">
+                  <option value="individual">Individual</option>
+                  <option value="huf">HUF</option>
+                  <option value="aop">AOP</option>
+                  <option value="boi">BOI</option>
+                  <option value="firm">Firm</option>
+                  <option value="llp">LLP</option>
+                  <option value="domesticCompany">Domestic Company</option>
+                  <option value="foreignCompany">Foreign Company</option>
+                  <option value="coOperativeSociety">Co-operative Society</option>
+                  <option value="localAuthority">Local Authority</option>
+                </select>
+              </div>
+              <div class="hec-field">
+                <label for="hec-residentialStatus">Residential Status</label>
+                <select id="hec-residentialStatus">
+                  <option value="resident">Resident</option>
+                  <option value="rnor">Resident but Not Ordinarily Resident (RNOR)</option>
+                  <option value="nonResident">Non-Resident</option>
+                </select>
+              </div>
+              <div class="hec-field">
+                <label for="hec-regime">Tax Regime</label>
+                <select id="hec-regime">
+                  <option value="new">New Regime</option>
+                  <option value="old">Old Regime</option>
+                </select>
+              </div>
+            </div>
+            <p class="hec-muted">Health &amp; Education Cess is levied at a flat 4% for every taxpayer type and both tax regimes — Taxpayer Type, Residential Status and Tax Regime are captured here for your record and report, and do not change the Cess rate itself.</p>
+          </div>
+
+          <div class="hec-card">
+            <h3>💰 Income Tax &amp; Surcharge</h3>
+            <div class="hec-row">
+              <div class="hec-field"><label for="hec-totalIncome">Total Taxable Income</label><input type="number" id="hec-totalIncome" min="0" value="1200000" required></div>
+              <div class="hec-field"><label for="hec-incomeTax">Income Tax Amount</label><input type="number" id="hec-incomeTax" min="0" value="90000" required></div>
+              <div class="hec-field"><label for="hec-surcharge">Surcharge Amount</label><input type="number" id="hec-surcharge" min="0" value="0"></div>
+            </div>
+            <div class="hec-err" id="hec-requiredErr">Total Taxable Income and Income Tax Amount are required and cannot be empty or negative.</div>
+            <div class="hec-err" id="hec-incomeErr">Values cannot be negative or invalid.</div>
+            <p class="hec-muted">Enter the Income Tax and Surcharge already computed for your total income (use the Income Tax Calculator and Surcharge Calculator if you need to work these out first).</p>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Credits & Payments ===== -->
+        <div class="hec-pane" id="hec-paneCredits">
+          <div class="hec-card">
+            <h3>🧾 Rebates &amp; Relief</h3>
+            <div class="hec-row">
+              <div class="hec-field"><label for="hec-rebate87A">Rebate u/s 87A</label><input type="number" id="hec-rebate87A" min="0" value="0"></div>
+              <div class="hec-field"><label for="hec-relief89">Relief u/s 89</label><input type="number" id="hec-relief89" min="0" value="0"></div>
+              <div class="hec-field"><label for="hec-matAmtCredit">MAT / AMT Credit</label><input type="number" id="hec-matAmtCredit" min="0" value="0"></div>
+            </div>
+            <p class="hec-muted">These do not change the Cess calculation itself (Cess is always 4% of Income Tax + Surcharge) — they are netted off afterwards, together with taxes already paid, to arrive at your Net Tax Payable or Refund.</p>
+          </div>
+          <div class="hec-card">
+            <h3>💳 Taxes Already Paid</h3>
+            <div class="hec-row">
+              <div class="hec-field"><label for="hec-advanceTax">Advance Tax Paid</label><input type="number" id="hec-advanceTax" min="0" value="0"></div>
+              <div class="hec-field"><label for="hec-tds">TDS</label><input type="number" id="hec-tds" min="0" value="0"></div>
+              <div class="hec-field"><label for="hec-tcs">TCS</label><input type="number" id="hec-tcs" min="0" value="0"></div>
+              <div class="hec-field"><label for="hec-selfAssessmentTax">Self Assessment Tax</label><input type="number" id="hec-selfAssessmentTax" min="0" value="0"></div>
+            </div>
+            <div class="hec-err" id="hec-taxErr">Tax and payment values cannot be negative.</div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: History ===== -->
+        <div class="hec-pane" id="hec-paneHistory">
+          <div class="hec-card">
+            <h3>🕘 Calculation History</h3>
+            <div class="btn-row" style="margin-bottom:10px">
+              <button class="btn secondary" id="hec-clearHistoryBtn" type="button">🗑️ Clear History</button>
+            </div>
+            <div id="hec-historyList"></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Settings ===== -->
+        <div class="hec-pane" id="hec-paneSettings">
+          <div class="hec-card">
+            <h3>⚙️ Accessibility Preferences</h3>
+            <div class="hec-row">
+              <div class="hec-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="hec-highContrast" style="width:auto"> High Contrast</label></div>
+              <div class="hec-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="hec-largeFont" style="width:auto"> Large Fonts</label></div>
+            </div>
+            <p class="hec-muted">Preferences are remembered in this browser for your next visit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="hec-resultSide">
+      <div class="panel">
+        <h3 style="margin:0 0 10px;font-size:1rem">📊 Cess Summary</h3>
+        <div class="hec-stat-cards" id="hec-summaryCards"></div>
+        <div class="hec-flags" id="hec-resultFlags"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🧮 Calculation Steps</h3>
+        <div class="hec-steps" id="hec-stepsBox"></div>
+        <div class="hec-formula-box" id="hec-formulaBox"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">📋 Detailed Breakdown</h3>
+        <table id="hec-breakdownTable"><tbody></tbody></table>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">📊 Charts</h3>
+        <div class="hec-chart-wrap"><h4>Income Tax vs Surcharge vs Cess</h4><canvas id="hec-chartComposition" width="500" height="220"></canvas><div class="hec-legend" id="hec-legendComposition"></div></div>
+        <div class="hec-chart-wrap"><h4>Gross Tax vs Paid vs Net Payable</h4><canvas id="hec-chartPayable" width="500" height="220"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:16px">
+    <h3 style="margin:0 0 10px;font-size:1rem">📚 Formula &amp; Worked Example</h3>
+    <div class="hec-formula-box">Tax Before Cess = Income Tax + Surcharge
+Health &amp; Education Cess = Tax Before Cess x 4%
+Total Tax Liability = Tax Before Cess + Health &amp; Education Cess</div>
+    <h4 style="font-size:.9rem;margin:14px 0 6px">Worked Example</h4>
+    <table>
+      <tr><th>Item</th><th>Amount</th></tr>
+      <tr><td>Income Tax</td><td>₹9,00,000.00</td></tr>
+      <tr><td>Surcharge (10%)</td><td>₹90,000.00</td></tr>
+      <tr><td>Tax Before Cess</td><td>₹9,90,000.00</td></tr>
+      <tr><td>Health &amp; Education Cess (4%)</td><td>₹39,600.00</td></tr>
+      <tr><td>Total Tax Liability</td><td>₹10,29,600.00</td></tr>
+    </table>
+    <p class="hec-muted" style="font-size:.86rem">In this example, Income Tax of ₹9,00,000 plus Surcharge of ₹90,000 gives a Tax Before Cess of ₹9,90,000. Health &amp; Education Cess at 4% adds ₹39,600, giving a Total Tax Liability of ₹10,29,600 — this exact scenario is pre-loaded into the calculator above for you to try.</p>
+  </div>
+</div>
+
+<div class="hec-content">
+
+<h2>1. Related Tools</h2>
+<div class="related-grid">
+  <a href="income-tax-calculator.html"><span class="ri">💰</span> Income Tax Calculator</a>
+  <a href="surcharge-calculator.html"><span class="ri">📈</span> Surcharge Calculator</a>
+  <a href="tds-calculator.html"><span class="ri">🧾</span> TDS Calculator</a>
+  <a href="tcs-calculator.html"><span class="ri">🧾</span> TCS Calculator</a>
+  <a href="advance-tax-calculator.html"><span class="ri">🧾</span> Advance Tax Calculator</a>
+  <a href="salary-calculator.html"><span class="ri">💼</span> Salary Calculator</a>
+  <a href="hra-calculator.html"><span class="ri">🏠</span> HRA Calculator</a>
+  <a href="gratuity-calculator.html"><span class="ri">🎁</span> Gratuity Calculator</a>
+  <a href="professional-tax-calculator.html"><span class="ri">🏛️</span> Professional Tax Calculator</a>
+  <a href="pf-calculator.html"><span class="ri">🏦</span> PF Calculator</a>
+</div>
+
+<h2>2. About This Tool | इस टूल के बारे में</h2>
+
+<p>यह टूल आपके Income Tax एवं Surcharge पर लागू 4% Health &amp; Education Cess की सटीक गणना करके कुल Tax Liability तुरंत दिखाता है। | This tool accurately calculates the 4% Health &amp; Education Cess applicable on your Income Tax and Surcharge and instantly displays your total tax liability.</p>
+
+<p>Health &amp; Education Cess, Income Tax अधिनियम के तहत हर taxpayer पर लगाया जाने वाला एक अतिरिक्त शुल्क है, जो शिक्षा और स्वास्थ्य सेवाओं को वित्तपोषित करने के लिए प्रयोग होता है। | Health &amp; Education Cess is an additional charge levied on every taxpayer under the Income Tax Act, used to fund education and healthcare initiatives.</p>
+
+<p>यह Cess हमेशा 4% की एक समान दर पर लगाया जाता है, चाहे taxpayer Individual हो, HUF हो, Firm हो, LLP हो, या Company — और चाहे कोई भी Tax Regime चुना गया हो। | This Cess is always levied at a uniform 4% rate, regardless of whether the taxpayer is an Individual, HUF, Firm, LLP or Company — and regardless of which Tax Regime is chosen.</p>
+
+<p>गणना का सूत्र सीधा है: पहले Income Tax और Surcharge को जोड़कर Tax Before Cess निकाला जाता है, फिर उस राशि पर 4% Cess लगाया जाता है। | The computation formula is straightforward: first Income Tax and Surcharge are added together to arrive at Tax Before Cess, and then a 4% Cess is applied on that amount.</p>
+
+<p>Total Tax Liability, Tax Before Cess और Health &amp; Education Cess को जोड़कर प्राप्त होती है — यही राशि आपकी वास्तविक कुल कर देयता होती है। | Total Tax Liability is obtained by adding Tax Before Cess and Health &amp; Education Cess together — this is your actual total tax obligation.</p>
+
+<p>Rebate u/s 87A, Relief u/s 89 और MAT/AMT Credit, Cess की गणना को प्रभावित नहीं करते — ये सभी Advance Tax, TDS, TCS और Self Assessment Tax के साथ मिलकर अंत में Net Tax Payable निकालने के लिए घटाए जाते हैं। | Rebate u/s 87A, Relief u/s 89 and MAT/AMT Credit do not affect the Cess computation itself — they are all deducted, together with Advance Tax, TDS, TCS and Self Assessment Tax, only at the final step of arriving at your Net Tax Payable.</p>
+
+<p>यदि पहले से भुगतान किया गया कर तथा उपलब्ध छूट/राहत, Total Tax Liability से अधिक हो जाए, तो अतिरिक्त राशि Refund के रूप में दिखाई जाती है। | If the tax already paid plus the available rebates and relief exceeds the Total Tax Liability, the excess amount is shown as a Refund.</p>
+
+<p>यह कैलकुलेटर हर Financial Year के लिए Assessment Year को स्वतः भर देता है, ताकि आप सही वर्ष के लिए अपनी गणना का दस्तावेज़ीकरण कर सकें। | This calculator automatically fills in the Assessment Year for every Financial Year you select, so you can document your calculation against the correct year.</p>
+
+<p>Health &amp; Education Cess को Union Budget 2018 में पेश किया गया था, जिसने पहले की अलग-अलग Education Cess (2%) और Secondary and Higher Education Cess (1%) की जगह एक समान 4% Cess को अपनाया। | Health &amp; Education Cess was introduced in the Union Budget 2018, replacing the earlier separate Education Cess (2%) and Secondary and Higher Education Cess (1%) with a single uniform 4% Cess.</p>
+
+<p>Cess की राशि कभी भी आय स्तर के आधार पर स्लैब में नहीं बदलती — यह हमेशा Tax Before Cess पर एक सपाट 4% ही रहती है, चाहे Total Income कितनी भी अधिक क्यों न हो। | The Cess amount never changes in slabs based on income level — it always remains a flat 4% on Tax Before Cess, no matter how high the Total Income is.</p>
+
+<p>अपने परिणाम को PDF, Excel या CSV के रूप में डाउनलोड करें, सीधे प्रिंट करें, या WhatsApp, Facebook, LinkedIn, X और Copy Link के माध्यम से तुरंत साझा करें। | Download your result as PDF, Excel or CSV, print it directly, or share it instantly via WhatsApp, Facebook, LinkedIn, X and Copy Link.</p>
+
+<p>हर गणना पूरी तरह आपके ब्राउज़र के भीतर होती है — कोई भी आय या कर संबंधी जानकारी कभी किसी सर्वर पर अपलोड नहीं की जाती, और यह टूल किसी भी AI-आधारित सुविधा का उपयोग नहीं करता। | Every calculation runs entirely within your browser — no income or tax-related data is ever uploaded to a server, and this tool does not use any AI-powered features.</p>
+
+<h2>3. Frequently Asked Questions | अक्सर पूछे जाने वाले प्रश्न</h2>
+<div class="hec-faq" id="hecFaq">
+
+<div class="hec-faq-item"><p><strong>Q. What is Health &amp; Education Cess? | Health &amp; Education Cess क्या है?</strong><br>A 4% additional charge levied on Income Tax plus Surcharge, used to fund education and healthcare. | Income Tax और Surcharge के योग पर लगाया जाने वाला 4% अतिरिक्त शुल्क, जो शिक्षा और स्वास्थ्य सेवाओं के वित्तपोषण के लिए है।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. What is the rate of Health &amp; Education Cess? | Health &amp; Education Cess की दर क्या है?</strong><br>A flat 4%, applicable to every taxpayer type and both tax regimes. | एक सपाट 4%, जो हर taxpayer प्रकार और दोनों Tax Regimes पर लागू होती है।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. How is Health &amp; Education Cess calculated? | Health &amp; Education Cess की गणना कैसे होती है?</strong><br>By multiplying Tax Before Cess (Income Tax plus Surcharge) by 4%. | Tax Before Cess (Income Tax जमा Surcharge) को 4% से गुणा करके।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. What is Tax Before Cess? | Tax Before Cess क्या है?</strong><br>The sum of Income Tax and Surcharge, before Cess is applied. | Cess लगाने से पहले Income Tax और Surcharge का योग।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. What is Total Tax Liability? | Total Tax Liability क्या है?</strong><br>Tax Before Cess plus Health &amp; Education Cess — your actual total tax obligation. | Tax Before Cess जमा Health &amp; Education Cess — आपकी वास्तविक कुल कर देयता।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. Does the Cess rate differ by taxpayer type? | क्या taxpayer प्रकार के अनुसार Cess दर अलग होती है?</strong><br>No — 4% applies uniformly to Individuals, HUF, Firms, LLPs, Companies and all other taxpayers. | नहीं — 4% Individuals, HUF, Firms, LLPs, Companies और अन्य सभी taxpayers पर समान रूप से लागू होता है।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. Does the New Tax Regime have a different Cess rate? | क्या New Tax Regime में Cess दर अलग है?</strong><br>No — the 4% Cess rate is identical under both the Old and New Tax Regimes. | नहीं — 4% Cess दर Old और New दोनों Tax Regimes में समान है।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. Does Rebate u/s 87A reduce the Cess amount? | क्या Rebate u/s 87A, Cess राशि को घटाता है?</strong><br>No — Rebate 87A is netted off only when computing your final Net Tax Payable, not the Cess itself. | नहीं — Rebate 87A केवल आपकी अंतिम Net Tax Payable निकालते समय घटाया जाता है, Cess में नहीं।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. Does Relief u/s 89 affect the Cess calculation? | क्या Relief u/s 89, Cess गणना को प्रभावित करता है?</strong><br>No — Relief u/s 89 is applied after Cess, when arriving at Net Tax Payable. | नहीं — Relief u/s 89, Cess के बाद, Net Tax Payable निकालते समय लागू होता है।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. Does MAT/AMT Credit reduce Cess? | क्या MAT/AMT Credit, Cess को घटाता है?</strong><br>No — MAT/AMT Credit reduces your Net Tax Payable, not the Cess computation. | नहीं — MAT/AMT Credit आपकी Net Tax Payable को घटाता है, Cess गणना को नहीं।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. What is Net Tax Payable? | Net Tax Payable क्या है?</strong><br>Total Tax Liability minus Rebate 87A, Relief 89, MAT/AMT Credit and all taxes already paid. | Total Tax Liability में से Rebate 87A, Relief 89, MAT/AMT Credit और पहले से भुगतान किए गए सभी करों को घटाकर।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. When is a Refund due? | Refund कब देय होता है?</strong><br>When rebates, relief, credits and taxes paid together exceed the Total Tax Liability. | जब छूट, राहत, credit और भुगतान किए गए कर मिलकर Total Tax Liability से अधिक हो जाएं।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. Was Health &amp; Education Cess always 4%? | क्या Health &amp; Education Cess हमेशा 4% थी?</strong><br>No — it replaced the earlier 2% Education Cess and 1% Secondary and Higher Education Cess in Budget 2018. | नहीं — इसने Budget 2018 में पहले की 2% Education Cess और 1% Secondary and Higher Education Cess की जगह ली।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. Is Cess applicable on Surcharge too? | क्या Cess, Surcharge पर भी लागू होता है?</strong><br>Yes — Cess is computed on the combined Income Tax plus Surcharge amount, not Income Tax alone. | हाँ — Cess, Income Tax और Surcharge की संयुक्त राशि पर गणना की जाती है, अकेले Income Tax पर नहीं।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. Can Total Taxable Income be zero? | क्या Total Taxable Income शून्य हो सकती है?</strong><br>Yes, but Income Tax Amount is still a required field and must be entered to calculate Cess. | हाँ, लेकिन Cess गणना के लिए Income Tax Amount फ़ील्ड अभी भी आवश्यक है।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. Is Health &amp; Education Cess refundable? | क्या Health &amp; Education Cess वापसी योग्य है?</strong><br>It is not separately refunded, but is included in your overall Total Tax Liability, against which any excess payment is refunded. | यह अलग से वापस नहीं होता, बल्कि आपकी समग्र Total Tax Liability में शामिल होता है, जिसके विरुद्ध कोई अतिरिक्त भुगतान वापस किया जाता है।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. Does Residential Status change the Cess rate? | क्या Residential Status, Cess दर को बदलता है?</strong><br>No — Residential Status is captured for your record only and does not alter the flat 4% Cess rate. | नहीं — Residential Status केवल आपके रिकॉर्ड के लिए दर्ज किया जाता है और 4% Cess दर को नहीं बदलता।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. Can I download my calculation report? | क्या मैं अपनी calculation report download कर सकता हूँ?</strong><br>Yes — as PDF, Excel or CSV, or print it directly from your browser. | हाँ — PDF, Excel या CSV के रूप में, या सीधे अपने browser से print कर सकते हैं।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. Is my data uploaded anywhere? | क्या मेरा data कहीं upload होता है?</strong><br>No — every calculation runs entirely inside your browser and nothing is sent to a server. | नहीं — हर calculation पूरी तरह आपके browser के भीतर चलता है और कुछ भी server पर नहीं भेजा जाता।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. Does this tool use any AI? | क्या इस टूल में कोई AI इस्तेमाल होता है?</strong><br>No — every formula is deterministic, hand-written logic based on published Income Tax provisions. | नहीं — हर formula, प्रकाशित Income Tax प्रावधानों पर आधारित deterministic, hand-written logic है।</p></div>
+
+<div class="hec-faq-item"><p><strong>Q. Is this calculator a substitute for professional advice? | क्या यह पेशेवर सलाह का विकल्प है?</strong><br>No — always consult a Chartered Accountant or tax professional before making financial decisions. | नहीं — वित्तीय निर्णय लेने से पहले हमेशा किसी Chartered Accountant या tax professional से सलाह लें।</p></div>
+
+</div>
+
+</div>
+
+<p class="hec-muted" style="font-size:.85rem;text-align:center;padding:0 4px 4px">This calculator provides estimates based on the latest available Indian Income Tax rules. Please consult a Chartered Accountant or tax professional before making financial decisions.</p>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Health and Education Cess?", "acceptedAnswer": {"@type": "Answer", "text": "A 4 percent additional charge levied on Income Tax plus Surcharge, used to fund education and healthcare."}}, {"@type": "Question", "name": "What is the rate of Health and Education Cess?", "acceptedAnswer": {"@type": "Answer", "text": "A flat 4 percent, applicable to every taxpayer type and both tax regimes."}}, {"@type": "Question", "name": "How is Health and Education Cess calculated?", "acceptedAnswer": {"@type": "Answer", "text": "By multiplying Tax Before Cess, which is Income Tax plus Surcharge, by 4 percent."}}, {"@type": "Question", "name": "What is Tax Before Cess?", "acceptedAnswer": {"@type": "Answer", "text": "The sum of Income Tax and Surcharge, before Cess is applied."}}, {"@type": "Question", "name": "What is Total Tax Liability?", "acceptedAnswer": {"@type": "Answer", "text": "Tax Before Cess plus Health and Education Cess, representing the actual total tax obligation."}}, {"@type": "Question", "name": "Does the Cess rate differ by taxpayer type?", "acceptedAnswer": {"@type": "Answer", "text": "No, 4 percent applies uniformly to Individuals, HUF, Firms, LLPs, Companies and all other taxpayers."}}, {"@type": "Question", "name": "Does the New Tax Regime have a different Cess rate?", "acceptedAnswer": {"@type": "Answer", "text": "No, the 4 percent Cess rate is identical under both the Old and New Tax Regimes."}}, {"@type": "Question", "name": "Does Rebate u/s 87A reduce the Cess amount?", "acceptedAnswer": {"@type": "Answer", "text": "No, Rebate 87A is netted off only when computing the final Net Tax Payable, not the Cess itself."}}, {"@type": "Question", "name": "Does Relief u/s 89 affect the Cess calculation?", "acceptedAnswer": {"@type": "Answer", "text": "No, Relief u/s 89 is applied after Cess, when arriving at Net Tax Payable."}}, {"@type": "Question", "name": "Does MAT/AMT Credit reduce Cess?", "acceptedAnswer": {"@type": "Answer", "text": "No, MAT/AMT Credit reduces the Net Tax Payable, not the Cess computation."}}, {"@type": "Question", "name": "What is Net Tax Payable?", "acceptedAnswer": {"@type": "Answer", "text": "Total Tax Liability minus Rebate 87A, Relief 89, MAT/AMT Credit and all taxes already paid."}}, {"@type": "Question", "name": "When is a Refund due?", "acceptedAnswer": {"@type": "Answer", "text": "When rebates, relief, credits and taxes paid together exceed the Total Tax Liability."}}, {"@type": "Question", "name": "Was Health and Education Cess always 4 percent?", "acceptedAnswer": {"@type": "Answer", "text": "No, it replaced the earlier 2 percent Education Cess and 1 percent Secondary and Higher Education Cess in Budget 2018."}}, {"@type": "Question", "name": "Is Cess applicable on Surcharge too?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, Cess is computed on the combined Income Tax plus Surcharge amount, not Income Tax alone."}}, {"@type": "Question", "name": "Can Total Taxable Income be zero?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, but Income Tax Amount is still a required field and must be entered to calculate Cess."}}, {"@type": "Question", "name": "Is Health and Education Cess refundable?", "acceptedAnswer": {"@type": "Answer", "text": "It is not separately refunded, but is included in the overall Total Tax Liability, against which any excess payment is refunded."}}, {"@type": "Question", "name": "Does Residential Status change the Cess rate?", "acceptedAnswer": {"@type": "Answer", "text": "No, Residential Status is captured for record purposes only and does not alter the flat 4 percent Cess rate."}}, {"@type": "Question", "name": "Can I download my calculation report?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, as PDF, Excel or CSV, or print it directly from your browser."}}, {"@type": "Question", "name": "Is my data uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No, every calculation runs entirely inside the browser and nothing is sent to a server."}}, {"@type": "Question", "name": "Does this tool use any AI?", "acceptedAnswer": {"@type": "Answer", "text": "No, every formula is deterministic, hand-written logic based on published Income Tax provisions."}}, {"@type": "Question", "name": "Is this calculator a substitute for professional advice?", "acceptedAnswer": {"@type": "Answer", "text": "No, always consult a Chartered Accountant or tax professional before making financial decisions."}}]}
+</script>
+
+<footer class="site-footer">© apnesoftware.COM — Health &amp; Education Cess Calculator — Fast • Accurate • Secure • Mobile Friendly • SEO Optimized</footer>
+
+<div id="hec-stickyCalc"><button class="btn hec-gradient" id="hec-stickyCalcBtn" type="button">🧮 Calculate</button></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<script src="../assets/common.js"></script>
+<script>
+/* ===================== Health & Education Cess Calculator Engine (pure logic, no DOM) =====================
+   Health & Education Cess has been a flat 4% of Income Tax plus Surcharge since Budget 2018, replacing the
+   earlier 2% Education Cess and 1% Secondary and Higher Education Cess. Rebate u/s 87A, Relief u/s 89 and
+   MAT/AMT Credit do not alter the Cess computation itself — per the formulas below, they are applied only
+   when netting off to Net Tax Payable or Refund, alongside Advance Tax, TDS, TCS and Self Assessment Tax. */
+'use strict';
+
+var FY_LIST = ['2023-24', '2024-25', '2025-26', '2026-27'];
+var CESS_RATE = 0.04;
+
+function fyToAy(fy) {
+  var parts = fy.split('-');
+  var startYear = parseInt(parts[0], 10);
+  var endYYNext = (startYear + 2).toString().slice(-2);
+  return (startYear + 1) + '-' + endYYNext;
+}
+
+function computeCess(inp) {
+  var incomeTax = Math.max(0, inp.incomeTax || 0);
+  var surcharge = Math.max(0, inp.surcharge || 0);
+  var taxBeforeCess = incomeTax + surcharge;
+  var cess = taxBeforeCess * CESS_RATE;
+  var grossTaxLiability = taxBeforeCess + cess;
+
+  var rebate87A = Math.max(0, inp.rebate87A || 0);
+  var relief89 = Math.max(0, inp.relief89 || 0);
+  var matAmtCredit = Math.max(0, inp.matAmtCredit || 0);
+  var advanceTax = Math.max(0, inp.advanceTax || 0);
+  var tds = Math.max(0, inp.tds || 0);
+  var tcs = Math.max(0, inp.tcs || 0);
+  var selfAssessmentTax = Math.max(0, inp.selfAssessmentTax || 0);
+
+  var taxPaid = advanceTax + tds + tcs + selfAssessmentTax;
+  var creditsAndPayments = rebate87A + relief89 + matAmtCredit + taxPaid;
+
+  var netTaxPayable = grossTaxLiability - creditsAndPayments;
+  var refund = 0;
+  if (netTaxPayable < 0) { refund = -netTaxPayable; netTaxPayable = 0; }
+
+  return {
+    incomeTax: incomeTax, surcharge: surcharge, taxBeforeCess: taxBeforeCess, cess: cess,
+    grossTaxLiability: grossTaxLiability, totalTaxLiability: grossTaxLiability,
+    rebate87A: rebate87A, relief89: relief89, matAmtCredit: matAmtCredit,
+    taxPaid: taxPaid, creditsAndPayments: creditsAndPayments,
+    netTaxPayable: netTaxPayable, refund: refund
+  };
+}
+
+function fmtINR(n) {
+  n = Number(n) || 0;
+  var neg = n < 0; n = Math.abs(n);
+  var fixed = n.toFixed(2);
+  var parts = fixed.split('.');
+  var intPart = parts[0], decPart = parts[1];
+  var lastThree = intPart.substring(intPart.length - 3);
+  var other = intPart.substring(0, intPart.length - 3);
+  if (other !== '') { lastThree = ',' + lastThree; other = other.replace(/\B(?=(\d{2})+(?!\d))/g, ','); }
+  return (neg ? '-' : '') + '₹' + other + lastThree + '.' + decPart;
+}
+
+var CessEngine = { FY_LIST: FY_LIST, CESS_RATE: CESS_RATE, fyToAy: fyToAy, computeCess: computeCess, fmtINR: fmtINR };
+if (typeof module !== 'undefined' && module.exports) module.exports = CessEngine;
+if (typeof window !== 'undefined') window.CessEngine = CessEngine;
+</script>
+<script>
+(function(){
+'use strict';
+var E = window.CessEngine;
+function $(id){ return document.getElementById(id); }
+function num(id){ var el = $(id); if(!el) return 0; var v = parseFloat(el.value); return isFinite(v) && v > 0 ? v : 0; }
+function lsGet(key, fallback){ try{ var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } }
+function lsSet(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+function status(msg){ $('hec-statusMsg').textContent = msg; }
+function fmt(n){ return E.fmtINR(n); }
+
+/* ===================== Tabs ===================== */
+var tabs = [['hec-tabIncome','hec-paneIncome'],['hec-tabCredits','hec-paneCredits'],['hec-tabHistory','hec-paneHistory'],['hec-tabSettings','hec-paneSettings']];
+tabs.forEach(function(pair){
+  $(pair[0]).addEventListener('click', function(){
+    tabs.forEach(function(p2){
+      $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected','false');
+      $(p2[1]).classList.remove('active');
+    });
+    $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected','true');
+    $(pair[1]).classList.add('active');
+  });
+});
+
+/* ===================== Assessment Year auto-fill ===================== */
+function updateAY(){ $('hec-ay').value = 'AY ' + E.fyToAy($('hec-fy').value); }
+$('hec-fy').addEventListener('change', function(){ updateAY(); compute(); });
+
+/* ===================== Validation ===================== */
+var negIds = ['hec-totalIncome','hec-incomeTax','hec-surcharge','hec-rebate87A','hec-relief89','hec-matAmtCredit','hec-advanceTax','hec-tds','hec-tcs','hec-selfAssessmentTax'];
+var requiredIds = ['hec-totalIncome','hec-incomeTax'];
+function validateInputs(){
+  var negFound = negIds.some(function(id){ var v = parseFloat($(id).value); return isFinite(v) && v < 0; }) ||
+    negIds.some(function(id){ return $(id).value !== '' && !isFinite(parseFloat($(id).value)); });
+  var missingRequired = requiredIds.some(function(id){ return $(id).value === ''; });
+  $('hec-requiredErr').style.display = missingRequired ? 'block' : 'none';
+  $('hec-incomeErr').style.display = negFound ? 'block' : 'none';
+  $('hec-taxErr').style.display = negFound ? 'block' : 'none';
+  return !negFound && !missingRequired;
+}
+
+/* ===================== Main compute ===================== */
+var lastResult = null;
+function compute(){
+  var valid = validateInputs();
+  var inp = {
+    incomeTax: num('hec-incomeTax'), surcharge: num('hec-surcharge'),
+    rebate87A: num('hec-rebate87A'), relief89: num('hec-relief89'), matAmtCredit: num('hec-matAmtCredit'),
+    advanceTax: num('hec-advanceTax'), tds: num('hec-tds'), tcs: num('hec-tcs'), selfAssessmentTax: num('hec-selfAssessmentTax')
+  };
+  var result = E.computeCess(inp);
+  lastResult = { inp: inp, result: result, totalIncome: num('hec-totalIncome'), valid: valid };
+
+  renderSummary();
+  renderSteps();
+  renderBreakdownTable();
+  renderCharts();
+  updateShareLinks();
+}
+
+/* ===================== Summary cards ===================== */
+function statCard(label, value, cls){ return '<div class="stat-box' + (cls?' '+cls:'') + '"><div class="num">' + value + '</div><div class="lbl">' + label + '</div></div>'; }
+function renderSummary(){
+  var r = lastResult.result;
+  $('hec-summaryCards').innerHTML =
+    statCard('Income Tax', fmt(r.incomeTax)) +
+    statCard('Surcharge', fmt(r.surcharge)) +
+    statCard('Tax Before Cess', fmt(r.taxBeforeCess)) +
+    statCard('Health &amp; Education Cess', fmt(r.cess), 'hec-highlight') +
+    statCard('Gross Tax Liability', fmt(r.grossTaxLiability), 'hec-highlight') +
+    statCard('Tax Paid', fmt(r.taxPaid)) +
+    statCard('Net Tax Payable', fmt(r.netTaxPayable)) +
+    statCard('Refund Amount', fmt(r.refund), r.refund > 0 ? 'hec-refund' : '');
+
+  var flags = [];
+  flags.push('<span class="hec-flag neutral">Cess @ 4% Applied</span>');
+  if (r.refund > 0) flags.push('<span class="hec-flag ok">Refund Due</span>');
+  else if (r.netTaxPayable > 0) flags.push('<span class="hec-flag warn">Tax Payable</span>');
+  else flags.push('<span class="hec-flag ok">Fully Settled</span>');
+  $('hec-resultFlags').innerHTML = flags.join('');
+}
+
+/* ===================== Calculation steps ===================== */
+function renderSteps(){
+  var r = lastResult.result;
+  var steps = [
+    'Income Tax: ' + fmt(r.incomeTax),
+    'Surcharge: ' + fmt(r.surcharge),
+    'Tax Before Cess (Income Tax + Surcharge): ' + fmt(r.taxBeforeCess),
+    'Health & Education Cess (4%): ' + fmt(r.cess),
+    'Total Tax Liability: ' + fmt(r.grossTaxLiability),
+    'Less Rebate 87A / Relief 89 / MAT-AMT Credit: ' + fmt(r.rebate87A + r.relief89 + r.matAmtCredit),
+    'Less Tax Paid (Advance Tax + TDS + TCS + Self Assessment Tax): ' + fmt(r.taxPaid),
+    r.refund > 0 ? 'Refund Due: ' + fmt(r.refund) : 'Net Tax Payable: ' + fmt(r.netTaxPayable)
+  ];
+  $('hec-stepsBox').innerHTML = steps.map(function(s, i){
+    return '<div class="hec-step">' + s + '</div>' + (i < steps.length-1 ? '<div class="hec-step-arrow">↓</div>' : '');
+  }).join('');
+  $('hec-formulaBox').textContent =
+    'Tax Before Cess = Income Tax + Surcharge\n' +
+    'Health & Education Cess = Tax Before Cess x 4%\n' +
+    'Total Tax Liability = Tax Before Cess + Health & Education Cess\n' +
+    'Net Tax Payable = Total Tax Liability - (Rebate 87A + Relief 89 + MAT/AMT Credit + Advance Tax + TDS + TCS + Self Assessment Tax)';
+}
+
+/* ===================== Breakdown table ===================== */
+function renderBreakdownTable(){
+  var r = lastResult.result;
+  var rows = [
+    ['Income Tax', fmt(r.incomeTax)], ['Surcharge', fmt(r.surcharge)], ['Tax Before Cess', fmt(r.taxBeforeCess)],
+    ['Health & Education Cess (4%)', fmt(r.cess)], ['Total Tax Liability', fmt(r.grossTaxLiability)],
+    ['Rebate u/s 87A', fmt(r.rebate87A)], ['Relief u/s 89', fmt(r.relief89)], ['MAT / AMT Credit', fmt(r.matAmtCredit)],
+    ['Tax Paid (Advance Tax + TDS + TCS + Self Assessment Tax)', fmt(r.taxPaid)],
+    ['Net Tax Payable', fmt(r.netTaxPayable)], ['Refund Amount', fmt(r.refund)]
+  ];
+  document.querySelector('#hec-breakdownTable tbody').innerHTML = rows.map(function(p){ return '<tr><td>' + p[0] + '</td><td>' + p[1] + '</td></tr>'; }).join('');
+}
+
+/* ===================== Canvas charts ===================== */
+var PALETTE = ['#7C5CFC','#16C079','#F59E0B','#F87171','#38BDF8','#A78BFA'];
+function drawPie(canvasId, legendId, data, doughnut){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var total = data.reduce(function(s,d){ return s + Math.max(0,d.value); }, 0);
+  var cx = w/2, cy = h/2, radius = Math.min(w,h)/2 - 10;
+  if(total <= 0){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', cx, cy);
+    if(legendId) $(legendId).innerHTML = '';
+    return;
+  }
+  var start = -Math.PI/2;
+  data.forEach(function(d, i){
+    var slice = (Math.max(0,d.value) / total) * Math.PI * 2;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, radius, start, start + slice); ctx.closePath();
+    ctx.fillStyle = PALETTE[i % PALETTE.length]; ctx.fill();
+    start += slice;
+  });
+  if(doughnut){ ctx.beginPath(); ctx.arc(cx, cy, radius*0.55, 0, Math.PI*2); ctx.fillStyle = '#160b2e'; ctx.fill(); }
+  if(legendId){
+    $(legendId).innerHTML = data.map(function(d,i){
+      return '<span><i style="background:' + PALETTE[i%PALETTE.length] + '"></i>' + d.label + ': ' + fmt(d.value) + '</span>';
+    }).join('');
+  }
+}
+function drawBar(canvasId, data){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var total = data.reduce(function(s,d){return s+Math.max(0,d.value);},0);
+  if(total <= 0){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', w/2, h/2);
+    return;
+  }
+  var max = Math.max.apply(null, data.map(function(d){ return d.value; }).concat([1]));
+  var barW = w / data.length * 0.6;
+  var gap = w / data.length;
+  data.forEach(function(d, i){
+    var barH = (Math.max(0,d.value) / max) * (h - 40);
+    var x = i * gap + (gap - barW)/2;
+    var y = h - 24 - barH;
+    ctx.fillStyle = PALETTE[i % PALETTE.length];
+    ctx.fillRect(x, y, barW, barH);
+    ctx.fillStyle = '#aaa'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(d.label, x + barW/2, h - 8);
+  });
+}
+function renderCharts(){
+  var r = lastResult.result;
+  drawPie('hec-chartComposition', 'hec-legendComposition', [
+    {label:'Income Tax', value: r.incomeTax}, {label:'Surcharge', value: r.surcharge}, {label:'Cess', value: r.cess}
+  ], true);
+  drawBar('hec-chartPayable', [
+    {label:'Gross Tax', value: r.grossTaxLiability}, {label:'Tax Paid', value: r.taxPaid}, {label:'Net Payable', value: r.netTaxPayable}
+  ]);
+}
+
+/* ===================== History ===================== */
+var HISTORY_KEY = 'hec_history';
+function loadHistory(){ return lsGet(HISTORY_KEY, []); }
+function saveHistory(list){ lsSet(HISTORY_KEY, list.slice(0, 50)); }
+function addToHistory(){
+  if(!lastResult) return;
+  var list = loadHistory();
+  var r = lastResult.result;
+  list.unshift({ ts: new Date().toISOString(), fy: $('hec-fy').value, incomeTax: r.incomeTax, surcharge: r.surcharge, cess: r.cess, netTaxPayable: r.netTaxPayable });
+  saveHistory(list);
+  renderHistory();
+}
+function renderHistory(){
+  var list = loadHistory();
+  var wrap = $('hec-historyList');
+  if(!list.length){ wrap.innerHTML = '<p class="hec-muted">No calculations saved yet.</p>'; return; }
+  wrap.innerHTML = list.map(function(item){
+    var d = new Date(item.ts);
+    return '<div class="hec-history-item"><span>FY ' + item.fy + ' — Income Tax ' + fmt(item.incomeTax) + ' → Cess <span class="hec-amt">' + fmt(item.cess) + '</span><br><span class="hec-muted">' + d.toLocaleString() + '</span></span></div>';
+  }).join('');
+}
+$('hec-clearHistoryBtn').addEventListener('click', function(){
+  if(!confirm('Clear all saved calculation history?')) return;
+  saveHistory([]); renderHistory();
+  status('🗑️ History cleared.');
+});
+
+/* ===================== Buttons ===================== */
+function doCalculate(){
+  compute();
+  if(!lastResult.valid){ status('⚠️ Please correct the highlighted fields before calculating.'); return; }
+  addToHistory();
+  status('✅ Calculation updated and saved to history.');
+}
+$('hec-calcBtn').addEventListener('click', doCalculate);
+$('hec-stickyCalcBtn').addEventListener('click', doCalculate);
+$('hec-resetBtn').addEventListener('click', function(){
+  if(!confirm('Reset all fields to default?')) return;
+  $('hec-totalIncome').value = 1200000; $('hec-incomeTax').value = 90000; $('hec-surcharge').value = 0;
+  ['hec-rebate87A','hec-relief89','hec-matAmtCredit','hec-advanceTax','hec-tds','hec-tcs','hec-selfAssessmentTax'].forEach(function(id){ $(id).value = 0; });
+  $('hec-taxpayerType').value = 'individual'; $('hec-residentialStatus').value = 'resident'; $('hec-regime').value = 'new';
+  compute();
+  status('↺ Reset complete.');
+});
+$('hec-printBtn').addEventListener('click', function(){ window.print(); });
+
+function buildTextSummary(){
+  var r = lastResult.result;
+  return [
+    'Health & Education Cess Calculation Summary', 'Financial Year: FY ' + $('hec-fy').value,
+    'Income Tax: ' + fmt(r.incomeTax), 'Surcharge: ' + fmt(r.surcharge), 'Tax Before Cess: ' + fmt(r.taxBeforeCess),
+    'Health & Education Cess (4%): ' + fmt(r.cess), 'Total Tax Liability: ' + fmt(r.grossTaxLiability),
+    'Tax Paid: ' + fmt(r.taxPaid), 'Net Tax Payable: ' + fmt(r.netTaxPayable), 'Refund Amount: ' + fmt(r.refund)
+  ].join('\n');
+}
+$('hec-copyBtn').addEventListener('click', function(){
+  if(!lastResult){ status('⚠️ Calculate first.'); return; }
+  var text = buildTextSummary();
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ status('📋 Copied to clipboard.'); });
+  }
+});
+$('hec-pdfBtn').addEventListener('click', function(){
+  if(typeof html2pdf === 'undefined'){ alert('PDF engine failed to load — check your connection and refresh.'); return; }
+  html2pdf().from($('hec-resultSide')).set({filename:'health-education-cess-summary.pdf', margin:10}).save();
+});
+$('hec-xlsxBtn').addEventListener('click', function(){
+  if(typeof XLSX === 'undefined'){ alert('Excel engine failed to load — check your connection and refresh.'); return; }
+  var r = lastResult.result;
+  var rows = [['Metric','Value'], ['Financial Year', $('hec-fy').value], ['Income Tax', r.incomeTax], ['Surcharge', r.surcharge],
+    ['Tax Before Cess', r.taxBeforeCess], ['Health & Education Cess', r.cess], ['Total Tax Liability', r.grossTaxLiability],
+    ['Tax Paid', r.taxPaid], ['Net Tax Payable', r.netTaxPayable], ['Refund Amount', r.refund]];
+  var ws = XLSX.utils.aoa_to_sheet(rows);
+  var wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Cess Summary');
+  XLSX.writeFile(wb, 'health-education-cess-summary.xlsx');
+});
+$('hec-csvBtn').addEventListener('click', function(){
+  if(!lastResult){ status('⚠️ Calculate first.'); return; }
+  var r = lastResult.result;
+  var rows = [['Metric','Value'], ['Financial Year', $('hec-fy').value], ['Income Tax', r.incomeTax], ['Surcharge', r.surcharge],
+    ['Tax Before Cess', r.taxBeforeCess], ['Health & Education Cess', r.cess], ['Total Tax Liability', r.grossTaxLiability],
+    ['Tax Paid', r.taxPaid], ['Net Tax Payable', r.netTaxPayable], ['Refund Amount', r.refund]];
+  var csv = rows.map(function(row){ return row.map(function(v){ return '"' + String(v).replace(/"/g,'""') + '"'; }).join(','); }).join('\n');
+  var blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'health-education-cess-summary.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+/* ===================== Share links ===================== */
+function updateShareLinks(){
+  if(!lastResult) return;
+  var text = buildTextSummary();
+  var url = location.href;
+  $('hec-shareWhatsapp').href = 'https://wa.me/?text=' + encodeURIComponent(text + '\n' + url);
+  $('hec-shareFacebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+  $('hec-shareTwitter').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
+  $('hec-shareLinkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
+}
+$('hec-copyLinkBtn').addEventListener('click', function(){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(location.href).then(function(){ status('🔗 Link copied to clipboard.'); });
+  }
+});
+
+/* ===================== Validation on inputs ===================== */
+document.querySelectorAll('#hec-formSide input, #hec-formSide select').forEach(function(el){
+  el.addEventListener('input', compute);
+  el.addEventListener('change', compute);
+});
+
+/* ===================== Settings: theme / language / accessibility ===================== */
+var I18N = {
+  en: {
+    tabIncome:'📋 Tax Details', tabCredits:'💳 Credits & Payments', tabHistory:'🕘 History', tabSettings:'⚙️ Settings',
+    calc:'🧮 Calculate', reset:'↺ Reset', print:'🖨️ Print', pdf:'📄 Download PDF', xlsx:'📊 Download Excel', csv:'📁 Download CSV', copy:'📋 Copy Results'
+  },
+  hi: {
+    tabIncome:'📋 Tax विवरण', tabCredits:'💳 Credits और Payments', tabHistory:'🕘 इतिहास', tabSettings:'⚙️ सेटिंग्स',
+    calc:'🧮 गणना करें', reset:'↺ रीसेट', print:'🖨️ प्रिंट', pdf:'📄 PDF डाउनलोड करें', xlsx:'📊 Excel डाउनलोड करें', csv:'📁 CSV डाउनलोड करें', copy:'📋 परिणाम कॉपी करें'
+  }
+};
+function applyLanguage(lang){
+  var t = I18N[lang] || I18N.en;
+  $('hec-tabIncome').textContent = t.tabIncome;
+  $('hec-tabCredits').textContent = t.tabCredits;
+  $('hec-tabHistory').textContent = t.tabHistory;
+  $('hec-tabSettings').textContent = t.tabSettings;
+  $('hec-calcBtn').textContent = t.calc;
+  $('hec-resetBtn').textContent = t.reset;
+  $('hec-printBtn').textContent = t.print;
+  $('hec-pdfBtn').textContent = t.pdf;
+  $('hec-xlsxBtn').textContent = t.xlsx;
+  $('hec-csvBtn').textContent = t.csv;
+  $('hec-copyBtn').textContent = t.copy;
+}
+$('hec-language').addEventListener('change', function(){ applyLanguage(this.value); lsSet('hec_lang', this.value); });
+$('hec-theme').addEventListener('change', function(){ document.body.classList.toggle('hec-light', this.value === 'light'); lsSet('hec_theme', this.value); });
+$('hec-highContrast').addEventListener('change', function(){ document.body.classList.toggle('hec-high-contrast', this.checked); lsSet('hec_hc', this.checked); });
+$('hec-largeFont').addEventListener('change', function(){ document.body.classList.toggle('hec-large-font', this.checked); lsSet('hec_lf', this.checked); });
+
+/* ===================== Init ===================== */
+var savedLang = lsGet('hec_lang', 'en'); $('hec-language').value = savedLang; applyLanguage(savedLang);
+var savedTheme = lsGet('hec_theme', 'dark'); $('hec-theme').value = savedTheme; document.body.classList.toggle('hec-light', savedTheme === 'light');
+var savedHc = lsGet('hec_hc', false); $('hec-highContrast').checked = savedHc; document.body.classList.toggle('hec-high-contrast', savedHc);
+var savedLf = lsGet('hec_lf', false); $('hec-largeFont').checked = savedLf; document.body.classList.toggle('hec-large-font', savedLf);
+
+updateAY();
+renderHistory();
+compute();
+
+})();
+</script>
+<script type="text/javascript">
+	var sc_project_id = 100000000;
+	var sc_invisible = 1;
+	var sc_security = "0000000";
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+
+</body>
+</html>
