@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Free Journal Entry Generator — create professional double-entry accounting journal entries, auto-validate debit-credit balance, calculate GST (CGST/SGST/IGST/UTGST/CESS) and TDS, and generate export-ready printable vouchers. 23 ready templates. 100% private, browser-only, no AI.">
+<meta name="keywords" content="journal entry generator, double entry accounting tool, journal voucher maker, debit credit balance checker, GST journal entry, TDS journal entry, accounting voucher generator online">
+<link rel="canonical" href="https://apnesoftware.com/tools/journal-entry-generator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Journal Entry Generator (Double Entry Accounting) | ApneSoftware">
+<meta property="og:description" content="Generate professional journal entries, validate debit-credit balance instantly, and create export-ready vouchers. Free, private, browser-only.">
+<meta property="og:url" content="https://apnesoftware.com/tools/journal-entry-generator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Journal Entry Generator (Double Entry Accounting) | ApneSoftware">
+<meta name="twitter:description" content="Generate journal entries, validate debit-credit balance, and create export-ready vouchers — instant, free, private, browser-only.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Journal Entry Generator","description":"Professional in-browser Journal Entry Generator based on the Double Entry Accounting System, with automatic debit-credit balance validation, GST (CGST/SGST/IGST/UTGST/CESS) and TDS calculation, 23 ready-made templates, printable voucher generation, and Journal Register, Ledger Posting, GST Summary and TDS Summary reports.","url":"https://apnesoftware.com/tools/journal-entry-generator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Dynamic double-entry journal table with unlimited rows","Automatic debit-credit balance, duplicate and validity checks","GST calculation with CGST/SGST/IGST/UTGST/CESS split, inclusive/exclusive modes","TDS calculation with section, rate and net payable","23 ready-made accounting templates","Printable, export-ready Journal Voucher","Journal Register, Ledger Posting, GST Summary and TDS Summary reports","Export to PDF, Excel, CSV, JSON and print"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Journal Entry Generator","url":"https://apnesoftware.com/tools/journal-entry-generator.html","description":"Browser-based Journal Entry Generator for double-entry accounting with GST/TDS support and printable vouchers.","inLanguage":["en","hi"],"isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".tool-header p"]}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"Calculators & Converters","item":"https://apnesoftware.com/index.html#cat-calculator"},{"@type":"ListItem","position":3,"name":"Journal Entry Generator","item":"https://apnesoftware.com/tools/journal-entry-generator.html"}]}
+</script>
+<meta name="color-scheme" content="dark light">
+<title>Journal Entry Generator (Double Entry Accounting) | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* ===== Journal Entry Generator — scoped je- prefix ===== */
+
+  .je-num, .je-content .num, .je-stat-cards .num, .je-engine-row span:last-child,
+  .je-content table td, .je-content table th, .je-formula-box, .je-table td.je-amt{
+    white-space:nowrap; word-break:keep-all; overflow-wrap:normal;
+    font-variant-numeric: tabular-nums; font-feature-settings:"tnum" 1;
+  }
+
+  .je-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:18px;align-items:start}
+  #je-formSide,#je-resultSide{min-width:0}
+  @media(max-width:1000px){ .je-grid{grid-template-columns:1fr} }
+
+  .je-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .je-tab{padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.82rem;font-weight:600;font-family:inherit}
+  .je-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .je-pane{display:none}
+  .je-pane.active{display:block}
+
+  .je-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;backdrop-filter:blur(10px);
+    transition:transform .18s ease, box-shadow .18s ease}
+  .je-card:hover{box-shadow:0 10px 30px rgba(124,92,252,.12)}
+  .je-card h3{margin:0 0 10px;font-size:.95rem}
+  .je-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:10px}
+  .je-field label{display:block;font-size:.76rem;color:var(--text-dim);margin-bottom:4px}
+  .je-field input,.je-field select,.je-field textarea{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.88rem}
+  .je-field input:focus,.je-field select:focus,.je-field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,252,.2)}
+  .je-note{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.3);border-radius:10px;padding:10px 12px;font-size:.8rem;color:#fde68a;margin-top:10px}
+  .je-err{display:none;color:#fca5a5;font-size:.78rem;margin-top:6px}
+  .je-err-list{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3);border-radius:10px;padding:10px 12px;font-size:.82rem;color:#fca5a5;margin-top:10px}
+  .je-err-list ul{margin:4px 0 0;padding-left:18px}
+
+  .je-stat-cards{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .je-stat-cards .stat-box{flex:1;min-width:140px}
+  .je-stat-cards .stat-box .num{font-size:1rem!important;overflow:hidden;text-overflow:ellipsis}
+  .je-stat-cards .stat-box.je-highlight{background:linear-gradient(135deg,rgba(124,92,252,.25),rgba(22,192,121,.18));border:1px solid var(--accent)}
+  .je-stat-cards .stat-box.je-warn{background:linear-gradient(135deg,rgba(248,113,113,.22),rgba(245,158,11,.14));border:1px solid #F87171}
+  .je-stat-cards .stat-box.je-ok{background:linear-gradient(135deg,rgba(22,192,121,.28),rgba(56,189,248,.16));border:1px solid #16C079}
+
+  .je-engine-box{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:10px 0}
+  .je-engine-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--border);font-size:.86rem;gap:10px}
+  .je-engine-row:last-child{border-bottom:none}
+  .je-engine-row span:last-child{font-weight:700;color:var(--accent)}
+
+  .je-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .je-flag{padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600;border:1px solid var(--border)}
+  .je-flag.ok{background:rgba(22,192,121,.15);color:#7ef0bd;border-color:rgba(22,192,121,.4)}
+  .je-flag.warn{background:rgba(248,113,113,.15);color:#fca5a5;border-color:rgba(248,113,113,.4)}
+  .je-flag.neutral{background:var(--surface-2);color:var(--text-dim)}
+  .je-muted{color:var(--text-dim);font-size:.8rem;margin-top:6px}
+
+  .je-share-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .je-share-btn{padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);cursor:pointer;font-size:.8rem;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:transform .15s ease, background .15s ease}
+  .je-share-btn:hover{transform:translateY(-2px);background:var(--surface)}
+
+  .btn.je-gradient{background:linear-gradient(135deg,#7C5CFC,#16C079);border:none;box-shadow:0 6px 20px rgba(124,92,252,.35);transition:transform .15s ease, box-shadow .15s ease}
+  .btn.je-gradient:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.5)}
+  .btn.je-mini{padding:6px 10px;font-size:.78rem}
+
+  #je-stickyCalc{display:none}
+  @media(max-width:760px){
+    #je-stickyCalc{
+      display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 14px;gap:8px;
+      background:linear-gradient(180deg,rgba(15,10,30,0),rgba(15,10,30,.96) 30%);
+      justify-content:center;
+    }
+    #je-stickyCalc button{flex:1;max-width:200px;padding:12px 8px;font-size:.82rem;border-radius:999px}
+    body{padding-bottom:74px}
+  }
+
+  body.je-large-font #je-formSide,body.je-large-font #je-resultSide{font-size:1.1rem}
+  body.je-high-contrast{filter:contrast(1.2) brightness(1.06)}
+
+  .je-table-wrap{overflow-x:auto;max-height:440px;overflow-y:auto;border-radius:10px;border:1px solid var(--border)}
+  table.je-table{width:100%;border-collapse:collapse;font-size:.8rem}
+  table.je-table th{position:sticky;top:0;background:var(--surface-2);z-index:1;padding:7px 8px;text-align:left;border-bottom:1px solid var(--border);color:#c4b5fd;white-space:nowrap}
+  table.je-table td{padding:5px 6px;border-bottom:1px solid var(--border)}
+  table.je-table input,table.je-table select{min-width:90px;font-size:.8rem;padding:5px 6px}
+  .je-badge{padding:2px 8px;border-radius:999px;font-size:.72rem;font-weight:700}
+
+  .je-voucher{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px}
+  .je-voucher h3{text-align:center;margin:0 0 4px;font-size:1.1rem}
+  .je-voucher .je-vsub{text-align:center;color:var(--text-dim);font-size:.85rem;margin-bottom:14px}
+  .je-voucher table{width:100%;border-collapse:collapse;margin:12px 0}
+  .je-voucher table th,.je-voucher table td{border:1px solid var(--border);padding:8px 10px;font-size:.85rem;text-align:left}
+  .je-voucher table th{background:var(--surface-2)}
+  .je-sig-row{display:flex;justify-content:space-between;margin-top:40px;font-size:.85rem}
+  .je-sig-row div{text-align:center;border-top:1px solid var(--text-dim);padding-top:6px;min-width:160px}
+
+  /* ===== Light mode — scoped strictly to the tool's own content ===== */
+  body.je-light :is(.container,.je-content){
+    --bg:#f4f2fb; --surface:#ffffff; --surface-2:#efeaf9; --border:rgba(20,10,45,.14); --border-strong:rgba(20,10,45,.24);
+    --text:#1c1533; --text-dim:rgba(28,21,51,.68);
+  }
+  body.je-light .container,
+  body.je-light .je-content{
+    background:#f4f2fb; border-radius:18px; padding:20px 22px; box-shadow:0 8px 32px rgba(20,10,45,.12);
+  }
+  body.je-light :is(.container,.je-content) h1,
+  body.je-light :is(.container,.je-content) h2,
+  body.je-light :is(.container,.je-content) h3,
+  body.je-light :is(.container,.je-content) h4,
+  body.je-light :is(.container,.je-content) h5,
+  body.je-light :is(.container,.je-content) h6{color:var(--text)}
+  body.je-light :is(.container,.je-content) p{color:var(--text-dim)}
+  body.je-light :is(.container,.je-content) label{color:var(--text-dim)}
+  body.je-light :is(.container,.je-content) textarea,
+  body.je-light :is(.container,.je-content) input[type=text],
+  body.je-light :is(.container,.je-content) input[type=number],
+  body.je-light :is(.container,.je-content) input[type=date],
+  body.je-light :is(.container,.je-content) select{
+    background:#ffffff;border:1px solid rgba(20,10,45,.2);color:var(--text)
+  }
+  body.je-light :is(.container,.je-content) select option{background:#ffffff;color:var(--text)}
+  body.je-light :is(.container,.je-content) .panel{background:#ffffff!important;border:1px solid rgba(20,10,45,.1)!important;box-shadow:0 8px 28px rgba(20,10,45,.08)!important}
+  body.je-light :is(.container,.je-content) table th{background:rgba(20,10,45,.06);color:var(--text)}
+  body.je-light :is(.container,.je-content) table td{color:var(--text-dim);border-color:rgba(20,10,45,.1)}
+  body.je-light :is(.container,.je-content) .je-tab{color:var(--text-dim)}
+  body.je-light :is(.container,.je-content) .je-tab.active{color:#fff}
+  body.je-light :is(.container,.je-content) .btn.secondary{background:var(--surface-2);border-color:var(--border);color:var(--text)}
+
+  .related-grid a .ri{margin-right:6px}
+  .je-content h2{font-size:1.15rem;margin:26px 0 10px}
+  .je-content h3{font-size:1rem;margin:18px 0 8px}
+  .je-content p,.je-content li{font-size:.92rem;line-height:1.8}
+  .je-content ul,.je-content ol{padding-left:20px}
+  .je-content table{width:100%;border-collapse:collapse;font-size:.86rem;margin:12px 0}
+  .je-content table th,.je-content table td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  .je-content table th{color:#c4b5fd}
+
+  .je-faq-item{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+  .je-faq-item strong{color:#c4b5fd}
+
+  @media print {
+    .site-header, .tool-header .btn-row, .je-share-row, #je-formSide, .je-tabs, #je-stickyCalc, .site-footer, .je-content { display:none!important; }
+    #je-resultSide, .je-voucher { box-shadow:none!important; }
+  }
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="je-muted" style="margin-bottom:10px" aria-label="Breadcrumb">
+    <a href="../index.html" style="color:#c4b5fd;text-decoration:none">Home</a> ›
+    <a href="../index.html#cat-calculator" style="color:#c4b5fd;text-decoration:none">Calculators &amp; Converters</a> ›
+    Journal Entry Generator
+  </nav>
+
+  <div class="tool-header">
+    <h1>📔 Journal Entry Generator</h1>
+    <p>Generate professional accounting journal entries, validate debit-credit balance instantly, and create export-ready vouchers.</p>
+
+    <div class="je-row" style="margin-top:14px">
+      <div class="je-field">
+        <label for="je-language">Language / भाषा</label>
+        <select id="je-language"><option value="en">English</option><option value="hi">हिन्दी</option></select>
+      </div>
+      <div class="je-field">
+        <label for="je-theme">Theme</label>
+        <select id="je-theme"><option value="dark">🌙 Dark</option><option value="light">☀️ Light</option></select>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn secondary" id="je-validateBtn" type="button">✅ Validate</button>
+      <button class="btn je-gradient" id="je-generateBtn" type="button">📔 Generate Journal</button>
+      <button class="btn secondary" id="je-previewBtn" type="button">🖨️ Preview Voucher</button>
+      <button class="btn secondary" id="je-printBtn" type="button">🖨️ Print</button>
+      <button class="btn secondary" id="je-pdfBtn" type="button">📄 Export PDF</button>
+      <button class="btn secondary" id="je-xlsxBtn" type="button">📊 Export Excel</button>
+      <button class="btn secondary" id="je-csvBtn" type="button">📁 CSV</button>
+      <button class="btn secondary" id="je-jsonBtn" type="button">🗂️ JSON</button>
+      <button class="btn secondary" id="je-resetBtn" type="button">↺ Reset</button>
+    </div>
+    <div class="je-share-row">
+      <a class="je-share-btn" id="je-shareWhatsapp" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a class="je-share-btn" id="je-shareFacebook" href="#" target="_blank" rel="noopener">📘 Facebook</a>
+      <a class="je-share-btn" id="je-shareLinkedin" href="#" target="_blank" rel="noopener">💼 LinkedIn</a>
+      <a class="je-share-btn" id="je-shareTwitter" href="#" target="_blank" rel="noopener">🐦 X</a>
+      <button class="je-share-btn" id="je-copyLinkBtn" type="button">🔗 Copy Link</button>
+    </div>
+    <div id="je-statusMsg" class="je-muted" role="status" aria-live="polite"></div>
+    <p class="je-muted">🔒 Everything runs locally in your browser. No accounting data is ever uploaded or stored.</p>
+  </div>
+
+  <div class="je-grid">
+    <div id="je-formSide">
+      <div class="panel">
+        <div class="je-tabs" role="tablist">
+          <button class="je-tab active" id="je-tabDetails" role="tab" aria-selected="true">📋 Voucher Details</button>
+          <button class="je-tab" id="je-tabEntries" role="tab" aria-selected="false">📊 Journal Entries</button>
+          <button class="je-tab" id="je-tabTax" role="tab" aria-selected="false">🧾 GST / TDS</button>
+          <button class="je-tab" id="je-tabHistory" role="tab" aria-selected="false">🕘 History</button>
+          <button class="je-tab" id="je-tabSettings" role="tab" aria-selected="false">⚙️ Preferences</button>
+        </div>
+
+        <!-- ===== Tab: Voucher Details ===== -->
+        <div class="je-pane active" id="je-paneDetails">
+          <div class="je-card">
+            <h3>🏢 Company &amp; Voucher Details</h3>
+            <div class="je-row">
+              <div class="je-field">
+                <label for="je-fy">Financial Year</label>
+                <select id="je-fy">
+                  <option value="2026-27">FY 2026-27</option>
+                  <option value="2025-26" selected>FY 2025-26</option>
+                  <option value="2024-25">FY 2024-25</option>
+                  <option value="2023-24">FY 2023-24</option>
+                </select>
+              </div>
+              <div class="je-field"><label for="je-companyName">Company Name</label><input type="text" id="je-companyName" placeholder="ABC Enterprises Pvt Ltd"></div>
+              <div class="je-field"><label for="je-branchName">Branch Name</label><input type="text" id="je-branchName" placeholder="Head Office"></div>
+              <div class="je-field"><label for="je-journalDate">Journal Date</label><input type="date" id="je-journalDate"></div>
+              <div class="je-field"><label for="je-voucherDate">Voucher Date</label><input type="date" id="je-voucherDate"></div>
+              <div class="je-field">
+                <label for="je-voucherNumberMode">Voucher Number</label>
+                <select id="je-voucherNumberMode"><option value="auto">Auto</option><option value="manual">Manual</option></select>
+              </div>
+              <div class="je-field"><label for="je-voucherNumber">Voucher No.</label><input type="text" id="je-voucherNumber" readonly></div>
+              <div class="je-field">
+                <label for="je-voucherType">Voucher Type</label>
+                <select id="je-voucherType">
+                  <option value="Journal">Journal</option><option value="Payment">Payment</option><option value="Receipt">Receipt</option>
+                  <option value="Contra">Contra</option><option value="Sales">Sales</option><option value="Purchase">Purchase</option>
+                </select>
+              </div>
+              <div class="je-field"><label for="je-referenceNumber">Reference Number</label><input type="text" id="je-referenceNumber" placeholder="INV-1001"></div>
+              <div class="je-field"><label for="je-costCenter">Cost Center</label><input type="text" id="je-costCenter" placeholder="Optional"></div>
+              <div class="je-field"><label for="je-projectCode">Project Code</label><input type="text" id="je-projectCode" placeholder="Optional"></div>
+            </div>
+            <div class="je-field"><label for="je-narration">Narration</label><textarea id="je-narration" rows="2" placeholder="Being goods purchased for cash..."></textarea></div>
+          </div>
+          <div class="je-card">
+            <h3>🗂️ Ready Templates</h3>
+            <div class="je-row">
+              <div class="je-field" style="grid-column:1/-1">
+                <label for="je-templateSelect">Load a Template (replaces current rows)</label>
+                <select id="je-templateSelect">
+                  <option value="">— Select a template —</option>
+                  <option value="cashPurchase">Cash Purchase</option>
+                  <option value="creditPurchase">Credit Purchase</option>
+                  <option value="cashSale">Cash Sale</option>
+                  <option value="creditSale">Credit Sale</option>
+                  <option value="salary">Salary</option>
+                  <option value="bankPayment">Bank Payment</option>
+                  <option value="bankReceipt">Bank Receipt</option>
+                  <option value="depreciation">Depreciation</option>
+                  <option value="interest">Interest</option>
+                  <option value="rent">Rent</option>
+                  <option value="loan">Loan</option>
+                  <option value="capital">Capital</option>
+                  <option value="drawings">Drawings</option>
+                  <option value="assetPurchase">Asset Purchase</option>
+                  <option value="assetSale">Asset Sale</option>
+                  <option value="inventoryAdjustment">Inventory Adjustment</option>
+                  <option value="outstandingExpense">Outstanding Expense</option>
+                  <option value="prepaidExpense">Prepaid Expense</option>
+                  <option value="advancePayment">Advance Payment</option>
+                  <option value="advanceReceipt">Advance Receipt</option>
+                  <option value="gstEntry">GST Entry</option>
+                  <option value="tdsEntry">TDS Entry</option>
+                  <option value="tcsEntry">TCS Entry</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Journal Entries ===== -->
+        <div class="je-pane" id="je-paneEntries">
+          <div class="je-card">
+            <h3>📊 Dynamic Journal Entry Table</h3>
+            <div class="btn-row" style="margin-bottom:10px">
+              <button class="btn secondary je-mini" id="je-addRowBtn" type="button">➕ Add Row</button>
+            </div>
+            <div class="je-table-wrap">
+              <table class="je-table" id="je-entryTable">
+                <thead><tr>
+                  <th>Account Name</th><th>Ledger Group</th><th>Debit</th><th>Credit</th>
+                  <th>GST?</th><th>GST Rate</th><th>GST Amt</th><th>TDS?</th><th>TDS Rate</th><th>TDS Amt</th><th>Notes</th><th></th>
+                </tr></thead>
+                <tbody id="je-entryTbody"></tbody>
+              </table>
+            </div>
+            <div class="je-err-list" id="je-errList" style="display:none"></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: GST / TDS ===== -->
+        <div class="je-pane" id="je-paneTax">
+          <div class="je-card">
+            <h3>🧾 GST Settings (applied per row when GST is checked)</h3>
+            <div class="je-row">
+              <div class="je-field">
+                <label for="je-gstType">GST Type</label>
+                <select id="je-gstType">
+                  <option value="cgstSgst">CGST + SGST (Intra-state)</option>
+                  <option value="igst">IGST (Inter-state)</option>
+                  <option value="utgstCgst">UTGST + CGST (Union Territory)</option>
+                </select>
+              </div>
+              <div class="je-field">
+                <label for="je-gstMode">Amount Mode</label>
+                <select id="je-gstMode"><option value="exclusive">GST Exclusive</option><option value="inclusive">GST Inclusive</option></select>
+              </div>
+              <div class="je-field"><label for="je-cessRate">CESS Rate (%)</label><input type="number" id="je-cessRate" min="0" value="0"></div>
+              <div class="je-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:20px"><input type="checkbox" id="je-reverseCharge" style="width:auto"> Reverse Charge Applicable</label></div>
+            </div>
+          </div>
+          <div class="je-card">
+            <h3>🧮 TDS Quick Calculator</h3>
+            <div class="je-row">
+              <div class="je-field">
+                <label for="je-tdsSectionHelper">TDS Section</label>
+                <select id="je-tdsSectionHelper">
+                  <option value="194C">194C — Contractor</option><option value="194J">194J — Professional Fees</option>
+                  <option value="194H">194H — Commission</option><option value="194I">194I — Rent</option>
+                  <option value="194Q">194Q — Purchase of Goods</option><option value="192">192 — Salary</option>
+                </select>
+              </div>
+              <div class="je-field"><label for="je-tdsRateHelper">TDS Rate (%)</label><input type="number" id="je-tdsRateHelper" min="0" value="10"></div>
+              <div class="je-field"><label for="je-tdsGrossHelper">Gross Amount</label><input type="number" id="je-tdsGrossHelper" min="0" value="50000"></div>
+            </div>
+            <div class="je-engine-box" id="je-tdsHelperResult"></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: History ===== -->
+        <div class="je-pane" id="je-paneHistory">
+          <div class="je-card">
+            <h3>🕘 Voucher History</h3>
+            <div class="btn-row" style="margin-bottom:10px">
+              <button class="btn secondary je-mini" id="je-clearHistoryBtn" type="button">🗑️ Clear History</button>
+            </div>
+            <div id="je-historyList"></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Preferences ===== -->
+        <div class="je-pane" id="je-paneSettings">
+          <div class="je-card">
+            <h3>🔍 Search</h3>
+            <div class="je-row">
+              <div class="je-field"><label for="je-searchText">Search (Voucher No. / Ledger / Date / Narration / Amount)</label><input type="text" id="je-searchText" placeholder="e.g. JV-001 or Purchase"></div>
+            </div>
+          </div>
+          <div class="je-card">
+            <h3>♿ Accessibility Preferences</h3>
+            <div class="je-row">
+              <div class="je-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="je-highContrast" style="width:auto"> High Contrast</label></div>
+              <div class="je-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="je-largeFont" style="width:auto"> Large Fonts</label></div>
+            </div>
+            <p class="je-muted">Preferences are remembered in this browser for your next visit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="je-resultSide">
+      <div class="panel">
+        <div class="je-tabs" role="tablist">
+          <button class="je-tab active" id="je-tabDashboard" role="tab" aria-selected="true">📊 Dashboard</button>
+          <button class="je-tab" id="je-tabVoucher" role="tab" aria-selected="false">🖨️ Voucher Preview</button>
+          <button class="je-tab" id="je-tabReports" role="tab" aria-selected="false">📋 Reports</button>
+        </div>
+
+        <!-- ===== Result Pane: Dashboard ===== -->
+        <div class="je-pane active" id="je-paneDashboard">
+          <div class="je-stat-cards" id="je-summaryCards"></div>
+          <div class="je-flags" id="je-resultFlags"></div>
+        </div>
+
+        <!-- ===== Result Pane: Voucher Preview ===== -->
+        <div class="je-pane" id="je-paneVoucher">
+          <div class="je-voucher" id="je-voucherPreview">
+            <p class="je-muted" style="text-align:center">Click <strong>Preview Voucher</strong> to generate a printable journal voucher.</p>
+          </div>
+        </div>
+
+        <!-- ===== Result Pane: Reports ===== -->
+        <div class="je-pane" id="je-paneReports">
+          <div class="je-card"><h3>📖 Journal Register</h3><div class="je-table-wrap"><table class="je-table" id="je-reportRegister"><thead><tr><th>Voucher No.</th><th>Date</th><th>Narration</th><th>Total Debit</th><th>Total Credit</th><th>Status</th></tr></thead><tbody></tbody></table></div></div>
+          <div class="je-card"><h3>📗 Ledger Posting</h3><div class="je-table-wrap"><table class="je-table" id="je-reportLedger"><thead><tr><th>Account</th><th>Total Debit</th><th>Total Credit</th><th>Balance</th><th>Type</th></tr></thead><tbody></tbody></table></div></div>
+          <div class="je-card"><h3>🧾 GST Summary</h3><div class="je-engine-box" id="je-reportGst"></div></div>
+          <div class="je-card"><h3>🧾 TDS Summary</h3><div class="je-engine-box" id="je-reportTds"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="je-content">
+
+<h2>1. Related Tools</h2>
+<div class="related-grid">
+  <a href="bank-reconciliation-tool.html"><span class="ri">🏦</span> Bank Reconciliation Tool</a>
+  <a href="income-tax-calculator.html"><span class="ri">💰</span> Income Tax Calculator</a>
+  <a href="tds-calculator.html"><span class="ri">🧾</span> TDS Calculator</a>
+  <a href="tcs-calculator.html"><span class="ri">🧾</span> TCS Calculator</a>
+  <a href="salary-calculator.html"><span class="ri">💼</span> Salary Calculator</a>
+  <a href="gratuity-calculator.html"><span class="ri">🎁</span> Gratuity Calculator</a>
+  <a href="pf-calculator.html"><span class="ri">🏦</span> PF Calculator</a>
+</div>
+
+<h2>2. About This Tool | इस टूल के बारे में</h2>
+
+<p>यह टूल Double Entry Accounting System के अनुसार Professional Journal Entries तैयार करता है तथा Debit-Credit Balance की स्वतः जाँच करके Export योग्य Voucher बनाता है। | This tool generates professional journal entries based on the Double Entry Accounting System, automatically validates debit-credit balance, and creates export-ready accounting vouchers.</p>
+
+<p>हर Journal Entry में एक Debit पक्ष और एक Credit पक्ष होता है, और दोनों का कुल योग हमेशा बराबर होना चाहिए — यह टूल हर बार जब आप Validate या Generate Journal दबाते हैं, इसकी स्वतः जाँच करता है। | Every Journal Entry has a Debit side and a Credit side, and both totals must always be equal — this tool automatically checks this every time you click Validate or Generate Journal.</p>
+
+<p>आप 23 पहले से तैयार Templates में से चुन सकते हैं — जैसे Cash Purchase, Credit Sale, Salary, Bank Payment, Depreciation, Rent, Loan, Capital, Drawings, Asset Purchase, GST Entry, TDS Entry और अन्य — जो सही Ledger Accounts और Ledger Groups के साथ पंक्तियाँ स्वतः भर देते हैं। | You can choose from 23 ready-made Templates — such as Cash Purchase, Credit Sale, Salary, Bank Payment, Depreciation, Rent, Loan, Capital, Drawings, Asset Purchase, GST Entry, TDS Entry and others — which automatically pre-fill rows with the correct Ledger Accounts and Ledger Groups.</p>
+
+<p>GST गणना CGST+SGST (Intra-state), IGST (Inter-state) या UTGST+CGST (Union Territory) के आधार पर स्वतः विभाजित होती है, तथा CESS को अलग से जोड़ा जा सकता है, GST Inclusive या Exclusive दोनों मोड में। | GST calculation automatically splits into CGST+SGST (Intra-state), IGST (Inter-state) or UTGST+CGST (Union Territory), with CESS addable separately, in both GST Inclusive and Exclusive modes.</p>
+
+<p>TDS की गणना चुनी गई Section और दर के अनुसार होती है, तथा Net Payable राशि स्वतः दिखाई जाती है, ताकि आप Party को कितना भुगतान करना है यह तुरंत जान सकें। | TDS is calculated based on the selected Section and rate, and the Net Payable amount is shown automatically, so you instantly know how much to pay the party.</p>
+
+<p>यह टूल Empty Ledger, Invalid Amounts, Duplicate Entries, तथा GST/TDS से जुड़ी गलतियों को स्वतः पहचानता है और स्पष्ट inline त्रुटि संदेश दिखाता है। | This tool automatically detects Empty Ledgers, Invalid Amounts, Duplicate Entries, and GST/TDS-related mistakes, and displays clear inline error messages.</p>
+
+<p>हर Voucher को Generate करने पर वह Voucher History में सुरक्षित हो जाता है, जिससे Journal Register, Ledger Posting, GST Summary और TDS Summary जैसी Reports कई Vouchers के आँकड़ों को एक साथ दिखा सकती हैं। | Every time a Voucher is generated, it is saved in the Voucher History, allowing Reports like Journal Register, Ledger Posting, GST Summary and TDS Summary to show data aggregated across multiple Vouchers.</p>
+
+<p>Voucher Preview एक Professional, Print-ready Journal Voucher तैयार करता है जिसमें Company Name, Voucher Number, Date, Narration, सभी Ledger Entries, GST/TDS विवरण, तथा Prepared By और Authorized Signatory के लिए स्थान शामिल है। | Voucher Preview generates a Professional, Print-ready Journal Voucher including Company Name, Voucher Number, Date, Narration, all Ledger Entries, GST/TDS details, and space for Prepared By and Authorized Signatory.</p>
+
+<p>अपनी Voucher Report को PDF, Excel, CSV या JSON के रूप में डाउनलोड करें, या सीधे प्रिंट करें — सब कुछ आपके ब्राउज़र के भीतर ही तैयार होता है। | Download your Voucher Report as PDF, Excel, CSV or JSON, or print it directly — everything is generated entirely within your browser.</p>
+
+<p>हर गणना और डेटा प्रोसेसिंग पूरी तरह आपके ब्राउज़र के भीतर होती है — कोई भी accounting डेटा कभी किसी सर्वर पर अपलोड या संग्रहीत नहीं किया जाता, और यह टूल किसी भी AI-आधारित सुविधा का उपयोग नहीं करता। | Every calculation and data processing step happens entirely within your browser — no accounting data is ever uploaded or stored on a server, and this tool does not use any AI-powered features.</p>
+
+<h2>3. Frequently Asked Questions | अक्सर पूछे जाने वाले प्रश्न</h2>
+<div class="je-faq" id="jeFaq">
+
+<div class="je-faq-item"><p><strong>Q. What is a Journal Entry? | Journal Entry क्या है?</strong><br>A record of a business transaction in the Double Entry Accounting System, with equal Debit and Credit amounts. | Double Entry Accounting System में एक व्यावसायिक लेन-देन का रिकॉर्ड, जिसमें समान Debit और Credit राशि हो।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. What is the Double Entry System? | Double Entry System क्या है?</strong><br>An accounting principle where every transaction affects at least two accounts — one Debit and one Credit of equal value. | एक accounting सिद्धांत जिसमें हर लेन-देन कम से कम दो accounts को प्रभावित करता है — एक Debit और एक Credit, समान मूल्य के।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. Why must Debit equal Credit? | Debit, Credit के बराबर क्यों होना चाहिए?</strong><br>Because every transaction has two effects of equal value, keeping the accounting equation balanced. | क्योंकि हर लेन-देन के दो प्रभाव समान मूल्य के होते हैं, जिससे accounting equation संतुलित रहता है।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. What happens if my journal doesn't balance? | अगर मेरा journal balance न हो तो क्या होता है?</strong><br>The tool flags it as Not Balanced and shows the exact difference, so you can find and fix the error. | Tool इसे Not Balanced के रूप में flag करता है और सटीक अंतर दिखाता है, ताकि आप गलती ढूँढकर ठीक कर सकें।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. Can I use ready-made templates? | क्या मैं ready-made templates इस्तेमाल कर सकता हूँ?</strong><br>Yes — 23 templates covering common transactions like Cash Purchase, Salary, Rent, Depreciation and more. | हाँ — Cash Purchase, Salary, Rent, Depreciation जैसे सामान्य लेन-देन को कवर करने वाले 23 templates।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. How does GST calculation work? | GST गणना कैसे काम करती है?</strong><br>Select CGST+SGST, IGST or UTGST+CGST and the tool splits your GST rate accordingly, with CESS added separately if applicable. | CGST+SGST, IGST या UTGST+CGST चुनें और tool आपकी GST दर को उसी अनुसार विभाजित करता है, ज़रूरत पड़ने पर CESS अलग से जोड़ा जाता है।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. What is GST Inclusive vs Exclusive? | GST Inclusive vs Exclusive क्या है?</strong><br>Exclusive means GST is added on top of your amount; Inclusive means your entered amount already includes GST. | Exclusive का मतलब है GST आपकी राशि के ऊपर जोड़ा जाता है; Inclusive का मतलब है आपकी दर्ज की गई राशि में पहले से GST शामिल है।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. What is Reverse Charge? | Reverse Charge क्या है?</strong><br>A mechanism where the recipient, not the supplier, is liable to pay GST — flagged here for your record. | एक व्यवस्था जिसमें supplier नहीं बल्कि प्राप्तकर्ता GST देने के लिए उत्तरदायी होता है — यहाँ आपके रिकॉर्ड के लिए flag किया जाता है।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. How is TDS calculated? | TDS की गणना कैसे होती है?</strong><br>TDS Amount = Gross Amount × TDS Rate, and Net Payable = Gross Amount − TDS Amount. | TDS Amount = Gross Amount × TDS Rate, और Net Payable = Gross Amount − TDS Amount।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. What is Net Payable? | Net Payable क्या है?</strong><br>The amount actually paid to the party after deducting TDS from the gross amount. | Gross Amount में से TDS घटाने के बाद party को वास्तव में भुगतान की गई राशि।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. Can I add unlimited rows? | क्या मैं असीमित rows जोड़ सकता हूँ?</strong><br>Yes — use Add Row as many times as needed, and Remove Row to delete any row. | हाँ — जितनी बार ज़रूरत हो Add Row इस्तेमाल करें, और किसी भी row को हटाने के लिए Remove Row।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. What is a duplicate entry? | Duplicate entry क्या है?</strong><br>Two rows with the same ledger account, debit and credit amount — flagged so you can confirm it isn't a mistake. | एक ही ledger account, debit और credit राशि वाली दो rows — यह पुष्टि करने के लिए flag की जाती हैं कि यह गलती नहीं है।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. What is the Journal Register? | Journal Register क्या है?</strong><br>A report listing every voucher you've generated, with its date, narration, totals and balanced status. | आपके द्वारा generate किए गए हर voucher की सूची, उसकी date, narration, totals और balanced status के साथ।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. What is Ledger Posting? | Ledger Posting क्या है?</strong><br>A report aggregating total Debit and Credit for each ledger account across all your saved vouchers. | आपके सभी saved vouchers में हर ledger account के लिए कुल Debit और Credit का सारांश।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. What is the GST Summary report? | GST Summary report क्या है?</strong><br>A report totaling CGST, SGST, IGST, UTGST and CESS across all vouchers where GST was applicable. | उन सभी vouchers में CGST, SGST, IGST, UTGST और CESS का कुल योग जहाँ GST लागू था।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. What is the TDS Summary report? | TDS Summary report क्या है?</strong><br>A report totaling TDS deducted across all vouchers, grouped by TDS Section. | सभी vouchers में काटे गए TDS का कुल योग, TDS Section के अनुसार समूहित।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. Can I generate a printable voucher? | क्या मैं एक printable voucher generate कर सकता हूँ?</strong><br>Yes — click Preview Voucher for a professional, print-ready Journal Voucher layout. | हाँ — एक professional, print-ready Journal Voucher layout के लिए Preview Voucher पर क्लिक करें।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. Does the voucher include a signatory line? | क्या voucher में signatory line शामिल है?</strong><br>Yes — space for Prepared By and Authorized Signatory is included at the bottom. | हाँ — नीचे Prepared By और Authorized Signatory के लिए जगह शामिल है।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. Can I search for a specific voucher? | क्या मैं किसी विशेष voucher को search कर सकता हूँ?</strong><br>Yes — search by Voucher Number, Ledger Name, Date, Narration or Amount. | हाँ — Voucher Number, Ledger Name, Date, Narration या Amount से search करें।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. Can I export my journal entries? | क्या मैं अपनी journal entries export कर सकता हूँ?</strong><br>Yes — as PDF, Excel, CSV or JSON, or print them directly. | हाँ — PDF, Excel, CSV या JSON के रूप में, या सीधे print करें।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. Is my accounting data uploaded anywhere? | क्या मेरा accounting data कहीं upload होता है?</strong><br>No — every calculation and voucher runs entirely inside your browser. | नहीं — हर calculation और voucher पूरी तरह आपके browser के भीतर चलता है।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. Can a single row have both Debit and Credit? | क्या एक ही row में Debit और Credit दोनों हो सकते हैं?</strong><br>No — each row must have either a Debit amount or a Credit amount, not both. | नहीं — हर row में या तो Debit राशि होनी चाहिए या Credit राशि, दोनों नहीं।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. What ledger groups are supported? | कौन-से ledger groups समर्थित हैं?</strong><br>Standard groups like Cash-in-Hand, Bank Accounts, Sundry Debtors/Creditors, Purchase/Sales Accounts, Fixed Assets, Duties &amp; Taxes and more. | Cash-in-Hand, Bank Accounts, Sundry Debtors/Creditors, Purchase/Sales Accounts, Fixed Assets, Duties &amp; Taxes जैसे standard groups।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. Does this tool use any AI? | क्या इस टूल में कोई AI इस्तेमाल होता है?</strong><br>No — every validation rule and calculation is deterministic, hand-written logic based on standard accounting practice. | नहीं — हर validation rule और calculation, मानक accounting practice पर आधारित deterministic, hand-written logic है।</p></div>
+
+<div class="je-faq-item"><p><strong>Q. Is this tool a substitute for a qualified accountant? | क्या यह टूल एक योग्य accountant का विकल्प है?</strong><br>No — always verify journal entries and consult a Chartered Accountant before finalizing financial records. | नहीं — financial records अंतिम रूप देने से पहले हमेशा journal entries की पुष्टि करें और Chartered Accountant से सलाह लें।</p></div>
+
+</div>
+
+</div>
+
+<p class="je-muted" style="font-size:.85rem;text-align:center;padding:0 4px 4px">This Journal Entry Generator is designed to assist with accounting records. Always verify journal entries and consult a qualified accountant or Chartered Accountant before finalizing financial records.</p>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a Journal Entry?", "acceptedAnswer": {"@type": "Answer", "text": "A record of a business transaction in the Double Entry Accounting System, with equal Debit and Credit amounts."}}, {"@type": "Question", "name": "What is the Double Entry System?", "acceptedAnswer": {"@type": "Answer", "text": "An accounting principle where every transaction affects at least two accounts, one Debit and one Credit of equal value."}}, {"@type": "Question", "name": "Why must Debit equal Credit?", "acceptedAnswer": {"@type": "Answer", "text": "Because every transaction has two effects of equal value, keeping the accounting equation balanced."}}, {"@type": "Question", "name": "What happens if my journal doesn't balance?", "acceptedAnswer": {"@type": "Answer", "text": "The tool flags it as Not Balanced and shows the exact difference, so the error can be found and fixed."}}, {"@type": "Question", "name": "Can I use ready-made templates?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, 23 templates covering common transactions like Cash Purchase, Salary, Rent, Depreciation and more."}}, {"@type": "Question", "name": "How does GST calculation work?", "acceptedAnswer": {"@type": "Answer", "text": "Select CGST plus SGST, IGST, or UTGST plus CGST and the tool splits the GST rate accordingly, with CESS added separately if applicable."}}, {"@type": "Question", "name": "What is GST Inclusive vs Exclusive?", "acceptedAnswer": {"@type": "Answer", "text": "Exclusive means GST is added on top of the amount; Inclusive means the entered amount already includes GST."}}, {"@type": "Question", "name": "What is Reverse Charge?", "acceptedAnswer": {"@type": "Answer", "text": "A mechanism where the recipient, not the supplier, is liable to pay GST."}}, {"@type": "Question", "name": "How is TDS calculated?", "acceptedAnswer": {"@type": "Answer", "text": "TDS Amount equals Gross Amount multiplied by TDS Rate, and Net Payable equals Gross Amount minus TDS Amount."}}, {"@type": "Question", "name": "What is Net Payable?", "acceptedAnswer": {"@type": "Answer", "text": "The amount actually paid to the party after deducting TDS from the gross amount."}}, {"@type": "Question", "name": "Can I add unlimited rows?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, use Add Row as many times as needed, and Remove Row to delete any row."}}, {"@type": "Question", "name": "What is a duplicate entry?", "acceptedAnswer": {"@type": "Answer", "text": "Two rows with the same ledger account, debit and credit amount, flagged for confirmation."}}, {"@type": "Question", "name": "What is the Journal Register?", "acceptedAnswer": {"@type": "Answer", "text": "A report listing every voucher generated, with its date, narration, totals and balanced status."}}, {"@type": "Question", "name": "What is Ledger Posting?", "acceptedAnswer": {"@type": "Answer", "text": "A report aggregating total Debit and Credit for each ledger account across all saved vouchers."}}, {"@type": "Question", "name": "What is the GST Summary report?", "acceptedAnswer": {"@type": "Answer", "text": "A report totaling CGST, SGST, IGST, UTGST and CESS across all vouchers where GST was applicable."}}, {"@type": "Question", "name": "What is the TDS Summary report?", "acceptedAnswer": {"@type": "Answer", "text": "A report totaling TDS deducted across all vouchers, grouped by TDS Section."}}, {"@type": "Question", "name": "Can I generate a printable voucher?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, clicking Preview Voucher produces a professional, print-ready Journal Voucher layout."}}, {"@type": "Question", "name": "Does the voucher include a signatory line?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, space for Prepared By and Authorized Signatory is included at the bottom."}}, {"@type": "Question", "name": "Can I search for a specific voucher?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, search by Voucher Number, Ledger Name, Date, Narration or Amount."}}, {"@type": "Question", "name": "Can I export my journal entries?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, as PDF, Excel, CSV or JSON, or print them directly."}}, {"@type": "Question", "name": "Is my accounting data uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No, every calculation and voucher runs entirely inside the browser."}}, {"@type": "Question", "name": "Can a single row have both Debit and Credit?", "acceptedAnswer": {"@type": "Answer", "text": "No, each row must have either a Debit amount or a Credit amount, not both."}}, {"@type": "Question", "name": "What ledger groups are supported?", "acceptedAnswer": {"@type": "Answer", "text": "Standard groups like Cash-in-Hand, Bank Accounts, Sundry Debtors and Creditors, Purchase and Sales Accounts, Fixed Assets, and Duties and Taxes."}}, {"@type": "Question", "name": "Does this tool use any AI?", "acceptedAnswer": {"@type": "Answer", "text": "No, every validation rule and calculation is deterministic, hand-written logic based on standard accounting practice."}}, {"@type": "Question", "name": "Is this tool a substitute for a qualified accountant?", "acceptedAnswer": {"@type": "Answer", "text": "No, always verify journal entries and consult a Chartered Accountant before finalizing financial records."}}]}
+</script>
+
+<footer class="site-footer">© apnesoftware.COM — Journal Entry Generator — Fast • Accurate • Secure • Mobile Friendly • SEO Optimized</footer>
+
+<div id="je-stickyCalc">
+  <button class="btn secondary" id="je-stickyValidateBtn" type="button">✅ Validate</button>
+  <button class="btn je-gradient" id="je-stickyGenerateBtn" type="button">📔 Generate</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<script src="../assets/common.js"></script>
+<script>
+/* ===================== Journal Entry Generator Engine (pure logic, no DOM) =====================
+   Validates double-entry journal rows (debit=credit, no empty ledgers, no invalid or duplicate
+   amounts), computes GST (CGST/SGST/IGST/UTGST/CESS split, inclusive/exclusive) and TDS (rate/net
+   payable) per row, and maintains a voucher-history model feeding standard accounting reports. */
+'use strict';
+
+function parseAmount(v) {
+  if (v == null || v === '') return 0;
+  if (typeof v === 'number') return isFinite(v) ? v : 0;
+  var s = String(v).replace(/[₹,\s]/g, '');
+  var n = parseFloat(s);
+  return isFinite(n) ? n : 0;
+}
+function computeGST(amount, gstRate, cessRate, gstType, mode) {
+  amount = parseAmount(amount); gstRate = parseAmount(gstRate); cessRate = parseAmount(cessRate) || 0;
+  var totalRatePct = (gstRate + cessRate) / 100;
+  var base = mode === 'inclusive' ? amount / (1 + totalRatePct) : amount;
+  var gstAmount = base * (gstRate / 100);
+  var cessAmount = base * (cessRate / 100);
+  var cgst = 0, sgst = 0, igst = 0, utgst = 0;
+  if (gstType === 'igst') { igst = gstAmount; }
+  else if (gstType === 'utgstCgst') { cgst = gstAmount / 2; utgst = gstAmount / 2; }
+  else { cgst = gstAmount / 2; sgst = gstAmount / 2; }
+  var totalGst = gstAmount + cessAmount;
+  return { base: base, gstAmount: gstAmount, cessAmount: cessAmount, totalGst: totalGst, totalWithGst: base + totalGst, cgst: cgst, sgst: sgst, igst: igst, utgst: utgst };
+}
+function computeTDS(baseAmount, tdsRate) {
+  baseAmount = parseAmount(baseAmount); tdsRate = parseAmount(tdsRate);
+  var tdsAmount = baseAmount * (tdsRate / 100);
+  return { tdsAmount: tdsAmount, netPayable: baseAmount - tdsAmount };
+}
+function validateJournal(rows) {
+  var errors = [];
+  var totalDebit = 0, totalCredit = 0, gstTotal = 0, tdsTotal = 0;
+  var seen = {}; var duplicateIndexes = [];
+  rows.forEach(function (row, i) {
+    var debit = parseAmount(row.debit), credit = parseAmount(row.credit);
+    totalDebit += debit; totalCredit += credit;
+    if ((debit > 0 || credit > 0) && !String(row.accountName || '').trim()) {
+      errors.push({ row: i, type: 'emptyLedger', message: 'Row ' + (i + 1) + ': ledger account name is required.' });
+    }
+    if (debit < 0 || credit < 0 || isNaN(debit) || isNaN(credit)) {
+      errors.push({ row: i, type: 'invalidAmount', message: 'Row ' + (i + 1) + ': amounts must be zero or positive numbers.' });
+    }
+    if (debit > 0 && credit > 0) {
+      errors.push({ row: i, type: 'bothDebitCredit', message: 'Row ' + (i + 1) + ': a single row cannot have both Debit and Credit amounts.' });
+    }
+    if (row.gstApplicable) {
+      if (!(parseAmount(row.gstRate) > 0)) { errors.push({ row: i, type: 'gstMissingRate', message: 'Row ' + (i + 1) + ': GST is applicable but no GST rate is set.' }); }
+      else { var gst = computeGST(Math.max(debit, credit), row.gstRate, row.cessRate, row.gstType, row.gstMode); gstTotal += gst.totalGst; }
+    }
+    if (row.tdsApplicable) {
+      if (!(parseAmount(row.tdsRate) > 0)) { errors.push({ row: i, type: 'tdsMissingRate', message: 'Row ' + (i + 1) + ': TDS is applicable but no TDS rate is set.' }); }
+      else { var tds = computeTDS(Math.max(debit, credit), row.tdsRate); tdsTotal += tds.tdsAmount; }
+    }
+    var key = String(row.accountName || '').trim().toLowerCase() + '|' + debit.toFixed(2) + '|' + credit.toFixed(2);
+    if (debit > 0 || credit > 0) {
+      if (seen[key] != null) { duplicateIndexes.push(i); } else { seen[key] = i; }
+    }
+  });
+  duplicateIndexes.forEach(function (i) { errors.push({ row: i, type: 'duplicateEntry', message: 'Row ' + (i + 1) + ': duplicate ledger entry (same account, debit and credit as another row).' }); });
+  var difference = totalDebit - totalCredit;
+  var isBalanced = Math.abs(difference) < 0.01;
+  if (!isBalanced) { errors.push({ row: -1, type: 'notBalanced', message: 'Total Debit and Total Credit do not match — difference of ' + Math.abs(difference).toFixed(2) + '.' }); }
+  return { isValid: errors.length === 0, errors: errors, totalDebit: totalDebit, totalCredit: totalCredit, difference: difference, isBalanced: isBalanced, gstTotal: gstTotal, tdsTotal: tdsTotal };
+}
+var TEMPLATES = {
+  cashPurchase: [{ accountName: 'Purchase A/c', ledgerGroup: 'Purchase Accounts' }, { accountName: 'Cash A/c', ledgerGroup: 'Cash-in-Hand' }],
+  creditPurchase: [{ accountName: 'Purchase A/c', ledgerGroup: 'Purchase Accounts' }, { accountName: 'Sundry Creditor A/c', ledgerGroup: 'Sundry Creditors' }],
+  cashSale: [{ accountName: 'Cash A/c', ledgerGroup: 'Cash-in-Hand' }, { accountName: 'Sales A/c', ledgerGroup: 'Sales Accounts' }],
+  creditSale: [{ accountName: 'Sundry Debtor A/c', ledgerGroup: 'Sundry Debtors' }, { accountName: 'Sales A/c', ledgerGroup: 'Sales Accounts' }],
+  salary: [{ accountName: 'Salary A/c', ledgerGroup: 'Indirect Expenses' }, { accountName: 'TDS Payable A/c', ledgerGroup: 'Duties & Taxes' }, { accountName: 'Bank A/c', ledgerGroup: 'Bank Accounts' }],
+  bankPayment: [{ accountName: 'Expense/Party A/c', ledgerGroup: 'Indirect Expenses' }, { accountName: 'Bank A/c', ledgerGroup: 'Bank Accounts' }],
+  bankReceipt: [{ accountName: 'Bank A/c', ledgerGroup: 'Bank Accounts' }, { accountName: 'Income/Party A/c', ledgerGroup: 'Indirect Income' }],
+  depreciation: [{ accountName: 'Depreciation A/c', ledgerGroup: 'Indirect Expenses' }, { accountName: 'Fixed Asset A/c', ledgerGroup: 'Fixed Assets' }],
+  interest: [{ accountName: 'Interest A/c', ledgerGroup: 'Indirect Expenses' }, { accountName: 'Bank A/c', ledgerGroup: 'Bank Accounts' }],
+  rent: [{ accountName: 'Rent A/c', ledgerGroup: 'Indirect Expenses' }, { accountName: 'Bank A/c', ledgerGroup: 'Bank Accounts' }],
+  loan: [{ accountName: 'Bank A/c', ledgerGroup: 'Bank Accounts' }, { accountName: 'Loan A/c', ledgerGroup: 'Loans (Liability)' }],
+  capital: [{ accountName: 'Bank/Cash A/c', ledgerGroup: 'Bank Accounts' }, { accountName: 'Capital A/c', ledgerGroup: 'Capital Account' }],
+  drawings: [{ accountName: 'Drawings A/c', ledgerGroup: 'Capital Account' }, { accountName: 'Cash/Bank A/c', ledgerGroup: 'Cash-in-Hand' }],
+  assetPurchase: [{ accountName: 'Fixed Asset A/c', ledgerGroup: 'Fixed Assets' }, { accountName: 'Bank/Creditor A/c', ledgerGroup: 'Bank Accounts' }],
+  assetSale: [{ accountName: 'Bank/Debtor A/c', ledgerGroup: 'Bank Accounts' }, { accountName: 'Fixed Asset A/c', ledgerGroup: 'Fixed Assets' }, { accountName: 'Profit/Loss on Sale of Asset A/c', ledgerGroup: 'Indirect Income' }],
+  inventoryAdjustment: [{ accountName: 'Inventory A/c', ledgerGroup: 'Current Assets' }, { accountName: 'Profit & Loss Adjustment A/c', ledgerGroup: 'Indirect Income' }],
+  outstandingExpense: [{ accountName: 'Expense A/c', ledgerGroup: 'Indirect Expenses' }, { accountName: 'Outstanding Expense A/c', ledgerGroup: 'Current Liabilities' }],
+  prepaidExpense: [{ accountName: 'Prepaid Expense A/c', ledgerGroup: 'Current Assets' }, { accountName: 'Bank/Cash A/c', ledgerGroup: 'Bank Accounts' }],
+  advancePayment: [{ accountName: 'Advance to Supplier A/c', ledgerGroup: 'Current Assets' }, { accountName: 'Bank A/c', ledgerGroup: 'Bank Accounts' }],
+  advanceReceipt: [{ accountName: 'Bank A/c', ledgerGroup: 'Bank Accounts' }, { accountName: 'Advance from Customer A/c', ledgerGroup: 'Current Liabilities' }],
+  gstEntry: [{ accountName: 'Purchase A/c', ledgerGroup: 'Purchase Accounts' }, { accountName: 'CGST Input A/c', ledgerGroup: 'Duties & Taxes', gstApplicable: true }, { accountName: 'SGST Input A/c', ledgerGroup: 'Duties & Taxes', gstApplicable: true }, { accountName: 'Sundry Creditor A/c', ledgerGroup: 'Sundry Creditors' }],
+  tdsEntry: [{ accountName: 'Expense A/c', ledgerGroup: 'Indirect Expenses', tdsApplicable: true }, { accountName: 'TDS Payable A/c', ledgerGroup: 'Duties & Taxes' }, { accountName: 'Party A/c', ledgerGroup: 'Sundry Creditors' }],
+  tcsEntry: [{ accountName: 'Sundry Debtor A/c', ledgerGroup: 'Sundry Debtors' }, { accountName: 'Sales A/c', ledgerGroup: 'Sales Accounts' }, { accountName: 'TCS Payable A/c', ledgerGroup: 'Duties & Taxes' }]
+};
+function buildJournalRegister(voucherHistory) {
+  return voucherHistory.map(function (v) {
+    var val = validateJournal(v.rows);
+    return { voucherNumber: v.voucherNumber, date: v.voucherDate, narration: v.narration, totalDebit: val.totalDebit, totalCredit: val.totalCredit, isBalanced: val.isBalanced };
+  });
+}
+function buildLedgerPosting(voucherHistory) {
+  var ledgers = {};
+  voucherHistory.forEach(function (v) {
+    v.rows.forEach(function (row) {
+      var name = String(row.accountName || '').trim(); if (!name) return;
+      if (!ledgers[name]) ledgers[name] = { accountName: name, totalDebit: 0, totalCredit: 0 };
+      ledgers[name].totalDebit += parseAmount(row.debit); ledgers[name].totalCredit += parseAmount(row.credit);
+    });
+  });
+  return Object.keys(ledgers).map(function (k) {
+    var l = ledgers[k]; l.balance = l.totalDebit - l.totalCredit; l.balanceType = l.balance >= 0 ? 'Debit' : 'Credit'; return l;
+  });
+}
+function buildGSTSummary(voucherHistory) {
+  var totals = { cgst: 0, sgst: 0, igst: 0, utgst: 0, cess: 0, totalGst: 0 };
+  voucherHistory.forEach(function (v) {
+    v.rows.forEach(function (row) {
+      if (!row.gstApplicable) return;
+      var gst = computeGST(Math.max(parseAmount(row.debit), parseAmount(row.credit)), row.gstRate, row.cessRate, row.gstType, row.gstMode);
+      totals.cgst += gst.cgst; totals.sgst += gst.sgst; totals.igst += gst.igst; totals.utgst += gst.utgst; totals.cess += gst.cessAmount; totals.totalGst += gst.totalGst;
+    });
+  });
+  return totals;
+}
+function buildTDSSummary(voucherHistory) {
+  var bySection = {}; var totalTds = 0;
+  voucherHistory.forEach(function (v) {
+    v.rows.forEach(function (row) {
+      if (!row.tdsApplicable) return;
+      var tds = computeTDS(Math.max(parseAmount(row.debit), parseAmount(row.credit)), row.tdsRate);
+      var section = row.tdsSection || 'Unspecified';
+      bySection[section] = (bySection[section] || 0) + tds.tdsAmount; totalTds += tds.tdsAmount;
+    });
+  });
+  return { bySection: bySection, totalTds: totalTds };
+}
+function fmtINR(n) {
+  n = Number(n) || 0;
+  var neg = n < 0; n = Math.abs(n);
+  var fixed = n.toFixed(2);
+  var parts = fixed.split('.');
+  var intPart = parts[0], decPart = parts[1];
+  var lastThree = intPart.substring(intPart.length - 3);
+  var other = intPart.substring(0, intPart.length - 3);
+  if (other !== '') { lastThree = ',' + lastThree; other = other.replace(/\B(?=(\d{2})+(?!\d))/g, ','); }
+  return (neg ? '-' : '') + '₹' + other + lastThree + '.' + decPart;
+}
+var JEEngine = {
+  parseAmount: parseAmount, computeGST: computeGST, computeTDS: computeTDS, validateJournal: validateJournal, TEMPLATES: TEMPLATES,
+  buildJournalRegister: buildJournalRegister, buildLedgerPosting: buildLedgerPosting, buildGSTSummary: buildGSTSummary, buildTDSSummary: buildTDSSummary, fmtINR: fmtINR
+};
+if (typeof module !== 'undefined' && module.exports) module.exports = JEEngine;
+if (typeof window !== 'undefined') window.JEEngine = JEEngine;
+</script>
+<script>
+(function(){
+'use strict';
+var E = window.JEEngine;
+function $(id){ return document.getElementById(id); }
+function lsGet(key, fallback){ try{ var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } }
+function lsSet(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+function status(msg){ $('je-statusMsg').textContent = msg; }
+function fmt(n){ return E.fmtINR(n); }
+function esc(s){ var d = document.createElement('div'); d.textContent = String(s == null ? '' : s); return d.innerHTML; }
+
+var journalRows = [];
+var voucherHistory = lsGet('je_history', []);
+var lastValidation = null;
+var voucherCounter = lsGet('je_voucherCounter', 1);
+
+/* ===================== Tabs (form side) ===================== */
+var formTabs = [['je-tabDetails','je-paneDetails'],['je-tabEntries','je-paneEntries'],['je-tabTax','je-paneTax'],['je-tabHistory','je-paneHistory'],['je-tabSettings','je-paneSettings']];
+formTabs.forEach(function(pair){
+  $(pair[0]).addEventListener('click', function(){
+    formTabs.forEach(function(p2){ $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected','false'); $(p2[1]).classList.remove('active'); });
+    $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected','true'); $(pair[1]).classList.add('active');
+  });
+});
+var resultTabs = [['je-tabDashboard','je-paneDashboard'],['je-tabVoucher','je-paneVoucher'],['je-tabReports','je-paneReports']];
+resultTabs.forEach(function(pair){
+  $(pair[0]).addEventListener('click', function(){
+    resultTabs.forEach(function(p2){ $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected','false'); $(p2[1]).classList.remove('active'); });
+    $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected','true'); $(pair[1]).classList.add('active');
+  });
+});
+
+/* ===================== Voucher number auto-generation ===================== */
+function updateVoucherNumber(){
+  if ($('je-voucherNumberMode').value === 'auto') {
+    $('je-voucherNumber').value = 'JV-' + String(voucherCounter).padStart(4, '0');
+    $('je-voucherNumber').readOnly = true;
+  } else {
+    $('je-voucherNumber').readOnly = false;
+  }
+}
+$('je-voucherNumberMode').addEventListener('change', updateVoucherNumber);
+updateVoucherNumber();
+var todayStr = new Date().toISOString().slice(0,10);
+$('je-journalDate').value = todayStr;
+$('je-voucherDate').value = todayStr;
+
+/* ===================== Dynamic journal entry table ===================== */
+var GST_TYPE_OPTIONS = ['cgstSgst','igst','utgstCgst'];
+function addEntryRow(data){
+  data = data || {};
+  var tbody = $('je-entryTbody');
+  var tr = document.createElement('tr');
+  tr.innerHTML =
+    '<td><input type="text" class="je-cell" data-field="accountName" value="'+esc(data.accountName||'')+'" placeholder="Ledger A/c"></td>' +
+    '<td><input type="text" class="je-cell" data-field="ledgerGroup" value="'+esc(data.ledgerGroup||'')+'" placeholder="Group"></td>' +
+    '<td><input type="number" class="je-cell" data-field="debit" min="0" value="'+(data.debit||'')+'"></td>' +
+    '<td><input type="number" class="je-cell" data-field="credit" min="0" value="'+(data.credit||'')+'"></td>' +
+    '<td style="text-align:center"><input type="checkbox" class="je-cell" data-field="gstApplicable" '+(data.gstApplicable?'checked':'')+'></td>' +
+    '<td><input type="number" class="je-cell" data-field="gstRate" min="0" value="'+(data.gstRate||'')+'" placeholder="%"></td>' +
+    '<td class="je-gstAmtCell je-amt">—</td>' +
+    '<td style="text-align:center"><input type="checkbox" class="je-cell" data-field="tdsApplicable" '+(data.tdsApplicable?'checked':'')+'></td>' +
+    '<td><input type="number" class="je-cell" data-field="tdsRate" min="0" value="'+(data.tdsRate||'')+'" placeholder="%"></td>' +
+    '<td class="je-tdsAmtCell je-amt">—</td>' +
+    '<td><input type="text" class="je-cell" data-field="notes" value="'+esc(data.notes||'')+'"></td>' +
+    '<td><button type="button" class="btn secondary je-mini je-removeRow">✕</button></td>';
+  tbody.appendChild(tr);
+  wireEntryRow(tr, data);
+}
+function wireEntryRow(tr, initial){
+  var rowObj = { accountName: initial.accountName||'', ledgerGroup: initial.ledgerGroup||'', debit: initial.debit||'', credit: initial.credit||'',
+    gstApplicable: !!initial.gstApplicable, gstRate: initial.gstRate||'', tdsApplicable: !!initial.tdsApplicable, tdsRate: initial.tdsRate||'', notes: initial.notes||'',
+    gstType: '', gstMode: '', cessRate: '', tdsSection: '' };
+  journalRows.push(rowObj);
+  function refreshComputed(){
+    rowObj.gstType = $('je-gstType').value; rowObj.gstMode = $('je-gstMode').value; rowObj.cessRate = $('je-cessRate').value;
+    rowObj.tdsSection = $('je-tdsSectionHelper').value;
+    var base = Math.max(E.parseAmount(rowObj.debit), E.parseAmount(rowObj.credit));
+    var gstCell = tr.querySelector('.je-gstAmtCell');
+    if (rowObj.gstApplicable && E.parseAmount(rowObj.gstRate) > 0) {
+      var gst = E.computeGST(base, rowObj.gstRate, rowObj.cessRate, rowObj.gstType, rowObj.gstMode);
+      gstCell.textContent = fmt(gst.totalGst);
+    } else { gstCell.textContent = '—'; }
+    var tdsCell = tr.querySelector('.je-tdsAmtCell');
+    if (rowObj.tdsApplicable && E.parseAmount(rowObj.tdsRate) > 0) {
+      var tds = E.computeTDS(base, rowObj.tdsRate);
+      tdsCell.textContent = fmt(tds.tdsAmount);
+    } else { tdsCell.textContent = '—'; }
+  }
+  tr.querySelectorAll('.je-cell').forEach(function(el){
+    var field = el.dataset.field;
+    el.addEventListener('input', function(){
+      rowObj[field] = el.type === 'checkbox' ? el.checked : el.value;
+      refreshComputed();
+    });
+    el.addEventListener('change', function(){
+      rowObj[field] = el.type === 'checkbox' ? el.checked : el.value;
+      refreshComputed();
+    });
+  });
+  tr.querySelector('.je-removeRow').addEventListener('click', function(){
+    var idx = journalRows.indexOf(rowObj);
+    if (idx !== -1) journalRows.splice(idx, 1);
+    tr.remove();
+  });
+  refreshComputed();
+}
+$('je-addRowBtn').addEventListener('click', function(){ addEntryRow(); });
+['je-gstType','je-gstMode','je-cessRate','je-tdsSectionHelper'].forEach(function(id){
+  $(id).addEventListener('change', function(){
+    document.querySelectorAll('#je-entryTbody tr').forEach(function(tr){ tr.dispatchEvent(new Event('recompute')); });
+    /* Trigger recompute for all rows by simulating input on debit field */
+    journalRows.forEach(function(){});
+    recomputeAllRows();
+  });
+});
+function recomputeAllRows(){
+  document.querySelectorAll('#je-entryTbody tr').forEach(function(tr, i){
+    var row = journalRows[i]; if (!row) return;
+    row.gstType = $('je-gstType').value; row.gstMode = $('je-gstMode').value; row.cessRate = $('je-cessRate').value; row.tdsSection = $('je-tdsSectionHelper').value;
+    var base = Math.max(E.parseAmount(row.debit), E.parseAmount(row.credit));
+    var gstCell = tr.querySelector('.je-gstAmtCell');
+    if (row.gstApplicable && E.parseAmount(row.gstRate) > 0) { gstCell.textContent = fmt(E.computeGST(base, row.gstRate, row.cessRate, row.gstType, row.gstMode).totalGst); } else { gstCell.textContent = '—'; }
+    var tdsCell = tr.querySelector('.je-tdsAmtCell');
+    if (row.tdsApplicable && E.parseAmount(row.tdsRate) > 0) { tdsCell.textContent = fmt(E.computeTDS(base, row.tdsRate).tdsAmount); } else { tdsCell.textContent = '—'; }
+  });
+}
+
+/* Seed with a small illustrative example */
+addEntryRow({ accountName: 'Purchase A/c', ledgerGroup: 'Purchase Accounts', debit: 10000, credit: '' });
+addEntryRow({ accountName: 'Cash A/c', ledgerGroup: 'Cash-in-Hand', debit: '', credit: 10000 });
+
+/* ===================== Templates ===================== */
+$('je-templateSelect').addEventListener('change', function(){
+  var key = this.value;
+  if (!key || !E.TEMPLATES[key]) return;
+  $('je-entryTbody').innerHTML = ''; journalRows.length = 0;
+  E.TEMPLATES[key].forEach(function(row){ addEntryRow(row); });
+  status('🗂️ Loaded template: ' + this.options[this.selectedIndex].text);
+});
+
+/* ===================== TDS quick calculator ===================== */
+function renderTdsHelper(){
+  var gross = E.parseAmount($('je-tdsGrossHelper').value);
+  var rate = E.parseAmount($('je-tdsRateHelper').value);
+  var tds = E.computeTDS(gross, rate);
+  $('je-tdsHelperResult').innerHTML =
+    '<div class="je-engine-row"><span>TDS Amount</span><span>'+fmt(tds.tdsAmount)+'</span></div>' +
+    '<div class="je-engine-row"><span>Net Payable</span><span>'+fmt(tds.netPayable)+'</span></div>';
+}
+['je-tdsGrossHelper','je-tdsRateHelper','je-tdsSectionHelper'].forEach(function(id){ $(id).addEventListener('input', renderTdsHelper); });
+renderTdsHelper();
+
+/* ===================== Validate / Generate ===================== */
+function collectRows(){
+  return journalRows.map(function(r){ return { accountName: r.accountName, ledgerGroup: r.ledgerGroup, debit: r.debit, credit: r.credit,
+    gstApplicable: r.gstApplicable, gstRate: r.gstRate, gstType: r.gstType || $('je-gstType').value, gstMode: r.gstMode || $('je-gstMode').value, cessRate: r.cessRate || $('je-cessRate').value,
+    tdsApplicable: r.tdsApplicable, tdsRate: r.tdsRate, tdsSection: r.tdsSection || $('je-tdsSectionHelper').value, notes: r.notes }; });
+}
+function statCard(label, value, cls){ return '<div class="stat-box'+(cls?' '+cls:'')+'"><div class="num">'+value+'</div><div class="lbl">'+label+'</div></div>'; }
+function runValidate(){
+  var rows = collectRows();
+  var val = E.validateJournal(rows);
+  lastValidation = val;
+  $('je-summaryCards').innerHTML =
+    statCard('Total Debit', fmt(val.totalDebit)) +
+    statCard('Total Credit', fmt(val.totalCredit)) +
+    statCard('Difference', fmt(val.difference), Math.abs(val.difference)>0.01?'je-warn':'je-ok') +
+    statCard('GST Total', fmt(val.gstTotal)) +
+    statCard('TDS Total', fmt(val.tdsTotal)) +
+    statCard('Balanced Status', val.isBalanced ? 'Balanced' : 'Not Balanced', val.isBalanced?'je-ok':'je-warn');
+  var flags = [];
+  flags.push('<span class="je-flag '+(val.isValid?'ok':'warn')+'">'+(val.isValid?'Journal Valid':'Validation Errors Found')+'</span>');
+  if (val.isBalanced) flags.push('<span class="je-flag ok">Debit = Credit</span>');
+  $('je-resultFlags').innerHTML = flags.join('');
+
+  if (val.errors.length) {
+    $('je-errList').style.display = 'block';
+    $('je-errList').innerHTML = '<strong>Validation Issues:</strong><ul>' + val.errors.map(function(e){ return '<li>'+esc(e.message)+'</li>'; }).join('') + '</ul>';
+  } else {
+    $('je-errList').style.display = 'none';
+  }
+  return val;
+}
+$('je-validateBtn').addEventListener('click', function(){ runValidate(); status('✅ Validation complete.'); });
+$('je-stickyValidateBtn').addEventListener('click', function(){ runValidate(); status('✅ Validation complete.'); });
+
+function generateJournal(){
+  var val = runValidate();
+  if (!val.isValid) { status('⚠️ Cannot generate — please fix validation errors first.'); return; }
+  var voucherNumber = $('je-voucherNumber').value || ('JV-' + String(voucherCounter).padStart(4,'0'));
+  var voucher = {
+    voucherNumber: voucherNumber, companyName: $('je-companyName').value, branchName: $('je-branchName').value,
+    fy: $('je-fy').value, journalDate: $('je-journalDate').value, voucherDate: $('je-voucherDate').value,
+    voucherType: $('je-voucherType').value, narration: $('je-narration').value, referenceNumber: $('je-referenceNumber').value,
+    costCenter: $('je-costCenter').value, projectCode: $('je-projectCode').value, rows: collectRows(),
+    ts: new Date().toISOString()
+  };
+  voucherHistory.unshift(voucher);
+  lsSet('je_history', voucherHistory.slice(0, 100));
+  if ($('je-voucherNumberMode').value === 'auto') { voucherCounter++; lsSet('je_voucherCounter', voucherCounter); updateVoucherNumber(); }
+  renderHistory();
+  renderReports();
+  status('✅ Journal generated and saved as ' + voucherNumber + '.');
+}
+$('je-generateBtn').addEventListener('click', generateJournal);
+$('je-stickyGenerateBtn').addEventListener('click', generateJournal);
+
+/* ===================== Voucher Preview ===================== */
+function renderVoucherPreview(){
+  var val = runValidate();
+  var rows = collectRows();
+  var rowsHtml = rows.map(function(r){
+    return '<tr><td>'+esc(r.accountName)+'</td><td>'+esc(r.ledgerGroup)+'</td><td class="je-amt">'+(E.parseAmount(r.debit)>0?fmt(r.debit):'')+'</td><td class="je-amt">'+(E.parseAmount(r.credit)>0?fmt(r.credit):'')+'</td></tr>';
+  }).join('');
+  var gstRows = rows.filter(function(r){ return r.gstApplicable; }).map(function(r){
+    var gst = E.computeGST(Math.max(E.parseAmount(r.debit),E.parseAmount(r.credit)), r.gstRate, r.cessRate, r.gstType, r.gstMode);
+    return '<tr><td>'+esc(r.accountName)+'</td><td class="je-amt">'+fmt(gst.cgst)+'</td><td class="je-amt">'+fmt(gst.sgst)+'</td><td class="je-amt">'+fmt(gst.igst)+'</td><td class="je-amt">'+fmt(gst.cessAmount)+'</td></tr>';
+  }).join('');
+  var tdsRows = rows.filter(function(r){ return r.tdsApplicable; }).map(function(r){
+    var tds = E.computeTDS(Math.max(E.parseAmount(r.debit),E.parseAmount(r.credit)), r.tdsRate);
+    return '<tr><td>'+esc(r.accountName)+'</td><td>'+esc(r.tdsSection||'—')+'</td><td class="je-amt">'+fmt(tds.tdsAmount)+'</td><td class="je-amt">'+fmt(tds.netPayable)+'</td></tr>';
+  }).join('');
+
+  $('je-voucherPreview').innerHTML =
+    '<h3>'+esc($('je-companyName').value || 'Company Name')+'</h3>' +
+    '<div class="je-vsub">'+esc($('je-branchName').value || '')+' &middot; Journal Voucher &middot; FY '+esc($('je-fy').value)+'</div>' +
+    '<div class="je-engine-box">' +
+      '<div class="je-engine-row"><span>Voucher No.</span><span>'+esc($('je-voucherNumber').value)+'</span></div>' +
+      '<div class="je-engine-row"><span>Voucher Date</span><span>'+esc($('je-voucherDate').value)+'</span></div>' +
+      '<div class="je-engine-row"><span>Voucher Type</span><span>'+esc($('je-voucherType').value)+'</span></div>' +
+      '<div class="je-engine-row"><span>Reference No.</span><span>'+esc($('je-referenceNumber').value||'—')+'</span></div>' +
+      '<div class="je-engine-row"><span>Narration</span><span>'+esc($('je-narration').value||'—')+'</span></div>' +
+    '</div>' +
+    '<table><thead><tr><th>Account</th><th>Ledger Group</th><th>Debit</th><th>Credit</th></tr></thead><tbody>'+rowsHtml+
+      '<tr><td colspan="2"><strong>Total</strong></td><td class="je-amt"><strong>'+fmt(val.totalDebit)+'</strong></td><td class="je-amt"><strong>'+fmt(val.totalCredit)+'</strong></td></tr>'+
+    '</tbody></table>' +
+    (gstRows ? '<h4>GST Details</h4><table><thead><tr><th>Account</th><th>CGST</th><th>SGST</th><th>IGST</th><th>CESS</th></tr></thead><tbody>'+gstRows+'</tbody></table>' : '') +
+    (tdsRows ? '<h4>TDS Details</h4><table><thead><tr><th>Account</th><th>Section</th><th>TDS Amount</th><th>Net Payable</th></tr></thead><tbody>'+tdsRows+'</tbody></table>' : '') +
+    '<div class="je-sig-row"><div>Prepared By</div><div>Authorized Signatory</div></div>';
+}
+$('je-previewBtn').addEventListener('click', function(){
+  renderVoucherPreview();
+  resultTabs.forEach(function(p2){ $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected','false'); $(p2[1]).classList.remove('active'); });
+  $('je-tabVoucher').classList.add('active'); $('je-tabVoucher').setAttribute('aria-selected','true'); $('je-paneVoucher').classList.add('active');
+});
+
+/* ===================== History & Reports ===================== */
+function renderHistory(){
+  var list = voucherHistory;
+  var search = ($('je-searchText').value||'').toLowerCase();
+  var filtered = list.filter(function(v){
+    if (!search) return true;
+    var hay = (v.voucherNumber+' '+v.narration+' '+v.voucherDate+' '+JSON.stringify(v.rows)).toLowerCase();
+    return hay.indexOf(search) !== -1;
+  });
+  var wrap = $('je-historyList');
+  if (!filtered.length) { wrap.innerHTML = '<p class="je-muted">No vouchers saved yet.</p>'; return; }
+  wrap.innerHTML = filtered.map(function(v){
+    var val = E.validateJournal(v.rows);
+    return '<div class="je-engine-box"><div class="je-engine-row"><span>'+esc(v.voucherNumber)+' — '+esc(v.voucherDate)+'</span><span>'+fmt(val.totalDebit)+'</span></div>' +
+      '<div class="je-muted">'+esc(v.narration||'')+'</div></div>';
+  }).join('');
+}
+$('je-searchText').addEventListener('input', renderHistory);
+$('je-clearHistoryBtn').addEventListener('click', function(){
+  if (!confirm('Clear all saved vouchers?')) return;
+  voucherHistory = []; lsSet('je_history', []);
+  renderHistory(); renderReports();
+  status('🗑️ Voucher history cleared.');
+});
+
+function renderReports(){
+  var register = E.buildJournalRegister(voucherHistory);
+  document.querySelector('#je-reportRegister tbody').innerHTML = register.map(function(r){
+    return '<tr><td>'+esc(r.voucherNumber)+'</td><td>'+esc(r.date)+'</td><td>'+esc(r.narration)+'</td><td class="je-amt">'+fmt(r.totalDebit)+'</td><td class="je-amt">'+fmt(r.totalCredit)+'</td><td><span class="je-badge '+(r.isBalanced?'matched':'unmatched')+'">'+(r.isBalanced?'Balanced':'Unbalanced')+'</span></td></tr>';
+  }).join('') || '<tr><td colspan="6" style="text-align:center;color:var(--text-dim)">No vouchers generated yet.</td></tr>';
+
+  var ledgerPosting = E.buildLedgerPosting(voucherHistory);
+  document.querySelector('#je-reportLedger tbody').innerHTML = ledgerPosting.map(function(l){
+    return '<tr><td>'+esc(l.accountName)+'</td><td class="je-amt">'+fmt(l.totalDebit)+'</td><td class="je-amt">'+fmt(l.totalCredit)+'</td><td class="je-amt">'+fmt(Math.abs(l.balance))+'</td><td>'+l.balanceType+'</td></tr>';
+  }).join('') || '<tr><td colspan="5" style="text-align:center;color:var(--text-dim)">No ledger data yet.</td></tr>';
+
+  var gstSummary = E.buildGSTSummary(voucherHistory);
+  $('je-reportGst').innerHTML =
+    '<div class="je-engine-row"><span>CGST</span><span>'+fmt(gstSummary.cgst)+'</span></div>' +
+    '<div class="je-engine-row"><span>SGST</span><span>'+fmt(gstSummary.sgst)+'</span></div>' +
+    '<div class="je-engine-row"><span>IGST</span><span>'+fmt(gstSummary.igst)+'</span></div>' +
+    '<div class="je-engine-row"><span>UTGST</span><span>'+fmt(gstSummary.utgst)+'</span></div>' +
+    '<div class="je-engine-row"><span>CESS</span><span>'+fmt(gstSummary.cess)+'</span></div>' +
+    '<div class="je-engine-row"><span>Total GST</span><span>'+fmt(gstSummary.totalGst)+'</span></div>';
+
+  var tdsSummary = E.buildTDSSummary(voucherHistory);
+  var bySectionHtml = Object.keys(tdsSummary.bySection).map(function(s){ return '<div class="je-engine-row"><span>'+esc(s)+'</span><span>'+fmt(tdsSummary.bySection[s])+'</span></div>'; }).join('');
+  $('je-reportTds').innerHTML = (bySectionHtml || '<div class="je-muted">No TDS entries yet.</div>') + '<div class="je-engine-row"><span>Total TDS</span><span>'+fmt(tdsSummary.totalTds)+'</span></div>';
+}
+
+/* ===================== Buttons ===================== */
+$('je-printBtn').addEventListener('click', function(){ window.print(); });
+$('je-resetBtn').addEventListener('click', function(){
+  if (!confirm('Reset the current journal entry form? (Voucher history is kept)')) return;
+  journalRows.length = 0; $('je-entryTbody').innerHTML = '';
+  addEntryRow(); addEntryRow();
+  $('je-narration').value = ''; $('je-referenceNumber').value = ''; $('je-costCenter').value = ''; $('je-projectCode').value = '';
+  $('je-summaryCards').innerHTML = ''; $('je-resultFlags').innerHTML = ''; $('je-errList').style.display = 'none';
+  $('je-voucherPreview').innerHTML = '<p class="je-muted" style="text-align:center">Click <strong>Preview Voucher</strong> to generate a printable journal voucher.</p>';
+  status('↺ Form reset. Voucher history preserved.');
+});
+
+function buildExportRows(){
+  var rows = [['Account Name','Ledger Group','Debit','Credit','GST Applicable','GST Rate','TDS Applicable','TDS Rate','Notes']];
+  collectRows().forEach(function(r){ rows.push([r.accountName, r.ledgerGroup, r.debit, r.credit, r.gstApplicable?'Yes':'No', r.gstRate, r.tdsApplicable?'Yes':'No', r.tdsRate, r.notes]); });
+  return rows;
+}
+$('je-pdfBtn').addEventListener('click', function(){
+  if(typeof html2pdf === 'undefined'){ alert('PDF engine failed to load — check your connection and refresh.'); return; }
+  renderVoucherPreview();
+  html2pdf().from($('je-voucherPreview')).set({filename:'journal-voucher.pdf', margin:10}).save();
+});
+$('je-xlsxBtn').addEventListener('click', function(){
+  if(typeof XLSX === 'undefined'){ alert('Excel engine failed to load — check your connection and refresh.'); return; }
+  var ws = XLSX.utils.aoa_to_sheet(buildExportRows());
+  var wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Journal Entry');
+  XLSX.writeFile(wb, 'journal-entry.xlsx');
+});
+$('je-csvBtn').addEventListener('click', function(){
+  var rows = buildExportRows();
+  var csv = rows.map(function(row){ return row.map(function(v){ return '"' + String(v).replace(/"/g,'""') + '"'; }).join(','); }).join('\n');
+  var blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a'); a.href = url; a.download = 'journal-entry.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+$('je-jsonBtn').addEventListener('click', function(){
+  var payload = { voucherNumber: $('je-voucherNumber').value, narration: $('je-narration').value, rows: collectRows(), validation: lastValidation };
+  var blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json;charset=utf-8;'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a'); a.href = url; a.download = 'journal-entry.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+/* ===================== Share links ===================== */
+function updateShareLinks(){
+  var url = location.href;
+  $('je-shareWhatsapp').href = 'https://wa.me/?text=' + encodeURIComponent(url);
+  $('je-shareFacebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+  $('je-shareTwitter').href = 'https://twitter.com/intent/tweet?url=' + encodeURIComponent(url);
+  $('je-shareLinkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
+}
+$('je-copyLinkBtn').addEventListener('click', function(){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(location.href).then(function(){ status('🔗 Link copied to clipboard.'); });
+  }
+});
+updateShareLinks();
+
+/* ===================== Settings: theme / language / accessibility ===================== */
+var I18N = {
+  en: { tabDetails:'📋 Voucher Details', tabEntries:'📊 Journal Entries', tabTax:'🧾 GST / TDS', tabHistory:'🕘 History', tabSettings:'⚙️ Preferences',
+    validate:'✅ Validate', generate:'📔 Generate Journal', preview:'🖨️ Preview Voucher', print:'🖨️ Print', reset:'↺ Reset' },
+  hi: { tabDetails:'📋 Voucher विवरण', tabEntries:'📊 Journal Entries', tabTax:'🧾 GST / TDS', tabHistory:'🕘 इतिहास', tabSettings:'⚙️ प्राथमिकताएँ',
+    validate:'✅ जाँचें', generate:'📔 Journal बनाएँ', preview:'🖨️ Voucher देखें', print:'🖨️ प्रिंट', reset:'↺ रीसेट' }
+};
+function applyLanguage(lang){
+  var t = I18N[lang] || I18N.en;
+  $('je-tabDetails').textContent = t.tabDetails; $('je-tabEntries').textContent = t.tabEntries; $('je-tabTax').textContent = t.tabTax;
+  $('je-tabHistory').textContent = t.tabHistory; $('je-tabSettings').textContent = t.tabSettings;
+  $('je-validateBtn').textContent = t.validate; $('je-generateBtn').textContent = t.generate;
+  $('je-previewBtn').textContent = t.preview; $('je-printBtn').textContent = t.print; $('je-resetBtn').textContent = t.reset;
+}
+$('je-language').addEventListener('change', function(){ applyLanguage(this.value); lsSet('je_lang', this.value); });
+$('je-theme').addEventListener('change', function(){ document.body.classList.toggle('je-light', this.value === 'light'); lsSet('je_theme', this.value); });
+$('je-highContrast').addEventListener('change', function(){ document.body.classList.toggle('je-high-contrast', this.checked); lsSet('je_hc', this.checked); });
+$('je-largeFont').addEventListener('change', function(){ document.body.classList.toggle('je-large-font', this.checked); lsSet('je_lf', this.checked); });
+
+var savedLang = lsGet('je_lang', 'en'); $('je-language').value = savedLang; applyLanguage(savedLang);
+var savedTheme = lsGet('je_theme', 'dark'); $('je-theme').value = savedTheme; document.body.classList.toggle('je-light', savedTheme === 'light');
+var savedHc = lsGet('je_hc', false); $('je-highContrast').checked = savedHc; document.body.classList.toggle('je-high-contrast', savedHc);
+var savedLf = lsGet('je_lf', false); $('je-largeFont').checked = savedLf; document.body.classList.toggle('je-large-font', savedLf);
+
+renderHistory();
+renderReports();
+runValidate();
+
+})();
+</script>
+<script type="text/javascript">
+	var sc_project_id = 100000000;
+	var sc_invisible = 1;
+	var sc_security = "0000000";
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+
+</body>
+</html>
