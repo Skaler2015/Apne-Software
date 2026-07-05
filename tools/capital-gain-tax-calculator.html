@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Free Capital Gain Tax Calculator for India (FY 2023-24 to FY 2026-27) — instant STCG and LTCG tax for property, shares, mutual funds, gold and other assets, with Cost Inflation Index, the July 2024 Budget rate changes, Section 54/54EC/54F/54B/54D/54GB exemptions, Surcharge and Cess. 100% private, browser-only, no AI.">
+<meta name="keywords" content="capital gain tax calculator India, LTCG calculator, STCG calculator, indexed cost calculator, cost inflation index FY 2025-26, section 54EC exemption, capital gain on property sale, capital gain on shares mutual funds gold">
+<link rel="canonical" href="https://apnesoftware.com/tools/capital-gain-tax-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Capital Gain Tax Calculator (STCG &amp; LTCG, India) | ApneSoftware">
+<meta property="og:description" content="Calculate Short-Term and Long-Term Capital Gain Tax instantly for property, shares, mutual funds and gold. Free, private, browser-only.">
+<meta property="og:url" content="https://apnesoftware.com/tools/capital-gain-tax-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Capital Gain Tax Calculator (STCG &amp; LTCG, India) | ApneSoftware">
+<meta name="twitter:description" content="STCG and LTCG tax with indexation, exemptions, Surcharge and Cess — instant, free, private, browser-only.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Capital Gain Tax Calculator","description":"Professional in-browser Capital Gain Tax Calculator for India computing Short-Term and Long-Term Capital Gain tax for property, shares, mutual funds, gold and other assets, with Cost Inflation Index, the July 2024 Budget rate changes, Section 54/54EC/54F/54B/54D/54GB exemptions, Surcharge and Health & Education Cess.","url":"https://apnesoftware.com/tools/capital-gain-tax-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Asset-wise holding period classification (STCG/LTCG)","Cost Inflation Index (CII) indexed cost computation","Latest STCG/LTCG rates including the July 2024 Budget changes","Section 54, 54EC, 54F, 54B, 54D and 54GB exemptions","Surcharge with Marginal Relief and 15% cap, plus 4% Cess","Export to PDF, Excel, CSV, print, copy and share"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Capital Gain Tax Calculator","url":"https://apnesoftware.com/tools/capital-gain-tax-calculator.html","description":"Browser-based Capital Gain Tax Calculator for India computing STCG and LTCG tax with indexation and exemptions.","inLanguage":["en","hi"],"isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".tool-header p"]}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"Calculators & Converters","item":"https://apnesoftware.com/index.html#cat-calculator"},{"@type":"ListItem","position":3,"name":"Capital Gain Tax Calculator","item":"https://apnesoftware.com/tools/capital-gain-tax-calculator.html"}]}
+</script>
+<meta name="color-scheme" content="dark light">
+<title>Capital Gain Tax Calculator (STCG &amp; LTCG, India) | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* ===== Capital Gain Tax Calculator — scoped cg- prefix ===== */
+
+  .cg-num, .cg-content .num, .cg-stat-cards .num, .cg-engine-row span:last-child,
+  .cg-content table td, .cg-content table th, .cg-formula-box, .cg-history-item .cg-amt{
+    white-space:nowrap; word-break:keep-all; overflow-wrap:normal;
+    font-variant-numeric: tabular-nums; font-feature-settings:"tnum" 1;
+  }
+
+  .cg-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;align-items:start}
+  #cg-formSide,#cg-resultSide{min-width:0}
+  #cg-resultSide{position:sticky;top:16px}
+  @media(max-width:900px){ .cg-grid{grid-template-columns:1fr} #cg-resultSide{position:static} }
+
+  .cg-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .cg-tab{padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.82rem;font-weight:600;font-family:inherit}
+  .cg-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .cg-pane{display:none}
+  .cg-pane.active{display:block}
+
+  .cg-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;backdrop-filter:blur(10px);
+    transition:transform .18s ease, box-shadow .18s ease}
+  .cg-card:hover{box-shadow:0 10px 30px rgba(124,92,252,.12)}
+  .cg-card h3{margin:0 0 10px;font-size:.95rem}
+  .cg-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:10px}
+  .cg-field label{display:block;font-size:.76rem;color:var(--text-dim);margin-bottom:4px}
+  .cg-field input,.cg-field select{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.88rem;transition:border-color .15s ease, box-shadow .15s ease}
+  .cg-field input:focus,.cg-field select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,252,.2)}
+  .cg-note{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.3);border-radius:10px;padding:10px 12px;font-size:.8rem;color:#fde68a;margin-top:10px}
+  .cg-err{display:none;color:#fca5a5;font-size:.78rem;margin-top:6px}
+
+  .cg-stat-cards{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .cg-stat-cards .stat-box{flex:1;min-width:150px}
+  .cg-stat-cards .stat-box.cg-highlight{background:linear-gradient(135deg,rgba(124,92,252,.25),rgba(22,192,121,.18));border:1px solid var(--accent)}
+  .cg-stat-cards .stat-box.cg-refund{background:linear-gradient(135deg,rgba(22,192,121,.28),rgba(56,189,248,.16));border:1px solid #16C079}
+
+  .cg-engine-box{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:10px 0}
+  .cg-engine-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--border);font-size:.86rem;gap:10px}
+  .cg-engine-row:last-child{border-bottom:none}
+  .cg-engine-row span:last-child{font-weight:700;color:var(--accent)}
+
+  .cg-steps{display:flex;flex-direction:column;gap:4px;margin:10px 0}
+  .cg-step{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:.84rem;text-align:center}
+  .cg-step-arrow{text-align:center;color:var(--text-dim);font-size:.9rem}
+
+  .cg-formula-box{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px;font-family:'Consolas','Courier New',monospace;font-size:.8rem;white-space:pre-wrap;margin-top:10px}
+
+  .cg-chart-wrap{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px;margin-top:12px}
+  .cg-chart-wrap h4{font-size:.82rem;color:var(--text-dim);font-weight:600;margin-bottom:8px}
+  .cg-chart-wrap canvas{width:100%;height:auto;display:block}
+  .cg-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:.76rem;color:var(--text-dim)}
+  .cg-legend span{display:inline-flex;align-items:center;gap:5px}
+  .cg-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+  .cg-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .cg-flag{padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600;border:1px solid var(--border)}
+  .cg-flag.ok{background:rgba(22,192,121,.15);color:#7ef0bd;border-color:rgba(22,192,121,.4)}
+  .cg-flag.warn{background:rgba(248,113,113,.15);color:#fca5a5;border-color:rgba(248,113,113,.4)}
+  .cg-flag.neutral{background:var(--surface-2);color:var(--text-dim)}
+  .cg-muted{color:var(--text-dim);font-size:.8rem;margin-top:6px}
+
+  .cg-history-item{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);margin-bottom:6px;font-size:.84rem}
+  .cg-share-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .cg-share-btn{padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);cursor:pointer;font-size:.8rem;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:transform .15s ease, background .15s ease}
+  .cg-share-btn:hover{transform:translateY(-2px);background:var(--surface)}
+
+  .btn.cg-gradient{background:linear-gradient(135deg,#7C5CFC,#16C079);border:none;box-shadow:0 6px 20px rgba(124,92,252,.35);transition:transform .15s ease, box-shadow .15s ease}
+  .btn.cg-gradient:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.5)}
+
+  #cg-stickyCalc{display:none}
+  @media(max-width:760px){
+    #cg-stickyCalc{
+      display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 14px;
+      background:linear-gradient(180deg,rgba(15,10,30,0),rgba(15,10,30,.96) 30%);
+      justify-content:center;
+    }
+    #cg-stickyCalc button{width:100%;max-width:420px;padding:13px 18px;font-size:.95rem;border-radius:999px}
+    body{padding-bottom:70px}
+  }
+
+  body.cg-large-font #cg-formSide,body.cg-large-font #cg-resultSide{font-size:1.1rem}
+  body.cg-high-contrast{filter:contrast(1.2) brightness(1.06)}
+
+  /* ===== Light mode — scoped strictly to the tool's own content ===== */
+  body.cg-light :is(.container,.cg-content){
+    --bg:#f4f2fb; --surface:#ffffff; --surface-2:#efeaf9; --border:rgba(20,10,45,.14); --border-strong:rgba(20,10,45,.24);
+    --text:#1c1533; --text-dim:rgba(28,21,51,.68);
+  }
+  body.cg-light .container,
+  body.cg-light .cg-content{
+    background:#f4f2fb; border-radius:18px; padding:20px 22px; box-shadow:0 8px 32px rgba(20,10,45,.12);
+  }
+  body.cg-light :is(.container,.cg-content) h1,
+  body.cg-light :is(.container,.cg-content) h2,
+  body.cg-light :is(.container,.cg-content) h3,
+  body.cg-light :is(.container,.cg-content) h4,
+  body.cg-light :is(.container,.cg-content) h5,
+  body.cg-light :is(.container,.cg-content) h6{color:var(--text)}
+  body.cg-light :is(.container,.cg-content) p{color:var(--text-dim)}
+  body.cg-light :is(.container,.cg-content) label{color:var(--text-dim)}
+  body.cg-light :is(.container,.cg-content) textarea,
+  body.cg-light :is(.container,.cg-content) input[type=text],
+  body.cg-light :is(.container,.cg-content) input[type=number],
+  body.cg-light :is(.container,.cg-content) input[type=date],
+  body.cg-light :is(.container,.cg-content) select{
+    background:#ffffff;border:1px solid rgba(20,10,45,.2);color:var(--text)
+  }
+  body.cg-light :is(.container,.cg-content) select option{background:#ffffff;color:var(--text)}
+  body.cg-light :is(.container,.cg-content) .panel{background:#ffffff!important;border:1px solid rgba(20,10,45,.1)!important;box-shadow:0 8px 28px rgba(20,10,45,.08)!important}
+  body.cg-light :is(.container,.cg-content) table th{background:rgba(20,10,45,.06);color:var(--text)}
+  body.cg-light :is(.container,.cg-content) table td{color:var(--text-dim);border-color:rgba(20,10,45,.1)}
+  body.cg-light :is(.container,.cg-content) .cg-tab{color:var(--text-dim)}
+  body.cg-light :is(.container,.cg-content) .cg-tab.active{color:#fff}
+  body.cg-light :is(.container,.cg-content) .btn.secondary{background:var(--surface-2);border-color:var(--border);color:var(--text)}
+
+  .related-grid a .ri{margin-right:6px}
+  .cg-content h2{font-size:1.15rem;margin:26px 0 10px}
+  .cg-content h3{font-size:1rem;margin:18px 0 8px}
+  .cg-content p,.cg-content li{font-size:.92rem;line-height:1.8}
+  .cg-content ul,.cg-content ol{padding-left:20px}
+  .cg-content table{width:100%;border-collapse:collapse;font-size:.86rem;margin:12px 0}
+  .cg-content table th,.cg-content table td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  .cg-content table th{color:#c4b5fd}
+
+  .cg-faq-item{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+  .cg-faq-item strong{color:#c4b5fd}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="cg-muted" style="margin-bottom:10px" aria-label="Breadcrumb">
+    <a href="../index.html" style="color:#c4b5fd;text-decoration:none">Home</a> ›
+    <a href="../index.html#cat-calculator" style="color:#c4b5fd;text-decoration:none">Calculators &amp; Converters</a> ›
+    Capital Gain Tax Calculator
+  </nav>
+
+  <div class="tool-header">
+    <h1>📈 Capital Gain Tax Calculator</h1>
+    <p>Calculate Short-Term and Long-Term Capital Gain Tax instantly for property, shares, mutual funds, gold, and other capital assets under the latest Indian Income Tax Rules.</p>
+
+    <div class="cg-row" style="margin-top:14px">
+      <div class="cg-field">
+        <label for="cg-language">Language / भाषा</label>
+        <select id="cg-language"><option value="en">English</option><option value="hi">हिन्दी</option></select>
+      </div>
+      <div class="cg-field">
+        <label for="cg-theme">Theme</label>
+        <select id="cg-theme"><option value="dark">🌙 Dark</option><option value="light">☀️ Light</option></select>
+      </div>
+      <div class="cg-field">
+        <label for="cg-fy">Financial Year</label>
+        <select id="cg-fy">
+          <option value="2026-27">FY 2026-27</option>
+          <option value="2025-26" selected>FY 2025-26</option>
+          <option value="2024-25">FY 2024-25</option>
+          <option value="2023-24">FY 2023-24</option>
+        </select>
+      </div>
+      <div class="cg-field">
+        <label for="cg-ay">Assessment Year (Auto)</label>
+        <input type="text" id="cg-ay" readonly>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn cg-gradient" id="cg-calcBtn" type="button">🧮 Calculate</button>
+      <button class="btn secondary" id="cg-resetBtn" type="button">↺ Reset</button>
+      <button class="btn secondary" id="cg-printBtn" type="button">🖨️ Print</button>
+      <button class="btn secondary" id="cg-pdfBtn" type="button">📄 Download PDF</button>
+      <button class="btn secondary" id="cg-xlsxBtn" type="button">📊 Download Excel</button>
+      <button class="btn secondary" id="cg-csvBtn" type="button">📁 Download CSV</button>
+      <button class="btn secondary" id="cg-copyBtn" type="button">📋 Copy Results</button>
+    </div>
+    <div class="cg-share-row">
+      <a class="cg-share-btn" id="cg-shareWhatsapp" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a class="cg-share-btn" id="cg-shareFacebook" href="#" target="_blank" rel="noopener">📘 Facebook</a>
+      <a class="cg-share-btn" id="cg-shareLinkedin" href="#" target="_blank" rel="noopener">💼 LinkedIn</a>
+      <a class="cg-share-btn" id="cg-shareTwitter" href="#" target="_blank" rel="noopener">🐦 X</a>
+      <button class="cg-share-btn" id="cg-copyLinkBtn" type="button">🔗 Copy Link</button>
+    </div>
+    <div id="cg-statusMsg" class="cg-muted" role="status" aria-live="polite"></div>
+  </div>
+
+  <div class="cg-grid">
+    <div id="cg-formSide">
+      <div class="panel">
+        <div class="cg-tabs" role="tablist">
+          <button class="cg-tab active" id="cg-tabAsset" role="tab" aria-selected="true">📋 Asset &amp; Dates</button>
+          <button class="cg-tab" id="cg-tabCost" role="tab" aria-selected="false">💰 Cost &amp; Sale</button>
+          <button class="cg-tab" id="cg-tabExemption" role="tab" aria-selected="false">🧾 Exemptions</button>
+          <button class="cg-tab" id="cg-tabHistory" role="tab" aria-selected="false">🕘 History</button>
+          <button class="cg-tab" id="cg-tabSettings" role="tab" aria-selected="false">⚙️ Settings</button>
+        </div>
+
+        <!-- ===== Tab: Asset & Dates ===== -->
+        <div class="cg-pane active" id="cg-paneAsset">
+          <div class="cg-card">
+            <h3>👤 Taxpayer Profile</h3>
+            <div class="cg-row">
+              <div class="cg-field">
+                <label for="cg-taxpayerType">Taxpayer Type</label>
+                <select id="cg-taxpayerType">
+                  <option value="individual">Individual</option>
+                  <option value="huf">HUF</option>
+                  <option value="aop">AOP</option>
+                  <option value="boi">BOI</option>
+                  <option value="firm">Firm</option>
+                  <option value="llp">LLP</option>
+                  <option value="domesticCompany">Domestic Company</option>
+                  <option value="foreignCompany">Foreign Company</option>
+                  <option value="coOperativeSociety">Co-operative Society</option>
+                  <option value="localAuthority">Local Authority</option>
+                </select>
+              </div>
+              <div class="cg-field">
+                <label for="cg-residentialStatus">Residential Status</label>
+                <select id="cg-residentialStatus">
+                  <option value="resident">Resident</option>
+                  <option value="rnor">Resident but Not Ordinarily Resident (RNOR)</option>
+                  <option value="nonResident">Non-Resident</option>
+                </select>
+              </div>
+              <div class="cg-field">
+                <label for="cg-regime">Tax Regime</label>
+                <select id="cg-regime">
+                  <option value="new">New Regime</option>
+                  <option value="old">Old Regime</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="cg-card">
+            <h3>🏷️ Asset &amp; Holding Period</h3>
+            <div class="cg-row">
+              <div class="cg-field">
+                <label for="cg-assetType">Asset Type</label>
+                <select id="cg-assetType">
+                  <option value="listedEquityShares">Listed Equity Shares</option>
+                  <option value="equityMutualFund">Equity Mutual Fund</option>
+                  <option value="unlistedShares">Unlisted Shares</option>
+                  <option value="immovableProperty" selected>Immovable Property (Land/Building)</option>
+                  <option value="debtMutualFund">Debt Mutual Fund</option>
+                  <option value="goldAndOthers">Gold / Other Capital Assets</option>
+                </select>
+              </div>
+              <div class="cg-field"><label for="cg-purchaseDate">Purchase Date</label><input type="date" id="cg-purchaseDate" value="2020-04-15" required></div>
+              <div class="cg-field"><label for="cg-saleDate">Sale Date</label><input type="date" id="cg-saleDate" value="2025-09-20" required></div>
+            </div>
+            <div class="cg-err" id="cg-dateErr">Sale Date must be a valid date later than Purchase Date, and both are required.</div>
+            <div class="cg-engine-box"><div class="cg-engine-row"><span>Holding Period (Auto)</span><span id="cg-holdingDisplay">—</span></div><div class="cg-engine-row"><span>Gain Type (Auto)</span><span id="cg-gainTypeDisplay">—</span></div></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Cost & Sale ===== -->
+        <div class="cg-pane" id="cg-paneCost">
+          <div class="cg-card">
+            <h3>💵 Purchase &amp; Sale Values</h3>
+            <div class="cg-row">
+              <div class="cg-field"><label for="cg-purchasePrice">Purchase Price</label><input type="number" id="cg-purchasePrice" min="0" value="2000000" required></div>
+              <div class="cg-field"><label for="cg-salePrice">Sale Price</label><input type="number" id="cg-salePrice" min="0" value="6000000" required></div>
+              <div class="cg-field"><label for="cg-purchaseExpenses">Purchase Expenses</label><input type="number" id="cg-purchaseExpenses" min="0" value="0"></div>
+              <div class="cg-field"><label for="cg-saleExpenses">Sale Expenses</label><input type="number" id="cg-saleExpenses" min="0" value="0"></div>
+              <div class="cg-field"><label for="cg-improvementCost">Improvement Cost</label><input type="number" id="cg-improvementCost" min="0" value="0"></div>
+              <div class="cg-field"><label for="cg-otherTaxableIncome">Other Taxable Income</label><input type="number" id="cg-otherTaxableIncome" min="0" value="0"></div>
+            </div>
+            <div class="cg-err" id="cg-requiredErr">Purchase Price and Sale Price are required and cannot be empty.</div>
+            <div class="cg-err" id="cg-negErr">Values cannot be negative or invalid.</div>
+            <div class="cg-engine-box">
+              <div class="cg-engine-row"><span>Cost Inflation Index (Auto)</span><span id="cg-ciiDisplay">—</span></div>
+              <div class="cg-engine-row"><span>Indexed Cost (Auto)</span><span id="cg-indexedCostDisplay">—</span></div>
+            </div>
+            <p class="cg-muted">Other Taxable Income is used only to determine your marginal tax slab and Surcharge threshold — the Income Tax shown is the tax attributable to this Capital Gain alone.</p>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Exemptions ===== -->
+        <div class="cg-pane" id="cg-paneExemption">
+          <div class="cg-card">
+            <h3>🧾 Section 54-Series Exemptions (Long-Term Gains Only)</h3>
+            <div class="cg-row">
+              <div class="cg-field"><label for="cg-exemption54">Exemption u/s 54</label><input type="number" id="cg-exemption54" min="0" value="0"></div>
+              <div class="cg-field"><label for="cg-exemption54EC">Exemption u/s 54EC</label><input type="number" id="cg-exemption54EC" min="0" value="0"></div>
+              <div class="cg-field"><label for="cg-exemption54F">Exemption u/s 54F</label><input type="number" id="cg-exemption54F" min="0" value="0"></div>
+              <div class="cg-field"><label for="cg-exemption54B">Exemption u/s 54B</label><input type="number" id="cg-exemption54B" min="0" value="0"></div>
+              <div class="cg-field"><label for="cg-exemption54D">Exemption u/s 54D</label><input type="number" id="cg-exemption54D" min="0" value="0"></div>
+              <div class="cg-field"><label for="cg-exemption54GB">Exemption u/s 54GB</label><input type="number" id="cg-exemption54GB" min="0" value="0"></div>
+            </div>
+            <p class="cg-muted">Sections 54, 54EC, 54F, 54B, 54D and 54GB are long-term reinvestment reliefs and apply only to Long-Term Capital Gain — they are ignored automatically if this sale classifies as Short-Term.</p>
+          </div>
+        </div>
+
+        <!-- ===== Tab: History ===== -->
+        <div class="cg-pane" id="cg-paneHistory">
+          <div class="cg-card">
+            <h3>🕘 Calculation History</h3>
+            <div class="btn-row" style="margin-bottom:10px">
+              <button class="btn secondary" id="cg-clearHistoryBtn" type="button">🗑️ Clear History</button>
+            </div>
+            <div id="cg-historyList"></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Settings ===== -->
+        <div class="cg-pane" id="cg-paneSettings">
+          <div class="cg-card">
+            <h3>⚙️ Accessibility Preferences</h3>
+            <div class="cg-row">
+              <div class="cg-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="cg-highContrast" style="width:auto"> High Contrast</label></div>
+              <div class="cg-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="cg-largeFont" style="width:auto"> Large Fonts</label></div>
+            </div>
+            <p class="cg-muted">Preferences are remembered in this browser for your next visit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="cg-resultSide">
+      <div class="panel">
+        <h3 style="margin:0 0 10px;font-size:1rem">📊 Capital Gain Summary</h3>
+        <div class="cg-stat-cards" id="cg-summaryCards"></div>
+        <div class="cg-flags" id="cg-resultFlags"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🧠 Applicable Rule</h3>
+        <div class="cg-engine-box" id="cg-slabBox"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🧮 Calculation Steps</h3>
+        <div class="cg-steps" id="cg-stepsBox"></div>
+        <div class="cg-formula-box" id="cg-formulaBox"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">📋 Detailed Breakdown</h3>
+        <table id="cg-breakdownTable"><tbody></tbody></table>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">📊 Charts</h3>
+        <div class="cg-chart-wrap"><h4>Cost vs Gain vs Tax</h4><canvas id="cg-chartComposition" width="500" height="220"></canvas><div class="cg-legend" id="cg-legendComposition"></div></div>
+        <div class="cg-chart-wrap"><h4>Capital Gain vs Total Tax vs Net Gain</h4><canvas id="cg-chartPayable" width="500" height="220"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-top:16px">
+    <h3 style="margin:0 0 10px;font-size:1rem">📚 Reference Tables</h3>
+    <h4 style="font-size:.9rem;margin:10px 0 6px">Asset-wise Holding Period (STCG vs LTCG threshold)</h4>
+    <table>
+      <tr><th>Asset Type</th><th>Short-Term (STCG) if held</th><th>Long-Term (LTCG) if held</th></tr>
+      <tr><td>Listed Equity Shares / Equity Mutual Fund</td><td>12 months or less</td><td>More than 12 months</td></tr>
+      <tr><td>Unlisted Shares</td><td>24 months or less</td><td>More than 24 months</td></tr>
+      <tr><td>Immovable Property (Land/Building)</td><td>24 months or less</td><td>More than 24 months</td></tr>
+      <tr><td>Debt Mutual Fund (acquired on/after 1 Apr 2023)</td><td>Always STCG (Section 50AA)</td><td>Not applicable</td></tr>
+      <tr><td>Gold / Other Capital Assets</td><td>36 months or less</td><td>More than 36 months</td></tr>
+    </table>
+    <h4 style="font-size:.9rem;margin:14px 0 6px">Capital Gain Tax Rate Table (Individuals)</h4>
+    <table>
+      <tr><th>Gain Type</th><th>Before 23 Jul 2024</th><th>On/After 23 Jul 2024</th></tr>
+      <tr><td>STCG — Listed Equity / Equity MF (Sec 111A)</td><td>15%</td><td>20%</td></tr>
+      <tr><td>STCG — Other Assets</td><td colspan="2">Taxed at your applicable slab rate</td></tr>
+      <tr><td>LTCG — Listed Equity / Equity MF (Sec 112A)</td><td>10% above ₹1,00,000 exemption</td><td>12.5% above ₹1,25,000 exemption</td></tr>
+      <tr><td>LTCG — Property / Unlisted Shares / Gold / Others</td><td>20% with indexation</td><td>12.5% without indexation (property gets a one-time lower-of-both option if acquired before 23 Jul 2024)</td></tr>
+    </table>
+    <h4 style="font-size:.9rem;margin:14px 0 6px">Cost Inflation Index (CII) — Financial Year-wise</h4>
+    <div style="overflow-x:auto">
+    <table>
+      <tr><th>FY</th><th>CII</th><th>FY</th><th>CII</th></tr>
+      <tr><td>2001-02</td><td>100</td><td>2014-15</td><td>240</td></tr>
+      <tr><td>2002-03</td><td>105</td><td>2015-16</td><td>254</td></tr>
+      <tr><td>2003-04</td><td>109</td><td>2016-17</td><td>264</td></tr>
+      <tr><td>2004-05</td><td>113</td><td>2017-18</td><td>272</td></tr>
+      <tr><td>2005-06</td><td>117</td><td>2018-19</td><td>280</td></tr>
+      <tr><td>2006-07</td><td>122</td><td>2019-20</td><td>289</td></tr>
+      <tr><td>2007-08</td><td>129</td><td>2020-21</td><td>301</td></tr>
+      <tr><td>2008-09</td><td>137</td><td>2021-22</td><td>317</td></tr>
+      <tr><td>2009-10</td><td>148</td><td>2022-23</td><td>331</td></tr>
+      <tr><td>2010-11</td><td>167</td><td>2023-24</td><td>348</td></tr>
+      <tr><td>2011-12</td><td>184</td><td>2024-25</td><td>363</td></tr>
+      <tr><td>2012-13</td><td>200</td><td>2025-26*</td><td>376</td></tr>
+      <tr><td>2013-14</td><td>220</td><td>2026-27*</td><td>391</td></tr>
+    </table>
+    </div>
+    <p class="cg-muted" style="font-size:.8rem">*FY 2025-26 and FY 2026-27 CII values are reasonable estimates pending official CBDT notification, shown honestly rather than presented as confirmed — indexation is in any case moot for assets sold on/after 23 July 2024, except the one-time transitional option for land/building acquired before that date.</p>
+  </div>
+</div>
+
+<div class="cg-content">
+
+<h2>1. Related Tools</h2>
+<div class="related-grid">
+  <a href="income-tax-calculator.html"><span class="ri">💰</span> Income Tax Calculator</a>
+  <a href="surcharge-calculator.html"><span class="ri">📈</span> Surcharge Calculator</a>
+  <a href="health-education-cess-calculator.html"><span class="ri">❤️‍🩹</span> Health &amp; Education Cess Calculator</a>
+  <a href="tds-calculator.html"><span class="ri">🧾</span> TDS Calculator</a>
+  <a href="tcs-calculator.html"><span class="ri">🧾</span> TCS Calculator</a>
+  <a href="advance-tax-calculator.html"><span class="ri">🧾</span> Advance Tax Calculator</a>
+  <a href="salary-calculator.html"><span class="ri">💼</span> Salary Calculator</a>
+  <a href="hra-calculator.html"><span class="ri">🏠</span> HRA Calculator</a>
+  <a href="gratuity-calculator.html"><span class="ri">🎁</span> Gratuity Calculator</a>
+  <a href="pf-calculator.html"><span class="ri">🏦</span> PF Calculator</a>
+</div>
+
+<h2>2. About This Tool | इस टूल के बारे में</h2>
+
+<p>यह टूल संपत्ति, शेयर, म्यूचुअल फंड, सोना तथा अन्य Capital Assets की बिक्री पर Short-Term एवं Long-Term Capital Gain Tax की सटीक गणना करता है। | This tool accurately calculates Short-Term and Long-Term Capital Gain Tax on the sale of property, shares, mutual funds, gold, and other capital assets.</p>
+
+<p>यह कैलकुलेटर आपकी Purchase Date और Sale Date के आधार पर स्वतः यह तय करता है कि आपका लाभ Short-Term (STCG) है या Long-Term (LTCG), क्योंकि हर Asset Type के लिए Holding Period की सीमा अलग-अलग होती है। | This calculator automatically determines whether your gain is Short-Term (STCG) or Long-Term (LTCG) based on your Purchase Date and Sale Date, since the Holding Period threshold differs for every Asset Type.</p>
+
+<p>Listed Equity Shares और Equity Mutual Funds के लिए यह सीमा 12 महीने है, Unlisted Shares और Immovable Property के लिए 24 महीने, तथा Gold और अन्य Capital Assets के लिए 36 महीने है। | The threshold is 12 months for Listed Equity Shares and Equity Mutual Funds, 24 months for Unlisted Shares and Immovable Property, and 36 months for Gold and other Capital Assets.</p>
+
+<p>Debt Mutual Funds के लिए एक विशेष नियम है — Section 50AA के तहत, 1 अप्रैल 2023 या उसके बाद खरीदी गई यूनिट्स को Holding Period की परवाह किए बिना हमेशा Short-Term Capital Gain माना जाता है। | Debt Mutual Funds follow a special rule — under Section 50AA, units acquired on or after 1 April 2023 are always treated as Short-Term Capital Gain regardless of the actual Holding Period.</p>
+
+<p>Union Budget 2024 (23 जुलाई 2024 से प्रभावी) ने महत्वपूर्ण बदलाव किए: Equity STCG की दर 15% से बढ़ाकर 20% कर दी गई, Equity LTCG की दर 10% से बढ़ाकर 12.5% कर दी गई, और LTCG छूट सीमा ₹1,00,000 से बढ़ाकर ₹1,25,000 प्रति वर्ष कर दी गई। | The Union Budget 2024 (effective 23 July 2024) made significant changes: the Equity STCG rate was raised from 15% to 20%, the Equity LTCG rate was raised from 10% to 12.5%, and the LTCG exemption threshold was raised from ₹1,00,000 to ₹1,25,000 per year.</p>
+
+<p>23 जुलाई 2024 के बाद बेची गई अधिकांश गैर-Equity संपत्तियों के लिए Indexation लाभ हटा दिया गया और एक समान 12.5% की सपाट दर लागू की गई, हालांकि 23 जुलाई 2024 से पहले खरीदी गई Land या Building के लिए एक बार का Transitional विकल्प दिया गया है — जिसमें Taxpayer 12.5% (बिना Indexation) या 20% (Indexation सहित) में से जो भी कम कर हो, उसे चुन सकता है। | Indexation benefit was removed for most non-equity assets sold after 23 July 2024, replaced with a uniform flat 12.5% rate, though land or building acquired before 23 July 2024 gets a one-time transitional option — the taxpayer can choose whichever is lower between 12.5% (without indexation) and 20% (with indexation).</p>
+
+<p>Indexed Cost की गणना Cost Inflation Index (CII) का उपयोग करके की जाती है — जो खरीद और बिक्री के वित्तीय वर्ष के CII मान के अनुपात में मूल लागत को समायोजित करता है, ताकि महंगाई के प्रभाव को ध्यान में रखा जा सके। | Indexed Cost is computed using the Cost Inflation Index (CII) — which adjusts the original cost in proportion to the CII values of the purchase and sale financial years, accounting for the effect of inflation.</p>
+
+<p>Sections 54, 54EC, 54F, 54B, 54D और 54GB के तहत छूट केवल Long-Term Capital Gain पर लागू होती है, क्योंकि ये सभी पुनर्निवेश-आधारित राहतें हैं — यदि आपकी बिक्री Short-Term वर्गीकृत होती है, तो ये स्वतः अनदेखी कर दी जाती हैं। | Exemptions under Sections 54, 54EC, 54F, 54B, 54D and 54GB apply only to Long-Term Capital Gain, since they are all reinvestment-based reliefs — they are automatically ignored if your sale is classified as Short-Term.</p>
+
+<p>Surcharge की गणना आपकी कुल आय (Other Taxable Income जमा Taxable Capital Gain) के आधार पर की जाती है, जिसमें Marginal Relief तथा निर्दिष्ट Capital Gains के लिए 15% की सीमा दोनों शामिल हैं। | Surcharge is computed based on your total income (Other Taxable Income plus Taxable Capital Gain), incorporating both Marginal Relief and the 15% cap applicable to specified Capital Gains.</p>
+
+<p>गैर-Equity संपत्तियों पर Short-Term Capital Gain को आपकी Other Taxable Income के साथ जोड़कर आपकी वास्तविक Tax Slab दर पर कर लगाया जाता है, न कि किसी फ्लैट दर पर। | Short-Term Capital Gain on non-equity assets is taxed at your actual marginal Tax Slab rate — stacked on top of your Other Taxable Income — rather than at any flat rate.</p>
+
+<p>Net Gain After Tax, आपके वास्तविक Capital Gain में से Total Tax Liability (Income Tax, Surcharge और Cess सहित) घटाकर प्राप्त की जाती है। | Net Gain After Tax is derived by subtracting the Total Tax Liability (including Income Tax, Surcharge and Cess) from your actual Capital Gain.</p>
+
+<p>अपने परिणाम को PDF, Excel या CSV के रूप में डाउनलोड करें, सीधे प्रिंट करें, या WhatsApp, Facebook, LinkedIn, X और Copy Link के माध्यम से तुरंत साझा करें। | Download your result as PDF, Excel or CSV, print it directly, or share it instantly via WhatsApp, Facebook, LinkedIn, X and Copy Link.</p>
+
+<p>हर गणना पूरी तरह आपके ब्राउज़र के भीतर होती है — कोई भी संपत्ति या कर संबंधी जानकारी कभी किसी सर्वर पर अपलोड नहीं की जाती, और यह टूल किसी भी AI-आधारित सुविधा का उपयोग नहीं करता। | Every calculation runs entirely within your browser — no asset or tax-related data is ever uploaded to a server, and this tool does not use any AI-powered features.</p>
+
+<h2>3. Frequently Asked Questions | अक्सर पूछे जाने वाले प्रश्न</h2>
+<div class="cg-faq" id="cgFaq">
+
+<div class="cg-faq-item"><p><strong>Q. What is Capital Gain Tax? | Capital Gain Tax क्या है?</strong><br>Tax levied on the profit earned from selling a capital asset like property, shares, mutual funds or gold. | संपत्ति, शेयर, म्यूचुअल फंड या सोने जैसी capital asset बेचने से हुए लाभ पर लगाया जाने वाला कर।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. What is the difference between STCG and LTCG? | STCG और LTCG में क्या अंतर है?</strong><br>STCG applies to assets held for a short period, LTCG to assets held longer than the asset-specific threshold. | STCG कम अवधि तक रखी गई संपत्तियों पर लागू होता है, LTCG asset-विशिष्ट सीमा से अधिक समय तक रखने पर।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. What is the holding period for equity shares? | Equity shares के लिए holding period क्या है?</strong><br>12 months — held longer is LTCG, 12 months or less is STCG. | 12 महीने — इससे अधिक रखने पर LTCG, 12 महीने या कम पर STCG।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. What is the holding period for property? | संपत्ति के लिए holding period क्या है?</strong><br>24 months — held longer is LTCG, 24 months or less is STCG. | 24 महीने — इससे अधिक रखने पर LTCG, 24 महीने या कम पर STCG।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. What is the holding period for gold? | सोने के लिए holding period क्या है?</strong><br>36 months — held longer is LTCG, 36 months or less is STCG. | 36 महीने — इससे अधिक रखने पर LTCG, 36 महीने या कम पर STCG।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. What is the STCG tax rate on equity shares? | Equity shares पर STCG दर क्या है?</strong><br>20% on/after 23 July 2024, previously 15% under Section 111A. | 23 जुलाई 2024 से 20%, पहले Section 111A के तहत 15%।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. What is the LTCG tax rate on equity shares? | Equity shares पर LTCG दर क्या है?</strong><br>12.5% above a ₹1,25,000 exemption on/after 23 July 2024, previously 10% above ₹1,00,000. | 23 जुलाई 2024 से ₹1,25,000 की छूट से ऊपर 12.5%, पहले ₹1,00,000 से ऊपर 10%।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. Is indexation still available? | क्या Indexation अभी भी उपलब्ध है?</strong><br>Not for assets sold on/after 23 July 2024, except a one-time transitional option for land/building acquired before that date. | 23 जुलाई 2024 के बाद बेची गई संपत्तियों के लिए नहीं, सिवाय उस तारीख से पहले खरीदी गई land/building के लिए एक बार के transitional विकल्प के।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. What is Cost Inflation Index (CII)? | Cost Inflation Index (CII) क्या है?</strong><br>A CBDT-notified index used to adjust the original cost for inflation when computing Indexed Cost. | CBDT द्वारा अधिसूचित एक index, जो Indexed Cost की गणना करते समय मूल लागत को महंगाई के अनुसार समायोजित करने के लिए उपयोग होता है।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. How is Indexed Cost calculated? | Indexed Cost की गणना कैसे होती है?</strong><br>Original cost multiplied by the ratio of the sale year's CII to the purchase year's CII. | मूल लागत को बिक्री वर्ष के CII और खरीद वर्ष के CII के अनुपात से गुणा करके।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. What is Section 50AA for debt mutual funds? | Debt mutual funds के लिए Section 50AA क्या है?</strong><br>Units acquired on/after 1 April 2023 are always taxed as STCG at slab rates, regardless of holding period. | 1 अप्रैल 2023 या उसके बाद खरीदी गई units हमेशा STCG के रूप में slab दरों पर कर योग्य होती हैं, holding period चाहे जो भी हो।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. What is Section 54 exemption? | Section 54 छूट क्या है?</strong><br>Exemption on LTCG from selling a residential house, if the gain is reinvested in another residential house. | आवासीय मकान बेचने पर LTCG में छूट, यदि लाभ किसी अन्य आवासीय मकान में पुनर्निवेशित किया जाए।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. What is Section 54EC exemption? | Section 54EC छूट क्या है?</strong><br>Exemption on LTCG from land/building by investing in specified capital gain bonds within 6 months. | Land/building से LTCG में छूट, यदि 6 महीने के भीतर निर्दिष्ट capital gain bonds में निवेश किया जाए।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. What is Section 54F exemption? | Section 54F छूट क्या है?</strong><br>Exemption on LTCG from any asset (other than a house) by investing the net sale proceeds in a residential house. | किसी भी asset (मकान को छोड़कर) से LTCG में छूट, यदि शुद्ध बिक्री राशि आवासीय मकान में निवेशित की जाए।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. What is Section 54B exemption? | Section 54B छूट क्या है?</strong><br>Exemption on capital gain from selling agricultural land by reinvesting in another agricultural land. | कृषि भूमि बेचने से capital gain में छूट, यदि दूसरी कृषि भूमि में पुनर्निवेश किया जाए।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. What is Section 54D exemption? | Section 54D छूट क्या है?</strong><br>Exemption on capital gain from compulsory acquisition of industrial land/building, if reinvested. | औद्योगिक भूमि/भवन के अनिवार्य अधिग्रहण से capital gain में छूट, यदि पुनर्निवेश किया जाए।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. What is Section 54GB exemption? | Section 54GB छूट क्या है?</strong><br>Exemption on LTCG from a residential property by investing in shares of an eligible start-up company. | आवासीय संपत्ति से LTCG में छूट, यदि किसी पात्र start-up कंपनी के शेयरों में निवेश किया जाए।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. Do these exemptions apply to STCG? | क्या ये छूटें STCG पर लागू होती हैं?</strong><br>No — Sections 54, 54EC, 54F, 54B, 54D and 54GB apply only to Long-Term Capital Gain. | नहीं — Sections 54, 54EC, 54F, 54B, 54D और 54GB केवल Long-Term Capital Gain पर लागू होते हैं।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. Is Surcharge applicable on Capital Gain Tax? | क्या Capital Gain Tax पर Surcharge लागू होता है?</strong><br>Yes, based on your total income, with a 15% cap on specified LTCG and equity STCG. | हाँ, आपकी कुल आय के आधार पर, निर्दिष्ट LTCG और equity STCG पर 15% की सीमा के साथ।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. Is Health &amp; Education Cess applicable? | क्या Health &amp; Education Cess लागू होता है?</strong><br>Yes — a flat 4% on Income Tax plus Surcharge, for every taxpayer type. | हाँ — Income Tax जमा Surcharge पर फ्लैट 4%, हर taxpayer प्रकार के लिए।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. How is STCG on non-equity assets taxed? | गैर-Equity संपत्तियों पर STCG पर कर कैसे लगता है?</strong><br>At your applicable income tax slab rate, stacked on top of your other taxable income. | आपकी लागू income tax slab दर पर, आपकी अन्य taxable income के ऊपर जोड़कर।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. What is Net Gain After Tax? | Net Gain After Tax क्या है?</strong><br>Your actual Capital Gain minus the Total Tax Liability (Income Tax, Surcharge and Cess). | आपका वास्तविक Capital Gain, Total Tax Liability (Income Tax, Surcharge और Cess) घटाकर।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. Can Sale Date be earlier than Purchase Date? | क्या Sale Date, Purchase Date से पहले हो सकती है?</strong><br>No — this calculator validates and rejects such invalid date combinations. | नहीं — यह कैलकुलेटर ऐसे invalid date combinations को validate करके अस्वीकार करता है।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. Does NRI status change the tax rate? | क्या NRI status टैक्स दर को बदलता है?</strong><br>NRIs are generally taxed at the same STCG/LTCG rates, though TDS deduction rules differ — consult a tax professional for NRI-specific compliance. | NRIs पर सामान्यतः समान STCG/LTCG दरें लागू होती हैं, हालांकि TDS कटौती नियम अलग होते हैं — NRI-विशिष्ट compliance के लिए tax professional से सलाह लें।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. Can I download my calculation report? | क्या मैं अपनी calculation report download कर सकता हूँ?</strong><br>Yes — as PDF, Excel or CSV, or print it directly from your browser. | हाँ — PDF, Excel या CSV के रूप में, या सीधे अपने browser से print कर सकते हैं।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. Is my data uploaded anywhere? | क्या मेरा data कहीं upload होता है?</strong><br>No — every calculation runs entirely inside your browser and nothing is sent to a server. | नहीं — हर calculation पूरी तरह आपके browser के भीतर चलता है और कुछ भी server पर नहीं भेजा जाता।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. Does this tool use any AI? | क्या इस टूल में कोई AI इस्तेमाल होता है?</strong><br>No — every rule is deterministic, hand-written logic based on published Income Tax provisions. | नहीं — हर rule, प्रकाशित Income Tax प्रावधानों पर आधारित deterministic, hand-written logic है।</p></div>
+
+<div class="cg-faq-item"><p><strong>Q. Is this calculator a substitute for professional advice? | क्या यह पेशेवर सलाह का विकल्प है?</strong><br>No — always consult a Chartered Accountant or tax professional before making financial decisions. | नहीं — वित्तीय निर्णय लेने से पहले हमेशा किसी Chartered Accountant या tax professional से सलाह लें।</p></div>
+
+</div>
+
+</div>
+
+<p class="cg-muted" style="font-size:.85rem;text-align:center;padding:0 4px 4px">This calculator provides estimates based on the latest available Indian Income Tax rules. Tax laws may change over time. Please consult a Chartered Accountant or tax professional before making financial or tax-related decisions.</p>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Capital Gain Tax?", "acceptedAnswer": {"@type": "Answer", "text": "Tax levied on the profit earned from selling a capital asset like property, shares, mutual funds or gold."}}, {"@type": "Question", "name": "What is the difference between STCG and LTCG?", "acceptedAnswer": {"@type": "Answer", "text": "STCG applies to assets held for a short period, LTCG to assets held longer than the asset-specific threshold."}}, {"@type": "Question", "name": "What is the holding period for equity shares?", "acceptedAnswer": {"@type": "Answer", "text": "12 months; held longer is LTCG, 12 months or less is STCG."}}, {"@type": "Question", "name": "What is the holding period for property?", "acceptedAnswer": {"@type": "Answer", "text": "24 months; held longer is LTCG, 24 months or less is STCG."}}, {"@type": "Question", "name": "What is the holding period for gold?", "acceptedAnswer": {"@type": "Answer", "text": "36 months; held longer is LTCG, 36 months or less is STCG."}}, {"@type": "Question", "name": "What is the STCG tax rate on equity shares?", "acceptedAnswer": {"@type": "Answer", "text": "20 percent on or after 23 July 2024, previously 15 percent under Section 111A."}}, {"@type": "Question", "name": "What is the LTCG tax rate on equity shares?", "acceptedAnswer": {"@type": "Answer", "text": "12.5 percent above a 1,25,000 rupee exemption on or after 23 July 2024, previously 10 percent above 1,00,000 rupees."}}, {"@type": "Question", "name": "Is indexation still available?", "acceptedAnswer": {"@type": "Answer", "text": "Not for assets sold on or after 23 July 2024, except a one-time transitional option for land or building acquired before that date."}}, {"@type": "Question", "name": "What is Cost Inflation Index (CII)?", "acceptedAnswer": {"@type": "Answer", "text": "A CBDT-notified index used to adjust the original cost for inflation when computing Indexed Cost."}}, {"@type": "Question", "name": "How is Indexed Cost calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Original cost multiplied by the ratio of the sale year's CII to the purchase year's CII."}}, {"@type": "Question", "name": "What is Section 50AA for debt mutual funds?", "acceptedAnswer": {"@type": "Answer", "text": "Units acquired on or after 1 April 2023 are always taxed as STCG at slab rates, regardless of holding period."}}, {"@type": "Question", "name": "What is Section 54 exemption?", "acceptedAnswer": {"@type": "Answer", "text": "Exemption on LTCG from selling a residential house, if the gain is reinvested in another residential house."}}, {"@type": "Question", "name": "What is Section 54EC exemption?", "acceptedAnswer": {"@type": "Answer", "text": "Exemption on LTCG from land or building by investing in specified capital gain bonds within 6 months."}}, {"@type": "Question", "name": "What is Section 54F exemption?", "acceptedAnswer": {"@type": "Answer", "text": "Exemption on LTCG from any asset other than a house by investing the net sale proceeds in a residential house."}}, {"@type": "Question", "name": "What is Section 54B exemption?", "acceptedAnswer": {"@type": "Answer", "text": "Exemption on capital gain from selling agricultural land by reinvesting in another agricultural land."}}, {"@type": "Question", "name": "What is Section 54D exemption?", "acceptedAnswer": {"@type": "Answer", "text": "Exemption on capital gain from compulsory acquisition of industrial land or building, if reinvested."}}, {"@type": "Question", "name": "What is Section 54GB exemption?", "acceptedAnswer": {"@type": "Answer", "text": "Exemption on LTCG from a residential property by investing in shares of an eligible start-up company."}}, {"@type": "Question", "name": "Do these exemptions apply to STCG?", "acceptedAnswer": {"@type": "Answer", "text": "No, Sections 54, 54EC, 54F, 54B, 54D and 54GB apply only to Long-Term Capital Gain."}}, {"@type": "Question", "name": "Is Surcharge applicable on Capital Gain Tax?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, based on total income, with a 15 percent cap on specified LTCG and equity STCG."}}, {"@type": "Question", "name": "Is Health and Education Cess applicable?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, a flat 4 percent on Income Tax plus Surcharge, for every taxpayer type."}}, {"@type": "Question", "name": "How is STCG on non-equity assets taxed?", "acceptedAnswer": {"@type": "Answer", "text": "At the applicable income tax slab rate, stacked on top of other taxable income."}}, {"@type": "Question", "name": "What is Net Gain After Tax?", "acceptedAnswer": {"@type": "Answer", "text": "The actual Capital Gain minus the Total Tax Liability, including Income Tax, Surcharge and Cess."}}, {"@type": "Question", "name": "Can Sale Date be earlier than Purchase Date?", "acceptedAnswer": {"@type": "Answer", "text": "No, this calculator validates and rejects such invalid date combinations."}}, {"@type": "Question", "name": "Does NRI status change the tax rate?", "acceptedAnswer": {"@type": "Answer", "text": "NRIs are generally taxed at the same STCG and LTCG rates, though TDS deduction rules differ."}}, {"@type": "Question", "name": "Can I download my calculation report?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, as PDF, Excel or CSV, or print it directly from your browser."}}, {"@type": "Question", "name": "Is my data uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No, every calculation runs entirely inside the browser and nothing is sent to a server."}}, {"@type": "Question", "name": "Does this tool use any AI?", "acceptedAnswer": {"@type": "Answer", "text": "No, every rule is deterministic, hand-written logic based on published Income Tax provisions."}}, {"@type": "Question", "name": "Is this calculator a substitute for professional advice?", "acceptedAnswer": {"@type": "Answer", "text": "No, always consult a Chartered Accountant or tax professional before making financial decisions."}}]}
+</script>
+
+<footer class="site-footer">© apnesoftware.COM — Capital Gain Tax Calculator — Fast • Accurate • Secure • Mobile Friendly • SEO Optimized</footer>
+
+<div id="cg-stickyCalc"><button class="btn cg-gradient" id="cg-stickyCalcBtn" type="button">🧮 Calculate</button></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<script src="../assets/common.js"></script>
+<script>
+/* ===================== Capital Gain Tax Calculator Engine (pure logic, no DOM) =====================
+   Reflects the Finance (No. 2) Act, 2024 changes effective from 23 July 2024: equity STCG raised to
+   20% (from 15%), equity/other LTCG raised to 12.5% (from 10%/20%), equity LTCG exemption raised to
+   Rs. 1,25,000/year (from Rs. 1,00,000), and indexation removed for non-equity assets sold on/after
+   23 July 2024 — except land/building held by individuals/HUF, which retains a one-time transitional
+   option to pay whichever is lower of the new (12.5%, no indexation) or old (20%, with indexation)
+   computation, when the asset was acquired before 23 July 2024. */
+'use strict';
+
+var BUDGET_2024_DATE = '2024-07-23';
+var FY_LIST = ['2023-24', '2024-25', '2025-26', '2026-27'];
+var CESS_RATE = 0.04;
+
+function fyToAy(fy) {
+  var parts = fy.split('-');
+  var startYear = parseInt(parts[0], 10);
+  var endYYNext = (startYear + 2).toString().slice(-2);
+  return (startYear + 1) + '-' + endYYNext;
+}
+function fyForDate(dateStr) {
+  var d = new Date(dateStr + 'T00:00:00');
+  var y = d.getFullYear();
+  var m = d.getMonth();
+  var startYear = m >= 3 ? y : y - 1;
+  return startYear + '-' + ((startYear + 1).toString().slice(-2));
+}
+var CII_TABLE = {
+  '2001-02': 100, '2002-03': 105, '2003-04': 109, '2004-05': 113, '2005-06': 117,
+  '2006-07': 122, '2007-08': 129, '2008-09': 137, '2009-10': 148, '2010-11': 167,
+  '2011-12': 184, '2012-13': 200, '2013-14': 220, '2014-15': 240, '2015-16': 254,
+  '2016-17': 264, '2017-18': 272, '2018-19': 280, '2019-20': 289, '2020-21': 301,
+  '2021-22': 317, '2022-23': 331, '2023-24': 348, '2024-25': 363,
+  '2025-26': 376, '2026-27': 391
+};
+function monthsBetween(purchaseDate, saleDate) {
+  var p = new Date(purchaseDate + 'T00:00:00');
+  var s = new Date(saleDate + 'T00:00:00');
+  var months = (s.getFullYear() - p.getFullYear()) * 12 + (s.getMonth() - p.getMonth());
+  if (s.getDate() < p.getDate()) months -= 1;
+  return months;
+}
+var ASSET_TYPES = {
+  listedEquityShares: { label: 'Listed Equity Shares', holdingMonths: 12, category: 'equity' },
+  equityMutualFund: { label: 'Equity Mutual Fund', holdingMonths: 12, category: 'equity' },
+  unlistedShares: { label: 'Unlisted Shares', holdingMonths: 24, category: 'other' },
+  immovableProperty: { label: 'Immovable Property (Land/Building)', holdingMonths: 24, category: 'property' },
+  debtMutualFund: { label: 'Debt Mutual Fund', holdingMonths: 36, category: 'debtMF' },
+  goldAndOthers: { label: 'Gold / Other Capital Assets', holdingMonths: 36, category: 'other' }
+};
+function classifyGain(assetType, purchaseDate, saleDate) {
+  var asset = ASSET_TYPES[assetType] || ASSET_TYPES.goldAndOthers;
+  var holdingMonths = monthsBetween(purchaseDate, saleDate);
+  if (asset.category === 'debtMF' && purchaseDate >= '2023-04-01') {
+    return { type: 'STCG', holdingMonths: holdingMonths, thresholdMonths: null, section50AA: true, category: 'debtMF' };
+  }
+  var thresholdMonths = asset.holdingMonths;
+  var type = holdingMonths > thresholdMonths ? 'LTCG' : 'STCG';
+  return { type: type, holdingMonths: holdingMonths, thresholdMonths: thresholdMonths, section50AA: false, category: asset.category };
+}
+function computeIndexedCost(cost, purchaseDate, saleDate) {
+  var ciiPurchase = CII_TABLE[fyForDate(purchaseDate)] || CII_TABLE['2001-02'];
+  var ciiSale = CII_TABLE[fyForDate(saleDate)] || CII_TABLE['2026-27'];
+  return cost * (ciiSale / ciiPurchase);
+}
+var OLD_REGIME_SLABS = {
+  below60: [[250000, 0], [500000, 0.05], [1000000, 0.20], [Infinity, 0.30]],
+  senior: [[300000, 0], [500000, 0.05], [1000000, 0.20], [Infinity, 0.30]],
+  superSenior: [[500000, 0], [1000000, 0.20], [Infinity, 0.30]]
+};
+function newRegimeSlabs(fy) {
+  if (fy === '2025-26' || fy === '2026-27') return [[400000, 0], [800000, 0.05], [1200000, 0.10], [1600000, 0.15], [2000000, 0.20], [2400000, 0.25], [Infinity, 0.30]];
+  return [[300000, 0], [600000, 0.05], [900000, 0.10], [1200000, 0.15], [1500000, 0.20], [Infinity, 0.30]];
+}
+function slabTax(income, bands) {
+  var tax = 0, lower = 0;
+  for (var i = 0; i < bands.length; i++) {
+    var upper = bands[i][0], rate = bands[i][1];
+    if (income > lower) tax += (Math.min(income, upper) - lower) * rate;
+    lower = upper;
+    if (income <= upper) break;
+  }
+  return Math.max(0, tax);
+}
+function slabTaxFor(income, regime, fy, ageCategory) {
+  var bands = regime === 'new' ? newRegimeSlabs(fy) : (OLD_REGIME_SLABS[ageCategory] || OLD_REGIME_SLABS.below60);
+  return slabTax(income, bands);
+}
+var FLAT_RATES = {
+  firm: 0.30, llp: 0.30, localAuthority: 0.30,
+  domesticCompany: { old: 0.25, new: 0.22 },
+  foreignCompany: { fy2325: 0.40, fy2526: 0.35 },
+  coOperativeSociety: { old: 0.30, new: 0.22 }
+};
+function flatTaxFor(taxpayerType, income, regime, fy) {
+  if (taxpayerType === 'foreignCompany') return income * ((fy === '2025-26' || fy === '2026-27') ? FLAT_RATES.foreignCompany.fy2526 : FLAT_RATES.foreignCompany.fy2325);
+  if (taxpayerType === 'domesticCompany') return income * (regime === 'new' ? FLAT_RATES.domesticCompany.new : FLAT_RATES.domesticCompany.old);
+  if (taxpayerType === 'coOperativeSociety') return income * (regime === 'new' ? FLAT_RATES.coOperativeSociety.new : FLAT_RATES.coOperativeSociety.old);
+  return income * (FLAT_RATES[taxpayerType] || 0.30);
+}
+function isIndividualLike(taxpayerType) { return taxpayerType === 'individual' || taxpayerType === 'huf' || taxpayerType === 'aop' || taxpayerType === 'boi'; }
+function marginalTax(baseIncome, amount, taxpayerType, regime, fy, ageCategory) {
+  if (amount <= 0) return 0;
+  if (isIndividualLike(taxpayerType)) return slabTaxFor(baseIncome + amount, regime, fy, ageCategory) - slabTaxFor(baseIncome, regime, fy, ageCategory);
+  return flatTaxFor(taxpayerType, amount, regime, fy);
+}
+function individualSurchargeSlabs(regime) {
+  var top = regime === 'new' ? 0.25 : 0.37;
+  return [{ threshold: 0, rate: 0 }, { threshold: 5000000, rate: 0.10 }, { threshold: 10000000, rate: 0.15 }, { threshold: 20000000, rate: 0.25 }, { threshold: 50000000, rate: top }];
+}
+function firmLikeSurchargeSlabs() { return [{ threshold: 0, rate: 0 }, { threshold: 10000000, rate: 0.12 }]; }
+function domesticCompanySurchargeSlabs(regime) {
+  if (regime === 'new') return [{ threshold: 0, rate: 0.10 }];
+  return [{ threshold: 0, rate: 0 }, { threshold: 10000000, rate: 0.07 }, { threshold: 100000000, rate: 0.12 }];
+}
+function foreignCompanySurchargeSlabs() { return [{ threshold: 0, rate: 0 }, { threshold: 10000000, rate: 0.02 }, { threshold: 100000000, rate: 0.05 }]; }
+function coOperativeSurchargeSlabs(regime) {
+  if (regime === 'new') return [{ threshold: 0, rate: 0.10 }];
+  return [{ threshold: 0, rate: 0 }, { threshold: 10000000, rate: 0.07 }, { threshold: 100000000, rate: 0.12 }];
+}
+function getSurchargeSlabs(taxpayerType, regime) {
+  switch (taxpayerType) {
+    case 'individual': case 'huf': case 'aop': case 'boi': return individualSurchargeSlabs(regime);
+    case 'firm': case 'llp': case 'localAuthority': return firmLikeSurchargeSlabs();
+    case 'domesticCompany': return domesticCompanySurchargeSlabs(regime);
+    case 'foreignCompany': return foreignCompanySurchargeSlabs();
+    case 'coOperativeSociety': return coOperativeSurchargeSlabs(regime);
+    default: return individualSurchargeSlabs(regime);
+  }
+}
+function slabRateFor(totalIncome, slabs) {
+  var rate = 0;
+  for (var i = 0; i < slabs.length; i++) { if (totalIncome > slabs[i].threshold) rate = slabs[i].rate; }
+  return rate;
+}
+function activeSlabIndex(totalIncome, slabs) {
+  var idx = -1;
+  for (var i = 0; i < slabs.length; i++) { if (totalIncome > slabs[i].threshold) idx = i; }
+  return idx;
+}
+function computeSurchargeWithRelief(totalIncome, taxBeforeSurcharge, slabs, taxAtThresholdFn) {
+  var idx = activeSlabIndex(totalIncome, slabs);
+  if (idx <= 0 || slabs[idx].rate === 0) {
+    return { rate: idx >= 0 ? slabs[idx].rate : 0, surcharge: idx >= 0 ? taxBeforeSurcharge * slabs[idx].rate : 0, marginalRelief: 0 };
+  }
+  var rate = slabs[idx].rate, prevRate = slabs[idx - 1].rate, threshold = slabs[idx].threshold;
+  var normalSurcharge = taxBeforeSurcharge * rate;
+  var normalTotal = taxBeforeSurcharge + normalSurcharge;
+  var taxAtThreshold = taxAtThresholdFn ? taxAtThresholdFn(threshold) : taxBeforeSurcharge;
+  var cappedTotal = taxAtThreshold + (taxAtThreshold * prevRate) + (totalIncome - threshold);
+  var marginalRelief = 0;
+  if (normalTotal > cappedTotal) marginalRelief = normalTotal - cappedTotal;
+  var surcharge = normalSurcharge - marginalRelief;
+  if (surcharge < 0) surcharge = 0;
+  return { rate: rate, surcharge: surcharge, marginalRelief: marginalRelief };
+}
+function computeCapitalGainTax(inp) {
+  var assetType = inp.assetType;
+  var asset = ASSET_TYPES[assetType] || ASSET_TYPES.goldAndOthers;
+  var classification = classifyGain(assetType, inp.purchaseDate, inp.saleDate);
+
+  var purchaseCost = Math.max(0, inp.purchasePrice || 0) + Math.max(0, inp.purchaseExpenses || 0) + Math.max(0, inp.improvementCost || 0);
+  var saleValue = Math.max(0, inp.salePrice || 0) - Math.max(0, inp.saleExpenses || 0);
+  var capitalGain = saleValue - purchaseCost;
+
+  var totalExemptions = Math.max(0, inp.exemption54 || 0) + Math.max(0, inp.exemption54EC || 0) + Math.max(0, inp.exemption54F || 0) +
+    Math.max(0, inp.exemption54B || 0) + Math.max(0, inp.exemption54D || 0) + Math.max(0, inp.exemption54GB || 0);
+
+  var indexedCost = null, indexationUsed = false, lowerOfBothApplied = false;
+  var incomeTax = 0, taxableGain, exemptionClaimed = 0;
+  var otherTaxableIncome = Math.max(0, inp.otherTaxableIncome || 0);
+  var taxpayerType = inp.taxpayerType || 'individual';
+  var regime = inp.regime || 'new';
+  var fy = inp.fy || '2025-26';
+  var ageCategory = inp.ageCategory || 'below60';
+
+  if (classification.type === 'STCG') {
+    taxableGain = Math.max(0, capitalGain);
+    exemptionClaimed = 0;
+    if (classification.category === 'equity') {
+      var stcgRate = inp.saleDate >= BUDGET_2024_DATE ? 0.20 : 0.15;
+      incomeTax = taxableGain * stcgRate;
+    } else {
+      incomeTax = marginalTax(otherTaxableIncome, taxableGain, taxpayerType, regime, fy, ageCategory);
+    }
+  } else {
+    taxableGain = Math.max(0, capitalGain - totalExemptions);
+    exemptionClaimed = Math.min(totalExemptions, Math.max(0, capitalGain));
+
+    if (classification.category === 'equity') {
+      var equityExemptionThreshold = inp.saleDate >= BUDGET_2024_DATE ? 125000 : 100000;
+      var ltcgRateEquity = inp.saleDate >= BUDGET_2024_DATE ? 0.125 : 0.10;
+      incomeTax = Math.max(0, taxableGain - equityExemptionThreshold) * ltcgRateEquity;
+    } else if (classification.category === 'property') {
+      if (inp.saleDate >= BUDGET_2024_DATE) {
+        var taxNoIndex = taxableGain * 0.125;
+        if (inp.purchaseDate < BUDGET_2024_DATE) {
+          indexedCost = computeIndexedCost(purchaseCost, inp.purchaseDate, inp.saleDate);
+          var indexedGain = Math.max(0, saleValue - indexedCost - totalExemptions);
+          var taxWithIndex = indexedGain * 0.20;
+          if (taxWithIndex < taxNoIndex) { incomeTax = taxWithIndex; indexationUsed = true; lowerOfBothApplied = true; taxableGain = indexedGain; }
+          else { incomeTax = taxNoIndex; }
+        } else { incomeTax = taxNoIndex; }
+      } else {
+        indexedCost = computeIndexedCost(purchaseCost, inp.purchaseDate, inp.saleDate);
+        taxableGain = Math.max(0, saleValue - indexedCost - totalExemptions);
+        incomeTax = taxableGain * 0.20;
+        indexationUsed = true;
+      }
+    } else {
+      if (inp.saleDate >= BUDGET_2024_DATE) {
+        incomeTax = taxableGain * 0.125;
+      } else {
+        indexedCost = computeIndexedCost(purchaseCost, inp.purchaseDate, inp.saleDate);
+        taxableGain = Math.max(0, saleValue - indexedCost - totalExemptions);
+        incomeTax = taxableGain * 0.20;
+        indexationUsed = true;
+      }
+    }
+  }
+
+  var totalIncomeForSurcharge = otherTaxableIncome + taxableGain;
+  var slabs = getSurchargeSlabs(taxpayerType, regime);
+  var normalRate = slabRateFor(totalIncomeForSurcharge, slabs);
+  var isSpecifiedGain = classification.type === 'LTCG' || (classification.type === 'STCG' && classification.category === 'equity');
+  var useCap = isIndividualLike(taxpayerType) && isSpecifiedGain && normalRate > 0.15;
+
+  var surchargeResult;
+  if (useCap) {
+    var cappedRate = Math.min(normalRate, 0.15);
+    surchargeResult = { rate: normalRate, surcharge: incomeTax * cappedRate, marginalRelief: 0 };
+  } else {
+    surchargeResult = computeSurchargeWithRelief(totalIncomeForSurcharge, incomeTax, slabs, function (threshold) {
+      var scaleBase = Math.max(1, totalIncomeForSurcharge - otherTaxableIncome);
+      return incomeTax * (Math.max(0, threshold - otherTaxableIncome) / scaleBase);
+    });
+  }
+
+  var cess = (incomeTax + surchargeResult.surcharge) * CESS_RATE;
+  var totalTaxLiability = incomeTax + surchargeResult.surcharge + cess;
+  var netGainAfterTax = capitalGain - totalTaxLiability;
+
+  return {
+    assetType: assetType, assetLabel: asset.label,
+    holdingMonths: classification.holdingMonths, thresholdMonths: classification.thresholdMonths,
+    gainType: classification.type, section50AA: classification.section50AA,
+    purchaseCost: purchaseCost, saleValue: saleValue, capitalGain: capitalGain,
+    indexedCost: indexedCost, indexationUsed: indexationUsed, lowerOfBothApplied: lowerOfBothApplied,
+    exemptionClaimed: exemptionClaimed, taxableGain: taxableGain,
+    incomeTax: incomeTax, surchargeRate: surchargeResult.rate, surcharge: surchargeResult.surcharge,
+    marginalRelief: surchargeResult.marginalRelief, cess: cess,
+    totalTaxLiability: totalTaxLiability, netGainAfterTax: netGainAfterTax
+  };
+}
+function fmtINR(n) {
+  n = Number(n) || 0;
+  var neg = n < 0; n = Math.abs(n);
+  var fixed = n.toFixed(2);
+  var parts = fixed.split('.');
+  var intPart = parts[0], decPart = parts[1];
+  var lastThree = intPart.substring(intPart.length - 3);
+  var other = intPart.substring(0, intPart.length - 3);
+  if (other !== '') { lastThree = ',' + lastThree; other = other.replace(/\B(?=(\d{2})+(?!\d))/g, ','); }
+  return (neg ? '-' : '') + '₹' + other + lastThree + '.' + decPart;
+}
+
+var CapitalGainEngine = {
+  BUDGET_2024_DATE: BUDGET_2024_DATE, FY_LIST: FY_LIST, CII_TABLE: CII_TABLE, ASSET_TYPES: ASSET_TYPES,
+  fyToAy: fyToAy, fyForDate: fyForDate, monthsBetween: monthsBetween, classifyGain: classifyGain,
+  computeIndexedCost: computeIndexedCost, computeCapitalGainTax: computeCapitalGainTax, fmtINR: fmtINR
+};
+if (typeof module !== 'undefined' && module.exports) module.exports = CapitalGainEngine;
+if (typeof window !== 'undefined') window.CapitalGainEngine = CapitalGainEngine;
+</script>
+<script>
+(function(){
+'use strict';
+var E = window.CapitalGainEngine;
+function $(id){ return document.getElementById(id); }
+function num(id){ var el = $(id); if(!el) return 0; var v = parseFloat(el.value); return isFinite(v) && v > 0 ? v : 0; }
+function lsGet(key, fallback){ try{ var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } }
+function lsSet(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+function status(msg){ $('cg-statusMsg').textContent = msg; }
+function fmt(n){ return E.fmtINR(n); }
+
+/* ===================== Tabs ===================== */
+var tabs = [['cg-tabAsset','cg-paneAsset'],['cg-tabCost','cg-paneCost'],['cg-tabExemption','cg-paneExemption'],['cg-tabHistory','cg-paneHistory'],['cg-tabSettings','cg-paneSettings']];
+tabs.forEach(function(pair){
+  $(pair[0]).addEventListener('click', function(){
+    tabs.forEach(function(p2){
+      $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected','false');
+      $(p2[1]).classList.remove('active');
+    });
+    $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected','true');
+    $(pair[1]).classList.add('active');
+  });
+});
+
+/* ===================== Assessment Year auto-fill ===================== */
+function updateAY(){ $('cg-ay').value = 'AY ' + E.fyToAy($('cg-fy').value); }
+$('cg-fy').addEventListener('change', function(){ updateAY(); compute(); });
+
+/* ===================== Validation ===================== */
+var negIds = ['cg-purchasePrice','cg-salePrice','cg-purchaseExpenses','cg-saleExpenses','cg-improvementCost','cg-otherTaxableIncome',
+  'cg-exemption54','cg-exemption54EC','cg-exemption54F','cg-exemption54B','cg-exemption54D','cg-exemption54GB'];
+var requiredIds = ['cg-purchasePrice','cg-salePrice','cg-purchaseDate','cg-saleDate'];
+function validateInputs(){
+  var negFound = negIds.some(function(id){ var v = parseFloat($(id).value); return isFinite(v) && v < 0; }) ||
+    negIds.some(function(id){ return $(id).value !== '' && !isFinite(parseFloat($(id).value)); });
+  var missingRequired = requiredIds.some(function(id){ return $(id).value === ''; });
+  var purchaseDate = $('cg-purchaseDate').value, saleDate = $('cg-saleDate').value;
+  var badDateOrder = purchaseDate && saleDate && saleDate <= purchaseDate;
+  $('cg-requiredErr').style.display = missingRequired ? 'block' : 'none';
+  $('cg-negErr').style.display = negFound ? 'block' : 'none';
+  $('cg-dateErr').style.display = (badDateOrder || (!purchaseDate || !saleDate)) ? 'block' : 'none';
+  return !negFound && !missingRequired && !badDateOrder;
+}
+
+/* ===================== Main compute ===================== */
+var lastResult = null;
+function compute(){
+  var valid = validateInputs();
+  if (!valid) {
+    $('cg-holdingDisplay').textContent = '—';
+    $('cg-gainTypeDisplay').textContent = '—';
+    lastResult = { valid: false };
+    return;
+  }
+  var inp = {
+    assetType: $('cg-assetType').value, purchaseDate: $('cg-purchaseDate').value, saleDate: $('cg-saleDate').value,
+    purchasePrice: num('cg-purchasePrice'), salePrice: num('cg-salePrice'),
+    purchaseExpenses: num('cg-purchaseExpenses'), saleExpenses: num('cg-saleExpenses'), improvementCost: num('cg-improvementCost'),
+    otherTaxableIncome: num('cg-otherTaxableIncome'),
+    exemption54: num('cg-exemption54'), exemption54EC: num('cg-exemption54EC'), exemption54F: num('cg-exemption54F'),
+    exemption54B: num('cg-exemption54B'), exemption54D: num('cg-exemption54D'), exemption54GB: num('cg-exemption54GB'),
+    taxpayerType: $('cg-taxpayerType').value, regime: $('cg-regime').value, fy: $('cg-fy').value, ageCategory: 'below60'
+  };
+  var result = E.computeCapitalGainTax(inp);
+  lastResult = { inp: inp, result: result, valid: true };
+
+  $('cg-holdingDisplay').textContent = result.holdingMonths + ' months' + (result.thresholdMonths != null ? ' (threshold ' + result.thresholdMonths + ')' : '');
+  $('cg-gainTypeDisplay').textContent = result.gainType + (result.section50AA ? ' (Section 50AA)' : '');
+  $('cg-ciiDisplay').textContent = result.indexedCost != null ? (E.CII_TABLE[E.fyForDate(inp.purchaseDate)] + ' → ' + E.CII_TABLE[E.fyForDate(inp.saleDate)]) : 'Not applicable';
+  $('cg-indexedCostDisplay').textContent = result.indexedCost != null ? fmt(result.indexedCost) : 'Not applicable';
+
+  renderSummary();
+  renderSlabBox();
+  renderSteps();
+  renderBreakdownTable();
+  renderCharts();
+  updateShareLinks();
+}
+
+/* ===================== Summary cards ===================== */
+function statCard(label, value, cls){ return '<div class="stat-box' + (cls?' '+cls:'') + '"><div class="num">' + value + '</div><div class="lbl">' + label + '</div></div>'; }
+function renderSummary(){
+  var r = lastResult.result;
+  $('cg-summaryCards').innerHTML =
+    statCard('Purchase Cost', fmt(r.purchaseCost)) +
+    statCard('Sale Value', fmt(r.saleValue)) +
+    statCard('Holding Period', r.holdingMonths + ' mo') +
+    statCard('Indexed Cost', r.indexedCost != null ? fmt(r.indexedCost) : '—') +
+    statCard('Capital Gain', fmt(r.capitalGain), 'cg-highlight') +
+    statCard('Exemption Claimed', fmt(r.exemptionClaimed)) +
+    statCard('Taxable Gain', fmt(r.taxableGain)) +
+    statCard('Income Tax', fmt(r.incomeTax)) +
+    statCard('Surcharge', fmt(r.surcharge)) +
+    statCard('Health &amp; Education Cess', fmt(r.cess)) +
+    statCard('Total Tax Liability', fmt(r.totalTaxLiability), 'cg-highlight') +
+    statCard('Net Gain After Tax', fmt(r.netGainAfterTax), 'cg-refund');
+
+  var flags = [];
+  flags.push('<span class="cg-flag ' + (r.gainType === 'LTCG' ? 'ok' : 'warn') + '">' + r.gainType + '</span>');
+  if (r.section50AA) flags.push('<span class="cg-flag neutral">Section 50AA Applied</span>');
+  if (r.indexationUsed) flags.push('<span class="cg-flag neutral">Indexation Used</span>');
+  if (r.lowerOfBothApplied) flags.push('<span class="cg-flag ok">Transitional Lower-of-Both Applied</span>');
+  $('cg-resultFlags').innerHTML = flags.join('');
+}
+
+/* ===================== Slab / rule box ===================== */
+function row(label, value){ return '<div class="cg-engine-row"><span>' + label + '</span><span>' + value + '</span></div>'; }
+function renderSlabBox(){
+  var r = lastResult.result;
+  var html = row('Asset Type', r.assetLabel);
+  html += row('Gain Classification', r.gainType);
+  if (r.indexedCost != null) {
+    html += row('Indexation Applied to Final Tax', r.indexationUsed ? 'Yes' : 'No (shown for comparison only — the no-indexation rate gave a lower tax)');
+  }
+  if (r.lowerOfBothApplied) html += row('Transitional Relief', 'Lower-of-both option applied (land/building acquired before 23 Jul 2024)');
+  html += row('Applicable Surcharge Rate', (r.surchargeRate*100).toFixed(0) + '%');
+  $('cg-slabBox').innerHTML = html;
+}
+
+/* ===================== Calculation steps ===================== */
+function renderSteps(){
+  var r = lastResult.result;
+  var steps = [
+    'Purchase Cost: ' + fmt(r.purchaseCost),
+    'Sale Value: ' + fmt(r.saleValue),
+    'Capital Gain (Sale Value - Purchase Cost): ' + fmt(r.capitalGain),
+    'Less Exemptions (Sec 54 series, LTCG only): ' + fmt(r.exemptionClaimed),
+    'Taxable Gain: ' + fmt(r.taxableGain),
+    'Income Tax: ' + fmt(r.incomeTax),
+    'Surcharge: ' + fmt(r.surcharge),
+    'Health & Education Cess (4%): ' + fmt(r.cess),
+    'Total Tax Liability: ' + fmt(r.totalTaxLiability),
+    'Net Gain After Tax: ' + fmt(r.netGainAfterTax)
+  ];
+  $('cg-stepsBox').innerHTML = steps.map(function(s, i){
+    return '<div class="cg-step">' + s + '</div>' + (i < steps.length-1 ? '<div class="cg-step-arrow">↓</div>' : '');
+  }).join('');
+  $('cg-formulaBox').textContent =
+    'Capital Gain = Sale Value - Purchase Cost\n' +
+    'Taxable Gain = Capital Gain - Exemptions (LTCG only)\n' +
+    'Total Tax Liability = Income Tax + Surcharge + Health & Education Cess (4%)\n' +
+    'Net Gain After Tax = Capital Gain - Total Tax Liability';
+}
+
+/* ===================== Breakdown table ===================== */
+function renderBreakdownTable(){
+  var r = lastResult.result;
+  var rows = [
+    ['Asset Type', r.assetLabel], ['Holding Period', r.holdingMonths + ' months'], ['Gain Type', r.gainType],
+    ['Purchase Cost', fmt(r.purchaseCost)], ['Sale Value', fmt(r.saleValue)],
+    ['Indexed Cost', r.indexedCost != null ? fmt(r.indexedCost) : 'Not applicable'],
+    ['Capital Gain', fmt(r.capitalGain)], ['Exemption Claimed', fmt(r.exemptionClaimed)], ['Taxable Gain', fmt(r.taxableGain)],
+    ['Income Tax', fmt(r.incomeTax)], ['Surcharge', fmt(r.surcharge)], ['Health & Education Cess', fmt(r.cess)],
+    ['Total Tax Liability', fmt(r.totalTaxLiability)], ['Net Gain After Tax', fmt(r.netGainAfterTax)]
+  ];
+  document.querySelector('#cg-breakdownTable tbody').innerHTML = rows.map(function(p){ return '<tr><td>' + p[0] + '</td><td>' + p[1] + '</td></tr>'; }).join('');
+}
+
+/* ===================== Canvas charts ===================== */
+var PALETTE = ['#7C5CFC','#16C079','#F59E0B','#F87171','#38BDF8','#A78BFA'];
+function drawPie(canvasId, legendId, data, doughnut){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var total = data.reduce(function(s,d){ return s + Math.max(0,d.value); }, 0);
+  var cx = w/2, cy = h/2, radius = Math.min(w,h)/2 - 10;
+  if(total <= 0){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', cx, cy);
+    if(legendId) $(legendId).innerHTML = '';
+    return;
+  }
+  var start = -Math.PI/2;
+  data.forEach(function(d, i){
+    var slice = (Math.max(0,d.value) / total) * Math.PI * 2;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, radius, start, start + slice); ctx.closePath();
+    ctx.fillStyle = PALETTE[i % PALETTE.length]; ctx.fill();
+    start += slice;
+  });
+  if(doughnut){ ctx.beginPath(); ctx.arc(cx, cy, radius*0.55, 0, Math.PI*2); ctx.fillStyle = '#160b2e'; ctx.fill(); }
+  if(legendId){
+    $(legendId).innerHTML = data.map(function(d,i){
+      return '<span><i style="background:' + PALETTE[i%PALETTE.length] + '"></i>' + d.label + ': ' + fmt(d.value) + '</span>';
+    }).join('');
+  }
+}
+function drawBar(canvasId, data){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var total = data.reduce(function(s,d){return s+Math.max(0,d.value);},0);
+  if(total <= 0){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', w/2, h/2);
+    return;
+  }
+  var max = Math.max.apply(null, data.map(function(d){ return d.value; }).concat([1]));
+  var barW = w / data.length * 0.6;
+  var gap = w / data.length;
+  data.forEach(function(d, i){
+    var barH = (Math.max(0,d.value) / max) * (h - 40);
+    var x = i * gap + (gap - barW)/2;
+    var y = h - 24 - barH;
+    ctx.fillStyle = PALETTE[i % PALETTE.length];
+    ctx.fillRect(x, y, barW, barH);
+    ctx.fillStyle = '#aaa'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(d.label, x + barW/2, h - 8);
+  });
+}
+function renderCharts(){
+  var r = lastResult.result;
+  drawPie('cg-chartComposition', 'cg-legendComposition', [
+    {label:'Purchase Cost', value: r.purchaseCost}, {label:'Capital Gain', value: Math.max(0,r.capitalGain)}, {label:'Total Tax', value: r.totalTaxLiability}
+  ], true);
+  drawBar('cg-chartPayable', [
+    {label:'Capital Gain', value: Math.max(0,r.capitalGain)}, {label:'Total Tax', value: r.totalTaxLiability}, {label:'Net Gain', value: Math.max(0,r.netGainAfterTax)}
+  ]);
+}
+
+/* ===================== History ===================== */
+var HISTORY_KEY = 'cg_history';
+function loadHistory(){ return lsGet(HISTORY_KEY, []); }
+function saveHistory(list){ lsSet(HISTORY_KEY, list.slice(0, 50)); }
+function addToHistory(){
+  if(!lastResult || !lastResult.valid) return;
+  var list = loadHistory();
+  var r = lastResult.result;
+  list.unshift({ ts: new Date().toISOString(), asset: r.assetLabel, gainType: r.gainType, capitalGain: r.capitalGain, totalTaxLiability: r.totalTaxLiability });
+  saveHistory(list);
+  renderHistory();
+}
+function renderHistory(){
+  var list = loadHistory();
+  var wrap = $('cg-historyList');
+  if(!list.length){ wrap.innerHTML = '<p class="cg-muted">No calculations saved yet.</p>'; return; }
+  wrap.innerHTML = list.map(function(item){
+    var d = new Date(item.ts);
+    return '<div class="cg-history-item"><span>' + item.asset + ' (' + item.gainType + ') — Gain ' + fmt(item.capitalGain) + ' → Tax <span class="cg-amt">' + fmt(item.totalTaxLiability) + '</span><br><span class="cg-muted">' + d.toLocaleString() + '</span></span></div>';
+  }).join('');
+}
+$('cg-clearHistoryBtn').addEventListener('click', function(){
+  if(!confirm('Clear all saved calculation history?')) return;
+  saveHistory([]); renderHistory();
+  status('🗑️ History cleared.');
+});
+
+/* ===================== Buttons ===================== */
+function doCalculate(){
+  compute();
+  if(!lastResult.valid){ status('⚠️ Please correct the highlighted fields before calculating.'); return; }
+  addToHistory();
+  status('✅ Calculation updated and saved to history.');
+}
+$('cg-calcBtn').addEventListener('click', doCalculate);
+$('cg-stickyCalcBtn').addEventListener('click', doCalculate);
+$('cg-resetBtn').addEventListener('click', function(){
+  if(!confirm('Reset all fields to default?')) return;
+  $('cg-assetType').value = 'immovableProperty';
+  $('cg-purchaseDate').value = '2020-04-15'; $('cg-saleDate').value = '2025-09-20';
+  $('cg-purchasePrice').value = 2000000; $('cg-salePrice').value = 6000000;
+  ['cg-purchaseExpenses','cg-saleExpenses','cg-improvementCost','cg-otherTaxableIncome',
+   'cg-exemption54','cg-exemption54EC','cg-exemption54F','cg-exemption54B','cg-exemption54D','cg-exemption54GB'].forEach(function(id){ $(id).value = 0; });
+  $('cg-taxpayerType').value = 'individual'; $('cg-residentialStatus').value = 'resident'; $('cg-regime').value = 'new';
+  compute();
+  status('↺ Reset complete.');
+});
+$('cg-printBtn').addEventListener('click', function(){ window.print(); });
+
+function buildTextSummary(){
+  var r = lastResult.result;
+  return [
+    'Capital Gain Tax Calculation Summary', 'Asset Type: ' + r.assetLabel, 'Gain Type: ' + r.gainType,
+    'Purchase Cost: ' + fmt(r.purchaseCost), 'Sale Value: ' + fmt(r.saleValue), 'Capital Gain: ' + fmt(r.capitalGain),
+    'Taxable Gain: ' + fmt(r.taxableGain), 'Income Tax: ' + fmt(r.incomeTax), 'Surcharge: ' + fmt(r.surcharge),
+    'Health & Education Cess: ' + fmt(r.cess), 'Total Tax Liability: ' + fmt(r.totalTaxLiability), 'Net Gain After Tax: ' + fmt(r.netGainAfterTax)
+  ].join('\n');
+}
+$('cg-copyBtn').addEventListener('click', function(){
+  if(!lastResult || !lastResult.valid){ status('⚠️ Calculate first.'); return; }
+  var text = buildTextSummary();
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ status('📋 Copied to clipboard.'); });
+  }
+});
+$('cg-pdfBtn').addEventListener('click', function(){
+  if(typeof html2pdf === 'undefined'){ alert('PDF engine failed to load — check your connection and refresh.'); return; }
+  html2pdf().from($('cg-resultSide')).set({filename:'capital-gain-tax-summary.pdf', margin:10}).save();
+});
+$('cg-xlsxBtn').addEventListener('click', function(){
+  if(typeof XLSX === 'undefined'){ alert('Excel engine failed to load — check your connection and refresh.'); return; }
+  var r = lastResult.result;
+  var rows = [['Metric','Value'], ['Asset Type', r.assetLabel], ['Gain Type', r.gainType], ['Purchase Cost', r.purchaseCost],
+    ['Sale Value', r.saleValue], ['Capital Gain', r.capitalGain], ['Taxable Gain', r.taxableGain], ['Income Tax', r.incomeTax],
+    ['Surcharge', r.surcharge], ['Health & Education Cess', r.cess], ['Total Tax Liability', r.totalTaxLiability], ['Net Gain After Tax', r.netGainAfterTax]];
+  var ws = XLSX.utils.aoa_to_sheet(rows);
+  var wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Capital Gain Summary');
+  XLSX.writeFile(wb, 'capital-gain-tax-summary.xlsx');
+});
+$('cg-csvBtn').addEventListener('click', function(){
+  if(!lastResult || !lastResult.valid){ status('⚠️ Calculate first.'); return; }
+  var r = lastResult.result;
+  var rows = [['Metric','Value'], ['Asset Type', r.assetLabel], ['Gain Type', r.gainType], ['Purchase Cost', r.purchaseCost],
+    ['Sale Value', r.saleValue], ['Capital Gain', r.capitalGain], ['Taxable Gain', r.taxableGain], ['Income Tax', r.incomeTax],
+    ['Surcharge', r.surcharge], ['Health & Education Cess', r.cess], ['Total Tax Liability', r.totalTaxLiability], ['Net Gain After Tax', r.netGainAfterTax]];
+  var csv = rows.map(function(row){ return row.map(function(v){ return '"' + String(v).replace(/"/g,'""') + '"'; }).join(','); }).join('\n');
+  var blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = 'capital-gain-tax-summary.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+/* ===================== Share links ===================== */
+function updateShareLinks(){
+  if(!lastResult || !lastResult.valid) return;
+  var text = buildTextSummary();
+  var url = location.href;
+  $('cg-shareWhatsapp').href = 'https://wa.me/?text=' + encodeURIComponent(text + '\n' + url);
+  $('cg-shareFacebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+  $('cg-shareTwitter').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
+  $('cg-shareLinkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
+}
+$('cg-copyLinkBtn').addEventListener('click', function(){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(location.href).then(function(){ status('🔗 Link copied to clipboard.'); });
+  }
+});
+
+/* ===================== Validation on inputs ===================== */
+document.querySelectorAll('#cg-formSide input, #cg-formSide select').forEach(function(el){
+  el.addEventListener('input', compute);
+  el.addEventListener('change', compute);
+});
+
+/* ===================== Settings: theme / language / accessibility ===================== */
+var I18N = {
+  en: {
+    tabAsset:'📋 Asset & Dates', tabCost:'💰 Cost & Sale', tabExemption:'🧾 Exemptions', tabHistory:'🕘 History', tabSettings:'⚙️ Settings',
+    calc:'🧮 Calculate', reset:'↺ Reset', print:'🖨️ Print', pdf:'📄 Download PDF', xlsx:'📊 Download Excel', csv:'📁 Download CSV', copy:'📋 Copy Results'
+  },
+  hi: {
+    tabAsset:'📋 Asset और Dates', tabCost:'💰 Cost और Sale', tabExemption:'🧾 छूट', tabHistory:'🕘 इतिहास', tabSettings:'⚙️ सेटिंग्स',
+    calc:'🧮 गणना करें', reset:'↺ रीसेट', print:'🖨️ प्रिंट', pdf:'📄 PDF डाउनलोड करें', xlsx:'📊 Excel डाउनलोड करें', csv:'📁 CSV डाउनलोड करें', copy:'📋 परिणाम कॉपी करें'
+  }
+};
+function applyLanguage(lang){
+  var t = I18N[lang] || I18N.en;
+  $('cg-tabAsset').textContent = t.tabAsset;
+  $('cg-tabCost').textContent = t.tabCost;
+  $('cg-tabExemption').textContent = t.tabExemption;
+  $('cg-tabHistory').textContent = t.tabHistory;
+  $('cg-tabSettings').textContent = t.tabSettings;
+  $('cg-calcBtn').textContent = t.calc;
+  $('cg-resetBtn').textContent = t.reset;
+  $('cg-printBtn').textContent = t.print;
+  $('cg-pdfBtn').textContent = t.pdf;
+  $('cg-xlsxBtn').textContent = t.xlsx;
+  $('cg-csvBtn').textContent = t.csv;
+  $('cg-copyBtn').textContent = t.copy;
+}
+$('cg-language').addEventListener('change', function(){ applyLanguage(this.value); lsSet('cg_lang', this.value); });
+$('cg-theme').addEventListener('change', function(){ document.body.classList.toggle('cg-light', this.value === 'light'); lsSet('cg_theme', this.value); });
+$('cg-highContrast').addEventListener('change', function(){ document.body.classList.toggle('cg-high-contrast', this.checked); lsSet('cg_hc', this.checked); });
+$('cg-largeFont').addEventListener('change', function(){ document.body.classList.toggle('cg-large-font', this.checked); lsSet('cg_lf', this.checked); });
+
+/* ===================== Init ===================== */
+var savedLang = lsGet('cg_lang', 'en'); $('cg-language').value = savedLang; applyLanguage(savedLang);
+var savedTheme = lsGet('cg_theme', 'dark'); $('cg-theme').value = savedTheme; document.body.classList.toggle('cg-light', savedTheme === 'light');
+var savedHc = lsGet('cg_hc', false); $('cg-highContrast').checked = savedHc; document.body.classList.toggle('cg-high-contrast', savedHc);
+var savedLf = lsGet('cg_lf', false); $('cg-largeFont').checked = savedLf; document.body.classList.toggle('cg-large-font', savedLf);
+
+updateAY();
+renderHistory();
+compute();
+
+})();
+</script>
+<script type="text/javascript">
+	var sc_project_id = 100000000;
+	var sc_invisible = 1;
+	var sc_security = "0000000";
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+
+</body>
+</html>
