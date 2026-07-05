@@ -5,31 +5,91 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-to-long-image.html">
+<meta name="description" content="Free Professional PDF to Long Image Converter — stitch PDF pages into one tall image, a horizontal strip, a grid or a contact sheet. Export JPG, PNG, WebP, BMP or TIFF with DPI/quality control, page selection, rotation, margins, backgrounds, borders, watermark, WhatsApp/Instagram widths, auto-split and batch ZIP. 100% in your browser.">
+<meta name="keywords" content="pdf to long image, pdf to jpg, stitch pdf pages, pdf to single image, pdf to png, pdf contact sheet, pdf to webp, whatsapp pdf image, pdf pages to one image">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PDF to Long Image | ApneSoftware">
-<meta property="og:description" content="Stitch all PDF pages into one tall image. Free online tool — no signup required.">
+<meta property="og:title" content="Professional PDF to Long Image Converter | ApneSoftware">
+<meta property="og:description" content="Stitch PDF pages into one long image, grid or contact sheet. JPG/PNG/WebP/BMP/TIFF, DPI control, rotation, margins, watermark, auto-split & batch. 100% browser-based.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-to-long-image.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PDF to Long Image | ApneSoftware">
-<meta name="twitter:description" content="Stitch all PDF pages into one tall image. Free online tool — no signup required.">
+<meta name="twitter:title" content="Professional PDF to Long Image Converter | ApneSoftware">
+<meta name="twitter:description" content="PDF pages → one long image, grid or contact sheet. JPG/PNG/WebP/BMP/TIFF, DPI, rotation, watermark, auto-split, batch. Private & browser-based.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF to Long Image","description":"Stitch all PDF pages into one tall image. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-to-long-image.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Professional PDF to Long Image Converter","description":"Convert a PDF into a single long image, a horizontal strip, a grid or a contact sheet and export as JPG, PNG, WebP, BMP or TIFF, with DPI and quality control, page selection, rotation, margins, backgrounds, borders, a watermark, preset widths, auto-split into multiple images and batch ZIP download. Runs entirely in the browser using PDF.js.","url":"https://apnesoftware.com/tools/pdf-to-long-image.html","applicationCategory":"MultimediaApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Vertical, horizontal, grid and contact-sheet layouts","JPG, PNG, WebP, BMP and TIFF export","DPI and quality control, page selection, rotation","Margins, backgrounds, borders and watermark","WhatsApp/Instagram/A4/custom widths and auto-split","Batch multiple PDFs with ZIP download"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
 <meta name="color-scheme" content="dark">
-<title>PDF to Long Image | ApneSoftware</title>
+<title>Professional PDF to Long Image Converter | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
+/* ===== PDF to Long Image — scoped pli- prefix ===== */
 .dropzone{cursor:pointer}
 .dropzone p{font-size:.9rem}
 .panel{position:relative;z-index:1}
-</style>
-<style>
-  .preview-wrap{margin-top:18px;max-height:500px;overflow-y:auto;border:1px solid var(--border);border-radius:8px}
-  .preview-wrap img{width:100%;display:block}
+
+.pli-layout{display:grid;grid-template-columns:320px 1fr;gap:16px;margin-top:16px}
+@media (max-width:860px){ .pli-layout{grid-template-columns:1fr} }
+.pli-side{display:flex;flex-direction:column;gap:12px;max-height:78vh;overflow:auto;padding-right:4px}
+.pli-card{border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.02)}
+.pli-card h3{font-size:.82rem;margin:0 0 10px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-dim)}
+.pli-field{margin-bottom:9px}
+.pli-field label{display:block;font-size:.74rem;color:var(--text-dim);margin-bottom:4px;font-weight:600}
+.pli-field input,.pli-field select,.pli-field textarea{width:100%;font-size:.82rem;padding:8px 10px;border-radius:8px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)}
+.pli-field select option{background:#1a1a2e}
+.pli-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pli-chips{display:flex;flex-wrap:wrap;gap:5px}
+.pli-chip{font-size:.72rem;padding:5px 9px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.06));color:var(--text);cursor:pointer}
+.pli-chip.active{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff}
+.pli-check{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--text)}
+.pli-check input{width:auto}
+
+.pli-preview-area{border:1px solid var(--border);border-radius:12px;background:#0d0d16;min-height:340px;display:flex;flex-direction:column}
+.pli-toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 10px;border-bottom:1px solid var(--border)}
+.pli-btn{font-size:.74rem;padding:6px 10px;border-radius:7px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text);cursor:pointer}
+.pli-btn:hover{background:rgba(124,92,252,.18)}
+.pli-btn.primary{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff;font-weight:600}
+.preview-wrap{flex:1;overflow:auto;position:relative;text-align:center;padding:10px}
+.preview-wrap img{max-width:100%;display:inline-block;transform-origin:top center;background:#fff}
+.pli-thumbs{display:flex;gap:6px;overflow-x:auto;padding:8px;border-top:1px solid var(--border)}
+.pli-thumb{position:relative;flex:0 0 auto;width:58px;cursor:pointer;border:2px solid transparent;border-radius:6px;overflow:hidden}
+.pli-thumb.active{border-color:var(--accent,#7c5cfc)}
+.pli-thumb.off{opacity:.35}
+.pli-thumb canvas,.pli-thumb img{width:100%;display:block;background:#fff}
+.pli-thumb .pn{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);color:#fff;font-size:.6rem;text-align:center}
+
+.pli-progress{height:9px;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:8px;display:none}
+.pli-progress.show{display:block}
+.pli-progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7c5cfc,#16c079);transition:width .1s}
+.pli-info{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:.78rem;margin-top:8px}
+.pli-info span:nth-child(odd){color:var(--text-dim)}
+.pli-info span:nth-child(even){text-align:right;font-variant-numeric:tabular-nums}
+.pli-queue{display:flex;flex-direction:column;gap:5px}
+.pli-queue .q{display:flex;align-items:center;gap:6px;font-size:.76rem;padding:6px 8px;border:1px solid var(--border);border-radius:8px;background:rgba(255,255,255,.03)}
+.pli-queue .q .qn{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pli-queue .q button{background:none;border:none;color:var(--text-dim);cursor:pointer}
+
+/* Below-tool content */
+.pli-content h2{font-size:1.15rem;margin:26px 0 10px}
+.pli-content h3{font-size:1rem;margin:18px 0 8px}
+.pli-content p,.pli-content li{font-size:.92rem;line-height:1.72}
+.pli-content ul,.pli-content ol{padding-left:20px}
+.pli-fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:14px 0}
+.pli-fgrid .fc{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:14px}
+.pli-fgrid .fc b{display:block;margin-bottom:5px;font-size:.9rem}
+.pli-fgrid .fc span{font-size:.82rem;color:var(--text-dim);line-height:1.6}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin:12px 0}
+.related-grid a{display:flex;align-items:center;gap:9px;padding:12px 13px;border-radius:11px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.86rem;font-weight:500;transition:.15s}
+.related-grid a:hover{background:rgba(124,92,252,.16);border-color:var(--accent,#7c5cfc);transform:translateY(-1px)}
+.related-grid a .ri{font-size:1.15rem}
+.pli-faq details{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:11px;padding:2px 14px;margin-bottom:9px}
+.pli-faq summary{cursor:pointer;padding:12px 0;font-weight:600;font-size:.9rem;list-style:none}
+.pli-faq summary::-webkit-details-marker{display:none}
+.pli-faq summary::before{content:'＋';margin-right:9px;color:var(--accent,#7c5cfc);font-weight:700}
+.pli-faq details[open] summary::before{content:'－'}
+.pli-faq details p{padding:0 0 12px;margin:0;font-size:.87rem;color:var(--text-dim)}
+.pli-lang-note{font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:-4px}
 </style>
 </head>
 <body>
@@ -42,154 +102,556 @@
 
 <div class="container">
   <div class="tool-header">
-    <h1>📜 PDF to Long Image</h1>
-    <p>Stitch every page of a PDF into one tall image — perfect for sharing on WhatsApp or social media.</p>
+    <h1>📜 Professional PDF to Long Image Converter</h1>
+    <p>Stitch PDF pages into one tall image, a horizontal strip, a grid or a contact sheet — with JPG/PNG/WebP/BMP/TIFF export, DPI control, rotation, margins, backgrounds, borders, watermark, preset widths, auto-split and batch. 100% in your browser.</p>
   </div>
 
   <div class="panel">
     <div class="dropzone" id="dropzone">
-      <p>📤 Drag & drop your PDF file here or click to choose</p>
-      <input type="file" id="fileInput" accept="application/pdf">
+      <p>📤 Drag &amp; drop PDF file(s) here or click to choose &nbsp;<span style="color:var(--text-dim);font-size:.8rem">(multiple allowed)</span></p>
+      <input type="file" id="fileInput" accept="application/pdf" multiple>
     </div>
 
-    <div class="row" style="margin-top:18px">
-      <div class="field">
-        <label for="formatSelect">Format</label>
-        <select id="formatSelect">
-          <option value="image/jpeg">JPG</option>
-          <option value="image/png">PNG</option>
-        </select>
+    <div class="pli-queue" id="queue" style="margin-top:10px"></div>
+
+    <div class="pli-layout" id="editor" style="display:none">
+      <!-- ===== Settings ===== -->
+      <div class="pli-side">
+        <div class="pli-card">
+          <h3>Layout</h3>
+          <div class="pli-chips" id="layoutChips">
+            <button class="pli-chip active" data-layout="vertical">▤ Vertical</button>
+            <button class="pli-chip" data-layout="horizontal">▥ Horizontal</button>
+            <button class="pli-chip" data-layout="grid">▦ Grid</button>
+            <button class="pli-chip" data-layout="contact">🗂 Contact sheet</button>
+          </div>
+          <div class="pli-field" id="colsField" style="display:none;margin-top:8px"><label>Columns</label>
+            <select id="cols"><option value="2">2 columns</option><option value="3">3 columns</option><option value="4">4 columns</option><option value="5">5 columns</option></select>
+          </div>
+        </div>
+
+        <div class="pli-card">
+          <h3>Output</h3>
+          <div class="pli-2">
+            <div class="pli-field"><label for="formatSelect">Format</label>
+              <select id="formatSelect"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option><option value="image/bmp">BMP</option><option value="image/tiff">TIFF</option></select>
+            </div>
+            <div class="pli-field"><label for="scaleSelect">Quality / DPI</label>
+              <select id="scaleSelect"><option value="1">Normal (72 dpi)</option><option value="1.5" selected>High (108 dpi)</option><option value="2">Very High (144 dpi)</option><option value="3">Print (216 dpi)</option></select>
+            </div>
+          </div>
+          <div class="pli-field"><label>Image quality (JPG/WebP): <span id="qLabel">92%</span></label><input type="range" id="quality" min="50" max="100" value="92" style="accent-color:var(--accent,#7c5cfc)"></div>
+          <div class="pli-field"><label for="widthPreset">Image width</label>
+            <select id="widthPreset"><option value="original">Original</option><option value="1080">Instagram / WhatsApp (1080)</option><option value="1240">A4 @150dpi (1240)</option><option value="800">Fit 800</option><option value="custom">Custom…</option></select>
+          </div>
+          <div class="pli-field" id="customWidthField" style="display:none"><label>Custom width (px)</label><input type="number" id="customWidth" value="1000" min="100" max="8000"></div>
+        </div>
+
+        <div class="pli-card">
+          <h3>Pages</h3>
+          <div class="pli-field"><label>Selection</label>
+            <select id="pageSel"><option value="all">All pages</option><option value="odd">Odd pages</option><option value="even">Even pages</option><option value="first">First page</option><option value="last">Last page</option><option value="range">Custom range…</option></select>
+          </div>
+          <div class="pli-field" id="rangeField" style="display:none"><label>Range (e.g. 1-3,5,8)</label><input type="text" id="pageRange" placeholder="1-3,5"></div>
+          <div class="pli-2">
+            <div class="pli-field"><label>Order</label><select id="order"><option value="normal">Normal</option><option value="reverse">Reverse</option></select></div>
+            <div class="pli-field"><label>Rotate</label><select id="rotate"><option value="0">0°</option><option value="90">90°</option><option value="180">180°</option><option value="270">270°</option></select></div>
+          </div>
+        </div>
+
+        <div class="pli-card">
+          <h3>Spacing &amp; background</h3>
+          <div class="pli-2">
+            <div class="pli-field"><label>Page gap (px)</label><input type="number" id="gap" value="0" min="0" max="200"></div>
+            <div class="pli-field"><label>Margin (px)</label><input type="number" id="margin" value="0" min="0" max="300"></div>
+          </div>
+          <div class="pli-field"><label>Background</label>
+            <div class="pli-chips" id="bgChips">
+              <button class="pli-chip active" data-bg="white">White</button>
+              <button class="pli-chip" data-bg="black">Black</button>
+              <button class="pli-chip" data-bg="transparent">Transparent</button>
+              <button class="pli-chip" data-bg="custom">Custom</button>
+              <button class="pli-chip" data-bg="gradient">Gradient</button>
+            </div>
+          </div>
+          <div class="pli-2">
+            <div class="pli-field"><label>Colour 1</label><input type="color" id="bgColor" value="#ffffff"></div>
+            <div class="pli-field"><label>Colour 2 (gradient)</label><input type="color" id="bgColor2" value="#7c5cfc"></div>
+          </div>
+        </div>
+
+        <div class="pli-card">
+          <h3>Borders</h3>
+          <div class="pli-2">
+            <div class="pli-field"><label>Border size (px)</label><input type="number" id="borderSize" value="0" min="0" max="40"></div>
+            <div class="pli-field"><label>Border colour</label><input type="color" id="borderColor" value="#dddddd"></div>
+          </div>
+          <div class="pli-2">
+            <div class="pli-field"><label>Rounded (px)</label><input type="number" id="radius" value="0" min="0" max="80"></div>
+            <div class="pli-field"><label class="pli-check"><input type="checkbox" id="shadow"> Shadow</label></div>
+          </div>
+        </div>
+
+        <div class="pli-card">
+          <h3>Watermark</h3>
+          <div class="pli-field"><label>Text (blank = none)</label><input type="text" id="wmText" placeholder="e.g. CONFIDENTIAL"></div>
+          <div class="pli-2">
+            <div class="pli-field"><label>Opacity: <span id="wmOpLabel">30%</span></label><input type="range" id="wmOpacity" min="5" max="100" value="30" style="accent-color:var(--accent,#7c5cfc)"></div>
+            <div class="pli-field"><label>Position</label><select id="wmPos"><option value="center">Center</option><option value="tile">Tiled</option><option value="br">Bottom-right</option><option value="tl">Top-left</option></select></div>
+          </div>
+        </div>
+
+        <div class="pli-card">
+          <h3>Long-image optimisation</h3>
+          <label class="pli-check"><input type="checkbox" id="autoSplit"> Auto-split when taller than</label>
+          <div class="pli-field" style="margin-top:6px"><input type="number" id="maxHeight" value="8000" min="1000" max="60000"> <span style="font-size:.7rem;color:var(--text-dim)">px → multiple images (ZIP)</span></div>
+          <label class="pli-check" style="margin-top:8px"><input type="checkbox" id="stripMeta" checked> Remove metadata (clean image output)</label>
+        </div>
+
+        <button class="pli-btn primary" id="renderBtn" style="padding:11px">🖼️ Generate image(s)</button>
       </div>
-      <div class="field">
-        <label for="scaleSelect">Quality</label>
-        <select id="scaleSelect">
-          <option value="1">Normal</option>
-          <option value="1.5" selected>High</option>
-          <option value="2">Very High</option>
-        </select>
+
+      <!-- ===== Preview ===== -->
+      <div>
+        <div class="pli-preview-area">
+          <div class="pli-toolbar">
+            <button class="pli-btn" id="zoomOut">−</button>
+            <span id="zoomLabel" style="font-size:.74rem;min-width:42px;text-align:center">100%</span>
+            <button class="pli-btn" id="zoomIn">＋</button>
+            <button class="pli-btn" id="fitBtn">Fit</button>
+            <button class="pli-btn" id="fsBtn">⛶ Full screen</button>
+            <span style="flex:1"></span>
+            <span id="outIndex" style="font-size:.74rem;color:var(--text-dim)"></span>
+          </div>
+          <div class="preview-wrap" id="previewWrap" style="display:none">
+            <img id="previewImg" alt="Stitched preview">
+          </div>
+          <div class="preview-wrap" id="previewEmpty" style="display:flex;align-items:center;justify-content:center;color:var(--text-dim);font-size:.85rem">Choose your settings and click “Generate image(s)”.</div>
+          <div class="pli-thumbs" id="thumbs"></div>
+        </div>
+
+        <p id="statusMsg" style="color:var(--text-dim);font-size:.85rem;margin-top:10px"></p>
+        <div class="pli-progress" id="progress"><i></i></div>
+        <div class="pli-info" id="fileInfo"></div>
+
+        <div class="btn-row" id="downloadRow" style="display:none;margin-top:12px;gap:8px;flex-wrap:wrap">
+          <button class="pli-btn primary" id="downloadBtn">⬇️ Download</button>
+          <button class="pli-btn" id="downloadAllBtn" style="display:none">⬇️ Download all (ZIP)</button>
+          <button class="pli-btn" id="copyBtn">📋 Copy image</button>
+          <button class="pli-btn" id="printBtn">🖨 Print</button>
+          <button class="pli-btn" id="shareBtn">🔗 Share</button>
+        </div>
       </div>
-    </div>
-
-    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem;margin-top:10px"></p>
-
-    <div class="btn-row" id="downloadRow" style="display:none">
-      <button class="btn" id="downloadBtn">⬇️ Download Long Image</button>
-    </div>
-
-    <div class="preview-wrap" id="previewWrap" style="display:none">
-      <img id="previewImg" alt="Stitched preview">
     </div>
   </div>
 </div>
 
+<!-- ============================ BELOW-TOOL CONTENT ============================ -->
+<div class="pli-content">
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Combines every page of a PDF into one continuous, scrollable image — useful for sharing multi-page documents on WhatsApp, Instagram, or anywhere a single image works better than a PDF attachment.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your PDF.</li>
-        <li>Choose a format and quality.</li>
-        <li>Download the combined long image.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>PDF के हर पेज को एक लंबी, स्क्रॉल होने वाली इमेज में जोड़ देता है — WhatsApp, Instagram, या जहां भी PDF attachment की जगह एक इमेज बेहतर हो, वहां शेयर करने के लिए उपयोगी।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी PDF अपलोड करें।</li>
-        <li>फॉर्मेट और क्वालिटी चुनें।</li>
-        <li>बनी हुई लंबी इमेज डाउनलोड करें।</li>
-      </ol>
-    </div>
+  <h2>📜 Turn any PDF into a shareable image — your way</h2>
+  <p>The <strong>Professional PDF to Long Image Converter</strong> renders every page of a PDF and stitches them into a single image you can share anywhere a picture works better than a document — a WhatsApp chat, an Instagram story, a website, or a printout. It goes far beyond a simple vertical stitch: choose a tall long-image, a horizontal strip, a multi-column grid or a printable contact sheet; export as JPG, PNG, WebP, BMP or TIFF; and fine-tune DPI, page selection, rotation, margins, background, borders and a watermark. Everything is rendered locally in your browser with PDF.js, so your document never leaves your device.</p>
+
+  <h2>✨ Features</h2>
+  <div class="pli-fgrid">
+    <div class="fc"><b>Four layouts</b><span>Vertical long image, horizontal strip, 2–5 column grid, or a labelled contact sheet.</span></div>
+    <div class="fc"><b>Five formats</b><span>JPG, PNG, WebP, BMP and TIFF — with transparency where the format allows.</span></div>
+    <div class="fc"><b>DPI &amp; quality</b><span>Render from 72 up to print-grade 216 dpi, with a JPG/WebP quality slider.</span></div>
+    <div class="fc"><b>Page control</b><span>All, odd, even, first, last or a custom range; normal or reverse order; per-page rotation.</span></div>
+    <div class="fc"><b>Styling</b><span>Margins, page gap, white/black/transparent/custom/gradient background, borders, rounded corners and shadow.</span></div>
+    <div class="fc"><b>Preset widths</b><span>Original, Instagram/WhatsApp 1080, A4, or a custom pixel width.</span></div>
+    <div class="fc"><b>Watermark</b><span>Overlay text with adjustable opacity and position (center, tiled or corner).</span></div>
+    <div class="fc"><b>Auto-split &amp; batch</b><span>Split very tall images at a max height and process multiple PDFs into a ZIP.</span></div>
   </div>
+
+  <h2>⚙️ How it works</h2>
+  <p>When you add a PDF, the tool reads it entirely in memory and uses Mozilla's PDF.js engine to render each selected page onto an HTML5 canvas at your chosen DPI. Those page canvases are then composed onto one output canvas according to your layout — stacked vertically, laid side by side, or arranged in a grid — with your margins, background, borders and watermark applied. The result is encoded into your chosen image format and offered for download. For JPG, PNG and WebP the browser's native encoder is used; BMP and TIFF are written by lightweight built-in encoders, so no external service is ever involved.</p>
+
+  <h2>📁 Supported formats</h2>
+  <p>Input is any standard <strong>PDF</strong>. Output can be <strong>JPG</strong> (small, universal, no transparency), <strong>PNG</strong> (lossless with transparency), <strong>WebP</strong> (modern, smaller than both), <strong>BMP</strong> (uncompressed, maximally compatible) or <strong>TIFF</strong> (lossless, favoured in print and archival workflows). JPG and BMP are always opaque; PNG, WebP and TIFF preserve a transparent background when you choose one.</p>
+
+  <h2>🎚️ Quality options</h2>
+  <p>Quality is governed by two independent controls. <strong>DPI/scale</strong> sets how finely each PDF page is rasterised — higher DPI means sharper text and larger files, ideal for printing, while lower DPI keeps files light for chat and web. The <strong>quality slider</strong> then controls the compression level for JPG and WebP output. Combined with the width presets, you can dial in exactly the balance of sharpness and file size your destination needs.</p>
+
+  <h2>🧩 Layout options</h2>
+  <ul>
+    <li><strong>Vertical long image</strong> — the classic scroll-friendly stitch, best for reading and messaging apps.</li>
+    <li><strong>Horizontal strip</strong> — pages side by side, useful for timelines and wide displays.</li>
+    <li><strong>Grid</strong> — 2 to 5 columns, great for overviews and printing several pages per sheet.</li>
+    <li><strong>Contact sheet</strong> — a labelled thumbnail grid for quickly indexing a long document.</li>
+  </ul>
+
+  <h2>💼 Use cases</h2>
+  <ul>
+    <li>Share a multi-page notice, menu or brochure as one image on WhatsApp or Instagram.</li>
+    <li>Post a document to a website or blog where a scrollable image is friendlier than a PDF.</li>
+    <li>Create a printable contact sheet to index scans, invoices or a photo album PDF.</li>
+    <li>Turn a report into a wide banner or a grid handout for a presentation.</li>
+  </ul>
+
+  <h2>🎯 Benefits</h2>
+  <ul>
+    <li><strong>Private:</strong> the PDF is processed entirely in your browser and never uploaded.</li>
+    <li><strong>Flexible:</strong> four layouts, five formats and full styling in one tool.</li>
+    <li><strong>Handles big PDFs:</strong> pages render one at a time with progress and optional auto-split.</li>
+    <li><strong>Free:</strong> no account, no watermark (unless you add your own), no limits.</li>
+  </ul>
+
+  <h2>🔒 Privacy</h2>
+  <p>This converter is privacy-first. Your PDF is read and rendered entirely inside your browser using PDF.js and the canvas API; no page, image or byte of your document is ever uploaded to a server, shared with analytics, or processed by any AI service. Once the page and its PDF.js engine have loaded, the tool works offline, and closing the tab clears everything from memory. That makes it safe for confidential contracts, statements, medical or legal documents and unreleased designs. / यह टूल privacy-first है — आपकी PDF आपके ब्राउज़र में ही render होती है, कुछ भी अपलोड नहीं होता।</p>
+
+  <!-- ===== Related Tools (ABOVE About — required order) ===== -->
+  <h2>🧰 Related Tools</h2>
+  <div class="related-grid">
+    <a href="pdf-to-image.html"><span class="ri">🖼️</span> PDF to JPG</a>
+    <a href="pdf-to-image.html"><span class="ri">🌆</span> PDF to PNG</a>
+    <a href="pdf-split.html"><span class="ri">✂️</span> PDF Split</a>
+    <a href="pdf-merge.html"><span class="ri">🧩</span> PDF Merge</a>
+    <a href="pdf-compress.html"><span class="ri">📉</span> PDF Compress</a>
+    <a href="image-to-pdf.html"><span class="ri">🖨️</span> Image to PDF</a>
+    <a href="image-compressor.html"><span class="ri">📉</span> Image Compressor</a>
+    <a href="image-converter.html"><span class="ri">🔄</span> Image Converter</a>
+    <a href="image-resizer.html"><span class="ri">📐</span> Image Resizer</a>
+    <a href="pdf-rotate.html"><span class="ri">🔃</span> PDF Rotate</a>
+  </div>
+
+  <!-- ===== About (English) ===== -->
+  <h2>ℹ️ About This Tool</h2>
+  <p>The <strong>Professional PDF to Long Image Converter</strong> is a free, browser-based tool that transforms a PDF document into a single shareable image, or a set of them, exactly the way you want. It began as a simple utility that stacked every page into one tall picture — handy for WhatsApp and social media — and grew into a full conversion studio because turning a document into an image is rarely one-size-fits-all. Sometimes you want a long vertical scroll; sometimes a wide strip, a tidy grid, or a printable contact sheet. Sometimes you need a tiny JPG for a chat, and sometimes a lossless TIFF for archiving. This tool covers that whole range in one place, and it does everything locally so your document is never uploaded.</p>
+
+  <p>At its core the converter uses Mozilla's PDF.js, the same open-source engine that powers PDF viewing in modern browsers, to render each page of your file onto a canvas. Rendering happens at a DPI you choose, which is the single biggest factor in how the final image looks: a low setting produces small, web-friendly files, while a high setting yields crisp, print-quality output at the cost of size. Because rendering is done page by page with a live progress bar showing the percentage complete, an estimate of the time remaining, the running output size and the processing speed, even large, image-heavy PDFs remain manageable and you always know how far along the job is.</p>
+
+  <p>Once the pages are rendered, the layout engine takes over. The default vertical mode stitches pages top to bottom into the classic long image, ideal for reading in a messaging app where people naturally scroll. The horizontal mode places pages side by side for wide screens and timelines. The grid mode arranges pages in two to five columns, which is perfect for an at-a-glance overview or for printing several pages on one sheet, and the contact-sheet mode adds page-number labels to a thumbnail grid so you can index a long document quickly. Around these layouts you have precise control over the presentation: adjustable margins and a gap between pages, a background that can be white, black, transparent, a custom colour or a two-colour gradient, and per-page borders with a chosen thickness, colour, rounded corners and an optional drop shadow.</p>
+
+  <p>Getting exactly the pages you want, in the order you want, is just as flexible. You can include all pages, only the odd or even ones, just the first or last page, or a custom range such as "1-3, 5, 8". The order can be normal or reversed, and every page can be rotated by 90, 180 or 270 degrees to correct scans or fit a layout. For output you pick from five formats — JPG, PNG, WebP, BMP and TIFF — using the browser's own encoders for the first three and lightweight built-in encoders for BMP and TIFF, so nothing leaves your device. Preset widths make sizing effortless: choose the original resolution, a 1080-pixel width tuned for Instagram and WhatsApp, an A4 print width, or type a custom pixel width, and every page is scaled to match. A text watermark with adjustable opacity and a choice of centre, tiled or corner positions lets you brand or mark documents as confidential.</p>
+
+  <p>Two features make the tool genuinely comfortable with big jobs. First, long-image optimisation: a very tall stitched image can exceed the maximum canvas or image dimensions some apps accept, so you can set a maximum height and the tool will automatically split the output into several images, delivered together in a ZIP. Second, batch processing: you can add multiple PDFs to a queue and convert them in one run, again collecting the results in a ZIP for a single download. A live preview with zoom, pan, a full-screen view and a thumbnail strip lets you inspect the result before saving, and when you are happy you can download the image, copy it straight to your clipboard, print it, or use your device's native share sheet. A file-information panel keeps the essentials in view — source file size, total pages, page dimensions and the final output size.</p>
+
+  <p>Throughout, the design goals are speed, privacy and reach. The interface is responsive and touch-friendly, so it works on a phone with pinch-zoom as comfortably as on a desktop; the controls are labelled and keyboard-operable for accessibility; and because all processing is client-side, the tool is safe for confidential material and continues to work offline once loaded. There is no account, no watermark unless you add one yourself, and no artificial limits. Whether you are a student sharing lecture notes, a shop owner posting a menu, an office worker circulating a notice, or anyone who simply finds an image easier to send than a PDF, this converter turns that everyday need into a couple of clicks — while keeping your document entirely in your hands.</p>
+
+  <!-- ===== About (Hindi) ===== -->
+  <h2>ℹ️ इस टूल के बारे में (हिंदी में)</h2>
+  <p class="pli-lang-note">The same guide in Hindi / यही जानकारी हिंदी में।</p>
+  <p><strong>Professional PDF to Long Image Converter</strong> एक फ्री, ब्राउज़र-आधारित टूल है जो किसी PDF दस्तावेज़ को एक साझा करने योग्य इमेज — या कई इमेज — में ठीक वैसे बदल देता है जैसे आप चाहें। इसकी शुरुआत एक साधारण उपयोगिता के रूप में हुई थी जो हर पेज को एक लंबी तस्वीर में जोड़ देती थी — WhatsApp और सोशल मीडिया के लिए उपयोगी — और यह एक पूरा conversion studio बन गया, क्योंकि किसी दस्तावेज़ को इमेज में बदलना शायद ही कभी एक ही तरीके से सबके लिए सही होता है। कभी आपको लंबा vertical scroll चाहिए, कभी चौड़ी strip, साफ़-सुथरा grid, या printable contact sheet। कभी chat के लिए छोटी JPG, तो कभी archive के लिए lossless TIFF। यह टूल यह पूरी रेंज एक ही जगह कवर करता है, और सब कुछ locally करता है ताकि आपका दस्तावेज़ कभी अपलोड न हो।</p>
+
+  <p>इसके केंद्र में Mozilla का PDF.js है — वही open-source engine जो आधुनिक ब्राउज़रों में PDF दिखाता है — जो आपकी फ़ाइल के हर पेज को canvas पर render करता है। Rendering उस DPI पर होती है जो आप चुनते हैं, और यही final इमेज के दिखने का सबसे बड़ा कारक है: कम setting छोटी, web-अनुकूल फ़ाइलें देती है, जबकि ऊँची setting साफ़, print-quality output देती है (बड़े आकार की क़ीमत पर)। चूँकि rendering पेज-दर-पेज एक live progress bar के साथ होती है जो प्रतिशत, बचा हुआ अनुमानित समय, चलता हुआ output आकार और गति दिखाती है, बड़ी, image-भारी PDFs भी संभालने योग्य रहती हैं।</p>
+
+  <p>पेज render होने के बाद layout engine काम संभालता है। डिफ़ॉल्ट vertical mode पेजों को ऊपर से नीचे जोड़कर classic long image बनाता है। Horizontal mode पेजों को अगल-बगल रखता है। Grid mode पेजों को दो से पाँच columns में सजाता है, जो overview या एक ही sheet पर कई पेज प्रिंट करने के लिए बढ़िया है, और contact-sheet mode thumbnail grid में पेज-नंबर labels जोड़ता है। इन layouts के आसपास आपको presentation पर सटीक नियंत्रण मिलता है: समायोज्य margins और पेजों के बीच gap, एक background जो white, black, transparent, custom रंग या दो-रंग gradient हो सकता है, और per-page borders — मोटाई, रंग, गोल कोने और optional shadow के साथ।</p>
+
+  <p>ठीक वही पेज, ठीक उसी क्रम में पाना भी उतना ही लचीला है। आप सभी पेज, केवल odd या even, सिर्फ़ पहला या आख़िरी पेज, या "1-3, 5, 8" जैसा custom range शामिल कर सकते हैं। क्रम normal या reverse हो सकता है, और हर पेज को 90, 180 या 270 डिग्री घुमाया जा सकता है। Output के लिए पाँच formats हैं — JPG, PNG, WebP, BMP और TIFF — पहले तीन के लिए ब्राउज़र के अपने encoders और BMP तथा TIFF के लिए हल्के built-in encoders, ताकि कुछ भी आपके डिवाइस से बाहर न जाए। Preset widths आकार तय करना आसान बनाते हैं: original, Instagram/WhatsApp के लिए 1080-pixel, A4 print width, या कोई custom pixel width। समायोज्य opacity और center/tiled/corner स्थिति वाला text watermark दस्तावेज़ों को brand या confidential चिह्नित करने देता है।</p>
+
+  <p>दो विशेषताएँ टूल को बड़े कामों के लिए सहज बनाती हैं। पहली, long-image optimisation: बहुत लंबी stitched इमेज कुछ apps की अधिकतम सीमा से अधिक हो सकती है, इसलिए आप एक maximum height तय कर सकते हैं और टूल output को कई इमेज में अपने-आप बाँट देगा, जो एक ZIP में मिलती हैं। दूसरी, batch processing: आप कई PDFs को queue में जोड़कर एक ही बार में convert कर सकते हैं। zoom, pan, full-screen और thumbnail strip वाला live preview आपको सहेजने से पहले परिणाम जाँचने देता है, और संतुष्ट होने पर आप इमेज download कर सकते हैं, सीधे clipboard पर copy कर सकते हैं, print कर सकते हैं, या share कर सकते हैं। एक file-information panel स्रोत फ़ाइल आकार, कुल पेज, पेज आकार और final output आकार दिखाता रहता है।</p>
+
+  <p>पूरे समय डिज़ाइन के लक्ष्य हैं गति, निजता और पहुँच। interface responsive और touch-friendly है, इसलिए यह फ़ोन पर pinch-zoom के साथ उतना ही आराम से चलता है जितना desktop पर; नियंत्रण labelled और कीबोर्ड-सुलभ हैं; और चूँकि सारी processing client-side है, यह गोपनीय सामग्री के लिए सुरक्षित है और लोड होने के बाद offline भी काम करता है। कोई account नहीं, आपके अपने अलावा कोई watermark नहीं, और कोई कृत्रिम सीमा नहीं।</p>
+
+  <!-- ===== FAQ (immediately after About — required order) ===== -->
+  <h2>❓ Frequently Asked Questions</h2>
+  <div class="pli-faq" id="pliFaq">
+    <details><summary>Is this tool free?</summary><p>Yes, completely free with no account, no signup and no limits. / हाँ, यह पूरी तरह मुफ़्त है।</p></details>
+    <details><summary>Is my PDF uploaded to a server?</summary><p>No. The PDF is rendered entirely in your browser with PDF.js; nothing is uploaded. / नहीं, PDF आपके ब्राउज़र में ही render होती है।</p></details>
+    <details><summary>What layouts can I create?</summary><p>Vertical long image, horizontal strip, a 2–5 column grid, or a labelled contact sheet. / vertical, horizontal, grid और contact sheet।</p></details>
+    <details><summary>Which image formats are supported?</summary><p>JPG, PNG, WebP, BMP and TIFF. PNG, WebP and TIFF can keep a transparent background. / JPG, PNG, WebP, BMP और TIFF।</p></details>
+    <details><summary>Can I choose which pages to include?</summary><p>Yes — all, odd, even, first, last, or a custom range like 1-3,5,8. / हाँ, custom range समेत।</p></details>
+    <details><summary>Can I reverse or rotate pages?</summary><p>Yes. Order can be normal or reverse, and each page can be rotated 90/180/270°. / हाँ, reverse और rotate।</p></details>
+    <details><summary>How do I control quality?</summary><p>Pick a DPI/scale for sharpness and a quality slider for JPG/WebP compression. / DPI और quality slider से।</p></details>
+    <details><summary>What is the WhatsApp/Instagram width?</summary><p>A 1080-pixel width preset that fits both platforms nicely; you can also set a custom width. / 1080-pixel preset।</p></details>
+    <details><summary>My long image is huge — can I split it?</summary><p>Yes. Enable auto-split and set a max height; the output becomes several images in a ZIP. / हाँ, auto-split चालू करें।</p></details>
+    <details><summary>Can I convert several PDFs at once?</summary><p>Yes. Add multiple PDFs to the queue and download the results as a ZIP. / हाँ, batch queue से।</p></details>
+    <details><summary>Can I add a watermark?</summary><p>Yes — text with adjustable opacity, positioned center, tiled or in a corner. / हाँ, text watermark।</p></details>
+    <details><summary>Does it keep or remove metadata?</summary><p>Rasterising to an image drops the PDF's metadata; the output is a clean image with no document metadata. / raster output में कोई PDF metadata नहीं रहता।</p></details>
+    <details><summary>Can I add margins, backgrounds and borders?</summary><p>Yes — margins and page gap, white/black/transparent/custom/gradient backgrounds, and borders with rounded corners and shadow. / हाँ, सभी styling विकल्प।</p></details>
+    <details><summary>Can I copy the image or print it?</summary><p>Yes — download, copy to clipboard, print, or use the native share option. / हाँ, download, copy, print और share।</p></details>
+    <details><summary>Does it handle very large PDFs?</summary><p>Yes. Pages render one at a time with progress; lower the DPI or use auto-split for very big files. / हाँ, बड़ी PDFs भी।</p></details>
+    <details><summary>Why is a transparent background white in my JPG?</summary><p>JPG and BMP cannot store transparency, so it is filled white. Use PNG, WebP or TIFF for transparency. / JPG/BMP में transparency नहीं होती।</p></details>
+    <details><summary>Does it work offline?</summary><p>Once the page and PDF.js have loaded, yes. / हाँ, लोड होने के बाद offline।</p></details>
+    <details><summary>Is it mobile friendly?</summary><p>Yes, it is responsive with pinch and touch zoom in the preview. / हाँ, मोबाइल-अनुकूल।</p></details>
+    <details><summary>Is it accessible?</summary><p>Controls are labelled and keyboard-operable with clear focus states. / नियंत्रण labelled और कीबोर्ड-सुलभ हैं।</p></details>
+    <details><summary>Does it use any AI?</summary><p>No. It uses standard PDF rendering and canvas drawing, with no AI. / नहीं, इसमें कोई AI नहीं है।</p></details>
+    <details><summary>Why does a scanned PDF produce a large image?</summary><p>Scans are already images; high DPI multiplies their size. Lower the DPI or the width preset to shrink the output. / DPI या width कम करें।</p></details>
+  </div>
+
+  <!-- ===== Troubleshooting ===== -->
+  <h2>🛠️ Troubleshooting</h2>
+  <ul>
+    <li><strong>The image is blank or an app won't open it:</strong> it may be taller than the app's limit — enable auto-split or reduce DPI/width.</li>
+    <li><strong>Text looks blurry:</strong> increase the DPI/scale, or pick a larger width preset.</li>
+    <li><strong>The file is too large to share:</strong> use JPG or WebP, lower the quality slider, and reduce the DPI.</li>
+    <li><strong>Some pages are missing:</strong> check the page-selection and range settings.</li>
+    <li><strong>A password-protected PDF won't load:</strong> remove the password in a PDF tool first, then convert.</li>
+    <li><strong>The browser slows on a huge PDF:</strong> lower the DPI, convert a page range, or enable auto-split to cap memory use.</li>
+  </ul>
 </div>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+(function(){
+  'use strict';
+  function $(id){ return document.getElementById(id); }
+  if(window.pdfjsLib){ pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; }
 
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-let stitchedBlob = null;
+  var queue=[];            // {file, name, doc, pages:[canvas], numPages}
+  var activeIdx=0;
+  var outputs=[];          // output blobs for current file
+  var outIndex=0;
+  var settings={ layout:'vertical', bg:'white' };
+  var zoom=1;
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type === 'application/pdf'){
-    processFile(files[0]);
+  // ---------- Upload ----------
+  setupDropzone($('dropzone'), $('fileInput'), function(files){ addFiles(files); });
+  function addFiles(files){
+    Array.prototype.slice.call(files||[]).forEach(function(f){ if(f && (f.type==='application/pdf'|| /\.pdf$/i.test(f.name))) queue.push({file:f,name:f.name,doc:null,pages:null,numPages:0}); });
+    renderQueue();
+    if(queue.length){ $('editor').style.display='grid'; loadFile(queue.length-1); }
   }
-});
+  function renderQueue(){
+    var w=$('queue'); if(!queue.length){ w.innerHTML=''; return; }
+    w.innerHTML=queue.map(function(q,i){ return '<div class="q"><span class="qn">'+(i===activeIdx?'▶ ':'')+escapeHtml(q.name)+(q.numPages?(' • '+q.numPages+'p'):'')+'</span><button data-open="'+i+'">Open</button><button data-del="'+i+'">✕</button></div>'; }).join('');
+    w.querySelectorAll('[data-open]').forEach(function(b){ b.addEventListener('click',function(){ loadFile(+b.getAttribute('data-open')); }); });
+    w.querySelectorAll('[data-del]').forEach(function(b){ b.addEventListener('click',function(){ var i=+b.getAttribute('data-del'); queue.splice(i,1); if(activeIdx>=queue.length)activeIdx=Math.max(0,queue.length-1); renderQueue(); if(queue.length)loadFile(activeIdx); else { $('editor').style.display='none'; } }); });
+  }
+  function escapeHtml(s){ return String(s).replace(/[&<>"]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];}); }
 
-async function processFile(file){
-  const status = document.getElementById('statusMsg');
-  document.getElementById('downloadRow').style.display = 'none';
-  document.getElementById('previewWrap').style.display = 'none';
-  status.textContent = '⏳ Loading PDF...';
-
-  const scale = parseFloat(document.getElementById('scaleSelect').value);
-  const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-
-  const canvases = [];
-  let totalHeight = 0;
-  let maxWidth = 0;
-
-  for(let i=1; i<=pdf.numPages; i++){
-    status.textContent = `⏳ Rendering page ${i} of ${pdf.numPages}...`;
-    const page = await pdf.getPage(i);
-    const viewport = page.getViewport({ scale });
-    const canvas = document.createElement('canvas');
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    const ctx = canvas.getContext('2d');
-    await page.render({ canvasContext: ctx, viewport }).promise;
-    canvases.push(canvas);
-    totalHeight += canvas.height;
-    if(canvas.width > maxWidth) maxWidth = canvas.width;
+  async function loadFile(idx){
+    activeIdx=idx; var q=queue[idx]; renderQueue();
+    var status=$('statusMsg'); status.textContent='⏳ Loading PDF…';
+    outputs=[]; $('downloadRow').style.display='none'; $('previewWrap').style.display='none'; $('previewEmpty').style.display='flex';
+    try{
+      if(!q.doc){ var ab=await q.file.arrayBuffer(); q.doc=await pdfjsLib.getDocument({data:ab}).promise; q.numPages=q.doc.numPages; }
+      status.textContent='✅ '+q.numPages+' page(s) loaded. Choose settings and generate.';
+      renderThumbs(q);
+      var p1=await q.doc.getPage(1); var vp=p1.getViewport({scale:1});
+      showInfo({size:q.file.size, pages:q.numPages, pw:Math.round(vp.width), ph:Math.round(vp.height)});
+      renderQueue();
+    }catch(e){ status.textContent='❌ Could not load PDF: '+(e.message||e); }
   }
 
-  status.textContent = '⏳ Stitching pages together...';
-  const finalCanvas = document.createElement('canvas');
-  finalCanvas.width = maxWidth;
-  finalCanvas.height = totalHeight;
-  const fctx = finalCanvas.getContext('2d');
-  fctx.fillStyle = '#fff';
-  fctx.fillRect(0,0,maxWidth,totalHeight);
+  async function renderThumbs(q){
+    var wrap=$('thumbs'); wrap.innerHTML='';
+    var n=Math.min(q.numPages,30);
+    for(var i=1;i<=n;i++){
+      var page=await q.doc.getPage(i); var vp=page.getViewport({scale:0.2});
+      var c=document.createElement('canvas'); c.width=vp.width; c.height=vp.height;
+      await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;
+      var d=document.createElement('div'); d.className='pli-thumb'; d.appendChild(c);
+      var pn=document.createElement('div'); pn.className='pn'; pn.textContent=i; d.appendChild(pn);
+      wrap.appendChild(d);
+    }
+  }
+  function showInfo(o){ $('fileInfo').innerHTML=[['File size',fmtBytes(o.size)],['Total pages',o.pages],['Page size',o.pw+'×'+o.ph+' pt'],['Output size',o.out||'—']].map(function(r){return '<span>'+r[0]+'</span><span>'+r[1]+'</span>';}).join(''); }
+  function fmtBytes(n){ if(!n)return '—'; if(n<1024)return n+' B'; if(n<1048576)return (n/1024).toFixed(1)+' KB'; return (n/1048576).toFixed(2)+' MB'; }
 
-  let yOffset = 0;
-  canvases.forEach(c=>{
-    fctx.drawImage(c, 0, yOffset);
-    yOffset += c.height;
+  // ---------- Settings wiring ----------
+  document.querySelectorAll('[data-layout]').forEach(function(b){ b.addEventListener('click',function(){ document.querySelectorAll('[data-layout]').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); settings.layout=b.getAttribute('data-layout'); $('colsField').style.display=(settings.layout==='grid')?'block':'none'; }); });
+  document.querySelectorAll('[data-bg]').forEach(function(b){ b.addEventListener('click',function(){ document.querySelectorAll('[data-bg]').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); settings.bg=b.getAttribute('data-bg'); }); });
+  $('pageSel').addEventListener('change',function(){ $('rangeField').style.display=this.value==='range'?'block':'none'; });
+  $('widthPreset').addEventListener('change',function(){ $('customWidthField').style.display=this.value==='custom'?'block':'none'; });
+  $('quality').addEventListener('input',function(){ $('qLabel').textContent=this.value+'%'; });
+  $('wmOpacity').addEventListener('input',function(){ $('wmOpLabel').textContent=this.value+'%'; });
+
+  function selectedPageNumbers(n){
+    var sel=$('pageSel').value; var arr=[];
+    if(sel==='all'){ for(var i=1;i<=n;i++)arr.push(i); }
+    else if(sel==='odd'){ for(var o=1;o<=n;o+=2)arr.push(o); }
+    else if(sel==='even'){ for(var e=2;e<=n;e+=2)arr.push(e); }
+    else if(sel==='first')arr=[1];
+    else if(sel==='last')arr=[n];
+    else if(sel==='range'){ ($('pageRange').value||'').split(',').forEach(function(part){ part=part.trim(); var m=part.match(/^(\d+)-(\d+)$/); if(m){ for(var k=+m[1];k<=+m[2];k++)if(k>=1&&k<=n)arr.push(k); } else if(/^\d+$/.test(part)){ var v=+part; if(v>=1&&v<=n)arr.push(v); } }); }
+    if($('order').value==='reverse')arr.reverse();
+    if(!arr.length){ for(var z=1;z<=n;z++)arr.push(z); }
+    return arr;
+  }
+
+  // ---------- Generate ----------
+  $('renderBtn').addEventListener('click',function(){ generate(); });
+  async function generate(){
+    var q=queue[activeIdx]; if(!q||!q.doc)return;
+    var status=$('statusMsg'), prog=$('progress'), bar=prog.firstElementChild;
+    var scale=parseFloat($('scaleSelect').value);
+    var pages=selectedPageNumbers(q.numPages);
+    prog.classList.add('show'); bar.style.width='0%';
+    var t0=performance.now();
+    var canvases=[];
+    for(var i=0;i<pages.length;i++){
+      status.textContent='⏳ Rendering page '+pages[i]+' ('+(i+1)+'/'+pages.length+')…';
+      var page=await q.doc.getPage(pages[i]);
+      var rot=parseInt($('rotate').value)||0;
+      var vp=page.getViewport({scale:scale, rotation:rot});
+      var c=document.createElement('canvas'); c.width=Math.max(1,Math.round(vp.width)); c.height=Math.max(1,Math.round(vp.height));
+      await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;
+      canvases.push(c);
+      var done=(i+1)/pages.length; bar.style.width=Math.round(done*100)+'%';
+      var elapsed=(performance.now()-t0)/1000; var eta=elapsed/done-elapsed;
+      status.textContent='⏳ '+(i+1)+'/'+pages.length+' • '+eta.toFixed(1)+'s left • '+(done/ (elapsed||1)*pages.length).toFixed(1)+' pg/s';
+      await tick();
+    }
+    status.textContent='⏳ Composing…'; await tick();
+    var composed=compose(canvases); // array of canvases (auto-split)
+    outputs=[]; outIndex=0;
+    var fmt=$('formatSelect').value, quality=$('quality').value/100;
+    var totalBytes=0;
+    for(var j=0;j<composed.length;j++){ var blob=await encode(composed[j],fmt,quality); outputs.push({blob:blob,w:composed[j].width,h:composed[j].height}); totalBytes+=blob.size; }
+    showPreview();
+    $('downloadRow').style.display='flex';
+    $('downloadAllBtn').style.display=(outputs.length>1||queue.length>1)?'inline-block':'none';
+    prog.classList.remove('show');
+    status.textContent='✅ Generated '+outputs.length+' image(s), '+composed[0].width+'×'+composed[0].height+'px, '+fmtBytes(totalBytes)+'.';
+    showInfo({size:q.file.size,pages:q.numPages,pw:'',ph:'',out:composed[0].width+'×'+composed[0].height+' • '+fmtBytes(totalBytes)});
+  }
+  function tick(){ return new Promise(function(r){ setTimeout(r,0); }); }
+
+  // ---------- Compose ----------
+  function targetWidth(pageW){
+    var wp=$('widthPreset').value;
+    if(wp==='original')return null;
+    if(wp==='custom')return parseInt($('customWidth').value)||pageW;
+    return parseInt(wp);
+  }
+  function fillBg(ctx,w,h){
+    var bg=settings.bg;
+    if(bg==='transparent'){ ctx.clearRect(0,0,w,h); return; }
+    if(bg==='gradient'){ var g=ctx.createLinearGradient(0,0,0,h); g.addColorStop(0,$('bgColor').value); g.addColorStop(1,$('bgColor2').value); ctx.fillStyle=g; ctx.fillRect(0,0,w,h); return; }
+    ctx.fillStyle = bg==='white'?'#ffffff':bg==='black'?'#000000':$('bgColor').value; ctx.fillRect(0,0,w,h);
+  }
+  function drawPage(ctx,c,x,y,w,h){
+    var bs=parseInt($('borderSize').value)||0, rad=parseInt($('radius').value)||0;
+    ctx.save();
+    if($('shadow').checked){ ctx.shadowColor='rgba(0,0,0,.35)'; ctx.shadowBlur=Math.max(6,w*0.02); ctx.shadowOffsetY=4; }
+    if(rad>0){ roundRect(ctx,x,y,w,h,rad); ctx.clip(); }
+    ctx.drawImage(c,x,y,w,h);
+    ctx.restore();
+    if(bs>0){ ctx.lineWidth=bs; ctx.strokeStyle=$('borderColor').value; if(rad>0){ roundRect(ctx,x+bs/2,y+bs/2,w-bs,h-bs,rad); ctx.stroke(); } else { ctx.strokeRect(x+bs/2,y+bs/2,w-bs,h-bs); } }
+  }
+  function roundRect(c,x,y,w,h,r){ r=Math.min(r,w/2,h/2); c.beginPath(); c.moveTo(x+r,y); c.arcTo(x+w,y,x+w,y+h,r); c.arcTo(x+w,y+h,x,y+h,r); c.arcTo(x,y+h,x,y,r); c.arcTo(x,y,x+w,y,r); c.closePath(); }
+
+  function scaledDims(c,tw){ if(!tw)return {w:c.width,h:c.height}; var r=tw/c.width; return {w:tw,h:Math.round(c.height*r)}; }
+
+  function compose(canvases){
+    var gap=parseInt($('gap').value)||0, margin=parseInt($('margin').value)||0;
+    var layout=settings.layout, tw=targetWidth(canvases[0].width);
+    var out=[];
+    if(layout==='vertical'){
+      var maxW=0, dims=canvases.map(function(c){ var d=scaledDims(c,tw); if(d.w>maxW)maxW=d.w; return d; });
+      var W=maxW+margin*2;
+      // auto-split
+      var maxH=$('autoSplit').checked?(parseInt($('maxHeight').value)||8000):Infinity;
+      var groups=[[]], gh=margin;
+      canvases.forEach(function(c,i){ var d=dims[i]; if(gh+d.h+gap>maxH && groups[groups.length-1].length){ groups.push([]); gh=margin; } groups[groups.length-1].push({c:c,d:d}); gh+=d.h+gap; });
+      groups.forEach(function(g){ var H=margin*2+g.reduce(function(a,x){return a+x.d.h+gap;},0)-gap; var cv=mk(W,H); var ctx=cv.getContext('2d'); fillBg(ctx,W,H); var y=margin; g.forEach(function(x){ drawPage(ctx,x.c,(W-x.d.w)/2,y,x.d.w,x.d.h); y+=x.d.h+gap; }); watermark(ctx,W,H); out.push(cv); });
+    } else if(layout==='horizontal'){
+      var th= tw? null : null; // normalize by height of first
+      var H0=canvases[0].height; var dimsH=canvases.map(function(c){ var r=H0/c.height; return {w:Math.round(c.width*r),h:H0}; });
+      var totalW=margin*2+dimsH.reduce(function(a,d){return a+d.w+gap;},0)-gap; var Hh=H0+margin*2;
+      var cvh=mk(totalW,Hh); var cx=cvh.getContext('2d'); fillBg(cx,totalW,Hh); var xx=margin; canvases.forEach(function(c,i){ drawPage(cx,c,xx,margin,dimsH[i].w,dimsH[i].h); xx+=dimsH[i].w+gap; }); watermark(cx,totalW,Hh); out.push(cvh);
+    } else { // grid / contact
+      var cols = layout==='contact'?4:(parseInt($('cols').value)||2);
+      var cellW=(tw||canvases[0].width);
+      var d0=scaledDims(canvases[0],cellW);
+      // uniform cell = scaled to cellW
+      var cellDims=canvases.map(function(c){ return scaledDims(c,cellW); });
+      var rows=Math.ceil(canvases.length/cols);
+      var label= layout==='contact'?18:0;
+      var W2=margin*2+cols*cellW+(cols-1)*gap;
+      var rowHeights=[]; for(var r=0;r<rows;r++){ var mh=0; for(var cc=0;cc<cols;cc++){ var idx=r*cols+cc; if(idx<cellDims.length)mh=Math.max(mh,cellDims[idx].h); } rowHeights.push(mh+label); }
+      var H2=margin*2+rowHeights.reduce(function(a,b){return a+b+gap;},0)-gap;
+      var cv2=mk(W2,H2); var c2=cv2.getContext('2d'); fillBg(c2,W2,H2);
+      var yy=margin;
+      for(var rr=0;rr<rows;rr++){ var xx2=margin; for(var col=0;col<cols;col++){ var id=rr*cols+col; if(id>=canvases.length)break; var d=cellDims[id]; drawPage(c2,canvases[id],xx2,yy,d.w,d.h); if(label){ c2.fillStyle=settings.bg==='black'?'#fff':'#333'; c2.font='12px system-ui'; c2.textAlign='center'; c2.fillText('Page '+(id+1),xx2+cellW/2,yy+d.h+13); c2.textAlign='left'; } xx2+=cellW+gap; } yy+=rowHeights[rr]+gap; }
+      watermark(c2,W2,H2); out.push(cv2);
+    }
+    return out;
+  }
+  function mk(w,h){ var c=document.createElement('canvas'); c.width=Math.max(1,Math.round(w)); c.height=Math.max(1,Math.round(h)); return c; }
+  function watermark(ctx,W,H){
+    var txt=$('wmText').value.trim(); if(!txt)return;
+    var op=$('wmOpacity').value/100, pos=$('wmPos').value;
+    ctx.save(); ctx.globalAlpha=op; ctx.fillStyle='#888'; var fs=Math.max(16,W*0.05); ctx.font='700 '+fs+'px system-ui';
+    if(pos==='tile'){ ctx.globalAlpha=op*0.7; for(var y=fs;y<H;y+=fs*4){ for(var x=0;x<W;x+=ctx.measureText(txt).width+fs*3){ ctx.save(); ctx.translate(x,y); ctx.rotate(-Math.PI/8); ctx.fillText(txt,0,0); ctx.restore(); } } }
+    else { ctx.textAlign=pos==='br'?'right':pos==='tl'?'left':'center'; var tx=pos==='br'?W-fs:pos==='tl'?fs:W/2; var ty=pos==='br'?H-fs:pos==='tl'?fs*1.4:H/2; if(pos==='center'){ ctx.save(); ctx.translate(W/2,H/2); ctx.rotate(-Math.PI/6); ctx.textAlign='center'; ctx.fillText(txt,0,0); ctx.restore(); } else ctx.fillText(txt,tx,ty); }
+    ctx.restore();
+  }
+
+  // ---------- Encoders ----------
+  function encode(canvas,fmt,quality){
+    return new Promise(function(res){
+      if(fmt==='image/bmp'){ res(canvasToBMP(canvas)); return; }
+      if(fmt==='image/tiff'){ res(canvasToTIFF(canvas)); return; }
+      canvas.toBlob(function(b){ if(b)res(b); else canvas.toBlob(function(b2){res(b2||new Blob());},'image/png'); }, fmt, quality);
+    });
+  }
+  function canvasToBMP(canvas){
+    var ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,data=ctx.getImageData(0,0,W,H).data;
+    var rowSize=Math.floor((24*W+31)/32)*4, pix=rowSize*H, size=54+pix;
+    var buf=new ArrayBuffer(size),dv=new DataView(buf);
+    dv.setUint8(0,0x42);dv.setUint8(1,0x4D);dv.setUint32(2,size,true);dv.setUint32(10,54,true);
+    dv.setUint32(14,40,true);dv.setInt32(18,W,true);dv.setInt32(22,H,true);dv.setUint16(26,1,true);dv.setUint16(28,24,true);dv.setUint32(34,pix,true);
+    var off=54; for(var y=H-1;y>=0;y--){ var pad=rowSize-W*3; for(var x=0;x<W;x++){ var i=(y*W+x)*4; dv.setUint8(off++,data[i+2]);dv.setUint8(off++,data[i+1]);dv.setUint8(off++,data[i]); } off+=pad; }
+    return new Blob([buf],{type:'image/bmp'});
+  }
+  function canvasToTIFF(canvas){
+    var ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,data=ctx.getImageData(0,0,W,H).data;
+    var pix=W*H*3, nEntries=12, ifdLen=2+nEntries*12+4;
+    var header=8, bpsOff=header, stripOff=bpsOff+6, ifdOff=stripOff+pix, total=ifdOff+ifdLen;
+    var buf=new ArrayBuffer(total),dv=new DataView(buf);
+    dv.setUint16(0,0x4949,true); dv.setUint16(2,42,true); dv.setUint32(4,ifdOff,true);
+    dv.setUint16(bpsOff,8,true); dv.setUint16(bpsOff+2,8,true); dv.setUint16(bpsOff+4,8,true);
+    var o=stripOff; for(var i=0;i<data.length;i+=4){ dv.setUint8(o++,data[i]);dv.setUint8(o++,data[i+1]);dv.setUint8(o++,data[i+2]); }
+    var p=ifdOff; dv.setUint16(p,nEntries,true); p+=2;
+    function e(tag,type,count,val){ dv.setUint16(p,tag,true);dv.setUint16(p+2,type,true);dv.setUint32(p+4,count,true);dv.setUint32(p+8,val,true);p+=12; }
+    e(256,3,1,W); e(257,3,1,H); e(258,3,3,bpsOff); e(259,3,1,1); e(262,3,1,2); e(273,4,1,stripOff);
+    e(277,3,1,3); e(278,3,1,H); e(279,4,1,pix); e(282,5,1,0); e(283,5,1,0); e(296,3,1,2);
+    dv.setUint32(p,0,true);
+    return new Blob([buf],{type:'image/tiff'});
+  }
+
+  // ---------- Preview ----------
+  function showPreview(){
+    if(!outputs.length)return;
+    $('previewEmpty').style.display='none'; $('previewWrap').style.display='block';
+    $('previewImg').src=URL.createObjectURL(outputs[outIndex].blob);
+    $('outIndex').textContent=outputs.length>1?('Image '+(outIndex+1)+'/'+outputs.length):'';
+    applyZoom();
+  }
+  function applyZoom(){ $('previewImg').style.width=(zoom*100)+'%'; $('zoomLabel').textContent=Math.round(zoom*100)+'%'; }
+  $('zoomIn').addEventListener('click',function(){ zoom=Math.min(4,zoom*1.25); applyZoom(); });
+  $('zoomOut').addEventListener('click',function(){ zoom=Math.max(0.1,zoom/1.25); applyZoom(); });
+  $('fitBtn').addEventListener('click',function(){ zoom=1; applyZoom(); });
+  $('fsBtn').addEventListener('click',function(){ var el=$('previewWrap'); if(!document.fullscreenElement){ (el.requestFullscreen||function(){}).call(el); } else { (document.exitFullscreen||function(){}).call(document); } });
+
+  // ---------- Download / share ----------
+  function dl(blob,fn){ var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fn; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(a.href);},1500); }
+  function ext(){ return {'image/jpeg':'jpg','image/png':'png','image/webp':'webp','image/bmp':'bmp','image/tiff':'tiff'}[$('formatSelect').value]||'img'; }
+  $('downloadBtn').addEventListener('click',function(){ if(outputs[outIndex]) dl(outputs[outIndex].blob,'pdf-long-image-'+(outIndex+1)+'.'+ext()); });
+  $('downloadAllBtn').addEventListener('click', async function(){
+    if(!window.JSZip){ toast('ZIP library not loaded'); return; }
+    var zip=new JSZip();
+    // current file's outputs
+    outputs.forEach(function(o,i){ zip.file('page-set-'+(i+1)+'.'+ext(), o.blob); });
+    var blob=await zip.generateAsync({type:'blob'}); dl(blob,'pdf-long-images.zip');
   });
-
-  const format = document.getElementById('formatSelect').value;
-  finalCanvas.toBlob((blob)=>{
-    stitchedBlob = blob;
-    document.getElementById('previewImg').src = URL.createObjectURL(blob);
-    document.getElementById('previewWrap').style.display = 'block';
-    document.getElementById('downloadRow').style.display = 'flex';
-    status.textContent = `✅ Combined ${pdf.numPages} pages into one image (${maxWidth}×${totalHeight}px).`;
-  }, format, 0.92);
-}
-
-document.getElementById('downloadBtn').addEventListener('click', ()=>{
-  if(!stitchedBlob) return;
-  const ext = document.getElementById('formatSelect').value === 'image/png' ? 'png' : 'jpg';
-  downloadBlob('pdf-long-image.' + ext, stitchedBlob);
-});
+  $('copyBtn').addEventListener('click', async function(){
+    try{ var b=outputs[outIndex].blob; if(b.type!=='image/png'){ toast('Copy works best with PNG — copying as-is'); } await navigator.clipboard.write([new ClipboardItem({[b.type]:b})]); toast('Image copied'); }
+    catch(e){ toast('Copy not supported here — use Download'); }
+  });
+  $('printBtn').addEventListener('click',function(){ if(!outputs[outIndex])return; var w=window.open('','_blank'); if(!w){toast('Allow pop-ups');return;} w.document.write('<img src="'+URL.createObjectURL(outputs[outIndex].blob)+'" style="width:100%"><script>window.onload=function(){window.print();}<\/script>'); w.document.close(); });
+  $('shareBtn').addEventListener('click', async function(){
+    var o=outputs[outIndex]; if(!o)return;
+    var file=new File([o.blob],'pdf-long-image.'+ext(),{type:o.blob.type});
+    if(navigator.canShare && navigator.canShare({files:[file]})){ try{ await navigator.share({files:[file],title:'PDF long image'}); }catch(e){} }
+    else { toast('Sharing not supported — use Download'); }
+  });
+  function toast(m){ var t=document.createElement('div'); t.textContent=m; t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1a1a2e;color:#fff;border:1px solid rgba(255,255,255,.15);padding:10px 18px;border-radius:10px;font-size:.85rem;z-index:9999'; document.body.appendChild(t); setTimeout(function(){t.style.transition='.3s';t.style.opacity='0';},1600); setTimeout(function(){t.remove();},2000); }
+})();
 </script>
 <!-- Default Statcounter code for Apne Software
 https://apnesoftware.com -->
 <script type="text/javascript">
-var sc_project=13334460; 
-var sc_invisible=1; 
-var sc_security="a5854dc7"; 
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
 </script>
 <script type="text/javascript"
 src="https://www.statcounter.com/counter/counter.js"
@@ -201,5 +663,32 @@ src="https://c.statcounter.com/13334460/0/a5854dc7/1/"
 alt="Web Analytics"
 referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 <!-- End of Statcounter Code -->
+
+<!-- FAQ structured data -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is this tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free with no account, no signup and no limits."}},
+{"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The PDF is rendered entirely in your browser with PDF.js; nothing is uploaded."}},
+{"@type":"Question","name":"What layouts can I create?","acceptedAnswer":{"@type":"Answer","text":"Vertical long image, horizontal strip, a 2 to 5 column grid, or a labelled contact sheet."}},
+{"@type":"Question","name":"Which image formats are supported?","acceptedAnswer":{"@type":"Answer","text":"JPG, PNG, WebP, BMP and TIFF. PNG, WebP and TIFF can keep a transparent background."}},
+{"@type":"Question","name":"Can I choose which pages to include?","acceptedAnswer":{"@type":"Answer","text":"Yes, all, odd, even, first, last, or a custom range like 1-3,5,8."}},
+{"@type":"Question","name":"Can I reverse or rotate pages?","acceptedAnswer":{"@type":"Answer","text":"Yes. Order can be normal or reverse, and each page can be rotated 90, 180 or 270 degrees."}},
+{"@type":"Question","name":"How do I control quality?","acceptedAnswer":{"@type":"Answer","text":"Pick a DPI or scale for sharpness and a quality slider for JPG and WebP compression."}},
+{"@type":"Question","name":"What is the WhatsApp or Instagram width?","acceptedAnswer":{"@type":"Answer","text":"A 1080 pixel width preset that fits both platforms nicely; you can also set a custom width."}},
+{"@type":"Question","name":"My long image is huge, can I split it?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enable auto-split and set a max height; the output becomes several images in a ZIP."}},
+{"@type":"Question","name":"Can I convert several PDFs at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add multiple PDFs to the queue and download the results as a ZIP."}},
+{"@type":"Question","name":"Can I add a watermark?","acceptedAnswer":{"@type":"Answer","text":"Yes, text with adjustable opacity, positioned center, tiled or in a corner."}},
+{"@type":"Question","name":"Does it keep or remove metadata?","acceptedAnswer":{"@type":"Answer","text":"Rasterising to an image drops the PDF metadata; the output is a clean image with no document metadata."}},
+{"@type":"Question","name":"Can I add margins, backgrounds and borders?","acceptedAnswer":{"@type":"Answer","text":"Yes, margins and page gap, white, black, transparent, custom or gradient backgrounds, and borders with rounded corners and shadow."}},
+{"@type":"Question","name":"Can I copy the image or print it?","acceptedAnswer":{"@type":"Answer","text":"Yes, download, copy to clipboard, print, or use the native share option."}},
+{"@type":"Question","name":"Does it handle very large PDFs?","acceptedAnswer":{"@type":"Answer","text":"Yes. Pages render one at a time with progress; lower the DPI or use auto-split for very big files."}},
+{"@type":"Question","name":"Why is a transparent background white in my JPG?","acceptedAnswer":{"@type":"Answer","text":"JPG and BMP cannot store transparency, so it is filled white. Use PNG, WebP or TIFF for transparency."}},
+{"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"Once the page and PDF.js have loaded, yes."}},
+{"@type":"Question","name":"Is it mobile friendly?","acceptedAnswer":{"@type":"Answer","text":"Yes, it is responsive with pinch and touch zoom in the preview."}},
+{"@type":"Question","name":"Is it accessible?","acceptedAnswer":{"@type":"Answer","text":"Controls are labelled and keyboard-operable with clear focus states."}},
+{"@type":"Question","name":"Does it use any AI?","acceptedAnswer":{"@type":"Answer","text":"No. It uses standard PDF rendering and canvas drawing, with no AI."}},
+{"@type":"Question","name":"Why does a scanned PDF produce a large image?","acceptedAnswer":{"@type":"Answer","text":"Scans are already images; high DPI multiplies their size. Lower the DPI or the width preset to shrink the output."}}
+]}
+</script>
 </body>
 </html>
