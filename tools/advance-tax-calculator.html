@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Free Advanced Advance Tax Calculator for India (FY 2025-26 & 2026-27) — for individuals, HUF, firms, LLPs and companies. Salary, house property, business, capital gains and other income, itemised deductions, quarterly instalments (15/45/75/100%), interest under sections 234B & 234C, old vs new regime comparison, payment tracker, challan helper and export to PDF/Excel. 100% private, browser-only, no signup.">
+<meta name="keywords" content="advance tax calculator India, advance tax instalments, 234B 234C interest, advance tax due dates, presumptive income 44AD 44ADA advance tax, quarterly advance tax, advance tax for HUF firm company, old vs new regime advance tax">
+<link rel="canonical" href="https://apnesoftware.com/tools/advance-tax-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Advanced Advance Tax Calculator (India) | ApneSoftware">
+<meta property="og:description" content="Estimate quarterly advance tax instalments, 234B/234C interest, and compare old vs new regime for individuals, HUF, firms, LLPs and companies. Free, private, browser-only.">
+<meta property="og:url" content="https://apnesoftware.com/tools/advance-tax-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Advanced Advance Tax Calculator (India) | ApneSoftware">
+<meta name="twitter:description" content="Quarterly advance tax instalments, 234B/234C interest, old vs new regime — for individuals, HUF, firms, LLPs and companies. Free & private.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Advanced Advance Tax Calculator","description":"Professional in-browser advance tax calculator for India covering individuals, HUF, partnership firms, LLPs and companies — salary, house property, business, capital gains and other income, itemised deductions, quarterly instalment schedule (15/45/75/100%), interest under sections 234B and 234C, old vs new regime comparison, payment tracker and challan helper.","url":"https://apnesoftware.com/tools/advance-tax-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Individual, HUF, Firm, LLP and Company tax engines","Salary, house property, business, capital gains and other income","Old vs New regime comparison with recommendation","Itemised Chapter VI-A deductions","Quarterly advance tax instalment schedule with due dates","Interest under sections 234B and 234C","Presumptive income (44AD/44ADA) single-instalment rule","Payment tracker and challan helper","Interactive charts","Export to PDF and Excel"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Advanced Advance Tax Calculator","url":"https://apnesoftware.com/tools/advance-tax-calculator.html","description":"Browser-based advance tax calculator for India with quarterly instalments, 234B/234C interest, and old vs new regime comparison for individuals, HUF, firms, LLPs and companies.","inLanguage":["en","hi"],"isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".tool-header p"]}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"Calculators & Converters","item":"https://apnesoftware.com/index.html#cat-calculator"},{"@type":"ListItem","position":3,"name":"Advanced Advance Tax Calculator","item":"https://apnesoftware.com/tools/advance-tax-calculator.html"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"How to calculate advance tax and instalments","description":"Estimate advance tax liability and quarterly instalments in India.","step":[{"@type":"HowToStep","name":"Enter taxpayer details","text":"Choose taxpayer type, age, residential status, tax regime, financial year and assessment year."},{"@type":"HowToStep","name":"Add income","text":"Enter salary, house property, business, capital gains and other income in the expandable cards."},{"@type":"HowToStep","name":"Add deductions and tax paid","text":"For the old regime, itemise Chapter VI-A deductions, then enter TDS, TCS and tax already paid."},{"@type":"HowToStep","name":"Review instalments and interest","text":"See the quarterly instalment schedule (15/45/75/100%), interest under sections 234B and 234C, and the old vs new regime comparison."}]}
+</script>
+<meta name="color-scheme" content="dark">
+<title>Advanced Advance Tax Calculator (India) | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* ===== Advance Tax Calculator — scoped at- prefix ===== */
+  .at-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;align-items:start}
+  #at-formSide,#at-resultSide{min-width:0}
+  #at-resultSide{position:sticky;top:16px}
+  @media(max-width:900px){ .at-grid{grid-template-columns:1fr} #at-resultSide{position:static} }
+
+  .at-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .at-tab{padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.82rem;font-weight:600;font-family:inherit}
+  .at-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .at-pane{display:none}
+  .at-pane.active{display:block}
+
+  .at-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px}
+  .at-card summary{cursor:pointer;font-size:.98rem;font-weight:700;display:flex;align-items:center;gap:8px;list-style:none}
+  .at-card summary::-webkit-details-marker{display:none}
+  .at-card summary .at-total{margin-left:auto;color:var(--accent-2);font-weight:800;font-size:.92rem}
+  .at-card[open] summary{margin-bottom:10px}
+
+  .at-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:10px}
+  .at-field label{display:block;font-size:.76rem;color:var(--text-dim);margin-bottom:4px;display:flex;align-items:center;gap:4px}
+  .at-field input,.at-field select{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.88rem}
+  .at-tip{cursor:help;color:var(--text-dim);border:1px solid var(--border);border-radius:999px;width:15px;height:15px;font-size:.65rem;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+  .at-cap{font-size:.7rem;color:var(--text-dim);margin-top:2px}
+  .at-err{font-size:.72rem;color:#fca5a5;margin-top:2px;display:none}
+  .at-field.at-invalid input{border-color:#f87171}
+  .at-field.at-invalid .at-err{display:block}
+
+  .at-stat-cards{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .at-stat-cards .stat-box{flex:1;min-width:120px}
+  .at-waterfall{display:flex;flex-direction:column;gap:2px;margin:12px 0}
+  .at-wf-row{display:flex;justify-content:space-between;padding:8px 10px;border-radius:8px;font-size:.86rem;background:var(--surface-2)}
+  .at-wf-row.at-wf-total{background:rgba(var(--accent-rgb),.18);font-weight:800;font-size:.95rem}
+  .at-wf-row.at-wf-sub span:last-child{color:#fca5a5}
+  .at-wf-arrow{text-align:center;color:var(--text-dim);font-size:.8rem}
+
+  .at-instalment-table{width:100%;border-collapse:collapse;font-size:.84rem;margin:10px 0}
+  .at-instalment-table th,.at-instalment-table td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--border)}
+  .at-instalment-table th{color:#c4b5fd;font-weight:700;font-size:.76rem;text-transform:uppercase;letter-spacing:.03em}
+  .at-progress{height:8px;border-radius:6px;background:var(--surface-2);overflow:hidden;margin-top:4px}
+  .at-progress span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+  .at-status-pill{padding:3px 10px;border-radius:999px;font-size:.72rem;font-weight:700}
+  .at-status-pill.paid{background:rgba(22,192,121,.18);color:#7ef0bd}
+  .at-status-pill.due{background:rgba(248,113,113,.18);color:#fca5a5}
+  .at-status-pill.upcoming{background:var(--surface-2);color:var(--text-dim)}
+
+  .at-timeline{display:flex;justify-content:space-between;margin:16px 0;position:relative}
+  .at-timeline::before{content:'';position:absolute;top:14px;left:5%;right:5%;height:2px;background:var(--border)}
+  .at-tl-item{flex:1;text-align:center;position:relative;z-index:1}
+  .at-tl-dot{width:28px;height:28px;border-radius:50%;background:var(--surface-2);border:2px solid var(--border);margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700}
+  .at-tl-item.done .at-tl-dot{background:var(--accent-2);border-color:var(--accent-2);color:#fff}
+  .at-tl-item.current .at-tl-dot{background:var(--accent);border-color:var(--accent);color:#fff}
+  .at-tl-label{font-size:.72rem;color:var(--text-dim)}
+
+  .at-chart-wrap{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px;margin-top:12px}
+  .at-chart-wrap h4{font-size:.82rem;color:var(--text-dim);font-weight:600;margin-bottom:8px}
+  .at-chart-wrap canvas{width:100%;height:auto;display:block}
+  .at-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:.76rem;color:var(--text-dim)}
+  .at-legend span{display:inline-flex;align-items:center;gap:5px}
+  .at-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+  .at-compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:640px){.at-compare-grid{grid-template-columns:1fr}}
+  .at-compare-card{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
+  .at-compare-card.at-best{border-color:var(--accent-2);box-shadow:0 0 0 1px var(--accent-2)}
+  .at-compare-card .at-big{font-size:1.4rem;font-weight:800;color:var(--accent)}
+  .at-compare-card .at-badge{display:inline-block;margin-top:6px;padding:3px 10px;border-radius:999px;background:rgba(22,192,121,.18);color:#7ef0bd;font-size:.72rem;font-weight:700}
+
+  .at-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .at-flag{padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600;border:1px solid var(--border)}
+  .at-flag.ok{background:rgba(22,192,121,.15);color:#7ef0bd;border-color:rgba(22,192,121,.4)}
+  .at-flag.warn{background:rgba(248,113,113,.15);color:#fca5a5;border-color:rgba(248,113,113,.4)}
+  .at-flag.neutral{background:var(--surface-2);color:var(--text-dim)}
+
+  .at-formula-box{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px;font-family:'Consolas','Courier New',monospace;font-size:.8rem;white-space:pre-wrap;margin-top:10px}
+  .at-muted{color:var(--text-dim);font-size:.8rem;margin-top:6px}
+  .at-note{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.3);border-radius:10px;padding:10px 12px;font-size:.8rem;color:#fde68a;margin-top:10px}
+
+  body.at-large-font #at-formSide,body.at-large-font #at-resultSide{font-size:1.1rem}
+  body.at-high-contrast{filter:contrast(1.2) brightness(1.06)}
+
+  .related-grid a .ri{margin-right:6px}
+  .at-content h2{font-size:1.15rem;margin:26px 0 10px}
+  .at-content h3{font-size:1rem;margin:18px 0 8px}
+  .at-content p,.at-content li{font-size:.92rem;line-height:1.72}
+  .at-content ul,.at-content ol{padding-left:20px}
+  .at-content table{width:100%;border-collapse:collapse;font-size:.86rem;margin:12px 0}
+  .at-content table th,.at-content table td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border)}
+  .at-content table th{color:#c4b5fd}
+  .at-lang-note{font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:-4px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="at-muted" style="margin-bottom:10px" aria-label="Breadcrumb">
+    <a href="../index.html" style="color:#c4b5fd;text-decoration:none">Home</a> ›
+    <a href="../index.html#cat-calculator" style="color:#c4b5fd;text-decoration:none">Calculators &amp; Converters</a> ›
+    Advanced Advance Tax Calculator
+  </nav>
+
+  <div class="tool-header">
+    <h1>🧾 Advanced Advance Tax Calculator</h1>
+    <p>Estimate quarterly advance tax instalments, interest under sections 234B &amp; 234C, and compare the old vs new regime — for individuals, HUF, partnership firms, LLPs and companies. 100% in your browser.</p>
+
+    <div class="at-row" style="margin-top:14px">
+      <div class="at-field">
+        <label for="at-fy">Financial Year</label>
+        <select id="at-fy">
+          <option value="2026-27">FY 2026-27</option>
+          <option value="2025-26">FY 2025-26</option>
+        </select>
+      </div>
+      <div class="at-field">
+        <label for="at-ay">Assessment Year</label>
+        <select id="at-ay" disabled>
+          <option value="2027-28">AY 2027-28</option>
+          <option value="2026-27">AY 2026-27</option>
+        </select>
+      </div>
+      <div class="at-field">
+        <label for="at-regime">Tax Regime</label>
+        <select id="at-regime">
+          <option value="new">New Regime</option>
+          <option value="old">Old Regime</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="at-calcBtn" type="button">🧮 Calculate</button>
+      <button class="btn secondary" id="at-resetBtn" type="button">↺ Reset</button>
+      <button class="btn secondary" id="at-printBtn" type="button">🖨️ Print</button>
+      <button class="btn secondary" id="at-pdfBtn" type="button">📄 Download PDF</button>
+      <button class="btn secondary" id="at-xlsxBtn" type="button">📊 Download Excel</button>
+      <button class="btn secondary" id="at-shareBtn" type="button">🔗 Share</button>
+      <button class="btn secondary" id="at-copyBtn" type="button">📋 Copy Result</button>
+      <button class="btn secondary" id="at-saveBtn" type="button">💾 Save</button>
+      <button class="btn secondary" id="at-loadBtn" type="button">📂 Load</button>
+    </div>
+    <div id="at-statusMsg" class="at-muted" role="status" aria-live="polite"></div>
+  </div>
+
+  <div class="at-grid">
+    <div id="at-formSide">
+      <div class="panel">
+        <div class="at-tabs" role="tablist">
+          <button class="at-tab active" id="at-tabTaxpayer" role="tab" aria-selected="true">👤 Taxpayer &amp; Income</button>
+          <button class="at-tab" id="at-tabDeductions" role="tab" aria-selected="false">🧮 Deductions</button>
+          <button class="at-tab" id="at-tabPaid" role="tab" aria-selected="false">💳 Tax Paid &amp; Quarterly</button>
+          <button class="at-tab" id="at-tabTracker" role="tab" aria-selected="false">📅 Payment Tracker</button>
+          <button class="at-tab" id="at-tabSettings" role="tab" aria-selected="false">⚙️ Settings</button>
+        </div>
+
+        <!-- ===== Tab: Taxpayer & Income ===== -->
+        <div class="at-pane active" id="at-paneTaxpayer">
+          <div class="at-card">
+            <h3 style="margin:0 0 10px;font-size:.95rem">👤 Taxpayer Information</h3>
+            <div class="at-row">
+              <div class="at-field">
+                <label for="at-taxpayerType">Taxpayer Type</label>
+                <select id="at-taxpayerType">
+                  <option value="individual">Individual</option>
+                  <option value="huf">HUF</option>
+                  <option value="firm">Partnership Firm</option>
+                  <option value="llp">LLP</option>
+                  <option value="company">Company</option>
+                </select>
+              </div>
+              <div class="at-field" id="at-ageField">
+                <label for="at-age">Age</label>
+                <select id="at-age">
+                  <option value="below60">Below 60</option>
+                  <option value="senior">Senior Citizen (60-80)</option>
+                  <option value="super">Super Senior Citizen (80+)</option>
+                </select>
+              </div>
+              <div class="at-field">
+                <label for="at-residential">Residential Status</label>
+                <select id="at-residential">
+                  <option value="resident">Resident</option>
+                  <option value="nri">NRI</option>
+                  <option value="rnor">Resident but Not Ordinarily Resident</option>
+                </select>
+              </div>
+              <div class="at-field" id="at-companyRateField" style="display:none">
+                <label for="at-companyRate">Company Tax Rate <span class="at-tip" title="Simplified: 25% (turnover-based domestic company), 22% concessional rate under section 115BAA (no other exemptions), or 30% general rate.">?</span></label>
+                <select id="at-companyRate">
+                  <option value="0.25">25% (turnover-based)</option>
+                  <option value="0.22">22% (Section 115BAA)</option>
+                  <option value="0.30">30% (general rate)</option>
+                </select>
+              </div>
+              <div class="at-field" id="at-presumptiveField">
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer">
+                  <input type="checkbox" id="at-presumptive" style="width:auto"> Presumptive taxpayer (44AD/44ADA)
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <details class="at-card" open>
+            <summary>💼 Salary Income <span class="at-total" id="at-salaryTotal">₹0</span></summary>
+            <div class="at-row">
+              <div class="at-field"><label for="at-basicSalary">Basic Salary</label><input type="number" id="at-basicSalary" min="0" value="0"></div>
+              <div class="at-field"><label for="at-hra">HRA Received</label><input type="number" id="at-hra" min="0" value="0"></div>
+              <div class="at-field"><label for="at-bonus">Bonus</label><input type="number" id="at-bonus" min="0" value="0"></div>
+              <div class="at-field"><label for="at-commission">Commission</label><input type="number" id="at-commission" min="0" value="0"></div>
+              <div class="at-field"><label for="at-allowances">Allowances</label><input type="number" id="at-allowances" min="0" value="0"></div>
+              <div class="at-field"><label for="at-perquisites">Perquisites</label><input type="number" id="at-perquisites" min="0" value="0"></div>
+              <div class="at-field"><label for="at-leaveEncashment">Leave Encashment</label><input type="number" id="at-leaveEncashment" min="0" value="0"></div>
+              <div class="at-field"><label for="at-otherSalary">Other Salary Income</label><input type="number" id="at-otherSalary" min="0" value="0"></div>
+            </div>
+          </details>
+
+          <details class="at-card">
+            <summary>🏠 House Property <span class="at-total" id="at-hpTotal">₹0</span></summary>
+            <div class="at-row">
+              <div class="at-field">
+                <label for="at-hpType">Property Type</label>
+                <select id="at-hpType"><option value="selfOccupied">Self Occupied</option><option value="letOut">Let Out</option></select>
+              </div>
+              <div class="at-field"><label for="at-rentalIncome">Rental Income</label><input type="number" id="at-rentalIncome" min="0" value="0"></div>
+              <div class="at-field"><label for="at-municipalTax">Municipal Tax Paid</label><input type="number" id="at-municipalTax" min="0" value="0"></div>
+              <div class="at-field"><label for="at-homeLoanInterest">Home Loan Interest <span class="at-tip" title="Self-occupied: capped at ₹2,00,000. Let-out: no cap, but total house-property loss that can be set off against other heads is capped at ₹2,00,000 per year.">?</span></label><input type="number" id="at-homeLoanInterest" min="0" value="0"></div>
+            </div>
+            <p class="at-muted">Standard deduction of 30% of net annual value is applied automatically for let-out property.</p>
+          </details>
+
+          <details class="at-card">
+            <summary>📈 Business Income <span class="at-total" id="at-bizTotal">₹0</span></summary>
+            <div class="at-row">
+              <div class="at-field"><label for="at-businessProfit">Business Profit</label><input type="number" id="at-businessProfit" min="0" value="0"></div>
+              <div class="at-field"><label for="at-professionalIncome">Professional Income</label><input type="number" id="at-professionalIncome" min="0" value="0"></div>
+              <div class="at-field"><label for="at-presumptive44AD">Presumptive Income u/s 44AD</label><input type="number" id="at-presumptive44AD" min="0" value="0"></div>
+              <div class="at-field"><label for="at-presumptive44ADA">Presumptive Income u/s 44ADA</label><input type="number" id="at-presumptive44ADA" min="0" value="0"></div>
+              <div class="at-field"><label for="at-speculative">Speculative Income</label><input type="number" id="at-speculative" min="0" value="0"></div>
+            </div>
+          </details>
+
+          <details class="at-card">
+            <summary>💹 Capital Gains <span class="at-total" id="at-cgTotal">₹0</span></summary>
+            <div class="at-row">
+              <div class="at-field"><label for="at-stcg">Short Term Capital Gain</label><input type="number" id="at-stcg" min="0" value="0"></div>
+              <div class="at-field"><label for="at-ltcg">Long Term Capital Gain</label><input type="number" id="at-ltcg" min="0" value="0"></div>
+              <div class="at-field"><label for="at-propertyGain">Property Gain</label><input type="number" id="at-propertyGain" min="0" value="0"></div>
+              <div class="at-field"><label for="at-mfGain">Mutual Fund Gain</label><input type="number" id="at-mfGain" min="0" value="0"></div>
+              <div class="at-field"><label for="at-equityGain">Equity Gain</label><input type="number" id="at-equityGain" min="0" value="0"></div>
+            </div>
+            <p class="at-muted">Capital gains are added at their full value here for an advance-tax estimate; special slab rates (e.g. 12.5%/20% LTCG/STCG on equity) are simplified into this total rather than modelled precisely — consult a CA for exact capital-gains tax computation.</p>
+          </details>
+
+          <details class="at-card">
+            <summary>💰 Other Income <span class="at-total" id="at-otherTotal">₹0</span></summary>
+            <div class="at-row">
+              <div class="at-field"><label for="at-interest">Interest (Other)</label><input type="number" id="at-interest" min="0" value="0"></div>
+              <div class="at-field"><label for="at-fdInterest">FD Interest</label><input type="number" id="at-fdInterest" min="0" value="0"></div>
+              <div class="at-field"><label for="at-savingsInterest">Savings Interest</label><input type="number" id="at-savingsInterest" min="0" value="0"></div>
+              <div class="at-field"><label for="at-dividend">Dividend</label><input type="number" id="at-dividend" min="0" value="0"></div>
+              <div class="at-field"><label for="at-royalty">Royalty</label><input type="number" id="at-royalty" min="0" value="0"></div>
+              <div class="at-field"><label for="at-lottery">Lottery</label><input type="number" id="at-lottery" min="0" value="0"></div>
+              <div class="at-field"><label for="at-crypto">Crypto (VDA)</label><input type="number" id="at-crypto" min="0" value="0"></div>
+              <div class="at-field"><label for="at-foreignIncome">Foreign Income</label><input type="number" id="at-foreignIncome" min="0" value="0"></div>
+              <div class="at-field"><label for="at-miscIncome">Other Income</label><input type="number" id="at-miscIncome" min="0" value="0"></div>
+            </div>
+          </details>
+        </div>
+
+        <!-- ===== Tab: Deductions ===== -->
+        <div class="at-pane" id="at-paneDeductions">
+          <div id="at-newRegimeNote" class="at-note" style="display:none">Most Chapter VI-A deductions apply only under the Old Regime. Under the New Regime, only the Standard Deduction and Section 80CCD(2) (employer's NPS contribution) are allowed.</div>
+          <div class="at-card">
+            <h3 style="margin:0 0 10px;font-size:.95rem">🧮 Chapter VI-A Deductions <span class="at-total" id="at-dedTotal" style="float:right">₹0</span></h3>
+            <div id="at-deductionsWrap" class="at-row"></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Tax Paid & Quarterly ===== -->
+        <div class="at-pane" id="at-panePaid">
+          <div class="at-card">
+            <h3 style="margin:0 0 10px;font-size:.95rem">💳 Tax Already Paid <span class="at-total" id="at-paidTotal" style="float:right">₹0</span></h3>
+            <div class="at-row">
+              <div class="at-field"><label for="at-tdsSalary">TDS - Salary</label><input type="number" id="at-tdsSalary" min="0" value="0"></div>
+              <div class="at-field"><label for="at-tdsInterest">TDS - Interest</label><input type="number" id="at-tdsInterest" min="0" value="0"></div>
+              <div class="at-field"><label for="at-tdsRent">TDS - Rent</label><input type="number" id="at-tdsRent" min="0" value="0"></div>
+              <div class="at-field"><label for="at-tcs">TCS</label><input type="number" id="at-tcs" min="0" value="0"></div>
+              <div class="at-field"><label for="at-prevAdvanceTax">Previous Advance Tax Paid</label><input type="number" id="at-prevAdvanceTax" min="0" value="0"></div>
+              <div class="at-field"><label for="at-selfAssessmentTax">Self Assessment Tax</label><input type="number" id="at-selfAssessmentTax" min="0" value="0"></div>
+            </div>
+          </div>
+
+          <div class="at-card">
+            <h3 style="margin:0 0 10px;font-size:.95rem">📅 Estimated Quarterly Income <span class="at-total" id="at-qTotal" style="float:right">₹0</span></h3>
+            <div class="at-row">
+              <div class="at-field"><label for="at-q1">Quarter 1 (Apr-Jun)</label><input type="number" id="at-q1" min="0" value="0"></div>
+              <div class="at-field"><label for="at-q2">Quarter 2 (Jul-Sep)</label><input type="number" id="at-q2" min="0" value="0"></div>
+              <div class="at-field"><label for="at-q3">Quarter 3 (Oct-Dec)</label><input type="number" id="at-q3" min="0" value="0"></div>
+              <div class="at-field"><label for="at-q4">Quarter 4 (Jan-Mar)</label><input type="number" id="at-q4" min="0" value="0"></div>
+            </div>
+            <div class="at-chart-wrap"><h4>Quarter-wise Estimated Income</h4><canvas id="at-chartQuarterIncome" width="600" height="220"></canvas></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Payment Tracker & Challan ===== -->
+        <div class="at-pane" id="at-paneTracker">
+          <div class="at-card">
+            <h3 style="margin:0 0 10px;font-size:.95rem">📅 Payment Tracker</h3>
+            <div class="at-row">
+              <div class="at-field"><label for="at-paidQ1">June Paid</label><input type="number" id="at-paidQ1" min="0" value="0"></div>
+              <div class="at-field"><label for="at-paidQ2">September Paid</label><input type="number" id="at-paidQ2" min="0" value="0"></div>
+              <div class="at-field"><label for="at-paidQ3">December Paid</label><input type="number" id="at-paidQ3" min="0" value="0"></div>
+              <div class="at-field"><label for="at-paidQ4">March Paid</label><input type="number" id="at-paidQ4" min="0" value="0"></div>
+            </div>
+            <div id="at-trackerResult"></div>
+          </div>
+          <div class="at-card">
+            <h3 style="margin:0 0 10px;font-size:.95rem">🧾 Challan Helper</h3>
+            <div id="at-challanHelper"></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Settings ===== -->
+        <div class="at-pane" id="at-paneSettings">
+          <div class="at-card">
+            <h3 style="margin:0 0 10px;font-size:.95rem">⚙️ Preferences</h3>
+            <div class="at-row">
+              <div class="at-field">
+                <label for="at-language">Language</label>
+                <select id="at-language"><option value="en">English</option><option value="hi">हिन्दी</option></select>
+              </div>
+              <div class="at-field">
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:22px">
+                  <input type="checkbox" id="at-highContrast" style="width:auto"> High Contrast
+                </label>
+              </div>
+              <div class="at-field">
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:22px">
+                  <input type="checkbox" id="at-largeFont" style="width:auto"> Large Fonts
+                </label>
+              </div>
+            </div>
+            <p class="at-muted">Preferences are remembered in this browser for your next visit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="at-resultSide">
+      <div class="panel">
+        <h3 style="margin:0 0 10px;font-size:1rem">📊 Dashboard Summary</h3>
+        <div class="at-stat-cards" id="at-dashCards"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🧮 Tax Calculation Waterfall</h3>
+        <div class="at-waterfall" id="at-waterfall"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🏛️ Old vs New Regime</h3>
+        <div class="at-compare-grid" id="at-compareGrid"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">📆 Advance Tax Instalments</h3>
+        <div class="at-timeline" id="at-timeline"></div>
+        <table class="at-instalment-table" id="at-instalmentTable">
+          <thead><tr><th>Instalment</th><th>Due Date</th><th>%</th><th>Amount</th><th>Status</th></tr></thead>
+          <tbody></tbody>
+        </table>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">📈 Interest u/s 234B &amp; 234C</h3>
+        <div id="at-interestBreakdown"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🔍 Calculation Details</h3>
+        <div class="at-formula-box" id="at-formulaBox"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">📊 Charts</h3>
+        <div class="at-chart-wrap"><h4>Income Distribution</h4><canvas id="at-chartIncome" width="500" height="240"></canvas><div class="at-legend" id="at-legendIncome"></div></div>
+        <div class="at-chart-wrap"><h4>Deduction Distribution</h4><canvas id="at-chartDeduction" width="500" height="240"></canvas><div class="at-legend" id="at-legendDeduction"></div></div>
+        <div class="at-chart-wrap"><h4>Tax Distribution</h4><canvas id="at-chartTax" width="500" height="240"></canvas><div class="at-legend" id="at-legendTax"></div></div>
+        <div class="at-chart-wrap"><h4>Old vs New Regime Comparison</h4><canvas id="at-chartCompare" width="500" height="220"></canvas></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="at-content">
+
+<h2>🧾 Introduction</h2>
+<p>Advance tax is India's "pay as you earn" scheme: instead of settling your entire year's tax bill in one lump sum after the financial year ends, you estimate your tax liability as the year progresses and pay it in instalments on four fixed dates. Miss those instalments, or underpay against them, and the Income Tax Act charges interest under sections 234B and 234C — quietly but reliably, month after month. Working this out by hand across salary, rent, business profit, capital gains and other income, for an individual, a HUF, a firm, an LLP or a company, each with its own rules, is exactly the kind of calculation that benefits from a purpose-built tool. The <strong>Advanced Advance Tax Calculator</strong> does all of it — income aggregation, deductions, the old vs new regime comparison, the instalment schedule, interest computation, a payment tracker and a challan-filing guide — instantly, in your browser, with nothing ever uploaded.</p>
+
+<h2>✨ Features Overview</h2>
+<p>Choose your <strong>taxpayer type</strong> — Individual, HUF, Partnership Firm, LLP or Company — and the calculator switches its entire tax engine accordingly: slab-based taxation with age-based exemption limits and the old/new regime choice for individuals and HUFs, a flat 30% rate for firms and LLPs, and a simplified 25%/22%/30% company engine for companies. Enter income under five expandable categories — salary, house property, business/profession (including presumptive income under sections 44AD and 44ADA), capital gains, and other income — each auto-totalling as you type. For the old regime, itemise up to eighteen Chapter VI-A deductions, each with its real statutory cap, a tooltip explaining what it covers, and automatic validation if you exceed the limit. Enter TDS, TCS and any tax already paid, and split your estimated annual income across the four quarters to see it charted. The dashboard, tax waterfall, old-vs-new comparison, instalment timeline, interest breakdown and five charts all update live from a single set of inputs — nothing needs to be recalculated or re-entered as you explore different scenarios.</p>
+
+<h2>📆 Advance Tax Instalment Schedule</h2>
+<p>Advance tax is payable in four cumulative instalments: <strong>15% by 15 June</strong>, <strong>45% by 15 September</strong>, <strong>75% by 15 December</strong>, and <strong>100% by 15 March</strong> — each a cumulative percentage of your estimated total tax liability for the year, not a fresh 15%/30%/30%/25% split. There is one important exception the calculator models explicitly: taxpayers who declare business income under the presumptive schemes of <strong>section 44AD</strong> (business) or <strong>44ADA</strong> (profession) are required to pay their entire advance tax in a single instalment of 100% by 15 March, with no quarterly obligation before that date. Tick "Presumptive taxpayer (44AD/44ADA)" and the calculator switches to this single-instalment schedule automatically, along with the matching interest treatment.</p>
+
+<h2>📈 Interest Under Sections 234B &amp; 234C</h2>
+<p><strong>Section 234B</strong> applies when your advance tax paid falls short of 90% of your final assessed tax: interest is charged at 1% per month (any part of a month counting as a full month) on the shortfall, from 1 April of the assessment year until the tax is paid or the assessment is completed. <strong>Section 234C</strong> penalises being late against the quarterly schedule itself, even if you eventually pay 90% or more: the calculator checks your cumulative payment against each due date's requirement — with the specific statutory relaxation that paying at least 12% by 15 June, 36% by 15 September, or 69% by 15 December avoids interest for that instalment even though it is technically below the 15%/45%/75% target, while the final 15 March instalment has no such relaxation. Interest for each short quarter is 1% per month on the shortfall — three months for the first three instalments, one month for the last. The calculator's "Calculation Details" panel shows every one of these formulas applied to your own figures, so nothing is a black box.</p>
+
+<h2>🏛️ Old vs New Regime</h2>
+<p>For individuals and HUFs, the calculator computes your tax under both the old and new regimes side by side using the same income and, where the old regime applies, the same deductions, then marks the cheaper option as recommended and shows the exact rupee saving. The new regime applies only the standard deduction and Section 80CCD(2) (employer's NPS contribution); the old regime allows the full range of Chapter VI-A deductions itemised in the Deductions tab. Firms, LLPs and companies are taxed at their own flat/simplified rates regardless of this regime choice.</p>
+
+<!-- ===== Related Tools (ABOVE About — required order) ===== -->
+<h2>🧰 Related Tools</h2>
+<div class="related-grid">
+  <a href="income-tax-calculator.html"><span class="ri">🧮</span> Income Tax Calculator</a>
+  <a href="salary-calculator.html"><span class="ri">💵</span> Salary Calculator</a>
+  <a href="hra-calculator.html"><span class="ri">🏠</span> HRA Calculator</a>
+  <a href="gst-calculator.html"><span class="ri">🧾</span> GST Calculator</a>
+  <a href="sip-calculator.html"><span class="ri">📈</span> SIP Calculator</a>
+  <a href="swp-calculator.html"><span class="ri">📉</span> SWP Calculator</a>
+  <a href="emi-calculator.html"><span class="ri">🏦</span> EMI Calculator</a>
+  <a href="ppf-calculator.html"><span class="ri">🏛️</span> PPF Calculator</a>
+  <a href="pf-calculator.html"><span class="ri">💼</span> PF Calculator</a>
+  <a href="gratuity-calculator.html"><span class="ri">🎁</span> Gratuity Calculator</a>
+</div>
+
+</div>
+<div class="at-content">
+
+<!-- ===== About (English) ===== -->
+<h2>ℹ️ About This Tool — Advance Tax in India</h2>
+
+<h3>What Is Advance Tax? — Meaning</h3>
+<p>Advance tax is income tax paid in the same financial year in which the income is earned, rather than as a single payment after the year closes. It is commonly called the "pay as you earn" scheme, and it exists so that the government receives tax revenue steadily through the year rather than in one large batch after every taxpayer files a return. If your total tax liability for a financial year, after subtracting TDS and TCS, comes to ₹10,000 or more, you are legally required to pay advance tax in instalments during that same year rather than waiting until the following assessment year.</p>
+
+<h3>Who Should Pay Advance Tax?</h3>
+<p>Any taxpayer — an individual, a Hindu Undivided Family (HUF), a partnership firm, a Limited Liability Partnership (LLP), or a company — whose estimated tax liability for the year, net of TDS/TCS already deducted, is ₹10,000 or more must pay advance tax. This covers salaried employees with significant other income (rent, capital gains, interest, freelance work), self-employed professionals and freelancers, business owners, and every company regardless of size, since companies almost always cross the ₹10,000 threshold. Taxpayers who declare presumptive income under section 44AD or 44ADA are also liable, but with a simplified single-instalment schedule described below.</p>
+
+<h3>Who Is Exempt From Advance Tax?</h3>
+<p>Two categories are specifically exempted by the Income Tax Act. First, a <strong>resident senior citizen (60 years or older)</strong> who does not have any income from business or profession is not required to pay advance tax — such a person can simply pay their tax through self-assessment tax after the year ends. Second, anyone whose net tax liability after TDS/TCS is below ₹10,000 for the year has no advance tax obligation at all, regardless of age or taxpayer type. Salaried employees whose entire tax is already covered by their employer's TDS deduction, with no other significant income, also generally have no separate advance tax obligation, since the ₹10,000 threshold is rarely crossed after TDS is subtracted.</p>
+
+<h3>Due Dates and the Instalment Schedule</h3>
+<p>Advance tax (other than for presumptive taxpayers) is payable in four cumulative instalments during the financial year:</p>
+<table>
+  <thead><tr><th>Due Date</th><th>Cumulative Advance Tax Payable</th></tr></thead>
+  <tbody>
+    <tr><td>On or before 15 June</td><td>15% of the estimated tax liability</td></tr>
+    <tr><td>On or before 15 September</td><td>45% of the estimated tax liability</td></tr>
+    <tr><td>On or before 15 December</td><td>75% of the estimated tax liability</td></tr>
+    <tr><td>On or before 15 March</td><td>100% of the estimated tax liability</td></tr>
+  </tbody>
+</table>
+<p>Each figure is <em>cumulative</em> — the 45% due by 15 September already includes the 15% paid by 15 June, not an additional 45% on top of it. Taxpayers who have opted for the <strong>presumptive taxation scheme</strong> under section 44AD (eligible businesses) or section 44ADA (specified professionals) are treated differently: they must pay 100% of their advance tax in a single instalment on or before 15 March, with no earlier quarterly requirement or corresponding 234C exposure before that date.</p>
+
+<h3>Calculation Method and Formula</h3>
+<p>Advance tax is calculated in the same broad sequence as annual income tax, just estimated in advance rather than finalised after the year ends:</p>
+<ol>
+  <li><strong>Gross Total Income</strong> = Salary + House Property + Business/Profession + Capital Gains + Other Income.</li>
+  <li><strong>Taxable Income</strong> = Gross Total Income − Standard Deduction − Chapter VI-A Deductions (old regime only, except 80CCD(2) which applies in both regimes).</li>
+  <li><strong>Income Tax</strong> = sum of (slab amount × slab rate) across the applicable slabs for your regime, taxpayer type and age.</li>
+  <li><strong>Less: Section 87A Rebate</strong>, if your taxable income is within the rebate threshold for your regime.</li>
+  <li><strong>Add: Surcharge</strong>, for higher incomes, subject to marginal relief so the surcharge never pushes your total tax above what a slightly lower income would attract.</li>
+  <li><strong>Add: Health &amp; Education Cess</strong> at 4% of (tax after rebate + surcharge).</li>
+  <li><strong>Total Tax Liability</strong> − TDS − TCS − any tax already paid = <strong>Net Advance Tax Payable</strong> (or refund, if negative).</li>
+</ol>
+
+<h3>Interest Under Section 234B</h3>
+<p>Section 234B interest applies if the advance tax you actually paid during the year is less than 90% of your final assessed tax. The shortfall (assessed tax minus advance tax paid) is charged interest at 1% per month, or part of a month, from 1 April of the assessment year until the date the tax is paid or the assessment is completed, whichever is earlier. Paying at least 90% of your eventual tax liability through advance tax instalments avoids 234B interest entirely, even if your final figure turns out slightly higher once the year's income is fully known.</p>
+
+<h3>Interest Under Section 234C</h3>
+<p>Section 234C charges interest for falling behind the <em>quarterly</em> instalment schedule, independent of whether you eventually cross the 90% mark for section 234B. For each of the first three instalments, the law grants a specific relaxation: no interest is charged for that quarter if you have paid at least 12% (against a 15% target) by 15 June, 36% (against 45%) by 15 September, or 69% (against 75%) by 15 December. The final instalment, due 15 March, has no such relaxation — anything short of 100% by that date attracts interest. Interest is 1% per month on the shortfall for that instalment: three months each for the June, September and December instalments, and one month for the March instalment.</p>
+
+<h3>Advance Tax Rules for Different Taxpayers</h3>
+<p><strong>Individuals and HUFs</strong> follow the slab system under either the old or new regime, with age-based exemption limits (₹2.5L below 60, ₹3L for 60–80, ₹5L for 80 and above, applicable to the old regime). <strong>Partnership firms and LLPs</strong> are taxed at a flat 30%, with a 12% surcharge if income exceeds ₹1 crore, plus 4% cess — there is no basic exemption slab and no old/new regime choice. <strong>Companies</strong> are taxed at 25% (most domestic companies based on turnover), 22% under the concessional section 115BAA regime (which forgoes most other exemptions but caps surcharge at a flat 10%), or 30% (the general rate), each with its own surcharge structure and 4% cess — this calculator models these as simplified flat-rate options rather than the full corporate tax code, since minimum alternate tax, section 115BAB and other company-specific provisions are beyond a general advance-tax estimator's scope.</p>
+
+<h3>Tax Planning Tips</h3>
+<ul>
+  <li><strong>Estimate conservatively but realistically</strong> — under-estimating to defer cash outflow only converts the saving into 234B/234C interest, which is rarely worth it.</li>
+  <li><strong>Revisit your estimate each quarter</strong> — a bonus, a capital gain, or a new freelance contract can materially change your annual figure; recalculating before each due date avoids a nasty surprise in March.</li>
+  <li><strong>Compare regimes before the year starts</strong>, not after — the choice affects how much of your income is taxable throughout the year, not just at filing time.</li>
+  <li><strong>Front-load deductions you control</strong> — 80C investments, health insurance, and NPS contributions reduce your instalment amounts if planned early rather than in March.</li>
+  <li><strong>Track TDS credits</strong> as they accrue through Form 26AS/AIS during the year so your remaining advance tax liability is accurate, not just estimated.</li>
+</ul>
+
+<h3>Worked Examples</h3>
+<p><strong>Example 1:</strong> A salaried individual with an estimated annual tax liability of ₹1,20,000 (after TDS) under the old regime pays ₹18,000 by 15 June (15%), a cumulative ₹54,000 by 15 September (45%), ₹90,000 by 15 December (75%), and the remaining ₹30,000 by 15 March (100%).</p>
+<p><strong>Example 2:</strong> A freelance consultant declaring presumptive income under section 44ADA, with an estimated tax liability of ₹80,000, pays the entire ₹80,000 in a single instalment on or before 15 March — no June, September or December instalment is required, and no 234C interest applies before that date.</p>
+<p><strong>Example 3:</strong> A taxpayer who paid only ₹40,000 against a ₹1,00,000 requirement by 15 September (below both the 45% target and the 36% relaxation threshold) owes 234C interest on the ₹5,000 shortfall (45,000 required minus 40,000 paid) at 1% for 3 months — ₹150 — for that instalment alone.</p>
+
+<h3>Benefits of Paying Advance Tax on Time</h3>
+<p>Paying on schedule avoids 234B and 234C interest entirely, spreads a potentially large tax bill across the year rather than one lump sum in July, improves your own cash-flow planning since you know the exact amounts and dates in advance, and keeps your compliance record clean, which matters for loan applications, visa processing and government tenders that often ask for tax payment history.</p>
+
+<h3>Common Mistakes to Avoid</h3>
+<ul>
+  <li>Assuming salaried employees never need to pay advance tax — this is only true if TDS covers your entire liability; rental income, capital gains, or a large fixed-deposit interest can easily change that.</li>
+  <li>Treating the instalment percentages as 15%/30%/30%/25% of the remaining amount instead of cumulative percentages of the total.</li>
+  <li>Forgetting that presumptive-income taxpayers under 44AD/44ADA have a completely different (single 15 March) schedule.</li>
+  <li>Ignoring capital gains that occur late in the year — advance tax on such gains is due in the very next instalment after the gain arises, not deferred to March.</li>
+  <li>Not accounting for TDS already deducted by clients or tenants when working out how much advance tax is still owed.</li>
+</ul>
+
+<h3>Conclusion</h3>
+<p>Advance tax turns an annual tax bill into a predictable quarterly rhythm, but only if you estimate your income reasonably and track your instalments against the correct due dates and percentages — a task that becomes complicated quickly once salary, rental income, business profits, capital gains and multiple income sources are all in the mix, and doubly so once section 234B and 234C interest need to be reconciled against actual payments. This calculator handles that complexity instantly and privately, so you can focus on the decision that actually matters: paying the right amount, on time.</p>
+
+<!-- ===== About (Hindi) ===== -->
+<h2>ℹ️ इस टूल के बारे में (हिंदी में) — भारत में Advance Tax</h2>
+<p class="at-lang-note">The same guide in Hindi / यही जानकारी हिंदी में।</p>
+
+<h3>Advance Tax क्या है? — अर्थ</h3>
+<p>Advance Tax वह income tax है जो उसी financial year में चुकाया जाता है जिसमें income कमाई गई, बजाय इसके कि साल खत्म होने के बाद एक ही भुगतान में चुकाया जाए। इसे आमतौर पर "pay as you earn" scheme कहा जाता है, और यह इसलिए है ताकि सरकार को tax revenue पूरे साल में लगातार मिलता रहे, न कि हर taxpayer के return भरने के बाद एक बड़े batch में। यदि किसी financial year के लिए आपकी कुल tax liability, TDS और TCS घटाने के बाद, ₹10,000 या उससे ज़्यादा है, तो आपको उसी साल के दौरान किश्तों में advance tax चुकाना कानूनी रूप से ज़रूरी है।</p>
+
+<h3>Advance Tax किसे चुकाना चाहिए?</h3>
+<p>कोई भी taxpayer — Individual, Hindu Undivided Family (HUF), Partnership Firm, Limited Liability Partnership (LLP), या Company — जिसकी उस साल की अनुमानित tax liability, पहले से कटे TDS/TCS के बाद, ₹10,000 या ज़्यादा है, उसे advance tax चुकाना होगा। इसमें significant अन्य income (किराया, capital gains, interest, freelance work) वाले salaried employees, self-employed professionals और freelancers, business owners, और आकार चाहे जो भी हो हर company शामिल है, क्योंकि companies लगभग हमेशा ₹10,000 की सीमा पार करती हैं। Section 44AD या 44ADA के तहत presumptive income बताने वाले taxpayers भी उत्तरदायी हैं, पर नीचे बताए गए सरल single-instalment schedule के साथ।</p>
+
+<h3>Advance Tax से कौन Exempt है?</h3>
+<p>Income Tax Act दो श्रेणियों को विशेष रूप से exempt करता है। पहला, एक <strong>resident senior citizen (60 साल या उससे ज़्यादा)</strong> जिसकी business या profession से कोई income नहीं है, उसे advance tax चुकाने की ज़रूरत नहीं — ऐसा व्यक्ति साल खत्म होने के बाद सिर्फ़ self-assessment tax चुका सकता है। दूसरा, जिस किसी की TDS/TCS के बाद net tax liability साल के लिए ₹10,000 से कम है, उसकी कोई advance tax obligation नहीं है, चाहे उम्र या taxpayer type कुछ भी हो। जिन salaried employees का पूरा tax उनके employer के TDS deduction से पहले से covered है, बिना किसी अन्य significant income के, उनकी भी आमतौर पर कोई अलग advance tax obligation नहीं होती।</p>
+
+<h3>Due Dates और Instalment Schedule</h3>
+<p>Advance tax (presumptive taxpayers को छोड़कर) financial year के दौरान चार cumulative instalments में देय है: 15 जून तक 15%, 15 सितंबर तक 45%, 15 दिसंबर तक 75%, और 15 मार्च तक 100% — अनुमानित tax liability के cumulative प्रतिशत के रूप में, बाकी राशि पर एक नया 15%/30%/30%/25% split नहीं। जिन taxpayers ने section 44AD (eligible businesses) या section 44ADA (specified professionals) के तहत <strong>presumptive taxation scheme</strong> चुनी है, उनके साथ अलग व्यवहार होता है: उन्हें अपना पूरा advance tax एक ही instalment में 15 मार्च तक चुकाना होता है, उससे पहले कोई quarterly requirement या संबंधित 234C exposure नहीं।</p>
+
+<h3>Calculation Method और Formula</h3>
+<p>Advance tax उसी क्रम में गणना होता है जैसे annual income tax — बस साल खत्म होने के बाद final करने के बजाय पहले से अनुमानित। Gross Total Income = Salary + House Property + Business/Profession + Capital Gains + Other Income। Taxable Income = Gross Total Income − Standard Deduction − Chapter VI-A Deductions (सिर्फ़ old regime में, 80CCD(2) को छोड़कर जो दोनों regimes में लागू होता है)। Income Tax = लागू slabs पर (slab amount × slab rate) का योग। इसके बाद Section 87A Rebate घटाया जाता है (यदि लागू हो), Surcharge जोड़ा जाता है (marginal relief के साथ), और 4% Health &amp; Education Cess जोड़ा जाता है, जिससे Total Tax Liability मिलती है — जिसमें से TDS, TCS और पहले से चुकाया tax घटाकर Net Advance Tax Payable (या refund) निकलता है।</p>
+
+<h3>Section 234B के तहत Interest</h3>
+<p>Section 234B interest तब लागू होता है जब साल के दौरान वास्तव में चुकाया गया advance tax आपके final assessed tax के 90% से कम हो। कमी (assessed tax minus advance tax paid) पर assessment year के 1 अप्रैल से लेकर tax चुकाने या assessment पूरा होने तक, जो भी पहले हो, 1% प्रति माह (या महीने का कोई भी हिस्सा) की दर से interest लगता है। अपनी eventual tax liability का कम से कम 90% advance tax instalments के ज़रिए चुकाना 234B interest से पूरी तरह बचाता है।</p>
+
+<h3>Section 234C के तहत Interest</h3>
+<p>Section 234C <em>quarterly</em> instalment schedule से पीछे रहने पर interest लगाता है, चाहे आप eventual रूप से 234B के लिए 90% पार करें या नहीं। पहले तीन instalments में से हर एक के लिए कानून एक specific relaxation देता है: उस quarter के लिए कोई interest नहीं लगता अगर आपने 15 जून तक कम से कम 12% (15% target के मुक़ाबले), 15 सितंबर तक 36% (45% के मुक़ाबले), या 15 दिसंबर तक 69% (75% के मुक़ाबले) चुका दिया है। अंतिम instalment, 15 मार्च को देय, में ऐसा कोई relaxation नहीं है — उस तारीख़ तक 100% से कम कुछ भी interest आकर्षित करता है।</p>
+
+<h3>अलग-अलग Taxpayers के लिए Advance Tax नियम</h3>
+<p><strong>Individuals और HUFs</strong> old या new regime में से किसी एक के तहत slab system फॉलो करते हैं, age-based exemption limits के साथ (old regime में ₹2.5L below 60, ₹3L for 60-80, ₹5L for 80+)। <strong>Partnership firms और LLPs</strong> पर flat 30% tax लगता है, ₹1 crore से ज़्यादा income पर 12% surcharge, प्लस 4% cess — कोई basic exemption slab नहीं और old/new regime का कोई विकल्प नहीं। <strong>Companies</strong> पर 25% (ज़्यादातर domestic companies, turnover आधारित), concessional section 115BAA के तहत 22% (जो ज़्यादातर अन्य exemptions छोड़ देता है पर surcharge को flat 10% पर cap करता है), या 30% (general rate) लगता है।</p>
+
+<h3>Tax Planning Tips</h3>
+<p>अनुमान conservative पर realistic रखें — cash outflow टालने के लिए under-estimate करना सिर्फ़ saving को 234B/234C interest में बदल देता है। हर quarter अपना अनुमान फिर से देखें — bonus, capital gain, या नया freelance contract आपके annual figure को काफ़ी बदल सकता है। साल शुरू होने से पहले regimes की तुलना करें, बाद में नहीं। जिन deductions पर आपका control है उन्हें पहले करें — 80C investments, health insurance, NPS contributions। साल भर Form 26AS/AIS के ज़रिए TDS credits track करें।</p>
+
+<h3>उदाहरण</h3>
+<p>एक salaried individual जिसकी old regime में अनुमानित annual tax liability (TDS के बाद) ₹1,20,000 है, वह 15 जून तक ₹18,000 (15%), 15 सितंबर तक cumulative ₹54,000 (45%), 15 दिसंबर तक ₹90,000 (75%), और 15 मार्च तक बाकी ₹30,000 (100%) चुकाता है। Section 44ADA के तहत presumptive income बताने वाला एक freelance consultant, जिसकी अनुमानित tax liability ₹80,000 है, पूरे ₹80,000 को 15 मार्च तक एक ही instalment में चुकाता है — कोई जून, सितंबर या दिसंबर instalment नहीं चाहिए।</p>
+
+<h3>समय पर Advance Tax चुकाने के फ़ायदे</h3>
+<p>समय पर चुकाना 234B और 234C interest से पूरी तरह बचाता है, एक बड़े tax bill को साल भर में फैला देता है, आपकी अपनी cash-flow planning को बेहतर बनाता है क्योंकि आपको exact amounts और dates पहले से पता होते हैं, और आपका compliance record साफ़ रखता है — जो loan applications, visa processing और government tenders के लिए मायने रखता है।</p>
+
+<h3>बचने योग्य आम गलतियाँ</h3>
+<p>यह मान लेना कि salaried employees को कभी advance tax नहीं चुकाना — यह सिर्फ़ तभी सच है जब TDS आपकी पूरी liability cover करता है। Instalment percentages को cumulative के बजाय बाकी राशि के 15%/30%/30%/25% के रूप में समझना। यह भूल जाना कि 44AD/44ADA के तहत presumptive-income taxpayers का बिल्कुल अलग (सिर्फ़ 15 मार्च वाला) schedule होता है। साल के आख़िर में हुए capital gains को नज़रअंदाज़ करना। पहले से कटे TDS को हिसाब में न लेना।</p>
+
+<h3>निष्कर्ष (Conclusion)</h3>
+<p>Advance tax एक साल के tax bill को एक अनुमानित quarterly रिदम में बदल देता है, पर सिर्फ़ तभी जब आप अपनी income का reasonable अनुमान लगाएँ और अपनी instalments को सही due dates और percentages के विरुद्ध track करें — यह काम salary, rental income, business profits, capital gains और कई income sources के मिश्रण के साथ जल्दी जटिल हो जाता है। यह calculator इस जटिलता को तुरंत और निजी तौर पर संभालता है, ताकि आप उस फ़ैसले पर ध्यान दे सकें जो वाकई मायने रखता है: सही राशि, समय पर चुकाना।</p>
+
+</div>
+<div class="at-content">
+
+<!-- ===== FAQ (immediately after About — required order) ===== -->
+<h2>❓ Frequently Asked Questions</h2>
+<div class="at-faq" id="atFaq">
+
+<details><summary>What is advance tax and why does it exist?</summary><p>Advance tax is income tax paid during the same financial year in which the income is earned, spread across four instalments, rather than as a single payment after the year closes. It exists because governments need a steady flow of tax revenue throughout the year to fund ongoing expenditure, rather than receiving the bulk of it in one rush after every taxpayer files their annual return. For taxpayers, it also spreads what could be a large, difficult-to-manage lump sum into four smaller, more predictable payments tied to fixed dates, which is generally easier to plan cash flow around than a single year-end bill, provided you estimate your income reasonably as the year progresses rather than guessing once in April and never revisiting it. / Advance tax वह tax है जो साल के दौरान ही किश्तों में चुकाया जाता है, एक साथ नहीं।</p></details>
+
+<details><summary>Who is required to pay advance tax?</summary><p>Any taxpayer — individual, HUF, partnership firm, LLP, or company — whose estimated tax liability for the year, after subtracting TDS and TCS already deducted at source, comes to ₹10,000 or more must pay advance tax in instalments. This is a very common threshold to cross: salaried employees with rental income, capital gains, significant interest income, or freelance earnings on the side; self-employed professionals and consultants; business owners; and virtually every company, since companies rarely have their entire tax liability covered by TDS. The obligation applies regardless of taxpayer type or residential status, though the applicable tax rates and slabs differ considerably between individuals, HUFs, firms, LLPs and companies, which is exactly what this calculator's taxpayer-type selector accounts for. / ₹10,000 या ज़्यादा tax liability वाले हर taxpayer को advance tax चुकाना ज़रूरी है।</p></details>
+
+<details><summary>Who is exempt from paying advance tax?</summary><p>Two groups are specifically exempted. A resident senior citizen (60 years of age or above) who has no income from business or profession does not need to pay advance tax at all — they can settle their entire liability through self-assessment tax after the financial year ends. Separately, anyone — regardless of age or taxpayer type — whose net tax liability after TDS and TCS is below ₹10,000 for the year has no advance tax obligation, since the ₹10,000 threshold simply isn't crossed. In practice, this second exemption covers most salaried employees whose entire tax is already deducted by their employer through TDS, provided they have no other significant untaxed income like rent, capital gains or freelance earnings that would push their residual liability above ₹10,000. / Senior citizens (no business income) और ₹10,000 से कम liability वाले exempt हैं।</p></details>
+
+<details><summary>What are the advance tax due dates and percentages?</summary><p>For most taxpayers, advance tax is due in four cumulative instalments: 15% of the estimated annual tax by 15 June, a cumulative 45% by 15 September, a cumulative 75% by 15 December, and the full 100% by 15 March. These are cumulative figures — the September instalment is 45% of the total, not an additional 45% on top of the June payment — so the actual incremental payment due each quarter is the difference between that quarter's cumulative requirement and what you've already paid. Taxpayers under the presumptive taxation schemes of section 44AD or 44ADA follow a different, simpler schedule: 100% of their advance tax in one instalment by 15 March only, with no earlier quarterly obligation. / सामान्य तौर पर 15 जून/सितंबर/दिसंबर/मार्च को 15/45/75/100% चुकाना होता है।</p></details>
+
+<details><summary>How is advance tax calculated?</summary><p>Start with your gross total income across all heads — salary, house property, business or profession, capital gains, and other income — for the full financial year, estimated as accurately as you can even though the year isn't over yet. Subtract the standard deduction and, if you're on the old regime, your Chapter VI-A deductions (80C, 80D and so on) to arrive at taxable income. Apply the tax slabs for your regime, taxpayer type and age to get the base tax, subtract any Section 87A rebate you qualify for, add surcharge if your income is high enough (with marginal relief applied), and add 4% health and education cess to reach your total tax liability. Subtract TDS, TCS and any tax already paid, and the remainder is what you owe across the four instalments. / Gross income से deductions घटाकर, slabs पर tax लगाकर, rebate/surcharge/cess जोड़कर calculate होता है।</p></details>
+
+<details><summary>What happens if I don't pay advance tax on time?</summary><p>Two separate interest charges can apply. Section 234C charges interest for missing any individual quarterly instalment's percentage target, even if you eventually pay your full tax bill by year-end — this is calculated per quarter, at 1% per month for the shortfall against that quarter's specific requirement. Section 234B charges interest separately if your total advance tax paid during the year falls short of 90% of your final assessed tax, calculated from 1 April of the following assessment year until you pay. Both are avoidable: pay at least the relaxation thresholds each quarter (12%/36%/69% for the first three instalments) and pay at least 90% of your eventual liability in total, and neither interest charge applies. / देर से या कम भुगतान पर 234B और 234C के तहत interest लगता है।</p></details>
+
+<details><summary>What is interest under Section 234B?</summary><p>Section 234B applies when the advance tax you paid during the year is less than 90% of your final assessed tax for that year. The shortfall — assessed tax minus advance tax actually paid — is charged interest at a flat 1% per month, with any part of a month counted as a full month, running from 1 April of the assessment year until the date your tax is paid in full or your assessment is completed, whichever comes first. There is no quarter-by-quarter nuance to 234B the way there is with 234C — it looks only at the single, final relationship between your total advance tax paid and 90% of your assessed liability, which is why paying comfortably above that 90% mark across your instalments is the simplest way to avoid it entirely. / assessed tax के 90% से कम advance tax चुकाने पर 234B interest लगता है।</p></details>
+
+<details><summary>What is interest under Section 234C?</summary><p>Section 234C charges interest for falling short of each quarterly instalment's specific cumulative target — 15% by June, 45% by September, 75% by December, 100% by March — regardless of how your total advance tax compares to 90% of the final figure under 234B. Each of the first three instalments carries a statutory relaxation: if you've paid at least 12% by 15 June, 36% by 15 September, or 69% by 15 December, no interest applies for that specific instalment even though it's technically below the stated 15%/45%/75% target. The final instalment on 15 March has no such relaxation. Where interest does apply, it is 1% per month on the shortfall — three months for each of the first three instalments, one month for the final one. / हर quarter की देय राशि से कम चुकाने पर 234C interest, relaxation सीमा के साथ।</p></details>
+
+<details><summary>What is the 12%/36%/69% relaxation under Section 234C?</summary><p>The Income Tax Act builds a small buffer into the first three advance tax instalments, recognising that estimating annual income precisely mid-year is inherently imprecise. Instead of requiring the exact 15%, 45% or 75% cumulative targets to avoid interest, the law accepts 12%, 36% or 69% respectively — a roughly 20% tolerance below each target. Pay at least that relaxed percentage by the relevant due date, and Section 234C charges no interest for that particular instalment, even though you're technically below the headline target. This relaxation does not extend to the final instalment: by 15 March, you are expected to have paid the full 100%, and any shortfall at that point attracts interest with no buffer. / पहले तीन instalments के लिए एक छोटी सी tolerance (12%/36%/69%) दी जाती है।</p></details>
+
+<details><summary>Do presumptive taxpayers (44AD/44ADA) follow the same schedule?</summary><p>No — taxpayers who have opted for the presumptive taxation scheme under section 44AD (for eligible businesses) or section 44ADA (for specified professionals like doctors, lawyers, architects and consultants) follow a simplified schedule: their entire advance tax liability is payable in a single instalment on or before 15 March, with no June, September or December obligation and no corresponding Section 234C exposure before that date. This recognises that presumptive-scheme taxpayers often have less predictable, more seasonal income patterns than salaried employees or businesses maintaining full books of account. Tick "Presumptive taxpayer (44AD/44ADA)" in this calculator and both the instalment schedule and the interest calculation switch to this single-instalment treatment automatically. / 44AD/44ADA वाले taxpayers को सिर्फ़ 15 मार्च तक 100% चुकाना होता है।</p></details>
+
+<details><summary>How does advance tax differ for individuals, HUF, firms, LLPs and companies?</summary><p>Individuals and HUFs are taxed on a graduated slab basis, with a choice between the old and new regime and, for individuals, age-based exemption thresholds that don't apply to HUFs. Partnership firms and LLPs have no slab system at all — they pay a flat 30% on their entire taxable income, plus a 12% surcharge if that income exceeds ₹1 crore, plus 4% cess, with no old/new regime choice since that concept only applies to individuals and HUFs. Companies are taxed at a flat rate too — commonly 25% for most domestic companies based on turnover thresholds, or 22% under the concessional Section 115BAA regime (which trades away most other exemptions for a lower flat rate and a capped 10% surcharge), or 30% as the general rate — each with its own surcharge slabs. This calculator's taxpayer-type selector switches between all of these automatically. / Individual/HUF slab-based हैं; Firm/LLP flat 30%; Company flat rate (25%/22%/30%)।</p></details>
+
+<details><summary>How does the old vs new tax regime affect advance tax?</summary><p>The regime you choose changes your taxable income and therefore the tax due at every instalment, since the new regime applies only the standard deduction and Section 80CCD(2) (employer's NPS contribution), while the old regime allows the full range of Chapter VI-A deductions — 80C, 80D, 80CCD(1B), home loan interest, HRA exemption and more — which typically lowers taxable income for anyone claiming meaningful deductions. This calculator computes your liability under both regimes side by side using the same income figures, marks whichever is cheaper as recommended, and shows the exact rupee difference, so you can make an informed choice before your instalments are due rather than discovering after filing that the other regime would have saved money. For individuals and HUFs only — firms, LLPs and companies aren't affected by this regime choice at all. / Old regime पूरी deductions देता है, New regime सिर्फ़ standard deduction + 80CCD(2)।</p></details>
+
+<details><summary>What deductions can I claim under the old regime?</summary><p>This calculator itemises up to eighteen Chapter VI-A deductions, each with its real statutory cap: 80C, 80CCC and 80CCD(1) share a combined ₹1,50,000 limit; 80CCD(1B) adds a further ₹50,000 for NPS; 80CCD(2), the employer's NPS contribution, applies in both regimes and has no fixed cap in this tool; 80D covers health insurance premiums; 80DD and 80DDB cover disability care and specified-disease treatment; 80E covers education loan interest with no upper limit; 80EE, 80EEA and 80EEB cover additional home-loan and electric-vehicle-loan interest for specific loan-sanction windows; 80G, 80GGA and 80GGC cover donations; 80GG covers rent paid without HRA; and 80TTA/80TTB cover savings and deposit interest for non-seniors and seniors respectively. Each field validates against its cap and shows a tooltip explaining exactly what it covers. / 80C, 80D, 80CCD जैसी 18 deductions उपलब्ध हैं, हर एक अपनी सही सीमा के साथ।</p></details>
+
+<details><summary>Are my income details and calculations uploaded anywhere?</summary><p>No. Every figure you enter — salary, house property, business income, capital gains, deductions, TDS, advance tax paid — is processed entirely by JavaScript running in your own browser. Nothing is sent to any server, there is no account or sign-up, and no calculation is logged or tracked against you in any way. The only network requests this page makes are for the page's own assets (fonts, the shared stylesheet, small helper libraries for PDF and Excel export) and an anonymous page-view analytics script common across the site — your actual income figures and results never leave your device. Saved calculations, using the Save/Load buttons, are stored only in your browser's local storage, which you control completely and can clear at any time. / आपकी income details कभी कहीं upload नहीं होतीं, सब कुछ आपके ब्राउज़र में होता है।</p></details>
+
+<details><summary>Can I calculate advance tax for capital gains and business income?</summary><p>Yes. The Business Income card covers business profit, professional income, presumptive income under both 44AD and 44ADA, and speculative income, each auto-totalling as you type. The Capital Gains card covers short-term and long-term capital gains generally, plus separate fields for property, mutual fund and equity gains specifically, since these are commonly tracked as distinct line items by taxpayers with diversified portfolios. For an advance-tax estimate, this calculator adds capital gains at their entered value into your total taxable income rather than modelling the special slab rates that apply to certain capital gains (such as the specific rates for long-term and short-term equity gains) — for precise capital-gains tax computation, especially close to a filing deadline, cross-check with a chartered accountant or the official calculator on the Income Tax portal. / Business profit, professional income, presumptive income, और सभी प्रकार के capital gains शामिल किए जा सकते हैं।</p></details>
+
+<details><summary>How does the estimated quarterly income section work?</summary><p>The Estimated Quarterly Income fields (Q1 April–June, Q2 July–September, Q3 October–December, Q4 January–March) let you break your annual income estimate down by quarter and see it charted, which is useful for sanity-checking that your annual total is realistic and for planning ahead if your income is seasonal or growing through the year — a freelancer who lands a large project in Q3, for instance, can see how that shifts their income profile. This section is primarily a planning and visualisation aid; the actual Section 234B and 234C interest calculations in this tool are driven by the amounts you record as actually paid in the Payment Tracker tab against the required instalment schedule, since interest depends on tax paid versus tax due, not on income earned versus income estimated. / तिमाही आय भरकर आप अपने annual अनुमान की जाँच और planning कर सकते हैं।</p></details>
+
+<details><summary>What is the Payment Tracker for?</summary><p>The Payment Tracker tab lets you record what you've actually paid by each of the four due dates — June, September, December and March — and compares that against what was required by each date given your calculated tax liability. It shows the pending amount (what's still owed against that instalment), any excess (if you paid more than required, which carries forward as credit against later instalments), and feeds directly into the Section 234C interest calculation, since that section specifically depends on cumulative payments made versus cumulative percentages required by each date. This is the practical, month-by-month companion to the Tax Calculation tab's single annual estimate — use it throughout the year as you actually make payments, not just once at the start. / Payment Tracker से आप हर instalment में असल भुगतान और pending राशि ट्रैक कर सकते हैं।</p></details>
+
+<details><summary>What does the Challan Helper show?</summary><p>The Challan Helper displays the correct major head (0021 for taxpayers other than companies, 0020 for companies), the minor head (100, for advance tax specifically, as distinct from self-assessment or regular assessment tax), and the financial year and assessment year you've selected, formatted as a quick reference for filling in Challan No./ITNS 280 when you actually make your payment through the Income Tax Department's e-Pay Tax service. It is a guidance panel only, built to reduce the chance of selecting the wrong head or minor head when paying — always double-check the current form and heads on the official Income Tax e-filing portal before submitting payment, since portal procedures and form numbers can be updated by the department from time to time. / Challan Helper सही Major/Minor Head बताकर payment में मदद करता है।</p></details>
+
+<details><summary>Can I export my advance tax calculation?</summary><p>Yes. The header buttons let you download a PDF summary of your dashboard and results, export the full set of figures as an Excel (.xlsx) workbook, print a clean report with navigation and sidebars automatically hidden, copy a plain-text summary to your clipboard in one click, or use your device's native share sheet to send the summary directly to another app. A Save button stores your entire set of inputs in this browser's local storage so you can close the tab and pick up exactly where you left off later using the Load button — useful across a financial year as your figures evolve quarter by quarter. / PDF, Excel, Print, Copy, Share और Save/Load — सभी export options उपलब्ध हैं।</p></details>
+
+<details><summary>Does the calculator validate my inputs?</summary><p>Yes, in several ways. Deduction fields are checked in real time against their real statutory maximum limits and visually flagged if you enter an amount above the cap, which is then automatically capped in the calculation itself so your result is never overstated. Number fields prevent negative income entries. The taxpayer-type and regime selectors automatically show or hide fields that don't apply — for instance, the age selector only matters for individuals, and the regime dropdown is disabled for firms, LLPs and companies since they don't have an old/new regime choice. All currency figures are formatted in the Indian numbering system (lakhs and crores with the correct comma placement) throughout, for figures that are easy to read at a glance rather than requiring you to count digits. / Deduction limits, negative income, और आवश्यक fields real-time में validate होते हैं।</p></details>
+
+<details><summary>Is this calculator accessible for keyboard and screen-reader users?</summary><p>Yes. Every input, button, dropdown and expandable card is a standard, native HTML control reachable and operable using the keyboard alone — tab to move between fields, space or enter to activate buttons and expand cards, arrow keys within dropdowns — with no custom widgets that trap keyboard focus or require a mouse. Status messages use ARIA live regions so screen readers announce updates like "Calculation updated" or "Saved calculation loaded" without the user needing to navigate to find them. A High Contrast toggle increases contrast for users with low vision, and a Large Fonts toggle increases the base text size across the whole calculator, both remembered in this browser for your next visit. / Keyboard navigation, screen reader labels, high contrast और large fonts सभी समर्थित हैं।</p></details>
+
+<details><summary>Why does this tool support a Language selector?</summary><p>India's taxpayers work across many languages, and a calculator that only speaks English excludes a meaningful share of the people who need it most. The Language selector in Settings switches the calculator's core navigation — its tab names, main buttons (Calculate, Reset, Print, Download, Share, Copy, Save, Load) — between English and Hindi, remembered for your next visit. The detailed About and FAQ content on this page is fully written in both English and Hindi as separate, complete sections regardless of this toggle, so the deeper explanatory material is always available in either language without needing the interface switch at all. / Language selector मुख्य navigation को English और हिन्दी के बीच बदलता है।</p></details>
+
+<details><summary>Does this tool use any AI?</summary><p>No. Every calculation — tax slabs, surcharge with marginal relief, cess, deductions, the advance tax instalment schedule, and the Section 234B/234C interest formulas — is implemented as deterministic, hand-written JavaScript directly from the published provisions of the Income Tax Act, cross-checked against this site's existing Income Tax Calculator for consistency. There is no AI model, no machine learning, and no external tax-computation API involved anywhere in this tool; every result can be traced back to a specific, human-readable formula, which is exactly what the "Calculation Details" panel is for — it shows you the formula and the intermediate values behind your own result. / नहीं, इसमें कोई AI शामिल नहीं है — सब कुछ हाथ से लिखे गए स्पष्ट फॉर्मूलों से चलता है।</p></details>
+
+<details><summary>Is this calculator a substitute for professional tax advice?</summary><p>No, and it doesn't try to be. This tool is built to give you a fast, private, transparent estimate using the standard rules that apply to the overwhelming majority of taxpayers, with clear notes wherever a simplification has been made — for instance, capital gains are added at face value rather than taxed at their specific special rates, and the company tax engine offers simplified flat-rate options rather than the full corporate tax code including minimum alternate tax. For your actual tax filing, especially with a complex income mix, significant capital gains, or a company's detailed tax position, always verify your final numbers with a chartered accountant or the official calculators and guidance on the Income Tax Department's e-filing portal (incometax.gov.in). / यह टूल एक अनुमानक है, CA की सलाह का विकल्प नहीं।</p></details>
+
+<details><summary>What happens if I overpay an instalment?</summary><p>Overpaying one instalment isn't wasted — the Payment Tracker shows it as "excess" against that specific due date, and in practice that excess reduces what you need to pay to stay on track for the next instalment's cumulative target, since what matters for Section 234C is your cumulative payment against each date's cumulative requirement. If your total advance tax payments for the year end up exceeding your final tax liability altogether, the excess becomes a refund, which this calculator's dashboard shows explicitly as "Refund" whenever total tax paid exceeds total tax liability. There's no penalty for overpaying advance tax, only for underpaying against the schedule. / ज़्यादा भुगतान करने पर कोई penalty नहीं, यह अगले instalment के against adjust हो जाता है या refund बनता है।</p></details>
+
+<details><summary>Can HUF advance tax be calculated separately from the karta's personal tax?</summary><p>Yes — a Hindu Undivided Family is a separate taxable entity from its karta (the head of the family) under Indian tax law, with its own PAN, its own income (typically from ancestral or jointly-held property, investments or business), and its own advance tax obligation computed independently using the same individual slab rates but without age-based exemption variation, since a HUF itself has no "age." Select "HUF" as the taxpayer type in this calculator to compute the HUF's own advance tax liability on its own income, entirely separately from any personal advance tax calculation you might run for the karta or other family members as individuals. / HUF karta से अलग taxable entity है, इसकी advance tax अलग से गणना होती है।</p></details>
+
+<details><summary>How is surcharge and marginal relief handled?</summary><p>Surcharge is an additional charge on top of income tax for higher-income taxpayers, ranging from 10% (income above ₹50 lakh) up to 37% under the old regime or a capped 25% under the new regime (income above ₹5 crore), applied to individuals, HUFs, firms, LLPs and companies each with their own thresholds. Marginal relief is a safeguard built into the law: it ensures that crossing a surcharge threshold by a small amount never increases your total tax by more than the amount of income that pushed you over — without it, earning ₹1 more than a threshold could theoretically increase your tax by far more than ₹1. This calculator applies marginal relief automatically for every taxpayer type wherever surcharge is triggered, recalculating the surcharge downward whenever the unrelieved amount would otherwise create an unfair cliff-edge increase. / Surcharge ऊँची income पर लगता है; marginal relief अचानक बड़ी बढ़ोतरी को रोकता है।</p></details>
+
+<details><summary>Does this calculator support both Financial Year and Assessment Year selection?</summary><p>Yes. The header lets you choose the Financial Year (the year in which income is earned — FY 2025-26 or FY 2026-27 in this tool) and automatically syncs the corresponding Assessment Year (the following year, in which that income is assessed and taxed — AY 2026-27 or AY 2027-28 respectively), since the two are always exactly one year apart and shouldn't be set independently. Advance tax is always paid during the financial year itself, based on an estimate of that year's income, while the assessment year is primarily relevant for filing your return and for dating Section 234B interest, which explicitly runs from 1 April of the assessment year. / Financial Year चुनने पर Assessment Year अपने-आप sync होता है।</p></details>
+
+<details><summary>Can I compare multiple scenarios, like different regimes or income levels?</summary><p>Yes — since every part of this calculator recalculates instantly as you change any input, you can freely adjust your income, deduction, or regime figures and watch the dashboard, waterfall, comparison cards, instalment schedule and interest breakdown update together, without needing to click a separate "recalculate" button for each change (though the Calculate button is there for anyone who prefers an explicit action). Use the Save button to record a scenario before changing inputs to explore a different one, and the Load button to bring back your saved figures afterwards, effectively letting you compare a "before" and "after" scenario side by side across two browser sessions or tabs. / Inputs बदलते ही सब कुछ turant update होता है; Save/Load से scenarios compare कर सकते हैं।</p></details>
+
+<details><summary>What if my income changes significantly during the year?</summary><p>This is exactly why advance tax is paid quarterly rather than as a single annual estimate made in April and never revisited: revise your figures in this calculator before each instalment's due date to reflect what you now know about the year so far — a bonus received, a capital gain realised, a new client contract — and pay each instalment based on the updated, more accurate estimate. The law itself accommodates this: instalments are based on your current estimate at each due date, not a figure locked in at the start of the year, and the Section 234C relaxation thresholds (12%/36%/69%) build in some tolerance for the reality that early-year estimates are rarely perfectly accurate. / साल के दौरान income बदलने पर हर due date से पहले अनुमान अपडेट करें।</p></details>
+
+<details><summary>Does this tool work on mobile devices?</summary><p>Yes. The layout is fully responsive: on a phone or tablet, the two-column form-and-results layout stacks into a single scrollable column, the expandable income cards and tabbed navigation remain fully touch-friendly with adequately sized tap targets, and every chart, table and button resizes to fit the available width without needing to zoom or scroll sideways. Performance is optimised for mobile too — there are no heavy external frameworks, and the calculation engine itself runs in a fraction of a second even on modest hardware, so the experience of estimating advance tax on a phone during a commute is just as fast as on a desktop. / यह टूल mobile और tablet पर पूरी तरह responsive और तेज़ है।</p></details>
+
+<details><summary>Where can I actually pay my advance tax once I've calculated it?</summary><p>Advance tax is paid through the Income Tax Department's e-Pay Tax facility on the official e-filing portal (incometax.gov.in), using Challan No./ITNS 280, selecting "Advance Tax (100)" as the type of payment under the correct major head shown in this calculator's Challan Helper. Payment can be made via net banking, debit card, RTGS/NEFT, or over the counter at authorised bank branches, depending on the options your bank supports through the portal. This calculator estimates how much to pay and by when — it does not process any payment itself, since it has no server component and never transmits your data anywhere; the actual payment always happens directly on the government's own portal. / असली भुगतान Income Tax e-filing portal पर e-Pay Tax से करना होता है, यह calculator सिर्फ़ अनुमान देता है।</p></details>
+
+</div>
+
+<!-- ===== Troubleshooting ===== -->
+<h2>🛠️ Troubleshooting</h2>
+<ul>
+  <li><strong>Both regimes show ₹0 tax liability:</strong> your taxable income is within the Section 87A rebate threshold for both regimes (up to ₹5L old / ₹12L new for FY 2025-26 & 2026-27) — that's a correct result, not a bug.</li>
+  <li><strong>Deduction field shows an error/warning:</strong> the amount you entered exceeds that section's statutory maximum; the calculator automatically caps it at the limit for the actual tax calculation, so your result remains correct even while the field is flagged.</li>
+  <li><strong>Regime dropdown is disabled:</strong> this is expected for Firm, LLP and Company taxpayer types — they don't have an old/new regime choice, since that concept applies only to individuals and HUFs.</li>
+  <li><strong>Instalment schedule shows only one row instead of four:</strong> check whether "Presumptive taxpayer (44AD/44ADA)" is ticked — presumptive taxpayers correctly follow a single 15 March instalment rather than the standard four.</li>
+  <li><strong>234C interest seems too high or too low:</strong> confirm the amounts entered in the Payment Tracker tab reflect what was actually paid by each due date, since 234C is driven by those figures, not by the Estimated Quarterly Income planning fields.</li>
+  <li><strong>PDF or Excel export does nothing:</strong> these features load a small external library each; check your internet connection and refresh the page, then try again.</li>
+  <li><strong>Saved calculation won't load:</strong> saved data is stored in this browser's local storage; a private/incognito window, blocked storage, or cleared site data will prevent it from persisting between visits.</li>
+  <li><strong>Charts appear empty:</strong> a chart with no data (for example, no deductions entered) correctly shows "No data to display" rather than a misleading empty circle.</li>
+</ul>
+
+</div>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is advance tax and why does it exist?", "acceptedAnswer": {"@type": "Answer", "text": "Advance tax is income tax paid during the same financial year in which the income is earned, spread across four instalments, rather than as a single payment after the year closes. It exists because governments need a steady flow of tax revenue throughout the year to fund ongoing expenditure, rather than receiving the bulk of it in one rush after every taxpayer files their annual return. For taxpayers, it also spreads what could be a large, difficult-to-manage lump sum into four smaller, more predictable payments tied to fixed dates, which is generally easier to plan cash flow around than a single year-end bill, provided you estimate your income reasonably as the year progresses rather than guessing once in April and never revisiting it."}}, {"@type": "Question", "name": "Who is required to pay advance tax?", "acceptedAnswer": {"@type": "Answer", "text": "Any taxpayer — individual, HUF, partnership firm, LLP, or company — whose estimated tax liability for the year, after subtracting TDS and TCS already deducted at source, comes to ₹10,000 or more must pay advance tax in instalments. This is a very common threshold to cross: salaried employees with rental income, capital gains, significant interest income, or freelance earnings on the side; self-employed professionals and consultants; business owners; and virtually every company, since companies rarely have their entire tax liability covered by TDS. The obligation applies regardless of taxpayer type or residential status, though the applicable tax rates and slabs differ considerably between individuals, HUFs, firms, LLPs and companies, which is exactly what this calculator's taxpayer-type selector accounts for."}}, {"@type": "Question", "name": "Who is exempt from paying advance tax?", "acceptedAnswer": {"@type": "Answer", "text": "Two groups are specifically exempted. A resident senior citizen (60 years of age or above) who has no income from business or profession does not need to pay advance tax at all — they can settle their entire liability through self-assessment tax after the financial year ends. Separately, anyone — regardless of age or taxpayer type — whose net tax liability after TDS and TCS is below ₹10,000 for the year has no advance tax obligation, since the ₹10,000 threshold simply isn't crossed. In practice, this second exemption covers most salaried employees whose entire tax is already deducted by their employer through TDS, provided they have no other significant untaxed income like rent, capital gains or freelance earnings that would push their residual liability above ₹10,000."}}, {"@type": "Question", "name": "What are the advance tax due dates and percentages?", "acceptedAnswer": {"@type": "Answer", "text": "For most taxpayers, advance tax is due in four cumulative instalments: 15% of the estimated annual tax by 15 June, a cumulative 45% by 15 September, a cumulative 75% by 15 December, and the full 100% by 15 March. These are cumulative figures — the September instalment is 45% of the total, not an additional 45% on top of the June payment — so the actual incremental payment due each quarter is the difference between that quarter's cumulative requirement and what you've already paid. Taxpayers under the presumptive taxation schemes of section 44AD or 44ADA follow a different, simpler schedule: 100% of their advance tax in one instalment by 15 March only, with no earlier quarterly obligation."}}, {"@type": "Question", "name": "How is advance tax calculated?", "acceptedAnswer": {"@type": "Answer", "text": "Start with your gross total income across all heads — salary, house property, business or profession, capital gains, and other income — for the full financial year, estimated as accurately as you can even though the year isn't over yet. Subtract the standard deduction and, if you're on the old regime, your Chapter VI-A deductions (80C, 80D and so on) to arrive at taxable income. Apply the tax slabs for your regime, taxpayer type and age to get the base tax, subtract any Section 87A rebate you qualify for, add surcharge if your income is high enough (with marginal relief applied), and add 4% health and education cess to reach your total tax liability. Subtract TDS, TCS and any tax already paid, and the remainder is what you owe across the four instalments."}}, {"@type": "Question", "name": "What happens if I don't pay advance tax on time?", "acceptedAnswer": {"@type": "Answer", "text": "Two separate interest charges can apply. Section 234C charges interest for missing any individual quarterly instalment's percentage target, even if you eventually pay your full tax bill by year-end — this is calculated per quarter, at 1% per month for the shortfall against that quarter's specific requirement. Section 234B charges interest separately if your total advance tax paid during the year falls short of 90% of your final assessed tax, calculated from 1 April of the following assessment year until you pay. Both are avoidable: pay at least the relaxation thresholds each quarter (12%/36%/69% for the first three instalments) and pay at least 90% of your eventual liability in total, and neither interest charge applies."}}, {"@type": "Question", "name": "What is interest under Section 234B?", "acceptedAnswer": {"@type": "Answer", "text": "Section 234B applies when the advance tax you paid during the year is less than 90% of your final assessed tax for that year. The shortfall — assessed tax minus advance tax actually paid — is charged interest at a flat 1% per month, with any part of a month counted as a full month, running from 1 April of the assessment year until the date your tax is paid in full or your assessment is completed, whichever comes first. There is no quarter-by-quarter nuance to 234B the way there is with 234C — it looks only at the single, final relationship between your total advance tax paid and 90% of your assessed liability, which is why paying comfortably above that 90% mark across your instalments is the simplest way to avoid it entirely."}}, {"@type": "Question", "name": "What is interest under Section 234C?", "acceptedAnswer": {"@type": "Answer", "text": "Section 234C charges interest for falling short of each quarterly instalment's specific cumulative target — 15% by June, 45% by September, 75% by December, 100% by March — regardless of how your total advance tax compares to 90% of the final figure under 234B. Each of the first three instalments carries a statutory relaxation: if you've paid at least 12% by 15 June, 36% by 15 September, or 69% by 15 December, no interest applies for that specific instalment even though it's technically below the stated 15%/45%/75% target. The final instalment on 15 March has no such relaxation. Where interest does apply, it is 1% per month on the shortfall — three months for each of the first three instalments, one month for the final one."}}, {"@type": "Question", "name": "What is the 12%/36%/69% relaxation under Section 234C?", "acceptedAnswer": {"@type": "Answer", "text": "The Income Tax Act builds a small buffer into the first three advance tax instalments, recognising that estimating annual income precisely mid-year is inherently imprecise. Instead of requiring the exact 15%, 45% or 75% cumulative targets to avoid interest, the law accepts 12%, 36% or 69% respectively — a roughly 20% tolerance below each target. Pay at least that relaxed percentage by the relevant due date, and Section 234C charges no interest for that particular instalment, even though you're technically below the headline target. This relaxation does not extend to the final instalment: by 15 March, you are expected to have paid the full 100%, and any shortfall at that point attracts interest with no buffer."}}, {"@type": "Question", "name": "Do presumptive taxpayers (44AD/44ADA) follow the same schedule?", "acceptedAnswer": {"@type": "Answer", "text": "No — taxpayers who have opted for the presumptive taxation scheme under section 44AD (for eligible businesses) or section 44ADA (for specified professionals like doctors, lawyers, architects and consultants) follow a simplified schedule: their entire advance tax liability is payable in a single instalment on or before 15 March, with no June, September or December obligation and no corresponding Section 234C exposure before that date. This recognises that presumptive-scheme taxpayers often have less predictable, more seasonal income patterns than salaried employees or businesses maintaining full books of account. Tick \"Presumptive taxpayer (44AD/44ADA)\" in this calculator and both the instalment schedule and the interest calculation switch to this single-instalment treatment automatically."}}, {"@type": "Question", "name": "How does advance tax differ for individuals, HUF, firms, LLPs and companies?", "acceptedAnswer": {"@type": "Answer", "text": "Individuals and HUFs are taxed on a graduated slab basis, with a choice between the old and new regime and, for individuals, age-based exemption thresholds that don't apply to HUFs. Partnership firms and LLPs have no slab system at all — they pay a flat 30% on their entire taxable income, plus a 12% surcharge if that income exceeds ₹1 crore, plus 4% cess, with no old/new regime choice since that concept only applies to individuals and HUFs. Companies are taxed at a flat rate too — commonly 25% for most domestic companies based on turnover thresholds, or 22% under the concessional Section 115BAA regime (which trades away most other exemptions for a lower flat rate and a capped 10% surcharge), or 30% as the general rate — each with its own surcharge slabs. This calculator's taxpayer-type selector switches between all of these automatically."}}, {"@type": "Question", "name": "How does the old vs new tax regime affect advance tax?", "acceptedAnswer": {"@type": "Answer", "text": "The regime you choose changes your taxable income and therefore the tax due at every instalment, since the new regime applies only the standard deduction and Section 80CCD(2) (employer's NPS contribution), while the old regime allows the full range of Chapter VI-A deductions — 80C, 80D, 80CCD(1B), home loan interest, HRA exemption and more — which typically lowers taxable income for anyone claiming meaningful deductions. This calculator computes your liability under both regimes side by side using the same income figures, marks whichever is cheaper as recommended, and shows the exact rupee difference, so you can make an informed choice before your instalments are due rather than discovering after filing that the other regime would have saved money. For individuals and HUFs only — firms, LLPs and companies aren't affected by this regime choice at all."}}, {"@type": "Question", "name": "What deductions can I claim under the old regime?", "acceptedAnswer": {"@type": "Answer", "text": "This calculator itemises up to eighteen Chapter VI-A deductions, each with its real statutory cap: 80C, 80CCC and 80CCD(1) share a combined ₹1,50,000 limit; 80CCD(1B) adds a further ₹50,000 for NPS; 80CCD(2), the employer's NPS contribution, applies in both regimes and has no fixed cap in this tool; 80D covers health insurance premiums; 80DD and 80DDB cover disability care and specified-disease treatment; 80E covers education loan interest with no upper limit; 80EE, 80EEA and 80EEB cover additional home-loan and electric-vehicle-loan interest for specific loan-sanction windows; 80G, 80GGA and 80GGC cover donations; 80GG covers rent paid without HRA; and 80TTA/80TTB cover savings and deposit interest for non-seniors and seniors respectively. Each field validates against its cap and shows a tooltip explaining exactly what it covers."}}, {"@type": "Question", "name": "Are my income details and calculations uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. Every figure you enter — salary, house property, business income, capital gains, deductions, TDS, advance tax paid — is processed entirely by JavaScript running in your own browser. Nothing is sent to any server, there is no account or sign-up, and no calculation is logged or tracked against you in any way. The only network requests this page makes are for the page's own assets (fonts, the shared stylesheet, small helper libraries for PDF and Excel export) and an anonymous page-view analytics script common across the site — your actual income figures and results never leave your device. Saved calculations, using the Save/Load buttons, are stored only in your browser's local storage, which you control completely and can clear at any time."}}, {"@type": "Question", "name": "Can I calculate advance tax for capital gains and business income?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The Business Income card covers business profit, professional income, presumptive income under both 44AD and 44ADA, and speculative income, each auto-totalling as you type. The Capital Gains card covers short-term and long-term capital gains generally, plus separate fields for property, mutual fund and equity gains specifically, since these are commonly tracked as distinct line items by taxpayers with diversified portfolios. For an advance-tax estimate, this calculator adds capital gains at their entered value into your total taxable income rather than modelling the special slab rates that apply to certain capital gains (such as the specific rates for long-term and short-term equity gains) — for precise capital-gains tax computation, especially close to a filing deadline, cross-check with a chartered accountant or the official calculator on the Income Tax portal."}}, {"@type": "Question", "name": "How does the estimated quarterly income section work?", "acceptedAnswer": {"@type": "Answer", "text": "The Estimated Quarterly Income fields (Q1 April–June, Q2 July–September, Q3 October–December, Q4 January–March) let you break your annual income estimate down by quarter and see it charted, which is useful for sanity-checking that your annual total is realistic and for planning ahead if your income is seasonal or growing through the year — a freelancer who lands a large project in Q3, for instance, can see how that shifts their income profile. This section is primarily a planning and visualisation aid; the actual Section 234B and 234C interest calculations in this tool are driven by the amounts you record as actually paid in the Payment Tracker tab against the required instalment schedule, since interest depends on tax paid versus tax due, not on income earned versus income estimated."}}, {"@type": "Question", "name": "What is the Payment Tracker for?", "acceptedAnswer": {"@type": "Answer", "text": "The Payment Tracker tab lets you record what you've actually paid by each of the four due dates — June, September, December and March — and compares that against what was required by each date given your calculated tax liability. It shows the pending amount (what's still owed against that instalment), any excess (if you paid more than required, which carries forward as credit against later instalments), and feeds directly into the Section 234C interest calculation, since that section specifically depends on cumulative payments made versus cumulative percentages required by each date. This is the practical, month-by-month companion to the Tax Calculation tab's single annual estimate — use it throughout the year as you actually make payments, not just once at the start."}}, {"@type": "Question", "name": "What does the Challan Helper show?", "acceptedAnswer": {"@type": "Answer", "text": "The Challan Helper displays the correct major head (0021 for taxpayers other than companies, 0020 for companies), the minor head (100, for advance tax specifically, as distinct from self-assessment or regular assessment tax), and the financial year and assessment year you've selected, formatted as a quick reference for filling in Challan No./ITNS 280 when you actually make your payment through the Income Tax Department's e-Pay Tax service. It is a guidance panel only, built to reduce the chance of selecting the wrong head or minor head when paying — always double-check the current form and heads on the official Income Tax e-filing portal before submitting payment, since portal procedures and form numbers can be updated by the department from time to time."}}, {"@type": "Question", "name": "Can I export my advance tax calculation?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The header buttons let you download a PDF summary of your dashboard and results, export the full set of figures as an Excel (.xlsx) workbook, print a clean report with navigation and sidebars automatically hidden, copy a plain-text summary to your clipboard in one click, or use your device's native share sheet to send the summary directly to another app. A Save button stores your entire set of inputs in this browser's local storage so you can close the tab and pick up exactly where you left off later using the Load button — useful across a financial year as your figures evolve quarter by quarter."}}, {"@type": "Question", "name": "Does the calculator validate my inputs?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in several ways. Deduction fields are checked in real time against their real statutory maximum limits and visually flagged if you enter an amount above the cap, which is then automatically capped in the calculation itself so your result is never overstated. Number fields prevent negative income entries. The taxpayer-type and regime selectors automatically show or hide fields that don't apply — for instance, the age selector only matters for individuals, and the regime dropdown is disabled for firms, LLPs and companies since they don't have an old/new regime choice. All currency figures are formatted in the Indian numbering system (lakhs and crores with the correct comma placement) throughout, for figures that are easy to read at a glance rather than requiring you to count digits."}}, {"@type": "Question", "name": "Is this calculator accessible for keyboard and screen-reader users?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every input, button, dropdown and expandable card is a standard, native HTML control reachable and operable using the keyboard alone — tab to move between fields, space or enter to activate buttons and expand cards, arrow keys within dropdowns — with no custom widgets that trap keyboard focus or require a mouse. Status messages use ARIA live regions so screen readers announce updates like \"Calculation updated\" or \"Saved calculation loaded\" without the user needing to navigate to find them. A High Contrast toggle increases contrast for users with low vision, and a Large Fonts toggle increases the base text size across the whole calculator, both remembered in this browser for your next visit."}}, {"@type": "Question", "name": "Why does this tool support a Language selector?", "acceptedAnswer": {"@type": "Answer", "text": "India's taxpayers work across many languages, and a calculator that only speaks English excludes a meaningful share of the people who need it most. The Language selector in Settings switches the calculator's core navigation — its tab names, main buttons (Calculate, Reset, Print, Download, Share, Copy, Save, Load) — between English and Hindi, remembered for your next visit. The detailed About and FAQ content on this page is fully written in both English and Hindi as separate, complete sections regardless of this toggle, so the deeper explanatory material is always available in either language without needing the interface switch at all."}}, {"@type": "Question", "name": "Does this tool use any AI?", "acceptedAnswer": {"@type": "Answer", "text": "No. Every calculation — tax slabs, surcharge with marginal relief, cess, deductions, the advance tax instalment schedule, and the Section 234B/234C interest formulas — is implemented as deterministic, hand-written JavaScript directly from the published provisions of the Income Tax Act, cross-checked against this site's existing Income Tax Calculator for consistency. There is no AI model, no machine learning, and no external tax-computation API involved anywhere in this tool; every result can be traced back to a specific, human-readable formula, which is exactly what the \"Calculation Details\" panel is for — it shows you the formula and the intermediate values behind your own result."}}, {"@type": "Question", "name": "Is this calculator a substitute for professional tax advice?", "acceptedAnswer": {"@type": "Answer", "text": "No, and it doesn't try to be. This tool is built to give you a fast, private, transparent estimate using the standard rules that apply to the overwhelming majority of taxpayers, with clear notes wherever a simplification has been made — for instance, capital gains are added at face value rather than taxed at their specific special rates, and the company tax engine offers simplified flat-rate options rather than the full corporate tax code including minimum alternate tax. For your actual tax filing, especially with a complex income mix, significant capital gains, or a company's detailed tax position, always verify your final numbers with a chartered accountant or the official calculators and guidance on the Income Tax Department's e-filing portal (incometax.gov.in)."}}, {"@type": "Question", "name": "What happens if I overpay an instalment?", "acceptedAnswer": {"@type": "Answer", "text": "Overpaying one instalment isn't wasted — the Payment Tracker shows it as \"excess\" against that specific due date, and in practice that excess reduces what you need to pay to stay on track for the next instalment's cumulative target, since what matters for Section 234C is your cumulative payment against each date's cumulative requirement. If your total advance tax payments for the year end up exceeding your final tax liability altogether, the excess becomes a refund, which this calculator's dashboard shows explicitly as \"Refund\" whenever total tax paid exceeds total tax liability. There's no penalty for overpaying advance tax, only for underpaying against the schedule."}}, {"@type": "Question", "name": "Can HUF advance tax be calculated separately from the karta's personal tax?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — a Hindu Undivided Family is a separate taxable entity from its karta (the head of the family) under Indian tax law, with its own PAN, its own income (typically from ancestral or jointly-held property, investments or business), and its own advance tax obligation computed independently using the same individual slab rates but without age-based exemption variation, since a HUF itself has no \"age.\" Select \"HUF\" as the taxpayer type in this calculator to compute the HUF's own advance tax liability on its own income, entirely separately from any personal advance tax calculation you might run for the karta or other family members as individuals."}}, {"@type": "Question", "name": "How is surcharge and marginal relief handled?", "acceptedAnswer": {"@type": "Answer", "text": "Surcharge is an additional charge on top of income tax for higher-income taxpayers, ranging from 10% (income above ₹50 lakh) up to 37% under the old regime or a capped 25% under the new regime (income above ₹5 crore), applied to individuals, HUFs, firms, LLPs and companies each with their own thresholds. Marginal relief is a safeguard built into the law: it ensures that crossing a surcharge threshold by a small amount never increases your total tax by more than the amount of income that pushed you over — without it, earning ₹1 more than a threshold could theoretically increase your tax by far more than ₹1. This calculator applies marginal relief automatically for every taxpayer type wherever surcharge is triggered, recalculating the surcharge downward whenever the unrelieved amount would otherwise create an unfair cliff-edge increase."}}, {"@type": "Question", "name": "Does this calculator support both Financial Year and Assessment Year selection?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The header lets you choose the Financial Year (the year in which income is earned — FY 2025-26 or FY 2026-27 in this tool) and automatically syncs the corresponding Assessment Year (the following year, in which that income is assessed and taxed — AY 2026-27 or AY 2027-28 respectively), since the two are always exactly one year apart and shouldn't be set independently. Advance tax is always paid during the financial year itself, based on an estimate of that year's income, while the assessment year is primarily relevant for filing your return and for dating Section 234B interest, which explicitly runs from 1 April of the assessment year."}}, {"@type": "Question", "name": "Can I compare multiple scenarios, like different regimes or income levels?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — since every part of this calculator recalculates instantly as you change any input, you can freely adjust your income, deduction, or regime figures and watch the dashboard, waterfall, comparison cards, instalment schedule and interest breakdown update together, without needing to click a separate \"recalculate\" button for each change (though the Calculate button is there for anyone who prefers an explicit action). Use the Save button to record a scenario before changing inputs to explore a different one, and the Load button to bring back your saved figures afterwards, effectively letting you compare a \"before\" and \"after\" scenario side by side across two browser sessions or tabs."}}, {"@type": "Question", "name": "What if my income changes significantly during the year?", "acceptedAnswer": {"@type": "Answer", "text": "This is exactly why advance tax is paid quarterly rather than as a single annual estimate made in April and never revisited: revise your figures in this calculator before each instalment's due date to reflect what you now know about the year so far — a bonus received, a capital gain realised, a new client contract — and pay each instalment based on the updated, more accurate estimate. The law itself accommodates this: instalments are based on your current estimate at each due date, not a figure locked in at the start of the year, and the Section 234C relaxation thresholds (12%/36%/69%) build in some tolerance for the reality that early-year estimates are rarely perfectly accurate."}}, {"@type": "Question", "name": "Does this tool work on mobile devices?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The layout is fully responsive: on a phone or tablet, the two-column form-and-results layout stacks into a single scrollable column, the expandable income cards and tabbed navigation remain fully touch-friendly with adequately sized tap targets, and every chart, table and button resizes to fit the available width without needing to zoom or scroll sideways. Performance is optimised for mobile too — there are no heavy external frameworks, and the calculation engine itself runs in a fraction of a second even on modest hardware, so the experience of estimating advance tax on a phone during a commute is just as fast as on a desktop."}}, {"@type": "Question", "name": "Where can I actually pay my advance tax once I've calculated it?", "acceptedAnswer": {"@type": "Answer", "text": "Advance tax is paid through the Income Tax Department's e-Pay Tax facility on the official e-filing portal (incometax.gov.in), using Challan No./ITNS 280, selecting \"Advance Tax (100)\" as the type of payment under the correct major head shown in this calculator's Challan Helper. Payment can be made via net banking, debit card, RTGS/NEFT, or over the counter at authorised bank branches, depending on the options your bank supports through the portal. This calculator estimates how much to pay and by when — it does not process any payment itself, since it has no server component and never transmits your data anywhere; the actual payment always happens directly on the government's own portal."}}]}
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Advance Tax in India — Meaning, Due Dates, Calculation, 234B & 234C Interest","description":"A complete guide to advance tax in India: who must pay, exemptions, the quarterly instalment schedule, calculation method, Section 234B and 234C interest, rules for individuals, HUF, firms, LLPs and companies, tax planning tips and common mistakes.","author":{"@type":"Organization","name":"ApneSoftware"},"publisher":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"},"mainEntityOfPage":"https://apnesoftware.com/tools/advance-tax-calculator.html","inLanguage":["en","hi"]}
+</script>
+
+<footer class="site-footer">© 2026 ApneSoftware.com</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<script src="../assets/common.js"></script>
+<script>
+(function(){
+'use strict';
+
+/* ===================== FY tax-slab data (matches income-tax-calculator.html for consistency) ===================== */
+var FY = {
+  '2026-27':{ newStd:75000, oldStd:50000,
+    newSlabs:[[400000,0],[800000,0.05],[1200000,0.10],[1600000,0.15],[2000000,0.20],[2400000,0.25],[Infinity,0.30]],
+    newRebateLimit:1200000, newRebateMax:60000 },
+  '2025-26':{ newStd:75000, oldStd:50000,
+    newSlabs:[[400000,0],[800000,0.05],[1200000,0.10],[1600000,0.15],[2000000,0.20],[2400000,0.25],[Infinity,0.30]],
+    newRebateLimit:1200000, newRebateMax:60000 }
+};
+function oldSlabs(age){
+  if(age === 'super') return [[500000,0],[1000000,0.20],[Infinity,0.30]];
+  if(age === 'senior') return [[300000,0],[500000,0.05],[1000000,0.20],[Infinity,0.30]];
+  return [[250000,0],[500000,0.05],[1000000,0.20],[Infinity,0.30]];
+}
+var OLD_REBATE_LIMIT = 500000, OLD_REBATE_MAX = 12500;
+
+function slabTax(income, slabs){
+  var tax = 0, prev = 0;
+  for(var i=0;i<slabs.length;i++){
+    var limit = slabs[i][0], rate = slabs[i][1];
+    if(income > prev){ tax += (Math.min(income, limit) - prev) * rate; prev = limit; }
+    else break;
+  }
+  return tax;
+}
+
+function taxAfterRebate(taxable, regime, fyKey, age){
+  var f = FY[fyKey] || FY['2026-27'];
+  var slabs, base, rebate = 0;
+  if(regime === 'new'){
+    slabs = f.newSlabs; base = slabTax(taxable, slabs);
+    if(taxable <= f.newRebateLimit) rebate = Math.min(base, f.newRebateMax);
+  } else {
+    slabs = oldSlabs(age); base = slabTax(taxable, slabs);
+    if(taxable <= OLD_REBATE_LIMIT) rebate = Math.min(base, OLD_REBATE_MAX);
+  }
+  return { base: base, rebate: rebate, afterRebate: base - rebate };
+}
+
+function surchargeOf(taxable, taxAR, regime, fyKey, age){
+  var rate = 0, T = 0;
+  var brackets = regime === 'new'
+    ? [[50000000,0.25],[20000000,0.25],[10000000,0.15],[5000000,0.10]]
+    : [[50000000,0.37],[20000000,0.25],[10000000,0.15],[5000000,0.10]];
+  for(var i=0;i<brackets.length;i++){
+    if(taxable > brackets[i][0]){ rate = brackets[i][1]; T = brackets[i][0]; break; }
+  }
+  if(rate === 0) return 0;
+  var sc = taxAR * rate;
+  var taxAtT = taxAfterRebate(T, regime, fyKey, age).afterRebate;
+  var maxTotal = taxAtT + (taxable - T);
+  if(taxAR + sc > maxTotal) sc = Math.max(0, maxTotal - taxAR);
+  return sc;
+}
+
+/* ===================== Individual / HUF regime computation ===================== */
+function computeIndividualRegime(taxable, regime, fyKey, age){
+  var r = taxAfterRebate(taxable, regime, fyKey, age);
+  var sc = surchargeOf(taxable, r.afterRebate, regime, fyKey, age);
+  var cess = (r.afterRebate + sc) * 0.04;
+  return { taxable: taxable, base: r.base, rebate: r.rebate, afterRebate: r.afterRebate, surcharge: sc, cess: cess, total: r.afterRebate + sc + cess };
+}
+
+/* ===================== Firm / LLP (flat 30%) ===================== */
+function computeFirmLLP(taxable){
+  var base = taxable * 0.30;
+  var sc = taxable > 10000000 ? base * 0.12 : 0;
+  // marginal relief for firms: increase in tax+surcharge should not exceed increase in income beyond 1cr
+  if(sc > 0){
+    var maxTotal = (10000000 * 0.30) + (taxable - 10000000);
+    if(base + sc > maxTotal) sc = Math.max(0, maxTotal - base);
+  }
+  var cess = (base + sc) * 0.04;
+  return { taxable: taxable, base: base, rebate: 0, afterRebate: base, surcharge: sc, cess: cess, total: base + sc + cess };
+}
+
+/* ===================== Company (simplified flat-rate engine) ===================== */
+function computeCompany(taxable, rate){
+  var base = taxable * rate;
+  var sc = 0;
+  if(rate === 0.22){ // Section 115BAA: flat 10% surcharge regardless of income
+    sc = base * 0.10;
+  } else {
+    if(taxable > 100000000) sc = base * 0.12;
+    else if(taxable > 10000000) sc = base * 0.07;
+    if(sc > 0){
+      var T = taxable > 100000000 ? 100000000 : 10000000;
+      var rateAtT = taxable > 100000000 ? 0.07 : 0;
+      var maxTotal = (T * rate) * (1 + rateAtT) + (taxable - T);
+      if(base + sc > maxTotal) sc = Math.max(0, maxTotal - base);
+    }
+  }
+  var cess = (base + sc) * 0.04;
+  return { taxable: taxable, base: base, rebate: 0, afterRebate: base, surcharge: sc, cess: cess, total: base + sc + cess };
+}
+
+/* ===================== Unified entry point ===================== */
+function computeTax(taxpayerType, taxable, regime, fyKey, age, companyRate){
+  if(taxpayerType === 'firm' || taxpayerType === 'llp') return computeFirmLLP(taxable);
+  if(taxpayerType === 'company') return computeCompany(taxable, companyRate || 0.30);
+  return computeIndividualRegime(taxable, regime, fyKey, age); // individual, huf
+}
+
+/* ===================== Deduction caps (old regime Chapter VI-A) ===================== */
+var DEDUCTION_DEFS = [
+  {id:'80c', label:'80C', cap:150000, tip:'Life insurance, PPF, ELSS, principal repayment of home loan, tuition fees etc. Combined cap with 80CCC and 80CCD(1) is ₹1,50,000.'},
+  {id:'80ccc', label:'80CCC', cap:150000, tip:'Contribution to pension funds. Shares the combined ₹1,50,000 cap with 80C and 80CCD(1).'},
+  {id:'80ccd1', label:'80CCD(1)', cap:150000, tip:"Employee's own NPS contribution. Shares the combined ₹1,50,000 cap with 80C and 80CCC."},
+  {id:'80ccd1b', label:'80CCD(1B)', cap:50000, tip:'Additional NPS contribution, over and above the ₹1,50,000 combined 80C/80CCC/80CCD(1) limit.'},
+  {id:'80ccd2', label:'80CCD(2)', cap:null, tip:"Employer's NPS contribution — allowed in BOTH old and new regime, capped at 10% of salary (14% for central government employees)."},
+  {id:'80d', label:'80D', cap:100000, tip:'Health insurance premium: ₹25,000 self/family (₹50,000 if senior citizen) plus ₹25,000/₹50,000 for parents.'},
+  {id:'80dd', label:'80DD', cap:125000, tip:'Maintenance of a dependant with disability: ₹75,000 normal disability, ₹1,25,000 severe disability (flat amount, not based on actual expense).'},
+  {id:'80ddb', label:'80DDB', cap:100000, tip:'Medical treatment of specified diseases: up to ₹40,000, or ₹1,00,000 for senior citizens.'},
+  {id:'80e', label:'80E', cap:null, tip:'Interest on education loan — no upper limit, allowed for up to 8 years.'},
+  {id:'80ee', label:'80EE', cap:50000, tip:'Additional home loan interest for first-time buyers (loans sanctioned FY 2016-17), over and above 24(b).'},
+  {id:'80eea', label:'80EEA', cap:150000, tip:'Additional interest on affordable-housing home loans (loans sanctioned FY 2019-20 to FY 2021-22, subject to conditions).'},
+  {id:'80eeb', label:'80EEB', cap:150000, tip:'Interest on loan for purchase of an electric vehicle (loan sanctioned FY 2019-20 to FY 2022-23).'},
+  {id:'80g', label:'80G', cap:null, tip:'Donations to eligible charitable institutions — 50% or 100% deduction depending on the fund, subject to conditions. Enter the deductible amount after applying the relevant percentage.'},
+  {id:'80gg', label:'80GG', cap:60000, tip:'Rent paid when no HRA is received — least of ₹5,000/month, 25% of total income, or rent minus 10% of total income.'},
+  {id:'80gga', label:'80GGA', cap:null, tip:'Donations for scientific research or rural development (100% deductible, non-cash only above ₹2,000).'},
+  {id:'80ggc', label:'80GGC', cap:null, tip:'Donations to a registered political party or electoral trust (100% deductible, non-cash only).'},
+  {id:'80tta', label:'80TTA', cap:10000, tip:'Savings account interest, for non-senior-citizen taxpayers. Superseded by 80TTB for senior citizens.'},
+  {id:'80ttb', label:'80TTB', cap:50000, tip:'Interest on deposits (savings and fixed) for senior citizens — replaces 80TTA.'}
+];
+
+function computeDeductionTotal(values, regime, salaryGross){
+  var total = 0;
+  var applied = {};
+  DEDUCTION_DEFS.forEach(function(d){
+    // Under the new regime, only 80CCD(2) is allowed among Chapter VI-A deductions.
+    if(regime === 'new' && d.id !== '80ccd2') return;
+    var raw = Math.max(0, values[d.id] || 0);
+    var capped = d.cap != null ? Math.min(raw, d.cap) : raw;
+    applied[d.id] = capped;
+    total += capped;
+  });
+  // Combined 80C + 80CCC + 80CCD(1) cap of 150000
+  if(regime === 'old'){
+    var combined = (applied['80c']||0) + (applied['80ccc']||0) + (applied['80ccd1']||0);
+    if(combined > 150000){
+      var excess = combined - 150000;
+      total -= excess;
+    }
+  }
+  return { total: total, applied: applied };
+}
+
+/* ===================== Advance tax installment schedule ===================== */
+function installmentSchedule(estimatedTaxLiability, presumptive){
+  if(presumptive){
+    return [
+      { label: 'By 15 March', pct: 100, due: '15 Mar', amount: estimatedTaxLiability }
+    ];
+  }
+  return [
+    { label: 'By 15 June', pct: 15, due: '15 Jun', amount: estimatedTaxLiability * 0.15 },
+    { label: 'By 15 September', pct: 45, due: '15 Sep', amount: estimatedTaxLiability * 0.45 },
+    { label: 'By 15 December', pct: 75, due: '15 Dec', amount: estimatedTaxLiability * 0.75 },
+    { label: 'By 15 March', pct: 100, due: '15 Mar', amount: estimatedTaxLiability * 1.00 }
+  ];
+}
+
+/* ===================== Interest under section 234C ===================== */
+function interest234C(estimatedTaxLiability, cumulativePaid, presumptive){
+  // cumulativePaid = {q1, q2, q3, q4} cumulative amounts paid by each due date
+  if(presumptive){
+    // Presumptive (44AD/44ADA) taxpayers: only need 100% by 15 March; no quarterly 234C exposure before that.
+    var reqFull = estimatedTaxLiability;
+    var shortFull = Math.max(0, reqFull - cumulativePaid.q4);
+    var q4Int = shortFull * 0.01 * 1;
+    return { q1:0, q2:0, q3:0, q4: q4Int, total: q4Int };
+  }
+  function calc(requiredPct, relaxedPct, paid, months){
+    var required = estimatedTaxLiability * requiredPct;
+    var relaxedThreshold = estimatedTaxLiability * relaxedPct;
+    if(paid >= relaxedThreshold) return 0;
+    var shortfall = Math.max(0, required - paid);
+    return shortfall * 0.01 * months;
+  }
+  var q1 = calc(0.15, 0.12, cumulativePaid.q1, 3);
+  var q2 = calc(0.45, 0.36, cumulativePaid.q2, 3);
+  var q3 = calc(0.75, 0.69, cumulativePaid.q3, 3);
+  var q4 = calc(1.00, 1.00, cumulativePaid.q4, 1); // no relaxation for final instalment
+  return { q1:q1, q2:q2, q3:q3, q4:q4, total: q1+q2+q3+q4 };
+}
+
+/* ===================== Interest under section 234B ===================== */
+function interest234B(assessedTax, advanceTaxPaid, monthsElapsed){
+  var ninetyPct = assessedTax * 0.90;
+  if(advanceTaxPaid >= ninetyPct) return { applicable:false, shortfall:0, months:0, interest:0 };
+  var shortfall = assessedTax - advanceTaxPaid;
+  var months = Math.max(0, monthsElapsed);
+  var interest = shortfall * 0.01 * months;
+  return { applicable:true, shortfall:shortfall, months:months, interest:interest };
+}
+
+/* Months elapsed from 1 April of the assessment year to a reference date, with any part of a
+   calendar month counted as a full month (the rule used for sections 234B/234C interest). */
+function monthsFromAprilTo(assessmentYearStart, refDate){
+  var d = refDate instanceof Date ? refDate : new Date(refDate);
+  var aprilFirst = new Date(assessmentYearStart, 3, 1); // April 1 (month index 3) of the given calendar year
+  if(d < aprilFirst) return 0;
+  var months = (d.getFullYear() * 12 + d.getMonth()) - (aprilFirst.getFullYear() * 12 + aprilFirst.getMonth()) + 1;
+  return Math.max(0, months);
+}
+
+/* ===================== Payment tracker ===================== */
+function paymentTrackerStatus(schedule, paidCumulative){
+  // paidCumulative: [q1,q2,q3,q4] cumulative paid by each due date
+  return schedule.map(function(inst, i){
+    var paid = paidCumulative[i] || 0;
+    var required = inst.amount;
+    var pending = Math.max(0, required - paid);
+    var excess = Math.max(0, paid - required);
+    return { label: inst.label, due: inst.due, pct: inst.pct, required: required, paid: paid, pending: pending, excess: excess };
+  });
+}
+
+/* ===================== Challan helper ===================== */
+function challanInfo(taxpayerType){
+  var majorHead = '0021'; // Income Tax (Other than Companies)
+  if(taxpayerType === 'company') majorHead = '0020'; // Corporation Tax
+  return {
+    majorHead: majorHead,
+    majorHeadLabel: majorHead === '0020' ? 'Corporation Tax (Companies)' : 'Income Tax (Other than Companies)',
+    minorHead: '100',
+    minorHeadLabel: 'Advance Tax (100)',
+    taxType: 'Advance Tax',
+    challanForm: 'Challan No./ITNS 280 (via e-Pay Tax on the Income Tax portal)'
+  };
+}
+
+/* ===================== Currency formatting ===================== */
+function fmtINR(n){
+  if(!isFinite(n)) n = 0;
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+
+/* ===================== Expose ===================== */
+window.AdvanceTaxEngine = {
+  FY: FY, oldSlabs: oldSlabs, slabTax: slabTax,
+  taxAfterRebate: taxAfterRebate, surchargeOf: surchargeOf,
+  computeIndividualRegime: computeIndividualRegime, computeFirmLLP: computeFirmLLP, computeCompany: computeCompany,
+  computeTax: computeTax,
+  DEDUCTION_DEFS: DEDUCTION_DEFS, computeDeductionTotal: computeDeductionTotal,
+  installmentSchedule: installmentSchedule,
+  interest234C: interest234C, interest234B: interest234B, monthsFromAprilTo: monthsFromAprilTo,
+  paymentTrackerStatus: paymentTrackerStatus, challanInfo: challanInfo,
+  fmtINR: fmtINR
+};
+
+})();
+</script>
+<script>
+(function(){
+'use strict';
+var E = window.AdvanceTaxEngine;
+function $(id){ return document.getElementById(id); }
+function fmt(n){ return E.fmtINR(n); }
+function num(id){ var el = $(id); if(!el) return 0; var v = parseFloat(el.value); return isFinite(v) && v > 0 ? v : 0; }
+
+/* ===================== Persistence ===================== */
+function lsGet(key, fallback){ try{ var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } }
+function lsSet(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+
+/* ===================== Tabs ===================== */
+var tabs = [['at-tabTaxpayer','at-paneTaxpayer'],['at-tabDeductions','at-paneDeductions'],['at-tabPaid','at-panePaid'],['at-tabTracker','at-paneTracker'],['at-tabSettings','at-paneSettings']];
+tabs.forEach(function(pair){
+  $(pair[0]).addEventListener('click', function(){
+    tabs.forEach(function(p2){
+      $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected','false');
+      $(p2[1]).classList.remove('active');
+    });
+    $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected','true');
+    $(pair[1]).classList.add('active');
+  });
+});
+
+/* ===================== Taxpayer-type field visibility ===================== */
+function applyTaxpayerType(){
+  var type = $('at-taxpayerType').value;
+  var isIndividualHuf = type === 'individual' || type === 'huf';
+  $('at-ageField').style.display = type === 'individual' ? 'block' : 'none';
+  $('at-companyRateField').style.display = type === 'company' ? 'block' : 'none';
+  $('at-presumptiveField').style.display = isIndividualHuf ? 'block' : 'none';
+  $('at-regime').disabled = !isIndividualHuf;
+  compute();
+}
+$('at-taxpayerType').addEventListener('change', applyTaxpayerType);
+
+/* ===================== Regime note ===================== */
+function applyRegimeNote(){
+  var regime = $('at-regime').value;
+  $('at-newRegimeNote').style.display = regime === 'new' ? 'block' : 'none';
+  compute();
+}
+$('at-regime').addEventListener('change', applyRegimeNote);
+
+/* ===================== FY / AY sync ===================== */
+var AY_MAP = {'2026-27':'2027-28', '2025-26':'2026-27'};
+$('at-fy').addEventListener('change', function(){
+  var ay = AY_MAP[$('at-fy').value];
+  $('at-ay').value = ay;
+  compute();
+});
+
+/* ===================== Income category totals ===================== */
+function salaryTotal(){
+  return num('at-basicSalary') + num('at-hra') + num('at-bonus') + num('at-commission') + num('at-allowances') + num('at-perquisites') + num('at-leaveEncashment') + num('at-otherSalary');
+}
+function housePropertyTotal(){
+  var rental = num('at-rentalIncome');
+  var municipalTax = num('at-municipalTax');
+  var interest = num('at-homeLoanInterest');
+  var isLetOut = $('at-hpType').value === 'letOut';
+  if(!isLetOut){
+    var capped = Math.min(interest, 200000);
+    return -capped; // self-occupied: only a loss from home loan interest, capped at 2,00,000
+  }
+  var nav = Math.max(0, rental - municipalTax);
+  var standardDeduction = nav * 0.30;
+  var net = nav - standardDeduction - interest;
+  return net;
+}
+function businessTotal(){
+  return num('at-businessProfit') + num('at-professionalIncome') + num('at-presumptive44AD') + num('at-presumptive44ADA') + num('at-speculative');
+}
+function capitalGainsTotal(){
+  return num('at-stcg') + num('at-ltcg') + num('at-propertyGain') + num('at-mfGain') + num('at-equityGain');
+}
+function otherIncomeTotal(){
+  return num('at-interest') + num('at-fdInterest') + num('at-savingsInterest') + num('at-dividend') + num('at-royalty') + num('at-lottery') + num('at-crypto') + num('at-foreignIncome') + num('at-miscIncome');
+}
+function grossIncomeTotal(){
+  return salaryTotal() + housePropertyTotal() + businessTotal() + capitalGainsTotal() + otherIncomeTotal();
+}
+
+function updateCategoryTotals(){
+  $('at-salaryTotal').textContent = fmt(salaryTotal());
+  $('at-hpTotal').textContent = fmt(housePropertyTotal());
+  $('at-bizTotal').textContent = fmt(businessTotal());
+  $('at-cgTotal').textContent = fmt(capitalGainsTotal());
+  $('at-otherTotal').textContent = fmt(otherIncomeTotal());
+}
+
+/* ===================== Deductions panel ===================== */
+function renderDeductionsPanel(){
+  var wrap = $('at-deductionsWrap');
+  wrap.innerHTML = '';
+  E.DEDUCTION_DEFS.forEach(function(d){
+    var field = document.createElement('div');
+    field.className = 'at-field';
+    var capText = d.cap != null ? ('Max ₹' + d.cap.toLocaleString('en-IN')) : 'No fixed cap';
+    field.innerHTML =
+      '<label>' + d.label + ' <span class="at-tip" title="' + d.tip.replace(/"/g,'&quot;') + '">?</span></label>' +
+      '<input type="number" id="ded-' + d.id + '" min="0" value="0">' +
+      '<div class="at-cap">' + capText + '</div>' +
+      '<div class="at-err">Exceeds maximum limit — capped automatically.</div>';
+    wrap.appendChild(field);
+  });
+  wrap.querySelectorAll('input').forEach(function(inp){ inp.addEventListener('input', compute); });
+}
+function readDeductionValues(){
+  var values = {};
+  E.DEDUCTION_DEFS.forEach(function(d){ values[d.id] = num('ded-' + d.id); });
+  return values;
+}
+function markDeductionCapFlags(applied, raw){
+  E.DEDUCTION_DEFS.forEach(function(d){
+    var field = $('ded-' + d.id);
+    if(!field) return;
+    var wrap = field.closest('.at-field');
+    var isCapped = d.cap != null && raw[d.id] > d.cap;
+    wrap.classList.toggle('at-invalid', isCapped);
+  });
+}
+
+/* ===================== Main compute ===================== */
+var lastResult = null;
+function compute(){
+  updateCategoryTotals();
+
+  var taxpayerType = $('at-taxpayerType').value;
+  var regime = $('at-regime').value;
+  var fy = $('at-fy').value;
+  var age = $('at-age').value;
+  var companyRate = parseFloat($('at-companyRate').value);
+  var presumptive = $('at-presumptive').checked;
+
+  var gross = Math.max(0, grossIncomeTotal());
+  var isIndividualHuf = taxpayerType === 'individual' || taxpayerType === 'huf';
+
+  var stdDeduction = 0;
+  if(isIndividualHuf && salaryTotal() > 0){
+    var f = E.FY[fy] || E.FY['2026-27'];
+    stdDeduction = regime === 'new' ? f.newStd : f.oldStd;
+    stdDeduction = Math.min(stdDeduction, salaryTotal());
+  }
+
+  var dedValues = readDeductionValues();
+  var dedResult = isIndividualHuf ? E.computeDeductionTotal(dedValues, regime, salaryTotal()) : {total:0, applied:{}};
+  markDeductionCapFlags(dedResult.applied, dedValues);
+  $('at-dedTotal').textContent = fmt(dedResult.total);
+
+  var taxable = Math.max(0, gross - stdDeduction - dedResult.total);
+  var taxResult = E.computeTax(taxpayerType, taxable, regime, fy, age, companyRate);
+
+  var paid = num('at-tdsSalary') + num('at-tdsInterest') + num('at-tdsRent') + num('at-tcs') + num('at-prevAdvanceTax') + num('at-selfAssessmentTax');
+  $('at-paidTotal').textContent = fmt(paid);
+
+  var qTotal = num('at-q1') + num('at-q2') + num('at-q3') + num('at-q4');
+  $('at-qTotal').textContent = fmt(qTotal);
+
+  var netPayable = Math.max(0, taxResult.total - paid);
+  var refund = Math.max(0, paid - taxResult.total);
+
+  var schedule = E.installmentSchedule(taxResult.total, presumptive && isIndividualHuf);
+  var paidQ = [num('at-paidQ1'), num('at-paidQ2'), num('at-paidQ3'), num('at-paidQ4')];
+  // cumulative paid by each due date
+  var cumPaid = [];
+  var running = 0;
+  paidQ.forEach(function(v){ running += v; cumPaid.push(running); });
+
+  var c234c = E.interest234C(taxResult.total, {q1:cumPaid[0]||0, q2:cumPaid[1]||0, q3:cumPaid[2]||0, q4:cumPaid[3]||0}, presumptive && isIndividualHuf);
+  var b234b = E.interest234B(taxResult.total, cumPaid[3] || 0, 3); // default: 3 months reference (June assessment window)
+
+  lastResult = {
+    taxpayerType: taxpayerType, regime: regime, fy: fy, age: age, gross: gross, stdDeduction: stdDeduction,
+    deductionTotal: dedResult.total, taxable: taxable, taxResult: taxResult, paid: paid, netPayable: netPayable, refund: refund,
+    schedule: schedule, cumPaid: cumPaid, c234c: c234c, b234b: b234b, presumptive: presumptive
+  };
+
+  renderDashboard();
+  renderWaterfall();
+  renderComparison();
+  renderInstalments();
+  renderInterest();
+  renderFormulaBox();
+  renderCharts();
+  renderTracker();
+  renderChallan();
+}
+
+/* ===================== Dashboard ===================== */
+function statCard(label, value, cls){
+  return '<div class="stat-box' + (cls?(' '+cls):'') + '"><div class="num">' + value + '</div><div class="lbl">' + label + '</div></div>';
+}
+function renderDashboard(){
+  var r = lastResult;
+  var html =
+    statCard('Gross Income', fmt(r.gross)) +
+    statCard('Total Deductions', fmt(r.stdDeduction + r.deductionTotal)) +
+    statCard('Taxable Income', fmt(r.taxable)) +
+    statCard('Income Tax', fmt(r.taxResult.afterRebate)) +
+    statCard('Surcharge', fmt(r.taxResult.surcharge)) +
+    statCard('Cess', fmt(r.taxResult.cess)) +
+    statCard('Total Tax Liability', fmt(r.taxResult.total)) +
+    statCard('Interest (234B+234C)', fmt(r.b234b.interest + r.c234c.total)) +
+    statCard('Total Tax Paid', fmt(r.paid)) +
+    statCard('Balance Payable', fmt(r.netPayable)) +
+    statCard('Refund', fmt(r.refund));
+  $('at-dashCards').innerHTML = html;
+}
+
+/* ===================== Waterfall ===================== */
+function renderWaterfall(){
+  var r = lastResult;
+  var rows = [];
+  rows.push(row('Gross Income', fmt(r.gross)));
+  rows.push(row('Less: Standard Deduction', '− ' + fmt(r.stdDeduction), true));
+  rows.push(row('Less: Chapter VI-A Deductions', '− ' + fmt(r.deductionTotal), true));
+  rows.push(row('Taxable Income', fmt(r.taxable), false, true));
+  rows.push(row('Income Tax (as per slabs)', fmt(r.taxResult.base)));
+  if(r.taxResult.rebate > 0) rows.push(row('Less: Section 87A Rebate', '− ' + fmt(r.taxResult.rebate), true));
+  rows.push(row('Add: Surcharge', fmt(r.taxResult.surcharge)));
+  rows.push(row('Add: Health & Education Cess (4%)', fmt(r.taxResult.cess)));
+  rows.push(row('Total Tax Liability', fmt(r.taxResult.total), false, true));
+  rows.push(row('Less: TDS / TCS / Advance Tax Paid', '− ' + fmt(r.paid), true));
+  rows.push(row(r.refund > 0 ? 'Refund Due' : 'Net Advance Tax Payable', fmt(r.refund > 0 ? r.refund : r.netPayable), false, true));
+  $('at-waterfall').innerHTML = rows.join('');
+  function row(label, value, isSub, isTotal){
+    return '<div class="at-wf-row' + (isSub?' at-wf-sub':'') + (isTotal?' at-wf-total':'') + '"><span>' + label + '</span><span>' + value + '</span></div>';
+  }
+}
+
+/* ===================== Old vs New comparison ===================== */
+function renderComparison(){
+  var r = lastResult;
+  var grid = $('at-compareGrid');
+  if(r.taxpayerType !== 'individual' && r.taxpayerType !== 'huf'){
+    grid.innerHTML = '<p class="at-muted" style="grid-column:1/-1">Old vs New regime comparison applies to Individuals and HUF only.</p>';
+    return;
+  }
+  var f = E.FY[r.fy] || E.FY['2026-27'];
+  var oldStd = Math.min(f.oldStd, salaryTotal());
+  var newStd = Math.min(f.newStd, salaryTotal());
+  var dedValues = readDeductionValues();
+
+  var oldDed = E.computeDeductionTotal(dedValues, 'old', salaryTotal());
+  var newDed = E.computeDeductionTotal(dedValues, 'new', salaryTotal());
+
+  var oldTaxable = Math.max(0, r.gross - oldStd - oldDed.total);
+  var newTaxable = Math.max(0, r.gross - newStd - newDed.total);
+
+  var oldResult = E.computeTax(r.taxpayerType, oldTaxable, 'old', r.fy, r.age, null);
+  var newResult = E.computeTax(r.taxpayerType, newTaxable, 'new', r.fy, r.age, null);
+
+  var better = oldResult.total <= newResult.total ? 'old' : 'new';
+  var savings = Math.abs(oldResult.total - newResult.total);
+
+  grid.innerHTML =
+    '<div class="at-compare-card' + (better==='old'?' at-best':'') + '"><div class="at-muted">Old Regime</div><div class="at-big">' + fmt(oldResult.total) + '</div>' + (better==='old'?'<div class="at-badge">✓ Recommended</div>':'') + '</div>' +
+    '<div class="at-compare-card' + (better==='new'?' at-best':'') + '"><div class="at-muted">New Regime</div><div class="at-big">' + fmt(newResult.total) + '</div>' + (better==='new'?'<div class="at-badge">✓ Recommended</div>':'') + '</div>';
+  $('at-compareGrid').insertAdjacentHTML('afterend', '');
+  var savingsNote = document.getElementById('at-savingsNote');
+  if(!savingsNote){
+    savingsNote = document.createElement('p');
+    savingsNote.id = 'at-savingsNote';
+    savingsNote.className = 'at-muted';
+    grid.parentNode.insertBefore(savingsNote, grid.nextSibling);
+  }
+  savingsNote.textContent = savings > 0 ? ('Choosing the ' + (better==='old'?'Old':'New') + ' Regime saves ' + fmt(savings) + '.') : 'Both regimes result in the same tax liability.';
+
+  window.__compareOld = oldResult.total;
+  window.__compareNew = newResult.total;
+}
+
+/* ===================== Instalments ===================== */
+function todayInFY(fy){
+  // approximate "today" within the selected FY's timeline for status purposes
+  return new Date();
+}
+function renderInstalments(){
+  var r = lastResult;
+  var tbody = document.querySelector('#at-instalmentTable tbody');
+  tbody.innerHTML = '';
+  var today = todayInFY(r.fy);
+  var dueDates = r.presumptive && (r.taxpayerType==='individual'||r.taxpayerType==='huf')
+    ? [{m:2, d:15}] // March 15 only
+    : [{m:5,d:15},{m:8,d:15},{m:11,d:15},{m:2,d:15}];
+  var fyStartYear = parseInt(r.fy.split('-')[0], 10);
+
+  r.schedule.forEach(function(inst, i){
+    var dd = dueDates[i];
+    var dueYear = dd.m <= 2 ? fyStartYear + 1 : fyStartYear; // Jan-Mar due dates fall in the following calendar year
+    var dueDateObj = new Date(dueYear, dd.m, dd.d);
+    var paidSoFar = r.cumPaid[r.presumptive && (r.taxpayerType==='individual'||r.taxpayerType==='huf') ? 3 : i] || 0;
+    var status = 'upcoming';
+    if(paidSoFar >= inst.amount) status = 'paid';
+    else if(today > dueDateObj) status = 'due';
+    var statusLabel = status === 'paid' ? '✅ Paid' : (status === 'due' ? '⚠️ Due' : '⏳ Upcoming');
+    tbody.insertAdjacentHTML('beforeend',
+      '<tr><td>' + inst.label + '</td><td>' + inst.due + '</td><td>' + inst.pct + '%</td><td>' + fmt(inst.amount) + '</td><td><span class="at-status-pill ' + status + '">' + statusLabel + '</span></td></tr>'
+    );
+  });
+
+  var timeline = $('at-timeline');
+  timeline.innerHTML = r.schedule.map(function(inst, i){
+    var dd = dueDates[i];
+    var dueYear = dd.m <= 2 ? fyStartYear + 1 : fyStartYear;
+    var dueDateObj = new Date(dueYear, dd.m, dd.d);
+    var cls = today > dueDateObj ? 'done' : (i===0 || today > new Date(dueDates[Math.max(0,i-1)].m<=2?fyStartYear+1:fyStartYear, dueDates[Math.max(0,i-1)].m, dueDates[Math.max(0,i-1)].d) ? 'current' : '');
+    return '<div class="at-tl-item ' + cls + '"><div class="at-tl-dot">' + inst.pct + '%</div><div class="at-tl-label">' + inst.due + '</div></div>';
+  }).join('');
+}
+
+/* ===================== Interest breakdown ===================== */
+function renderInterest(){
+  var r = lastResult;
+  var c = r.c234c, b = r.b234b;
+  var html = '';
+  html += '<div class="at-flags">' +
+    '<span class="at-flag ' + (c.total>0?'warn':'ok') + '">234C: ' + fmt(c.total) + '</span>' +
+    '<span class="at-flag ' + (b.applicable?'warn':'ok') + '">234B: ' + fmt(b.interest) + '</span>' +
+    '</div>';
+  html += '<table class="at-instalment-table"><thead><tr><th>Component</th><th>Amount</th></tr></thead><tbody>';
+  html += '<tr><td>234C — Q1 (June) shortfall interest</td><td>' + fmt(c.q1) + '</td></tr>';
+  html += '<tr><td>234C — Q2 (September) shortfall interest</td><td>' + fmt(c.q2) + '</td></tr>';
+  html += '<tr><td>234C — Q3 (December) shortfall interest</td><td>' + fmt(c.q3) + '</td></tr>';
+  html += '<tr><td>234C — Q4 (March) shortfall interest</td><td>' + fmt(c.q4) + '</td></tr>';
+  html += '<tr><td><strong>Total 234C interest</strong></td><td><strong>' + fmt(c.total) + '</strong></td></tr>';
+  html += '<tr><td>234B — shortfall vs 90% of assessed tax</td><td>' + fmt(b.shortfall) + '</td></tr>';
+  html += '<tr><td>234B — interest (1% × ' + b.months + ' month(s))</td><td>' + fmt(b.interest) + '</td></tr>';
+  html += '</tbody></table>';
+  if(r.presumptive && (r.taxpayerType==='individual'||r.taxpayerType==='huf')){
+    html += '<p class="at-muted">As a presumptive taxpayer (44AD/44ADA), your entire advance tax is due in a single instalment by 15 March — no quarterly 234C exposure applies before then.</p>';
+  }
+  $('at-interestBreakdown').innerHTML = html;
+}
+
+/* ===================== Formula / calculation details ===================== */
+function renderFormulaBox(){
+  var r = lastResult;
+  var lines = [];
+  lines.push('Gross Income = Salary + House Property + Business + Capital Gains + Other Income');
+  lines.push('  = ' + fmt(r.gross));
+  lines.push('');
+  lines.push('Taxable Income = Gross Income − Standard Deduction − Chapter VI-A Deductions');
+  lines.push('  = ' + fmt(r.gross) + ' − ' + fmt(r.stdDeduction) + ' − ' + fmt(r.deductionTotal) + ' = ' + fmt(r.taxable));
+  lines.push('');
+  lines.push('Income Tax = Σ (slab amount × slab rate) = ' + fmt(r.taxResult.base));
+  if(r.taxResult.rebate > 0) lines.push('Less: Section 87A Rebate = ' + fmt(r.taxResult.rebate));
+  lines.push('Surcharge = tax × applicable rate (with marginal relief) = ' + fmt(r.taxResult.surcharge));
+  lines.push('Health & Education Cess = 4% × (tax after rebate + surcharge) = ' + fmt(r.taxResult.cess));
+  lines.push('Total Tax Liability = ' + fmt(r.taxResult.total));
+  lines.push('');
+  lines.push('Advance Tax Instalment Formula: cumulative % of estimated tax due by each date');
+  lines.push('  15 Jun: 15% · 15 Sep: 45% · 15 Dec: 75% · 15 Mar: 100%');
+  lines.push('');
+  lines.push('234C Interest = Shortfall × 1% × months (3/3/3/1 for Q1-Q4), with 12%/36%/69% relaxation for Q1-Q3');
+  lines.push('234B Interest = (Assessed Tax − Advance Tax Paid) × 1% × months elapsed, if advance tax paid < 90% of assessed tax');
+  $('at-formulaBox').textContent = lines.join('\n');
+}
+
+/* ===================== Canvas charts (hand-rolled, no external library) ===================== */
+var PALETTE = ['#7C5CFC','#16C079','#F59E0B','#F87171','#38BDF8','#A78BFA','#FB923C','#34D399'];
+function drawPie(canvasId, legendId, data, doughnut){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var total = data.reduce(function(s,d){ return s + Math.max(0,d.value); }, 0);
+  var cx = w/2, cy = h/2, radius = Math.min(w,h)/2 - 10;
+  if(total <= 0){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', cx, cy);
+    if(legendId) $(legendId).innerHTML = '';
+    return;
+  }
+  var start = -Math.PI/2;
+  data.forEach(function(d, i){
+    var slice = (Math.max(0,d.value) / total) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, radius, start, start + slice);
+    ctx.closePath();
+    ctx.fillStyle = PALETTE[i % PALETTE.length];
+    ctx.fill();
+    start += slice;
+  });
+  if(doughnut){
+    ctx.beginPath(); ctx.arc(cx, cy, radius*0.55, 0, Math.PI*2); ctx.fillStyle = '#160b2e'; ctx.fill();
+  }
+  if(legendId){
+    $(legendId).innerHTML = data.map(function(d,i){
+      return '<span><i style="background:' + PALETTE[i%PALETTE.length] + '"></i>' + d.label + ': ' + fmt(d.value) + '</span>';
+    }).join('');
+  }
+}
+function drawBar(canvasId, data){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var max = Math.max.apply(null, data.map(function(d){ return d.value; }).concat([1]));
+  var barW = w / data.length * 0.6;
+  var gap = w / data.length;
+  data.forEach(function(d, i){
+    var barH = (Math.max(0,d.value) / max) * (h - 40);
+    var x = i * gap + (gap - barW)/2;
+    var y = h - 24 - barH;
+    ctx.fillStyle = PALETTE[i % PALETTE.length];
+    ctx.fillRect(x, y, barW, barH);
+    ctx.fillStyle = '#aaa'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(d.label, x + barW/2, h - 8);
+  });
+}
+function drawCompareBar(canvasId, oldVal, newVal){
+  drawBar(canvasId, [{label:'Old Regime', value: oldVal}, {label:'New Regime', value: newVal}]);
+}
+
+function renderCharts(){
+  var r = lastResult;
+  drawBar('at-chartQuarterIncome', [
+    {label:'Q1', value: num('at-q1')}, {label:'Q2', value: num('at-q2')},
+    {label:'Q3', value: num('at-q3')}, {label:'Q4', value: num('at-q4')}
+  ]);
+  drawPie('at-chartIncome', 'at-legendIncome', [
+    {label:'Salary', value: Math.max(0,salaryTotal())}, {label:'House Property', value: Math.max(0,housePropertyTotal())},
+    {label:'Business', value: Math.max(0,businessTotal())}, {label:'Capital Gains', value: Math.max(0,capitalGainsTotal())},
+    {label:'Other', value: Math.max(0,otherIncomeTotal())}
+  ]);
+  drawPie('at-chartDeduction', 'at-legendDeduction', E.DEDUCTION_DEFS.filter(function(d){ return num('ded-'+d.id) > 0; }).map(function(d){ return {label:d.label, value:num('ded-'+d.id)}; }), true);
+  drawPie('at-chartTax', 'at-legendTax', [
+    {label:'Tax (after rebate)', value: r.taxResult.afterRebate}, {label:'Surcharge', value: r.taxResult.surcharge}, {label:'Cess', value: r.taxResult.cess}
+  ]);
+  if(window.__compareOld != null) drawCompareBar('at-chartCompare', window.__compareOld, window.__compareNew);
+}
+
+/* ===================== Payment tracker ===================== */
+function renderTracker(){
+  var r = lastResult;
+  var paidQ = [num('at-paidQ1'), num('at-paidQ2'), num('at-paidQ3'), num('at-paidQ4')];
+  var running = 0;
+  var cum = paidQ.map(function(v){ running += v; return running; });
+  var status = E.paymentTrackerStatus(r.schedule, cum);
+  var html = '<table class="at-instalment-table"><thead><tr><th>Instalment</th><th>Required</th><th>Paid</th><th>Pending</th><th>Excess</th></tr></thead><tbody>';
+  status.forEach(function(s){
+    html += '<tr><td>' + s.label + '</td><td>' + fmt(s.required) + '</td><td>' + fmt(s.paid) + '</td><td>' + fmt(s.pending) + '</td><td>' + fmt(s.excess) + '</td></tr>';
+    html += '<tr><td colspan="5"><div class="at-progress"><span style="width:' + Math.min(100, (s.paid/(s.required||1))*100) + '%"></span></div></td></tr>';
+  });
+  html += '</tbody></table>';
+  var totalPending = status.reduce(function(s,x){ return s + x.pending; }, 0);
+  var totalExcess = status.reduce(function(s,x){ return s + x.excess; }, 0);
+  html += '<div class="at-flags"><span class="at-flag ' + (totalPending>0?'warn':'ok') + '">Pending: ' + fmt(totalPending) + '</span><span class="at-flag neutral">Excess: ' + fmt(totalExcess) + '</span><span class="at-flag ' + (r.c234c.total>0?'warn':'ok') + '">234C Interest: ' + fmt(r.c234c.total) + '</span></div>';
+  $('at-trackerResult').innerHTML = html;
+}
+
+/* ===================== Challan helper ===================== */
+function renderChallan(){
+  var r = lastResult;
+  var info = E.challanInfo(r.taxpayerType);
+  $('at-challanHelper').innerHTML =
+    '<ul class="at-list-plain" style="list-style:none;padding:0;margin:0">' +
+    '<li style="padding:6px 0;border-bottom:1px dashed var(--border)"><strong>Major Head:</strong> ' + info.majorHead + ' — ' + info.majorHeadLabel + '</li>' +
+    '<li style="padding:6px 0;border-bottom:1px dashed var(--border)"><strong>Minor Head:</strong> ' + info.minorHead + ' — ' + info.minorHeadLabel + '</li>' +
+    '<li style="padding:6px 0;border-bottom:1px dashed var(--border)"><strong>Assessment Year:</strong> ' + $('at-ay').value + '</li>' +
+    '<li style="padding:6px 0;border-bottom:1px dashed var(--border)"><strong>Financial Year:</strong> ' + $('at-fy').value + '</li>' +
+    '<li style="padding:6px 0;border-bottom:1px dashed var(--border)"><strong>Tax Type:</strong> ' + info.taxType + '</li>' +
+    '<li style="padding:6px 0"><strong>How to pay:</strong> ' + info.challanForm + '</li>' +
+    '</ul>' +
+    '<p class="at-muted">This is a guide only — always confirm the correct head and form on the official Income Tax e-filing portal before making a payment.</p>';
+}
+
+/* ===================== Validation on inputs ===================== */
+document.querySelectorAll('#at-formSide input, #at-formSide select').forEach(function(el){
+  el.addEventListener('input', compute);
+  el.addEventListener('change', compute);
+});
+
+/* ===================== Buttons ===================== */
+$('at-calcBtn').addEventListener('click', function(){ compute(); $('at-statusMsg').textContent = '✅ Calculation updated.'; });
+$('at-resetBtn').addEventListener('click', function(){
+  if(!confirm('Reset all fields to default?')) return;
+  document.querySelectorAll('#at-formSide input[type=number]').forEach(function(el){ el.value = 0; });
+  document.querySelectorAll('#at-formSide input[type=checkbox]').forEach(function(el){ el.checked = false; });
+  compute();
+  $('at-statusMsg').textContent = '↺ Reset complete.';
+});
+$('at-printBtn').addEventListener('click', function(){ window.print(); });
+
+function buildTextSummary(){
+  var r = lastResult;
+  return [
+    'Advance Tax Calculation Summary',
+    'Taxpayer Type: ' + r.taxpayerType, 'Regime: ' + r.regime, 'FY: ' + r.fy,
+    'Gross Income: ' + fmt(r.gross), 'Taxable Income: ' + fmt(r.taxable),
+    'Total Tax Liability: ' + fmt(r.taxResult.total), 'Tax Already Paid: ' + fmt(r.paid),
+    (r.refund>0 ? 'Refund: ' + fmt(r.refund) : 'Net Advance Tax Payable: ' + fmt(r.netPayable)),
+    'Interest 234B: ' + fmt(r.b234b.interest), 'Interest 234C: ' + fmt(r.c234c.total)
+  ].join('\n');
+}
+$('at-copyBtn').addEventListener('click', function(e){ copyText(buildTextSummary(), e.currentTarget); });
+$('at-shareBtn').addEventListener('click', function(){
+  var text = buildTextSummary();
+  if(navigator.share){ navigator.share({title:'Advance Tax Calculation', text:text}).catch(function(){}); }
+  else { copyText(text); $('at-statusMsg').textContent = '📋 Copied — share sheet not available on this browser.'; }
+});
+
+$('at-pdfBtn').addEventListener('click', function(){
+  if(typeof html2pdf === 'undefined'){ alert('PDF engine failed to load — check your connection and refresh.'); return; }
+  html2pdf().from($('at-resultSide')).set({filename:'advance-tax-summary.pdf', margin:10}).save();
+});
+$('at-xlsxBtn').addEventListener('click', function(){
+  if(typeof XLSX === 'undefined'){ alert('Excel engine failed to load — check your connection and refresh.'); return; }
+  var r = lastResult;
+  var rows = [
+    ['Metric','Value'],
+    ['Taxpayer Type', r.taxpayerType], ['Regime', r.regime], ['Financial Year', r.fy],
+    ['Gross Income', r.gross], ['Standard Deduction', r.stdDeduction], ['Chapter VI-A Deductions', r.deductionTotal],
+    ['Taxable Income', r.taxable], ['Income Tax', r.taxResult.base], ['Rebate', r.taxResult.rebate],
+    ['Surcharge', r.taxResult.surcharge], ['Cess', r.taxResult.cess], ['Total Tax Liability', r.taxResult.total],
+    ['Tax Already Paid', r.paid], ['Net Advance Tax Payable', r.netPayable], ['Refund', r.refund],
+    ['Interest 234B', r.b234b.interest], ['Interest 234C', r.c234c.total]
+  ];
+  var ws = XLSX.utils.aoa_to_sheet(rows);
+  var wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Advance Tax');
+  XLSX.writeFile(wb, 'advance-tax-summary.xlsx');
+});
+
+function collectAllFormValues(){
+  var data = {};
+  document.querySelectorAll('#at-formSide input, #at-formSide select').forEach(function(el){
+    if(!el.id) return;
+    data[el.id] = el.type === 'checkbox' ? el.checked : el.value;
+  });
+  return data;
+}
+function applyAllFormValues(data){
+  Object.keys(data).forEach(function(id){
+    var el = $(id);
+    if(!el) return;
+    if(el.type === 'checkbox') el.checked = data[id]; else el.value = data[id];
+  });
+}
+$('at-saveBtn').addEventListener('click', function(){
+  lsSet('advtax_saved', collectAllFormValues());
+  $('at-statusMsg').textContent = '💾 Calculation saved in this browser.';
+});
+$('at-loadBtn').addEventListener('click', function(){
+  var data = lsGet('advtax_saved', null);
+  if(!data){ $('at-statusMsg').textContent = '⚠️ No saved calculation found.'; return; }
+  applyAllFormValues(data);
+  applyTaxpayerType();
+  compute();
+  $('at-statusMsg').textContent = '📂 Saved calculation loaded.';
+});
+
+/* ===================== Settings: theme / language / accessibility ===================== */
+var I18N = {
+  en: {
+    tabTaxpayer:'👤 Taxpayer & Income', tabDeductions:'🧮 Deductions', tabPaid:'💳 Tax Paid & Quarterly',
+    tabTracker:'📅 Payment Tracker', tabSettings:'⚙️ Settings',
+    calc:'🧮 Calculate', reset:'↺ Reset', print:'🖨️ Print', pdf:'📄 Download PDF', xlsx:'📊 Download Excel',
+    share:'🔗 Share', copy:'📋 Copy Result', save:'💾 Save', load:'📂 Load'
+  },
+  hi: {
+    tabTaxpayer:'👤 करदाता और आय', tabDeductions:'🧮 कटौतियाँ', tabPaid:'💳 चुकाया गया कर और तिमाही',
+    tabTracker:'📅 भुगतान ट्रैकर', tabSettings:'⚙️ सेटिंग्स',
+    calc:'🧮 गणना करें', reset:'↺ रीसेट', print:'🖨️ प्रिंट', pdf:'📄 PDF डाउनलोड', xlsx:'📊 Excel डाउनलोड',
+    share:'🔗 शेयर', copy:'📋 परिणाम कॉपी करें', save:'💾 सहेजें', load:'📂 लोड करें'
+  }
+};
+function applyLanguage(lang){
+  var t = I18N[lang] || I18N.en;
+  $('at-tabTaxpayer').textContent = t.tabTaxpayer;
+  $('at-tabDeductions').textContent = t.tabDeductions;
+  $('at-tabPaid').textContent = t.tabPaid;
+  $('at-tabTracker').textContent = t.tabTracker;
+  $('at-tabSettings').textContent = t.tabSettings;
+  $('at-calcBtn').textContent = t.calc;
+  $('at-resetBtn').textContent = t.reset;
+  $('at-printBtn').textContent = t.print;
+  $('at-pdfBtn').textContent = t.pdf;
+  $('at-xlsxBtn').textContent = t.xlsx;
+  $('at-shareBtn').textContent = t.share;
+  $('at-copyBtn').textContent = t.copy;
+  $('at-saveBtn').textContent = t.save;
+  $('at-loadBtn').textContent = t.load;
+}
+$('at-language').addEventListener('change', function(){
+  applyLanguage(this.value);
+  lsSet('advtax_lang', this.value);
+});
+$('at-highContrast').addEventListener('change', function(){
+  document.body.classList.toggle('at-high-contrast', this.checked);
+  lsSet('advtax_hc', this.checked);
+});
+$('at-largeFont').addEventListener('change', function(){
+  document.body.classList.toggle('at-large-font', this.checked);
+  lsSet('advtax_lf', this.checked);
+});
+
+/* ===================== Init ===================== */
+renderDeductionsPanel();
+applyTaxpayerType();
+applyRegimeNote();
+
+var savedLang = lsGet('advtax_lang', 'en');
+$('at-language').value = savedLang;
+applyLanguage(savedLang);
+var savedHc = lsGet('advtax_hc', false);
+$('at-highContrast').checked = savedHc;
+document.body.classList.toggle('at-high-contrast', savedHc);
+var savedLf = lsGet('advtax_lf', false);
+$('at-largeFont').checked = savedLf;
+document.body.classList.toggle('at-large-font', savedLf);
+
+compute();
+
+})();
+</script>
+<!-- Default Statcounter code for Apne Software
+https://apnesoftware.com -->
+<script type="text/javascript">
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
+</script>
+<script type="text/javascript"
+src="https://www.statcounter.com/counter/counter.js"
+async></script>
+<noscript><div class="statcounter"><a title="Web Analytics"
+href="https://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="https://c.statcounter.com/13334460/0/a5854dc7/1/"
+alt="Web Analytics"
+referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+</body>
+</html>
