@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Free Cheque Printing Tool — print payee name, amount in words/figures, date and memo onto your own valid, pre-issued bank cheque leaves. Custom layouts, print calibration, drag-position preview, record management. 100% private, browser-only, no AI.">
+<meta name="keywords" content="cheque printing tool, cheque printing software online, print cheque online free, amount in words converter, cheque layout designer, bank cheque printer">
+<link rel="canonical" href="https://apnesoftware.com/tools/cheque-printing-tool.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cheque Printing Tool | ApneSoftware">
+<meta property="og:description" content="Print details onto your own valid, pre-issued bank cheques — custom layouts, print calibration, live preview, record management. Free, private, browser-only.">
+<meta property="og:url" content="https://apnesoftware.com/tools/cheque-printing-tool.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cheque Printing Tool | ApneSoftware">
+<meta name="twitter:description" content="Print details onto your own valid, pre-issued bank cheques — custom layouts, calibration, live preview, records. Free, private, browser-only.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Cheque Printing Tool","description":"Browser-based Cheque Printing Tool that prints user-provided details (payee, amount, date, memo) onto valid pre-issued bank cheque leaves. Supports custom layout creation, print calibration, live drag-position preview, and record management. Does not create or reproduce cheque security features.","url":"https://apnesoftware.com/tools/cheque-printing-tool.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Auto amount-in-words conversion (Indian and International numbering systems, paise support)","Custom cheque layout creator with drag-to-position live preview","Print calibration: horizontal/vertical offset, spacing, font, rotation, scale, margins","Crossed / Bearer / Account Payee Only cheque type","Record management with search, filter, sort, favourites and print history","Export to PDF, Excel, CSV and JSON backup/restore"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Cheque Printing Tool","url":"https://apnesoftware.com/tools/cheque-printing-tool.html","description":"Browser-based tool to print payee, amount and date onto your own pre-issued bank cheque leaves with custom layouts and print calibration.","inLanguage":["en","hi"],"isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".tool-header p"]}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"Calculators & Converters","item":"https://apnesoftware.com/index.html#cat-calculator"},{"@type":"ListItem","position":3,"name":"Cheque Printing Tool","item":"https://apnesoftware.com/tools/cheque-printing-tool.html"}]}
+</script>
+<meta name="color-scheme" content="dark light">
+<title>Cheque Printing Tool | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* ===== Cheque Printing Tool — scoped chq- prefix ===== */
+
+  .chq-num, .chq-content .num, .chq-stat-cards .num, .chq-engine-row span:last-child,
+  .chq-content table td, .chq-content table th{
+    white-space:nowrap; word-break:keep-all; overflow-wrap:normal;
+    font-variant-numeric: tabular-nums; font-feature-settings:"tnum" 1;
+  }
+
+  .chq-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:18px;align-items:start}
+  #chq-formSide,#chq-resultSide{min-width:0}
+  @media(max-width:1000px){ .chq-grid{grid-template-columns:1fr} }
+
+  .chq-toolbar{position:sticky;top:0;z-index:40;display:flex;gap:8px;flex-wrap:wrap;padding:10px;margin-bottom:14px;
+    background:var(--surface-2);border:1px solid var(--border);border-radius:14px;backdrop-filter:blur(10px)}
+  .chq-toolbar .btn{padding:8px 12px;font-size:.8rem}
+
+  .chq-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .chq-tab{padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.82rem;font-weight:600;font-family:inherit}
+  .chq-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .chq-pane{display:none}
+  .chq-pane.active{display:block}
+
+  .chq-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;backdrop-filter:blur(10px);
+    transition:transform .18s ease, box-shadow .18s ease}
+  .chq-card:hover{box-shadow:0 10px 30px rgba(124,92,252,.12)}
+  .chq-card h3{margin:0 0 10px;font-size:.95rem}
+  .chq-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:10px}
+  .chq-field label{display:block;font-size:.76rem;color:var(--text-dim);margin-bottom:4px}
+  .chq-field input,.chq-field select,.chq-field textarea{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.88rem}
+  .chq-field input:focus,.chq-field select:focus,.chq-field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,252,.2)}
+  .chq-note{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.3);border-radius:10px;padding:10px 12px;font-size:.8rem;color:#fde68a;margin-top:10px}
+  .chq-err{display:none;color:#fca5a5;font-size:.78rem;margin-top:6px}
+  .chq-err-list{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3);border-radius:10px;padding:10px 12px;font-size:.82rem;color:#fca5a5;margin-top:10px}
+  .chq-err-list ul{margin:4px 0 0;padding-left:18px}
+
+  .chq-stat-cards{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .chq-stat-cards .stat-box{flex:1;min-width:150px}
+  .chq-stat-cards .stat-box .num{font-size:1rem!important;overflow:hidden;text-overflow:ellipsis}
+
+  .chq-chip-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+  .chq-chip{padding:5px 10px;border-radius:999px;font-size:.76rem;border:1px solid var(--border);background:var(--surface);color:var(--text-dim);cursor:pointer}
+  .chq-chip:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+  .chq-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .chq-flag{padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600;border:1px solid var(--border)}
+  .chq-flag.ok{background:rgba(22,192,121,.15);color:#7ef0bd;border-color:rgba(22,192,121,.4)}
+  .chq-flag.warn{background:rgba(248,113,113,.15);color:#fca5a5;border-color:rgba(248,113,113,.4)}
+  .chq-flag.neutral{background:var(--surface-2);color:var(--text-dim)}
+  .chq-muted{color:var(--text-dim);font-size:.8rem;margin-top:6px}
+
+  .chq-share-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .chq-share-btn{padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);cursor:pointer;font-size:.8rem;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:transform .15s ease, background .15s ease}
+  .chq-share-btn:hover{transform:translateY(-2px);background:var(--surface)}
+
+  .btn.chq-gradient{background:linear-gradient(135deg,#7C5CFC,#16C079);border:none;box-shadow:0 6px 20px rgba(124,92,252,.35);transition:transform .15s ease, box-shadow .15s ease}
+  .btn.chq-gradient:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.5)}
+  .btn.chq-mini{padding:6px 10px;font-size:.78rem}
+
+  #chq-stickyCalc{display:none}
+  @media(max-width:760px){
+    #chq-stickyCalc{
+      display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 14px;gap:8px;
+      background:linear-gradient(180deg,rgba(15,10,30,0),rgba(15,10,30,.96) 30%);
+      justify-content:center;
+    }
+    #chq-stickyCalc button{flex:1;max-width:200px;padding:12px 8px;font-size:.82rem;border-radius:999px}
+    body{padding-bottom:74px}
+    .chq-toolbar{position:static}
+  }
+
+  .chq-table-wrap{overflow-x:auto;max-height:420px;overflow-y:auto;border-radius:10px;border:1px solid var(--border)}
+  table.chq-table{width:100%;border-collapse:collapse;font-size:.8rem}
+  table.chq-table th{position:sticky;top:0;background:var(--surface-2);z-index:1;padding:7px 8px;text-align:left;border-bottom:1px solid var(--border);color:#c4b5fd;white-space:nowrap}
+  table.chq-table td{padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:middle}
+  .chq-badge{padding:2px 8px;border-radius:999px;font-size:.72rem;font-weight:700}
+  .chq-star{cursor:pointer;font-size:1rem}
+
+  /* ===== Preview stage ===== */
+  .chq-previewStage{overflow:auto;background:repeating-linear-gradient(45deg,var(--surface-2) 0 10px,var(--surface) 10px 20px);border-radius:12px;padding:20px;display:flex;justify-content:center}
+  .chq-chequeBox{position:relative;background:#fdfaf1;border:2px solid #8a7a4f;border-radius:6px;box-shadow:0 10px 30px rgba(0,0,0,.35);transform-origin:top left}
+  .chq-chequeBox.chq-grid-on{background-image:linear-gradient(rgba(0,0,0,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.08) 1px,transparent 1px);background-size:5mm 5mm}
+  .chq-fld{position:absolute;color:#111;font-size:3.6mm;white-space:nowrap;cursor:grab;padding:1mm 2mm;border-radius:3px;user-select:none;touch-action:none}
+  .chq-fld:hover,.chq-fld:focus{outline:1.5px dashed #7C5CFC;background:rgba(124,92,252,.08)}
+  .chq-fld.chq-dragging{outline:1.5px dashed #16C079;background:rgba(22,192,121,.15);cursor:grabbing;z-index:5}
+  .chq-crossLines{position:absolute;top:4mm;left:4mm;width:30mm;height:14mm;pointer-events:none}
+  .chq-crossLines::before,.chq-crossLines::after{content:'';position:absolute;top:0;width:0;height:180%;border-left:1.4px solid #333;transform:rotate(20deg);transform-origin:top}
+  .chq-crossLines::before{left:6mm}
+  .chq-crossLines::after{left:20mm}
+  .chq-acPayee{position:absolute;top:6mm;left:8mm;font-size:2.6mm;font-weight:700;color:#333;pointer-events:none}
+
+  .chq-preview-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+  .chq-preview-controls label{font-size:.78rem;color:var(--text-dim);display:flex;align-items:center;gap:4px}
+
+  /* ===== Calculator widget ===== */
+  .chq-calc{max-width:260px}
+  .chq-calc-display{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px;text-align:right;font-size:1.2rem;margin-bottom:8px;min-height:1.6em}
+  .chq-calc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+  .chq-calc-grid button{padding:10px 0;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);cursor:pointer;font-size:.9rem}
+  .chq-calc-grid button:hover{background:var(--accent);color:#fff}
+
+  body.chq-large-font #chq-formSide,body.chq-large-font #chq-resultSide{font-size:1.1rem}
+  body.chq-high-contrast{filter:contrast(1.2) brightness(1.06)}
+
+  /* ===== Light mode — scoped strictly to the tool's own content ===== */
+  body.chq-light :is(.container,.chq-content){
+    --bg:#f4f2fb; --surface:#ffffff; --surface-2:#efeaf9; --border:rgba(20,10,45,.14); --border-strong:rgba(20,10,45,.24);
+    --text:#1c1533; --text-dim:rgba(28,21,51,.68);
+  }
+  body.chq-light .container,
+  body.chq-light .chq-content{
+    background:#f4f2fb; color:var(--text)!important; border-radius:18px; padding:20px 22px; box-shadow:0 8px 32px rgba(20,10,45,.12);
+  }
+  body.chq-light :is(.container,.chq-content) h1,
+  body.chq-light :is(.container,.chq-content) h2,
+  body.chq-light :is(.container,.chq-content) h3,
+  body.chq-light :is(.container,.chq-content) h4,
+  body.chq-light :is(.container,.chq-content) h5,
+  body.chq-light :is(.container,.chq-content) h6{color:var(--text)!important}
+  body.chq-light :is(.container,.chq-content) p{color:var(--text-dim)!important}
+  body.chq-light :is(.container,.chq-content) label{color:var(--text-dim)!important}
+  body.chq-light :is(.container,.chq-content) textarea,
+  body.chq-light :is(.container,.chq-content) input[type=text],
+  body.chq-light :is(.container,.chq-content) input[type=number],
+  body.chq-light :is(.container,.chq-content) input[type=date],
+  body.chq-light :is(.container,.chq-content) select{
+    background:#ffffff!important;border:1.5px solid rgba(20,10,45,.2)!important;color:var(--text)!important
+  }
+  body.chq-light :is(.container,.chq-content) select option{background:#ffffff;color:var(--text)}
+  body.chq-light :is(.container,.chq-content) .panel{background:#ffffff!important;border:1px solid rgba(20,10,45,.1)!important;box-shadow:0 8px 28px rgba(20,10,45,.08)!important}
+  body.chq-light :is(.container,.chq-content) table th{background:rgba(20,10,45,.06);color:var(--text)}
+  body.chq-light :is(.container,.chq-content) table td{color:var(--text-dim);border-color:rgba(20,10,45,.1)}
+  body.chq-light :is(.container,.chq-content) .chq-tab{color:var(--text-dim)}
+  body.chq-light :is(.container,.chq-content) .chq-tab.active{color:#fff}
+  body.chq-light :is(.container,.chq-content) .btn.secondary{background:var(--surface-2);border-color:var(--border);color:var(--text)}
+  body.chq-light .tool-header h1{color:var(--text)!important}
+  body.chq-light .tool-header p{color:var(--text-dim)!important}
+  body.chq-light .chq-muted{color:var(--text-dim)!important}
+  body.chq-light .chq-card,body.chq-light .chq-toolbar{background:var(--surface-2)!important;border-color:var(--border)!important}
+  body.chq-light .chq-chip{background:#ffffff!important;color:var(--text-dim)!important}
+  body.chq-light .chq-calc-display{background:#ffffff!important;color:var(--text)!important}
+  body.chq-light .chq-calc-grid button{background:var(--surface-2)!important;color:var(--text)!important;border-color:var(--border)!important}
+  body.chq-light .chq-share-btn{background:var(--surface-2)!important;color:var(--text)!important}
+  body.chq-light .stat-box .lbl{color:var(--text-dim)!important}
+  body.chq-light .stat-box{background:var(--surface-2)!important;border-color:var(--border)!important}
+  body.chq-light .btn.secondary{background:var(--surface-2)!important;border-color:var(--border)!important;color:var(--text)!important}
+  body.chq-light .chq-faq-item strong{color:var(--accent)!important}
+  body.chq-light .related-grid a{color:var(--text)!important}
+  body.chq-light .chq-content table th{color:var(--accent)!important}
+  body.chq-light .chq-badge{color:var(--text)!important}
+
+  .related-grid a .ri{margin-right:6px}
+  .chq-content h2{font-size:1.15rem;margin:26px 0 10px}
+  .chq-content h3{font-size:1rem;margin:18px 0 8px}
+  .chq-content p,.chq-content li{font-size:.92rem;line-height:1.8}
+  .chq-content ul,.chq-content ol{padding-left:20px}
+  .chq-content table{width:100%;border-collapse:collapse;font-size:.86rem;margin:12px 0}
+  .chq-content table th,.chq-content table td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  .chq-content table th{color:#c4b5fd}
+
+  .chq-faq-item{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+  .chq-faq-item strong{color:#c4b5fd}
+
+  .chq-disclaimer{background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3);border-radius:12px;padding:14px 16px;font-size:.85rem;color:#fca5a5;margin:16px 0}
+
+  @media print {
+    .site-header, .tool-header, .chq-toolbar, .chq-tabs, #chq-stickyCalc, .site-footer, .chq-content, #chq-formSide, .chq-preview-controls, .chq-share-row { display:none!important; }
+    body{padding-bottom:0!important}
+    #chq-printArea{display:block!important}
+    .chq-chequeBox{box-shadow:none!important;transform:none!important;page-break-after:always}
+    .chq-chequeBox:last-child{page-break-after:auto}
+  }
+  #chq-printArea{display:none}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="chq-muted" style="margin-bottom:10px" aria-label="Breadcrumb">
+    <a href="../index.html" style="color:#c4b5fd;text-decoration:none">Home</a> ›
+    <a href="../index.html#cat-calculator" style="color:#c4b5fd;text-decoration:none">Calculators &amp; Converters</a> ›
+    Cheque Printing Tool
+  </nav>
+
+  <div class="tool-header">
+    <h1>🖨️ Cheque Printing Tool</h1>
+    <p>Print payee, amount and date onto your own valid, pre-issued bank cheque leaves — with custom layouts, print calibration and a live drag-position preview.</p>
+
+    <div class="chq-row" style="margin-top:14px">
+      <div class="chq-field">
+        <label for="chq-language">Language / भाषा</label>
+        <select id="chq-language"><option value="en">English</option><option value="hi">हिन्दी</option></select>
+      </div>
+      <div class="chq-field">
+        <label for="chq-theme">Theme</label>
+        <select id="chq-theme"><option value="dark">🌙 Dark</option><option value="light">☀️ Light</option><option value="auto">🖥️ Auto</option></select>
+      </div>
+    </div>
+  </div>
+
+  <div id="chq-statusMsg" class="chq-muted" role="status" aria-live="polite"></div>
+
+  <div class="chq-toolbar" role="toolbar" aria-label="Cheque actions">
+    <button class="btn chq-gradient" id="chq-validateBtn" type="button">✅ Validate</button>
+    <button class="btn chq-gradient" id="chq-printBtn" type="button">🖨️ Print Cheque</button>
+    <button class="btn secondary" id="chq-printPreviewBtn" type="button">👁️ Print Preview</button>
+    <button class="btn secondary" id="chq-saveRecordBtn" type="button">💾 Save Record</button>
+    <button class="btn secondary chq-mini" id="chq-undoBtn" type="button" title="Undo">↶ Undo</button>
+    <button class="btn secondary chq-mini" id="chq-redoBtn" type="button" title="Redo">↷ Redo</button>
+    <button class="btn secondary chq-mini" id="chq-copyBtn" type="button" title="Copy cheque data">📋 Copy</button>
+    <button class="btn secondary chq-mini" id="chq-pasteBtn" type="button" title="Paste cheque data">📥 Paste</button>
+    <button class="btn secondary chq-mini" id="chq-resetBtn" type="button">↺ Reset</button>
+    <button class="btn secondary chq-mini" id="chq-clearAllBtn" type="button">🗑️ Clear All</button>
+  </div>
+
+  <div class="chq-grid">
+    <div id="chq-formSide">
+      <div class="chq-tabs" role="tablist">
+        <button class="chq-tab active" id="chq-tabDetails" role="tab" aria-selected="true">📝 Cheque Details</button>
+        <button class="chq-tab" id="chq-tabPrint" role="tab" aria-selected="false">🎛️ Print Settings</button>
+        <button class="chq-tab" id="chq-tabLayout" role="tab" aria-selected="false">📐 Layout Manager</button>
+        <button class="chq-tab" id="chq-tabRecords" role="tab" aria-selected="false">🗂️ Records</button>
+      </div>
+
+      <!-- ===================== Cheque Details ===================== -->
+      <div class="chq-pane active" id="chq-paneDetails">
+        <div class="chq-card">
+          <h3>Cheque Information</h3>
+          <div class="chq-row">
+            <div class="chq-field">
+              <label for="chq-date">Date</label>
+              <input type="date" id="chq-date">
+            </div>
+            <div class="chq-field" style="align-self:end">
+              <button class="btn secondary chq-mini" id="chq-todayBtn" type="button">📅 Today</button>
+            </div>
+            <div class="chq-field">
+              <label for="chq-chequeNumber">Cheque Number (optional)</label>
+              <input type="text" id="chq-chequeNumber" maxlength="20" placeholder="e.g. 000123">
+            </div>
+            <div class="chq-field">
+              <label for="chq-accountNumber">Account Number (optional)</label>
+              <input type="text" id="chq-accountNumber" maxlength="30" placeholder="e.g. 1234567890">
+            </div>
+          </div>
+          <div class="chq-row">
+            <div class="chq-field" style="grid-column:1/-1">
+              <label for="chq-payeeName">Payee Name</label>
+              <input type="text" id="chq-payeeName" maxlength="150" placeholder="e.g. Ramesh Kumar">
+            </div>
+          </div>
+          <div class="chq-row">
+            <div class="chq-field">
+              <label for="chq-amount">Amount (Numbers)</label>
+              <input type="number" id="chq-amount" min="0" step="0.01" placeholder="e.g. 12500.50">
+            </div>
+            <div class="chq-field">
+              <label for="chq-currency">Currency</label>
+              <select id="chq-currency"><option value="INR">₹ INR</option><option value="USD">$ USD</option><option value="EUR">€ EUR</option><option value="GBP">£ GBP</option></select>
+            </div>
+            <div class="chq-field">
+              <label for="chq-numberingSystem">Numbering System</label>
+              <select id="chq-numberingSystem"><option value="indian">Indian (Lakh/Crore)</option><option value="international">International (Million/Billion)</option></select>
+            </div>
+            <div class="chq-field">
+              <label for="chq-printCopies">Print Copies</label>
+              <input type="number" id="chq-printCopies" min="1" max="10" value="1">
+            </div>
+          </div>
+          <div class="chq-row">
+            <div class="chq-field" style="display:flex;align-items:center;gap:6px">
+              <input type="checkbox" id="chq-includePaise" checked style="width:auto"> <label for="chq-includePaise" style="margin:0">Include Paise/Cents in words</label>
+            </div>
+            <div class="chq-field" style="display:flex;align-items:center;gap:6px">
+              <input type="checkbox" id="chq-roundOff" style="width:auto"> <label for="chq-roundOff" style="margin:0">Round Off Amount</label>
+            </div>
+            <div class="chq-field">
+              <label for="chq-chequeType">Cheque Type</label>
+              <select id="chq-chequeType">
+                <option value="bearer">Bearer (Open)</option>
+                <option value="crossed">Crossed (General)</option>
+                <option value="acPayee">Account Payee Only (Crossed)</option>
+              </select>
+            </div>
+          </div>
+          <div class="chq-row">
+            <div class="chq-field" style="grid-column:1/-1">
+              <label for="chq-amountWords">Amount in Words (auto — editable)</label>
+              <textarea id="chq-amountWords" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="chq-row">
+            <div class="chq-field" style="grid-column:1/-1">
+              <label for="chq-memo">Memo / Note</label>
+              <textarea id="chq-memo" rows="2" maxlength="200"></textarea>
+            </div>
+          </div>
+          <div class="chq-err-list" id="chq-errList" style="display:none"></div>
+        </div>
+
+        <div class="chq-card">
+          <h3>Recent Payees / Amounts</h3>
+          <div class="chq-muted">Click a chip to auto-fill.</div>
+          <div class="chq-chip-row" id="chq-recentPayees"></div>
+          <div class="chq-chip-row" id="chq-recentAmounts"></div>
+        </div>
+      </div>
+
+      <!-- ===================== Print Settings ===================== -->
+      <div class="chq-pane" id="chq-panePrint">
+        <div class="chq-card">
+          <h3>Layout &amp; Calibration</h3>
+          <div class="chq-row">
+            <div class="chq-field" style="grid-column:1/-1">
+              <label for="chq-layoutSelect">Active Layout</label>
+              <select id="chq-layoutSelect"></select>
+            </div>
+          </div>
+          <div class="chq-row">
+            <div class="chq-field"><label for="chq-hAdjust">Horizontal Adjustment (mm)</label><input type="number" id="chq-hAdjust" value="0" step="0.5"></div>
+            <div class="chq-field"><label for="chq-vAdjust">Vertical Adjustment (mm)</label><input type="number" id="chq-vAdjust" value="0" step="0.5"></div>
+            <div class="chq-field"><label for="chq-charSpacing">Character Spacing (px)</label><input type="number" id="chq-charSpacing" value="0" step="0.1"></div>
+            <div class="chq-field"><label for="chq-lineSpacing">Line Spacing</label><input type="number" id="chq-lineSpacing" value="1.2" step="0.1"></div>
+          </div>
+          <div class="chq-row">
+            <div class="chq-field">
+              <label for="chq-fontFamily">Font Family</label>
+              <select id="chq-fontFamily">
+                <option value="'Courier New', monospace">Courier New</option>
+                <option value="Arial, sans-serif">Arial</option>
+                <option value="Georgia, serif">Georgia</option>
+                <option value="'Times New Roman', serif">Times New Roman</option>
+              </select>
+            </div>
+            <div class="chq-field"><label for="chq-fontSize">Font Size (mm)</label><input type="number" id="chq-fontSize" value="3.6" step="0.1"></div>
+            <div class="chq-field"><label for="chq-rotation">Rotation (deg)</label><input type="number" id="chq-rotation" value="0" step="1"></div>
+            <div class="chq-field">
+              <label for="chq-alignment">Text Alignment</label>
+              <select id="chq-alignment"><option value="left">Left</option><option value="center">Center</option><option value="right">Right</option></select>
+            </div>
+          </div>
+          <div class="chq-row">
+            <div class="chq-field" style="display:flex;align-items:center;gap:6px"><input type="checkbox" id="chq-bold" style="width:auto"> <label for="chq-bold" style="margin:0">Bold</label></div>
+            <div class="chq-field" style="display:flex;align-items:center;gap:6px"><input type="checkbox" id="chq-italic" style="width:auto"> <label for="chq-italic" style="margin:0">Italic</label></div>
+            <div class="chq-field"><label for="chq-marginAdjust">Margin Adjustment (mm)</label><input type="number" id="chq-marginAdjust" value="0" step="0.5"></div>
+            <div class="chq-field"><label for="chq-printScale">Print Scale (%)</label><input type="number" id="chq-printScale" value="100" step="1"></div>
+          </div>
+          <div class="chq-note">Every printer and cheque book differs slightly. Use the Live Preview tab to drag fields into position, print a test copy on plain paper, hold it against your cheque leaf, then fine-tune the adjustments above before printing on the real cheque.</div>
+        </div>
+      </div>
+
+      <!-- ===================== Layout Manager ===================== -->
+      <div class="chq-pane" id="chq-paneLayout">
+        <div class="chq-card">
+          <h3>Your Layouts</h3>
+          <div class="chq-table-wrap">
+            <table class="chq-table">
+              <thead><tr><th>Name</th><th>Type</th><th>Size (mm)</th><th>Actions</th></tr></thead>
+              <tbody id="chq-layoutTbody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="chq-card">
+          <h3>Create New Layout</h3>
+          <div class="chq-row">
+            <div class="chq-field"><label for="chq-newLayoutName">Layout Name</label><input type="text" id="chq-newLayoutName" placeholder="e.g. My Bank Cheque"></div>
+            <div class="chq-field"><label for="chq-newLayoutBase">Based On</label><select id="chq-newLayoutBase"></select></div>
+            <div class="chq-field" style="align-self:end"><button class="btn chq-gradient" id="chq-createLayoutBtn" type="button">➕ Create Layout</button></div>
+          </div>
+        </div>
+        <div class="chq-card">
+          <h3>Import / Export Layout</h3>
+          <div class="chq-row">
+            <div class="chq-field"><label for="chq-importLayoutFile">Import Layout (JSON)</label><input type="file" id="chq-importLayoutFile" accept="application/json"></div>
+            <div class="chq-field" style="align-self:end"><button class="btn secondary" id="chq-exportLayoutBtn" type="button">⬇️ Export Active Layout</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================== Records ===================== -->
+      <div class="chq-pane" id="chq-paneRecords">
+        <div class="chq-card">
+          <h3>Search &amp; Filter</h3>
+          <div class="chq-row">
+            <div class="chq-field"><label for="chq-recordSearch">Search (Payee / Amount / Date / Cheque No.)</label><input type="text" id="chq-recordSearch" placeholder="Type to search…"></div>
+            <div class="chq-field"><label for="chq-filterDateFrom">From Date</label><input type="date" id="chq-filterDateFrom"></div>
+            <div class="chq-field"><label for="chq-filterDateTo">To Date</label><input type="date" id="chq-filterDateTo"></div>
+            <div class="chq-field" style="display:flex;align-items:center;gap:6px;align-self:end"><input type="checkbox" id="chq-filterFavOnly" style="width:auto"> <label for="chq-filterFavOnly" style="margin:0">Favourites only</label></div>
+          </div>
+          <div class="chq-row">
+            <div class="chq-field"><label for="chq-sortKey">Sort By</label><select id="chq-sortKey"><option value="date">Date</option><option value="payeeName">Payee</option><option value="amount">Amount</option></select></div>
+            <div class="chq-field"><label for="chq-sortDir">Direction</label><select id="chq-sortDir"><option value="desc">Newest / Highest first</option><option value="asc">Oldest / Lowest first</option></select></div>
+          </div>
+        </div>
+        <div class="chq-card">
+          <h3>Saved Records</h3>
+          <div class="chq-table-wrap">
+            <table class="chq-table">
+              <thead><tr><th><input type="checkbox" id="chq-selectAllRecords"></th><th>★</th><th>Date</th><th>Payee</th><th>Amount</th><th>Cheque No.</th><th>Type</th><th>Actions</th></tr></thead>
+              <tbody id="chq-recordsTbody"></tbody>
+            </table>
+          </div>
+          <div class="chq-share-row">
+            <button class="chq-share-btn" id="chq-printSelectedBtn" type="button">🖨️ Print Selected</button>
+            <button class="chq-share-btn" id="chq-exportCsvBtn" type="button">📄 Export CSV</button>
+            <button class="chq-share-btn" id="chq-exportExcelBtn" type="button">📊 Export Excel</button>
+            <button class="chq-share-btn" id="chq-exportPdfBtn" type="button">🧾 Export PDF</button>
+            <button class="chq-share-btn" id="chq-backupJsonBtn" type="button">💾 Backup JSON</button>
+            <label class="chq-share-btn" style="cursor:pointer">📤 Restore JSON<input type="file" id="chq-restoreJsonFile" accept="application/json" style="display:none"></label>
+          </div>
+        </div>
+        <div class="chq-card">
+          <h3>Print History</h3>
+          <div class="chq-table-wrap">
+            <table class="chq-table">
+              <thead><tr><th>Printed At</th><th>Payee</th><th>Amount</th><th>Copies</th></tr></thead>
+              <tbody id="chq-printHistoryTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="chq-resultSide">
+      <div class="chq-tabs" role="tablist">
+        <button class="chq-tab active" id="chq-tabPreview" role="tab" aria-selected="true">👁️ Live Preview</button>
+        <button class="chq-tab" id="chq-tabTools" role="tab" aria-selected="false">🧰 Tools</button>
+      </div>
+
+      <!-- ===================== Live Preview ===================== -->
+      <div class="chq-pane active" id="chq-panePreview">
+        <div class="chq-stat-cards" id="chq-summaryCards"></div>
+        <div class="chq-flags" id="chq-resultFlags"></div>
+        <div class="chq-preview-controls">
+          <button class="btn secondary chq-mini" id="chq-zoomOutBtn" type="button">➖ Zoom</button>
+          <span class="chq-muted" id="chq-zoomLevel">100%</span>
+          <button class="btn secondary chq-mini" id="chq-zoomInBtn" type="button">➕ Zoom</button>
+          <label><input type="checkbox" id="chq-gridToggle" style="width:auto"> Grid</label>
+          <label><input type="checkbox" id="chq-guidelinesToggle" style="width:auto" checked> Guidelines</label>
+        </div>
+        <div class="chq-previewStage">
+          <div class="chq-chequeBox" id="chq-chequeBox"></div>
+        </div>
+        <div id="chq-boundaryWarning" class="chq-note" style="display:none"></div>
+        <div class="chq-muted">Drag any field on the cheque to reposition it. Position changes are saved to the active layout when you click Layout Manager → the field table updates instantly.</div>
+        <div class="chq-share-row">
+          <a class="chq-share-btn" id="chq-shareWhatsapp" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+          <a class="chq-share-btn" id="chq-shareFacebook" href="#" target="_blank" rel="noopener">📘 Facebook</a>
+          <a class="chq-share-btn" id="chq-shareLinkedin" href="#" target="_blank" rel="noopener">💼 LinkedIn</a>
+          <a class="chq-share-btn" id="chq-shareTwitter" href="#" target="_blank" rel="noopener">🐦 X</a>
+          <button class="chq-share-btn" id="chq-copyLinkBtn" type="button">🔗 Copy Link</button>
+        </div>
+      </div>
+
+      <!-- ===================== Tools ===================== -->
+      <div class="chq-pane" id="chq-paneTools">
+        <div class="chq-card chq-calc">
+          <h3>🧮 Quick Calculator</h3>
+          <div class="chq-calc-display" id="chq-calcDisplay">0</div>
+          <div class="chq-calc-grid" id="chq-calcGrid"></div>
+          <button class="btn secondary chq-mini" id="chq-calcInsertBtn" type="button" style="margin-top:8px">➡️ Insert into Amount</button>
+        </div>
+        <div class="chq-card">
+          <h3>🔤 Amount to Words (Quick Tool)</h3>
+          <div class="chq-row">
+            <div class="chq-field"><label for="chq-quickAmount">Amount</label><input type="number" id="chq-quickAmount" step="0.01"></div>
+            <div class="chq-field"><label for="chq-quickSystem">System</label><select id="chq-quickSystem"><option value="indian">Indian</option><option value="international">International</option></select></div>
+          </div>
+          <div class="chq-engine-box" id="chq-quickWordsResult" style="background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin-top:8px"></div>
+        </div>
+        <div class="chq-card">
+          <h3>📅 Today's Date</h3>
+          <div class="chq-muted" id="chq-todayDisplay"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="chq-printArea"></div>
+
+<div id="chq-stickyCalc">
+  <button class="btn chq-gradient" id="chq-stickyPrintBtn" type="button">🖨️ Print</button>
+  <button class="btn secondary" id="chq-stickySaveBtn" type="button">💾 Save</button>
+</div>
+
+<div class="chq-content">
+
+<h2>1. Related Tools</h2>
+<div class="related-grid">
+  <a href="invoice-generator.html"><span class="ri">🧾</span>Invoice Generator</a>
+  <a href="journal-entry-generator.html"><span class="ri">📔</span>Journal Entry Generator</a>
+  <a href="bank-reconciliation-tool.html"><span class="ri">🏦</span>Bank Reconciliation Tool</a>
+  <a href="gst-calculator.html"><span class="ri">🧮</span>GST Calculator</a>
+  <a href="salary-calculator.html"><span class="ri">💼</span>Salary Calculator</a>
+  <a href="tds-calculator.html"><span class="ri">📉</span>TDS Calculator</a>
+</div>
+
+<h2>2. About This Tool | इस टूल के बारे में</h2>
+<p>यह Cheque Printing Tool उपयोगकर्ता को अपने वैध और पहले से जारी किए गए बैंक चेक पर विवरण प्रिंट करने में मदद करता है — जैसे तारीख, प्राप्तकर्ता का नाम, राशि (अंकों और शब्दों में), खाता संख्या और मेमो। | This Cheque Printing Tool helps you print details — date, payee name, amount in figures and words, account number and memo — onto your own valid, pre-issued bank cheque leaves.</p>
+<p>राशि को शब्दों में बदलना पूरी तरह स्वचालित है और भारतीय (लाख/करोड़) तथा अंतरराष्ट्रीय (मिलियन/बिलियन) दोनों अंक प्रणालियों का समर्थन करता है, साथ ही पैसे/सेंट और राउंड-ऑफ विकल्प भी शामिल हैं। | Amount-in-words conversion is fully automatic and supports both the Indian (Lakh/Crore) and International (Million/Billion) numbering systems, along with paise/cents and a round-off option.</p>
+<p>चूँकि हर प्रिंटर और हर बैंक की चेक बुक थोड़ी अलग होती है, इसलिए यह टूल एक लाइव प्रीव्यू देता है जिसमें आप हर फ़ील्ड को खींचकर (drag) सही स्थिति पर रख सकते हैं, साथ ही सटीक कैलिब्रेशन के लिए हॉरिज़ॉन्टल/वर्टिकल एडजस्टमेंट, फॉन्ट, रोटेशन और मार्जिन जैसे नियंत्रण भी उपलब्ध हैं। | Because every printer and every bank's cheque book differs slightly, this tool gives you a live preview where you can drag each field into position, plus precise calibration controls — horizontal/vertical adjustment, font, rotation and margins.</p>
+<p>महत्वपूर्ण रूप से, यह टूल केवल पहले से मौजूद, बैंक द्वारा जारी चेक लीफ़ पर टेक्स्ट प्रिंट करता है — यह किसी भी चेक की सुरक्षा विशेषता (जैसे वॉटरमार्क, माइक्रो-प्रिंटिंग, MICR बैंड) का निर्माण, नकल या संशोधन नहीं करता। | Importantly, this tool only prints text onto an existing, bank-issued cheque leaf — it does not create, reproduce or modify any cheque security feature (such as watermarks, micro-printing, or the MICR band).</p>
+<p>आप कई कस्टम लेआउट बना, सहेज, संपादित, डुप्लिकेट और आयात/निर्यात कर सकते हैं ताकि विभिन्न बैंकों के अलग-अलग चेक डिज़ाइन के लिए अलग प्रोफ़ाइल रखी जा सकें, और रिकॉर्ड प्रबंधन के साथ आप पिछले चेक विवरण खोज, फ़िल्टर, सॉर्ट और दोबारा प्रिंट कर सकते हैं। | You can create, save, edit, duplicate and import/export multiple custom layouts to keep separate profiles for different banks' cheque designs, and record management lets you search, filter, sort and reprint past cheque details.</p>
+<p>प्रिंट करने से पहले हमेशा सादे कागज़ पर एक टेस्ट प्रिंट लें, उसे अपने असली चेक पर रखकर संरेखण जाँचें — इससे गलत छपाई या बर्बाद चेक से बचा जा सकता है। सारा डेटा केवल आपके ब्राउज़र में सहेजा जाता है, कहीं भी अपलोड नहीं होता। | Always take a test print on plain paper first and hold it against your real cheque to check alignment — this avoids misprints or wasted cheque leaves. All data is stored only in your browser and is never uploaded anywhere.</p>
+
+<div class="chq-disclaimer">
+  <strong>Disclaimer:</strong> This tool is intended only for printing user-provided information onto valid, pre-issued bank cheque leaves. It does not generate, reproduce or modify cheque security features.<br><br>
+  <strong>अस्वीकरण:</strong> यह टूल केवल उपयोगकर्ता के वैध एवं पहले से जारी किए गए बैंक चेक पर जानकारी प्रिंट करने के लिए है। यह चेक की किसी भी सुरक्षा विशेषता का निर्माण या प्रतिरूपण नहीं करता।
+</div>
+
+<h2>3. Frequently Asked Questions | अक्सर पूछे जाने वाले प्रश्न</h2>
+
+<div class="chq-faq-item"><strong>Q. Does this tool print blank cheques or create new cheques? | क्या यह टूल खाली चेक प्रिंट करता है या नए चेक बनाता है?</strong><br>
+No — it only prints your typed details onto a cheque leaf that your bank has already issued to you. It cannot create a cheque, its security features, or its MICR band. | नहीं — यह केवल आपके द्वारा टाइप की गई जानकारी को आपके बैंक द्वारा पहले से जारी चेक लीफ़ पर प्रिंट करता है। यह चेक, उसकी सुरक्षा विशेषताओं, या MICR बैंड को नहीं बना सकता।</div>
+
+<div class="chq-faq-item"><strong>Q. Is my cheque and payee data uploaded anywhere? | क्या मेरा चेक और प्राप्तकर्ता डेटा कहीं अपलोड होता है?</strong><br>
+No — every calculation, layout and saved record stays inside your browser's local storage. Nothing is sent to any server. | नहीं — हर गणना, लेआउट और सहेजा गया रिकॉर्ड आपके ब्राउज़र के लोकल स्टोरेज में ही रहता है। कुछ भी सर्वर पर नहीं भेजा जाता।</div>
+
+<div class="chq-faq-item"><strong>Q. Why doesn't the default layout fit my cheque perfectly? | डिफ़ॉल्ट लेआउट मेरे चेक पर सटीक क्यों नहीं बैठता?</strong><br>
+Cheque leaf size and field position vary by bank, branch and printer. The built-in layouts are generic starting points — use the Live Preview's drag-to-position and the Print Settings calibration controls to fine-tune for your exact cheque book. | चेक लीफ़ का आकार और फ़ील्ड की स्थिति बैंक, शाखा और प्रिंटर के अनुसार अलग होती है। बिल्ट-इन लेआउट सामान्य शुरुआती बिंदु हैं — अपने सटीक चेक बुक के लिए Live Preview में ड्रैग और Print Settings के कैलिब्रेशन नियंत्रणों का उपयोग करें।</div>
+
+<div class="chq-faq-item"><strong>Q. How do I calibrate the print position accurately? | प्रिंट पोज़ीशन को सटीक रूप से कैसे कैलिब्रेट करें?</strong><br>
+Print a test copy on plain paper, hold it up against your real cheque against a light, note the offset, and adjust the Horizontal/Vertical Adjustment fields in Print Settings until they align. | सादे कागज़ पर एक टेस्ट प्रिंट लें, उसे अपने असली चेक के पीछे रोशनी में रखें, अंतर नोट करें, और Print Settings में Horizontal/Vertical Adjustment को तब तक समायोजित करें जब तक वे संरेखित न हो जाएं।</div>
+
+<div class="chq-faq-item"><strong>Q. Can I save multiple layouts for different banks? | क्या मैं अलग-अलग बैंकों के लिए कई लेआउट सहेज सकता हूँ?</strong><br>
+Yes — use the Layout Manager to create, name, edit, duplicate, export and import as many custom layout profiles as you need. | हाँ — Layout Manager का उपयोग करके आप जितने चाहें उतने कस्टम लेआउट प्रोफ़ाइल बना, नाम दे, संपादित, डुप्लिकेट, निर्यात और आयात कर सकते हैं।</div>
+
+<div class="chq-faq-item"><strong>Q. What numbering systems are supported for amount in words? | राशि को शब्दों में बदलने के लिए कौन सी अंक प्रणालियाँ समर्थित हैं?</strong><br>
+Both the Indian system (Lakh, Crore) and the International system (Million, Billion) are supported, with optional paise/cents. | भारतीय प्रणाली (लाख, करोड़) और अंतरराष्ट्रीय प्रणाली (मिलियन, बिलियन) दोनों समर्थित हैं, साथ ही वैकल्पिक पैसे/सेंट भी।</div>
+
+<div class="chq-faq-item"><strong>Q. What does "Round Off Amount" do? | "Round Off Amount" क्या करता है?</strong><br>
+It rounds the entered amount to the nearest whole currency unit before converting it to words and printing — useful when your bank prefers whole-number cheques. | यह दर्ज की गई राशि को शब्दों में बदलने और प्रिंट करने से पहले निकटतम पूर्ण मुद्रा इकाई में गोल कर देता है — यह तब उपयोगी है जब आपका बैंक पूर्ण संख्या वाले चेक पसंद करता है।</div>
+
+<div class="chq-faq-item"><strong>Q. What is the difference between Bearer, Crossed and Account Payee Only? | Bearer, Crossed और Account Payee Only में क्या अंतर है?</strong><br>
+Bearer (open) cheques can be encashed by whoever holds them; Crossed cheques must be deposited into a bank account; Account Payee Only additionally restricts the cheque to the named payee's own account. This tool only prints the corresponding visual marking — always confirm your bank's exact rules. | Bearer (खुला) चेक जिसके पास भी हो वह भुना सकता है; Crossed चेक को बैंक खाते में जमा करना ज़रूरी है; Account Payee Only अतिरिक्त रूप से चेक को नामित प्राप्तकर्ता के अपने खाते तक सीमित करता है। यह टूल केवल संबंधित विज़ुअल चिह्न प्रिंट करता है — हमेशा अपने बैंक के सटीक नियमों की पुष्टि करें।</div>
+
+<div class="chq-faq-item"><strong>Q. Can I print multiple copies or multiple selected records at once? | क्या मैं एक साथ कई प्रतियाँ या कई चयनित रिकॉर्ड प्रिंट कर सकता हूँ?</strong><br>
+Yes — set Print Copies for the current cheque, or select multiple saved records in the Records tab and click Print Selected. | हाँ — वर्तमान चेक के लिए Print Copies सेट करें, या Records टैब में कई सहेजे गए रिकॉर्ड चुनें और Print Selected पर क्लिक करें।</div>
+
+<div class="chq-faq-item"><strong>Q. Does this tool work without internet? | क्या यह टूल इंटरनेट के बिना काम करता है?</strong><br>
+Yes — once the page is loaded, the cheque form, preview, calculations and record management all work fully offline. | हाँ — पेज लोड होने के बाद, चेक फ़ॉर्म, प्रीव्यू, गणनाएँ और रिकॉर्ड प्रबंधन सभी पूरी तरह ऑफ़लाइन काम करते हैं।</div>
+
+<div class="chq-faq-item"><strong>Q. What export formats are available for my saved records? | मेरे सहेजे गए रिकॉर्ड के लिए कौन से एक्सपोर्ट फ़ॉर्मेट उपलब्ध हैं?</strong><br>
+You can export your records list as PDF, Excel or CSV, and back up or restore your entire dataset (records + layouts + settings) as a JSON file. | आप अपनी रिकॉर्ड सूची को PDF, Excel या CSV के रूप में निर्यात कर सकते हैं, और अपने पूरे डेटा (रिकॉर्ड + लेआउट + सेटिंग्स) को JSON फ़ाइल के रूप में बैकअप या पुनर्स्थापित कर सकते हैं।</div>
+
+<div class="chq-faq-item"><strong>Q. Can I edit the auto-generated amount in words? | क्या मैं ऑटो-जनरेटेड राशि को शब्दों में संपादित कर सकता हूँ?</strong><br>
+Yes — the Amount in Words field is editable, so you can adjust wording or spacing to exactly match your cheque's line width if needed. | हाँ — Amount in Words फ़ील्ड संपादन योग्य है, इसलिए आप आवश्यकता पड़ने पर अपने चेक की लाइन चौड़ाई से मेल खाने के लिए शब्दों या स्पेसिंग को समायोजित कर सकते हैं।</div>
+
+<div class="chq-faq-item"><strong>Q. Will this tool warn me if a field is positioned off the cheque? | क्या यह टूल मुझे चेतावनी देगा अगर कोई फ़ील्ड चेक से बाहर स्थित हो?</strong><br>
+Yes — a Print Boundary Warning appears in the Live Preview tab if any field's position falls outside the defined cheque page dimensions. | हाँ — यदि किसी फ़ील्ड की स्थिति निर्धारित चेक पेज आयामों से बाहर हो, तो Live Preview टैब में एक Print Boundary Warning दिखाई देती है।</div>
+
+<div class="chq-faq-item"><strong>Q. Can I use this on my phone or tablet? | क्या मैं इसे अपने फ़ोन या टैबलेट पर उपयोग कर सकता हूँ?</strong><br>
+Yes — the tool is fully responsive and touch-friendly, including drag-to-position on the preview using touch gestures. Printing from a phone requires a connected or wireless printer. | हाँ — यह टूल पूरी तरह रिस्पॉन्सिव और टच-फ्रेंडली है, जिसमें टच जेस्चर से प्रीव्यू पर ड्रैग-टू-पोज़ीशन भी शामिल है। फ़ोन से प्रिंट करने के लिए एक जुड़ा हुआ या वायरलेस प्रिंटर आवश्यक है।</div>
+
+<div class="chq-faq-item"><strong>Q. Does this tool use any AI features? | क्या यह टूल किसी AI सुविधा का उपयोग करता है?</strong><br>
+No — every calculation, including amount-in-words conversion, uses fixed, deterministic hand-written logic. No AI model is used anywhere. | नहीं — राशि को शब्दों में बदलने सहित हर गणना निश्चित, नियतात्मक (deterministic) हाथ से लिखे गए लॉजिक का उपयोग करती है। कहीं भी कोई AI मॉडल उपयोग नहीं किया जाता।</div>
+
+<div class="chq-faq-item"><strong>Q. Is this tool free to use? | क्या यह टूल उपयोग करने के लिए मुफ़्त है?</strong><br>
+Yes — it is completely free, with no login, no signup and no hidden charges. | हाँ — यह पूरी तरह मुफ़्त है, बिना किसी लॉगिन, साइनअप या छुपे हुए शुल्क के।</div>
+
+</div>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Does this tool print blank cheques or create new cheques?","acceptedAnswer":{"@type":"Answer","text":"No — it only prints your typed details onto a cheque leaf that your bank has already issued to you. It cannot create a cheque, its security features, or its MICR band."}},
+{"@type":"Question","name":"Is my cheque and payee data uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No — every calculation, layout and saved record stays inside your browser's local storage. Nothing is sent to any server."}},
+{"@type":"Question","name":"Why doesn't the default layout fit my cheque perfectly?","acceptedAnswer":{"@type":"Answer","text":"Cheque leaf size and field position vary by bank, branch and printer. The built-in layouts are generic starting points — use the Live Preview's drag-to-position and the Print Settings calibration controls to fine-tune for your exact cheque book."}},
+{"@type":"Question","name":"How do I calibrate the print position accurately?","acceptedAnswer":{"@type":"Answer","text":"Print a test copy on plain paper, hold it up against your real cheque against a light, note the offset, and adjust the Horizontal/Vertical Adjustment fields in Print Settings until they align."}},
+{"@type":"Question","name":"Can I save multiple layouts for different banks?","acceptedAnswer":{"@type":"Answer","text":"Yes — use the Layout Manager to create, name, edit, duplicate, export and import as many custom layout profiles as you need."}},
+{"@type":"Question","name":"What numbering systems are supported for amount in words?","acceptedAnswer":{"@type":"Answer","text":"Both the Indian system (Lakh, Crore) and the International system (Million, Billion) are supported, with optional paise/cents."}},
+{"@type":"Question","name":"What does \"Round Off Amount\" do?","acceptedAnswer":{"@type":"Answer","text":"It rounds the entered amount to the nearest whole currency unit before converting it to words and printing — useful when your bank prefers whole-number cheques."}},
+{"@type":"Question","name":"What is the difference between Bearer, Crossed and Account Payee Only?","acceptedAnswer":{"@type":"Answer","text":"Bearer (open) cheques can be encashed by whoever holds them; Crossed cheques must be deposited into a bank account; Account Payee Only additionally restricts the cheque to the named payee's own account. This tool only prints the corresponding visual marking — always confirm your bank's exact rules."}},
+{"@type":"Question","name":"Can I print multiple copies or multiple selected records at once?","acceptedAnswer":{"@type":"Answer","text":"Yes — set Print Copies for the current cheque, or select multiple saved records in the Records tab and click Print Selected."}},
+{"@type":"Question","name":"Does this tool work without internet?","acceptedAnswer":{"@type":"Answer","text":"Yes — once the page is loaded, the cheque form, preview, calculations and record management all work fully offline."}},
+{"@type":"Question","name":"What export formats are available for my saved records?","acceptedAnswer":{"@type":"Answer","text":"You can export your records list as PDF, Excel or CSV, and back up or restore your entire dataset (records + layouts + settings) as a JSON file."}},
+{"@type":"Question","name":"Can I edit the auto-generated amount in words?","acceptedAnswer":{"@type":"Answer","text":"Yes — the Amount in Words field is editable, so you can adjust wording or spacing to exactly match your cheque's line width if needed."}},
+{"@type":"Question","name":"Will this tool warn me if a field is positioned off the cheque?","acceptedAnswer":{"@type":"Answer","text":"Yes — a Print Boundary Warning appears in the Live Preview tab if any field's position falls outside the defined cheque page dimensions."}},
+{"@type":"Question","name":"Can I use this on my phone or tablet?","acceptedAnswer":{"@type":"Answer","text":"Yes — the tool is fully responsive and touch-friendly, including drag-to-position on the preview using touch gestures. Printing from a phone requires a connected or wireless printer."}},
+{"@type":"Question","name":"Does this tool use any AI features?","acceptedAnswer":{"@type":"Answer","text":"No — every calculation, including amount-in-words conversion, uses fixed, deterministic hand-written logic. No AI model is used anywhere."}},
+{"@type":"Question","name":"Is this tool free to use?","acceptedAnswer":{"@type":"Answer","text":"Yes — it is completely free, with no login, no signup and no hidden charges."}}
+]}
+</script>
+
+<p style="text-align:center;font-size:.8rem" class="chq-muted">This tool is intended only for printing user-provided information onto valid, pre-issued bank cheque leaves. It does not generate, reproduce or modify cheque security features. | यह टूल केवल उपयोगकर्ता के वैध एवं पहले से जारी किए गए बैंक चेक पर जानकारी प्रिंट करने के लिए है। यह चेक की किसी भी सुरक्षा विशेषता का निर्माण या प्रतिरूपण नहीं करता।</p>
+
+<footer class="site-footer">
+  <div class="inner">
+    <p>© apnesoftware.COM — Cheque Printing Tool — Fast • Accurate • Secure • Mobile Friendly • SEO Optimized</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="../assets/common.js"></script>
+<script>
+/* ============================================================
+   Cheque Printing Tool engine — window.ChequeEngine
+   ============================================================ */
+var ONES = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten',
+  'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen'];
+var TENS = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety'];
+
+function twoDigitWords(n) {
+  if (n < 20) return ONES[n];
+  var t = Math.floor(n / 10), o = n % 10;
+  return TENS[t] + (o ? ' ' + ONES[o] : '');
+}
+function threeDigitWords(n) {
+  var h = Math.floor(n / 100), rest = n % 100;
+  var parts = [];
+  if (h) parts.push(ONES[h] + ' Hundred');
+  if (rest) parts.push((h ? 'and ' : '') + twoDigitWords(rest));
+  return parts.join(' ');
+}
+function integerToWordsIndian(n) {
+  n = Math.floor(n);
+  if (n === 0) return 'Zero';
+  var crore = Math.floor(n / 10000000); n %= 10000000;
+  var lakh = Math.floor(n / 100000); n %= 100000;
+  var thousand = Math.floor(n / 1000); n %= 1000;
+  var hundred = n;
+  var parts = [];
+  if (crore) parts.push(threeDigitWords(crore) + ' Crore');
+  if (lakh) parts.push(threeDigitWords(lakh) + ' Lakh');
+  if (thousand) parts.push(threeDigitWords(thousand) + ' Thousand');
+  if (hundred) parts.push(threeDigitWords(hundred));
+  return parts.join(' ').trim();
+}
+function integerToWordsInternational(n) {
+  n = Math.floor(n);
+  if (n === 0) return 'Zero';
+  var billion = Math.floor(n / 1000000000); n %= 1000000000;
+  var million = Math.floor(n / 1000000); n %= 1000000;
+  var thousand = Math.floor(n / 1000); n %= 1000;
+  var hundred = n;
+  var parts = [];
+  if (billion) parts.push(threeDigitWords(billion) + ' Billion');
+  if (million) parts.push(threeDigitWords(million) + ' Million');
+  if (thousand) parts.push(threeDigitWords(thousand) + ' Thousand');
+  if (hundred) parts.push(threeDigitWords(hundred));
+  return parts.join(' ').trim();
+}
+var CURRENCY_NAMES = {
+  INR: { major: 'Rupee', majorPlural: 'Rupees', minor: 'Paise', minorPlural: 'Paise' },
+  USD: { major: 'Dollar', majorPlural: 'Dollars', minor: 'Cent', minorPlural: 'Cents' },
+  EUR: { major: 'Euro', majorPlural: 'Euros', minor: 'Cent', minorPlural: 'Cents' },
+  GBP: { major: 'Pound', majorPlural: 'Pounds', minor: 'Penny', minorPlural: 'Pence' }
+};
+function parseAmount(raw) {
+  if (raw === null || raw === undefined || raw === '') return NaN;
+  var n = Number(String(raw).replace(/,/g, '').trim());
+  return isNaN(n) ? NaN : n;
+}
+function roundOff(amount) {
+  var rounded = Math.round(amount);
+  return { original: amount, rounded: rounded, roundOffAmount: +(rounded - amount).toFixed(2) };
+}
+function amountInWords(amount, opts) {
+  opts = opts || {};
+  var system = opts.system === 'international' ? 'international' : 'indian';
+  var currency = CURRENCY_NAMES[opts.currency] ? opts.currency : 'INR';
+  var cur = CURRENCY_NAMES[currency];
+  var includePaise = opts.includePaise !== false;
+  var doRound = !!opts.roundOff;
+  if (typeof amount !== 'number' || isNaN(amount) || amount < 0) return { text: '', error: 'Invalid amount' };
+  var working = doRound ? Math.round(amount) : amount;
+  var whole = Math.floor(working);
+  var fraction = Math.round((working - whole) * 100);
+  if (fraction === 100) { whole += 1; fraction = 0; }
+  var toWords = system === 'international' ? integerToWordsInternational : integerToWordsIndian;
+  var wholeWords = toWords(whole);
+  var majorName = whole === 1 ? cur.major : cur.majorPlural;
+  var text = wholeWords + ' ' + majorName;
+  if (includePaise && fraction > 0) {
+    var fractionWords = twoDigitWords(fraction);
+    var minorName = fraction === 1 ? cur.minor : cur.minorPlural;
+    text += ' and ' + fractionWords + ' ' + minorName;
+  }
+  text += ' Only';
+  return { text: text, whole: whole, fraction: fraction, system: system, currency: currency };
+}
+var LIMITS = { payeeName: 150, memo: 200, accountNumber: 30, chequeNumber: 20 };
+function validateChequeForm(data) {
+  data = data || {};
+  var errors = [];
+  if (!data.date) errors.push('Date is required.');
+  else if (isNaN(Date.parse(data.date))) errors.push('Date is invalid.');
+  if (!data.payeeName || !String(data.payeeName).trim()) errors.push('Payee name is required.');
+  else if (String(data.payeeName).length > LIMITS.payeeName) errors.push('Payee name exceeds ' + LIMITS.payeeName + ' characters.');
+  var amt = parseAmount(data.amount);
+  if (data.amount === '' || data.amount === null || data.amount === undefined) errors.push('Amount is required.');
+  else if (isNaN(amt)) errors.push('Amount must be a valid number.');
+  else if (amt <= 0) errors.push('Amount must be greater than zero.');
+  if (data.memo && String(data.memo).length > LIMITS.memo) errors.push('Memo exceeds ' + LIMITS.memo + ' characters.');
+  if (data.accountNumber && String(data.accountNumber).length > LIMITS.accountNumber) errors.push('Account number exceeds ' + LIMITS.accountNumber + ' characters.');
+  if (data.chequeNumber && String(data.chequeNumber).length > LIMITS.chequeNumber) errors.push('Cheque number exceeds ' + LIMITS.chequeNumber + ' characters.');
+  return { isValid: errors.length === 0, errors: errors };
+}
+var DEFAULT_FIELD_KEYS = ['date', 'payeeName', 'amountWords', 'amountNumber', 'accountNumber', 'chequeNumber', 'memo'];
+function defaultLayouts() {
+  return {
+    standard: { id: 'standard', name: 'Standard Cheque (Generic)', builtIn: true, pageWidthMm: 202, pageHeightMm: 92,
+      fields: { date: { x: 165, y: 10 }, payeeName: { x: 20, y: 28 }, amountWords: { x: 20, y: 40 }, amountNumber: { x: 165, y: 40 }, accountNumber: { x: 20, y: 55 }, chequeNumber: { x: 20, y: 8 }, memo: { x: 20, y: 70 } } },
+    compact: { id: 'compact', name: 'Compact Layout (Generic)', builtIn: true, pageWidthMm: 178, pageHeightMm: 82,
+      fields: { date: { x: 145, y: 8 }, payeeName: { x: 15, y: 24 }, amountWords: { x: 15, y: 35 }, amountNumber: { x: 145, y: 35 }, accountNumber: { x: 15, y: 48 }, chequeNumber: { x: 15, y: 6 }, memo: { x: 15, y: 62 } } },
+    wide: { id: 'wide', name: 'Wide Layout (Generic)', builtIn: true, pageWidthMm: 220, pageHeightMm: 95,
+      fields: { date: { x: 180, y: 10 }, payeeName: { x: 22, y: 30 }, amountWords: { x: 22, y: 42 }, amountNumber: { x: 180, y: 42 }, accountNumber: { x: 22, y: 58 }, chequeNumber: { x: 22, y: 8 }, memo: { x: 22, y: 74 } } }
+  };
+}
+function createLayout(layouts, name, basedOnId) {
+  var base = (basedOnId && layouts[basedOnId]) ? layouts[basedOnId] : defaultLayouts().standard;
+  var id = 'custom_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+  var newLayout = JSON.parse(JSON.stringify(base));
+  newLayout.id = id; newLayout.name = name || 'Untitled Layout'; newLayout.builtIn = false;
+  var next = Object.assign({}, layouts);
+  next[id] = newLayout;
+  return { layouts: next, id: id };
+}
+function updateLayout(layouts, id, patch) {
+  if (!layouts[id]) return layouts;
+  var next = Object.assign({}, layouts);
+  next[id] = Object.assign({}, layouts[id], patch, { id: id });
+  return next;
+}
+function deleteLayout(layouts, id) {
+  if (layouts[id] && layouts[id].builtIn) return layouts;
+  var next = Object.assign({}, layouts);
+  delete next[id];
+  return next;
+}
+function duplicateLayout(layouts, id, newName) {
+  if (!layouts[id]) return { layouts: layouts, id: null };
+  return createLayout(layouts, newName || (layouts[id].name + ' (Copy)'), id);
+}
+function exportLayout(layout) { return JSON.stringify(layout, null, 2); }
+function importLayout(jsonStr) {
+  var parsed;
+  try { parsed = JSON.parse(jsonStr); } catch (e) { return { error: 'Invalid JSON.' }; }
+  if (!parsed || typeof parsed !== 'object' || !parsed.fields) return { error: 'Invalid layout structure.' };
+  var missing = DEFAULT_FIELD_KEYS.filter(function (k) { return !parsed.fields[k]; });
+  if (missing.length) return { error: 'Layout is missing field positions: ' + missing.join(', ') };
+  return { layout: parsed };
+}
+function createRecord(data) {
+  return Object.assign({}, data, { id: 'rec_' + Date.now() + '_' + Math.floor(Math.random() * 10000), createdAt: new Date().toISOString() });
+}
+function updateRecord(records, id, patch) { return records.map(function (r) { return r.id === id ? Object.assign({}, r, patch) : r; }); }
+function deleteRecord(records, id) { return records.filter(function (r) { return r.id !== id; }); }
+function duplicateRecord(records, id) {
+  var found = records.find(function (r) { return r.id === id; });
+  if (!found) return records;
+  var copyData = Object.assign({}, found); delete copyData.id;
+  var copy = createRecord(copyData);
+  return records.concat([copy]);
+}
+function searchRecords(records, query) {
+  var q = String(query || '').trim().toLowerCase();
+  if (!q) return records;
+  return records.filter(function (r) {
+    return (String(r.payeeName || '').toLowerCase().indexOf(q) !== -1) ||
+      (String(r.amount || '').indexOf(q) !== -1) ||
+      (String(r.date || '').indexOf(q) !== -1) ||
+      (String(r.chequeNumber || '').toLowerCase().indexOf(q) !== -1);
+  });
+}
+function filterRecords(records, filters) {
+  filters = filters || {};
+  return records.filter(function (r) {
+    if (filters.favouritesOnly && !r.favourite) return false;
+    if (filters.dateFrom && r.date < filters.dateFrom) return false;
+    if (filters.dateTo && r.date > filters.dateTo) return false;
+    if (filters.crossType && r.crossType !== filters.crossType) return false;
+    return true;
+  });
+}
+function sortRecords(records, key, dir) {
+  key = key || 'date'; dir = dir === 'asc' ? 1 : -1;
+  var copy = records.slice();
+  copy.sort(function (a, b) {
+    var av = a[key], bv = b[key];
+    if (av === bv) return 0;
+    return (av > bv ? 1 : -1) * dir;
+  });
+  return copy;
+}
+var ChequeEngine = {
+  integerToWordsIndian: integerToWordsIndian, integerToWordsInternational: integerToWordsInternational,
+  amountInWords: amountInWords, parseAmount: parseAmount, roundOff: roundOff,
+  validateChequeForm: validateChequeForm, LIMITS: LIMITS,
+  defaultLayouts: defaultLayouts, createLayout: createLayout, updateLayout: updateLayout,
+  deleteLayout: deleteLayout, duplicateLayout: duplicateLayout, exportLayout: exportLayout, importLayout: importLayout,
+  DEFAULT_FIELD_KEYS: DEFAULT_FIELD_KEYS,
+  createRecord: createRecord, updateRecord: updateRecord, deleteRecord: deleteRecord, duplicateRecord: duplicateRecord,
+  searchRecords: searchRecords, filterRecords: filterRecords, sortRecords: sortRecords
+};
+if (typeof window !== 'undefined') window.ChequeEngine = ChequeEngine;
+</script>
+<script>
+(function () {
+  'use strict';
+  var E = window.ChequeEngine;
+  function $(id) { return document.getElementById(id); }
+  function lsGet(key, fallback) { try { var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch (e) { return fallback; } }
+  function lsSet(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {} }
+  function status(msg) { $('chq-statusMsg').textContent = msg; }
+  function esc(s) { var d = document.createElement('div'); d.textContent = String(s == null ? '' : s); return d.innerHTML; }
+  function fmtNum(n, currency) {
+    var sym = { INR: '₹', USD: '$', EUR: '€', GBP: '£' }[currency] || '';
+    return sym + (isNaN(n) ? '0.00' : n.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+  }
+
+  /* ===================== State ===================== */
+  var state = {
+    form: lsGet('chq_form', { date: '', payeeName: '', amount: '', amountWords: '', amountWordsManual: false, chequeNumber: '', accountNumber: '', memo: '', currency: 'INR', numberingSystem: 'indian', includePaise: true, roundOff: false, chequeType: 'bearer', printCopies: 1 }),
+    settings: lsGet('chq_settings', { layoutId: 'standard', hAdjust: 0, vAdjust: 0, charSpacing: 0, lineSpacing: 1.2, fontFamily: "'Courier New', monospace", fontSize: 3.6, rotation: 0, alignment: 'left', bold: false, italic: false, marginAdjust: 0, printScale: 100, zoom: 1, gridOn: false, guidelinesOn: true }),
+    layouts: lsGet('chq_layouts', E.defaultLayouts()),
+    records: lsGet('chq_records', []),
+    printHistory: lsGet('chq_printHistory', []),
+    recentPayees: lsGet('chq_recentPayees', []),
+    recentAmounts: lsGet('chq_recentAmounts', [])
+  };
+  var undoStack = [], redoStack = [];
+  var selectedRecordIds = {};
+
+  function snapshot() { return JSON.stringify({ form: state.form, settings: state.settings }); }
+  function pushUndo() { undoStack.push(snapshot()); if (undoStack.length > 25) undoStack.shift(); redoStack = []; }
+  function persist() {
+    lsSet('chq_form', state.form); lsSet('chq_settings', state.settings); lsSet('chq_layouts', state.layouts);
+    lsSet('chq_records', state.records); lsSet('chq_printHistory', state.printHistory);
+    lsSet('chq_recentPayees', state.recentPayees); lsSet('chq_recentAmounts', state.recentAmounts);
+  }
+
+  /* ===================== Tabs ===================== */
+  var formTabs = [['chq-tabDetails', 'chq-paneDetails'], ['chq-tabPrint', 'chq-panePrint'], ['chq-tabLayout', 'chq-paneLayout'], ['chq-tabRecords', 'chq-paneRecords']];
+  formTabs.forEach(function (pair) {
+    $(pair[0]).addEventListener('click', function () {
+      formTabs.forEach(function (p2) { $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected', 'false'); $(p2[1]).classList.remove('active'); });
+      $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected', 'true'); $(pair[1]).classList.add('active');
+      if (pair[0] === 'chq-tabLayout') renderLayoutTable();
+      if (pair[0] === 'chq-tabRecords') renderRecords();
+    });
+  });
+  var resultTabs = [['chq-tabPreview', 'chq-panePreview'], ['chq-tabTools', 'chq-paneTools']];
+  resultTabs.forEach(function (pair) {
+    $(pair[0]).addEventListener('click', function () {
+      resultTabs.forEach(function (p2) { $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected', 'false'); $(p2[1]).classList.remove('active'); });
+      $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected', 'true'); $(pair[1]).classList.add('active');
+    });
+  });
+
+  /* ===================== Form bindings ===================== */
+  var formFieldIds = { date: 'chq-date', payeeName: 'chq-payeeName', amount: 'chq-amount', chequeNumber: 'chq-chequeNumber', accountNumber: 'chq-accountNumber', memo: 'chq-memo', currency: 'chq-currency', numberingSystem: 'chq-numberingSystem', includePaise: 'chq-includePaise', roundOff: 'chq-roundOff', chequeType: 'chq-chequeType', printCopies: 'chq-printCopies' };
+
+  function loadFormIntoUI() {
+    Object.keys(formFieldIds).forEach(function (key) {
+      var el = $(formFieldIds[key]);
+      if (!el) return;
+      if (el.type === 'checkbox') el.checked = !!state.form[key];
+      else el.value = state.form[key] != null ? state.form[key] : '';
+    });
+    $('chq-amountWords').value = state.form.amountWords || '';
+    if (!state.form.date) { state.form.date = new Date().toISOString().slice(0, 10); $('chq-date').value = state.form.date; }
+  }
+  function loadSettingsIntoUI() {
+    $('chq-hAdjust').value = state.settings.hAdjust;
+    $('chq-vAdjust').value = state.settings.vAdjust;
+    $('chq-charSpacing').value = state.settings.charSpacing;
+    $('chq-lineSpacing').value = state.settings.lineSpacing;
+    $('chq-fontFamily').value = state.settings.fontFamily;
+    $('chq-fontSize').value = state.settings.fontSize;
+    $('chq-rotation').value = state.settings.rotation;
+    $('chq-alignment').value = state.settings.alignment;
+    $('chq-bold').checked = state.settings.bold;
+    $('chq-italic').checked = state.settings.italic;
+    $('chq-marginAdjust').value = state.settings.marginAdjust;
+    $('chq-printScale').value = state.settings.printScale;
+    $('chq-gridToggle').checked = state.settings.gridOn;
+    $('chq-guidelinesToggle').checked = state.settings.guidelinesOn;
+    refreshLayoutSelect();
+  }
+
+  function recomputeAmountWords() {
+    if (state.form.amountWordsManual) return;
+    var amt = E.parseAmount(state.form.amount);
+    var res = E.amountInWords(isNaN(amt) ? 0 : amt, { system: state.form.numberingSystem, currency: state.form.currency, includePaise: state.form.includePaise, roundOff: state.form.roundOff });
+    state.form.amountWords = res.text || '';
+    $('chq-amountWords').value = state.form.amountWords;
+  }
+
+  Object.keys(formFieldIds).forEach(function (key) {
+    var el = $(formFieldIds[key]);
+    if (!el) return;
+    el.addEventListener('input', function () {
+      pushUndo();
+      state.form[key] = el.type === 'checkbox' ? el.checked : el.value;
+      if (['amount', 'currency', 'numberingSystem', 'includePaise', 'roundOff'].indexOf(key) !== -1) recomputeAmountWords();
+      persist(); renderPreview(); renderSummary();
+    });
+  });
+  $('chq-amountWords').addEventListener('input', function () {
+    state.form.amountWordsManual = true; state.form.amountWords = $('chq-amountWords').value;
+    persist(); renderPreview();
+  });
+  $('chq-todayBtn').addEventListener('click', function () { state.form.date = new Date().toISOString().slice(0, 10); $('chq-date').value = state.form.date; persist(); renderPreview(); });
+
+  var settingsFieldIds = { hAdjust: 'chq-hAdjust', vAdjust: 'chq-vAdjust', charSpacing: 'chq-charSpacing', lineSpacing: 'chq-lineSpacing', fontFamily: 'chq-fontFamily', fontSize: 'chq-fontSize', rotation: 'chq-rotation', alignment: 'chq-alignment', bold: 'chq-bold', italic: 'chq-italic', marginAdjust: 'chq-marginAdjust', printScale: 'chq-printScale' };
+  Object.keys(settingsFieldIds).forEach(function (key) {
+    var el = $(settingsFieldIds[key]);
+    if (!el) return;
+    el.addEventListener('input', function () {
+      var val = el.type === 'checkbox' ? el.checked : (el.type === 'number' ? parseFloat(el.value) || 0 : el.value);
+      state.settings[key] = val; persist(); renderPreview();
+    });
+  });
+  $('chq-layoutSelect').addEventListener('change', function () { state.settings.layoutId = $('chq-layoutSelect').value; persist(); renderPreview(); });
+  $('chq-gridToggle').addEventListener('change', function () { state.settings.gridOn = $('chq-gridToggle').checked; persist(); renderPreview(); });
+  $('chq-guidelinesToggle').addEventListener('change', function () { state.settings.guidelinesOn = $('chq-guidelinesToggle').checked; persist(); });
+
+  /* ===================== Validation ===================== */
+  function runValidate() {
+    var result = E.validateChequeForm(state.form);
+    var errBox = $('chq-errList');
+    if (result.errors.length) {
+      errBox.style.display = 'block';
+      errBox.innerHTML = '<strong>Notes:</strong><ul>' + result.errors.map(function (e) { return '<li>' + esc(e) + '</li>'; }).join('') + '</ul>';
+    } else {
+      errBox.style.display = 'none'; errBox.innerHTML = '';
+    }
+    return result;
+  }
+  $('chq-validateBtn').addEventListener('click', function () {
+    var r = runValidate();
+    status(r.isValid ? 'Cheque details look valid.' : 'Please fix the highlighted issues.');
+    renderSummary();
+  });
+
+  /* ===================== Layout select / preview ===================== */
+  function refreshLayoutSelect() {
+    var sel = $('chq-layoutSelect'), base = $('chq-newLayoutBase');
+    [sel, base].forEach(function (s) { s.innerHTML = ''; });
+    Object.keys(state.layouts).forEach(function (id) {
+      var opt1 = document.createElement('option'); opt1.value = id; opt1.textContent = state.layouts[id].name + (state.layouts[id].builtIn ? ' (Built-in)' : ' (Custom)');
+      sel.appendChild(opt1);
+      var opt2 = opt1.cloneNode(true); base.appendChild(opt2);
+    });
+    sel.value = state.layouts[state.settings.layoutId] ? state.settings.layoutId : 'standard';
+  }
+
+  var FIELD_LABELS = { date: 'DATE', payeeName: 'PAY: {payeeName}', amountWords: '{amountWords}', amountNumber: '{currency} {amountNumber}', accountNumber: 'A/C: {accountNumber}', chequeNumber: 'Chq#: {chequeNumber}', memo: 'Memo: {memo}' };
+
+  function currentLayout() { return state.layouts[state.settings.layoutId] || state.layouts.standard; }
+
+  function fieldDisplayValue(key) {
+    var amt = E.parseAmount(state.form.amount);
+    var map = {
+      date: state.form.date ? new Date(state.form.date + 'T00:00:00').toLocaleDateString('en-GB') : '',
+      payeeName: state.form.payeeName || '',
+      amountWords: state.form.amountWords || '',
+      amountNumber: isNaN(amt) ? '' : fmtNum(amt, state.form.currency),
+      accountNumber: state.form.accountNumber || '',
+      chequeNumber: state.form.chequeNumber || '',
+      memo: state.form.memo || ''
+    };
+    switch (key) {
+      case 'date': return map.date;
+      case 'payeeName': return map.payeeName ? 'PAY: ' + map.payeeName : 'PAY: ______________________';
+      case 'amountWords': return map.amountWords || '';
+      case 'amountNumber': return map.amountNumber || '';
+      case 'accountNumber': return map.accountNumber ? 'A/C: ' + map.accountNumber : '';
+      case 'chequeNumber': return map.chequeNumber || '';
+      case 'memo': return map.memo ? 'Memo: ' + map.memo : '';
+      default: return '';
+    }
+  }
+
+  var dragCtx = null;
+
+  function renderPreview() {
+    var layout = currentLayout();
+    var box = $('chq-chequeBox');
+    var zoom = state.settings.zoom || 1;
+    box.style.width = layout.pageWidthMm + 'mm';
+    box.style.height = layout.pageHeightMm + 'mm';
+    box.style.transform = 'scale(' + zoom + ')';
+    box.classList.toggle('chq-grid-on', !!state.settings.gridOn);
+    box.innerHTML = '';
+
+    if (state.form.chequeType === 'crossed' || state.form.chequeType === 'acPayee') {
+      var cross = document.createElement('div'); cross.className = 'chq-crossLines'; box.appendChild(cross);
+      if (state.form.chequeType === 'acPayee') {
+        var acDiv = document.createElement('div'); acDiv.className = 'chq-acPayee'; acDiv.textContent = 'A/C PAYEE ONLY'; box.appendChild(acDiv);
+      }
+    }
+
+    var warnings = [];
+    E.DEFAULT_FIELD_KEYS.forEach(function (key) {
+      var pos = layout.fields[key] || { x: 10, y: 10 };
+      var x = pos.x + (key === 'date' || key === 'amountNumber' ? state.settings.hAdjust : state.settings.hAdjust);
+      var y = pos.y + state.settings.vAdjust;
+      if (x < 0 || y < 0 || x > layout.pageWidthMm || y > layout.pageHeightMm) warnings.push(key);
+
+      var el = document.createElement('div');
+      el.className = 'chq-fld'; el.dataset.field = key; el.tabIndex = 0;
+      el.style.left = x + 'mm'; el.style.top = y + 'mm';
+      el.style.fontFamily = state.settings.fontFamily;
+      el.style.fontSize = state.settings.fontSize + 'mm';
+      el.style.letterSpacing = state.settings.charSpacing + 'px';
+      el.style.lineHeight = state.settings.lineSpacing;
+      el.style.fontWeight = state.settings.bold ? '700' : '400';
+      el.style.fontStyle = state.settings.italic ? 'italic' : 'normal';
+      el.style.textAlign = state.settings.alignment;
+      el.style.transform = 'rotate(' + state.settings.rotation + 'deg)';
+      el.textContent = fieldDisplayValue(key);
+      el.setAttribute('aria-label', key);
+      attachDrag(el, key, layout);
+      box.appendChild(el);
+    });
+
+    var warnBox = $('chq-boundaryWarning');
+    if (warnings.length) {
+      warnBox.style.display = 'block';
+      warnBox.textContent = 'Print Boundary Warning: these fields fall outside the cheque page area — ' + warnings.join(', ');
+    } else { warnBox.style.display = 'none'; warnBox.textContent = ''; }
+
+    $('chq-zoomLevel').textContent = Math.round(zoom * 100) + '%';
+  }
+
+  function attachDrag(el, key, layout) {
+    el.addEventListener('pointerdown', function (ev) {
+      ev.preventDefault();
+      el.classList.add('chq-dragging');
+      var box = $('chq-chequeBox');
+      var pxPerMm = (box.getBoundingClientRect().width / (state.settings.zoom || 1)) / layout.pageWidthMm;
+      dragCtx = { key: key, startX: ev.clientX, startY: ev.clientY, origX: layout.fields[key].x, origY: layout.fields[key].y, pxPerMm: pxPerMm };
+      el.setPointerCapture(ev.pointerId);
+    });
+    el.addEventListener('pointermove', function (ev) {
+      if (!dragCtx || dragCtx.key !== key) return;
+      var dxMm = (ev.clientX - dragCtx.startX) / dragCtx.pxPerMm;
+      var dyMm = (ev.clientY - dragCtx.startY) / dragCtx.pxPerMm;
+      layout.fields[key] = { x: +(dragCtx.origX + dxMm).toFixed(1), y: +(dragCtx.origY + dyMm).toFixed(1) };
+      renderPreview();
+    });
+    ['pointerup', 'pointercancel'].forEach(function (evt) {
+      el.addEventListener(evt, function () {
+        if (dragCtx && dragCtx.key === key) {
+          dragCtx = null;
+          if (!layout.builtIn) { state.layouts[layout.id] = layout; persist(); }
+          else { status('Drag positions on built-in layouts apply to this session only — create a custom layout to save permanently.'); }
+        }
+      });
+    });
+  }
+
+  $('chq-zoomInBtn').addEventListener('click', function () { state.settings.zoom = Math.min(3, (state.settings.zoom || 1) + 0.1); persist(); renderPreview(); });
+  $('chq-zoomOutBtn').addEventListener('click', function () { state.settings.zoom = Math.max(0.3, (state.settings.zoom || 1) - 0.1); persist(); renderPreview(); });
+
+  /* ===================== Summary / flags ===================== */
+  function renderSummary() {
+    var amt = E.parseAmount(state.form.amount);
+    var cards = [
+      { label: 'Payee', value: state.form.payeeName || '—' },
+      { label: 'Amount', value: isNaN(amt) ? '—' : fmtNum(amt, state.form.currency) },
+      { label: 'Cheque Type', value: { bearer: 'Bearer', crossed: 'Crossed', acPayee: 'A/C Payee Only' }[state.form.chequeType] || 'Bearer' },
+      { label: 'Print Copies', value: state.form.printCopies || 1 }
+    ];
+    $('chq-summaryCards').innerHTML = cards.map(function (c) {
+      return '<div class="stat-box"><div class="num">' + esc(c.value) + '</div><div class="lbl">' + esc(c.label) + '</div></div>';
+    }).join('');
+
+    var v = E.validateChequeForm(state.form);
+    $('chq-resultFlags').innerHTML = '<span class="chq-flag ' + (v.isValid ? 'ok' : 'warn') + '">' + (v.isValid ? '✓ Ready to print' : '⚠ ' + v.errors.length + ' issue(s)') + '</span>';
+  }
+
+  /* ===================== Layout Manager ===================== */
+  function renderLayoutTable() {
+    var tbody = $('chq-layoutTbody');
+    tbody.innerHTML = Object.keys(state.layouts).map(function (id) {
+      var l = state.layouts[id];
+      return '<tr data-id="' + id + '"><td>' + esc(l.name) + '</td><td>' + (l.builtIn ? '<span class="chq-badge" style="background:rgba(124,92,252,.2);color:#c4b5fd">Built-in</span>' : '<span class="chq-badge" style="background:rgba(22,192,121,.2);color:#7ef0bd">Custom</span>') + '</td><td>' + l.pageWidthMm + ' × ' + l.pageHeightMm + '</td><td>' +
+        '<button class="btn secondary chq-mini chq-layoutUse" data-id="' + id + '">Use</button> ' +
+        '<button class="btn secondary chq-mini chq-layoutDup" data-id="' + id + '">Duplicate</button> ' +
+        (l.builtIn ? '' : '<button class="btn secondary chq-mini chq-layoutDel" data-id="' + id + '">Delete</button>') +
+        '</td></tr>';
+    }).join('');
+    tbody.querySelectorAll('.chq-layoutUse').forEach(function (b) { b.addEventListener('click', function () { state.settings.layoutId = b.dataset.id; persist(); refreshLayoutSelect(); renderPreview(); status('Active layout switched.'); }); });
+    tbody.querySelectorAll('.chq-layoutDup').forEach(function (b) { b.addEventListener('click', function () { var r = E.duplicateLayout(state.layouts, b.dataset.id); state.layouts = r.layouts; persist(); renderLayoutTable(); refreshLayoutSelect(); status('Layout duplicated.'); }); });
+    tbody.querySelectorAll('.chq-layoutDel').forEach(function (b) { b.addEventListener('click', function () { if (confirm('Delete this layout?')) { state.layouts = E.deleteLayout(state.layouts, b.dataset.id); if (state.settings.layoutId === b.dataset.id) state.settings.layoutId = 'standard'; persist(); renderLayoutTable(); refreshLayoutSelect(); renderPreview(); } }); });
+  }
+  $('chq-createLayoutBtn').addEventListener('click', function () {
+    var name = $('chq-newLayoutName').value.trim() || 'Untitled Layout';
+    var base = $('chq-newLayoutBase').value;
+    var r = E.createLayout(state.layouts, name, base);
+    state.layouts = r.layouts; state.settings.layoutId = r.id; persist();
+    renderLayoutTable(); refreshLayoutSelect(); renderPreview();
+    $('chq-newLayoutName').value = '';
+    status('New layout "' + name + '" created and activated.');
+  });
+  $('chq-exportLayoutBtn').addEventListener('click', function () {
+    var l = currentLayout();
+    var blob = new Blob([E.exportLayout(l)], { type: 'application/json' });
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'cheque-layout-' + l.id + '.json'; a.click();
+  });
+  $('chq-importLayoutFile').addEventListener('change', function (ev) {
+    var file = ev.target.files[0]; if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      var r = E.importLayout(reader.result);
+      if (r.error) { status('Import failed: ' + r.error); return; }
+      var created = E.createLayout(state.layouts, r.layout.name || 'Imported Layout', null);
+      state.layouts[created.id] = Object.assign({}, r.layout, { id: created.id, builtIn: false, name: r.layout.name || 'Imported Layout' });
+      state.settings.layoutId = created.id; persist();
+      renderLayoutTable(); refreshLayoutSelect(); renderPreview();
+      status('Layout imported and activated.');
+    };
+    reader.readAsText(file);
+  });
+
+  /* ===================== Records ===================== */
+  function renderRecords() {
+    var filtered = E.searchRecords(state.records, $('chq-recordSearch').value);
+    filtered = E.filterRecords(filtered, { favouritesOnly: $('chq-filterFavOnly').checked, dateFrom: $('chq-filterDateFrom').value, dateTo: $('chq-filterDateTo').value });
+    filtered = E.sortRecords(filtered, $('chq-sortKey').value, $('chq-sortDir').value);
+    var tbody = $('chq-recordsTbody');
+    tbody.innerHTML = filtered.map(function (r) {
+      var amt = E.parseAmount(r.amount);
+      return '<tr data-id="' + r.id + '"><td><input type="checkbox" class="chq-recSelect" data-id="' + r.id + '" ' + (selectedRecordIds[r.id] ? 'checked' : '') + '></td>' +
+        '<td><span class="chq-star chq-favToggle" data-id="' + r.id + '">' + (r.favourite ? '★' : '☆') + '</span></td>' +
+        '<td>' + esc(r.date || '') + '</td><td>' + esc(r.payeeName || '') + '</td><td>' + (isNaN(amt) ? '' : fmtNum(amt, r.currency)) + '</td>' +
+        '<td>' + esc(r.chequeNumber || '') + '</td><td>' + esc({ bearer: 'Bearer', crossed: 'Crossed', acPayee: 'A/C Payee' }[r.chequeType] || 'Bearer') + '</td>' +
+        '<td><button class="btn secondary chq-mini chq-recLoad" data-id="' + r.id + '">Load</button> <button class="btn secondary chq-mini chq-recDup" data-id="' + r.id + '">Duplicate</button> <button class="btn secondary chq-mini chq-recDel" data-id="' + r.id + '">Delete</button></td></tr>';
+    }).join('') || '<tr><td colspan="8" class="chq-muted">No records saved yet.</td></tr>';
+
+    tbody.querySelectorAll('.chq-recSelect').forEach(function (cb) { cb.addEventListener('change', function () { selectedRecordIds[cb.dataset.id] = cb.checked; }); });
+    tbody.querySelectorAll('.chq-favToggle').forEach(function (s) { s.addEventListener('click', function () { var rec = state.records.find(function (x) { return x.id === s.dataset.id; }); state.records = E.updateRecord(state.records, s.dataset.id, { favourite: !rec.favourite }); persist(); renderRecords(); }); });
+    tbody.querySelectorAll('.chq-recLoad').forEach(function (b) { b.addEventListener('click', function () { loadRecordIntoForm(b.dataset.id); }); });
+    tbody.querySelectorAll('.chq-recDup').forEach(function (b) { b.addEventListener('click', function () { state.records = E.duplicateRecord(state.records, b.dataset.id); persist(); renderRecords(); status('Record duplicated.'); }); });
+    tbody.querySelectorAll('.chq-recDel').forEach(function (b) { b.addEventListener('click', function () { if (confirm('Delete this record?')) { state.records = E.deleteRecord(state.records, b.dataset.id); persist(); renderRecords(); } }); });
+
+    renderPrintHistory();
+    renderRecentChips();
+  }
+  function loadRecordIntoForm(id) {
+    var rec = state.records.find(function (r) { return r.id === id; });
+    if (!rec) return;
+    pushUndo();
+    Object.keys(formFieldIds).forEach(function (key) { if (rec[key] !== undefined) state.form[key] = rec[key]; });
+    state.form.amountWordsManual = true; state.form.amountWords = rec.amountWords || '';
+    loadFormIntoUI(); persist(); renderPreview(); renderSummary();
+    status('Record loaded into form.');
+  }
+  ['chq-recordSearch', 'chq-filterFavOnly', 'chq-filterDateFrom', 'chq-filterDateTo', 'chq-sortKey', 'chq-sortDir'].forEach(function (id) {
+    $(id).addEventListener('input', renderRecords); $(id).addEventListener('change', renderRecords);
+  });
+  $('chq-selectAllRecords').addEventListener('change', function (ev) {
+    var checked = ev.target.checked;
+    document.querySelectorAll('.chq-recSelect').forEach(function (cb) { cb.checked = checked; selectedRecordIds[cb.dataset.id] = checked; });
+  });
+
+  function renderPrintHistory() {
+    var tbody = $('chq-printHistoryTbody');
+    tbody.innerHTML = state.printHistory.slice().reverse().slice(0, 50).map(function (h) {
+      return '<tr><td>' + esc(new Date(h.at).toLocaleString()) + '</td><td>' + esc(h.payeeName) + '</td><td>' + fmtNum(h.amount, h.currency) + '</td><td>' + h.copies + '</td></tr>';
+    }).join('') || '<tr><td colspan="4" class="chq-muted">No print history yet.</td></tr>';
+  }
+  function renderRecentChips() {
+    $('chq-recentPayees').innerHTML = state.recentPayees.slice(-8).reverse().map(function (p) { return '<span class="chq-chip chq-chipPayee" data-v="' + esc(p) + '">👤 ' + esc(p) + '</span>'; }).join('');
+    $('chq-recentAmounts').innerHTML = state.recentAmounts.slice(-8).reverse().map(function (a) { return '<span class="chq-chip chq-chipAmount" data-v="' + esc(a) + '">💰 ' + esc(a) + '</span>'; }).join('');
+    document.querySelectorAll('.chq-chipPayee').forEach(function (c) { c.addEventListener('click', function () { state.form.payeeName = c.dataset.v; $('chq-payeeName').value = c.dataset.v; persist(); renderPreview(); }); });
+    document.querySelectorAll('.chq-chipAmount').forEach(function (c) { c.addEventListener('click', function () { state.form.amount = c.dataset.v; $('chq-amount').value = c.dataset.v; recomputeAmountWords(); persist(); renderPreview(); }); });
+  }
+
+  function addRecent(list, value) {
+    if (!value) return list;
+    list = list.filter(function (v) { return v !== value; });
+    list.push(value);
+    return list.slice(-8);
+  }
+
+  $('chq-saveRecordBtn').addEventListener('click', saveRecord);
+  $('chq-stickySaveBtn').addEventListener('click', saveRecord);
+  function saveRecord() {
+    var v = runValidate();
+    if (!v.isValid) { status('Fix validation errors before saving.'); return; }
+    var rec = E.createRecord(Object.assign({}, state.form, { layoutId: state.settings.layoutId }));
+    state.records.push(rec);
+    state.recentPayees = addRecent(state.recentPayees, state.form.payeeName);
+    state.recentAmounts = addRecent(state.recentAmounts, state.form.amount);
+    persist(); renderRecords();
+    status('Record saved.');
+  }
+
+  /* ===================== Import/Export records ===================== */
+  $('chq-exportCsvBtn').addEventListener('click', function () {
+    var rows = [['Date', 'Payee', 'Amount', 'Currency', 'Cheque Number', 'Account Number', 'Type', 'Memo']];
+    state.records.forEach(function (r) { rows.push([r.date, r.payeeName, r.amount, r.currency, r.chequeNumber, r.accountNumber, r.chequeType, r.memo]); });
+    var csv = rows.map(function (row) { return row.map(function (c) { return '"' + String(c == null ? '' : c).replace(/"/g, '""') + '"'; }).join(','); }).join('\n');
+    var blob = new Blob([csv], { type: 'text/csv' });
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'cheque-records.csv'; a.click();
+  });
+  $('chq-exportExcelBtn').addEventListener('click', function () {
+    var data = state.records.map(function (r) { return { Date: r.date, Payee: r.payeeName, Amount: r.amount, Currency: r.currency, ChequeNumber: r.chequeNumber, AccountNumber: r.accountNumber, Type: r.chequeType, Memo: r.memo }; });
+    var ws = XLSX.utils.json_to_sheet(data);
+    var wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Records');
+    XLSX.writeFile(wb, 'cheque-records.xlsx');
+  });
+  $('chq-exportPdfBtn').addEventListener('click', function () {
+    var el = $('chq-paneRecords');
+    html2pdf().set({ margin: 10, filename: 'cheque-records.pdf', html2canvas: { scale: 2 } }).from(el).save();
+  });
+  $('chq-backupJsonBtn').addEventListener('click', function () {
+    var backup = { form: state.form, settings: state.settings, layouts: state.layouts, records: state.records, printHistory: state.printHistory };
+    var blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'cheque-backup.json'; a.click();
+  });
+  $('chq-restoreJsonFile').addEventListener('change', function (ev) {
+    var file = ev.target.files[0]; if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function () {
+      try {
+        var data = JSON.parse(reader.result);
+        if (data.layouts) state.layouts = data.layouts;
+        if (data.records) state.records = data.records;
+        if (data.printHistory) state.printHistory = data.printHistory;
+        if (data.settings) state.settings = data.settings;
+        if (data.form) state.form = data.form;
+        persist(); loadFormIntoUI(); loadSettingsIntoUI(); renderLayoutTable(); renderRecords(); renderPreview(); renderSummary();
+        status('Backup restored successfully.');
+      } catch (e) { status('Restore failed: invalid JSON file.'); }
+    };
+    reader.readAsText(file);
+  });
+
+  /* ===================== Print ===================== */
+  function buildPrintPages(records) {
+    var area = $('chq-printArea');
+    area.innerHTML = '';
+    var pageStyle = document.getElementById('chq-pageSizeStyle');
+    if (pageStyle) pageStyle.remove();
+    var layout = currentLayout();
+    var styleTag = document.createElement('style'); styleTag.id = 'chq-pageSizeStyle';
+    styleTag.textContent = '@page{size:' + layout.pageWidthMm + 'mm ' + layout.pageHeightMm + 'mm;margin:' + state.settings.marginAdjust + 'mm}';
+    document.head.appendChild(styleTag);
+
+    var list = records && records.length ? records : [Object.assign({}, state.form)];
+    var copiesEach = records && records.length ? 1 : (parseInt(state.form.printCopies, 10) || 1);
+
+    list.forEach(function (rec) {
+      var l = state.layouts[rec.layoutId] || layout;
+      for (var c = 0; c < copiesEach; c++) {
+        var box = document.createElement('div');
+        box.className = 'chq-chequeBox';
+        box.style.width = l.pageWidthMm + 'mm'; box.style.height = l.pageHeightMm + 'mm';
+        box.style.transform = 'none'; box.style.position = 'relative'; box.style.margin = '0 auto 6mm';
+        if (rec.chequeType === 'crossed' || rec.chequeType === 'acPayee') {
+          var cross = document.createElement('div'); cross.className = 'chq-crossLines'; box.appendChild(cross);
+          if (rec.chequeType === 'acPayee') { var ac = document.createElement('div'); ac.className = 'chq-acPayee'; ac.textContent = 'A/C PAYEE ONLY'; box.appendChild(ac); }
+        }
+        E.DEFAULT_FIELD_KEYS.forEach(function (key) {
+          var pos = l.fields[key] || { x: 10, y: 10 };
+          var x = pos.x + state.settings.hAdjust, y = pos.y + state.settings.vAdjust;
+          var el = document.createElement('div');
+          el.className = 'chq-fld'; el.style.left = x + 'mm'; el.style.top = y + 'mm';
+          el.style.fontFamily = state.settings.fontFamily; el.style.fontSize = state.settings.fontSize + 'mm';
+          el.style.letterSpacing = state.settings.charSpacing + 'px'; el.style.lineHeight = state.settings.lineSpacing;
+          el.style.fontWeight = state.settings.bold ? '700' : '400'; el.style.fontStyle = state.settings.italic ? 'italic' : 'normal';
+          el.style.textAlign = state.settings.alignment; el.style.transform = 'rotate(' + state.settings.rotation + 'deg) scale(' + (state.settings.printScale / 100) + ')';
+          var amt = E.parseAmount(rec.amount);
+          var map = { date: rec.date ? new Date(rec.date + 'T00:00:00').toLocaleDateString('en-GB') : '', payeeName: rec.payeeName ? 'PAY: ' + rec.payeeName : '', amountWords: rec.amountWords || '', amountNumber: isNaN(amt) ? '' : fmtNum(amt, rec.currency), accountNumber: rec.accountNumber ? 'A/C: ' + rec.accountNumber : '', chequeNumber: rec.chequeNumber || '', memo: rec.memo ? 'Memo: ' + rec.memo : '' };
+          el.textContent = map[key] || '';
+          box.appendChild(el);
+        });
+        area.appendChild(box);
+        state.printHistory.push({ at: new Date().toISOString(), payeeName: rec.payeeName, amount: E.parseAmount(rec.amount), currency: rec.currency, copies: copiesEach });
+      }
+    });
+    persist();
+  }
+
+  $('chq-printBtn').addEventListener('click', function () {
+    var v = runValidate();
+    if (!v.isValid) { status('Fix validation errors before printing.'); return; }
+    buildPrintPages(null);
+    window.print();
+    renderRecords();
+  });
+  $('chq-stickyPrintBtn').addEventListener('click', function () { $('chq-printBtn').click(); });
+  $('chq-printPreviewBtn').addEventListener('click', function () {
+    resultTabs.forEach(function (p) { $(p[0]).classList.remove('active'); $(p[1]).classList.remove('active'); });
+    $('chq-tabPreview').classList.add('active'); $('chq-panePreview').classList.add('active');
+    renderPreview();
+    status('Showing live preview — check alignment before printing.');
+  });
+  $('chq-printSelectedBtn').addEventListener('click', function () {
+    var ids = Object.keys(selectedRecordIds).filter(function (id) { return selectedRecordIds[id]; });
+    if (!ids.length) { status('Select at least one record to print.'); return; }
+    var recs = state.records.filter(function (r) { return ids.indexOf(r.id) !== -1; });
+    buildPrintPages(recs);
+    window.print();
+    renderRecords();
+  });
+
+  /* ===================== Undo/Redo/Copy/Paste/Reset ===================== */
+  function applySnapshot(snap) {
+    var data = JSON.parse(snap);
+    state.form = data.form; state.settings = data.settings;
+    loadFormIntoUI(); loadSettingsIntoUI(); recomputeAmountWords(); persist(); renderPreview(); renderSummary();
+  }
+  $('chq-undoBtn').addEventListener('click', function () {
+    if (!undoStack.length) { status('Nothing to undo.'); return; }
+    redoStack.push(snapshot());
+    applySnapshot(undoStack.pop());
+    status('Undo applied.');
+  });
+  $('chq-redoBtn').addEventListener('click', function () {
+    if (!redoStack.length) { status('Nothing to redo.'); return; }
+    undoStack.push(snapshot());
+    applySnapshot(redoStack.pop());
+    status('Redo applied.');
+  });
+  $('chq-copyBtn').addEventListener('click', function () {
+    var data = JSON.stringify(state.form);
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(data).then(function () { status('Cheque data copied to clipboard.'); }).catch(function () { status('Copy failed — clipboard permission denied.'); });
+  });
+  $('chq-pasteBtn').addEventListener('click', function () {
+    if (!navigator.clipboard || !navigator.clipboard.readText) { status('Clipboard read not supported in this browser.'); return; }
+    navigator.clipboard.readText().then(function (text) {
+      try {
+        var data = JSON.parse(text);
+        pushUndo();
+        state.form = Object.assign({}, state.form, data);
+        loadFormIntoUI(); persist(); renderPreview(); renderSummary();
+        status('Cheque data pasted.');
+      } catch (e) { status('Clipboard does not contain valid cheque data.'); }
+    }).catch(function () { status('Paste failed — clipboard permission denied.'); });
+  });
+  $('chq-resetBtn').addEventListener('click', function () {
+    if (!confirm('Reset the current cheque form? Saved records and layouts are kept.')) return;
+    pushUndo();
+    state.form = { date: new Date().toISOString().slice(0, 10), payeeName: '', amount: '', amountWords: '', amountWordsManual: false, chequeNumber: '', accountNumber: '', memo: '', currency: 'INR', numberingSystem: 'indian', includePaise: true, roundOff: false, chequeType: 'bearer', printCopies: 1 };
+    loadFormIntoUI(); persist(); renderPreview(); renderSummary();
+    status('Form reset.');
+  });
+  $('chq-clearAllBtn').addEventListener('click', function () {
+    if (!confirm('Clear ALL data — form, records, custom layouts and history? This cannot be undone.')) return;
+    localStorage.removeItem('chq_form'); localStorage.removeItem('chq_settings'); localStorage.removeItem('chq_layouts');
+    localStorage.removeItem('chq_records'); localStorage.removeItem('chq_printHistory'); localStorage.removeItem('chq_recentPayees'); localStorage.removeItem('chq_recentAmounts');
+    location.reload();
+  });
+
+  /* ===================== Share / Copy link ===================== */
+  function updateShareLinks() {
+    var url = encodeURIComponent(location.href);
+    var text = encodeURIComponent('Print cheques quickly and privately with this free Cheque Printing Tool:');
+    $('chq-shareWhatsapp').href = 'https://wa.me/?text=' + text + '%20' + url;
+    $('chq-shareFacebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + url;
+    $('chq-shareLinkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + url;
+    $('chq-shareTwitter').href = 'https://twitter.com/intent/tweet?text=' + text + '&url=' + url;
+  }
+  $('chq-copyLinkBtn').addEventListener('click', function () {
+    navigator.clipboard.writeText(location.href).then(function () { status('Link copied to clipboard.'); });
+  });
+
+  /* ===================== Tools: calculator / quick amount-to-words ===================== */
+  var calcExpr = '';
+  function renderCalcGrid() {
+    var keys = ['7', '8', '9', '/', '4', '5', '6', '*', '1', '2', '3', '-', '0', '.', '=', '+', 'C'];
+    $('chq-calcGrid').innerHTML = keys.map(function (k) { return '<button data-k="' + k + '">' + k + '</button>'; }).join('');
+    $('chq-calcGrid').querySelectorAll('button').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var k = b.dataset.k;
+        if (k === 'C') { calcExpr = ''; }
+        else if (k === '=') {
+          try { calcExpr = String(Function('"use strict"; return (' + calcExpr.replace(/[^0-9+\-*/.() ]/g, '') + ')')()); }
+          catch (e) { calcExpr = 'Error'; }
+        } else { calcExpr += k; }
+        $('chq-calcDisplay').textContent = calcExpr || '0';
+      });
+    });
+  }
+  $('chq-calcInsertBtn').addEventListener('click', function () {
+    var val = parseFloat(calcExpr);
+    if (!isNaN(val)) { state.form.amount = String(val); $('chq-amount').value = val; recomputeAmountWords(); persist(); renderPreview(); renderSummary(); status('Calculator result inserted into Amount.'); }
+  });
+  function renderQuickWords() {
+    var amt = E.parseAmount($('chq-quickAmount').value);
+    var res = E.amountInWords(isNaN(amt) ? 0 : amt, { system: $('chq-quickSystem').value, currency: 'INR' });
+    $('chq-quickWordsResult').textContent = res.text || '';
+  }
+  $('chq-quickAmount').addEventListener('input', renderQuickWords);
+  $('chq-quickSystem').addEventListener('change', renderQuickWords);
+
+  /* ===================== Theme / Language ===================== */
+  function applyTheme(t) {
+    document.body.classList.remove('chq-light');
+    if (t === 'auto') t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    if (t === 'light') document.body.classList.add('chq-light');
+    lsSet('chq_theme', $('chq-theme').value);
+  }
+  $('chq-theme').value = lsGet('chq_theme', 'dark');
+  applyTheme($('chq-theme').value);
+  $('chq-theme').addEventListener('change', function () { applyTheme($('chq-theme').value); });
+
+  var I18N = {
+    en: { validateBtn: '✅ Validate', printBtn: '🖨️ Print Cheque' },
+    hi: { validateBtn: '✅ जाँचें', printBtn: '🖨️ चेक प्रिंट करें' }
+  };
+  function applyLang(lang) {
+    var t = I18N[lang] || I18N.en;
+    $('chq-validateBtn').textContent = t.validateBtn;
+    $('chq-printBtn').textContent = t.printBtn;
+    lsSet('chq_lang', lang);
+  }
+  $('chq-language').value = lsGet('chq_lang', 'en');
+  applyLang($('chq-language').value);
+  $('chq-language').addEventListener('change', function () { applyLang($('chq-language').value); });
+
+  /* ===================== Init ===================== */
+  loadFormIntoUI();
+  loadSettingsIntoUI();
+  recomputeAmountWords();
+  renderCalcGrid();
+  renderQuickWords();
+  updateShareLinks();
+  renderPreview();
+  renderSummary();
+  renderLayoutTable();
+  renderRecords();
+  $('chq-todayDisplay').textContent = new Date().toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  status('Ready.');
+})();
+</script>
+</body>
+</html>
