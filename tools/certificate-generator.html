@@ -5,42 +5,119 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://apnesoftware.com/tools/certificate-generator.html">
+<meta name="description" content="Free Professional Bulk Certificate & ID Card Generator. Upload a template or pick a built-in design, drag text/QR/barcode/photo fields, import a CSV/XLSX and export hundreds of personalised certificates or ID cards as PDF, PNG, JPG, ZIP or SVG — 100% in your browser, no upload.">
+<meta name="keywords" content="bulk certificate generator, id card generator, certificate maker csv, mail merge certificate, qr code certificate, barcode id card, student id generator, employee id card maker, event pass generator, certificate pdf bulk">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Certificate / ID Card Generator (Bulk) | ApneSoftware">
-<meta property="og:description" content="Bulk-generate certificates from a CSV. Free online tool — no signup required.">
+<meta property="og:title" content="Professional Bulk Certificate & ID Card Generator | ApneSoftware">
+<meta property="og:description" content="Design once, generate thousands. Drag text, QR, barcode & photo fields, import a CSV/XLSX and export certificates or ID cards as PDF/PNG/JPG/ZIP/SVG. 100% browser-based & private.">
 <meta property="og:url" content="https://apnesoftware.com/tools/certificate-generator.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Certificate / ID Card Generator (Bulk) | ApneSoftware">
-<meta name="twitter:description" content="Bulk-generate certificates from a CSV. Free online tool — no signup required.">
+<meta name="twitter:title" content="Professional Bulk Certificate & ID Card Generator | ApneSoftware">
+<meta name="twitter:description" content="Design once, generate thousands from a CSV/XLSX. QR, barcode, photo & signature fields. Export PDF/PNG/JPG/ZIP/SVG. Private & browser-based.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Certificate/ID Card Generator","description":"Bulk-generate certificates from a CSV. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/certificate-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Professional Bulk Certificate & ID Card Generator","description":"Design a certificate or ID card, place text, QR code, barcode, photo and signature fields, import a CSV/TSV/XLSX and bulk-export personalised documents as PDF, PNG, JPG, ZIP or SVG. Runs entirely in the browser.","url":"https://apnesoftware.com/tools/certificate-generator.html","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Drag & drop canvas field editor","Text, QR code, barcode, photo and signature fields","CSV, TSV and XLSX import with auto-mapping and validation","Built-in certificate and ID card template library","Bulk export to PDF, PNG, JPG, ZIP and SVG","A4/A5/Letter print sizes with crop marks"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
 <meta name="color-scheme" content="dark">
-<title>Certificate / ID Card Generator (Bulk) | ApneSoftware</title>
+<title>Professional Bulk Certificate & ID Card Generator | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
+/* ===== Certificate & ID Card Generator — scoped cert- prefix ===== */
 .dropzone{cursor:pointer}
 .dropzone p{font-size:.9rem}
 .panel{position:relative;z-index:1}
-</style>
-<style>
-  .stage{position:relative;display:inline-block;max-width:100%;margin-top:14px;touch-action:none;border:1px solid var(--border);border-radius:8px;overflow:hidden}
-  .stage img{display:block;max-width:100%;user-select:none;-webkit-user-drag:none}
-  .field-marker{
-    position:absolute;cursor:move;padding:2px 8px;border:1px dashed #7C5CFC;background:rgba(124,92,252,.12);
-    white-space:nowrap;transform:translate(-50%,-50%);font-family:Arial,sans-serif;
-  }
-  .field-list-item{
-    background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:10px;
-  }
-  .field-list-item .removeFieldBtn{float:right;background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);cursor:pointer;padding:3px 8px;font-size:.78rem}
-  .color-row{display:flex;align-items:center;gap:10px}
-  .color-row input[type=color]{width:40px;height:34px;padding:2px;border-radius:6px}
-  .csv-headers{font-size:.78rem;color:var(--text-dim);margin-top:6px}
+
+.cert-step-title{font-size:.95rem;margin:0 0 8px;font-weight:700;display:flex;align-items:center;gap:7px}
+.cert-templates{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px;margin:10px 0 4px}
+.cert-tpl{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:8px;cursor:pointer;text-align:center;transition:.15s}
+.cert-tpl:hover{border-color:var(--accent,#7c5cfc);background:rgba(124,92,252,.12);transform:translateY(-1px)}
+.cert-tpl canvas{width:100%;height:auto;border-radius:6px;display:block;background:#fff}
+.cert-tpl span{display:block;font-size:.72rem;margin-top:5px;color:var(--text-dim)}
+.cert-or{text-align:center;color:var(--text-dim);font-size:.8rem;margin:8px 0}
+
+/* Editor layout */
+.cert-editor{display:grid;grid-template-columns:1fr 300px;gap:14px;margin-top:8px}
+@media (max-width:900px){ .cert-editor{grid-template-columns:1fr} }
+.cert-canvas-wrap{position:relative;background:#0d0d16;border:1px solid var(--border);border-radius:12px;overflow:hidden;min-height:260px;display:flex;align-items:center;justify-content:center}
+#stage{position:relative;max-width:100%;display:inline-block;line-height:0}
+#certCanvas{display:block;max-width:100%;height:auto;touch-action:none;cursor:crosshair}
+#templateImg{display:none}
+
+.cert-toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:8px}
+.cert-btn{font-size:.76rem;padding:6px 10px;border-radius:7px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text);cursor:pointer;white-space:nowrap}
+.cert-btn:hover{background:rgba(124,92,252,.18)}
+.cert-btn.active{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff}
+.cert-btn:disabled{opacity:.4;cursor:not-allowed}
+.cert-btn.sm{padding:5px 8px;font-size:.72rem}
+
+.cert-side{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:12px;max-height:70vh;overflow:auto}
+.cert-side h4{font-size:.82rem;margin:0 0 8px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-dim)}
+.cert-add-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.cert-fieldlist{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.cert-fitem{display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid var(--border);font-size:.78rem;cursor:pointer}
+.cert-fitem.sel{border-color:var(--accent,#7c5cfc);background:rgba(124,92,252,.14)}
+.cert-fitem .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cert-fitem button{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:.8rem;padding:0 2px}
+.cert-props .prow{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.cert-props label{font-size:.72rem;color:var(--text-dim);min-width:74px}
+.cert-props input[type=text],.cert-props input[type=number],.cert-props select,.cert-props input[type=url]{flex:1;min-width:0;font-size:.78rem;padding:5px 7px;border-radius:6px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)}
+.cert-props select option{background:#1a1a2e}
+.cert-props input[type=color]{width:34px;height:28px;padding:1px;border-radius:6px;border:1px solid var(--border);background:none}
+.cert-props input[type=range]{flex:1;accent-color:var(--accent,#7c5cfc)}
+.cert-chip-row{display:flex;gap:4px;flex-wrap:wrap}
+.cert-chip{font-size:.72rem;padding:4px 8px;border-radius:6px;border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.06));cursor:pointer;color:var(--text)}
+.cert-chip.on{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff}
+.cert-hint{font-size:.72rem;color:var(--text-dim);margin:4px 0}
+
+/* Data table */
+.cert-data{margin-top:16px}
+.cert-datatools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+.cert-search{font-size:.8rem;padding:7px 10px;border-radius:8px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text);min-width:180px}
+.cert-tablewrap{max-height:280px;overflow:auto;border:1px solid var(--border);border-radius:10px}
+.cert-table{border-collapse:collapse;width:100%;font-size:.78rem}
+.cert-table th,.cert-table td{border-bottom:1px solid var(--border);padding:6px 9px;text-align:left;white-space:nowrap}
+.cert-table th{position:sticky;top:0;background:#1a1a2e;z-index:1}
+.cert-table tr.dup td{background:rgba(239,68,68,.12)}
+.cert-table tr.warn td{background:rgba(245,158,11,.1)}
+.cert-badges{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.cert-badge{font-size:.74rem;padding:4px 10px;border-radius:20px;background:rgba(124,92,252,.14);border:1px solid rgba(124,92,252,.3)}
+.cert-badge.warn{background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.4);color:#f59e0b}
+.cert-badge.ok{background:rgba(22,192,121,.14);border-color:rgba(22,192,121,.4);color:#16c079}
+
+/* Export */
+.cert-export{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:14px;margin-top:16px}
+.cert-export .prow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.cert-export label{font-size:.76rem;color:var(--text-dim)}
+.cert-export select{font-size:.78rem;padding:6px 9px;border-radius:7px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)}
+.cert-progress{height:9px;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:8px;display:none}
+.cert-progress.show{display:block}
+.cert-progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7c5cfc,#16c079);transition:width .1s}
+.btn-lg{background:var(--accent,#7c5cfc);border:none;color:#fff;font-weight:700;padding:11px 20px;border-radius:9px;cursor:pointer;font-size:.9rem}
+.btn-lg:hover{filter:brightness(1.08)}
+
+/* Below-tool content */
+.cert-content h2{font-size:1.15rem;margin:26px 0 10px}
+.cert-content h3{font-size:1rem;margin:18px 0 8px}
+.cert-content p,.cert-content li{font-size:.92rem;line-height:1.72}
+.cert-content ul,.cert-content ol{padding-left:20px}
+.cert-fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:14px 0}
+.cert-fgrid .fc{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:14px}
+.cert-fgrid .fc b{display:block;margin-bottom:5px;font-size:.9rem}
+.cert-fgrid .fc span{font-size:.82rem;color:var(--text-dim);line-height:1.6}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin:12px 0}
+.related-grid a{display:flex;align-items:center;gap:9px;padding:12px 13px;border-radius:11px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.86rem;font-weight:500;transition:.15s}
+.related-grid a:hover{background:rgba(124,92,252,.16);border-color:var(--accent,#7c5cfc);transform:translateY(-1px)}
+.related-grid a .ri{font-size:1.15rem}
+.cert-faq details{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:11px;padding:2px 14px;margin-bottom:9px}
+.cert-faq summary{cursor:pointer;padding:12px 0;font-weight:600;font-size:.9rem;list-style:none}
+.cert-faq summary::-webkit-details-marker{display:none}
+.cert-faq summary::before{content:'＋';margin-right:9px;color:var(--accent,#7c5cfc);font-weight:700}
+.cert-faq details[open] summary::before{content:'－'}
+.cert-faq details p{padding:0 0 12px;margin:0;font-size:.87rem;color:var(--text-dim)}
+.cert-lang-note{font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:-4px}
+.cert-code{background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-family:ui-monospace,Consolas,monospace;font-size:.8rem;overflow-x:auto;white-space:pre}
 </style>
 </head>
 <body>
@@ -53,267 +130,978 @@
 
 <div class="container">
   <div class="tool-header">
-    <h1>🎓 Certificate / ID Card Generator</h1>
-    <p>Upload a template, position text fields, upload a CSV of names — get one PDF with everyone's certificate.</p>
+    <h1>🎓 Professional Bulk Certificate &amp; ID Card Generator</h1>
+    <p>Design once with drag-and-drop text, QR, barcode, photo &amp; signature fields — then merge a CSV/XLSX to export hundreds of personalised certificates or ID cards as PDF, PNG, JPG, ZIP or SVG. 100% in your browser.</p>
   </div>
 
   <div class="panel">
-    <h3 style="font-size:.95rem;margin-bottom:8px">1️⃣ Upload your certificate/ID template</h3>
+    <!-- Step 1: template -->
+    <h3 class="cert-step-title">1️⃣ Choose a template or upload your design</h3>
+    <div class="cert-templates" id="tplLibrary"></div>
+    <div class="cert-or">— or upload your own —</div>
     <div class="dropzone" id="templateDropzone">
-      <p>📤 Drag your certificate background image here or click to choose</p>
-      <input type="file" id="templateInput" accept="image/*">
+      <p>📤 Drag a certificate/ID background (JPG, PNG, WebP, SVG) here or click to choose</p>
+      <input type="file" id="templateInput" accept="image/*,.svg">
     </div>
 
-    <div id="afterTemplate" style="display:none;margin-top:18px">
-      <h3 style="font-size:.95rem;margin-bottom:8px">2️⃣ Position your text fields (drag to move)</h3>
-      <div class="stage" id="stage">
-        <img id="templateImg" alt="Template">
+    <!-- Step 2: editor -->
+    <div id="afterTemplate" style="display:none">
+      <h3 class="cert-step-title" style="margin-top:18px">2️⃣ Place &amp; style your fields</h3>
+
+      <div class="cert-toolbar">
+        <button class="cert-btn sm" id="undoBtn" title="Undo (Ctrl+Z)">↶ Undo</button>
+        <button class="cert-btn sm" id="redoBtn" title="Redo (Ctrl+Y)">↷ Redo</button>
+        <button class="cert-btn sm" id="dupBtn" title="Duplicate (Ctrl+D)">⧉ Duplicate</button>
+        <button class="cert-btn sm" id="delBtn" title="Delete (Del)">🗑 Delete</button>
+        <span style="width:1px;height:20px;background:var(--border)"></span>
+        <button class="cert-btn sm active" id="snapBtn" title="Snap to grid">▦ Snap</button>
+        <button class="cert-btn sm" id="gridBtn" title="Show grid">＃ Grid</button>
+        <span style="width:1px;height:20px;background:var(--border)"></span>
+        <label style="font-size:.72rem;color:var(--text-dim)">Zoom</label>
+        <input type="range" id="zoomRange" min="30" max="200" value="100" style="width:90px;accent-color:var(--accent,#7c5cfc)">
+        <span id="zoomLabel" style="font-size:.72rem;min-width:38px">100%</span>
+        <button class="cert-btn sm" id="fitBtn">Fit</button>
       </div>
-      <button class="btn secondary" id="addFieldBtn" style="margin-top:10px">+ Add Field</button>
 
-      <div id="fieldsConfig" style="margin-top:14px"></div>
+      <div class="cert-editor">
+        <div class="cert-canvas-wrap">
+          <div id="stage">
+            <img id="templateImg" alt="Template">
+            <canvas id="certCanvas"></canvas>
+          </div>
+        </div>
 
-      <h3 style="font-size:.95rem;margin:18px 0 8px">3️⃣ Upload your CSV (one row per certificate)</h3>
+        <div class="cert-side">
+          <h4>Add field</h4>
+          <div class="cert-add-row">
+            <button class="cert-btn sm" data-add="text">＋ Text</button>
+            <button class="cert-btn sm" data-add="qr">＋ QR</button>
+            <button class="cert-btn sm" data-add="barcode">＋ Barcode</button>
+            <button class="cert-btn sm" data-add="photo">＋ Photo</button>
+            <button class="cert-btn sm" data-add="image">＋ Sign/Stamp</button>
+          </div>
+          <div class="cert-hint">Common fields:</div>
+          <div class="cert-chip-row" id="quickFields" style="margin-bottom:12px"></div>
+
+          <h4>Fields</h4>
+          <div class="cert-fieldlist" id="fieldList"></div>
+
+          <div id="propPanel"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: data -->
+    <div id="dataStep" style="display:none">
+      <h3 class="cert-step-title" style="margin-top:20px">3️⃣ Import your data (one row per certificate)</h3>
       <div class="dropzone" id="csvDropzone">
-        <p>📤 Drag a .csv file here or click to choose</p>
-        <input type="file" id="csvInput" accept=".csv,text/csv">
+        <p>📤 Drop a CSV, TSV or XLSX file here or click to choose</p>
+        <input type="file" id="csvInput" accept=".csv,.tsv,.txt,.xlsx,.xls,text/csv">
       </div>
-      <div class="csv-headers" id="csvStatus"></div>
+      <div class="cert-datatools" id="dataTools" style="display:none">
+        <input type="text" class="cert-search" id="dataSearch" placeholder="🔍 Search records…">
+        <button class="cert-btn sm" id="autoMapBtn">🪄 Auto-map columns</button>
+        <button class="cert-btn sm" id="sampleCsvBtn">⬇ Sample CSV</button>
+        <span id="csvStatus" style="font-size:.8rem;color:var(--text-dim)"></span>
+      </div>
+      <div class="cert-badges" id="validationBadges"></div>
+      <div class="cert-tablewrap" id="tableWrap" style="display:none"><table class="cert-table" id="dataTable"></table></div>
 
-      <div class="btn-row" style="margin-top:16px">
-        <button class="btn" id="generateBtn">🎓 Generate All & Download PDF</button>
+      <!-- Step 4: export -->
+      <div class="cert-export" id="exportPanel" style="display:none">
+        <h3 class="cert-step-title">4️⃣ Generate &amp; export</h3>
+        <div class="prow">
+          <label>Format</label>
+          <select id="exFormat">
+            <option value="pdf">PDF (one file, multi-page)</option>
+            <option value="zip-png">ZIP of PNG images</option>
+            <option value="zip-jpg">ZIP of JPG images</option>
+            <option value="png">First record as PNG</option>
+            <option value="jpg">First record as JPG</option>
+            <option value="svg">First record as SVG</option>
+          </select>
+          <label>Page</label>
+          <select id="exPage">
+            <option value="fit">Fit to design</option>
+            <option value="a4">A4</option>
+            <option value="a5">A5</option>
+            <option value="letter">Letter</option>
+          </select>
+          <select id="exOrient">
+            <option value="auto">Auto</option>
+            <option value="portrait">Portrait</option>
+            <option value="landscape">Landscape</option>
+          </select>
+          <label><input type="checkbox" id="exCrop" style="width:auto"> Crop marks</label>
+        </div>
+        <div class="prow">
+          <label>Records</label>
+          <select id="exRange">
+            <option value="all">All records</option>
+            <option value="10">First 10</option>
+            <option value="100">First 100</option>
+            <option value="1000">First 1000</option>
+            <option value="current">Current preview only</option>
+          </select>
+          <label>Quality</label>
+          <input type="range" id="exQuality" min="60" max="100" value="92" style="width:90px;accent-color:var(--accent,#7c5cfc)">
+          <span id="exQualityLabel" style="font-size:.74rem">92%</span>
+          <button class="cert-btn sm" id="printBtn">🖨 Print preview</button>
+        </div>
+        <button class="btn-lg" id="generateBtn">🎓 Generate &amp; Download</button>
+        <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.85rem"></p>
+        <div class="cert-progress" id="progress"><i></i></div>
       </div>
-      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
     </div>
+
+    <!-- legacy hidden container kept for ID compatibility -->
+    <div id="fieldsConfig" style="display:none"></div>
+    <button id="addFieldBtn" style="display:none"></button>
   </div>
 </div>
 
+<!-- ============================ BELOW-TOOL CONTENT ============================ -->
+<div class="cert-content">
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Generate personalized certificates or ID cards in bulk — upload your design as a background image, position text fields like name and date by dragging them into place, then upload a CSV with one row per person. Every certificate is combined into a single downloadable PDF.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your certificate or ID card design as a background image.</li>
-        <li>Add text fields and drag them to where the name, date, etc. should appear. Set font size and color for each.</li>
-        <li>Upload a CSV file, map each field to a CSV column, then click Generate All & Download PDF.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>बल्क में पर्सनलाइज़्ड सर्टिफिकेट या ID कार्ड बनाएं — अपनी डिज़ाइन को बैकग्राउंड इमेज की तरह अपलोड करें, नाम, तारीख जैसे टेक्स्ट फील्ड को ड्रैग करके सही जगह पर रखें, फिर एक CSV अपलोड करें जिसमें हर व्यक्ति के लिए एक पंक्ति हो। हर सर्टिफिकेट एक ही डाउनलोड करने योग्य PDF में मिल जाता है।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपना सर्टिफिकेट या ID कार्ड डिज़ाइन बैकग्राउंड इमेज की तरह अपलोड करें।</li>
-        <li>टेक्स्ट फील्ड जोड़ें और उन्हें वहां ड्रैग करें जहां नाम, तारीख वगैरह दिखनी चाहिए। हर एक का फॉन्ट साइज़ और कलर सेट करें।</li>
-        <li>CSV फाइल अपलोड करें, हर फील्ड को CSV कॉलम से मैप करें, फिर Generate All & Download PDF दबाएं।</li>
-      </ol>
-    </div>
+  <h2>🎓 Design once, generate thousands — the complete bulk document engine</h2>
+  <p>The <strong>Professional Bulk Certificate &amp; ID Card Generator</strong> turns a single design and a spreadsheet of names into a finished stack of personalised documents. Instead of editing certificates one by one, you position your fields visually, connect them to columns in a CSV or Excel file, and export everyone's certificate, ID card, badge or pass in one click. It is built for schools, colleges, universities, coaching and training institutes, companies and HR teams, event organisers, NGOs and businesses that issue documents in volume — and it runs entirely in your browser, so your participant data never leaves your device.</p>
+
+  <h2>✨ Features</h2>
+  <div class="cert-fgrid">
+    <div class="fc"><b>Visual field editor</b><span>Drag, resize and rotate text, QR, barcode, photo and signature fields directly on your design with snap-to-grid and smart guides.</span></div>
+    <div class="fc"><b>Mail-merge from data</b><span>Import CSV, TSV or XLSX, auto-map columns to fields, and every row becomes its own document.</span></div>
+    <div class="fc"><b>QR &amp; barcode</b><span>Add verification QR codes and Code128/Code39/EAN13/UPC barcodes driven by your data.</span></div>
+    <div class="fc"><b>Photos &amp; signatures</b><span>Pull photos from a URL column with circular/rounded crops and borders; overlay a signature or official stamp.</span></div>
+    <div class="fc"><b>Rich typography</b><span>Font family, size, bold/italic/underline, letter spacing, line height, shadow, stroke, colour and opacity.</span></div>
+    <div class="fc"><b>Template library</b><span>Ready-made school, college, internship, experience, participation, appreciation and achievement certificates, plus student/employee IDs and event passes.</span></div>
+    <div class="fc"><b>Validation</b><span>Flags duplicate certificate numbers, empty required fields, invalid dates and emails before you generate.</span></div>
+    <div class="fc"><b>Flexible export</b><span>One multi-page PDF, a ZIP of PNG/JPG images, or single PNG/JPG/SVG — with A4/A5/Letter sizes and crop marks.</span></div>
   </div>
+
+  <h2>🎯 Benefits</h2>
+  <ul>
+    <li><strong>Massive time savings:</strong> issue hundreds or thousands of documents from one design in minutes.</li>
+    <li><strong>Consistency:</strong> every certificate uses the exact same layout, fonts and colours.</li>
+    <li><strong>Verification-ready:</strong> embed a unique QR/barcode per record for authenticity checks.</li>
+    <li><strong>No subscriptions:</strong> completely free, no watermark, no account.</li>
+    <li><strong>Private by design:</strong> student and employee data is processed locally and never uploaded.</li>
+  </ul>
+
+  <h2>📁 Supported formats</h2>
+  <p>Upload templates as <strong>JPG, PNG, WebP or SVG</strong> and use high-resolution images for crisp print output. You can also start from a built-in vector template. Data can be imported from <strong>CSV, TSV or XLSX/Excel</strong>. Exports are produced as <strong>PDF, PNG, JPG, ZIP or SVG</strong>.</p>
+  <div class="cert-badges">
+    <span class="cert-badge">JPG</span><span class="cert-badge">PNG</span><span class="cert-badge">WebP</span><span class="cert-badge">SVG</span>
+    <span class="cert-badge">PDF template</span><span class="cert-badge">CSV</span><span class="cert-badge">TSV</span><span class="cert-badge">XLSX</span>
+  </div>
+
+  <h2>🗂️ Template types</h2>
+  <p>The generator adapts to almost any credential: <strong>Certificate, ID Card, Badge, Diploma, Award Certificate, Membership Card, Visitor Pass, Employee ID, Student ID, Event Pass</strong> and <strong>Gift Certificate</strong>. Pick a starting point from the library or upload your own artwork and add exactly the fields you need.</p>
+
+  <h2>🔤 Field types</h2>
+  <p>Add and map any of these text fields — plus unlimited custom fields: <em>Name, Father's Name, Mother's Name, Roll Number, Registration Number, Certificate Number, Student ID, Employee ID, Department, Designation, Course Name, Marks, Grade, Percentage, College, University, Institute, Date, Expiry Date, Signature, Issued By</em>. Beyond text you can drop in <strong>QR codes, barcodes, photos and signature/stamp images</strong>, each bound to a column or a fixed value.</p>
+
+  <h2>📊 CSV guide</h2>
+  <p>Your data file should have one header row and one row per document. Column names become mappable fields. A minimal example:</p>
+  <div class="cert-code">Name,Course,Date,Certificate No,Photo URL
+Aarav Sharma,Web Development,2026-06-01,CERT-0001,https://example.com/aarav.jpg
+Diya Patel,Data Science,2026-06-01,CERT-0002,https://example.com/diya.jpg</div>
+  <p>Use <em>Auto-map columns</em> to match headers to fields automatically, or map each field manually. The <em>Sample CSV</em> button downloads a ready-to-edit template.</p>
+
+  <h2>🏭 Bulk generation</h2>
+  <p>The engine comfortably handles <strong>10, 100, 1000 and even 5000+ records</strong>. Generation runs in small asynchronous batches so your browser stays responsive and shows a live progress bar. For very large runs, choose a ZIP of images or split the range (First 10/100/1000) to keep memory in check.</p>
+
+  <h2>📤 Export options</h2>
+  <ul>
+    <li><strong>PDF</strong> — one multi-page file, ideal for printing or archiving.</li>
+    <li><strong>ZIP of PNG/JPG</strong> — one image per person, named by a chosen field.</li>
+    <li><strong>PNG / JPG / SVG</strong> — export the current preview record.</li>
+    <li><strong>Print sizes</strong> — fit-to-design, A4, A5 or Letter, portrait or landscape, with optional crop marks.</li>
+  </ul>
+
+  <h2>💼 Use cases &amp; examples</h2>
+  <ul>
+    <li><strong>Schools &amp; colleges</strong> — annual-day, sports and exam certificates; student ID cards with photo and QR.</li>
+    <li><strong>Coaching &amp; training centres</strong> — course completion and participation certificates for whole batches.</li>
+    <li><strong>Companies &amp; HR</strong> — employee ID cards, experience and appreciation letters, visitor passes.</li>
+    <li><strong>Event organisers</strong> — event passes and badges with barcodes for entry scanning.</li>
+    <li><strong>NGOs</strong> — volunteer and donor appreciation certificates and membership cards.</li>
+  </ul>
+
+  <!-- ===== Related Tools (ABOVE About — required order) ===== -->
+  <h2>🧰 Related Tools</h2>
+  <div class="related-grid">
+    <a href="pdf-merge.html"><span class="ri">🧩</span> PDF Merge</a>
+    <a href="pdf-split.html"><span class="ri">✂️</span> PDF Split</a>
+    <a href="pdf-compress.html"><span class="ri">📉</span> PDF Compress</a>
+    <a href="pdf-rotate.html"><span class="ri">🔃</span> PDF Rotate</a>
+    <a href="pdf-watermark.html"><span class="ri">💧</span> PDF Watermark</a>
+    <a href="pdf-page-numbers.html"><span class="ri">🔢</span> PDF Page Numbers</a>
+    <a href="pdf-crop.html"><span class="ri">✂️</span> PDF Crop</a>
+    <a href="pdf-extract-text.html"><span class="ri">📋</span> PDF Extract Text</a>
+    <a href="pdf-viewer.html"><span class="ri">👁️</span> PDF Viewer</a>
+    <a href="pdf-ocr.html"><span class="ri">🔍</span> PDF OCR</a>
+    <a href="pdf-edit.html"><span class="ri">✏️</span> PDF Edit</a>
+    <a href="pdf-sign.html"><span class="ri">✍️</span> PDF Sign</a>
+    <a href="image-to-pdf.html"><span class="ri">🖨️</span> Image to PDF</a>
+    <a href="resume-builder.html"><span class="ri">📄</span> Resume Builder</a>
+    <a href="invoice-generator.html"><span class="ri">🧾</span> Invoice Generator</a>
+  </div>
+
+  <!-- ===== About (English) ===== -->
+  <h2>ℹ️ About This Tool</h2>
+  <p>The <strong>Professional Bulk Certificate &amp; ID Card Generator</strong> is a free, browser-based application for creating personalised documents at scale. It replaces the slow, error-prone routine of editing a template again and again for every recipient with a clean two-part workflow: design the layout once, then merge a spreadsheet so that every row produces its own finished certificate or card. Whether you need ten certificates for a workshop or five thousand ID cards for a university intake, the same simple process applies, and every document is produced right on your computer without ever uploading a name, photo or mark to a server.</p>
+
+  <p>Everything starts with a design. You can upload your own artwork as a JPG, PNG, WebP or SVG — a certificate frame from your designer, a branded ID card back, an award border — or begin from the built-in template library, which includes school, college, internship, experience, participation, appreciation and achievement certificates alongside student ID, employee ID and event pass layouts. Once a design is on the canvas, you build up the document by adding fields. A field can be plain text (a name, a course, a date), a QR code, a barcode, a photo, or an uploaded signature or stamp. You drag each field to exactly where it belongs, resize and rotate it, and the editor helps you with snap-to-grid alignment and smart centre guides so everything lines up cleanly. Undo and redo, duplicate, lock and hide give you the same control you would expect from a desktop design tool.</p>
+
+  <p>Text fields are where most of the personalisation lives, so they support rich typography. You choose the font family, size, weight and style, and fine-tune letter spacing, line height, colour and opacity. For designs that sit on busy backgrounds you can add a drop shadow or an outline stroke so the text stays legible. Every field can either hold a fixed value — useful for a shared line like "Issued by the Principal" — or be bound to a column in your data file, in which case it is filled in individually for each record. The tool ships with a long list of ready-made field names that cover the vast majority of Indian and international documents: Name, Father's Name, Mother's Name, Roll Number, Registration Number, Certificate Number, Student ID, Employee ID, Department, Designation, Course Name, Marks, Grade, Percentage, College, University, Institute, Date, Expiry Date, Issued By and more, and you can always add your own custom fields.</p>
+
+  <p>Two field types deserve special mention because they make documents verifiable. The <strong>QR code</strong> field turns any column — a verification URL, a unique certificate number, a student record link — into a scannable code, so a recipient or verifier can confirm authenticity with a phone. The <strong>barcode</strong> field supports the common retail and access formats Code128, Code39, EAN13 and UPC, which is exactly what event scanners and library or HR systems expect. Photos are handled just as flexibly: point a photo field at a column of image URLs and each card gets the right person's picture, cropped as a rectangle, rounded rectangle or circle, with an optional coloured border. A separate signature or stamp field lets you drop a fixed image — a scanned signature or an official seal — onto every document.</p>
+
+  <p>The data side is designed to be forgiving. You can import a CSV, a tab-separated TSV, or a real Excel XLSX workbook. Headers are detected automatically, and a single click auto-maps them to matching fields by name. The imported records appear in a searchable table so you can spot problems quickly, and the built-in validation highlights the issues that most often ruin a batch: duplicate certificate numbers, empty required fields, invalid dates and malformed email addresses. Fixing these before you generate saves reprinting later. When you are ready, you pick an export format and range. Small runs are happiest as a single multi-page PDF; large runs or "one file per person" needs are better served by a ZIP of PNG or JPG images named after a field you choose. You can also export just the current preview record as a PNG, JPG or SVG. Print controls let you place the design on A4, A5 or Letter paper in portrait or landscape and add crop marks for professional trimming.</p>
+
+  <p>Because generation happens locally, it is both private and fast. The engine renders documents in small asynchronous batches with a progress bar, so even a run of several thousand records will not freeze the tab, and nothing is ever transmitted. That local-first architecture also means the tool keeps working offline once the page has loaded, which is invaluable during an event or in a school computer lab with unreliable internet. Combined with keyboard shortcuts, a responsive layout that adapts from desktop to phone, and accessible, screen-reader-friendly controls, the result is a serious production tool that anyone on your team can pick up without training — powerful enough for a registrar's office, simple enough for a class teacher, and trustworthy enough for confidential HR records.</p>
+
+  <!-- ===== About (Hindi) ===== -->
+  <h2>ℹ️ इस टूल के बारे में (हिंदी में)</h2>
+  <p class="cert-lang-note">The same guide in Hindi / यही जानकारी हिंदी में।</p>
+  <p><strong>Professional Bulk Certificate &amp; ID Card Generator</strong> एक फ्री, ब्राउज़र-आधारित टूल है जिससे आप बड़ी संख्या में पर्सनलाइज़्ड दस्तावेज़ बना सकते हैं। हर व्यक्ति के लिए बार-बार टेम्पलेट एडिट करने की धीमी और गलती-भरी प्रक्रिया की जगह यह एक सरल दो-हिस्सों वाला तरीका देता है — डिज़ाइन एक बार बनाइए, फिर एक स्प्रेडशीट merge कीजिए ताकि हर पंक्ति से अपना अलग सर्टिफिकेट या कार्ड बन जाए। चाहे किसी वर्कशॉप के लिए दस सर्टिफिकेट चाहिए या किसी यूनिवर्सिटी के लिए पाँच हज़ार ID कार्ड, प्रक्रिया वही रहती है, और हर दस्तावेज़ आपके कंप्यूटर पर ही बनता है — कोई नाम, फ़ोटो या मार्क सर्वर पर अपलोड नहीं होता।</p>
+
+  <p>सब कुछ डिज़ाइन से शुरू होता है। आप अपनी आर्टवर्क JPG, PNG, WebP या SVG के रूप में अपलोड कर सकते हैं, या built-in template library से शुरू कर सकते हैं जिसमें school, college, internship, experience, participation, appreciation और achievement सर्टिफिकेट के साथ-साथ student ID, employee ID और event pass डिज़ाइन शामिल हैं। डिज़ाइन canvas पर आने के बाद आप fields जोड़कर दस्तावेज़ बनाते हैं। एक field सादा text (नाम, कोर्स, तारीख), QR code, barcode, फ़ोटो, या अपलोड किया हुआ signature/stamp हो सकता है। हर field को आप सही जगह ड्रैग करते हैं, आकार और घुमाव बदलते हैं, और editor snap-to-grid तथा smart guides से alignment में मदद करता है। Undo/redo, duplicate, lock और hide से आपको डेस्कटॉप डिज़ाइन टूल जैसा नियंत्रण मिलता है।</p>
+
+  <p>Text fields में सबसे ज़्यादा personalization होती है, इसलिए इनमें भरपूर typography विकल्प हैं — font family, size, bold/italic/underline, letter spacing, line height, रंग और opacity। व्यस्त बैकग्राउंड पर टेक्स्ट पढ़ने लायक बनाए रखने के लिए shadow या stroke भी जोड़ा जा सकता है। हर field या तो एक निश्चित मान रख सकती है (जैसे साझा पंक्ति "Issued by the Principal"), या आपके डेटा फ़ाइल के किसी column से जुड़ सकती है जिससे वह हर रिकॉर्ड के लिए अलग भरती है। टूल में पहले से कई तैयार field नाम हैं जो अधिकांश भारतीय और अंतरराष्ट्रीय दस्तावेज़ों को कवर करते हैं, और आप अपने custom fields भी जोड़ सकते हैं।</p>
+
+  <p>दो field प्रकार ख़ास हैं क्योंकि ये दस्तावेज़ों को सत्यापन-योग्य बनाते हैं। <strong>QR code</strong> field किसी भी column (verification URL, अद्वितीय certificate number, student record link) को स्कैन करने योग्य कोड में बदल देती है, जिससे कोई भी फ़ोन से प्रामाणिकता जाँच सके। <strong>Barcode</strong> field सामान्य formats Code128, Code39, EAN13 और UPC को सपोर्ट करती है, जो event scanner तथा library/HR सिस्टम की ज़रूरत के अनुरूप है। फ़ोटो भी उतनी ही लचीली हैं — किसी photo field को image URLs वाले column से जोड़िए और हर कार्ड पर सही व्यक्ति की तस्वीर आ जाती है, जिसे आयत, गोल-कोने या वृत्त के रूप में crop किया जा सकता है और border भी लगाया जा सकता है।</p>
+
+  <p>डेटा वाला हिस्सा जान-बूझकर सहनशील बनाया गया है। आप CSV, tab-separated TSV, या असली Excel XLSX workbook import कर सकते हैं। Headers अपने-आप पहचाने जाते हैं और एक क्लिक में नाम के आधार पर fields से auto-map हो जाते हैं। Imported रिकॉर्ड एक खोजे-जाने-योग्य table में दिखते हैं, और built-in validation उन समस्याओं को उजागर करती है जो अक्सर पूरे batch को बिगाड़ देती हैं — duplicate certificate number, खाली ज़रूरी fields, ग़लत तारीख़ और ग़लत email। इन्हें generate करने से पहले ठीक कर लेना दोबारा प्रिंट से बचाता है। तैयार होने पर आप format और range चुनते हैं — छोटे runs के लिए एक multi-page PDF बेहतर है, जबकि बड़े runs या "हर व्यक्ति के लिए अलग फ़ाइल" के लिए PNG/JPG images की ZIP उपयुक्त है।</p>
+
+  <p>चूँकि generation स्थानीय रूप से होती है, यह निजी और तेज़ दोनों है। इंजन दस्तावेज़ों को छोटे-छोटे asynchronous batches में progress bar के साथ बनाता है, इसलिए कई हज़ार रिकॉर्ड भी tab को freeze नहीं करते, और कुछ भी transmit नहीं होता। यही local-first architecture यह भी सुनिश्चित करता है कि पेज लोड होने के बाद टूल offline भी काम करे — किसी event के दौरान या अस्थिर इंटरनेट वाली स्कूल लैब में बेहद उपयोगी। keyboard shortcuts, मोबाइल तक responsive लेआउट और सुलभ नियंत्रणों के साथ, यह एक गंभीर production टूल है जिसे आपकी टीम बिना प्रशिक्षण के इस्तेमाल कर सकती है।</p>
+
+  <!-- ===== FAQ (immediately after About — required order) ===== -->
+  <h2>❓ Frequently Asked Questions</h2>
+  <div class="cert-faq" id="certFaq">
+    <details><summary>Is this certificate generator free?</summary><p>Yes, completely free with no account, no watermark and no limit on how many documents you generate. / हाँ, यह पूरी तरह मुफ़्त है — न अकाउंट, न watermark, न कोई सीमा।</p></details>
+    <details><summary>Are my recipients' names and photos uploaded anywhere?</summary><p>No. Your template, CSV and photos are processed entirely in your browser. Nothing is uploaded to any server. / नहीं, आपका template, CSV और फ़ोटो सब आपके ब्राउज़र में ही process होते हैं।</p></details>
+    <details><summary>Does it work offline?</summary><p>Once the page and its libraries have loaded, the editor works offline. Photos loaded from a URL still need the internet. / पेज लोड होने के बाद editor offline काम करता है; URL से आने वाली फ़ोटो के लिए इंटरनेट चाहिए।</p></details>
+    <details><summary>What template formats can I upload?</summary><p>JPG, PNG, WebP and SVG images. Use a high-resolution file for crisp printing. / JPG, PNG, WebP और SVG; साफ़ प्रिंट के लिए high-resolution फ़ाइल इस्तेमाल करें।</p></details>
+    <details><summary>Which data files are supported?</summary><p>CSV, TSV and Excel XLSX/XLS. Headers are detected automatically. / CSV, TSV और Excel XLSX/XLS; headers अपने-आप पहचाने जाते हैं।</p></details>
+    <details><summary>How do I connect a field to my data?</summary><p>Select the field, set its Source to "Column", and choose the CSV column. Auto-map can do this for all fields at once. / field चुनें, Source को "Column" करें और column चुनें; Auto-map सब एक साथ कर देता है।</p></details>
+    <details><summary>Can I add a QR code for verification?</summary><p>Yes. Add a QR field and bind it to a column such as a verification URL or certificate number. / हाँ, QR field जोड़कर उसे verification URL या certificate number वाले column से जोड़ें।</p></details>
+    <details><summary>Which barcode formats are available?</summary><p>Code128, Code39, EAN13 and UPC. EAN13/UPC require valid numeric data of the correct length. / Code128, Code39, EAN13 और UPC।</p></details>
+    <details><summary>Can each certificate have a different photo?</summary><p>Yes. Add a photo field and map it to a column of image URLs; each record loads its own picture with optional circular or rounded crop. / हाँ, photo field को image URL वाले column से map करें।</p></details>
+    <details><summary>Can I add a signature or official stamp?</summary><p>Yes. Add a Sign/Stamp field and upload an image; it appears on every document. / हाँ, Sign/Stamp field जोड़कर एक image अपलोड करें।</p></details>
+    <details><summary>How many records can it handle?</summary><p>It works well with 10, 100, 1000 and 5000+ records. For very large batches use a ZIP of images or split the range. / यह 10 से 5000+ रिकॉर्ड तक अच्छा काम करता है।</p></details>
+    <details><summary>What export formats are available?</summary><p>A multi-page PDF, a ZIP of PNG or JPG images, or a single PNG/JPG/SVG of the current preview. / multi-page PDF, PNG/JPG की ZIP, या single PNG/JPG/SVG।</p></details>
+    <details><summary>Can I print on A4 or ID-card size?</summary><p>Yes. Choose fit-to-design, A4, A5 or Letter, portrait or landscape, and optionally add crop marks. / हाँ, A4/A5/Letter, portrait/landscape और crop marks चुन सकते हैं।</p></details>
+    <details><summary>What does the validation check?</summary><p>It flags duplicate certificate numbers, empty required fields, invalid dates and malformed emails. / यह duplicate certificate number, खाली fields, ग़लत तारीख़ और email जाँचता है।</p></details>
+    <details><summary>How do I auto-map columns?</summary><p>Click "Auto-map columns" and the tool matches CSV headers to fields by name. You can adjust any mapping afterwards. / "Auto-map columns" दबाएँ; बाद में कोई भी mapping बदल सकते हैं।</p></details>
+    <details><summary>Can I reposition fields precisely?</summary><p>Yes. Drag on the canvas with snap-to-grid and smart guides, or type exact position and size values in the field panel. / हाँ, canvas पर drag करें या panel में सटीक मान डालें।</p></details>
+    <details><summary>Does it support Hindi or other languages in fields?</summary><p>Yes. Any text your chosen font supports, including Hindi, will render — pick a font that includes those glyphs. / हाँ, यदि font में वे अक्षर हों तो हिंदी सहित कोई भी भाषा render होगी।</p></details>
+    <details><summary>Will my original files be changed?</summary><p>No. Your template and data files are never modified; only the new exports are created. / नहीं, आपकी मूल फ़ाइलें कभी नहीं बदलतीं।</p></details>
+    <details><summary>Is it mobile friendly?</summary><p>Yes, the layout is responsive and works on tablets and phones, though a larger screen is easier for precise placement. / हाँ, यह मोबाइल और टैबलेट पर काम करता है।</p></details>
+    <details><summary>Is it accessible?</summary><p>Controls are keyboard-operable and labelled for screen readers, with high-contrast, focus-visible styling. / नियंत्रण कीबोर्ड से चलते हैं और screen reader के लिए labelled हैं।</p></details>
+    <details><summary>Does it use any AI?</summary><p>No. It is a deterministic mail-merge and canvas renderer — no AI, no cloud processing. / नहीं, इसमें कोई AI नहीं है।</p></details>
+    <details><summary>Why is a photo not showing on the exported card?</summary><p>The image URL is likely cross-origin without CORS, which taints the canvas. Host photos with CORS enabled or embed them locally. / फ़ोटो URL शायद CORS के बिना cross-origin है; CORS-सक्षम होस्टिंग इस्तेमाल करें।</p></details>
+  </div>
+
+  <!-- ===== Privacy ===== -->
+  <h2>🔒 Privacy &amp; Security</h2>
+  <p>This tool is privacy-first. Your template image, your CSV/Excel data and any photos are read and rendered entirely inside your browser using JavaScript and the canvas API — none of it is uploaded, stored on a server, or shared with any analytics or AI service. Because generation is local, it is safe to use with confidential student records, employee data and unreleased designs, and it complies naturally with data-minimisation expectations. The exported PDF and images are created on your device and downloaded directly. Closing the tab clears all data from memory. / यह टूल privacy-first है — सारा काम आपके ब्राउज़र में होता है, कोई डेटा अपलोड या स्टोर नहीं होता, और टैब बंद करते ही सब कुछ मेमोरी से हट जाता है।</p>
+
+  <!-- ===== Troubleshooting ===== -->
+  <h2>🛠️ Troubleshooting</h2>
+  <ul>
+    <li><strong>My CSV columns are wrong or merged:</strong> ensure the file has a single header row and is comma-separated (or use TSV/XLSX). Re-export from Excel as "CSV UTF-8".</li>
+    <li><strong>Photos are blank on export:</strong> the image URLs are cross-origin without CORS and taint the canvas. Host the photos where CORS is allowed, or download and place a signature/stamp image locally.</li>
+    <li><strong>A barcode won't render:</strong> EAN13 needs 12–13 digits and UPC needs 11–12 digits; switch to Code128 for arbitrary text.</li>
+    <li><strong>Text is cut off or overlaps:</strong> reduce the font size, widen the field, or enable line height/word wrapping by adding line breaks in your data.</li>
+    <li><strong>A large batch is slow:</strong> export as a ZIP of images or use the First 100/1000 range, and reduce the export quality slider.</li>
+    <li><strong>Fonts look different when printed:</strong> stick to common web-safe fonts, or convert your design to an image template that already contains the styled text.</li>
+  </ul>
 </div>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/3.0.3/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-const templateDropzone = document.getElementById('templateDropzone');
-const templateInput = document.getElementById('templateInput');
-const stage = document.getElementById('stage');
-const templateImg = document.getElementById('templateImg');
+(function(){
+  'use strict';
+  function $(id){ return document.getElementById(id); }
+  function toast(m){ var t=document.createElement('div'); t.textContent=m; t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1a1a2e;color:#fff;border:1px solid rgba(255,255,255,.15);padding:10px 18px;border-radius:10px;font-size:.85rem;z-index:9999;box-shadow:0 6px 24px rgba(0,0,0,.4)'; document.body.appendChild(t); setTimeout(function(){t.style.transition='.3s';t.style.opacity='0';},1800); setTimeout(function(){t.remove();},2200); }
 
-let fields = []; // { id, name, xPct, yPct, fontSize, color, align, column }
-let csvData = null;
-let csvHeaders = [];
-let fieldIdCounter = 0;
+  // ---------- State ----------
+  var templateImg = $('templateImg');
+  var canvas = $('certCanvas');
+  var ctx = canvas.getContext('2d');
+  var stage = $('stage');
+  var fields = [];         // field objects
+  var selId = null;
+  var idc = 0;
+  var csvData = null, csvHeaders = [];
+  var view = { scale:1, zoom:1 };
+  var snap = true, showGrid = false;
+  var undoStack = [], redoStack = [];
+  var previewIndex = 0;
+  var stampImages = {};    // fieldId -> Image (uploaded)
+  var photoCache = {};     // url -> Image
+  var designW = 1000, designH = 700;
 
-setupDropzone(templateDropzone, templateInput, files => {
-  if(files.length && files[0].type.startsWith('image/')){
-    templateImg.onload = ()=>{
-      document.getElementById('afterTemplate').style.display = 'block';
-      if(fields.length === 0) addField('Name', 50, 50);
+  var QUICK = ['Name','Father’s Name','Mother’s Name','Roll Number','Registration Number','Certificate Number','Student ID','Employee ID','Department','Designation','Course Name','Marks','Grade','Percentage','College','University','Institute','Date','Expiry Date','Issued By'];
+
+  // ---------- Field factory ----------
+  function newField(type, label){
+    idc++;
+    var f = {
+      id:idc, type:type||'text', label:label||('Field '+idc),
+      x:0.5, y:0.5, w:0.22, h:0.14, rot:0,
+      source:'static', value:label||'Sample', column:'',
+      fontFamily:'Arial', fontSize:Math.round(designH*0.05), bold:false, italic:false, underline:false,
+      letterSpacing:0, lineHeight:1.2, color:'#111111', align:'center',
+      shadow:false, shadowColor:'#000000', stroke:false, strokeColor:'#ffffff', strokeWidth:2, opacity:1,
+      photoShape:'rect', border:false, borderColor:'#ffffff', borderWidth:4,
+      barcodeFormat:'CODE128',
+      locked:false, hidden:false
     };
-    templateImg.src = URL.createObjectURL(files[0]);
+    if(type==='qr'||type==='barcode'||type==='photo'||type==='image'){ f.value = type==='qr'?'https://apnesoftware.com': (type==='barcode'?'12345678':''); }
+    return f;
   }
-});
 
-function addField(name, xPct, yPct){
-  fieldIdCounter++;
-  fields.push({
-    id: fieldIdCounter, name: name || ('Field ' + fieldIdCounter),
-    xPct: xPct !== undefined ? xPct : 50, yPct: yPct !== undefined ? yPct : 50,
-    fontSize: 36, color: '#000000', align: 'center', column: ''
-  });
-  renderFieldMarkers();
-  renderFieldsConfig();
-}
+  function pushUndo(){ undoStack.push(JSON.stringify(fields)); if(undoStack.length>60)undoStack.shift(); redoStack.length=0; }
+  function undo(){ if(!undoStack.length)return; redoStack.push(JSON.stringify(fields)); fields=JSON.parse(undoStack.pop()); rebuildAfterHistory(); }
+  function redo(){ if(!redoStack.length)return; undoStack.push(JSON.stringify(fields)); fields=JSON.parse(redoStack.pop()); rebuildAfterHistory(); }
+  function rebuildAfterHistory(){ if(!fields.some(function(f){return f.id===selId;})) selId=fields.length?fields[0].id:null; renderFieldList(); renderProps(); draw(); }
 
-document.getElementById('addFieldBtn').addEventListener('click', ()=>{
-  if(fields.length >= 5){ alert('Maximum 5 fields supported.'); return; }
-  addField('Field ' + (fieldIdCounter+1), 50, 60);
-});
-
-function renderFieldMarkers(){
-  stage.querySelectorAll('.field-marker').forEach(el=>el.remove());
-  fields.forEach(f=>{
-    const marker = document.createElement('div');
-    marker.className = 'field-marker';
-    marker.dataset.id = f.id;
-    marker.style.left = f.xPct + '%';
-    marker.style.top = f.yPct + '%';
-    marker.style.fontSize = Math.max(10, f.fontSize * 0.5) + 'px';
-    marker.style.color = f.color;
-    marker.textContent = '{{' + f.name + '}}';
-    stage.appendChild(marker);
-    wireMarkerDrag(marker, f);
-  });
-}
-
-function wireMarkerDrag(marker, field){
-  let dragging = false;
-  function start(e){ dragging = true; e.preventDefault(); }
-  function move(e){
-    if(!dragging) return;
-    const pt = e.touches ? e.touches[0] : e;
-    const rect = stage.getBoundingClientRect();
-    let xPct = ((pt.clientX - rect.left) / rect.width) * 100;
-    let yPct = ((pt.clientY - rect.top) / rect.height) * 100;
-    xPct = Math.max(0, Math.min(100, xPct));
-    yPct = Math.max(0, Math.min(100, yPct));
-    field.xPct = xPct; field.yPct = yPct;
-    marker.style.left = xPct + '%';
-    marker.style.top = yPct + '%';
-  }
-  function end(){ dragging = false; }
-  marker.addEventListener('mousedown', start);
-  marker.addEventListener('touchstart', start, {passive:false});
-  window.addEventListener('mousemove', move);
-  window.addEventListener('touchmove', move, {passive:false});
-  window.addEventListener('mouseup', end);
-  window.addEventListener('touchend', end);
-}
-
-function renderFieldsConfig(){
-  const wrap = document.getElementById('fieldsConfig');
-  wrap.innerHTML = '';
-  fields.forEach(f=>{
-    const item = document.createElement('div');
-    item.className = 'field-list-item';
-    item.innerHTML = `
-      <button class="removeFieldBtn" data-id="${f.id}">✕ Remove</button>
-      <div class="row">
-        <div class="field"><label>Field name</label><input type="text" data-id="${f.id}" data-prop="name" value="${f.name}"></div>
-        <div class="field"><label>CSV column</label>
-          <select data-id="${f.id}" data-prop="column">
-            <option value="">— select —</option>
-            ${csvHeaders.map(h=>'<option value="'+h+'" '+(f.column===h?'selected':'')+'>'+h+'</option>').join('')}
-          </select>
-        </div>
-      </div>
-      <div class="row">
-        <div class="field"><label>Font size</label><input type="number" data-id="${f.id}" data-prop="fontSize" value="${f.fontSize}" min="8" max="200"></div>
-        <div class="field" style="max-width:120px"><label>Color</label><div class="color-row"><input type="color" data-id="${f.id}" data-prop="color" value="${f.color}"></div></div>
-        <div class="field" style="max-width:140px"><label>Align</label>
-          <select data-id="${f.id}" data-prop="align">
-            <option value="left" ${f.align==='left'?'selected':''}>Left</option>
-            <option value="center" ${f.align==='center'?'selected':''}>Center</option>
-            <option value="right" ${f.align==='right'?'selected':''}>Right</option>
-          </select>
-        </div>
-      </div>
-    `;
-    wrap.appendChild(item);
-  });
-
-  wrap.querySelectorAll('input,select').forEach(el=>{
-    el.addEventListener('input', ()=>{
-      const f = fields.find(x=>x.id == el.dataset.id);
-      const prop = el.dataset.prop;
-      f[prop] = (prop === 'fontSize') ? parseInt(el.value)||20 : el.value;
-      renderFieldMarkers();
-    });
-  });
-  wrap.querySelectorAll('.removeFieldBtn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      fields = fields.filter(f=>f.id != btn.dataset.id);
-      renderFieldMarkers(); renderFieldsConfig();
-    });
-  });
-}
-
-const csvDropzone = document.getElementById('csvDropzone');
-const csvInput = document.getElementById('csvInput');
-setupDropzone(csvDropzone, csvInput, files => {
-  if(files.length){
-    const reader = new FileReader();
-    reader.onload = (e)=>{
-      const result = Papa.parse(e.target.result.trim(), { header:true, skipEmptyLines:true, dynamicTyping:false });
-      csvData = result.data;
-      csvHeaders = result.meta.fields || [];
-      document.getElementById('csvStatus').textContent = '✅ Loaded ' + csvData.length + ' row(s). Columns: ' + csvHeaders.join(', ');
-      renderFieldsConfig();
+  // ---------- Template library (built-in vector designs) ----------
+  function makeTemplate(kind){
+    var isID = kind.indexOf('id')===0 || kind==='event-pass';
+    var W = isID ? 640 : 1000, H = isID ? 400 : 700;
+    var c = document.createElement('canvas'); c.width=W; c.height=H;
+    var x = c.getContext('2d');
+    var themes = {
+      'cert-school':['#0b5cad','#e8f1fb','School Certificate'],
+      'cert-college':['#6d28d9','#f1ecfb','College Certificate'],
+      'cert-internship':['#0f766e','#e6f6f3','Internship Certificate'],
+      'cert-experience':['#b45309','#fbf1e0','Experience Certificate'],
+      'cert-participation':['#be123c','#fde8ec','Certificate of Participation'],
+      'cert-appreciation':['#9333ea','#f6ecfb','Certificate of Appreciation'],
+      'cert-achievement':['#c2410c','#fbeee4','Certificate of Achievement'],
+      'id-student':['#1d4ed8','#eef3fd','STUDENT ID CARD'],
+      'id-employee':['#0f172a','#eef1f6','EMPLOYEE ID CARD'],
+      'event-pass':['#db2777','#fdeef6','EVENT PASS']
     };
-    reader.readAsText(files[0]);
+    var th = themes[kind]||themes['cert-school'];
+    var accent=th[0], soft=th[1], title=th[2];
+    x.fillStyle='#ffffff'; x.fillRect(0,0,W,H);
+    x.fillStyle=soft; x.fillRect(0,0,W,H);
+    if(isID){
+      x.fillStyle=accent; x.fillRect(0,0,W,H*0.24);
+      x.fillStyle='#ffffff'; x.font='700 '+(H*0.09)+'px Arial'; x.textAlign='center'; x.textBaseline='middle';
+      x.fillText(title, W/2, H*0.12);
+      x.strokeStyle=accent; x.lineWidth=6; x.strokeRect(10,10,W-20,H-20);
+    } else {
+      x.strokeStyle=accent; x.lineWidth=10; x.strokeRect(24,24,W-48,H-48);
+      x.strokeStyle=accent; x.lineWidth=2; x.strokeRect(40,40,W-80,H-80);
+      x.fillStyle=accent; x.font='700 '+(H*0.075)+'px Georgia'; x.textAlign='center'; x.textBaseline='middle';
+      x.fillText(title, W/2, H*0.2);
+      x.fillStyle='#555'; x.font='italic '+(H*0.032)+'px Georgia';
+      x.fillText('This is proudly presented to', W/2, H*0.34);
+      x.strokeStyle='#999'; x.lineWidth=1; x.beginPath(); x.moveTo(W*0.3,H*0.52); x.lineTo(W*0.7,H*0.52); x.stroke();
+    }
+    return { canvas:c, W:W, H:H, kind:kind, accent:accent, isID:isID };
   }
-});
 
-function renderCertificateCanvas(rowData){
-  const canvas = document.createElement('canvas');
-  canvas.width = templateImg.naturalWidth;
-  canvas.height = templateImg.naturalHeight;
-  const ctx = canvas.getContext('2d');
-  ctx.drawImage(templateImg, 0, 0);
+  function defaultFieldsFor(tpl){
+    var out=[]; var H=tpl.H;
+    function mk(type,label,x,y,size,opt){ var f=newField(type,label); f.x=x;f.y=y; if(size)f.fontSize=Math.round(H*size); f.source='column'; f.column=''; if(opt)Object.assign(f,opt); return f; }
+    if(tpl.isID){
+      out.push(mk('photo','Photo',0.22,0.58,0,{w:0.28,h:0.42,photoShape:'rounded',border:true,borderColor:tpl.accent}));
+      out.push(mk('text','Name',0.62,0.42,0.08,{align:'center',bold:true,color:'#111'}));
+      out.push(mk('text','ID',0.62,0.56,0.05,{align:'center',color:'#333'}));
+      out.push(mk('text','Department',0.62,0.68,0.045,{align:'center',color:'#333'}));
+      out.push(mk('qr','QR',0.85,0.82,0,{w:0.16,h:0.26}));
+    } else {
+      out.push(mk('text','Name',0.5,0.45,0.075,{bold:true,color:tpl.accent}));
+      out.push(mk('text','Course Name',0.5,0.6,0.04,{color:'#333'}));
+      out.push(mk('text','Date',0.3,0.82,0.032,{color:'#333'}));
+      out.push(mk('text','Certificate Number',0.7,0.82,0.03,{color:'#333',align:'center'}));
+      out.push(mk('qr','Verify',0.87,0.83,0,{w:0.1,h:0.14}));
+    }
+    return out;
+  }
 
-  fields.forEach(f=>{
-    const value = f.column && rowData ? (rowData[f.column] || '') : ('{{'+f.name+'}}');
-    const x = (f.xPct/100) * canvas.width;
-    const y = (f.yPct/100) * canvas.height;
-    ctx.font = f.fontSize + 'px Arial, sans-serif';
-    ctx.fillStyle = f.color;
-    ctx.textAlign = f.align;
-    ctx.textBaseline = 'middle';
-    ctx.fillText(String(value), x, y);
+  function loadTemplateCanvas(tpl, withFields){
+    designW=tpl.W; designH=tpl.H;
+    templateImg.onload=function(){ afterTemplateReady(withFields?defaultFieldsFor(tpl):null); };
+    templateImg.src = tpl.canvas.toDataURL('image/png');
+  }
+
+  function buildTemplateLibrary(){
+    var lib=$('tplLibrary');
+    var kinds=[['cert-school','School'],['cert-college','College'],['cert-internship','Internship'],['cert-experience','Experience'],['cert-participation','Participation'],['cert-appreciation','Appreciation'],['cert-achievement','Achievement'],['id-student','Student ID'],['id-employee','Employee ID'],['event-pass','Event Pass']];
+    kinds.forEach(function(k){
+      var tpl=makeTemplate(k[0]);
+      var d=document.createElement('div'); d.className='cert-tpl';
+      var thumb=document.createElement('canvas'); thumb.width=tpl.W; thumb.height=tpl.H;
+      thumb.getContext('2d').drawImage(tpl.canvas,0,0);
+      d.appendChild(thumb);
+      var s=document.createElement('span'); s.textContent=k[1]; d.appendChild(s);
+      d.addEventListener('click',function(){ pushUndo(); fields=[]; loadTemplateCanvas(makeTemplate(k[0]),true); });
+      lib.appendChild(d);
+    });
+  }
+
+  // ---------- Template upload (preserves original IDs) ----------
+  setupDropzone($('templateDropzone'), $('templateInput'), function(files){
+    if(!files.length) return;
+    var f=files[0];
+    var url=URL.createObjectURL(f);
+    var probe=new Image();
+    probe.onload=function(){
+      designW=probe.naturalWidth||1000; designH=probe.naturalHeight||700;
+      templateImg.onload=function(){ afterTemplateReady(fields.length?null:[newField('text','Name')]); };
+      templateImg.src=url;
+    };
+    probe.onerror=function(){ toast('Could not load that template image.'); };
+    probe.src=url;
   });
 
-  return canvas;
-}
-
-document.getElementById('generateBtn').addEventListener('click', async ()=>{
-  const status = document.getElementById('statusMsg');
-  if(!csvData || !csvData.length){ status.textContent = '⚠️ Please upload a CSV file first.'; return; }
-  if(!fields.some(f=>f.column)){ status.textContent = '⚠️ Please map at least one field to a CSV column.'; return; }
-
-  status.textContent = '⏳ Generating ' + csvData.length + ' certificate(s)...';
-
-  const { jsPDF } = window.jspdf;
-  const mmW = templateImg.naturalWidth * 25.4 / 96;
-  const mmH = templateImg.naturalHeight * 25.4 / 96;
-  const orientation = mmW >= mmH ? 'landscape' : 'portrait';
-
-  const pdf = new jsPDF({ orientation, unit: 'mm', format: [mmW, mmH] });
-
-  for(let i=0; i<csvData.length; i++){
-    if(i > 0) pdf.addPage([mmW, mmH], orientation);
-    const canvas = renderCertificateCanvas(csvData[i]);
-    const imgData = canvas.toDataURL('image/jpeg', 0.95);
-    pdf.addImage(imgData, 'JPEG', 0, 0, mmW, mmH);
-    if(i % 5 === 0) status.textContent = '⏳ Generating... (' + (i+1) + '/' + csvData.length + ')';
+  function afterTemplateReady(initialFields){
+    $('afterTemplate').style.display='block';
+    $('dataStep').style.display='block';
+    if(initialFields){ pushUndo(); fields=initialFields; selId=fields.length?fields[0].id:null; }
+    fitView();
+    renderFieldList(); renderProps(); draw();
   }
 
-  pdf.save('certificates.pdf');
-  status.textContent = '✅ Done! Downloaded ' + csvData.length + ' certificate(s) in one PDF.';
-});
+  // ---------- View / canvas sizing ----------
+  function fitView(){
+    var wrap=stage.parentElement;
+    var maxW=(wrap.clientWidth||800)-2;
+    view.scale=Math.min(maxW/designW, 1);
+    applyZoom();
+  }
+  function applyZoom(){
+    var s=view.scale*view.zoom;
+    canvas.width=Math.round(designW*s*Math.min(window.devicePixelRatio||1,2)/1);
+    canvas.height=Math.round(designH*s*Math.min(window.devicePixelRatio||1,2)/1);
+    canvas.style.width=Math.round(designW*s)+'px';
+    canvas.style.height=Math.round(designH*s)+'px';
+    draw();
+  }
+
+  // ---------- Value resolution ----------
+  function fieldValue(f, row){
+    if(f.type==='image') return '';
+    if(f.source==='column'){
+      if(row) return (row[f.column]!=null?String(row[f.column]):'');
+      return f.column ? '{'+f.column+'}' : ('{'+f.label+'}');
+    }
+    return f.value!=null?String(f.value):'';
+  }
+
+  // ---------- Drawing ----------
+  function draw(){
+    if(!templateImg.src) return;
+    var cw=canvas.width, ch=canvas.height;
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.clearRect(0,0,cw,ch);
+    var sx=cw/designW, sy=ch/designH;
+    ctx.drawImage(templateImg,0,0,cw,ch);
+    if(showGrid){
+      ctx.strokeStyle='rgba(124,92,252,.25)'; ctx.lineWidth=1;
+      for(var gx=0;gx<=10;gx++){ ctx.beginPath(); ctx.moveTo(gx/10*cw,0); ctx.lineTo(gx/10*cw,ch); ctx.stroke(); }
+      for(var gy=0;gy<=10;gy++){ ctx.beginPath(); ctx.moveTo(0,gy/10*ch); ctx.lineTo(cw,gy/10*ch); ctx.stroke(); }
+    }
+    var row = csvData && csvData.length ? csvData[previewIndex] : null;
+    fields.forEach(function(f){ if(!f.hidden) drawField(ctx,f,row,sx,sy,true); });
+  }
+
+  function drawField(c, f, row, sx, sy, editor){
+    var cx=f.x*designW*sx, cy=f.y*designH*sy;
+    c.save();
+    c.translate(cx,cy);
+    if(f.rot) c.rotate(f.rot*Math.PI/180);
+    c.globalAlpha=f.opacity;
+    if(f.type==='text'){
+      drawText(c,f,fieldValue(f,row),sx,sy);
+    } else if(f.type==='qr'){
+      drawQR(c,f,fieldValue(f,row)||f.value,sx,sy);
+    } else if(f.type==='barcode'){
+      drawBarcode(c,f,fieldValue(f,row)||f.value,sx,sy);
+    } else if(f.type==='photo'){
+      drawPhoto(c,f,fieldValue(f,row),sx,sy);
+    } else if(f.type==='image'){
+      drawStamp(c,f,sx,sy);
+    }
+    c.globalAlpha=1;
+    c.restore();
+    if(editor && f.id===selId){ drawSelection(c,f,sx,sy); }
+  }
+
+  function drawText(c,f,text,sx,sy){
+    var fs=f.fontSize*sy;
+    c.font=(f.italic?'italic ':'')+(f.bold?'700 ':'400 ')+fs+'px '+f.fontFamily+', sans-serif';
+    c.textAlign=f.align; c.textBaseline='middle';
+    var lines=String(text).split('\n');
+    var lh=fs*f.lineHeight;
+    var startY=-(lines.length-1)*lh/2;
+    lines.forEach(function(line,i){
+      var yy=startY+i*lh;
+      drawTextLine(c,f,line,0,yy,fs);
+    });
+  }
+  function drawTextLine(c,f,line,x,y,fs){
+    var ls=f.letterSpacing*(fs/f.fontSize||1);
+    if(f.shadow){ c.shadowColor=f.shadowColor; c.shadowBlur=fs*0.12; c.shadowOffsetX=fs*0.04; c.shadowOffsetY=fs*0.04; }
+    function paint(px){
+      if(ls && line.length>1){
+        var total=measureSpaced(c,line,ls);
+        var startX = f.align==='center'? -total/2 : (f.align==='right'? -total : 0);
+        var oldAlign=c.textAlign; c.textAlign='left';
+        var cxp=startX;
+        for(var i=0;i<line.length;i++){ if(f.stroke){c.strokeText(line[i],cxp,y);} c.fillText(line[i],cxp,y); cxp+=c.measureText(line[i]).width+ls; }
+        c.textAlign=oldAlign;
+      } else {
+        if(f.stroke){ c.strokeText(line,px,y); }
+        c.fillText(line,px,y);
+      }
+    }
+    if(f.stroke){ c.lineWidth=f.strokeWidth*(fs/f.fontSize||1); c.strokeStyle=f.strokeColor; c.lineJoin='round'; }
+    c.fillStyle=f.color;
+    paint(x);
+    c.shadowColor='transparent'; c.shadowBlur=0; c.shadowOffsetX=0; c.shadowOffsetY=0;
+    if(f.underline){ var w=c.measureText(line).width; c.strokeStyle=f.color; c.lineWidth=Math.max(1,fs*0.05); var ux=f.align==='center'?-w/2:(f.align==='right'?-w:0); c.beginPath(); c.moveTo(ux,y+fs*0.55); c.lineTo(ux+w,y+fs*0.55); c.stroke(); }
+  }
+  function measureSpaced(c,str,ls){ var t=0; for(var i=0;i<str.length;i++){ t+=c.measureText(str[i]).width+ls; } return t-ls; }
+
+  function drawQR(c,f,value,sx,sy){
+    var size=f.w*designW*sx;
+    try{
+      var qr=qrcode(0,'M'); qr.addData(String(value||' ')); qr.make();
+      var n=qr.getModuleCount(); var cell=size/n; var o=-size/2;
+      c.fillStyle='#ffffff'; c.fillRect(o,o,size,size);
+      c.fillStyle='#000000';
+      for(var r=0;r<n;r++)for(var col=0;col<n;col++){ if(qr.isDark(r,col)) c.fillRect(o+col*cell,o+r*cell,cell+0.5,cell+0.5); }
+    }catch(e){ c.fillStyle='#ddd'; c.fillRect(-size/2,-size/2,size,size); }
+  }
+
+  function drawBarcode(c,f,value,sx,sy){
+    var w=f.w*designW*sx, h=f.h*designH*sy;
+    try{
+      var tmp=document.createElement('canvas');
+      window.JsBarcode(tmp,String(value||'0'),{format:f.barcodeFormat,displayValue:true,margin:0,width:2,height:Math.max(30,h)});
+      c.drawImage(tmp,-w/2,-h/2,w,h);
+    }catch(e){ c.fillStyle='#eee'; c.fillRect(-w/2,-h/2,w,h); c.fillStyle='#999'; c.font=(h*0.4)+'px Arial'; c.textAlign='center'; c.fillText('barcode',0,0); }
+  }
+
+  function drawPhoto(c,f,value,sx,sy){
+    var w=f.w*designW*sx, h=f.h*designH*sy;
+    var img = value && photoCache[value];
+    c.save();
+    c.beginPath();
+    if(f.photoShape==='circle'){ c.ellipse(0,0,w/2,h/2,0,0,Math.PI*2); }
+    else if(f.photoShape==='rounded'){ roundRect(c,-w/2,-h/2,w,h,Math.min(w,h)*0.12); }
+    else { c.rect(-w/2,-h/2,w,h); }
+    c.clip();
+    if(img && img.complete && img.naturalWidth){
+      var ir=img.naturalWidth/img.naturalHeight, rr=w/h, dw,dh;
+      if(ir>rr){ dh=h; dw=h*ir; } else { dw=w; dh=w/ir; }
+      try{ c.drawImage(img,-dw/2,-dh/2,dw,dh); }catch(e){}
+    } else {
+      c.fillStyle='#e5e7eb'; c.fillRect(-w/2,-h/2,w,h);
+      c.fillStyle='#9ca3af'; c.font=(h*0.3)+'px Arial'; c.textAlign='center'; c.textBaseline='middle'; c.fillText('📷',0,0);
+      if(value && !img){ preloadPhoto(value); }
+    }
+    c.restore();
+    if(f.border){ c.lineWidth=f.borderWidth; c.strokeStyle=f.borderColor; c.beginPath();
+      if(f.photoShape==='circle'){ c.ellipse(0,0,w/2,h/2,0,0,Math.PI*2); }
+      else if(f.photoShape==='rounded'){ roundRect(c,-w/2,-h/2,w,h,Math.min(w,h)*0.12); }
+      else { c.rect(-w/2,-h/2,w,h); }
+      c.stroke();
+    }
+  }
+  function preloadPhoto(url){
+    if(photoCache[url]) return;
+    var im=new Image(); im.crossOrigin='anonymous';
+    im.onload=function(){ draw(); }; im.onerror=function(){ };
+    photoCache[url]=im; im.src=url;
+  }
+
+  function drawStamp(c,f,sx,sy){
+    var w=f.w*designW*sx, h=f.h*designH*sy;
+    var img=stampImages[f.id];
+    if(img && img.complete){ var ir=img.naturalWidth/img.naturalHeight, rr=w/h, dw,dh; if(ir>rr){dw=w;dh=w/ir;}else{dh=h;dw=h*ir;} c.drawImage(img,-dw/2,-dh/2,dw,dh); }
+    else { c.strokeStyle='#999'; c.setLineDash([5,4]); c.strokeRect(-w/2,-h/2,w,h); c.setLineDash([]); c.fillStyle='#999'; c.font=(h*0.2)+'px Arial'; c.textAlign='center'; c.textBaseline='middle'; c.fillText('sign/stamp',0,0); }
+  }
+
+  function roundRect(c,x,y,w,h,r){ c.beginPath(); c.moveTo(x+r,y); c.arcTo(x+w,y,x+w,y+h,r); c.arcTo(x+w,y+h,x,y+h,r); c.arcTo(x,y+h,x,y,r); c.arcTo(x,y,x+w,y,r); c.closePath(); }
+
+  function fieldBox(f,sx,sy){
+    var cw=canvas.width, ch=canvas.height;
+    var w,h;
+    if(f.type==='text'){ w=Math.max(designW*0.15,measureField(f))*sx; h=f.fontSize*f.lineHeight*sy*(String(fieldValue(f,csvData&&csvData[previewIndex])).split('\n').length); }
+    else { w=f.w*designW*sx; h=f.h*designH*sy; }
+    return { w:w, h:h };
+  }
+  function measureField(f){ ctx.save(); ctx.font=(f.bold?'700 ':'')+f.fontSize+'px '+f.fontFamily; var w=ctx.measureText(fieldValue(f,csvData&&csvData[previewIndex])||f.label).width; ctx.restore(); return Math.max(60,w); }
+
+  function drawSelection(c,f,sx,sy){
+    var cx=f.x*designW*sx, cy=f.y*designH*sy;
+    var b=fieldBox(f,sx,sy);
+    c.save(); c.translate(cx,cy); if(f.rot)c.rotate(f.rot*Math.PI/180);
+    c.strokeStyle='#7c5cfc'; c.lineWidth=1.5; c.setLineDash([5,3]); c.strokeRect(-b.w/2,-b.h/2,b.w,b.h); c.setLineDash([]);
+    c.fillStyle='#7c5cfc'; c.fillRect(b.w/2-5,b.h/2-5,10,10);            // resize handle
+    c.beginPath(); c.arc(0,-b.h/2-16,6,0,Math.PI*2); c.fill();           // rotate handle
+    c.strokeStyle='#7c5cfc'; c.beginPath(); c.moveTo(0,-b.h/2); c.lineTo(0,-b.h/2-10); c.stroke();
+    c.restore();
+    f._box=b;
+  }
+
+  // ---------- Interaction ----------
+  var drag=null;
+  function evtPos(e){ var pt=e.touches?e.touches[0]:e; var r=canvas.getBoundingClientRect(); return { x:(pt.clientX-r.left)/r.width*canvas.width, y:(pt.clientY-r.top)/r.height*canvas.height }; }
+  function hit(px,py){
+    for(var i=fields.length-1;i>=0;i--){ var f=fields[i]; if(f.hidden||f.locked)continue;
+      var sx=canvas.width/designW, sy=canvas.height/designH; var cx=f.x*designW*sx, cy=f.y*designH*sy;
+      var b=f._box||fieldBox(f,sx,sy);
+      var dx=px-cx, dy=py-cy; var a=-(f.rot||0)*Math.PI/180; var lx=dx*Math.cos(a)-dy*Math.sin(a), ly=dx*Math.sin(a)+dy*Math.cos(a);
+      // rotate handle
+      if(Math.abs(lx)<10 && Math.abs(ly-(-b.h/2-16))<10) return {f:f,mode:'rotate'};
+      if(Math.abs(lx-(b.w/2))<10 && Math.abs(ly-(b.h/2))<10) return {f:f,mode:'resize'};
+      if(Math.abs(lx)<=b.w/2+6 && Math.abs(ly)<=b.h/2+6) return {f:f,mode:'move'};
+    }
+    return null;
+  }
+  function onDown(e){
+    var p=evtPos(e); var h=hit(p.x,p.y);
+    if(h){ selId=h.f.id; pushUndo(); drag={f:h.f,mode:h.mode,startX:p.x,startY:p.y,ox:h.f.x,oy:h.f.y,ow:h.f.w,oh:h.f.h,ofs:h.f.fontSize,orot:h.f.rot}; renderFieldList(); renderProps(); draw(); e.preventDefault(); }
+    else { selId=null; renderProps(); renderFieldList(); draw(); }
+  }
+  function onMove(e){
+    if(!drag) return; var p=evtPos(e); var f=drag.f; var sx=canvas.width/designW, sy=canvas.height/designH;
+    if(drag.mode==='move'){
+      var nx=drag.ox+(p.x-drag.startX)/(designW*sx); var ny=drag.oy+(p.y-drag.startY)/(designH*sy);
+      if(snap){ nx=Math.round(nx*40)/40; ny=Math.round(ny*40)/40; }
+      f.x=Math.max(0,Math.min(1,nx)); f.y=Math.max(0,Math.min(1,ny));
+    } else if(drag.mode==='resize'){
+      if(f.type==='text'){ f.fontSize=Math.max(8,drag.ofs+(p.y-drag.startY)/sy*0.6); }
+      else { f.w=Math.max(0.03,drag.ow+(p.x-drag.startX)/(designW*sx)); f.h=Math.max(0.03,drag.oh+(p.y-drag.startY)/(designH*sy)); }
+    } else if(drag.mode==='rotate'){
+      var cx=f.x*designW*sx, cy=f.y*designH*sy; f.rot=Math.atan2(p.y-cy,p.x-cx)*180/Math.PI+90; if(snap)f.rot=Math.round(f.rot/15)*15;
+    }
+    draw(); renderProps(); e.preventDefault();
+  }
+  function onUp(){ drag=null; }
+  canvas.addEventListener('mousedown',onDown); canvas.addEventListener('touchstart',onDown,{passive:false});
+  window.addEventListener('mousemove',onMove); window.addEventListener('touchmove',onMove,{passive:false});
+  window.addEventListener('mouseup',onUp); window.addEventListener('touchend',onUp);
+
+  // ---------- Field list + quick fields ----------
+  function renderQuick(){
+    var q=$('quickFields'); q.innerHTML='';
+    QUICK.forEach(function(name){ var b=document.createElement('button'); b.className='cert-chip'; b.textContent=name; b.addEventListener('click',function(){ pushUndo(); var f=newField('text',name); f.value=name; if(csvHeaders.length){ var m=autoMatch(name); if(m){f.source='column';f.column=m;} } fields.push(f); selId=f.id; renderFieldList(); renderProps(); draw(); }); q.appendChild(b); });
+  }
+  function renderFieldList(){
+    var wrap=$('fieldList'); wrap.innerHTML='';
+    fields.forEach(function(f){
+      var d=document.createElement('div'); d.className='cert-fitem'+(f.id===selId?' sel':'');
+      var icon={text:'🔤',qr:'▦',barcode:'|||',photo:'🖼',image:'✍'}[f.type]||'🔤';
+      d.innerHTML='<span class="nm">'+icon+' '+escapeHtml(f.label)+'</span>';
+      var vis=document.createElement('button'); vis.textContent=f.hidden?'🙈':'👁'; vis.title='Hide/Show'; vis.addEventListener('click',function(e){e.stopPropagation(); f.hidden=!f.hidden; renderFieldList(); draw();});
+      var lock=document.createElement('button'); lock.textContent=f.locked?'🔒':'🔓'; lock.title='Lock'; lock.addEventListener('click',function(e){e.stopPropagation(); f.locked=!f.locked; renderFieldList();});
+      var del=document.createElement('button'); del.textContent='✕'; del.title='Delete'; del.addEventListener('click',function(e){e.stopPropagation(); pushUndo(); fields=fields.filter(function(x){return x!==f;}); if(selId===f.id)selId=null; renderFieldList(); renderProps(); draw();});
+      d.appendChild(vis); d.appendChild(lock); d.appendChild(del);
+      d.addEventListener('click',function(){ selId=f.id; renderFieldList(); renderProps(); draw(); });
+      wrap.appendChild(d);
+    });
+  }
+  function escapeHtml(s){ return String(s).replace(/[&<>"]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];}); }
+
+  // ---------- Properties panel ----------
+  function renderProps(){
+    var f=fields.find(function(x){return x.id===selId;});
+    var p=$('propPanel'); if(!f){ p.innerHTML='<div class="cert-hint">Select a field to edit its properties, or add one above.</div>'; return; }
+    var colOpts='<option value="">— none —</option>'+csvHeaders.map(function(h){return '<option value="'+escapeHtml(h)+'"'+(f.column===h?' selected':'')+'>'+escapeHtml(h)+'</option>';}).join('');
+    var html='<h4>Properties — '+escapeHtml(f.type)+'</h4>';
+    html+=row('Label','<input type="text" data-p="label" value="'+escapeHtml(f.label)+'">');
+    html+=row('Source','<select data-p="source"><option value="static"'+(f.source==='static'?' selected':'')+'>Fixed value</option><option value="column"'+(f.source==='column'?' selected':'')+'>CSV column</option></select>');
+    if(f.source==='column') html+=row('Column','<select data-p="column">'+colOpts+'</select>');
+    else if(f.type!=='image'&&f.type!=='photo') html+=row('Value','<input type="text" data-p="value" value="'+escapeHtml(f.value||'')+'">');
+    if(f.type==='text'){
+      html+=row('Font','<select data-p="fontFamily">'+['Arial','Georgia','Times New Roman','Courier New','Verdana','Trebuchet MS','Tahoma'].map(function(ff){return '<option'+(f.fontFamily===ff?' selected':'')+'>'+ff+'</option>';}).join('')+'</select>');
+      html+=row('Size','<input type="number" data-p="fontSize" value="'+Math.round(f.fontSize)+'" min="6" max="400">');
+      html+=row('Style','<div class="cert-chip-row"><button class="cert-chip'+(f.bold?' on':'')+'" data-t="bold">B</button><button class="cert-chip'+(f.italic?' on':'')+'" data-t="italic">I</button><button class="cert-chip'+(f.underline?' on':'')+'" data-t="underline">U</button></div>');
+      html+=row('Align','<select data-p="align"><option'+(f.align==='left'?' selected':'')+'>left</option><option'+(f.align==='center'?' selected':'')+'>center</option><option'+(f.align==='right'?' selected':'')+'>right</option></select>');
+      html+=row('Colour','<input type="color" data-p="color" value="'+f.color+'">');
+      html+=row('Spacing','<input type="range" data-p="letterSpacing" min="0" max="20" value="'+f.letterSpacing+'">');
+      html+=row('Line h.','<input type="range" data-p="lineHeight" min="80" max="250" value="'+Math.round(f.lineHeight*100)+'">');
+      html+=row('Shadow','<div class="cert-chip-row"><button class="cert-chip'+(f.shadow?' on':'')+'" data-t="shadow">Shadow</button><button class="cert-chip'+(f.stroke?' on':'')+'" data-t="stroke">Outline</button></div>');
+      if(f.stroke){ html+=row('Outline','<input type="color" data-p="strokeColor" value="'+f.strokeColor+'"> <input type="number" data-p="strokeWidth" value="'+f.strokeWidth+'" min="1" max="20" style="max-width:60px">'); }
+    }
+    if(f.type==='barcode'){ html+=row('Format','<select data-p="barcodeFormat">'+['CODE128','CODE39','EAN13','UPC'].map(function(b){return '<option'+(f.barcodeFormat===b?' selected':'')+'>'+b+'</option>';}).join('')+'</select>'); }
+    if(f.type==='photo'){
+      html+=row('Shape','<select data-p="photoShape"><option value="rect"'+(f.photoShape==='rect'?' selected':'')+'>Rectangle</option><option value="rounded"'+(f.photoShape==='rounded'?' selected':'')+'>Rounded</option><option value="circle"'+(f.photoShape==='circle'?' selected':'')+'>Circle</option></select>');
+      html+=row('Border','<div class="cert-chip-row"><button class="cert-chip'+(f.border?' on':'')+'" data-t="border">Border</button></div> <input type="color" data-p="borderColor" value="'+f.borderColor+'">');
+    }
+    if(f.type==='image'){ html+=row('Image','<input type="file" data-upload="1" accept="image/*">'); }
+    if(f.type!=='text'){ html+=row('Width','<input type="range" data-p="w" min="2" max="100" value="'+Math.round(f.w*100)+'">'); html+=row('Height','<input type="range" data-p="h" min="2" max="100" value="'+Math.round(f.h*100)+'">'); }
+    html+=row('X %','<input type="number" data-p="xp" value="'+Math.round(f.x*100)+'" min="0" max="100">');
+    html+=row('Y %','<input type="number" data-p="yp" value="'+Math.round(f.y*100)+'" min="0" max="100">');
+    html+=row('Rotate','<input type="range" data-p="rot" min="-180" max="180" value="'+Math.round(f.rot)+'">');
+    html+=row('Opacity','<input type="range" data-p="opacity" min="10" max="100" value="'+Math.round(f.opacity*100)+'">');
+    p.innerHTML='<div class="cert-props">'+html+'</div>';
+    wireProps(f,p);
+  }
+  function row(label,ctrl){ return '<div class="prow"><label>'+label+'</label>'+ctrl+'</div>'; }
+  function wireProps(f,p){
+    p.querySelectorAll('[data-p]').forEach(function(el){
+      el.addEventListener('input',function(){
+        var k=el.getAttribute('data-p'); var v=el.value;
+        if(k==='fontSize'||k==='strokeWidth'){ f[k]=parseFloat(v)||0; }
+        else if(k==='letterSpacing'){ f.letterSpacing=parseFloat(v)||0; }
+        else if(k==='lineHeight'){ f.lineHeight=(parseFloat(v)||100)/100; }
+        else if(k==='w'||k==='h'){ f[k]=(parseFloat(v)||10)/100; }
+        else if(k==='xp'){ f.x=(parseFloat(v)||0)/100; }
+        else if(k==='yp'){ f.y=(parseFloat(v)||0)/100; }
+        else if(k==='rot'){ f.rot=parseFloat(v)||0; }
+        else if(k==='opacity'){ f.opacity=(parseFloat(v)||100)/100; }
+        else { f[k]=v; }
+        if(k==='source'||k==='label') renderProps();
+        if(k==='label') renderFieldList();
+        draw();
+      });
+    });
+    p.querySelectorAll('[data-t]').forEach(function(el){ el.addEventListener('click',function(){ var k=el.getAttribute('data-t'); f[k]=!f[k]; renderProps(); draw(); }); });
+    var up=p.querySelector('[data-upload]');
+    if(up){ up.addEventListener('change',function(e){ var file=e.target.files[0]; if(!file)return; var im=new Image(); im.onload=function(){ stampImages[f.id]=im; draw(); }; im.src=URL.createObjectURL(file); }); }
+  }
+
+  // ---------- Add field buttons ----------
+  document.querySelectorAll('[data-add]').forEach(function(b){ b.addEventListener('click',function(){ pushUndo(); var t=b.getAttribute('data-add'); var f=newField(t, t.charAt(0).toUpperCase()+t.slice(1)); fields.push(f); selId=f.id; renderFieldList(); renderProps(); draw(); }); });
+
+  // ---------- Toolbar ----------
+  $('undoBtn').addEventListener('click',undo);
+  $('redoBtn').addEventListener('click',redo);
+  $('dupBtn').addEventListener('click',function(){ var f=fields.find(function(x){return x.id===selId;}); if(!f)return; pushUndo(); var n=JSON.parse(JSON.stringify(f)); n.id=++idc; n.x=Math.min(1,f.x+0.03); n.y=Math.min(1,f.y+0.03); n.label=f.label+' copy'; if(stampImages[f.id])stampImages[n.id]=stampImages[f.id]; fields.push(n); selId=n.id; renderFieldList(); renderProps(); draw(); });
+  $('delBtn').addEventListener('click',function(){ if(selId==null)return; pushUndo(); fields=fields.filter(function(x){return x.id!==selId;}); selId=null; renderFieldList(); renderProps(); draw(); });
+  $('snapBtn').addEventListener('click',function(){ snap=!snap; this.classList.toggle('active',snap); });
+  $('gridBtn').addEventListener('click',function(){ showGrid=!showGrid; this.classList.toggle('active',showGrid); draw(); });
+  $('zoomRange').addEventListener('input',function(){ view.zoom=this.value/100; $('zoomLabel').textContent=this.value+'%'; applyZoom(); });
+  $('fitBtn').addEventListener('click',function(){ view.zoom=1; $('zoomRange').value=100; $('zoomLabel').textContent='100%'; fitView(); });
+
+  document.addEventListener('keydown',function(e){
+    if(/input|select|textarea/i.test((e.target.tagName||''))) return;
+    if((e.ctrlKey||e.metaKey)&&e.key==='z'){ undo(); e.preventDefault(); }
+    else if((e.ctrlKey||e.metaKey)&&(e.key==='y')){ redo(); e.preventDefault(); }
+    else if((e.ctrlKey||e.metaKey)&&e.key==='d'){ $('dupBtn').click(); e.preventDefault(); }
+    else if(e.key==='Delete'||e.key==='Backspace'){ if(selId!=null){ $('delBtn').click(); e.preventDefault(); } }
+    else if(selId!=null && e.key.indexOf('Arrow')===0){ var f=fields.find(function(x){return x.id===selId;}); if(f){ pushUndo(); var d=e.shiftKey?0.01:0.002; if(e.key==='ArrowLeft')f.x-=d; if(e.key==='ArrowRight')f.x+=d; if(e.key==='ArrowUp')f.y-=d; if(e.key==='ArrowDown')f.y+=d; draw(); renderProps(); e.preventDefault(); } }
+  });
+
+  // ---------- Data import ----------
+  setupDropzone($('csvDropzone'), $('csvInput'), function(files){ if(files.length) importData(files[0]); });
+  function importData(file){
+    var name=(file.name||'').toLowerCase();
+    if(name.match(/\.xlsx?$/)){
+      var fr=new FileReader(); fr.onload=function(e){ try{ var wb=XLSX.read(new Uint8Array(e.target.result),{type:'array'}); var ws=wb.Sheets[wb.SheetNames[0]]; var json=XLSX.utils.sheet_to_json(ws,{defval:''}); setData(json, Object.keys(json[0]||{})); }catch(err){ toast('Could not read the Excel file.'); } }; fr.readAsArrayBuffer(file);
+    } else {
+      var fr2=new FileReader(); fr2.onload=function(e){ var text=e.target.result.trim(); var delim = name.match(/\.tsv$/)||text.indexOf('\t')>-1 && text.indexOf(',')===-1 ? '\t' : (Papa?undefined:','); var res=Papa.parse(text,{header:true,skipEmptyLines:true,delimiter:delim||''}); setData(res.data, res.meta.fields||[]); }; fr2.readAsText(file);
+    }
+  }
+  function setData(rows, headers){
+    csvData=rows; csvHeaders=headers;
+    $('dataTools').style.display='flex';
+    $('csvStatus').textContent='✅ '+rows.length+' record(s), '+headers.length+' column(s)';
+    previewIndex=0;
+    renderProps(); autoMap(true); validate(); renderTable(); draw();
+    $('exportPanel').style.display='block';
+  }
+  function autoMatch(fieldLabel){
+    var norm=function(s){return String(s).toLowerCase().replace(/[^a-z0-9]/g,'');};
+    var fl=norm(fieldLabel);
+    var best=''; csvHeaders.forEach(function(h){ var hn=norm(h); if(hn===fl){best=h;} else if(!best && (hn.indexOf(fl)>-1||fl.indexOf(hn)>-1) && hn.length>2){best=h;} });
+    return best;
+  }
+  function autoMap(silent){ var n=0; fields.forEach(function(f){ if(f.type==='image')return; var m=autoMatch(f.label); if(m){ f.source='column'; f.column=m; n++; } }); renderProps(); renderFieldList(); draw(); if(!silent) toast('Auto-mapped '+n+' field(s)'); }
+  $('autoMapBtn').addEventListener('click',function(){ autoMap(false); });
+
+  // ---------- Validation ----------
+  function validate(){
+    var badges=$('validationBadges'); badges.innerHTML='';
+    if(!csvData||!csvData.length) return;
+    var certCol=csvHeaders.find(function(h){return /cert.*(no|number|id)/i.test(h);});
+    var dateCol=csvHeaders.find(function(h){return /date/i.test(h);});
+    var emailCol=csvHeaders.find(function(h){return /e-?mail/i.test(h);});
+    var dupes=0, empties=0, badDates=0, badEmails=0; var seen={};
+    var mappedCols=fields.filter(function(f){return f.source==='column'&&f.column;}).map(function(f){return f.column;});
+    csvData.forEach(function(r){
+      if(certCol){ var v=r[certCol]; if(v){ if(seen[v])dupes++; seen[v]=1; } }
+      mappedCols.forEach(function(c){ if(!String(r[c]||'').trim())empties++; });
+      if(dateCol && r[dateCol] && isNaN(Date.parse(r[dateCol])))badDates++;
+      if(emailCol && r[emailCol] && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(r[emailCol]))badEmails++;
+    });
+    function badge(txt,cls){ var s=document.createElement('span'); s.className='cert-badge '+(cls||''); s.textContent=txt; badges.appendChild(s); }
+    badge('✅ '+csvData.length+' records','ok');
+    if(dupes)badge('⚠️ '+dupes+' duplicate cert numbers','warn');
+    if(empties)badge('⚠️ '+empties+' empty mapped cells','warn');
+    if(badDates)badge('⚠️ '+badDates+' invalid dates','warn');
+    if(badEmails)badge('⚠️ '+badEmails+' invalid emails','warn');
+    if(!dupes&&!empties&&!badDates&&!badEmails)badge('✅ No issues found','ok');
+    validate._dup={col:certCol,seen:{}};
+  }
+
+  // ---------- Data table ----------
+  function renderTable(filter){
+    var wrap=$('tableWrap'); var tbl=$('dataTable');
+    if(!csvData||!csvData.length){ wrap.style.display='none'; return; }
+    wrap.style.display='block';
+    var rows=csvData; var q=(filter||'').toLowerCase();
+    var certCol=csvHeaders.find(function(h){return /cert.*(no|number|id)/i.test(h);}); var seen={};
+    var head='<tr><th>#</th>'+csvHeaders.map(function(h){return '<th>'+escapeHtml(h)+'</th>';}).join('')+'</tr>';
+    var body=''; var shown=0;
+    for(var i=0;i<rows.length && shown<200;i++){
+      var r=rows[i];
+      if(q){ var hay=csvHeaders.map(function(h){return r[h];}).join(' ').toLowerCase(); if(hay.indexOf(q)===-1)continue; }
+      var cls=''; if(certCol&&r[certCol]){ if(seen[r[certCol]])cls='dup'; seen[r[certCol]]=1; }
+      body+='<tr class="'+cls+'" data-i="'+i+'"><td>'+(i+1)+'</td>'+csvHeaders.map(function(h){return '<td>'+escapeHtml(r[h]||'')+'</td>';}).join('')+'</tr>';
+      shown++;
+    }
+    tbl.innerHTML=head+body;
+    tbl.querySelectorAll('tr[data-i]').forEach(function(tr){ tr.addEventListener('click',function(){ previewIndex=parseInt(tr.getAttribute('data-i')); draw(); toast('Previewing record '+(previewIndex+1)); }); });
+  }
+  $('dataSearch').addEventListener('input',function(){ renderTable(this.value); });
+
+  $('sampleCsvBtn').addEventListener('click',function(){
+    var csv='Name,Course,Date,Certificate No,Grade,Photo URL\nAarav Sharma,Web Development,2026-06-01,CERT-0001,A,\nDiya Patel,Data Science,2026-06-01,CERT-0002,A+,\nKabir Singh,UI Design,2026-06-01,CERT-0003,B,\n';
+    dl(new Blob([csv],{type:'text/csv'}),'sample-certificates.csv');
+  });
+
+  // ---------- Export ----------
+  $('exQuality').addEventListener('input',function(){ $('exQualityLabel').textContent=this.value+'%'; });
+  function dl(blob,fn){ var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fn; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(a.href);},1500); }
+
+  function pageDims(){
+    var pg=$('exPage').value, or=$('exOrient').value;
+    var sizes={a4:[210,297],a5:[148,210],letter:[215.9,279.4]};
+    if(pg==='fit'){ var mmW=designW*25.4/96, mmH=designH*25.4/96; return {w:mmW,h:mmH,orient:mmW>=mmH?'landscape':'portrait',fit:true}; }
+    var s=sizes[pg]; var w=s[0],h=s[1]; var orient=or==='auto'?(designW>=designH?'landscape':'portrait'):or;
+    if(orient==='landscape'){ var t=w;w=h;h=t; }
+    return {w:w,h:h,orient:orient,fit:false};
+  }
+
+  function renderRecordCanvas(row, scale){
+    var c=document.createElement('canvas'); c.width=Math.round(designW*(scale||1)); c.height=Math.round(designH*(scale||1));
+    var cc=c.getContext('2d'); var sx=c.width/designW, sy=c.height/designH;
+    cc.drawImage(templateImg,0,0,c.width,c.height);
+    fields.forEach(function(f){ if(!f.hidden) drawField(cc,f,row,sx,sy,false); });
+    return c;
+  }
+
+  function recordsToRender(){
+    var range=$('exRange').value;
+    if(range==='current') return csvData?[csvData[previewIndex]]:[{}];
+    if(!csvData||!csvData.length) return [{}];
+    if(range==='all') return csvData.slice();
+    return csvData.slice(0, parseInt(range));
+  }
+
+  async function preloadAllPhotos(rows){
+    var photoFields=fields.filter(function(f){return f.type==='photo'&&f.source==='column'&&f.column;});
+    if(!photoFields.length) return;
+    var urls={};
+    rows.forEach(function(r){ photoFields.forEach(function(f){ var u=r[f.column]; if(u)urls[u]=1; }); });
+    var list=Object.keys(urls);
+    await Promise.all(list.map(function(u){ return new Promise(function(res){ if(photoCache[u]&&photoCache[u].complete){res();return;} var im=new Image(); im.crossOrigin='anonymous'; im.onload=function(){res();}; im.onerror=function(){res();}; photoCache[u]=im; im.src=u; setTimeout(res,4000); }); }));
+  }
+
+  $('generateBtn').addEventListener('click', async function(){
+    if(!templateImg.src){ toast('Add a template first'); return; }
+    var status=$('statusMsg'); var prog=$('progress'); var bar=prog.firstElementChild;
+    var fmt=$('exFormat').value; var quality=$('exQuality').value/100;
+    var rows=recordsToRender();
+    prog.classList.add('show'); bar.style.width='0%';
+    status.textContent='⏳ Preparing '+rows.length+' document(s)…';
+    await preloadAllPhotos(rows);
+
+    function setProg(i){ bar.style.width=Math.round((i/rows.length)*100)+'%'; if(i%5===0)status.textContent='⏳ '+i+' / '+rows.length; }
+
+    try{
+      if(fmt==='pdf'){
+        var jsPDF=(window.jspdf||{}).jsPDF; if(!jsPDF){ toast('PDF library not loaded'); return; }
+        var pd=pageDims(); var pdf=new jsPDF({orientation:pd.orient,unit:'mm',format:[pd.w,pd.h]});
+        for(var i=0;i<rows.length;i++){
+          if(i>0) pdf.addPage([pd.w,pd.h],pd.orient);
+          var cv=renderRecordCanvas(rows[i],2);
+          placeOnPdf(pdf,cv,pd,quality);
+          if($('exCrop').checked) drawCropMarks(pdf,pd);
+          setProg(i+1); await tick();
+        }
+        pdf.save('certificates.pdf');
+      } else if(fmt==='zip-png'||fmt==='zip-jpg'){
+        if(!window.JSZip){ toast('ZIP library not loaded'); return; }
+        var zip=new JSZip(); var ext=fmt==='zip-jpg'?'jpg':'png'; var mime=fmt==='zip-jpg'?'image/jpeg':'image/png';
+        var nameField=fields.find(function(f){return /name/i.test(f.label)&&f.source==='column';});
+        for(var j=0;j<rows.length;j++){
+          var cvz=renderRecordCanvas(rows[j],2);
+          var b64=cvz.toDataURL(mime,quality).split(',')[1];
+          var base=nameField?String(rows[j][nameField.column]||('record-'+(j+1))):('record-'+(j+1));
+          zip.file(safeName(base)+'-'+(j+1)+'.'+ext, b64, {base64:true});
+          setProg(j+1); await tick();
+        }
+        var blob=await zip.generateAsync({type:'blob'}); dl(blob,'certificates-'+ext+'.zip');
+      } else if(fmt==='png'||fmt==='jpg'){
+        var cvs=renderRecordCanvas(rows[0],2);
+        cvs.toBlob(function(b){ dl(b,'certificate.'+(fmt==='jpg'?'jpg':'png')); }, fmt==='jpg'?'image/jpeg':'image/png', quality);
+      } else if(fmt==='svg'){
+        var cs=renderRecordCanvas(rows[0],2); var data=cs.toDataURL('image/png');
+        var svg='<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="'+cs.width+'" height="'+cs.height+'"><image width="'+cs.width+'" height="'+cs.height+'" xlink:href="'+data+'"/></svg>';
+        dl(new Blob([svg],{type:'image/svg+xml'}),'certificate.svg');
+      }
+      status.textContent='✅ Done — generated '+rows.length+' document(s).';
+      bar.style.width='100%';
+    }catch(err){
+      status.textContent='❌ '+(/tainted|SecurityError/i.test(err.message||'')?'A cross-origin photo blocked export. Host photos with CORS.':'Export failed: '+err.message);
+    }
+    setTimeout(function(){ prog.classList.remove('show'); }, 1500);
+  });
+  function tick(){ return new Promise(function(r){ setTimeout(r,0); }); }
+  function safeName(s){ return String(s).replace(/[^a-z0-9\-_ ]/gi,'').trim().slice(0,40)||'record'; }
+  function placeOnPdf(pdf,cv,pd,q){
+    var iw=cv.width, ih=cv.height; var ir=iw/ih; var pr=pd.w/pd.h; var w,h,x,y;
+    if(pd.fit){ w=pd.w; h=pd.h; x=0; y=0; }
+    else { var margin=6; var aw=pd.w-margin*2, ah=pd.h-margin*2; if(ir>aw/ah){ w=aw; h=aw/ir; } else { h=ah; w=ah*ir; } x=(pd.w-w)/2; y=(pd.h-h)/2; }
+    var data=cv.toDataURL('image/jpeg',q); pdf.addImage(data,'JPEG',x,y,w,h);
+  }
+  function drawCropMarks(pdf,pd){ var m=4,l=5; pdf.setDrawColor(0); pdf.setLineWidth(0.2);
+    [[m,m,1,1],[pd.w-m,m,-1,1],[m,pd.h-m,1,-1],[pd.w-m,pd.h-m,-1,-1]].forEach(function(c){ pdf.line(c[0],c[1],c[0]+l*c[2],c[1]); pdf.line(c[0],c[1],c[0],c[1]+l*c[3]); });
+  }
+
+  $('printBtn').addEventListener('click', async function(){
+    if(!templateImg.src)return;
+    var rows=recordsToRender(); await preloadAllPhotos(rows);
+    var w=window.open('','_blank'); if(!w){ toast('Allow pop-ups to print'); return; }
+    var imgs=rows.slice(0,50).map(function(r){ return '<img src="'+renderRecordCanvas(r,2).toDataURL('image/jpeg',0.9)+'" style="width:100%;page-break-after:always;margin-bottom:10px">'; }).join('');
+    w.document.write('<html><head><title>Print certificates</title></head><body style="margin:0">'+imgs+'<script>window.onload=function(){window.print();}<\/script></body></html>');
+    w.document.close();
+  });
+
+  // ---------- Init ----------
+  buildTemplateLibrary();
+  renderQuick();
+  window.addEventListener('resize',function(){ if(templateImg.src){ fitView(); } });
+})();
 </script>
 <!-- Default Statcounter code for Apne Software
 https://apnesoftware.com -->
 <script type="text/javascript">
-var sc_project=13334460; 
-var sc_invisible=1; 
-var sc_security="a5854dc7"; 
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
 </script>
 <script type="text/javascript"
 src="https://www.statcounter.com/counter/counter.js"
@@ -325,5 +1113,33 @@ src="https://c.statcounter.com/13334460/0/a5854dc7/1/"
 alt="Web Analytics"
 referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 <!-- End of Statcounter Code -->
+
+<!-- FAQ structured data -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is this certificate generator free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free with no account, no watermark and no limit on how many documents you generate."}},
+{"@type":"Question","name":"Are my recipients' names and photos uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Your template, CSV and photos are processed entirely in your browser. Nothing is uploaded to any server."}},
+{"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"Once the page and its libraries have loaded, the editor works offline. Photos loaded from a URL still need the internet."}},
+{"@type":"Question","name":"What template formats can I upload?","acceptedAnswer":{"@type":"Answer","text":"JPG, PNG, WebP and SVG images. Use a high-resolution file for crisp printing."}},
+{"@type":"Question","name":"Which data files are supported?","acceptedAnswer":{"@type":"Answer","text":"CSV, TSV and Excel XLSX/XLS. Headers are detected automatically."}},
+{"@type":"Question","name":"How do I connect a field to my data?","acceptedAnswer":{"@type":"Answer","text":"Select the field, set its Source to Column, and choose the CSV column. Auto-map can do this for all fields at once."}},
+{"@type":"Question","name":"Can I add a QR code for verification?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add a QR field and bind it to a column such as a verification URL or certificate number."}},
+{"@type":"Question","name":"Which barcode formats are available?","acceptedAnswer":{"@type":"Answer","text":"Code128, Code39, EAN13 and UPC. EAN13 and UPC require valid numeric data of the correct length."}},
+{"@type":"Question","name":"Can each certificate have a different photo?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add a photo field and map it to a column of image URLs; each record loads its own picture with optional circular or rounded crop."}},
+{"@type":"Question","name":"Can I add a signature or official stamp?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add a Sign/Stamp field and upload an image; it appears on every document."}},
+{"@type":"Question","name":"How many records can it handle?","acceptedAnswer":{"@type":"Answer","text":"It works well with 10, 100, 1000 and 5000 or more records. For very large batches use a ZIP of images or split the range."}},
+{"@type":"Question","name":"What export formats are available?","acceptedAnswer":{"@type":"Answer","text":"A multi-page PDF, a ZIP of PNG or JPG images, or a single PNG, JPG or SVG of the current preview."}},
+{"@type":"Question","name":"Can I print on A4 or ID-card size?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose fit-to-design, A4, A5 or Letter, portrait or landscape, and optionally add crop marks."}},
+{"@type":"Question","name":"What does the validation check?","acceptedAnswer":{"@type":"Answer","text":"It flags duplicate certificate numbers, empty required fields, invalid dates and malformed emails."}},
+{"@type":"Question","name":"How do I auto-map columns?","acceptedAnswer":{"@type":"Answer","text":"Click Auto-map columns and the tool matches CSV headers to fields by name. You can adjust any mapping afterwards."}},
+{"@type":"Question","name":"Can I reposition fields precisely?","acceptedAnswer":{"@type":"Answer","text":"Yes. Drag on the canvas with snap-to-grid and smart guides, or type exact position and size values in the field panel."}},
+{"@type":"Question","name":"Does it support Hindi or other languages in fields?","acceptedAnswer":{"@type":"Answer","text":"Yes. Any text your chosen font supports, including Hindi, will render. Pick a font that includes those glyphs."}},
+{"@type":"Question","name":"Will my original files be changed?","acceptedAnswer":{"@type":"Answer","text":"No. Your template and data files are never modified; only the new exports are created."}},
+{"@type":"Question","name":"Is it mobile friendly?","acceptedAnswer":{"@type":"Answer","text":"Yes, the layout is responsive and works on tablets and phones, though a larger screen is easier for precise placement."}},
+{"@type":"Question","name":"Is it accessible?","acceptedAnswer":{"@type":"Answer","text":"Controls are keyboard-operable and labelled for screen readers, with high-contrast, focus-visible styling."}},
+{"@type":"Question","name":"Does it use any AI?","acceptedAnswer":{"@type":"Answer","text":"No. It is a deterministic mail-merge and canvas renderer with no AI and no cloud processing."}},
+{"@type":"Question","name":"Why is a photo not showing on the exported card?","acceptedAnswer":{"@type":"Answer","text":"The image URL is likely cross-origin without CORS, which taints the canvas. Host photos with CORS enabled or embed them locally."}}
+]}
+</script>
 </body>
 </html>
