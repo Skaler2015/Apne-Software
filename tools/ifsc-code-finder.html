@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Free IFSC Code Finder &amp; Validator — instantly validate an Indian Financial System Code (IFSC), decode the bank name from its prefix, or search 55+ major Indian banks by name to find their IFSC prefix. 100% private, browser-only, no AI.">
+<meta name="keywords" content="IFSC code finder, IFSC code validator, IFSC code checker, bank IFSC prefix, find bank from IFSC code, NEFT RTGS IMPS IFSC code, IFSC code format">
+<link rel="canonical" href="https://apnesoftware.com/tools/ifsc-code-finder.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="IFSC Code Finder & Validator | ApneSoftware">
+<meta property="og:description" content="Validate an IFSC code and decode its bank name instantly, or search by bank name to find its IFSC prefix. Free, private, browser-only.">
+<meta property="og:url" content="https://apnesoftware.com/tools/ifsc-code-finder.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="IFSC Code Finder & Validator | ApneSoftware">
+<meta name="twitter:description" content="Validate an IFSC code and decode its bank name — instant, free, private, browser-only.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"IFSC Code Finder","description":"In-browser IFSC (Indian Financial System Code) validator and bank identifier. Validates the 11-character IFSC structure, decodes the bank name from a curated list of over 55 major Indian bank prefixes, and supports reverse search from bank name to IFSC prefix.","url":"https://apnesoftware.com/tools/ifsc-code-finder.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["IFSC code structure validation","Bank name decoding from IFSC prefix","Reverse search from bank name to IFSC prefix","Reference table of major Indian bank IFSC prefixes","Copy and share results"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"IFSC Code Finder","url":"https://apnesoftware.com/tools/ifsc-code-finder.html","description":"Browser-based IFSC code validator and bank identifier for India.","inLanguage":["en","hi"],"isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".tool-header p"]}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"Calculators & Converters","item":"https://apnesoftware.com/index.html#cat-calculator"},{"@type":"ListItem","position":3,"name":"IFSC Code Finder","item":"https://apnesoftware.com/tools/ifsc-code-finder.html"}]}
+</script>
+<meta name="color-scheme" content="dark light">
+<title>IFSC Code Finder & Validator | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* ===== IFSC Code Finder — scoped ifsc- prefix ===== */
+
+  .ifsc-num, .ifsc-content .num, .ifsc-stat-cards .num, .ifsc-engine-row span:last-child,
+  .ifsc-content table td, .ifsc-content table th{
+    white-space:nowrap; word-break:keep-all; overflow-wrap:normal;
+    font-variant-numeric: tabular-nums; font-feature-settings:"tnum" 1;
+  }
+
+  .ifsc-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .ifsc-tab{padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.82rem;font-weight:600;font-family:inherit}
+  .ifsc-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .ifsc-pane{display:none}
+  .ifsc-pane.active{display:block}
+
+  .ifsc-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:18px;margin-bottom:14px;backdrop-filter:blur(10px);
+    transition:transform .18s ease, box-shadow .18s ease}
+  .ifsc-card:hover{box-shadow:0 10px 30px rgba(124,92,252,.12)}
+  .ifsc-card h3{margin:0 0 10px;font-size:.95rem}
+  .ifsc-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:10px}
+  .ifsc-field label{display:block;font-size:.76rem;color:var(--text-dim);margin-bottom:4px}
+  .ifsc-field input,.ifsc-field select{width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:1rem;text-transform:uppercase;letter-spacing:.5px}
+  .ifsc-field input:focus,.ifsc-field select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(124,92,252,.2)}
+  .ifsc-err{display:none;color:#fca5a5;font-size:.82rem;margin-top:8px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.3);border-radius:10px;padding:10px 12px}
+  .ifsc-err ul{margin:4px 0 0;padding-left:18px}
+
+  .ifsc-stat-cards{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .ifsc-stat-cards .stat-box{flex:1;min-width:150px}
+  .ifsc-stat-cards .stat-box .num{font-size:1.15rem!important;overflow:hidden;text-overflow:ellipsis}
+  .ifsc-stat-cards .stat-box.ifsc-highlight{background:linear-gradient(135deg,rgba(124,92,252,.25),rgba(22,192,121,.18));border:1px solid var(--accent)}
+  .ifsc-stat-cards .stat-box.ifsc-warn{background:linear-gradient(135deg,rgba(248,113,113,.22),rgba(245,158,11,.14));border:1px solid #F87171}
+  .ifsc-stat-cards .stat-box.ifsc-ok{background:linear-gradient(135deg,rgba(22,192,121,.28),rgba(56,189,248,.16));border:1px solid #16C079}
+
+  .ifsc-engine-box{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:10px 0}
+  .ifsc-engine-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--border);font-size:.86rem;gap:10px}
+  .ifsc-engine-row:last-child{border-bottom:none}
+  .ifsc-engine-row span:last-child{font-weight:700;color:var(--accent)}
+
+  .ifsc-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .ifsc-flag{padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600;border:1px solid var(--border)}
+  .ifsc-flag.ok{background:rgba(22,192,121,.15);color:#7ef0bd;border-color:rgba(22,192,121,.4)}
+  .ifsc-flag.warn{background:rgba(248,113,113,.15);color:#fca5a5;border-color:rgba(248,113,113,.4)}
+  .ifsc-flag.neutral{background:var(--surface-2);color:var(--text-dim)}
+  .ifsc-muted{color:var(--text-dim);font-size:.8rem;margin-top:6px}
+
+  .ifsc-share-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .ifsc-share-btn{padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);cursor:pointer;font-size:.8rem;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:transform .15s ease, background .15s ease}
+  .ifsc-share-btn:hover{transform:translateY(-2px);background:var(--surface)}
+
+  .btn.ifsc-gradient{background:linear-gradient(135deg,#7C5CFC,#16C079);border:none;box-shadow:0 6px 20px rgba(124,92,252,.35);transition:transform .15s ease, box-shadow .15s ease}
+  .btn.ifsc-gradient:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(124,92,252,.5)}
+
+  #ifsc-stickyCalc{display:none}
+  @media(max-width:760px){
+    #ifsc-stickyCalc{ display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:10px 14px;background:linear-gradient(180deg,rgba(15,10,30,0),rgba(15,10,30,.96) 30%);justify-content:center; }
+    #ifsc-stickyCalc button{width:100%;max-width:420px;padding:13px 18px;font-size:.95rem;border-radius:999px}
+    body{padding-bottom:70px}
+  }
+
+  body.ifsc-large-font .container{font-size:1.1rem}
+  body.ifsc-high-contrast{filter:contrast(1.2) brightness(1.06)}
+
+  .ifsc-table-wrap{overflow-x:auto;max-height:420px;overflow-y:auto;border-radius:10px;border:1px solid var(--border)}
+  table.ifsc-table{width:100%;border-collapse:collapse;font-size:.86rem}
+  table.ifsc-table th{position:sticky;top:0;background:var(--surface-2);z-index:1;padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);color:#c4b5fd}
+  table.ifsc-table td{padding:7px 10px;border-bottom:1px solid var(--border)}
+
+  /* ===== Light mode — scoped strictly to the tool's own content ===== */
+  body.ifsc-light :is(.container,.ifsc-content){
+    --bg:#f4f2fb; --surface:#ffffff; --surface-2:#efeaf9; --border:rgba(20,10,45,.14); --border-strong:rgba(20,10,45,.24);
+    --text:#1c1533; --text-dim:rgba(28,21,51,.68);
+  }
+  body.ifsc-light .container,
+  body.ifsc-light .ifsc-content{
+    background:#f4f2fb; border-radius:18px; padding:20px 22px; box-shadow:0 8px 32px rgba(20,10,45,.12);
+  }
+  body.ifsc-light :is(.container,.ifsc-content) h1,
+  body.ifsc-light :is(.container,.ifsc-content) h2,
+  body.ifsc-light :is(.container,.ifsc-content) h3,
+  body.ifsc-light :is(.container,.ifsc-content) h4,
+  body.ifsc-light :is(.container,.ifsc-content) h5,
+  body.ifsc-light :is(.container,.ifsc-content) h6{color:var(--text)}
+  body.ifsc-light :is(.container,.ifsc-content) p{color:var(--text-dim)}
+  body.ifsc-light :is(.container,.ifsc-content) label{color:var(--text-dim)}
+  body.ifsc-light :is(.container,.ifsc-content) input[type=text],
+  body.ifsc-light :is(.container,.ifsc-content) select{
+    background:#ffffff;border:1px solid rgba(20,10,45,.2);color:var(--text)
+  }
+  body.ifsc-light :is(.container,.ifsc-content) select option{background:#ffffff;color:var(--text)}
+  body.ifsc-light :is(.container,.ifsc-content) .panel{background:#ffffff!important;border:1px solid rgba(20,10,45,.1)!important;box-shadow:0 8px 28px rgba(20,10,45,.08)!important}
+  body.ifsc-light :is(.container,.ifsc-content) table th{background:rgba(20,10,45,.06);color:var(--text)}
+  body.ifsc-light :is(.container,.ifsc-content) table td{color:var(--text-dim);border-color:rgba(20,10,45,.1)}
+  body.ifsc-light :is(.container,.ifsc-content) .ifsc-tab{color:var(--text-dim)}
+  body.ifsc-light :is(.container,.ifsc-content) .ifsc-tab.active{color:#fff}
+  body.ifsc-light :is(.container,.ifsc-content) .btn.secondary{background:var(--surface-2);border-color:var(--border);color:var(--text)}
+
+  .related-grid a .ri{margin-right:6px}
+  .ifsc-content h2{font-size:1.15rem;margin:26px 0 10px}
+  .ifsc-content h3{font-size:1rem;margin:18px 0 8px}
+  .ifsc-content p,.ifsc-content li{font-size:.92rem;line-height:1.8}
+  .ifsc-content ul,.ifsc-content ol{padding-left:20px}
+  .ifsc-content table{width:100%;border-collapse:collapse;font-size:.86rem;margin:12px 0}
+  .ifsc-content table th,.ifsc-content table td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  .ifsc-content table th{color:#c4b5fd}
+
+  .ifsc-faq-item{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+  .ifsc-faq-item strong{color:#c4b5fd}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="ifsc-muted" style="margin-bottom:10px" aria-label="Breadcrumb">
+    <a href="../index.html" style="color:#c4b5fd;text-decoration:none">Home</a> ›
+    <a href="../index.html#cat-calculator" style="color:#c4b5fd;text-decoration:none">Calculators &amp; Converters</a> ›
+    IFSC Code Finder
+  </nav>
+
+  <div class="tool-header">
+    <h1>🏦 IFSC Code Finder</h1>
+    <p>Validate an Indian Financial System Code (IFSC) instantly, decode its bank name, or search by bank name to find its IFSC prefix.</p>
+
+    <div class="ifsc-row" style="margin-top:14px">
+      <div class="ifsc-field">
+        <label for="ifsc-language">Language / भाषा</label>
+        <select id="ifsc-language" style="text-transform:none"><option value="en">English</option><option value="hi">हिन्दी</option></select>
+      </div>
+      <div class="ifsc-field">
+        <label for="ifsc-theme">Theme</label>
+        <select id="ifsc-theme" style="text-transform:none"><option value="dark">🌙 Dark</option><option value="light">☀️ Light</option></select>
+      </div>
+    </div>
+    <div id="ifsc-statusMsg" class="ifsc-muted" role="status" aria-live="polite"></div>
+    <p class="ifsc-muted">🔒 Everything runs locally in your browser. No IFSC code or search data is ever uploaded or stored.</p>
+  </div>
+
+  <div class="panel">
+    <div class="ifsc-tabs" role="tablist">
+      <button class="ifsc-tab active" id="ifsc-tabValidate" role="tab" aria-selected="true">🔎 Validate IFSC Code</button>
+      <button class="ifsc-tab" id="ifsc-tabReverse" role="tab" aria-selected="false">🏦 Find by Bank Name</button>
+      <button class="ifsc-tab" id="ifsc-tabTable" role="tab" aria-selected="false">📋 Bank Prefix Reference</button>
+    </div>
+
+    <!-- ===== Tab: Validate IFSC Code ===== -->
+    <div class="ifsc-pane active" id="ifsc-paneValidate">
+      <div class="ifsc-card">
+        <h3>🔎 Enter IFSC Code</h3>
+        <div class="ifsc-row">
+          <div class="ifsc-field" style="grid-column:1/-1">
+            <label for="ifsc-input">IFSC Code (11 characters)</label>
+            <input type="text" id="ifsc-input" maxlength="11" placeholder="e.g. SBIN0001234" value="SBIN0001234" autocomplete="off" spellcheck="false">
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn ifsc-gradient" id="ifsc-validateBtn" type="button">🔎 Validate</button>
+          <button class="btn secondary" id="ifsc-copyBtn" type="button">📋 Copy Result</button>
+          <button class="btn secondary" id="ifsc-resetBtn" type="button">↺ Reset</button>
+        </div>
+        <div class="ifsc-err" id="ifsc-errBox"></div>
+      </div>
+
+      <div class="ifsc-stat-cards" id="ifsc-summaryCards"></div>
+      <div class="ifsc-flags" id="ifsc-resultFlags"></div>
+      <div class="ifsc-engine-box" id="ifsc-detailBox"></div>
+
+      <div class="ifsc-share-row">
+        <a class="ifsc-share-btn" id="ifsc-shareWhatsapp" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+        <a class="ifsc-share-btn" id="ifsc-shareFacebook" href="#" target="_blank" rel="noopener">📘 Facebook</a>
+        <a class="ifsc-share-btn" id="ifsc-shareLinkedin" href="#" target="_blank" rel="noopener">💼 LinkedIn</a>
+        <a class="ifsc-share-btn" id="ifsc-shareTwitter" href="#" target="_blank" rel="noopener">🐦 X</a>
+        <button class="ifsc-share-btn" id="ifsc-copyLinkBtn" type="button">🔗 Copy Link</button>
+      </div>
+    </div>
+
+    <!-- ===== Tab: Find by Bank Name ===== -->
+    <div class="ifsc-pane" id="ifsc-paneReverse">
+      <div class="ifsc-card">
+        <h3>🏦 Search by Bank Name</h3>
+        <div class="ifsc-row">
+          <div class="ifsc-field" style="grid-column:1/-1">
+            <label for="ifsc-bankSearch">Bank Name</label>
+            <input type="text" id="ifsc-bankSearch" style="text-transform:none" placeholder="e.g. ICICI, HDFC, Bank of Baroda" autocomplete="off">
+          </div>
+        </div>
+        <div class="ifsc-table-wrap">
+          <table class="ifsc-table" id="ifsc-reverseResults"><thead><tr><th>IFSC Prefix</th><th>Bank Name</th></tr></thead><tbody></tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Tab: Bank Prefix Reference ===== -->
+    <div class="ifsc-pane" id="ifsc-paneTable">
+      <div class="ifsc-card">
+        <h3>📋 Major Indian Bank IFSC Prefixes</h3>
+        <p class="ifsc-muted">A curated reference of 55+ major scheduled banks — not exhaustive (regional rural and small local co-operative banks are largely omitted). Always confirm with your bank or a current NEFT/RTGS directory for compliance-critical use.</p>
+        <div class="ifsc-table-wrap">
+          <table class="ifsc-table" id="ifsc-fullTable"><thead><tr><th>IFSC Prefix</th><th>Bank Name</th></tr></thead><tbody></tbody></table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ifsc-content">
+
+<h2>1. Related Tools</h2>
+<div class="related-grid">
+  <a href="bank-reconciliation-tool.html"><span class="ri">🏦</span> Bank Reconciliation Tool</a>
+  <a href="journal-entry-generator.html"><span class="ri">📔</span> Journal Entry Generator</a>
+  <a href="income-tax-calculator.html"><span class="ri">💰</span> Income Tax Calculator</a>
+  <a href="tds-calculator.html"><span class="ri">🧾</span> TDS Calculator</a>
+  <a href="salary-calculator.html"><span class="ri">💼</span> Salary Calculator</a>
+  <a href="pf-calculator.html"><span class="ri">🏦</span> PF Calculator</a>
+</div>
+
+<h2>2. About This Tool | इस टूल के बारे में</h2>
+
+<p>यह टूल IFSC (Indian Financial System Code) की संरचना को सत्यापित करता है और उसके Prefix से बैंक का नाम पहचानता है, या बैंक के नाम से उसका IFSC Prefix खोजने में मदद करता है। | This tool validates the structure of an IFSC (Indian Financial System Code) and identifies the bank name from its prefix, or helps you find a bank's IFSC prefix by searching its name.</p>
+
+<p>हर IFSC Code 11 अक्षरों का होता है — पहले 4 अक्षर बैंक की पहचान करते हैं, 5वाँ अक्षर हमेशा "0" होता है (RBI द्वारा भविष्य के उपयोग के लिए आरक्षित), और अंतिम 6 अक्षर शाखा की पहचान करते हैं। | Every IFSC Code is 11 characters long — the first 4 characters identify the bank, the 5th character is always "0" (reserved by RBI for future use), and the last 6 characters identify the branch.</p>
+
+<p>यह टूल 55 से अधिक प्रमुख भारतीय बैंकों की एक सत्यापित सूची का उपयोग करके Prefix से बैंक का नाम दिखाता है — यह किसी विशेष शाखा का पता या संपर्क विवरण प्रदान नहीं करता, क्योंकि इस Tool में कोई सत्यापित शाखा-स्तरीय डेटाबेस शामिल नहीं है। | This tool uses a verified list of 55+ major Indian banks to show the bank name from the prefix — it does not provide a specific branch's address or contact details, since no verified branch-level database is bundled in this tool.</p>
+
+<p>यदि आपका IFSC Code संरचनात्मक रूप से सही है लेकिन उसका Prefix हमारी सूची में नहीं है, तो यह टूल इसे ईमानदारी से "unverified" के रूप में दिखाता है, बजाय किसी गलत बैंक नाम का अनुमान लगाने के। | If your IFSC Code is structurally valid but its prefix isn't in our list, this tool honestly shows it as "unverified" rather than guessing at an incorrect bank name.</p>
+
+<p>NEFT, RTGS और IMPS जैसे इलेक्ट्रॉनिक फंड ट्रांसफर के लिए सही IFSC Code का होना ज़रूरी है, ताकि पैसा सही बैंक शाखा तक पहुँच सके। | Having the correct IFSC Code is essential for electronic fund transfers like NEFT, RTGS and IMPS, so that money reaches the correct bank branch.</p>
+
+<p>महत्वपूर्ण लेन-देन से पहले हमेशा अपने बैंक की आधिकारिक वेबसाइट, पासबुक, चेकबुक या नेटबैंकिंग पोर्टल से अपने सटीक IFSC Code की पुष्टि करें। | Always confirm your exact IFSC Code from your bank's official website, passbook, chequebook or net-banking portal before an important transaction.</p>
+
+<p>हर गणना पूरी तरह आपके ब्राउज़र के भीतर होती है — कोई भी IFSC Code या Search Query कभी किसी सर्वर पर अपलोड नहीं की जाती, और यह टूल किसी भी AI-आधारित सुविधा का उपयोग नहीं करता। | Every calculation runs entirely within your browser — no IFSC Code or search query is ever uploaded to a server, and this tool does not use any AI-powered features.</p>
+
+<h2>3. Frequently Asked Questions | अक्सर पूछे जाने वाले प्रश्न</h2>
+<div class="ifsc-faq" id="ifscFaq">
+
+<div class="ifsc-faq-item"><p><strong>Q. What is an IFSC Code? | IFSC Code क्या है?</strong><br>An 11-character code identifying a specific bank branch for electronic fund transfers in India. | भारत में इलेक्ट्रॉनिक फंड ट्रांसफर के लिए किसी विशेष बैंक शाखा की पहचान करने वाला 11-अक्षर का कोड।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. What does IFSC stand for? | IFSC का पूरा नाम क्या है?</strong><br>Indian Financial System Code. | Indian Financial System Code।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. What is the structure of an IFSC Code? | IFSC Code की संरचना क्या है?</strong><br>4 letters for the bank, followed by "0", followed by 6 characters for the branch. | बैंक के लिए 4 अक्षर, उसके बाद "0", उसके बाद शाखा के लिए 6 अक्षर।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Why is the 5th character always 0? | 5वाँ अक्षर हमेशा 0 क्यों होता है?</strong><br>It is reserved by the RBI for potential future use. | यह RBI द्वारा भविष्य के संभावित उपयोग के लिए आरक्षित है।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Where can I find my bank's IFSC Code? | मैं अपने बैंक का IFSC Code कहाँ पा सकता हूँ?</strong><br>On your chequebook, passbook, or your bank's net-banking portal. | अपनी चेकबुक, पासबुक, या अपने बैंक के net-banking पोर्टल पर।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Is the IFSC Code the same for all branches of a bank? | क्या किसी बैंक की सभी शाखाओं का IFSC Code समान होता है?</strong><br>No — only the first 4 letters (bank code) are common; the last 6 characters differ by branch. | नहीं — केवल पहले 4 अक्षर (bank code) समान होते हैं; अंतिम 6 अक्षर शाखा के अनुसार भिन्न होते हैं।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Does this tool show the branch address? | क्या यह टूल शाखा का पता दिखाता है?</strong><br>No — it only decodes the bank name from the prefix; branch-level details require checking with your bank. | नहीं — यह केवल Prefix से बैंक का नाम दिखाता है; शाखा-स्तरीय विवरण के लिए अपने बैंक से जाँच आवश्यक है।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. What happens if the bank prefix isn't recognized? | अगर बैंक Prefix पहचाना न जाए तो क्या होता है?</strong><br>The tool honestly flags it as unverified rather than guessing — it may still be valid for a smaller or regional bank. | Tool इसे अनुमान लगाने के बजाय ईमानदारी से unverified के रूप में flag करता है — यह किसी छोटे या क्षेत्रीय बैंक के लिए अभी भी मान्य हो सकता है।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Is IFSC Code required for NEFT? | क्या NEFT के लिए IFSC Code आवश्यक है?</strong><br>Yes — it identifies the exact receiving branch for the transfer. | हाँ — यह ट्रांसफर के लिए सटीक प्राप्तकर्ता शाखा की पहचान करता है।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Is IFSC Code required for RTGS? | क्या RTGS के लिए IFSC Code आवश्यक है?</strong><br>Yes, just like NEFT and IMPS. | हाँ, NEFT और IMPS की तरह ही।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Is IFSC Code required for IMPS? | क्या IMPS के लिए IFSC Code आवश्यक है?</strong><br>Yes, when transferring using account number and IFSC (rather than mobile/MMID or UPI). | हाँ, जब account number और IFSC का उपयोग करके ट्रांसफर किया जाए (mobile/MMID या UPI के बजाय)।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Can IFSC codes change over time? | क्या IFSC codes समय के साथ बदल सकते हैं?</strong><br>Yes — bank mergers and branch restructuring can change IFSC codes; always verify the current one. | हाँ — बैंक विलय और शाखा पुनर्गठन से IFSC codes बदल सकते हैं; हमेशा वर्तमान कोड की पुष्टि करें।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. What happened to banks that merged, like Vijaya Bank? | Vijaya Bank जैसे विलय हुए बैंकों का क्या हुआ?</strong><br>Their old IFSC prefixes may still appear on older cheques, but new accounts use the merged bank's codes. | उनके पुराने IFSC prefixes पुराने cheques पर अभी भी दिख सकते हैं, लेकिन नए accounts विलय की गई बैंक के codes उपयोग करते हैं।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Can I search by partial bank name? | क्या मैं आंशिक बैंक नाम से खोज सकता हूँ?</strong><br>Yes — the Find by Bank Name search matches any part of the bank's name. | हाँ — Find by Bank Name search बैंक के नाम के किसी भी हिस्से से मेल खाता है।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Is this list of banks complete? | क्या बैंकों की यह सूची पूर्ण है?</strong><br>No — it covers 55+ major scheduled banks; smaller regional and co-operative banks may not be included. | नहीं — यह 55+ प्रमुख scheduled बैंकों को कवर करती है; छोटे क्षेत्रीय और सहकारी बैंक शामिल न हों सकते हैं।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Does IFSC Code work for UPI transfers? | क्या IFSC Code UPI transfers के लिए काम करता है?</strong><br>No — UPI typically uses a UPI ID or mobile number, not an IFSC Code. | नहीं — UPI आमतौर पर एक UPI ID या mobile number उपयोग करता है, IFSC Code नहीं।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. What is MICR code and is it the same as IFSC? | MICR code क्या है और क्या यह IFSC के समान है?</strong><br>No — MICR is a separate 9-digit code used for cheque processing, distinct from the 11-character IFSC. | नहीं — MICR एक अलग 9-अंकीय code है जो cheque processing के लिए उपयोग होता है, 11-अक्षर के IFSC से अलग।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Can I copy my validation result? | क्या मैं अपना validation result copy कर सकता हूँ?</strong><br>Yes — use the Copy Result button to copy a plain-text summary. | हाँ — plain-text सारांश copy करने के लिए Copy Result बटन का उपयोग करें।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Can I share my result? | क्या मैं अपना result share कर सकता हूँ?</strong><br>Yes — via WhatsApp, Facebook, LinkedIn, X, or Copy Link. | हाँ — WhatsApp, Facebook, LinkedIn, X, या Copy Link के माध्यम से।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Is my data uploaded anywhere? | क्या मेरा data कहीं upload होता है?</strong><br>No — every check runs entirely inside your browser. | नहीं — हर check पूरी तरह आपके browser के भीतर चलता है।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Does this tool use any AI? | क्या इस टूल में कोई AI इस्तेमाल होता है?</strong><br>No — validation and bank-name decoding use deterministic, hand-written logic against a fixed reference list. | नहीं — validation और bank-name decoding एक निश्चित reference list के विरुद्ध deterministic, hand-written logic का उपयोग करते हैं।</p></div>
+
+<div class="ifsc-faq-item"><p><strong>Q. Is this tool a substitute for verifying with my bank? | क्या यह टूल अपने बैंक से पुष्टि करने का विकल्प है?</strong><br>No — always verify your exact IFSC Code with your bank before an important transfer. | नहीं — किसी महत्वपूर्ण ट्रांसफर से पहले हमेशा अपने बैंक से अपना सटीक IFSC Code सत्यापित करें।</p></div>
+
+</div>
+
+</div>
+
+<p class="ifsc-muted" style="font-size:.85rem;text-align:center;padding:0 4px 4px">This tool validates IFSC code structure and decodes the bank name from a curated list of major Indian banks. It does not include branch-level address data. Always verify your exact IFSC code with your bank before an important transaction.</p>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an IFSC Code?", "acceptedAnswer": {"@type": "Answer", "text": "An 11-character code identifying a specific bank branch for electronic fund transfers in India."}}, {"@type": "Question", "name": "What does IFSC stand for?", "acceptedAnswer": {"@type": "Answer", "text": "Indian Financial System Code."}}, {"@type": "Question", "name": "What is the structure of an IFSC Code?", "acceptedAnswer": {"@type": "Answer", "text": "4 letters for the bank, followed by 0, followed by 6 characters for the branch."}}, {"@type": "Question", "name": "Why is the 5th character always 0?", "acceptedAnswer": {"@type": "Answer", "text": "It is reserved by the RBI for potential future use."}}, {"@type": "Question", "name": "Where can I find my bank's IFSC Code?", "acceptedAnswer": {"@type": "Answer", "text": "On your chequebook, passbook, or your bank's net-banking portal."}}, {"@type": "Question", "name": "Is the IFSC Code the same for all branches of a bank?", "acceptedAnswer": {"@type": "Answer", "text": "No, only the first 4 letters, the bank code, are common; the last 6 characters differ by branch."}}, {"@type": "Question", "name": "Does this tool show the branch address?", "acceptedAnswer": {"@type": "Answer", "text": "No, it only decodes the bank name from the prefix; branch-level details require checking with the bank."}}, {"@type": "Question", "name": "What happens if the bank prefix isn't recognized?", "acceptedAnswer": {"@type": "Answer", "text": "The tool honestly flags it as unverified rather than guessing; it may still be valid for a smaller or regional bank."}}, {"@type": "Question", "name": "Is IFSC Code required for NEFT?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, it identifies the exact receiving branch for the transfer."}}, {"@type": "Question", "name": "Is IFSC Code required for RTGS?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, just like NEFT and IMPS."}}, {"@type": "Question", "name": "Is IFSC Code required for IMPS?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, when transferring using account number and IFSC rather than mobile or UPI."}}, {"@type": "Question", "name": "Can IFSC codes change over time?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, bank mergers and branch restructuring can change IFSC codes."}}, {"@type": "Question", "name": "What happened to banks that merged, like Vijaya Bank?", "acceptedAnswer": {"@type": "Answer", "text": "Their old IFSC prefixes may still appear on older cheques, but new accounts use the merged bank's codes."}}, {"@type": "Question", "name": "Can I search by partial bank name?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the Find by Bank Name search matches any part of the bank's name."}}, {"@type": "Question", "name": "Is this list of banks complete?", "acceptedAnswer": {"@type": "Answer", "text": "No, it covers over 55 major scheduled banks; smaller regional and co-operative banks may not be included."}}, {"@type": "Question", "name": "Does IFSC Code work for UPI transfers?", "acceptedAnswer": {"@type": "Answer", "text": "No, UPI typically uses a UPI ID or mobile number, not an IFSC Code."}}, {"@type": "Question", "name": "What is MICR code and is it the same as IFSC?", "acceptedAnswer": {"@type": "Answer", "text": "No, MICR is a separate 9-digit code used for cheque processing, distinct from the 11-character IFSC."}}, {"@type": "Question", "name": "Can I copy my validation result?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, use the Copy Result button to copy a plain-text summary."}}, {"@type": "Question", "name": "Can I share my result?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, via WhatsApp, Facebook, LinkedIn, X, or Copy Link."}}, {"@type": "Question", "name": "Is my data uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No, every check runs entirely inside the browser."}}, {"@type": "Question", "name": "Does this tool use any AI?", "acceptedAnswer": {"@type": "Answer", "text": "No, validation and bank name decoding use deterministic, hand-written logic against a fixed reference list."}}, {"@type": "Question", "name": "Is this tool a substitute for verifying with my bank?", "acceptedAnswer": {"@type": "Answer", "text": "No, always verify the exact IFSC Code with the bank before an important transfer."}}]}
+</script>
+
+<footer class="site-footer">© apnesoftware.COM — IFSC Code Finder — Fast • Accurate • Secure • Mobile Friendly • SEO Optimized</footer>
+
+<div id="ifsc-stickyCalc"><button class="btn ifsc-gradient" id="ifsc-stickyValidateBtn" type="button">🔎 Validate</button></div>
+
+<script src="../assets/common.js"></script>
+<script>
+/* ===================== IFSC Code Finder Engine (pure logic, no DOM) =====================
+   An IFSC (Indian Financial System Code) is an 11-character code: the first 4 characters identify
+   the bank, the 5th character is always '0' (reserved by RBI), and the last 6 characters identify
+   the branch. This engine validates that structure and decodes the bank name from the prefix using
+   a curated list of major Indian bank codes — it does not claim to resolve a specific branch's
+   address, since no verified branch-level dataset is bundled. */
+'use strict';
+
+var IFSC_REGEX = /^[A-Z]{4}0[A-Z0-9]{6}$/;
+var BANK_PREFIXES = {
+  SBIN: 'State Bank of India', HDFC: 'HDFC Bank', ICIC: 'ICICI Bank', UTIB: 'Axis Bank',
+  PUNB: 'Punjab National Bank', BARB: 'Bank of Baroda', CNRB: 'Canara Bank', UBIN: 'Union Bank of India',
+  IOBA: 'Indian Overseas Bank', CBIN: 'Central Bank of India', IDIB: 'Indian Bank', KKBK: 'Kotak Mahindra Bank',
+  YESB: 'Yes Bank', INDB: 'IndusInd Bank', RATN: 'RBL Bank', FDRL: 'Federal Bank', SIBL: 'South Indian Bank',
+  KARB: 'Karnataka Bank', TMBL: 'Tamilnad Mercantile Bank', DCBL: 'DCB Bank', CSBK: 'CSB Bank',
+  JAKA: 'Jammu & Kashmir Bank', MAHB: 'Bank of Maharashtra', PSIB: 'Punjab & Sind Bank', UCBA: 'UCO Bank',
+  BKID: 'Bank of India', IBKL: 'IDBI Bank', SCBL: 'Standard Chartered Bank', HSBC: 'HSBC Bank', CITI: 'Citibank',
+  DBSS: 'DBS Bank India', DEUT: 'Deutsche Bank', AUBL: 'AU Small Finance Bank', ESFB: 'Equitas Small Finance Bank',
+  UJVN: 'Ujjivan Small Finance Bank', SURY: 'Suryoday Small Finance Bank', FINO: 'Fino Payments Bank',
+  PYTM: 'Paytm Payments Bank', AIRP: 'Airtel Payments Bank', IPOS: 'India Post Payments Bank',
+  KVBL: 'Karur Vysya Bank', DLXB: 'Dhanlaxmi Bank', IDFB: 'IDFC First Bank', BDBL: 'Bandhan Bank',
+  NESF: 'North East Small Finance Bank', JSFB: 'Jana Small Finance Bank', UNBI: 'Unity Small Finance Bank',
+  SVCB: 'SVC Co-operative Bank', NKGS: 'NKGSB Co-operative Bank',
+  ANDB: 'Andhra Bank (merged into Union Bank of India)', CORP: 'Corporation Bank (merged into Union Bank of India)',
+  ORBC: 'Oriental Bank of Commerce (merged into PNB)', VIJB: 'Vijaya Bank (merged into Bank of Baroda)',
+  SYNB: 'Syndicate Bank (merged into Canara Bank)', ALLA: 'Allahabad Bank (merged into Indian Bank)',
+  UTBI: 'United Bank of India (merged into PNB)'
+};
+
+function validateIFSC(rawCode) {
+  var code = String(rawCode || '').trim().toUpperCase();
+  var errors = [];
+  if (!code) { errors.push('IFSC code is required.'); return { code: code, isValid: false, errors: errors }; }
+  if (code.length !== 11) errors.push('IFSC code must be exactly 11 characters (found ' + code.length + ').');
+  if (code.length >= 4 && !/^[A-Z]{4}/.test(code)) errors.push('The first 4 characters must be letters (bank code).');
+  if (code.length >= 5 && code.charAt(4) !== '0') errors.push('The 5th character must be "0" (reserved by RBI).');
+  if (code.length === 11 && !/^[A-Z0-9]{6}$/.test(code.slice(5))) errors.push('The last 6 characters must be letters or digits (branch code).');
+
+  var structurallyValid = IFSC_REGEX.test(code);
+  var bankCode = code.slice(0, 4);
+  var branchCode = code.slice(5);
+  var bankName = BANK_PREFIXES[bankCode] || null;
+  if (structurallyValid && !bankName) errors.push('Bank prefix "' + bankCode + '" is not in our verified list of major bank codes — this may still be a valid IFSC for a smaller or regional bank; confirm with your bank.');
+
+  return { code: code, isValid: structurallyValid && !!bankName, structurallyValid: structurallyValid, bankCode: bankCode, branchCode: code.length === 11 ? branchCode : null, bankName: bankName, errors: errors };
+}
+function findPrefixByBankName(query) {
+  var q = String(query || '').trim().toLowerCase();
+  if (!q) return [];
+  return Object.keys(BANK_PREFIXES).filter(function (code) { return BANK_PREFIXES[code].toLowerCase().indexOf(q) !== -1; }).map(function (code) { return { code: code, bankName: BANK_PREFIXES[code] }; });
+}
+var IFSCEngine = { IFSC_REGEX: IFSC_REGEX, BANK_PREFIXES: BANK_PREFIXES, validateIFSC: validateIFSC, findPrefixByBankName: findPrefixByBankName };
+if (typeof window !== 'undefined') window.IFSCEngine = IFSCEngine;
+</script>
+<script>
+(function(){
+'use strict';
+var E = window.IFSCEngine;
+function $(id){ return document.getElementById(id); }
+function lsGet(key, fallback){ try{ var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } }
+function lsSet(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+function status(msg){ $('ifsc-statusMsg').textContent = msg; }
+function esc(s){ var d = document.createElement('div'); d.textContent = String(s == null ? '' : s); return d.innerHTML; }
+
+/* ===================== Tabs ===================== */
+var tabs = [['ifsc-tabValidate','ifsc-paneValidate'],['ifsc-tabReverse','ifsc-paneReverse'],['ifsc-tabTable','ifsc-paneTable']];
+tabs.forEach(function(pair){
+  $(pair[0]).addEventListener('click', function(){
+    tabs.forEach(function(p2){ $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected','false'); $(p2[1]).classList.remove('active'); });
+    $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected','true'); $(pair[1]).classList.add('active');
+  });
+});
+
+/* ===================== Validate ===================== */
+var lastResult = null;
+function statCard(label, value, cls){ return '<div class="stat-box'+(cls?' '+cls:'')+'"><div class="num">'+value+'</div><div class="lbl">'+label+'</div></div>'; }
+function row(label, value){ return '<div class="ifsc-engine-row"><span>'+label+'</span><span>'+value+'</span></div>'; }
+function runValidate(){
+  var raw = $('ifsc-input').value;
+  var r = E.validateIFSC(raw);
+  lastResult = r;
+  $('ifsc-input').value = r.code;
+
+  $('ifsc-summaryCards').innerHTML =
+    statCard('IFSC Code', r.code || '—') +
+    statCard('Bank Code', r.bankCode || '—') +
+    statCard('Branch Code', r.branchCode || '—') +
+    statCard('Bank Name', r.bankName || 'Unverified', r.bankName ? 'ifsc-highlight' : 'ifsc-warn');
+
+  var flags = [];
+  flags.push('<span class="ifsc-flag '+(r.structurallyValid ? 'ok' : 'warn')+'">'+(r.structurallyValid ? 'Structurally Valid' : 'Invalid Structure')+'</span>');
+  if (r.structurallyValid) flags.push('<span class="ifsc-flag '+(r.bankName ? 'ok' : 'neutral')+'">'+(r.bankName ? 'Bank Recognized' : 'Bank Unverified')+'</span>');
+  $('ifsc-resultFlags').innerHTML = flags.join('');
+
+  $('ifsc-detailBox').innerHTML =
+    row('Bank Code (first 4 chars)', esc(r.bankCode || '—')) +
+    row('Reserved Character (5th)', r.code.length >= 5 ? esc(r.code.charAt(4)) : '—') +
+    row('Branch Code (last 6 chars)', esc(r.branchCode || '—')) +
+    row('Bank Name', esc(r.bankName || 'Not in verified list — confirm with your bank'));
+
+  if (r.errors.length) {
+    $('ifsc-errBox').style.display = 'block';
+    $('ifsc-errBox').innerHTML = '<strong>Notes:</strong><ul>' + r.errors.map(function(e){ return '<li>'+esc(e)+'</li>'; }).join('') + '</ul>';
+  } else {
+    $('ifsc-errBox').style.display = 'none';
+  }
+  updateShareLinks();
+}
+$('ifsc-validateBtn').addEventListener('click', function(){ runValidate(); status('✅ Validation complete.'); });
+$('ifsc-stickyValidateBtn').addEventListener('click', function(){ runValidate(); status('✅ Validation complete.'); });
+$('ifsc-input').addEventListener('input', function(){ this.value = this.value.toUpperCase(); runValidate(); });
+$('ifsc-resetBtn').addEventListener('click', function(){ $('ifsc-input').value = ''; runValidate(); status('↺ Reset complete.'); });
+$('ifsc-copyBtn').addEventListener('click', function(){
+  if (!lastResult){ status('⚠️ Validate first.'); return; }
+  var text = 'IFSC Code: ' + lastResult.code + '\nBank Name: ' + (lastResult.bankName || 'Unverified') + '\nBank Code: ' + lastResult.bankCode + '\nBranch Code: ' + (lastResult.branchCode || '—');
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function(){ status('📋 Copied to clipboard.'); });
+});
+
+/* ===================== Reverse search ===================== */
+function renderReverse(){
+  var results = E.findPrefixByBankName($('ifsc-bankSearch').value);
+  var tbody = document.querySelector('#ifsc-reverseResults tbody');
+  tbody.innerHTML = results.map(function(r){ return '<tr><td>'+esc(r.code)+'</td><td>'+esc(r.bankName)+'</td></tr>'; }).join('') ||
+    '<tr><td colspan="2" style="text-align:center;color:var(--text-dim)">No matching bank found in our verified list.</td></tr>';
+}
+$('ifsc-bankSearch').addEventListener('input', renderReverse);
+
+/* ===================== Full reference table ===================== */
+function renderFullTable(){
+  var codes = Object.keys(E.BANK_PREFIXES).sort();
+  document.querySelector('#ifsc-fullTable tbody').innerHTML = codes.map(function(c){ return '<tr><td>'+esc(c)+'</td><td>'+esc(E.BANK_PREFIXES[c])+'</td></tr>'; }).join('');
+}
+
+/* ===================== Share links ===================== */
+function updateShareLinks(){
+  if (!lastResult) return;
+  var text = 'IFSC Code: ' + lastResult.code + ' — Bank: ' + (lastResult.bankName || 'Unverified');
+  var url = location.href;
+  $('ifsc-shareWhatsapp').href = 'https://wa.me/?text=' + encodeURIComponent(text + '\n' + url);
+  $('ifsc-shareFacebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+  $('ifsc-shareTwitter').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
+  $('ifsc-shareLinkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
+}
+$('ifsc-copyLinkBtn').addEventListener('click', function(){
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(location.href).then(function(){ status('🔗 Link copied to clipboard.'); });
+});
+
+/* ===================== Settings: theme / language ===================== */
+var I18N = {
+  en: { tabValidate:'🔎 Validate IFSC Code', tabReverse:'🏦 Find by Bank Name', tabTable:'📋 Bank Prefix Reference', validate:'🔎 Validate', reset:'↺ Reset', copy:'📋 Copy Result' },
+  hi: { tabValidate:'🔎 IFSC Code जाँचें', tabReverse:'🏦 बैंक नाम से खोजें', tabTable:'📋 Bank Prefix Reference', validate:'🔎 जाँचें', reset:'↺ रीसेट', copy:'📋 परिणाम कॉपी करें' }
+};
+function applyLanguage(lang){
+  var t = I18N[lang] || I18N.en;
+  $('ifsc-tabValidate').textContent = t.tabValidate; $('ifsc-tabReverse').textContent = t.tabReverse; $('ifsc-tabTable').textContent = t.tabTable;
+  $('ifsc-validateBtn').textContent = t.validate; $('ifsc-resetBtn').textContent = t.reset; $('ifsc-copyBtn').textContent = t.copy;
+}
+$('ifsc-language').addEventListener('change', function(){ applyLanguage(this.value); lsSet('ifsc_lang', this.value); });
+$('ifsc-theme').addEventListener('change', function(){ document.body.classList.toggle('ifsc-light', this.value === 'light'); lsSet('ifsc_theme', this.value); });
+
+var savedLang = lsGet('ifsc_lang', 'en'); $('ifsc-language').value = savedLang; applyLanguage(savedLang);
+var savedTheme = lsGet('ifsc_theme', 'dark'); $('ifsc-theme').value = savedTheme; document.body.classList.toggle('ifsc-light', savedTheme === 'light');
+
+renderFullTable();
+renderReverse();
+runValidate();
+
+})();
+</script>
+<script type="text/javascript">
+	var sc_project_id = 100000000;
+	var sc_invisible = 1;
+	var sc_security = "0000000";
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+
+</body>
+</html>
