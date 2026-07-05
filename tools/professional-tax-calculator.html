@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Free Professional Tax Calculator for India (FY 2025-26 & 2026-27) — instant State-wise Professional Tax (PT) for Maharashtra, Karnataka, West Bengal, Telangana, Andhra Pradesh, Tamil Nadu, Gujarat, Kerala, Assam, Bihar, Odisha and Madhya Pradesh. Employee, Employer and Self-Employed modes, exemption checker, state comparison. 100% private, browser-only.">
+<meta name="keywords" content="professional tax calculator India, PT slab state wise, Maharashtra professional tax, Karnataka professional tax, professional tax exemption, professional tax on salary slip, PT calculator FY 2025-26">
+<link rel="canonical" href="https://apnesoftware.com/tools/professional-tax-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Professional Tax Calculator (India, State-wise) | ApneSoftware">
+<meta property="og:description" content="Calculate State-wise Professional Tax instantly — Employee, Employer and Self-Employed modes, exemption checker, state comparison. Free, private, browser-only.">
+<meta property="og:url" content="https://apnesoftware.com/tools/professional-tax-calculator.html">
+<meta property="og:site_name" content="ApneSoftware">
+<meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Professional Tax Calculator (India, State-wise) | ApneSoftware">
+<meta name="twitter:description" content="State-wise Professional Tax — instant, free, private, browser-only.">
+<meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Professional Tax Calculator","description":"Professional in-browser Professional Tax (PT) calculator for India with a state-wise slab engine covering Maharashtra, Karnataka, West Bengal, Telangana, Andhra Pradesh, Tamil Nadu, Gujarat, Kerala, Assam, Bihar, Odisha and Madhya Pradesh, with Employee, Employer and Self-Employed modes, exemption checker and state comparison.","url":"https://apnesoftware.com/tools/professional-tax-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["State-wise Professional Tax slab engine","Employee, Employer and Self-Employed calculation modes","Exemption checker","State comparison","Interactive charts","Export to PDF, Excel, print, copy and share"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"Professional Tax Calculator","url":"https://apnesoftware.com/tools/professional-tax-calculator.html","description":"Browser-based state-wise Professional Tax calculator for India with Employee, Employer and Self-Employed modes.","inLanguage":["en","hi"],"isPartOf":{"@type":"WebSite","name":"ApneSoftware","url":"https://apnesoftware.com"},"speakable":{"@type":"SpeakableSpecification","cssSelector":["h1",".tool-header p"]}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://apnesoftware.com/index.html"},{"@type":"ListItem","position":2,"name":"Calculators & Converters","item":"https://apnesoftware.com/index.html#cat-calculator"},{"@type":"ListItem","position":3,"name":"Professional Tax Calculator","item":"https://apnesoftware.com/tools/professional-tax-calculator.html"}]}
+</script>
+<meta name="color-scheme" content="dark light">
+<title>Professional Tax Calculator (India, State-wise) | ApneSoftware</title>
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* ===== Professional Tax Calculator — scoped pt- prefix ===== */
+
+  /* Serial numbers and figures must never wrap across lines. */
+  .pt-num, .pt-serial,
+  .pt-content .num, .pt-stat-cards .num, .pt-engine-row span:last-child,
+  .pt-content table td, .pt-content table th,
+  .pt-formula-box{ white-space:nowrap; word-break:keep-all; overflow-wrap:normal; }
+
+  .pt-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:18px;align-items:start}
+  #pt-formSide,#pt-resultSide{min-width:0}
+  #pt-resultSide{position:sticky;top:16px}
+  @media(max-width:900px){ .pt-grid{grid-template-columns:1fr} #pt-resultSide{position:static} }
+
+  .pt-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .pt-tab{padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.82rem;font-weight:600;font-family:inherit}
+  .pt-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .pt-pane{display:none}
+  .pt-pane.active{display:block}
+
+  .pt-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;backdrop-filter:blur(10px)}
+  .pt-card h3{margin:0 0 10px;font-size:.95rem}
+  .pt-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:10px}
+  .pt-field label{display:block;font-size:.76rem;color:var(--text-dim);margin-bottom:4px}
+  .pt-field input,.pt-field select{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.88rem}
+  .pt-note{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.3);border-radius:10px;padding:10px 12px;font-size:.8rem;color:#fde68a;margin-top:10px}
+
+  .pt-stat-cards{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+  .pt-stat-cards .stat-box{flex:1;min-width:130px}
+  .pt-stat-cards .stat-box.pt-highlight{background:linear-gradient(135deg,rgba(124,92,252,.25),rgba(22,192,121,.18));border:1px solid var(--accent)}
+
+  .pt-engine-box{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px 14px;margin:10px 0}
+  .pt-engine-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed var(--border);font-size:.86rem;gap:10px}
+  .pt-engine-row:last-child{border-bottom:none}
+  .pt-engine-row span:last-child{font-weight:700;color:var(--accent)}
+
+  .pt-steps{display:flex;flex-direction:column;gap:4px;margin:10px 0}
+  .pt-step{background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:.84rem;text-align:center}
+  .pt-step-arrow{text-align:center;color:var(--text-dim);font-size:.9rem}
+
+  .pt-formula-box{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px;font-family:'Consolas','Courier New',monospace;font-size:.8rem;white-space:pre-wrap;margin-top:10px}
+
+  .pt-chart-wrap{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px;margin-top:12px}
+  .pt-chart-wrap h4{font-size:.82rem;color:var(--text-dim);font-weight:600;margin-bottom:8px}
+  .pt-chart-wrap canvas{width:100%;height:auto;display:block}
+  .pt-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;font-size:.76rem;color:var(--text-dim)}
+  .pt-legend span{display:inline-flex;align-items:center;gap:5px}
+  .pt-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+
+  .pt-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .pt-flag{padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600;border:1px solid var(--border)}
+  .pt-flag.ok{background:rgba(22,192,121,.15);color:#7ef0bd;border-color:rgba(22,192,121,.4)}
+  .pt-flag.warn{background:rgba(248,113,113,.15);color:#fca5a5;border-color:rgba(248,113,113,.4)}
+  .pt-flag.neutral{background:var(--surface-2);color:var(--text-dim)}
+  .pt-muted{color:var(--text-dim);font-size:.8rem;margin-top:6px}
+
+  .pt-multi-table{width:100%;border-collapse:collapse;font-size:.84rem;margin:10px 0}
+  .pt-multi-table th,.pt-multi-table td{padding:8px 8px;text-align:left;border-bottom:1px solid var(--border)}
+  .pt-multi-table input{width:100%;padding:6px 8px;border-radius:6px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.82rem}
+  .pt-multi-remove{background:none;border:1px solid var(--border);color:#fca5a5;border-radius:6px;cursor:pointer;padding:4px 8px;font-size:.78rem}
+
+  .pt-history-item{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);margin-bottom:6px;font-size:.84rem}
+  .pt-share-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .pt-share-btn{padding:7px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);cursor:pointer;font-size:.8rem;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+
+  body.pt-large-font #pt-formSide,body.pt-large-font #pt-resultSide{font-size:1.1rem}
+  body.pt-high-contrast{filter:contrast(1.2) brightness(1.06)}
+
+  /* ===== Light mode — scoped strictly to the tool's own content ===== */
+  body.pt-light :is(.container,.pt-content){
+    --bg:#f4f2fb; --surface:#ffffff; --surface-2:#efeaf9; --border:rgba(20,10,45,.14); --border-strong:rgba(20,10,45,.24);
+    --text:#1c1533; --text-dim:rgba(28,21,51,.68);
+  }
+  body.pt-light .container,
+  body.pt-light .pt-content{
+    background:#f4f2fb; border-radius:18px; padding:20px 22px; box-shadow:0 8px 32px rgba(20,10,45,.12);
+  }
+  body.pt-light :is(.container,.pt-content) h1,
+  body.pt-light :is(.container,.pt-content) h2,
+  body.pt-light :is(.container,.pt-content) h3,
+  body.pt-light :is(.container,.pt-content) h4,
+  body.pt-light :is(.container,.pt-content) h5,
+  body.pt-light :is(.container,.pt-content) h6{color:var(--text)}
+  body.pt-light :is(.container,.pt-content) p{color:var(--text-dim)}
+  body.pt-light :is(.container,.pt-content) label{color:var(--text-dim)}
+  body.pt-light :is(.container,.pt-content) textarea,
+  body.pt-light :is(.container,.pt-content) input[type=text],
+  body.pt-light :is(.container,.pt-content) input[type=number],
+  body.pt-light :is(.container,.pt-content) input[type=date],
+  body.pt-light :is(.container,.pt-content) select{
+    background:#ffffff;border:1px solid rgba(20,10,45,.2);color:var(--text)
+  }
+  body.pt-light :is(.container,.pt-content) select option{background:#ffffff;color:var(--text)}
+  body.pt-light :is(.container,.pt-content) .panel{background:#ffffff!important;border:1px solid rgba(20,10,45,.1)!important;box-shadow:0 8px 28px rgba(20,10,45,.08)!important}
+  body.pt-light :is(.container,.pt-content) table th{background:rgba(20,10,45,.06);color:var(--text)}
+  body.pt-light :is(.container,.pt-content) table td{color:var(--text-dim);border-color:rgba(20,10,45,.1)}
+  body.pt-light :is(.container,.pt-content) .pt-tab{color:var(--text-dim)}
+  body.pt-light :is(.container,.pt-content) .pt-tab.active{color:#fff}
+  body.pt-light :is(.container,.pt-content) .btn.secondary{background:var(--surface-2);border-color:var(--border);color:var(--text)}
+
+  .related-grid a .ri{margin-right:6px}
+  .pt-content h2{font-size:1.15rem;margin:26px 0 10px}
+  .pt-content h3{font-size:1rem;margin:18px 0 8px}
+  .pt-content p,.pt-content li{font-size:.92rem;line-height:1.72}
+  .pt-content ul,.pt-content ol{padding-left:20px}
+  .pt-content table{width:100%;border-collapse:collapse;font-size:.86rem;margin:12px 0}
+  .pt-content table th,.pt-content table td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+  .pt-content table th{color:#c4b5fd}
+
+  /* Bilingual side-by-side table: English left | Hindi right, same row. */
+  .pt-bilingual-table td:first-child{width:50%}
+  .pt-bilingual-table td:last-child{width:50%}
+  @media(max-width:700px){
+    .pt-bilingual-table, .pt-bilingual-table tbody, .pt-bilingual-table tr, .pt-bilingual-table td{ display:block; width:100%; }
+    .pt-bilingual-table tr{ margin-bottom:12px; border-bottom:1px dashed var(--border); padding-bottom:10px; }
+    .pt-bilingual-table td{ border-bottom:none; padding:4px 0; }
+  }
+
+  .pt-faq-item{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <a class="brand" href="../index.html">Apne<span>Software</span></a>
+    <a class="back-link" href="../index.html">← All Tools</a>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="pt-muted" style="margin-bottom:10px" aria-label="Breadcrumb">
+    <a href="../index.html" style="color:#c4b5fd;text-decoration:none">Home</a> ›
+    <a href="../index.html#cat-calculator" style="color:#c4b5fd;text-decoration:none">Calculators &amp; Converters</a> ›
+    Professional Tax Calculator
+  </nav>
+
+  <div class="tool-header">
+    <h1>🏛️ Professional Tax Calculator</h1>
+    <p>Calculate State-wise Professional Tax Instantly — Employee, Employer and Self-Employed modes, exemption checker, and state comparison. 100% in your browser.</p>
+
+    <div class="pt-row" style="margin-top:14px">
+      <div class="pt-field">
+        <label for="pt-language">Language / भाषा</label>
+        <select id="pt-language"><option value="en">English</option><option value="hi">हिन्दी</option></select>
+      </div>
+      <div class="pt-field">
+        <label for="pt-theme">Theme</label>
+        <select id="pt-theme"><option value="dark">🌙 Dark</option><option value="light">☀️ Light</option></select>
+      </div>
+      <div class="pt-field">
+        <label for="pt-fy">Financial Year</label>
+        <select id="pt-fy"><option value="2026-27">FY 2026-27</option><option value="2025-26">FY 2025-26</option></select>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="pt-calcBtn" type="button">🧮 Calculate</button>
+      <button class="btn secondary" id="pt-resetBtn" type="button">↺ Reset</button>
+      <button class="btn secondary" id="pt-printBtn" type="button">🖨️ Print</button>
+      <button class="btn secondary" id="pt-pdfBtn" type="button">📄 PDF</button>
+      <button class="btn secondary" id="pt-xlsxBtn" type="button">📊 Excel</button>
+      <button class="btn secondary" id="pt-copyBtn" type="button">📋 Copy Result</button>
+    </div>
+    <div class="pt-share-row">
+      <a class="pt-share-btn" id="pt-shareWhatsapp" href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <a class="pt-share-btn" id="pt-shareFacebook" href="#" target="_blank" rel="noopener">📘 Facebook</a>
+      <a class="pt-share-btn" id="pt-shareTwitter" href="#" target="_blank" rel="noopener">🐦 X</a>
+      <a class="pt-share-btn" id="pt-shareLinkedin" href="#" target="_blank" rel="noopener">💼 LinkedIn</a>
+      <a class="pt-share-btn" id="pt-shareTelegram" href="#" target="_blank" rel="noopener">✈️ Telegram</a>
+      <a class="pt-share-btn" id="pt-shareEmail" href="#">✉️ Email</a>
+      <button class="pt-share-btn" id="pt-copyLinkBtn" type="button">🔗 Copy Link</button>
+    </div>
+    <div id="pt-statusMsg" class="pt-muted" role="status" aria-live="polite"></div>
+  </div>
+
+  <div class="pt-grid">
+    <div id="pt-formSide">
+      <div class="panel">
+        <div class="pt-tabs" role="tablist">
+          <button class="pt-tab active" id="pt-tabEmployee" role="tab" aria-selected="true">👤 Employee &amp; Salary</button>
+          <button class="pt-tab" id="pt-tabExemption" role="tab" aria-selected="false">🛡️ Exemptions</button>
+          <button class="pt-tab" id="pt-tabEmployer" role="tab" aria-selected="false">🏢 Employer Mode</button>
+          <button class="pt-tab" id="pt-tabSelfEmployed" role="tab" aria-selected="false">💼 Self-Employed</button>
+          <button class="pt-tab" id="pt-tabCompare" role="tab" aria-selected="false">⚖️ Compare States</button>
+          <button class="pt-tab" id="pt-tabHistory" role="tab" aria-selected="false">🕘 History</button>
+          <button class="pt-tab" id="pt-tabSettings" role="tab" aria-selected="false">⚙️ Settings</button>
+        </div>
+
+        <!-- ===== Tab: Employee & Salary ===== -->
+        <div class="pt-pane active" id="pt-paneEmployee">
+          <div class="pt-card">
+            <h3>👤 Employee Information</h3>
+            <div class="pt-row">
+              <div class="pt-field"><label for="pt-employeeName">Employee Name (Optional)</label><input type="text" id="pt-employeeName" placeholder="Employee name"></div>
+              <div class="pt-field"><label for="pt-employerName">Employer Name</label><input type="text" id="pt-employerName" placeholder="Employer name"></div>
+              <div class="pt-field">
+                <label for="pt-state">State</label>
+                <select id="pt-state">
+                  <option value="maharashtra">Maharashtra</option>
+                  <option value="karnataka">Karnataka</option>
+                  <option value="westBengal">West Bengal</option>
+                  <option value="telangana">Telangana</option>
+                  <option value="andhraPradesh">Andhra Pradesh</option>
+                  <option value="tamilNadu">Tamil Nadu</option>
+                  <option value="gujarat">Gujarat</option>
+                  <option value="kerala">Kerala</option>
+                  <option value="assam">Assam</option>
+                  <option value="bihar">Bihar</option>
+                  <option value="odisha">Odisha</option>
+                  <option value="madhyaPradesh">Madhya Pradesh</option>
+                  <option value="tripura">Tripura</option>
+                  <option value="meghalaya">Meghalaya</option>
+                  <option value="sikkim">Sikkim</option>
+                  <option value="puducherry">Puducherry</option>
+                  <option value="delhi">Delhi (Not Applicable)</option>
+                  <option value="uttarPradesh">Uttar Pradesh (Not Applicable)</option>
+                  <option value="rajasthan">Rajasthan (Not Applicable)</option>
+                  <option value="haryana">Haryana (Not Applicable)</option>
+                </select>
+              </div>
+              <div class="pt-field">
+                <label for="pt-employmentType">Employment Type</label>
+                <select id="pt-employmentType"><option value="salaried">Salaried</option><option value="contract">Contract</option><option value="daily">Daily Wage</option></select>
+              </div>
+              <div class="pt-field">
+                <label for="pt-employeeCategory">Employee Category</label>
+                <select id="pt-employeeCategory"><option value="general">General</option><option value="managerial">Managerial</option><option value="technical">Technical</option><option value="other">Other</option></select>
+              </div>
+              <div class="pt-field">
+                <label for="pt-gender">Gender</label>
+                <select id="pt-gender"><option value="male">Male</option><option value="female">Female</option><option value="other">Other</option></select>
+              </div>
+              <div class="pt-field"><label for="pt-age">Age</label><input type="number" id="pt-age" min="0" value="30"></div>
+              <div class="pt-field">
+                <label for="pt-salaryFrequency">Salary Frequency</label>
+                <select id="pt-salaryFrequency"><option value="monthly" selected>Monthly</option><option value="quarterly">Quarterly</option><option value="halfYearly">Half-Yearly</option><option value="yearly">Yearly</option></select>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-card">
+            <h3>💰 Salary Details (Monthly)</h3>
+            <div class="pt-row">
+              <div class="pt-field"><label for="pt-basicSalary">Basic Salary</label><input type="number" id="pt-basicSalary" min="0" value="25000"></div>
+              <div class="pt-field"><label for="pt-hra">HRA</label><input type="number" id="pt-hra" min="0" value="10000"></div>
+              <div class="pt-field"><label for="pt-da">DA</label><input type="number" id="pt-da" min="0" value="3000"></div>
+              <div class="pt-field"><label for="pt-conveyance">Conveyance Allowance</label><input type="number" id="pt-conveyance" min="0" value="1600"></div>
+              <div class="pt-field"><label for="pt-medical">Medical Allowance</label><input type="number" id="pt-medical" min="0" value="1250"></div>
+              <div class="pt-field"><label for="pt-special">Special Allowance</label><input type="number" id="pt-special" min="0" value="2000"></div>
+              <div class="pt-field"><label for="pt-bonus">Bonus</label><input type="number" id="pt-bonus" min="0" value="0"></div>
+              <div class="pt-field"><label for="pt-incentives">Incentives</label><input type="number" id="pt-incentives" min="0" value="0"></div>
+              <div class="pt-field"><label for="pt-overtime">Overtime</label><input type="number" id="pt-overtime" min="0" value="0"></div>
+              <div class="pt-field"><label for="pt-otherEarnings">Other Earnings</label><input type="number" id="pt-otherEarnings" min="0" value="0"></div>
+            </div>
+            <div class="pt-err" id="pt-salaryErr" style="display:none;color:#fca5a5;font-size:.78rem">Salary values cannot be negative.</div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Exemption Checker ===== -->
+        <div class="pt-pane" id="pt-paneExemption">
+          <div class="pt-card">
+            <h3>🛡️ Exemption Checker</h3>
+            <div class="pt-row">
+              <div class="pt-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pt-exemptSenior" style="width:auto"> Senior Citizen</label></div>
+              <div class="pt-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pt-exemptArmedForces" style="width:auto"> Armed Forces</label></div>
+              <div class="pt-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pt-exemptParentDisabled" style="width:auto"> Parent of Disabled Child</label></div>
+              <div class="pt-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pt-exemptDisabled" style="width:auto"> Disabled Person</label></div>
+              <div class="pt-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pt-exemptStateSpecific" style="width:auto"> State Specific Exemption</label></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Employer Mode ===== -->
+        <div class="pt-pane" id="pt-paneEmployer">
+          <div class="pt-card">
+            <h3>🏢 Employer Calculator</h3>
+            <p class="pt-muted">Add each employee's monthly salary to estimate the employer's total Professional Tax liability using the state selected on the Employee &amp; Salary tab.</p>
+            <div class="btn-row" style="margin-bottom:10px">
+              <button class="btn secondary" id="pt-addEmployeeBtn" type="button">➕ Add Employee</button>
+            </div>
+            <div style="overflow-x:auto">
+              <table class="pt-multi-table" id="pt-employerTable">
+                <thead><tr><th>#</th><th>Salary (₹)</th><th>Gender</th><th>Monthly PT</th><th></th></tr></thead>
+                <tbody id="pt-employerTbody"></tbody>
+                <tfoot><tr><td colspan="3"><strong>Total</strong></td><td id="pt-employerTotalPT">₹0</td><td></td></tr></tfoot>
+              </table>
+            </div>
+            <div class="pt-engine-box" id="pt-employerResult"></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Self-Employed ===== -->
+        <div class="pt-pane" id="pt-paneSelfEmployed">
+          <div class="pt-card">
+            <h3>💼 Self-Employed Professional Calculator</h3>
+            <div class="pt-row">
+              <div class="pt-field"><label for="pt-profession">Profession</label><input type="text" id="pt-profession" placeholder="e.g. Chartered Accountant"></div>
+              <div class="pt-field">
+                <label for="pt-registrationType">Registration Type</label>
+                <select id="pt-registrationType"><option value="individual">Individual</option><option value="firm">Firm</option><option value="company">Company</option></select>
+              </div>
+            </div>
+            <button class="btn secondary" id="pt-selfEmployedCalcBtn" type="button">🧮 Calculate Self-Employed PT</button>
+            <div class="pt-engine-box" id="pt-selfEmployedResult" style="margin-top:10px"></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Compare States ===== -->
+        <div class="pt-pane" id="pt-paneCompare">
+          <div class="pt-card">
+            <h3>⚖️ Compare States</h3>
+            <div class="pt-row">
+              <div class="pt-field">
+                <label for="pt-compareStateA">State A</label>
+                <select id="pt-compareStateA">
+                  <option value="maharashtra">Maharashtra</option><option value="karnataka">Karnataka</option><option value="westBengal">West Bengal</option>
+                  <option value="telangana">Telangana</option><option value="andhraPradesh">Andhra Pradesh</option><option value="tamilNadu">Tamil Nadu</option>
+                  <option value="gujarat">Gujarat</option><option value="kerala">Kerala</option><option value="assam">Assam</option>
+                  <option value="bihar">Bihar</option><option value="odisha">Odisha</option><option value="madhyaPradesh">Madhya Pradesh</option>
+                </select>
+              </div>
+              <div class="pt-field">
+                <label for="pt-compareStateB">State B</label>
+                <select id="pt-compareStateB">
+                  <option value="karnataka">Karnataka</option><option value="maharashtra">Maharashtra</option><option value="westBengal">West Bengal</option>
+                  <option value="telangana">Telangana</option><option value="andhraPradesh">Andhra Pradesh</option><option value="tamilNadu">Tamil Nadu</option>
+                  <option value="gujarat">Gujarat</option><option value="kerala">Kerala</option><option value="assam">Assam</option>
+                  <option value="bihar">Bihar</option><option value="odisha">Odisha</option><option value="madhyaPradesh">Madhya Pradesh</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn secondary" id="pt-compareBtn" type="button">⚖️ Compare</button>
+            <div class="pt-engine-box" id="pt-compareResult" style="margin-top:10px"></div>
+            <div class="pt-chart-wrap"><h4>State Comparison</h4><canvas id="pt-chartCompare" width="500" height="220"></canvas></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: History ===== -->
+        <div class="pt-pane" id="pt-paneHistory">
+          <div class="pt-card">
+            <h3>🕘 Calculation History</h3>
+            <div class="btn-row" style="margin-bottom:10px">
+              <button class="btn secondary" id="pt-clearHistoryBtn" type="button">🗑️ Clear History</button>
+            </div>
+            <div id="pt-historyList"></div>
+          </div>
+        </div>
+
+        <!-- ===== Tab: Settings ===== -->
+        <div class="pt-pane" id="pt-paneSettings">
+          <div class="pt-card">
+            <h3>⚙️ Accessibility Preferences</h3>
+            <div class="pt-row">
+              <div class="pt-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pt-highContrast" style="width:auto"> High Contrast</label></div>
+              <div class="pt-field"><label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pt-largeFont" style="width:auto"> Large Fonts</label></div>
+            </div>
+            <p class="pt-muted">Preferences are remembered in this browser for your next visit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="pt-resultSide">
+      <div class="panel">
+        <h3 style="margin:0 0 10px;font-size:1rem">📊 Professional Tax Summary</h3>
+        <div class="pt-stat-cards" id="pt-summaryCards"></div>
+        <div class="pt-flags" id="pt-resultFlags"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🧠 Applicable Slab &amp; Rule</h3>
+        <div class="pt-engine-box" id="pt-slabBox"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">🧮 Calculation Steps</h3>
+        <div class="pt-steps" id="pt-stepsBox"></div>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">📋 Salary Breakdown</h3>
+        <table id="pt-breakdownTable"><tbody></tbody></table>
+
+        <h3 style="margin:16px 0 6px;font-size:.95rem">📊 Charts</h3>
+        <div class="pt-chart-wrap"><h4>Salary vs Professional Tax</h4><canvas id="pt-chartSalaryVsPT" width="500" height="220"></canvas><div class="pt-legend" id="pt-legendSalaryVsPT"></div></div>
+        <div class="pt-chart-wrap"><h4>Monthly vs Annual PT</h4><canvas id="pt-chartMonthlyAnnual" width="500" height="220"></canvas></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pt-content">
+
+<h2><span class="pt-serial">01.</span>&nbsp;Introduction</h2>
+<p>Professional Tax (PT) is a state-levied tax on salaried employees and self-employed professionals in India, deducted directly from salary or paid by registration, and capped constitutionally at ₹2,500 per year — yet the actual slab, whether it's charged monthly, half-yearly, or annually, and whether it applies at all, varies considerably from state to state. The <strong>Professional Tax Calculator</strong> automatically loads the correct state-wise slab, computes Employee, Employer and Self-Employed liability, checks common exemptions, and compares two states side by side — instantly, in your browser, with nothing ever uploaded.</p>
+
+<h2><span class="pt-serial">02.</span>&nbsp;State-wise Professional Tax Slab Engine</h2>
+<p>Twelve states with well-documented current slabs are built in — Maharashtra, Karnataka, West Bengal, Telangana, Andhra Pradesh, Tamil Nadu, Gujarat, Kerala, Assam, Bihar, Odisha and Madhya Pradesh — each modelled with its actual billing cadence (most states monthly, Tamil Nadu and Kerala half-yearly, Bihar annually based on total annual income) and, where applicable, the higher February instalment several states use to reach the exact ₹2,500 annual cap. States where PT genuinely doesn't apply (Delhi, Uttar Pradesh, Rajasthan, Haryana) show that clearly, and states this calculator doesn't yet have a verified current slab for (Tripura, Meghalaya, Sikkim, Puducherry) are disclosed honestly rather than showing a fabricated number.</p>
+
+<h2><span class="pt-serial">03.</span>&nbsp;Employee Information &amp; Salary Details</h2>
+<p>Enter employee and employer names, state, employment type, category, gender, age, financial year and salary frequency, along with a full salary breakdown — Basic, HRA, DA, Conveyance, Medical, Special Allowance, Bonus, Incentives, Overtime and Other Earnings — which combine automatically into your Gross Salary.</p>
+
+<h2><span class="pt-serial">04.</span>&nbsp;Live Calculation Engine</h2>
+<p>Monthly PT, Annual PT, Salary After PT, Annual Salary, Monthly Deduction, Total Deduction and Effective Deduction % all update instantly as you type, with the exact slab and rule applied shown transparently.</p>
+
+<h2><span class="pt-serial">05.</span>&nbsp;Employer Mode</h2>
+<p>Add each employee's monthly salary to estimate total monthly and annual Professional Tax liability across your whole workforce for the selected state.</p>
+
+<h2><span class="pt-serial">06.</span>&nbsp;Self-Employed Professional Calculator</h2>
+<p>Registered self-employed professionals are estimated at the state's statutory annual cap as a reasonable approximation, since most states charge a flat annual enrolment amount for professionals rather than a salary-based slab.</p>
+
+<h2><span class="pt-serial">07.</span>&nbsp;Exemption Checker</h2>
+<p>Tick Senior Citizen, Armed Forces, Parent of a Disabled Child, Disabled Person, or a State-Specific Exemption, and the calculator flags Professional Tax as ₹0 with the specific reason and applicable rule.</p>
+
+<h2><span class="pt-serial">08.</span>&nbsp;Compare States</h2>
+<p>Select any two states to see Monthly PT, Annual PT, the exact difference, and each state's applicable rule side by side — useful when comparing job offers across states or planning a multi-state payroll.</p>
+
+<h2><span class="pt-serial">09.</span>&nbsp;Export &amp; Share</h2>
+<p>Download a PDF summary, export to Excel, print a clean report, copy a plain-text result, or share directly to WhatsApp, Facebook, X, LinkedIn, Telegram, email, or copy a direct link.</p>
+
+<h2><span class="pt-serial">10.</span>&nbsp;Privacy</h2>
+<p>Every calculation runs entirely inside your browser. No salary figure, employee name, or employer name is ever uploaded to a server, and the tool works offline once loaded.</p>
+
+<h2><span class="pt-serial">11.</span>&nbsp;Related Tools</h2>
+<div class="related-grid">
+  <a href="income-tax-calculator.html"><span class="ri">💰</span> Income Tax Calculator</a>
+  <a href="tds-calculator.html"><span class="ri">🧾</span> TDS Calculator</a>
+  <a href="tcs-calculator.html"><span class="ri">🧾</span> TCS Calculator</a>
+  <a href="advance-tax-calculator.html"><span class="ri">🧾</span> Advance Tax Calculator</a>
+  <a href="salary-calculator.html"><span class="ri">💼</span> Salary Calculator</a>
+  <a href="hra-calculator.html"><span class="ri">🏠</span> HRA Calculator</a>
+  <a href="gratuity-calculator.html"><span class="ri">🎁</span> Gratuity Calculator</a>
+  <a href="leave-encashment-calculator.html"><span class="ri">🏖️</span> Leave Encashment Calculator</a>
+  <a href="pf-calculator.html"><span class="ri">🏦</span> PF Calculator</a>
+</div>
+
+<h2><span class="pt-serial">12.</span>&nbsp;About This Tool | इस टूल के बारे में</h2>
+<table class="pt-bilingual-table">
+<tr><th>English</th><th>हिन्दी</th></tr>
+<tr><td>Professional Tax Calculator is an online tool that helps employees, employers, and self-employed professionals calculate Professional Tax according to the latest State-wise tax rules.</td><td>प्रोफेशनल टैक्स कैलकुलेटर एक ऑनलाइन टूल है जो कर्मचारियों, नियोक्ताओं और स्व-रोज़गार पेशेवरों को नवीनतम राज्यवार प्रोफेशनल टैक्स नियमों के अनुसार टैक्स की गणना करने में सहायता करता है।</td></tr>
+<tr><td>It automatically applies the correct Professional Tax slab based on salary, state, and financial year.</td><td>यह वेतन, राज्य और वित्तीय वर्ष के आधार पर सही प्रोफेशनल टैक्स स्लैब स्वतः लागू करता है।</td></tr>
+<tr><td>The calculator provides accurate monthly and annual Professional Tax calculations instantly.</td><td>यह कैलकुलेटर मासिक और वार्षिक प्रोफेशनल टैक्स की सटीक गणना तुरंत प्रदान करता है।</td></tr>
+<tr><td>It supports multiple Indian states where Professional Tax is applicable.</td><td>यह उन सभी भारतीय राज्यों का समर्थन करता है जहाँ प्रोफेशनल टैक्स लागू होता है।</td></tr>
+<tr><td>Employers can estimate total Professional Tax liability for all employees.</td><td>नियोक्ता अपने सभी कर्मचारियों के लिए कुल प्रोफेशनल टैक्स देयता का अनुमान लगा सकते हैं।</td></tr>
+<tr><td>Self-employed professionals can also calculate applicable Professional Tax.</td><td>स्व-रोज़गार पेशेवर भी लागू प्रोफेशनल टैक्स की गणना कर सकते हैं।</td></tr>
+<tr><td>Built-in exemption checking helps identify eligible tax exemptions.</td><td>इसमें उपलब्ध छूट जाँच सुविधा पात्र कर छूट की पहचान करने में सहायता करती है।</td></tr>
+<tr><td>Detailed calculation steps improve transparency and understanding.</td><td>विस्तृत गणना चरण परिणाम को समझना आसान बनाते हैं।</td></tr>
+<tr><td>Reports can be downloaded as PDF or Excel and printed instantly.</td><td>रिपोर्ट को PDF या Excel में डाउनलोड किया जा सकता है तथा तुरंत प्रिंट किया जा सकता है।</td></tr>
+<tr><td>This calculator is designed for fast, accurate, mobile-friendly, and SEO-optimized tax calculations.</td><td>यह कैलकुलेटर तेज़, सटीक, मोबाइल-अनुकूल और SEO-अनुकूल टैक्स गणना के लिए डिज़ाइन किया गया है।</td></tr>
+<tr><td>Professional Tax rates and slabs shown here reflect published state rules current as of FY 2025-26/2026-27 and are subject to periodic revision by each state's commercial tax department — always verify current figures officially before relying on them for payroll deduction.</td><td>यहाँ दिखाई गई प्रोफेशनल टैक्स दरें और स्लैब FY 2025-26/2026-27 तक प्रकाशित राज्य नियमों को दर्शाते हैं और प्रत्येक राज्य के commercial tax विभाग द्वारा समय-समय पर संशोधन के अधीन हैं — payroll deduction के लिए भरोसा करने से पहले हमेशा आधिकारिक रूप से वर्तमान आँकड़ों की पुष्टि करें।</td></tr>
+</table>
+
+<h2><span class="pt-serial">13.</span>&nbsp;Frequently Asked Questions | अक्सर पूछे जाने वाले प्रश्न</h2>
+<div class="pt-faq" id="ptFaq">
+
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>What is Professional Tax?</strong><p>A state-levied tax on salaried employees and professionals, capped at ₹2,500 per year.</p></td><td><strong>Professional Tax क्या है?</strong><p>वेतनभोगी कर्मचारियों और पेशेवरों पर राज्य द्वारा लगाया गया कर, ₹2,500 प्रति वर्ष तक सीमित।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Who pays Professional Tax?</strong><p>Salaried employees (deducted by the employer) and self-employed professionals (paid directly).</p></td><td><strong>Professional Tax कौन देता है?</strong><p>वेतनभोगी कर्मचारी (employer द्वारा काटा गया) और स्व-रोज़गार पेशेवर (सीधे भुगतान)।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>How is Professional Tax calculated?</strong><p>By matching your monthly (or half-yearly/annual) salary against your state's published slab.</p></td><td><strong>Professional Tax की गणना कैसे होती है?</strong><p>आपकी मासिक (या half-yearly/annual) salary को आपके राज्य के प्रकाशित slab से मिलाकर।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Is Professional Tax applicable in every state?</strong><p>No — states like Delhi, Uttar Pradesh, Rajasthan and Haryana do not levy it.</p></td><td><strong>क्या Professional Tax हर राज्य में लागू है?</strong><p>नहीं — Delhi, Uttar Pradesh, Rajasthan और Haryana जैसे राज्य इसे नहीं लगाते।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>What is the maximum Professional Tax?</strong><p>₹2,500 per year, a constitutional cap under Article 276.</p></td><td><strong>अधिकतम Professional Tax क्या है?</strong><p>₹2,500 प्रति वर्ष, Article 276 के तहत एक constitutional cap।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>What is PT in a salary slip?</strong><p>A line-item deduction representing the Professional Tax withheld for that pay period.</p></td><td><strong>Salary slip में PT क्या है?</strong><p>उस pay period के लिए काटा गया Professional Tax दिखाने वाला एक line-item deduction।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Can employers deduct Professional Tax?</strong><p>Yes — employers are legally required to deduct and deposit it on the employee's behalf.</p></td><td><strong>क्या employers Professional Tax काट सकते हैं?</strong><p>हाँ — employers को यह काटकर employee की ओर से जमा करना कानूनी रूप से आवश्यक है।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Are self-employed professionals required to pay PT?</strong><p>Yes, in states where PT applies, via direct registration and payment.</p></td><td><strong>क्या स्व-रोज़गार पेशेवरों को PT देना ज़रूरी है?</strong><p>हाँ, उन राज्यों में जहाँ PT लागू है, direct registration और भुगतान के माध्यम से।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>What are Professional Tax exemptions?</strong><p>Senior citizens, armed forces personnel, parents of disabled children, and disabled persons are commonly exempt.</p></td><td><strong>Professional Tax छूट क्या हैं?</strong><p>Senior citizens, armed forces personnel, disabled बच्चों के parents, और disabled व्यक्ति आमतौर पर exempt हैं।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Is Professional Tax deductible under Income Tax?</strong><p>Yes — Professional Tax paid is deductible from gross salary under Section 16 of the Income Tax Act.</p></td><td><strong>क्या Professional Tax Income Tax के तहत deductible है?</strong><p>हाँ — भुगतान किया गया Professional Tax Income Tax Act की Section 16 के तहत gross salary से deductible है।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>How often should Professional Tax be paid?</strong><p>Depends on the state — most are monthly, some (Tamil Nadu, Kerala) half-yearly, and Bihar annually.</p></td><td><strong>Professional Tax कितनी बार देना चाहिए?</strong><p>राज्य पर निर्भर — अधिकतर मासिक, कुछ (Tamil Nadu, Kerala) half-yearly, और Bihar annually।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>What happens if PT is not paid?</strong><p>The employer or professional may face interest and penalty under the state's PT Act.</p></td><td><strong>अगर PT नहीं दिया जाए तो क्या होता है?</strong><p>Employer या professional को राज्य के PT Act के तहत interest और penalty का सामना करना पड़ सकता है।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Can PT rates change every year?</strong><p>Yes — each state can revise its slab independently at any time.</p></td><td><strong>क्या PT दरें हर साल बदल सकती हैं?</strong><p>हाँ — प्रत्येक राज्य किसी भी समय स्वतंत्र रूप से अपना slab संशोधित कर सकता है।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Which states levy Professional Tax?</strong><p>Maharashtra, Karnataka, West Bengal, Telangana, Andhra Pradesh, Tamil Nadu, Gujarat, Kerala, Assam, Bihar, Odisha, Madhya Pradesh and several others.</p></td><td><strong>कौन-से राज्य Professional Tax लगाते हैं?</strong><p>Maharashtra, Karnataka, West Bengal, Telangana, Andhra Pradesh, Tamil Nadu, Gujarat, Kerala, Assam, Bihar, Odisha, Madhya Pradesh और कई अन्य।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Can I download my calculation report?</strong><p>Yes — as PDF or Excel, or print it directly.</p></td><td><strong>क्या मैं अपनी calculation report download कर सकता हूँ?</strong><p>हाँ — PDF या Excel के रूप में, या सीधे print कर सकते हैं।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Why does Maharashtra charge more in February?</strong><p>To reach the exact ₹2,500 annual cap, since 200×11+300=2,500.</p></td><td><strong>Maharashtra फरवरी में ज़्यादा क्यों लेता है?</strong><p>ठीक ₹2,500 वार्षिक cap तक पहुँचने के लिए, चूँकि 200×11+300=2,500।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Does gender affect the Professional Tax slab?</strong><p>Yes, in Maharashtra — women have a higher nil-tax threshold (₹25,000) than men (₹7,500).</p></td><td><strong>क्या gender Professional Tax slab को प्रभावित करता है?</strong><p>हाँ, Maharashtra में — महिलाओं के लिए nil-tax threshold (₹25,000) पुरुषों (₹7,500) से अधिक है।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>How does Tamil Nadu's half-yearly system work?</strong><p>PT is assessed on your total half-yearly gross salary against a half-yearly slab, twice a year.</p></td><td><strong>Tamil Nadu की half-yearly प्रणाली कैसे काम करती है?</strong><p>PT का आकलन आपकी कुल half-yearly gross salary पर half-yearly slab के विरुद्ध, साल में दो बार होता है।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>How does Bihar's system differ?</strong><p>Bihar charges PT once a year based on your total annual income, not a monthly slab.</p></td><td><strong>Bihar की प्रणाली कैसे अलग है?</strong><p>Bihar साल में एक बार आपकी कुल annual income के आधार पर PT लगाता है, monthly slab नहीं।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>What if my state isn't in the confirmed list?</strong><p>The calculator honestly flags it as unverified rather than showing a possibly wrong figure — confirm with your state department.</p></td><td><strong>अगर मेरा राज्य confirmed list में नहीं है तो?</strong><p>कैलकुलेटर इसे ईमानदारी से unverified के रूप में flag करता है, संभावित रूप से ग़लत आँकड़ा दिखाने के बजाय।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Can employers use this for multiple employees at once?</strong><p>Yes — the Employer Mode tab lets you add each employee's salary and see the aggregate liability.</p></td><td><strong>क्या employers इसे एक साथ कई employees के लिए इस्तेमाल कर सकते हैं?</strong><p>हाँ — Employer Mode tab आपको हर employee की salary जोड़ने और aggregate liability देखने देता है।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Is my data uploaded anywhere?</strong><p>No — every calculation runs entirely in your browser.</p></td><td><strong>क्या मेरा data कहीं upload होता है?</strong><p>नहीं — हर calculation पूरी तरह आपके browser में चलता है।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Does this tool use any AI?</strong><p>No — every slab and rule is deterministic, hand-written logic from published state notifications.</p></td><td><strong>क्या इस टूल में AI इस्तेमाल होता है?</strong><p>नहीं — हर slab और rule प्रकाशित राज्य notifications से deterministic, hand-written logic है।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Is this calculator a substitute for professional advice?</strong><p>No — always confirm with your state's commercial tax department or a payroll professional for compliance-critical figures.</p></td><td><strong>क्या यह पेशेवर सलाह का विकल्प है?</strong><p>नहीं — compliance-critical आँकड़ों के लिए हमेशा अपने राज्य के commercial tax विभाग या payroll professional से पुष्टि करें।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Does it work on mobile?</strong><p>Yes — fully responsive, with the bilingual tables stacking cleanly on narrow screens.</p></td><td><strong>क्या यह mobile पर काम करता है?</strong><p>हाँ — पूरी तरह responsive, संकरी screens पर bilingual tables साफ़ तरीक़े से stack होती हैं।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Does it work offline?</strong><p>Yes, once loaded — PDF/Excel export load small libraries once on first use.</p></td><td><strong>क्या यह offline काम करता है?</strong><p>हाँ, लोड होने के बाद — PDF/Excel export पहली बार इस्तेमाल पर छोटी libraries लोड करते हैं।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Can I share my result directly?</strong><p>Yes — WhatsApp, Facebook, X, LinkedIn, Telegram, email, and Copy Link are all built in.</p></td><td><strong>क्या मैं अपना result सीधे share कर सकता हूँ?</strong><p>हाँ — WhatsApp, Facebook, X, LinkedIn, Telegram, email, और Copy Link सभी मौजूद हैं।</p></td></tr></table></div>
+<div class="pt-faq-item"><table class="pt-bilingual-table"><tr><td><strong>Does the calculator validate negative or invalid entries?</strong><p>Yes — negative salaries and invalid numbers are rejected with a clear warning.</p></td><td><strong>क्या कैलकुलेटर negative या invalid entries को validate करता है?</strong><p>हाँ — negative salaries और invalid numbers को स्पष्ट चेतावनी के साथ reject किया जाता है।</p></td></tr></table></div>
+
+</div>
+
+</div>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Professional Tax?", "acceptedAnswer": {"@type": "Answer", "text": "A state-levied tax on salaried employees and professionals, capped at 2,500 rupees per year."}}, {"@type": "Question", "name": "Who pays Professional Tax?", "acceptedAnswer": {"@type": "Answer", "text": "Salaried employees, deducted by the employer, and self-employed professionals, who pay directly."}}, {"@type": "Question", "name": "How is Professional Tax calculated?", "acceptedAnswer": {"@type": "Answer", "text": "By matching your monthly, half-yearly or annual salary against your state's published slab."}}, {"@type": "Question", "name": "Is Professional Tax applicable in every state?", "acceptedAnswer": {"@type": "Answer", "text": "No, states like Delhi, Uttar Pradesh, Rajasthan and Haryana do not levy it."}}, {"@type": "Question", "name": "What is the maximum Professional Tax?", "acceptedAnswer": {"@type": "Answer", "text": "2,500 rupees per year, a constitutional cap under Article 276."}}, {"@type": "Question", "name": "What is PT in a salary slip?", "acceptedAnswer": {"@type": "Answer", "text": "A line-item deduction representing the Professional Tax withheld for that pay period."}}, {"@type": "Question", "name": "Can employers deduct Professional Tax?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, employers are legally required to deduct and deposit it on the employee's behalf."}}, {"@type": "Question", "name": "Are self-employed professionals required to pay PT?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in states where PT applies, via direct registration and payment."}}, {"@type": "Question", "name": "What are Professional Tax exemptions?", "acceptedAnswer": {"@type": "Answer", "text": "Senior citizens, armed forces personnel, parents of disabled children, and disabled persons are commonly exempt."}}, {"@type": "Question", "name": "Is Professional Tax deductible under Income Tax?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, Professional Tax paid is deductible from gross salary under Section 16 of the Income Tax Act."}}, {"@type": "Question", "name": "How often should Professional Tax be paid?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on the state; most are monthly, some like Tamil Nadu and Kerala are half-yearly, and Bihar is annual."}}, {"@type": "Question", "name": "What happens if PT is not paid?", "acceptedAnswer": {"@type": "Answer", "text": "The employer or professional may face interest and penalty under the state's PT Act."}}, {"@type": "Question", "name": "Can PT rates change every year?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, each state can revise its slab independently at any time."}}, {"@type": "Question", "name": "Which states levy Professional Tax?", "acceptedAnswer": {"@type": "Answer", "text": "Maharashtra, Karnataka, West Bengal, Telangana, Andhra Pradesh, Tamil Nadu, Gujarat, Kerala, Assam, Bihar, Odisha, Madhya Pradesh and several others."}}, {"@type": "Question", "name": "Can I download my calculation report?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, as PDF or Excel, or print it directly."}}, {"@type": "Question", "name": "Why does Maharashtra charge more in February?", "acceptedAnswer": {"@type": "Answer", "text": "To reach the exact 2,500 rupee annual cap, since 200 times 11 plus 300 equals 2,500."}}, {"@type": "Question", "name": "Does gender affect the Professional Tax slab?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in Maharashtra women have a higher nil-tax threshold of 25,000 rupees compared to 7,500 for men."}}, {"@type": "Question", "name": "How does Tamil Nadu's half-yearly system work?", "acceptedAnswer": {"@type": "Answer", "text": "PT is assessed on your total half-yearly gross salary against a half-yearly slab, twice a year."}}, {"@type": "Question", "name": "How does Bihar's system differ?", "acceptedAnswer": {"@type": "Answer", "text": "Bihar charges PT once a year based on your total annual income, not a monthly slab."}}, {"@type": "Question", "name": "What if my state isn't in the confirmed list?", "acceptedAnswer": {"@type": "Answer", "text": "The calculator honestly flags it as unverified rather than showing a possibly wrong figure; confirm with your state department."}}, {"@type": "Question", "name": "Can employers use this for multiple employees at once?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the Employer Mode tab lets you add each employee's salary and see the aggregate liability."}}, {"@type": "Question", "name": "Is my data uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No, every calculation runs entirely in your browser."}}, {"@type": "Question", "name": "Does this tool use any AI?", "acceptedAnswer": {"@type": "Answer", "text": "No, every slab and rule is deterministic, hand-written logic from published state notifications."}}, {"@type": "Question", "name": "Is this calculator a substitute for professional advice?", "acceptedAnswer": {"@type": "Answer", "text": "No, always confirm with your state's commercial tax department or a payroll professional for compliance-critical figures."}}, {"@type": "Question", "name": "Does it work on mobile?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, fully responsive, with the bilingual tables stacking cleanly on narrow screens."}}, {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, once loaded; PDF and Excel export load small libraries once on first use."}}, {"@type": "Question", "name": "Can I share my result directly?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, WhatsApp, Facebook, X, LinkedIn, Telegram, email, and Copy Link are all built in."}}, {"@type": "Question", "name": "Does the calculator validate negative or invalid entries?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, negative salaries and invalid numbers are rejected with a clear warning."}}]}
+</script>
+
+<footer class="site-footer">© apnesoftware.COM — Professional Tax Calculator — Fast • Accurate • Secure • Mobile Friendly • SEO Optimized</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" defer></script>
+<script src="../assets/common.js"></script>
+<script>
+/* ===================== Professional Tax Calculator Engine (pure logic, no DOM) =====================
+   State-wise Professional Tax (PT) slabs reflect published rates as of FY 2025-26/2026-27. PT is a
+   state subject under Article 276 of the Constitution, capped at Rs. 2,500 per year, and each state's
+   commercial tax / GST department can revise slabs independently — always verify current figures with
+   the relevant state authority before relying on this for actual compliance or payroll deduction. */
+'use strict';
+
+var ANNUAL_CAP = 2500;
+
+/* Each state entry: { frequency: 'monthly'|'halfYearly'|'annual', slabs: [[upperLimit, amount], ...],
+   febExtra: optional extra amount added once (Feb, for monthly states) to reach the exact annual cap,
+   notApplicable: true for states with no PT, unverified: true when the calculator's figures are a
+   reasonable approximation rather than confirmed against the latest state notification. */
+var STATE_SLABS = {
+  maharashtra: {
+    label: 'Maharashtra', frequency: 'monthly',
+    slabsMale: [[7500,0],[10000,175],[Infinity,200]], febExtraMale: 100,
+    slabsFemale: [[25000,0],[Infinity,200]], febExtraFemale: 100
+  },
+  karnataka: {
+    label: 'Karnataka', frequency: 'monthly',
+    slabs: [[24999,0],[Infinity,200]]
+  },
+  westBengal: {
+    label: 'West Bengal', frequency: 'monthly',
+    slabs: [[10000,0],[15000,110],[25000,130],[40000,150],[Infinity,200]]
+  },
+  telangana: {
+    label: 'Telangana', frequency: 'monthly',
+    slabs: [[15000,0],[20000,150],[Infinity,200]]
+  },
+  andhraPradesh: {
+    label: 'Andhra Pradesh', frequency: 'monthly',
+    slabs: [[15000,0],[20000,150],[Infinity,200]]
+  },
+  tamilNadu: {
+    label: 'Tamil Nadu', frequency: 'halfYearly',
+    slabs: [[21000,0],[30000,135],[45000,315],[60000,690],[75000,1025],[Infinity,1250]]
+  },
+  gujarat: {
+    label: 'Gujarat', frequency: 'monthly',
+    slabs: [[12000,0],[Infinity,200]]
+  },
+  kerala: {
+    label: 'Kerala', frequency: 'halfYearly',
+    slabs: [[11999,0],[17999,120],[29999,180],[44999,300],[54999,450],[74999,600],[99999,750],[124999,1000],[Infinity,1250]]
+  },
+  assam: {
+    label: 'Assam', frequency: 'monthly',
+    slabs: [[10000,0],[15000,150],[25000,180],[Infinity,208]], febExtra: 212
+  },
+  bihar: {
+    label: 'Bihar', frequency: 'annual',
+    slabsAnnualIncome: [[300000,0],[500000,1000],[1000000,2000],[Infinity,2500]]
+  },
+  odisha: {
+    label: 'Odisha', frequency: 'monthly', slabIsAnnualIncome: true,
+    slabs: [[160000,0],[300000,125],[Infinity,200]], febExtra: 300
+  },
+  madhyaPradesh: {
+    label: 'Madhya Pradesh', frequency: 'monthly', slabIsAnnualIncome: true,
+    slabs: [[150000,0],[180000,125],[Infinity,208]], febExtra: 212
+  },
+  tripura: { label: 'Tripura', unverified: true },
+  meghalaya: { label: 'Meghalaya', unverified: true },
+  sikkim: { label: 'Sikkim', unverified: true },
+  puducherry: { label: 'Puducherry', unverified: true },
+  delhi: { label: 'Delhi', notApplicable: true },
+  uttarPradesh: { label: 'Uttar Pradesh', notApplicable: true },
+  rajasthan: { label: 'Rajasthan', notApplicable: true },
+  haryana: { label: 'Haryana', notApplicable: true }
+};
+
+function slabLookup(amount, slabs){
+  for(var i=0;i<slabs.length;i++){
+    if(amount <= slabs[i][0]) return slabs[i][1];
+  }
+  return slabs[slabs.length-1][1];
+}
+
+/* Compute PT for one state given a monthly gross salary (or annual income for annual-cadence states). */
+function computeStatePT(stateKey, monthlyGrossSalary, opts){
+  opts = opts || {};
+  var state = STATE_SLABS[stateKey];
+  if(!state) return { applicable: false, notFound: true };
+
+  if(state.notApplicable){
+    return { applicable: false, label: state.label, reason: 'Professional Tax is not applicable in this State.' };
+  }
+  if(state.unverified){
+    return { applicable: null, label: state.label, reason: 'Professional Tax applies in ' + state.label + ', but this calculator does not have a verified current slab for it — please confirm the exact amount with your state\'s commercial tax department.' };
+  }
+
+  var monthly = Math.max(0, monthlyGrossSalary||0);
+  var annualIncome = monthly * 12;
+  var frequency = state.frequency;
+
+  if(frequency === 'annual'){
+    var annualPT = slabLookup(annualIncome, state.slabsAnnualIncome);
+    annualPT = Math.min(annualPT, ANNUAL_CAP);
+    return {
+      applicable: true, label: state.label, frequency: 'annual',
+      periodAmount: annualPT, monthlyPT: annualPT/12, annualPT: annualPT,
+      slabBasis: 'Annual income of ' + Math.round(annualIncome), rule: state.label + ' levies Professional Tax annually based on total annual income.'
+    };
+  }
+
+  var lookupAmount = state.slabIsAnnualIncome ? annualIncome : (frequency === 'halfYearly' ? monthly * 6 : monthly);
+  var slabs = (opts.gender === 'female' && state.slabsFemale) ? state.slabsFemale : (state.slabsMale || state.slabs);
+  var periodAmount = slabLookup(lookupAmount, slabs);
+
+  var febExtra = (opts.gender === 'female' && state.febExtraFemale != null) ? state.febExtraFemale
+    : (state.slabsMale && state.febExtraMale != null) ? state.febExtraMale
+    : (state.febExtra || 0);
+
+  if(frequency === 'monthly'){
+    var annualTotal = Math.min(periodAmount * 11 + (periodAmount + febExtra), ANNUAL_CAP);
+    // If no febExtra defined, annual is just periodAmount*12 (still capped at 2500).
+    if(!febExtra) annualTotal = Math.min(periodAmount * 12, ANNUAL_CAP);
+    return {
+      applicable: true, label: state.label, frequency: 'monthly',
+      periodAmount: periodAmount, monthlyPT: periodAmount, febAmount: periodAmount + febExtra, annualPT: annualTotal,
+      slabBasis: (state.slabIsAnnualIncome ? 'Annual income of ' + Math.round(annualIncome) : 'Monthly salary of ' + Math.round(monthly)),
+      rule: state.label + ' levies Professional Tax monthly' + (febExtra ? ', with a higher amount in February to reach the Rs. 2,500 annual cap.' : '.')
+    };
+  }
+
+  if(frequency === 'halfYearly'){
+    var annualHY = Math.min(periodAmount * 2, ANNUAL_CAP);
+    return {
+      applicable: true, label: state.label, frequency: 'halfYearly',
+      periodAmount: periodAmount, monthlyPT: periodAmount/6, annualPT: annualHY,
+      slabBasis: 'Half-yearly salary of ' + Math.round(lookupAmount),
+      rule: state.label + ' levies Professional Tax half-yearly based on half-yearly gross salary.'
+    };
+  }
+}
+
+/* ===================== Exemptions ===================== */
+function checkExemptions(opts){
+  opts = opts || {};
+  var reasons = [];
+  if(opts.seniorCitizen) reasons.push('Senior citizens (60 years and above) are generally exempt from Professional Tax in most states.');
+  if(opts.armedForces) reasons.push('Members of the armed forces (as covered under the Army Act, Air Force Act and Navy Act) are exempt from Professional Tax.');
+  if(opts.parentOfDisabledChild) reasons.push('A parent or guardian of a person with a permanent physical or mental disability is exempt in several states.');
+  if(opts.disabledPerson) reasons.push('A person with a permanent disability (as defined by the state\'s PT Act) is exempt from Professional Tax.');
+  if(opts.stateSpecificExemption) reasons.push('A state-specific exemption category applies, as indicated.');
+  return { exempt: reasons.length > 0, reasons: reasons };
+}
+
+/* ===================== Employer mode: aggregate across employees ===================== */
+function computeEmployerPT(stateKey, employees){
+  var totalMonthly = 0, totalAnnual = 0;
+  var perEmployee = (employees||[]).map(function(emp){
+    var r = computeStatePT(stateKey, emp.salary, { gender: emp.gender });
+    if(r.applicable){ totalMonthly += r.monthlyPT || 0; totalAnnual += r.annualPT || 0; }
+    return r;
+  });
+  return { perEmployee: perEmployee, totalMonthlyPT: totalMonthly, totalAnnualPT: totalAnnual };
+}
+
+/* ===================== Self-employed professional ===================== */
+function computeSelfEmployedPT(stateKey, opts){
+  /* Most states charge self-employed professionals a flat annual enrolment amount rather than a
+     salary-based slab; this calculator applies the state's top annual PT cap as a reasonable estimate
+     for a registered professional, disclosed as an approximation. */
+  var state = STATE_SLABS[stateKey];
+  if(!state) return { applicable: false, notFound: true };
+  if(state.notApplicable) return { applicable: false, label: state.label, reason: 'Professional Tax is not applicable in this State.' };
+  if(state.unverified) return { applicable: null, label: state.label, reason: 'Professional Tax applies in ' + state.label + ' but the exact self-employed enrolment amount is not verified in this calculator — confirm with the state department.' };
+  return { applicable: true, label: state.label, annualPT: ANNUAL_CAP, monthlyPT: ANNUAL_CAP/12, rule: 'Estimated at the statutory annual cap of Rs. ' + ANNUAL_CAP + ' for a registered self-employed professional — actual enrolment amounts vary by profession and state notification.' };
+}
+
+/* ===================== Currency formatting ===================== */
+function fmtINR(n){
+  if(!isFinite(n)) n = 0;
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+
+/* ===================== Expose ===================== */
+var ProfessionalTaxEngine = {
+  ANNUAL_CAP: ANNUAL_CAP, STATE_SLABS: STATE_SLABS,
+  computeStatePT: computeStatePT, checkExemptions: checkExemptions,
+  computeEmployerPT: computeEmployerPT, computeSelfEmployedPT: computeSelfEmployedPT,
+  fmtINR: fmtINR
+};
+
+if(typeof module !== 'undefined' && module.exports) module.exports = ProfessionalTaxEngine;
+if(typeof window !== 'undefined') window.ProfessionalTaxEngine = ProfessionalTaxEngine;
+
+</script>
+<script>
+(function(){
+'use strict';
+var E = window.ProfessionalTaxEngine;
+function $(id){ return document.getElementById(id); }
+function num(id){ var el = $(id); if(!el) return 0; var v = parseFloat(el.value); return isFinite(v) && v > 0 ? v : 0; }
+function lsGet(key, fallback){ try{ var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } }
+function lsSet(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+function status(msg){ $('pt-statusMsg').textContent = msg; }
+function fmt(n){ return E.fmtINR(n); }
+
+/* ===================== Tabs ===================== */
+var tabs = [['pt-tabEmployee','pt-paneEmployee'],['pt-tabExemption','pt-paneExemption'],['pt-tabEmployer','pt-paneEmployer'],['pt-tabSelfEmployed','pt-paneSelfEmployed'],['pt-tabCompare','pt-paneCompare'],['pt-tabHistory','pt-paneHistory'],['pt-tabSettings','pt-paneSettings']];
+tabs.forEach(function(pair){
+  $(pair[0]).addEventListener('click', function(){
+    tabs.forEach(function(p2){
+      $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected','false');
+      $(p2[1]).classList.remove('active');
+    });
+    $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected','true');
+    $(pair[1]).classList.add('active');
+  });
+});
+
+/* ===================== Gross salary ===================== */
+function grossSalary(){
+  return num('pt-basicSalary') + num('pt-hra') + num('pt-da') + num('pt-conveyance') + num('pt-medical') +
+    num('pt-special') + num('pt-bonus') + num('pt-incentives') + num('pt-overtime') + num('pt-otherEarnings');
+}
+function validateInputs(){
+  var negative = ['pt-basicSalary','pt-hra','pt-da','pt-conveyance','pt-medical','pt-special','pt-bonus','pt-incentives','pt-overtime','pt-otherEarnings']
+    .some(function(id){ return num(id) < 0; });
+  $('pt-salaryErr').style.display = negative ? 'block' : 'none';
+  return !negative;
+}
+
+/* ===================== Main compute ===================== */
+var lastResult = null;
+function compute(){
+  validateInputs();
+  var gross = grossSalary();
+  var state = $('pt-state').value;
+  var gender = $('pt-gender').value;
+
+  var exemption = E.checkExemptions({
+    seniorCitizen: $('pt-exemptSenior').checked, armedForces: $('pt-exemptArmedForces').checked,
+    parentOfDisabledChild: $('pt-exemptParentDisabled').checked, disabledPerson: $('pt-exemptDisabled').checked,
+    stateSpecificExemption: $('pt-exemptStateSpecific').checked
+  });
+
+  var ptResult;
+  if(exemption.exempt){
+    ptResult = { applicable: true, label: state, monthlyPT: 0, annualPT: 0, rule: 'Exempt: ' + exemption.reasons.join(' ') };
+  } else {
+    ptResult = E.computeStatePT(state, gross, { gender: gender });
+  }
+
+  lastResult = { gross: gross, state: state, gender: gender, ptResult: ptResult, exemption: exemption };
+
+  renderSummary();
+  renderSlabBox();
+  renderSteps();
+  renderBreakdownTable();
+  renderCharts();
+  updateShareLinks();
+}
+
+/* ===================== Summary cards ===================== */
+function statCard(label, value, highlight){ return '<div class="stat-box' + (highlight?' pt-highlight':'') + '"><div class="num">' + value + '</div><div class="lbl">' + label + '</div></div>'; }
+function renderSummary(){
+  var r = lastResult;
+  var pt = r.ptResult;
+  var monthlyPT = (pt && pt.applicable) ? (pt.monthlyPT||0) : 0;
+  var annualPT = (pt && pt.applicable) ? (pt.annualPT||0) : 0;
+  var netSalary = r.gross - monthlyPT;
+  var annualSalary = r.gross * 12;
+  var effectivePct = r.gross > 0 ? (monthlyPT / r.gross * 100) : 0;
+
+  $('pt-summaryCards').innerHTML =
+    statCard('Gross Salary', fmt(r.gross)) +
+    statCard('Monthly PT', fmt(monthlyPT)) +
+    statCard('Annual PT', fmt(annualPT)) +
+    statCard('Net Salary', fmt(netSalary), true) +
+    statCard('Annual Salary', fmt(annualSalary)) +
+    statCard('Effective Deduction %', effectivePct.toFixed(2) + '%');
+
+  var flags = [];
+  if(pt && pt.applicable === false) flags.push('<span class="pt-flag neutral">' + (pt.reason || 'Professional Tax is not applicable in this State.') + '</span>');
+  else if(pt && pt.applicable === null) flags.push('<span class="pt-flag warn">' + pt.reason + '</span>');
+  else if(monthlyPT > 0) flags.push('<span class="pt-flag warn">PT applicable</span>');
+  else flags.push('<span class="pt-flag ok">No PT due</span>');
+  $('pt-resultFlags').innerHTML = flags.join('');
+}
+
+/* ===================== Slab box ===================== */
+function row(label, value){ return '<div class="pt-engine-row"><span>' + label + '</span><span>' + value + '</span></div>'; }
+function renderSlabBox(){
+  var r = lastResult;
+  var pt = r.ptResult;
+  var html = '';
+  if(pt && pt.applicable && pt.slabBasis) html += row('Slab Basis', pt.slabBasis);
+  if(pt && pt.frequency) html += row('Billing Frequency', pt.frequency);
+  html += row('Applicable Rule', (pt && pt.rule) || (pt && pt.reason) || '—');
+  $('pt-slabBox').innerHTML = html;
+}
+
+/* ===================== Calculation steps ===================== */
+function renderSteps(){
+  var r = lastResult;
+  var pt = r.ptResult;
+  var steps = ['Monthly Salary: ' + fmt(r.gross), 'Applicable State: ' + (E.STATE_SLABS[r.state]||{}).label, 'Applicable Slab: ' + ((pt && pt.slabBasis) || '—'), 'Professional Tax: ' + fmt((pt && pt.monthlyPT) || 0), 'Net Salary: ' + fmt(r.gross - ((pt && pt.monthlyPT) || 0))];
+  $('pt-stepsBox').innerHTML = steps.map(function(s, i){
+    return '<div class="pt-step">' + s + '</div>' + (i < steps.length-1 ? '<div class="pt-step-arrow">↓</div>' : '');
+  }).join('');
+}
+
+/* ===================== Breakdown table ===================== */
+function renderBreakdownTable(){
+  var r = lastResult;
+  var pt = r.ptResult;
+  var monthlyPT = (pt && pt.applicable) ? (pt.monthlyPT||0) : 0;
+  var rows = [
+    ['Gross Salary', fmt(r.gross)], ['Professional Tax (Monthly)', fmt(monthlyPT)],
+    ['Net Salary', fmt(r.gross - monthlyPT)], ['Monthly Salary', fmt(r.gross)],
+    ['Annual Salary', fmt(r.gross * 12)], ['Total Annual Deduction', fmt((pt && pt.annualPT) || 0)]
+  ];
+  document.querySelector('#pt-breakdownTable tbody').innerHTML = rows.map(function(p){ return '<tr><td>' + p[0] + '</td><td>' + p[1] + '</td></tr>'; }).join('');
+}
+
+/* ===================== Canvas charts ===================== */
+var PALETTE = ['#7C5CFC','#16C079','#F59E0B','#F87171','#38BDF8','#A78BFA'];
+function drawPie(canvasId, legendId, data, doughnut){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var total = data.reduce(function(s,d){ return s + Math.max(0,d.value); }, 0);
+  var cx = w/2, cy = h/2, radius = Math.min(w,h)/2 - 10;
+  if(total <= 0){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', cx, cy);
+    if(legendId) $(legendId).innerHTML = '';
+    return;
+  }
+  var start = -Math.PI/2;
+  data.forEach(function(d, i){
+    var slice = (Math.max(0,d.value) / total) * Math.PI * 2;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, radius, start, start + slice); ctx.closePath();
+    ctx.fillStyle = PALETTE[i % PALETTE.length]; ctx.fill();
+    start += slice;
+  });
+  if(doughnut){ ctx.beginPath(); ctx.arc(cx, cy, radius*0.55, 0, Math.PI*2); ctx.fillStyle = '#160b2e'; ctx.fill(); }
+  if(legendId){
+    $(legendId).innerHTML = data.map(function(d,i){
+      return '<span><i style="background:' + PALETTE[i%PALETTE.length] + '"></i>' + d.label + ': ' + fmt(d.value) + '</span>';
+    }).join('');
+  }
+}
+function drawBar(canvasId, data){
+  var canvas = $(canvasId);
+  if(!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  ctx.clearRect(0,0,w,h);
+  var total = data.reduce(function(s,d){return s+Math.max(0,d.value);},0);
+  if(total <= 0){
+    ctx.fillStyle = 'rgba(255,255,255,.55)'; ctx.font = '13px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText('No data to display', w/2, h/2);
+    return;
+  }
+  var max = Math.max.apply(null, data.map(function(d){ return d.value; }).concat([1]));
+  var barW = w / data.length * 0.6;
+  var gap = w / data.length;
+  data.forEach(function(d, i){
+    var barH = (Math.max(0,d.value) / max) * (h - 40);
+    var x = i * gap + (gap - barW)/2;
+    var y = h - 24 - barH;
+    ctx.fillStyle = PALETTE[i % PALETTE.length];
+    ctx.fillRect(x, y, barW, barH);
+    ctx.fillStyle = '#aaa'; ctx.font = '11px sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText(d.label, x + barW/2, h - 8);
+  });
+}
+function renderCharts(){
+  var r = lastResult;
+  var pt = r.ptResult;
+  var monthlyPT = (pt && pt.applicable) ? (pt.monthlyPT||0) : 0;
+  var annualPT = (pt && pt.applicable) ? (pt.annualPT||0) : 0;
+  drawPie('pt-chartSalaryVsPT', 'pt-legendSalaryVsPT', [
+    {label:'Net Salary', value: Math.max(0, r.gross - monthlyPT)}, {label:'Professional Tax', value: monthlyPT}
+  ], true);
+  drawBar('pt-chartMonthlyAnnual', [
+    {label:'Monthly PT', value: monthlyPT}, {label:'Annual PT', value: annualPT}
+  ]);
+}
+
+/* ===================== Exemption tab live update ===================== */
+document.querySelectorAll('#pt-paneExemption input').forEach(function(el){ el.addEventListener('change', compute); });
+
+/* ===================== Employer mode ===================== */
+var employerRows = [];
+function renderEmployerTable(){
+  var tbody = $('pt-employerTbody');
+  tbody.innerHTML = '';
+  var state = $('pt-state').value;
+  var total = 0;
+  employerRows.forEach(function(row, i){
+    var r = E.computeStatePT(state, row.salary, { gender: row.gender });
+    var pt = (r && r.applicable) ? (r.monthlyPT||0) : 0;
+    total += pt;
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td>' + (i+1) + '</td>' +
+      '<td><input type="number" class="pt-emp-salary" data-idx="'+i+'" min="0" value="'+row.salary+'"></td>' +
+      '<td><select class="pt-emp-gender" data-idx="'+i+'"><option value="male"'+(row.gender==='male'?' selected':'')+'>Male</option><option value="female"'+(row.gender==='female'?' selected':'')+'>Female</option></select></td>' +
+      '<td>' + fmt(pt) + '</td>' +
+      '<td><button type="button" class="pt-multi-remove" data-idx="'+i+'">✕</button></td>';
+    tbody.appendChild(tr);
+  });
+  $('pt-employerTotalPT').textContent = fmt(total);
+  tbody.querySelectorAll('.pt-emp-salary').forEach(function(el){ el.addEventListener('input', function(){ employerRows[+this.dataset.idx].salary = parseFloat(this.value)||0; renderEmployerTable(); }); });
+  tbody.querySelectorAll('.pt-emp-gender').forEach(function(el){ el.addEventListener('change', function(){ employerRows[+this.dataset.idx].gender = this.value; renderEmployerTable(); }); });
+  tbody.querySelectorAll('.pt-multi-remove').forEach(function(el){ el.addEventListener('click', function(){ employerRows.splice(+this.dataset.idx, 1); renderEmployerTable(); }); });
+
+  var emp = E.computeEmployerPT(state, employerRows.map(function(r){ return { salary: r.salary, gender: r.gender }; }));
+  $('pt-employerResult').innerHTML = row('Total Monthly PT', fmt(emp.totalMonthlyPT)) + row('Total Annual PT', fmt(emp.totalAnnualPT)) + row('Employer Liability (Annual)', fmt(emp.totalAnnualPT));
+}
+$('pt-addEmployeeBtn').addEventListener('click', function(){ employerRows.push({ salary: 25000, gender: 'male' }); renderEmployerTable(); });
+$('pt-state').addEventListener('change', function(){ if(employerRows.length) renderEmployerTable(); });
+
+/* ===================== Self-employed mode ===================== */
+$('pt-selfEmployedCalcBtn').addEventListener('click', function(){
+  var state = $('pt-state').value;
+  var r = E.computeSelfEmployedPT(state);
+  var html;
+  if(r.applicable === false) html = row('Status', r.reason);
+  else if(r.applicable === null) html = row('Status', r.reason);
+  else html = row('Applicable PT (Annual)', fmt(r.annualPT)) + row('Monthly Equivalent', fmt(r.monthlyPT)) + row('Note', r.rule);
+  $('pt-selfEmployedResult').innerHTML = html;
+});
+
+/* ===================== Compare states ===================== */
+$('pt-compareBtn').addEventListener('click', function(){
+  var gross = grossSalary() || num('pt-basicSalary') || 25000;
+  var stateA = $('pt-compareStateA').value, stateB = $('pt-compareStateB').value;
+  var rA = E.computeStatePT(stateA, gross, { gender: $('pt-gender').value });
+  var rB = E.computeStatePT(stateB, gross, { gender: $('pt-gender').value });
+  var monthlyA = (rA && rA.applicable) ? (rA.monthlyPT||0) : 0;
+  var monthlyB = (rB && rB.applicable) ? (rB.monthlyPT||0) : 0;
+  var annualA = (rA && rA.applicable) ? (rA.annualPT||0) : 0;
+  var annualB = (rB && rB.applicable) ? (rB.annualPT||0) : 0;
+  $('pt-compareResult').innerHTML =
+    row((E.STATE_SLABS[stateA]||{}).label + ' — Monthly PT', fmt(monthlyA)) +
+    row((E.STATE_SLABS[stateA]||{}).label + ' — Annual PT', fmt(annualA)) +
+    row((E.STATE_SLABS[stateB]||{}).label + ' — Monthly PT', fmt(monthlyB)) +
+    row((E.STATE_SLABS[stateB]||{}).label + ' — Annual PT', fmt(annualB)) +
+    row('Annual Difference', fmt(Math.abs(annualA - annualB)));
+  drawBar('pt-chartCompare', [
+    { label: (E.STATE_SLABS[stateA]||{}).label, value: annualA },
+    { label: (E.STATE_SLABS[stateB]||{}).label, value: annualB }
+  ]);
+});
+
+/* ===================== History ===================== */
+var HISTORY_KEY = 'pt_history';
+function loadHistory(){ return lsGet(HISTORY_KEY, []); }
+function saveHistory(list){ lsSet(HISTORY_KEY, list.slice(0, 50)); }
+function addToHistory(){
+  if(!lastResult) return;
+  var list = loadHistory();
+  var pt = lastResult.ptResult;
+  list.unshift({ ts: new Date().toISOString(), state: (E.STATE_SLABS[lastResult.state]||{}).label,
+    gross: lastResult.gross, monthlyPT: (pt && pt.applicable) ? pt.monthlyPT : 0 });
+  saveHistory(list);
+  renderHistory();
+}
+function renderHistory(){
+  var list = loadHistory();
+  var wrap = $('pt-historyList');
+  if(!list.length){ wrap.innerHTML = '<p class="pt-muted">No calculations saved yet.</p>'; return; }
+  wrap.innerHTML = list.map(function(item){
+    var d = new Date(item.ts);
+    return '<div class="pt-history-item"><span>' + item.state + ' — ' + fmt(item.gross) + ' → PT ' + fmt(item.monthlyPT) + '<br><span class="pt-muted">' + d.toLocaleString() + '</span></span></div>';
+  }).join('');
+}
+$('pt-clearHistoryBtn').addEventListener('click', function(){
+  if(!confirm('Clear all saved calculation history?')) return;
+  saveHistory([]); renderHistory();
+  status('🗑️ History cleared.');
+});
+
+/* ===================== Buttons ===================== */
+$('pt-calcBtn').addEventListener('click', function(){ compute(); addToHistory(); status('✅ Calculation updated and saved to history.'); });
+$('pt-resetBtn').addEventListener('click', function(){
+  if(!confirm('Reset all fields to default?')) return;
+  $('pt-basicSalary').value = 25000; $('pt-hra').value = 10000; $('pt-da').value = 3000; $('pt-conveyance').value = 1600;
+  $('pt-medical').value = 1250; $('pt-special').value = 2000; $('pt-bonus').value = 0; $('pt-incentives').value = 0;
+  $('pt-overtime').value = 0; $('pt-otherEarnings').value = 0;
+  document.querySelectorAll('#pt-paneExemption input').forEach(function(el){ el.checked = false; });
+  employerRows = []; renderEmployerTable();
+  compute();
+  status('↺ Reset complete.');
+});
+$('pt-printBtn').addEventListener('click', function(){ window.print(); });
+
+function buildTextSummary(){
+  var r = lastResult;
+  var pt = r.ptResult;
+  return [
+    'Professional Tax Calculation Summary', 'State: ' + (E.STATE_SLABS[r.state]||{}).label,
+    'Gross Salary: ' + fmt(r.gross), 'Monthly PT: ' + fmt((pt && pt.applicable) ? pt.monthlyPT : 0),
+    'Annual PT: ' + fmt((pt && pt.applicable) ? pt.annualPT : 0), 'Net Salary: ' + fmt(r.gross - ((pt && pt.applicable) ? pt.monthlyPT : 0))
+  ].join('\n');
+}
+$('pt-copyBtn').addEventListener('click', function(){
+  if(!lastResult){ status('⚠️ Calculate first.'); return; }
+  var text = buildTextSummary();
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ status('📋 Copied to clipboard.'); });
+  }
+});
+$('pt-pdfBtn').addEventListener('click', function(){
+  if(typeof html2pdf === 'undefined'){ alert('PDF engine failed to load — check your connection and refresh.'); return; }
+  html2pdf().from($('pt-resultSide')).set({filename:'professional-tax-summary.pdf', margin:10}).save();
+});
+$('pt-xlsxBtn').addEventListener('click', function(){
+  if(typeof XLSX === 'undefined'){ alert('Excel engine failed to load — check your connection and refresh.'); return; }
+  var r = lastResult; var pt = r.ptResult;
+  var rows = [['Metric','Value'], ['State', (E.STATE_SLABS[r.state]||{}).label], ['Gross Salary', r.gross],
+    ['Monthly PT', (pt && pt.applicable) ? pt.monthlyPT : 0], ['Annual PT', (pt && pt.applicable) ? pt.annualPT : 0]];
+  var ws = XLSX.utils.aoa_to_sheet(rows);
+  var wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Professional Tax');
+  XLSX.writeFile(wb, 'professional-tax-summary.xlsx');
+});
+
+/* ===================== Share links ===================== */
+function updateShareLinks(){
+  if(!lastResult) return;
+  var text = buildTextSummary();
+  var url = location.href;
+  $('pt-shareWhatsapp').href = 'https://wa.me/?text=' + encodeURIComponent(text + '\n' + url);
+  $('pt-shareFacebook').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+  $('pt-shareTwitter').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(text) + '&url=' + encodeURIComponent(url);
+  $('pt-shareLinkedin').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
+  $('pt-shareTelegram').href = 'https://t.me/share/url?url=' + encodeURIComponent(url) + '&text=' + encodeURIComponent(text);
+  $('pt-shareEmail').href = 'mailto:?subject=' + encodeURIComponent('Professional Tax Calculation Summary') + '&body=' + encodeURIComponent(text + '\n\n' + url);
+}
+$('pt-copyLinkBtn').addEventListener('click', function(){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(location.href).then(function(){ status('🔗 Link copied to clipboard.'); });
+  }
+});
+
+/* ===================== Validation on inputs ===================== */
+document.querySelectorAll('#pt-formSide input, #pt-formSide select').forEach(function(el){
+  el.addEventListener('input', compute);
+  el.addEventListener('change', compute);
+});
+
+/* ===================== Settings: theme / language / accessibility ===================== */
+var I18N = {
+  en: {
+    tabEmployee:'👤 Employee & Salary', tabExemption:'🛡️ Exemptions', tabEmployer:'🏢 Employer Mode',
+    tabSelfEmployed:'💼 Self-Employed', tabCompare:'⚖️ Compare States', tabHistory:'🕘 History', tabSettings:'⚙️ Settings',
+    calc:'🧮 Calculate', reset:'↺ Reset', print:'🖨️ Print', pdf:'📄 PDF', xlsx:'📊 Excel', copy:'📋 Copy Result'
+  },
+  hi: {
+    tabEmployee:'👤 Employee और Salary', tabExemption:'🛡️ छूट', tabEmployer:'🏢 Employer मोड',
+    tabSelfEmployed:'💼 Self-Employed', tabCompare:'⚖️ राज्य तुलना', tabHistory:'🕘 इतिहास', tabSettings:'⚙️ सेटिंग्स',
+    calc:'🧮 गणना करें', reset:'↺ रीसेट', print:'🖨️ प्रिंट', pdf:'📄 PDF', xlsx:'📊 Excel', copy:'📋 परिणाम कॉपी करें'
+  }
+};
+function applyLanguage(lang){
+  var t = I18N[lang] || I18N.en;
+  $('pt-tabEmployee').textContent = t.tabEmployee;
+  $('pt-tabExemption').textContent = t.tabExemption;
+  $('pt-tabEmployer').textContent = t.tabEmployer;
+  $('pt-tabSelfEmployed').textContent = t.tabSelfEmployed;
+  $('pt-tabCompare').textContent = t.tabCompare;
+  $('pt-tabHistory').textContent = t.tabHistory;
+  $('pt-tabSettings').textContent = t.tabSettings;
+  $('pt-calcBtn').textContent = t.calc;
+  $('pt-resetBtn').textContent = t.reset;
+  $('pt-printBtn').textContent = t.print;
+  $('pt-pdfBtn').textContent = t.pdf;
+  $('pt-xlsxBtn').textContent = t.xlsx;
+  $('pt-copyBtn').textContent = t.copy;
+}
+$('pt-language').addEventListener('change', function(){ applyLanguage(this.value); lsSet('pt_lang', this.value); });
+$('pt-theme').addEventListener('change', function(){ document.body.classList.toggle('pt-light', this.value === 'light'); lsSet('pt_theme', this.value); });
+$('pt-highContrast').addEventListener('change', function(){ document.body.classList.toggle('pt-high-contrast', this.checked); lsSet('pt_hc', this.checked); });
+$('pt-largeFont').addEventListener('change', function(){ document.body.classList.toggle('pt-large-font', this.checked); lsSet('pt_lf', this.checked); });
+
+/* ===================== Init ===================== */
+var savedLang = lsGet('pt_lang', 'en'); $('pt-language').value = savedLang; applyLanguage(savedLang);
+var savedTheme = lsGet('pt_theme', 'dark'); $('pt-theme').value = savedTheme; document.body.classList.toggle('pt-light', savedTheme === 'light');
+var savedHc = lsGet('pt_hc', false); $('pt-highContrast').checked = savedHc; document.body.classList.toggle('pt-high-contrast', savedHc);
+var savedLf = lsGet('pt_lf', false); $('pt-largeFont').checked = savedLf; document.body.classList.toggle('pt-large-font', savedLf);
+
+renderHistory();
+renderEmployerTable();
+compute();
+
+})();
+
+</script>
+<!-- Default Statcounter code for Apne Software
+https://apnesoftware.com -->
+<script type="text/javascript">
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript><div class="statcounter"><a title="Web Analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/13334460/0/a5854dc7/1/" alt="Web Analytics" referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
+<!-- End of Statcounter Code -->
+</body>
+</html>
