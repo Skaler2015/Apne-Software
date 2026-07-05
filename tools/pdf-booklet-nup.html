@@ -5,33 +5,92 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-booklet-nup.html">
+<meta name="description" content="Free Professional PDF Booklet & N-up Printing Tool — impose 2/4/6/8/9/16 pages per sheet or a custom grid, create a saddle-stitch booklet, choose A3–A5/Letter/Legal/Tabloid, control margins, gutter, gaps, scaling, rotation, page order and range, add a watermark, header/footer and crop/registration marks, then preview and batch-export. Vector-quality, 100% in your browser.">
+<meta name="keywords" content="pdf booklet, n-up print, pages per sheet, saddle stitch pdf, pdf imposition, 2 up 4 up pdf, booklet maker, print multiple pages one sheet, pdf nup online">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PDF Booklet / N-up Print | ApneSoftware">
-<meta property="og:description" content="Fit 2 or 4 pages per printed sheet. Free online tool — no signup required.">
+<meta property="og:title" content="Professional PDF Booklet & N-up Printing Tool | ApneSoftware">
+<meta property="og:description" content="Impose 2–16 pages per sheet or make a saddle-stitch booklet, with paper sizes, margins, scaling, rotation, watermark, headers and print marks. Vector-quality & browser-based.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-booklet-nup.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PDF Booklet / N-up Print | ApneSoftware">
-<meta name="twitter:description" content="Fit 2 or 4 pages per printed sheet. Free online tool — no signup required.">
+<meta name="twitter:title" content="Professional PDF Booklet & N-up Printing Tool | ApneSoftware">
+<meta name="twitter:description" content="2–16 up imposition & saddle-stitch booklets with paper sizes, margins, scaling, rotation, watermark and print marks. Vector-quality, private.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Booklet / N-up Print","description":"Fit 2 or 4 pages per printed sheet. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-booklet-nup.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Professional PDF Booklet & N-up Printing Tool","description":"Impose multiple PDF pages per sheet (1, 2, 4, 6, 8, 9, 16-up or a custom grid), create saddle-stitch booklets, and control paper size, orientation, page order, margins, gutter, gaps, scaling, rotation, page range, watermark, headers/footers and crop/registration marks, with preview and batch ZIP export. Vector-quality, runs entirely in the browser with pdf-lib.","url":"https://apnesoftware.com/tools/pdf-booklet-nup.html","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["1/2/4/6/8/9/16-up and custom grid imposition","Saddle-stitch booklet ordering","A3/A4/A5/Letter/Legal/Tabloid/custom paper","Margins, gutter, gaps, scaling and rotation","Watermark, header/footer and crop/registration marks","Preview and batch ZIP export"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
 <meta name="color-scheme" content="dark">
-<title>PDF Booklet / N-up Print | ApneSoftware</title>
+<title>Professional PDF Booklet & N-up Printing Tool | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
+/* ===== PDF Booklet & N-up — scoped bk- prefix ===== */
 .dropzone{cursor:pointer}
 .dropzone p{font-size:.9rem}
 .panel{position:relative;z-index:1}
-</style>
-<style>
-  .layout-row{display:flex;gap:10px;margin-top:6px}
-  .layout-btn{flex:1;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;text-align:center}
-  .layout-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-  .layout-btn .icon{font-size:1.4rem;display:block;margin-bottom:4px}
+
+.layout-row{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap}
+.layout-btn{flex:1;min-width:120px;padding:12px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.06));color:var(--text);cursor:pointer;text-align:center}
+.layout-btn.active{background:var(--accent,#7c5cfc);color:#fff;border-color:var(--accent,#7c5cfc)}
+.layout-btn .icon{font-size:1.3rem;display:block;margin-bottom:4px}
+
+.bk-queue{display:flex;flex-direction:column;gap:5px;margin-top:10px}
+.bk-queue .q{display:flex;align-items:center;gap:6px;font-size:.76rem;padding:6px 8px;border:1px solid var(--border);border-radius:8px;background:rgba(255,255,255,.03)}
+.bk-queue .q .qn{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bk-queue .q button{background:none;border:none;color:var(--text-dim);cursor:pointer}
+
+.bk-layout{display:grid;grid-template-columns:320px 1fr;gap:16px;margin-top:16px}
+@media (max-width:860px){ .bk-layout{grid-template-columns:1fr} }
+.bk-side{display:flex;flex-direction:column;gap:12px;max-height:80vh;overflow:auto;padding-right:4px}
+.bk-card{border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.02)}
+.bk-card h3{font-size:.82rem;margin:0 0 10px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-dim)}
+.bk-field{margin-bottom:9px}
+.bk-field label{display:block;font-size:.73rem;color:var(--text-dim);margin-bottom:4px;font-weight:600}
+.bk-field input,.bk-field select,.bk-field textarea{width:100%;font-size:.82rem;padding:8px 10px;border-radius:8px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)}
+.bk-field select option{background:#1a1a2e}
+.bk-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bk-4{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bk-chips{display:flex;flex-wrap:wrap;gap:5px}
+.bk-chip{font-size:.72rem;padding:6px 10px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.06));color:var(--text);cursor:pointer}
+.bk-chip.active{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff}
+.bk-check{display:flex;align-items:center;gap:7px;font-size:.79rem;margin:6px 0}
+.bk-check input{width:auto}
+.bk-note{font-size:.72rem;color:var(--text-dim);margin-top:6px;line-height:1.5}
+
+.bk-preview-area{border:1px solid var(--border);border-radius:12px;background:#0d0d16;display:flex;flex-direction:column;min-height:320px}
+.bk-toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:8px 10px;border-bottom:1px solid var(--border)}
+.bk-btn{font-size:.74rem;padding:6px 10px;border-radius:7px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text);cursor:pointer}
+.bk-btn:hover{background:rgba(124,92,252,.18)}
+.bk-btn.primary{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff;font-weight:600}
+.bk-prevwrap{flex:1;overflow:auto;text-align:center;padding:12px}
+.bk-prevwrap canvas{max-width:100%;background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.bk-info{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:.78rem;margin-top:8px}
+.bk-info span:nth-child(odd){color:var(--text-dim)}
+.bk-info span:nth-child(even){text-align:right;font-variant-numeric:tabular-nums;word-break:break-word}
+.bk-progress{height:9px;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:10px;display:none}
+.bk-progress.show{display:block}
+.bk-progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7c5cfc,#16c079);transition:width .1s}
+
+/* Below-tool content */
+.bk-content h2{font-size:1.15rem;margin:26px 0 10px}
+.bk-content h3{font-size:1rem;margin:18px 0 8px}
+.bk-content p,.bk-content li{font-size:.92rem;line-height:1.72}
+.bk-content ul,.bk-content ol{padding-left:20px}
+.bk-fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:14px 0}
+.bk-fgrid .fc{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:14px}
+.bk-fgrid .fc b{display:block;margin-bottom:5px;font-size:.9rem}
+.bk-fgrid .fc span{font-size:.82rem;color:var(--text-dim);line-height:1.6}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin:12px 0}
+.related-grid a{display:flex;align-items:center;gap:9px;padding:12px 13px;border-radius:11px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.86rem;font-weight:500;transition:.15s}
+.related-grid a:hover{background:rgba(124,92,252,.16);border-color:var(--accent,#7c5cfc);transform:translateY(-1px)}
+.related-grid a .ri{font-size:1.15rem}
+.bk-faq details{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:11px;padding:2px 14px;margin-bottom:9px}
+.bk-faq summary{cursor:pointer;padding:12px 0;font-weight:600;font-size:.9rem;list-style:none}
+.bk-faq summary::-webkit-details-marker{display:none}
+.bk-faq summary::before{content:'＋';margin-right:9px;color:var(--accent,#7c5cfc);font-weight:700}
+.bk-faq details[open] summary::before{content:'－'}
+.bk-faq details p{padding:0 0 12px;margin:0;font-size:.87rem;color:var(--text-dim)}
+.bk-lang-note{font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:-4px}
 </style>
 </head>
 <body>
@@ -44,156 +103,521 @@
 
 <div class="container">
   <div class="tool-header">
-    <h1>🖨️ PDF Booklet / N-up Print</h1>
-    <p>Fit multiple pages onto a single sheet — great for saving paper when printing.</p>
+    <h1>🖨️ Professional PDF Booklet &amp; N-up Printing Tool</h1>
+    <p>Impose 2–16 pages per sheet or a custom grid, make a saddle-stitch booklet, and control paper size, margins, gutter, scaling, rotation, order, watermark, headers and print marks — vector-quality, 100% in your browser.</p>
   </div>
 
   <div class="panel">
     <div class="dropzone" id="dropzone">
-      <p>📤 Drag & drop your PDF file here or click to choose</p>
-      <input type="file" id="fileInput" accept="application/pdf">
+      <p>📤 Drag &amp; drop PDF file(s) here or click to choose &nbsp;<span style="color:var(--text-dim);font-size:.8rem">(multiple allowed)</span></p>
+      <input type="file" id="fileInput" accept="application/pdf" multiple>
     </div>
+    <div class="bk-queue" id="queue"></div>
 
-    <div class="field" style="margin-top:18px">
-      <label>Layout</label>
+    <!-- quick layout row (IDs preserved: .layout-btn data-n) -->
+    <div class="bk-field" style="margin-top:14px">
+      <label>Quick layout</label>
       <div class="layout-row">
-        <div class="layout-btn active" data-n="2"><span class="icon">▥</span>2-up (2 pages per sheet)</div>
-        <div class="layout-btn" data-n="4"><span class="icon">▦</span>4-up (4 pages per sheet)</div>
+        <div class="layout-btn active" data-n="2"><span class="icon">▥</span>2-up</div>
+        <div class="layout-btn" data-n="4"><span class="icon">▦</span>4-up</div>
+        <div class="layout-btn" data-n="9"><span class="icon">▩</span>9-up</div>
+        <div class="layout-btn" data-n="booklet"><span class="icon">📖</span>Booklet</div>
       </div>
     </div>
 
-    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem;margin-top:14px"></p>
+    <div class="bk-layout" id="editor" style="display:none">
+      <!-- ===== Options ===== -->
+      <div class="bk-side">
+        <div class="bk-card">
+          <h3>Mode &amp; layout</h3>
+          <div class="bk-field"><label>Mode</label>
+            <select id="mode"><option value="nup">N-up (pages per sheet)</option><option value="booklet">Booklet (saddle stitch)</option></select>
+          </div>
+          <div class="bk-field" id="nupField"><label>Pages per sheet</label>
+            <select id="nup"><option value="1">1-up</option><option value="2" selected>2-up</option><option value="4">4-up</option><option value="6">6-up</option><option value="8">8-up</option><option value="9">9-up</option><option value="16">16-up</option><option value="custom">Custom grid…</option></select>
+          </div>
+          <div class="bk-2" id="customGrid" style="display:none">
+            <div class="bk-field"><label>Columns</label><input type="number" id="cols" value="2" min="1" max="8"></div>
+            <div class="bk-field"><label>Rows</label><input type="number" id="rows" value="2" min="1" max="8"></div>
+          </div>
+          <div class="bk-field"><label>Page order in cells</label>
+            <select id="order"><option value="ltr">Left → Right</option><option value="rtl">Right → Left</option><option value="ttb">Top → Bottom</option><option value="btt">Bottom → Top</option></select>
+          </div>
+        </div>
 
-    <div class="btn-row" id="downloadRow" style="display:none">
-      <button class="btn" id="downloadBtn">⬇️ Download Booklet PDF</button>
+        <div class="bk-card">
+          <h3>Paper</h3>
+          <div class="bk-2">
+            <div class="bk-field"><label>Size</label>
+              <select id="paper"><option value="a4" selected>A4</option><option value="a3">A3</option><option value="a5">A5</option><option value="letter">Letter</option><option value="legal">Legal</option><option value="tabloid">Tabloid</option><option value="custom">Custom…</option></select>
+            </div>
+            <div class="bk-field"><label>Orientation</label>
+              <select id="orient"><option value="auto">Auto</option><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select>
+            </div>
+          </div>
+          <div class="bk-2" id="customPaper" style="display:none">
+            <div class="bk-field"><label>Width (mm)</label><input type="number" id="cw" value="210"></div>
+            <div class="bk-field"><label>Height (mm)</label><input type="number" id="ch" value="297"></div>
+          </div>
+        </div>
+
+        <div class="bk-card">
+          <h3>Margins &amp; spacing (pt)</h3>
+          <div class="bk-4">
+            <div class="bk-field"><label>Outer margin</label><input type="number" id="margin" value="18" min="0" max="150"></div>
+            <div class="bk-field"><label>Gutter (inner)</label><input type="number" id="gutter" value="0" min="0" max="150"></div>
+            <div class="bk-field"><label>H gap</label><input type="number" id="hgap" value="10" min="0" max="120"></div>
+            <div class="bk-field"><label>V gap</label><input type="number" id="vgap" value="10" min="0" max="120"></div>
+          </div>
+        </div>
+
+        <div class="bk-card">
+          <h3>Scaling &amp; rotation</h3>
+          <div class="bk-2">
+            <div class="bk-field"><label>Scaling</label>
+              <select id="scaling"><option value="fit" selected>Fit (contain)</option><option value="fill">Fill (cover)</option><option value="stretch">Stretch</option><option value="actual">Actual size</option><option value="custom">Custom %</option></select>
+            </div>
+            <div class="bk-field"><label>Rotate pages</label>
+              <select id="rotate"><option value="auto">Auto</option><option value="0">0°</option><option value="90">90°</option><option value="180">180°</option><option value="270">270°</option></select>
+            </div>
+          </div>
+          <div class="bk-field" id="customScaleField" style="display:none"><label>Custom scale %</label><input type="number" id="customScale" value="100" min="10" max="400"></div>
+        </div>
+
+        <div class="bk-card">
+          <h3>Pages</h3>
+          <div class="bk-field"><label>Range</label>
+            <select id="pageSel"><option value="all">All pages</option><option value="odd">Odd</option><option value="even">Even</option><option value="range">Custom range…</option></select>
+          </div>
+          <div class="bk-field" id="rangeField" style="display:none"><label>e.g. 1-4,7</label><input type="text" id="pageRange" placeholder="1-4,7"></div>
+          <label class="bk-check"><input type="checkbox" id="fillLast" checked> Fill last sheet with blanks</label>
+        </div>
+
+        <div class="bk-card">
+          <h3>Watermark &amp; text</h3>
+          <div class="bk-chips" style="margin-bottom:8px">
+            <button class="bk-chip active" data-wm="">None</button>
+            <button class="bk-chip" data-wm="CONFIDENTIAL">Confidential</button>
+            <button class="bk-chip" data-wm="DRAFT">Draft</button>
+          </div>
+          <div class="bk-field"><label>Custom watermark</label><input type="text" id="wmText" placeholder="blank for none"></div>
+          <div class="bk-2">
+            <div class="bk-field"><label>Header</label><input type="text" id="header" placeholder="optional"></div>
+            <div class="bk-field"><label>Footer</label><input type="text" id="footer" placeholder="optional"></div>
+          </div>
+          <label class="bk-check"><input type="checkbox" id="pageNum"> Add sheet numbers</label>
+          <label class="bk-check"><input type="checkbox" id="showDate"> Add date</label>
+        </div>
+
+        <div class="bk-card">
+          <h3>Print marks &amp; output</h3>
+          <label class="bk-check"><input type="checkbox" id="cropMarks"> Crop marks</label>
+          <label class="bk-check"><input type="checkbox" id="regMarks"> Registration marks</label>
+          <div class="bk-field" style="margin-top:8px"><label>Optimise / compress</label>
+            <select id="compress"><option value="none">None</option><option value="opt" selected>Optimised (object streams)</option></select>
+          </div>
+        </div>
+
+        <button class="bk-btn primary" id="buildBtn" style="padding:12px">🖨️ Build &amp; download</button>
+      </div>
+
+      <!-- ===== Preview ===== -->
+      <div>
+        <div class="bk-preview-area">
+          <div class="bk-toolbar">
+            <button class="bk-btn" id="prevPrev">‹</button>
+            <span id="prevIdx" style="font-size:.74rem;min-width:80px;text-align:center">—</span>
+            <button class="bk-btn" id="prevNext">›</button>
+            <button class="bk-btn" id="zoomOut">−</button>
+            <button class="bk-btn" id="zoomIn">＋</button>
+            <span style="flex:1"></span>
+            <button class="bk-btn" id="refreshPreview">↻ Preview</button>
+          </div>
+          <div class="bk-prevwrap" id="prevWrap"><div style="color:var(--text-dim);font-size:.85rem;padding:40px">Upload a PDF and click “Preview” to see the imposed sheet.</div></div>
+        </div>
+        <p id="statusMsg" style="color:var(--text-dim);font-size:.85rem;margin-top:10px"></p>
+        <div class="bk-progress" id="progress"><i></i></div>
+        <div class="bk-info" id="pdfInfo"></div>
+        <div class="btn-row" id="downloadRow" style="display:none;margin-top:12px;gap:8px;flex-wrap:wrap">
+          <button class="bk-btn primary" id="downloadBtn">⬇️ Download PDF</button>
+          <button class="bk-btn" id="downloadAllBtn" style="display:none">⬇️ Download all (ZIP)</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- ============================ BELOW-TOOL CONTENT ============================ -->
+<div class="bk-content">
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Combines multiple pages from your PDF onto fewer printed sheets — 2 pages side by side, or 4 pages in a grid — to save paper and ink when printing handouts, notes, or drafts.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your PDF.</li>
-        <li>Choose 2-up or 4-up layout.</li>
-        <li>Download the combined, print-ready PDF.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>आपकी PDF के कई पेज को कम प्रिंटेड शीट पर जोड़ देता है — 2 पेज साथ-साथ, या 4 पेज एक ग्रिड में — handouts, notes, या drafts प्रिंट करते समय कागज़ और स्याही बचाने के लिए।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी PDF अपलोड करें।</li>
-        <li>2-up या 4-up लेआउट चुनें।</li>
-        <li>बनी हुई, प्रिंट के लिए तैयार PDF डाउनलोड करें।</li>
-      </ol>
-    </div>
+  <h2>🖨️ Print smarter — booklets and multi-up sheets from any PDF</h2>
+  <p>The <strong>Professional PDF Booklet &amp; N-up Printing Tool</strong> re-arranges the pages of a PDF onto printed sheets exactly the way a print shop would. Fit two, four, six, eight, nine or sixteen pages onto one sheet to save paper, or impose your document as a proper <em>saddle-stitch booklet</em> that folds into a little book. It gives you full control over paper size, orientation, margins, the binding gutter, gaps, scaling, rotation, page order and range, and lets you add a watermark, headers and footers, and professional crop and registration marks. Everything is composed as true vector output with pdf-lib, so text stays crisp and files stay small, and none of it ever leaves your browser.</p>
+
+  <h2>✨ Features</h2>
+  <div class="bk-fgrid">
+    <div class="fc"><b>N-up imposition</b><span>1, 2, 4, 6, 8, 9, 16-up or a custom columns × rows grid.</span></div>
+    <div class="fc"><b>Saddle-stitch booklet</b><span>Automatic booklet page ordering so folded sheets read in sequence.</span></div>
+    <div class="fc"><b>Paper &amp; orientation</b><span>A3, A4, A5, Letter, Legal, Tabloid or custom size; portrait, landscape or auto.</span></div>
+    <div class="fc"><b>Precise placement</b><span>Outer margin, binding gutter, horizontal/vertical gaps and page order.</span></div>
+    <div class="fc"><b>Scaling &amp; rotation</b><span>Fit, fill, stretch, actual or custom %, with auto or fixed 90/180/270° rotation.</span></div>
+    <div class="fc"><b>Watermark &amp; marks</b><span>Confidential/Draft/custom watermark, header/footer, crop and registration marks.</span></div>
+    <div class="fc"><b>Preview</b><span>Render the imposed sheet before you download, with zoom and page navigation.</span></div>
+    <div class="fc"><b>Batch &amp; private</b><span>Process multiple PDFs into a ZIP, entirely in your browser.</span></div>
   </div>
+
+  <h2>⚙️ How it works</h2>
+  <p>When you add a PDF, the tool loads it with pdf-lib and embeds each page as a reusable vector object. For N-up it creates new sheets at your chosen paper size and draws the pages into a grid of cells, scaling and positioning each one according to your settings. For a booklet it first works out the imposition order — the sequence in which pages must be placed so that, once every sheet is printed double-sided and folded in half, the pages appear in the right order — then lays them out two-up. Because the pages are copied as vectors rather than rasterised into images, the result is sharp at any zoom and print resolution, and the file stays lightweight even for long documents.</p>
+
+  <h2>📖 Booklet printing</h2>
+  <p>Booklet mode produces a saddle-stitch imposition: your pages are reordered and placed two per side so that when you print double-sided, stack, fold down the middle and staple along the spine, you get a booklet that reads front to back. The tool pads the page count to a multiple of four with blanks where needed, and a binding gutter option adds inner margin for the fold. This is ideal for programmes, zines, menus, order-of-service sheets and small manuals produced on an ordinary office printer.</p>
+
+  <h2>🗂️ N-up printing</h2>
+  <p>N-up (or "multiple pages per sheet") shrinks several pages onto one, which is perfect for handouts, lecture notes, drafts and proof sheets. Two-up halves your paper use; four-up quarters it; nine- and sixteen-up create compact thumbnail sheets for review. You choose how the pages flow through the grid — left-to-right, right-to-left, top-to-bottom or bottom-to-top — and how each page is scaled and rotated to fit its cell.</p>
+
+  <h2>📐 Paper sizes</h2>
+  <p>Output sheets can be <strong>A3, A4, A5, Letter, Legal or Tabloid</strong>, or a custom size in millimetres, in portrait, landscape or an automatically chosen orientation. Auto orientation picks whichever way fits your grid best — for example, 2-up usually works best on a landscape sheet, while 4-up suits portrait.</p>
+
+  <h2>🧩 Layout options</h2>
+  <ul>
+    <li><strong>Margins &amp; gutter:</strong> an outer margin around the sheet and an inner gutter for binding.</li>
+    <li><strong>Gaps:</strong> horizontal and vertical spacing between imposed pages.</li>
+    <li><strong>Scaling:</strong> fit (contain), fill (cover), stretch, actual size or a custom percentage.</li>
+    <li><strong>Rotation:</strong> auto-rotate pages to fit their cell, or force 90/180/270°.</li>
+    <li><strong>Range &amp; blanks:</strong> all/odd/even/custom pages, and fill the last sheet with blanks.</li>
+  </ul>
+
+  <h2>👁️ Preview</h2>
+  <p>Before you download, a live preview renders the imposed sheet with PDF.js so you can check the layout, margins and scaling, navigate between sheets and zoom in. What you see is exactly what the downloaded, print-ready PDF contains.</p>
+
+  <h2>🔒 Privacy</h2>
+  <p>This tool is privacy-first. Your PDF is loaded and imposed entirely in your browser with pdf-lib and PDF.js; no page or byte is ever uploaded to a server, shared with analytics, or processed by any AI service. Once the page and its libraries have loaded, it works offline, and closing the tab clears everything. That keeps confidential documents, contracts and unpublished designs entirely under your control. / यह टूल privacy-first है — आपकी PDF आपके ब्राउज़र में ही process होती है, कुछ भी अपलोड नहीं होता।</p>
+
+  <h2>🎯 Benefits</h2>
+  <ul>
+    <li><strong>Save paper &amp; ink:</strong> two-up to sixteen-up dramatically cut printing costs.</li>
+    <li><strong>Real booklets:</strong> proper saddle-stitch imposition on a normal printer.</li>
+    <li><strong>Sharp output:</strong> vector composition keeps text crisp and files small.</li>
+    <li><strong>Private &amp; free:</strong> no account, no upload, no watermark unless you add one.</li>
+  </ul>
+
+  <!-- ===== Related Tools (ABOVE About — required order) ===== -->
+  <h2>🧰 Related Tools</h2>
+  <div class="related-grid">
+    <a href="pdf-merge.html"><span class="ri">🧩</span> PDF Merge</a>
+    <a href="pdf-split.html"><span class="ri">✂️</span> PDF Split</a>
+    <a href="pdf-compress.html"><span class="ri">📉</span> PDF Compress</a>
+    <a href="pdf-rotate.html"><span class="ri">🔃</span> PDF Rotate</a>
+    <a href="pdf-crop.html"><span class="ri">🖼️</span> PDF Crop</a>
+    <a href="pdf-reorder.html"><span class="ri">🔀</span> PDF Reorder</a>
+    <a href="pdf-delete-pages.html"><span class="ri">🗑️</span> PDF Delete Pages</a>
+    <a href="pdf-split.html"><span class="ri">📄</span> PDF Extract Pages</a>
+    <a href="pdf-watermark.html"><span class="ri">💧</span> PDF Watermark</a>
+    <a href="pdf-page-numbers.html"><span class="ri">🔢</span> PDF Page Numbers</a>
+  </div>
+
+  <!-- ===== About (English) ===== -->
+  <h2>ℹ️ About This Tool</h2>
+  <p>The <strong>Professional PDF Booklet &amp; N-up Printing Tool</strong> is a free, browser-based imposition tool that rearranges a PDF's pages onto printed sheets the way professional printing does. It began as a simple two-up/four-up utility for saving paper and has grown into a complete imposition workspace, because "putting several pages on one sheet" and "making a booklet" are jobs with a surprising amount of hidden detail: the paper size, which way the pages flow, how much space to leave for a staple or fold, how to scale pages that do not quite fit, and — for booklets — the non-obvious order the pages must be placed in so that a folded stack reads correctly. This tool handles all of that, produces genuine print-ready output, and does it entirely on your own device.</p>
+
+  <p>The core of the tool is a vector imposition engine built on pdf-lib, an open-source PDF library written in JavaScript. Rather than converting your pages into images — which would blur text and inflate the file — it embeds each source page as a reusable vector form and draws those forms onto new sheets. This matters for print quality: the output stays razor sharp at any resolution, and because nothing is rasterised, even a long document produces a compact PDF that a printer handles smoothly. It also means the whole operation is fast and memory-friendly, so large PDFs impose without freezing the browser.</p>
+
+  <p>In N-up mode you decide how many pages share a sheet. The presets cover the common cases — one, two, four, six, eight, nine and sixteen up — and a custom grid lets you set any number of columns and rows for unusual layouts. You control how the pages march through that grid with four reading orders (left-to-right, right-to-left, top-to-bottom, bottom-to-top), which is essential for right-to-left languages and for matching the way a particular document should be read. Each page is then fitted into its cell using the scaling mode you prefer: fit keeps the whole page visible with margins, fill covers the cell, stretch forces an exact fit, actual keeps the original size, and custom scales by a percentage you type. Auto-rotation turns a page ninety degrees when that makes it fill its cell better, and you can also force a fixed rotation. Around the pages you set an outer margin, horizontal and vertical gaps, and a binding gutter for the inner edge.</p>
+
+  <p>Booklet mode is where the tool earns its "professional" label. Producing a saddle-stitch booklet by hand is genuinely fiddly: for a document to read correctly after printing double-sided, folding down the middle and stapling the spine, the pages have to be placed in a specific interleaved order — the last page next to the first, the second next to the second-last, and so on — two to a side. The tool computes this imposition automatically, pads the page count to a multiple of four with blank pages so the folds work out, and adds a gutter so text is not lost in the fold. The result is a PDF you can send straight to a duplex printer to fold into a proper little book, ideal for event programmes, zines, recipe cards, menus and short manuals.</p>
+
+  <p>Beyond the layout itself, the tool adds the finishing touches a print job often needs. Output sheets can be A3, A4, A5, Letter, Legal, Tabloid or a custom millimetre size, in portrait, landscape or an automatically chosen orientation. A watermark — Confidential, Draft or your own text — can be stamped across every sheet, and you can add a header, a footer, the date and sheet numbers. For anyone preparing artwork for a commercial printer, crop marks and registration marks can be drawn at the sheet edges to guide trimming and colour alignment. You can also limit the job to a page range or to odd/even pages, fill the last sheet with blanks so it prints cleanly, and choose an optimised, object-stream save to keep the file small. A live PDF.js preview shows the imposed sheet before you commit, with zoom and page navigation so you can verify margins and scaling, and a PDF-information panel reports the source file's name, size, page count, version, orientation and paper size.</p>
+
+  <p>Everything is designed to be lightweight, fast and dependable on real documents. The imposition runs sheet by sheet with a progress bar, an estimate of the time remaining and the processing speed, so long jobs stay predictable; multiple PDFs can be queued and imposed together, then downloaded as a single ZIP. The layout is fully responsive and touch-friendly, so you can impose and download from a phone, and the controls are labelled and keyboard-operable for accessibility. Above all, it is private: your document — which may be a confidential report, an unpublished design or a personal record — is processed only in your browser and never uploaded, and the tool keeps working offline once loaded. Whether you are saving paper on a stack of handouts or turning a manuscript into a hand-folded booklet, this tool brings print-shop imposition to your own machine without cost, upload or compromise.</p>
+
+  <!-- ===== About (Hindi) ===== -->
+  <h2>ℹ️ इस टूल के बारे में (हिंदी में)</h2>
+  <p class="bk-lang-note">The same guide in Hindi / यही जानकारी हिंदी में।</p>
+  <p><strong>Professional PDF Booklet &amp; N-up Printing Tool</strong> एक फ्री, ब्राउज़र-आधारित imposition टूल है जो किसी PDF के पेजों को printed sheets पर वैसे ही पुनर्व्यवस्थित करता है जैसे professional printing करती है। इसकी शुरुआत कागज़ बचाने के लिए एक साधारण two-up/four-up उपयोगिता के रूप में हुई थी और यह एक पूरा imposition workspace बन गया, क्योंकि "एक शीट पर कई पेज रखना" और "booklet बनाना" ऐसे काम हैं जिनमें बहुत सारी छिपी हुई बारीकियाँ होती हैं: paper size, पेज किस दिशा में बहें, staple या fold के लिए कितनी जगह छोड़ें, ठीक से न बैठने वाले पेजों को कैसे scale करें, और — booklets के लिए — पेजों को किस गैर-स्पष्ट क्रम में रखें ताकि मोड़ा हुआ ढेर सही पढ़ा जाए।</p>
+
+  <p>टूल का केंद्र pdf-lib पर बना एक vector imposition engine है। आपके पेजों को images में बदलने के बजाय — जो text को धुंधला कर देता और फ़ाइल बड़ी कर देता — यह हर स्रोत पेज को एक पुनः-प्रयोज्य vector form के रूप में embed करता है और उन्हें नई sheets पर draw करता है। यह print quality के लिए मायने रखता है: output किसी भी resolution पर बेहद साफ़ रहता है, और चूँकि कुछ भी rasterise नहीं होता, एक लंबा दस्तावेज़ भी एक compact PDF बनाता है। इसका मतलब यह भी है कि पूरी प्रक्रिया तेज़ और memory-friendly है।</p>
+
+  <p>N-up mode में आप तय करते हैं कि एक शीट पर कितने पेज हों। presets सामान्य मामलों को कवर करते हैं — एक, दो, चार, छह, आठ, नौ और सोलह up — और एक custom grid आपको कोई भी columns और rows सेट करने देता है। आप चार reading orders (बाएं-से-दाएं, दाएं-से-बाएं, ऊपर-से-नीचे, नीचे-से-ऊपर) से नियंत्रित करते हैं कि पेज grid से कैसे गुज़रें, जो right-to-left भाषाओं के लिए ज़रूरी है। फिर हर पेज को आपके पसंदीदा scaling mode से cell में फ़िट किया जाता है: fit पूरा पेज margins के साथ रखता है, fill cell को ढकता है, stretch सटीक fit के लिए मजबूर करता है, actual मूल आकार रखता है, और custom आपके टाइप किए प्रतिशत से scale करता है।</p>
+
+  <p>Booklet mode ही टूल को "professional" बनाता है। हाथ से saddle-stitch booklet बनाना सच में झंझट भरा है: दस्तावेज़ को double-sided प्रिंट, बीच से मोड़ और spine पर staple के बाद सही पढ़ने के लिए, पेजों को एक विशिष्ट interleaved क्रम में रखना पड़ता है — आख़िरी पेज पहले के बगल में, दूसरा दूसरे-आख़िरी के बगल में, और इसी तरह — दो प्रति साइड। टूल इस imposition की गणना अपने-आप करता है, page count को चार के गुणक तक blank पेजों से pad करता है ताकि folds सही बैठें, और fold में text खोने से बचाने के लिए gutter जोड़ता है।</p>
+
+  <p>Layout के अलावा, टूल वे अंतिम स्पर्श जोड़ता है जो एक print job को अक्सर चाहिए। Output sheets A3, A4, A5, Letter, Legal, Tabloid या custom mm आकार में, portrait, landscape या स्वतः-चुनी orientation में हो सकती हैं। हर शीट पर एक watermark — Confidential, Draft या आपका text — लगाया जा सकता है, और आप header, footer, तारीख़ और sheet numbers जोड़ सकते हैं। commercial printer के लिए artwork तैयार करने वालों के लिए, crop marks और registration marks शीट किनारों पर बनाए जा सकते हैं। आप job को किसी page range या odd/even पेजों तक सीमित कर सकते हैं, आख़िरी शीट को blanks से भर सकते हैं, और फ़ाइल छोटी रखने के लिए optimised save चुन सकते हैं। एक live PDF.js preview imposed sheet को download से पहले दिखाता है।</p>
+
+  <p>सब कुछ हल्का, तेज़ और असली दस्तावेज़ों पर भरोसेमंद बनाया गया है। imposition शीट-दर-शीट progress bar, बचे हुए समय और गति के अनुमान के साथ चलती है; कई PDFs को queue करके एक साथ impose किया जा सकता है और एक ZIP के रूप में download किया जा सकता है। layout पूरी तरह responsive और touch-friendly है, और नियंत्रण labelled व कीबोर्ड-सुलभ हैं। सबसे बढ़कर, यह निजी है: आपका दस्तावेज़ केवल आपके ब्राउज़र में process होता है और कभी अपलोड नहीं होता, और लोड होने के बाद यह offline भी काम करता है।</p>
+
+  <!-- ===== FAQ (immediately after About — required order) ===== -->
+  <h2>❓ Frequently Asked Questions</h2>
+  <div class="bk-faq" id="bkFaq">
+    <details><summary>Is this tool free?</summary><p>Yes, completely free with no account, no signup and no limits. / हाँ, यह पूरी तरह मुफ़्त है।</p></details>
+    <details><summary>Is my PDF uploaded to a server?</summary><p>No. It is imposed entirely in your browser with pdf-lib; nothing is uploaded. / नहीं, सब कुछ आपके ब्राउज़र में ही होता है।</p></details>
+    <details><summary>What is N-up printing?</summary><p>Placing multiple pages on one sheet — 2-up, 4-up and so on — to save paper. / एक शीट पर कई पेज रखना।</p></details>
+    <details><summary>What is a saddle-stitch booklet?</summary><p>Pages imposed and ordered so that printing double-sided, folding and stapling produces a small book. / मोड़कर बनने वाली किताब।</p></details>
+    <details><summary>How many pages per sheet are supported?</summary><p>1, 2, 4, 6, 8, 9, 16, or any custom columns × rows grid. / 1 से 16 और custom grid।</p></details>
+    <details><summary>Which paper sizes can I use?</summary><p>A3, A4, A5, Letter, Legal, Tabloid or a custom size in millimetres. / A3–A5, Letter, Legal, Tabloid, custom।</p></details>
+    <details><summary>Does it keep text sharp?</summary><p>Yes. Pages are composed as vectors, so text stays crisp at any print resolution. / हाँ, vector output साफ़ रहता है।</p></details>
+    <details><summary>Can I add a binding gutter for the fold?</summary><p>Yes. The gutter option adds inner margin for stapling or folding. / हाँ, gutter विकल्प से।</p></details>
+    <details><summary>Can I choose page order in the grid?</summary><p>Yes — left-to-right, right-to-left, top-to-bottom or bottom-to-top. / हाँ, चारों orders।</p></details>
+    <details><summary>How does scaling work?</summary><p>Fit, fill, stretch, actual size or a custom percentage per page. / fit/fill/stretch/actual/custom।</p></details>
+    <details><summary>Can pages be rotated?</summary><p>Yes — auto-rotate to fit, or a fixed 90/180/270°. / हाँ, auto या fixed rotation।</p></details>
+    <details><summary>Can I add a watermark or header/footer?</summary><p>Yes — Confidential/Draft/custom watermark, plus header, footer, date and sheet numbers. / हाँ।</p></details>
+    <details><summary>Does it add crop and registration marks?</summary><p>Yes, for commercial print preparation. / हाँ, print marks।</p></details>
+    <details><summary>Can I print only some pages?</summary><p>Yes — all, odd, even, or a custom range. / हाँ, range/odd/even।</p></details>
+    <details><summary>What happens to the last, partly filled sheet?</summary><p>You can fill it with blanks so it prints cleanly and duplexes correctly. / blanks से भरा जा सकता है।</p></details>
+    <details><summary>Can I impose several PDFs at once?</summary><p>Yes. Add multiple PDFs and download the results as a ZIP. / हाँ, batch ZIP से।</p></details>
+    <details><summary>Will the file get smaller?</summary><p>The optimised save uses object streams; N-up also reduces sheet count. / optimised save और कम sheets।</p></details>
+    <details><summary>Does it handle large PDFs?</summary><p>Yes. Vector imposition is memory-friendly; process sheet by sheet. / हाँ, बड़ी PDFs भी।</p></details>
+    <details><summary>Does it work offline?</summary><p>Once the page and its libraries have loaded, yes. / हाँ, लोड होने के बाद offline।</p></details>
+    <details><summary>Is it mobile friendly?</summary><p>Yes, it is responsive and touch-friendly. / हाँ, मोबाइल-अनुकूल।</p></details>
+    <details><summary>Does it use any AI?</summary><p>No. It uses standard PDF imposition with pdf-lib, no AI. / नहीं, इसमें कोई AI नहीं है।</p></details>
+  </div>
+
+  <!-- ===== Troubleshooting ===== -->
+  <h2>🛠️ Troubleshooting</h2>
+  <ul>
+    <li><strong>Booklet pages seem out of order:</strong> booklets must be printed double-sided (flip on the short edge) and folded — the on-screen order is the imposition order, not reading order.</li>
+    <li><strong>Pages look small with big margins:</strong> reduce the outer margin and gaps, or switch scaling to Fill or a custom percentage.</li>
+    <li><strong>A page is cut off:</strong> Fill/Stretch can crop or distort — use Fit to keep the whole page visible.</li>
+    <li><strong>The PDF won't load:</strong> it may be password-protected — unlock it first with PDF Unlock.</li>
+    <li><strong>Orientation looks wrong:</strong> set orientation manually instead of Auto, or enable page rotation.</li>
+    <li><strong>The browser slows on a huge PDF:</strong> impose one file at a time and choose a smaller N-up so fewer objects are placed per sheet.</li>
+  </ul>
 </div>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-let selectedFile = null;
-let layoutN = 2;
-let outputBytes = null;
+(function(){
+  'use strict';
+  function $(id){ return document.getElementById(id); }
+  if(window.pdfjsLib){ pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; }
 
-document.querySelectorAll('.layout-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.layout-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    layoutN = parseInt(btn.dataset.n);
-    if(selectedFile) processFile(selectedFile);
-  });
-});
+  var PAPERS={ a3:[841.89,1190.55], a4:[595.28,841.89], a5:[419.53,595.28], letter:[612,792], legal:[612,1008], tabloid:[792,1224] };
+  var NGRID={1:[1,1],2:[2,1],4:[2,2],6:[2,3],8:[2,4],9:[3,3],16:[4,4]};
+  var queue=[], activeIdx=0, results=[], wmPreset='', previewSheets=[], previewIdx=0, zoom=1;
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type === 'application/pdf'){
-    selectedFile = files[0];
-    processFile(selectedFile);
+  // ---------- Upload ----------
+  setupDropzone($('dropzone'), $('fileInput'), function(files){ addFiles(files); });
+  function addFiles(files){
+    Array.prototype.slice.call(files||[]).forEach(function(f){ if(f&&(f.type==='application/pdf'||/\.pdf$/i.test(f.name))) queue.push({file:f,name:f.name}); });
+    renderQueue(); if(queue.length){ $('editor').style.display='grid'; loadInfo(queue.length-1); }
   }
-});
+  function renderQueue(){ var w=$('queue'); if(!queue.length){ w.innerHTML=''; return; }
+    w.innerHTML=queue.map(function(q,i){ return '<div class="q"><span class="qn">'+(i===activeIdx?'▶ ':'')+esc(q.name)+'</span><button data-open="'+i+'">Open</button><button data-del="'+i+'">✕</button></div>'; }).join('');
+    w.querySelectorAll('[data-open]').forEach(function(b){ b.addEventListener('click',function(){ loadInfo(+b.getAttribute('data-open')); }); });
+    w.querySelectorAll('[data-del]').forEach(function(b){ b.addEventListener('click',function(){ queue.splice(+b.getAttribute('data-del'),1); if(activeIdx>=queue.length)activeIdx=Math.max(0,queue.length-1); renderQueue(); if(queue.length)loadInfo(activeIdx); else $('editor').style.display='none'; }); });
+  }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];}); }
+  function fmtBytes(n){ if(!n)return '—'; if(n<1024)return n+' B'; if(n<1048576)return (n/1024).toFixed(1)+' KB'; return (n/1048576).toFixed(2)+' MB'; }
 
-const A4_W = 595.28, A4_H = 841.89;
+  async function loadInfo(idx){
+    activeIdx=idx; var q=queue[idx]; renderQueue(); results=[]; $('downloadRow').style.display='none';
+    try{
+      if(!q.bytes) q.bytes=new Uint8Array(await q.file.arrayBuffer());
+      var doc=await PDFLib.PDFDocument.load(q.bytes,{ignoreEncryption:true}); q.doc=doc;
+      var p0=doc.getPage(0); var pw=p0.getWidth(),ph=p0.getHeight();
+      var head=''; try{ head=new TextDecoder().decode(q.bytes.slice(0,16)); }catch(e){}
+      var ver=(head.match(/%PDF-(\d\.\d)/)||[])[1]||'—';
+      $('pdfInfo').innerHTML=[['File name',esc(q.name)],['File size',fmtBytes(q.file.size)],['Total pages',doc.getPageCount()],['PDF version',ver],['Orientation',pw>ph?'Landscape':'Portrait'],['Page size',Math.round(pw)+'×'+Math.round(ph)+' pt']].map(function(r){return '<span>'+r[0]+'</span><span>'+r[1]+'</span>';}).join('');
+      $('statusMsg').textContent='✅ '+doc.getPageCount()+' page(s). Set options and build.';
+      buildPreview();
+    }catch(e){ $('statusMsg').textContent='❌ Could not load PDF: '+(e.message||e); }
+  }
 
-async function processFile(file){
-  const status = document.getElementById('statusMsg');
-  document.getElementById('downloadRow').style.display = 'none';
-  status.textContent = '⏳ Processing...';
+  // ---------- Options wiring ----------
+  document.querySelectorAll('.layout-btn').forEach(function(b){ b.addEventListener('click',function(){ document.querySelectorAll('.layout-btn').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); var n=b.getAttribute('data-n'); if(n==='booklet'){ $('mode').value='booklet'; } else { $('mode').value='nup'; $('nup').value=n; } syncMode(); buildPreview(); }); });
+  function syncMode(){ var m=$('mode').value; $('nupField').style.display=m==='nup'?'block':'none'; $('customGrid').style.display=(m==='nup'&&$('nup').value==='custom')?'grid':'none'; }
+  $('mode').addEventListener('change',function(){ syncMode(); buildPreview(); });
+  $('nup').addEventListener('change',function(){ syncMode(); buildPreview(); });
+  $('paper').addEventListener('change',function(){ $('customPaper').style.display=this.value==='custom'?'grid':'none'; buildPreview(); });
+  $('scaling').addEventListener('change',function(){ $('customScaleField').style.display=this.value==='custom'?'block':'none'; buildPreview(); });
+  $('pageSel').addEventListener('change',function(){ $('rangeField').style.display=this.value==='range'?'block':'none'; buildPreview(); });
+  document.querySelectorAll('[data-wm]').forEach(function(b){ b.addEventListener('click',function(){ document.querySelectorAll('[data-wm]').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); wmPreset=b.getAttribute('data-wm'); }); });
+  ['order','orient','cols','rows','cw','ch','margin','gutter','hgap','vgap','rotate','customScale','pageRange','wmText','header','footer','fillLast','pageNum','showDate','cropMarks','regMarks','compress'].forEach(function(id){ var el=$(id); if(el)el.addEventListener('input',function(){}); });
 
-  try{
-    const { PDFDocument } = PDFLib;
-    const bytes = await file.arrayBuffer();
-    const srcDoc = await PDFDocument.load(bytes);
-    const srcPages = srcDoc.getPages();
+  function sheetSize(){
+    var p=$('paper').value, dims;
+    if(p==='custom'){ dims=[(parseFloat($('cw').value)||210)*2.83465,(parseFloat($('ch').value)||297)*2.83465]; }
+    else dims=PAPERS[p].slice();
+    var w=dims[0],h=dims[1], or=$('orient').value;
+    var grid=gridDims(); var wantLandscape = grid[0]>grid[1];
+    if(or==='landscape'||(or==='auto'&&wantLandscape)){ if(w<h){ var t=w;w=h;h=t; } }
+    else if(or==='portrait'||(or==='auto'&&!wantLandscape)){ if(w>h){ var t2=w;w=h;h=t2; } }
+    return [w,h];
+  }
+  function gridDims(){
+    if($('mode').value==='booklet')return [2,1];
+    var n=$('nup').value;
+    if(n==='custom')return [Math.max(1,parseInt($('cols').value)||2),Math.max(1,parseInt($('rows').value)||2)];
+    return NGRID[n]||[2,1];
+  }
+  function selectedPages(total){
+    var sel=$('pageSel').value, arr=[];
+    if(sel==='odd'){ for(var o=0;o<total;o+=2)arr.push(o); }
+    else if(sel==='even'){ for(var e=1;e<total;e+=2)arr.push(e); }
+    else if(sel==='range'){ ($('pageRange').value||'').split(',').forEach(function(pt){ pt=pt.trim(); var m=pt.match(/^(\d+)-(\d+)$/); if(m){ for(var k=+m[1];k<=+m[2];k++)if(k>=1&&k<=total)arr.push(k-1); } else if(/^\d+$/.test(pt)){ var v=+pt; if(v>=1&&v<=total)arr.push(v-1); } }); }
+    else { for(var i=0;i<total;i++)arr.push(i); }
+    if(!arr.length){ for(var z=0;z<total;z++)arr.push(z); }
+    return arr;
+  }
+  function bookletOrder(idxs){
+    var pages=idxs.slice(); while(pages.length%4!==0) pages.push(null);
+    var n=pages.length, seq=[];
+    for(var i=0;i<n/2;i+=2){ seq.push(pages[n-1-i]); seq.push(pages[i]); seq.push(pages[i+1]); seq.push(pages[n-2-i]); }
+    return seq; // pairs of two per sheet-side
+  }
+  function cellOrderIndex(cols,rows){
+    var order=$('order').value, arr=[];
+    for(var r=0;r<rows;r++)for(var c=0;c<cols;c++)arr.push([c,r]);
+    // arr is LTR/TTB by rows; adjust
+    if(order==='rtl') arr=arr.map(function(p){return [cols-1-p[0],p[1]];});
+    if(order==='ttb'){ arr=[]; for(var c2=0;c2<cols;c2++)for(var r2=0;r2<rows;r2++)arr.push([c2,r2]); }
+    if(order==='btt'){ arr=[]; for(var c3=0;c3<cols;c3++)for(var r3=rows-1;r3>=0;r3--)arr.push([c3,r3]); }
+    return arr;
+  }
 
-    const outDoc = await PDFDocument.create();
-    const embeddedPages = await outDoc.embedPages(srcPages);
+  // place embedded page centered in cell with rotation
+  function placeInCell(outPage, ep, cellX, cellY, cellW, cellH, deg){
+    var pw=ep.width, ph=ep.height;
+    var rot=deg; if(rot==='auto'){ rot=((pw>ph)!==(cellW>cellH))?90:0; }
+    rot=parseInt(rot)||0;
+    var swap=(rot===90||rot===270);
+    var fw=swap?ph:pw, fh=swap?pw:ph;
+    var scaling=$('scaling').value, sx,sy;
+    if(scaling==='stretch'){ sx=cellW/fw; sy=cellH/fh; }
+    else if(scaling==='fill'){ var s=Math.max(cellW/fw,cellH/fh); sx=sy=s; }
+    else if(scaling==='actual'){ sx=sy=1; }
+    else if(scaling==='custom'){ sx=sy=(parseFloat($('customScale').value)||100)/100; }
+    else { var sf=Math.min(cellW/fw,cellH/fh); sx=sy=sf; }
+    var drawW=pw*sx, drawH=ph*sy;               // unrotated draw size
+    var cx=cellX+cellW/2, cy=cellY+cellH/2;
+    var opt={ xScale:sx, yScale:sy, rotate:PDFLib.degrees(rot) };
+    if(rot===0){ opt.x=cx-drawW/2; opt.y=cy-drawH/2; }
+    else if(rot===180){ opt.x=cx+drawW/2; opt.y=cy+drawH/2; }
+    else if(rot===90){ opt.x=cx+drawH/2; opt.y=cy-drawW/2; }
+    else if(rot===270){ opt.x=cx-drawH/2; opt.y=cy+drawW/2; }
+    outPage.drawPage(ep, opt);
+  }
 
-    let cols, rows, sheetW, sheetH;
-    if(layoutN === 2){
-      cols = 2; rows = 1; sheetW = A4_H; sheetH = A4_W; // landscape
-    } else {
-      cols = 2; rows = 2; sheetW = A4_W; sheetH = A4_H; // portrait
-    }
+  async function impose(q){
+    var src=await PDFLib.PDFDocument.load(q.bytes||new Uint8Array(await q.file.arrayBuffer()),{ignoreEncryption:true});
+    var out=await PDFLib.PDFDocument.create();
+    var font=await out.embedFont(PDFLib.StandardFonts.Helvetica);
+    var total=src.getPageCount();
+    var idxs=selectedPages(total);
+    var booklet=$('mode').value==='booklet';
+    var seq = booklet ? bookletOrder(idxs) : idxs.slice();
+    var grid=gridDims(), cols=grid[0], rows=grid[1], per=cols*rows;
+    if(booklet){ cols=2; rows=1; per=2; }
+    if($('fillLast').checked && !booklet){ while(seq.length%per!==0) seq.push(null); }
+    // embed unique pages
+    var uniq={}; idxs.forEach(function(i){ uniq[i]=true; });
+    var srcPages=src.getPages();
+    var embeds={}; var toEmbed=Object.keys(uniq).map(function(k){return srcPages[+k];});
+    var embedded=await out.embedPages(toEmbed);
+    Object.keys(uniq).forEach(function(k,i){ embeds[k]=embedded[i]; });
 
-    const margin = 12;
-    const cellW = (sheetW - margin*(cols+1)) / cols;
-    const cellH = (sheetH - margin*(rows+1)) / rows;
+    var sheet=sheetSize(); var SW=sheet[0], SH=sheet[1];
+    var margin=parseFloat($('margin').value)||0, gutter=parseFloat($('gutter').value)||0;
+    var hgap=parseFloat($('hgap').value)||0, vgap=parseFloat($('vgap').value)||0;
+    var rot=$('rotate').value;
+    var cellOrder=cellOrderIndex(cols,rows);
+    var innerLeft=margin+gutter, innerW=SW-margin*2-gutter, innerH=SH-margin*2;
+    var cellW=(innerW-hgap*(cols-1))/cols, cellH=(innerH-vgap*(rows-1))/rows;
+    var wm=($('wmText').value.trim())||wmPreset;
 
-    for(let i=0; i<embeddedPages.length; i+=layoutN){
-      const outPage = outDoc.addPage([sheetW, sheetH]);
-      for(let j=0; j<layoutN; j++){
-        const idx = i+j;
-        if(idx >= embeddedPages.length) break;
-        const ep = embeddedPages[idx];
-        const col = j % cols;
-        const row = Math.floor(j / cols);
-
-        const scale = Math.min(cellW/ep.width, cellH/ep.height);
-        const w = ep.width * scale;
-        const h = ep.height * scale;
-
-        const cellX = margin + col*(cellW+margin);
-        const cellY = sheetH - margin - (row+1)*cellH - row*margin;
-
-        const x = cellX + (cellW - w)/2;
-        const y = cellY + (cellH - h)/2;
-
-        outPage.drawPage(ep, { x, y, width: w, height: h });
+    var sheets=Math.ceil(seq.length/per), sheetNo=0;
+    for(var s=0;s<seq.length;s+=per){
+      var page=out.addPage([SW,SH]); sheetNo++;
+      for(var j=0;j<per;j++){
+        var pidx=seq[s+j]; if(pidx==null||pidx===undefined)continue;
+        var ep=embeds[pidx]; if(!ep)continue;
+        var cell=cellOrder[j]; var col=cell[0], row=cell[1];
+        var cx=innerLeft+col*(cellW+hgap);
+        var cy=SH-margin-(row+1)*cellH-row*vgap;
+        placeInCell(page, ep, cx, cy, cellW, cellH, rot);
       }
+      // watermark
+      if(wm){ var size=Math.min(SW,SH)*0.14; var tw=font.widthOfTextAtSize(wm,size); page.drawText(wm,{x:SW/2-tw/2*0.7,y:SH/2,size:size,font:font,color:PDFLib.rgb(0.6,0.6,0.6),opacity:0.15,rotate:PDFLib.degrees(45)}); }
+      // header/footer/date/number
+      var hd=$('header').value.trim(), ft=$('footer').value.trim();
+      if(hd) page.drawText(hd,{x:margin,y:SH-margin+2,size:9,font:font,color:PDFLib.rgb(0.4,0.4,0.4)});
+      var footParts=[]; if(ft)footParts.push(ft); if($('showDate').checked)footParts.push(new Date().toLocaleDateString()); if($('pageNum').checked)footParts.push('Sheet '+sheetNo+'/'+sheets);
+      if(footParts.length) page.drawText(footParts.join('   •   '),{x:margin,y:margin-11,size:9,font:font,color:PDFLib.rgb(0.4,0.4,0.4)});
+      // print marks
+      if($('cropMarks').checked) drawCropMarks(page,SW,SH,margin);
+      if($('regMarks').checked) drawRegMarks(page,SW,SH);
     }
-
-    outputBytes = await outDoc.save();
-    document.getElementById('downloadRow').style.display = 'flex';
-    const sheetsCount = Math.ceil(embeddedPages.length / layoutN);
-    status.textContent = `✅ Combined ${embeddedPages.length} pages into ${sheetsCount} sheet(s) (${layoutN}-up).`;
-  }catch(err){
-    status.textContent = '❌ Error: ' + (err && err.message ? err.message : 'Could not process this PDF.');
+    var bytes=await out.save({useObjectStreams:$('compress').value==='opt'});
+    return { name:q.name.replace(/\.pdf$/i,'')+(booklet?'-booklet':'-'+per+'up')+'.pdf', bytes:bytes, sheets:sheets, pages:seq.filter(function(x){return x!=null;}).length };
   }
-}
+  function drawCropMarks(page,W,H,m){ var L=14,off=m*0.5; var g=PDFLib.rgb(0,0,0);
+    [[off,off,1,1],[W-off,off,-1,1],[off,H-off,1,-1],[W-off,H-off,-1,-1]].forEach(function(c){ page.drawLine({start:{x:c[0],y:c[1]},end:{x:c[0]+L*c[2],y:c[1]},thickness:0.5,color:g}); page.drawLine({start:{x:c[0],y:c[1]},end:{x:c[0],y:c[1]+L*c[3]},thickness:0.5,color:g}); }); }
+  function drawRegMarks(page,W,H){ var g=PDFLib.rgb(0,0,0); [[W/2,10],[W/2,H-10],[10,H/2],[W-10,H/2]].forEach(function(p){ page.drawCircle({x:p[0],y:p[1],size:5,borderColor:g,borderWidth:0.5}); page.drawLine({start:{x:p[0]-7,y:p[1]},end:{x:p[0]+7,y:p[1]},thickness:0.3,color:g}); page.drawLine({start:{x:p[0],y:p[1]-7},end:{x:p[0],y:p[1]+7},thickness:0.3,color:g}); }); }
 
-document.getElementById('downloadBtn').addEventListener('click', ()=>{
-  if(!outputBytes) return;
-  downloadBlob('booklet-' + layoutN + 'up.pdf', new Blob([outputBytes], { type: 'application/pdf' }));
-});
+  // ---------- Build ----------
+  $('buildBtn').addEventListener('click', async function(){
+    if(!queue.length)return; var status=$('statusMsg'), prog=$('progress'), bar=prog.firstElementChild;
+    prog.classList.add('show'); bar.style.width='0%'; results=[]; var t0=performance.now();
+    try{
+      for(var i=0;i<queue.length;i++){
+        status.textContent='⏳ Imposing '+(i+1)+'/'+queue.length+': '+queue[i].name;
+        var r=await impose(queue[i]); results.push(r);
+        var done=(i+1)/queue.length; bar.style.width=Math.round(done*100)+'%';
+        var el=(performance.now()-t0)/1000; status.textContent='⏳ '+(i+1)+'/'+queue.length+' • '+r.sheets+' sheet(s) • '+(el/done-el).toFixed(1)+'s left';
+        await tick();
+      }
+      $('downloadRow').style.display='flex'; $('downloadAllBtn').style.display=results.length>1?'inline-block':'none';
+      var tot=results.reduce(function(a,r){return a+r.bytes.length;},0);
+      status.textContent='✅ Done — '+results.length+' file(s), '+results.reduce(function(a,r){return a+r.sheets;},0)+' sheet(s), '+fmtBytes(tot)+'.';
+      buildPreview();
+    }catch(e){ status.textContent='❌ '+(e.message||e); }
+    prog.classList.remove('show');
+  });
+  function tick(){ return new Promise(function(r){ setTimeout(r,0); }); }
+
+  // ---------- Preview (pdf.js on freshly imposed active file) ----------
+  async function buildPreview(){
+    var q=queue[activeIdx]; if(!q||!window.pdfjsLib)return;
+    $('statusMsg').textContent='⏳ Rendering preview…';
+    try{
+      var r=await impose(q);
+      var doc=await pdfjsLib.getDocument({data:r.bytes.slice()}).promise;
+      previewSheets=[]; var n=Math.min(doc.numPages,20);
+      for(var i=1;i<=n;i++){ previewSheets.push(await doc.getPage(i)); }
+      previewIdx=0; zoom=1; renderPreview();
+      $('statusMsg').textContent='✅ Preview ready — '+doc.numPages+' sheet(s).';
+    }catch(e){ $('statusMsg').textContent='Preview unavailable: '+(e.message||e); }
+  }
+  async function renderPreview(){
+    if(!previewSheets.length)return; var page=previewSheets[previewIdx];
+    var vp=page.getViewport({scale:zoom*0.9}); var c=document.createElement('canvas'); c.width=vp.width; c.height=vp.height;
+    await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise;
+    var wrap=$('prevWrap'); wrap.innerHTML=''; wrap.appendChild(c);
+    $('prevIdx').textContent='Sheet '+(previewIdx+1)+'/'+previewSheets.length;
+  }
+  $('prevPrev').addEventListener('click',function(){ if(previewIdx>0){previewIdx--;renderPreview();} });
+  $('prevNext').addEventListener('click',function(){ if(previewIdx<previewSheets.length-1){previewIdx++;renderPreview();} });
+  $('zoomIn').addEventListener('click',function(){ zoom=Math.min(3,zoom*1.25); renderPreview(); });
+  $('zoomOut').addEventListener('click',function(){ zoom=Math.max(0.3,zoom/1.25); renderPreview(); });
+  $('refreshPreview').addEventListener('click',buildPreview);
+
+  // ---------- Download ----------
+  function dl(bytes,name){ var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([bytes],{type:'application/pdf'})); a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(a.href);},1500); }
+  $('downloadBtn').addEventListener('click',function(){ var r=results[activeIdx]||results[0]; if(r)dl(r.bytes,r.name); });
+  $('downloadAllBtn').addEventListener('click', async function(){ if(!window.JSZip)return; var zip=new JSZip(); results.forEach(function(r){ zip.file(r.name,r.bytes); }); var blob=await zip.generateAsync({type:'blob'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='booklet-pdfs.zip'; document.body.appendChild(a); a.click(); a.remove(); });
+
+  syncMode();
+})();
 </script>
 <!-- Default Statcounter code for Apne Software
 https://apnesoftware.com -->
 <script type="text/javascript">
-var sc_project=13334460; 
-var sc_invisible=1; 
-var sc_security="a5854dc7"; 
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
 </script>
 <script type="text/javascript"
 src="https://www.statcounter.com/counter/counter.js"
@@ -205,5 +629,32 @@ src="https://c.statcounter.com/13334460/0/a5854dc7/1/"
 alt="Web Analytics"
 referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 <!-- End of Statcounter Code -->
+
+<!-- FAQ structured data -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is this tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free with no account, no signup and no limits."}},
+{"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. It is imposed entirely in your browser with pdf-lib; nothing is uploaded."}},
+{"@type":"Question","name":"What is N-up printing?","acceptedAnswer":{"@type":"Answer","text":"Placing multiple pages on one sheet, such as 2-up or 4-up, to save paper."}},
+{"@type":"Question","name":"What is a saddle-stitch booklet?","acceptedAnswer":{"@type":"Answer","text":"Pages imposed and ordered so that printing double-sided, folding and stapling produces a small book."}},
+{"@type":"Question","name":"How many pages per sheet are supported?","acceptedAnswer":{"@type":"Answer","text":"1, 2, 4, 6, 8, 9, 16, or any custom columns by rows grid."}},
+{"@type":"Question","name":"Which paper sizes can I use?","acceptedAnswer":{"@type":"Answer","text":"A3, A4, A5, Letter, Legal, Tabloid or a custom size in millimetres."}},
+{"@type":"Question","name":"Does it keep text sharp?","acceptedAnswer":{"@type":"Answer","text":"Yes. Pages are composed as vectors, so text stays crisp at any print resolution."}},
+{"@type":"Question","name":"Can I add a binding gutter for the fold?","acceptedAnswer":{"@type":"Answer","text":"Yes. The gutter option adds inner margin for stapling or folding."}},
+{"@type":"Question","name":"Can I choose page order in the grid?","acceptedAnswer":{"@type":"Answer","text":"Yes, left-to-right, right-to-left, top-to-bottom or bottom-to-top."}},
+{"@type":"Question","name":"How does scaling work?","acceptedAnswer":{"@type":"Answer","text":"Fit, fill, stretch, actual size or a custom percentage per page."}},
+{"@type":"Question","name":"Can pages be rotated?","acceptedAnswer":{"@type":"Answer","text":"Yes, auto-rotate to fit, or a fixed 90, 180 or 270 degrees."}},
+{"@type":"Question","name":"Can I add a watermark or header and footer?","acceptedAnswer":{"@type":"Answer","text":"Yes, a Confidential, Draft or custom watermark, plus header, footer, date and sheet numbers."}},
+{"@type":"Question","name":"Does it add crop and registration marks?","acceptedAnswer":{"@type":"Answer","text":"Yes, for commercial print preparation."}},
+{"@type":"Question","name":"Can I print only some pages?","acceptedAnswer":{"@type":"Answer","text":"Yes, all, odd, even, or a custom range."}},
+{"@type":"Question","name":"What happens to the last, partly filled sheet?","acceptedAnswer":{"@type":"Answer","text":"You can fill it with blanks so it prints cleanly and duplexes correctly."}},
+{"@type":"Question","name":"Can I impose several PDFs at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add multiple PDFs and download the results as a ZIP."}},
+{"@type":"Question","name":"Will the file get smaller?","acceptedAnswer":{"@type":"Answer","text":"The optimised save uses object streams, and N-up also reduces the sheet count."}},
+{"@type":"Question","name":"Does it handle large PDFs?","acceptedAnswer":{"@type":"Answer","text":"Yes. Vector imposition is memory-friendly and processes sheet by sheet."}},
+{"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"Once the page and its libraries have loaded, yes."}},
+{"@type":"Question","name":"Is it mobile friendly?","acceptedAnswer":{"@type":"Answer","text":"Yes, it is responsive and touch-friendly."}},
+{"@type":"Question","name":"Does it use any AI?","acceptedAnswer":{"@type":"Answer","text":"No. It uses standard PDF imposition with pdf-lib, no AI."}}
+]}
+</script>
 </body>
 </html>
