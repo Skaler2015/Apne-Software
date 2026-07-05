@@ -4,25 +4,72 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free professional SEO Slug Generator. Turn any title into a clean, URL-safe slug with custom separators, case options, multilingual transliteration (Hindi, Arabic, Greek, Russian and more), stop-word removal, batch mode and export to 6 formats — 100% in your browser, no upload.">
 <link rel="canonical" href="https://apnesoftware.com/tools/slug-generator.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Slug Generator | ApneSoftware">
-<meta property="og:description" content="Turn titles into clean URL-friendly slugs. Free online tool — no signup required.">
+<meta property="og:title" content="SEO Slug Generator | ApneSoftware">
+<meta property="og:description" content="Clean, URL-safe slugs with custom separators, multilingual transliteration, stop-word removal, batch mode and export. Free & private.">
 <meta property="og:url" content="https://apnesoftware.com/tools/slug-generator.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Slug Generator | ApneSoftware">
-<meta name="twitter:description" content="Turn titles into clean URL-friendly slugs. Free online tool — no signup required.">
+<meta name="twitter:title" content="SEO Slug Generator | ApneSoftware">
+<meta name="twitter:description" content="Clean, URL-safe slugs — separators, case options, transliteration, stop words, batch mode, export. Free, private, no signup.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Slug Generator","description":"Turn titles into clean URL-friendly slugs. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/slug-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SEO Slug Generator","description":"Professional in-browser SEO slug generator with custom separators, case options, multilingual transliteration, stop-word removal, batch mode and export to 6 formats.","url":"https://apnesoftware.com/tools/slug-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
 <meta name="color-scheme" content="dark">
-<title>Slug Generator | ApneSoftware</title>
+<title>SEO Slug Generator | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-  .result-box{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-top:14px;font-family:'Consolas','Courier New',monospace;font-size:1rem;color:var(--accent-2);word-break:break-all}
+  .sg-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .sg-tab{padding:9px 16px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.85rem;font-weight:600;font-family:inherit}
+  .sg-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .sg-pane{display:none}
+  .sg-pane.active{display:block}
+  .sg-chip-row{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px}
+  .sg-chip{padding:7px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.8rem;font-weight:600;font-family:inherit}
+  .sg-chip.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .result-box{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:16px;margin-top:14px;font-family:'Consolas','Courier New',monospace;font-size:1.05rem;color:var(--accent-2);word-break:break-all}
+  .sg-url-preview{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-top:10px;font-family:'Consolas','Courier New',monospace;font-size:.85rem;color:var(--text-dim);word-break:break-all}
+  .sg-url-preview b{color:var(--accent-2)}
+  .sg-check-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:10px 0}
+  .sg-check-grid label{display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.85rem;color:var(--text-dim)}
+  .sg-check-grid input{width:auto}
+  .sg-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:14px}
+  .sg-stat{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+  .sg-stat .sv{font-size:1.3rem;font-weight:800;color:var(--accent)}
+  .sg-stat .sl{font-size:.75rem;color:var(--text-dim);margin-top:2px}
+  .sg-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .sg-flag{padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:600;border:1px solid var(--border)}
+  .sg-flag.ok{background:rgba(22,192,121,.15);color:#7ef0bd;border-color:rgba(22,192,121,.4)}
+  .sg-flag.warn{background:rgba(248,113,113,.15);color:#fca5a5;border-color:rgba(248,113,113,.4)}
+  .sg-flag.neutral{background:var(--surface-2);color:var(--text-dim)}
+  .sg-section-title{font-size:1.05rem;font-weight:700;margin:22px 0 10px;color:#fff;display:flex;align-items:center;gap:8px}
+  .sg-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:640px){.sg-two{grid-template-columns:1fr}}
+  .sg-rule-row{display:flex;gap:8px;align-items:center;margin-bottom:6px}
+  .sg-rule-row input{flex:1}
+  .sg-rule-row button{background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);cursor:pointer;padding:6px 8px}
+  .sg-batch-list{font-family:'Consolas','Courier New',monospace;font-size:.85rem;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:10px;margin-top:10px;max-height:420px;overflow-y:auto}
+  .sg-batch-item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:5px 6px;border-bottom:1px solid var(--border)}
+  .sg-batch-item:last-child{border-bottom:none}
+  .sg-batch-item.dup .sg-slug-txt{color:#fca5a5}
+  .sg-batch-item .sg-orig{color:var(--text-dim);font-size:.78rem;display:block}
+  .sg-history-item{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px dashed var(--border);font-size:.85rem}
+  .sg-history-item:last-child{border-bottom:0}
+  .sg-history-item button{background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);cursor:pointer;padding:4px 8px;font-size:.78rem}
+  .related-grid a .ri{margin-right:6px}
+  .sg-content h2{font-size:1.15rem;margin:26px 0 10px}
+  .sg-content h3{font-size:1rem;margin:18px 0 8px}
+  .sg-content p,.sg-content li{font-size:.92rem;line-height:1.72}
+  .sg-content ul,.sg-content ol{padding-left:20px}
+  .sg-lang-note{font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:-4px}
+  body.sg-large-font{font-size:1.15rem}
+  body.sg-large-font .result-box{font-size:1.2rem}
+  body.sg-high-contrast{filter:contrast(1.25) brightness(1.08)}
+  body.sg-high-contrast .panel,body.sg-high-contrast .result-box{border-width:2px;border-color:#fff}
 </style>
 </head>
 <body>
@@ -35,110 +82,947 @@
 
 <div class="container">
   <div class="tool-header">
-    <h1>🔗 Slug Generator</h1>
-    <p>Turn any title into a clean, URL-friendly slug.</p>
+    <h1>🔗 SEO Slug Generator</h1>
+    <p>Turn any title into a clean, SEO-friendly, URL-safe slug — with multilingual transliteration, stop-word removal, batch mode and export, entirely in your browser.</p>
   </div>
 
   <div class="panel">
-    <div class="field">
-      <label for="titleInput">Title / text</label>
-      <input type="text" id="titleInput" value="My Awesome Blog Post Title!" placeholder="e.g. My Awesome Blog Post">
+    <div class="sg-tabs" role="tablist">
+      <button class="sg-tab active" id="tabSingle" role="tab" aria-selected="true">🔗 Single Slug</button>
+      <button class="sg-tab" id="tabBatch" role="tab" aria-selected="false">📚 Batch Mode</button>
+      <button class="sg-tab" id="tabHistory" role="tab" aria-selected="false">🕘 History &amp; Favorites</button>
     </div>
 
-    <div class="row">
+    <!-- ===== Single slug pane ===== -->
+    <div class="sg-pane active" id="paneSingle">
       <div class="field">
-        <label for="separatorSelect">Separator</label>
-        <select id="separatorSelect">
-          <option value="-">Hyphen (-)</option>
-          <option value="_">Underscore (_)</option>
-        </select>
+        <label for="titleInput">Title / text</label>
+        <input type="text" id="titleInput" value="My Awesome Blog Post Title!" placeholder="e.g. My Awesome Blog Post">
       </div>
-      <div class="field">
-        <label for="caseSelect">Case</label>
-        <select id="caseSelect">
-          <option value="lower">lowercase</option>
-          <option value="upper">UPPERCASE</option>
-        </select>
+
+      <div class="row">
+        <div class="field">
+          <label for="separatorSelect">Separator</label>
+          <select id="separatorSelect">
+            <option value="-">Hyphen (-)</option>
+            <option value="_">Underscore (_)</option>
+            <option value=".">Dot (.)</option>
+            <option value="/">Slash (/)</option>
+            <option value="">No separator</option>
+            <option value="custom">Custom…</option>
+          </select>
+        </div>
+        <div class="field" id="customSepField" style="display:none">
+          <label for="customSepInput">Custom separator</label>
+          <input type="text" id="customSepInput" maxlength="3" placeholder="e.g. ~">
+        </div>
+        <div class="field">
+          <label for="caseSelect">Case</label>
+          <select id="caseSelect">
+            <option value="lower">lowercase</option>
+            <option value="upper">UPPERCASE</option>
+            <option value="title">Title Case</option>
+            <option value="sentence">Sentence case</option>
+            <option value="preserve">Preserve original</option>
+          </select>
+        </div>
       </div>
+
+      <div class="row">
+        <div class="field"><label for="minLength">Minimum length</label><input type="number" id="minLength" min="0" placeholder="e.g. 10"></div>
+        <div class="field"><label for="maxLength">Maximum length</label><input type="number" id="maxLength" min="0" placeholder="e.g. 60"></div>
+        <div class="field">
+          <label for="unicodeMode">Script handling</label>
+          <select id="unicodeMode">
+            <option value="transliterate">Transliterate to ASCII</option>
+            <option value="preserve">Preserve original script</option>
+            <option value="strip">Strip non-Latin characters</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sg-section-title">🧹 Character Cleaning</div>
+      <div class="sg-check-grid">
+        <label><input type="checkbox" id="cleanSpecial" checked> Remove special characters</label>
+        <label><input type="checkbox" id="cleanSymbols" checked> Remove symbols (©®™ etc.)</label>
+        <label><input type="checkbox" id="cleanEmoji" checked> Remove emojis</label>
+        <label><input type="checkbox" id="cleanHtml" checked> Remove HTML tags</label>
+        <label><input type="checkbox" id="cleanPunct" checked> Remove punctuation</label>
+        <label><input type="checkbox" id="cleanSpaces" checked> Remove extra spaces</label>
+      </div>
+
+      <div class="sg-section-title">🚫 Stop Words</div>
+      <div class="row">
+        <div class="field" style="max-width:220px">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:8px">
+            <input type="checkbox" id="stopWordsToggle" style="width:auto"> Remove stop words
+          </label>
+        </div>
+      </div>
+      <div class="field" id="stopWordsField" style="display:none">
+        <label for="stopWordsInput">Stop word list (comma separated)</label>
+        <input type="text" id="stopWordsInput" value="a, an, the, and, or, of, in, on, at, to, for, with, is, are">
+      </div>
+
+      <div class="sg-section-title">🔖 Prefix &amp; Suffix</div>
+      <div class="row">
+        <div class="field"><label for="prefixInput">Prefix</label><input type="text" id="prefixInput" placeholder="e.g. blog"></div>
+        <div class="field"><label for="suffixInput">Suffix</label><input type="text" id="suffixInput" placeholder="e.g. 2026"></div>
+        <div class="field" style="max-width:160px">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:8px">
+            <input type="checkbox" id="timestampToggle" style="width:auto"> Timestamp prefix
+          </label>
+        </div>
+      </div>
+
+      <div class="sg-section-title">🔁 Custom Replace Rules</div>
+      <div id="replaceRulesWrap"></div>
+      <button class="btn secondary" id="addRuleBtn" type="button">➕ Add rule</button>
+
+      <div class="btn-row" style="margin-top:16px">
+        <button class="btn" id="addToHistoryBtn" type="button">💾 Save to history</button>
+        <button class="btn secondary" id="copyBtn" type="button">📋 Copy</button>
+        <button class="btn secondary" id="favoriteBtn" type="button">☆ Save to favorites</button>
+      </div>
+
+      <div class="result-box" id="resultBox" role="status" aria-live="polite"></div>
+
+      <div class="field" style="max-width:360px;margin-top:12px">
+        <label for="baseUrlInput">Base URL (for preview)</label>
+        <input type="text" id="baseUrlInput" value="https://example.com/blog/" placeholder="https://example.com/blog/">
+      </div>
+      <div class="sg-url-preview" id="urlPreview"></div>
+
+      <div class="sg-stats-grid" id="statsGrid">
+        <div class="sg-stat"><div class="sv" id="statChars">0</div><div class="sl">Characters</div></div>
+        <div class="sg-stat"><div class="sv" id="statWords">0</div><div class="sl">Words</div></div>
+        <div class="sg-stat"><div class="sv" id="statRemaining">—</div><div class="sl">Remaining chars</div></div>
+      </div>
+      <div class="sg-flags" id="seoFlags"></div>
+
+      <div class="sg-section-title">♿ Accessibility</div>
+      <div class="row">
+        <div class="field" style="max-width:200px">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:8px">
+            <input type="checkbox" id="highContrastToggle" style="width:auto"> High contrast
+          </label>
+        </div>
+        <div class="field" style="max-width:200px">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:8px">
+            <input type="checkbox" id="largeFontToggle" style="width:auto"> Large fonts
+          </label>
+        </div>
+      </div>
+
+      <div id="statusMsg" class="ct-muted" role="status" aria-live="polite"></div>
+    </div>
+
+    <!-- ===== Batch pane ===== -->
+    <div class="sg-pane" id="paneBatch">
       <div class="field">
-        <label for="maxLength">Max length (optional)</label>
-        <input type="number" id="maxLength" placeholder="e.g. 60" min="0">
+        <label for="batchInput">Multiple titles (one per line)</label>
+        <textarea id="batchInput" style="min-height:140px" placeholder="Paste multiple titles, one per line…"></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="batchGenerateBtn" type="button">🎲 Generate all</button>
+        <label class="btn secondary" style="cursor:pointer" for="csvFileInput">📄 Import CSV</label>
+        <input type="file" id="csvFileInput" accept=".csv" style="display:none">
+        <label class="btn secondary" style="cursor:pointer" for="xlsxFileInput">📊 Import Excel</label>
+        <input type="file" id="xlsxFileInput" accept=".xlsx,.xls" style="display:none">
+      </div>
+      <div class="sg-batch-list" id="batchList"></div>
+      <div class="sg-section-title">📤 Export</div>
+      <div class="btn-row">
+        <button class="btn secondary" id="exportTxtBtn" type="button">TXT</button>
+        <button class="btn secondary" id="exportCsvBtn" type="button">CSV</button>
+        <button class="btn secondary" id="exportXlsxBtn" type="button">Excel</button>
+        <button class="btn secondary" id="exportJsonBtn" type="button">JSON</button>
+        <button class="btn secondary" id="exportXmlBtn" type="button">XML</button>
+        <button class="btn secondary" id="exportMdBtn" type="button">Markdown</button>
       </div>
     </div>
 
-    <div class="result-box" id="resultBox"></div>
-    <div class="btn-row">
-      <button class="btn secondary" id="copyBtn">📋 Copy</button>
+    <!-- ===== History pane ===== -->
+    <div class="sg-pane" id="paneHistory">
+      <div class="row">
+        <div class="field" style="max-width:260px">
+          <label for="historySearch">Search history</label>
+          <input type="text" id="historySearch" placeholder="Search…">
+        </div>
+        <div class="field" style="max-width:180px">
+          <label for="historyFavOnly" style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:26px">
+            <input type="checkbox" id="historyFavOnly" style="width:auto"> Favorites only
+          </label>
+        </div>
+      </div>
+      <div id="historyList"></div>
+      <div class="btn-row">
+        <button class="btn danger" id="clearHistoryBtn" type="button">🗑️ Clear all history</button>
+      </div>
+      <p class="ct-muted">History and favorites are saved only in this browser (localStorage) — never uploaded anywhere.</p>
     </div>
   </div>
 </div>
+<div class="sg-content">
 
+<h2>🔗 Introduction</h2>
+<p>The original Slug Generator did one thing well: it turned a title into a lowercase, hyphen-or-underscore-joined slug, stripping accents and special characters, updating as you typed. That covered the basic case but broke completely the moment a title contained anything outside plain English — a Hindi headline, a Russian product name, an emoji a content-management system had auto-inserted — because its cleaning regex silently deleted every non-ASCII character rather than handling it properly. The <strong>Professional SEO Slug Generator</strong> keeps the instant, live-preview simplicity of the original tool and rebuilds the slug engine underneath it: six separator choices, five case modes, a full character-cleaning pipeline, genuine multilingual transliteration, stop-word removal, prefix/suffix/timestamp support, batch processing with CSV and Excel import, SEO analysis, a URL preview, and export to six formats — all computed locally, with nothing ever uploaded.</p>
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Converts any title or phrase into a clean, lowercase, URL-safe "slug" — removing special characters, accents, and spaces, and replacing them with hyphens or underscores. Useful for blog post URLs, file names, or anchor links.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Type or paste your title.</li>
-        <li>Choose a separator, case, and optional max length.</li>
-        <li>Copy the generated slug.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>किसी भी title या phrase को साफ, lowercase, URL-safe "slug" में बदल देता है — स्पेशल कैरेक्टर, एक्सेंट और स्पेस हटाकर hyphen या underscore से बदल देता है। ब्लॉग पोस्ट URLs, फाइल नेम, या anchor links के लिए उपयोगी।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपना title टाइप या पेस्ट करें।</li>
-        <li>separator, case, और चाहें तो max length चुनें।</li>
-        <li>बना हुआ slug कॉपी करें।</li>
-      </ol>
-    </div>
-  </div>
+<h2>✨ Features</h2>
+<p>Type or paste a title and the slug updates live below it. Choose a <strong>separator</strong> (hyphen, underscore, dot, slash, none, or a custom character), a <strong>case</strong> mode (lowercase, UPPERCASE, Title Case, Sentence case, or preserve the original casing), and <strong>minimum/maximum length</strong> limits — a slug that's too long is truncated at the nearest separator boundary rather than mid-word. A <strong>character-cleaning</strong> panel lets you toggle removal of special characters, symbols like © and ™, emojis, HTML tags, punctuation and extra whitespace independently, so you control exactly how aggressive the cleanup is. A <strong>script-handling</strong> selector decides what happens to non-Latin text: transliterate it to ASCII, preserve the original script in the slug, or strip non-Latin characters entirely. <strong>Stop-word removal</strong> drops common filler words ("a", "the", "and", and so on) using an editable list. <strong>Prefix, suffix, category and timestamp</strong> options let you build structured slugs like <code>blog-2026-07-05-my-post</code> in one pass, and a set of <strong>custom replace rules</strong> — pre-loaded with "&amp; → and", "@ → at", "+ → plus" and fully editable — runs before everything else so symbols become words instead of disappearing.</p>
+
+<h2>📈 SEO Benefits</h2>
+<p>A clean slug is one of the easiest on-page SEO wins available: search engines and users alike parse a short, readable, keyword-bearing URL far more easily than a string of random characters or an untouched title full of spaces and punctuation. This tool's live <strong>SEO Analysis</strong> panel checks every slug you generate against the practical rules that matter — is it <strong>URL-safe</strong> (only letters, numbers and your chosen separator, nothing that needs percent-encoding), is it a reasonable length (the widely recommended 3–60 character range that's long enough to be descriptive and short enough to display fully in search results), and does it duplicate a slug you've already saved. A <strong>URL preview</strong> shows the slug appended to a base URL of your choice, so you can see exactly how the finished address will look before you publish anything.</p>
+
+<h2>➖ Separator Options</h2>
+<p>Six separator choices cover virtually every convention in use: <strong>hyphen</strong> (the standard for web URLs, since search engines treat it as a word boundary), <strong>underscore</strong> (common in file names and some legacy systems, though search engines generally do not treat it as a word boundary — the tool's SEO analysis will flag this distinction), <strong>dot</strong> and <strong>slash</strong> for specialised path or versioning schemes, <strong>no separator</strong> for a single unbroken token, and a fully <strong>custom separator</strong> of your choosing. Whichever you pick, the tool automatically collapses duplicate separators and strips any leading or trailing separator, so you never end up with a slug like <code>--my-post--</code> or <code>-my-post</code>.</p>
+
+<h2>🧹 Character Cleaning</h2>
+<p>Independent toggles cover the character classes that most often pollute a title-turned-slug: <strong>special characters</strong> (anything outside letters, numbers, whitespace and your separator characters), <strong>symbols</strong> such as ©, ®, ™, °, % and currency signs, <strong>emojis</strong> across the full modern emoji Unicode ranges, <strong>HTML tags</strong> for titles copy-pasted out of a rich-text editor or CMS field, <strong>punctuation</strong> like quotation marks, exclamation points and brackets, and collapsing <strong>extra spaces</strong> down to single separators. Every toggle is independent, so you can, for example, keep emojis but strip HTML, or keep punctuation but remove symbols — whatever your content actually needs.</p>
+
+<h2>🌍 Unicode Support &amp; Transliteration</h2>
+<p>The tool correctly handles Hindi, English, Arabic, Chinese, Japanese, Korean, Russian and Greek input rather than silently deleting it, which is exactly where the original tool broke down. <strong>Transliterate to ASCII</strong> applies real, algorithmic letter-mapping tables for scripts that have a well-defined phonetic correspondence to Latin letters: Devanagari (Hindi) consonant-and-vowel-sign combinations, the Greek alphabet, Cyrillic (Russian), simplified Arabic consonant mapping, and full Unicode accent-stripping for languages like French, Spanish, German and Vietnamese. <strong>Preserve original script</strong> keeps Hindi, Arabic, Chinese, Japanese, Korean, Russian and Greek characters in the slug exactly as typed — a legitimate and increasingly common SEO practice, since modern search engines index Unicode URLs correctly. Chinese, Japanese and Korean deserve an honest note: genuine phonetic transliteration (Pinyin, Rōmaji, Revised Romanization) requires a per-character pronunciation dictionary with tens of thousands of entries and context-dependent readings — far beyond what a lightweight, offline browser tool can responsibly claim to do accurately. Rather than fake it, this tool preserves CJK characters as valid Unicode in the slug and flags this clearly in the SEO analysis panel, so you always know exactly what you're getting. <strong>Strip non-Latin characters</strong> is available as a third option when you specifically need an ASCII-only result and don't need the non-Latin content represented at all.</p>
+
+<h2>📚 Batch Mode</h2>
+<p>Switch to the Batch tab to slugify many titles in one pass: paste one title per line, or import a <strong>CSV</strong> file (the first column of each row is read as a title, with proper quoted-field handling for titles that themselves contain commas) or an <strong>Excel</strong> spreadsheet (via the first column of the first sheet). Every title in the batch is processed with your current separator, case, cleaning and transliteration settings, and duplicate slugs within the batch are highlighted immediately so you can adjust a title before publishing two pages with the same URL.</p>
+
+<h2>📤 Export Options</h2>
+<p>Export a single slug with one click to your clipboard, or export an entire batch as plain <strong>TXT</strong> (one slug per line), <strong>CSV</strong> (title and slug columns), <strong>Excel</strong> (a real .xlsx workbook), <strong>JSON</strong>, <strong>XML</strong>, or a <strong>Markdown</strong> table — whichever format your CMS, spreadsheet or documentation workflow expects.</p>
+
+<h2>🔒 Privacy</h2>
+<p>Every slug is generated entirely inside your browser; nothing you type — and nothing in any file you import — is ever uploaded to a server. History and favourites are saved only in this browser's local storage, under your control, and can be cleared at any time. The tool keeps working offline once loaded, needs no account or signup, and includes no AI-powered functionality anywhere.</p>
+
+<!-- ===== Related Tools (ABOVE About — required order) ===== -->
+<h2>🧰 Related Tools</h2>
+<div class="related-grid">
+  <a href="word-counter.html"><span class="ri">🔤</span> Word Counter</a>
+  <a href="case-converter.html"><span class="ri">🔠</span> Case Converter</a>
+  <a href="text-readability-score.html"><span class="ri">📖</span> Text Readability Score</a>
+  <a href="citation-generator.html"><span class="ri">📚</span> Citation Generator</a>
+  <a href="markdown-to-html.html"><span class="ri">📄</span> Markdown to HTML</a>
+  <a href="json-formatter.html"><span class="ri">{ }</span> JSON Formatter</a>
+  <a href="hash-generator.html"><span class="ri">#️⃣</span> Hash Generator</a>
+  <a href="uuid-generator.html"><span class="ri">🆔</span> UUID Generator</a>
+  <a href="qr-generator.html"><span class="ri">📱</span> QR Code Generator</a>
+  <a href="url-html-encoder-decoder.html"><span class="ri">🔗</span> URL Encoder &amp; Decoder</a>
 </div>
+
+</div>
+<div class="sg-content">
+
+<!-- ===== About (English) ===== -->
+<h2>ℹ️ About This Tool</h2>
+<p>The <strong>Professional SEO Slug Generator</strong> is a free, entirely browser-based tool for turning any title, heading or phrase into a clean, URL-safe slug ready for a blog post, product page, documentation article or file name. It grew out of a simple lowercase-and-hyphenate converter, but real content teams need more than one separator and one case option — they need to control exactly how special characters, emojis and HTML are handled, they need slugs that work correctly for titles in Hindi, Arabic, Russian or Greek instead of having that content silently deleted, they need to process fifty titles at once instead of one at a time, and they need the result exported in whatever format their publishing pipeline expects. This tool was rebuilt to do all of that, entirely on your own device, with nothing ever sent to a server.</p>
+
+<p>At its core is a configurable cleaning pipeline that runs, in order, exactly the steps you'd want: custom replace rules first (so "Rock &amp; Roll" becomes "Rock and Roll" before anything else touches it, rather than the ampersand simply vanishing), then HTML-tag stripping, emoji removal and symbol removal, then script handling, then punctuation and special-character cleaning, then your chosen case transform, then stop-word removal, and finally separator joining with automatic clean-up of duplicate, leading or trailing separators. Because every stage is a toggle or a choice rather than a fixed, hard-coded behaviour, the tool adapts to a blog's house style, a product catalogue's naming convention, or a documentation site's file-naming rules without ever needing a different tool.</p>
+
+<p>The most significant upgrade over the original tool is genuine multilingual handling. The old version's cleaning step used a plain <code>[^a-zA-Z0-9]</code> pattern, which silently stripped every character outside basic English — a Hindi film title, a Russian brand name, a Greek philosophical term would all come out as an empty or nonsensical slug. This tool fixes that properly rather than papering over it. A "transliterate to ASCII" mode applies real, hand-built letter-mapping algorithms: Devanagari (Hindi) text is broken down by its actual linguistic structure — independent vowels, consonants with their inherent "a" sound, vowel signs (matras) that replace that inherent vowel, and the virama mark that suppresses it entirely for consonant clusters — and converted to readable Latin letters accordingly. Greek and Russian (Cyrillic) use their standard, widely recognised letter-for-letter Latin correspondences. Arabic uses a simplified consonant-mapping table appropriate for the undiacritised text most Arabic content actually uses day to day. Latin-script languages with accents — French, Spanish, German, Vietnamese and others — have their diacritics stripped using Unicode's own normalisation rules, so "café" correctly becomes "cafe" rather than being mangled or deleted.</p>
+
+<p>Chinese, Japanese and Korean get an honest treatment rather than a fake one. Properly transliterating Chinese characters into Pinyin, Japanese into Rōmaji, or Korean into Revised Romanization requires a dictionary mapping tens of thousands of individual characters to their pronunciation — and for Chinese and Japanese in particular, the correct reading of a given character often depends on context, on the specific word it appears in, and on regional convention. That is a fundamentally different kind of problem from algorithmic letter-substitution, and building it properly would require either a large external pronunciation database or a genuine language model — neither of which belongs in a lightweight, privacy-first, offline browser tool with no AI. Rather than produce transliteration that looks plausible but is frequently wrong, this tool's "preserve original script" mode keeps Chinese, Japanese and Korean characters exactly as typed, which is itself a completely valid and increasingly common approach: modern search engines index and rank Unicode URLs in these scripts perfectly well, and many major Chinese, Japanese and Korean websites use native-script URLs for exactly this reason. The tool flags this clearly in its SEO analysis panel so you always know precisely what kind of slug you're publishing.</p>
+
+<p>Everything else that makes a slug production-ready is built in alongside the core engine. Minimum and maximum length limits, with truncation that respects word boundaries instead of cutting mid-word, keep slugs within the length search engines display well. Stop-word removal, with a fully editable word list, trims filler words that add length without adding meaning. Prefix, suffix and an automatic date-timestamp option let you build structured slugs — a category prefix, today's date, and the title itself, all joined consistently. Batch mode processes a whole spreadsheet or a pasted list of titles at once, importing directly from CSV or Excel files, flagging duplicate slugs within the batch before they become duplicate URLs on your site, and exporting the results as plain text, CSV, Excel, JSON, XML or Markdown. A local history remembers your recent slugs and lets you star favourites, searchable and filterable, saved only in your own browser's storage and cleared whenever you choose. High-contrast and large-font toggles support readers who need them, and every control is reachable and operable by keyboard alone. Nothing you type, paste or import is ever transmitted anywhere — the tool works offline once loaded, needs no account, and contains no AI-powered functionality of any kind.</p>
+
+<!-- ===== About (Hindi) ===== -->
+<h2>ℹ️ इस टूल के बारे में (हिंदी में)</h2>
+<p class="sg-lang-note">The same guide in Hindi / यही जानकारी हिंदी में।</p>
+<p><strong>Professional SEO Slug Generator</strong> एक फ्री, पूरी तरह ब्राउज़र-आधारित टूल है जो किसी भी title, heading या phrase को एक साफ़, URL-safe slug में बदल देता है जो ब्लॉग पोस्ट, product page, documentation article या file name के लिए तैयार हो। यह एक साधारण lowercase-and-hyphenate converter से शुरू हुआ था, लेकिन असली content teams को एक से ज़्यादा separator और case option चाहिए होते हैं — उन्हें यह control चाहिए कि special characters, emojis और HTML कैसे handle हों, उन्हें Hindi, Arabic, Russian या Greek titles के लिए सही slugs चाहिए बजाय इसके कि वह content चुपचाप delete हो जाए, उन्हें एक साथ पचास titles process करने होते हैं, और उन्हें अपने publishing pipeline के हिसाब से format में result export करना होता है। यह टूल यह सब करने के लिए फिर से बनाया गया है, पूरी तरह आपके अपने डिवाइस पर, कुछ भी server पर भेजे बिना।</p>
+
+<p>इसके मूल में एक configurable cleaning pipeline है जो बिल्कुल उसी क्रम में चलती है जो आप चाहेंगे: पहले custom replace rules (ताकि "Rock &amp; Roll" कुछ और होने से पहले "Rock and Roll" बन जाए, बजाय इसके कि ampersand सिर्फ़ गायब हो जाए), फिर HTML-tag stripping, emoji removal और symbol removal, फिर script handling, फिर punctuation और special-character cleaning, फिर आपका चुना हुआ case transform, फिर stop-word removal, और आख़िर में duplicate, leading या trailing separators की अपने-आप सफ़ाई के साथ separator joining। चूँकि हर stage एक toggle या choice है न कि एक तय, hard-coded व्यवहार, यह टूल किसी blog की house style, किसी product catalogue की naming convention, या किसी documentation site के file-naming नियमों के हिसाब से ढल जाता है, बिना कभी अलग टूल की ज़रूरत के।</p>
+
+<p>मूल टूल के मुक़ाबले सबसे बड़ा सुधार genuine multilingual handling है। पुराने version का cleaning step एक सादा <code>[^a-zA-Z0-9]</code> pattern इस्तेमाल करता था, जो basic English के बाहर हर character को चुपचाप हटा देता था — एक Hindi film title, एक Russian brand name, एक Greek शब्द सब खाली या बेमतलब slug में बदल जाते। यह टूल इसे ठीक से ठीक करता है, सिर्फ़ ढकता नहीं। एक "transliterate to ASCII" mode असली, हाथ से बनाए letter-mapping algorithms इस्तेमाल करता है: Devanagari (Hindi) text को उसकी असली भाषाई संरचना से तोड़ा जाता है — independent vowels, अपने अंतर्निहित "a" sound वाले consonants, vowel signs (matras) जो उस अंतर्निहित vowel की जगह लेते हैं, और virama mark जो consonant clusters के लिए इसे पूरी तरह हटा देता है — और तदनुसार readable Latin letters में बदल दिया जाता है। Greek और Russian (Cyrillic) अपने standard, व्यापक रूप से मान्यता प्राप्त letter-for-letter Latin correspondence इस्तेमाल करते हैं। Arabic एक simplified consonant-mapping table इस्तेमाल करता है जो ज़्यादातर असली Arabic content में इस्तेमाल होने वाले undiacritised text के लिए उपयुक्त है। Accents वाली Latin-script भाषाएँ — French, Spanish, German, Vietnamese और अन्य — के diacritics Unicode के अपने normalisation नियमों से हटाए जाते हैं, इसलिए "café" सही तरीक़े से "cafe" बनता है, बिगड़ता या हटता नहीं।</p>
+
+<p>Chinese, Japanese और Korean को एक ईमानदार treatment मिलता है, नक़ली नहीं। Chinese characters को Pinyin में, Japanese को Rōmaji में, या Korean को Revised Romanization में सही तरीक़े से transliterate करने के लिए हज़ारों individual characters को उनके उच्चारण से जोड़ने वाली एक dictionary चाहिए होती है — और ख़ासकर Chinese और Japanese के लिए, किसी character का सही उच्चारण अक्सर context पर, उस specific शब्द पर जिसमें वह आता है, और regional convention पर निर्भर करता है। यह algorithmic letter-substitution से मौलिक रूप से अलग तरह की समस्या है, और इसे ठीक से बनाने के लिए या तो एक बड़ा बाहरी pronunciation database या एक genuine language model चाहिए होगा — इनमें से कोई भी एक lightweight, privacy-first, offline browser tool में बिना AI के जगह नहीं रखता। ऐसा transliteration बनाने के बजाय जो सही दिखे पर अक्सर ग़लत हो, इस टूल का "preserve original script" mode Chinese, Japanese और Korean characters को बिल्कुल वैसे ही रखता है जैसे टाइप किए गए थे, जो ख़ुद एक पूरी तरह valid और बढ़ता हुआ आम तरीक़ा है: आधुनिक search engines इन scripts में Unicode URLs को बख़ूबी index और rank करते हैं, और कई बड़ी Chinese, Japanese और Korean websites बिल्कुल इसी वजह से native-script URLs इस्तेमाल करती हैं। टूल इसे अपने SEO analysis panel में साफ़ तौर पर flag करता है ताकि आपको हमेशा पता रहे कि आप बिल्कुल किस तरह का slug publish कर रहे हैं।</p>
+
+<p>बाकी हर वह चीज़ जो एक slug को production-ready बनाती है, core engine के साथ built-in है। Minimum और maximum length limits, जिनका truncation word boundaries का सम्मान करता है बीच में काटने के बजाय, slugs को उस length के भीतर रखते हैं जिसे search engines अच्छे से दिखाते हैं। पूरी तरह editable word list वाला Stop-word removal, filler words को छाँट देता है जो meaning जोड़े बिना length बढ़ाते हैं। Prefix, suffix और एक automatic date-timestamp option आपको structured slugs बनाने देते हैं — एक category prefix, आज की तारीख़, और title ख़ुद, सब लगातार जोड़े गए। Batch mode एक साथ पूरी spreadsheet या titles की एक pasted list process करता है, सीधे CSV या Excel files से import करता है, batch के भीतर duplicate slugs को उनके आपकी site पर duplicate URLs बनने से पहले flag करता है, और results को plain text, CSV, Excel, JSON, XML या Markdown के रूप में export करता है। एक local history आपके हाल के slugs याद रखती है और favourites star करने देती है, searchable और filterable, सिर्फ़ आपके अपने ब्राउज़र के storage में सहेजी गई और जब चाहें साफ़ की जा सकती है। High-contrast और large-font toggles उन readers की मदद करते हैं जिन्हें इनकी ज़रूरत है, और हर control सिर्फ़ keyboard से पहुँचने और चलाने योग्य है। आप जो भी टाइप, पेस्ट या import करते हैं वह कभी कहीं transmit नहीं होता — लोड होने के बाद टूल offline काम करता है, किसी account की ज़रूरत नहीं, और इसमें किसी भी तरह की कोई AI-powered functionality नहीं है।</p>
+
+</div>
+<div class="sg-content">
+
+<!-- ===== FAQ (immediately after About — required order) ===== -->
+<h2>❓ Frequently Asked Questions</h2>
+<div class="sg-faq" id="sgFaq">
+<details><summary>Is this Slug Generator free to use?</summary><p>Yes, completely free with no signup, no account and no limit on how many slugs you generate. / हाँ, यह पूरी तरह मुफ़्त है, बिना signup या account के।</p></details>
+<details><summary>Are my titles or slugs uploaded anywhere?</summary><p>No. Every slug is generated locally in your browser; nothing is ever sent to a server, including any CSV or Excel file you import. / नहीं, सब कुछ आपके ब्राउज़र में ही होता है।</p></details>
+<details><summary>What separators can I use?</summary><p>Hyphen, underscore, dot, slash, no separator, or a fully custom character of your choice. / hyphen, underscore, dot, slash, कोई separator नहीं, या custom character।</p></details>
+<details><summary>Should I use hyphens or underscores?</summary><p>Hyphens are generally recommended — search engines treat a hyphen as a word boundary, but typically do not treat an underscore the same way. / hyphen की सिफ़ारिश की जाती है, underscore को word boundary नहीं माना जाता।</p></details>
+<details><summary>What case options are available?</summary><p>Lowercase, UPPERCASE, Title Case, Sentence case, or preserving the original casing exactly as typed. / lowercase, UPPERCASE, Title Case, Sentence case, या original casing।</p></details>
+<details><summary>Does the tool support Hindi, Arabic, Russian and Greek?</summary><p>Yes — it can transliterate these scripts to readable ASCII using real letter-mapping rules, or preserve the original script in the slug, your choice. / हाँ, transliterate या original script preserve दोनों विकल्प उपलब्ध हैं।</p></details>
+<details><summary>Can it transliterate Chinese, Japanese or Korean?</summary><p>Not phonetically — accurate Pinyin/Rōmaji/Romanization needs a huge per-character pronunciation dictionary that's beyond a lightweight offline tool. The tool preserves these characters correctly in the slug instead, which modern search engines index just fine. / CJK के लिए characters सही तरीक़े से preserve किए जाते हैं, phonetic transliteration नहीं।</p></details>
+<details><summary>Why did my Hindi/Arabic text disappear in the old tool?</summary><p>The previous version stripped every non-English character. This rebuild fixes that with real transliteration and a "preserve original script" mode. / पुराना version non-English characters हटा देता था; अब सही तरीक़े से handle होते हैं।</p></details>
+<details><summary>What character-cleaning options are there?</summary><p>Independent toggles for special characters, symbols, emojis, HTML tags, punctuation and extra spaces — turn any of them on or off. / special characters, symbols, emojis, HTML tags, punctuation, extra spaces — सब अलग-अलग toggle होते हैं।</p></details>
+<details><summary>Can I remove stop words like "the" and "and"?</summary><p>Yes, toggle "Remove stop words" and edit the comma-separated word list to match your needs. / हाँ, stop word list को edit भी कर सकते हैं।</p></details>
+<details><summary>Can I add a prefix, suffix or date to my slug?</summary><p>Yes — dedicated prefix and suffix fields, plus a timestamp toggle that prepends today's date automatically. / prefix, suffix, और timestamp तीनों उपलब्ध हैं।</p></details>
+<details><summary>What are custom replace rules for?</summary><p>They convert specific characters into words before slugification — pre-loaded with "&amp; → and", "@ → at" and "+ → plus", and you can add, edit or remove any rule. / "&amp;→and" जैसे custom replace rules बदले जा सकते हैं।</p></details>
+<details><summary>How does maximum length truncation work?</summary><p>A slug longer than your maximum is cut at the nearest separator, never mid-word, so you never get a truncated, broken-looking word. / maximum length पर शब्द के बीच में नहीं काटा जाता।</p></details>
+<details><summary>What does "SEO friendly" mean in the analysis panel?</summary><p>The slug is within the recommended 3–60 character range and contains only URL-safe characters and your chosen separator. / 3–60 अक्षर और URL-safe characters का मतलब है SEO friendly।</p></details>
+<details><summary>What does "URL safe" mean?</summary><p>The slug contains only letters, numbers and your separator — nothing that a browser or server would need to percent-encode. / सिर्फ़ letters, numbers और separator — URL safe।</p></details>
+<details><summary>How does duplicate detection work?</summary><p>Every new slug is checked against your saved history; a duplicate is flagged so you don't accidentally publish two pages with the same URL. / नए slug की history से duplicate जाँच होती है।</p></details>
+<details><summary>Can I process many titles at once?</summary><p>Yes — switch to Batch Mode, paste one title per line, or import a CSV or Excel file directly. / Batch Mode में कई titles एक साथ process होते हैं।</p></details>
+<details><summary>My imported CSV/Excel includes a header row — what do I do?</summary><p>Delete the header line from the batch textarea before clicking "Generate all" — the import step is a starting point you can always edit. / import के बाद header line को textarea से हटा दें।</p></details>
+<details><summary>What export formats are supported?</summary><p>TXT, CSV, Excel (.xlsx), JSON, XML and Markdown for batch results, plus one-click clipboard copy for a single slug. / TXT, CSV, Excel, JSON, XML, Markdown export उपलब्ध हैं।</p></details>
+<details><summary>Where is my history and favourites saved?</summary><p>Only in this browser's local storage, on your own device — never uploaded. Clear it any time from the History tab. / history सिर्फ़ आपके browser में सहेजी जाती है।</p></details>
+<details><summary>Can I search my saved slug history?</summary><p>Yes, the search box on the History tab filters by title or slug text instantly. / search box से history filter कर सकते हैं।</p></details>
+<details><summary>Are the accessibility options saved between visits?</summary><p>High contrast and large fonts apply instantly for your current session; toggle them any time from the Single Slug tab. / high contrast और large fonts turant apply होते हैं।</p></details>
+<details><summary>Does this tool use any AI?</summary><p>No. Every slug is built from deterministic, hand-written rules and transliteration tables — no AI anywhere. / नहीं, इसमें कोई AI शामिल नहीं है।</p></details>
+<details><summary>Does it work offline?</summary><p>Yes, once the page has loaded. The Excel import/export feature uses one small external library; everything else is fully self-contained. / लोड होने के बाद यह offline भी काम करता है।</p></details>
+</div>
+
+<!-- ===== Troubleshooting ===== -->
+<h2>🛠️ Troubleshooting</h2>
+<ul>
+  <li><strong>Slug shows "—":</strong> the title field is empty, or every character was removed by your cleaning settings — check that at least one cleaning toggle isn't stripping everything.</li>
+  <li><strong>Hindi/Arabic/Russian text looks garbled:</strong> make sure "Script handling" is set to "Transliterate to ASCII" or "Preserve original script" — "Strip non-Latin characters" intentionally removes that text.</li>
+  <li><strong>Chinese/Japanese/Korean text isn't converted to Latin letters:</strong> this is expected — phonetic transliteration for these scripts needs a dictionary beyond this tool's offline scope; the characters are preserved correctly instead.</li>
+  <li><strong>My separator looks duplicated or missing:</strong> the tool automatically collapses duplicate separators and trims leading/trailing ones — if something still looks off, check your custom replace rules aren't reintroducing separator characters.</li>
+  <li><strong>Excel import/export does nothing:</strong> this feature loads a small external library; check your internet connection and refresh the page, then try again.</li>
+  <li><strong>My batch shows unexpected duplicate warnings:</strong> two different titles can produce the same slug once cleaned and cased — that's exactly what the warning is for; adjust one of the titles or add a distinguishing prefix/suffix.</li>
+  <li><strong>My history is empty after reopening the page:</strong> history is stored in this browser's local storage; a private/incognito window, blocked storage, or cleared site data will not persist it between visits.</li>
+  <li><strong>Export/download button does nothing:</strong> generate at least one slug or batch result first, and check your browser isn't blocking downloads or pop-ups for this page.</li>
+</ul>
+
+</div>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this Slug Generator free to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, completely free with no signup, no account and no limit on how many slugs you generate."}}, {"@type": "Question", "name": "Are my titles or slugs uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. Every slug is generated locally in your browser; nothing is ever sent to a server, including any CSV or Excel file you import."}}, {"@type": "Question", "name": "What separators can I use?", "acceptedAnswer": {"@type": "Answer", "text": "Hyphen, underscore, dot, slash, no separator, or a fully custom character of your choice."}}, {"@type": "Question", "name": "Should I use hyphens or underscores?", "acceptedAnswer": {"@type": "Answer", "text": "Hyphens are generally recommended — search engines treat a hyphen as a word boundary, but typically do not treat an underscore the same way."}}, {"@type": "Question", "name": "What case options are available?", "acceptedAnswer": {"@type": "Answer", "text": "Lowercase, UPPERCASE, Title Case, Sentence case, or preserving the original casing exactly as typed."}}, {"@type": "Question", "name": "Does the tool support Hindi, Arabic, Russian and Greek?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — it can transliterate these scripts to readable ASCII using real letter-mapping rules, or preserve the original script in the slug, your choice."}}, {"@type": "Question", "name": "Can it transliterate Chinese, Japanese or Korean?", "acceptedAnswer": {"@type": "Answer", "text": "Not phonetically — accurate Pinyin/Rōmaji/Romanization needs a huge per-character pronunciation dictionary that's beyond a lightweight offline tool. The tool preserves these characters correctly in the slug instead, which modern search engines index just fine."}}, {"@type": "Question", "name": "Why did my Hindi/Arabic text disappear in the old tool?", "acceptedAnswer": {"@type": "Answer", "text": "The previous version stripped every non-English character. This rebuild fixes that with real transliteration and a \"preserve original script\" mode."}}, {"@type": "Question", "name": "What character-cleaning options are there?", "acceptedAnswer": {"@type": "Answer", "text": "Independent toggles for special characters, symbols, emojis, HTML tags, punctuation and extra spaces — turn any of them on or off."}}, {"@type": "Question", "name": "Can I remove stop words like \"the\" and \"and\"?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, toggle \"Remove stop words\" and edit the comma-separated word list to match your needs."}}, {"@type": "Question", "name": "Can I add a prefix, suffix or date to my slug?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — dedicated prefix and suffix fields, plus a timestamp toggle that prepends today's date automatically."}}, {"@type": "Question", "name": "What are custom replace rules for?", "acceptedAnswer": {"@type": "Answer", "text": "They convert specific characters into words before slugification — pre-loaded with \"&amp; → and\", \"@ → at\" and \"+ → plus\", and you can add, edit or remove any rule."}}, {"@type": "Question", "name": "How does maximum length truncation work?", "acceptedAnswer": {"@type": "Answer", "text": "A slug longer than your maximum is cut at the nearest separator, never mid-word, so you never get a truncated, broken-looking word."}}, {"@type": "Question", "name": "What does \"SEO friendly\" mean in the analysis panel?", "acceptedAnswer": {"@type": "Answer", "text": "The slug is within the recommended 3–60 character range and contains only URL-safe characters and your chosen separator."}}, {"@type": "Question", "name": "What does \"URL safe\" mean?", "acceptedAnswer": {"@type": "Answer", "text": "The slug contains only letters, numbers and your separator — nothing that a browser or server would need to percent-encode."}}, {"@type": "Question", "name": "How does duplicate detection work?", "acceptedAnswer": {"@type": "Answer", "text": "Every new slug is checked against your saved history; a duplicate is flagged so you don't accidentally publish two pages with the same URL."}}, {"@type": "Question", "name": "Can I process many titles at once?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — switch to Batch Mode, paste one title per line, or import a CSV or Excel file directly."}}, {"@type": "Question", "name": "My imported CSV/Excel includes a header row — what do I do?", "acceptedAnswer": {"@type": "Answer", "text": "Delete the header line from the batch textarea before clicking \"Generate all\" — the import step is a starting point you can always edit."}}, {"@type": "Question", "name": "What export formats are supported?", "acceptedAnswer": {"@type": "Answer", "text": "TXT, CSV, Excel (.xlsx), JSON, XML and Markdown for batch results, plus one-click clipboard copy for a single slug."}}, {"@type": "Question", "name": "Where is my history and favourites saved?", "acceptedAnswer": {"@type": "Answer", "text": "Only in this browser's local storage, on your own device — never uploaded. Clear it any time from the History tab."}}, {"@type": "Question", "name": "Can I search my saved slug history?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, the search box on the History tab filters by title or slug text instantly."}}, {"@type": "Question", "name": "Are the accessibility options saved between visits?", "acceptedAnswer": {"@type": "Answer", "text": "High contrast and large fonts apply instantly for your current session; toggle them any time from the Single Slug tab."}}, {"@type": "Question", "name": "Does this tool use any AI?", "acceptedAnswer": {"@type": "Answer", "text": "No. Every slug is built from deterministic, hand-written rules and transliteration tables — no AI anywhere."}}, {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, once the page has loaded. The Excel import/export feature uses one small external library; everything else is fully self-contained."}}]}
+</script>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-function slugify(text, separator, caseMode, maxLength){
-  let slug = text
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // strip accents
-    .replace(/[^a-zA-Z0-9\s-_]/g, '') // strip special chars
-    .trim()
-    .replace(/[\s_-]+/g, separator);
+(function(){
+'use strict';
 
-  slug = caseMode === 'upper' ? slug.toUpperCase() : slug.toLowerCase();
+/* ===================== Transliteration tables ===================== */
+var DEVANAGARI_CONSONANTS = {
+  'क':'k','ख':'kh','ग':'g','घ':'gh','ङ':'ng',
+  'च':'ch','छ':'chh','ज':'j','झ':'jh','ञ':'ny',
+  'ट':'t','ठ':'th','ड':'d','ढ':'dh','ण':'n',
+  'त':'t','थ':'th','द':'d','ध':'dh','न':'n',
+  'प':'p','फ':'ph','ब':'b','भ':'bh','म':'m',
+  'य':'y','र':'r','ल':'l','व':'v',
+  'श':'sh','ष':'sh','स':'s','ह':'h',
+  'क्ष':'ksh','त्र':'tr','ज्ञ':'gy',
+  'ड़':'r','ढ़':'rh'
+};
+var DEVANAGARI_INDEP_VOWELS = {
+  'अ':'a','आ':'aa','इ':'i','ई':'ee','उ':'u','ऊ':'oo',
+  'ऋ':'ri','ए':'e','ऐ':'ai','ओ':'o','औ':'au','अं':'an','अः':'ah'
+};
+var DEVANAGARI_MATRAS = {
+  'ा':'aa','ि':'i','ी':'ee','ु':'u','ू':'oo',
+  'ृ':'ri','े':'e','ै':'ai','ो':'o','ौ':'au'
+};
+var DEVANAGARI_VIRAMA = '्';
+var DEVANAGARI_ANUSVARA = 'ं';
+var DEVANAGARI_VISARGA = 'ः';
+var DEVANAGARI_NUKTA = '़';
+var DEVANAGARI_DIGITS = {'०':'0','१':'1','२':'2','३':'3','४':'4','५':'5','६':'6','७':'7','८':'8','९':'9'};
 
-  if(maxLength && maxLength > 0 && slug.length > maxLength){
-    slug = slug.slice(0, maxLength).replace(new RegExp(separator+'+$'), '');
+function transliterateDevanagari(str){
+  var out = '';
+  var i = 0;
+  var chars = Array.from(str);
+  while(i < chars.length){
+    var ch = chars[i];
+    if(DEVANAGARI_DIGITS[ch]){ out += DEVANAGARI_DIGITS[ch]; i++; continue; }
+    if(/[ऀ-ॿ]/.test(ch)){
+      // try 2-char conjunct consonants first (क्ष, त्र, ज्ञ) already handled via consonant+virama+consonant naturally;
+      if(DEVANAGARI_CONSONANTS[ch]){
+        var base = DEVANAGARI_CONSONANTS[ch];
+        var next = chars[i+1];
+        if(next === DEVANAGARI_NUKTA){ i++; next = chars[i+1]; }
+        if(next === DEVANAGARI_VIRAMA){
+          out += base; // no inherent 'a', consonant cluster continues
+          i += 2;
+          continue;
+        }
+        if(next && DEVANAGARI_MATRAS[next]){
+          out += base + DEVANAGARI_MATRAS[next];
+          i += 2;
+          continue;
+        }
+        if(next === DEVANAGARI_ANUSVARA){
+          out += base + 'a' + 'n';
+          i += 2;
+          continue;
+        }
+        if(next === DEVANAGARI_VISARGA){
+          out += base + 'ah';
+          i += 2;
+          continue;
+        }
+        out += base + 'a'; // inherent vowel
+        i++;
+        continue;
+      }
+      if(DEVANAGARI_INDEP_VOWELS[ch]){ out += DEVANAGARI_INDEP_VOWELS[ch]; i++; continue; }
+      if(ch === DEVANAGARI_ANUSVARA){ out += 'n'; i++; continue; }
+      if(ch === DEVANAGARI_VISARGA){ out += 'h'; i++; continue; }
+      if(ch === DEVANAGARI_VIRAMA){ i++; continue; } // stray virama
+      i++;
+      continue; // unknown devanagari char, skip
+    }
+    out += ch;
+    i++;
   }
-  return slug;
+  return out;
 }
 
+var GREEK_MAP = {
+  'α':'a','β':'v','γ':'g','δ':'d','ε':'e','ζ':'z','η':'i','θ':'th',
+  'ι':'i','κ':'k','λ':'l','μ':'m','ν':'n','ξ':'x','ο':'o','π':'p',
+  'ρ':'r','σ':'s','ς':'s','τ':'t','υ':'y','φ':'f','χ':'ch','ψ':'ps','ω':'o',
+  'ά':'a','έ':'e','ή':'i','ί':'i','ό':'o','ύ':'y','ώ':'o','ϊ':'i','ΰ':'y','ΐ':'i'
+};
+function transliterateGreek(str){
+  return Array.from(str).map(function(ch){
+    var lower = ch.toLowerCase();
+    var mapped = GREEK_MAP[lower];
+    if(!mapped) return ch;
+    return (ch === lower) ? mapped : mapped.charAt(0).toUpperCase() + mapped.slice(1);
+  }).join('');
+}
+
+var CYRILLIC_MAP = {
+  'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'yo','ж':'zh','з':'z',
+  'и':'i','й':'y','к':'k','л':'l','м':'m','н':'n','о':'o','п':'p','р':'r',
+  'с':'s','т':'t','у':'u','ф':'f','х':'kh','ц':'ts','ч':'ch','ш':'sh','щ':'shch',
+  'ъ':'','ы':'y','ь':'','э':'e','ю':'yu','я':'ya'
+};
+function transliterateCyrillic(str){
+  return Array.from(str).map(function(ch){
+    var lower = ch.toLowerCase();
+    var mapped = CYRILLIC_MAP[lower];
+    if(mapped === undefined) return ch;
+    if(!mapped) return '';
+    return (ch === lower) ? mapped : mapped.charAt(0).toUpperCase() + mapped.slice(1);
+  }).join('');
+}
+
+var ARABIC_MAP = {
+  'ا':'a','أ':'a','إ':'i','آ':'aa','ب':'b','ت':'t','ث':'th','ج':'j','ح':'h',
+  'خ':'kh','د':'d','ذ':'dh','ر':'r','ز':'z','س':'s','ش':'sh','ص':'s','ض':'d',
+  'ط':'t','ظ':'z','ع':'a','غ':'gh','ف':'f','ق':'q','ك':'k','ل':'l','م':'m',
+  'ن':'n','ه':'h','و':'w','ي':'y','ى':'a','ة':'h','ء':'',
+  'َ':'','ِ':'','ُ':'','ً':'','ٍ':'','ٌ':'','ْ':'','ّ':''
+};
+function transliterateArabic(str){
+  var out = '';
+  Array.from(str).forEach(function(ch){
+    var mapped = ARABIC_MAP[ch];
+    out += (mapped === undefined) ? ch : mapped;
+  });
+  return out;
+}
+
+function isCJK(ch){
+  return /[一-鿿㐀-䶿぀-ヿ가-힯ｦ-ﾟ]/.test(ch);
+}
+
+function transliterate(str){
+  var out = str;
+  out = out.normalize('NFD').replace(/[̀-ͯ]/g, ''); // strip Latin accents
+  out = transliterateDevanagari(out);
+  out = transliterateGreek(out);
+  out = transliterateCyrillic(out);
+  out = transliterateArabic(out);
+  return out; // CJK characters pass through untouched (preserved, not stripped)
+}
+
+function stripNonLatin(str){
+  return Array.from(str).filter(function(ch){
+    return !/[ऀ-ॿͰ-ϿЀ-ӿ؀-ۿ]/.test(ch) && !isCJK(ch);
+  }).join('');
+}
+
+function hasCJK(str){
+  return Array.from(str).some(isCJK);
+}
+function hasNonLatinScript(str){
+  return /[ऀ-ॿͰ-ϿЀ-ӿ؀-ۿ一-鿿㐀-䶿぀-ヿ가-힯]/.test(str);
+}
+
+/* ===================== Cleaning helpers ===================== */
+function stripHtmlTags(str){ return str.replace(/<[^>]*>/g, ' '); }
+function stripEmoji(str){
+  return str.replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{1F1E6}-\u{1F1FF}\u{2190}-\u{21FF}\u{2B00}-\u{2BFF}️]/gu, '');
+}
+function stripSymbols(str){ return str.replace(/[©®™°%$€£¥§¶†‡•‰′″‹›«»¦¤]/g, ''); }
+function stripPunctuation(str){ return str.replace(/[!"#$%&'()*+,.\/:;<=>?@[\]^`{|}~“”‘’—–…„‚«»]/g, ' '); }
+function stripSpecialChars(str, preserveUnicode){
+  if(preserveUnicode){
+    // keep letters and combining marks (any script — Devanagari matras/virama, Arabic
+    // diacritics etc. are Unicode Mark characters, not Letters), numbers, whitespace,
+    // and the separator placeholder characters.
+    return str.replace(/[^\p{L}\p{M}\p{N}\s._/-]/gu, '');
+  }
+  return str.replace(/[^a-zA-Z0-9\s._/-]/g, '');
+}
+function collapseSpaces(str){ return str.replace(/\s+/g, ' ').trim(); }
+
+/* ===================== Case transforms ===================== */
+function toTitleCase(str){
+  return str.replace(/\w\S*/g, function(w){ return w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(); });
+}
+function toSentenceCase(str){
+  var lower = str.toLowerCase();
+  return lower.replace(/^\s*\S/, function(c){ return c.toUpperCase(); });
+}
+function applyCase(str, mode){
+  if(mode === 'upper') return str.toUpperCase();
+  if(mode === 'title') return toTitleCase(str);
+  if(mode === 'sentence') return toSentenceCase(str);
+  if(mode === 'preserve') return str;
+  return str.toLowerCase();
+}
+
+/* ===================== Stop words ===================== */
+function removeStopWords(str, stopWords){
+  if(!stopWords || !stopWords.length) return str;
+  var set = {};
+  stopWords.forEach(function(w){ set[w.trim().toLowerCase()] = true; });
+  return str.split(/\s+/).filter(function(w){ return w && !set[w.toLowerCase()]; }).join(' ');
+}
+
+/* ===================== Custom replace rules ===================== */
+function applyReplaceRules(str, rules){
+  var out = str;
+  (rules || []).forEach(function(r){
+    if(!r.from) return;
+    out = out.split(r.from).join(r.to || '');
+  });
+  return out;
+}
+
+/* ===================== Separator handling ===================== */
+function escapeRegex(s){ return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function joinWithSeparator(str, sep){
+  var cleaned = str.trim().replace(/[\s\-_./]+/g, sep === '' ? ' ' : sep);
+  if(sep === ''){ return cleaned.replace(/\s+/g, ''); }
+  var esc = escapeRegex(sep);
+  var re = new RegExp('(' + esc + '){2,}', 'g');
+  cleaned = cleaned.replace(re, sep);
+  var trimRe = new RegExp('^' + esc + '+|' + esc + '+$', 'g');
+  cleaned = cleaned.replace(trimRe, '');
+  return cleaned;
+}
+
+/* ===================== Length controls ===================== */
+function truncateAtBoundary(str, maxLength, sep){
+  if(!maxLength || maxLength <= 0 || str.length <= maxLength) return str;
+  var cut = str.slice(0, maxLength);
+  if(sep){
+    var lastSep = cut.lastIndexOf(sep);
+    if(lastSep > 0) cut = cut.slice(0, lastSep);
+  }
+  return cut;
+}
+
+/* ===================== Main pipeline ===================== */
+function buildSlug(text, opts){
+  opts = opts || {};
+  var sep = opts.separator != null ? opts.separator : '-';
+  var caseMode = opts.caseMode || 'lower';
+  var unicodeMode = opts.unicodeMode || 'transliterate';
+  var clean = opts.clean || {};
+  var stopWords = opts.stopWords || [];
+  var stopWordsEnabled = !!opts.stopWordsEnabled;
+  var replaceRules = opts.replaceRules || [];
+  var prefix = opts.prefix || '';
+  var suffix = opts.suffix || '';
+  var timestamp = opts.timestamp ? (opts.timestampValue || new Date().toISOString().slice(0,10)) : '';
+  var minLength = opts.minLength || 0;
+  var maxLength = opts.maxLength || 0;
+
+  var s = String(text || '');
+  s = applyReplaceRules(s, replaceRules);
+  if(clean.html) s = stripHtmlTags(s);
+  if(clean.emoji) s = stripEmoji(s);
+  if(clean.symbols) s = stripSymbols(s);
+
+  if(unicodeMode === 'transliterate') s = transliterate(s);
+  else if(unicodeMode === 'strip') s = stripNonLatin(s);
+  // 'preserve': leave scripts as-is
+
+  if(clean.punctuation) s = stripPunctuation(s);
+  if(clean.special) s = stripSpecialChars(s, unicodeMode === 'preserve');
+  if(clean.spaces) s = collapseSpaces(s);
+
+  s = applyCase(s, caseMode);
+  if(stopWordsEnabled) s = removeStopWords(s, stopWords);
+
+  var slug = joinWithSeparator(s, sep);
+
+  var parts = [];
+  if(prefix) parts.push(joinWithSeparator(applyCase(prefix, caseMode), sep));
+  if(timestamp) parts.push(timestamp);
+  if(slug) parts.push(slug);
+  if(suffix) parts.push(joinWithSeparator(applyCase(suffix, caseMode), sep));
+  var joinedSep = sep === '' ? '' : sep;
+  slug = parts.join(joinedSep);
+  if(sep !== ''){
+    slug = joinWithSeparator(slug.split(sep).join(' '), sep);
+  }
+
+  slug = truncateAtBoundary(slug, maxLength, sep);
+
+  return {
+    slug: slug,
+    charCount: slug.length,
+    wordCount: slug ? (sep ? slug.split(sep).filter(Boolean).length : 1) : 0,
+    belowMin: !!(minLength && slug.length < minLength),
+    aboveMax: !!(maxLength && text && buildRawLength(text) > maxLength),
+    hasCJKPreserved: unicodeMode !== 'strip' && hasCJK(slug),
+    hasNonLatin: hasNonLatinScript(slug)
+  };
+}
+function buildRawLength(text){ return String(text||'').length; }
+
+/* ===================== SEO analysis ===================== */
+function analyzeSeo(slug, sep){
+  var urlSafe = sep
+    ? new RegExp('^[a-z0-9]+(?:' + escapeRegex(sep) + '[a-z0-9]+)*$', 'i').test(slug)
+    : /^[a-z0-9]+$/i.test(slug);
+  var seoFriendly = slug.length >= 3 && slug.length <= 60 && urlSafe;
+  return { urlSafe: urlSafe, seoFriendly: seoFriendly, length: slug.length };
+}
+
+/* ===================== Export helpers ===================== */
+function toCSV(rows){
+  var esc = function(v){ v = String(v==null?'':v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g,'""') + '"' : v; };
+  return 'title,slug\n' + rows.map(function(r){ return esc(r.title) + ',' + esc(r.slug); }).join('\n');
+}
+function toJSON(rows){ return JSON.stringify(rows.map(function(r){ return {title:r.title, slug:r.slug}; }), null, 2); }
+function toXML(rows){
+  var body = rows.map(function(r){
+    return '  <item><title>' + escXml(r.title) + '</title><slug>' + escXml(r.slug) + '</slug></item>';
+  }).join('\n');
+  return '<?xml version="1.0" encoding="UTF-8"?>\n<slugs>\n' + body + '\n</slugs>';
+}
+function escXml(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function toMarkdown(rows){
+  return '| Title | Slug |\n|---|---|\n' + rows.map(function(r){ return '| ' + (r.title||'').replace(/\|/g,'\\|') + ' | ' + r.slug + ' |'; }).join('\n');
+}
+
+/* ===================== CSV parsing (simple, quote-aware) ===================== */
+function parseCsvLine(line){
+  var out = []; var cur = ''; var inQuotes = false;
+  for(var i=0;i<line.length;i++){
+    var ch = line[i];
+    if(inQuotes){
+      if(ch === '"'){
+        if(line[i+1] === '"'){ cur += '"'; i++; } else { inQuotes = false; }
+      } else cur += ch;
+    } else {
+      if(ch === '"') inQuotes = true;
+      else if(ch === ','){ out.push(cur); cur = ''; }
+      else cur += ch;
+    }
+  }
+  out.push(cur);
+  return out;
+}
+function parseCsv(text){
+  return text.split(/\r\n|\n|\r/).filter(function(l){ return l.trim() !== ''; }).map(function(line){ return parseCsvLine(line)[0]; });
+}
+
+/* ===================== Expose ===================== */
+window.SlugEngine = {
+  transliterate: transliterate, stripNonLatin: stripNonLatin, hasCJK: hasCJK, hasNonLatinScript: hasNonLatinScript,
+  buildSlug: buildSlug, analyzeSeo: analyzeSeo,
+  toCSV: toCSV, toJSON: toJSON, toXML: toXML, toMarkdown: toMarkdown,
+  parseCsv: parseCsv
+};
+
+})();
+</script>
+<script>
+(function(){
+'use strict';
+var E = window.SlugEngine;
+function $(id){ return document.getElementById(id); }
+
+/* ===================== Persistence ===================== */
+function lsGet(key, fallback){
+  try{ var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; }
+}
+function lsSet(key, val){
+  try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){ /* private mode / quota */ }
+}
+
+var history_ = lsGet('sluggen_history', []);
+var HISTORY_CAP = 300;
+var batchResults = [];
+
+/* ===================== Custom replace rules ===================== */
+var replaceRules = [
+  {from:'&', to:'and'},
+  {from:'@', to:'at'},
+  {from:'+', to:'plus'}
+];
+function renderReplaceRules(){
+  var wrap = $('replaceRulesWrap');
+  wrap.innerHTML = '';
+  replaceRules.forEach(function(rule, i){
+    var row = document.createElement('div');
+    row.className = 'sg-rule-row';
+    row.innerHTML = '<input type="text" class="rr-from" placeholder="Replace…" style="max-width:120px"> <span>&rarr;</span> <input type="text" class="rr-to" placeholder="With…" style="max-width:120px"> <button type="button" title="Remove">🗑️</button>';
+    row.querySelector('.rr-from').value = rule.from;
+    row.querySelector('.rr-to').value = rule.to;
+    row.querySelector('.rr-from').addEventListener('input', function(e){ rule.from = e.target.value; generate(); });
+    row.querySelector('.rr-to').addEventListener('input', function(e){ rule.to = e.target.value; generate(); });
+    row.querySelector('button').addEventListener('click', function(){ replaceRules.splice(i,1); renderReplaceRules(); generate(); });
+    wrap.appendChild(row);
+  });
+}
+$('addRuleBtn').addEventListener('click', function(){ replaceRules.push({from:'',to:''}); renderReplaceRules(); });
+
+/* ===================== Separator / stop words field toggles ===================== */
+$('separatorSelect').addEventListener('change', function(){
+  $('customSepField').style.display = this.value === 'custom' ? 'block' : 'none';
+  generate();
+});
+$('stopWordsToggle').addEventListener('change', function(){
+  $('stopWordsField').style.display = this.checked ? 'block' : 'none';
+  generate();
+});
+
+function currentSeparator(){
+  var v = $('separatorSelect').value;
+  return v === 'custom' ? $('customSepInput').value : v;
+}
+
+/* ===================== Build options from form ===================== */
+function buildOpts(){
+  return {
+    separator: currentSeparator(),
+    caseMode: $('caseSelect').value,
+    unicodeMode: $('unicodeMode').value,
+    clean: {
+      special: $('cleanSpecial').checked,
+      symbols: $('cleanSymbols').checked,
+      emoji: $('cleanEmoji').checked,
+      html: $('cleanHtml').checked,
+      punctuation: $('cleanPunct').checked,
+      spaces: $('cleanSpaces').checked
+    },
+    stopWordsEnabled: $('stopWordsToggle').checked,
+    stopWords: $('stopWordsInput').value.split(',').map(function(s){ return s.trim(); }).filter(Boolean),
+    replaceRules: replaceRules,
+    prefix: $('prefixInput').value,
+    suffix: $('suffixInput').value,
+    timestamp: $('timestampToggle').checked,
+    minLength: parseInt($('minLength').value, 10) || 0,
+    maxLength: parseInt($('maxLength').value, 10) || 0
+  };
+}
+
+/* ===================== Generate (single) ===================== */
 function generate(){
-  const text = document.getElementById('titleInput').value;
-  const separator = document.getElementById('separatorSelect').value;
-  const caseMode = document.getElementById('caseSelect').value;
-  const maxLength = parseInt(document.getElementById('maxLength').value) || 0;
+  var text = $('titleInput').value;
+  var opts = buildOpts();
+  var result = E.buildSlug(text, opts);
+  $('resultBox').textContent = result.slug || '—';
 
-  document.getElementById('resultBox').textContent = slugify(text, separator, caseMode, maxLength) || '—';
+  var baseUrl = $('baseUrlInput').value || '';
+  $('urlPreview').innerHTML = baseUrl ? (escapeHtml(baseUrl.replace(/\/$/, '')) + '/<b>' + escapeHtml(result.slug || '') + '</b>') : ('<b>' + escapeHtml(result.slug || '') + '</b>');
+
+  $('statChars').textContent = result.charCount;
+  $('statWords').textContent = result.wordCount;
+  $('statRemaining').textContent = opts.maxLength ? Math.max(0, opts.maxLength - result.charCount) : '—';
+
+  var seo = E.analyzeSeo(result.slug, opts.separator);
+  var flags = [];
+  if(!text.trim()) flags.push('<span class="sg-flag warn">⚠️ Empty input</span>');
+  if(result.slug) flags.push('<span class="sg-flag ' + (seo.seoFriendly ? 'ok' : 'warn') + '">' + (seo.seoFriendly ? '✅ SEO friendly' : '⚠️ Not ideal for SEO') + '</span>');
+  if(result.slug) flags.push('<span class="sg-flag ' + (seo.urlSafe ? 'ok' : 'warn') + '">' + (seo.urlSafe ? '✅ URL safe' : '⚠️ Not URL safe') + '</span>');
+  if(result.belowMin) flags.push('<span class="sg-flag warn">⚠️ Below minimum length</span>');
+  if(opts.maxLength && result.charCount >= opts.maxLength) flags.push('<span class="sg-flag neutral">✂️ Truncated to max length</span>');
+  if(result.hasCJKPreserved) flags.push('<span class="sg-flag neutral">🈶 CJK characters preserved (Unicode)</span>');
+  var isDup = history_.some(function(h){ return h.slug === result.slug; });
+  if(isDup && result.slug) flags.push('<span class="sg-flag warn">⚠️ Duplicate of a saved slug</span>');
+  $('seoFlags').innerHTML = flags.join('');
+
+  window.__lastSlugResult = result;
+  window.__lastTitle = text;
 }
+function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-document.querySelectorAll('input,select').forEach(el=> el.addEventListener('input', generate));
-document.getElementById('copyBtn').addEventListener('click', (e)=> copyText(document.getElementById('resultBox').textContent, e.target));
+document.querySelectorAll('#paneSingle input, #paneSingle select').forEach(function(el){
+  el.addEventListener('input', generate);
+  el.addEventListener('change', generate);
+});
 
+/* ===================== Copy / history / favorites ===================== */
+$('copyBtn').addEventListener('click', function(e){ copyText($('resultBox').textContent, e.currentTarget); });
+
+function pushHistory(entry){
+  history_.unshift(entry);
+  if(history_.length > HISTORY_CAP) history_.length = HISTORY_CAP;
+  lsSet('sluggen_history', history_);
+}
+$('addToHistoryBtn').addEventListener('click', function(){
+  var slug = $('resultBox').textContent;
+  if(!slug || slug === '—'){ $('statusMsg').textContent = '⚠️ Nothing to save — generate a slug first.'; return; }
+  pushHistory({title: $('titleInput').value, slug: slug, ts: Date.now(), fav:false});
+  $('statusMsg').textContent = '✅ Saved to history.';
+  renderHistory();
+  generate();
+});
+$('favoriteBtn').addEventListener('click', function(){
+  var slug = $('resultBox').textContent;
+  if(!slug || slug === '—'){ $('statusMsg').textContent = '⚠️ Nothing to save — generate a slug first.'; return; }
+  pushHistory({title: $('titleInput').value, slug: slug, ts: Date.now(), fav:true});
+  $('statusMsg').textContent = '★ Saved to favorites.';
+  renderHistory();
+});
+
+/* ===================== Tabs ===================== */
+var tabs = [['tabSingle','paneSingle'],['tabBatch','paneBatch'],['tabHistory','paneHistory']];
+tabs.forEach(function(pair){
+  $(pair[0]).addEventListener('click', function(){
+    tabs.forEach(function(p2){
+      $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected','false');
+      $(p2[1]).classList.remove('active');
+    });
+    $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected','true');
+    $(pair[1]).classList.add('active');
+    if(pair[1]==='paneHistory') renderHistory();
+  });
+});
+
+/* ===================== Batch mode ===================== */
+function generateBatch(titles){
+  var opts = buildOpts();
+  var seen = {};
+  batchResults = titles.map(function(title){
+    var result = E.buildSlug(title, opts);
+    var isDup = !!seen[result.slug];
+    seen[result.slug] = true;
+    return {title: title, slug: result.slug, isDup: isDup};
+  });
+  renderBatchList();
+}
+function renderBatchList(){
+  var listEl = $('batchList');
+  listEl.innerHTML = '';
+  batchResults.forEach(function(r){
+    var div = document.createElement('div');
+    div.className = 'sg-batch-item' + (r.isDup ? ' dup' : '');
+    div.innerHTML = '<span><span class="sg-orig">' + escapeHtml(r.title) + '</span><span class="sg-slug-txt">' + escapeHtml(r.slug) + '</span></span><button type="button">📋</button>';
+    div.querySelector('button').addEventListener('click', function(e){ copyText(r.slug, e.currentTarget); });
+    listEl.appendChild(div);
+  });
+  if(!batchResults.length) listEl.innerHTML = '<p class="ct-muted" style="padding:8px">No batch results yet.</p>';
+}
+$('batchGenerateBtn').addEventListener('click', function(){
+  var titles = $('batchInput').value.split(/\r\n|\n|\r/).map(function(l){ return l.trim(); }).filter(Boolean);
+  if(!titles.length){ $('statusMsg').textContent = '⚠️ Add at least one title.'; return; }
+  generateBatch(titles);
+});
+
+$('csvFileInput').addEventListener('change', function(e){
+  var file = e.target.files[0];
+  if(!file) return;
+  var reader = new FileReader();
+  reader.onload = function(ev){
+    var titles = E.parseCsv(String(ev.target.result));
+    $('batchInput').value = titles.join('\n');
+    generateBatch(titles);
+  };
+  reader.readAsText(file);
+});
+$('xlsxFileInput').addEventListener('change', function(e){
+  var file = e.target.files[0];
+  if(!file) return;
+  var reader = new FileReader();
+  reader.onload = function(ev){
+    if(typeof XLSX === 'undefined'){ alert('Excel engine failed to load — check your connection and refresh.'); return; }
+    var data = new Uint8Array(ev.target.result);
+    var wb = XLSX.read(data, {type:'array'});
+    var sheet = wb.Sheets[wb.SheetNames[0]];
+    var rows = XLSX.utils.sheet_to_json(sheet, {header:1});
+    var titles = rows.map(function(r){ return r[0]; }).filter(function(v){ return v != null && String(v).trim(); }).map(String);
+    $('batchInput').value = titles.join('\n');
+    generateBatch(titles);
+  };
+  reader.readAsArrayBuffer(file);
+});
+
+$('exportTxtBtn').addEventListener('click', function(){ downloadText('slugs.txt', batchResults.map(function(r){return r.slug;}).join('\n')); });
+$('exportCsvBtn').addEventListener('click', function(){ downloadText('slugs.csv', E.toCSV(batchResults), 'text/csv'); });
+$('exportJsonBtn').addEventListener('click', function(){ downloadText('slugs.json', E.toJSON(batchResults), 'application/json'); });
+$('exportXmlBtn').addEventListener('click', function(){ downloadText('slugs.xml', E.toXML(batchResults), 'application/xml'); });
+$('exportMdBtn').addEventListener('click', function(){ downloadText('slugs.md', E.toMarkdown(batchResults), 'text/markdown'); });
+$('exportXlsxBtn').addEventListener('click', function(){
+  if(typeof XLSX === 'undefined'){ alert('Excel engine failed to load — check your connection and refresh.'); return; }
+  var ws = XLSX.utils.json_to_sheet(batchResults.map(function(r){ return {title:r.title, slug:r.slug}; }));
+  var wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Slugs');
+  XLSX.writeFile(wb, 'slugs.xlsx');
+});
+
+/* ===================== History ===================== */
+function renderHistory(){
+  var listEl = $('historyList');
+  var q = ($('historySearch').value || '').toLowerCase();
+  var favOnly = $('historyFavOnly').checked;
+  var shown = history_.filter(function(h){
+    if(favOnly && !h.fav) return false;
+    if(!q) return true;
+    return (h.title||'').toLowerCase().indexOf(q) !== -1 || (h.slug||'').toLowerCase().indexOf(q) !== -1;
+  });
+  listEl.innerHTML = '';
+  shown.slice(0,200).forEach(function(h, idx){
+    var div = document.createElement('div');
+    div.className = 'sg-history-item';
+    var text = document.createElement('span');
+    text.textContent = h.slug + (h.fav ? ' ★' : '') + '  (' + h.title + ')';
+    var btnWrap = document.createElement('span');
+    var useBtn = document.createElement('button'); useBtn.type='button'; useBtn.textContent='Use';
+    useBtn.addEventListener('click', function(){ $('titleInput').value = h.title; $('tabSingle').click(); generate(); });
+    var copyBtn = document.createElement('button'); copyBtn.type='button'; copyBtn.textContent='Copy';
+    copyBtn.addEventListener('click', function(){ copyText(h.slug, copyBtn); });
+    var favBtn = document.createElement('button'); favBtn.type='button'; favBtn.textContent = h.fav ? '★' : '☆';
+    favBtn.addEventListener('click', function(){ h.fav = !h.fav; lsSet('sluggen_history', history_); renderHistory(); });
+    var delBtn = document.createElement('button'); delBtn.type='button'; delBtn.textContent='🗑️';
+    delBtn.addEventListener('click', function(){
+      history_ = history_.filter(function(x){ return x !== h; });
+      lsSet('sluggen_history', history_); renderHistory();
+    });
+    btnWrap.appendChild(useBtn); btnWrap.appendChild(copyBtn); btnWrap.appendChild(favBtn); btnWrap.appendChild(delBtn);
+    div.appendChild(text); div.appendChild(btnWrap);
+    listEl.appendChild(div);
+  });
+  if(!shown.length) listEl.innerHTML = '<p class="ct-muted">No history yet.</p>';
+}
+$('historySearch').addEventListener('input', renderHistory);
+$('historyFavOnly').addEventListener('change', renderHistory);
+$('clearHistoryBtn').addEventListener('click', function(){
+  if(!confirm('Clear all slug history saved in this browser? This cannot be undone.')) return;
+  history_ = []; lsSet('sluggen_history', history_); renderHistory();
+});
+
+/* ===================== Accessibility ===================== */
+$('highContrastToggle').addEventListener('change', function(){ document.body.classList.toggle('sg-high-contrast', this.checked); });
+$('largeFontToggle').addEventListener('change', function(){ document.body.classList.toggle('sg-large-font', this.checked); });
+
+/* ===================== Init ===================== */
+renderReplaceRules();
 generate();
+renderHistory();
+renderBatchList();
+
+})();
 </script>
 <!-- Default Statcounter code for Apne Software
 https://apnesoftware.com -->
 <script type="text/javascript">
-var sc_project=13334460; 
-var sc_invisible=1; 
-var sc_security="a5854dc7"; 
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
 </script>
 <script type="text/javascript"
 src="https://www.statcounter.com/counter/counter.js"
