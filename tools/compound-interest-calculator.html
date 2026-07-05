@@ -5,25 +5,106 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://apnesoftware.com/tools/compound-interest-calculator.html">
+<meta name="description" content="Free Professional Financial Investment Calculator — model Lump Sum, SIP, SWP, FD, RD, PPF, NPS, mutual funds, retirement & education goals with daily-to-continuous compounding, inflation & tax adjustment, CAGR, charts, a year-wise growth table and CSV/Excel/PDF/PNG export. 100% in your browser.">
+<meta name="keywords" content="compound interest calculator, investment calculator, sip calculator, cagr calculator, future value calculator, inflation adjusted returns, retirement calculator, financial goal calculator, mutual fund return calculator">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Compound Interest Calculator | ApneSoftware">
-<meta property="og:description" content="See savings/investment growth over time. Free online tool — no signup required.">
+<meta property="og:title" content="Professional Financial Investment Calculator | ApneSoftware">
+<meta property="og:description" content="Model any investment — Lump Sum, SIP, FD, RD, PPF & more — with compounding, inflation, tax, CAGR, charts, growth table and CSV/Excel/PDF export. 100% browser-based & private.">
 <meta property="og:url" content="https://apnesoftware.com/tools/compound-interest-calculator.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Compound Interest Calculator | ApneSoftware">
-<meta name="twitter:description" content="See savings/investment growth over time. Free online tool — no signup required.">
+<meta name="twitter:title" content="Professional Financial Investment Calculator | ApneSoftware">
+<meta name="twitter:description" content="Lump Sum, SIP, FD, RD, PPF, retirement & goal planning with compounding, inflation, tax, CAGR and charts. Private, browser-based, no signup.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Compound Interest Calculator","description":"See savings/investment growth over time. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/compound-interest-calculator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Professional Financial Investment Calculator","description":"Model Lump Sum, SIP, SWP, FD, RD, PPF, NPS, mutual fund, retirement and education investments with daily-to-continuous compounding, inflation and tax adjustment, CAGR, effective annual return, charts, a year-wise growth table, comparison, goal and reverse calculators, and CSV/Excel/PDF/PNG export. Runs entirely in the browser.","url":"https://apnesoftware.com/tools/compound-interest-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Lump sum, SIP, FD, RD, PPF and retirement planning","Daily to continuous compounding","Inflation and tax adjusted returns","CAGR, ROI and effective annual return","Growth chart, pie chart and year-wise table","Comparison, goal and reverse calculators","CSV, Excel, PDF, PNG export and print"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
 <meta name="color-scheme" content="dark">
-<title>Compound Interest Calculator | ApneSoftware</title>
+<title>Professional Financial Investment Calculator | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-  .bar-chart{display:flex;align-items:flex-end;gap:3px;height:160px;margin-top:18px;border-bottom:1px solid var(--border);padding-bottom:4px}
-  .bar-chart .bar{flex:1;background:var(--accent);border-radius:3px 3px 0 0;min-width:2px}
+/* ===== Financial Investment Calculator — scoped fic- prefix ===== */
+.panel{position:relative;z-index:1}
+.fic-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.fic-tab{font-size:.8rem;padding:8px 14px;border-radius:9px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text);cursor:pointer;font-weight:600}
+.fic-tab.active{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff}
+.fic-pane{display:none}
+.fic-pane.active{display:block}
+
+.fic-types{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.fic-type{font-size:.74rem;padding:6px 11px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);cursor:pointer}
+.fic-type.active{background:rgba(124,92,252,.18);border-color:var(--accent,#7c5cfc);color:#fff}
+
+.fic-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:640px){ .fic-grid{grid-template-columns:1fr} }
+.fic-field label{display:block;font-size:.8rem;color:var(--text-dim);margin-bottom:6px;font-weight:600}
+.fic-field .fic-err{color:#f87171;font-size:.72rem;margin-top:3px;display:none}
+.fic-field.invalid input{border-color:#f87171!important}
+.fic-field.invalid .fic-err{display:block}
+.fic-inline{display:flex;gap:8px}
+.fic-inline>*{flex:1;min-width:0}
+
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:16px}
+.stat-box{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
+.stat-box .num{font-size:1.25rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stat-box .lbl{font-size:.74rem;color:var(--text-dim);margin-top:4px}
+.fic-secondary{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:12px}
+.fic-mini{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+.fic-mini .n{font-size:.98rem;font-weight:700}
+.fic-mini .l{font-size:.68rem;color:var(--text-dim);margin-top:2px}
+
+/* Charts */
+.fic-charttools{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 8px;align-items:center}
+.fic-chartbtn{font-size:.74rem;padding:5px 10px;border-radius:7px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text);cursor:pointer}
+.fic-chartbtn.active{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff}
+.fic-canvas-wrap{background:rgba(0,0,0,.18);border:1px solid var(--border);border-radius:12px;padding:10px}
+#growthCanvas,#barChart{display:block;width:100%;height:260px}
+#barChart{height:auto}
+.fic-legend{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:.74rem;color:var(--text-dim);margin-top:8px}
+.fic-legend span{display:inline-flex;align-items:center;gap:5px}
+.fic-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+/* Table + export */
+.fic-tabletools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0 8px}
+.fic-tablewrap{max-height:320px;overflow:auto;border:1px solid var(--border);border-radius:10px}
+.fic-table{border-collapse:collapse;width:100%;font-size:.8rem}
+.fic-table th,.fic-table td{border-bottom:1px solid var(--border);padding:7px 10px;text-align:right;white-space:nowrap}
+.fic-table th:first-child,.fic-table td:first-child{text-align:left}
+.fic-table th{position:sticky;top:0;background:#1a1a2e;z-index:1}
+.fic-btn{font-size:.76rem;padding:7px 12px;border-radius:8px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text);cursor:pointer}
+.fic-btn:hover{background:rgba(124,92,252,.18)}
+.fic-btn.primary{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff;font-weight:600}
+
+/* History */
+.fic-history{margin-top:8px}
+.fic-hitem{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:rgba(255,255,255,.03);margin-bottom:6px;font-size:.78rem}
+.fic-hitem .g{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fic-hitem button{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:.9rem}
+
+/* Below-tool content */
+.fic-content h2{font-size:1.15rem;margin:26px 0 10px}
+.fic-content h3{font-size:1rem;margin:18px 0 8px}
+.fic-content p,.fic-content li{font-size:.92rem;line-height:1.72}
+.fic-content ul,.fic-content ol{padding-left:20px}
+.fic-fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:14px 0}
+.fic-fgrid .fc{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:14px}
+.fic-fgrid .fc b{display:block;margin-bottom:5px;font-size:.9rem}
+.fic-fgrid .fc span{font-size:.82rem;color:var(--text-dim);line-height:1.6}
+.fic-formula{background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-family:ui-monospace,Consolas,monospace;font-size:.82rem;overflow-x:auto}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin:12px 0}
+.related-grid a{display:flex;align-items:center;gap:9px;padding:12px 13px;border-radius:11px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.86rem;font-weight:500;transition:.15s}
+.related-grid a:hover{background:rgba(124,92,252,.16);border-color:var(--accent,#7c5cfc);transform:translateY(-1px)}
+.related-grid a .ri{font-size:1.15rem}
+.fic-faq details{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:11px;padding:2px 14px;margin-bottom:9px}
+.fic-faq summary{cursor:pointer;padding:12px 0;font-weight:600;font-size:.9rem;list-style:none}
+.fic-faq summary::-webkit-details-marker{display:none}
+.fic-faq summary::before{content:'＋';margin-right:9px;color:var(--accent,#7c5cfc);font-weight:700}
+.fic-faq details[open] summary::before{content:'－'}
+.fic-faq details p{padding:0 0 12px;margin:0;font-size:.87rem;color:var(--text-dim)}
+.fic-lang-note{font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:-4px}
+.fic-compare-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:640px){ .fic-compare-cols{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -36,154 +117,676 @@
 
 <div class="container">
   <div class="tool-header">
-    <h1>📈 Compound Interest Calculator</h1>
-    <p>See how your savings or investment grows with compound interest over time.</p>
+    <h1>📈 Professional Financial Investment Calculator</h1>
+    <p>Model Lump Sum, SIP, FD, RD, PPF, retirement &amp; goal plans with any compounding, inflation &amp; tax adjustment, CAGR, charts and CSV/Excel/PDF export — 100% in your browser.</p>
   </div>
 
   <div class="panel">
-    <div class="row">
-      <div class="field">
-        <label for="principal">Principal amount (₹)</label>
-        <input type="number" id="principal" value="100000" min="0">
-      </div>
-      <div class="field">
-        <label for="rate">Annual interest rate (%)</label>
-        <input type="number" id="rate" value="8" min="0" step="0.1">
-      </div>
+    <div class="fic-tabs">
+      <button class="fic-tab active" data-tab="calc">🧮 Calculator</button>
+      <button class="fic-tab" data-tab="compare">⚖️ Compare</button>
+      <button class="fic-tab" data-tab="goal">🎯 Goal</button>
+      <button class="fic-tab" data-tab="reverse">🔄 Reverse</button>
+      <button class="fic-tab" data-tab="inflation">📉 Inflation</button>
     </div>
-    <div class="row">
-      <div class="field">
-        <label for="years">Duration (years)</label>
-        <input type="number" id="years" value="10" min="1" max="50">
-      </div>
-      <div class="field">
-        <label for="frequency">Compounding frequency</label>
-        <select id="frequency">
-          <option value="1">Annually</option>
-          <option value="2">Semi-annually</option>
-          <option value="4">Quarterly</option>
-          <option value="12" selected>Monthly</option>
-          <option value="365">Daily</option>
+
+    <!-- Currency + type -->
+    <div class="fic-inline" style="margin-bottom:12px;max-width:520px">
+      <div class="fic-field">
+        <label for="ficCurrency">Currency</label>
+        <select id="ficCurrency">
+          <option value="INR">₹ INR — Indian Rupee</option>
+          <option value="USD">$ USD — US Dollar</option>
+          <option value="EUR">€ EUR — Euro</option>
+          <option value="GBP">£ GBP — British Pound</option>
+          <option value="AED">د.إ AED — UAE Dirham</option>
+          <option value="SGD">S$ SGD — Singapore Dollar</option>
+          <option value="AUD">A$ AUD — Australian Dollar</option>
         </select>
       </div>
     </div>
-    <div class="field">
-      <label for="monthlyAdd">Additional monthly contribution (₹, optional)</label>
-      <input type="number" id="monthlyAdd" value="0" min="0">
+
+    <!-- ===== Calculator pane ===== -->
+    <div class="fic-pane active" id="pane-calc">
+      <div class="fic-types" id="ficTypes"></div>
+
+      <div class="fic-grid">
+        <div class="fic-field">
+          <label for="principal">Principal / Lump sum amount</label>
+          <input type="number" id="principal" value="100000" min="0" step="any">
+          <div class="fic-err">Enter a valid non-negative amount.</div>
+        </div>
+        <div class="fic-field">
+          <label for="rate">Expected annual return / interest rate (%)</label>
+          <input type="number" id="rate" value="8" min="0" max="100" step="0.01">
+          <div class="fic-err">Rate must be between 0 and 100.</div>
+        </div>
+        <div class="fic-field">
+          <label for="years">Duration (years)</label>
+          <input type="number" id="years" value="10" min="1" max="80" step="1">
+          <div class="fic-err">Duration must be 1–80 years.</div>
+        </div>
+        <div class="fic-field">
+          <label for="frequency">Compounding frequency</label>
+          <select id="frequency">
+            <option value="365">Daily</option>
+            <option value="52">Weekly</option>
+            <option value="12" selected>Monthly</option>
+            <option value="4">Quarterly</option>
+            <option value="2">Half-yearly</option>
+            <option value="1">Annually</option>
+            <option value="c">Continuous</option>
+          </select>
+        </div>
+        <div class="fic-field">
+          <label for="monthlyAdd">Recurring contribution (optional)</label>
+          <div class="fic-inline">
+            <input type="number" id="monthlyAdd" value="0" min="0" step="any">
+            <select id="contribFreq" style="max-width:130px">
+              <option value="12" selected>per month</option>
+              <option value="4">per quarter</option>
+              <option value="1">per year</option>
+            </select>
+          </div>
+        </div>
+        <div class="fic-field">
+          <label for="withdraw">Monthly withdrawal (SWP, optional)</label>
+          <input type="number" id="withdraw" value="0" min="0" step="any">
+        </div>
+        <div class="fic-field">
+          <label for="inflation">Inflation rate (%, optional)</label>
+          <input type="number" id="inflation" value="6" min="0" max="100" step="0.01">
+        </div>
+        <div class="fic-field">
+          <label for="taxRate">Tax on gains (%, optional)</label>
+          <input type="number" id="taxRate" value="0" min="0" max="100" step="0.01">
+        </div>
+      </div>
+
+      <!-- Primary results (IDs preserved) -->
+      <div class="stat-grid">
+        <div class="stat-box"><div class="num" id="investedVal">—</div><div class="lbl">Total Investment</div></div>
+        <div class="stat-box"><div class="num" id="interestVal">—</div><div class="lbl">Interest / Wealth Gain</div></div>
+        <div class="stat-box"><div class="num" id="finalVal" style="color:var(--accent-2,#16c079)">—</div><div class="lbl">Final Value</div></div>
+      </div>
+      <div class="fic-secondary">
+        <div class="fic-mini"><div class="n" id="roiVal">—</div><div class="l">ROI</div></div>
+        <div class="fic-mini"><div class="n" id="cagrVal">—</div><div class="l">CAGR</div></div>
+        <div class="fic-mini"><div class="n" id="earVal">—</div><div class="l">Effective Annual Return</div></div>
+        <div class="fic-mini"><div class="n" id="inflAdjVal">—</div><div class="l">Inflation-Adjusted Value</div></div>
+        <div class="fic-mini"><div class="n" id="postTaxVal">—</div><div class="l">Post-Tax Value</div></div>
+        <div class="fic-mini"><div class="n" id="taxVal">—</div><div class="l">Estimated Tax</div></div>
+      </div>
+
+      <!-- Charts -->
+      <div class="fic-charttools">
+        <span style="font-size:.72rem;color:var(--text-dim)">Chart:</span>
+        <button class="fic-chartbtn active" data-chart="area">Area</button>
+        <button class="fic-chartbtn" data-chart="line">Line</button>
+        <button class="fic-chartbtn" data-chart="bar">Bars</button>
+        <button class="fic-chartbtn" data-chart="pie">Pie</button>
+        <button class="fic-btn" id="savePngBtn" style="margin-left:auto">🖼 PNG</button>
+      </div>
+      <div class="fic-canvas-wrap">
+        <canvas id="growthCanvas" width="900" height="300"></canvas>
+        <div id="barChart" style="display:none"></div>
+        <div class="fic-legend" id="chartLegend"></div>
+      </div>
+
+      <!-- Growth table -->
+      <div class="fic-tabletools">
+        <strong style="font-size:.9rem">📅 Year-wise growth</strong>
+        <button class="fic-btn" data-export="csv" style="margin-left:auto">⬇ CSV</button>
+        <button class="fic-btn" data-export="xls">⬇ Excel</button>
+        <button class="fic-btn" data-export="pdf">⬇ PDF</button>
+        <button class="fic-btn" id="printBtn">🖨 Print</button>
+        <button class="fic-btn" id="saveCalcBtn">⭐ Save</button>
+      </div>
+      <div class="fic-tablewrap"><table class="fic-table" id="growthTable"></table></div>
+
+      <!-- History -->
+      <div class="fic-tabletools"><strong style="font-size:.9rem">🕘 History &amp; saved</strong>
+        <button class="fic-btn" id="clearHistBtn" style="margin-left:auto">Clear</button></div>
+      <div class="fic-history" id="historyList"></div>
     </div>
 
-    <div class="stat-grid" style="margin-top:14px">
-      <div class="stat-box"><div class="num" id="investedVal">₹0</div><div class="lbl">Total Invested</div></div>
-      <div class="stat-box"><div class="num" id="interestVal">₹0</div><div class="lbl">Interest Earned</div></div>
-      <div class="stat-box"><div class="num" id="finalVal" style="color:var(--accent-2)">₹0</div><div class="lbl">Final Amount</div></div>
+    <!-- ===== Compare pane ===== -->
+    <div class="fic-pane" id="pane-compare">
+      <p style="font-size:.85rem;color:var(--text-dim)">Compare two scenarios side by side — SIP vs lump sum, two rates, monthly vs quarterly, or different compounding.</p>
+      <div class="fic-compare-cols">
+        <div>
+          <h3 style="font-size:.9rem">Scenario A</h3>
+          <div class="fic-field"><label>Principal</label><input type="number" id="cA_p" value="100000"></div>
+          <div class="fic-field"><label>Monthly contribution</label><input type="number" id="cA_m" value="5000"></div>
+          <div class="fic-field"><label>Rate (%)</label><input type="number" id="cA_r" value="12" step="0.01"></div>
+          <div class="fic-inline">
+            <div class="fic-field" style="flex:1"><label>Years</label><input type="number" id="cA_y" value="15"></div>
+            <div class="fic-field" style="flex:1"><label>Compounding</label><select id="cA_f"><option value="12" selected>Monthly</option><option value="4">Quarterly</option><option value="1">Annually</option><option value="365">Daily</option></select></div>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:.9rem">Scenario B</h3>
+          <div class="fic-field"><label>Principal</label><input type="number" id="cB_p" value="900000"></div>
+          <div class="fic-field"><label>Monthly contribution</label><input type="number" id="cB_m" value="0"></div>
+          <div class="fic-field"><label>Rate (%)</label><input type="number" id="cB_r" value="12" step="0.01"></div>
+          <div class="fic-inline">
+            <div class="fic-field" style="flex:1"><label>Years</label><input type="number" id="cB_y" value="15"></div>
+            <div class="fic-field" style="flex:1"><label>Compounding</label><select id="cB_f"><option value="12" selected>Monthly</option><option value="4">Quarterly</option><option value="1">Annually</option><option value="365">Daily</option></select></div>
+          </div>
+        </div>
+      </div>
+      <div class="stat-grid" id="compareResults"></div>
+      <div class="fic-canvas-wrap" style="margin-top:14px"><canvas id="compareCanvas" width="900" height="300" style="width:100%;height:260px;display:block"></canvas>
+        <div class="fic-legend"><span><i style="background:#7c5cfc"></i>Scenario A</span><span><i style="background:#16c079"></i>Scenario B</span></div>
+      </div>
     </div>
 
-    <div class="bar-chart" id="barChart"></div>
-    <p style="font-size:.78rem;color:var(--text-dim);margin-top:6px;text-align:center">Year-wise growth</p>
+    <!-- ===== Goal pane ===== -->
+    <div class="fic-pane" id="pane-goal">
+      <p style="font-size:.85rem;color:var(--text-dim)">Work backwards from a target amount — solve for the piece you don't know.</p>
+      <div class="fic-field" style="max-width:320px"><label>I want to solve for</label>
+        <select id="goalSolve"><option value="monthly">Required monthly investment</option><option value="years">Required duration</option><option value="rate">Required interest rate</option></select></div>
+      <div class="fic-grid">
+        <div class="fic-field"><label>Target amount</label><input type="number" id="g_target" value="10000000"></div>
+        <div class="fic-field"><label>Starting principal</label><input type="number" id="g_principal" value="0"></div>
+        <div class="fic-field" data-g="monthly"><label>Monthly investment</label><input type="number" id="g_monthly" value="10000"></div>
+        <div class="fic-field" data-g="rate"><label>Rate (%)</label><input type="number" id="g_rate" value="12" step="0.01"></div>
+        <div class="fic-field" data-g="years"><label>Years</label><input type="number" id="g_years" value="15"></div>
+      </div>
+      <button class="fic-btn primary" id="goalBtn">🎯 Calculate</button>
+      <div class="stat-grid" id="goalResult"></div>
+    </div>
+
+    <!-- ===== Reverse pane ===== -->
+    <div class="fic-pane" id="pane-reverse">
+      <p style="font-size:.85rem;color:var(--text-dim)">Given a lump-sum target, find the required principal, rate or time (no recurring contribution).</p>
+      <div class="fic-field" style="max-width:320px"><label>Solve for</label>
+        <select id="revSolve"><option value="principal">Required principal</option><option value="rate">Required rate</option><option value="time">Required time</option></select></div>
+      <div class="fic-grid">
+        <div class="fic-field"><label>Target future value</label><input type="number" id="r_target" value="1000000"></div>
+        <div class="fic-field" data-r="principal"><label>Principal</label><input type="number" id="r_principal" value="200000"></div>
+        <div class="fic-field" data-r="rate"><label>Rate (%)</label><input type="number" id="r_rate" value="10" step="0.01"></div>
+        <div class="fic-field" data-r="time"><label>Years</label><input type="number" id="r_years" value="10"></div>
+        <div class="fic-field"><label>Compounding</label><select id="r_freq"><option value="12" selected>Monthly</option><option value="4">Quarterly</option><option value="1">Annually</option><option value="365">Daily</option></select></div>
+      </div>
+      <button class="fic-btn primary" id="revBtn">🔄 Calculate</button>
+      <div class="stat-grid" id="revResult"></div>
+    </div>
+
+    <!-- ===== Inflation pane ===== -->
+    <div class="fic-pane" id="pane-inflation">
+      <p style="font-size:.85rem;color:var(--text-dim)">See what a sum will really be worth after inflation, and the real (inflation-adjusted) return.</p>
+      <div class="fic-grid">
+        <div class="fic-field"><label>Amount (present value)</label><input type="number" id="i_amount" value="1000000"></div>
+        <div class="fic-field"><label>Nominal return (%)</label><input type="number" id="i_return" value="12" step="0.01"></div>
+        <div class="fic-field"><label>Inflation rate (%)</label><input type="number" id="i_infl" value="6" step="0.01"></div>
+        <div class="fic-field"><label>Years</label><input type="number" id="i_years" value="10"></div>
+      </div>
+      <button class="fic-btn primary" id="inflBtn">📉 Calculate</button>
+      <div class="stat-grid" id="inflResult"></div>
+    </div>
   </div>
 </div>
 
+<!-- ============================ BELOW-TOOL CONTENT ============================ -->
+<div class="fic-content">
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Compound interest is often described as one of the most powerful forces in personal finance, and the reason is simple: unlike simple interest, which only ever earns on your original principal, compound interest earns on your principal plus all the interest it has already accumulated, so your money grows faster the longer it stays invested. Calculating this by hand requires raising a number to a power based on how many compounding periods have passed, which gets genuinely unwieldy once you're dealing with monthly or daily compounding over several years — exactly the kind of calculation this tool is built to handle instantly.</p>
-      <p>You enter your principal amount, the annual interest rate, how many years you plan to let it grow, and how often the interest compounds — annually, semi-annually, quarterly, monthly, or daily. More frequent compounding means slightly faster growth for the same nominal rate, since interest starts earning interest sooner. The tool also lets you add an optional monthly contribution on top of your initial principal, which is realistic for most people who aren't just parking a lump sum but also adding to their savings or investment regularly.</p>
-      <p>The result breaks down your total invested amount versus the interest earned purely from growth, plus a year-by-year bar chart so you can visually see how the curve steepens over time — in the early years, growth looks almost linear, but by the later years the compounding effect becomes dramatically visible, often contributing more to the final total than all your contributions combined. This visual makes a genuinely abstract concept much easier to internalize than just looking at a single final number.</p>
-      <p>This calculator is useful for comparing different savings or investment options, planning how long you'd need to leave money invested to hit a target amount, or simply satisfying curiosity about how a fixed deposit, recurring deposit, or investment account might grow over time. Keep in mind that this assumes a constant rate of return throughout, which real-world fixed deposits, savings accounts, and investments rarely guarantee for very long periods — actual rates can change, and market-linked investments fluctuate. Use this as a planning estimate, and verify current rates with your bank or financial institution before making decisions. As with the rest of this site, everything is calculated directly in your browser — you can experiment with different principal amounts, rates, tenures, and contribution levels as many times as you like, with nothing ever stored or sent anywhere, making it easy to compare several what-if scenarios side by side before settling on a savings or investment plan.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Enter your principal amount, interest rate, and duration.</li>
-        <li>Pick a compounding frequency.</li>
-        <li>Optionally add a monthly contribution to see how regular top-ups boost your final amount.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>Compound interest को अक्सर personal finance की सबसे ताकतवर चीज़ों में से एक बताया जाता है, और वजह सीधी है: simple interest के उलट, जो हमेशा सिर्फ आपके original principal पर ही मिलता है, compound interest principal के साथ-साथ अब तक जमा हो चुके interest पर भी मिलता है, इसलिए आपका पैसा जितनी देर invested रहता है उतनी तेज़ी से बढ़ता है। इसे हाथ से calculate करने के लिए किसी नंबर को compounding periods की संख्या के आधार पर एक power तक उठाना पड़ता है, जो monthly या daily compounding के साथ कई सालों के हिसाब से सच में मुश्किल हो जाता है — बिल्कुल वैसी calculation जिसे यह टूल तुरंत handle करने के लिए बना है।</p>
-      <p>आप अपना principal amount, annual interest rate, कितने साल इसे बढ़ने देना है, और interest कितनी बार compound होता है — annually, semi-annually, quarterly, monthly, या daily — डालते हैं। ज़्यादा बार compounding का मतलब है उसी nominal rate पर थोड़ी तेज़ growth, क्योंकि interest जल्दी interest कमाना शुरू कर देता है। यह टूल आपको अपने शुरुआती principal के ऊपर एक optional monthly contribution जोड़ने भी देता है, जो ज़्यादातर लोगों के लिए असली स्थिति है जो सिर्फ एक lump sum नहीं रखते बल्कि नियमित रूप से अपनी savings या investment में जोड़ते भी रहते हैं।</p>
-      <p>Result आपका कुल invested amount बनाम सिर्फ growth से कमाया गया interest अलग-अलग दिखाता है, साथ ही एक साल-दर-साल bar chart भी देता है ताकि आप देख सकें कि समय के साथ curve कैसे तेज़ होता जाता है — शुरुआती सालों में growth लगभग linear दिखती है, पर बाद के सालों तक compounding का असर नाटकीय रूप से दिखने लगता है, अक्सर आपके सारे contributions मिलाकर जितना योगदान देते हैं उससे भी ज़्यादा final total में योगदान देता है। यह visual एक सच में abstract concept को सिर्फ एक final नंबर देखने से कहीं ज़्यादा आसानी से समझने लायक बना देता है।</p>
-      <p>यह calculator अलग-अलग savings या investment options compare करने, किसी target amount तक पहुंचने के लिए पैसा कितने समय invested रखना होगा यह planning करने, या बस यह जिज्ञासा शांत करने के लिए उपयोगी है कि कोई fixed deposit, recurring deposit, या investment account समय के साथ कैसे बढ़ सकता है। ध्यान रखें कि यह पूरे समय एक constant rate of return मान कर चलता है, जो असली दुनिया की fixed deposits, savings accounts, और investments बहुत लंबे समय तक शायद ही कभी guarantee करती हैं — असली rates बदल सकती हैं, और market-linked investments में उतार-चढ़ाव आता है। इसे एक planning estimate की तरह इस्तेमाल करें, और फैसला लेने से पहले अपने बैंक या financial institution से मौजूदा rates verify करें।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपना principal amount, interest rate, और duration डालें।</li>
-        <li>compounding frequency चुनें।</li>
-        <li>चाहें तो monthly contribution जोड़ें ताकि देख सकें कि regular top-up से final amount कितना बढ़ता है।</li>
-      </ol>
-    </div>
+  <h2>💹 One calculator for every investment question</h2>
+  <p>The <strong>Professional Financial Investment Calculator</strong> takes the humble compound-interest formula and turns it into a complete planning workspace. Instead of forcing you to guess which single-purpose calculator to open, it models any money-growth scenario — a one-time lump sum, a monthly SIP, a fixed or recurring deposit, a PPF or NPS account, a mutual fund, or a long-term retirement or education goal — with realistic controls for compounding frequency, inflation and tax. Every number is computed instantly in your browser, with charts, a year-by-year growth table and one-click export, so investors, students, professionals, financial advisors and businesses can plan and compare with confidence.</p>
+
+  <h2>✨ Features</h2>
+  <div class="fic-fgrid">
+    <div class="fc"><b>Every investment type</b><span>Lump sum, SIP, SWP, FD, RD, PPF, NPS, mutual fund, retirement and education presets in one engine.</span></div>
+    <div class="fc"><b>Any compounding</b><span>Daily, weekly, monthly, quarterly, half-yearly, annual and continuous compounding.</span></div>
+    <div class="fc"><b>Real returns</b><span>Inflation-adjusted value, tax on gains, ROI, CAGR and effective annual return.</span></div>
+    <div class="fc"><b>Charts</b><span>Area, line, bar and pie views plus year-wise growth, drawn locally with no external libraries.</span></div>
+    <div class="fc"><b>Growth table + export</b><span>Year, investment, interest, balance and growth %, exportable as CSV, Excel, PDF or PNG.</span></div>
+    <div class="fc"><b>Compare, goal &amp; reverse</b><span>SIP vs lump sum, solve for the monthly/rate/time you need, or back-calculate a required principal.</span></div>
+    <div class="fc"><b>7 currencies</b><span>INR, USD, EUR, GBP, AED, SGD and AUD with correct locale formatting.</span></div>
+    <div class="fc"><b>History &amp; validation</b><span>Recent and saved calculations, plus guards against empty, negative and out-of-range inputs.</span></div>
   </div>
+
+  <h2>🎯 Benefits</h2>
+  <ul>
+    <li><strong>See the whole picture:</strong> nominal growth, inflation-adjusted "real" value and post-tax return in one glance.</li>
+    <li><strong>Make fair comparisons:</strong> put SIP against lump sum, or two rates, on the same axes.</li>
+    <li><strong>Plan to a goal:</strong> find exactly how much to invest each month to reach a target.</li>
+    <li><strong>Private &amp; instant:</strong> nothing is uploaded; recalculation is live as you type.</li>
+    <li><strong>Portable results:</strong> export a schedule or chart for a client report or your own records.</li>
+  </ul>
+
+  <h2>📐 Formula</h2>
+  <p>Compound growth of a lump sum is:</p>
+  <div class="fic-formula">A = P × (1 + r/n)^(n × t)     &nbsp; and for continuous compounding &nbsp;  A = P × e^(r × t)</div>
+  <p>where <em>P</em> is the principal, <em>r</em> the annual rate (as a decimal), <em>n</em> the number of compounding periods per year and <em>t</em> the number of years. A regular contribution (annuity) adds:</p>
+  <div class="fic-formula">FV = PMT × [ (1 + i)^m − 1 ] / i</div>
+  <p>where <em>i</em> is the periodic rate and <em>m</em> the number of contributions. Derived metrics: <strong>CAGR = (Final ÷ Invested)^(1/t) − 1</strong>, <strong>Effective Annual Return = (1 + r/n)^n − 1</strong>, and <strong>Inflation-adjusted value = Final ÷ (1 + inflation)^t</strong>.</p>
+
+  <h2>🧮 Financial examples</h2>
+  <ul>
+    <li><strong>Lump sum:</strong> ₹1,00,000 at 8% compounded monthly for 10 years ≈ ₹2,21,964 — the interest (₹1,21,964) exceeds the principal.</li>
+    <li><strong>SIP:</strong> ₹5,000/month at 12% for 15 years invests ₹9,00,000 and grows to roughly ₹25 lakh — the extra ~₹16 lakh is compounding at work.</li>
+    <li><strong>Inflation:</strong> ₹10,00,000 growing at 12% for 10 years is ~₹31 lakh nominally, but only ~₹17 lakh in today's money at 6% inflation.</li>
+  </ul>
+
+  <h2>💼 Use cases</h2>
+  <ul>
+    <li><strong>Investors</strong> — project mutual fund, FD, PPF and NPS outcomes and compare options.</li>
+    <li><strong>Students</strong> — understand compounding, CAGR and real vs nominal returns with live charts.</li>
+    <li><strong>Professionals</strong> — plan retirement corpus and monthly SIP needed for a goal.</li>
+    <li><strong>Financial advisors</strong> — build quick client illustrations and export a schedule.</li>
+    <li><strong>Businesses</strong> — evaluate reinvestment and treasury growth scenarios.</li>
+  </ul>
+
+  <h2>📈 Growth examples</h2>
+  <p>Because compounding is exponential, the back half of any long investment does most of the work. In a 20-year SIP, the final five years typically add more wealth than the first fifteen combined — which is exactly why the year-wise chart and table in this tool are so useful: they make the acceleration visible instead of hiding it behind a single end figure.</p>
+
+  <!-- ===== Related Tools (ABOVE About — required order) ===== -->
+  <h2>🧰 Related Tools</h2>
+  <div class="related-grid">
+    <a href="sip-calculator.html"><span class="ri">📈</span> SIP Calculator</a>
+    <a href="swp-calculator.html"><span class="ri">💸</span> SWP Calculator</a>
+    <a href="emi-calculator.html"><span class="ri">💰</span> EMI Calculator</a>
+    <a href="fd-calculator.html"><span class="ri">🏦</span> FD Calculator</a>
+    <a href="rd-calculator.html"><span class="ri">📅</span> RD Calculator</a>
+    <a href="ppf-calculator.html"><span class="ri">🏛️</span> PPF Calculator</a>
+    <a href="simple-interest-calculator.html"><span class="ri">💵</span> Simple Interest Calculator</a>
+    <a href="income-tax-calculator.html"><span class="ri">💰</span> Income Tax Calculator</a>
+    <a href="gst-calculator.html"><span class="ri">🧮</span> GST Calculator</a>
+    <a href="percentage-discount-calculator.html"><span class="ri">📊</span> Percentage Calculator</a>
+    <a href="emi-calculator.html"><span class="ri">🏠</span> Loan / EMI Calculator</a>
+  </div>
+
+  <!-- ===== About (English) ===== -->
+  <h2>ℹ️ About This Tool</h2>
+  <p>The <strong>Professional Financial Investment Calculator</strong> is a free, browser-based planning tool that grew out of a simple compound-interest calculator into a complete engine for modelling how money grows. Its purpose is to answer, quickly and honestly, the questions people actually ask about their savings and investments: how much will this become, how much do I need to invest to reach a goal, what will it really be worth after inflation and tax, and how does one option compare with another? It does all of this locally, in your browser, so you can experiment freely with real numbers without ever sending them anywhere.</p>
+
+  <p>At its core is a single, careful simulation engine. Rather than relying on one closed-form formula that only fits a lump sum, it steps through the investment month by month, applying growth at whatever compounding frequency you choose — daily, weekly, monthly, quarterly, half-yearly, annually or even continuously — and adding your recurring contributions or subtracting your withdrawals exactly when they occur. This period-by-period approach is what lets one tool faithfully represent very different products. A fixed deposit is just a lump sum with no contributions; a recurring deposit or SIP is a stream of equal contributions; an SWP is a stream of withdrawals from an invested corpus; a PPF or NPS account is a yearly or monthly contribution compounded annually. By selecting an investment type at the top, the relevant inputs are pre-filled with sensible defaults, but every field stays editable so you are never boxed in.</p>
+
+  <p>The results are deliberately richer than a single final figure. Alongside the headline <em>total investment</em>, <em>interest or wealth gain</em> and <em>final value</em>, the tool shows your <strong>ROI</strong>, your <strong>CAGR</strong> (the smoothed annual growth rate of your money), the <strong>effective annual return</strong> (what your nominal rate actually earns once compounding is applied), and — crucially — the <strong>inflation-adjusted value</strong> and <strong>post-tax value</strong>. Nominal returns can be misleading: a corpus that looks impressive in future rupees may buy far less than you expect once inflation is accounted for, and gains are often taxable. By surfacing the real, spendable outcome next to the headline number, the calculator helps you make decisions on the figures that actually matter.</p>
+
+  <p>Understanding is easier when you can see it, so the engine feeds four chart views — an area chart, a line chart, a bar chart and a pie split of principal versus interest — all drawn directly on an HTML5 canvas with no external chart library, which keeps the page fast and fully offline-capable. Beneath the charts sits a year-by-year growth table listing, for each year, the amount invested so far, the interest accumulated, the running balance and the year-on-year growth percentage. That schedule can be exported as a CSV for a spreadsheet, an Excel file, a PDF snapshot, or saved as a PNG image of the chart, and the whole view can be sent to your printer. For advisors preparing client illustrations, or students documenting a project, this export path turns an on-screen estimate into a shareable artefact in a couple of clicks.</p>
+
+  <p>Beyond the main calculator, four focused modes handle the questions that pure forward projection cannot. <strong>Compare</strong> places two scenarios on the same axes so you can settle debates like SIP versus lump sum, twelve percent versus fourteen, or monthly versus quarterly compounding, with the difference shown in money rather than hand-waving. The <strong>Goal</strong> planner works backwards from a target: tell it you want one crore in fifteen years and it solves for the monthly investment, the time, or the rate you would need, using a numerical search over the same simulation engine so the answer is internally consistent. The <strong>Reverse</strong> calculator does the same for a lump sum, finding the principal, rate or time required to reach a future value. And the <strong>Inflation</strong> mode isolates the erosion of purchasing power, showing present value, future value, the real return and the rupee "inflation loss" over your horizon. Together these cover the full arc of everyday financial planning without ever needing a spreadsheet.</p>
+
+  <p>The tool also respects that money is personal. Everything runs client-side, so your amounts, rates and goals never leave your device; there is no account, no tracking of your figures and no server round-trip. It supports seven currencies with correct local formatting, remembers your recent and saved calculations in your own browser for quick recall, and validates inputs to catch empty, negative or out-of-range values before they produce nonsense. It is designed to be lightweight and responsive, working just as well on a phone during a bank visit as on a desktop, and to remain accessible with clear labels and keyboard-friendly controls. One important caveat applies to every projection here: it assumes a constant rate of return, which real markets and even fixed deposits do not guarantee over long periods. Treat the outputs as informed estimates for planning and comparison, and confirm current rates and tax rules with your bank, fund house or a qualified advisor before committing money.</p>
+
+  <!-- ===== About (Hindi) ===== -->
+  <h2>ℹ️ इस टूल के बारे में (हिंदी में)</h2>
+  <p class="fic-lang-note">The same guide in Hindi / यही जानकारी हिंदी में।</p>
+  <p><strong>Professional Financial Investment Calculator</strong> एक फ्री, ब्राउज़र-आधारित planning टूल है जो एक साधारण compound-interest calculator से बढ़कर यह मॉडल करने का पूरा इंजन बन गया है कि पैसा कैसे बढ़ता है। इसका मक़सद उन असली सवालों का तेज़ और ईमानदार जवाब देना है जो लोग अपनी savings और investment को लेकर पूछते हैं — यह कितना बनेगा, किसी लक्ष्य तक पहुँचने के लिए मुझे कितना निवेश करना होगा, inflation और tax के बाद इसकी असली कीमत क्या होगी, और एक विकल्प दूसरे से कैसे बेहतर है? यह सब आपके ब्राउज़र में ही होता है, इसलिए आप असली आँकड़ों के साथ बिना कहीं भेजे स्वतंत्र रूप से प्रयोग कर सकते हैं।</p>
+
+  <p>इसके केंद्र में एक सावधानी से बना simulation इंजन है। किसी एक बंद-सूत्र (formula) पर निर्भर रहने के बजाय जो सिर्फ lump sum पर फिट बैठता है, यह निवेश को महीने-दर-महीने आगे बढ़ाता है, आपकी चुनी हुई compounding frequency (daily, weekly, monthly, quarterly, half-yearly, annually या continuous) पर growth लगाता है, और आपके नियमित contribution जोड़ता या withdrawal घटाता है ठीक उसी समय जब वे होते हैं। यही period-by-period तरीका एक ही टूल को बहुत अलग-अलग products का सही प्रतिनिधित्व करने देता है — FD बिना contribution वाला lump sum है; RD या SIP समान contributions की धारा है; SWP invested corpus से withdrawals की धारा है; और PPF या NPS सालाना/मासिक contribution है। ऊपर से investment type चुनने पर संबंधित inputs समझदार defaults से भर जाते हैं, पर हर field editable रहती है।</p>
+
+  <p>Results जान-बूझकर सिर्फ एक अंतिम आँकड़े से ज़्यादा समृद्ध हैं। मुख्य <em>total investment</em>, <em>interest/wealth gain</em> और <em>final value</em> के साथ टूल आपका <strong>ROI</strong>, <strong>CAGR</strong>, <strong>effective annual return</strong>, और सबसे अहम — <strong>inflation-adjusted value</strong> तथा <strong>post-tax value</strong> दिखाता है। Nominal returns भ्रामक हो सकते हैं: भविष्य के रुपयों में प्रभावशाली दिखने वाला corpus inflation के बाद उम्मीद से बहुत कम ख़रीद सकता है, और gains अक्सर taxable होते हैं। असली, ख़र्च-योग्य परिणाम को मुख्य आँकड़े के साथ दिखाकर यह calculator आपको उन्हीं आँकड़ों पर फ़ैसला लेने में मदद करता है जो सच में मायने रखते हैं।</p>
+
+  <p>समझना तब आसान होता है जब आप देख सकें, इसलिए इंजन चार chart views देता है — area, line, bar और principal बनाम interest का pie — सभी सीधे HTML5 canvas पर बिना किसी external library के बनते हैं, जिससे पेज तेज़ और पूरी तरह offline-सक्षम रहता है। charts के नीचे एक साल-दर-साल growth table है जो हर साल का invested amount, जमा interest, चालू balance और साल-दर-साल growth प्रतिशत दिखाती है। इस schedule को CSV, Excel, PDF के रूप में export किया जा सकता है या chart को PNG के रूप में सहेजा जा सकता है, और पूरे view को प्रिंट किया जा सकता है।</p>
+
+  <p>मुख्य calculator के अलावा चार केंद्रित modes उन सवालों को संभालते हैं जिन्हें सीधा projection हल नहीं कर सकता। <strong>Compare</strong> दो scenarios को एक ही axes पर रखता है ताकि SIP बनाम lump sum, या अलग rates/compounding की बहस पैसों में सुलझ जाए। <strong>Goal</strong> planner किसी target से उल्टा काम करता है — बताइए कि 15 साल में एक करोड़ चाहिए और यह ज़रूरी monthly investment, समय या rate निकाल देता है, उसी simulation इंजन पर numerical search से। <strong>Reverse</strong> calculator lump sum के लिए ज़रूरी principal, rate या time निकालता है। और <strong>Inflation</strong> mode purchasing power के क्षरण को अलग दिखाता है — present value, future value, real return और "inflation loss"।</p>
+
+  <p>यह टूल यह भी मानता है कि पैसा निजी है। सब कुछ client-side चलता है, इसलिए आपके amounts, rates और goals आपके डिवाइस से बाहर नहीं जाते; कोई account नहीं, कोई tracking नहीं। यह सात currencies को सही local formatting के साथ सपोर्ट करता है, आपकी हाल की और सहेजी गई calculations आपके अपने ब्राउज़र में याद रखता है, और inputs को validate करता है। एक ज़रूरी सावधानी हर projection पर लागू होती है: यह एक constant rate of return मानता है, जिसकी असली बाज़ार और FD भी लंबे समय तक गारंटी नहीं देते। outputs को planning और तुलना के लिए एक सूचित अनुमान मानें, और पैसा लगाने से पहले मौजूदा rates तथा tax नियम अपने बैंक, fund house या योग्य सलाहकार से verify करें।</p>
+
+  <!-- ===== FAQ (immediately after About — required order) ===== -->
+  <h2>❓ Frequently Asked Questions</h2>
+  <div class="fic-faq" id="ficFaq">
+    <details><summary>Is this investment calculator free?</summary><p>Yes, completely free with no account, no signup and no limit on how many calculations you run. / हाँ, यह पूरी तरह मुफ़्त है — न अकाउंट, न signup, न कोई सीमा।</p></details>
+    <details><summary>Are my financial figures uploaded anywhere?</summary><p>No. Every calculation runs locally in your browser; your amounts and rates never leave your device. / नहीं, हर calculation आपके ब्राउज़र में ही चलती है; आपके आँकड़े कहीं नहीं जाते।</p></details>
+    <details><summary>What is the difference between simple and compound interest?</summary><p>Simple interest is earned only on the principal; compound interest is earned on the principal plus previously accumulated interest, so it grows faster over time. / simple interest सिर्फ principal पर मिलता है; compound interest principal और जमा interest दोनों पर।</p></details>
+    <details><summary>Which investment types can I model?</summary><p>Lump sum, SIP, SWP, FD, RD, PPF, NPS, mutual fund, and retirement or education goals — all from one engine. / lump sum, SIP, SWP, FD, RD, PPF, NPS, mutual fund और retirement/education लक्ष्य।</p></details>
+    <details><summary>What compounding frequencies are supported?</summary><p>Daily, weekly, monthly, quarterly, half-yearly, annually and continuous compounding. / daily, weekly, monthly, quarterly, half-yearly, annually और continuous।</p></details>
+    <details><summary>What is CAGR?</summary><p>Compound Annual Growth Rate — the single smoothed annual rate at which your money grew from the invested amount to the final value. / CAGR वह एकसमान वार्षिक दर है जिस पर आपका पैसा बढ़ा।</p></details>
+    <details><summary>What is effective annual return?</summary><p>The actual yearly yield of a nominal rate once compounding is applied — for example 12% compounded monthly is about 12.68% effective. / compounding के बाद nominal rate की असली वार्षिक यील्ड।</p></details>
+    <details><summary>How does the inflation adjustment work?</summary><p>It divides the future value by (1 + inflation)^years to show the amount in today's purchasing power. / यह future value को (1+inflation)^years से भाग देकर आज की क्रय-शक्ति में दिखाता है।</p></details>
+    <details><summary>How is tax estimated?</summary><p>It applies your tax rate to the gains (not the principal) to show an approximate post-tax value. Real tax rules vary by instrument and country. / यह gains पर आपकी tax दर लगाकर अनुमानित post-tax value दिखाता है।</p></details>
+    <details><summary>Can I compare SIP versus lump sum?</summary><p>Yes. Use the Compare tab to run two scenarios side by side on the same chart. / हाँ, Compare tab में दो scenarios एक साथ चलाएँ।</p></details>
+    <details><summary>Can it tell me how much to invest for a goal?</summary><p>Yes. The Goal tab solves for the required monthly investment, duration or rate to reach a target. / हाँ, Goal tab ज़रूरी monthly/समय/rate निकालता है।</p></details>
+    <details><summary>What does the reverse calculator do?</summary><p>It finds the principal, rate or time needed for a lump sum to reach a chosen future value. / यह किसी lump sum के लिए ज़रूरी principal, rate या time निकालता है।</p></details>
+    <details><summary>Which currencies are supported?</summary><p>INR, USD, EUR, GBP, AED, SGD and AUD, each with correct local number formatting. / INR, USD, EUR, GBP, AED, SGD और AUD।</p></details>
+    <details><summary>Can I export the results?</summary><p>Yes — CSV, Excel and PDF for the growth table, PNG for the chart, and print for the whole view. / हाँ — CSV, Excel, PDF, PNG और print।</p></details>
+    <details><summary>Does it save my calculations?</summary><p>Recent and starred calculations are stored in your own browser (localStorage). Clearing your browser data removes them. / हाल की और सहेजी गई calculations आपके ब्राउज़र में रहती हैं।</p></details>
+    <details><summary>Does it work offline?</summary><p>Yes. There are no external libraries, so once loaded it works without an internet connection. / हाँ, कोई external library नहीं है, इसलिए यह offline काम करता है।</p></details>
+    <details><summary>Are the results guaranteed?</summary><p>No. They assume a constant rate of return; real returns fluctuate. Use them as planning estimates and verify rates with your institution. / नहीं, ये constant rate मानते हैं; असली returns बदलते हैं।</p></details>
+    <details><summary>Does it handle withdrawals (SWP)?</summary><p>Yes. Enter a monthly withdrawal to model a Systematic Withdrawal Plan from an invested corpus. / हाँ, monthly withdrawal डालकर SWP मॉडल करें।</p></details>
+    <details><summary>Is it mobile friendly and accessible?</summary><p>Yes. The layout is responsive and controls are labelled and keyboard-operable. / हाँ, यह responsive और सुलभ है।</p></details>
+    <details><summary>Does it use any AI?</summary><p>No. Every figure comes from transparent, deterministic financial formulas — no AI involved. / नहीं, हर आँकड़ा पारदर्शी वित्तीय सूत्रों से आता है।</p></details>
+    <details><summary>Why does more frequent compounding give a higher result?</summary><p>Because interest starts earning interest sooner; daily compounding credits growth 365 times a year versus once for annual. / क्योंकि interest जल्दी interest कमाना शुरू करता है।</p></details>
+  </div>
+
+  <!-- ===== Privacy ===== -->
+  <h2>🔒 Privacy</h2>
+  <p>This calculator is privacy-first. All financial modelling — compounding, inflation and tax adjustment, goal solving and charting — happens entirely in your browser with JavaScript and the canvas API. Your principal amounts, rates, goals and saved calculations are never uploaded to a server, shared with analytics, or processed by any AI service; saved items live only in your own browser's local storage. This makes the tool safe to use with sensitive personal-finance figures, and it keeps working offline once the page has loaded. / यह calculator privacy-first है — सारा काम आपके ब्राउज़र में होता है, कोई डेटा अपलोड नहीं होता, और सहेजी गई calculations सिर्फ आपके ब्राउज़र में रहती हैं।</p>
+
+  <!-- ===== Troubleshooting ===== -->
+  <h2>🛠️ Troubleshooting</h2>
+  <ul>
+    <li><strong>Results show a dash or zero:</strong> a field is empty or invalid — check for negative numbers or a rate above 100%.</li>
+    <li><strong>The goal/reverse solver says "not reachable":</strong> the target can't be met with the other values (e.g. rate too low for the time) — increase the rate, contribution or duration.</li>
+    <li><strong>Numbers look too high:</strong> confirm the compounding frequency and that the contribution frequency (per month/quarter/year) matches your intent.</li>
+    <li><strong>Inflation-adjusted value seems low:</strong> that is expected — it shows today's purchasing power, which is much less than the nominal future figure over long horizons.</li>
+    <li><strong>Export button did nothing:</strong> your browser may have blocked the download; allow downloads for this site and try again.</li>
+    <li><strong>Currency symbol looks wrong:</strong> pick your currency from the dropdown at the top; formatting follows that currency's locale.</li>
+  </ul>
 </div>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
 <script src="../assets/common.js"></script>
 <script>
-function formatRupee(n){
-  return '₹' + Math.round(n).toLocaleString('en-IN');
-}
+(function(){
+  'use strict';
+  function $(id){ return document.getElementById(id); }
 
-function compoundValue(principal, annualRatePct, freq, years, monthlyAdd){
-  const r = annualRatePct / 100;
-  const n = freq;
-  let amount = principal * Math.pow(1 + r/n, n*years);
+  // ---------- Currency ----------
+  var CUR = { INR:['₹','en-IN'], USD:['$','en-US'], EUR:['€','en-IE'], GBP:['£','en-GB'], AED:['د.إ ','en-AE'], SGD:['S$','en-SG'], AUD:['A$','en-AU'] };
+  var curCode='INR';
+  function sym(){ return CUR[curCode][0]; }
+  function fmt(n){ if(!isFinite(n)) return '—'; return sym()+Math.round(n).toLocaleString(CUR[curCode][1]); }
+  function fmt2(n){ return isFinite(n)? n.toFixed(2)+'%':'—'; }
 
-  if(monthlyAdd > 0){
-    // approximate monthly contributions compounded at the same nominal rate, using monthly compounding equivalent
-    const i = r/12;
-    const months = years*12;
-    const contribFV = i === 0 ? monthlyAdd*months : monthlyAdd * ((Math.pow(1+i, months)-1)/i);
-    amount += contribFV;
+  // ---------- Core simulation ----------
+  // Returns {rows:[{year,invested,interest,balance,growth}], invested, final, interest}
+  function simulate(p){
+    var principal=+p.principal||0, rate=(+p.rate||0)/100, years=Math.max(0,+p.years||0);
+    var freq=p.freq==='c'?'c':(+p.freq||12);
+    var contrib=+p.contrib||0, contribPerYear=+p.contribFreq||12;
+    var withdraw=+p.withdraw||0;
+    var monthlyFactor = (freq==='c') ? Math.exp(rate/12) : Math.pow(1+rate/freq, freq/12);
+    var balance=principal, invested=principal, contributed=0;
+    var months=Math.round(years*12);
+    var rows=[]; var prevBal=principal;
+    var contribEveryMonths = contribPerYear? Math.round(12/contribPerYear):0;
+    for(var m=1;m<=months;m++){
+      balance*=monthlyFactor;
+      if(contrib>0 && contribEveryMonths && m%contribEveryMonths===0){ balance+=contrib; invested+=contrib; }
+      if(withdraw>0){ balance-=withdraw; if(balance<0)balance=0; }
+      if(m%12===0){
+        var yr=m/12;
+        var interestSoFar=balance-invested+ (withdraw>0? withdraw*m:0);
+        rows.push({ year:yr, invested:invested, interest:balance-invested, balance:balance, growth: prevBal>0?((balance-prevBal)/prevBal*100):0 });
+        prevBal=balance;
+      }
+    }
+    if(months%12!==0 && months>0){ var yr2=years; rows.push({year:+yr2.toFixed(2),invested:invested,interest:balance-invested,balance:balance,growth:prevBal>0?((balance-prevBal)/prevBal*100):0}); }
+    return { rows:rows, invested:invested, final:balance, interest:balance-invested };
   }
-  return amount;
-}
 
-function calculate(){
-  const principal = parseFloat(document.getElementById('principal').value) || 0;
-  const rate = parseFloat(document.getElementById('rate').value) || 0;
-  const years = Math.max(1, parseInt(document.getElementById('years').value) || 1);
-  const freq = parseInt(document.getElementById('frequency').value);
-  const monthlyAdd = parseFloat(document.getElementById('monthlyAdd').value) || 0;
-
-  const finalAmount = compoundValue(principal, rate, freq, years, monthlyAdd);
-  const totalInvested = principal + monthlyAdd*12*years;
-  const interest = finalAmount - totalInvested;
-
-  document.getElementById('investedVal').textContent = formatRupee(totalInvested);
-  document.getElementById('interestVal').textContent = formatRupee(interest);
-  document.getElementById('finalVal').textContent = formatRupee(finalAmount);
-
-  const chart = document.getElementById('barChart');
-  chart.innerHTML = '';
-  let maxVal = 0;
-  const yearVals = [];
-  for(let y=1; y<=years; y++){
-    const val = compoundValue(principal, rate, freq, y, monthlyAdd);
-    yearVals.push(val);
-    if(val > maxVal) maxVal = val;
+  function lastState(){
+    return {
+      principal:val('principal'), rate:val('rate'), years:val('years'),
+      freq:$('frequency').value, contrib:val('monthlyAdd'), contribFreq:$('contribFreq').value,
+      withdraw:val('withdraw'), inflation:val('inflation'), taxRate:val('taxRate')
+    };
   }
-  yearVals.forEach((val, idx)=>{
-    const bar = document.createElement('div');
-    bar.className = 'bar';
-    bar.style.height = Math.max(2, (val/maxVal)*150) + 'px';
-    bar.title = 'Year ' + (idx+1) + ': ' + formatRupee(val);
-    chart.appendChild(bar);
+  function val(id){ var v=parseFloat($(id).value); return isNaN(v)?0:v; }
+
+  // ---------- Validation ----------
+  function validate(){
+    var ok=true;
+    [['principal',0,1e12],['rate',0,100],['years',1,80]].forEach(function(c){
+      var el=$(c[0]); var wrap=el.closest('.fic-field'); var v=parseFloat(el.value);
+      var bad = el.value==='' || isNaN(v) || v<c[1] || v>c[2];
+      if(wrap) wrap.classList.toggle('invalid', bad);
+      if(bad) ok=false;
+    });
+    return ok;
+  }
+
+  // ---------- Main calculate ----------
+  var lastResult=null;
+  function calculate(){
+    if(!validate()){ return; }
+    var s=lastState();
+    var r=simulate({principal:s.principal,rate:s.rate,years:s.years,freq:s.freq,contrib:s.contrib,contribFreq:s.contribFreq,withdraw:s.withdraw});
+    lastResult=r;
+    var years=Math.max(1,s.years);
+    var roi = r.invested>0 ? (r.interest/r.invested*100):0;
+    var cagr = r.invested>0 ? (Math.pow(r.final/r.invested,1/years)-1)*100 : 0;
+    var n = s.freq==='c'? null : +s.freq;
+    var ear = s.freq==='c' ? (Math.exp(s.rate/100)-1)*100 : (Math.pow(1+(s.rate/100)/n,n)-1)*100;
+    var inflAdj = r.final/Math.pow(1+(s.inflation/100),years);
+    var tax = r.interest>0 ? r.interest*(s.taxRate/100) : 0;
+    var postTax = r.final - tax;
+
+    $('investedVal').textContent=fmt(r.invested);
+    $('interestVal').textContent=fmt(r.interest);
+    $('finalVal').textContent=fmt(r.final);
+    $('roiVal').textContent=fmt2(roi);
+    $('cagrVal').textContent=fmt2(cagr);
+    $('earVal').textContent=fmt2(ear);
+    $('inflAdjVal').textContent=fmt(inflAdj);
+    $('postTaxVal').textContent=fmt(postTax);
+    $('taxVal').textContent=fmt(tax);
+
+    drawChart();
+    renderTable();
+    pushHistory(s,r);
+  }
+
+  // ---------- Charts (canvas, no libs) ----------
+  var chartMode='area';
+  function drawChart(){
+    var cv=$('growthCanvas'); if(!cv||!lastResult) return;
+    sizeCanvas(cv);
+    var ctx=cv.getContext('2d'); var W=cv.width,H=cv.height;
+    ctx.clearRect(0,0,W,H);
+    var rows=lastResult.rows; if(!rows.length){ return; }
+    var pad=42*dpr(), legend=$('chartLegend'); legend.innerHTML='';
+    if(chartMode==='pie'){ drawPie(ctx,W,H); legend.innerHTML='<span><i style="background:#7c5cfc"></i>Invested</span><span><i style="background:#16c079"></i>Interest</span>'; return; }
+    legend.innerHTML='<span><i style="background:#3b82f6"></i>Invested</span><span><i style="background:#16c079"></i>Balance</span>';
+    var maxV=Math.max.apply(null,rows.map(function(r){return r.balance;}));
+    var x0=pad,x1=W-pad*0.6,y0=H-pad,y1=pad*0.5;
+    // axes
+    ctx.strokeStyle='rgba(255,255,255,.18)'; ctx.lineWidth=dpr(); ctx.beginPath(); ctx.moveTo(x0,y1); ctx.lineTo(x0,y0); ctx.lineTo(x1,y0); ctx.stroke();
+    ctx.fillStyle='rgba(255,255,255,.55)'; ctx.font=(11*dpr())+'px system-ui';
+    for(var g=0;g<=4;g++){ var yy=y0-(y0-y1)*g/4; ctx.fillText(shortNum(maxV*g/4), 4, yy+4*dpr()); ctx.strokeStyle='rgba(255,255,255,.06)'; ctx.beginPath(); ctx.moveTo(x0,yy); ctx.lineTo(x1,yy); ctx.stroke(); }
+    function px(i){ return x0+(x1-x0)*(rows.length===1?0.5:i/(rows.length-1)); }
+    function py(v){ return y0-(y0-y1)*(v/maxV); }
+    if(chartMode==='bar'){
+      var bw=(x1-x0)/rows.length*0.6;
+      rows.forEach(function(r,i){ var h=(y0-py(r.balance)); ctx.fillStyle='#16c079'; ctx.fillRect(px(i)-bw/2,py(r.balance),bw,h); var ih=(y0-py(r.invested)); ctx.fillStyle='#3b82f6'; ctx.fillRect(px(i)-bw/2,py(r.invested),bw,ih); });
+    } else {
+      // invested + balance lines/areas
+      drawSeries(ctx,rows,px,py,y0,'invested','#3b82f6',chartMode==='area');
+      drawSeries(ctx,rows,px,py,y0,'balance','#16c079',chartMode==='area');
+    }
+    // x labels
+    ctx.fillStyle='rgba(255,255,255,.5)';
+    var step=Math.ceil(rows.length/8);
+    rows.forEach(function(r,i){ if(i%step===0||i===rows.length-1){ ctx.fillText('Y'+Math.round(r.year), px(i)-6*dpr(), y0+16*dpr()); } });
+  }
+  function drawSeries(ctx,rows,px,py,y0,key,color,area){
+    ctx.beginPath();
+    rows.forEach(function(r,i){ var X=px(i),Y=py(r[key]); if(i===0)ctx.moveTo(X,Y); else ctx.lineTo(X,Y); });
+    ctx.strokeStyle=color; ctx.lineWidth=2*dpr(); ctx.stroke();
+    if(area){ ctx.lineTo(px(rows.length-1),y0); ctx.lineTo(px(0),y0); ctx.closePath(); ctx.globalAlpha=.16; ctx.fillStyle=color; ctx.fill(); ctx.globalAlpha=1; }
+  }
+  function drawPie(ctx,W,H){
+    var inv=lastResult.invested, intr=Math.max(0,lastResult.interest), tot=inv+intr; if(tot<=0)return;
+    var cx=W/2,cy=H/2,rad=Math.min(W,H)/2-20*dpr();
+    var a0=-Math.PI/2; [[inv,'#7c5cfc'],[intr,'#16c079']].forEach(function(s){ var a1=a0+s[0]/tot*Math.PI*2; ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,rad,a0,a1); ctx.closePath(); ctx.fillStyle=s[1]; ctx.fill(); a0=a1; });
+    ctx.fillStyle='#fff'; ctx.font='bold '+(13*dpr())+'px system-ui'; ctx.textAlign='center';
+    ctx.fillText(Math.round(intr/tot*100)+'% gain', cx, cy+5*dpr()); ctx.textAlign='left';
+  }
+  function dpr(){ return Math.min(window.devicePixelRatio||1,2); }
+  function sizeCanvas(cv){ var w=cv.parentElement.clientWidth-20; cv.style.width=w+'px'; cv.style.height='260px'; cv.width=w*dpr(); cv.height=260*dpr(); }
+  function shortNum(v){ if(v>=1e7)return (v/1e7).toFixed(1)+'Cr'; if(v>=1e5)return (v/1e5).toFixed(1)+'L'; if(v>=1e3)return (v/1e3).toFixed(0)+'k'; return Math.round(v); }
+
+  document.querySelectorAll('[data-chart]').forEach(function(b){ b.addEventListener('click',function(){ document.querySelectorAll('[data-chart]').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); chartMode=b.getAttribute('data-chart'); drawChart(); }); });
+
+  // ---------- Growth table ----------
+  function renderTable(){
+    var t=$('growthTable'); if(!lastResult)return;
+    var head='<tr><th>Year</th><th>Investment</th><th>Interest</th><th>Balance</th><th>Growth %</th></tr>';
+    var body=lastResult.rows.map(function(r){ return '<tr><td>'+r.year+'</td><td>'+fmt(r.invested)+'</td><td>'+fmt(r.interest)+'</td><td>'+fmt(r.balance)+'</td><td>'+r.growth.toFixed(1)+'%</td></tr>'; }).join('');
+    t.innerHTML=head+body;
+  }
+
+  // ---------- Export ----------
+  function dl(blob,fn){ var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fn; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(a.href);},1500); }
+  function tableData(){ return lastResult? lastResult.rows.map(function(r){return [r.year,Math.round(r.invested),Math.round(r.interest),Math.round(r.balance),r.growth.toFixed(1)];}):[]; }
+  function exportCSV(){ var rows=[['Year','Investment','Interest','Balance','Growth %']].concat(tableData()); dl(new Blob([rows.map(function(r){return r.join(',');}).join('\n')],{type:'text/csv'}),'growth.csv'); }
+  function exportXLS(){
+    var html='<table><tr><th>Year</th><th>Investment</th><th>Interest</th><th>Balance</th><th>Growth %</th></tr>'+tableData().map(function(r){return '<tr>'+r.map(function(c){return '<td>'+c+'</td>';}).join('')+'</tr>';}).join('')+'</table>';
+    dl(new Blob(['﻿<html><head><meta charset="UTF-8"></head><body>'+html+'</body></html>'],{type:'application/vnd.ms-excel'}),'growth.xls');
+  }
+  function exportPDF(){
+    // minimal text PDF of the summary + first rows
+    var lines=['Financial Investment Calculator — Summary',''];
+    lines.push('Total Investment: '+$('investedVal').textContent);
+    lines.push('Interest / Wealth Gain: '+$('interestVal').textContent);
+    lines.push('Final Value: '+$('finalVal').textContent);
+    lines.push('ROI: '+$('roiVal').textContent+'   CAGR: '+$('cagrVal').textContent+'   EAR: '+$('earVal').textContent);
+    lines.push('Inflation-Adjusted: '+$('inflAdjVal').textContent+'   Post-Tax: '+$('postTaxVal').textContent);
+    lines.push('');
+    lines.push('Year   Investment   Interest   Balance   Growth%');
+    tableData().slice(0,40).forEach(function(r){ lines.push(r[0]+'    '+r[1]+'    '+r[2]+'    '+r[3]+'    '+r[4]+'%'); });
+    dl(makePDF(lines),'summary.pdf');
+  }
+  function makePDF(lines){
+    var esc=function(s){return String(s).replace(/([\\()])/g,'\\$1');};
+    var content='BT /F1 10 Tf 40 800 Td 12 TL\n'+lines.map(function(l,i){return (i===0?'':'T* ')+'('+esc(l)+') Tj';}).join('\n')+'\nET';
+    var objs=[];
+    objs.push('<< /Type /Catalog /Pages 2 0 R >>');
+    objs.push('<< /Type /Pages /Kids [3 0 R] /Count 1 >>');
+    objs.push('<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>');
+    objs.push('<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>');
+    objs.push('<< /Length '+content.length+' >>\nstream\n'+content+'\nendstream');
+    var pdf='%PDF-1.4\n'; var offsets=[];
+    objs.forEach(function(o,i){ offsets.push(pdf.length); pdf+=(i+1)+' 0 obj\n'+o+'\nendobj\n'; });
+    var xref=pdf.length; pdf+='xref\n0 '+(objs.length+1)+'\n0000000000 65535 f \n';
+    offsets.forEach(function(o){ pdf+=('0000000000'+o).slice(-10)+' 00000 n \n'; });
+    pdf+='trailer\n<< /Size '+(objs.length+1)+' /Root 1 0 R >>\nstartxref\n'+xref+'\n%%EOF';
+    return new Blob([pdf],{type:'application/pdf'});
+  }
+  document.querySelectorAll('[data-export]').forEach(function(b){ b.addEventListener('click',function(){ var t=b.getAttribute('data-export'); if(t==='csv')exportCSV(); else if(t==='xls')exportXLS(); else if(t==='pdf')exportPDF(); }); });
+  $('savePngBtn').addEventListener('click',function(){ var cv=$('growthCanvas'); cv.toBlob(function(bl){ dl(bl,'growth-chart.png'); }); });
+  $('printBtn').addEventListener('click',function(){ window.print(); });
+
+  // ---------- History (localStorage) ----------
+  var HKEY='fic_history_v1';
+  function loadHist(){ try{ return JSON.parse(localStorage.getItem(HKEY)||'[]'); }catch(e){ return []; } }
+  function saveHist(h){ try{ localStorage.setItem(HKEY,JSON.stringify(h.slice(0,25))); }catch(e){} }
+  function pushHistory(s,r){
+    var h=loadHist();
+    var label=fmt(s.principal)+' @ '+s.rate+'% × '+s.years+'y → '+fmt(r.final);
+    if(h.length && h[0].auto && !h[0].fav){ h[0]={label:label,state:s,auto:true,fav:false}; }
+    else { h.unshift({label:label,state:s,auto:true,fav:false}); }
+    saveHist(h); renderHist();
+  }
+  function renderHist(){
+    var h=loadHist(); var wrap=$('historyList');
+    if(!h.length){ wrap.innerHTML='<div style="font-size:.78rem;color:var(--text-dim)">No calculations yet.</div>'; return; }
+    wrap.innerHTML=h.map(function(it,i){ return '<div class="fic-hitem"><span class="g">'+(it.fav?'⭐ ':'')+it.label+'</span><button data-load="'+i+'" title="Load">↺</button><button data-fav="'+i+'" title="Favorite">'+(it.fav?'★':'☆')+'</button><button data-del="'+i+'" title="Remove">✕</button></div>'; }).join('');
+    wrap.querySelectorAll('[data-load]').forEach(function(b){ b.addEventListener('click',function(){ applyState(h[+b.getAttribute('data-load')].state); }); });
+    wrap.querySelectorAll('[data-fav]').forEach(function(b){ b.addEventListener('click',function(){ var i=+b.getAttribute('data-fav'); h[i].fav=!h[i].fav; h[i].auto=false; saveHist(h); renderHist(); }); });
+    wrap.querySelectorAll('[data-del]').forEach(function(b){ b.addEventListener('click',function(){ var i=+b.getAttribute('data-del'); h.splice(i,1); saveHist(h); renderHist(); }); });
+  }
+  function applyState(s){ $('principal').value=s.principal; $('rate').value=s.rate; $('years').value=s.years; $('frequency').value=s.freq; $('monthlyAdd').value=s.contrib; $('contribFreq').value=s.contribFreq; $('withdraw').value=s.withdraw||0; $('inflation').value=s.inflation||0; $('taxRate').value=s.taxRate||0; calculate(); }
+  $('saveCalcBtn').addEventListener('click',function(){ var h=loadHist(); if(h.length){ h[0].fav=true; h[0].auto=false; saveHist(h); renderHist(); } });
+  $('clearHistBtn').addEventListener('click',function(){ if(confirm('Clear all history and saved calculations?')){ saveHist([]); renderHist(); } });
+
+  // ---------- Investment type presets ----------
+  var TYPES=[
+    ['Lump Sum',{principal:100000,contrib:0,rate:8,freq:'12',years:10}],
+    ['SIP',{principal:0,contrib:5000,contribFreq:'12',rate:12,freq:'12',years:15}],
+    ['SWP',{principal:1000000,contrib:0,withdraw:8000,rate:9,freq:'12',years:15}],
+    ['FD',{principal:200000,contrib:0,rate:7,freq:'4',years:5}],
+    ['RD',{principal:0,contrib:5000,contribFreq:'12',rate:7,freq:'4',years:5}],
+    ['PPF',{principal:0,contrib:150000,contribFreq:'1',rate:7.1,freq:'1',years:15}],
+    ['NPS',{principal:0,contrib:5000,contribFreq:'12',rate:10,freq:'12',years:25}],
+    ['Mutual Fund',{principal:100000,contrib:5000,contribFreq:'12',rate:12,freq:'12',years:10}],
+    ['Retirement',{principal:500000,contrib:15000,contribFreq:'12',rate:11,freq:'12',years:25}],
+    ['Education',{principal:200000,contrib:8000,contribFreq:'12',rate:10,freq:'12',years:12}]
+  ];
+  function buildTypes(){
+    var wrap=$('ficTypes');
+    TYPES.forEach(function(t,idx){
+      var b=document.createElement('button'); b.className='fic-type'+(idx===0?' active':''); b.textContent=t[0];
+      b.addEventListener('click',function(){ document.querySelectorAll('.fic-type').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); var c=t[1];
+        $('principal').value=c.principal; $('monthlyAdd').value=c.contrib||0; if(c.contribFreq)$('contribFreq').value=c.contribFreq; $('withdraw').value=c.withdraw||0; $('rate').value=c.rate; $('frequency').value=c.freq; $('years').value=c.years; calculate();
+      });
+      wrap.appendChild(b);
+    });
+  }
+
+  // ---------- Tabs ----------
+  document.querySelectorAll('.fic-tab').forEach(function(t){ t.addEventListener('click',function(){ document.querySelectorAll('.fic-tab').forEach(function(x){x.classList.remove('active');}); document.querySelectorAll('.fic-pane').forEach(function(x){x.classList.remove('active');}); t.classList.add('active'); var tab=t.getAttribute('data-tab'); $('pane-'+tab).classList.add('active'); if(tab==='calc') drawChart(); if(tab==='compare') runCompare(); }); });
+
+  // ---------- Currency change ----------
+  $('ficCurrency').addEventListener('change',function(){ curCode=this.value; calculate(); });
+
+  // ---------- Compare ----------
+  function simpleSim(p,m,r,y,f){ return simulate({principal:p,rate:r,years:y,freq:f,contrib:m,contribFreq:12,withdraw:0}); }
+  function runCompare(){
+    var A=simpleSim(val('cA_p'),val('cA_m'),val('cA_r'),val('cA_y'),$('cA_f').value);
+    var B=simpleSim(val('cB_p'),val('cB_m'),val('cB_r'),val('cB_y'),$('cB_f').value);
+    $('compareResults').innerHTML=
+      box('A: Final',fmt(A.final))+box('B: Final',fmt(B.final))+
+      box('A: Invested',fmt(A.invested))+box('B: Invested',fmt(B.invested))+
+      box('Difference',fmt(Math.abs(A.final-B.final)))+box('Winner',A.final>=B.final?'Scenario A':'Scenario B');
+    drawCompare(A,B);
+  }
+  function box(l,v){ return '<div class="stat-box"><div class="num">'+v+'</div><div class="lbl">'+l+'</div></div>'; }
+  function drawCompare(A,B){
+    var cv=$('compareCanvas'); sizeCanvas(cv); var ctx=cv.getContext('2d'); var W=cv.width,H=cv.height; ctx.clearRect(0,0,W,H);
+    var rows=Math.max(A.rows.length,B.rows.length); if(!rows)return;
+    var maxV=Math.max.apply(null,A.rows.map(function(r){return r.balance;}).concat(B.rows.map(function(r){return r.balance;})));
+    var pad=40*dpr(),x0=pad,x1=W-pad*0.6,y0=H-pad,y1=pad*0.5;
+    ctx.strokeStyle='rgba(255,255,255,.15)'; ctx.beginPath(); ctx.moveTo(x0,y1);ctx.lineTo(x0,y0);ctx.lineTo(x1,y0);ctx.stroke();
+    function line(rowsS,color){ ctx.beginPath(); rowsS.forEach(function(r,i){ var X=x0+(x1-x0)*(rowsS.length<2?0.5:i/(rowsS.length-1)); var Y=y0-(y0-y1)*(r.balance/maxV); if(i===0)ctx.moveTo(X,Y);else ctx.lineTo(X,Y); }); ctx.strokeStyle=color; ctx.lineWidth=2.5*dpr(); ctx.stroke(); }
+    line(A.rows,'#7c5cfc'); line(B.rows,'#16c079');
+  }
+  ['cA_p','cA_m','cA_r','cA_y','cA_f','cB_p','cB_m','cB_r','cB_y','cB_f'].forEach(function(id){ $(id).addEventListener('input',runCompare); });
+
+  // ---------- Goal solver ----------
+  function fvFor(monthly,rate,years,principal){ return simulate({principal:principal,rate:rate,years:years,freq:'12',contrib:monthly,contribFreq:12,withdraw:0}).final; }
+  function solve(lo,hi,fn,target){ for(var k=0;k<80;k++){ var mid=(lo+hi)/2; if(fn(mid)<target) lo=mid; else hi=mid; } return (lo+hi)/2; }
+  $('goalBtn').addEventListener('click',function(){
+    var mode=$('goalSolve').value, target=val('g_target'), P=val('g_principal'); var out='';
+    if(mode==='monthly'){ var r=val('g_rate'),y=val('g_years'); if(fvFor(1e9,r,y,P)<target){ out=box('Result','Not reachable'); } else { var m=solve(0,1e8,function(x){return fvFor(x,r,y,P);},target); out=box('Required monthly investment',fmt(m))+box('Over',y+' years @ '+r+'%'); } }
+    else if(mode==='years'){ var m2=val('g_monthly'),r2=val('g_rate'); if(fvFor(m2,r2,80,P)<target){ out=box('Result','Not reachable in 80y'); } else { var y2=solve(0,80,function(x){return fvFor(m2,r2,x,P);},target); out=box('Required duration',y2.toFixed(1)+' years')+box('Investing',fmt(m2)+'/mo @ '+r2+'%'); } }
+    else { var m3=val('g_monthly'),y3=val('g_years'); if(fvFor(m3,60,y3,P)<target){ out=box('Result','Not reachable at ≤60%'); } else { var r3=solve(0,60,function(x){return fvFor(m3,x,y3,P);},target); out=box('Required rate',r3.toFixed(2)+'%')+box('Investing',fmt(m3)+'/mo × '+y3+'y'); } }
+    $('goalResult').innerHTML=out;
   });
-}
+  $('goalSolve').addEventListener('change',function(){ document.querySelectorAll('[data-g]').forEach(function(e){ e.style.display = e.getAttribute('data-g')===$('goalSolve').value?'none':''; }); });
 
-['principal','rate','years','frequency','monthlyAdd'].forEach(id=>{
-  document.getElementById(id).addEventListener('input', calculate);
-});
+  // ---------- Reverse ----------
+  function fvLump(P,r,y,f){ var n=+f; return P*Math.pow(1+(r/100)/n,n*y); }
+  $('revBtn').addEventListener('click',function(){
+    var mode=$('revSolve').value,target=val('r_target'),f=$('r_freq').value,out='';
+    if(mode==='principal'){ var r=val('r_rate'),y=val('r_years'); var n=+f; var P=target/Math.pow(1+(r/100)/n,n*y); out=box('Required principal',fmt(P))+box('Grows to',fmt(target)); }
+    else if(mode==='rate'){ var P2=val('r_principal'),y2=val('r_years'); if(P2<=0||P2>=target){out=box('Result','Check inputs');} else { var rr=solve(0,100,function(x){return fvLump(P2,x,y2,f);},target); out=box('Required rate',rr.toFixed(2)+'%'); } }
+    else { var P3=val('r_principal'),r3=val('r_rate'); if(P3<=0||P3>=target||r3<=0){out=box('Result','Check inputs');} else { var tt=solve(0,100,function(x){return fvLump(P3,r3,x,f);},target); out=box('Required time',tt.toFixed(1)+' years'); } }
+    $('revResult').innerHTML=out;
+  });
+  $('revSolve').addEventListener('change',function(){ document.querySelectorAll('[data-r]').forEach(function(e){ e.style.display = e.getAttribute('data-r')===$('revSolve').value?'none':''; }); });
 
-calculate();
+  // ---------- Inflation ----------
+  $('inflBtn').addEventListener('click',function(){
+    var amt=val('i_amount'),ret=val('i_return'),inf=val('i_infl'),y=val('i_years');
+    var fv=amt*Math.pow(1+ret/100,y);
+    var real=fv/Math.pow(1+inf/100,y);
+    var realReturn=((1+ret/100)/(1+inf/100)-1)*100;
+    var loss=fv-real;
+    $('inflResult').innerHTML=box('Future value (nominal)',fmt(fv))+box('Future value (real)',fmt(real))+box('Real return / yr',realReturn.toFixed(2)+'%')+box('Inflation loss',fmt(loss));
+  });
+
+  // ---------- Wire main inputs ----------
+  ['principal','rate','years','frequency','monthlyAdd','contribFreq','withdraw','inflation','taxRate'].forEach(function(id){ $(id).addEventListener('input',calculate); });
+  window.addEventListener('resize',function(){ drawChart(); });
+
+  // ---------- Init ----------
+  buildTypes(); renderHist(); calculate();
+  document.querySelectorAll('[data-g]').forEach(function(e){ e.style.display = e.getAttribute('data-g')==='monthly'?'none':''; });
+  document.querySelectorAll('[data-r]').forEach(function(e){ e.style.display = e.getAttribute('data-r')==='principal'?'none':''; });
+})();
 </script>
 <!-- Default Statcounter code for Apne Software
 https://apnesoftware.com -->
 <script type="text/javascript">
-var sc_project=13334460; 
-var sc_invisible=1; 
-var sc_security="a5854dc7"; 
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
 </script>
 <script type="text/javascript"
 src="https://www.statcounter.com/counter/counter.js"
@@ -195,5 +798,32 @@ src="https://c.statcounter.com/13334460/0/a5854dc7/1/"
 alt="Web Analytics"
 referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 <!-- End of Statcounter Code -->
+
+<!-- FAQ structured data -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is this investment calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free with no account, no signup and no limit on how many calculations you run."}},
+{"@type":"Question","name":"Are my financial figures uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Every calculation runs locally in your browser; your amounts and rates never leave your device."}},
+{"@type":"Question","name":"What is the difference between simple and compound interest?","acceptedAnswer":{"@type":"Answer","text":"Simple interest is earned only on the principal; compound interest is earned on the principal plus previously accumulated interest, so it grows faster over time."}},
+{"@type":"Question","name":"Which investment types can I model?","acceptedAnswer":{"@type":"Answer","text":"Lump sum, SIP, SWP, FD, RD, PPF, NPS, mutual fund, and retirement or education goals, all from one engine."}},
+{"@type":"Question","name":"What compounding frequencies are supported?","acceptedAnswer":{"@type":"Answer","text":"Daily, weekly, monthly, quarterly, half-yearly, annually and continuous compounding."}},
+{"@type":"Question","name":"What is CAGR?","acceptedAnswer":{"@type":"Answer","text":"Compound Annual Growth Rate, the single smoothed annual rate at which your money grew from the invested amount to the final value."}},
+{"@type":"Question","name":"What is effective annual return?","acceptedAnswer":{"@type":"Answer","text":"The actual yearly yield of a nominal rate once compounding is applied. For example 12% compounded monthly is about 12.68% effective."}},
+{"@type":"Question","name":"How does the inflation adjustment work?","acceptedAnswer":{"@type":"Answer","text":"It divides the future value by (1 + inflation) to the power of years to show the amount in today's purchasing power."}},
+{"@type":"Question","name":"How is tax estimated?","acceptedAnswer":{"@type":"Answer","text":"It applies your tax rate to the gains, not the principal, to show an approximate post-tax value. Real tax rules vary by instrument and country."}},
+{"@type":"Question","name":"Can I compare SIP versus lump sum?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the Compare tab to run two scenarios side by side on the same chart."}},
+{"@type":"Question","name":"Can it tell me how much to invest for a goal?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Goal tab solves for the required monthly investment, duration or rate to reach a target."}},
+{"@type":"Question","name":"What does the reverse calculator do?","acceptedAnswer":{"@type":"Answer","text":"It finds the principal, rate or time needed for a lump sum to reach a chosen future value."}},
+{"@type":"Question","name":"Which currencies are supported?","acceptedAnswer":{"@type":"Answer","text":"INR, USD, EUR, GBP, AED, SGD and AUD, each with correct local number formatting."}},
+{"@type":"Question","name":"Can I export the results?","acceptedAnswer":{"@type":"Answer","text":"Yes, CSV, Excel and PDF for the growth table, PNG for the chart, and print for the whole view."}},
+{"@type":"Question","name":"Does it save my calculations?","acceptedAnswer":{"@type":"Answer","text":"Recent and starred calculations are stored in your own browser using localStorage. Clearing your browser data removes them."}},
+{"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. There are no external libraries, so once loaded it works without an internet connection."}},
+{"@type":"Question","name":"Are the results guaranteed?","acceptedAnswer":{"@type":"Answer","text":"No. They assume a constant rate of return; real returns fluctuate. Use them as planning estimates and verify rates with your institution."}},
+{"@type":"Question","name":"Does it handle withdrawals (SWP)?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter a monthly withdrawal to model a Systematic Withdrawal Plan from an invested corpus."}},
+{"@type":"Question","name":"Is it mobile friendly and accessible?","acceptedAnswer":{"@type":"Answer","text":"Yes. The layout is responsive and controls are labelled and keyboard-operable."}},
+{"@type":"Question","name":"Does it use any AI?","acceptedAnswer":{"@type":"Answer","text":"No. Every figure comes from transparent, deterministic financial formulas with no AI involved."}},
+{"@type":"Question","name":"Why does more frequent compounding give a higher result?","acceptedAnswer":{"@type":"Answer","text":"Because interest starts earning interest sooner; daily compounding credits growth 365 times a year versus once for annual."}}
+]}
+</script>
 </body>
 </html>
