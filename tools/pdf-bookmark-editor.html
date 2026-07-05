@@ -5,32 +5,101 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-bookmark-editor.html">
+<meta name="description" content="Free Professional PDF Bookmark & TOC Editor — detect and edit a PDF's existing outline, build unlimited nested bookmarks, set page/destination/zoom, style titles, auto-generate a table of contents from headings, import/export JSON/CSV/XML/TXT, preview with thumbnails and validate — all 100% in your browser, no upload.">
+<meta name="keywords" content="pdf bookmark editor, pdf table of contents, pdf outline editor, add bookmarks to pdf, nested pdf bookmarks, pdf toc generator, edit pdf outline, pdf navigation">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PDF Bookmark / TOC Editor | ApneSoftware">
-<meta property="og:description" content="Add clickable bookmarks/outline to a PDF. Free online tool — no signup required.">
+<meta property="og:title" content="Professional PDF Bookmark & TOC Editor | ApneSoftware">
+<meta property="og:description" content="Edit a PDF's existing outline or build nested bookmarks, auto-generate a TOC from headings, set destinations/zoom, import/export and preview with thumbnails. 100% browser-based.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-bookmark-editor.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PDF Bookmark / TOC Editor | ApneSoftware">
-<meta name="twitter:description" content="Add clickable bookmarks/outline to a PDF. Free online tool — no signup required.">
+<meta name="twitter:title" content="Professional PDF Bookmark & TOC Editor | ApneSoftware">
+<meta name="twitter:description" content="Detect, build & edit nested PDF bookmarks, auto-TOC from headings, destinations/zoom, import/export, thumbnails & validation. Private & browser-based.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Bookmark / TOC Editor","description":"Add clickable bookmarks/outline to a PDF. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-bookmark-editor.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Professional PDF Bookmark & TOC Editor","description":"Detect and edit a PDF's existing bookmark outline, build unlimited nested bookmarks with page destinations, zoom and styling, auto-generate a table of contents from headings, import and export JSON/CSV/XML/TXT, preview pages with thumbnails, validate, undo/redo and batch-process — entirely in the browser with pdf-lib and PDF.js.","url":"https://apnesoftware.com/tools/pdf-bookmark-editor.html","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Detect and edit existing PDF outline","Unlimited nested bookmark tree with reorder","Destination type, position and zoom per bookmark","Auto-generate TOC from headings and chapter patterns","Import/export JSON, CSV, XML and TXT","Thumbnail preview, validation and undo/redo"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
 <meta name="color-scheme" content="dark">
-<title>PDF Bookmark / TOC Editor | ApneSoftware</title>
+<title>Professional PDF Bookmark & TOC Editor | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
+/* ===== PDF Bookmark / TOC Editor — scoped bm- prefix ===== */
 .dropzone{cursor:pointer}
 .dropzone p{font-size:.9rem}
 .panel{position:relative;z-index:1}
-</style>
-<style>
-  .bookmark-row{display:grid;grid-template-columns:1fr 90px 32px;gap:8px;margin-bottom:8px;align-items:center}
-  .bookmark-row input{padding:8px 10px}
-  .bookmark-row button{background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);cursor:pointer;padding:6px}
+
+.bm-layout{display:grid;grid-template-columns:1fr 300px;gap:16px;margin-top:16px}
+@media (max-width:920px){ .bm-layout{grid-template-columns:1fr} }
+.bm-card{border:1px solid var(--border);border-radius:12px;padding:12px 14px;background:rgba(255,255,255,.02);margin-bottom:14px}
+.bm-card h3{font-size:.82rem;margin:0 0 10px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-dim);display:flex;align-items:center;gap:6px}
+.bm-info{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.78rem}
+.bm-info span:nth-child(even){text-align:right;font-variant-numeric:tabular-nums;word-break:break-word}
+.bm-info span:nth-child(odd){color:var(--text-dim)}
+
+.bm-toolbar{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
+.bm-btn{font-size:.74rem;padding:6px 9px;border-radius:7px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text);cursor:pointer}
+.bm-btn:hover{background:rgba(124,92,252,.18)}
+.bm-btn.primary{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff;font-weight:600}
+.bm-btn:disabled{opacity:.4;cursor:not-allowed}
+
+.bm-tree{max-height:56vh;overflow:auto;border:1px solid var(--border);border-radius:10px;padding:6px}
+.bm-row{display:flex;align-items:center;gap:6px;padding:5px 6px;border-radius:7px;margin-bottom:3px}
+.bm-row:hover{background:rgba(255,255,255,.03)}
+.bm-row.sel{background:rgba(124,92,252,.16);outline:1px solid var(--accent,#7c5cfc)}
+.bm-row .tw{flex:1;min-width:0;display:flex;align-items:center;gap:6px}
+.bm-row .caret{width:14px;text-align:center;cursor:pointer;color:var(--text-dim);font-size:.7rem}
+.bm-row input.title{flex:1;min-width:0;font-size:.82rem;padding:5px 8px;border-radius:6px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)}
+.bm-row input.pg{width:56px;font-size:.8rem;padding:5px 6px;border-radius:6px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text);text-align:right}
+.bm-row .pglbl{font-size:.68rem;color:var(--text-dim)}
+
+.bm-field{margin-bottom:9px}
+.bm-field label{display:block;font-size:.73rem;color:var(--text-dim);margin-bottom:4px;font-weight:600}
+.bm-field input,.bm-field select{width:100%;font-size:.82rem;padding:7px 9px;border-radius:8px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)}
+.bm-field select option{background:#1a1a2e}
+.bm-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bm-chips{display:flex;flex-wrap:wrap;gap:5px}
+.bm-chip{font-size:.72rem;padding:5px 9px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.06));color:var(--text);cursor:pointer}
+.bm-chip.on{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff}
+.bm-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.bm-badge{font-size:.72rem;padding:4px 9px;border-radius:20px;background:rgba(124,92,252,.14);border:1px solid rgba(124,92,252,.3)}
+.bm-badge.ok{background:rgba(22,192,121,.14);border-color:rgba(22,192,121,.4);color:#16c079}
+.bm-badge.warn{background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.4);color:#f59e0b}
+
+.bm-search{display:flex;gap:6px;margin-bottom:8px}
+.bm-search input{flex:1;font-size:.8rem;padding:7px 9px;border-radius:8px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)}
+
+.bm-prev{border:1px solid var(--border);border-radius:10px;background:#0d0d16;padding:8px;text-align:center}
+.bm-prev canvas{max-width:100%;background:#fff}
+.bm-thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(54px,1fr));gap:5px;max-height:34vh;overflow:auto;margin-top:8px}
+.bm-thumb{cursor:pointer;border:2px solid transparent;border-radius:5px;overflow:hidden;position:relative}
+.bm-thumb.active{border-color:var(--accent,#7c5cfc)}
+.bm-thumb canvas{width:100%;display:block;background:#fff}
+.bm-thumb .pn{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);color:#fff;font-size:.6rem;text-align:center}
+.bm-progress{height:9px;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:8px;display:none}
+.bm-progress.show{display:block}
+.bm-progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7c5cfc,#16c079)}
+
+/* Below-tool content */
+.bm-content h2{font-size:1.15rem;margin:26px 0 10px}
+.bm-content h3{font-size:1rem;margin:18px 0 8px}
+.bm-content p,.bm-content li{font-size:.92rem;line-height:1.72}
+.bm-content ul,.bm-content ol{padding-left:20px}
+.bm-fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:14px 0}
+.bm-fgrid .fc{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:14px}
+.bm-fgrid .fc b{display:block;margin-bottom:5px;font-size:.9rem}
+.bm-fgrid .fc span{font-size:.82rem;color:var(--text-dim);line-height:1.6}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin:12px 0}
+.related-grid a{display:flex;align-items:center;gap:9px;padding:12px 13px;border-radius:11px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.86rem;font-weight:500;transition:.15s}
+.related-grid a:hover{background:rgba(124,92,252,.16);border-color:var(--accent,#7c5cfc);transform:translateY(-1px)}
+.related-grid a .ri{font-size:1.15rem}
+.bm-faq details{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:11px;padding:2px 14px;margin-bottom:9px}
+.bm-faq summary{cursor:pointer;padding:12px 0;font-weight:600;font-size:.9rem;list-style:none}
+.bm-faq summary::-webkit-details-marker{display:none}
+.bm-faq summary::before{content:'＋';margin-right:9px;color:var(--accent,#7c5cfc);font-weight:700}
+.bm-faq details[open] summary::before{content:'－'}
+.bm-faq details p{padding:0 0 12px;margin:0;font-size:.87rem;color:var(--text-dim)}
+.bm-lang-note{font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:-4px}
 </style>
 </head>
 <body>
@@ -43,194 +112,450 @@
 
 <div class="container">
   <div class="tool-header">
-    <h1>🔖 PDF Bookmark / TOC Editor</h1>
-    <p>Add clickable bookmarks to a PDF so readers can jump straight to a section.</p>
+    <h1>🔖 Professional PDF Bookmark &amp; TOC Editor</h1>
+    <p>Detect and edit a PDF's existing outline, build unlimited nested bookmarks with page destinations, zoom and styling, auto-generate a table of contents, import/export and preview — 100% in your browser.</p>
   </div>
 
   <div class="panel">
     <div class="dropzone" id="dropzone">
-      <p>📤 Drag & drop your PDF file here or click to choose</p>
+      <p>📤 Drag &amp; drop your PDF file here or click to choose</p>
       <input type="file" id="fileInput" accept="application/pdf">
     </div>
 
-    <div id="afterUpload" style="display:none;margin-top:18px">
-      <p id="pageCountMsg" style="color:var(--text-dim);font-size:.9rem;margin-bottom:10px"></p>
+    <div id="afterUpload" style="display:none;margin-top:16px">
+      <p id="pageCountMsg" style="color:var(--text-dim);font-size:.85rem;margin-bottom:4px"></p>
 
-      <div class="bookmark-row" style="font-size:.78rem;color:var(--text-dim)">
-        <span>Bookmark title</span><span>Page #</span><span></span>
-      </div>
-      <div id="bookmarksList"></div>
-      <button class="btn secondary" id="addBookmarkBtn">+ Add Bookmark</button>
+      <div class="bm-layout">
+        <!-- ===== Tree editor ===== -->
+        <div>
+          <div class="bm-card">
+            <h3>📄 PDF information</h3>
+            <div class="bm-info" id="pdfInfo"></div>
+          </div>
 
-      <div class="btn-row" style="margin-top:16px">
-        <button class="btn" id="generateBtn">🔖 Add Bookmarks & Download</button>
+          <div class="bm-card">
+            <h3>🌳 Bookmark tree</h3>
+            <div class="bm-search">
+              <input type="text" id="searchBox" placeholder="🔍 Filter titles…">
+              <input type="text" id="replaceBox" placeholder="Replace with…" style="max-width:130px">
+              <button class="bm-btn" id="replaceBtn">Replace</button>
+            </div>
+            <div class="bm-toolbar">
+              <button class="bm-btn" id="addBookmarkBtn">＋ Add</button>
+              <button class="bm-btn" id="addChildBtn">＋ Child</button>
+              <button class="bm-btn" id="dupBtn">⧉ Duplicate</button>
+              <button class="bm-btn" id="delBtn">🗑 Delete</button>
+              <span style="width:1px;background:var(--border)"></span>
+              <button class="bm-btn" id="upBtn">↑</button>
+              <button class="bm-btn" id="downBtn">↓</button>
+              <button class="bm-btn" id="indentBtn">→ Indent</button>
+              <button class="bm-btn" id="outdentBtn">← Outdent</button>
+              <span style="width:1px;background:var(--border)"></span>
+              <button class="bm-btn" id="undoBtn">↶</button>
+              <button class="bm-btn" id="redoBtn">↷</button>
+            </div>
+            <div class="bm-tree" id="bookmarksList"></div>
+            <div class="bm-badges" id="validationBadges" style="margin-top:8px"></div>
+          </div>
+
+          <div class="bm-card">
+            <h3>🔗 Selected bookmark destination &amp; style</h3>
+            <div id="detailPanel"><div style="font-size:.78rem;color:var(--text-dim)">Select a bookmark to edit its destination and style.</div></div>
+          </div>
+
+          <div class="bm-card">
+            <h3>⚡ Generate &amp; import/export</h3>
+            <div class="bm-toolbar">
+              <button class="bm-btn" id="autoTocBtn">✨ Auto-TOC from headings</button>
+              <button class="bm-btn" id="detectBtn">🔍 Re-detect existing</button>
+            </div>
+            <div class="bm-toolbar">
+              <span style="font-size:.72rem;color:var(--text-dim);align-self:center">Export:</span>
+              <button class="bm-btn" data-exp="json">JSON</button>
+              <button class="bm-btn" data-exp="csv">CSV</button>
+              <button class="bm-btn" data-exp="xml">XML</button>
+              <button class="bm-btn" data-exp="txt">TXT</button>
+              <span style="font-size:.72rem;color:var(--text-dim);align-self:center">Import:</span>
+              <button class="bm-btn" id="importBtn">⬆ File</button>
+              <input type="file" id="importInput" accept=".json,.csv,.xml,.txt" hidden>
+            </div>
+            <label style="font-size:.78rem;display:flex;align-items:center;gap:7px;margin-top:6px"><input type="checkbox" id="flatten" style="width:auto"> Replace existing bookmarks (flatten &amp; rebuild)</label>
+          </div>
+
+          <div class="btn-row" style="margin-top:6px">
+            <button class="btn" id="generateBtn">🔖 Add Bookmarks &amp; Download</button>
+          </div>
+          <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.85rem"></p>
+          <div class="bm-progress" id="progress"><i></i></div>
+        </div>
+
+        <!-- ===== Preview / thumbnails ===== -->
+        <div>
+          <div class="bm-card">
+            <h3>👁️ Preview <span id="prevPage" style="font-weight:400;color:var(--text-dim)"></span></h3>
+            <div class="bm-prev"><canvas id="prevCanvas"></canvas></div>
+            <div style="font-size:.72rem;color:var(--text-dim);margin-top:6px">Click a thumbnail to jump; click a bookmark's page to preview it.</div>
+            <div class="bm-thumbs" id="thumbs"></div>
+          </div>
+        </div>
       </div>
-      <p id="statusMsg" style="margin-top:10px;color:var(--text-dim);font-size:.9rem"></p>
     </div>
   </div>
 </div>
 
+<!-- ============================ BELOW-TOOL CONTENT ============================ -->
+<div class="bm-content">
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Adds a clickable bookmark panel (also called an outline or table of contents) to a PDF, so readers using Adobe Acrobat, browser PDF viewers, or other readers can jump directly to any section. This version creates a flat, top-level list of bookmarks (no nested sub-sections).</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload your PDF.</li>
-        <li>Add a bookmark for each section — give it a title and the page number it should jump to.</li>
-        <li>Click "Add Bookmarks & Download" to get your PDF with a working bookmark panel.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>PDF में एक clickable bookmark panel (इसे outline या table of contents भी कहते हैं) जोड़ता है, ताकि Adobe Acrobat, browser PDF viewer, या किसी भी reader में पाठक सीधे किसी भी सेक्शन पर जा सकें। यह वर्शन एक flat, top-level bookmark लिस्ट बनाता है (nested sub-sections नहीं)।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>अपनी PDF अपलोड करें।</li>
-        <li>हर सेक्शन के लिए एक bookmark जोड़ें — title और वो page number डालें जहां जाना है।</li>
-        <li>"Add Bookmarks & Download" दबाएं ताकि काम करने वाले bookmark panel के साथ आपकी PDF मिल जाए।</li>
-      </ol>
-    </div>
+  <h2>🔖 Give any PDF a clickable table of contents</h2>
+  <p>The <strong>Professional PDF Bookmark &amp; TOC Editor</strong> lets you add, detect and fully edit the navigation panel — the bookmarks or "outline" — inside a PDF, so readers can jump straight to any chapter or section in Adobe Acrobat, a browser viewer or any other reader. It goes far beyond a flat list: build an unlimited nested tree, choose exactly where each bookmark lands (page, position and zoom), style the titles, auto-generate a whole table of contents from the document's headings, import and export your outline, and preview pages with thumbnails — all locally in your browser, with the file never uploaded.</p>
+
+  <h2>✨ Features</h2>
+  <div class="bm-fgrid">
+    <div class="fc"><b>Detect existing outline</b><span>Reads a PDF's current bookmarks into an editable tree so you can refine rather than start over.</span></div>
+    <div class="fc"><b>Unlimited nesting</b><span>Parent and child bookmarks at any depth, with indent/outdent and reorder.</span></div>
+    <div class="fc"><b>Full operations</b><span>Add, edit, delete, duplicate, move up/down, add child — with undo/redo history.</span></div>
+    <div class="fc"><b>Precise destinations</b><span>Page number plus destination type (fit width/height/actual/custom) and position.</span></div>
+    <div class="fc"><b>Styling</b><span>Bold, italic and colour for each bookmark title.</span></div>
+    <div class="fc"><b>Auto-TOC</b><span>Generate bookmarks from detected headings, font sizes and chapter/section numbering.</span></div>
+    <div class="fc"><b>Import &amp; export</b><span>JSON, CSV, XML and TXT so you can reuse or edit outlines elsewhere.</span></div>
+    <div class="fc"><b>Preview &amp; validate</b><span>Thumbnails, live page preview, and checks for empty, duplicate or out-of-range entries.</span></div>
   </div>
+
+  <h2>⚙️ How it works</h2>
+  <p>When you open a PDF, the tool loads it with two engines: PDF.js reads the existing outline (resolving each bookmark to a page), renders page thumbnails and extracts text for the auto-TOC, while pdf-lib is used to write the finished outline back into the file. You edit the bookmark tree on screen — titles, pages, nesting, destinations and styles — and when you are done, the tool builds a proper PDF outline dictionary, preserving the document's existing content and metadata, and hands you the updated file. Nothing is rasterised and the original pages are untouched, so the result is a clean PDF with working navigation.</p>
+
+  <h2>🌳 Bookmark tree</h2>
+  <p>The heart of the tool is an editable tree. Each row is a bookmark with a title and target page; the indentation shows its level. Use <em>Indent</em> and <em>Outdent</em> to make a bookmark a child of the one above or promote it back up, and <em>Move up/down</em> to reorder within a level. <em>Add child</em> creates a sub-bookmark, <em>Duplicate</em> copies a branch, and <em>Delete</em> removes it. Every change is recorded so <em>Undo</em> and <em>Redo</em> always have your back.</p>
+
+  <h2>📑 TOC editor</h2>
+  <p>Building a table of contents by hand is optional. The <em>Auto-TOC</em> feature scans the document's text with PDF.js, measures font sizes, and treats the larger, heading-like lines — and lines that match chapter or section numbering such as "Chapter 3" or "2.1" — as bookmarks, assigning each to the page it appears on and nesting sub-headings under their chapters. You can then tidy the result in the tree, rename entries, adjust levels and fix any page that needs a nudge.</p>
+
+  <h2>🧷 Nested bookmarks</h2>
+  <p>Real documents have structure — parts, chapters, sections and sub-sections — and this editor represents all of it. There is no depth limit: a section can contain sub-sections which contain their own points, and the collapsible tree keeps even a large outline manageable. When you export, the nesting is written as a genuine hierarchical PDF outline, so readers see expandable triangles in their bookmark panel exactly as they would in a professionally produced document.</p>
+
+  <h2>🔁 Import &amp; export</h2>
+  <p>Your outline is portable. Export it as <strong>JSON</strong> (full structure with levels and styles), <strong>CSV</strong> (a simple spreadsheet of title, page and level), <strong>XML</strong> or a plain indented <strong>TXT</strong> list. You can edit these files elsewhere and import them back, or reuse one document's outline as a template for another. This makes it easy to standardise the table of contents across a series of reports or manuals.</p>
+
+  <h2>👁️ Preview</h2>
+  <p>A preview panel renders the current page and a strip of page thumbnails. Click any thumbnail to jump to that page, or click a bookmark's page field to preview exactly where it points — a quick way to confirm each destination is correct before you export. The validation panel flags empty titles, duplicate titles and pages that fall outside the document.</p>
+
+  <h2>🔒 Security</h2>
+  <p>Everything is client-side. Your PDF is read, edited and rewritten entirely in your browser with pdf-lib and PDF.js; no page, bookmark or byte is uploaded to a server, shared with analytics or processed by any AI service. It works offline once loaded, and closing the tab clears everything from memory — safe for confidential reports, manuscripts and legal documents. / यह टूल पूरी तरह browser-आधारित है, कुछ भी अपलोड नहीं होता।</p>
+
+  <h2>🎯 Benefits</h2>
+  <ul>
+    <li><strong>Navigable documents:</strong> readers reach any section in one click.</li>
+    <li><strong>Edit, don't rebuild:</strong> refine a PDF's existing outline instead of starting over.</li>
+    <li><strong>Structure preserved:</strong> original pages and metadata stay intact.</li>
+    <li><strong>Private &amp; free:</strong> no account, no upload, no limits.</li>
+  </ul>
+
+  <!-- ===== Related Tools (ABOVE About — required order) ===== -->
+  <h2>🧰 Related Tools</h2>
+  <div class="related-grid">
+    <a href="pdf-merge.html"><span class="ri">🧩</span> PDF Merge</a>
+    <a href="pdf-split.html"><span class="ri">✂️</span> PDF Split</a>
+    <a href="pdf-compress.html"><span class="ri">📉</span> PDF Compress</a>
+    <a href="pdf-rotate.html"><span class="ri">🔃</span> PDF Rotate</a>
+    <a href="pdf-reorder.html"><span class="ri">🔀</span> PDF Reorder</a>
+    <a href="pdf-split.html"><span class="ri">📄</span> PDF Extract Pages</a>
+    <a href="pdf-watermark.html"><span class="ri">💧</span> PDF Watermark</a>
+    <a href="pdf-page-numbers.html"><span class="ri">🔢</span> PDF Page Numbers</a>
+    <a href="pdf-ocr.html"><span class="ri">🔍</span> PDF OCR</a>
+    <a href="pdf-viewer.html"><span class="ri">👁️</span> PDF Viewer</a>
+  </div>
+
+  <!-- ===== About (English) ===== -->
+  <h2>ℹ️ About This Tool</h2>
+  <p>The <strong>Professional PDF Bookmark &amp; TOC Editor</strong> is a free, browser-based tool for managing the navigation structure of a PDF — the bookmarks, also known as the outline or table of contents, that appear in the side panel of a PDF reader and let a person jump instantly to a chapter or section. A long PDF without bookmarks is genuinely hard to use: readers are left scrolling or guessing at page numbers, and there is no sense of the document's shape. This editor fixes that. It started as a simple tool that added a flat list of bookmarks and has grown into a full outline-management workspace that can detect what is already there, build a deeply nested structure, generate a table of contents automatically, and export the whole thing for reuse — all without your file ever leaving your device.</p>
+
+  <p>The tool is built on two complementary engines. PDF.js, the open-source viewer that powers PDF rendering in modern browsers, is used to read the document: it extracts the existing outline and resolves each bookmark to a real page, renders the thumbnails and current-page preview, and pulls out the text — complete with font sizes — that powers the automatic table-of-contents feature. pdf-lib, a pure-JavaScript PDF library, is used to write: it takes the tree you have built and constructs a correct, hierarchical PDF outline dictionary inside the file. Because the original page content is never touched, the exported PDF keeps its exact appearance and metadata and simply gains — or updates — a working bookmark panel.</p>
+
+  <p>Editing happens in an interactive tree. Every bookmark is a row with a title and a target page, and its indentation shows where it sits in the hierarchy. You can add a bookmark, add a child beneath the selected one, duplicate a branch, delete it, and move it up or down among its siblings; indent and outdent turn a top-level entry into a sub-section or promote it back. There is no limit on nesting depth, so the outline of a book with parts, chapters, sections and sub-points is represented faithfully, and a collapsible display keeps even a very large tree readable. Crucially, every action is captured in a history stack, so unlimited undo and redo mean you can experiment freely without fear of losing work.</p>
+
+  <p>Where a bookmark actually takes the reader is more nuanced than a page number, and the editor exposes that control. For each bookmark you choose a destination type — fit the page width, fit its height, show it at actual size, or use a custom zoom — and a position, so a bookmark can land at the top of a page, its middle, or a precise point. This is exactly the level of control that professional documents use to make navigation feel deliberate rather than approximate. You can also style each title in bold or italic and give it a colour, which readers' bookmark panels display, helping to visually separate parts from chapters or highlight important entries.</p>
+
+  <p>For long documents, creating dozens of bookmarks by hand would be tedious, so the tool can generate a table of contents automatically. The Auto-TOC feature reads the document's text through PDF.js, measures the font size of every line, and treats the larger, heading-like lines as bookmarks — nesting smaller sub-headings beneath larger ones — while also recognising common chapter and section patterns such as "Chapter 5" or "3.2". Each detected heading is linked to the page it appears on. The result is a first draft of the outline that you can refine in the tree, which turns an hour of manual work into a few seconds followed by light editing. Your outline is also fully portable: export it as JSON to keep every detail, as CSV for a quick spreadsheet edit, or as XML or an indented TXT list, and import any of those back to restore or reuse a structure across documents.</p>
+
+  <p>Confidence and correctness are supported throughout. A live preview renders the current page beside a scrollable strip of thumbnails; click a thumbnail to preview that page, or click a bookmark's page to jump to its destination and confirm it points where you intended. A validation panel continuously checks for the mistakes that break navigation — empty titles, duplicate titles and pages that fall outside the document — so you catch them before exporting. When you are ready, you can either add your new bookmarks to whatever the PDF already contains or replace the existing outline entirely, and the finished file downloads immediately. Because all of this runs in the browser, it is private by design: confidential manuscripts, board reports and legal bundles are processed only on your machine, the tool keeps working offline once loaded, and it handles large documents — hundreds or thousands of pages, and long outlines — without uploading a single byte. It is a small addition to a PDF, but a working table of contents is often the difference between a document people struggle with and one they can actually use.</p>
+
+  <!-- ===== About (Hindi) ===== -->
+  <h2>ℹ️ इस टूल के बारे में (हिंदी में)</h2>
+  <p class="bm-lang-note">The same guide in Hindi / यही जानकारी हिंदी में।</p>
+  <p><strong>Professional PDF Bookmark &amp; TOC Editor</strong> एक फ्री, ब्राउज़र-आधारित टूल है जो किसी PDF की navigation संरचना — bookmarks, जिन्हें outline या table of contents भी कहते हैं — को प्रबंधित करता है। ये bookmarks PDF reader के साइड पैनल में दिखते हैं और व्यक्ति को सीधे किसी अध्याय या सेक्शन पर पहुँचा देते हैं। bookmarks के बिना एक लंबी PDF सच में इस्तेमाल करना कठिन है: पाठक scroll करते रह जाते हैं या page numbers का अंदाज़ा लगाते हैं। यह editor इसे ठीक करता है। इसकी शुरुआत bookmarks की एक सादी सूची जोड़ने वाले साधारण टूल के रूप में हुई थी और यह एक पूरा outline-management workspace बन गया जो मौजूदा bookmarks पहचान सकता है, गहराई से nested संरचना बना सकता है, table of contents स्वतः बना सकता है, और पूरी चीज़ export कर सकता है — बिना आपकी फ़ाइल कभी अपलोड किए।</p>
+
+  <p>टूल दो पूरक engines पर बना है। PDF.js — वही open-source viewer जो आधुनिक ब्राउज़रों में PDF दिखाता है — दस्तावेज़ पढ़ने के लिए उपयोग होता है: यह मौजूदा outline निकालता है और हर bookmark को असली page से जोड़ता है, thumbnails तथा current-page preview render करता है, और वह text (font sizes सहित) निकालता है जो automatic TOC feature को चलाता है। pdf-lib — एक pure-JavaScript PDF library — लिखने के लिए उपयोग होता है: यह आपके बनाए tree को लेकर फ़ाइल के अंदर एक सही, hierarchical PDF outline dictionary बनाता है। चूँकि मूल page content कभी नहीं छुआ जाता, exported PDF अपनी बिल्कुल वही दिखावट और metadata रखती है और बस एक working bookmark panel पाती है।</p>
+
+  <p>संपादन एक interactive tree में होता है। हर bookmark एक row है जिसमें title और target page होता है, और उसका indentation दिखाता है कि वह hierarchy में कहाँ है। आप bookmark जोड़ सकते हैं, चुने हुए के नीचे child जोड़ सकते हैं, किसी शाखा की नक़ल कर सकते हैं, हटा सकते हैं, और siblings के बीच ऊपर-नीचे कर सकते हैं; indent और outdent एक top-level entry को sub-section बना देते हैं या वापस promote कर देते हैं। nesting की कोई गहराई-सीमा नहीं है। सबसे अहम, हर क्रिया एक history stack में दर्ज होती है, इसलिए असीमित undo और redo का मतलब है कि आप बिना डर के प्रयोग कर सकते हैं।</p>
+
+  <p>bookmark पाठक को वास्तव में कहाँ ले जाता है यह page number से अधिक बारीक है, और editor यह नियंत्रण देता है। हर bookmark के लिए आप एक destination type चुनते हैं — page की चौड़ाई fit करें, ऊँचाई fit करें, actual size दिखाएँ, या custom zoom — और एक position, ताकि bookmark किसी page के top, middle या किसी सटीक बिंदु पर पहुँचे। आप हर title को bold या italic में style कर सकते हैं और उसे एक रंग दे सकते हैं, जिसे पाठकों के bookmark panels दिखाते हैं।</p>
+
+  <p>लंबे दस्तावेज़ों के लिए दर्जनों bookmarks हाथ से बनाना थकाऊ होगा, इसलिए टूल table of contents स्वतः बना सकता है। Auto-TOC feature PDF.js के माध्यम से दस्तावेज़ का text पढ़ता है, हर पंक्ति का font size मापता है, और बड़ी, heading-जैसी पंक्तियों को bookmarks मानता है — छोटी sub-headings को बड़ी के नीचे nest करते हुए — और "Chapter 5" या "3.2" जैसे सामान्य patterns भी पहचानता है। हर पहचानी गई heading उस page से जुड़ती है जहाँ वह दिखती है। आपका outline पूरी तरह portable भी है: इसे JSON, CSV, XML या indented TXT के रूप में export करें, और किसी को वापस import करें।</p>
+
+  <p>पूरे समय भरोसा और शुद्धता का समर्थन है। एक live preview current page को thumbnails की scrollable पट्टी के साथ render करता है; किसी thumbnail पर क्लिक करके उस page को preview करें, या किसी bookmark के page पर क्लिक करके उसके destination पर जाएँ। एक validation panel navigation तोड़ने वाली ग़लतियों की जाँच करता रहता है — खाली titles, duplicate titles और दस्तावेज़ से बाहर के pages। तैयार होने पर आप अपने नए bookmarks को मौजूदा में जोड़ सकते हैं या पूरे outline को बदल सकते हैं, और तैयार फ़ाइल तुरंत download हो जाती है। चूँकि यह सब browser में चलता है, यह डिज़ाइन से निजी है और बड़े दस्तावेज़ भी बिना अपलोड संभालता है।</p>
+
+  <!-- ===== FAQ (immediately after About — required order) ===== -->
+  <h2>❓ Frequently Asked Questions</h2>
+  <div class="bm-faq" id="bmFaq">
+    <details><summary>Is this tool free?</summary><p>Yes, completely free with no account, no signup and no limits. / हाँ, यह पूरी तरह मुफ़्त है।</p></details>
+    <details><summary>Is my PDF uploaded to a server?</summary><p>No. It is edited entirely in your browser with pdf-lib and PDF.js; nothing is uploaded. / नहीं, सब कुछ आपके ब्राउज़र में ही होता है।</p></details>
+    <details><summary>What are PDF bookmarks?</summary><p>A clickable outline (table of contents) shown in a reader's side panel that jumps to sections. / reader के साइड पैनल में clickable outline।</p></details>
+    <details><summary>Can it detect existing bookmarks?</summary><p>Yes. It reads a PDF's current outline into an editable tree. / हाँ, मौजूदा outline पढ़ता है।</p></details>
+    <details><summary>Can I create nested bookmarks?</summary><p>Yes, with unlimited depth — use Indent/Outdent and Add child. / हाँ, असीमित nesting।</p></details>
+    <details><summary>How do I reorder bookmarks?</summary><p>Select one and use Move up/down; Indent/Outdent change the level. / Move up/down और Indent/Outdent से।</p></details>
+    <details><summary>Can I set where a bookmark lands?</summary><p>Yes — page number plus destination type (fit width/height/actual/custom) and position. / हाँ, page, destination type और position।</p></details>
+    <details><summary>Can I style bookmark titles?</summary><p>Yes — bold, italic and colour per bookmark. / हाँ, bold, italic और रंग।</p></details>
+    <details><summary>What is Auto-TOC?</summary><p>It scans the document's text and font sizes to generate bookmarks from headings automatically. / headings से bookmarks स्वतः।</p></details>
+    <details><summary>Does Auto-TOC always get it right?</summary><p>It is a heuristic; review and tidy the result in the tree, as no headings are guaranteed. / यह अनुमान है; tree में जाँचें।</p></details>
+    <details><summary>Can I import and export the outline?</summary><p>Yes — JSON, CSV, XML and TXT, and import any of them back. / हाँ, JSON/CSV/XML/TXT।</p></details>
+    <details><summary>Does it preserve the original PDF?</summary><p>Yes. Page content and metadata are untouched; only the outline is added or updated. / हाँ, मूल content नहीं बदलता।</p></details>
+    <details><summary>Can I replace existing bookmarks?</summary><p>Yes. Tick "Replace existing bookmarks" to rebuild the outline from scratch. / हाँ, replace विकल्प से।</p></details>
+    <details><summary>Is there undo/redo?</summary><p>Yes, with a full history of your edits. / हाँ, पूरा undo/redo।</p></details>
+    <details><summary>Does it validate my bookmarks?</summary><p>Yes — it flags empty titles, duplicate titles and out-of-range pages. / हाँ, यह ग़लतियाँ दिखाता है।</p></details>
+    <details><summary>Can I preview pages?</summary><p>Yes — a page preview and clickable thumbnails help you confirm destinations. / हाँ, preview और thumbnails।</p></details>
+    <details><summary>Does it handle large PDFs?</summary><p>Yes — hundreds or thousands of pages and long outlines, all in the browser. / हाँ, बड़ी PDFs भी।</p></details>
+    <details><summary>Does it work offline?</summary><p>Once the page and its libraries have loaded, yes. / हाँ, लोड होने के बाद offline।</p></details>
+    <details><summary>Is it mobile friendly and accessible?</summary><p>Yes, it is responsive and the controls are labelled and keyboard-operable. / हाँ, मोबाइल-अनुकूल और सुलभ।</p></details>
+    <details><summary>Does it use any AI?</summary><p>No. Heading detection is a simple font-size heuristic, with no AI. / नहीं, इसमें कोई AI नहीं है।</p></details>
+    <details><summary>Why don't my bookmarks appear in my reader?</summary><p>Make sure the bookmark/outline panel is open in your reader; some default to hidden. / अपने reader में bookmark panel खोलें।</p></details>
+    <details><summary>Can I use one PDF's outline for another?</summary><p>Yes. Export it as JSON and import it into another document. / हाँ, JSON export/import से।</p></details>
+  </div>
+
+  <!-- ===== Troubleshooting ===== -->
+  <h2>🛠️ Troubleshooting</h2>
+  <ul>
+    <li><strong>Bookmarks don't show in my reader:</strong> open the bookmark/outline side panel — many readers hide it by default.</li>
+    <li><strong>Auto-TOC missed headings:</strong> the PDF may be a scan with no text, or headings aren't larger than body text — add them manually or run PDF OCR first.</li>
+    <li><strong>A bookmark jumps to the wrong page:</strong> check its page number; remember the first page is page 1.</li>
+    <li><strong>Existing bookmarks weren't detected:</strong> the PDF may have none, or an unusual outline — build a new one and tick "Replace existing".</li>
+    <li><strong>The PDF won't load:</strong> it may be password-protected — unlock it first with PDF Unlock.</li>
+    <li><strong>The browser slows on a huge PDF:</strong> thumbnails render on demand; scroll gradually and avoid generating thousands of bookmarks at once.</li>
+  </ul>
 </div>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-let selectedFile = null;
-let pageCount = 0;
-let bookmarks = [{ title: '', page: 1 }];
+(function(){
+  'use strict';
+  function $(id){ return document.getElementById(id); }
+  if(window.pdfjsLib){ pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; }
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type === 'application/pdf'){
-    selectedFile = files[0];
-    loadFile(selectedFile);
+  var selectedFile=null, pdfBytes=null, pjs=null, pageCount=0;
+  var items=[];   // flat: {id,title,page,level,bold,italic,color,destType,position,zoom}
+  var selId=null, idc=0, undoStack=[], redoStack=[], previewPage=1;
+
+  setupDropzone($('dropzone'), $('fileInput'), function(files){ if(files.length&&(files[0].type==='application/pdf'||/\.pdf$/i.test(files[0].name))) loadFile(files[0]); });
+
+  function nf(t,p,lvl){ return {id:++idc,title:t||'',page:p||1,level:lvl||0,bold:false,italic:false,color:'#000000',destType:'xyz',position:'top',zoom:0}; }
+  function snapshot(){ undoStack.push(JSON.stringify(items)); if(undoStack.length>80)undoStack.shift(); redoStack.length=0; }
+
+  async function loadFile(file){
+    selectedFile=file; $('statusMsg').textContent='⏳ Loading PDF…';
+    try{
+      pdfBytes=new Uint8Array(await file.arrayBuffer());
+      var doc=await PDFLib.PDFDocument.load(pdfBytes,{ignoreEncryption:true});
+      pageCount=doc.getPageCount();
+      var p0=doc.getPage(0), pw=p0.getWidth(), ph=p0.getHeight();
+      var head=''; try{ head=new TextDecoder().decode(pdfBytes.slice(0,16)); }catch(e){}
+      var ver=(head.match(/%PDF-(\d\.\d)/)||[])[1]||'—';
+      pjs=await pdfjsLib.getDocument({data:pdfBytes.slice()}).promise;
+      var existing=await readOutline();
+      $('pdfInfo').innerHTML=[['File name',esc(file.name)],['File size',fmtBytes(file.size)],['PDF version',ver],['Total pages',pageCount],['Orientation',pw>ph?'Landscape':'Portrait'],['Page size',Math.round(pw)+'×'+Math.round(ph)+' pt'],['Existing bookmarks',existing.length]].map(function(r){return '<span>'+r[0]+'</span><span>'+r[1]+'</span>';}).join('');
+      $('afterUpload').style.display='block';
+      $('pageCountMsg').textContent='This PDF has '+pageCount+' page(s)'+(existing.length?(' and '+existing.length+' existing bookmark(s).'):' with no existing bookmarks.');
+      items = existing.length? existing : [nf('Introduction',1,0)];
+      selId=items.length?items[0].id:null; undoStack=[]; redoStack=[];
+      renderTree(); renderDetail(); validate(); renderThumbs(); showPage(1);
+      $('statusMsg').textContent='✅ Ready. Edit the bookmark tree and download.';
+    }catch(e){ $('statusMsg').textContent='❌ Could not load PDF: '+(e.message||e); }
   }
-});
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];}); }
+  function fmtBytes(n){ if(!n)return '—'; if(n<1024)return n+' B'; if(n<1048576)return (n/1024).toFixed(1)+' KB'; return (n/1048576).toFixed(2)+' MB'; }
 
-async function loadFile(file){
-  const { PDFDocument } = PDFLib;
-  const bytes = await file.arrayBuffer();
-  const pdfDoc = await PDFDocument.load(bytes);
-  pageCount = pdfDoc.getPageCount();
-  document.getElementById('pageCountMsg').textContent = `This PDF has ${pageCount} page(s).`;
-  document.getElementById('afterUpload').style.display = 'block';
-  bookmarks = [{ title: 'Introduction', page: 1 }];
-  renderBookmarks();
-}
+  // ---------- Read existing outline via pdf.js ----------
+  async function readOutline(){
+    var out=[]; try{
+      var tree=await pjs.getOutline(); if(!tree||!tree.length)return [];
+      async function pageOf(dest){ try{ var d=typeof dest==='string'? await pjs.getDestination(dest):dest; if(!d||!d[0])return 1; var idx=await pjs.getPageIndex(d[0]); return idx+1; }catch(e){ return 1; } }
+      async function walk(nodes,lvl){ for(var i=0;i<nodes.length;i++){ var n=nodes[i]; var pg=await pageOf(n.dest); var it=nf(n.title||'Untitled',pg,lvl); if(n.bold)it.bold=true; if(n.italic)it.italic=true; out.push(it); if(n.items&&n.items.length) await walk(n.items,lvl+1); } }
+      await walk(tree,0);
+    }catch(e){}
+    return out;
+  }
 
-function renderBookmarks(){
-  const wrap = document.getElementById('bookmarksList');
-  wrap.innerHTML = '';
-  bookmarks.forEach((bm, i)=>{
-    const row = document.createElement('div');
-    row.className = 'bookmark-row';
-    row.innerHTML = `
-      <input type="text" data-field="title" data-i="${i}" value="${(bm.title||'').replace(/"/g,'&quot;')}" placeholder="Section title">
-      <input type="number" data-field="page" data-i="${i}" value="${bm.page}" min="1" max="${pageCount}">
-      <button class="removeBmBtn" data-i="${i}" ${bookmarks.length===1?'disabled':''}>✕</button>
-    `;
-    wrap.appendChild(row);
-  });
-  wrap.querySelectorAll('[data-field]').forEach(el=>{
-    el.addEventListener('input', ()=>{
-      const i = parseInt(el.dataset.i);
-      bookmarks[i][el.dataset.field] = el.dataset.field === 'page' ? (parseInt(el.value)||1) : el.value;
+  // ---------- Tree rendering ----------
+  function renderTree(){
+    var wrap=$('bookmarksList'); var q=($('searchBox').value||'').toLowerCase();
+    wrap.innerHTML='';
+    items.forEach(function(it,i){
+      if(q && (it.title||'').toLowerCase().indexOf(q)===-1) return;
+      var row=document.createElement('div'); row.className='bm-row'+(it.id===selId?' sel':'');
+      row.style.marginLeft=(it.level*16)+'px';
+      var style=(it.bold?'font-weight:700;':'')+(it.italic?'font-style:italic;':'')+'color:'+(it.color||'#ccc')+';';
+      row.innerHTML='<div class="tw"><span class="caret">'+(hasChild(i)?'•':'·')+'</span><input class="title" data-i="'+i+'" value="'+esc(it.title)+'" placeholder="Bookmark title" style="'+style+'"></div><span class="pglbl">p.</span><input class="pg" type="number" min="1" max="'+pageCount+'" data-i="'+i+'" value="'+it.page+'">';
+      row.addEventListener('click',function(e){ if(e.target.tagName!=='INPUT'){ selId=it.id; renderTree(); renderDetail(); } });
+      wrap.appendChild(row);
     });
-  });
-  wrap.querySelectorAll('.removeBmBtn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      if(bookmarks.length > 1){
-        bookmarks.splice(parseInt(btn.dataset.i),1);
-        renderBookmarks();
-      }
+    wrap.querySelectorAll('input.title').forEach(function(el){ el.addEventListener('focus',function(){ selId=items[+el.getAttribute('data-i')].id; renderDetail(); }); el.addEventListener('input',function(){ items[+el.getAttribute('data-i')].title=el.value; validate(); }); });
+    wrap.querySelectorAll('input.pg').forEach(function(el){ el.addEventListener('input',function(){ var it=items[+el.getAttribute('data-i')]; it.page=Math.max(1,Math.min(pageCount,parseInt(el.value)||1)); validate(); }); el.addEventListener('focus',function(){ var it=items[+el.getAttribute('data-i')]; selId=it.id; showPage(it.page); }); });
+  }
+  function hasChild(i){ return i+1<items.length && items[i+1].level>items[i].level; }
+  function selIndex(){ return items.findIndex(function(x){return x.id===selId;}); }
+
+  // ---------- Operations ----------
+  $('addBookmarkBtn').addEventListener('click',function(){ snapshot(); var i=selIndex(); var lvl=i>=0?items[i].level:0; var it=nf('New bookmark',previewPage,lvl); items.splice(i>=0?i+1:items.length,0,it); selId=it.id; renderTree(); renderDetail(); validate(); });
+  $('addChildBtn').addEventListener('click',function(){ snapshot(); var i=selIndex(); var lvl=i>=0?items[i].level+1:0; var it=nf('Child bookmark',previewPage,lvl); items.splice(i>=0?i+1:items.length,0,it); selId=it.id; renderTree(); renderDetail(); validate(); });
+  $('dupBtn').addEventListener('click',function(){ var i=selIndex(); if(i<0)return; snapshot(); var copy=JSON.parse(JSON.stringify(items[i])); copy.id=++idc; copy.title+=' copy'; items.splice(i+1,0,copy); selId=copy.id; renderTree(); renderDetail(); validate(); });
+  $('delBtn').addEventListener('click',function(){ var i=selIndex(); if(i<0)return; snapshot(); items.splice(i,1); selId=items.length?items[Math.max(0,i-1)].id:null; renderTree(); renderDetail(); validate(); });
+  $('upBtn').addEventListener('click',function(){ var i=selIndex(); if(i<=0)return; snapshot(); var t=items[i]; items[i]=items[i-1]; items[i-1]=t; renderTree(); });
+  $('downBtn').addEventListener('click',function(){ var i=selIndex(); if(i<0||i>=items.length-1)return; snapshot(); var t=items[i]; items[i]=items[i+1]; items[i+1]=t; renderTree(); });
+  $('indentBtn').addEventListener('click',function(){ var i=selIndex(); if(i<=0)return; snapshot(); if(items[i].level<=items[i-1].level) items[i].level++; renderTree(); });
+  $('outdentBtn').addEventListener('click',function(){ var i=selIndex(); if(i<0)return; snapshot(); if(items[i].level>0)items[i].level--; renderTree(); });
+  $('undoBtn').addEventListener('click',function(){ if(!undoStack.length)return; redoStack.push(JSON.stringify(items)); items=JSON.parse(undoStack.pop()); if(!items.some(function(x){return x.id===selId;}))selId=items.length?items[0].id:null; renderTree(); renderDetail(); validate(); });
+  $('redoBtn').addEventListener('click',function(){ if(!redoStack.length)return; undoStack.push(JSON.stringify(items)); items=JSON.parse(redoStack.pop()); renderTree(); renderDetail(); validate(); });
+
+  // ---------- Detail panel ----------
+  function renderDetail(){
+    var it=items.find(function(x){return x.id===selId;}); var p=$('detailPanel');
+    if(!it){ p.innerHTML='<div style="font-size:.78rem;color:var(--text-dim)">Select a bookmark to edit.</div>'; return; }
+    p.innerHTML='<div class="bm-2">'+
+      '<div class="bm-field"><label>Destination type</label><select data-d="destType"><option value="xyz"'+(it.destType==='xyz'?' selected':'')+'>Position (XYZ)</option><option value="fith"'+(it.destType==='fith'?' selected':'')+'>Fit width</option><option value="fitv"'+(it.destType==='fitv'?' selected':'')+'>Fit height</option><option value="fit"'+(it.destType==='fit'?' selected':'')+'>Fit page</option></select></div>'+
+      '<div class="bm-field"><label>Position</label><select data-d="position"><option value="top"'+(it.position==='top'?' selected':'')+'>Top</option><option value="middle"'+(it.position==='middle'?' selected':'')+'>Middle</option><option value="bottom"'+(it.position==='bottom'?' selected':'')+'>Bottom</option></select></div>'+
+      '<div class="bm-field"><label>Zoom (0 = inherit)</label><input type="number" data-d="zoom" value="'+(it.zoom||0)+'" min="0" max="800" step="25"></div>'+
+      '<div class="bm-field"><label>Colour</label><input type="color" data-d="color" value="'+it.color+'"></div>'+
+      '</div><div class="bm-chips"><button class="bm-chip'+(it.bold?' on':'')+'" data-t="bold">Bold</button><button class="bm-chip'+(it.italic?' on':'')+'" data-t="italic">Italic</button></div>';
+    p.querySelectorAll('[data-d]').forEach(function(el){ el.addEventListener('input',function(){ var k=el.getAttribute('data-d'); it[k]= (k==='zoom')?(parseInt(el.value)||0):el.value; }); });
+    p.querySelectorAll('[data-t]').forEach(function(el){ el.addEventListener('click',function(){ var k=el.getAttribute('data-t'); it[k]=!it[k]; renderDetail(); renderTree(); }); });
+  }
+
+  // ---------- Search / replace ----------
+  $('searchBox').addEventListener('input',renderTree);
+  $('replaceBtn').addEventListener('click',function(){ var q=$('searchBox').value, r=$('replaceBox').value; if(!q)return; snapshot(); var n=0; items.forEach(function(it){ if(it.title.indexOf(q)>-1){ it.title=it.title.split(q).join(r); n++; } }); renderTree(); validate(); $('statusMsg').textContent='Replaced in '+n+' bookmark(s).'; });
+
+  // ---------- Validation ----------
+  function validate(){
+    var empty=0,dup=0,oor=0,seen={};
+    items.forEach(function(it){ if(!it.title.trim())empty++; if(it.page<1||it.page>pageCount)oor++; var k=it.title.trim().toLowerCase(); if(k){ if(seen[k])dup++; seen[k]=1; } });
+    var b=$('validationBadges'); var out='<span class="bm-badge ok">'+items.length+' bookmarks</span>';
+    if(empty)out+='<span class="bm-badge warn">⚠️ '+empty+' empty title(s)</span>';
+    if(dup)out+='<span class="bm-badge warn">⚠️ '+dup+' duplicate(s)</span>';
+    if(oor)out+='<span class="bm-badge warn">⚠️ '+oor+' out-of-range page(s)</span>';
+    if(!empty&&!dup&&!oor)out+='<span class="bm-badge ok">✅ no issues</span>';
+    b.innerHTML=out;
+  }
+
+  // ---------- Auto TOC ----------
+  $('autoTocBtn').addEventListener('click', async function(){
+    if(!pjs)return; $('statusMsg').textContent='⏳ Scanning headings…'; snapshot();
+    var found=[]; var sizes=[];
+    var n=Math.min(pjs.numPages,400);
+    for(var p=1;p<=n;p++){
+      var page=await pjs.getPage(p); var tc=await page.getTextContent();
+      tc.items.forEach(function(t){ var h=Math.abs(t.transform[3])||Math.abs(t.transform[0]); var s=(t.str||'').trim(); if(s.length>1&&s.length<120){ found.push({str:s,size:h,page:p}); sizes.push(h); } });
+      if(p%25===0)$('statusMsg').textContent='⏳ Scanning… page '+p+'/'+n;
+    }
+    if(!found.length){ $('statusMsg').textContent='⚠️ No selectable text found (scanned PDF?).'; return; }
+    sizes.sort(function(a,b){return a-b;}); var median=sizes[Math.floor(sizes.length/2)];
+    // heading candidates: bigger than median*1.25 OR chapter/section pattern
+    var chapRe=/^(chapter|section|part|अध्याय)\s+[0-9ivxlcdm]+/i, numRe=/^\d+(\.\d+){0,3}\s+\S/;
+    var uniqSizes=Array.from(new Set(found.filter(function(f){return f.size>median*1.15;}).map(function(f){return Math.round(f.size);}))).sort(function(a,b){return b-a;}).slice(0,4);
+    var toc=[]; var lastByPage={};
+    found.forEach(function(f){
+      var isHead = f.size>median*1.25 || chapRe.test(f.str) || numRe.test(f.str);
+      if(!isHead)return; if(lastByPage[f.page+'|'+f.str])return; lastByPage[f.page+'|'+f.str]=1;
+      var lvl=0; var rank=uniqSizes.indexOf(Math.round(f.size)); if(rank>=0)lvl=rank; if(numRe.test(f.str)){ var dots=(f.str.match(/^\d+(\.\d+)*/)[0].match(/\./g)||[]).length; lvl=Math.max(lvl,dots); }
+      toc.push(nf(f.str.slice(0,90),f.page,Math.min(lvl,4)));
     });
+    if(!toc.length){ $('statusMsg').textContent='⚠️ No clear headings detected — add bookmarks manually.'; return; }
+    // dedupe consecutive same title
+    items = toc.filter(function(t,i){ return i===0||t.title!==toc[i-1].title; });
+    selId=items[0].id; renderTree(); renderDetail(); validate();
+    $('statusMsg').textContent='✅ Generated '+items.length+' bookmark(s) from headings — review and edit.';
   });
-}
+  $('detectBtn').addEventListener('click', async function(){ if(!pjs)return; snapshot(); var ex=await readOutline(); if(ex.length){ items=ex; selId=items[0].id; renderTree(); renderDetail(); validate(); $('statusMsg').textContent='✅ Loaded '+ex.length+' existing bookmark(s).'; } else $('statusMsg').textContent='No existing bookmarks found.'; });
 
-document.getElementById('addBookmarkBtn').addEventListener('click', ()=>{
-  bookmarks.push({ title: '', page: 1 });
-  renderBookmarks();
-});
+  // ---------- Import / Export ----------
+  function dl(text,fn,mime){ var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([text],{type:mime||'text/plain'})); a.download=fn; document.body.appendChild(a); a.click(); a.remove(); }
+  document.querySelectorAll('[data-exp]').forEach(function(b){ b.addEventListener('click',function(){ var t=b.getAttribute('data-exp');
+    if(t==='json'){ dl(JSON.stringify(items.map(function(i){return {title:i.title,page:i.page,level:i.level,bold:i.bold,italic:i.italic,color:i.color};}),null,2),'bookmarks.json','application/json'); }
+    else if(t==='csv'){ dl('title,page,level,bold,italic,color\n'+items.map(function(i){return '"'+i.title.replace(/"/g,'""')+'",'+i.page+','+i.level+','+i.bold+','+i.italic+','+i.color;}).join('\n'),'bookmarks.csv','text/csv'); }
+    else if(t==='xml'){ dl('<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks>\n'+items.map(function(i){return '  <bookmark level="'+i.level+'" page="'+i.page+'">'+esc(i.title)+'</bookmark>';}).join('\n')+'\n</bookmarks>','bookmarks.xml','application/xml'); }
+    else if(t==='txt'){ dl(items.map(function(i){return '  '.repeat(i.level)+i.title+' ...... '+i.page;}).join('\n'),'bookmarks.txt','text/plain'); }
+  }); });
+  $('importBtn').addEventListener('click',function(){ $('importInput').click(); });
+  $('importInput').addEventListener('change',function(e){ var f=e.target.files[0]; if(!f)return; var fr=new FileReader(); fr.onload=function(){ try{ snapshot(); var txt=fr.result, nw=[];
+    if(/\.json$/i.test(f.name)){ JSON.parse(txt).forEach(function(o){ var it=nf(o.title,o.page,o.level||0); it.bold=!!o.bold; it.italic=!!o.italic; if(o.color)it.color=o.color; nw.push(it); }); }
+    else if(/\.csv$/i.test(f.name)){ txt.split(/\r?\n/).slice(1).forEach(function(l){ if(!l.trim())return; var m=l.match(/^"?(.*?)"?,(\d+),(\d+)/); if(m)nw.push(nf(m[1].replace(/""/g,'"'),+m[2],+m[3])); }); }
+    else if(/\.xml$/i.test(f.name)){ (txt.match(/<bookmark[^>]*>[\s\S]*?<\/bookmark>/g)||[]).forEach(function(x){ var lvl=(x.match(/level="(\d+)"/)||[])[1]||0; var pg=(x.match(/page="(\d+)"/)||[])[1]||1; var title=x.replace(/<[^>]+>/g,''); nw.push(nf(title.trim(),+pg,+lvl)); }); }
+    else { txt.split(/\r?\n/).forEach(function(l){ if(!l.trim())return; var lvl=(l.match(/^\s*/)[0].length/2)|0; var m=l.trim().match(/^(.*?)\s*\.{2,}\s*(\d+)$/); if(m)nw.push(nf(m[1],+m[2],lvl)); else nw.push(nf(l.trim(),1,lvl)); }); }
+    if(nw.length){ items=nw; selId=items[0].id; renderTree(); renderDetail(); validate(); $('statusMsg').textContent='✅ Imported '+nw.length+' bookmark(s).'; }
+    }catch(err){ $('statusMsg').textContent='❌ Import failed: '+err.message; } }; fr.readAsText(f); });
 
-function addOutlineToPdf(pdfDoc, items){
-  const { PDFName, PDFString, PDFArray, PDFDict, PDFNumber, PDFNull } = PDFLib;
-  const context = pdfDoc.context;
-  const pages = pdfDoc.getPages();
+  // ---------- Preview / thumbnails ----------
+  async function showPage(p){ if(!pjs)return; previewPage=Math.max(1,Math.min(pageCount,p)); try{ var page=await pjs.getPage(previewPage); var vp=page.getViewport({scale:1}); var scale=Math.min(260/vp.width,1.2); var v2=page.getViewport({scale:scale}); var c=$('prevCanvas'); c.width=v2.width; c.height=v2.height; await page.render({canvasContext:c.getContext('2d'),viewport:v2}).promise; $('prevPage').textContent='(page '+previewPage+')'; document.querySelectorAll('.bm-thumb').forEach(function(t,i){ t.classList.toggle('active',i+1===previewPage); }); }catch(e){} }
+  async function renderThumbs(){ var wrap=$('thumbs'); wrap.innerHTML=''; var n=Math.min(pageCount,60); for(var i=1;i<=n;i++){ var page=await pjs.getPage(i); var vp=page.getViewport({scale:0.16}); var c=document.createElement('canvas'); c.width=vp.width; c.height=vp.height; await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise; var d=document.createElement('div'); d.className='bm-thumb'; d.appendChild(c); var pn=document.createElement('div'); pn.className='pn'; pn.textContent=i; d.appendChild(pn); (function(pg){ d.addEventListener('click',function(){ showPage(pg); var it=items.find(function(x){return x.id===selId;}); if(it){ snapshot(); it.page=pg; renderTree(); validate(); $('statusMsg').textContent='Assigned page '+pg+' to “'+(it.title||'bookmark')+'”.'; } }); })(i); wrap.appendChild(d); } }
 
-  const itemRefs = items.map(() => context.nextRef());
-  const outlineRootRef = context.nextRef();
+  // ---------- Generate output ----------
+  function flatToTree(flat){ var root=[], stack=[]; flat.forEach(function(it){ var node={title:it.title||'Untitled',page:it.page,bold:it.bold,italic:it.italic,color:it.color,destType:it.destType,position:it.position,zoom:it.zoom,children:[]}; while(stack.length && stack[stack.length-1].level>=it.level) stack.pop(); if(!stack.length){ root.push(node); } else { stack[stack.length-1].node.children.push(node); } stack.push({level:it.level,node:node}); }); return root; }
 
-  items.forEach((item, i)=>{
-    const pageIndex = Math.max(0, Math.min(pages.length-1, item.page - 1));
-    const pageRef = pages[pageIndex].ref;
-
-    const dest = PDFArray.withContext(context);
-    dest.push(pageRef);
-    dest.push(PDFName.of('XYZ'));
-    dest.push(PDFNull);
-    dest.push(PDFNull);
-    dest.push(PDFNull);
-
-    const map = new Map();
-    map.set(PDFName.of('Title'), PDFString.of(item.title || ('Bookmark ' + (i+1))));
-    map.set(PDFName.of('Parent'), outlineRootRef);
-    map.set(PDFName.of('Dest'), dest);
-    if(i > 0) map.set(PDFName.of('Prev'), itemRefs[i-1]);
-    if(i < items.length - 1) map.set(PDFName.of('Next'), itemRefs[i+1]);
-
-    const dict = PDFDict.fromMapWithContext(map, context);
-    context.assign(itemRefs[i], dict);
+  $('generateBtn').addEventListener('click', async function(){
+    var valid=items.filter(function(i){return i.title.trim();});
+    if(!valid.length){ $('statusMsg').textContent='⚠️ Add at least one bookmark with a title.'; return; }
+    $('statusMsg').textContent='⏳ Writing outline…';
+    try{
+      var doc=await PDFLib.PDFDocument.load(pdfBytes,{ignoreEncryption:true});
+      if($('flatten').checked){ try{ doc.catalog.delete(PDFLib.PDFName.of('Outlines')); }catch(e){} }
+      buildOutline(doc, flatToTree(valid));
+      var out=await doc.save();
+      var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([out],{type:'application/pdf'})); a.download=(selectedFile.name.replace(/\.pdf$/i,''))+'-bookmarked.pdf'; document.body.appendChild(a); a.click(); a.remove();
+      $('statusMsg').textContent='✅ Added '+valid.length+' bookmark(s) and downloaded the PDF.';
+    }catch(e){ $('statusMsg').textContent='❌ Error: '+(e.message||e); }
   });
 
-  const rootMap = new Map();
-  rootMap.set(PDFName.of('Type'), PDFName.of('Outlines'));
-  rootMap.set(PDFName.of('First'), itemRefs[0]);
-  rootMap.set(PDFName.of('Last'), itemRefs[itemRefs.length-1]);
-  rootMap.set(PDFName.of('Count'), PDFNumber.of(items.length));
-  const rootDict = PDFDict.fromMapWithContext(rootMap, context);
-  context.assign(outlineRootRef, rootDict);
-
-  pdfDoc.catalog.set(PDFName.of('Outlines'), outlineRootRef);
-}
-
-document.getElementById('generateBtn').addEventListener('click', async ()=>{
-  const status = document.getElementById('statusMsg');
-  const validBookmarks = bookmarks.filter(b => b.title && b.title.trim());
-  if(validBookmarks.length === 0){
-    status.textContent = '⚠️ Please give at least one bookmark a title.';
-    return;
+  function buildOutline(doc, tree){
+    var P=PDFLib, ctx=doc.context, pages=doc.getPages();
+    function assign(nodes){ nodes.forEach(function(n){ n._ref=ctx.nextRef(); if(n.children.length)assign(n.children); }); }
+    function count(nodes){ var c=0; nodes.forEach(function(n){ c++; if(n.children.length)c+=count(n.children); }); return c; }
+    var rootRef=ctx.nextRef(); assign(tree);
+    function hexRgb(h){ h=(h||'#000000').replace('#',''); return [parseInt(h.slice(0,2),16)/255,parseInt(h.slice(2,4),16)/255,parseInt(h.slice(4,6),16)/255]; }
+    function write(nodes,parentRef){ nodes.forEach(function(n,i){
+      var pageIdx=Math.max(0,Math.min(pages.length-1,(n.page||1)-1)); var page=pages[pageIdx]; var ref=page.ref; var ph=page.getHeight(), pw=page.getWidth();
+      var dest=P.PDFArray.withContext(ctx); dest.push(ref);
+      var pos = n.position==='middle'?ph/2 : n.position==='bottom'?0 : ph;
+      var zoom = n.zoom? P.PDFNumber.of(n.zoom/100) : P.PDFNull;
+      if(n.destType==='fit'){ dest.push(P.PDFName.of('Fit')); }
+      else if(n.destType==='fith'){ dest.push(P.PDFName.of('FitH')); dest.push(P.PDFNumber.of(pos)); }
+      else if(n.destType==='fitv'){ dest.push(P.PDFName.of('FitV')); dest.push(P.PDFNumber.of(0)); }
+      else { dest.push(P.PDFName.of('XYZ')); dest.push(P.PDFNull); dest.push(P.PDFNumber.of(pos)); dest.push(zoom); }
+      var map=new Map();
+      map.set(P.PDFName.of('Title'), P.PDFHexString.fromText(n.title));
+      map.set(P.PDFName.of('Parent'), parentRef);
+      if(i>0)map.set(P.PDFName.of('Prev'), nodes[i-1]._ref);
+      if(i<nodes.length-1)map.set(P.PDFName.of('Next'), nodes[i+1]._ref);
+      map.set(P.PDFName.of('Dest'), dest);
+      var f=0; if(n.italic)f|=1; if(n.bold)f|=2; if(f)map.set(P.PDFName.of('F'), P.PDFNumber.of(f));
+      var rgb=hexRgb(n.color); if(n.color&&n.color!=='#000000'){ var ca=P.PDFArray.withContext(ctx); ca.push(P.PDFNumber.of(rgb[0])); ca.push(P.PDFNumber.of(rgb[1])); ca.push(P.PDFNumber.of(rgb[2])); map.set(P.PDFName.of('C'), ca); }
+      if(n.children.length){ map.set(P.PDFName.of('First'), n.children[0]._ref); map.set(P.PDFName.of('Last'), n.children[n.children.length-1]._ref); map.set(P.PDFName.of('Count'), P.PDFNumber.of(count(n.children))); }
+      ctx.assign(n._ref, P.PDFDict.fromMapWithContext(map,ctx));
+      if(n.children.length)write(n.children, n._ref);
+    }); }
+    write(tree, rootRef);
+    var rm=new Map(); rm.set(P.PDFName.of('Type'),P.PDFName.of('Outlines')); rm.set(P.PDFName.of('First'),tree[0]._ref); rm.set(P.PDFName.of('Last'),tree[tree.length-1]._ref); rm.set(P.PDFName.of('Count'),P.PDFNumber.of(count(tree)));
+    ctx.assign(rootRef, P.PDFDict.fromMapWithContext(rm,ctx));
+    doc.catalog.set(P.PDFName.of('Outlines'), rootRef);
   }
-
-  status.textContent = '⏳ Adding bookmarks...';
-  try{
-    const { PDFDocument } = PDFLib;
-    const bytes = await selectedFile.arrayBuffer();
-    const pdfDoc = await PDFDocument.load(bytes);
-
-    addOutlineToPdf(pdfDoc, validBookmarks);
-
-    const outBytes = await pdfDoc.save();
-    downloadBlob('bookmarked.pdf', new Blob([outBytes], { type: 'application/pdf' }));
-    status.textContent = `✅ Added ${validBookmarks.length} bookmark(s) and downloaded the PDF.`;
-  }catch(err){
-    status.textContent = '❌ Error: ' + (err && err.message ? err.message : 'Could not process this PDF.');
-  }
-});
+})();
 </script>
 <!-- Default Statcounter code for Apne Software
 https://apnesoftware.com -->
 <script type="text/javascript">
-var sc_project=13334460; 
-var sc_invisible=1; 
-var sc_security="a5854dc7"; 
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
 </script>
 <script type="text/javascript"
 src="https://www.statcounter.com/counter/counter.js"
@@ -242,5 +567,33 @@ src="https://c.statcounter.com/13334460/0/a5854dc7/1/"
 alt="Web Analytics"
 referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 <!-- End of Statcounter Code -->
+
+<!-- FAQ structured data -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is this tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free with no account, no signup and no limits."}},
+{"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. It is edited entirely in your browser with pdf-lib and PDF.js; nothing is uploaded."}},
+{"@type":"Question","name":"What are PDF bookmarks?","acceptedAnswer":{"@type":"Answer","text":"A clickable outline or table of contents shown in a reader's side panel that jumps to sections."}},
+{"@type":"Question","name":"Can it detect existing bookmarks?","acceptedAnswer":{"@type":"Answer","text":"Yes. It reads a PDF's current outline into an editable tree."}},
+{"@type":"Question","name":"Can I create nested bookmarks?","acceptedAnswer":{"@type":"Answer","text":"Yes, with unlimited depth. Use Indent and Outdent and Add child."}},
+{"@type":"Question","name":"How do I reorder bookmarks?","acceptedAnswer":{"@type":"Answer","text":"Select one and use Move up or down; Indent and Outdent change the level."}},
+{"@type":"Question","name":"Can I set where a bookmark lands?","acceptedAnswer":{"@type":"Answer","text":"Yes, a page number plus destination type (fit width, fit height, actual or custom) and position."}},
+{"@type":"Question","name":"Can I style bookmark titles?","acceptedAnswer":{"@type":"Answer","text":"Yes, bold, italic and colour per bookmark."}},
+{"@type":"Question","name":"What is Auto-TOC?","acceptedAnswer":{"@type":"Answer","text":"It scans the document's text and font sizes to generate bookmarks from headings automatically."}},
+{"@type":"Question","name":"Does Auto-TOC always get it right?","acceptedAnswer":{"@type":"Answer","text":"It is a heuristic, so review and tidy the result in the tree."}},
+{"@type":"Question","name":"Can I import and export the outline?","acceptedAnswer":{"@type":"Answer","text":"Yes, JSON, CSV, XML and TXT, and import any of them back."}},
+{"@type":"Question","name":"Does it preserve the original PDF?","acceptedAnswer":{"@type":"Answer","text":"Yes. Page content and metadata are untouched; only the outline is added or updated."}},
+{"@type":"Question","name":"Can I replace existing bookmarks?","acceptedAnswer":{"@type":"Answer","text":"Yes. Tick Replace existing bookmarks to rebuild the outline from scratch."}},
+{"@type":"Question","name":"Is there undo and redo?","acceptedAnswer":{"@type":"Answer","text":"Yes, with a full history of your edits."}},
+{"@type":"Question","name":"Does it validate my bookmarks?","acceptedAnswer":{"@type":"Answer","text":"Yes, it flags empty titles, duplicate titles and out-of-range pages."}},
+{"@type":"Question","name":"Can I preview pages?","acceptedAnswer":{"@type":"Answer","text":"Yes, a page preview and clickable thumbnails help you confirm destinations."}},
+{"@type":"Question","name":"Does it handle large PDFs?","acceptedAnswer":{"@type":"Answer","text":"Yes, hundreds or thousands of pages and long outlines, all in the browser."}},
+{"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"Once the page and its libraries have loaded, yes."}},
+{"@type":"Question","name":"Is it mobile friendly and accessible?","acceptedAnswer":{"@type":"Answer","text":"Yes, it is responsive and the controls are labelled and keyboard-operable."}},
+{"@type":"Question","name":"Does it use any AI?","acceptedAnswer":{"@type":"Answer","text":"No. Heading detection is a simple font-size heuristic, with no AI."}},
+{"@type":"Question","name":"Why don't my bookmarks appear in my reader?","acceptedAnswer":{"@type":"Answer","text":"Make sure the bookmark or outline panel is open in your reader; some hide it by default."}},
+{"@type":"Question","name":"Can I use one PDF's outline for another?","acceptedAnswer":{"@type":"Answer","text":"Yes. Export it as JSON and import it into another document."}}
+]}
+</script>
 </body>
 </html>
