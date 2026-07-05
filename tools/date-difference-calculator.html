@@ -5,26 +5,106 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://apnesoftware.com/tools/date-difference-calculator.html">
+<meta name="description" content="Free Professional Date & Time Calculator — difference between dates in years/months/days/hours, add or subtract time, business & working days (with custom holidays), age with zodiac & birthday countdown, event countdowns, leap-year info, a mini calendar and timeline, with DD/MM/YYYY–MM/DD/YYYY formats, English/Hindi and CSV/PDF export. 100% in your browser.">
+<meta name="keywords" content="date difference calculator, days between dates, business days calculator, working days calculator, age calculator, countdown calculator, date add subtract, leap year calculator, time duration calculator">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Date Difference Calculator | ApneSoftware">
-<meta property="og:description" content="Years, months, days between two dates. Free online tool — no signup required.">
+<meta property="og:title" content="Professional Date & Time Calculator | ApneSoftware">
+<meta property="og:description" content="Date difference, add/subtract time, business days, age, countdowns, leap year, calendar & timeline — with date formats, English/Hindi and export. Private, browser-based.">
 <meta property="og:url" content="https://apnesoftware.com/tools/date-difference-calculator.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Date Difference Calculator | ApneSoftware">
-<meta name="twitter:description" content="Years, months, days between two dates. Free online tool — no signup required.">
+<meta name="twitter:title" content="Professional Date & Time Calculator | ApneSoftware">
+<meta name="twitter:description" content="Difference, add/subtract, business days, age, countdown, leap year, calendar & timeline with formats, English/Hindi and export. Private & browser-based.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Date Difference Calculator","description":"Years, months, days between two dates. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/date-difference-calculator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Professional Date & Time Calculator","description":"Calculate the difference between two dates in years, months, days, hours, minutes and seconds; add or subtract time; count business and working days with custom holidays; compute age with zodiac and birthday countdown; run event countdowns; show leap years, a mini calendar and a visual timeline, with multiple date formats, English/Hindi and CSV/PDF export. Runs entirely in the browser.","url":"https://apnesoftware.com/tools/date-difference-calculator.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Date difference in years/months/days/hours/minutes/seconds","Add or subtract years, months, weeks, days, hours, minutes","Business & working days with weekend and custom-holiday exclusion","Age with zodiac, day of birth and next-birthday countdown","Event countdown, leap-year info, mini calendar and timeline","DD/MM/YYYY, MM/DD/YYYY, YYYY-MM-DD, English/Hindi and CSV/PDF export"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
 <meta name="color-scheme" content="dark">
-<title>Date Difference Calculator | ApneSoftware</title>
+<title>Professional Date & Time Calculator | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-  .result-box{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:18px;margin-top:14px;text-align:center}
-  .result-box .big{font-size:1.4rem;font-weight:800;color:var(--accent-2);margin-bottom:8px}
-  .result-box .sub{font-size:.85rem;color:var(--text-dim)}
+/* ===== Date & Time Calculator — scoped dt- prefix ===== */
+.panel{position:relative;z-index:1}
+.result-box{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:18px;margin-top:14px;text-align:center}
+.result-box .big{font-size:1.5rem;font-weight:800;color:var(--accent-2,#16c079);margin-bottom:8px}
+.result-box .sub{font-size:.85rem;color:var(--text-dim)}
+
+.dt-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.dt-tab{font-size:.8rem;padding:8px 13px;border-radius:9px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text);cursor:pointer;font-weight:600}
+.dt-tab.active{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff}
+.dt-pane{display:none}
+.dt-pane.active{display:block}
+
+.dt-topbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.dt-topbar select{font-size:.78rem;padding:6px 9px;border-radius:7px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)}
+.dt-topbar select option{background:#1a1a2e}
+
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:600px){ .dt-row{grid-template-columns:1fr} }
+.dt-field label{display:block;font-size:.78rem;color:var(--text-dim);margin-bottom:6px;font-weight:600}
+.dt-field input,.dt-field select{width:100%;font-size:.85rem;padding:9px 11px;border-radius:8px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)}
+.dt-field.invalid input{border-color:#f87171}
+.dt-field .dt-err{color:#f87171;font-size:.7rem;margin-top:3px;display:none}
+.dt-field.invalid .dt-err{display:block}
+.dt-inline{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-top:12px}
+.dt-stat{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:11px;padding:11px;text-align:center}
+.dt-stat .n{font-size:1.1rem;font-weight:800;font-variant-numeric:tabular-nums}
+.dt-stat .l{font-size:.68rem;color:var(--text-dim);margin-top:3px}
+
+/* Timeline */
+.dt-timeline{margin-top:14px;padding:14px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.03)}
+.dt-tl-bar{position:relative;height:12px;border-radius:8px;background:linear-gradient(90deg,#7c5cfc,#16c079);margin:26px 0}
+.dt-tl-bar .dot{position:absolute;top:50%;width:14px;height:14px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);box-shadow:0 0 6px rgba(0,0,0,.5)}
+.dt-tl-bar .dot.start{left:0}.dt-tl-bar .dot.end{left:100%}
+.dt-tl-labels{display:flex;justify-content:space-between;font-size:.74rem;color:var(--text-dim)}
+.dt-tl-mid{text-align:center;font-size:.8rem;font-weight:700;margin-top:6px}
+
+/* Calendar */
+.dt-cal{margin-top:14px;border:1px solid var(--border);border-radius:12px;padding:12px;background:rgba(255,255,255,.03)}
+.dt-cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.dt-cal-head button{background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text);border-radius:7px;cursor:pointer;padding:4px 10px}
+.dt-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.dt-cal-grid .cell{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:.76rem;border-radius:7px;background:rgba(255,255,255,.03)}
+.dt-cal-grid .cell.dow{background:none;color:var(--text-dim);font-weight:700;font-size:.68rem}
+.dt-cal-grid .cell.wknd{color:#f59e0b}
+.dt-cal-grid .cell.inrange{background:rgba(124,92,252,.25)}
+.dt-cal-grid .cell.edge{background:var(--accent,#7c5cfc);color:#fff;font-weight:800}
+.dt-cal-grid .cell.holiday{outline:2px solid #ef4444}
+
+.dt-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.dt-btn{font-size:.78rem;padding:8px 13px;border-radius:8px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text);cursor:pointer}
+.dt-btn:hover{background:rgba(124,92,252,.18)}
+.dt-btn.primary{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff;font-weight:600}
+.dt-history .hitem{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:rgba(255,255,255,.03);margin-bottom:6px;font-size:.76rem}
+.dt-history .hitem .g{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dt-history .hitem button{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:.9rem}
+.dt-note{font-size:.74rem;color:var(--text-dim);margin-top:8px}
+.dt-warn{font-size:.76rem;color:#f59e0b;margin-top:6px}
+
+/* Below-tool content */
+.dt-content h2{font-size:1.15rem;margin:26px 0 10px}
+.dt-content h3{font-size:1rem;margin:18px 0 8px}
+.dt-content p,.dt-content li{font-size:.92rem;line-height:1.72}
+.dt-content ul,.dt-content ol{padding-left:20px}
+.dt-fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:14px 0}
+.dt-fgrid .fc{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:14px}
+.dt-fgrid .fc b{display:block;margin-bottom:5px;font-size:.9rem}
+.dt-fgrid .fc span{font-size:.82rem;color:var(--text-dim);line-height:1.6}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin:12px 0}
+.related-grid a{display:flex;align-items:center;gap:9px;padding:12px 13px;border-radius:11px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.86rem;font-weight:500;transition:.15s}
+.related-grid a:hover{background:rgba(124,92,252,.16);border-color:var(--accent,#7c5cfc);transform:translateY(-1px)}
+.related-grid a .ri{font-size:1.15rem}
+.dt-faq details{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:11px;padding:2px 14px;margin-bottom:9px}
+.dt-faq summary{cursor:pointer;padding:12px 0;font-weight:600;font-size:.9rem;list-style:none}
+.dt-faq summary::-webkit-details-marker{display:none}
+.dt-faq summary::before{content:'＋';margin-right:9px;color:var(--accent,#7c5cfc);font-weight:700}
+.dt-faq details[open] summary::before{content:'－'}
+.dt-faq details p{padding:0 0 12px;margin:0;font-size:.87rem;color:var(--text-dim)}
+.dt-lang-note{font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:-4px}
+.dt-formula{background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-family:ui-monospace,Consolas,monospace;font-size:.8rem;overflow-x:auto}
 </style>
 </head>
 <body>
@@ -37,109 +117,460 @@
 
 <div class="container">
   <div class="tool-header">
-    <h1>📅 Date Difference Calculator</h1>
-    <p>Find out exactly how much time is between two dates.</p>
+    <h1>📅 Professional Date &amp; Time Calculator</h1>
+    <p>Difference between dates, add/subtract time, business &amp; working days, age, event countdowns, leap year, calendar and timeline — with date formats, English/Hindi and export. 100% in your browser.</p>
   </div>
 
   <div class="panel">
-    <div class="row">
-      <div class="field"><label for="dateFrom">From date</label><input type="date" id="dateFrom"></div>
-      <div class="field"><label for="dateTo">To date</label><input type="date" id="dateTo"></div>
+    <div class="dt-topbar">
+      <label style="font-size:.72rem;color:var(--text-dim)">Format</label>
+      <select id="dateFmt"><option value="dmy">DD/MM/YYYY</option><option value="mdy">MM/DD/YYYY</option><option value="ymd">YYYY-MM-DD</option></select>
+      <label style="font-size:.72rem;color:var(--text-dim)">Language</label>
+      <select id="lang"><option value="en">English</option><option value="hi">हिंदी</option></select>
     </div>
 
-    <div class="result-box" id="resultBox"></div>
+    <div class="dt-tabs">
+      <button class="dt-tab active" data-tab="diff">↔️ Difference</button>
+      <button class="dt-tab" data-tab="addsub">➕ Add / Subtract</button>
+      <button class="dt-tab" data-tab="business">💼 Business days</button>
+      <button class="dt-tab" data-tab="age">🎂 Age</button>
+      <button class="dt-tab" data-tab="countdown">⏳ Countdown</button>
+    </div>
+
+    <!-- ===== Difference ===== -->
+    <div class="dt-pane active" id="pane-diff">
+      <label class="dt-inline" style="margin-bottom:10px;font-size:.8rem;color:var(--text-dim)"><input type="checkbox" id="includeTime" style="width:auto"> Include time (hours / minutes)</label>
+      <div class="dt-row">
+        <div class="dt-field"><label for="dateFrom" id="fromLabel">From date</label><input type="date" id="dateFrom"><div class="dt-err">Pick a valid date.</div></div>
+        <div class="dt-field"><label for="dateTo" id="toLabel">To date</label><input type="date" id="dateTo"><div class="dt-err">Pick a valid date.</div></div>
+      </div>
+      <div class="dt-row" id="timeRow" style="display:none;margin-top:10px">
+        <div class="dt-field"><label for="timeFrom">From time</label><input type="time" id="timeFrom" value="00:00"></div>
+        <div class="dt-field"><label for="timeTo">To time</label><input type="time" id="timeTo" value="00:00"></div>
+      </div>
+
+      <div class="result-box" id="resultBox"></div>
+      <div class="dt-stats" id="diffStats"></div>
+      <div class="dt-warn" id="diffWarn" style="display:none"></div>
+
+      <div class="dt-timeline" id="timeline"></div>
+      <div class="dt-cal" id="calendarWrap"></div>
+      <div class="dt-note" id="leapNote"></div>
+    </div>
+
+    <!-- ===== Add / Subtract ===== -->
+    <div class="dt-pane" id="pane-addsub">
+      <div class="dt-field" style="max-width:260px"><label for="baseDate">Base date</label><input type="date" id="baseDate"></div>
+      <div class="dt-inline" style="margin:10px 0">
+        <button class="dt-btn primary" data-op="add">➕ Add</button>
+        <button class="dt-btn" data-op="sub">➖ Subtract</button>
+      </div>
+      <div class="dt-row" style="grid-template-columns:repeat(3,1fr)">
+        <div class="dt-field"><label>Years</label><input type="number" id="asYears" value="0" min="0"></div>
+        <div class="dt-field"><label>Months</label><input type="number" id="asMonths" value="0" min="0"></div>
+        <div class="dt-field"><label>Weeks</label><input type="number" id="asWeeks" value="0" min="0"></div>
+        <div class="dt-field"><label>Days</label><input type="number" id="asDays" value="30" min="0"></div>
+        <div class="dt-field"><label>Hours</label><input type="number" id="asHours" value="0" min="0"></div>
+        <div class="dt-field"><label>Minutes</label><input type="number" id="asMinutes" value="0" min="0"></div>
+      </div>
+      <div class="result-box" id="addsubResult"></div>
+    </div>
+
+    <!-- ===== Business days ===== -->
+    <div class="dt-pane" id="pane-business">
+      <div class="dt-topbar">
+        <label style="font-size:.72rem;color:var(--text-dim)">Preset</label>
+        <select id="bizPreset"><option value="office">Office (Mon–Fri)</option><option value="school">School (Mon–Sat)</option><option value="govt">Government (Mon–Fri)</option><option value="custom">Custom</option></select>
+      </div>
+      <div class="dt-row">
+        <div class="dt-field"><label for="bizFrom">From date</label><input type="date" id="bizFrom"></div>
+        <div class="dt-field"><label for="bizTo">To date</label><input type="date" id="bizTo"></div>
+      </div>
+      <div class="dt-inline" style="margin-top:10px;flex-wrap:wrap">
+        <span style="font-size:.74rem;color:var(--text-dim)">Weekend:</span>
+        <label style="font-size:.76rem"><input type="checkbox" class="wknd-day" value="0" checked style="width:auto"> Sun</label>
+        <label style="font-size:.76rem"><input type="checkbox" class="wknd-day" value="6" checked style="width:auto"> Sat</label>
+      </div>
+      <div class="dt-field" style="margin-top:10px"><label for="holidays">Custom holidays (one date per line, YYYY-MM-DD)</label>
+        <textarea id="holidays" rows="3" placeholder="2026-01-26&#10;2026-08-15" style="width:100%;font-size:.82rem;padding:9px 11px;border-radius:8px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)"></textarea></div>
+      <div class="dt-stats" id="bizStats"></div>
+    </div>
+
+    <!-- ===== Age ===== -->
+    <div class="dt-pane" id="pane-age">
+      <div class="dt-field" style="max-width:260px"><label for="birthDate">Date of birth</label><input type="date" id="birthDate"></div>
+      <div class="result-box" id="ageResult"></div>
+      <div class="dt-stats" id="ageStats"></div>
+    </div>
+
+    <!-- ===== Countdown ===== -->
+    <div class="dt-pane" id="pane-countdown">
+      <div class="dt-row">
+        <div class="dt-field"><label for="eventDate">Event date &amp; time</label><input type="datetime-local" id="eventDate"></div>
+        <div class="dt-field"><label for="eventType">Event</label>
+          <select id="eventType"><option>Birthday</option><option>Wedding</option><option>Anniversary</option><option>Festival</option><option>Vacation</option><option>Exam</option><option>Custom</option></select>
+        </div>
+      </div>
+      <div class="result-box" id="countdownResult"></div>
+      <div class="dt-stats" id="countdownStats"></div>
+    </div>
+
+    <!-- Shared actions -->
+    <div class="dt-actions">
+      <button class="dt-btn primary" id="copyBtn">📋 Copy</button>
+      <button class="dt-btn" id="saveBtn">⭐ Save</button>
+      <button class="dt-btn" data-export="csv">⬇ CSV</button>
+      <button class="dt-btn" data-export="xls">⬇ Excel</button>
+      <button class="dt-btn" data-export="pdf">⬇ PDF</button>
+      <button class="dt-btn" id="printBtn">🖨 Print</button>
+    </div>
+    <div class="dt-actions" style="margin-top:14px"><strong style="font-size:.88rem">🕘 Saved &amp; recent</strong>
+      <button class="dt-btn" id="clearHistBtn" style="margin-left:auto">Clear</button></div>
+    <div class="dt-history" id="historyList"></div>
   </div>
 </div>
 
+<!-- ============================ BELOW-TOOL CONTENT ============================ -->
+<div class="dt-content">
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Counting the days, months, or years between two dates feels like something you should be able to do in your head, but the moment you try it across different month lengths and the occasional leap year, manual counting becomes unreliable fast. This tool takes any two dates and instantly works out the precise difference between them, broken down into years, months, and days, alongside the total number of days and weeks — covering both the human-readable breakdown most people want and the raw day count that's often needed for official or technical purposes.</p>
-      <p>This kind of precise date math comes up far more often than people expect. Calculating someone's exact age, figuring out how many days remain until a deadline, working out the duration of an employment period or a lease, determining how many days a project has been running, or simply finding out how long it's been since a significant event are all situations where getting the count exactly right matters, and where doing it manually risks an off-by-one error around month boundaries that's surprisingly easy to make.</p>
-      <p>The years-months-days breakdown is particularly useful for things like calculating a person's tenure at a job, the exact age of a child for medical or school purposes, or the duration of a loan or lease in a format that matches how such things are usually described in official documents. The total day count, on the other hand, is what you typically need for things like calculating per-day rates, working out interest accrual periods, or filling in forms that specifically ask for a number of days rather than a years-and-months description.</p>
-      <p>Using the tool is as simple as picking a start date and an end date — it works correctly regardless of which date you enter first, automatically handling the calculation either way. The result updates instantly as you change either date, with no calculation delay or page reload. As with every tool on this site, everything happens locally in your browser; the dates you enter are never transmitted anywhere, so you can use it freely for anything from casual curiosity to sensitive calculations involving personal or official dates. It's a small, focused tool, but it removes one of those quietly annoying little arithmetic tasks that comes up far more often than most people plan for, whether at work, while traveling, or just settling a friendly debate about how long ago something actually happened.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Pick a start date and an end date.</li>
-        <li>See the breakdown instantly.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>दो तारीखों के बीच दिन, महीने, या साल गिनना ऐसा लगता है जो दिमाग में ही कर लेना चाहिए, पर जैसे ही आप इसे अलग-अलग महीनों की लंबाई और कभी-कभार आने वाले leap year के साथ आज़माते हैं, हाथ से गिनना जल्दी ही अविश्वसनीय हो जाता है। यह टूल कोई भी दो तारीखें लेकर तुरंत उनके बीच का सटीक अंतर निकालता है, साल, महीने, और दिनों में बांटकर, साथ ही कुल दिन और हफ्तों की गिनती भी देता है — यह उस human-readable breakdown को भी कवर करता है जो ज़्यादातर लोग चाहते हैं और उस raw day count को भी जो अक्सर official या technical कामों के लिए चाहिए होती है।</p>
-      <p>इस तरह की सटीक date math लोगों की उम्मीद से कहीं ज़्यादा बार काम आती है। किसी की exact age निकालना, किसी deadline तक कितने दिन बचे हैं यह पता करना, किसी employment period या lease की अवधि निकालना, कोई project कितने दिनों से चल रहा है यह तय करना, या बस यह जानना कि किसी ज़रूरी घटना को हुए कितना समय बीत गया है — यह सब ऐसी situations हैं जहां गिनती बिल्कुल सही होना मायने रखता है, और जहां हाथ से करने पर month boundaries के आसपास एक off-by-one गलती होने का खतरा रहता है जो हैरानी की बात नहीं कि आसानी से हो जाती है।</p>
-      <p>Years-months-days breakdown खासतौर पर तब उपयोगी है जब किसी की job पर tenure निकालनी हो, किसी बच्चे की medical या school के मकसद से exact age चाहिए हो, या किसी loan या lease की अवधि उसी फॉर्मेट में चाहिए हो जिसमें ऐसी चीज़ें आमतौर पर official documents में बताई जाती हैं। दूसरी तरफ, total day count तब चाहिए होती है जब per-day rates calculate करनी हों, interest accrual periods निकालने हों, या किसी ऐसे form में भरना हो जो खासतौर पर years-and-months की बजाय दिनों की संख्या मांगता हो।</p>
-      <p>टूल इस्तेमाल करना बस एक start date और एक end date चुनने जितना आसान है — आप पहले कौन सी तारीख डालते हैं इससे फर्क नहीं पड़ता, यह दोनों ही तरह से calculation सही तरीके से अपने आप handle कर लेता है। किसी भी तारीख को बदलते ही result तुरंत update हो जाता है, कोई calculation delay या page reload नहीं। इस साइट के बाकी टूल्स की तरह, सब कुछ आपके browser में locally होता है; आपकी डाली गई तारीखें कभी कहीं भेजी नहीं जातीं, तो आप इसे आम जिज्ञासा से लेकर personal या official तारीखों से जुड़ी sensitive calculations तक, बेझिझक इस्तेमाल कर सकते हैं।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>शुरुआत की तारीख और आखिरी तारीख चुनें।</li>
-        <li>ब्रेकडाउन तुरंत देखें।</li>
-      </ol>
-    </div>
+  <h2>🗓️ Every date and time calculation in one place</h2>
+  <p>The <strong>Professional Date &amp; Time Calculator</strong> turns the simple "days between two dates" question into a complete date-and-time workbench. From one tool you can find the exact difference between two dates down to the second, add or subtract any span of time, count only business or working days (skipping weekends and your own holidays), calculate an exact age with zodiac and birthday countdown, and run a live countdown to any event. It also shows leap years in your range, a mini calendar and a visual timeline, works in multiple date formats and in English or Hindi, and lets you copy or export the result — all instantly and privately in your browser.</p>
+
+  <h2>✨ Features</h2>
+  <div class="dt-fgrid">
+    <div class="fc"><b>Difference &amp; duration</b><span>Years, months, days plus total weeks, days, hours, minutes, seconds and milliseconds — with optional time-of-day.</span></div>
+    <div class="fc"><b>Add / subtract</b><span>Shift any base date by years, months, weeks, days, hours and minutes.</span></div>
+    <div class="fc"><b>Business &amp; working days</b><span>Exclude weekends and custom holidays; office, school and government presets.</span></div>
+    <div class="fc"><b>Age mode</b><span>Exact age, day of birth, zodiac sign, and a countdown to the next birthday.</span></div>
+    <div class="fc"><b>Event countdown</b><span>Live countdown to a birthday, wedding, festival, exam, vacation or any custom event.</span></div>
+    <div class="fc"><b>Leap year &amp; calendar</b><span>Leap years and extra days in the range, plus a mini calendar with weekend and range highlights.</span></div>
+    <div class="fc"><b>Timeline</b><span>A visual start → duration → end bar for any calculation.</span></div>
+    <div class="fc"><b>Formats &amp; export</b><span>DD/MM/YYYY, MM/DD/YYYY, YYYY-MM-DD, English/Hindi, and copy/print/CSV/Excel/PDF.</span></div>
   </div>
+
+  <h2>⚙️ How it works</h2>
+  <p>Every calculation uses your browser's native date engine, which already understands month lengths, leap years and time zones. For the calendar difference the tool counts whole years, then whole months, then the remaining days, borrowing from the previous month when needed — the same way people describe durations in plain language ("2 years, 3 months, 10 days"). Alongside that human-readable breakdown it computes the raw totals (total days, weeks, hours and so on) by taking the exact millisecond gap between the two moments and dividing it down. Business-day counting walks day by day from the start to the end, skipping any weekday you mark as a weekend and any date in your holiday list.</p>
+
+  <h2>💼 Use cases</h2>
+  <ul>
+    <li><strong>Students</strong> — days until an exam, semester length, or age for eligibility.</li>
+    <li><strong>Employees &amp; HR</strong> — notice periods, tenure, leave and probation in working days.</li>
+    <li><strong>Project managers</strong> — project duration and business-day deadlines.</li>
+    <li><strong>Accountants &amp; legal</strong> — interest-accrual days, contract and lease durations, statutory deadlines.</li>
+    <li><strong>Everyone</strong> — birthday and event countdowns, anniversaries, and "how long ago" questions.</li>
+  </ul>
+
+  <h2>🏢 Business days</h2>
+  <p>A calendar difference includes weekends and holidays, but payroll, SLAs, courts and offices usually run on <em>working days</em>. This tool counts only the days that matter: choose which weekdays are your weekend (Saturday and/or Sunday, or a six-day school week), paste your public and company holidays, and it returns the exact number of business days between two dates. Presets for office (Mon–Fri), school (Mon–Sat) and government (Mon–Fri) set sensible defaults you can still adjust.</p>
+
+  <h2>🔁 Leap year handling</h2>
+  <p>A year is a leap year if it is divisible by 4, except century years, which must be divisible by 400 — so 2000 was a leap year but 1900 was not. Because the calculator uses the browser's date engine, February 29th, leap days and month-length differences are handled automatically, and the Difference tab tells you exactly how many leap years fall inside your range and how many extra days they contribute.</p>
+
+  <h2>🧮 Examples</h2>
+  <ul>
+    <li><strong>05 Jul 2026 → 05 Aug 2026:</strong> 0 years, 1 month, 0 days — 31 total days, ~4.4 weeks.</li>
+    <li><strong>Born 15 Aug 1997:</strong> exact age today, day of birth (Friday), Leo zodiac, and days to the next birthday.</li>
+    <li><strong>Business days 01 → 30 Jun with Sat/Sun off:</strong> counts only the ~22 weekdays, minus any holidays you add.</li>
+  </ul>
+
+  <h2>🎯 Benefits</h2>
+  <ul>
+    <li><strong>Accurate:</strong> no off-by-one errors around months, leap days or weekends.</li>
+    <li><strong>Versatile:</strong> five modes cover almost every date question in one page.</li>
+    <li><strong>Localised:</strong> your preferred date format and English or Hindi labels.</li>
+    <li><strong>Private &amp; instant:</strong> nothing is uploaded; results update live.</li>
+    <li><strong>Shareable:</strong> copy or export a clean summary for records or reports.</li>
+  </ul>
+
+  <!-- ===== Related Tools (ABOVE About — required order) ===== -->
+  <h2>🧰 Related Tools</h2>
+  <div class="related-grid">
+    <a href="age-calculator.html"><span class="ri">🎂</span> Age Calculator</a>
+    <a href="timestamp-converter.html"><span class="ri">🕒</span> Timestamp / Time Converter</a>
+    <a href="working-days-calculator.html"><span class="ri">📅</span> Working / Business Day Calculator</a>
+    <a href="unit-converter.html"><span class="ri">📐</span> Unit Converter</a>
+    <a href="percentage-discount-calculator.html"><span class="ri">📊</span> Percentage Calculator</a>
+    <a href="compound-interest-calculator.html"><span class="ri">📈</span> Compound Interest Calculator</a>
+    <a href="emi-calculator.html"><span class="ri">💰</span> EMI Calculator</a>
+    <a href="average-calculator.html"><span class="ri">🧮</span> Average Calculator</a>
+  </div>
+
+  <!-- ===== About (English) ===== -->
+  <h2>ℹ️ About This Tool</h2>
+  <p>The <strong>Professional Date &amp; Time Calculator</strong> is a free, browser-based tool that answers, precisely and instantly, almost any question that involves dates and time. It began as a simple "difference between two dates" calculator and grew into a five-mode workbench because date arithmetic, in real life, is rarely just one calculation. People need to know an exact age for a form, the number of working days until a deadline, the date thirty business days from now, how long a project has run, or how many days remain until an exam or a wedding — and each of those is a slightly different problem. This tool gathers them into one clean interface so you never have to hunt for the right calculator or risk an off-by-one mistake counting on your fingers.</p>
+
+  <p>The default Difference mode does what the original tool did, only more thoroughly. Pick a start date and an end date and it returns the gap in the natural years-months-days form that matches how durations are written in official documents, and — because that human breakdown is not always what you need — it also gives the raw totals: total days, weeks, hours, minutes, seconds and even milliseconds. You can switch on time-of-day to include hours and minutes for precise, sub-day durations. It works no matter which date you enter first, tells you if it had to reverse them, and flags edge cases such as the two dates being identical or the range being extremely large. Beneath the numbers it draws a visual timeline from start to end and a mini calendar that highlights the range, weekends and any holidays, so the span is easy to grasp at a glance.</p>
+
+  <p>The Add / Subtract mode solves the inverse problem: instead of measuring the gap between two known dates, it takes one date and shifts it. Enter a base date, choose add or subtract, and specify any combination of years, months, weeks, days, hours and minutes to land on the resulting date and time. This is exactly what you need for deadlines ("what date is 45 days from today?"), reminders, contract end dates, or working out when a subscription or notice period expires. Because it uses the browser's date engine, month-length and leap-year adjustments happen automatically, so adding a month to January 31st behaves sensibly rather than producing an impossible date.</p>
+
+  <p>For anyone whose deadlines run on the working week, the Business Days mode is the heart of the tool. A plain calendar difference counts every day, but payroll cut-offs, service-level agreements, court and government timelines and office leave are all measured in working days. Here you choose which weekdays count as your weekend — Saturday and Sunday for most offices, or a six-day week for many schools — and paste in your public and company holidays, one date per line. The calculator then walks the range day by day and returns the exact number of business days, excluding both weekends and your holidays, with office, school and government presets to start from. This turns a tedious, error-prone manual count into a single reliable number.</p>
+
+  <p>The Age mode is built for the most common date question of all. Enter a date of birth and it shows the exact current age in years, months and days, the day of the week you were born, your zodiac sign, and a live countdown to your next birthday. It is equally useful for calculating a child's age for school admission or vaccination schedules, confirming eligibility for exams, jobs or pensions, or simply satisfying curiosity. The Countdown mode extends this to any future moment: pick an event — a birthday, wedding, anniversary, festival, vacation or exam, or a custom label — and the tool counts down to it in real time, updating every second, so you always know exactly how long is left.</p>
+
+  <p>Around these modes sit the details that make a tool feel professional. You can choose your date format — DD/MM/YYYY, MM/DD/YYYY or YYYY-MM-DD — and switch the interface and results between English and Hindi. The Difference tab reports the leap years inside your range and the extra days they add, useful for precise interest or duration calculations. Any result can be copied to your clipboard or exported as CSV, Excel or PDF, or printed, which is handy for HR records, legal filings and project documentation. A local history saves your recent calculations and lets you star favourites, all stored only in your own browser. Inputs are validated so empty, invalid or nonsensical dates are caught before they produce a wrong answer. And, as with every tool here, nothing is ever uploaded: your dates — which can be personal or confidential — are processed entirely on your device, the tool keeps working offline once loaded, and closing the tab clears everything. It is lightweight, fast, mobile-friendly and accessible, built to serve students, employees, HR professionals, project managers, accountants, legal users and businesses with equal reliability.</p>
+
+  <!-- ===== About (Hindi) ===== -->
+  <h2>ℹ️ इस टूल के बारे में (हिंदी में)</h2>
+  <p class="dt-lang-note">The same guide in Hindi / यही जानकारी हिंदी में।</p>
+  <p><strong>Professional Date &amp; Time Calculator</strong> एक फ्री, ब्राउज़र-आधारित टूल है जो तारीख़ और समय से जुड़े लगभग किसी भी सवाल का सटीक और तुरंत जवाब देता है। इसकी शुरुआत एक साधारण "दो तारीख़ों के बीच अंतर" calculator के रूप में हुई थी और यह पाँच-mode वाला workbench बन गया, क्योंकि असल ज़िंदगी में date arithmetic शायद ही कभी सिर्फ़ एक calculation होती है। लोगों को किसी form के लिए exact age चाहिए होती है, किसी deadline तक कितने working days हैं, आज से तीस business days बाद कौन-सी तारीख़ होगी, कोई project कितने दिनों से चल रहा है, या किसी exam/शादी तक कितने दिन बचे हैं — और इनमें से हर एक थोड़ी अलग समस्या है। यह टूल इन सबको एक ही साफ़ interface में समेटता है।</p>
+
+  <p>डिफ़ॉल्ट Difference mode वही करता है जो पुराना टूल करता था, पर ज़्यादा पूरी तरह। एक start date और end date चुनिए और यह अंतर साल-महीने-दिन के स्वाभाविक रूप में देता है, और साथ ही raw totals भी — कुल दिन, हफ्ते, घंटे, मिनट, सेकंड और milliseconds। आप time-of-day चालू करके घंटे और मिनट भी शामिल कर सकते हैं। यह इससे फ़र्क नहीं पड़ता कि आपने पहले कौन-सी तारीख़ डाली, और यह किनारे के मामलों (जैसे दोनों तारीख़ें एक जैसी होना या बहुत बड़ा range) को भी बताता है। नीचे यह start से end तक एक visual timeline और एक mini calendar बनाता है जो range, weekends और holidays को highlight करता है।</p>
+
+  <p>Add / Subtract mode उल्टी समस्या हल करता है: दो ज्ञात तारीख़ों का अंतर मापने के बजाय, यह एक तारीख़ लेकर उसे आगे-पीछे खिसकाता है। एक base date डालिए, add या subtract चुनिए, और साल, महीने, हफ्ते, दिन, घंटे तथा मिनट का कोई भी संयोजन देकर परिणामी तारीख़ पाइए। deadlines ("आज से 45 दिन बाद कौन-सी तारीख़?"), reminders, contract end dates, या notice period की समाप्ति निकालने के लिए यह बिल्कुल सही है। चूँकि यह browser के date engine का उपयोग करता है, month-length और leap-year समायोजन अपने-आप होते हैं।</p>
+
+  <p>जिनकी deadlines working week पर चलती हैं, उनके लिए Business Days mode टूल का दिल है। एक सादा calendar अंतर हर दिन गिनता है, पर payroll, SLA, अदालती/सरकारी समयसीमाएँ और office leave सब working days में मापे जाते हैं। यहाँ आप चुनते हैं कि कौन-से weekday आपका weekend हैं — अधिकतर offices के लिए शनिवार-रविवार, या कई स्कूलों के लिए छह-दिन का सप्ताह — और अपने सार्वजनिक व कंपनी holidays पेस्ट करते हैं, हर पंक्ति में एक तारीख़। फिर calculator range को दिन-दर-दिन चलकर weekends और holidays को छोड़ते हुए business days की सटीक संख्या देता है, office, school और government presets के साथ।</p>
+
+  <p>Age mode सबसे आम तारीख़-सवाल के लिए बना है। जन्म तारीख़ डालिए और यह साल-महीने-दिन में exact age, जन्म का दिन, आपकी zodiac राशि, और अगले जन्मदिन तक का live countdown दिखाता है। यह स्कूल admission या टीकाकरण के लिए बच्चे की उम्र निकालने, exams/नौकरी/pension की पात्रता जाँचने, या बस जिज्ञासा शांत करने के लिए उपयोगी है। Countdown mode इसे किसी भी भविष्य के क्षण तक बढ़ा देता है: कोई event चुनिए — जन्मदिन, शादी, सालगिरह, त्योहार, छुट्टी या exam — और टूल हर सेकंड update होते हुए उसकी उलटी गिनती करता है।</p>
+
+  <p>इन modes के आसपास वे बारीकियाँ हैं जो टूल को professional बनाती हैं। आप अपना date format चुन सकते हैं — DD/MM/YYYY, MM/DD/YYYY या YYYY-MM-DD — और interface तथा results को English और हिंदी के बीच बदल सकते हैं। Difference tab आपके range के leap years और उनके जोड़े गए अतिरिक्त दिनों की जानकारी देता है। किसी भी result को clipboard पर copy या CSV, Excel, PDF में export किया जा सकता है, या print किया जा सकता है। एक local history आपकी हाल की calculations सहेजती है और favourites star करने देती है, जो सिर्फ़ आपके ब्राउज़र में रहती हैं। inputs validate होते हैं। और, यहाँ के हर टूल की तरह, कुछ भी अपलोड नहीं होता — आपकी तारीख़ें आपके डिवाइस पर ही process होती हैं, और लोड होने के बाद यह offline भी काम करता है। यह हल्का, तेज़, मोबाइल-अनुकूल और सुलभ है।</p>
+
+  <!-- ===== FAQ (immediately after About — required order) ===== -->
+  <h2>❓ Frequently Asked Questions</h2>
+  <div class="dt-faq" id="dtFaq">
+    <details><summary>Is this calculator free?</summary><p>Yes, completely free with no account, no signup and no limits. / हाँ, यह पूरी तरह मुफ़्त है।</p></details>
+    <details><summary>Are the dates I enter uploaded anywhere?</summary><p>No. All calculations run locally in your browser; your dates never leave your device. / नहीं, सब कुछ आपके ब्राउज़र में ही होता है।</p></details>
+    <details><summary>Does the order of dates matter?</summary><p>No. If the "to" date is earlier, the tool reverses them automatically and tells you. / नहीं, यह तारीख़ें अपने-आप उलट लेता है।</p></details>
+    <details><summary>How are months counted?</summary><p>Whole years first, then whole months, then remaining days, borrowing from the previous month — matching how durations are normally written. / पहले साल, फिर महीने, फिर दिन।</p></details>
+    <details><summary>What is the difference between calendar days and business days?</summary><p>Calendar days include weekends and holidays; business days exclude the weekends you choose and your holiday list. / business days में weekends/holidays नहीं गिने जाते।</p></details>
+    <details><summary>Can I exclude custom holidays?</summary><p>Yes. In Business days mode, paste your holidays (one YYYY-MM-DD per line) and they are skipped. / हाँ, holidays पेस्ट करें।</p></details>
+    <details><summary>Which weekend days can I set?</summary><p>Any — Saturday, Sunday, both, or a six-day week for schools. Presets cover office, school and government. / कोई भी weekday weekend के रूप में।</p></details>
+    <details><summary>Can I add or subtract time from a date?</summary><p>Yes. The Add/Subtract mode shifts a base date by years, months, weeks, days, hours and minutes. / हाँ, Add/Subtract mode से।</p></details>
+    <details><summary>How is age calculated?</summary><p>Exact years, months and days from birth date to today, plus day of birth, zodiac and next-birthday countdown. / जन्म से आज तक सटीक उम्र।</p></details>
+    <details><summary>How does the event countdown work?</summary><p>Pick an event date and time; the tool counts down live, updating every second. / event तक live उलटी गिनती।</p></details>
+    <details><summary>Does it handle leap years?</summary><p>Yes, automatically, and the Difference tab shows how many leap years and extra days are in your range. / हाँ, leap years अपने-आप।</p></details>
+    <details><summary>What date formats are supported?</summary><p>DD/MM/YYYY, MM/DD/YYYY and YYYY-MM-DD, selectable at the top. / तीनों प्रमुख formats।</p></details>
+    <details><summary>Is it available in Hindi?</summary><p>Yes. Switch the language selector to हिंदी for Hindi labels and results. / हाँ, हिंदी में उपलब्ध।</p></details>
+    <details><summary>Can I see a calendar of the range?</summary><p>Yes. The Difference tab shows a mini calendar highlighting the range, weekends and holidays. / हाँ, mini calendar में।</p></details>
+    <details><summary>Can I export or print the result?</summary><p>Yes — copy, CSV, Excel, PDF and print are all supported. / हाँ, copy, CSV, Excel, PDF और print।</p></details>
+    <details><summary>Does it save my calculations?</summary><p>Recent and starred results are stored in your own browser (localStorage). / हाल की calculations आपके ब्राउज़र में।</p></details>
+    <details><summary>Does it include the end date in the count?</summary><p>The total-days figure is the exact gap; business-day counting includes both endpoints if they are working days. / totals सटीक अंतर हैं।</p></details>
+    <details><summary>Does it work offline?</summary><p>Yes. There are no external libraries, so it works without internet once loaded. / हाँ, यह offline काम करता है।</p></details>
+    <details><summary>Is it mobile friendly and accessible?</summary><p>Yes, it is responsive and the controls are labelled and keyboard-operable. / हाँ, यह मोबाइल-अनुकूल और सुलभ है।</p></details>
+    <details><summary>Does it use any AI?</summary><p>No. Every result comes from standard date arithmetic with no AI. / नहीं, इसमें कोई AI नहीं है।</p></details>
+    <details><summary>Why does the calendar difference differ from the total days?</summary><p>"2 months, 5 days" is the calendar breakdown; total days is the exact count — both describe the same span differently. / दोनों एक ही अवधि को अलग तरह दिखाते हैं।</p></details>
+  </div>
+
+  <!-- ===== Privacy ===== -->
+  <h2>🔒 Privacy</h2>
+  <p>This tool is privacy-first. All date and time calculations — differences, add/subtract, business days, age, countdowns and the calendar — run entirely in your browser with JavaScript. The dates you enter, which may be personal (birth dates) or confidential (contract and legal dates), are never uploaded to a server, shared with analytics, or processed by any AI service. Saved and recent calculations live only in your own browser's local storage, and clearing your browser data removes them. Because it is fully client-side, the tool keeps working offline once loaded. / यह टूल privacy-first है — सारा काम आपके ब्राउज़र में होता है, कोई तारीख़ अपलोड नहीं होती, और सहेजी गई calculations सिर्फ़ आपके ब्राउज़र में रहती हैं।</p>
+
+  <!-- ===== Troubleshooting ===== -->
+  <h2>🛠️ Troubleshooting</h2>
+  <ul>
+    <li><strong>Result shows a prompt to pick dates:</strong> one of the date fields is empty — fill both.</li>
+    <li><strong>Business-day count looks high:</strong> check which weekend days are ticked and that your holidays use the YYYY-MM-DD format, one per line.</li>
+    <li><strong>The calendar difference and total days seem to disagree:</strong> they don't — one is a years/months/days breakdown, the other the exact day count of the same span.</li>
+    <li><strong>Time isn't included:</strong> tick "Include time" in the Difference tab to add hours and minutes.</li>
+    <li><strong>Countdown isn't updating:</strong> make sure the event date is in the future; past events show "already passed".</li>
+    <li><strong>Export didn't download:</strong> allow downloads for this site and try again.</li>
+  </ul>
 </div>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
 <script src="../assets/common.js"></script>
 <script>
-function calculate(){
-  const fromVal = document.getElementById('dateFrom').value;
-  const toVal = document.getElementById('dateTo').value;
-  const box = document.getElementById('resultBox');
+(function(){
+  'use strict';
+  function $(id){ return document.getElementById(id); }
+  var lang='en', fmt='dmy', mode='diff';
+  var MONTHS_EN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var DOW_EN=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var DOW_HI=['रविवार','सोमवार','मंगलवार','बुधवार','गुरुवार','शुक्रवार','शनिवार'];
+  var L={ en:{years:'years',months:'months',days:'days',totaldays:'total days',weeks:'weeks',reversed:'(dates were reversed)',pickboth:'Pick both dates to see the difference.'},
+          hi:{years:'साल',months:'महीने',days:'दिन',totaldays:'कुल दिन',weeks:'हफ्ते',reversed:'(तारीख़ें उलटी गईं)',pickboth:'अंतर देखने के लिए दोनों तारीख़ें चुनें।'} };
+  function t(k){ return (L[lang]||L.en)[k]; }
 
-  if(!fromVal || !toVal){
-    box.innerHTML = '<div class="sub">Pick both dates to see the difference.</div>';
-    return;
+  function fmtDate(d){ if(!d)return '—'; var y=d.getFullYear(),m=d.getMonth()+1,da=d.getDate();
+    var mm=(m<10?'0':'')+m, dd=(da<10?'0':'')+da;
+    if(fmt==='mdy')return mm+'/'+dd+'/'+y; if(fmt==='ymd')return y+'-'+mm+'-'+dd; return dd+'/'+mm+'/'+y; }
+  function parse(v){ if(!v)return null; var d=new Date(v+ (v.length<=10?'T00:00:00':'')); return isNaN(d)?null:d; }
+
+  // ---------- Difference ----------
+  function diff(a,b){
+    var swapped=false; if(a>b){ var tmp=a;a=b;b=tmp; swapped=true; }
+    var y=b.getFullYear()-a.getFullYear(), m=b.getMonth()-a.getMonth(), d=b.getDate()-a.getDate();
+    if(d<0){ m-=1; d+=new Date(b.getFullYear(),b.getMonth(),0).getDate(); }
+    if(m<0){ y-=1; m+=12; }
+    var ms=b-a, totalDays=Math.floor(ms/86400000);
+    return {y:y,m:m,d:d,swapped:swapped,ms:ms,totalDays:totalDays,weeks:ms/604800000,hours:ms/3600000,mins:ms/60000,secs:ms/1000};
   }
+  function leapCount(a,b){ var c=0,ex=0; for(var yr=a.getFullYear();yr<=b.getFullYear();yr++){ if((yr%4===0&&yr%100!==0)||yr%400===0){ var feb29=new Date(yr,1,29); if(feb29>=a&&feb29<=b){ c++; ex++; } } } return {count:c,extra:ex}; }
 
-  let start = new Date(fromVal);
-  let end = new Date(toVal);
-  let swapped = false;
-  if(start > end){ [start, end] = [end, start]; swapped = true; }
-
-  let years = end.getFullYear() - start.getFullYear();
-  let months = end.getMonth() - start.getMonth();
-  let days = end.getDate() - start.getDate();
-
-  if(days < 0){
-    months -= 1;
-    const prevMonth = new Date(end.getFullYear(), end.getMonth(), 0);
-    days += prevMonth.getDate();
+  var lastSummary='';
+  function calcDiff(){
+    var fv=$('dateFrom').value, tv=$('dateTo').value;
+    var inclTime=$('includeTime').checked;
+    if(inclTime){ fv+= 'T'+($('timeFrom').value||'00:00'); tv+='T'+($('timeTo').value||'00:00'); }
+    var a=parse(fv), b=parse(tv);
+    var box=$('resultBox');
+    $('dateFrom').closest('.dt-field').classList.toggle('invalid', $('dateFrom').value!==''&&!parse($('dateFrom').value));
+    if(!a||!b){ box.innerHTML='<div class="sub">'+t('pickboth')+'</div>'; $('diffStats').innerHTML=''; $('timeline').innerHTML=''; $('calendarWrap').innerHTML=''; $('leapNote').textContent=''; return; }
+    var r=diff(a,b);
+    box.innerHTML='<div class="big">'+r.y+' '+t('years')+', '+r.m+' '+t('months')+', '+r.d+' '+t('days')+'</div>'+
+      '<div class="sub">'+r.totalDays.toLocaleString('en-IN')+' '+t('totaldays')+' • '+r.weeks.toFixed(1)+' '+t('weeks')+(r.swapped?' '+t('reversed'):'')+'</div>';
+    $('diffStats').innerHTML=[['Total days',Math.round(r.totalDays)],['Weeks',r.weeks.toFixed(1)],['Hours',Math.round(r.hours).toLocaleString('en-IN')],['Minutes',Math.round(r.mins).toLocaleString('en-IN')],['Seconds',Math.round(r.secs).toLocaleString('en-IN')],['Milliseconds',Math.round(r.ms).toLocaleString('en-IN')]].map(function(s){return '<div class="dt-stat"><div class="n">'+s[1]+'</div><div class="l">'+s[0]+'</div></div>';}).join('');
+    // warnings
+    var w=$('diffWarn'); if(r.totalDays===0){ w.style.display='block'; w.textContent='⚠️ Both dates are the same.'; } else if(r.totalDays>36500){ w.style.display='block'; w.textContent='ℹ️ That is a very large range ('+(r.totalDays/365).toFixed(0)+'+ years).'; } else { w.style.display='none'; }
+    var lp=leapCount(a<b?a:b,a<b?b:a); $('leapNote').textContent='📅 '+lp.count+' leap year(s) in this range, adding '+lp.extra+' extra day(s).';
+    drawTimeline(a<b?a:b,a<b?b:a,r); drawCalendar(a<b?a:b,a<b?b:a);
+    lastSummary=fmtDate(a)+' → '+fmtDate(b)+' = '+r.y+'y '+r.m+'m '+r.d+'d ('+Math.round(r.totalDays)+' days)';
+    pushHistory(lastSummary);
   }
-  if(months < 0){
-    years -= 1;
-    months += 12;
+  function drawTimeline(a,b,r){
+    $('timeline').innerHTML='<div class="dt-tl-labels"><span>'+fmtDate(a)+'</span><span>'+fmtDate(b)+'</span></div>'+
+      '<div class="dt-tl-bar"><span class="dot start"></span><span class="dot end"></span></div>'+
+      '<div class="dt-tl-mid">'+r.y+'y '+r.m+'m '+r.d+'d • '+Math.round(r.totalDays)+' days</div>';
   }
+  var calMonth=null;
+  function drawCalendar(a,b){
+    var base=calMonth||new Date(a.getFullYear(),a.getMonth(),1); calMonth=base;
+    var y=base.getFullYear(),mo=base.getMonth();
+    var first=new Date(y,mo,1).getDay(), dim=new Date(y,mo+1,0).getDate();
+    var hol=holidaySet();
+    var dows=['S','M','T','W','T','F','S'];
+    var cells=dows.map(function(d,i){return '<div class="cell dow'+((i===0||i===6)?' wknd':'')+'">'+d+'</div>';});
+    for(var i=0;i<first;i++)cells.push('<div class="cell" style="background:none"></div>');
+    for(var dd=1;dd<=dim;dd++){ var cur=new Date(y,mo,dd); var cls='cell'; var dow=cur.getDay();
+      if(dow===0||dow===6)cls+=' wknd';
+      if(cur>=stripTime(a)&&cur<=stripTime(b))cls+=' inrange';
+      if(sameDay(cur,a)||sameDay(cur,b))cls+=' edge';
+      if(hol[iso(cur)])cls+=' holiday';
+      cells.push('<div class="'+cls+'">'+dd+'</div>');
+    }
+    $('calendarWrap').innerHTML='<div class="dt-cal-head"><button id="calPrev">‹</button><strong style="font-size:.85rem">'+MONTHS_EN[mo]+' '+y+'</strong><button id="calNext">›</button></div><div class="dt-cal-grid">'+cells.join('')+'</div>';
+    $('calPrev').onclick=function(){ calMonth=new Date(y,mo-1,1); drawCalendar(a,b); };
+    $('calNext').onclick=function(){ calMonth=new Date(y,mo+1,1); drawCalendar(a,b); };
+  }
+  function stripTime(d){ return new Date(d.getFullYear(),d.getMonth(),d.getDate()); }
+  function sameDay(a,b){ return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate(); }
+  function iso(d){ return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2); }
+  function holidaySet(){ var set={}; ($('holidays')?$('holidays').value:'').split(/\n+/).forEach(function(l){ l=l.trim(); if(/^\d{4}-\d{2}-\d{2}$/.test(l))set[l]=1; }); return set; }
 
-  const totalDays = Math.round((end - start) / (1000*60*60*24));
-  const totalWeeks = (totalDays / 7).toFixed(1);
+  // ---------- Add / Subtract ----------
+  function calcAddSub(sign){
+    var bv=$('baseDate').value; var base=parse(bv)|| new Date();
+    var d=new Date(base.getTime());
+    var s=sign||1;
+    d.setFullYear(d.getFullYear()+s*(parseInt($('asYears').value)||0));
+    d.setMonth(d.getMonth()+s*(parseInt($('asMonths').value)||0));
+    d.setDate(d.getDate()+s*((parseInt($('asWeeks').value)||0)*7+(parseInt($('asDays').value)||0)));
+    d.setHours(d.getHours()+s*(parseInt($('asHours').value)||0));
+    d.setMinutes(d.getMinutes()+s*(parseInt($('asMinutes').value)||0));
+    $('addsubResult').innerHTML='<div class="big">'+fmtDate(d)+'</div><div class="sub">'+(lang==='hi'?DOW_HI:DOW_EN)[d.getDay()]+' '+('0'+d.getHours()).slice(-2)+':'+('0'+d.getMinutes()).slice(-2)+'</div>';
+    lastSummary=(s>0?'Add':'Subtract')+' from '+fmtDate(base)+' → '+fmtDate(d);
+  }
+  var asSign=1;
+  document.querySelectorAll('[data-op]').forEach(function(b){ b.addEventListener('click',function(){ document.querySelectorAll('[data-op]').forEach(function(x){x.classList.remove('primary');}); b.classList.add('primary'); asSign=b.getAttribute('data-op')==='add'?1:-1; calcAddSub(asSign); }); });
+  ['baseDate','asYears','asMonths','asWeeks','asDays','asHours','asMinutes'].forEach(function(id){ $(id).addEventListener('input',function(){ calcAddSub(asSign); }); });
 
-  box.innerHTML = `
-    <div class="big">${years} years, ${months} months, ${days} days</div>
-    <div class="sub">${totalDays.toLocaleString('en-IN')} total days &nbsp;•&nbsp; ${totalWeeks} weeks${swapped ? ' (dates were reversed)' : ''}</div>
-  `;
-}
+  // ---------- Business days ----------
+  function weekendDays(){ var arr=[]; document.querySelectorAll('.wknd-day').forEach(function(c){ if(c.checked)arr.push(parseInt(c.value)); }); return arr; }
+  function calcBiz(){
+    var a=parse($('bizFrom').value), b=parse($('bizTo').value);
+    if(!a||!b){ $('bizStats').innerHTML='<div class="dt-stat"><div class="n">—</div><div class="l">Pick both dates</div></div>'; return; }
+    if(a>b){ var tmp=a;a=b;b=tmp; }
+    var wk=weekendDays(), hol=holidaySet(), biz=0, wknd=0, holc=0, total=0;
+    var cur=stripTime(a), end=stripTime(b);
+    while(cur<=end){ total++; var isW=wk.indexOf(cur.getDay())>-1; var isH=hol[iso(cur)]; if(isW)wknd++; else if(isH)holc++; else biz++; cur.setDate(cur.getDate()+1); }
+    $('bizStats').innerHTML=[['Business days',biz],['Total days',total],['Weekend days',wknd],['Holidays',holc]].map(function(s){return '<div class="dt-stat"><div class="n">'+s[1]+'</div><div class="l">'+s[0]+'</div></div>';}).join('');
+    lastSummary='Business days '+fmtDate(a)+' → '+fmtDate(b)+' = '+biz+' (of '+total+')';
+    pushHistory(lastSummary);
+  }
+  $('bizPreset').addEventListener('change',function(){ var v=this.value; var sat=document.querySelector('.wknd-day[value="6"]'); var sun=document.querySelector('.wknd-day[value="0"]');
+    if(v==='office'||v==='govt'){ sat.checked=true; sun.checked=true; } else if(v==='school'){ sat.checked=false; sun.checked=true; } calcBiz(); });
+  document.querySelectorAll('.wknd-day').forEach(function(c){ c.addEventListener('change',calcBiz); });
+  ['bizFrom','bizTo','holidays'].forEach(function(id){ $(id).addEventListener('input',calcBiz); });
 
-document.getElementById('dateFrom').addEventListener('input', calculate);
-document.getElementById('dateTo').addEventListener('input', calculate);
+  // ---------- Age ----------
+  function zodiac(m,d){ var z=[['Capricorn',20],['Aquarius',19],['Pisces',21],['Aries',20],['Taurus',21],['Gemini',21],['Cancer',23],['Leo',23],['Virgo',23],['Libra',23],['Scorpio',22],['Sagittarius',22],['Capricorn',32]]; return d<z[m-1][1]?z[m-1][0]:z[m][0]; }
+  function calcAge(){
+    var b=parse($('birthDate').value); if(!b){ $('ageResult').innerHTML='<div class="sub">Pick your date of birth.</div>'; $('ageStats').innerHTML=''; return; }
+    var now=new Date(); var r=diff(b,now);
+    var nb=new Date(now.getFullYear(),b.getMonth(),b.getDate()); if(nb<stripTime(now))nb.setFullYear(nb.getFullYear()+1);
+    var daysToBday=Math.ceil((nb-stripTime(now))/86400000);
+    $('ageResult').innerHTML='<div class="big">'+r.y+' '+t('years')+', '+r.m+' '+t('months')+', '+r.d+' '+t('days')+'</div><div class="sub">'+r.totalDays.toLocaleString('en-IN')+' '+t('totaldays')+' old</div>';
+    $('ageStats').innerHTML=[['Day of birth',(lang==='hi'?DOW_HI:DOW_EN)[b.getDay()]],['Zodiac',zodiac(b.getMonth()+1,b.getDate())],['Next birthday',daysToBday===0?'Today! 🎉':daysToBday+' days'],['Total weeks',Math.floor(r.weeks)]].map(function(s){return '<div class="dt-stat"><div class="n" style="font-size:.95rem">'+s[1]+'</div><div class="l">'+s[0]+'</div></div>';}).join('');
+    lastSummary='Age '+fmtDate(b)+' = '+r.y+'y '+r.m+'m '+r.d+'d; next birthday in '+daysToBday+' days';
+    pushHistory(lastSummary);
+  }
+  $('birthDate').addEventListener('input',calcAge);
 
-// default to today and a month from today
-const today = new Date();
-document.getElementById('dateFrom').value = today.toISOString().slice(0,10);
-const future = new Date(today); future.setMonth(future.getMonth()+1);
-document.getElementById('dateTo').value = future.toISOString().slice(0,10);
-calculate();
+  // ---------- Countdown ----------
+  var cdTimer=null;
+  function calcCountdown(){
+    var ev=$('eventDate').value; var target=ev?new Date(ev):null;
+    if(!target||isNaN(target)){ $('countdownResult').innerHTML='<div class="sub">Pick an event date &amp; time.</div>'; $('countdownStats').innerHTML=''; return; }
+    var now=new Date(); var ms=target-now; var passed=ms<0; ms=Math.abs(ms);
+    var d=Math.floor(ms/86400000), h=Math.floor(ms%86400000/3600000), mi=Math.floor(ms%3600000/60000), s=Math.floor(ms%60000/1000);
+    $('countdownResult').innerHTML='<div class="big">'+d+'d '+('0'+h).slice(-2)+':'+('0'+mi).slice(-2)+':'+('0'+s).slice(-2)+'</div><div class="sub">'+$('eventType').value+' '+(passed?'was '+fmtDate(target)+' (already passed)':'on '+fmtDate(target))+'</div>';
+    $('countdownStats').innerHTML=[['Days',d],['Hours',h],['Minutes',mi],['Seconds',s]].map(function(x){return '<div class="dt-stat"><div class="n">'+x[1]+'</div><div class="l">'+x[0]+'</div></div>';}).join('');
+    lastSummary='Countdown to '+$('eventType').value+' '+fmtDate(target)+': '+d+' days';
+  }
+  function startCountdown(){ stopCountdown(); calcCountdown(); cdTimer=setInterval(calcCountdown,1000); }
+  function stopCountdown(){ if(cdTimer){ clearInterval(cdTimer); cdTimer=null; } }
+  $('eventDate').addEventListener('input',startCountdown); $('eventType').addEventListener('change',calcCountdown);
+
+  // ---------- Tabs ----------
+  document.querySelectorAll('.dt-tab').forEach(function(tb){ tb.addEventListener('click',function(){ document.querySelectorAll('.dt-tab').forEach(function(x){x.classList.remove('active');}); document.querySelectorAll('.dt-pane').forEach(function(x){x.classList.remove('active');}); tb.classList.add('active'); mode=tb.getAttribute('data-tab'); $('pane-'+mode).classList.add('active');
+    stopCountdown();
+    if(mode==='diff')calcDiff(); else if(mode==='addsub')calcAddSub(asSign); else if(mode==='business')calcBiz(); else if(mode==='age')calcAge(); else if(mode==='countdown')startCountdown();
+  }); });
+
+  // ---------- Format / lang ----------
+  $('dateFmt').addEventListener('change',function(){ fmt=this.value; recalc(); });
+  $('lang').addEventListener('change',function(){ lang=this.value; recalc(); });
+  function recalc(){ if(mode==='diff')calcDiff(); else if(mode==='addsub')calcAddSub(asSign); else if(mode==='business')calcBiz(); else if(mode==='age')calcAge(); else if(mode==='countdown')calcCountdown(); }
+
+  // ---------- Difference wiring ----------
+  $('includeTime').addEventListener('change',function(){ $('timeRow').style.display=this.checked?'grid':'none'; calcDiff(); });
+  ['dateFrom','dateTo','timeFrom','timeTo'].forEach(function(id){ $(id).addEventListener('input',calcDiff); });
+
+  // ---------- Export / share ----------
+  function dl(blob,fn){ var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fn; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(a.href);},1500); }
+  $('copyBtn').addEventListener('click',function(){ navigator.clipboard.writeText(lastSummary||'').then(function(){ toast('Copied'); },function(){ toast('Copy failed'); }); });
+  $('printBtn').addEventListener('click',function(){ window.print(); });
+  document.querySelectorAll('[data-export]').forEach(function(b){ b.addEventListener('click',function(){ var tp=b.getAttribute('data-export'); var rows=[['Result',lastSummary||'']];
+    if(tp==='csv'){ dl(new Blob([rows.map(function(r){return r.join(',');}).join('\n')],{type:'text/csv'}),'date-result.csv'); }
+    else if(tp==='xls'){ dl(new Blob(['﻿<html><head><meta charset="UTF-8"></head><body><table><tr><td>'+ (lastSummary||'') +'</td></tr></table></body></html>'],{type:'application/vnd.ms-excel'}),'date-result.xls'); }
+    else if(tp==='pdf'){ dl(makePDF([lastSummary||'']),'date-result.pdf'); }
+  }); });
+  function makePDF(lines){ var e=function(s){return String(s).replace(/([\\()])/g,'\\$1').replace(/[^\x00-\x7F]/g,'');};
+    var content='BT /F1 12 Tf 40 800 Td 16 TL\n'+['Date & Time Calculator'].concat(lines).map(function(l,i){return (i===0?'':'T* ')+'('+e(l)+') Tj';}).join('\n')+'\nET';
+    var objs=['<< /Type /Catalog /Pages 2 0 R >>','<< /Type /Pages /Kids [3 0 R] /Count 1 >>','<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>','<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>','<< /Length '+content.length+' >>\nstream\n'+content+'\nendstream'];
+    var pdf='%PDF-1.4\n',off=[]; objs.forEach(function(o,i){ off.push(pdf.length); pdf+=(i+1)+' 0 obj\n'+o+'\nendobj\n'; });
+    var xr=pdf.length; pdf+='xref\n0 '+(objs.length+1)+'\n0000000000 65535 f \n'; off.forEach(function(o){ pdf+=('0000000000'+o).slice(-10)+' 00000 n \n'; });
+    pdf+='trailer\n<< /Size '+(objs.length+1)+' /Root 1 0 R >>\nstartxref\n'+xr+'\n%%EOF'; return new Blob([pdf],{type:'application/pdf'}); }
+
+  // ---------- History ----------
+  var HKEY='dt_history_v1';
+  function loadH(){ try{return JSON.parse(localStorage.getItem(HKEY)||'[]');}catch(e){return [];} }
+  function saveH(h){ try{localStorage.setItem(HKEY,JSON.stringify(h.slice(0,25)));}catch(e){} }
+  function pushHistory(label){ if(!label)return; var h=loadH(); var e={label:label,auto:true,fav:false}; if(h.length&&h[0].auto&&!h[0].fav){h[0]=e;}else{h.unshift(e);} saveH(h); renderHist(); }
+  function renderHist(){ var h=loadH(),w=$('historyList'); if(!h.length){ w.innerHTML='<div style="font-size:.76rem;color:var(--text-dim)">No calculations yet.</div>'; return; } w.innerHTML=h.map(function(it,i){ return '<div class="hitem"><span class="g">'+(it.fav?'⭐ ':'')+it.label+'</span><button data-fav="'+i+'">'+(it.fav?'★':'☆')+'</button><button data-del="'+i+'">✕</button></div>'; }).join('');
+    w.querySelectorAll('[data-fav]').forEach(function(b){ b.addEventListener('click',function(){ var i=+b.getAttribute('data-fav'); h[i].fav=!h[i].fav; h[i].auto=false; saveH(h); renderHist(); }); });
+    w.querySelectorAll('[data-del]').forEach(function(b){ b.addEventListener('click',function(){ h.splice(+b.getAttribute('data-del'),1); saveH(h); renderHist(); }); });
+  }
+  $('saveBtn').addEventListener('click',function(){ var h=loadH(); if(h.length){ h[0].fav=true; h[0].auto=false; saveH(h); renderHist(); toast('Saved'); } });
+  $('clearHistBtn').addEventListener('click',function(){ if(confirm('Clear all history?')){ saveH([]); renderHist(); } });
+
+  function toast(m){ var t2=document.createElement('div'); t2.textContent=m; t2.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1a1a2e;color:#fff;border:1px solid rgba(255,255,255,.15);padding:10px 18px;border-radius:10px;font-size:.85rem;z-index:9999'; document.body.appendChild(t2); setTimeout(function(){t2.style.transition='.3s';t2.style.opacity='0';},1500); setTimeout(function(){t2.remove();},1900); }
+
+  // ---------- Init ----------
+  var today=new Date(); var iso0=today.toISOString().slice(0,10);
+  $('dateFrom').value=iso0; var fut=new Date(today); fut.setMonth(fut.getMonth()+1); $('dateTo').value=fut.toISOString().slice(0,10);
+  $('baseDate').value=iso0; $('bizFrom').value=iso0; var mend=new Date(today.getFullYear(),today.getMonth()+1,0); $('bizTo').value=mend.toISOString().slice(0,10);
+  $('birthDate').value='1997-08-15';
+  var nye=new Date(today.getFullYear(),11,31,0,0); $('eventDate').value=nye.toISOString().slice(0,16);
+  renderHist(); calcDiff();
+})();
 </script>
 <!-- Default Statcounter code for Apne Software
 https://apnesoftware.com -->
 <script type="text/javascript">
-var sc_project=13334460; 
-var sc_invisible=1; 
-var sc_security="a5854dc7"; 
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
 </script>
 <script type="text/javascript"
 src="https://www.statcounter.com/counter/counter.js"
@@ -151,5 +582,32 @@ src="https://c.statcounter.com/13334460/0/a5854dc7/1/"
 alt="Web Analytics"
 referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 <!-- End of Statcounter Code -->
+
+<!-- FAQ structured data -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is this calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free with no account, no signup and no limits."}},
+{"@type":"Question","name":"Are the dates I enter uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run locally in your browser; your dates never leave your device."}},
+{"@type":"Question","name":"Does the order of dates matter?","acceptedAnswer":{"@type":"Answer","text":"No. If the to date is earlier, the tool reverses them automatically and tells you."}},
+{"@type":"Question","name":"How are months counted?","acceptedAnswer":{"@type":"Answer","text":"Whole years first, then whole months, then remaining days, borrowing from the previous month, matching how durations are normally written."}},
+{"@type":"Question","name":"What is the difference between calendar days and business days?","acceptedAnswer":{"@type":"Answer","text":"Calendar days include weekends and holidays; business days exclude the weekends you choose and your holiday list."}},
+{"@type":"Question","name":"Can I exclude custom holidays?","acceptedAnswer":{"@type":"Answer","text":"Yes. In Business days mode, paste your holidays one per line and they are skipped."}},
+{"@type":"Question","name":"Which weekend days can I set?","acceptedAnswer":{"@type":"Answer","text":"Any of them: Saturday, Sunday, both, or a six-day week for schools. Presets cover office, school and government."}},
+{"@type":"Question","name":"Can I add or subtract time from a date?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Add/Subtract mode shifts a base date by years, months, weeks, days, hours and minutes."}},
+{"@type":"Question","name":"How is age calculated?","acceptedAnswer":{"@type":"Answer","text":"Exact years, months and days from birth date to today, plus day of birth, zodiac and a next-birthday countdown."}},
+{"@type":"Question","name":"How does the event countdown work?","acceptedAnswer":{"@type":"Answer","text":"Pick an event date and time and the tool counts down live, updating every second."}},
+{"@type":"Question","name":"Does it handle leap years?","acceptedAnswer":{"@type":"Answer","text":"Yes, automatically, and the Difference tab shows how many leap years and extra days are in your range."}},
+{"@type":"Question","name":"What date formats are supported?","acceptedAnswer":{"@type":"Answer","text":"DD/MM/YYYY, MM/DD/YYYY and YYYY-MM-DD, selectable at the top."}},
+{"@type":"Question","name":"Is it available in Hindi?","acceptedAnswer":{"@type":"Answer","text":"Yes. Switch the language selector to Hindi for Hindi labels and results."}},
+{"@type":"Question","name":"Can I see a calendar of the range?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Difference tab shows a mini calendar highlighting the range, weekends and holidays."}},
+{"@type":"Question","name":"Can I export or print the result?","acceptedAnswer":{"@type":"Answer","text":"Yes, copy, CSV, Excel, PDF and print are all supported."}},
+{"@type":"Question","name":"Does it save my calculations?","acceptedAnswer":{"@type":"Answer","text":"Recent and starred results are stored in your own browser using localStorage."}},
+{"@type":"Question","name":"Does it include the end date in the count?","acceptedAnswer":{"@type":"Answer","text":"The total-days figure is the exact gap; business-day counting includes both endpoints if they are working days."}},
+{"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes. There are no external libraries, so it works without internet once loaded."}},
+{"@type":"Question","name":"Is it mobile friendly and accessible?","acceptedAnswer":{"@type":"Answer","text":"Yes, it is responsive and the controls are labelled and keyboard-operable."}},
+{"@type":"Question","name":"Does it use any AI?","acceptedAnswer":{"@type":"Answer","text":"No. Every result comes from standard date arithmetic with no AI."}},
+{"@type":"Question","name":"Why does the calendar difference differ from the total days?","acceptedAnswer":{"@type":"Answer","text":"The years/months/days form and the total-day count describe the same span in two different ways."}}
+]}
+</script>
 </body>
 </html>
