@@ -64,6 +64,11 @@
   .trs-pill{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);font-size:.75rem;margin:3px 4px 0 0;color:var(--text-dim)}
   .trs-cmp-table td.better{color:#7ef0bd;font-weight:700}
   .related-grid a .ri{margin-right:6px}
+  .trs-lang-note{font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:-4px}
+  .trs-content h2{font-size:1.15rem;margin:26px 0 10px}
+  .trs-content h3{font-size:1rem;margin:18px 0 8px}
+  .trs-content p,.trs-content li{font-size:.92rem;line-height:1.72}
+  .trs-content ul,.trs-content ol{padding-left:20px}
   @media print{
     .site-header,.left-sidebar,.right-sidebar,.trs-toolbar,.trs-tabs,#trsRateWrap,footer{display:none!important}
     body{background:#fff!important;color:#000!important}
@@ -252,8 +257,7 @@
     <div id="statusMsg" class="trs-muted" role="status" aria-live="polite"></div>
   </div>
 </div>
-<div class="info-wrap" style="display:block;max-width:none">
-<div class="info-block" style="max-width:900px;margin:0 auto">
+<div class="trs-content">
 
 <h2>📖 Introduction</h2>
 <p>The original Text Readability Score tool did one thing well: it calculated the Flesch Reading Ease and Flesch-Kincaid Grade Level for whatever you pasted into the box, updating live as you typed. That single-purpose design was fast, private and genuinely useful — but it only told half the story. Two of the ten formulas writers, editors, teachers and SEO professionals actually rely on were missing, and there was no way to see word-level detail, sentence and paragraph breakdowns, vocabulary or passive-voice patterns, keyword density, or export a shareable report. The <strong>Professional Text Readability Score Analyzer</strong> keeps everything that worked — instant, in-browser, live analysis with the original two scores front and centre — and builds a complete writing-analysis workbench around it: ten readability formulas, full text statistics, vocabulary and complexity breakdowns, passive-voice and transition-word detection, keyword density, grammar indicators, five charts, an A/B comparison mode, SEO guidance and one-click export, all without uploading a single character or using any AI.</p>
@@ -340,11 +344,6 @@
   <a href="text-to-speech.html"><span class="ri">🔊</span> Text to Speech</a>
 </div>
 
-</div>
-</div>
-<div class="info-wrap" style="display:block;max-width:none">
-<div class="info-block" style="max-width:900px;margin:0 auto">
-
 <!-- ===== About (English) ===== -->
 <h2>ℹ️ About This Tool</h2>
 <p>The <strong>Professional Text Readability Score Analyzer</strong> is a free, browser-based tool that measures exactly how easy — or difficult — a piece of writing is to read, and then tells you why, in enough detail to actually improve the draft. It grew out of a much simpler Flesch-only calculator, and while it keeps that tool's best quality — instant, live analysis with nothing ever uploaded — it now answers questions that single-number readability checkers cannot: which sentences are too long, how much of the text is passive voice, whether the vocabulary is unusually difficult, how the keyword density looks to a search engine, and how two drafts compare side by side.</p>
@@ -367,7 +366,7 @@
 
 <!-- ===== About (Hindi) ===== -->
 <h2>ℹ️ इस टूल के बारे में (हिंदी में)</h2>
-<p class="dt-lang-note">The same guide in Hindi / यही जानकारी हिंदी में।</p>
+<p class="trs-lang-note">The same guide in Hindi / यही जानकारी हिंदी में।</p>
 
 <p><strong>Professional Text Readability Score Analyzer</strong> एक फ्री, ब्राउज़र-आधारित टूल है जो बताता है कि आपकी writing पढ़ने में कितनी आसान या मुश्किल है, और साथ ही यह भी बताता है कि क्यों — इतनी detail के साथ कि आप असल में अपने draft को बेहतर बना सकें। यह एक बहुत सादे Flesch-only calculator से शुरू हुआ था, और उस टूल की सबसे अच्छी खूबी — instant, live analysis जिसमें कुछ भी upload नहीं होता — उसे बनाए रखते हुए, अब यह वे सवाल भी हल करता है जो सिर्फ़ एक नंबर देने वाले readability checker नहीं कर सकते: कौन-से sentences बहुत लंबे हैं, टेक्स्ट का कितना हिस्सा passive voice में है, vocabulary कितनी मुश्किल है, keyword density search engine को कैसी दिखेगी, और दो drafts आपस में कैसे compare करते हैं।</p>
 
@@ -387,14 +386,9 @@
 
 <p>Results को एक क्लिक में clipboard पर copy किया जा सकता है, plain-text report के रूप में download किया जा सकता है, spreadsheets के लिए CSV में export किया जा सकता है, ब्राउज़र में ही बने एक सादे PDF report के रूप में save किया जा सकता है, या एक साफ़, navigation-रहित layout में सीधे print किया जा सकता है। यह टूल अपने-आप पहचान लेता है कि आपका टेक्स्ट English, Hindi या Hindi-English मिश्रण (Hinglish) है, और उसी के अनुसार word और sentence splitting को समायोजित करता है ताकि Devanagari टेक्स्ट भी underlying heuristics जितनी सटीकता से मापा जाए; चूँकि classic readability formulas English के लिए बनाए और validate किए गए थे, non-English परिणामों को exact के बजाय approximate बताया जाता है। साझा या public कंप्यूटर पर privacy के लिए, text box दस मिनट की निष्क्रियता के बाद अपने-आप साफ़ हो जाता है, और चूँकि कुछ भी कभी server पर नहीं भेजा जाता, tab बंद करने या page refresh करने से आपने जो भी टाइप किया था उसका हर निशान मिट जाता है। यह टूल हल्का, मोबाइल-अनुकूल, keyboard से चलाने योग्य है और छात्रों से लेकर bloggers, copywriters, technical writers और SEO professionals तक सबके लिए समान रूप से काम करने के लिए बनाया गया है — बिना signup, बिना AI, और आप जितना चाहें उतना टेक्स्ट पेस्ट कर सकते हैं।</p>
 
-</div>
-</div>
-<div class="info-wrap" style="display:block;max-width:none">
-<div class="info-block" style="max-width:900px;margin:0 auto">
-
 <!-- ===== FAQ (immediately after About — required order) ===== -->
 <h2>❓ Frequently Asked Questions</h2>
-<div class="dt-faq" id="trsFaq">
+<div class="trs-faq" id="trsFaq">
 <details><summary>Is this Readability Analyzer free to use?</summary><p>Yes, completely free with no signup, no account and no limit on how much text you paste. / हाँ, यह पूरी तरह मुफ़्त है, बिना signup या account के।</p></details>
 <details><summary>Is my text uploaded anywhere?</summary><p>No. Every calculation runs locally in your browser; your text never leaves your device. / नहीं, सारी calculations आपके ब्राउज़र में ही होती हैं।</p></details>
 <details><summary>Does this tool use any AI?</summary><p>No. Every score comes from standard, published readability formulas and regex-based heuristics — there is no AI or machine learning involved. / नहीं, इसमें कोई AI इस्तेमाल नहीं होता।</p></details>
@@ -432,7 +426,6 @@
   <li><strong>Print looks wrong:</strong> the print stylesheet hides navigation and the toolbar automatically; if your browser's print preview looks unstyled, try "Print backgrounds" off in the print dialog.</li>
 </ul>
 
-</div>
 </div>
 
 <script type="application/ld+json">
