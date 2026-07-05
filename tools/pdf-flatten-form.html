@@ -5,27 +5,99 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://apnesoftware.com/tools/pdf-flatten-form.html">
+<meta name="description" content="Free Professional PDF Form Flattening Tool — lock filled PDF form fields permanently, analyse every field type, flatten or make read-only, add a watermark, edit or remove metadata, optimise size, and process multiple PDFs into a ZIP with a before/after preview. 100% in your browser, no upload.">
+<meta name="keywords" content="pdf flatten form, flatten pdf, lock pdf form, make pdf non editable, flatten form fields, pdf form to permanent text, read only pdf, flatten pdf online">
 <meta property="og:type" content="website">
-<meta property="og:title" content="PDF Flatten Form | ApneSoftware">
-<meta property="og:description" content="Lock a filled PDF form as permanent text. Free online tool — no signup required.">
+<meta property="og:title" content="Professional PDF Form Flattening Tool | ApneSoftware">
+<meta property="og:description" content="Flatten & lock filled PDF forms, analyse field types, add watermark, edit metadata, optimise size and batch-process — with before/after preview. 100% browser-based & private.">
 <meta property="og:url" content="https://apnesoftware.com/tools/pdf-flatten-form.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PDF Flatten Form | ApneSoftware">
-<meta name="twitter:description" content="Lock a filled PDF form as permanent text. Free online tool — no signup required.">
+<meta name="twitter:title" content="Professional PDF Form Flattening Tool | ApneSoftware">
+<meta name="twitter:description" content="Flatten/lock PDF forms, analyse fields, watermark, metadata, optimise & batch with before/after preview. Private & browser-based.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"PDF Flatten Form","description":"Lock a filled PDF form as permanent text. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/pdf-flatten-form.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Professional PDF Form Flattening Tool","description":"Analyse and flatten filled PDF form fields so their values become permanent, uneditable content, or lock fields read-only. Add a watermark, edit or remove metadata, optimise file size, validate filled and required fields, preview before and after, and batch-process multiple PDFs into a ZIP. Runs entirely in the browser with pdf-lib.","url":"https://apnesoftware.com/tools/pdf-flatten-form.html","applicationCategory":"BusinessApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Detect text, checkbox, radio, dropdown, list, button and signature fields","Flatten all fields or lock them read-only","Add Confidential/Approved/Submitted or custom watermark","Edit or remove PDF metadata and optimise size","Before/after preview and field validation","Batch process multiple PDFs into a ZIP"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
 <meta name="color-scheme" content="dark">
-<title>PDF Flatten Form | ApneSoftware</title>
+<title>Professional PDF Form Flattening Tool | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
+/* ===== PDF Form Flattening — scoped pff- prefix ===== */
 .dropzone{cursor:pointer}
 .dropzone p{font-size:.9rem}
 .panel{position:relative;z-index:1}
+
+.pff-queue{display:flex;flex-direction:column;gap:5px;margin-top:10px}
+.pff-queue .q{display:flex;align-items:center;gap:6px;font-size:.76rem;padding:6px 8px;border:1px solid var(--border);border-radius:8px;background:rgba(255,255,255,.03)}
+.pff-queue .q .qn{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pff-queue .q button{background:none;border:none;color:var(--text-dim);cursor:pointer}
+
+.pff-layout{display:grid;grid-template-columns:1fr 320px;gap:16px;margin-top:16px}
+@media (max-width:860px){ .pff-layout{grid-template-columns:1fr} }
+.pff-card{border:1px solid var(--border);border-radius:12px;padding:14px 16px;background:rgba(255,255,255,.02);margin-bottom:14px}
+.pff-card h3{font-size:.85rem;margin:0 0 10px;display:flex;align-items:center;gap:6px}
+.pff-info{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:.8rem}
+.pff-info span:nth-child(even){text-align:right;font-variant-numeric:tabular-nums;word-break:break-word}
+.pff-info span:nth-child(odd){color:var(--text-dim)}
+.pff-typechips{display:flex;flex-wrap:wrap;gap:6px}
+.pff-typechip{font-size:.72rem;padding:5px 10px;border-radius:20px;background:rgba(124,92,252,.14);border:1px solid rgba(124,92,252,.3)}
+.pff-typechip.zero{opacity:.4}
+.pff-tablewrap{max-height:280px;overflow:auto;border:1px solid var(--border);border-radius:10px;margin-top:8px}
+.pff-table{border-collapse:collapse;width:100%;font-size:.76rem}
+.pff-table th,.pff-table td{border-bottom:1px solid var(--border);padding:6px 9px;text-align:left;white-space:nowrap}
+.pff-table th{position:sticky;top:0;background:#1a1a2e;z-index:1}
+.pff-table .empty{color:#f59e0b}
+.pff-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.pff-badge{font-size:.72rem;padding:4px 10px;border-radius:20px;background:rgba(124,92,252,.14);border:1px solid rgba(124,92,252,.3)}
+.pff-badge.ok{background:rgba(22,192,121,.14);border-color:rgba(22,192,121,.4);color:#16c079}
+.pff-badge.warn{background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.4);color:#f59e0b}
+
+.pff-field{margin-bottom:10px}
+.pff-field label{display:block;font-size:.75rem;color:var(--text-dim);margin-bottom:5px;font-weight:600}
+.pff-field input,.pff-field select,.pff-field textarea{width:100%;font-size:.82rem;padding:8px 10px;border-radius:8px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)}
+.pff-field select option{background:#1a1a2e}
+.pff-check{display:flex;align-items:center;gap:7px;font-size:.8rem;margin:7px 0}
+.pff-check input{width:auto}
+.pff-chips{display:flex;flex-wrap:wrap;gap:5px}
+.pff-chip{font-size:.72rem;padding:6px 10px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.06));color:var(--text);cursor:pointer}
+.pff-chip.active{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff}
+.pff-note{font-size:.73rem;color:var(--text-dim);margin-top:6px;line-height:1.5}
+
+.pff-preview{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+@media (max-width:600px){ .pff-preview{grid-template-columns:1fr} }
+.pff-prev{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#0d0d16}
+.pff-prev .cap{font-size:.72rem;color:var(--text-dim);padding:5px 8px;border-bottom:1px solid var(--border)}
+.pff-prev canvas{width:100%;display:block;background:#fff}
+
+.pff-btn{font-size:.78rem;padding:8px 13px;border-radius:8px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text);cursor:pointer}
+.pff-btn:hover{background:rgba(124,92,252,.18)}
+.pff-btn.primary{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff;font-weight:600}
+.pff-progress{height:9px;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:10px;display:none}
+.pff-progress.show{display:block}
+.pff-progress>i{display:block;height:100%;width:0;background:linear-gradient(90deg,#7c5cfc,#16c079);transition:width .1s}
+
+/* Below-tool content */
+.pff-content h2{font-size:1.15rem;margin:26px 0 10px}
+.pff-content h3{font-size:1rem;margin:18px 0 8px}
+.pff-content p,.pff-content li{font-size:.92rem;line-height:1.72}
+.pff-content ul,.pff-content ol{padding-left:20px}
+.pff-fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:14px 0}
+.pff-fgrid .fc{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:14px}
+.pff-fgrid .fc b{display:block;margin-bottom:5px;font-size:.9rem}
+.pff-fgrid .fc span{font-size:.82rem;color:var(--text-dim);line-height:1.6}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin:12px 0}
+.related-grid a{display:flex;align-items:center;gap:9px;padding:12px 13px;border-radius:11px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.86rem;font-weight:500;transition:.15s}
+.related-grid a:hover{background:rgba(124,92,252,.16);border-color:var(--accent,#7c5cfc);transform:translateY(-1px)}
+.related-grid a .ri{font-size:1.15rem}
+.pff-faq details{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:11px;padding:2px 14px;margin-bottom:9px}
+.pff-faq summary{cursor:pointer;padding:12px 0;font-weight:600;font-size:.9rem;list-style:none}
+.pff-faq summary::-webkit-details-marker{display:none}
+.pff-faq summary::before{content:'＋';margin-right:9px;color:var(--accent,#7c5cfc);font-weight:700}
+.pff-faq details[open] summary::before{content:'－'}
+.pff-faq details p{padding:0 0 12px;margin:0;font-size:.87rem;color:var(--text-dim)}
+.pff-lang-note{font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:-4px}
 </style>
 </head>
 <body>
@@ -38,108 +110,404 @@
 
 <div class="container">
   <div class="tool-header">
-    <h1>🔒 PDF Flatten Form</h1>
-    <p>Lock a filled-in PDF form so the field values become permanent, uneditable text.</p>
+    <h1>🔒 Professional PDF Form Flattening Tool</h1>
+    <p>Analyse every form field, then flatten a filled PDF so its values become permanent — or lock fields read-only. Add a watermark, edit metadata, optimise size and batch-process, with a before/after preview. 100% in your browser.</p>
   </div>
 
   <div class="panel">
     <div class="dropzone" id="dropzone">
-      <p>📤 Drag & drop a filled PDF form here or click to choose</p>
-      <input type="file" id="fileInput" accept="application/pdf">
+      <p>📤 Drag &amp; drop filled PDF form(s) here or click to choose &nbsp;<span style="color:var(--text-dim);font-size:.8rem">(multiple allowed)</span></p>
+      <input type="file" id="fileInput" accept="application/pdf" multiple>
     </div>
+    <div class="pff-queue" id="queue"></div>
 
-    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem;margin-top:14px"></p>
+    <div class="pff-layout" id="editor" style="display:none">
+      <!-- ===== Analysis + preview ===== -->
+      <div>
+        <div class="pff-card">
+          <h3>📄 PDF information</h3>
+          <div class="pff-info" id="pdfInfo"></div>
+        </div>
 
-    <div class="btn-row" id="downloadRow" style="display:none">
-      <button class="btn" id="downloadBtn">⬇️ Download Flattened PDF</button>
+        <div class="pff-card">
+          <h3>🧩 Form field analysis</h3>
+          <div class="pff-typechips" id="typeChips"></div>
+          <div class="pff-badges" id="validationBadges"></div>
+          <div class="pff-tablewrap" id="fieldTableWrap" style="display:none"><table class="pff-table" id="fieldTable"></table></div>
+        </div>
+
+        <div class="pff-card">
+          <h3>👁️ Before / after preview</h3>
+          <div class="pff-preview">
+            <div class="pff-prev"><div class="cap">Original</div><canvas id="prevOrig"></canvas></div>
+            <div class="pff-prev"><div class="cap">Flattened result</div><canvas id="prevFlat"></canvas></div>
+          </div>
+          <p class="pff-note">The right preview appears after you flatten. Flattened field values are drawn into the page and stay searchable.</p>
+        </div>
+      </div>
+
+      <!-- ===== Options ===== -->
+      <div>
+        <div class="pff-card">
+          <h3>⚙️ Mode</h3>
+          <div class="pff-chips" id="modeChips">
+            <button class="pff-chip active" data-mode="flatten">🔒 Flatten (permanent)</button>
+            <button class="pff-chip" data-mode="readonly">🔏 Read-only lock</button>
+          </div>
+          <p class="pff-note" id="modeNote">Flatten converts field values into permanent page content and removes the interactive form. Read-only keeps the fields but prevents editing.</p>
+          <label class="pff-check"><input type="checkbox" id="preserveSig"> Preserve signature fields (skip them)</label>
+        </div>
+
+        <div class="pff-card">
+          <h3>💧 Watermark</h3>
+          <div class="pff-chips" style="margin-bottom:8px">
+            <button class="pff-chip" data-wm="">None</button>
+            <button class="pff-chip" data-wm="CONFIDENTIAL">Confidential</button>
+            <button class="pff-chip" data-wm="APPROVED">Approved</button>
+            <button class="pff-chip" data-wm="SUBMITTED">Submitted</button>
+          </div>
+          <div class="pff-field"><label>Custom text</label><input type="text" id="wmText" placeholder="leave blank for none"></div>
+          <div class="pff-field"><label>Opacity: <span id="wmOpLabel">20%</span></label><input type="range" id="wmOpacity" min="5" max="80" value="20" style="accent-color:var(--accent,#7c5cfc)"></div>
+        </div>
+
+        <div class="pff-card">
+          <h3>🏷️ Metadata</h3>
+          <div class="pff-chips" style="margin-bottom:8px">
+            <button class="pff-chip active" data-meta="keep">Keep</button>
+            <button class="pff-chip" data-meta="remove">Remove</button>
+            <button class="pff-chip" data-meta="edit">Edit</button>
+          </div>
+          <div id="metaEdit" style="display:none">
+            <div class="pff-field"><label>Title</label><input type="text" id="mTitle"></div>
+            <div class="pff-field"><label>Author</label><input type="text" id="mAuthor"></div>
+            <div class="pff-field"><label>Subject</label><input type="text" id="mSubject"></div>
+          </div>
+        </div>
+
+        <div class="pff-card">
+          <h3>📦 Output</h3>
+          <div class="pff-field"><label>Optimise / compress</label>
+            <select id="compress"><option value="none">None (fastest)</option><option value="opt" selected>Optimised (object streams)</option></select>
+          </div>
+          <label class="pff-check"><input type="checkbox" id="keepSearchable" checked> Keep flattened text searchable (OCR-safe)</label>
+        </div>
+
+        <button class="pff-btn primary" id="flattenBtn" style="width:100%;padding:12px">🔒 Flatten &amp; download</button>
+        <p id="statusMsg" style="color:var(--text-dim);font-size:.85rem;margin-top:10px"></p>
+        <div class="pff-progress" id="progress"><i></i></div>
+
+        <div class="btn-row" id="downloadRow" style="display:none;margin-top:12px;gap:8px;flex-wrap:wrap">
+          <button class="pff-btn primary" id="downloadBtn">⬇️ Download PDF</button>
+          <button class="pff-btn" id="downloadAllBtn" style="display:none">⬇️ Download all (ZIP)</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- ============================ BELOW-TOOL CONTENT ============================ -->
+<div class="pff-content">
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Takes a PDF with fillable form fields (text boxes, checkboxes, dropdowns) that have already been filled in, and "flattens" it — converting the entered values into permanent, non-editable content. This prevents the form from being accidentally changed after submission.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload a PDF that has a filled-in form.</li>
-        <li>The tool flattens it automatically.</li>
-        <li>Download the locked PDF.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>ऐसी PDF लेता है जिसमें fillable form fields (text boxes, checkboxes, dropdowns) पहले से भरी हुई हों, और उसे "flatten" कर देता है — डाली गई वैल्यू को permanent, non-editable कंटेंट में बदल देता है। इससे form submission के बाद गलती से बदला नहीं जा सकता।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>एक भरी हुई form वाली PDF अपलोड करें।</li>
-        <li>टूल उसे अपने आप flatten कर देता है।</li>
-        <li>locked PDF डाउनलोड करें।</li>
-      </ol>
-    </div>
+  <h2>🔒 Lock a filled form so it can never be changed again</h2>
+  <p>The <strong>Professional PDF Form Flattening Tool</strong> takes a filled-in PDF form and makes its values permanent. "Flattening" converts interactive fields — text boxes, checkboxes, radio buttons, dropdowns and more — into fixed page content, so the answers can no longer be edited, cleared or accidentally changed after submission. Beyond the one-click flatten, it analyses every field in your document, lets you add a watermark, edit or strip metadata, optimise the file size, preview the result before and after, and process several PDFs at once — all inside your browser, with the file never leaving your device.</p>
+
+  <h2>✨ Features</h2>
+  <div class="pff-fgrid">
+    <div class="fc"><b>Full field analysis</b><span>Counts text, checkbox, radio, dropdown, list, button and signature fields, with a per-field table of values and status.</span></div>
+    <div class="fc"><b>Flatten or lock</b><span>Flatten fields into permanent content, or make them read-only while keeping the form structure.</span></div>
+    <div class="fc"><b>Validation</b><span>Highlights filled, empty and required fields before you commit.</span></div>
+    <div class="fc"><b>Watermark</b><span>Stamp Confidential, Approved, Submitted or custom text at your chosen opacity.</span></div>
+    <div class="fc"><b>Metadata control</b><span>Keep, remove or edit the title, author and subject.</span></div>
+    <div class="fc"><b>Optimise &amp; searchable</b><span>Object-stream optimisation for smaller files; flattened text stays searchable.</span></div>
+    <div class="fc"><b>Before/after preview</b><span>See the first page before and after flattening.</span></div>
+    <div class="fc"><b>Batch &amp; private</b><span>Process multiple PDFs into a ZIP, entirely in your browser.</span></div>
   </div>
+
+  <h2>⚙️ How it works</h2>
+  <p>When you add a PDF, the tool loads it with pdf-lib — a pure-JavaScript PDF library — and inspects its AcroForm to list every field, its type and its current value. When you flatten, pdf-lib first refreshes each field's visual appearance so what you see is exactly what gets baked in, then renders those appearances into the page content and removes the interactive widgets. The result is a normal PDF whose former field values are now ordinary, permanent page text and graphics. If you choose read-only lock instead, the fields are kept but marked non-editable. Watermarks and metadata changes are applied to the same document before it is saved, and a before/after preview is rendered with PDF.js so you can confirm the outcome.</p>
+
+  <h2>📄 Supported PDFs</h2>
+  <p>Any standard PDF with an AcroForm — the fillable forms produced by Adobe Acrobat, LibreOffice, government and bank portals, HR and tax software and most form designers — can be flattened. The tool detects and reports text fields, checkboxes, radio-button groups, dropdowns, list boxes, push buttons and signature fields. PDFs that use XFA (a legacy Adobe-only form technology) may not expose their fields to standard tooling; if a form does not flatten, re-save it as a standard PDF first. Encrypted (password-protected) PDFs must be unlocked before flattening.</p>
+
+  <h2>🧷 Flatten options</h2>
+  <ul>
+    <li><strong>Flatten (permanent):</strong> bakes all field values into the page and removes the form — the classic, irreversible lock.</li>
+    <li><strong>Read-only lock:</strong> keeps the fields but prevents editing, useful when you may still want the structure.</li>
+    <li><strong>Preserve signatures:</strong> skip signature fields so an existing signature widget is not altered.</li>
+    <li><strong>Watermark, metadata &amp; optimise:</strong> combine flattening with a stamp, cleaned metadata and a smaller file in one pass.</li>
+  </ul>
+
+  <h2>🛡️ Security</h2>
+  <p>Flattening is itself a security step: once a form is flattened, its answers cannot be changed, so a signed application, contract or claim cannot be quietly altered after the fact. The read-only mode adds a lighter lock that discourages editing while keeping the fields. For true password encryption, pair this tool with the dedicated <a href="pdf-protect.html">PDF Protect</a> tool, and to remove an existing password first use <a href="pdf-unlock.html">PDF Unlock</a>. Because everything runs locally, none of your sensitive form data is exposed during the process.</p>
+
+  <h2>🎯 Benefits</h2>
+  <ul>
+    <li><strong>Tamper-proof:</strong> filled values become permanent and cannot be edited.</li>
+    <li><strong>Universally viewable:</strong> flattened PDFs display identically in every reader, with no missing-field issues.</li>
+    <li><strong>Smaller &amp; cleaner:</strong> optional optimisation and metadata removal shrink and sanitise the file.</li>
+    <li><strong>Private &amp; free:</strong> no account, no upload, no watermark unless you add one.</li>
+  </ul>
+
+  <h2>🔒 Privacy</h2>
+  <p>This tool is privacy-first. Your PDF form — which often contains personal, financial or legal information — is loaded and processed entirely in your browser using pdf-lib and PDF.js; no page, field value or byte is ever uploaded to a server, shared with analytics, or processed by any AI service. Once the page and its libraries have loaded, the tool works offline, and closing the tab clears everything from memory. That makes it safe for confidential applications, contracts, tax and medical forms. / यह टूल privacy-first है — आपकी PDF आपके ब्राउज़र में ही process होती है, कुछ भी अपलोड नहीं होता।</p>
+
+  <!-- ===== Related Tools (ABOVE About — required order) ===== -->
+  <h2>🧰 Related Tools</h2>
+  <div class="related-grid">
+    <a href="pdf-compress.html"><span class="ri">📉</span> PDF Compress</a>
+    <a href="pdf-merge.html"><span class="ri">🧩</span> PDF Merge</a>
+    <a href="pdf-split.html"><span class="ri">✂️</span> PDF Split</a>
+    <a href="pdf-rotate.html"><span class="ri">🔃</span> PDF Rotate</a>
+    <a href="pdf-protect.html"><span class="ri">🔐</span> PDF Protect</a>
+    <a href="pdf-unlock.html"><span class="ri">🔓</span> PDF Unlock</a>
+    <a href="pdf-sign.html"><span class="ri">✍️</span> PDF Sign</a>
+    <a href="pdf-watermark.html"><span class="ri">💧</span> PDF Watermark</a>
+    <a href="pdf-ocr.html"><span class="ri">🔍</span> PDF OCR</a>
+    <a href="pdf-to-image.html"><span class="ri">🖼️</span> PDF to JPG</a>
+  </div>
+
+  <!-- ===== About (English) ===== -->
+  <h2>ℹ️ About This Tool</h2>
+  <p>The <strong>Professional PDF Form Flattening Tool</strong> is a free, browser-based utility that turns a filled-in PDF form into a locked, permanent document. Interactive PDF forms are wonderfully convenient while you are completing them, but that same interactivity is a liability once the form is done: any recipient can reopen it and change a figure, clear a checkbox or overwrite a name, sometimes without leaving a trace. Flattening solves this by converting the form's live fields into ordinary page content, so the answers you submitted are exactly the answers everyone sees, forever. This tool began as a one-click flattener and has grown into a complete form-processing workspace, adding field analysis, validation, watermarking, metadata control, optimisation, a before/after preview and batch processing — while keeping the whole operation on your own device.</p>
+
+  <p>The first thing the tool does when you add a PDF is understand it. Using pdf-lib, an open-source PDF engine written entirely in JavaScript, it reads the document's form definition and produces a clear inventory: how many fields there are, and how many of each type — text fields, checkboxes, radio-button groups, dropdowns, list boxes, push buttons and signature fields. It shows this both as a set of type chips and as a scrollable table listing each field's name, type and current value, flagging which fields are filled, which are empty and which are marked required. This matters because flattening is irreversible; seeing exactly what is in the form, and whether anything required was left blank, lets you catch mistakes before you lock everything in. A PDF-information panel sits alongside it with the file name, size, PDF version, page count, total field count and the number of signature fields.</p>
+
+  <p>Flattening itself offers two modes to suit different needs. The default, permanent flatten, is the classic behaviour: pdf-lib refreshes every field's appearance so the rendered values match what you see, then draws those appearances into the page and strips out the interactive form, producing a standard PDF whose former answers are now fixed text and graphics. Because the values are rendered as real text, the flattened document remains searchable and selectable, which is important for accessibility and for anyone who needs to copy information out later. The alternative, read-only lock, keeps the form fields in place but marks them non-editable — a lighter touch for cases where you want to discourage changes but preserve the form's structure. A dedicated option lets you preserve signature fields, skipping them so an existing signature widget is not disturbed by the flatten.</p>
+
+  <p>Around the core flatten sit the finishing touches that a professional workflow needs. A watermark can be stamped across every page — ready-made Confidential, Approved and Submitted labels, or any custom text — at an opacity you control, which is invaluable for marking the status of applications, contracts and internal documents. Metadata handling gives you three choices: keep the document's existing title, author and subject; remove them entirely to sanitise a file before sharing; or edit them to set your own. An optimisation option re-saves the PDF using object streams to reduce its size, and an OCR-safety toggle keeps the flattened text searchable so the document stays useful to screen readers and search. Throughout the process, a progress bar reports how many fields have been flattened, with an estimate of the time remaining and the processing speed for larger forms.</p>
+
+  <p>Confidence comes from being able to see the result, so the tool renders a first-page preview of the original document and, after flattening, of the finished file using PDF.js, side by side. When you are satisfied you download the locked PDF with a click. For anyone handling volume — an HR team processing a batch of onboarding forms, an accounts department locking a month of invoices, a school flattening exam entry forms — multiple PDFs can be added to a queue and processed together, then downloaded as a single ZIP. And because the entire pipeline is client-side, none of this touches a server: the tool is honest about its boundaries too, noting that genuine password encryption is handled by the companion PDF Protect tool rather than pretending to encrypt, and that XFA or password-protected forms need a preparatory step first.</p>
+
+  <p>Everything is built to be lightweight, fast and dependable on real-world files. Pages and fields are processed with memory in mind so that large, many-field forms do not overwhelm the browser; the layout is fully responsive and touch-friendly for uploading and flattening from a phone; and the controls are labelled and keyboard-operable for accessibility. Above all, it respects the sensitive nature of forms. Applications, tax returns, medical intake sheets, loan documents and contracts routinely pass through a flattening step, and doing that in a tool that never uploads your file means the personal and financial details inside it stay entirely under your control. Whether you are an individual locking a single signed form or a business standardising a document workflow, this tool turns "make this form permanent" into a couple of clicks without ever compromising privacy.</p>
+
+  <!-- ===== About (Hindi) ===== -->
+  <h2>ℹ️ इस टूल के बारे में (हिंदी में)</h2>
+  <p class="pff-lang-note">The same guide in Hindi / यही जानकारी हिंदी में।</p>
+  <p><strong>Professional PDF Form Flattening Tool</strong> एक फ्री, ब्राउज़र-आधारित उपयोगिता है जो किसी भरी हुई PDF form को एक locked, स्थायी दस्तावेज़ में बदल देती है। Interactive PDF forms भरते समय बहुत सुविधाजनक होते हैं, पर form पूरा होने के बाद वही interactivity एक जोखिम बन जाती है: कोई भी प्राप्तकर्ता इसे दोबारा खोलकर कोई आँकड़ा बदल सकता है, कोई checkbox मिटा सकता है, या नाम बदल सकता है — कभी-कभी बिना कोई निशान छोड़े। Flattening इसे हल करती है — form के live fields को साधारण page content में बदलकर, ताकि आपके submit किए गए उत्तर वही रहें जो सब देखते हैं, हमेशा के लिए। यह टूल एक one-click flattener के रूप में शुरू हुआ था और अब एक पूरा form-processing workspace बन गया है — field analysis, validation, watermarking, metadata नियंत्रण, optimisation, before/after preview और batch processing के साथ।</p>
+
+  <p>PDF जोड़ते ही टूल सबसे पहले उसे समझता है। pdf-lib — पूरी तरह JavaScript में लिखा एक open-source PDF engine — का उपयोग करके यह दस्तावेज़ की form परिभाषा पढ़ता है और एक स्पष्ट सूची बनाता है: कितने fields हैं, और हर प्रकार के कितने — text fields, checkboxes, radio-button groups, dropdowns, list boxes, push buttons और signature fields। यह इसे type chips के रूप में और एक scrollable table के रूप में दिखाता है जिसमें हर field का नाम, प्रकार और मौजूदा मान होता है, और यह चिह्नित करता है कि कौन भरे हैं, कौन खाली हैं और कौन required हैं। यह मायने रखता है क्योंकि flattening अपरिवर्तनीय है।</p>
+
+  <p>Flattening ख़ुद दो modes देती है। डिफ़ॉल्ट, permanent flatten, classic व्यवहार है: pdf-lib हर field की appearance ताज़ा करता है ताकि rendered मान वही दिखें जो आप देखते हैं, फिर उन्हें page में draw करके interactive form हटा देता है। चूँकि मान असली text के रूप में render होते हैं, flattened दस्तावेज़ searchable और selectable रहता है, जो accessibility के लिए और बाद में जानकारी copy करने के लिए ज़रूरी है। विकल्प, read-only lock, form fields को बनाए रखते हुए उन्हें non-editable चिह्नित करता है। एक अलग विकल्प signature fields को preserve करने देता है।</p>
+
+  <p>मुख्य flatten के आसपास वे अंतिम स्पर्श हैं जो एक professional workflow को चाहिए। हर पेज पर एक watermark लगाया जा सकता है — तैयार Confidential, Approved और Submitted labels, या कोई custom text — आपके नियंत्रित opacity पर। Metadata handling तीन विकल्प देती है: मौजूदा title/author/subject रखें; उन्हें पूरी तरह हटाकर फ़ाइल sanitise करें; या अपने मान सेट करें। एक optimisation विकल्प object streams का उपयोग करके फ़ाइल आकार घटाता है, और एक OCR-safety toggle flattened text को searchable रखता है। पूरी प्रक्रिया के दौरान एक progress bar बताता है कि कितने fields flatten हुए, बचे हुए समय और गति के अनुमान के साथ।</p>
+
+  <p>भरोसा परिणाम देखने से आता है, इसलिए टूल PDF.js से मूल दस्तावेज़ और flatten के बाद तैयार फ़ाइल के पहले पेज का preview अगल-बगल render करता है। संतुष्ट होने पर आप एक क्लिक में locked PDF download करते हैं। बड़ी मात्रा संभालने वालों के लिए — onboarding forms का batch process करती HR team, महीने भर के invoices lock करता accounts विभाग — कई PDFs को queue में जोड़कर एक साथ process किया जा सकता है और एक ZIP के रूप में download किया जा सकता है। और चूँकि पूरी pipeline client-side है, यह किसी server को नहीं छूती: टूल अपनी सीमाओं के बारे में ईमानदार भी है — यह बताता है कि असली password encryption साथी PDF Protect टूल संभालता है।</p>
+
+  <p>सब कुछ हल्का, तेज़ और असली फ़ाइलों पर भरोसेमंद बनाया गया है। बड़े, कई-field वाले forms browser पर बोझ न बनें इसके लिए memory का ध्यान रखा जाता है; layout पूरी तरह responsive और touch-friendly है; और नियंत्रण labelled व कीबोर्ड-सुलभ हैं। सबसे बढ़कर, यह forms की संवेदनशीलता का सम्मान करता है। applications, tax returns, medical forms, loan दस्तावेज़ और contracts नियमित रूप से flattening से गुज़रते हैं, और यह ऐसे टूल में करना जो आपकी फ़ाइल कभी अपलोड नहीं करता, इसका मतलब है कि उसके अंदर के व्यक्तिगत और वित्तीय विवरण पूरी तरह आपके नियंत्रण में रहते हैं।</p>
+
+  <!-- ===== FAQ (immediately after About — required order) ===== -->
+  <h2>❓ Frequently Asked Questions</h2>
+  <div class="pff-faq" id="pffFaq">
+    <details><summary>Is this tool free?</summary><p>Yes, completely free with no account, no signup and no limits. / हाँ, यह पूरी तरह मुफ़्त है।</p></details>
+    <details><summary>Is my PDF uploaded to a server?</summary><p>No. The PDF is processed entirely in your browser with pdf-lib; nothing is uploaded. / नहीं, सब कुछ आपके ब्राउज़र में ही होता है।</p></details>
+    <details><summary>What does flattening a PDF form do?</summary><p>It converts the filled-in field values into permanent page content and removes the interactive form, so the values can no longer be edited. / यह मान स्थायी बना देता है।</p></details>
+    <details><summary>Can flattening be undone?</summary><p>No. Flattening is permanent, so keep a copy of the original if you may need to edit it later. / नहीं, इसलिए मूल की एक प्रति रखें।</p></details>
+    <details><summary>Which field types are detected?</summary><p>Text, checkbox, radio, dropdown, list, button and signature fields. / text, checkbox, radio, dropdown, list, button और signature।</p></details>
+    <details><summary>Is the flattened text still searchable?</summary><p>Yes. Values are rendered as real text, so the result stays searchable and selectable. / हाँ, flattened text searchable रहता है।</p></details>
+    <details><summary>What is read-only lock?</summary><p>It keeps the form fields but marks them non-editable, a lighter alternative to full flattening. / यह fields रखते हुए editing रोकता है।</p></details>
+    <details><summary>Can I add a watermark?</summary><p>Yes — Confidential, Approved, Submitted or custom text at your chosen opacity. / हाँ, watermark जोड़ सकते हैं।</p></details>
+    <details><summary>Can I remove or edit metadata?</summary><p>Yes. Keep, remove, or edit the title, author and subject before saving. / हाँ, metadata keep/remove/edit करें।</p></details>
+    <details><summary>Can it password-protect the PDF?</summary><p>Not directly — use the PDF Protect tool for encryption. Flattening and read-only lock prevent edits without a password. / encryption के लिए PDF Protect इस्तेमाल करें।</p></details>
+    <details><summary>Does it handle password-protected PDFs?</summary><p>Unlock the PDF first with the PDF Unlock tool, then flatten. / पहले PDF Unlock से खोलें।</p></details>
+    <details><summary>Can I flatten several PDFs at once?</summary><p>Yes. Add multiple PDFs and download the results as a ZIP. / हाँ, batch ZIP से।</p></details>
+    <details><summary>Why does it say my PDF has no form fields?</summary><p>The PDF has no AcroForm, or it uses XFA. Re-save it as a standard PDF and try again. / इसमें AcroForm नहीं है या XFA है।</p></details>
+    <details><summary>Does flattening preserve signatures?</summary><p>Flattening bakes signature appearances into the page; enable "Preserve signature fields" to skip them. / "Preserve signature fields" चालू करें।</p></details>
+    <details><summary>Will it reduce the file size?</summary><p>The optimise option re-saves with object streams to shrink the file. / optimise विकल्प फ़ाइल छोटी करता है।</p></details>
+    <details><summary>Does it validate the form?</summary><p>Yes. It shows filled, empty and required fields so you can check before flattening. / हाँ, यह filled/empty/required दिखाता है।</p></details>
+    <details><summary>Does it work offline?</summary><p>Once the page and its libraries have loaded, yes. / हाँ, लोड होने के बाद offline।</p></details>
+    <details><summary>Is it mobile friendly?</summary><p>Yes, it is responsive and touch-friendly for uploading and flattening on a phone. / हाँ, मोबाइल-अनुकूल।</p></details>
+    <details><summary>Is it accessible?</summary><p>Controls are labelled and keyboard-operable with clear focus states. / नियंत्रण labelled और कीबोर्ड-सुलभ हैं।</p></details>
+    <details><summary>Does it use any AI?</summary><p>No. It uses standard PDF form processing with pdf-lib, no AI. / नहीं, इसमें कोई AI नहीं है।</p></details>
+    <details><summary>Will the appearance change after flattening?</summary><p>No. Field appearances are refreshed first so the flattened output matches what you saw. / नहीं, दिखावट वही रहती है।</p></details>
+  </div>
+
+  <!-- ===== Troubleshooting ===== -->
+  <h2>🛠️ Troubleshooting</h2>
+  <ul>
+    <li><strong>"No fillable form fields":</strong> the PDF has no AcroForm or uses XFA — re-save it as a standard PDF (print to PDF) and retry.</li>
+    <li><strong>Values look blank after flattening:</strong> the field appearances were not generated — the tool refreshes them automatically, but some tools produce empty appearances; open and re-save the source in a PDF viewer first.</li>
+    <li><strong>The PDF won't load:</strong> it may be password-protected — remove the password with PDF Unlock first.</li>
+    <li><strong>The file is still large:</strong> choose the optimised output and consider PDF Compress for image-heavy documents.</li>
+    <li><strong>A signature disappeared:</strong> enable "Preserve signature fields" to skip signature widgets.</li>
+    <li><strong>The browser slows on a big form:</strong> flatten one file at a time and close other tabs to free memory.</li>
+  </ul>
 </div>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-let flattenedBytes = null;
+(function(){
+  'use strict';
+  function $(id){ return document.getElementById(id); }
+  if(window.pdfjsLib){ pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; }
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length && files[0].type === 'application/pdf'){
-    processFile(files[0]);
+  var queue=[];       // {file, name, bytes, info, fields}
+  var activeIdx=0, mode='flatten', metaMode='keep', wmPreset='';
+  var results=[];     // {name, bytes}
+
+  // ---------- Upload ----------
+  setupDropzone($('dropzone'), $('fileInput'), function(files){ addFiles(files); });
+  function addFiles(files){
+    Array.prototype.slice.call(files||[]).forEach(function(f){ if(f&&(f.type==='application/pdf'||/\.pdf$/i.test(f.name))) queue.push({file:f,name:f.name}); });
+    renderQueue();
+    if(queue.length){ $('editor').style.display='grid'; loadFile(queue.length-1); }
   }
-});
+  function renderQueue(){
+    var w=$('queue'); if(!queue.length){ w.innerHTML=''; return; }
+    w.innerHTML=queue.map(function(q,i){ return '<div class="q"><span class="qn">'+(i===activeIdx?'▶ ':'')+esc(q.name)+'</span><button data-open="'+i+'">Open</button><button data-del="'+i+'">✕</button></div>'; }).join('');
+    w.querySelectorAll('[data-open]').forEach(function(b){ b.addEventListener('click',function(){ loadFile(+b.getAttribute('data-open')); }); });
+    w.querySelectorAll('[data-del]').forEach(function(b){ b.addEventListener('click',function(){ queue.splice(+b.getAttribute('data-del'),1); if(activeIdx>=queue.length)activeIdx=Math.max(0,queue.length-1); renderQueue(); if(queue.length)loadFile(activeIdx); else $('editor').style.display='none'; }); });
+  }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];}); }
+  function fmtBytes(n){ if(!n)return '—'; if(n<1024)return n+' B'; if(n<1048576)return (n/1024).toFixed(1)+' KB'; return (n/1048576).toFixed(2)+' MB'; }
 
-async function processFile(file){
-  const status = document.getElementById('statusMsg');
-  document.getElementById('downloadRow').style.display = 'none';
-  status.textContent = '⏳ Loading PDF...';
+  function fieldType(f){
+    var n=f.constructor.name;
+    return {PDFTextField:'Text',PDFCheckBox:'Checkbox',PDFRadioGroup:'Radio',PDFDropdown:'Dropdown',PDFOptionList:'List',PDFButton:'Button',PDFSignature:'Signature'}[n]||n.replace('PDF','');
+  }
+  function fieldValue(f){
+    try{ var n=f.constructor.name;
+      if(n==='PDFTextField')return f.getText()||'';
+      if(n==='PDFCheckBox')return f.isChecked()?'☑ checked':'☐ unchecked';
+      if(n==='PDFRadioGroup')return f.getSelected()||'(none)';
+      if(n==='PDFDropdown'||n==='PDFOptionList')return (f.getSelected()||[]).join(', ');
+      if(n==='PDFSignature')return '(signature)';
+    }catch(e){}
+    return '';
+  }
 
-  try{
-    const { PDFDocument } = PDFLib;
-    const bytes = await file.arrayBuffer();
-    const pdfDoc = await PDFDocument.load(bytes);
+  async function loadFile(idx){
+    activeIdx=idx; var q=queue[idx]; renderQueue();
+    var status=$('statusMsg'); status.textContent='⏳ Analysing PDF…';
+    results=[]; $('downloadRow').style.display='none';
+    try{
+      if(!q.bytes) q.bytes=new Uint8Array(await q.file.arrayBuffer());
+      var doc=await PDFLib.PDFDocument.load(q.bytes, {ignoreEncryption:true});
+      var form; try{ form=doc.getForm(); }catch(e){ form=null; }
+      var fields=form?form.getFields():[];
+      q.doc=doc; q.form=form; q.fields=fields;
+      // version from header
+      var head=''; try{ head=new TextDecoder().decode(q.bytes.slice(0,16)); }catch(e){}
+      var ver=(head.match(/%PDF-(\d\.\d)/)||[])[1]||'—';
+      var sigCount=fields.filter(function(f){return f.constructor.name==='PDFSignature';}).length;
+      $('pdfInfo').innerHTML=[['File name',esc(q.name)],['File size',fmtBytes(q.file.size)],['PDF version',ver],['Total pages',doc.getPageCount()],['Form fields',fields.length],['Signature fields',sigCount]].map(function(r){return '<span>'+r[0]+'</span><span>'+r[1]+'</span>';}).join('');
+      renderTypes(fields); renderFieldTable(fields); renderValidation(fields);
+      // meta prefill
+      try{ $('mTitle').value=doc.getTitle()||''; $('mAuthor').value=doc.getAuthor()||''; $('mSubject').value=doc.getSubject()||''; }catch(e){}
+      renderPreview('prevOrig', q.bytes);
+      // clear flattened preview
+      var pf=$('prevFlat'); pf.getContext&&pf.getContext('2d').clearRect(0,0,pf.width,pf.height);
+      status.textContent=fields.length?('✅ '+fields.length+' field(s) found. Choose options and flatten.'):'⚠️ No fillable form fields found in this PDF.';
+    }catch(e){ status.textContent='❌ Could not load PDF: '+(e.message||e)+ (/encrypt/i.test(e.message||'')?' — unlock it first.':''); }
+  }
+  function renderTypes(fields){
+    var counts={}; fields.forEach(function(f){ var t=fieldType(f); counts[t]=(counts[t]||0)+1; });
+    var order=['Text','Checkbox','Radio','Dropdown','List','Button','Signature'];
+    $('typeChips').innerHTML=order.map(function(t){ var c=counts[t]||0; return '<span class="pff-typechip'+(c?'':' zero')+'">'+t+': '+c+'</span>'; }).join('');
+  }
+  function renderFieldTable(fields){
+    var wrap=$('fieldTableWrap'); if(!fields.length){ wrap.style.display='none'; return; } wrap.style.display='block';
+    var rows=fields.slice(0,300).map(function(f){ var v=fieldValue(f); var empty=(v===''||/unchecked|\(none\)/.test(v)); var req=false,ro=false; try{req=f.isRequired();}catch(e){} try{ro=f.isReadOnly();}catch(e){}
+      return '<tr><td>'+esc(f.getName())+'</td><td>'+fieldType(f)+'</td><td class="'+(empty?'empty':'')+'">'+esc(v||'(empty)')+'</td><td>'+(req?'✔':'')+'</td><td>'+(ro?'🔏':'')+'</td></tr>'; }).join('');
+    $('fieldTable').innerHTML='<tr><th>Name</th><th>Type</th><th>Value</th><th>Req</th><th>RO</th></tr>'+rows;
+  }
+  function renderValidation(fields){
+    var filled=0,empty=0,required=0,reqEmpty=0;
+    fields.forEach(function(f){ var v=fieldValue(f); var isEmpty=(v===''||/unchecked|\(none\)/.test(v)); if(isEmpty)empty++; else filled++; var req=false; try{req=f.isRequired();}catch(e){} if(req){ required++; if(isEmpty)reqEmpty++; } });
+    var b=$('validationBadges'); var out='<span class="pff-badge ok">✅ '+filled+' filled</span>';
+    if(empty)out+='<span class="pff-badge">'+empty+' empty</span>';
+    if(required)out+='<span class="pff-badge">'+required+' required</span>';
+    if(reqEmpty)out+='<span class="pff-badge warn">⚠️ '+reqEmpty+' required left empty</span>';
+    b.innerHTML=out;
+  }
 
-    const form = pdfDoc.getForm();
-    const fields = form.getFields();
+  async function renderPreview(canvasId, bytes){
+    if(!window.pdfjsLib)return;
+    try{ var doc=await pdfjsLib.getDocument({data:bytes.slice()}).promise; var page=await doc.getPage(1); var vp=page.getViewport({scale:0.6}); var c=$(canvasId); c.width=vp.width; c.height=vp.height; await page.render({canvasContext:c.getContext('2d'),viewport:vp}).promise; }catch(e){}
+  }
 
-    if(fields.length === 0){
-      status.textContent = '⚠️ This PDF has no fillable form fields to flatten.';
-      return;
+  // ---------- Options wiring ----------
+  document.querySelectorAll('[data-mode]').forEach(function(b){ b.addEventListener('click',function(){ document.querySelectorAll('[data-mode]').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); mode=b.getAttribute('data-mode'); $('modeNote').textContent=mode==='flatten'?'Flatten converts field values into permanent page content and removes the interactive form.':'Read-only keeps the fields but marks them non-editable (no password).'; $('flattenBtn').textContent=mode==='flatten'?'🔒 Flatten & download':'🔏 Lock read-only & download'; }); });
+  document.querySelectorAll('[data-wm]').forEach(function(b){ b.addEventListener('click',function(){ document.querySelectorAll('[data-wm]').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); wmPreset=b.getAttribute('data-wm'); }); });
+  document.querySelectorAll('[data-meta]').forEach(function(b){ b.addEventListener('click',function(){ document.querySelectorAll('[data-meta]').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); metaMode=b.getAttribute('data-meta'); $('metaEdit').style.display=metaMode==='edit'?'block':'none'; }); });
+  $('wmOpacity').addEventListener('input',function(){ $('wmOpLabel').textContent=this.value+'%'; });
+
+  // ---------- Process one file ----------
+  async function processOne(q, onProgress){
+    var bytes=q.bytes||new Uint8Array(await q.file.arrayBuffer());
+    var doc=await PDFLib.PDFDocument.load(bytes,{ignoreEncryption:true});
+    var form; try{ form=doc.getForm(); }catch(e){ form=null; }
+    var fields=form?form.getFields():[];
+    var preserveSig=$('preserveSig').checked;
+    // watermark
+    var wm=($('wmText').value.trim())||wmPreset;
+    if(wm){
+      var font=await doc.embedFont(PDFLib.StandardFonts.HelveticaBold);
+      var op=parseInt($('wmOpacity').value)/100;
+      doc.getPages().forEach(function(p){ var w=p.getWidth(),h=p.getHeight(); var size=Math.min(w,h)*0.12; var tw=font.widthOfTextAtSize(wm,size); p.drawText(wm,{x:w/2-tw/2*0.7,y:h/2,size:size,font:font,color:PDFLib.rgb(0.5,0.5,0.5),opacity:op,rotate:PDFLib.degrees(45)}); });
     }
-
-    status.textContent = `⏳ Flattening ${fields.length} field(s)...`;
-
-    try{ form.updateFieldAppearances(); }catch(e){ /* continue even if appearance update fails for some fields */ }
-    form.flatten();
-
-    flattenedBytes = await pdfDoc.save();
-    document.getElementById('downloadRow').style.display = 'flex';
-    status.textContent = `✅ Flattened ${fields.length} field(s). The form is now locked.`;
-  }catch(err){
-    status.textContent = '❌ Error: ' + (err && err.message ? err.message : 'Could not process this PDF.');
+    // fields
+    if(fields.length && form){
+      if(mode==='flatten'){
+        if(preserveSig){ fields.forEach(function(f){ if(f.constructor.name!=='PDFSignature'){ try{ f.enableReadOnly(); }catch(e){} } }); }
+        try{ form.updateFieldAppearances(); }catch(e){}
+        try{ form.flatten(); }catch(e){ /* fall back: mark read-only */ fields.forEach(function(f){ try{f.enableReadOnly();}catch(e2){} }); }
+      } else {
+        fields.forEach(function(f){ if(preserveSig&&f.constructor.name==='PDFSignature')return; try{ f.enableReadOnly(); }catch(e){} });
+        try{ form.updateFieldAppearances(); }catch(e){}
+      }
+    }
+    // metadata
+    if(metaMode==='remove'){ try{ doc.setTitle(''); doc.setAuthor(''); doc.setSubject(''); doc.setKeywords([]); doc.setProducer('ApneSoftware'); doc.setCreator('ApneSoftware'); }catch(e){} }
+    else if(metaMode==='edit'){ try{ doc.setTitle($('mTitle').value); doc.setAuthor($('mAuthor').value); doc.setSubject($('mSubject').value); }catch(e){} }
+    if(onProgress)onProgress(fields.length);
+    var out=await doc.save({useObjectStreams: $('compress').value==='opt'});
+    return { name:q.name.replace(/\.pdf$/i,'')+(mode==='flatten'?'-flattened':'-locked')+'.pdf', bytes:out, fieldCount:fields.length };
   }
-}
 
-document.getElementById('downloadBtn').addEventListener('click', ()=>{
-  if(!flattenedBytes) return;
-  downloadBlob('flattened.pdf', new Blob([flattenedBytes], { type: 'application/pdf' }));
-});
+  // ---------- Flatten button ----------
+  $('flattenBtn').addEventListener('click', async function(){
+    if(!queue.length)return;
+    var status=$('statusMsg'), prog=$('progress'), bar=prog.firstElementChild;
+    prog.classList.add('show'); bar.style.width='0%'; results=[];
+    var t0=performance.now();
+    try{
+      for(var i=0;i<queue.length;i++){
+        status.textContent='⏳ Processing '+(i+1)+'/'+queue.length+': '+queue[i].name;
+        var r=await processOne(queue[i]);
+        results.push(r);
+        var done=(i+1)/queue.length; bar.style.width=Math.round(done*100)+'%';
+        var el=(performance.now()-t0)/1000; var eta=el/done-el;
+        status.textContent='⏳ '+(i+1)+'/'+queue.length+' • '+r.fieldCount+' field(s) • '+eta.toFixed(1)+'s left';
+        await tick();
+      }
+      // preview flattened of active
+      var active=results[activeIdx]||results[0];
+      if(active) renderPreview('prevFlat', active.bytes);
+      $('downloadRow').style.display='flex';
+      $('downloadAllBtn').style.display=results.length>1?'inline-block':'none';
+      var totalBytes=results.reduce(function(a,r){return a+r.bytes.length;},0);
+      status.textContent='✅ Done — '+results.length+' file(s), '+fmtBytes(totalBytes)+'. '+(mode==='flatten'?'Fields flattened.':'Fields locked read-only.');
+    }catch(e){ status.textContent='❌ '+(e.message||e); }
+    prog.classList.remove('show');
+  });
+  function tick(){ return new Promise(function(r){ setTimeout(r,0); }); }
+
+  function dl(bytes,name){ var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([bytes],{type:'application/pdf'})); a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(a.href);},1500); }
+  $('downloadBtn').addEventListener('click',function(){ var r=results[activeIdx]||results[0]; if(r)dl(r.bytes,r.name); });
+  $('downloadAllBtn').addEventListener('click', async function(){ if(!window.JSZip){ return; } var zip=new JSZip(); results.forEach(function(r){ zip.file(r.name,r.bytes); }); var blob=await zip.generateAsync({type:'blob'}); var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='flattened-pdfs.zip'; document.body.appendChild(a); a.click(); a.remove(); });
+})();
 </script>
 <!-- Default Statcounter code for Apne Software
 https://apnesoftware.com -->
 <script type="text/javascript">
-var sc_project=13334460; 
-var sc_invisible=1; 
-var sc_security="a5854dc7"; 
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
 </script>
 <script type="text/javascript"
 src="https://www.statcounter.com/counter/counter.js"
@@ -151,5 +519,32 @@ src="https://c.statcounter.com/13334460/0/a5854dc7/1/"
 alt="Web Analytics"
 referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 <!-- End of Statcounter Code -->
+
+<!-- FAQ structured data -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is this tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free with no account, no signup and no limits."}},
+{"@type":"Question","name":"Is my PDF uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The PDF is processed entirely in your browser with pdf-lib; nothing is uploaded."}},
+{"@type":"Question","name":"What does flattening a PDF form do?","acceptedAnswer":{"@type":"Answer","text":"It converts the filled-in field values into permanent page content and removes the interactive form, so the values can no longer be edited."}},
+{"@type":"Question","name":"Can flattening be undone?","acceptedAnswer":{"@type":"Answer","text":"No. Flattening is permanent, so keep a copy of the original if you may need to edit it later."}},
+{"@type":"Question","name":"Which field types are detected?","acceptedAnswer":{"@type":"Answer","text":"Text, checkbox, radio, dropdown, list, button and signature fields."}},
+{"@type":"Question","name":"Is the flattened text still searchable?","acceptedAnswer":{"@type":"Answer","text":"Yes. Values are rendered as real text, so the result stays searchable and selectable."}},
+{"@type":"Question","name":"What is read-only lock?","acceptedAnswer":{"@type":"Answer","text":"It keeps the form fields but marks them non-editable, a lighter alternative to full flattening."}},
+{"@type":"Question","name":"Can I add a watermark?","acceptedAnswer":{"@type":"Answer","text":"Yes, Confidential, Approved, Submitted or custom text at your chosen opacity."}},
+{"@type":"Question","name":"Can I remove or edit metadata?","acceptedAnswer":{"@type":"Answer","text":"Yes. Keep, remove, or edit the title, author and subject before saving."}},
+{"@type":"Question","name":"Can it password-protect the PDF?","acceptedAnswer":{"@type":"Answer","text":"Not directly. Use the PDF Protect tool for encryption. Flattening and read-only lock prevent edits without a password."}},
+{"@type":"Question","name":"Does it handle password-protected PDFs?","acceptedAnswer":{"@type":"Answer","text":"Unlock the PDF first with the PDF Unlock tool, then flatten."}},
+{"@type":"Question","name":"Can I flatten several PDFs at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add multiple PDFs and download the results as a ZIP."}},
+{"@type":"Question","name":"Why does it say my PDF has no form fields?","acceptedAnswer":{"@type":"Answer","text":"The PDF has no AcroForm, or it uses XFA. Re-save it as a standard PDF and try again."}},
+{"@type":"Question","name":"Does flattening preserve signatures?","acceptedAnswer":{"@type":"Answer","text":"Flattening bakes signature appearances into the page; enable Preserve signature fields to skip them."}},
+{"@type":"Question","name":"Will it reduce the file size?","acceptedAnswer":{"@type":"Answer","text":"The optimise option re-saves with object streams to shrink the file."}},
+{"@type":"Question","name":"Does it validate the form?","acceptedAnswer":{"@type":"Answer","text":"Yes. It shows filled, empty and required fields so you can check before flattening."}},
+{"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"Once the page and its libraries have loaded, yes."}},
+{"@type":"Question","name":"Is it mobile friendly?","acceptedAnswer":{"@type":"Answer","text":"Yes, it is responsive and touch-friendly for uploading and flattening on a phone."}},
+{"@type":"Question","name":"Is it accessible?","acceptedAnswer":{"@type":"Answer","text":"Controls are labelled and keyboard-operable with clear focus states."}},
+{"@type":"Question","name":"Does it use any AI?","acceptedAnswer":{"@type":"Answer","text":"No. It uses standard PDF form processing with pdf-lib, no AI."}},
+{"@type":"Question","name":"Will the appearance change after flattening?","acceptedAnswer":{"@type":"Answer","text":"No. Field appearances are refreshed first so the flattened output matches what you saw."}}
+]}
+</script>
 </body>
 </html>
