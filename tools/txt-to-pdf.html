@@ -4,35 +4,68 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free professional TXT to PDF Converter. Upload or paste text, batch-convert multiple files or a ZIP, choose page size, margins, fonts, alignment, headers/footers, watermark and PDF metadata, protect with AES encryption, and preview live — 100% in your browser, no upload.">
 <link rel="canonical" href="https://apnesoftware.com/tools/txt-to-pdf.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="TXT to PDF | ApneSoftware">
-<meta property="og:description" content="Convert plain text into a paginated PDF. Free online tool — no signup required.">
+<meta property="og:title" content="TXT to PDF Converter | ApneSoftware">
+<meta property="og:description" content="Convert TXT to a fully formatted PDF — page settings, fonts, headers/footers, watermark, metadata, batch mode, encryption and live preview. Free & private.">
 <meta property="og:url" content="https://apnesoftware.com/tools/txt-to-pdf.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="TXT to PDF | ApneSoftware">
-<meta name="twitter:description" content="Convert plain text into a paginated PDF. Free online tool — no signup required.">
+<meta name="twitter:title" content="TXT to PDF Converter | ApneSoftware">
+<meta name="twitter:description" content="Page settings, fonts, headers/footers, watermark, metadata, batch mode, encryption, live preview. Free, private, no signup.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"TXT to PDF","description":"Convert plain text into a paginated PDF. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/txt-to-pdf.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"TXT to PDF Converter","description":"Professional in-browser TXT to PDF converter with encoding auto-detection, page/margin/font/alignment controls, headers/footers, watermark, PDF metadata, AES encryption, batch/ZIP conversion and live preview.","url":"https://apnesoftware.com/tools/txt-to-pdf.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
 <meta name="color-scheme" content="dark">
-<title>TXT to PDF | ApneSoftware</title>
+<title>TXT to PDF Converter | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-/* Premium upload enhancement for this tool */
-.dropzone{cursor:pointer}
-.dropzone p{font-size:.9rem}
-.panel{position:relative;z-index:1}
-</style>
-<style>
-  .opt-row{display:flex;gap:14px;flex-wrap:wrap;margin:14px 0}
-  .opt-field{display:flex;flex-direction:column;gap:4px}
-  .opt-field label{font-size:.78rem;color:var(--text-dim);font-weight:600}
-  .opt-field select{padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2);font-family:var(--font)}
-  textarea#txtInput{width:100%;min-height:240px;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);font-family:monospace;font-size:.9rem;resize:vertical}
+  .tp-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .tp-tab{padding:9px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.82rem;font-weight:600;font-family:inherit}
+  .tp-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .tp-pane{display:none}
+  .tp-pane.active{display:block}
+  .tp-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:18px;align-items:start}
+  @media(max-width:900px){.tp-grid{grid-template-columns:1fr}}
+  #tp-previewSide{position:sticky;top:16px}
+  @media(max-width:900px){#tp-previewSide{position:static}}
+
+  textarea#txtInput{width:100%;min-height:220px;padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);font-family:monospace;font-size:.9rem;resize:vertical}
+  .tp-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:10px}
+  .tp-field label{display:block;font-size:.76rem;color:var(--text-dim);margin-bottom:4px}
+  .tp-field input,.tp-field select{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:.86rem}
+  .tp-field input[type=color]{padding:2px;height:36px}
+  .tp-check-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:8px 0}
+  .tp-check-grid label{display:flex;align-items:center;gap:6px;cursor:pointer;font-size:.84rem;color:var(--text-dim)}
+  .tp-check-grid input{width:auto}
+  .tp-card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px}
+  .tp-card h3{margin:0 0 10px;font-size:.95rem}
+  .tp-file-list{margin-top:10px}
+  .tp-file-item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);margin-bottom:6px;font-size:.84rem}
+  .tp-file-item button{background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);cursor:pointer;padding:4px 8px}
+  .tp-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;margin-top:10px}
+  .tp-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .tp-flag{padding:5px 12px;border-radius:999px;font-size:.76rem;font-weight:600;border:1px solid var(--border)}
+  .tp-flag.ok{background:rgba(22,192,121,.15);color:#7ef0bd;border-color:rgba(22,192,121,.4)}
+  .tp-flag.warn{background:rgba(248,113,113,.15);color:#fca5a5;border-color:rgba(248,113,113,.4)}
+  .tp-flag.neutral{background:var(--surface-2);color:var(--text-dim)}
+  .tp-preview-wrap{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+  .tp-preview-wrap canvas{max-width:100%;background:#fff;border-radius:6px}
+  .tp-preview-nav{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:10px;font-size:.85rem}
+  .tp-preview-nav button{background:none;border:1px solid var(--border);border-radius:6px;color:var(--text-dim);cursor:pointer;padding:5px 10px}
+  .tp-muted{color:var(--text-dim);font-size:.8rem;margin-top:6px}
+  .tp-note{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.3);border-radius:10px;padding:10px 12px;font-size:.8rem;color:#fde68a;margin-top:10px}
+  .related-grid a .ri{margin-right:6px}
+  .tp-content h2{font-size:1.15rem;margin:26px 0 10px}
+  .tp-content h3{font-size:1rem;margin:18px 0 8px}
+  .tp-content p,.tp-content li{font-size:.92rem;line-height:1.72}
+  .tp-content ul,.tp-content ol{padding-left:20px}
+  .tp-lang-note{font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:-4px}
+  body.tp-large-font #tp-formSide,body.tp-large-font #tp-previewSide{font-size:1.1rem}
+  body.tp-high-contrast{filter:contrast(1.2) brightness(1.06)}
 </style>
 </head>
 <body>
@@ -45,163 +78,1054 @@
 
 <div class="container">
   <div class="tool-header">
-    <h1>📄 TXT to PDF</h1>
-    <p>Upload a .txt file or paste text below, choose a page size and font size, and download a clean PDF.</p>
+    <h1>📄 TXT to PDF Converter</h1>
+    <p>Convert plain text into a fully formatted, paginated PDF — page settings, fonts, headers/footers, watermark, metadata, batch mode and encryption, entirely in your browser.</p>
   </div>
 
-  <div class="panel">
-    <div class="dropzone" id="dropzone">
-      <p>📤 Drag & drop a .txt file here or click to choose (optional — you can also just paste text below)</p>
-      <input type="file" id="fileInput" accept=".txt,text/plain">
+  <div class="tp-grid">
+    <div id="tp-formSide">
+      <div class="panel">
+        <div class="tp-tabs" role="tablist">
+          <button class="tp-tab active" id="tp-tabInput" role="tab" aria-selected="true">📥 Input</button>
+          <button class="tp-tab" id="tp-tabLayout" role="tab" aria-selected="false">📐 Page &amp; Font</button>
+          <button class="tp-tab" id="tp-tabHeader" role="tab" aria-selected="false">🏷️ Header/Footer &amp; Metadata</button>
+          <button class="tp-tab" id="tp-tabSecurity" role="tab" aria-selected="false">🔒 Security &amp; Export</button>
+          <button class="tp-tab" id="tp-tabSettings" role="tab" aria-selected="false">⚙️ Settings</button>
+        </div>
+
+        <!-- ===== Input tab ===== -->
+        <div class="tp-pane active" id="tp-paneInput">
+          <div class="dropzone" id="dropzone">
+            <p>📤 Drag &amp; drop .txt files or a .zip here, or click to choose (optional — you can also just paste text below)</p>
+            <input type="file" id="fileInput" accept=".txt,text/plain,.zip,application/zip" multiple>
+          </div>
+          <div class="btn-row" style="margin-top:10px">
+            <button class="btn secondary" id="tp-pasteClipboardBtn" type="button">📋 Import from Clipboard</button>
+          </div>
+
+          <div class="tp-file-list" id="tp-fileList"></div>
+
+          <div class="field" style="margin-top:12px">
+            <label for="txtInput">Paste or type text</label>
+            <textarea id="txtInput" placeholder="Paste or type your text here..."></textarea>
+          </div>
+
+          <div class="tp-stats-grid" id="tp-statsGrid"></div>
+          <div class="tp-flags" id="tp-validationFlags"></div>
+
+          <div class="tp-row" style="margin-top:12px">
+            <div class="tp-field">
+              <label for="tp-encoding">Encoding</label>
+              <select id="tp-encoding">
+                <option value="auto">Auto-detect</option>
+                <option value="utf-8">UTF-8</option>
+                <option value="utf-16le">UTF-16 (Unicode)</option>
+                <option value="ascii">ASCII</option>
+                <option value="windows-1252">ANSI (Windows-1252)</option>
+                <option value="iso-8859-1">ISO-8859-1</option>
+              </select>
+            </div>
+          </div>
+          <div id="tp-encodingInfo" class="tp-muted"></div>
+        </div>
+
+        <!-- ===== Page & Font tab ===== -->
+        <div class="tp-pane" id="tp-paneLayout">
+          <div class="tp-card">
+            <h3>📐 Page Settings</h3>
+            <div class="tp-row">
+              <div class="tp-field">
+                <label for="tp-pageSize">Page Size</label>
+                <select id="tp-pageSize">
+                  <option value="a4" selected>A4</option>
+                  <option value="a3">A3</option>
+                  <option value="a5">A5</option>
+                  <option value="letter">Letter</option>
+                  <option value="legal">Legal</option>
+                  <option value="executive">Executive</option>
+                  <option value="tabloid">Tabloid</option>
+                  <option value="custom">Custom…</option>
+                </select>
+              </div>
+              <div class="tp-field" id="tp-customWField" style="display:none"><label for="tp-customW">Width (mm)</label><input type="number" id="tp-customW" value="210"></div>
+              <div class="tp-field" id="tp-customHField" style="display:none"><label for="tp-customH">Height (mm)</label><input type="number" id="tp-customH" value="297"></div>
+              <div class="tp-field">
+                <label for="tp-orientation">Orientation</label>
+                <select id="tp-orientation"><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select>
+              </div>
+            </div>
+            <div class="tp-row">
+              <div class="tp-field">
+                <label for="tp-marginPreset">Margins</label>
+                <select id="tp-marginPreset"><option value="normal">Normal</option><option value="narrow">Narrow</option><option value="wide">Wide</option><option value="custom">Custom…</option></select>
+              </div>
+              <div class="tp-field" id="tp-marginTopField" style="display:none"><label for="tp-marginTop">Top (mm)</label><input type="number" id="tp-marginTop" value="18"></div>
+              <div class="tp-field" id="tp-marginBottomField" style="display:none"><label for="tp-marginBottom">Bottom (mm)</label><input type="number" id="tp-marginBottom" value="18"></div>
+              <div class="tp-field" id="tp-marginLeftField" style="display:none"><label for="tp-marginLeft">Left (mm)</label><input type="number" id="tp-marginLeft" value="18"></div>
+              <div class="tp-field" id="tp-marginRightField" style="display:none"><label for="tp-marginRight">Right (mm)</label><input type="number" id="tp-marginRight" value="18"></div>
+            </div>
+          </div>
+
+          <div class="tp-card">
+            <h3>🔤 Font Settings</h3>
+            <div class="tp-row">
+              <div class="tp-field">
+                <label for="tp-fontFamily">Font <span title="Calibri, Roboto and Noto Sans are rendered using the closest standard PDF-compatible font (Helvetica) for reliability and small file size — see FAQ.">ⓘ</span></label>
+                <select id="tp-fontFamily">
+                  <option value="helvetica">Arial</option>
+                  <option value="helvetica2">Helvetica</option>
+                  <option value="times">Times New Roman</option>
+                  <option value="courier">Courier</option>
+                  <option value="calibri">Calibri*</option>
+                  <option value="roboto">Roboto*</option>
+                  <option value="notosans">Noto Sans*</option>
+                </select>
+              </div>
+              <div class="tp-field"><label for="tp-fontSize">Font Size (pt)</label><input type="number" id="tp-fontSize" value="12" min="6" max="72"></div>
+              <div class="tp-field"><label for="tp-fontColor">Font Color</label><input type="color" id="tp-fontColor" value="#111111"></div>
+              <div class="tp-field"><label for="tp-lineHeight">Line Height</label><input type="number" id="tp-lineHeight" value="1.4" min="1" max="3" step="0.1"></div>
+              <div class="tp-field"><label for="tp-letterSpacing">Letter Spacing (pt)</label><input type="number" id="tp-letterSpacing" value="0" min="0" max="10" step="0.1"></div>
+              <div class="tp-field"><label for="tp-paraSpacing">Paragraph Spacing (pt)</label><input type="number" id="tp-paraSpacing" value="0" min="0" max="40"></div>
+            </div>
+            <div class="tp-check-grid">
+              <label><input type="checkbox" id="tp-bold"> Bold</label>
+              <label><input type="checkbox" id="tp-italic"> Italic</label>
+              <label><input type="checkbox" id="tp-underline"> Underline</label>
+            </div>
+            <div class="tp-row">
+              <div class="tp-field">
+                <label for="tp-align">Text Alignment</label>
+                <select id="tp-align"><option value="left">Left</option><option value="center">Center</option><option value="right">Right</option><option value="justify">Justify</option></select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Header/Footer & Metadata tab ===== -->
+        <div class="tp-pane" id="tp-paneHeader">
+          <div class="tp-card">
+            <h3>🏷️ Header &amp; Footer</h3>
+            <div class="tp-row">
+              <div class="tp-field"><label for="tp-headerText">Header text</label><input type="text" id="tp-headerText" placeholder="e.g. Company Name"></div>
+              <div class="tp-field"><label for="tp-footerText">Footer text</label><input type="text" id="tp-footerText" placeholder="e.g. Confidential"></div>
+            </div>
+            <div class="tp-check-grid">
+              <label><input type="checkbox" id="tp-pageNumber"> Page number</label>
+              <label><input type="checkbox" id="tp-fileNameFooter"> File name</label>
+              <label><input type="checkbox" id="tp-dateFooter"> Date</label>
+              <label><input type="checkbox" id="tp-timeFooter"> Time</label>
+            </div>
+          </div>
+
+          <div class="tp-card">
+            <h3>💧 Watermark</h3>
+            <div class="tp-row">
+              <div class="tp-field"><label for="tp-watermarkText">Watermark text</label><input type="text" id="tp-watermarkText" placeholder="e.g. DRAFT"></div>
+              <div class="tp-field"><label for="tp-watermarkImage">Watermark image</label><input type="file" id="tp-watermarkImage" accept="image/png,image/jpeg"></div>
+              <div class="tp-field"><label for="tp-watermarkOpacity">Opacity (%)</label><input type="number" id="tp-watermarkOpacity" value="15" min="1" max="100"></div>
+              <div class="tp-field"><label for="tp-watermarkRotation">Rotation (°)</label><input type="number" id="tp-watermarkRotation" value="45" min="-180" max="180"></div>
+              <div class="tp-field">
+                <label for="tp-watermarkPosition">Position</label>
+                <select id="tp-watermarkPosition"><option value="center">Center</option><option value="topleft">Top Left</option><option value="topright">Top Right</option><option value="bottomleft">Bottom Left</option><option value="bottomright">Bottom Right</option></select>
+              </div>
+            </div>
+          </div>
+
+          <div class="tp-card">
+            <h3>📋 PDF Metadata</h3>
+            <div class="tp-row">
+              <div class="tp-field"><label for="tp-metaTitle">Title</label><input type="text" id="tp-metaTitle"></div>
+              <div class="tp-field"><label for="tp-metaAuthor">Author</label><input type="text" id="tp-metaAuthor"></div>
+              <div class="tp-field"><label for="tp-metaSubject">Subject</label><input type="text" id="tp-metaSubject"></div>
+              <div class="tp-field"><label for="tp-metaKeywords">Keywords</label><input type="text" id="tp-metaKeywords"></div>
+              <div class="tp-field"><label for="tp-metaCreator">Creator</label><input type="text" id="tp-metaCreator" value="ApneSoftware TXT to PDF"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== Security & Export tab ===== -->
+        <div class="tp-pane" id="tp-paneSecurity">
+          <div class="tp-card">
+            <h3>🔒 Security</h3>
+            <label style="display:flex;align-items:center;gap:6px;cursor:pointer;margin-bottom:10px">
+              <input type="checkbox" id="tp-encryptToggle" style="width:auto"> Password-protect the PDF (AES-256, via QPDF)
+            </label>
+            <div id="tp-encryptFields" style="display:none">
+              <div class="tp-row">
+                <div class="tp-field"><label for="tp-openPassword">Open password (to view)</label><input type="password" id="tp-openPassword"></div>
+                <div class="tp-field"><label for="tp-ownerPassword">Owner password (permissions)</label><input type="password" id="tp-ownerPassword"></div>
+              </div>
+              <div class="tp-check-grid">
+                <label><input type="checkbox" id="tp-restrictPrint"> Restrict printing</label>
+                <label><input type="checkbox" id="tp-restrictCopy"> Restrict copying</label>
+              </div>
+              <p class="tp-muted">Encryption uses the same QPDF WebAssembly engine as this site's dedicated <a href="pdf-protect.html" style="color:#c4b5fd">Protect PDF</a> tool — genuine AES-256, applied locally.</p>
+            </div>
+          </div>
+
+          <div class="tp-card">
+            <h3>📤 Export Options</h3>
+            <div class="tp-row">
+              <div class="tp-field">
+                <label for="tp-batchMode">Batch mode (multiple files)</label>
+                <select id="tp-batchMode"><option value="merge">Merge into one PDF</option><option value="separate">Separate PDF per file (ZIP)</option></select>
+              </div>
+              <div class="tp-field">
+                <label for="tp-quality">Output</label>
+                <select id="tp-quality"><option value="standard">Standard PDF</option><option value="compressed">Compressed PDF</option><option value="high">High Quality PDF</option><option value="pdfa">PDF/A-style (archival)</option></select>
+              </div>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn" id="convertBtn" type="button">📄 Convert to PDF</button>
+            <button class="btn secondary" id="tp-resetBtn" type="button">↺ Reset</button>
+          </div>
+          <p id="statusMsg" class="tp-muted" role="status" aria-live="polite"></p>
+        </div>
+
+        <!-- ===== Settings tab ===== -->
+        <div class="tp-pane" id="tp-paneSettings">
+          <div class="tp-card">
+            <h3>⚙️ Preferences</h3>
+            <div class="tp-row">
+              <div class="tp-field">
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:8px">
+                  <input type="checkbox" id="tp-highContrast" style="width:auto"> High Contrast
+                </label>
+              </div>
+              <div class="tp-field">
+                <label style="display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:8px">
+                  <input type="checkbox" id="tp-largeFont" style="width:auto"> Large Fonts
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <textarea id="txtInput" placeholder="Paste or type your text here..."></textarea>
-
-    <div class="opt-row">
-      <div class="opt-field">
-        <label for="pageSize">Page Size</label>
-        <select id="pageSize">
-          <option value="a4">A4</option>
-          <option value="letter">Letter</option>
-        </select>
+    <div id="tp-previewSide">
+      <div class="panel">
+        <h3 style="margin:0 0 10px;font-size:1rem">👁️ Live PDF Preview</h3>
+        <div class="tp-preview-wrap">
+          <canvas id="tp-previewCanvas"></canvas>
+        </div>
+        <div class="tp-preview-nav">
+          <button id="tp-prevPageBtn" type="button">◀ Prev</button>
+          <span id="tp-pageIndicator">Page 0 / 0</span>
+          <button id="tp-nextPageBtn" type="button">Next ▶</button>
+          <input type="range" id="tp-zoomRange" min="50" max="200" value="100" style="margin-left:10px">
+          <span id="tp-zoomLabel">100%</span>
+        </div>
+        <p class="tp-muted">Preview updates after you click "Convert to PDF" below. It shows the same file that downloads.</p>
       </div>
-      <div class="opt-field">
-        <label for="fontSize">Font Size</label>
-        <select id="fontSize">
-          <option value="10">10pt</option>
-          <option value="12" selected>12pt</option>
-          <option value="14">14pt</option>
-          <option value="16">16pt</option>
-        </select>
-      </div>
-    </div>
-
-    <p id="statusMsg" style="color:var(--text-dim);font-size:.9rem"></p>
-    <div class="btn-row">
-      <button class="btn" id="convertBtn">📄 Convert to PDF</button>
     </div>
   </div>
 </div>
+<div class="tp-content">
 
+<h2>📄 Introduction</h2>
+<p>The original TXT to PDF tool did one job well: paste or upload plain text, pick a page size and font size, and get back a properly paginated PDF with sensible word-wrapping — no manual page breaks, no fuss. That covered the basic case, but a real document workflow needs more: multiple files converted in one pass, confidence that an oddly-encoded file (a UTF-16 export from an old Windows program, or a Notepad "ANSI" save) won't turn into garbled text, control over margins, fonts and alignment, a header and footer with page numbers, a watermark for drafts, proper PDF metadata for searchability, and — when the content is sensitive — genuine password protection. The <strong>Professional TXT to PDF Converter</strong> keeps the original tool's instant, in-browser simplicity and builds a complete document-conversion workbench around it: encoding auto-detection, full page and font control, headers/footers, watermarking, metadata, batch and ZIP conversion, AES-256 encryption, and a live preview — all computed locally, with nothing ever uploaded.</p>
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Plain text files are simple and universal, but they're not always the right format to share or print — a PDF looks more finished, keeps its page breaks and layout fixed no matter what device opens it, and is the expected format for printed handouts, simple reports, or notes you want to archive in a consistent way. This tool turns any .txt file, or text you paste directly, into a properly paginated PDF with sensible margins and word wrapping, ready to share or print.</p>
-      <p>You can either upload an existing .txt file or just type or paste text straight into the box — both approaches end up producing exactly the same kind of result. Choose a page size (A4 is standard in most of the world, Letter is standard in the US and a few other countries) and a font size that suits your content, and the tool automatically wraps your text and splits it across as many pages as needed, just like a word processor would, without you having to manually insert any page breaks yourself.</p>
-      <p>This is useful for turning quick notes, code snippets, exported chat logs, scraped text, or anything else that started life as plain text into something presentable enough to email, print, or file away, especially when the recipient expects a proper document rather than a raw .txt attachment. It's also a fast way to create a basic PDF without opening a full word processor just for a few short paragraphs of plain content.</p>
-      <p>The whole conversion happens locally in your browser using a PDF-generation library — your text is never uploaded anywhere. Once converted, the PDF downloads immediately, with no watermark, no page limit, and no account required. Whether you're converting a two-line note or a multi-page document full of text, the same word-wrapping and pagination logic applies automatically, so you never have to manually check where one page ends and the next begins.</p>
-      <p>One detail worth knowing: this tool uses a standard, widely compatible font rather than trying to preserve any custom font your original text editor might have used, since plain text files don't carry font information at all. If you need rich formatting like bold text, multiple fonts, or embedded images alongside your content, this tool intentionally stays simple and text-only — for richer documents, the site's Word to PDF tool is a better fit if your source content already has formatting applied.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Upload a .txt file or paste your text into the box.</li>
-        <li>Choose your page size and font size.</li>
-        <li>Click Convert and download the PDF.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>Plain text files सरल और universal होती हैं, पर शेयर करने या print करने के लिए हमेशा सही format नहीं होतीं — एक PDF ज़्यादा finished दिखती है, उसके page breaks और layout किसी भी device पर खुलने पर एक जैसे रहते हैं, और printed handouts, simple reports, या एक जैसा रखकर archive करने वाले notes के लिए यही expected format है। यह टूल किसी भी .txt file को, या सीधे paste किए गए text को, सही margins और word wrapping वाली properly paginated PDF में बदल देता है, share या print करने के लिए तैयार।</p>
-      <p>आप या तो कोई मौजूदा .txt file अपलोड कर सकते हैं या सीधे box में text टाइप या paste कर सकते हैं — दोनों तरीके एक जैसे काम करते हैं। एक page size चुनें (दुनिया के ज़्यादातर हिस्सों में A4 standard है, US और कुछ और देशों में Letter) और अपने content के हिसाब से font size चुनें, और टूल अपने आप आपके text को wrap करके जितने पन्नों की ज़रूरत हो उतनों में बांट देता है, बिल्कुल किसी word processor की तरह।</p>
-      <p>यह quick notes, code snippets, exported chat logs, scrape किए गए text, या plain text के तौर पर शुरू हुई किसी भी चीज़ को email, print, या file करने लायक कुछ presentable बनाने के लिए उपयोगी है। यह सिर्फ कुछ paragraphs के plain content के लिए पूरा word processor खोले बिना एक basic PDF बनाने का तेज़ तरीका भी है।</p>
-      <p>पूरा conversion एक PDF-generation library इस्तेमाल करके आपके browser में locally होता है — आपका text कहीं अपलोड नहीं होता। Convert होने के बाद, PDF तुरंत download हो जाती है, कोई watermark नहीं, कोई page limit नहीं, और किसी account की ज़रूरत नहीं। चाहे आप दो लाइनों का नोट convert कर रहे हों या text से भरा कई पन्नों का document, वही word-wrapping और pagination logic अपने आप लागू होता है, तो आपको कभी हाथ से यह चेक नहीं करना पड़ता कि एक पन्ना कहां खत्म होता है और अगला कहां शुरू।</p>
-      <p>एक बात जानने लायक है: यह टूल एक standard, व्यापक रूप से compatible font इस्तेमाल करता है, आपके original text editor में इस्तेमाल हुए किसी custom font को बनाए रखने की कोशिश नहीं करता, क्योंकि plain text files में font की जानकारी होती ही नहीं। अगर आपको bold text, कई fonts, या content के साथ embedded images जैसी रंगीन formatting चाहिए, तो यह टूल जानबूझकर simple और सिर्फ-text तक सीमित रहता है — अगर आपके source content में पहले से formatting लगी हो तो ज़्यादा समृद्ध documents के लिए साइट का Word to PDF टूल बेहतर रहेगा।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>.txt file अपलोड करें या अपना text box में paste करें।</li>
-        <li>अपना page size और font size चुनें।</li>
-        <li>Convert बटन दबाएं और PDF डाउनलोड करें।</li>
-      </ol>
-    </div>
-  </div>
+<h2>✨ Features</h2>
+<p>Bring your text in however suits you: <strong>drag and drop</strong> one or more .txt files (or a .zip archive full of them), <strong>paste</strong> directly into the text box, or use the <strong>Import from Clipboard</strong> button for a one-click paste from whatever you last copied. Every uploaded file is decoded using the correct <strong>character encoding</strong> — auto-detected from byte patterns, or chosen explicitly from UTF-8, UTF-16, ASCII, ANSI (Windows-1252) and ISO-8859-1 — so text that would previously have turned into question marks or empty boxes now converts correctly. File information (name, size, detected encoding), live statistics (characters, words, lines, paragraphs, estimated pages, reading time) and validation warnings (empty input, unusually large files, likely wrong encoding) update as you type or upload.</p>
+
+<h2>📁 Supported File Types</h2>
+<p>Upload individual <strong>.txt</strong> files one at a time or several at once, or upload a single <strong>.zip</strong> archive and every .txt file inside it is automatically extracted and queued for conversion — handy for a folder of notes or exported logs you'd otherwise have to open one by one. When multiple files are loaded, a <strong>batch mode</strong> switch lets you choose between merging everything into one continuous PDF (each file starting on a fresh page) or producing a separate PDF per file, delivered together as a single ZIP download.</p>
+
+<h2>🔤 Encoding Support</h2>
+<p>Plain text files don't carry a label saying what encoding they use, which is exactly why so many "mystery garbled text" problems happen. This tool inspects the raw bytes of each file: a UTF-8, UTF-16LE or UTF-16BE byte-order-mark (BOM) is detected immediately and decoded correctly; without a BOM, the bytes are validated against strict UTF-8 rules, and if they pass, they're decoded as UTF-8 (the overwhelmingly common case for modern files); if they fail, the tool falls back to Windows-1252 (ANSI), which correctly handles the vast majority of older Western European text files. You can also select an encoding explicitly — UTF-8, UTF-16 (what Windows Notepad calls "Unicode"), ASCII, ANSI/Windows-1252, or ISO-8859-1 — if you already know what your file uses or the auto-detected guess needs overriding.</p>
+
+<h2>🎨 Formatting Options</h2>
+<p>Choose from <strong>Arial, Helvetica, Times New Roman, Courier, Calibri, Roboto and Noto Sans</strong>, set font size, color, bold, italic and underline, and fine-tune line height, letter spacing and paragraph spacing. Align text left, center, right, or fully <strong>justified</strong> (with real word-spacing distribution, not a fake stretch). Add a <strong>header</strong> and <strong>footer</strong> with any combination of custom text, automatic page numbers, the source file name, and the current date and time. Layer on a <strong>watermark</strong> — text or an uploaded image — with adjustable opacity, rotation and position. Set the PDF's <strong>metadata</strong> (title, author, subject, keywords, creator) so the file is properly labelled wherever it's opened, searched or filed.</p>
+
+<h2>📐 Page Settings</h2>
+<p>Seven standard page sizes are built in — A3, A4, A5, Letter, Legal, Executive and Tabloid — plus a fully custom size in millimetres for anything else. Switch between portrait and landscape orientation, and choose a margin preset (Normal, Narrow, Wide) or set the top, bottom, left and right margins individually in millimetres for exact control over how much text fits on each page.</p>
+
+<h2>🔒 PDF Security</h2>
+<p>When your content needs to stay private, tick "Password-protect the PDF" to encrypt the finished document with genuine <strong>AES-256</strong> encryption — the same open-source <a href="pdf-protect.html">QPDF</a> engine that powers this site's dedicated Protect PDF tool, loaded only when you actually use this option so the converter itself stays fast and lightweight by default. Set an open password (required just to view the file), an owner password (controls permissions), and restrict printing or copying independently — the encryption happens entirely in your browser, and the password never leaves your device.</p>
+
+<h2>🔐 Privacy</h2>
+<p>Every conversion — decoding, word-wrapping, pagination, watermarking, and even the optional encryption — happens entirely inside your browser. No file, no pasted text, and no password is ever uploaded to a server. The tool works offline once loaded (aside from optional CDN libraries for ZIP handling, PDF preview and encryption, each loaded once), needs no account, and includes no AI-powered functionality anywhere.</p>
+
+<!-- ===== Related Tools (ABOVE About — required order) ===== -->
+<h2>🧰 Related Tools</h2>
+<div class="related-grid">
+  <a href="pdf-to-word.html"><span class="ri">📃</span> PDF to Word</a>
+  <a href="word-to-pdf.html"><span class="ri">📝</span> Word to PDF</a>
+  <a href="pdf-merge.html"><span class="ri">🧩</span> PDF Merge</a>
+  <a href="pdf-split.html"><span class="ri">✂️</span> PDF Split</a>
+  <a href="pdf-compress.html"><span class="ri">🗜️</span> PDF Compress</a>
+  <a href="pdf-ocr.html"><span class="ri">🔍</span> PDF OCR</a>
+  <a href="pdf-rotate.html"><span class="ri">🔄</span> PDF Rotate</a>
+  <a href="pdf-page-numbers.html"><span class="ri">🔢</span> PDF Page Numbers</a>
+  <a href="pdf-watermark.html"><span class="ri">💧</span> PDF Watermark</a>
+  <a href="pdf-flatten-form.html"><span class="ri">📋</span> PDF Flatten Form</a>
 </div>
+
+</div>
+<div class="tp-content">
+
+<!-- ===== About (English) ===== -->
+<h2>ℹ️ About This Tool</h2>
+<p>The <strong>Professional TXT to PDF Converter</strong> is a free, entirely browser-based tool for turning plain text — a single note, a full report, or a whole folder of exported files — into a properly formatted, paginated PDF. It grew out of a simple upload-and-download converter, but real conversion needs are rarely that simple: files arrive in different encodings that can silently corrupt special characters, a batch of dozens of files needs converting the same way rather than one at a time, and the resulting PDF often needs a header, a page number, a watermark, or a password before it's ready to send. This tool handles all of that, entirely on your own device, with nothing ever uploaded.</p>
+
+<p>At the centre of the tool is a proper text pipeline rather than a naive one. Plain text files carry no information about their own character encoding — a file can be UTF-8, UTF-16, or one of several legacy 8-bit encodings, and opening it with the wrong assumption produces the classic symptom of "mojibake": readable text replaced with boxes, question marks, or nonsense characters. This converter inspects the raw bytes of every file it's given, checks for a byte-order-mark that unambiguously identifies UTF-8 or UTF-16, and if none is present, validates the bytes against strict UTF-8 rules before falling back to Windows-1252 (ANSI) — the encoding responsible for the overwhelming majority of older Western text files that aren't UTF-8. You can also pick an encoding explicitly, including plain ASCII and ISO-8859-1, for the rare file where the automatic guess needs a human override.</p>
+
+<p>Once the text is decoded correctly, the layout engine takes over. Seven standard page sizes — A3, A4, A5, Letter, Legal, Executive and Tabloid — plus a fully custom size, in either portrait or landscape orientation, with margin presets or fully custom top/bottom/left/right values in millimetres, define the page itself. Word-wrapping respects your chosen font, size, and letter spacing precisely, rather than approximating, and text can be aligned left, centred, right-aligned, or fully justified with real inter-word spacing distribution rather than a crude stretch. Bold, italic and underline are all genuinely rendered using the correct font variant rather than a faked visual effect, and paragraph spacing adds breathing room between blocks of text exactly where blank lines appear in your source.</p>
+
+<p>Font choice matters for how a document feels, so this tool offers seven named fonts — Arial, Helvetica, Times New Roman, Courier, Calibri, Roboto and Noto Sans. Arial, Helvetica, Times New Roman and Courier are rendered using their exact standard PDF equivalents, guaranteed to display identically on every PDF reader without needing any font file to be downloaded or embedded. Calibri, Roboto and Noto Sans are rendered using the closest standard PDF-compatible font (Helvetica) for the same reason: embedding genuine copies of those font files would mean fetching and bundling large external font resources on every conversion, adding real load time and a dependency on a remote font host succeeding — a trade-off this tool avoids in favour of staying fast, lightweight, and reliable even on a slow connection. The visual difference is modest for body text, and every measurement used for word-wrapping is calculated against the actual font being rendered, so line breaks always match what you see.</p>
+
+<p>Beyond the page itself, a header and footer can carry custom text, automatic page numbers, the source file's name, and the current date and time, in any combination you choose. A watermark — plain text or an uploaded image — can be placed at the centre or any corner of the page, rotated to any angle, and set to any opacity from a faint background mark to a bold overlay, which is exactly what a "DRAFT" or "CONFIDENTIAL" stamp needs. Proper PDF metadata — title, author, subject, keywords and creator — is written into the file itself, so it shows up correctly when the PDF is searched, filed, or opened in any document viewer, rather than showing a generic blank title.</p>
+
+<p>For files that need to travel further than your own desk, batch conversion handles multiple .txt files, or an entire .zip archive of them, in one pass — merged into a single continuous PDF with each file starting on its own page, or kept as separate PDFs delivered together in one ZIP download, whichever suits how you plan to use them. And when a document is genuinely sensitive, this tool's Security tab applies real <strong>AES-256 encryption</strong> using the same open-source QPDF engine that powers this site's dedicated Protect PDF tool — an open password to require before the file can even be opened, an owner password controlling permissions, and independent restrictions on printing and copying — loaded only when you actually switch encryption on, so the converter itself stays quick and light for the far more common case of just needing a clean PDF. A live preview, rendered with the same PDF engine your browser and every PDF reader uses, shows you exactly what you're about to download — page by page, zoomable — before you commit to it. Every part of this runs locally: your text, your files and your passwords are never transmitted anywhere, the tool works offline once loaded, and there is no account, no signup, and no AI-powered functionality anywhere in it.</p>
+
+<!-- ===== About (Hindi) ===== -->
+<h2>ℹ️ इस टूल के बारे में (हिंदी में)</h2>
+<p class="tp-lang-note">The same guide in Hindi / यही जानकारी हिंदी में।</p>
+<p><strong>Professional TXT to PDF Converter</strong> एक फ्री, पूरी तरह ब्राउज़र-आधारित टूल है जो plain text — एक note, एक पूरी report, या exported files से भरा एक पूरा folder — को एक सही तरीक़े से formatted, paginated PDF में बदल देता है। यह एक साधारण upload-and-download converter से शुरू हुआ था, पर असली conversion ज़रूरतें शायद ही कभी इतनी सरल होती हैं: files अलग-अलग encodings में आती हैं जो special characters को चुपचाप ख़राब कर सकती हैं, दर्जनों files का एक batch एक ही तरीक़े से convert करना होता है न कि एक-एक करके, और बनी हुई PDF को अक्सर भेजने से पहले एक header, page number, watermark, या password चाहिए होता है। यह टूल यह सब करता है, पूरी तरह आपके अपने डिवाइस पर, कुछ भी upload किए बिना।</p>
+
+<p>टूल के केंद्र में naive के बजाय एक सही text pipeline है। Plain text files अपने character encoding की कोई जानकारी नहीं रखतीं — एक file UTF-8, UTF-16, या कई legacy 8-bit encodings में से कोई हो सकती है, और ग़लत मान्यता के साथ खोलने पर "mojibake" का classic लक्षण दिखता है: पढ़ने-योग्य text की जगह boxes, question marks, या बेमतलब characters। यह converter हर file के raw bytes जाँचता है, byte-order-mark के लिए check करता है जो UTF-8 या UTF-16 को स्पष्ट रूप से पहचानता है, और अगर कोई न हो, तो Windows-1252 (ANSI) पर वापस जाने से पहले bytes को सख़्त UTF-8 नियमों के विरुद्ध validate करता है। आप explicitly एक encoding भी चुन सकते हैं, plain ASCII और ISO-8859-1 सहित, उस दुर्लभ file के लिए जहाँ automatic अनुमान को इंसानी override चाहिए।</p>
+
+<p>Text सही तरीक़े से decode होने के बाद, layout engine काम संभालता है। सात standard page sizes — A3, A4, A5, Letter, Legal, Executive और Tabloid — प्लस एक पूरी तरह custom size, portrait या landscape orientation में, margin presets या पूरी तरह custom top/bottom/left/right values millimetres में, page को ख़ुद परिभाषित करते हैं। Word-wrapping आपके चुने font, size, और letter spacing का ठीक-ठीक सम्मान करती है, अनुमान नहीं लगाती, और text को left, center, right, या पूरी तरह justify किया जा सकता है असली inter-word spacing distribution के साथ, न कि एक कच्चे stretch के साथ। Bold, italic और underline सभी सही font variant इस्तेमाल करके genuinely render होते हैं, न कि एक नक़ली visual effect के रूप में।</p>
+
+<p>Font का चुनाव मायने रखता है कि एक document कैसा महसूस होता है, इसलिए यह टूल सात नामित fonts देता है — Arial, Helvetica, Times New Roman, Courier, Calibri, Roboto और Noto Sans। Arial, Helvetica, Times New Roman और Courier अपने exact standard PDF equivalents इस्तेमाल करके render होते हैं, हर PDF reader पर बिल्कुल एक जैसे दिखने की गारंटी के साथ, बिना किसी font file को download या embed किए। Calibri, Roboto और Noto Sans निकटतम standard PDF-compatible font (Helvetica) इस्तेमाल करके render होते हैं इसी वजह से: उन font files की असली कॉपी embed करने का मतलब होगा हर conversion पर बड़े बाहरी font resources fetch और bundle करना — एक trade-off जिससे यह टूल बचता है ताकि धीमे connection पर भी तेज़, lightweight और reliable बना रहे।</p>
+
+<p>Page के अलावा, एक header और footer custom text, automatic page numbers, source file का नाम, और मौजूदा तारीख़ व समय किसी भी संयोजन में ले जा सकते हैं। एक watermark — plain text या एक uploaded image — page के center या किसी corner पर रखा जा सकता है, किसी भी angle पर rotate किया जा सकता है, और हल्के background mark से लेकर bold overlay तक किसी भी opacity पर सेट किया जा सकता है — बिल्कुल वही जो एक "DRAFT" या "CONFIDENTIAL" stamp को चाहिए। सही PDF metadata — title, author, subject, keywords और creator — फ़ाइल में ही लिखी जाती है, ताकि यह किसी भी document viewer में सही दिखे।</p>
+
+<p>उन files के लिए जिन्हें आपकी अपनी desk से आगे जाना है, batch conversion कई .txt files, या उनके पूरे .zip archive को, एक ही बार में handle करती है — एक single continuous PDF में merge किया गया जहाँ हर file अपने ख़ुद के page से शुरू होती है, या अलग PDFs के रूप में रखा गया जो एक ही ZIP download में साथ दिए जाते हैं। और जब कोई document genuinely sensitive हो, इस टूल का Security tab असली <strong>AES-256 encryption</strong> लगाता है, उसी open-source QPDF engine का इस्तेमाल करते हुए जो इस साइट के dedicated Protect PDF टूल को चलाता है — एक open password जो फ़ाइल खुलने से पहले चाहिए, एक owner password जो permissions नियंत्रित करता है, और printing व copying पर स्वतंत्र प्रतिबंध — जो सिर्फ़ तभी load होता है जब आप वाकई encryption चालू करते हैं। एक live preview, आपके browser जैसे ही PDF engine से render की गई, ठीक वही दिखाती है जो आप download करने वाले हैं। इसका हर हिस्सा locally चलता है: आपका text, आपकी files और आपके passwords कभी कहीं transmit नहीं होते, लोड होने के बाद टूल offline काम करता है, और इसमें कोई account, कोई signup, और कहीं भी कोई AI-powered functionality नहीं है।</p>
+
+</div>
+<div class="tp-content">
+
+<!-- ===== FAQ (immediately after About — required order) ===== -->
+<h2>❓ Frequently Asked Questions</h2>
+<div class="tp-faq" id="tpFaq">
+
+<details><summary>Is this TXT to PDF converter free to use?</summary><p>Yes, completely free with no signup, no account and no limit on how many files you convert. / हाँ, यह पूरी तरह मुफ़्त है, बिना signup या account के।</p></details>
+<details><summary>Are my files uploaded to a server?</summary><p>No. Every conversion — decoding, layout, watermarking and even encryption — runs locally in your browser; nothing is ever uploaded. / नहीं, सब कुछ आपके ब्राउज़र में ही होता है।</p></details>
+<details><summary>What file types can I convert?</summary><p>Individual .txt files (one or several at once) or a .zip archive containing .txt files, which are automatically extracted. / .txt files या .txt files वाली .zip archive convert कर सकते हैं।</p></details>
+<details><summary>How does encoding auto-detection work?</summary><p>The tool checks for a UTF-8 or UTF-16 byte-order-mark first; without one, it validates the bytes against strict UTF-8 rules and falls back to Windows-1252 (ANSI) if that fails — covering the vast majority of real-world text files correctly. / पहले BOM जाँचा जाता है, फिर UTF-8 validation, न मिलने पर ANSI पर fallback।</p></details>
+<details><summary>My converted text shows garbled characters — what happened?</summary><p>The auto-detected or selected encoding likely doesn't match the file's actual encoding. Try switching the Encoding dropdown to a different option (UTF-8, UTF-16, ANSI/Windows-1252, or ISO-8859-1) and re-check the preview. / ग़लत encoding चुनने पर text गड़बड़ दिख सकता है, encoding बदलकर देखें।</p></details>
+<details><summary>What does "Unicode" mean in the encoding list?</summary><p>It's the label Windows Notepad historically used for UTF-16LE — this tool uses the same familiar naming so files saved with that option decode correctly. / "Unicode" यहाँ UTF-16LE को दर्शाता है, Windows Notepad की तरह।</p></details>
+<details><summary>Can I convert multiple files at once?</summary><p>Yes — upload several .txt files or a .zip archive, and choose whether to merge them into one PDF or produce a separate PDF per file (delivered as a ZIP). / कई files एक साथ upload करके merge या separate PDFs बना सकते हैं।</p></details>
+<details><summary>What page sizes are supported?</summary><p>A3, A4, A5, Letter, Legal, Executive, Tabloid, and a fully custom size in millimetres, in either portrait or landscape orientation. / A3 से Tabloid तक सात standard sizes, प्लस custom size।</p></details>
+<details><summary>Can I set custom margins?</summary><p>Yes — choose Normal, Narrow or Wide presets, or enter exact top, bottom, left and right margins in millimetres. / Normal, Narrow, Wide presets, या custom margins mm में सेट कर सकते हैं।</p></details>
+<details><summary>Which fonts are available?</summary><p>Arial, Helvetica, Times New Roman, Courier, Calibri, Roboto and Noto Sans, each with bold, italic and underline options. / सात fonts उपलब्ध हैं, bold/italic/underline के साथ।</p></details>
+<details><summary>Why do Calibri, Roboto and Noto Sans look like Helvetica?</summary><p>Embedding genuine copies of those font files would require downloading and bundling large external font resources on every conversion. To stay fast and reliable, this tool substitutes the closest standard PDF-compatible font (Helvetica) instead — word-wrapping is calculated against the actual rendered font, so line breaks always match what you see. / असली fonts embed करने से बचने के लिए नज़दीकी standard font (Helvetica) इस्तेमाल होता है।</p></details>
+<details><summary>Can I justify my text?</summary><p>Yes — left, center, right and full justify are all supported, with justify distributing real extra space between words rather than a crude visual stretch. / Left, center, right, justify — सभी alignment options उपलब्ध हैं।</p></details>
+<details><summary>Can I add a header and footer?</summary><p>Yes — custom header text, plus a footer that can combine custom text, automatic page numbers, the source file name, and the current date and time. / header text और footer में page number, file name, date/time जोड़ सकते हैं।</p></details>
+<details><summary>Can I add a watermark?</summary><p>Yes — a text watermark or an uploaded image, with adjustable opacity, rotation angle and position (center or any corner). / text या image watermark, opacity/rotation/position के साथ।</p></details>
+<details><summary>Can I set the PDF's title, author and other metadata?</summary><p>Yes — Title, Author, Subject, Keywords and Creator are all written into the finished PDF's document properties. / Title, Author, Subject, Keywords, Creator सभी PDF में सेव होते हैं।</p></details>
+<details><summary>Can I password-protect the converted PDF?</summary><p>Yes — enable "Password-protect the PDF" in the Security tab for genuine AES-256 encryption via the same QPDF engine used by this site's dedicated Protect PDF tool, with separate open and owner passwords and independent print/copy restrictions. / Security tab में AES-256 से PDF को password-protect कर सकते हैं।</p></details>
+<details><summary>Does password protection upload my file or password anywhere?</summary><p>No. The encryption engine (QPDF compiled to WebAssembly) runs entirely in your browser; your file and your passwords never leave your device. / encryption भी पूरी तरह आपके browser में होती है।</p></details>
+<details><summary>What's the difference between "Compressed" and "High Quality" output?</summary><p>Compressed uses PDF object streams to reduce file size; High Quality skips that compression for maximum fidelity and easier low-level inspection. For plain text content the visual difference is negligible either way, since there are no images to lose quality. / Compressed छोटी file size देता है, High Quality बिना extra compression के।</p></details>
+<details><summary>What does "PDF/A-style" mean?</summary><p>It's a simplified, archival-friendly output using only embedded standard fonts and no transparency or scripting — reasonably close to PDF/A in practice for plain text, but not independently validated against the full PDF/A conformance test suite. For certified archival compliance, verify with a dedicated PDF/A validator. / यह archival-friendly output है, पर पूरी तरह certified PDF/A validation नहीं।</p></details>
+<details><summary>Is there a file size limit?</summary><p>No fixed limit, but very large files (tens of megabytes) take longer to process since everything runs on your device's own processing power rather than a server. / कोई तय सीमा नहीं, पर बहुत बड़ी files में ज़्यादा समय लगता है।</p></details>
+<details><summary>Can I import text from my clipboard?</summary><p>Yes — click "Import from Clipboard" to paste whatever you last copied directly into the text box, subject to your browser's clipboard permission prompt. / Clipboard button से copy किया गया text सीधे paste हो जाता है।</p></details>
+<details><summary>Does the tool show a live preview before I download?</summary><p>Yes — after converting, a live preview renders the actual generated PDF page by page using the same rendering engine your browser uses, with zoom and page navigation. / Convert करने के बाद असली PDF preview page-by-page दिखता है।</p></details>
+<details><summary>What validation warnings might I see?</summary><p>Empty input, an unusually large file, or replacement characters in the decoded text (a sign the encoding may be wrong) are all flagged before you convert. / Empty input, बहुत बड़ी file, या ग़लत encoding के संकेत फ़्लैग होते हैं।</p></details>
+<details><summary>Is this tool accessible for keyboard and screen-reader users?</summary><p>Yes — every control is a native, keyboard-operable HTML element, status updates use ARIA live regions, and High Contrast and Large Fonts toggles are available in Settings. / Keyboard navigation, screen reader labels, high contrast और large fonts समर्थित हैं।</p></details>
+<details><summary>Does this tool use any AI?</summary><p>No. Encoding detection, word-wrapping, pagination and every layout calculation are deterministic, hand-written logic — no AI anywhere. / नहीं, इसमें कोई AI शामिल नहीं है।</p></details>
+<details><summary>Does it work offline?</summary><p>Yes, once the page has loaded. ZIP handling, PDF preview and encryption each load a small library once when first used; the core conversion itself needs no ongoing connection. / लोड होने के बाद यह मुख्यतः offline काम करता है।</p></details>
+
+</div>
+
+<!-- ===== Troubleshooting ===== -->
+<h2>🛠️ Troubleshooting</h2>
+<ul>
+  <li><strong>Converted PDF shows boxes or question marks instead of text:</strong> the wrong encoding was used — try changing the Encoding dropdown and re-converting.</li>
+  <li><strong>"Convert to PDF" does nothing:</strong> make sure you've either uploaded a file or typed/pasted text into the box — an empty input is flagged before conversion.</li>
+  <li><strong>ZIP upload finds no files:</strong> confirm the archive actually contains .txt files at its top level or in a subfolder — other file types inside the ZIP are skipped.</li>
+  <li><strong>Clipboard import doesn't work:</strong> your browser may have blocked clipboard access — paste manually with Ctrl+V (or Cmd+V on Mac) into the text box instead.</li>
+  <li><strong>Password protection button does nothing / shows an error:</strong> the encryption engine loads from a CDN the first time you use it; check your internet connection and try again.</li>
+  <li><strong>Preview doesn't update:</strong> the preview refreshes after a successful "Convert to PDF" click — if conversion failed (check the status message), fix the issue and convert again.</li>
+  <li><strong>Text looks cut off or fonts look substituted:</strong> Calibri, Roboto and Noto Sans intentionally render as Helvetica for reliability — see the FAQ above for why.</li>
+  <li><strong>Download doesn't start:</strong> check that your browser isn't blocking downloads or pop-ups for this page, then try converting again.</li>
+</ul>
+
+</div>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this TXT to PDF converter free to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, completely free with no signup, no account and no limit on how many files you convert."}}, {"@type": "Question", "name": "Are my files uploaded to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. Every conversion — decoding, layout, watermarking and even encryption — runs locally in your browser; nothing is ever uploaded."}}, {"@type": "Question", "name": "What file types can I convert?", "acceptedAnswer": {"@type": "Answer", "text": "Individual .txt files (one or several at once) or a .zip archive containing .txt files, which are automatically extracted."}}, {"@type": "Question", "name": "How does encoding auto-detection work?", "acceptedAnswer": {"@type": "Answer", "text": "The tool checks for a UTF-8 or UTF-16 byte-order-mark first; without one, it validates the bytes against strict UTF-8 rules and falls back to Windows-1252 (ANSI) if that fails — covering the vast majority of real-world text files correctly."}}, {"@type": "Question", "name": "My converted text shows garbled characters — what happened?", "acceptedAnswer": {"@type": "Answer", "text": "The auto-detected or selected encoding likely doesn't match the file's actual encoding. Try switching the Encoding dropdown to a different option (UTF-8, UTF-16, ANSI/Windows-1252, or ISO-8859-1) and re-check the preview."}}, {"@type": "Question", "name": "What does \"Unicode\" mean in the encoding list?", "acceptedAnswer": {"@type": "Answer", "text": "It's the label Windows Notepad historically used for UTF-16LE — this tool uses the same familiar naming so files saved with that option decode correctly."}}, {"@type": "Question", "name": "Can I convert multiple files at once?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — upload several .txt files or a .zip archive, and choose whether to merge them into one PDF or produce a separate PDF per file (delivered as a ZIP)."}}, {"@type": "Question", "name": "What page sizes are supported?", "acceptedAnswer": {"@type": "Answer", "text": "A3, A4, A5, Letter, Legal, Executive, Tabloid, and a fully custom size in millimetres, in either portrait or landscape orientation."}}, {"@type": "Question", "name": "Can I set custom margins?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — choose Normal, Narrow or Wide presets, or enter exact top, bottom, left and right margins in millimetres."}}, {"@type": "Question", "name": "Which fonts are available?", "acceptedAnswer": {"@type": "Answer", "text": "Arial, Helvetica, Times New Roman, Courier, Calibri, Roboto and Noto Sans, each with bold, italic and underline options."}}, {"@type": "Question", "name": "Why do Calibri, Roboto and Noto Sans look like Helvetica?", "acceptedAnswer": {"@type": "Answer", "text": "Embedding genuine copies of those font files would require downloading and bundling large external font resources on every conversion. To stay fast and reliable, this tool substitutes the closest standard PDF-compatible font (Helvetica) instead — word-wrapping is calculated against the actual rendered font, so line breaks always match what you see."}}, {"@type": "Question", "name": "Can I justify my text?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — left, center, right and full justify are all supported, with justify distributing real extra space between words rather than a crude visual stretch."}}, {"@type": "Question", "name": "Can I add a header and footer?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — custom header text, plus a footer that can combine custom text, automatic page numbers, the source file name, and the current date and time."}}, {"@type": "Question", "name": "Can I add a watermark?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — a text watermark or an uploaded image, with adjustable opacity, rotation angle and position (center or any corner)."}}, {"@type": "Question", "name": "Can I set the PDF's title, author and other metadata?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — Title, Author, Subject, Keywords and Creator are all written into the finished PDF's document properties."}}, {"@type": "Question", "name": "Can I password-protect the converted PDF?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — enable \"Password-protect the PDF\" in the Security tab for genuine AES-256 encryption via the same QPDF engine used by this site's dedicated Protect PDF tool, with separate open and owner passwords and independent print/copy restrictions."}}, {"@type": "Question", "name": "Does password protection upload my file or password anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. The encryption engine (QPDF compiled to WebAssembly) runs entirely in your browser; your file and your passwords never leave your device."}}, {"@type": "Question", "name": "What's the difference between \"Compressed\" and \"High Quality\" output?", "acceptedAnswer": {"@type": "Answer", "text": "Compressed uses PDF object streams to reduce file size; High Quality skips that compression for maximum fidelity and easier low-level inspection. For plain text content the visual difference is negligible either way, since there are no images to lose quality."}}, {"@type": "Question", "name": "What does \"PDF/A-style\" mean?", "acceptedAnswer": {"@type": "Answer", "text": "It's a simplified, archival-friendly output using only embedded standard fonts and no transparency or scripting — reasonably close to PDF/A in practice for plain text, but not independently validated against the full PDF/A conformance test suite. For certified archival compliance, verify with a dedicated PDF/A validator."}}, {"@type": "Question", "name": "Is there a file size limit?", "acceptedAnswer": {"@type": "Answer", "text": "No fixed limit, but very large files (tens of megabytes) take longer to process since everything runs on your device's own processing power rather than a server."}}, {"@type": "Question", "name": "Can I import text from my clipboard?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — click \"Import from Clipboard\" to paste whatever you last copied directly into the text box, subject to your browser's clipboard permission prompt."}}, {"@type": "Question", "name": "Does the tool show a live preview before I download?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — after converting, a live preview renders the actual generated PDF page by page using the same rendering engine your browser uses, with zoom and page navigation."}}, {"@type": "Question", "name": "What validation warnings might I see?", "acceptedAnswer": {"@type": "Answer", "text": "Empty input, an unusually large file, or replacement characters in the decoded text (a sign the encoding may be wrong) are all flagged before you convert."}}, {"@type": "Question", "name": "Is this tool accessible for keyboard and screen-reader users?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — every control is a native, keyboard-operable HTML element, status updates use ARIA live regions, and High Contrast and Large Fonts toggles are available in Settings."}}, {"@type": "Question", "name": "Does this tool use any AI?", "acceptedAnswer": {"@type": "Answer", "text": "No. Encoding detection, word-wrapping, pagination and every layout calculation are deterministic, hand-written logic — no AI anywhere."}}, {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, once the page has loaded. ZIP handling, PDF preview and encryption each load a small library once when first used; the core conversion itself needs no ongoing connection."}}]}
+</script>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-const txtInput = document.getElementById('txtInput');
+(function(){
+'use strict';
 
-setupDropzone(dropzone, fileInput, files => {
-  if(files.length) handleFile(files[0]);
-});
+var MM_TO_PT = 2.83464567;
 
-async function handleFile(file){
-  const text = await file.text();
-  txtInput.value = text;
-  document.getElementById('statusMsg').textContent = `✅ Loaded "${file.name}"`;
+/* ===================== Page sizes (points) ===================== */
+var PAGE_SIZES = {
+  a3: [841.89, 1190.55],
+  a4: [595.28, 841.89],
+  a5: [419.53, 595.28],
+  letter: [612, 792],
+  legal: [612, 1008],
+  executive: [522, 756],
+  tabloid: [792, 1224]
+};
+function getPageDims(sizeKey, orientation, customWmm, customHmm){
+  var dims;
+  if(sizeKey === 'custom'){
+    dims = [customWmm * MM_TO_PT, customHmm * MM_TO_PT];
+  } else {
+    dims = PAGE_SIZES[sizeKey] || PAGE_SIZES.a4;
+    dims = [dims[0], dims[1]];
+  }
+  if(orientation === 'landscape' && dims[0] < dims[1]){
+    dims = [dims[1], dims[0]];
+  } else if(orientation === 'portrait' && dims[0] > dims[1]){
+    dims = [dims[1], dims[0]];
+  }
+  return dims;
 }
 
-document.getElementById('convertBtn').addEventListener('click', async ()=>{
-  const status = document.getElementById('statusMsg');
-  const text = txtInput.value;
-  if(!text.trim()){ status.textContent = '⚠️ Please upload a file or type/paste some text first'; return; }
+/* ===================== Margins (points) ===================== */
+var MARGIN_PRESETS = {
+  normal: 18 * MM_TO_PT,
+  narrow: 10 * MM_TO_PT,
+  wide: 30 * MM_TO_PT
+};
+function getMargins(preset, topMm, bottomMm, leftMm, rightMm){
+  if(preset === 'custom'){
+    return { top: topMm * MM_TO_PT, bottom: bottomMm * MM_TO_PT, left: leftMm * MM_TO_PT, right: rightMm * MM_TO_PT };
+  }
+  var m = MARGIN_PRESETS[preset] != null ? MARGIN_PRESETS[preset] : MARGIN_PRESETS.normal;
+  return { top: m, bottom: m, left: m, right: m };
+}
 
-  status.textContent = '⏳ Building PDF...';
+/* ===================== Font mapping ===================== */
+var FONT_SUBSTITUTIONS = { calibri: true, roboto: true, notosans: true };
+function resolveFontFamily(key){
+  if(key === 'times') return 'times';
+  if(key === 'courier') return 'courier';
+  return 'helvetica'; // helvetica, helvetica2 (Helvetica), calibri/roboto/notosans (substituted)
+}
+function isFontSubstituted(key){ return !!FONT_SUBSTITUTIONS[key]; }
+
+/* ===================== Text measurement + word wrap ===================== */
+// measureWidth(text, fontSize) -> width in points, supplied by caller (backed by pdf-lib font.widthOfTextAtSize in the browser)
+function measureWithLetterSpacing(text, fontSize, letterSpacing, measureWidth){
+  var base = measureWidth(text, fontSize);
+  var extra = text.length > 1 ? (text.length - 1) * letterSpacing : 0;
+  return base + extra;
+}
+
+function wrapParagraphLine(rawLine, maxWidth, fontSize, letterSpacing, measureWidth){
+  if(rawLine.trim() === '') return [''];
+  var words = rawLine.split(/\s+/).filter(Boolean);
+  var lines = [];
+  var current = '';
+  words.forEach(function(word){
+    var test = current ? current + ' ' + word : word;
+    var width = measureWithLetterSpacing(test, fontSize, letterSpacing, measureWidth);
+    if(width > maxWidth && current){
+      lines.push(current);
+      current = word;
+    } else {
+      current = test;
+    }
+  });
+  if(current) lines.push(current);
+  return lines.length ? lines : [''];
+}
+
+function wrapText(text, maxWidth, fontSize, letterSpacing, measureWidth){
+  var rawLines = text.replace(/\r\n/g, '\n').split('\n');
+  var wrapped = [];
+  rawLines.forEach(function(rawLine){
+    wrapParagraphLine(rawLine, maxWidth, fontSize, letterSpacing, measureWidth).forEach(function(l){ wrapped.push(l); });
+  });
+  return wrapped;
+}
+
+/* ===================== Alignment ===================== */
+function alignX(lineWidth, maxWidth, marginLeft, align){
+  if(align === 'center') return marginLeft + (maxWidth - lineWidth) / 2;
+  if(align === 'right') return marginLeft + (maxWidth - lineWidth);
+  return marginLeft; // left, justify (justify positions words individually)
+}
+
+// For justify: returns array of {word, x} positions for a line, or null if not applicable (last line of paragraph / single word)
+function justifyPositions(line, maxWidth, fontSize, letterSpacing, marginLeft, measureWidth, isLastLineOfParagraph){
+  var words = line.split(/\s+/).filter(Boolean);
+  if(isLastLineOfParagraph || words.length <= 1) return null;
+  var wordsWidth = words.reduce(function(sum, w){ return sum + measureWithLetterSpacing(w, fontSize, letterSpacing, measureWidth); }, 0);
+  var totalGaps = words.length - 1;
+  var gapWidth = (maxWidth - wordsWidth) / totalGaps;
+  var positions = [];
+  var x = marginLeft;
+  words.forEach(function(w, i){
+    positions.push({ word: w, x: x });
+    x += measureWithLetterSpacing(w, fontSize, letterSpacing, measureWidth) + gapWidth;
+  });
+  return positions;
+}
+
+/* ===================== Encoding detection ===================== */
+function detectEncodingFromBytes(bytes){
+  if(bytes.length >= 3 && bytes[0] === 0xEF && bytes[1] === 0xBB && bytes[2] === 0xBF) return 'utf-8';
+  if(bytes.length >= 2 && bytes[0] === 0xFF && bytes[1] === 0xFE) return 'utf-16le';
+  if(bytes.length >= 2 && bytes[0] === 0xFE && bytes[1] === 0xFF) return 'utf-16be';
+  // Try strict UTF-8 validation
+  if(isValidUtf8(bytes)) return 'utf-8';
+  return 'windows-1252';
+}
+function isValidUtf8(bytes){
+  var i = 0, len = bytes.length;
+  while(i < len){
+    var b = bytes[i];
+    var extra;
+    if(b <= 0x7F){ extra = 0; }
+    else if((b & 0xE0) === 0xC0){ extra = 1; }
+    else if((b & 0xF0) === 0xE0){ extra = 2; }
+    else if((b & 0xF8) === 0xF0){ extra = 3; }
+    else return false;
+    if(i + extra >= len) return false;
+    for(var j = 1; j <= extra; j++){
+      if((bytes[i+j] & 0xC0) !== 0x80) return false;
+    }
+    i += extra + 1;
+  }
+  return true;
+}
+function isAsciiClean(bytes){
+  for(var i=0;i<bytes.length;i++){ if(bytes[i] > 0x7F) return false; }
+  return true;
+}
+
+/* ===================== Statistics ===================== */
+function computeStats(text){
+  var chars = text.length;
+  var words = (text.match(/\S+/g) || []).length;
+  var lines = text === '' ? 0 : text.split(/\r\n|\n|\r/).length;
+  var paragraphs = text.trim() === '' ? 0 : text.trim().split(/\n\s*\n/).filter(function(p){ return p.trim(); }).length;
+  var estimatedPages = Math.max(1, Math.ceil(words / 400)); // ~400 words/page heuristic at 12pt A4
+  var readingTimeMin = Math.max(1, Math.round(words / 200));
+  return { chars: chars, words: words, lines: lines, paragraphs: paragraphs, estimatedPages: estimatedPages, readingTimeMin: readingTimeMin };
+}
+
+/* ===================== Validation ===================== */
+function validateInput(text, byteLength){
+  var flags = [];
+  if(!text || !text.trim()) flags.push({ type:'warn', msg:'Empty input — nothing to convert yet.' });
+  if(byteLength && byteLength > 20 * 1024 * 1024) flags.push({ type:'warn', msg:'Very large file (>20MB) — conversion may take a while.' });
+  if(/[�]/.test(text)) flags.push({ type:'warn', msg:'Contains replacement characters — the chosen encoding may be wrong.' });
+  return flags;
+}
+
+/* ===================== Header/Footer/Watermark layout helpers ===================== */
+function watermarkPositionXY(position, pageW, pageH, contentW, contentH){
+  var pad = 24;
+  switch(position){
+    case 'topleft': return { x: pad, y: pageH - pad - contentH };
+    case 'topright': return { x: pageW - pad - contentW, y: pageH - pad - contentH };
+    case 'bottomleft': return { x: pad, y: pad };
+    case 'bottomright': return { x: pageW - pad - contentW, y: pad };
+    default: return { x: (pageW - contentW) / 2, y: (pageH - contentH) / 2 };
+  }
+}
+
+/* ===================== Expose ===================== */
+window.TxtPdfEngine = {
+  MM_TO_PT: MM_TO_PT, PAGE_SIZES: PAGE_SIZES, getPageDims: getPageDims,
+  MARGIN_PRESETS: MARGIN_PRESETS, getMargins: getMargins,
+  resolveFontFamily: resolveFontFamily, isFontSubstituted: isFontSubstituted,
+  wrapText: wrapText, wrapParagraphLine: wrapParagraphLine, measureWithLetterSpacing: measureWithLetterSpacing,
+  alignX: alignX, justifyPositions: justifyPositions,
+  detectEncodingFromBytes: detectEncodingFromBytes, isValidUtf8: isValidUtf8, isAsciiClean: isAsciiClean,
+  computeStats: computeStats, validateInput: validateInput,
+  watermarkPositionXY: watermarkPositionXY
+};
+
+})();
+</script>
+<script>
+(function(){
+'use strict';
+var E = window.TxtPdfEngine;
+function $(id){ return document.getElementById(id); }
+function lsGet(key, fallback){ try{ var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; } }
+function lsSet(key, val){ try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){} }
+
+if(window.pdfjsLib){ pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js'; }
+
+/* ===================== State ===================== */
+var workingFiles = []; // {name, bytes, text, encoding}
+var lastPdfBytes = null;
+var previewDoc = null, previewPage = 1, previewZoom = 1.0;
+
+/* ===================== Tabs ===================== */
+var tabs = [['tp-tabInput','tp-paneInput'],['tp-tabLayout','tp-paneLayout'],['tp-tabHeader','tp-paneHeader'],['tp-tabSecurity','tp-paneSecurity'],['tp-tabSettings','tp-paneSettings']];
+tabs.forEach(function(pair){
+  $(pair[0]).addEventListener('click', function(){
+    tabs.forEach(function(p2){
+      $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected','false');
+      $(p2[1]).classList.remove('active');
+    });
+    $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected','true');
+    $(pair[1]).classList.add('active');
+  });
+});
+
+/* ===================== Field visibility toggles ===================== */
+$('tp-pageSize').addEventListener('change', function(){
+  var isCustom = this.value === 'custom';
+  $('tp-customWField').style.display = isCustom ? 'block' : 'none';
+  $('tp-customHField').style.display = isCustom ? 'block' : 'none';
+});
+$('tp-marginPreset').addEventListener('change', function(){
+  var isCustom = this.value === 'custom';
+  ['tp-marginTopField','tp-marginBottomField','tp-marginLeftField','tp-marginRightField'].forEach(function(id){
+    $(id).style.display = isCustom ? 'block' : 'none';
+  });
+});
+$('tp-encryptToggle').addEventListener('change', function(){
+  $('tp-encryptFields').style.display = this.checked ? 'block' : 'none';
+});
+
+/* ===================== Encoding decode ===================== */
+function decodeBytes(bytes, encodingChoice){
+  var enc = encodingChoice === 'auto' ? E.detectEncodingFromBytes(bytes) : encodingChoice;
+  var label = enc;
+  if(enc === 'ascii') label = 'windows-1252'; // decode as a superset, validated separately
   try{
-    const { PDFDocument, StandardFonts, rgb } = PDFLib;
-    const pageSizeChoice = document.getElementById('pageSize').value;
-    const fontSize = parseInt(document.getElementById('fontSize').value, 10);
-    const dims = pageSizeChoice === 'a4' ? [595.28, 841.89] : [612, 792];
-    const margin = 50;
-    const lineHeight = fontSize * 1.4;
+    var decoder = new TextDecoder(label, { fatal: false });
+    var text = decoder.decode(bytes);
+    // Strip BOM char if present in decoded output
+    text = text.replace(/^﻿/, '');
+    return { text: text, detected: enc };
+  }catch(e){
+    var fallback = new TextDecoder('utf-8', { fatal: false }).decode(bytes);
+    return { text: fallback, detected: 'utf-8 (fallback)' };
+  }
+}
 
-    const pdfDoc = await PDFDocument.create();
-    const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
-    const maxWidth = dims[0] - margin * 2;
+/* ===================== File handling ===================== */
+var dropzone = $('dropzone');
+var fileInput = $('fileInput');
+setupDropzone(dropzone, fileInput, function(files){ handleFiles(files); });
 
-    // Word-wrap every paragraph (preserving existing line breaks) into lines that fit the page width
-    const rawLines = text.split('\n');
-    const wrappedLines = [];
-    rawLines.forEach(rawLine => {
-      if(rawLine.trim() === ''){ wrappedLines.push(''); return; }
-      const words = rawLine.split(' ');
-      let current = '';
-      words.forEach(word => {
-        const test = current ? current + ' ' + word : word;
-        const width = font.widthOfTextAtSize(test, fontSize);
-        if(width > maxWidth && current){
-          wrappedLines.push(current);
-          current = word;
-        } else {
-          current = test;
+async function handleFiles(files){
+  var txtFiles = [];
+  for(var i=0;i<files.length;i++){
+    var f = files[i];
+    if(/\.zip$/i.test(f.name) || f.type === 'application/zip'){
+      if(typeof JSZip === 'undefined'){ $('statusMsg').textContent = '⚠️ ZIP engine failed to load — check your connection.'; continue; }
+      try{
+        var zip = await JSZip.loadAsync(f);
+        var entries = Object.keys(zip.files).filter(function(name){ return /\.txt$/i.test(name) && !zip.files[name].dir; });
+        for(var j=0;j<entries.length;j++){
+          var buf = await zip.files[entries[j]].async('arraybuffer');
+          txtFiles.push({ name: entries[j].split('/').pop(), bytes: new Uint8Array(buf) });
         }
-      });
-      wrappedLines.push(current);
+      }catch(e){ $('statusMsg').textContent = '❌ Could not read ZIP: ' + e.message; }
+    } else if(/\.txt$/i.test(f.name) || f.type === 'text/plain'){
+      var arrBuf = await f.arrayBuffer();
+      txtFiles.push({ name: f.name, bytes: new Uint8Array(arrBuf) });
+    }
+  }
+  if(!txtFiles.length){ $('statusMsg').textContent = '⚠️ No .txt files found in your selection.'; return; }
+
+  var encodingChoice = $('tp-encoding').value;
+  txtFiles.forEach(function(tf){
+    var decoded = decodeBytes(tf.bytes, encodingChoice);
+    workingFiles.push({ name: tf.name, bytes: tf.bytes, text: decoded.text, encoding: decoded.detected });
+  });
+
+  if(workingFiles.length === 1 && txtFiles.length === 1 && files.length === 1){
+    $('txtInput').value = workingFiles[0].text;
+  }
+  renderFileList();
+  updateEncodingInfo();
+  updateStatsAndValidation();
+  $('statusMsg').textContent = '✅ Loaded ' + txtFiles.length + ' file(s).';
+}
+
+function renderFileList(){
+  var wrap = $('tp-fileList');
+  wrap.innerHTML = '';
+  workingFiles.forEach(function(wf, i){
+    var div = document.createElement('div');
+    div.className = 'tp-file-item';
+    div.innerHTML = '<span>' + wf.name + ' — ' + (wf.bytes.length/1024).toFixed(1) + ' KB — ' + wf.encoding + '</span><button type="button">🗑️</button>';
+    div.querySelector('button').addEventListener('click', function(){
+      workingFiles.splice(i,1);
+      renderFileList();
+      updateStatsAndValidation();
     });
+    wrap.appendChild(div);
+  });
+}
+function updateEncodingInfo(){
+  if(!workingFiles.length){ $('tp-encodingInfo').textContent = ''; return; }
+  $('tp-encodingInfo').textContent = 'Detected: ' + workingFiles.map(function(w){ return w.name + ' (' + w.encoding + ')'; }).join(', ');
+}
+$('tp-encoding').addEventListener('change', function(){
+  var choice = this.value;
+  workingFiles.forEach(function(wf){
+    var decoded = decodeBytes(wf.bytes, choice);
+    wf.text = decoded.text;
+    wf.encoding = decoded.detected;
+  });
+  if(workingFiles.length === 1) $('txtInput').value = workingFiles[0].text;
+  renderFileList();
+  updateEncodingInfo();
+  updateStatsAndValidation();
+});
 
-    let page = pdfDoc.addPage(dims);
-    let y = dims[1] - margin;
+/* ===================== Clipboard import ===================== */
+$('tp-pasteClipboardBtn').addEventListener('click', async function(){
+  try{
+    var text = await navigator.clipboard.readText();
+    $('txtInput').value = text;
+    updateStatsAndValidation();
+    $('statusMsg').textContent = '✅ Imported from clipboard.';
+  }catch(e){
+    $('statusMsg').textContent = '⚠️ Clipboard access denied or unavailable — paste manually instead (Ctrl+V).';
+  }
+});
 
-    wrappedLines.forEach(line => {
-      if(y < margin){
-        page = pdfDoc.addPage(dims);
-        y = dims[1] - margin;
+/* ===================== Stats & validation ===================== */
+function updateStatsAndValidation(){
+  var text = $('txtInput').value;
+  var stats = E.computeStats(text);
+  $('tp-statsGrid').innerHTML = [
+    ['Characters', stats.chars], ['Words', stats.words], ['Lines', stats.lines],
+    ['Paragraphs', stats.paragraphs], ['Est. Pages', stats.estimatedPages], ['Reading Time', stats.readingTimeMin + ' min']
+  ].map(function(s){ return '<div class="stat-box"><div class="num">' + s[1] + '</div><div class="lbl">' + s[0] + '</div></div>'; }).join('');
+
+  var byteLength = new TextEncoder().encode(text).length;
+  var flags = E.validateInput(text, byteLength);
+  $('tp-validationFlags').innerHTML = flags.map(function(f){
+    return '<span class="tp-flag ' + f.type + '">' + (f.type==='warn'?'⚠️ ':'') + f.msg + '</span>';
+  }).join('') || '<span class="tp-flag ok">✅ Ready to convert</span>';
+}
+$('txtInput').addEventListener('input', updateStatsAndValidation);
+
+/* ===================== Font embedding ===================== */
+async function embedFontSet(pdfDoc, familyKey){
+  var family = E.resolveFontFamily(familyKey);
+  var map = {
+    helvetica: { r:'Helvetica', b:'HelveticaBold', i:'HelveticaOblique', bi:'HelveticaBoldOblique' },
+    times: { r:'TimesRoman', b:'TimesRomanBold', i:'TimesRomanItalic', bi:'TimesRomanBoldItalic' },
+    courier: { r:'Courier', b:'CourierBold', i:'CourierOblique', bi:'CourierBoldOblique' }
+  }[family];
+  var fonts = {};
+  for(var k in map){ fonts[k] = await pdfDoc.embedFont(PDFLib.StandardFonts[map[k]]); }
+  return fonts;
+}
+
+/* ===================== Core PDF page-content renderer ===================== */
+function hexToRgb01(hex){
+  var m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex || '#111111');
+  if(!m) return [0.07,0.07,0.07];
+  return [parseInt(m[1],16)/255, parseInt(m[2],16)/255, parseInt(m[3],16)/255];
+}
+
+async function renderTextIntoDoc(pdfDoc, text, opts, fileMeta){
+  var dims = E.getPageDims(opts.pageSize, opts.orientation, opts.customW, opts.customH);
+  var margins = E.getMargins(opts.marginPreset, opts.marginTop, opts.marginBottom, opts.marginLeft, opts.marginRight);
+  var maxWidth = dims[0] - margins.left - margins.right;
+  var fontSize = opts.fontSize;
+  var lineHeight = fontSize * opts.lineHeightMult;
+  var color = PDFLib.rgb.apply(null, hexToRgb01(opts.fontColor));
+  var chosenFont = opts.bold && opts.italic ? opts.fonts.bi : opts.bold ? opts.fonts.b : opts.italic ? opts.fonts.i : opts.fonts.r;
+
+  function measureWidth(t, size){ return chosenFont.widthOfTextAtSize(t, size); }
+
+  var rawParas = text.replace(/\r\n/g,'\n').split(/\n\s*\n/);
+  var wrappedEntries = []; // {line, isLastOfPara}
+  rawParas.forEach(function(para, pi){
+    var lines = E.wrapText(para, maxWidth, fontSize, opts.letterSpacing, measureWidth);
+    lines.forEach(function(l, li){ wrappedEntries.push({ line: l, isLastOfPara: li === lines.length - 1 }); });
+    if(pi < rawParas.length - 1) wrappedEntries.push({ line: '__PARA_BREAK__', isLastOfPara: true });
+  });
+
+  var startPageIndex = pdfDoc.getPageCount();
+  var page = pdfDoc.addPage(dims);
+  var y = dims[1] - margins.top;
+
+  function newPage(){
+    page = pdfDoc.addPage(dims);
+    y = dims[1] - margins.top;
+  }
+  function drawLine(entry, i){
+    if(entry.line === '__PARA_BREAK__'){ y -= opts.paraSpacing; return; }
+    if(y < margins.bottom){ newPage(); }
+    var lineWidth = measureWidth(entry.line, fontSize) + (entry.line.length > 1 ? (entry.line.length-1)*opts.letterSpacing : 0);
+    var justifyPos = opts.align === 'justify' ? E.justifyPositions(entry.line, maxWidth, fontSize, opts.letterSpacing, margins.left, measureWidth, entry.isLastOfPara) : null;
+
+    if(justifyPos){
+      justifyPos.forEach(function(wp){ drawWithSpacing(page, wp.word, wp.x, y, fontSize, chosenFont, color, opts.letterSpacing); });
+      if(opts.underline) page.drawLine({ start:{x:margins.left,y:y-fontSize*0.12}, end:{x:margins.left+maxWidth,y:y-fontSize*0.12}, thickness:0.6, color:color });
+    } else {
+      var x = E.alignX(lineWidth, maxWidth, margins.left, opts.align === 'justify' ? 'left' : opts.align);
+      drawWithSpacing(page, entry.line, x, y, fontSize, chosenFont, color, opts.letterSpacing);
+      if(opts.underline && entry.line) page.drawLine({ start:{x:x,y:y-fontSize*0.12}, end:{x:x+lineWidth,y:y-fontSize*0.12}, thickness:0.6, color:color });
+    }
+    y -= lineHeight;
+  }
+  wrappedEntries.forEach(drawLine);
+
+  return { dims: dims, margins: margins, startPageIndex: startPageIndex, endPageIndex: pdfDoc.getPageCount() - 1 };
+}
+function drawWithSpacing(page, text, x, y, fontSize, font, color, letterSpacing){
+  if(!text) return;
+  if(!letterSpacing){ page.drawText(text, { x:x, y:y, size:fontSize, font:font, color:color }); return; }
+  var cx = x;
+  for(var i=0;i<text.length;i++){
+    var ch = text[i];
+    page.drawText(ch, { x:cx, y:y, size:fontSize, font:font, color:color });
+    cx += font.widthOfTextAtSize(ch, fontSize) + letterSpacing;
+  }
+}
+
+/* ===================== Header/Footer/Watermark stamping ===================== */
+async function stampHeaderFooterWatermark(pdfDoc, opts, fileMeta, watermarkImageBytes){
+  var pages = pdfDoc.getPages();
+  var total = pages.length;
+  var smallFont = await pdfDoc.embedFont(PDFLib.StandardFonts.Helvetica);
+  var wmImage = null;
+  if(watermarkImageBytes){
+    try{ wmImage = await pdfDoc.embedPng(watermarkImageBytes); }
+    catch(e){ try{ wmImage = await pdfDoc.embedJpg(watermarkImageBytes); }catch(e2){ wmImage = null; } }
+  }
+  pages.forEach(function(page, idx){
+    var size = page.getSize();
+    var margins = E.getMargins(opts.marginPreset, opts.marginTop, opts.marginBottom, opts.marginLeft, opts.marginRight);
+    if(opts.headerText){
+      page.drawText(opts.headerText, { x: margins.left, y: size.height - margins.top + 8, size: 9, font: smallFont, color: PDFLib.rgb(0.5,0.5,0.5) });
+    }
+    var footerParts = [];
+    if(opts.footerText) footerParts.push(opts.footerText);
+    if(opts.fileNameFooter && fileMeta && fileMeta.name) footerParts.push(fileMeta.name);
+    if(opts.dateFooter) footerParts.push(new Date().toLocaleDateString('en-IN'));
+    if(opts.timeFooter) footerParts.push(new Date().toLocaleTimeString('en-IN'));
+    if(opts.pageNumber) footerParts.push('Page ' + (idx+1) + ' of ' + total);
+    if(footerParts.length){
+      page.drawText(footerParts.join('  |  '), { x: margins.left, y: margins.bottom - 16, size: 8, font: smallFont, color: PDFLib.rgb(0.5,0.5,0.5) });
+    }
+    if(opts.watermarkText){
+      var wmSize = Math.max(24, Math.min(size.width, size.height) / 8);
+      var wmWidth = smallFont.widthOfTextAtSize(opts.watermarkText, wmSize);
+      var pos = E.watermarkPositionXY(opts.watermarkPosition, size.width, size.height, wmWidth, wmSize);
+      page.drawText(opts.watermarkText, { x: pos.x, y: pos.y, size: wmSize, font: smallFont, color: PDFLib.rgb(0.6,0.2,0.9), opacity: opts.watermarkOpacity/100, rotate: PDFLib.degrees(opts.watermarkRotation) });
+    }
+    if(wmImage){
+      var scale = (size.width * 0.3) / wmImage.width;
+      var w = wmImage.width * scale, h = wmImage.height * scale;
+      var pos2 = E.watermarkPositionXY(opts.watermarkPosition, size.width, size.height, w, h);
+      page.drawImage(wmImage, { x: pos2.x, y: pos2.y, width: w, height: h, opacity: opts.watermarkOpacity/100 });
+    }
+  });
+}
+
+/* ===================== Options collection ===================== */
+function collectOptions(){
+  return {
+    pageSize: $('tp-pageSize').value, orientation: $('tp-orientation').value,
+    customW: parseFloat($('tp-customW').value) || 210, customH: parseFloat($('tp-customH').value) || 297,
+    marginPreset: $('tp-marginPreset').value,
+    marginTop: parseFloat($('tp-marginTop').value) || 18, marginBottom: parseFloat($('tp-marginBottom').value) || 18,
+    marginLeft: parseFloat($('tp-marginLeft').value) || 18, marginRight: parseFloat($('tp-marginRight').value) || 18,
+    fontFamily: $('tp-fontFamily').value, fontSize: parseInt($('tp-fontSize').value,10) || 12,
+    fontColor: $('tp-fontColor').value, lineHeightMult: parseFloat($('tp-lineHeight').value) || 1.4,
+    letterSpacing: parseFloat($('tp-letterSpacing').value) || 0, paraSpacing: parseFloat($('tp-paraSpacing').value) || 0,
+    bold: $('tp-bold').checked, italic: $('tp-italic').checked, underline: $('tp-underline').checked,
+    align: $('tp-align').value,
+    headerText: $('tp-headerText').value, footerText: $('tp-footerText').value,
+    pageNumber: $('tp-pageNumber').checked, fileNameFooter: $('tp-fileNameFooter').checked,
+    dateFooter: $('tp-dateFooter').checked, timeFooter: $('tp-timeFooter').checked,
+    watermarkText: $('tp-watermarkText').value, watermarkOpacity: parseFloat($('tp-watermarkOpacity').value) || 15,
+    watermarkRotation: parseFloat($('tp-watermarkRotation').value) || 0, watermarkPosition: $('tp-watermarkPosition').value,
+    metaTitle: $('tp-metaTitle').value, metaAuthor: $('tp-metaAuthor').value, metaSubject: $('tp-metaSubject').value,
+    metaKeywords: $('tp-metaKeywords').value, metaCreator: $('tp-metaCreator').value || 'ApneSoftware TXT to PDF',
+    quality: $('tp-quality').value
+  };
+}
+
+/* ===================== Build a single PDF document from one text ===================== */
+async function buildSingleDoc(text, opts, fileMeta, watermarkImageBytes){
+  var pdfDoc = await PDFLib.PDFDocument.create();
+  var fonts = await embedFontSet(pdfDoc, opts.fontFamily);
+  opts.fonts = fonts;
+  await renderTextIntoDoc(pdfDoc, text, opts, fileMeta);
+  await stampHeaderFooterWatermark(pdfDoc, opts, fileMeta, watermarkImageBytes);
+  pdfDoc.setTitle(opts.metaTitle || (fileMeta && fileMeta.name) || 'Document');
+  if(opts.metaAuthor) pdfDoc.setAuthor(opts.metaAuthor);
+  if(opts.metaSubject) pdfDoc.setSubject(opts.metaSubject);
+  if(opts.metaKeywords) pdfDoc.setKeywords(opts.metaKeywords.split(',').map(function(k){ return k.trim(); }).filter(Boolean));
+  pdfDoc.setCreator(opts.metaCreator);
+  return pdfDoc;
+}
+async function buildMergedDoc(files, opts, watermarkImageBytes){
+  var pdfDoc = await PDFLib.PDFDocument.create();
+  var fonts = await embedFontSet(pdfDoc, opts.fontFamily);
+  opts.fonts = fonts;
+  for(var i=0;i<files.length;i++){
+    await renderTextIntoDoc(pdfDoc, files[i].text, opts, files[i]);
+  }
+  await stampHeaderFooterWatermark(pdfDoc, opts, files[0], watermarkImageBytes);
+  pdfDoc.setTitle(opts.metaTitle || 'Merged Document');
+  if(opts.metaAuthor) pdfDoc.setAuthor(opts.metaAuthor);
+  if(opts.metaSubject) pdfDoc.setSubject(opts.metaSubject);
+  if(opts.metaKeywords) pdfDoc.setKeywords(opts.metaKeywords.split(',').map(function(k){ return k.trim(); }).filter(Boolean));
+  pdfDoc.setCreator(opts.metaCreator);
+  return pdfDoc;
+}
+
+function saveOptsFor(quality){
+  if(quality === 'compressed') return { useObjectStreams: true };
+  if(quality === 'high') return { useObjectStreams: false };
+  return { useObjectStreams: true };
+}
+
+/* ===================== QPDF encryption (lazy-loaded, same engine as pdf-protect.html) ===================== */
+var qpdfInstance = null;
+async function loadQpdf(){
+  if(qpdfInstance) return qpdfInstance;
+  var createQpdf = (await import('https://cdn.jsdelivr.net/npm/@neslinesli93/qpdf-wasm/+esm')).default;
+  qpdfInstance = await createQpdf({
+    locateFile: function(){ return 'https://cdn.jsdelivr.net/npm/@neslinesli93/qpdf-wasm/dist/qpdf.wasm'; },
+    noInitialRun: true
+  });
+  return qpdfInstance;
+}
+async function encryptPdfBytes(bytes, openPw, ownerPw, restrictPrint, restrictCopy){
+  var qpdf = await loadQpdf();
+  qpdf.FS.writeFile('/input.pdf', bytes);
+  var args = ['/input.pdf', '--encrypt', openPw || '', ownerPw || (openPw || 'owner'), '256', '--use-aes=y',
+    '--print=' + (restrictPrint ? 'none' : 'full'),
+    '--modify=' + (restrictCopy ? 'none' : 'all'),
+    '--extract=' + (restrictCopy ? 'n' : 'y'),
+    '--accessibility=y', '--', '/output.pdf'];
+  qpdf.callMain(args);
+  var out = qpdf.FS.readFile('/output.pdf');
+  try{ qpdf.FS.unlink('/input.pdf'); qpdf.FS.unlink('/output.pdf'); }catch(e){}
+  return out;
+}
+
+/* ===================== Preview (pdf.js) ===================== */
+async function loadPreview(bytes){
+  if(typeof pdfjsLib === 'undefined') return;
+  try{
+    previewDoc = await pdfjsLib.getDocument({ data: bytes.slice() }).promise;
+    previewPage = 1;
+    await renderPreviewPage();
+  }catch(e){ /* preview is best-effort */ }
+}
+async function renderPreviewPage(){
+  if(!previewDoc) return;
+  var page = await previewDoc.getPage(previewPage);
+  var viewport = page.getViewport({ scale: previewZoom * 1.3 });
+  var canvas = $('tp-previewCanvas');
+  canvas.width = viewport.width; canvas.height = viewport.height;
+  var ctx = canvas.getContext('2d');
+  await page.render({ canvasContext: ctx, viewport: viewport }).promise;
+  $('tp-pageIndicator').textContent = 'Page ' + previewPage + ' / ' + previewDoc.numPages;
+}
+$('tp-prevPageBtn').addEventListener('click', function(){ if(previewPage>1){ previewPage--; renderPreviewPage(); } });
+$('tp-nextPageBtn').addEventListener('click', function(){ if(previewDoc && previewPage<previewDoc.numPages){ previewPage++; renderPreviewPage(); } });
+$('tp-zoomRange').addEventListener('input', function(){ previewZoom = this.value/100; $('tp-zoomLabel').textContent = this.value+'%'; renderPreviewPage(); });
+
+/* ===================== Convert action ===================== */
+$('convertBtn').addEventListener('click', async function(){
+  var status = $('statusMsg');
+  var opts = collectOptions();
+  var encryptOn = $('tp-encryptToggle').checked;
+
+  try{
+    var watermarkImageBytes = null;
+    var wmFile = $('tp-watermarkImage').files[0];
+    if(wmFile) watermarkImageBytes = new Uint8Array(await wmFile.arrayBuffer());
+
+    if(workingFiles.length > 1){
+      status.textContent = '⏳ Building batch PDF(s)...';
+      var mode = $('tp-batchMode').value;
+      if(mode === 'merge'){
+        var merged = await buildMergedDoc(workingFiles, opts, watermarkImageBytes);
+        var bytes = await merged.save(saveOptsFor(opts.quality));
+        if(encryptOn) bytes = await encryptPdfBytes(bytes, $('tp-openPassword').value, $('tp-ownerPassword').value, $('tp-restrictPrint').checked, $('tp-restrictCopy').checked);
+        lastPdfBytes = bytes;
+        downloadBlob('merged.pdf', new Blob([bytes], {type:'application/pdf'}));
+        await loadPreview(bytes);
+      } else {
+        var zip = new JSZip();
+        for(var i=0;i<workingFiles.length;i++){
+          var doc = await buildSingleDoc(workingFiles[i].text, opts, workingFiles[i], watermarkImageBytes);
+          var b = await doc.save(saveOptsFor(opts.quality));
+          if(encryptOn) b = await encryptPdfBytes(b, $('tp-openPassword').value, $('tp-ownerPassword').value, $('tp-restrictPrint').checked, $('tp-restrictCopy').checked);
+          zip.file(workingFiles[i].name.replace(/\.txt$/i,'') + '.pdf', b);
+          if(i === 0){ lastPdfBytes = b; await loadPreview(b); }
+        }
+        var zipBlob = await zip.generateAsync({type:'blob'});
+        downloadBlob('converted-pdfs.zip', zipBlob);
       }
-      page.drawText(line, { x: margin, y, size: fontSize, font, color: rgb(0.1,0.1,0.1) });
-      y -= lineHeight;
-    });
-
-    const pdfBytes = await pdfDoc.save();
-    const blob = new Blob([pdfBytes], {type:'application/pdf'});
-    downloadBlob('converted.pdf', blob);
-    status.textContent = `✅ Converted and downloaded! (${pdfDoc.getPageCount()} page${pdfDoc.getPageCount()>1?'s':''})`;
+      status.textContent = '✅ Converted ' + workingFiles.length + ' file(s) and downloaded!';
+    } else {
+      var text = $('txtInput').value;
+      if(!text.trim()){ status.textContent = '⚠️ Please upload a file or type/paste some text first.'; return; }
+      status.textContent = '⏳ Building PDF...';
+      var singleMeta = workingFiles.length === 1 ? workingFiles[0] : { name: 'converted.txt' };
+      var singleDoc = await buildSingleDoc(text, opts, singleMeta, watermarkImageBytes);
+      var singleBytes = await singleDoc.save(saveOptsFor(opts.quality));
+      if(encryptOn) singleBytes = await encryptPdfBytes(singleBytes, $('tp-openPassword').value, $('tp-ownerPassword').value, $('tp-restrictPrint').checked, $('tp-restrictCopy').checked);
+      lastPdfBytes = singleBytes;
+      downloadBlob('converted.pdf', new Blob([singleBytes], {type:'application/pdf'}));
+      await loadPreview(singleBytes);
+      status.textContent = '✅ Converted and downloaded! (' + singleDoc.getPageCount() + ' page' + (singleDoc.getPageCount()>1?'s':'') + ')';
+    }
   }catch(err){
     status.textContent = '❌ Error: ' + err.message;
   }
 });
+
+$('tp-resetBtn').addEventListener('click', function(){
+  if(!confirm('Reset all fields and clear loaded files?')) return;
+  $('txtInput').value = '';
+  workingFiles = [];
+  renderFileList();
+  updateStatsAndValidation();
+  $('statusMsg').textContent = '↺ Reset complete.';
+});
+
+/* ===================== Accessibility ===================== */
+$('tp-highContrast').addEventListener('change', function(){
+  document.body.classList.toggle('tp-high-contrast', this.checked);
+  lsSet('txtpdf_hc', this.checked);
+});
+$('tp-largeFont').addEventListener('change', function(){
+  document.body.classList.toggle('tp-large-font', this.checked);
+  lsSet('txtpdf_lf', this.checked);
+});
+var savedHc = lsGet('txtpdf_hc', false);
+$('tp-highContrast').checked = savedHc;
+document.body.classList.toggle('tp-high-contrast', savedHc);
+var savedLf = lsGet('txtpdf_lf', false);
+$('tp-largeFont').checked = savedLf;
+document.body.classList.toggle('tp-large-font', savedLf);
+
+/* ===================== Init ===================== */
+updateStatsAndValidation();
+
+})();
 </script>
 <!-- Default Statcounter code for Apne Software
 https://apnesoftware.com -->
 <script type="text/javascript">
-var sc_project=13334460; 
-var sc_invisible=1; 
-var sc_security="a5854dc7"; 
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
 </script>
 <script type="text/javascript"
 src="https://www.statcounter.com/counter/counter.js"
