@@ -5,26 +5,114 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://apnesoftware.com/tools/tip-calculator.html">
+<meta name="description" content="Free Professional Bill Splitting & Tip Calculator — add tax (GST/VAT), service charge and discounts, tip by percentage or fixed amount, split a bill equally, by shares, custom amounts or item-wise across named people, round per person, generate a printable receipt and export/share as PDF, CSV, Excel, PNG, WhatsApp or QR. 100% in your browser.">
+<meta name="keywords" content="bill split calculator, tip calculator, split bill with tax, gst tip calculator, restaurant bill splitter, item wise bill split, per person amount, group expense split, tip and tax calculator">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Tip Calculator | ApneSoftware">
-<meta property="og:description" content="Split a bill with tip across any group size. Free online tool — no signup required.">
+<meta property="og:title" content="Professional Bill Splitting & Tip Calculator | ApneSoftware">
+<meta property="og:description" content="Split any bill with tip, tax, service charge and discounts — equally, by shares, custom or item-wise. Receipt, export and WhatsApp/QR share. 100% browser-based & private.">
 <meta property="og:url" content="https://apnesoftware.com/tools/tip-calculator.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Tip Calculator | ApneSoftware">
-<meta name="twitter:description" content="Split a bill with tip across any group size. Free online tool — no signup required.">
+<meta name="twitter:title" content="Professional Bill Splitting & Tip Calculator | ApneSoftware">
+<meta name="twitter:description" content="Tip, tax, service charge, discounts and item-wise split across named people, with receipt, export and QR/WhatsApp share. Private & browser-based.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Tip Calculator","description":"Split a bill with tip across any group size. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/tip-calculator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Professional Bill Splitting & Tip Calculator","description":"Calculate tip, tax (GST/VAT/CGST/SGST), service charge and discounts, then split a bill equally, by shares, by custom amounts or item-wise across named people, with rounding, a printable receipt, 8 currencies and PDF/CSV/Excel/PNG export plus WhatsApp/email/QR share. Runs entirely in the browser.","url":"https://apnesoftware.com/tools/tip-calculator.html","applicationCategory":"FinanceApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"featureList":["Percentage, fixed, rounded and custom tip modes","GST/VAT/CGST/SGST/IGST tax and service charge","Flat and percentage discounts","Equal, weighted, custom and item-wise bill split","Per-person rounding to nearest 1/5/10/50","Printable receipt, PDF/CSV/Excel/PNG export and QR/WhatsApp share"],"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
 <meta name="color-scheme" content="dark">
-<title>Tip Calculator | ApneSoftware</title>
+<title>Professional Bill Splitting & Tip Calculator | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-  .tip-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
-  .tip-btn{padding:8px 16px;border-radius:7px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);font-size:.9rem;cursor:pointer}
-  .tip-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+/* ===== Bill Splitter & Tip Manager — scoped bs- prefix ===== */
+.panel{position:relative;z-index:1}
+.tip-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.tip-btn{padding:8px 15px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.06));color:var(--text);font-size:.86rem;cursor:pointer}
+.tip-btn.active{background:var(--accent,#7c5cfc);color:#fff;border-color:var(--accent,#7c5cfc)}
+
+.bs-section{border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:14px;background:rgba(255,255,255,.02)}
+.bs-section>h3{font-size:.9rem;margin:0 0 12px;display:flex;align-items:center;gap:7px}
+.bs-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:600px){ .bs-grid{grid-template-columns:1fr} }
+.bs-field label{display:block;font-size:.76rem;color:var(--text-dim);margin-bottom:5px;font-weight:600}
+.bs-field input,.bs-field select{width:100%;font-size:.85rem;padding:9px 11px;border-radius:8px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)}
+.bs-field select option{background:#1a1a2e}
+.bs-field.invalid input{border-color:#f87171}
+.bs-field .bs-err{color:#f87171;font-size:.7rem;margin-top:3px;display:none}
+.bs-field.invalid .bs-err{display:block}
+.bs-inline{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.bs-chip{font-size:.78rem;padding:7px 13px;border-radius:8px;border:1px solid var(--border);background:var(--surface-2,rgba(255,255,255,.06));color:var(--text);cursor:pointer}
+.bs-chip.active{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff}
+.bs-mini-label{font-size:.72rem;color:var(--text-dim);margin:2px 6px 2px 0}
+
+/* People */
+.bs-people{display:flex;flex-direction:column;gap:8px}
+.bs-person{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:rgba(255,255,255,.03);flex-wrap:wrap}
+.bs-person input.pname{flex:1;min-width:110px;font-size:.82rem;padding:6px 9px;border-radius:7px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)}
+.bs-person input.pval{width:96px;font-size:.82rem;padding:6px 8px;border-radius:7px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text);text-align:right}
+.bs-person .pshare{font-weight:700;font-variant-numeric:tabular-nums;min-width:90px;text-align:right}
+.bs-person .pdel{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:.95rem}
+.bs-item{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:rgba(255,255,255,.03);margin-bottom:6px}
+.bs-item input.iname{flex:1;min-width:100px}
+.bs-item input.iamt{width:90px;text-align:right}
+.bs-item .iassign{display:flex;gap:4px;flex-wrap:wrap}
+.bs-item .iassign label{font-size:.7rem;display:inline-flex;align-items:center;gap:3px;padding:3px 6px;border:1px solid var(--border);border-radius:6px;cursor:pointer}
+.bs-item input,.bs-item select{font-size:.8rem;padding:6px 8px;border-radius:7px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)}
+
+/* Summary */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:4px}
+.stat-box{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center}
+.stat-box .num{font-size:1.3rem;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stat-box .lbl{font-size:.74rem;color:var(--text-dim);margin-top:4px}
+.bs-summary{border:1px solid var(--border);border-radius:12px;padding:6px 16px;margin-top:14px;background:rgba(255,255,255,.03)}
+.bs-srow{display:flex;justify-content:space-between;padding:9px 0;font-size:.86rem;border-bottom:1px dashed var(--border)}
+.bs-srow:last-child{border-bottom:none}
+.bs-srow.total{font-weight:800;font-size:1rem;color:var(--accent-2,#16c079)}
+.bs-srow.discount span:last-child{color:#16c079}
+.bs-srow b{font-variant-numeric:tabular-nums}
+
+/* Actions */
+.bs-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.bs-btn{font-size:.78rem;padding:8px 13px;border-radius:8px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text);cursor:pointer}
+.bs-btn:hover{background:rgba(124,92,252,.18)}
+.bs-btn.primary{background:var(--accent,#7c5cfc);border-color:var(--accent,#7c5cfc);color:#fff;font-weight:600}
+.bs-history .hitem{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--border);border-radius:9px;background:rgba(255,255,255,.03);margin-bottom:6px;font-size:.78rem}
+.bs-history .hitem .g{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bs-history .hitem button{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:.9rem}
+#qrBox{display:none;text-align:center;margin-top:12px}
+#qrBox canvas{background:#fff;border-radius:8px;padding:8px}
+
+/* Receipt (print) */
+.bs-receipt{display:none}
+@media print{
+  body>*{display:none!important}
+  .bs-receipt{display:block!important;color:#000;font-family:ui-monospace,monospace;max-width:340px;margin:0 auto;padding:16px}
+  .bs-receipt h2{text-align:center;margin:0 0 4px}
+  .bs-receipt .r{display:flex;justify-content:space-between;font-size:13px;padding:2px 0}
+  .bs-receipt hr{border:none;border-top:1px dashed #000;margin:6px 0}
+}
+
+/* Below-tool content */
+.bs-content h2{font-size:1.15rem;margin:26px 0 10px}
+.bs-content h3{font-size:1rem;margin:18px 0 8px}
+.bs-content p,.bs-content li{font-size:.92rem;line-height:1.72}
+.bs-content ul,.bs-content ol{padding-left:20px}
+.bs-fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:14px 0}
+.bs-fgrid .fc{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:14px}
+.bs-fgrid .fc b{display:block;margin-bottom:5px;font-size:.9rem}
+.bs-fgrid .fc span{font-size:.82rem;color:var(--text-dim);line-height:1.6}
+.bs-formula{background:rgba(0,0,0,.35);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-family:ui-monospace,Consolas,monospace;font-size:.82rem;overflow-x:auto}
+.related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin:12px 0}
+.related-grid a{display:flex;align-items:center;gap:9px;padding:12px 13px;border-radius:11px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:.86rem;font-weight:500;transition:.15s}
+.related-grid a:hover{background:rgba(124,92,252,.16);border-color:var(--accent,#7c5cfc);transform:translateY(-1px)}
+.related-grid a .ri{font-size:1.15rem}
+.bs-faq details{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:11px;padding:2px 14px;margin-bottom:9px}
+.bs-faq summary{cursor:pointer;padding:12px 0;font-weight:600;font-size:.9rem;list-style:none}
+.bs-faq summary::-webkit-details-marker{display:none}
+.bs-faq summary::before{content:'＋';margin-right:9px;color:var(--accent,#7c5cfc);font-weight:700}
+.bs-faq details[open] summary::before{content:'－'}
+.bs-faq details p{padding:0 0 12px;margin:0;font-size:.87rem;color:var(--text-dim)}
+.bs-lang-note{font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:-4px}
 </style>
 </head>
 <body>
@@ -37,126 +125,546 @@
 
 <div class="container">
   <div class="tool-header">
-    <h1>🧾 Tip Calculator</h1>
-    <p>Split a bill with tip across any number of people.</p>
+    <h1>🧾 Professional Bill Splitting &amp; Tip Calculator</h1>
+    <p>Add tax, service charge &amp; discounts, tip by % or fixed amount, then split a bill equally, by shares, custom or item-wise across named people — with a printable receipt, export &amp; QR/WhatsApp share. 100% in your browser.</p>
   </div>
 
   <div class="panel">
-    <div class="field">
-      <label for="billAmount">Bill amount (₹)</label>
-      <input type="number" id="billAmount" value="1000" min="0">
-    </div>
-
-    <div class="field">
-      <label>Tip percentage</label>
-      <div class="tip-row">
-        <button class="tip-btn" data-tip="5">5%</button>
-        <button class="tip-btn active" data-tip="10">10%</button>
-        <button class="tip-btn" data-tip="15">15%</button>
-        <button class="tip-btn" data-tip="20">20%</button>
+    <!-- Bill details -->
+    <div class="bs-section">
+      <h3>🧾 Bill details</h3>
+      <div class="bs-grid">
+        <div class="bs-field"><label for="restaurant">Restaurant / place (optional)</label><input type="text" id="restaurant" placeholder="e.g. Spice Garden"></div>
+        <div class="bs-field"><label for="billNo">Bill number (optional)</label><input type="text" id="billNo" placeholder="auto"></div>
+        <div class="bs-field"><label for="billDate">Date</label><input type="date" id="billDate"></div>
+        <div class="bs-field"><label for="currency">Currency</label>
+          <select id="currency">
+            <option value="INR">₹ INR — Indian Rupee</option>
+            <option value="USD">$ USD — US Dollar</option>
+            <option value="EUR">€ EUR — Euro</option>
+            <option value="GBP">£ GBP — British Pound</option>
+            <option value="AED">د.إ AED — UAE Dirham</option>
+            <option value="SGD">S$ SGD — Singapore Dollar</option>
+            <option value="AUD">A$ AUD — Australian Dollar</option>
+            <option value="CAD">C$ CAD — Canadian Dollar</option>
+          </select>
+        </div>
+        <div class="bs-field"><label for="billAmount">Bill amount (subtotal)</label><input type="number" id="billAmount" value="1000" min="0" step="any"><div class="bs-err">Enter a valid non-negative amount.</div></div>
       </div>
-      <input type="number" id="customTip" placeholder="Or enter custom %" style="margin-top:8px" min="0">
     </div>
 
-    <div class="field">
-      <label for="peopleCount">Number of people</label>
-      <input type="number" id="peopleCount" value="1" min="1">
+    <!-- Tip -->
+    <div class="bs-section">
+      <h3>💸 Tip</h3>
+      <div class="bs-inline" style="margin-bottom:8px">
+        <span class="bs-mini-label">Mode:</span>
+        <button class="bs-chip active" data-tipmode="percent">Percentage</button>
+        <button class="bs-chip" data-tipmode="fixed">Fixed amount</button>
+        <button class="bs-chip" data-tipmode="round">Round total</button>
+        <button class="bs-chip" data-tipmode="none">No tip</button>
+      </div>
+      <div id="tipPercentRow">
+        <div class="tip-row">
+          <button class="tip-btn" data-tip="5">5%</button>
+          <button class="tip-btn" data-tip="8">8%</button>
+          <button class="tip-btn active" data-tip="10">10%</button>
+          <button class="tip-btn" data-tip="12">12%</button>
+          <button class="tip-btn" data-tip="15">15%</button>
+          <button class="tip-btn" data-tip="18">18%</button>
+          <button class="tip-btn" data-tip="20">20%</button>
+          <button class="tip-btn" data-tip="25">25%</button>
+        </div>
+        <input type="number" id="customTip" placeholder="Or enter custom %" style="margin-top:8px;width:100%;font-size:.85rem;padding:9px 11px;border-radius:8px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)" min="0" step="any">
+      </div>
+      <div class="bs-field" id="tipFixedRow" style="display:none;margin-top:6px"><label>Fixed tip amount</label><input type="number" id="tipFixed" value="100" min="0" step="any"></div>
+      <div class="bs-inline" style="margin-top:10px">
+        <span class="bs-mini-label">Tip on:</span>
+        <label style="font-size:.78rem"><input type="radio" name="tipon" value="pretax" checked style="width:auto"> Pre-tax subtotal</label>
+        <label style="font-size:.78rem"><input type="radio" name="tipon" value="posttax" style="width:auto"> Post-tax total</label>
+      </div>
     </div>
 
-    <div class="stat-grid" style="margin-top:14px">
-      <div class="stat-box"><div class="num" id="tipVal">₹0</div><div class="lbl">Tip Amount</div></div>
-      <div class="stat-box"><div class="num" id="totalVal">₹0</div><div class="lbl">Total Bill</div></div>
-      <div class="stat-box"><div class="num" id="perPersonVal" style="color:var(--accent-2)">₹0</div><div class="lbl">Per Person</div></div>
+    <!-- Tax, service, discount -->
+    <div class="bs-section">
+      <h3>🏦 Tax, service charge &amp; discount</h3>
+      <div class="bs-grid">
+        <div class="bs-field"><label for="taxType">Tax type</label>
+          <select id="taxType">
+            <option value="none">No tax</option>
+            <option value="gst">GST</option>
+            <option value="cgstsgst">CGST + SGST</option>
+            <option value="igst">IGST</option>
+            <option value="vat">VAT</option>
+            <option value="sales">Sales Tax</option>
+            <option value="custom">Custom tax</option>
+          </select>
+        </div>
+        <div class="bs-field"><label for="taxRate">Tax rate (%)</label><input type="number" id="taxRate" value="5" min="0" max="100" step="any"></div>
+        <div class="bs-field"><label for="serviceCharge">Service charge (%)</label><input type="number" id="serviceCharge" value="0" min="0" max="100" step="any"></div>
+        <div class="bs-field"><label for="discountType">Discount</label>
+          <select id="discountType"><option value="none">No discount</option><option value="flat">Flat amount</option><option value="percent">Percentage</option></select>
+        </div>
+        <div class="bs-field"><label for="discountValue">Discount value</label><input type="number" id="discountValue" value="0" min="0" step="any"></div>
+        <div class="bs-field"><label for="coupon">Coupon / promo code (label)</label><input type="text" id="coupon" placeholder="optional"></div>
+      </div>
     </div>
+
+    <!-- Split -->
+    <div class="bs-section">
+      <h3>👥 Split the bill</h3>
+      <div class="bs-inline" style="margin-bottom:10px">
+        <span class="bs-mini-label">Split by:</span>
+        <button class="bs-chip active" data-split="equal">Equal</button>
+        <button class="bs-chip" data-split="shares">Shares</button>
+        <button class="bs-chip" data-split="custom">Custom amounts</button>
+        <button class="bs-chip" data-split="percent">Percentage</button>
+        <button class="bs-chip" data-split="items">Item-wise</button>
+      </div>
+      <div class="bs-inline" style="margin-bottom:10px">
+        <label for="peopleCount" class="bs-mini-label">Number of people</label>
+        <input type="number" id="peopleCount" value="2" min="1" max="100" style="width:80px;font-size:.85rem;padding:7px 9px;border-radius:8px;background:var(--surface-2,rgba(255,255,255,.06));border:1px solid var(--border);color:var(--text)">
+        <button class="bs-btn" id="addPersonBtn">＋ Add person</button>
+        <button class="bs-btn" data-quick="2">👫 Couple</button>
+        <button class="bs-btn" data-quick="4">👨‍👩‍👧‍👦 Family</button>
+      </div>
+
+      <div class="bs-people" id="peopleList"></div>
+
+      <div id="itemsWrap" style="display:none;margin-top:10px">
+        <div class="bs-inline" style="margin-bottom:8px"><strong style="font-size:.82rem">Items</strong><button class="bs-btn" id="addItemBtn">＋ Add item</button>
+          <span style="font-size:.72rem;color:var(--text-dim)">Tax, service &amp; tip are shared in proportion to each person's item total.</span></div>
+        <div id="itemsList"></div>
+      </div>
+    </div>
+
+    <!-- Rounding -->
+    <div class="bs-section">
+      <h3>🔢 Rounding</h3>
+      <div class="bs-inline">
+        <button class="bs-chip active" data-round="none">None</button>
+        <button class="bs-chip" data-round="up">Round up</button>
+        <button class="bs-chip" data-round="down">Round down</button>
+        <button class="bs-chip" data-round="1">Nearest 1</button>
+        <button class="bs-chip" data-round="5">Nearest 5</button>
+        <button class="bs-chip" data-round="10">Nearest 10</button>
+        <button class="bs-chip" data-round="50">Nearest 50</button>
+      </div>
+    </div>
+
+    <!-- Summary (result IDs preserved: tipVal, totalVal, perPersonVal) -->
+    <div class="stat-grid">
+      <div class="stat-box"><div class="num" id="tipVal">—</div><div class="lbl">Tip Amount</div></div>
+      <div class="stat-box"><div class="num" id="totalVal">—</div><div class="lbl">Grand Total</div></div>
+      <div class="stat-box"><div class="num" id="perPersonVal" style="color:var(--accent-2,#16c079)">—</div><div class="lbl">Per Person (avg)</div></div>
+    </div>
+
+    <div class="bs-summary" id="billSummary"></div>
+
+    <div class="bs-actions">
+      <button class="bs-btn primary" id="copyBtn">📋 Copy summary</button>
+      <button class="bs-btn" id="waBtn">🟢 WhatsApp</button>
+      <button class="bs-btn" id="emailBtn">✉️ Email</button>
+      <button class="bs-btn" id="qrBtn">🔳 QR</button>
+      <button class="bs-btn" id="printBtn">🧾 Receipt / Print</button>
+      <button class="bs-btn" data-export="csv">⬇ CSV</button>
+      <button class="bs-btn" data-export="xls">⬇ Excel</button>
+      <button class="bs-btn" data-export="pdf">⬇ PDF</button>
+      <button class="bs-btn" data-export="png">🖼 PNG</button>
+      <button class="bs-btn" id="saveBtn">⭐ Save</button>
+    </div>
+    <div id="qrBox"><canvas id="qrCanvas"></canvas><div style="font-size:.72rem;color:var(--text-dim);margin-top:6px">Scan to read the split summary</div></div>
+
+    <div class="bs-actions" style="margin-top:16px"><strong style="font-size:.88rem">🕘 History &amp; saved</strong>
+      <button class="bs-btn" id="clearHistBtn" style="margin-left:auto">Clear</button></div>
+    <div class="bs-history" id="historyList"></div>
   </div>
 </div>
 
+<!-- Printable receipt -->
+<div class="bs-receipt" id="receipt"></div>
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Splitting a restaurant bill with friends or family sounds like it should be simple arithmetic, but it's surprisingly easy to get wrong when you're doing it in your head at a noisy table after a meal — calculating a tip percentage, adding it to the bill, and then dividing the whole thing evenly across however many people are paying involves three separate steps, any one of which can go wrong, especially after a few drinks or when someone wants to split it a slightly different way. This tool handles the entire chain in one place so nobody has to pull out a phone calculator and start over twice.</p>
-      <p>You start by entering the bill amount, then pick a tip percentage from common presets like 5%, 10%, 15%, or 20%, or type in any custom percentage if your usual habit doesn't match those defaults — tipping norms vary a lot depending on where you are and the type of service, so having a custom option matters. Finally, enter how many people are splitting the bill, and the tool instantly shows the tip amount, the new total including tip, and exactly how much each person owes.</p>
-      <p>This is genuinely useful beyond just restaurants — it works just as well for splitting a cab fare with a service charge, dividing a group order for food delivery, or working out everyone's share of a hotel bill that includes a service fee. Because the per-person amount updates live as you change any input, it's easy to test a few different tip percentages on the spot if the group is debating how generous to be, or to quickly recalculate if someone leaves the table and the remaining people need to cover a slightly larger share.</p>
-      <p>The whole calculation happens instantly in your browser as you type, with no need to tap a separate "calculate" button, which matters when you're standing around a table waiting to settle up. There's nothing to install, no account needed, and no internet round-trip required once the page has loaded, so it works just as reliably on a spotty restaurant Wi-Fi connection as it does at home — open it, plug in the numbers, and you have an answer everyone at the table can agree on in seconds. It's a small tool, but it quietly removes one of the most common small frictions of eating out with a group — the slightly awkward few minutes of mental math and gentle disagreement that happens right when everyone's reaching for their wallets.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Enter the bill amount.</li>
-        <li>Pick a tip percentage or enter a custom one.</li>
-        <li>Enter how many people are splitting it — the per-person amount updates instantly.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>दोस्तों या परिवार के साथ किसी restaurant का बिल बांटना सुनने में simple arithmetic लगता है, पर खाने के बाद किसी शोरगुल वाली table पर दिमाग में करते वक्त इसमें गलती होना हैरानी की बात नहीं — tip percentage निकालना, उसे बिल में जोड़ना, और फिर पूरी रकम को जितने लोग pay कर रहे हैं उनमें बराबर बांटना, यह तीन अलग steps हैं, जिनमें से किसी में भी गलती हो सकती है, खासकर कुछ drinks के बाद या जब कोई थोड़ा अलग तरीके से बांटना चाहे। यह टूल पूरी chain को एक ही जगह handle करता है ताकि किसी को phone calculator निकालकर दो बार शुरुआत न करनी पड़े।</p>
-      <p>आप bill amount डालकर शुरू करते हैं, फिर 5%, 10%, 15%, या 20% जैसे common presets में से कोई tip percentage चुनते हैं, या अगर आपकी सामान्य आदत इन defaults से मेल नहीं खाती तो कोई custom percentage टाइप कर सकते हैं — tipping के norms जगह और service के प्रकार के हिसाब से काफी अलग होते हैं, इसलिए custom option का होना मायने रखता है। आखिर में, कितने लोग बिल बांट रहे हैं यह डालें, और टूल तुरंत tip amount, tip मिलाकर नया total, और हर व्यक्ति पर कितना बकाया है यह दिखा देता है।</p>
-      <p>यह सिर्फ restaurants से परे भी सच में उपयोगी है — यह किसी cab fare को service charge के साथ बांटने, food delivery के किसी group order को divide करने, या service fee वाले hotel bill में हर किसी का हिस्सा निकालने में भी उतना ही अच्छा काम करता है। चूंकि per-person amount किसी भी input को बदलते ही live update होता है, अगर group यह बहस कर रहा हो कि कितना generous होना है तो मौके पर ही कुछ अलग tip percentages आज़माना आसान है, या अगर कोई table छोड़कर चला जाए और बाकी लोगों को थोड़ा बड़ा हिस्सा cover करना पड़े तो तुरंत दोबारा calculate करना आसान है।</p>
-      <p>पूरी calculation टाइप करते ही आपके browser में तुरंत हो जाती है, किसी अलग "calculate" बटन दबाने की ज़रूरत नहीं, जो तब मायने रखता है जब आप table के पास खड़े होकर हिसाब निपटाने का इंतज़ार कर रहे हों। कुछ install करने की ज़रूरत नहीं, कोई account नहीं चाहिए, और page लोड होने के बाद किसी internet round-trip की ज़रूरत नहीं, तो यह घर जितना ही भरोसे से किसी कमज़ोर restaurant Wi-Fi connection पर भी काम करता है — इसे खोलें, नंबर डालें, और सेकंडों में table पर मौजूद हर किसी को मंज़ूर होने वाला जवाब आपके पास होगा।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>बिल अमाउंट डालें।</li>
-        <li>tip percentage चुनें या कस्टम % डालें।</li>
-        <li>कितने लोग बिल बांट रहे हैं डालें — per-person अमाउंट तुरंत दिख जाएगा।</li>
-      </ol>
-    </div>
+<!-- ============================ BELOW-TOOL CONTENT ============================ -->
+<div class="bs-content">
+
+  <h2>🍽️ From a quick tip to a full group settlement</h2>
+  <p>The <strong>Professional Bill Splitting &amp; Tip Calculator</strong> takes the everyday problem of "who owes what" and solves it completely. It started as a simple tip calculator and now handles the whole bill: tip in any style, real taxes like GST and VAT, service charges, discounts and coupons, and a fair split across named people — equally, by shares, by custom amounts, or item-by-item. It produces a clean per-person figure, a printable receipt, and one-tap sharing to WhatsApp, email or a QR code, all computed instantly in your browser with nothing uploaded.</p>
+
+  <h2>✨ Features</h2>
+  <div class="bs-fgrid">
+    <div class="fc"><b>Five tip modes</b><span>Percentage presets (5–25%), custom %, a fixed amount, round-the-total, or no tip — on the pre-tax or post-tax figure.</span></div>
+    <div class="fc"><b>Real taxes</b><span>GST, VAT, sales tax, CGST + SGST, IGST or a custom rate, plus a separate service charge.</span></div>
+    <div class="fc"><b>Discounts</b><span>Flat or percentage discounts with a coupon/promo label, applied before tax.</span></div>
+    <div class="fc"><b>Flexible split</b><span>Equal, weighted shares, custom amounts, percentage, or item-wise across named people.</span></div>
+    <div class="fc"><b>Per-person rounding</b><span>Round up, down, or to the nearest 1, 5, 10 or 50 so payments are tidy.</span></div>
+    <div class="fc"><b>Receipt &amp; export</b><span>Printable receipt plus CSV, Excel, PDF and PNG export.</span></div>
+    <div class="fc"><b>Instant share</b><span>Copy the summary or send it via WhatsApp, email or a scannable QR code.</span></div>
+    <div class="fc"><b>8 currencies &amp; history</b><span>INR, USD, EUR, GBP, AED, SGD, AUD, CAD with saved and recent bills.</span></div>
   </div>
+
+  <h2>🎯 Benefits</h2>
+  <ul>
+    <li><strong>No awkward maths at the table:</strong> everyone sees an agreed figure in seconds.</li>
+    <li><strong>Truly fair:</strong> item-wise mode charges each person for what they actually ordered.</li>
+    <li><strong>Accurate:</strong> handles tax, service charge, discount and tip in the correct order.</li>
+    <li><strong>Shareable:</strong> send the breakdown so everyone can pay their exact share.</li>
+    <li><strong>Private &amp; free:</strong> no account, no upload, works offline once loaded.</li>
+  </ul>
+
+  <h2>📐 Formula</h2>
+  <div class="bs-formula">Discount    = flat, or subtotal × discount%%
+Taxable    = subtotal − discount
+Tax        = taxable × taxRate%%       Service = taxable × serviceCharge%%
+Tip        = (tipOn = post-tax ? taxable+tax+service : taxable) × tip%%   (or a fixed amount)
+Grand total = taxable + tax + service + tip
+Per person  = grand total ÷ people      (or by shares / custom / items)</div>
+
+  <h2>🧮 Examples</h2>
+  <ul>
+    <li><strong>Simple:</strong> ₹1,000 bill, 10% tip, 2 people → tip ₹100, total ₹1,100, ₹550 each.</li>
+    <li><strong>With GST:</strong> ₹2,000 + 5% GST (₹100) + 10% tip on subtotal (₹200) = ₹2,300 across 4 = ₹575 each.</li>
+    <li><strong>Item-wise:</strong> A orders ₹600, B orders ₹400; a 5% tax and 10% tip are shared 60/40, so A pays ₹690 and B pays ₹460.</li>
+  </ul>
+
+  <h2>🍴 Restaurant use cases</h2>
+  <ul>
+    <li>Dinner with friends where everyone chips in equally, tip included.</li>
+    <li>A café bill where two people shared and want an item-wise split.</li>
+    <li>A large table where the organiser wants a printable receipt for reimbursement.</li>
+  </ul>
+
+  <h2>✈️ Travel use cases</h2>
+  <ul>
+    <li>Splitting a cab or ride fare with a service charge among co-travellers.</li>
+    <li>Dividing a hotel or Airbnb bill with different lengths of stay using shares.</li>
+    <li>Settling a group food-delivery order abroad in the local currency.</li>
+  </ul>
+
+  <h2>🏢 Business use cases</h2>
+  <ul>
+    <li>Team lunches where each person expenses their own item-wise share.</li>
+    <li>Client dinners needing a GST-inclusive receipt for accounting.</li>
+    <li>Office parties split by department using weighted shares.</li>
+  </ul>
+
+  <!-- ===== Related Tools (ABOVE About — required order) ===== -->
+  <h2>🧰 Related Tools</h2>
+  <div class="related-grid">
+    <a href="gst-calculator.html"><span class="ri">🧮</span> GST Calculator</a>
+    <a href="percentage-discount-calculator.html"><span class="ri">📊</span> Percentage Calculator</a>
+    <a href="percentage-discount-calculator.html"><span class="ri">🏷️</span> Discount Calculator</a>
+    <a href="invoice-generator.html"><span class="ri">🧾</span> Invoice Generator</a>
+    <a href="unit-converter.html"><span class="ri">💱</span> Currency / Unit Converter</a>
+    <a href="compound-interest-calculator.html"><span class="ri">📈</span> Investment Calculator</a>
+    <a href="emi-calculator.html"><span class="ri">🏠</span> Loan / EMI Calculator</a>
+    <a href="simple-interest-calculator.html"><span class="ri">💵</span> Simple Interest Calculator</a>
+    <a href="sip-calculator.html"><span class="ri">📈</span> SIP Calculator</a>
+    <a href="income-tax-calculator.html"><span class="ri">💰</span> Income Tax Calculator</a>
+  </div>
+
+  <!-- ===== About (English) ===== -->
+  <h2>ℹ️ About This Tool</h2>
+  <p>The <strong>Professional Bill Splitting &amp; Tip Calculator</strong> is a free, browser-based tool that settles the whole "who owes what" question in one place. It grew out of a basic tip calculator into a complete bill manager because real bills are rarely just an amount and a tip: they carry taxes such as GST or VAT, sometimes a service charge, occasionally a discount or coupon, and they usually have to be divided among people who did not all order the same thing. This tool models every one of those elements accurately and then splits the result fairly, giving each person a clean number and an easy way to pay or be reimbursed — without any of the mental arithmetic that turns the end of a good meal into an awkward negotiation.</p>
+
+  <p>You begin with the bill details: the subtotal, and optionally the restaurant name, a bill number, the date and your currency. Eight currencies are supported — INR, USD, EUR, GBP, AED, SGD, AUD and CAD — each formatted with the correct local grouping so the figures look right wherever you are. Next comes the tip, which is more flexible than a single percentage box. You can choose a preset from 5% up to 25%, type any custom percentage, switch to a fixed tip amount, ask the tool to simply round the total up to a neat figure, or turn the tip off entirely. Crucially, you can decide whether the tip is calculated on the pre-tax subtotal or on the post-tax total, because conventions differ and that choice can change the tip noticeably on a taxed bill.</p>
+
+  <p>Taxes and charges are handled properly rather than lumped into a guess. You pick a tax type — GST, CGST + SGST, IGST, VAT, sales tax or a custom rate — and the tool applies it to the taxable amount; for CGST + SGST it shows the split halves the way an Indian restaurant bill does. A separate service-charge percentage sits alongside it, and a discount (flat amount or percentage, with an optional coupon label) is applied before tax, exactly as it would be on a genuine receipt. The order of operations matters for accuracy: discount first, then tax and service on the discounted amount, then tip, then the grand total. Getting that sequence right is one of the main reasons a dedicated tool beats doing it in your head.</p>
+
+  <p>Splitting is where the tool really earns its place. The simplest mode divides the grand total equally among the number of people you set, with quick "Couple" and "Family" buttons for common group sizes. When the split is not even, you have three fairer options. <strong>Shares</strong> lets you weight each person — useful when some people had more, or when a couple counts as one paying unit. <strong>Custom amounts</strong> lets you type exactly what each person will pay and shows whether the entered amounts add up to the total. And <strong>item-wise</strong> splitting lets you enter each dish with its price and tick who shared it; the tool then charges every person for their items and distributes the tax, service charge and tip in proportion to what they ordered — the fairest possible split, and the one that ends most disagreements. Every person can be named and renamed, so the final summary reads like a real settlement rather than "Person 1, Person 2".</p>
+
+  <p>Once the split is calculated, rounding keeps the payments practical. You can round each person's share up or down, or to the nearest 1, 5, 10 or 50 units of your currency, so nobody is chasing small change. The full breakdown — subtotal, discount, tax, service charge, tip, grand total and each person's share — is shown in a clear summary and can be turned into a printable receipt with the restaurant name and date. From there, sharing is a single tap: copy the summary to your clipboard, send it straight to a WhatsApp chat, open a pre-filled email, or display a QR code that a friend can scan to read the breakdown. For records or reimbursement, the same data exports as CSV, an Excel file, a PDF or a PNG image.</p>
+
+  <p>Everything is built to be quick, private and dependable. The calculation runs live as you type, with no "calculate" button to hunt for, and because it is entirely client-side it keeps working on flaky restaurant Wi-Fi or fully offline once loaded. Your bills, names and amounts are never uploaded; recent and starred bills are saved only in your own browser for quick recall. Inputs are validated to catch empty, negative or nonsensical values before they produce a wrong split. The layout is responsive and touch-friendly for use on a phone at the table, and the controls are labelled and keyboard-accessible. It is a small tool by ambition but a thorough one in execution — designed so that restaurants, cafés, hotels, offices, families, travellers, businesses and students can all reach a fair, agreed number in seconds.</p>
+
+  <!-- ===== About (Hindi) ===== -->
+  <h2>ℹ️ इस टूल के बारे में (हिंदी में)</h2>
+  <p class="bs-lang-note">The same guide in Hindi / यही जानकारी हिंदी में।</p>
+  <p><strong>Professional Bill Splitting &amp; Tip Calculator</strong> एक फ्री, ब्राउज़र-आधारित टूल है जो "किस पर कितना बकाया है" के पूरे सवाल को एक ही जगह हल कर देता है। यह एक साधारण tip calculator से बढ़कर एक पूरा bill manager बन गया क्योंकि असली बिल शायद ही सिर्फ़ एक रकम और tip होते हैं: उनमें GST या VAT जैसे tax होते हैं, कभी service charge, कभी discount या coupon, और आमतौर पर उन्हें ऐसे लोगों में बाँटना पड़ता है जिन्होंने एक जैसा order नहीं किया। यह टूल इन सब को सटीकता से मॉडल करता है और फिर नतीजे को निष्पक्ष रूप से बाँटता है, हर व्यक्ति को एक साफ़ आँकड़ा और भुगतान/reimbursement का आसान तरीका देता है — बिना उस दिमागी हिसाब के जो एक अच्छे खाने के अंत को अजीब बहस में बदल देता है।</p>
+
+  <p>आप bill details से शुरू करते हैं: subtotal, और चाहें तो restaurant का नाम, bill number, तारीख़ और currency। आठ currencies समर्थित हैं — INR, USD, EUR, GBP, AED, SGD, AUD और CAD — हर एक सही local formatting के साथ। इसके बाद tip आता है, जो एक अकेले percentage box से ज़्यादा लचीला है। आप 5% से 25% तक कोई preset चुन सकते हैं, कोई custom percentage टाइप कर सकते हैं, fixed tip amount पर स्विच कर सकते हैं, टूल से total को सीधे एक साफ़ आँकड़े तक round करा सकते हैं, या tip पूरी तरह बंद कर सकते हैं। अहम बात — आप तय कर सकते हैं कि tip pre-tax subtotal पर लगे या post-tax total पर, क्योंकि परंपराएँ अलग-अलग होती हैं।</p>
+
+  <p>Tax और charges को सही ढंग से संभाला जाता है। आप tax type चुनते हैं — GST, CGST + SGST, IGST, VAT, sales tax या custom rate — और टूल इसे taxable amount पर लगाता है; CGST + SGST के लिए यह आधे-आधे हिस्से वैसे ही दिखाता है जैसे किसी भारतीय restaurant बिल पर होते हैं। इसके साथ एक अलग service-charge percentage होता है, और discount (flat या percentage, coupon label के साथ) tax से पहले लगता है, ठीक जैसे असली receipt पर होता है। क्रम मायने रखता है: पहले discount, फिर discounted रकम पर tax और service, फिर tip, फिर grand total।</p>
+
+  <p>बाँटना ही वह जगह है जहाँ टूल सबसे उपयोगी है। सबसे सरल mode grand total को लोगों की संख्या में बराबर बाँटता है, और आम group sizes के लिए "Couple" तथा "Family" बटन हैं। जब बँटवारा बराबर न हो, तीन ज़्यादा निष्पक्ष विकल्प हैं। <strong>Shares</strong> हर व्यक्ति को weight देता है; <strong>Custom amounts</strong> से आप हर व्यक्ति की सटीक रकम डाल सकते हैं और देख सकते हैं कि योग total से मेल खाता है या नहीं; और <strong>item-wise</strong> split में आप हर dish उसकी कीमत के साथ डालकर टिक करते हैं कि उसे किसने साझा किया — फिर tax, service charge और tip हर व्यक्ति के order के अनुपात में बँटते हैं, जो सबसे निष्पक्ष split है। हर व्यक्ति को नाम दिया जा सकता है।</p>
+
+  <p>Split निकलने के बाद rounding भुगतान को व्यावहारिक बनाती है। आप हर व्यक्ति का हिस्सा ऊपर/नीचे, या नज़दीकी 1, 5, 10 या 50 तक round कर सकते हैं। पूरा breakdown — subtotal, discount, tax, service charge, tip, grand total और हर व्यक्ति का हिस्सा — एक साफ़ summary में दिखता है और restaurant नाम व तारीख़ के साथ printable receipt में बदला जा सकता है। साझा करना एक टैप में है: summary को clipboard पर copy करें, सीधे WhatsApp चैट में भेजें, pre-filled email खोलें, या QR code दिखाएँ। रिकॉर्ड के लिए यही डेटा CSV, Excel, PDF या PNG में export होता है।</p>
+
+  <p>सब कुछ तेज़, निजी और भरोसेमंद बनाया गया है। calculation टाइप करते ही live चलती है, और चूँकि यह पूरी तरह client-side है, यह कमज़ोर restaurant Wi-Fi पर या लोड होने के बाद पूरी तरह offline भी काम करता है। आपके बिल, नाम और रकम कभी अपलोड नहीं होते; हाल के और सहेजे गए बिल सिर्फ़ आपके ब्राउज़र में रहते हैं। inputs validate होते हैं। लेआउट responsive और touch-friendly है, और नियंत्रण labelled व कीबोर्ड-सुलभ हैं — ताकि restaurants, cafés, hotels, offices, परिवार, यात्री, businesses और छात्र सभी सेकंडों में एक निष्पक्ष, सहमत आँकड़े तक पहुँच सकें।</p>
+
+  <!-- ===== FAQ (immediately after About — required order) ===== -->
+  <h2>❓ Frequently Asked Questions</h2>
+  <div class="bs-faq" id="bsFaq">
+    <details><summary>Is this bill splitter free?</summary><p>Yes, completely free with no account, no signup and no limits. / हाँ, यह पूरी तरह मुफ़्त है — न अकाउंट, न signup, न कोई सीमा।</p></details>
+    <details><summary>Are my bill details uploaded anywhere?</summary><p>No. Everything is calculated locally in your browser; nothing is sent to a server. / नहीं, सब कुछ आपके ब्राउज़र में ही होता है।</p></details>
+    <details><summary>Does it work offline?</summary><p>Yes, once the page has loaded it works without internet (QR sharing aside, which needs the QR module). / हाँ, लोड होने के बाद यह offline काम करता है।</p></details>
+    <details><summary>Can I split a bill item by item?</summary><p>Yes. Choose "Item-wise", add each dish with its price and tick who shared it; tax and tip are shared proportionally. / हाँ, "Item-wise" चुनें।</p></details>
+    <details><summary>Is the tip calculated before or after tax?</summary><p>You choose — there is a "Tip on: pre-tax subtotal / post-tax total" option. / आप चुन सकते हैं — pre-tax या post-tax।</p></details>
+    <details><summary>Which tip presets are available?</summary><p>5%, 8%, 10%, 12%, 15%, 18%, 20%, 25% and a custom percentage, plus fixed and round-total modes. / 5–25% presets, custom, fixed और round।</p></details>
+    <details><summary>What taxes can I add?</summary><p>GST, CGST + SGST, IGST, VAT, sales tax or a custom rate, plus a separate service charge. / GST, CGST+SGST, IGST, VAT, sales tax या custom।</p></details>
+    <details><summary>How do discounts work?</summary><p>Apply a flat amount or a percentage before tax, with an optional coupon label. / discount tax से पहले flat या percentage में लगता है।</p></details>
+    <details><summary>Can I give people different shares?</summary><p>Yes. Use "Shares" to weight people, or "Custom amounts" to type each person's exact amount. / हाँ, Shares या Custom amounts इस्तेमाल करें।</p></details>
+    <details><summary>Can I name each person?</summary><p>Yes, every person has an editable name that appears in the summary and receipt. / हाँ, हर व्यक्ति का नाम बदला जा सकता है।</p></details>
+    <details><summary>How does rounding work?</summary><p>Round each person's share up, down, or to the nearest 1, 5, 10 or 50 of your currency. / हर हिस्सा ऊपर/नीचे या नज़दीकी 1/5/10/50 तक round करें।</p></details>
+    <details><summary>Which currencies are supported?</summary><p>INR, USD, EUR, GBP, AED, SGD, AUD and CAD, each with correct formatting. / INR, USD, EUR, GBP, AED, SGD, AUD और CAD।</p></details>
+    <details><summary>Can I share the split on WhatsApp?</summary><p>Yes. Tap WhatsApp to open a chat with the summary pre-filled, or use Email, Copy or QR. / हाँ, WhatsApp, Email, Copy या QR इस्तेमाल करें।</p></details>
+    <details><summary>Can I print a receipt?</summary><p>Yes. The Receipt/Print button generates a clean printable receipt with the breakdown. / हाँ, Receipt/Print बटन से printable receipt बनता है।</p></details>
+    <details><summary>What export formats are available?</summary><p>CSV, Excel, PDF and PNG, plus print. / CSV, Excel, PDF, PNG और print।</p></details>
+    <details><summary>Does it save my bills?</summary><p>Recent and starred bills are stored in your own browser (localStorage). / हाल के और सहेजे गए बिल आपके ब्राउज़र में रहते हैं।</p></details>
+    <details><summary>What does the QR code contain?</summary><p>A plain-text summary of the split so anyone can scan and read who owes what — no tracking. / split का सादा-text summary।</p></details>
+    <details><summary>Is it mobile friendly?</summary><p>Yes, it is fully responsive and touch-friendly for use at the table. / हाँ, यह मोबाइल पर पूरी तरह काम करता है।</p></details>
+    <details><summary>Is it accessible?</summary><p>Controls are labelled and keyboard-operable with clear focus states. / नियंत्रण labelled और कीबोर्ड-सुलभ हैं।</p></details>
+    <details><summary>Does it use any AI?</summary><p>No. Every figure comes from transparent arithmetic — no AI involved. / नहीं, इसमें कोई AI नहीं है।</p></details>
+    <details><summary>Why don't the custom amounts add up to the total?</summary><p>In custom mode you set each amount manually; the tool shows the remaining difference so you can adjust until it balances. / custom mode में आप ख़ुद रकम डालते हैं; अंतर दिखता है।</p></details>
+  </div>
+
+  <!-- ===== Privacy ===== -->
+  <h2>🔒 Privacy</h2>
+  <p>This tool is privacy-first. All bill, tip, tax and split calculations run entirely in your browser with JavaScript — your amounts, people's names, restaurant details and saved bills are never uploaded to a server, shared with analytics, or processed by any AI service. Saved and recent bills live only in your own browser's local storage, and clearing your browser data removes them. This makes the tool safe for personal and business use, and it keeps working offline once loaded. / यह टूल privacy-first है — सारा काम आपके ब्राउज़र में होता है, कोई डेटा अपलोड नहीं होता, और सहेजे गए बिल सिर्फ़ आपके ब्राउज़र में रहते हैं।</p>
+
+  <!-- ===== Troubleshooting ===== -->
+  <h2>🛠️ Troubleshooting</h2>
+  <ul>
+    <li><strong>Per-person total looks off:</strong> check the tip-on setting (pre-tax vs post-tax) and whether a service charge or discount is applied.</li>
+    <li><strong>Custom amounts don't balance:</strong> the summary shows the remaining difference — adjust one person's amount until it reaches zero.</li>
+    <li><strong>Item-wise totals seem wrong:</strong> make sure every item is assigned to at least one person; unassigned items are not charged to anyone.</li>
+    <li><strong>The QR button did nothing:</strong> the QR module may be blocked offline — use Copy or WhatsApp instead, which need no external code.</li>
+    <li><strong>Currency symbol looks wrong:</strong> pick your currency at the top; formatting follows that currency's locale.</li>
+    <li><strong>Export didn't download:</strong> allow downloads for this site in your browser and try again.</li>
+  </ul>
 </div>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-let selectedTip = 10;
+(function(){
+  'use strict';
+  function $(id){ return document.getElementById(id); }
 
-document.querySelectorAll('.tip-btn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.tip-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    selectedTip = parseFloat(btn.dataset.tip);
-    document.getElementById('customTip').value = '';
-    calculate();
-  });
-});
+  var CUR={INR:['₹','en-IN'],USD:['$','en-US'],EUR:['€','en-IE'],GBP:['£','en-GB'],AED:['د.إ ','en-AE'],SGD:['S$','en-SG'],AUD:['A$','en-AU'],CAD:['C$','en-CA']};
+  var curCode='INR';
+  function sym(){ return CUR[curCode][0]; }
+  function fmt(n){ if(!isFinite(n))return '—'; return sym()+ (Math.round(n*100)/100).toLocaleString(CUR[curCode][1],{minimumFractionDigits:0,maximumFractionDigits:2}); }
 
-document.getElementById('customTip').addEventListener('input', ()=>{
-  const v = document.getElementById('customTip').value;
-  if(v !== ''){
-    document.querySelectorAll('.tip-btn').forEach(b=>b.classList.remove('active'));
-    selectedTip = parseFloat(v) || 0;
+  var state={ tipMode:'percent', tipPercent:10, tipFixed:100, tipOn:'pretax', split:'equal', rounding:'none' };
+  var people=[{name:'Person 1',weight:1,amount:0,percent:50},{name:'Person 2',weight:1,amount:0,percent:50}];
+  var items=[];
+
+  // ---------- People ----------
+  function syncPeopleCount(){
+    var c=Math.max(1,Math.min(100,parseInt($('peopleCount').value)||1));
+    while(people.length<c) people.push({name:'Person '+(people.length+1),weight:1,amount:0,percent:0});
+    while(people.length>c) people.pop();
+    renderPeople();
   }
-  calculate();
-});
+  function renderPeople(){
+    var wrap=$('peopleList'); wrap.innerHTML='';
+    people.forEach(function(p,i){
+      var row=document.createElement('div'); row.className='bs-person';
+      var html='<input class="pname" value="'+esc(p.name)+'" data-i="'+i+'" data-k="name" aria-label="Person name">';
+      if(state.split==='shares'){ html+='<span class="bs-mini-label">shares</span><input class="pval" type="number" min="0" step="1" value="'+p.weight+'" data-i="'+i+'" data-k="weight">'; }
+      else if(state.split==='custom'){ html+='<span class="bs-mini-label">'+sym()+'</span><input class="pval" type="number" min="0" step="any" value="'+p.amount+'" data-i="'+i+'" data-k="amount">'; }
+      else if(state.split==='percent'){ html+='<input class="pval" type="number" min="0" step="any" value="'+p.percent+'" data-i="'+i+'" data-k="percent"><span class="bs-mini-label">%</span>'; }
+      html+='<span class="pshare" data-share="'+i+'">—</span><button class="pdel" data-del="'+i+'" title="Remove">✕</button>';
+      row.innerHTML=html;
+      wrap.appendChild(row);
+    });
+    wrap.querySelectorAll('input[data-k]').forEach(function(el){ el.addEventListener('input',function(){ var i=+el.getAttribute('data-i'),k=el.getAttribute('data-k'); people[i][k]= k==='name'?el.value:(parseFloat(el.value)||0); calculate(); }); });
+    wrap.querySelectorAll('[data-del]').forEach(function(b){ b.addEventListener('click',function(){ if(people.length<=1)return; people.splice(+b.getAttribute('data-del'),1); $('peopleCount').value=people.length; renderPeople(); calculate(); }); });
+  }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m];}); }
 
-function formatRupee(n){
-  return '₹' + n.toLocaleString('en-IN', { maximumFractionDigits: 2 });
-}
+  $('addPersonBtn').addEventListener('click',function(){ people.push({name:'Person '+(people.length+1),weight:1,amount:0,percent:0}); $('peopleCount').value=people.length; renderPeople(); calculate(); });
+  $('peopleCount').addEventListener('input',function(){ syncPeopleCount(); calculate(); });
+  document.querySelectorAll('[data-quick]').forEach(function(b){ b.addEventListener('click',function(){ $('peopleCount').value=b.getAttribute('data-quick'); syncPeopleCount(); calculate(); }); });
 
-function calculate(){
-  const bill = parseFloat(document.getElementById('billAmount').value) || 0;
-  const people = Math.max(1, parseInt(document.getElementById('peopleCount').value) || 1);
+  // ---------- Items ----------
+  function addItem(){ items.push({name:'Item '+(items.length+1),amount:0,who:people.map(function(_,i){return i;})}); renderItems(); calculate(); }
+  function renderItems(){
+    var wrap=$('itemsList'); wrap.innerHTML='';
+    items.forEach(function(it,idx){
+      var row=document.createElement('div'); row.className='bs-item';
+      var who=people.map(function(p,i){ return '<label><input type="checkbox" '+(it.who.indexOf(i)>-1?'checked':'')+' data-it="'+idx+'" data-who="'+i+'">'+esc(p.name)+'</label>'; }).join('');
+      row.innerHTML='<input class="iname" value="'+esc(it.name)+'" data-it="'+idx+'" data-k="name"><input class="iamt" type="number" min="0" step="any" value="'+it.amount+'" data-it="'+idx+'" data-k="amount"><div class="iassign">'+who+'</div><button class="pdel" data-delit="'+idx+'">✕</button>';
+      wrap.appendChild(row);
+    });
+    wrap.querySelectorAll('input[data-k]').forEach(function(el){ el.addEventListener('input',function(){ var i=+el.getAttribute('data-it'),k=el.getAttribute('data-k'); items[i][k]=k==='name'?el.value:(parseFloat(el.value)||0); calculate(); }); });
+    wrap.querySelectorAll('input[data-who]').forEach(function(el){ el.addEventListener('change',function(){ var i=+el.getAttribute('data-it'),w=+el.getAttribute('data-who'); var arr=items[i].who; var p=arr.indexOf(w); if(el.checked&&p<0)arr.push(w); if(!el.checked&&p>-1)arr.splice(p,1); calculate(); }); });
+    wrap.querySelectorAll('[data-delit]').forEach(function(b){ b.addEventListener('click',function(){ items.splice(+b.getAttribute('data-delit'),1); renderItems(); calculate(); }); });
+  }
+  $('addItemBtn').addEventListener('click',addItem);
 
-  const tipAmount = bill * selectedTip / 100;
-  const total = bill + tipAmount;
-  const perPerson = total / people;
+  // ---------- Mode toggles ----------
+  document.querySelectorAll('[data-tipmode]').forEach(function(b){ b.addEventListener('click',function(){ document.querySelectorAll('[data-tipmode]').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); state.tipMode=b.getAttribute('data-tipmode'); $('tipPercentRow').style.display=state.tipMode==='percent'?'block':'none'; $('tipFixedRow').style.display=state.tipMode==='fixed'?'block':'none'; calculate(); }); });
+  document.querySelectorAll('.tip-btn').forEach(function(b){ b.addEventListener('click',function(){ document.querySelectorAll('.tip-btn').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); state.tipPercent=parseFloat(b.getAttribute('data-tip')); $('customTip').value=''; calculate(); }); });
+  $('customTip').addEventListener('input',function(){ if(this.value!==''){ document.querySelectorAll('.tip-btn').forEach(function(x){x.classList.remove('active');}); state.tipPercent=parseFloat(this.value)||0; } calculate(); });
+  $('tipFixed').addEventListener('input',function(){ state.tipFixed=parseFloat(this.value)||0; calculate(); });
+  document.querySelectorAll('input[name=tipon]').forEach(function(r){ r.addEventListener('change',function(){ state.tipOn=this.value; calculate(); }); });
+  document.querySelectorAll('[data-split]').forEach(function(b){ b.addEventListener('click',function(){ document.querySelectorAll('[data-split]').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); state.split=b.getAttribute('data-split'); $('itemsWrap').style.display=state.split==='items'?'block':'none'; if(state.split==='items'&&!items.length)addItem(); renderPeople(); calculate(); }); });
+  document.querySelectorAll('[data-round]').forEach(function(b){ b.addEventListener('click',function(){ document.querySelectorAll('[data-round]').forEach(function(x){x.classList.remove('active');}); b.classList.add('active'); state.rounding=b.getAttribute('data-round'); calculate(); }); });
+  $('currency').addEventListener('change',function(){ curCode=this.value; renderPeople(); if(state.split==='items')renderItems(); calculate(); });
+  ['billAmount','taxType','taxRate','serviceCharge','discountType','discountValue'].forEach(function(id){ $(id).addEventListener('input',calculate); });
 
-  document.getElementById('tipVal').textContent = formatRupee(tipAmount);
-  document.getElementById('totalVal').textContent = formatRupee(total);
-  document.getElementById('perPersonVal').textContent = formatRupee(perPerson);
-}
+  // ---------- Rounding ----------
+  function roundShare(v){
+    var m=state.rounding;
+    if(m==='none')return v;
+    if(m==='up')return Math.ceil(v);
+    if(m==='down')return Math.floor(v);
+    var step=parseFloat(m); return Math.round(v/step)*step;
+  }
 
-document.getElementById('billAmount').addEventListener('input', calculate);
-document.getElementById('peopleCount').addEventListener('input', calculate);
+  // ---------- Validation ----------
+  function validate(){
+    var el=$('billAmount'), wrap=el.closest('.bs-field'); var v=parseFloat(el.value);
+    var bad=el.value===''||isNaN(v)||v<0; wrap.classList.toggle('invalid',bad); return !bad;
+  }
 
-calculate();
+  // ---------- Core calculation ----------
+  var lastCalc=null;
+  function calculate(){
+    if(!validate()){ return; }
+    var bill=parseFloat($('billAmount').value)||0;
+    var discType=$('discountType').value, discVal=parseFloat($('discountValue').value)||0;
+    var discount = discType==='none'?0 : (discType==='flat'? Math.min(discVal,bill) : bill*discVal/100);
+    var taxable=Math.max(0,bill-discount);
+    var taxType=$('taxType').value, taxRate=taxType==='none'?0:(parseFloat($('taxRate').value)||0);
+    var tax=taxable*taxRate/100;
+    var service=taxable*(parseFloat($('serviceCharge').value)||0)/100;
+    var tipBase=state.tipOn==='posttax'?(taxable+tax+service):taxable;
+    var tip=0, grandPreTip=taxable+tax+service;
+    if(state.tipMode==='percent') tip=tipBase*state.tipPercent/100;
+    else if(state.tipMode==='fixed') tip=state.tipFixed;
+    else if(state.tipMode==='round'){ var target=Math.ceil(grandPreTip/10)*10; tip=Math.max(0,target-grandPreTip); }
+    var grand=grandPreTip+tip;
+
+    // shares
+    var shares=[];
+    if(state.split==='equal'){ shares=people.map(function(){return grand/people.length;}); }
+    else if(state.split==='shares'){ var tw=people.reduce(function(a,p){return a+(p.weight||0);},0)||1; shares=people.map(function(p){return grand*(p.weight||0)/tw;}); }
+    else if(state.split==='percent'){ shares=people.map(function(p){return grand*(p.percent||0)/100;}); }
+    else if(state.split==='custom'){ shares=people.map(function(p){return p.amount||0;}); }
+    else if(state.split==='items'){
+      var base=people.map(function(){return 0;}); var assignedTotal=0;
+      items.forEach(function(it){ var w=it.who.length; if(w>0&&it.amount>0){ it.who.forEach(function(pi){ base[pi]+=it.amount/w; }); assignedTotal+=it.amount; } });
+      var extra=grand-taxable+ (taxable-assignedTotal); // = grand - assignedTotal
+      var addOns=grand-assignedTotal;
+      shares=base.map(function(b){ return b + (assignedTotal>0? addOns*(b/assignedTotal) : addOns/people.length); });
+    }
+    var roundedShares=shares.map(roundShare);
+    var perAvg=grand/people.length;
+
+    // paint
+    $('tipVal').textContent=fmt(tip);
+    $('totalVal').textContent=fmt(grand);
+    $('perPersonVal').textContent=fmt(perAvg);
+    people.forEach(function(p,i){ var el2=document.querySelector('[data-share="'+i+'"]'); if(el2)el2.textContent=fmt(roundedShares[i]||0); });
+
+    // summary
+    var rows='';
+    function srow(l,v,cls){ return '<div class="bs-srow '+(cls||'')+'"><span>'+l+'</span><b>'+v+'</b></div>'; }
+    rows+=srow('Subtotal',fmt(bill));
+    if(discount>0) rows+=srow('Discount'+($('coupon').value?' ('+esc($('coupon').value)+')':''),'−'+fmt(discount),'discount');
+    if(tax>0){ if(taxType==='cgstsgst'){ rows+=srow('CGST ('+(taxRate/2)+'%)',fmt(tax/2)); rows+=srow('SGST ('+(taxRate/2)+'%)',fmt(tax/2)); } else rows+=srow(taxLabel(taxType)+' ('+taxRate+'%)',fmt(tax)); }
+    if(service>0) rows+=srow('Service charge',fmt(service));
+    if(tip>0) rows+=srow('Tip',fmt(tip));
+    rows+=srow('Grand total',fmt(grand),'total');
+    var sumShares=roundedShares.reduce(function(a,b){return a+b;},0);
+    if(state.split==='custom'){ var diff=grand-sumShares; rows+=srow('Entered total',fmt(sumShares)+(Math.abs(diff)>0.5?' ('+ (diff>0?'short ':'over ')+fmt(Math.abs(diff))+')':' ✓')); }
+    $('billSummary').innerHTML=rows;
+
+    lastCalc={bill:bill,discount:discount,tax:tax,taxType:taxType,taxRate:taxRate,service:service,tip:tip,grand:grand,people:people.map(function(p,i){return {name:p.name,share:roundedShares[i]||0};}),restaurant:$('restaurant').value,date:$('billDate').value,cur:curCode};
+    pushHistory();
+  }
+  function taxLabel(t){ return {gst:'GST',igst:'IGST',vat:'VAT',sales:'Sales Tax',custom:'Tax'}[t]||'Tax'; }
+
+  // ---------- Summary text / share ----------
+  function summaryText(){
+    if(!lastCalc)return '';
+    var L=[]; if(lastCalc.restaurant)L.push(lastCalc.restaurant); if(lastCalc.date)L.push(lastCalc.date);
+    L.push('Subtotal: '+fmt(lastCalc.bill));
+    if(lastCalc.discount>0)L.push('Discount: -'+fmt(lastCalc.discount));
+    if(lastCalc.tax>0)L.push(taxLabel(lastCalc.taxType)+': '+fmt(lastCalc.tax));
+    if(lastCalc.service>0)L.push('Service: '+fmt(lastCalc.service));
+    if(lastCalc.tip>0)L.push('Tip: '+fmt(lastCalc.tip));
+    L.push('TOTAL: '+fmt(lastCalc.grand));
+    L.push('— Split —');
+    lastCalc.people.forEach(function(p){ L.push(p.name+': '+fmt(p.share)); });
+    L.push('(via ApneSoftware Bill Splitter)');
+    return L.join('\n');
+  }
+  $('copyBtn').addEventListener('click',function(){ navigator.clipboard.writeText(summaryText()).then(function(){ toast('Summary copied'); },function(){ toast('Copy failed'); }); });
+  $('waBtn').addEventListener('click',function(){ window.open('https://wa.me/?text='+encodeURIComponent(summaryText()),'_blank'); });
+  $('emailBtn').addEventListener('click',function(){ window.location.href='mailto:?subject='+encodeURIComponent('Bill split'+(lastCalc.restaurant?' — '+lastCalc.restaurant:''))+'&body='+encodeURIComponent(summaryText()); });
+  $('qrBtn').addEventListener('click',function(){
+    var box=$('qrBox'); if(box.style.display==='block'){ box.style.display='none'; return; }
+    try{ var qr=qrcode(0,'M'); qr.addData(summaryText()); qr.make(); var n=qr.getModuleCount(); var cv=$('qrCanvas'); var cell=6; cv.width=cv.height=(n+8)*cell; var x=cv.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,cv.width,cv.height); x.fillStyle='#000'; for(var r=0;r<n;r++)for(var c=0;c<n;c++){ if(qr.isDark(r,c))x.fillRect((c+4)*cell,(r+4)*cell,cell,cell); } box.style.display='block'; }
+    catch(e){ toast('QR unavailable offline — use Copy/WhatsApp'); }
+  });
+
+  // ---------- Export ----------
+  function dl(blob,fn){ var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fn; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function(){URL.revokeObjectURL(a.href);},1500); }
+  function rowsForExport(){ var r=[['Field','Value']]; r.push(['Restaurant',lastCalc.restaurant||'']); r.push(['Date',lastCalc.date||'']); r.push(['Subtotal',lastCalc.bill]); r.push(['Discount',lastCalc.discount]); r.push([taxLabel(lastCalc.taxType),lastCalc.tax]); r.push(['Service',lastCalc.service]); r.push(['Tip',lastCalc.tip]); r.push(['Grand total',lastCalc.grand]); lastCalc.people.forEach(function(p){ r.push([p.name,p.share]); }); return r; }
+  document.querySelectorAll('[data-export]').forEach(function(b){ b.addEventListener('click',function(){ if(!lastCalc)return; var t=b.getAttribute('data-export');
+    if(t==='csv'){ dl(new Blob([rowsForExport().map(function(r){return r.join(',');}).join('\n')],{type:'text/csv'}),'bill-split.csv'); }
+    else if(t==='xls'){ var h='<table>'+rowsForExport().map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>';}).join('')+'</table>'; dl(new Blob(['﻿<html><head><meta charset="UTF-8"></head><body>'+h+'</body></html>'],{type:'application/vnd.ms-excel'}),'bill-split.xls'); }
+    else if(t==='pdf'){ dl(makePDF(summaryText().split('\n')),'bill-split.pdf'); }
+    else if(t==='png'){ exportPNG(); }
+  }); });
+  function exportPNG(){
+    var lines=summaryText().split('\n'); var pad=24, lh=26, w=420, h=pad*2+lines.length*lh;
+    var cv=document.createElement('canvas'); cv.width=w; cv.height=h; var x=cv.getContext('2d');
+    x.fillStyle='#1a1a2e'; x.fillRect(0,0,w,h); x.fillStyle='#fff'; x.font='16px system-ui,Arial';
+    lines.forEach(function(l,i){ if(/TOTAL/.test(l)){x.font='bold 17px system-ui';x.fillStyle='#16c079';} else {x.font='16px system-ui';x.fillStyle='#fff';} x.fillText(l,pad,pad+18+i*lh); });
+    cv.toBlob(function(b){ dl(b,'bill-split.png'); });
+  }
+  function makePDF(lines){
+    var esc2=function(s){return String(s).replace(/([\\()])/g,'\\$1').replace(/[^\x00-\x7F]/g,'');};
+    var content='BT /F1 11 Tf 40 800 Td 15 TL\n'+lines.map(function(l,i){return (i===0?'':'T* ')+'('+esc2(l)+') Tj';}).join('\n')+'\nET';
+    var objs=['<< /Type /Catalog /Pages 2 0 R >>','<< /Type /Pages /Kids [3 0 R] /Count 1 >>','<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>','<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>','<< /Length '+content.length+' >>\nstream\n'+content+'\nendstream'];
+    var pdf='%PDF-1.4\n',off=[]; objs.forEach(function(o,i){ off.push(pdf.length); pdf+=(i+1)+' 0 obj\n'+o+'\nendobj\n'; });
+    var xr=pdf.length; pdf+='xref\n0 '+(objs.length+1)+'\n0000000000 65535 f \n'; off.forEach(function(o){ pdf+=('0000000000'+o).slice(-10)+' 00000 n \n'; });
+    pdf+='trailer\n<< /Size '+(objs.length+1)+' /Root 1 0 R >>\nstartxref\n'+xr+'\n%%EOF';
+    return new Blob([pdf],{type:'application/pdf'});
+  }
+
+  // ---------- Receipt / print ----------
+  $('printBtn').addEventListener('click',function(){
+    if(!lastCalc)return;
+    var r=$('receipt'); var L='<h2>'+esc(lastCalc.restaurant||'Bill Receipt')+'</h2><div style="text-align:center;font-size:12px">'+(lastCalc.date||'')+(($('billNo').value)?(' • #'+esc($('billNo').value)):'')+'</div><hr>';
+    L+=rrow('Subtotal',fmt(lastCalc.bill)); if(lastCalc.discount>0)L+=rrow('Discount','-'+fmt(lastCalc.discount)); if(lastCalc.tax>0)L+=rrow(taxLabel(lastCalc.taxType),fmt(lastCalc.tax)); if(lastCalc.service>0)L+=rrow('Service',fmt(lastCalc.service)); if(lastCalc.tip>0)L+=rrow('Tip',fmt(lastCalc.tip));
+    L+='<hr>'+rrow('<b>TOTAL</b>','<b>'+fmt(lastCalc.grand)+'</b>')+'<hr>';
+    lastCalc.people.forEach(function(p){ L+=rrow(esc(p.name),fmt(p.share)); });
+    L+='<hr><div style="text-align:center;font-size:11px">Generated by ApneSoftware.com</div>';
+    r.innerHTML=L; window.print();
+  });
+  function rrow(l,v){ return '<div class="r"><span>'+l+'</span><span>'+v+'</span></div>'; }
+
+  // ---------- History ----------
+  var HKEY='bs_history_v1';
+  function loadH(){ try{return JSON.parse(localStorage.getItem(HKEY)||'[]');}catch(e){return [];} }
+  function saveH(h){ try{localStorage.setItem(HKEY,JSON.stringify(h.slice(0,25)));}catch(e){} }
+  function pushHistory(){ if(!lastCalc)return; var h=loadH(); var label=(lastCalc.restaurant||'Bill')+' • '+fmt(lastCalc.grand)+' • '+lastCalc.people.length+'p'; var entry={label:label,grand:lastCalc.grand,auto:true,fav:false}; if(h.length&&h[0].auto&&!h[0].fav){h[0]=entry;}else{h.unshift(entry);} saveH(h); renderHist(); }
+  function renderHist(){ var h=loadH(); var w=$('historyList'); if(!h.length){ w.innerHTML='<div style="font-size:.76rem;color:var(--text-dim)">No bills yet.</div>'; return; } w.innerHTML=h.map(function(it,i){ return '<div class="hitem"><span class="g">'+(it.fav?'⭐ ':'')+esc(it.label)+'</span><button data-fav="'+i+'">'+(it.fav?'★':'☆')+'</button><button data-del="'+i+'">✕</button></div>'; }).join('');
+    w.querySelectorAll('[data-fav]').forEach(function(b){ b.addEventListener('click',function(){ var i=+b.getAttribute('data-fav'); h[i].fav=!h[i].fav; h[i].auto=false; saveH(h); renderHist(); }); });
+    w.querySelectorAll('[data-del]').forEach(function(b){ b.addEventListener('click',function(){ h.splice(+b.getAttribute('data-del'),1); saveH(h); renderHist(); }); });
+  }
+  $('saveBtn').addEventListener('click',function(){ var h=loadH(); if(h.length){ h[0].fav=true; h[0].auto=false; saveH(h); renderHist(); toast('Saved'); } });
+  $('clearHistBtn').addEventListener('click',function(){ if(confirm('Clear all history?')){ saveH([]); renderHist(); } });
+
+  function toast(m){ var t=document.createElement('div'); t.textContent=m; t.style.cssText='position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1a1a2e;color:#fff;border:1px solid rgba(255,255,255,.15);padding:10px 18px;border-radius:10px;font-size:.85rem;z-index:9999'; document.body.appendChild(t); setTimeout(function(){t.style.transition='.3s';t.style.opacity='0';},1500); setTimeout(function(){t.remove();},1900); }
+
+  // ---------- Init ----------
+  try{ $('billDate').value=new Date().toISOString().slice(0,10); }catch(e){}
+  renderPeople(); renderHist(); calculate();
+})();
 </script>
 <!-- Default Statcounter code for Apne Software
 https://apnesoftware.com -->
 <script type="text/javascript">
-var sc_project=13334460; 
-var sc_invisible=1; 
-var sc_security="a5854dc7"; 
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
 </script>
 <script type="text/javascript"
 src="https://www.statcounter.com/counter/counter.js"
@@ -168,5 +676,32 @@ src="https://c.statcounter.com/13334460/0/a5854dc7/1/"
 alt="Web Analytics"
 referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 <!-- End of Statcounter Code -->
+
+<!-- FAQ structured data -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is this bill splitter free?","acceptedAnswer":{"@type":"Answer","text":"Yes, completely free with no account, no signup and no limits."}},
+{"@type":"Question","name":"Are my bill details uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Everything is calculated locally in your browser; nothing is sent to a server."}},
+{"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"Yes, once the page has loaded it works without internet, aside from QR sharing which needs the QR module."}},
+{"@type":"Question","name":"Can I split a bill item by item?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose Item-wise, add each dish with its price and tick who shared it; tax and tip are shared proportionally."}},
+{"@type":"Question","name":"Is the tip calculated before or after tax?","acceptedAnswer":{"@type":"Answer","text":"You choose, using the Tip on pre-tax subtotal or post-tax total option."}},
+{"@type":"Question","name":"Which tip presets are available?","acceptedAnswer":{"@type":"Answer","text":"5, 8, 10, 12, 15, 18, 20 and 25 percent, plus a custom percentage, fixed amount and round-total modes."}},
+{"@type":"Question","name":"What taxes can I add?","acceptedAnswer":{"@type":"Answer","text":"GST, CGST plus SGST, IGST, VAT, sales tax or a custom rate, plus a separate service charge."}},
+{"@type":"Question","name":"How do discounts work?","acceptedAnswer":{"@type":"Answer","text":"Apply a flat amount or a percentage before tax, with an optional coupon label."}},
+{"@type":"Question","name":"Can I give people different shares?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use Shares to weight people, or Custom amounts to type each person's exact amount."}},
+{"@type":"Question","name":"Can I name each person?","acceptedAnswer":{"@type":"Answer","text":"Yes, every person has an editable name that appears in the summary and receipt."}},
+{"@type":"Question","name":"How does rounding work?","acceptedAnswer":{"@type":"Answer","text":"Round each person's share up, down, or to the nearest 1, 5, 10 or 50 of your currency."}},
+{"@type":"Question","name":"Which currencies are supported?","acceptedAnswer":{"@type":"Answer","text":"INR, USD, EUR, GBP, AED, SGD, AUD and CAD, each with correct formatting."}},
+{"@type":"Question","name":"Can I share the split on WhatsApp?","acceptedAnswer":{"@type":"Answer","text":"Yes. Tap WhatsApp to open a chat with the summary pre-filled, or use Email, Copy or QR."}},
+{"@type":"Question","name":"Can I print a receipt?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Receipt or Print button generates a clean printable receipt with the breakdown."}},
+{"@type":"Question","name":"What export formats are available?","acceptedAnswer":{"@type":"Answer","text":"CSV, Excel, PDF and PNG, plus print."}},
+{"@type":"Question","name":"Does it save my bills?","acceptedAnswer":{"@type":"Answer","text":"Recent and starred bills are stored in your own browser using localStorage."}},
+{"@type":"Question","name":"What does the QR code contain?","acceptedAnswer":{"@type":"Answer","text":"A plain-text summary of the split so anyone can scan and read who owes what, with no tracking."}},
+{"@type":"Question","name":"Is it mobile friendly?","acceptedAnswer":{"@type":"Answer","text":"Yes, it is fully responsive and touch-friendly for use at the table."}},
+{"@type":"Question","name":"Is it accessible?","acceptedAnswer":{"@type":"Answer","text":"Controls are labelled and keyboard-operable with clear focus states."}},
+{"@type":"Question","name":"Does it use any AI?","acceptedAnswer":{"@type":"Answer","text":"No. Every figure comes from transparent arithmetic with no AI involved."}},
+{"@type":"Question","name":"Why don't the custom amounts add up to the total?","acceptedAnswer":{"@type":"Answer","text":"In custom mode you set each amount manually; the tool shows the remaining difference so you can adjust until it balances."}}
+]}
+</script>
 </body>
 </html>
