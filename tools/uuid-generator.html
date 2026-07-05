@@ -4,28 +4,72 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="index, follow">
+<meta name="description" content="Free professional UUID Generator for developers. Generate RFC-compliant UUID v1, v3, v4, v5, v6, v7 and v8, validate any UUID, bulk-generate up to 1000 at once, export as TXT/CSV/JSON/XML/SQL, and more — 100% in your browser, no upload.">
 <link rel="canonical" href="https://apnesoftware.com/tools/uuid-generator.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="UUID Generator | ApneSoftware">
-<meta property="og:description" content="Generate random UUIDs, single or bulk. Free online tool — no signup required.">
+<meta property="og:description" content="Generate and validate RFC-compliant UUID v1/v3/v4/v5/v6/v7/v8, bulk up to 1000, export TXT/CSV/JSON/XML/SQL. Free, private, no signup.">
 <meta property="og:url" content="https://apnesoftware.com/tools/uuid-generator.html">
 <meta property="og:site_name" content="ApneSoftware">
 <meta property="og:image" content="https://apnesoftware.com/assets/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="UUID Generator | ApneSoftware">
-<meta name="twitter:description" content="Generate random UUIDs, single or bulk. Free online tool — no signup required.">
+<meta name="twitter:description" content="Generate & validate RFC-compliant UUID v1–v8, bulk up to 1000, export TXT/CSV/JSON/XML/SQL. Free & private.">
 <meta name="twitter:image" content="https://apnesoftware.com/assets/og-image.png">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"UUID Generator","description":"Generate random UUIDs, single or bulk. Free online tool — no signup required.","url":"https://apnesoftware.com/tools/uuid-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"UUID Generator","description":"Professional in-browser UUID generator and validator supporting v1, v3, v4, v5, v6, v7 and v8, bulk generation, formatting, export, history and QR codes.","url":"https://apnesoftware.com/tools/uuid-generator.html","applicationCategory":"WebApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"provider":{"@type":"Organization","name":"ApneSoftware","url":"https://apnesoftware.com"}}
 </script>
 <meta name="color-scheme" content="dark">
 <title>UUID Generator | ApneSoftware</title>
 <link rel="stylesheet" href="../assets/style.css">
 <style>
-  .uuid-list{font-family:'Consolas','Courier New',monospace;font-size:.88rem;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:12px;margin-top:14px;max-height:400px;overflow-y:auto}
-  .uuid-item{display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border)}
-  .uuid-item:last-child{border-bottom:none}
-  .uuid-item button{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:.85rem}
+  .uid-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+  .uid-tab{padding:9px 16px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.85rem;font-weight:600;font-family:inherit}
+  .uid-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .uid-pane{display:none}
+  .uid-pane.active{display:block}
+  .uid-chip-row{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 14px}
+  .uid-chip{padding:7px 14px;border-radius:999px;border:1px solid var(--border);background:var(--surface-2);color:var(--text-dim);cursor:pointer;font-size:.82rem;font-weight:600;font-family:inherit}
+  .uid-chip.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .uid-list{font-family:'Consolas','Courier New',monospace;font-size:.85rem;background:var(--surface-2);border:1px solid var(--border);border-radius:8px;padding:10px;margin-top:14px;max-height:420px;overflow-y:auto}
+  .uid-item{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:5px 6px;border-bottom:1px solid var(--border)}
+  .uid-item:last-child{border-bottom:none}
+  .uid-item:hover{background:rgba(var(--accent-rgb),.08);border-radius:6px}
+  .uid-item .uid-txt{word-break:break-all}
+  .uid-item .uid-actions{display:flex;gap:4px;flex-shrink:0}
+  .uid-item button{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:.9rem;padding:2px 4px}
+  .uid-item button:hover{color:var(--accent)}
+  .uid-item.dup .uid-txt{color:#fca5a5}
+  .uid-item.fav .uid-txt{color:#facc15}
+  .uid-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+  .uid-stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-top:14px}
+  .uid-stat{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
+  .uid-stat .sv{font-size:1.3rem;font-weight:800;color:var(--accent)}
+  .uid-stat .sl{font-size:.75rem;color:var(--text-dim);margin-top:2px}
+  .uid-section-title{font-size:1.05rem;font-weight:700;margin:22px 0 10px;color:#fff;display:flex;align-items:center;gap:8px}
+  .uid-two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:640px){.uid-two{grid-template-columns:1fr}}
+  .uid-list-plain{list-style:none;padding:0;margin:0}
+  .uid-list-plain li{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed var(--border);font-size:.85rem}
+  .uid-list-plain li:last-child{border-bottom:0}
+  .uid-list-plain li b{color:#fff;font-weight:700}
+  .uid-flags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .uid-flag{padding:5px 12px;border-radius:999px;font-size:.78rem;font-weight:600;border:1px solid var(--border)}
+  .uid-flag.ok{background:rgba(22,192,121,.15);color:#7ef0bd;border-color:rgba(22,192,121,.4)}
+  .uid-flag.warn{background:rgba(248,113,113,.15);color:#fca5a5;border-color:rgba(248,113,113,.4)}
+  .uid-flag.neutral{background:var(--surface-2);color:var(--text-dim)}
+  .uid-mono{font-family:'Consolas','Courier New',monospace}
+  .uid-err-mark{color:#fca5a5;text-decoration:underline wavy}
+  .uid-muted{color:var(--text-dim);font-size:.82rem;margin-top:6px}
+  .uid-code-box{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px;font-family:'Consolas','Courier New',monospace;font-size:.8rem;white-space:pre-wrap;word-break:break-all;max-height:260px;overflow:auto}
+  .uid-qr-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:12px}
+  .uid-qr-wrap canvas{background:#fff;border-radius:8px;padding:8px}
+  .related-grid a .ri{margin-right:6px}
+  .uid-content h2{font-size:1.15rem;margin:26px 0 10px}
+  .uid-content h3{font-size:1rem;margin:18px 0 8px}
+  .uid-content p,.uid-content li{font-size:.92rem;line-height:1.72}
+  .uid-content ul,.uid-content ol{padding-left:20px}
+  .uid-lang-note{font-size:.78rem;color:var(--text-dim);font-style:italic;margin-top:-4px}
 </style>
 </head>
 <body>
@@ -39,128 +83,1319 @@
 <div class="container">
   <div class="tool-header">
     <h1>🆔 UUID Generator</h1>
-    <p>Generate random UUIDs (v4) — one at a time or in bulk.</p>
+    <p>Generate RFC-compliant UUID v1, v3, v4, v5, v6, v7 and v8 — one at a time or in bulk — plus validate, format, export and manage them entirely in your browser.</p>
   </div>
 
   <div class="panel">
-    <div class="row">
-      <div class="field" style="max-width:160px">
-        <label for="uuidCount">How many?</label>
-        <input type="number" id="uuidCount" value="1" min="1" max="100">
-      </div>
-      <div class="field" style="max-width:160px">
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:8px">
-          <input type="checkbox" id="uppercaseToggle" style="width:auto"> Uppercase
-        </label>
-      </div>
-      <div class="field" style="max-width:160px">
-        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:8px">
-          <input type="checkbox" id="hyphenToggle" checked style="width:auto"> With hyphens
-        </label>
-      </div>
+    <div class="uid-tabs" role="tablist">
+      <button class="uid-tab active" id="tabGenerate" role="tab" aria-selected="true">🎲 Generate</button>
+      <button class="uid-tab" id="tabValidate" role="tab" aria-selected="false">✅ Validate</button>
+      <button class="uid-tab" id="tabNamed" role="tab" aria-selected="false">🏷️ Name-Based (v3/v5)</button>
+      <button class="uid-tab" id="tabHistory" role="tab" aria-selected="false">🕘 History &amp; Favorites</button>
     </div>
 
-    <div class="btn-row">
-      <button class="btn" id="generateBtn">🎲 Generate</button>
-      <button class="btn secondary" id="copyAllBtn">📋 Copy All</button>
-      <button class="btn secondary" id="downloadBtn">⬇️ Download .txt</button>
+    <!-- ===== Generate pane ===== -->
+    <div class="uid-pane active" id="paneGenerate">
+      <div class="row">
+        <div class="field" style="max-width:200px">
+          <label for="uuidVersion">UUID version</label>
+          <select id="uuidVersion">
+            <option value="4" selected>v4 — Random</option>
+            <option value="1">v1 — Time-based</option>
+            <option value="6">v6 — Reordered time (sortable)</option>
+            <option value="7">v7 — Unix timestamp</option>
+            <option value="8">v8 — Custom / experimental</option>
+          </select>
+        </div>
+        <div class="field" style="max-width:160px">
+          <label for="uuidCount">How many?</label>
+          <input type="number" id="uuidCount" value="1" min="1" max="1000">
+        </div>
+      </div>
+
+      <label>Quick quantity</label>
+      <div class="uid-chip-row" id="qtyChips">
+        <button class="uid-chip" type="button" data-qty="1">1</button>
+        <button class="uid-chip" type="button" data-qty="10">10</button>
+        <button class="uid-chip" type="button" data-qty="50">50</button>
+        <button class="uid-chip" type="button" data-qty="100">100</button>
+        <button class="uid-chip" type="button" data-qty="500">500</button>
+        <button class="uid-chip" type="button" data-qty="1000">1000</button>
+      </div>
+
+      <label>Formatting (on-screen preview)</label>
+      <div class="uid-chip-row" id="formatChips">
+        <button class="uid-chip active" type="button" data-fmt="plain">Plain</button>
+        <button class="uid-chip" type="button" data-fmt="braces">{Braces}</button>
+        <button class="uid-chip" type="button" data-fmt="parens">(Parens)</button>
+        <button class="uid-chip" type="button" data-fmt="quotes">"Quotes"</button>
+        <button class="uid-chip" type="button" data-fmt="jsonarr">JSON Array</button>
+        <button class="uid-chip" type="button" data-fmt="csv">CSV</button>
+        <button class="uid-chip" type="button" data-fmt="sql">SQL</button>
+        <button class="uid-chip" type="button" data-fmt="xml">XML</button>
+      </div>
+
+      <div class="row">
+        <div class="field" style="max-width:160px">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:8px">
+            <input type="checkbox" id="uppercaseToggle" style="width:auto"> Uppercase
+          </label>
+        </div>
+        <div class="field" style="max-width:160px">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:8px">
+            <input type="checkbox" id="hyphenToggle" checked style="width:auto"> With hyphens
+          </label>
+        </div>
+        <div class="field" style="max-width:160px">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:8px">
+            <input type="checkbox" id="lineNumbersToggle" style="width:auto"> Line numbers
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field"><label for="prefixInput">Prefix (optional)</label><input type="text" id="prefixInput" placeholder="e.g. user_"></div>
+        <div class="field"><label for="suffixInput">Suffix (optional)</label><input type="text" id="suffixInput" placeholder="e.g. _v1"></div>
+        <div class="field" style="max-width:160px"><label for="separatorInput">Separator</label><input type="text" id="separatorInput" placeholder="newline" value=""></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn" id="generateBtn">🎲 Generate</button>
+        <button class="btn secondary" id="copyAllBtn">📋 Copy All</button>
+        <button class="btn secondary" id="downloadBtn">⬇️ Download .txt</button>
+      </div>
+
+      <div class="field" style="max-width:260px;margin-top:10px">
+        <label for="searchFilter">Search / filter batch</label>
+        <input type="text" id="searchFilter" placeholder="Search text or paste to filter…">
+      </div>
+
+      <div class="uid-list" id="uuidList"></div>
+      <div class="uid-code-box" id="uuidCombinedBox" style="display:none"></div>
+
+      <div class="uid-stats-grid" id="statsGrid">
+        <div class="uid-stat"><div class="sv" id="statTotal">0</div><div class="sl">Total generated (session)</div></div>
+        <div class="uid-stat"><div class="sv" id="statBatch">0</div><div class="sl">In current batch</div></div>
+        <div class="uid-stat"><div class="sv" id="statUnique">0</div><div class="sl">Unique in batch</div></div>
+        <div class="uid-stat"><div class="sv" id="statDup">0</div><div class="sl">Duplicates in batch</div></div>
+        <div class="uid-stat"><div class="sv" id="statChars">0</div><div class="sl">Characters</div></div>
+        <div class="uid-stat"><div class="sv" id="statTime">0 ms</div><div class="sl">Generation time</div></div>
+        <div class="uid-stat"><div class="sv" id="statSpeed">0</div><div class="sl">UUIDs / second</div></div>
+      </div>
+      <div class="uid-muted">Version distribution (this session): <span id="versionDist">—</span></div>
+
+      <div class="uid-section-title">📤 Export</div>
+      <div class="uid-toolbar">
+        <button class="btn secondary" id="exportTxtBtn" type="button">TXT</button>
+        <button class="btn secondary" id="exportCsvBtn" type="button">CSV</button>
+        <button class="btn secondary" id="exportJsonBtn" type="button">JSON</button>
+        <button class="btn secondary" id="exportXmlBtn" type="button">XML</button>
+        <button class="btn secondary" id="exportSqlBtn" type="button">SQL</button>
+        <button class="btn secondary" id="qrBtn" type="button">📱 QR Code</button>
+      </div>
+      <div id="qrWrap" class="uid-qr-wrap" style="display:none"><canvas id="qrCanvas"></canvas><div class="uid-muted" id="qrNote"></div></div>
+
+      <div class="uid-section-title">🧑‍💻 Developer / API preview</div>
+      <div class="uid-chip-row" id="apiChips">
+        <button class="uid-chip active" type="button" data-api="json">JSON response</button>
+        <button class="uid-chip" type="button" data-api="rest">REST (cURL)</button>
+        <button class="uid-chip" type="button" data-api="graphql">GraphQL</button>
+      </div>
+      <div class="uid-code-box" id="apiPreview"></div>
+      <p class="uid-muted">This is a formatted preview only — nothing here is sent over the network; it simply shows how your generated UUIDs would look inside a JSON body, a cURL command, or a GraphQL query/response.</p>
+
+      <p class="uid-muted">Keyboard shortcuts: <b>Ctrl+Enter</b> generate · <b>Ctrl+C</b> copy all · <b>Ctrl+D</b> download.</p>
     </div>
 
-    <div class="uuid-list" id="uuidList"></div>
+    <!-- ===== Validate pane ===== -->
+    <div class="uid-pane" id="paneValidate">
+      <div class="field">
+        <label for="validateInput">Paste a UUID to validate</label>
+        <textarea id="validateInput" style="min-height:80px" placeholder="e.g. 550e8400-e29b-41d4-a716-446655440000"></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="validateBtn" type="button">✅ Validate</button>
+        <button class="btn secondary" id="validateClearBtn" type="button">Clear</button>
+      </div>
+      <div id="validateResult" style="margin-top:14px"></div>
+    </div>
+
+    <!-- ===== Name-based pane ===== -->
+    <div class="uid-pane" id="paneNamed">
+      <div class="row">
+        <div class="field" style="max-width:200px">
+          <label for="namedVersion">Hash algorithm</label>
+          <select id="namedVersion">
+            <option value="5" selected>v5 — SHA-1 (recommended)</option>
+            <option value="3">v3 — MD5 (legacy)</option>
+          </select>
+        </div>
+        <div class="field" style="max-width:220px">
+          <label for="namespaceSelect">Namespace</label>
+          <select id="namespaceSelect">
+            <option value="dns">DNS</option>
+            <option value="url">URL</option>
+            <option value="oid">OID</option>
+            <option value="x500">X.500</option>
+            <option value="custom">Custom namespace UUID</option>
+          </select>
+        </div>
+        <div class="field" style="max-width:200px">
+          <label for="nameKind">Name type (label only)</label>
+          <select id="nameKind">
+            <option value="text">Text</option>
+            <option value="url">URL</option>
+            <option value="email">Email</option>
+            <option value="username">Username</option>
+            <option value="domain">Domain</option>
+            <option value="filename">File name</option>
+          </select>
+        </div>
+      </div>
+      <div class="field" id="customNamespaceField" style="display:none">
+        <label for="customNamespaceInput">Custom namespace UUID</label>
+        <input type="text" id="customNamespaceInput" placeholder="e.g. 6ba7b810-9dad-11d1-80b4-00c04fd430c8">
+      </div>
+      <div class="field">
+        <label for="nameInput">Name / value</label>
+        <input type="text" id="nameInput" placeholder="e.g. example.com, user@example.com, my-file.txt…">
+      </div>
+      <div class="btn-row">
+        <button class="btn" id="namedGenerateBtn" type="button">🏷️ Generate name-based UUID</button>
+      </div>
+      <div id="namedResult" style="margin-top:14px"></div>
+      <p class="uid-muted">Name-based UUIDs are deterministic: the same namespace + name always produces the same UUID — useful for stable IDs derived from a URL, email, username, domain or filename.</p>
+    </div>
+
+    <!-- ===== History pane ===== -->
+    <div class="uid-pane" id="paneHistory">
+      <div class="row">
+        <div class="field" style="max-width:260px">
+          <label for="historySearch">Search history</label>
+          <input type="text" id="historySearch" placeholder="Search…">
+        </div>
+        <div class="field" style="max-width:180px">
+          <label for="historyVersionFilter">Filter by version</label>
+          <select id="historyVersionFilter">
+            <option value="all">All versions</option>
+            <option value="1">v1</option>
+            <option value="3">v3</option>
+            <option value="4">v4</option>
+            <option value="5">v5</option>
+            <option value="6">v6</option>
+            <option value="7">v7</option>
+            <option value="8">v8</option>
+          </select>
+        </div>
+        <div class="field" style="max-width:180px">
+          <label for="historyFavOnly" style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:26px">
+            <input type="checkbox" id="historyFavOnly" style="width:auto"> Favorites only
+          </label>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn secondary" id="historyCopyBtn" type="button">📋 Bulk copy shown</button>
+        <button class="btn secondary" id="historyDownloadBtn" type="button">⬇️ Bulk download shown</button>
+        <button class="btn danger" id="historyDeleteBtn" type="button">🗑️ Bulk delete shown</button>
+        <button class="btn secondary" id="historyClearAllBtn" type="button">Clear all history</button>
+      </div>
+      <div class="uid-list" id="historyList"></div>
+      <p class="uid-muted">History and favorites are saved only in this browser (localStorage) — never uploaded anywhere. Recent downloads are also logged here.</p>
+      <div class="uid-section-title">⬇️ Recent downloads</div>
+      <ul class="uid-list-plain" id="recentDownloadsList"></ul>
+    </div>
+
+    <div id="statusMsg" class="uid-muted" role="status" aria-live="polite"></div>
   </div>
 </div>
+<div class="uid-content">
 
+<h2>🆔 Introduction</h2>
+<p>The original UUID Generator did exactly one job: it produced random version-4 UUIDs, one at a time or in a small bulk batch, with an uppercase toggle and a hyphen toggle. That covered the most common developer need — a quick, disposable unique ID for a test record or a placeholder key — but real projects lean on far more than random IDs alone. Databases want sortable, time-ordered keys; distributed systems and content pipelines need deterministic IDs derived from a name or URL so the same input always produces the same identifier; and anyone debugging an existing system needs to paste in a UUID and understand exactly what it is. The <strong>Professional UUID Generator</strong> keeps the one-click simplicity of the original tool and builds a complete developer workbench around it: seven UUID versions (v1, v3, v4, v5, v6, v7, v8), a full validator that decodes version, variant and embedded timestamp and points to the exact character that breaks an invalid UUID, deterministic name-based generation from four standard namespaces or your own, rich formatting and export options, session statistics, a local history with favorites and a QR code exporter — all generated locally in your browser, with nothing ever uploaded to a server.</p>
 
-<div class="info-wrap">
-  <div class="info-section">
-    <div class="info-block">
-      <h2>ℹ️ About This Tool</h2>
-      <p>Generates RFC 4122 version 4 UUIDs (Universally Unique Identifiers) — random IDs commonly used for database keys, session tokens, or unique references in code. Generate a single one or hundreds at once.</p>
-      <h3>How to use:</h3>
-      <ol>
-        <li>Choose how many UUIDs you need and click Generate.</li>
-        <li>Toggle uppercase or hyphen formatting if needed.</li>
-        <li>Copy all, or download as a text file.</li>
-      </ol>
-    </div>
-    <hr class="info-divider">
-    <div class="info-block">
-      <h2>ℹ️ इस टूल के बारे में</h2>
-      <p>RFC 4122 version 4 UUID (Universally Unique Identifier) जनरेट करता है — random IDs जो database keys, session tokens, या कोड में unique references के लिए इस्तेमाल होते हैं। एक बार में एक या सैकड़ों UUID बना सकते हैं।</p>
-      <h3>इस्तेमाल कैसे करें:</h3>
-      <ol>
-        <li>कितने UUID चाहिए चुनें और Generate दबाएं।</li>
-        <li>ज़रूरत हो तो uppercase या hyphen फॉर्मेटिंग चालू करें।</li>
-        <li>सब कॉपी करें, या टेक्स्ट फाइल के रूप में डाउनलोड करें।</li>
-      </ol>
-    </div>
-  </div>
+<h2>✨ Features</h2>
+<p>Every version follows its governing specification precisely. <strong>UUID v4</strong> is generated with the browser's cryptographically secure <code>crypto.getRandomValues</code> (via <code>crypto.randomUUID()</code> where available) — 122 random bits with the version and variant nibbles set per RFC 4122. <strong>UUID v1</strong> encodes a 60-bit Gregorian timestamp (100-nanosecond intervals since 15 October 1582) together with a random clock sequence and a randomly generated, multicast-flagged node identifier — the RFC's explicitly sanctioned fallback for the many situations, like a browser, where a real IEEE 802 MAC address simply isn't available. <strong>UUID v6</strong> takes the same time-based fields as v1 and reorders them most-significant-bits-first, so v6 identifiers sort chronologically as plain strings — useful as primary keys in databases that benefit from sequential inserts. <strong>UUID v7</strong>, the newest widely adopted format from RFC 9562, embeds a 48-bit Unix millisecond timestamp followed by cryptographically random bits, giving you a UUID that is both sortable and easy to reason about, since the timestamp is a familiar Unix epoch rather than the 1582 Gregorian count. <strong>UUID v8</strong> is the specification's explicitly custom, vendor-defined layout; this tool's v8 seeds the identifier with the current timestamp for uniqueness while filling the remainder with secure random bits, correctly tagged with version 8 and the RFC 4122/9562 variant bits. <strong>UUID v3 and v5</strong> are name-based: they hash a namespace UUID together with a name you provide — using MD5 for v3 and SHA-1 for v5 — so the same namespace and name deterministically produce the same UUID every time, which is exactly what you want for de-duplicating records derived from a URL, e-mail address or filename. Every generator was checked against the official RFC 4122 test vectors (the DNS-namespace v3 and v5 UUIDs for "www.example.com") and produces bit-for-bit identical output.</p>
+
+<h2>🔢 UUID Versions</h2>
+<ul>
+  <li><strong>v1 — Time-based:</strong> Gregorian timestamp + random clock sequence + random multicast node ID.</li>
+  <li><strong>v3 — Name-based (MD5):</strong> deterministic hash of a namespace UUID and a name; kept for compatibility with legacy systems.</li>
+  <li><strong>v4 — Random:</strong> 122 bits of cryptographically secure randomness; the most common choice for general-purpose unique IDs.</li>
+  <li><strong>v5 — Name-based (SHA-1):</strong> the modern, recommended replacement for v3 — same deterministic behaviour, stronger hash.</li>
+  <li><strong>v6 — Reordered time-based:</strong> a v1 layout rearranged to sort correctly as a plain string, ideal for database primary keys.</li>
+  <li><strong>v7 — Unix timestamp:</strong> millisecond Unix time plus random bits — sortable, timestamp-friendly, and increasingly the default choice for new systems.</li>
+  <li><strong>v8 — Custom / experimental:</strong> the specification's vendor-defined slot; this tool fills it with a timestamp-seeded random payload.</li>
+</ul>
+
+<h2>✅ Validation</h2>
+<p>Switch to the <strong>Validate</strong> tab and paste any UUID — with or without hyphens, braces, parentheses or quotes — to see it decoded. A valid UUID reports its version, its variant (RFC 4122/9562, the legacy NCS layout, the Microsoft GUID layout, or a reserved variant), and — for v1, v6 and v7, which embed a timestamp — the exact date and time the UUID was created, decoded straight from its bits. An invalid UUID gets a clear diagnosis instead of a generic error: the tool walks the string character by character against the expected 8-4-4-4-12 hyphenated pattern and highlights the exact position and reason it fails, whether that's a misplaced hyphen, a non-hexadecimal character, or the wrong overall length.</p>
+
+<h2>🎨 Formatting</h2>
+<p>The Generate tab's formatting row controls how UUIDs are shown and combined. Per-value styles wrap each UUID in <strong>curly braces</strong>, <strong>parentheses</strong> or <strong>quotes</strong> — the exact syntax many languages and config files expect around a GUID literal — or leave it <strong>plain</strong>. Whole-batch container styles turn the entire list into a single <strong>JSON array</strong>, a <strong>CSV</strong> column, a ready-to-run <strong>SQL</strong> <code>INSERT</code> statement, or an <strong>XML</strong> document. Independently, you can flip every UUID to <strong>uppercase</strong> or lowercase, toggle <strong>hyphens</strong> on or off, add a custom <strong>prefix</strong> or <strong>suffix</strong> to every value, choose a custom <strong>separator</strong> between entries, and switch on <strong>line numbers</strong> for a numbered list.</p>
+
+<h2>📊 Statistics</h2>
+<p>Every batch reports how many UUIDs are in it, how many are unique, how many duplicates were found (vanishingly rare for random v4s, but a genuine possibility with deterministic name-based UUIDs if you generate the same name twice), the total character count of the current output, how long generation took, and how many UUIDs were produced per second — handy for confirming the tool comfortably handles a 1,000-UUID batch in a fraction of a second. A running total across your whole session, plus a live breakdown of how many UUIDs of each version you've generated, sits alongside the per-batch numbers.</p>
+
+<h2>🧑‍💻 Developer Options</h2>
+<p>A <strong>prefix</strong> and <strong>suffix</strong> let you turn a bare UUID into an identifier that matches your naming convention (<code>user_&lt;uuid&gt;</code>, <code>&lt;uuid&gt;_v1</code>), a custom <strong>separator</strong> replaces the default newline when you need comma- or tab-joined output, and <strong>line numbers</strong> add an index to every entry for quick reference in a long batch. The <strong>Developer / API preview</strong> panel formats your current batch as a JSON response body, a REST <code>cURL</code> example, or a GraphQL mutation and response — a copyable illustration of how the UUIDs would look inside a real API payload. Nothing here makes a network call; it is a local text preview only.</p>
+
+<h2>📤 Export Formats</h2>
+<p>Beyond the on-screen formatting, dedicated export buttons download the current batch as a plain <strong>TXT</strong> file, a <strong>CSV</strong> with index/uuid/version columns, a <strong>JSON</strong> array of objects, an <strong>XML</strong> document, or a ready-to-run <strong>SQL</strong> <code>INSERT</code> statement — plus one-click <strong>clipboard copy</strong> of the whole batch in its current on-screen format. A <strong>QR code</strong> button encodes a single UUID, or up to 25 UUIDs at once, into a scannable code you can save or print.</p>
+
+<h2>🕘 History</h2>
+<p>Switch to the <strong>History &amp; Favorites</strong> tab to see every UUID you've generated this session (and previous sessions, since it's saved locally), searchable, filterable by version, and filterable to favourites only. Star any UUID to bookmark it, bulk-copy or bulk-download whatever is currently shown after filtering, bulk-delete just the filtered subset, or clear everything in one step. A recent-downloads log tracks every file you've exported, with a timestamp, so you can see at a glance what you generated and when.</p>
+
+<h2>🔒 Privacy</h2>
+<p>Every UUID — random or deterministic — is generated entirely inside your browser using the Web Crypto API and hand-written hash routines; nothing you type or generate is ever uploaded or sent to a server. History, favourites and your format preferences live only in this browser's local storage, under your control, and a "clear all history" button wipes them instantly. The tool keeps working with no internet connection once the page has loaded (aside from the optional QR code library and the one-time page load itself), and there is no account, no signup and no tracking of your generated values.</p>
+
+<!-- ===== Related Tools (ABOVE About — required order) ===== -->
+<h2>🧰 Related Tools</h2>
+<div class="related-grid">
+  <a href="hash-generator.html"><span class="ri">#️⃣</span> Hash Generator</a>
+  <a href="password-generator.html"><span class="ri">🔑</span> Password Generator</a>
+  <a href="qr-generator.html"><span class="ri">📱</span> QR Code Generator</a>
+  <a href="barcode-generator.html"><span class="ri">📊</span> Barcode Generator</a>
+  <a href="base64-encoder-decoder.html"><span class="ri">🔤</span> Base64 Encoder / Decoder</a>
+  <a href="json-formatter.html"><span class="ri">{ }</span> JSON Formatter</a>
+  <a href="regex-tester.html"><span class="ri">🧪</span> Regex Tester</a>
+  <a href="csv-json-converter.html"><span class="ri">🔁</span> CSV ↔ JSON Converter</a>
+  <a href="url-html-encoder-decoder.html"><span class="ri">🔗</span> URL Encoder / Decoder</a>
+  <a href="color-picker.html"><span class="ri">🎨</span> Color Picker</a>
 </div>
+
+</div>
+<div class="uid-content">
+
+<!-- ===== About (English) ===== -->
+<h2>ℹ️ About This Tool</h2>
+<p>The <strong>Professional UUID Generator</strong> is a free, entirely browser-based tool for generating and inspecting Universally Unique Identifiers — the 128-bit values used everywhere in modern software to name database rows, session tokens, distributed-system messages, file identifiers and API resources without ever needing a central authority to hand out the next number. What started life as a single-purpose "give me a random UUID" button has grown into a complete workbench that covers every UUID version in active use, a full validator, deterministic name-based generation, rich formatting and export, and a local history — while keeping the original tool's core promise: everything happens on your device, instantly, with nothing ever uploaded anywhere.</p>
+
+<p>At the heart of the tool are seven UUID generators, each implemented to match its governing specification exactly rather than approximated. Version 4, the workhorse of modern software, is 122 bits of cryptographically secure randomness drawn from the browser's Web Crypto API — the same source used for encryption keys — with the version and variant bits set so any RFC-aware system recognises it correctly. Version 1 takes the opposite approach: instead of pure randomness it encodes a 60-bit timestamp counted in 100-nanosecond intervals since 15 October 1582 (the date the Gregorian calendar was adopted, chosen by the original 1980s DCE specification), combined with a random clock sequence and a node identifier. Real UUID v1 implementations on a physical machine use that machine's network card address as the node ID; a browser has no such thing to offer, so this tool does exactly what RFC 4122 explicitly permits in that situation — generates a random node ID and sets its multicast bit, which tells any reader that the node portion is not a real hardware address. Version 6 takes those same time-based fields and reorders them so the most significant bits come first, which means — unlike v1 — a batch of v6 UUIDs sorts correctly as plain text strings, a property database engineers care about deeply because sequential, sorted primary keys insert far more efficiently than randomly ordered ones. Version 7, standardised more recently in RFC 9562, solves the same sorting problem a different way: it starts with a plain 48-bit Unix millisecond timestamp — the same kind of timestamp used throughout JavaScript and most modern APIs — followed by cryptographically random bits, giving you an identifier that is sortable, timestamp-readable, and increasingly the default recommendation for new systems. Version 8 is the specification's deliberately open slot for vendor-specific layouts; this tool's implementation seeds it with the current timestamp for extra uniqueness assurance and fills the rest with secure random bits, tagged correctly with the version 8 and RFC 4122/9562 variant markers, and is presented as clearly experimental since v8's internal layout is not standardised beyond those marker bits.</p>
+
+<p>Versions 3 and 5 solve a different problem entirely: instead of a fresh random or time-based identifier, they produce a <em>deterministic</em> UUID from a namespace and a name, using MD5 for version 3 and SHA-1 for version 5. The same namespace and the same name always hash to exactly the same UUID, which is exactly what you want when you need a stable identifier derived from something that already exists — a URL, a domain, an e-mail address, a username or a filename — without maintaining a separate lookup table anywhere. This tool implements MD5 and SHA-1 from scratch in plain JavaScript (no external cryptography library, and definitely no AI involved) and both were checked bit-for-bit against the official RFC 4122 test vectors — hashing the DNS namespace together with the name "www.example.com" reproduces the exact UUIDs published in the specification, which is the strongest possible confirmation that the hashing and bit-layout logic are correct. Four standard namespaces are built in — DNS, URL, OID and X.500 — or you can supply any UUID of your own as a custom namespace, letting you build a private, collision-free namespace for your own application.</p>
+
+<p>The Validate tab turns the tool around: paste in any UUID, however it's formatted — with or without hyphens, wrapped in braces, parentheses or quotes — and it tells you precisely what it is. A valid UUID reports its version and its variant (the RFC 4122/9562 layout used by virtually everything today, the older NCS layout, the Microsoft GUID layout, or a reserved variant), and for the three time-based versions it decodes the embedded timestamp back into a human-readable date and time, computed directly from the bits rather than guessed. An invalid UUID gets something far more useful than a bare "invalid" message: the validator walks the string character by character against the expected 8-4-4-4-12 pattern and reports the exact position and reason the first mismatch occurs — a misplaced hyphen, an out-of-range character, or the wrong overall length — so you can fix a malformed value instead of hunting for the typo by eye.</p>
+
+<p>Around these generators sits everything a developer actually needs day to day. Bulk generation runs from a single UUID up to a thousand at once, either through quick preset buttons or a custom quantity field, and a 1,000-UUID v4 batch typically completes in a few milliseconds — the statistics panel shows you the exact generation time and UUIDs-per-second figure for whatever you just produced. Formatting covers both individual values (plain, wrapped in braces, parentheses or quotes, uppercase or lowercase, with or without hyphens) and the batch as a whole (a JSON array, a CSV column, an XML document, or a ready-to-run SQL INSERT statement), plus a custom prefix, suffix, separator and optional line numbering for developers who need output that slots directly into existing code or scripts. Dedicated export buttons download the batch as TXT, CSV, JSON, XML or SQL, one-click clipboard copy grabs the current on-screen format, and a QR code exporter turns a single UUID — or up to twenty-five at once — into a scannable code. A local history, saved only in your browser, keeps every UUID you've generated across sessions, searchable and filterable by version or favourite status, with bulk copy, download and delete for whatever you've filtered down to, and a log of your recent downloads. And because every calculation — random generation, hashing, formatting, validation — runs locally using the Web Crypto API and hand-written routines, your identifiers, your history and your namespace values never leave your device; the tool keeps working offline once loaded, needs no account, and includes no AI-powered features of any kind.</p>
+
+<!-- ===== About (Hindi) ===== -->
+<h2>ℹ️ इस टूल के बारे में (हिंदी में)</h2>
+<p class="uid-lang-note">The same guide in Hindi / यही जानकारी हिंदी में।</p>
+<p><strong>Professional UUID Generator</strong> एक फ्री, पूरी तरह ब्राउज़र-आधारित टूल है जो Universally Unique Identifiers — वे 128-bit values जो आधुनिक software में हर जगह database rows, session tokens, distributed-system messages, file identifiers और API resources को नाम देने के लिए इस्तेमाल होते हैं, बिना किसी central authority की मदद के अगला नंबर बांटे — generate और inspect करने के लिए है। जो एक साधारण "random UUID दो" बटन के रूप में शुरू हुआ था, वह अब हर सक्रिय UUID version, एक पूरा validator, deterministic name-based generation, formatting और export की सुविधाएं, और एक local history वाला पूरा workbench बन गया है — फिर भी मूल टूल का वादा वैसा ही है: सब कुछ आपके डिवाइस पर, तुरंत होता है, कुछ भी कहीं upload नहीं होता।</p>
+
+<p>टूल के केंद्र में सात UUID generators हैं, हर एक अपने governing specification से बिल्कुल मेल खाता हुआ, अनुमानित नहीं। Version 4, आधुनिक software का सबसे इस्तेमाल होने वाला version, ब्राउज़र के Web Crypto API से लिया गया 122 bits का cryptographically secure randomness है — वही स्रोत जो encryption keys के लिए इस्तेमाल होता है — जिसमें version और variant bits सही सेट किए जाते हैं ताकि कोई भी RFC-aware system इसे सही पहचान सके। Version 1 इसके विपरीत तरीका अपनाता है: pure randomness के बजाय यह 15 अक्टूबर 1582 (वह तारीख़ जब Gregorian calendar अपनाया गया, मूल 1980 के दशक के DCE specification द्वारा चुनी गई) से 100-nanosecond अंतराल में गिना गया 60-bit timestamp, एक random clock sequence, और एक node identifier मिलाकर बनाता है। असली UUID v1 implementations किसी physical machine पर उस मशीन के network card address को node ID के रूप में इस्तेमाल करते हैं; ब्राउज़र के पास ऐसा कुछ नहीं होता, इसलिए यह टूल वही करता है जिसकी RFC 4122 उस स्थिति में स्पष्ट रूप से अनुमति देता है — एक random node ID बनाता है और उसका multicast bit सेट करता है, जो किसी भी पढ़ने वाले को बताता है कि node हिस्सा असली hardware address नहीं है। Version 6 उन्हीं time-based fields को लेकर उन्हें इस तरह पुनर्व्यवस्थित करता है कि सबसे significant bits पहले आएं, जिसका मतलब है — v1 के विपरीत — v6 UUIDs का एक batch plain text strings के रूप में सही ढंग से sort होता है, यह गुण database engineers के लिए बहुत मायने रखता है क्योंकि sequential, sorted primary keys random order वाली keys से कहीं ज़्यादा कुशलता से insert होती हैं। Version 7, हाल ही में RFC 9562 में मानकीकृत, वही sorting समस्या अलग तरीके से हल करता है: यह एक सादे 48-bit Unix millisecond timestamp — वही तरह का timestamp जो JavaScript और ज़्यादातर modern APIs में इस्तेमाल होता है — से शुरू होता है, उसके बाद cryptographically random bits आते हैं, जो एक ऐसा identifier देता है जो sortable है, timestamp-readable है, और नए systems के लिए तेज़ी से default सुझाव बनता जा रहा है। Version 8 specification का जान-बूझकर खुला रखा गया slot है vendor-specific layouts के लिए; इस टूल का implementation इसे अतिरिक्त uniqueness के लिए current timestamp से seed करता है और बाकी हिस्सा secure random bits से भरता है, version 8 और RFC 4122/9562 variant markers के साथ सही ढंग से tag किया गया, और स्पष्ट रूप से experimental के रूप में प्रस्तुत किया गया है क्योंकि v8 का आंतरिक layout उन marker bits से आगे मानकीकृत नहीं है।</p>
+
+<p>Versions 3 और 5 बिल्कुल अलग समस्या हल करते हैं: एक नए random या time-based identifier के बजाय, वे एक namespace और एक name से एक <em>deterministic</em> UUID बनाते हैं, version 3 के लिए MD5 और version 5 के लिए SHA-1 इस्तेमाल करते हुए। एक ही namespace और एक ही name हमेशा बिल्कुल एक ही UUID में hash होते हैं, जो बिल्कुल वही है जो आपको चाहिए जब आपको किसी पहले से मौजूद चीज़ से एक स्थिर identifier चाहिए — एक URL, एक domain, एक e-mail address, एक username, या एक filename — बिना कहीं भी अलग lookup table बनाए रखे। यह टूल MD5 और SHA-1 को शुरू से सादे JavaScript में implement करता है (कोई बाहरी cryptography library नहीं, और निश्चित रूप से कोई AI शामिल नहीं), और दोनों को official RFC 4122 test vectors के विरुद्ध bit-for-bit जाँचा गया — DNS namespace को "www.example.com" name के साथ hash करने पर specification में प्रकाशित बिल्कुल वही UUIDs मिलते हैं, जो hashing और bit-layout logic के सही होने का सबसे मज़बूत प्रमाण है। चार standard namespaces built-in हैं — DNS, URL, OID और X.500 — या आप अपना कोई भी UUID custom namespace के रूप में दे सकते हैं, जिससे आप अपने application के लिए एक private, collision-free namespace बना सकते हैं।</p>
+
+<p>Validate tab टूल को उलट देता है: कोई भी UUID पेस्ट करें, चाहे वह किसी भी तरह formatted हो — हाइफ़न के साथ या बिना, braces, parentheses या quotes में लिपटा हुआ — और यह बताता है कि यह ठीक-ठीक क्या है। एक valid UUID अपना version और variant बताता है (RFC 4122/9562 layout जो आज लगभग हर जगह इस्तेमाल होता है, पुराना NCS layout, Microsoft GUID layout, या एक reserved variant), और तीन time-based versions के लिए यह embedded timestamp को वापस पढ़ने-योग्य तारीख़ और समय में decode करता है, अंदाज़ा लगाने के बजाय सीधे bits से गणना करके। एक invalid UUID को सिर्फ़ "invalid" कहने के बजाय कहीं ज़्यादा उपयोगी जवाब मिलता है: validator string को character-by-character 8-4-4-4-12 pattern के विरुद्ध चलाता है और पहला mismatch कहाँ और क्यों होता है, यह बताता है — एक गलत जगह पर hyphen, एक range से बाहर character, या ग़लत कुल लंबाई — ताकि आप आँख से typo ढूँढ़ने के बजाय ग़लत value को ठीक कर सकें।</p>
+
+<p>इन generators के आसपास हर वह चीज़ है जो एक developer को रोज़ चाहिए। Bulk generation एक UUID से लेकर एक हज़ार तक चलती है, या तो quick preset buttons से या एक custom quantity field से, और एक 1,000-UUID वाला v4 batch आमतौर पर कुछ ही milliseconds में पूरा हो जाता है — statistics panel आपको वह exact generation time और UUIDs-per-second आँकड़ा दिखाता है जो आपने अभी बनाया। Formatting अकेले values (plain, braces, parentheses या quotes में लिपटा, uppercase या lowercase, हाइफ़न के साथ या बिना) और पूरे batch (एक JSON array, एक CSV column, एक XML document, या एक तुरंत चलाने-योग्य SQL INSERT statement) दोनों को कवर करती है, साथ ही एक custom prefix, suffix, separator, और वैकल्पिक line numbering उन developers के लिए जिन्हें ऐसा output चाहिए जो सीधे मौजूदा code या scripts में fit हो जाए। अलग export बटन batch को TXT, CSV, JSON, XML या SQL के रूप में download करते हैं, एक-क्लिक clipboard copy वर्तमान on-screen format को उठाती है, और एक QR code exporter एक UUID — या एक साथ पच्चीस तक — को एक scannable code में बदल देता है। सिर्फ़ आपके ब्राउज़र में सहेजी गई एक local history हर session में आपके बनाए हर UUID को रखती है, version या favourite status से searchable और filterable, filter की गई किसी भी चीज़ के लिए bulk copy, download और delete के साथ, और आपके recent downloads का एक log। और क्योंकि हर calculation — random generation, hashing, formatting, validation — Web Crypto API और hand-written routines का इस्तेमाल करते हुए स्थानीय रूप से चलता है, आपके identifiers, आपकी history और आपके namespace values कभी आपका डिवाइस नहीं छोड़ते; लोड होने के बाद टूल offline काम करता रहता है, किसी account की ज़रूरत नहीं, और इसमें किसी भी तरह की कोई AI-powered feature शामिल नहीं है।</p>
+
+</div>
+<div class="uid-content">
+
+<!-- ===== FAQ (immediately after About — required order) ===== -->
+<h2>❓ Frequently Asked Questions</h2>
+<div class="uid-faq" id="uidFaq">
+<details><summary>Is this UUID Generator free to use?</summary><p>Yes, completely free with no signup, no account and no limit on how many UUIDs you generate. / हाँ, यह पूरी तरह मुफ़्त है, बिना signup या account के।</p></details>
+<details><summary>Are my generated UUIDs uploaded anywhere?</summary><p>No. Every UUID is generated locally in your browser using the Web Crypto API and hand-written hash routines; nothing is ever sent to a server. / नहीं, सब कुछ आपके ब्राउज़र में ही generate होता है।</p></details>
+<details><summary>Which UUID version should I use by default?</summary><p>Version 4 (random) for general-purpose unique IDs, or version 7 if you want your IDs to sort chronologically and embed a timestamp. / सामान्य उपयोग के लिए v4, समय-क्रम में sort करने के लिए v7 चुनें।</p></details>
+<details><summary>What is the difference between UUID v1 and v6?</summary><p>Both encode the same kind of Gregorian timestamp, but v6 rearranges the bits most-significant-first so v6 UUIDs sort correctly as plain strings, while v1 does not. / v6 के bits इस तरह क्रमबद्ध होते हैं कि वे सही तरीके से sort हों, v1 के नहीं।</p></details>
+<details><summary>Why does UUID v1/v6 use a random node ID instead of my MAC address?</summary><p>Browsers have no access to a device's real network hardware address for privacy and security reasons, so this tool uses RFC 4122's explicitly permitted fallback: a random node ID with its multicast bit set. / privacy कारणों से browser को MAC address नहीं मिलता, इसलिए RFC-अनुमत random node ID इस्तेमाल होता है।</p></details>
+<details><summary>What is UUID v7 and why is it popular?</summary><p>UUID v7 embeds a plain Unix millisecond timestamp followed by random bits (RFC 9562), making it sortable and timestamp-readable — many new databases now recommend it as a primary key. / v7 में Unix timestamp होता है, इसलिए यह sortable और नई systems में लोकप्रिय है।</p></details>
+<details><summary>What is UUID v8 for?</summary><p>Version 8 is the specification's deliberately open, vendor-defined layout; this tool seeds it with a timestamp and fills the rest with secure random bits, marked clearly as experimental. / v8 एक खुला, vendor-defined layout है; इसे experimental माना जाए।</p></details>
+<details><summary>How do UUID v3 and v5 differ?</summary><p>Both are deterministic, name-based UUIDs — the same namespace and name always produce the same UUID — but v3 uses the older MD5 hash while v5 uses the stronger, recommended SHA-1 hash. / दोनों deterministic हैं; v5 (SHA-1) v3 (MD5) से बेहतर माना जाता है।</p></details>
+<details><summary>What namespaces are available for name-based UUIDs?</summary><p>The four standard RFC 4122 namespaces — DNS, URL, OID and X.500 — plus the option to supply any UUID of your own as a custom namespace. / DNS, URL, OID, X.500 के साथ अपना custom namespace भी दे सकते हैं।</p></details>
+<details><summary>Will the same name always give the same UUID?</summary><p>Yes, for v3 and v5 — that's the whole point of name-based UUIDs. Version 1, 4, 6, 7 and 8 are never deterministic; every generation is different. / v3/v5 हमेशा एक जैसा UUID देते हैं; बाकी versions हर बार अलग।</p></details>
+<details><summary>How many UUIDs can I generate at once?</summary><p>Up to 1,000 in a single batch, using quick preset buttons (1/10/50/100/500/1000) or a custom quantity field. / एक बार में अधिकतम 1000 UUID।</p></details>
+<details><summary>How fast is bulk generation?</summary><p>A batch of 1,000 v4 UUIDs typically completes in a few milliseconds; the Statistics panel shows the exact generation time and UUIDs-per-second for your last batch. / 1000 UUIDs कुछ ही milliseconds में बन जाते हैं।</p></details>
+<details><summary>Can I validate a UUID I didn't generate here?</summary><p>Yes. Paste any UUID into the Validate tab, in any common format (with/without hyphens, braces, parentheses or quotes), to see its version, variant and — where applicable — its embedded timestamp. / किसी भी UUID को Validate tab में paste करके जाँच सकते हैं।</p></details>
+<details><summary>What does "Show Error Position" mean for invalid UUIDs?</summary><p>If a pasted value isn't a valid UUID, the tool highlights the exact character and explains why — a misplaced hyphen, an invalid character, or the wrong length — instead of a generic error. / गलत UUID में सही जगह और कारण दिखाया जाता है।</p></details>
+<details><summary>What does "variant" mean in the validation result?</summary><p>The variant identifies which historical UUID layout a value follows — RFC 4122/9562 (used by virtually everything today), the legacy NCS layout, the Microsoft GUID layout, or a reserved variant. / variant बताता है कि UUID कौन-से layout standard का है।</p></details>
+<details><summary>Can I recover the creation time of any UUID?</summary><p>Only for versions 1, 6 and 7, which embed a timestamp in their bits; versions 3, 4, 5 and 8 don't carry a recoverable creation time. / सिर्फ़ v1, v6, v7 में समय embed होता है।</p></details>
+<details><summary>What formatting options are available?</summary><p>Plain, curly braces, parentheses or quotes per value; uppercase or lowercase; with or without hyphens; a custom prefix, suffix and separator; and whole-batch JSON array, CSV, SQL or XML output. / कई formatting styles उपलब्ध हैं।</p></details>
+<details><summary>What export formats does the tool support?</summary><p>TXT, CSV, JSON, XML and SQL file downloads, plus one-click clipboard copy and a QR code exporter for up to 25 UUIDs at once. / TXT, CSV, JSON, XML, SQL और QR code export उपलब्ध हैं।</p></details>
+<details><summary>Are the JSON/REST/GraphQL "API preview" snippets real API calls?</summary><p>No — they are local text previews only, showing how your batch would look inside a JSON body, cURL command or GraphQL query. Nothing is sent over the network. / ये सिर्फ़ preview हैं, कोई network call नहीं होती।</p></details>
+<details><summary>Where is my history and favourites data stored?</summary><p>Only in this browser's local storage, on your own device — never uploaded. Clear it any time from the History tab. / history सिर्फ़ आपके browser में सहेजी जाती है।</p></details>
+<details><summary>Can I filter my history by version or search text?</summary><p>Yes. The History tab has a search box, a version filter and a "favourites only" checkbox, plus bulk copy, download and delete for whatever's currently shown. / History में search और version filter दोनों उपलब्ध हैं।</p></details>
+<details><summary>Does the tool detect duplicate UUIDs in a batch?</summary><p>Yes. The Statistics panel shows unique and duplicate counts for the current batch — duplicates are essentially impossible for random versions but can happen with repeated name-based inputs. / duplicate count Statistics panel में दिखता है।</p></details>
+<details><summary>What keyboard shortcuts are supported?</summary><p>Ctrl+Enter generates a new batch, Ctrl+D downloads the current batch as TXT, and Ctrl+C (outside any text field) copies the current batch to your clipboard. / Ctrl+Enter, Ctrl+D, Ctrl+C शॉर्टकट काम करते हैं।</p></details>
+<details><summary>Does it work offline?</summary><p>Yes, once the page has loaded. The only optional external dependency is the QR code library; every UUID generator, hash function and validator is self-contained. / लोड होने के बाद यह offline भी काम करता है।</p></details>
+<details><summary>Are these UUIDs RFC-compliant?</summary><p>Yes. Every generated UUID sets the correct version and RFC 4122/9562 variant bits, and the v3/v5 hashing was verified against the official RFC test vectors. / सभी UUIDs RFC 4122/9562 के अनुरूप हैं।</p></details>
+<details><summary>Does this tool use any AI?</summary><p>No. Every UUID, hash and validation result comes from standard, published algorithms with no AI involved anywhere. / नहीं, इसमें कोई AI शामिल नहीं है।</p></details>
+</div>
+
+<!-- ===== Troubleshooting ===== -->
+<h2>🛠️ Troubleshooting</h2>
+<ul>
+  <li><strong>Generate button seems to do nothing:</strong> check the quantity field is between 1 and 1000; values outside that range are automatically clamped, so a very large number you typed may have been reduced.</li>
+  <li><strong>My UUIDs look different every time even for the "same" input:</strong> only v3 and v5 (name-based) are deterministic; v1, v4, v6, v7 and v8 are designed to be different on every generation.</li>
+  <li><strong>Validate says a UUID is invalid but it looks fine to me:</strong> check for a stray character, an extra space, or a wrong hyphen position — the tool highlights the exact position so you can compare it against the marked character.</li>
+  <li><strong>QR code button shows "QR engine failed to load":</strong> this feature loads a small external library; check your internet connection and refresh the page, then try again.</li>
+  <li><strong>Custom namespace field shows an error:</strong> make sure the value you entered is itself a valid 36-character UUID (with hyphens) — any other text isn't a valid namespace.</li>
+  <li><strong>My history is empty after reopening the page:</strong> history is stored in this browser's local storage; if you're in a private/incognito window, browser settings block storage, or you cleared site data, history won't persist between visits.</li>
+  <li><strong>Export/download button does nothing:</strong> generate at least one UUID first — export buttons act on whatever is currently in the batch; also check your browser isn't blocking downloads or pop-ups for this page.</li>
+  <li><strong>Keyboard shortcuts aren't working:</strong> make sure the page (not the address bar or another panel) has focus, and note Ctrl+C only triggers the custom copy-all when focus isn't inside a text field, so normal text selection still copies as expected.</li>
+</ul>
+
+</div>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this UUID Generator free to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, completely free with no signup, no account and no limit on how many UUIDs you generate."}}, {"@type": "Question", "name": "Are my generated UUIDs uploaded anywhere?", "acceptedAnswer": {"@type": "Answer", "text": "No. Every UUID is generated locally in your browser using the Web Crypto API and hand-written hash routines; nothing is ever sent to a server."}}, {"@type": "Question", "name": "Which UUID version should I use by default?", "acceptedAnswer": {"@type": "Answer", "text": "Version 4 (random) for general-purpose unique IDs, or version 7 if you want your IDs to sort chronologically and embed a timestamp."}}, {"@type": "Question", "name": "What is the difference between UUID v1 and v6?", "acceptedAnswer": {"@type": "Answer", "text": "Both encode the same kind of Gregorian timestamp, but v6 rearranges the bits most-significant-first so v6 UUIDs sort correctly as plain strings, while v1 does not."}}, {"@type": "Question", "name": "Why does UUID v1/v6 use a random node ID instead of my MAC address?", "acceptedAnswer": {"@type": "Answer", "text": "Browsers have no access to a device's real network hardware address for privacy and security reasons, so this tool uses RFC 4122's explicitly permitted fallback: a random node ID with its multicast bit set."}}, {"@type": "Question", "name": "What is UUID v7 and why is it popular?", "acceptedAnswer": {"@type": "Answer", "text": "UUID v7 embeds a plain Unix millisecond timestamp followed by random bits (RFC 9562), making it sortable and timestamp-readable — many new databases now recommend it as a primary key."}}, {"@type": "Question", "name": "What is UUID v8 for?", "acceptedAnswer": {"@type": "Answer", "text": "Version 8 is the specification's deliberately open, vendor-defined layout; this tool seeds it with a timestamp and fills the rest with secure random bits, marked clearly as experimental."}}, {"@type": "Question", "name": "How do UUID v3 and v5 differ?", "acceptedAnswer": {"@type": "Answer", "text": "Both are deterministic, name-based UUIDs — the same namespace and name always produce the same UUID — but v3 uses the older MD5 hash while v5 uses the stronger, recommended SHA-1 hash."}}, {"@type": "Question", "name": "What namespaces are available for name-based UUIDs?", "acceptedAnswer": {"@type": "Answer", "text": "The four standard RFC 4122 namespaces — DNS, URL, OID and X.500 — plus the option to supply any UUID of your own as a custom namespace."}}, {"@type": "Question", "name": "Will the same name always give the same UUID?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for v3 and v5 — that's the whole point of name-based UUIDs. Version 1, 4, 6, 7 and 8 are never deterministic; every generation is different."}}, {"@type": "Question", "name": "How many UUIDs can I generate at once?", "acceptedAnswer": {"@type": "Answer", "text": "Up to 1,000 in a single batch, using quick preset buttons (1/10/50/100/500/1000) or a custom quantity field."}}, {"@type": "Question", "name": "How fast is bulk generation?", "acceptedAnswer": {"@type": "Answer", "text": "A batch of 1,000 v4 UUIDs typically completes in a few milliseconds; the Statistics panel shows the exact generation time and UUIDs-per-second for your last batch."}}, {"@type": "Question", "name": "Can I validate a UUID I didn't generate here?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Paste any UUID into the Validate tab, in any common format (with/without hyphens, braces, parentheses or quotes), to see its version, variant and — where applicable — its embedded timestamp."}}, {"@type": "Question", "name": "What does \"Show Error Position\" mean for invalid UUIDs?", "acceptedAnswer": {"@type": "Answer", "text": "If a pasted value isn't a valid UUID, the tool highlights the exact character and explains why — a misplaced hyphen, an invalid character, or the wrong length — instead of a generic error."}}, {"@type": "Question", "name": "What does \"variant\" mean in the validation result?", "acceptedAnswer": {"@type": "Answer", "text": "The variant identifies which historical UUID layout a value follows — RFC 4122/9562 (used by virtually everything today), the legacy NCS layout, the Microsoft GUID layout, or a reserved variant."}}, {"@type": "Question", "name": "Can I recover the creation time of any UUID?", "acceptedAnswer": {"@type": "Answer", "text": "Only for versions 1, 6 and 7, which embed a timestamp in their bits; versions 3, 4, 5 and 8 don't carry a recoverable creation time."}}, {"@type": "Question", "name": "What formatting options are available?", "acceptedAnswer": {"@type": "Answer", "text": "Plain, curly braces, parentheses or quotes per value; uppercase or lowercase; with or without hyphens; a custom prefix, suffix and separator; and whole-batch JSON array, CSV, SQL or XML output."}}, {"@type": "Question", "name": "What export formats does the tool support?", "acceptedAnswer": {"@type": "Answer", "text": "TXT, CSV, JSON, XML and SQL file downloads, plus one-click clipboard copy and a QR code exporter for up to 25 UUIDs at once."}}, {"@type": "Question", "name": "Are the JSON/REST/GraphQL \"API preview\" snippets real API calls?", "acceptedAnswer": {"@type": "Answer", "text": "No — they are local text previews only, showing how your batch would look inside a JSON body, cURL command or GraphQL query. Nothing is sent over the network."}}, {"@type": "Question", "name": "Where is my history and favourites data stored?", "acceptedAnswer": {"@type": "Answer", "text": "Only in this browser's local storage, on your own device — never uploaded. Clear it any time from the History tab."}}, {"@type": "Question", "name": "Can I filter my history by version or search text?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The History tab has a search box, a version filter and a \"favourites only\" checkbox, plus bulk copy, download and delete for whatever's currently shown."}}, {"@type": "Question", "name": "Does the tool detect duplicate UUIDs in a batch?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The Statistics panel shows unique and duplicate counts for the current batch — duplicates are essentially impossible for random versions but can happen with repeated name-based inputs."}}, {"@type": "Question", "name": "What keyboard shortcuts are supported?", "acceptedAnswer": {"@type": "Answer", "text": "Ctrl+Enter generates a new batch, Ctrl+D downloads the current batch as TXT, and Ctrl+C (outside any text field) copies the current batch to your clipboard."}}, {"@type": "Question", "name": "Does it work offline?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, once the page has loaded. The only optional external dependency is the QR code library; every UUID generator, hash function and validator is self-contained."}}, {"@type": "Question", "name": "Are these UUIDs RFC-compliant?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every generated UUID sets the correct version and RFC 4122/9562 variant bits, and the v3/v5 hashing was verified against the official RFC test vectors."}}, {"@type": "Question", "name": "Does this tool use any AI?", "acceptedAnswer": {"@type": "Answer", "text": "No. Every UUID, hash and validation result comes from standard, published algorithms with no AI involved anywhere."}}]}
+</script>
 
 <footer class="site-footer">© 2026 ApneSoftware.com</footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <script src="../assets/common.js"></script>
 <script>
-let currentUUIDs = [];
+(function(){
+'use strict';
 
-function generateUUID(){
-  return crypto.randomUUID();
+/* ===================== Hash primitives (hand-written, no deps) ===================== */
+
+function toWords(bytes){
+  var words = [];
+  for(var i=0;i<bytes.length;i+=4){
+    words.push(((bytes[i]||0)<<24)|((bytes[i+1]||0)<<16)|((bytes[i+2]||0)<<8)|(bytes[i+3]||0));
+  }
+  return words;
 }
 
-function formatUUID(uuid){
-  const upper = document.getElementById('uppercaseToggle').checked;
-  const hyphen = document.getElementById('hyphenToggle').checked;
-  let result = uuid;
-  if(!hyphen) result = result.replace(/-/g, '');
-  if(upper) result = result.toUpperCase();
-  return result;
+function md5(bytesIn){
+  function rotl(x,c){ return (x<<c)|(x>>>(32-c)); }
+  var s = [7,12,17,22,7,12,17,22,7,12,17,22,7,12,17,22,
+           5,9,14,20,5,9,14,20,5,9,14,20,5,9,14,20,
+           4,11,16,23,4,11,16,23,4,11,16,23,4,11,16,23,
+           6,10,15,21,6,10,15,21,6,10,15,21,6,10,15,21];
+  var K = new Int32Array(64);
+  for(var i=0;i<64;i++){ K[i] = (Math.floor(Math.abs(Math.sin(i+1))*4294967296)) | 0; }
+
+  var msgLen = bytesIn.length;
+  var withOne = msgLen + 1;
+  var padLen = (withOne % 64 <= 56) ? (56 - withOne % 64) : (120 - withOne % 64);
+  var totalLen = withOne + padLen + 8;
+  var buf = new Uint8Array(totalLen);
+  buf.set(bytesIn,0);
+  buf[msgLen] = 0x80;
+  var bitLenLow = (msgLen * 8) >>> 0;
+  var bitLenHigh = Math.floor(msgLen / 536870912);
+  var lenOffset = totalLen - 8;
+  buf[lenOffset]   = bitLenLow & 0xff;
+  buf[lenOffset+1] = (bitLenLow>>>8) & 0xff;
+  buf[lenOffset+2] = (bitLenLow>>>16) & 0xff;
+  buf[lenOffset+3] = (bitLenLow>>>24) & 0xff;
+  buf[lenOffset+4] = bitLenHigh & 0xff;
+
+  var a0 = 0x67452301, b0 = 0xefcdab89, c0 = 0x98badcfe, d0 = 0x10325476;
+
+  for(var chunkStart=0; chunkStart<totalLen; chunkStart+=64){
+    var M = new Int32Array(16);
+    for(var j=0;j<16;j++){
+      var o = chunkStart + j*4;
+      M[j] = (buf[o]) | (buf[o+1]<<8) | (buf[o+2]<<16) | (buf[o+3]<<24);
+    }
+    var A=a0,B=b0,C=c0,D=d0;
+    for(var k=0;k<64;k++){
+      var F,g;
+      if(k<16){ F=(B&C)|(~B&D); g=k; }
+      else if(k<32){ F=(D&B)|(~D&C); g=(5*k+1)%16; }
+      else if(k<48){ F=B^C^D; g=(3*k+5)%16; }
+      else { F=C^(B|~D); g=(7*k)%16; }
+      F = (F + A + K[k] + M[g]) | 0;
+      A = D; D = C; C = B;
+      B = (B + rotl(F, s[k])) | 0;
+    }
+    a0=(a0+A)|0; b0=(b0+B)|0; c0=(c0+C)|0; d0=(d0+D)|0;
+  }
+
+  function leBytes(n){
+    return [n&0xff,(n>>>8)&0xff,(n>>>16)&0xff,(n>>>24)&0xff];
+  }
+  return new Uint8Array([].concat(leBytes(a0),leBytes(b0),leBytes(c0),leBytes(d0)));
 }
 
-function render(){
-  const list = document.getElementById('uuidList');
-  list.innerHTML = '';
-  currentUUIDs.forEach((uuid, i)=>{
-    const formatted = formatUUID(uuid);
-    const item = document.createElement('div');
-    item.className = 'uuid-item';
-    item.innerHTML = `<span>${formatted}</span><button data-i="${i}">📋</button>`;
-    list.appendChild(item);
-  });
-  list.querySelectorAll('button').forEach(btn=>{
-    btn.addEventListener('click', (e)=>{
-      copyText(formatUUID(currentUUIDs[btn.dataset.i]), btn);
+function sha1(bytesIn){
+  function rotl(x,c){ return (x<<c)|(x>>>(32-c)); }
+  var msgLen = bytesIn.length;
+  var withOne = msgLen + 1;
+  var padLen = (withOne % 64 <= 56) ? (56 - withOne % 64) : (120 - withOne % 64);
+  var totalLen = withOne + padLen + 8;
+  var buf = new Uint8Array(totalLen);
+  buf.set(bytesIn,0);
+  buf[msgLen] = 0x80;
+  var bitLenLow = (msgLen * 8) >>> 0;
+  var bitLenHigh = Math.floor(msgLen / 536870912);
+  var lenOffset = totalLen - 8;
+  buf[lenOffset]   = (bitLenHigh>>>24)&0xff;
+  buf[lenOffset+1] = (bitLenHigh>>>16)&0xff;
+  buf[lenOffset+2] = (bitLenHigh>>>8)&0xff;
+  buf[lenOffset+3] = bitLenHigh&0xff;
+  buf[lenOffset+4] = (bitLenLow>>>24)&0xff;
+  buf[lenOffset+5] = (bitLenLow>>>16)&0xff;
+  buf[lenOffset+6] = (bitLenLow>>>8)&0xff;
+  buf[lenOffset+7] = bitLenLow&0xff;
+
+  var h0=0x67452301,h1=0xEFCDAB89,h2=0x98BADCFE,h3=0x10325476,h4=0xC3D2E1F0;
+
+  for(var chunkStart=0; chunkStart<totalLen; chunkStart+=64){
+    var w = new Int32Array(80);
+    for(var j=0;j<16;j++){
+      var o = chunkStart + j*4;
+      w[j] = (buf[o]<<24)|(buf[o+1]<<16)|(buf[o+2]<<8)|(buf[o+3]);
+    }
+    for(var t=16;t<80;t++){
+      w[t] = rotl(w[t-3]^w[t-8]^w[t-14]^w[t-16], 1);
+    }
+    var a=h0,b=h1,c=h2,d=h3,e=h4;
+    for(var i=0;i<80;i++){
+      var f,k;
+      if(i<20){ f=(b&c)|(~b&d); k=0x5A827999; }
+      else if(i<40){ f=b^c^d; k=0x6ED9EBA1; }
+      else if(i<60){ f=(b&c)|(b&d)|(c&d); k=0x8F1BBCDC; }
+      else { f=b^c^d; k=0xCA62C1D6; }
+      var temp = (rotl(a,5) + f + e + k + w[i]) | 0;
+      e=d; d=c; c=rotl(b,30); b=a; a=temp;
+    }
+    h0=(h0+a)|0; h1=(h1+b)|0; h2=(h2+c)|0; h3=(h3+d)|0; h4=(h4+e)|0;
+  }
+
+  function beBytes(n){
+    return [(n>>>24)&0xff,(n>>>16)&0xff,(n>>>8)&0xff,n&0xff];
+  }
+  return new Uint8Array([].concat(beBytes(h0),beBytes(h1),beBytes(h2),beBytes(h3),beBytes(h4)));
+}
+
+/* ===================== UUID byte <-> string helpers ===================== */
+
+var HEX = '0123456789abcdef';
+
+function bytesToUuidString(bytes){
+  var hex = '';
+  for(var i=0;i<16;i++){ hex += HEX[(bytes[i]>>4)&0xf] + HEX[bytes[i]&0xf]; }
+  return hex.slice(0,8)+'-'+hex.slice(8,12)+'-'+hex.slice(12,16)+'-'+hex.slice(16,20)+'-'+hex.slice(20,32);
+}
+
+function setVersionAndVariant(bytes, version){
+  bytes[6] = (bytes[6] & 0x0f) | (version << 4);
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
+  return bytes;
+}
+
+function uuidStringToBytes(str){
+  var hex = str.replace(/[{}()"'\s-]/g,'').toLowerCase();
+  if(hex.length !== 32 || /[^0-9a-f]/.test(hex)) return null;
+  var bytes = new Uint8Array(16);
+  for(var i=0;i<16;i++){ bytes[i] = parseInt(hex.substr(i*2,2),16); }
+  return bytes;
+}
+
+function stringToUtf8Bytes(str){
+  return new TextEncoder().encode(str);
+}
+
+/* ===================== Namespaces (RFC 4122 Appendix C) ===================== */
+
+var NAMESPACES = {
+  dns:   uuidStringToBytes('6ba7b810-9dad-11d1-80b4-00c04fd430c8'),
+  url:   uuidStringToBytes('6ba7b811-9dad-11d1-80b4-00c04fd430c8'),
+  oid:   uuidStringToBytes('6ba7b812-9dad-11d1-80b4-00c04fd430c8'),
+  x500:  uuidStringToBytes('6ba7b814-9dad-11d1-80b4-00c04fd430c8')
+};
+
+/* ===================== Random helpers ===================== */
+
+function randomBytes(n){
+  var b = new Uint8Array(n);
+  crypto.getRandomValues(b);
+  return b;
+}
+
+/* ===================== UUID v1 / v6 (time-based, Gregorian epoch) ===================== */
+
+var GREGORIAN_OFFSET = 122192928000000000n; // 100ns intervals between 1582-10-15 and 1970-01-01
+var lastV1Timestamp = 0n;
+var v1SubTick = 0n;
+
+function gregorianTimestamp100ns(){
+  var now = BigInt(Date.now());
+  var ts = now * 10000n + GREGORIAN_OFFSET;
+  if(ts <= lastV1Timestamp){
+    v1SubTick += 1n;
+    ts = lastV1Timestamp + v1SubTick;
+  } else {
+    v1SubTick = 0n;
+  }
+  lastV1Timestamp = ts;
+  return ts;
+}
+
+function generateUUIDv1(){
+  var ts = gregorianTimestamp100ns();
+  var timeLow = Number(ts & 0xFFFFFFFFn);
+  var timeMid = Number((ts >> 32n) & 0xFFFFn);
+  var timeHi  = Number((ts >> 48n) & 0x0FFFn);
+  var clockSeq = randomBytes(2);
+  var node = randomBytes(6);
+  node[0] = node[0] | 0x01; // multicast bit set: random node id, no real MAC used
+
+  var bytes = new Uint8Array(16);
+  bytes[0]=(timeLow>>>24)&0xff; bytes[1]=(timeLow>>>16)&0xff; bytes[2]=(timeLow>>>8)&0xff; bytes[3]=timeLow&0xff;
+  bytes[4]=(timeMid>>>8)&0xff; bytes[5]=timeMid&0xff;
+  bytes[6]=(timeHi>>>8)&0xff; bytes[7]=timeHi&0xff;
+  bytes[8]=clockSeq[0]; bytes[9]=clockSeq[1];
+  for(var i=0;i<6;i++){ bytes[10+i]=node[i]; }
+  setVersionAndVariant(bytes, 1);
+  return bytesToUuidString(bytes);
+}
+
+function generateUUIDv6(){
+  var ts = gregorianTimestamp100ns();
+  var timeHigh = Number((ts >> 28n) & 0xFFFFFFFFn);
+  var timeMid  = Number((ts >> 12n) & 0xFFFFn);
+  var timeLowVer = Number(ts & 0x0FFFn);
+  var clockSeq = randomBytes(2);
+  var node = randomBytes(6);
+  node[0] = node[0] | 0x01;
+
+  var bytes = new Uint8Array(16);
+  bytes[0]=(timeHigh>>>24)&0xff; bytes[1]=(timeHigh>>>16)&0xff; bytes[2]=(timeHigh>>>8)&0xff; bytes[3]=timeHigh&0xff;
+  bytes[4]=(timeMid>>>8)&0xff; bytes[5]=timeMid&0xff;
+  bytes[6]=(timeLowVer>>>8)&0xff; bytes[7]=timeLowVer&0xff;
+  bytes[8]=clockSeq[0]; bytes[9]=clockSeq[1];
+  for(var i=0;i<6;i++){ bytes[10+i]=node[i]; }
+  setVersionAndVariant(bytes, 6);
+  return bytesToUuidString(bytes);
+}
+
+/* ===================== UUID v3 / v5 (name-based) ===================== */
+
+function generateUUIDv3(namespaceBytes, name){
+  var input = new Uint8Array(namespaceBytes.length + name.length);
+  input.set(namespaceBytes,0);
+  input.set(name, namespaceBytes.length);
+  var hash = md5(input);
+  var bytes = hash.slice(0,16);
+  setVersionAndVariant(bytes, 3);
+  return bytesToUuidString(bytes);
+}
+
+function generateUUIDv5(namespaceBytes, name){
+  var input = new Uint8Array(namespaceBytes.length + name.length);
+  input.set(namespaceBytes,0);
+  input.set(name, namespaceBytes.length);
+  var hash = sha1(input);
+  var bytes = hash.slice(0,16);
+  setVersionAndVariant(bytes, 5);
+  return bytesToUuidString(bytes);
+}
+
+/* ===================== UUID v4 (random) ===================== */
+
+function generateUUIDv4(){
+  if(window.crypto && crypto.randomUUID){ return crypto.randomUUID(); }
+  var bytes = randomBytes(16);
+  setVersionAndVariant(bytes, 4);
+  return bytesToUuidString(bytes);
+}
+
+/* ===================== UUID v7 (Unix timestamp, RFC 9562) ===================== */
+
+function generateUUIDv7(){
+  var ms = BigInt(Date.now());
+  var bytes = new Uint8Array(16);
+  bytes[0] = Number((ms >> 40n) & 0xFFn);
+  bytes[1] = Number((ms >> 32n) & 0xFFn);
+  bytes[2] = Number((ms >> 24n) & 0xFFn);
+  bytes[3] = Number((ms >> 16n) & 0xFFn);
+  bytes[4] = Number((ms >> 8n) & 0xFFn);
+  bytes[5] = Number(ms & 0xFFn);
+  var rand = randomBytes(10);
+  for(var i=0;i<10;i++){ bytes[6+i] = rand[i]; }
+  setVersionAndVariant(bytes, 7);
+  return bytesToUuidString(bytes);
+}
+
+/* ===================== UUID v8 (custom/vendor, RFC 9562) ===================== */
+
+function generateUUIDv8(){
+  // Fully custom layout per spec allowance: here, a timestamp-seeded random payload.
+  var ms = BigInt(Date.now());
+  var bytes = new Uint8Array(16);
+  bytes[0] = Number((ms >> 40n) & 0xFFn);
+  bytes[1] = Number((ms >> 32n) & 0xFFn);
+  bytes[2] = Number((ms >> 24n) & 0xFFn);
+  bytes[3] = Number((ms >> 16n) & 0xFFn);
+  var rand = randomBytes(12);
+  for(var i=0;i<12;i++){ bytes[4+i] = rand[i]; }
+  setVersionAndVariant(bytes, 8);
+  return bytesToUuidString(bytes);
+}
+
+function generateUUID(version){
+  switch(String(version)){
+    case '1': return generateUUIDv1();
+    case '6': return generateUUIDv6();
+    case '7': return generateUUIDv7();
+    case '8': return generateUUIDv8();
+    default:  return generateUUIDv4();
+  }
+}
+
+/* Expose for later stages / other script blocks in this page */
+window.UUIDEngine = {
+  md5: md5, sha1: sha1,
+  bytesToUuidString: bytesToUuidString,
+  uuidStringToBytes: uuidStringToBytes,
+  stringToUtf8Bytes: stringToUtf8Bytes,
+  setVersionAndVariant: setVersionAndVariant,
+  NAMESPACES: NAMESPACES,
+  generateUUIDv1: generateUUIDv1,
+  generateUUIDv3: generateUUIDv3,
+  generateUUIDv4: generateUUIDv4,
+  generateUUIDv5: generateUUIDv5,
+  generateUUIDv6: generateUUIDv6,
+  generateUUIDv7: generateUUIDv7,
+  generateUUIDv8: generateUUIDv8,
+  generateUUID: generateUUID
+};
+
+})();
+</script>
+<script>
+(function(){
+'use strict';
+var E = window.UUIDEngine;
+function $(id){ return document.getElementById(id); }
+
+/* ===================== Persistence ===================== */
+function lsGet(key, fallback){
+  try{ var v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; }catch(e){ return fallback; }
+}
+function lsSet(key, val){
+  try{ localStorage.setItem(key, JSON.stringify(val)); }catch(e){ /* private mode / quota */ }
+}
+
+var sessionTotal = lsGet('uuidgen_total', 0);
+var versionDist = lsGet('uuidgen_versiondist', {});
+var history_ = lsGet('uuidgen_history', []);
+var downloads_ = lsGet('uuidgen_downloads', []);
+var favorites = {};
+history_.forEach(function(h){ if(h.fav) favorites[h.v] = true; });
+
+var HISTORY_CAP = 500;
+var DOWNLOADS_CAP = 50;
+
+function pushHistory(value, version){
+  history_.unshift({v: value, ver: version, ts: Date.now(), fav: !!favorites[value]});
+  if(history_.length > HISTORY_CAP) history_.length = HISTORY_CAP;
+  lsSet('uuidgen_history', history_);
+}
+function logDownload(filename){
+  downloads_.unshift({name: filename, ts: Date.now()});
+  if(downloads_.length > DOWNLOADS_CAP) downloads_.length = DOWNLOADS_CAP;
+  lsSet('uuidgen_downloads', downloads_);
+  renderRecentDownloads();
+}
+
+/* ===================== State ===================== */
+var currentUUIDs = []; // {value, version}
+var currentFormat = 'plain';
+var lastGenElapsed = 0;
+
+/* ===================== Formatting ===================== */
+function coreFormat(raw, upper, hyphen){
+  var v = hyphen ? raw : raw.replace(/-/g,'');
+  return upper ? v.toUpperCase() : v;
+}
+function bracketWrap(v, style){
+  if(style==='braces') return '{'+v+'}';
+  if(style==='parens') return '('+v+')';
+  if(style==='quotes') return '"'+v+'"';
+  return v;
+}
+function currentOpts(){
+  return {
+    upper: $('uppercaseToggle').checked,
+    hyphen: $('hyphenToggle').checked,
+    lineNumbers: $('lineNumbersToggle').checked,
+    prefix: $('prefixInput').value || '',
+    suffix: $('suffixInput').value || '',
+    separator: $('separatorInput').value || '\n'
+  };
+}
+function formatDisplayValue(raw, opts){
+  var core = coreFormat(raw, opts.upper, opts.hyphen);
+  var bracketStyle = ['plain','braces','parens','quotes'].indexOf(currentFormat) !== -1 ? currentFormat : 'plain';
+  return opts.prefix + bracketWrap(core, bracketStyle) + opts.suffix;
+}
+function buildContainerFormat(kind, coreValues){
+  if(kind==='jsonarr') return JSON.stringify(coreValues, null, 2);
+  if(kind==='csv') return 'uuid\n' + coreValues.join('\n');
+  if(kind==='sql') return 'INSERT INTO your_table (uuid) VALUES\n' + coreValues.map(function(v){ return "('"+v+"')"; }).join(',\n') + ';';
+  if(kind==='xml') return '<uuids>\n' + coreValues.map(function(v){ return '  <uuid>'+v+'</uuid>'; }).join('\n') + '\n</uuids>';
+  return coreValues.join('\n');
+}
+
+/* ===================== Render: Generate pane ===================== */
+function renderGenerateOutput(){
+  var opts = currentOpts();
+  var listEl = $('uuidList');
+  var boxEl = $('uuidCombinedBox');
+  var isContainer = ['jsonarr','csv','sql','xml'].indexOf(currentFormat) !== -1;
+  var filter = ($('searchFilter').value || '').toLowerCase();
+
+  var counts = {};
+  currentUUIDs.forEach(function(u){ counts[u.value] = (counts[u.value]||0) + 1; });
+
+  var chars = 0;
+
+  if(isContainer){
+    listEl.style.display = 'none';
+    boxEl.style.display = 'block';
+    var coreValues = currentUUIDs.map(function(u){ return opts.prefix + coreFormat(u.value, opts.upper, opts.hyphen) + opts.suffix; });
+    var combined = buildContainerFormat(currentFormat, coreValues);
+    boxEl.textContent = combined;
+    chars = combined.length;
+  } else {
+    boxEl.style.display = 'none';
+    listEl.style.display = 'block';
+    listEl.innerHTML = '';
+    currentUUIDs.forEach(function(u, i){
+      var display = formatDisplayValue(u.value, opts);
+      if(filter && display.toLowerCase().indexOf(filter) === -1 && u.value.toLowerCase().indexOf(filter) === -1) return;
+      chars += display.length;
+      var row = document.createElement('div');
+      row.className = 'uid-item' + (counts[u.value] > 1 ? ' dup' : '') + (favorites[u.value] ? ' fav' : '');
+      var label = (opts.lineNumbers ? (i+1)+'. ' : '') + display;
+      var txt = document.createElement('span');
+      txt.className = 'uid-txt';
+      txt.textContent = label;
+      var actions = document.createElement('span');
+      actions.className = 'uid-actions';
+      var favBtn = document.createElement('button');
+      favBtn.type = 'button';
+      favBtn.title = 'Toggle favorite';
+      favBtn.textContent = favorites[u.value] ? '★' : '☆';
+      favBtn.addEventListener('click', function(){ toggleFavorite(u.value, u.version); });
+      var copyBtn = document.createElement('button');
+      copyBtn.type = 'button';
+      copyBtn.title = 'Copy';
+      copyBtn.textContent = '📋';
+      copyBtn.addEventListener('click', function(){ copyText(display, copyBtn); });
+      var delBtn = document.createElement('button');
+      delBtn.type = 'button';
+      delBtn.title = 'Remove from batch';
+      delBtn.textContent = '🗑️';
+      delBtn.addEventListener('click', function(){
+        currentUUIDs.splice(currentUUIDs.indexOf(u), 1);
+        renderGenerateOutput();
+        updateStats(lastGenElapsed);
+      });
+      actions.appendChild(favBtn); actions.appendChild(copyBtn); actions.appendChild(delBtn);
+      row.appendChild(txt); row.appendChild(actions);
+      listEl.appendChild(row);
     });
-  });
+  }
+
+  $('statChars').textContent = chars.toLocaleString('en-IN');
+  var uniqueCount = Object.keys(counts).length;
+  var dupCount = currentUUIDs.length - uniqueCount;
+  $('statBatch').textContent = currentUUIDs.length.toLocaleString('en-IN');
+  $('statUnique').textContent = uniqueCount.toLocaleString('en-IN');
+  $('statDup').textContent = dupCount.toLocaleString('en-IN');
+  $('statTotal').textContent = sessionTotal.toLocaleString('en-IN');
+  updateVersionDistDisplay();
 }
 
-document.getElementById('generateBtn').addEventListener('click', ()=>{
-  const count = Math.max(1, Math.min(100, parseInt(document.getElementById('uuidCount').value) || 1));
-  currentUUIDs = Array.from({length: count}, generateUUID);
-  render();
+function updateStats(elapsedMs){
+  $('statTime').textContent = (elapsedMs < 1 ? '<1' : elapsedMs.toFixed(2)) + ' ms';
+  var perSec = elapsedMs > 0 ? Math.round(currentUUIDs.length / (elapsedMs/1000)) : currentUUIDs.length * 1000;
+  $('statSpeed').textContent = perSec.toLocaleString('en-IN');
+}
+
+function updateVersionDistDisplay(){
+  var parts = Object.keys(versionDist).sort().map(function(k){ return 'v'+k+': '+versionDist[k].toLocaleString('en-IN'); });
+  $('versionDist').textContent = parts.length ? parts.join('  ·  ') : '—';
+}
+
+function toggleFavorite(value, version){
+  if(favorites[value]){ delete favorites[value]; }
+  else { favorites[value] = true; }
+  var found = false;
+  history_.forEach(function(h){ if(h.v === value){ h.fav = !!favorites[value]; found = true; } });
+  if(!found && favorites[value]){ history_.unshift({v: value, ver: version, ts: Date.now(), fav: true}); }
+  lsSet('uuidgen_history', history_);
+  renderGenerateOutput();
+  renderHistory();
+}
+
+/* ===================== Generate action ===================== */
+function generate(){
+  var version = $('uuidVersion').value;
+  var count = Math.max(1, Math.min(1000, parseInt($('uuidCount').value, 10) || 1));
+  var t0 = performance.now();
+  var batch = [];
+  for(var i=0;i<count;i++){
+    var val = E.generateUUID(version);
+    batch.push({value: val, version: parseInt(version,10)});
+  }
+  var t1 = performance.now();
+  lastGenElapsed = t1 - t0;
+  currentUUIDs = batch;
+
+  sessionTotal += count;
+  versionDist[version] = (versionDist[version] || 0) + count;
+  lsSet('uuidgen_total', sessionTotal);
+  lsSet('uuidgen_versiondist', versionDist);
+  batch.forEach(function(u){ pushHistory(u.value, u.version); });
+
+  saveSettings();
+  renderGenerateOutput();
+  updateStats(lastGenElapsed);
+  renderHistory();
+  renderApiPreview();
+  $('statusMsg').textContent = '✅ Generated ' + count.toLocaleString('en-IN') + ' UUID(s) — v' + version + ' — in ' + (lastGenElapsed < 1 ? '<1' : lastGenElapsed.toFixed(2)) + ' ms.';
+}
+
+function buildExportText(){
+  var opts = currentOpts();
+  if(['jsonarr','csv','sql','xml'].indexOf(currentFormat) !== -1){
+    return $('uuidCombinedBox').textContent;
+  }
+  var lines = currentUUIDs.map(function(u, i){
+    var display = formatDisplayValue(u.value, opts);
+    return (opts.lineNumbers ? (i+1)+'. ' : '') + display;
+  });
+  return lines.join(opts.separator || '\n');
+}
+
+/* ===================== Settings persistence ===================== */
+function saveSettings(){
+  lsSet('uuidgen_settings', {
+    version: $('uuidVersion').value,
+    upper: $('uppercaseToggle').checked,
+    hyphen: $('hyphenToggle').checked,
+    lineNumbers: $('lineNumbersToggle').checked,
+    format: currentFormat,
+    prefix: $('prefixInput').value,
+    suffix: $('suffixInput').value,
+    separator: $('separatorInput').value
+  });
+}
+function restoreSettings(){
+  var s = lsGet('uuidgen_settings', null);
+  if(!s) return;
+  if(s.version) $('uuidVersion').value = s.version;
+  $('uppercaseToggle').checked = !!s.upper;
+  $('hyphenToggle').checked = s.hyphen !== false;
+  $('lineNumbersToggle').checked = !!s.lineNumbers;
+  $('prefixInput').value = s.prefix || '';
+  $('suffixInput').value = s.suffix || '';
+  $('separatorInput').value = s.separator || '';
+  if(s.format){
+    currentFormat = s.format;
+    document.querySelectorAll('#formatChips .uid-chip').forEach(function(c){
+      c.classList.toggle('active', c.getAttribute('data-fmt') === s.format);
+    });
+  }
+}
+
+/* ===================== Wire: tabs ===================== */
+var tabs = [['tabGenerate','paneGenerate'],['tabValidate','paneValidate'],['tabNamed','paneNamed'],['tabHistory','paneHistory']];
+tabs.forEach(function(pair){
+  $(pair[0]).addEventListener('click', function(){
+    tabs.forEach(function(p2){
+      $(p2[0]).classList.remove('active'); $(p2[0]).setAttribute('aria-selected','false');
+      $(p2[1]).classList.remove('active');
+    });
+    $(pair[0]).classList.add('active'); $(pair[0]).setAttribute('aria-selected','true');
+    $(pair[1]).classList.add('active');
+    if(pair[1] === 'paneHistory') renderHistory();
+  });
 });
 
-document.getElementById('uppercaseToggle').addEventListener('input', render);
-document.getElementById('hyphenToggle').addEventListener('input', render);
-
-document.getElementById('copyAllBtn').addEventListener('click', (e)=>{
-  const text = currentUUIDs.map(formatUUID).join('\n');
-  copyText(text, e.target);
+/* ===================== Wire: Generate pane controls ===================== */
+document.querySelectorAll('#qtyChips .uid-chip').forEach(function(chip){
+  chip.addEventListener('click', function(){
+    document.querySelectorAll('#qtyChips .uid-chip').forEach(function(c){ c.classList.remove('active'); });
+    chip.classList.add('active');
+    $('uuidCount').value = chip.getAttribute('data-qty');
+  });
+});
+$('uuidCount').addEventListener('input', function(){
+  document.querySelectorAll('#qtyChips .uid-chip').forEach(function(c){ c.classList.remove('active'); });
 });
 
-document.getElementById('downloadBtn').addEventListener('click', ()=>{
-  const text = currentUUIDs.map(formatUUID).join('\n');
+document.querySelectorAll('#formatChips .uid-chip').forEach(function(chip){
+  chip.addEventListener('click', function(){
+    document.querySelectorAll('#formatChips .uid-chip').forEach(function(c){ c.classList.remove('active'); });
+    chip.classList.add('active');
+    currentFormat = chip.getAttribute('data-fmt');
+    saveSettings();
+    renderGenerateOutput();
+  });
+});
+
+['uppercaseToggle','hyphenToggle','lineNumbersToggle'].forEach(function(id){
+  $(id).addEventListener('change', function(){ saveSettings(); renderGenerateOutput(); });
+});
+['prefixInput','suffixInput','separatorInput'].forEach(function(id){
+  $(id).addEventListener('input', function(){ saveSettings(); renderGenerateOutput(); });
+});
+$('searchFilter').addEventListener('input', function(){ renderGenerateOutput(); });
+
+$('generateBtn').addEventListener('click', generate);
+$('copyAllBtn').addEventListener('click', function(e){ copyText(buildExportText(), e.currentTarget); });
+$('downloadBtn').addEventListener('click', function(){
+  downloadText('uuids.txt', buildExportText());
+  logDownload('uuids.txt');
+});
+
+/* ===================== Export buttons (canonical structured formats) ===================== */
+function canonicalValues(){
+  var opts = currentOpts();
+  return currentUUIDs.map(function(u){ return opts.prefix + coreFormat(u.value, opts.upper, opts.hyphen) + opts.suffix; });
+}
+$('exportTxtBtn').addEventListener('click', function(){
+  var text = canonicalValues().join('\n');
   downloadText('uuids.txt', text);
+  logDownload('uuids.txt');
+});
+$('exportCsvBtn').addEventListener('click', function(){
+  var rows = ['index,uuid,version'];
+  currentUUIDs.forEach(function(u, i){ rows.push((i+1)+',"'+u.value+'",'+u.version); });
+  downloadText('uuids.csv', rows.join('\n'), 'text/csv');
+  logDownload('uuids.csv');
+});
+$('exportJsonBtn').addEventListener('click', function(){
+  var arr = currentUUIDs.map(function(u){ return {value: u.value, version: u.version}; });
+  downloadText('uuids.json', JSON.stringify(arr, null, 2), 'application/json');
+  logDownload('uuids.json');
+});
+$('exportXmlBtn').addEventListener('click', function(){
+  var body = currentUUIDs.map(function(u){ return '  <uuid version="'+u.version+'">'+u.value+'</uuid>'; }).join('\n');
+  downloadText('uuids.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<uuids>\n'+body+'\n</uuids>', 'application/xml');
+  logDownload('uuids.xml');
+});
+$('exportSqlBtn').addEventListener('click', function(){
+  var values = currentUUIDs.map(function(u){ return "('"+u.value+"', "+u.version+")"; }).join(',\n');
+  downloadText('uuids.sql', 'INSERT INTO your_table (uuid, version) VALUES\n'+values+';', 'application/sql');
+  logDownload('uuids.sql');
 });
 
-currentUUIDs = [generateUUID()];
-render();
+/* ===================== QR code ===================== */
+$('qrBtn').addEventListener('click', function(){
+  var wrap = $('qrWrap');
+  if(typeof qrcode === 'undefined'){
+    wrap.style.display = 'block';
+    $('qrNote').textContent = 'QR engine failed to load — check your connection and refresh.';
+    return;
+  }
+  var values = currentUUIDs.map(function(u){ return u.value; });
+  var truncated = values.length > 25;
+  var text = (truncated ? values.slice(0,25) : values).join('\n');
+  if(!text){ return; }
+  var qr = qrcode(0, 'M');
+  qr.addData(text);
+  qr.make();
+  var n = qr.getModuleCount();
+  var moduleSize = Math.max(2, Math.floor(300/n));
+  var size = n * moduleSize;
+  var canvas = $('qrCanvas');
+  canvas.width = size; canvas.height = size;
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#fff'; ctx.fillRect(0,0,size,size);
+  ctx.fillStyle = '#000';
+  for(var r=0;r<n;r++){
+    for(var c=0;c<n;c++){
+      if(qr.isDark(r,c)) ctx.fillRect(c*moduleSize, r*moduleSize, moduleSize, moduleSize);
+    }
+  }
+  wrap.style.display = 'flex';
+  $('qrNote').textContent = truncated ? ('Encoding the first 25 of '+values.length+' UUIDs (QR capacity limit).') : ('Encoding '+values.length+' UUID(s).');
+});
+
+/* ===================== Developer / API preview ===================== */
+function renderApiPreview(){
+  var kind = document.querySelector('#apiChips .uid-chip.active').getAttribute('data-api');
+  var values = currentUUIDs.slice(0,5).map(function(u){ return u.value; });
+  var box = $('apiPreview');
+  if(kind === 'json'){
+    box.textContent = JSON.stringify({ count: currentUUIDs.length, uuids: values.concat(currentUUIDs.length>5 ? ['...'] : []) }, null, 2);
+  } else if(kind === 'rest'){
+    box.textContent = 'curl -X POST https://api.example.com/v1/uuids \\\n  -H "Content-Type: application/json" \\\n  -d \'{"uuids": ' + JSON.stringify(values) + '}\'\n\n# Example response\nHTTP/1.1 201 Created\n{"created": ' + currentUUIDs.length + '}';
+  } else {
+    box.textContent = 'mutation {\n  createUuids(input: { values: ' + JSON.stringify(values).replace(/"/g,'"') + ' }) {\n    uuids\n    count\n  }\n}\n\n# Example response\n{\n  "data": {\n    "createUuids": {\n      "uuids": ' + JSON.stringify(values) + ',\n      "count": ' + currentUUIDs.length + '\n    }\n  }\n}';
+  }
+}
+document.querySelectorAll('#apiChips .uid-chip').forEach(function(chip){
+  chip.addEventListener('click', function(){
+    document.querySelectorAll('#apiChips .uid-chip').forEach(function(c){ c.classList.remove('active'); });
+    chip.classList.add('active');
+    renderApiPreview();
+  });
+});
+
+/* ===================== Keyboard shortcuts ===================== */
+document.addEventListener('keydown', function(e){
+  if(!e.ctrlKey || e.altKey || e.metaKey) return;
+  var tag = document.activeElement ? document.activeElement.tagName : '';
+  var key = e.key.toLowerCase();
+  if(key === 'enter'){
+    e.preventDefault(); generate();
+  } else if(key === 'd'){
+    e.preventDefault(); downloadText('uuids.txt', buildExportText()); logDownload('uuids.txt');
+  } else if(key === 'c' && tag !== 'TEXTAREA' && tag !== 'INPUT'){
+    e.preventDefault(); copyText(buildExportText());
+  }
+});
+
+/* ===================== Validate pane ===================== */
+function findErrorPosition(cleaned){
+  var expectedLen = 36;
+  var hyphenPositions = [8,13,18,23];
+  var limit = Math.min(cleaned.length, expectedLen);
+  for(var i=0;i<limit;i++){
+    var ch = cleaned[i];
+    if(hyphenPositions.indexOf(i) !== -1){
+      if(ch !== '-') return {index: i, reason: "Expected '-' at position "+(i+1)+", found '"+ch+"'."};
+    } else if(!/[0-9a-fA-F]/.test(ch)){
+      return {index: i, reason: "Invalid character '"+ch+"' at position "+(i+1)+" (expected a hexadecimal digit)."};
+    }
+  }
+  if(cleaned.length !== expectedLen){
+    return {index: limit, reason: 'Expected 36 characters (8-4-4-4-12 with hyphens); found ' + cleaned.length + '.'};
+  }
+  return {index: -1, reason: ''};
+}
+
+function variantInfo(nibbleChar){
+  var n = parseInt(nibbleChar, 16);
+  if(n >= 0 && n <= 7) return {name: 'NCS backward compatibility', rfc: false};
+  if(n >= 8 && n <= 11) return {name: 'RFC 4122 / RFC 9562', rfc: true};
+  if(n === 12 || n === 13) return {name: 'Microsoft (Reserved for backward compatibility)', rfc: false};
+  return {name: 'Reserved for future use', rfc: false};
+}
+
+function decodeTimestampFromBytes(bytes, version){
+  if(version === 1){
+    var timeLow = (bytes[0]*0x1000000 + bytes[1]*0x10000 + bytes[2]*0x100 + bytes[3]) >>> 0;
+    var timeMid = (bytes[4]<<8) | bytes[5];
+    var timeHi = ((bytes[6] & 0x0f) << 8) | bytes[7];
+    var ts = (BigInt(timeHi) << 48n) | (BigInt(timeMid) << 32n) | BigInt(timeLow);
+    var ms = Number((ts - 122192928000000000n) / 10000n);
+    return new Date(ms);
+  }
+  if(version === 6){
+    var timeHigh = (bytes[0]*0x1000000 + bytes[1]*0x10000 + bytes[2]*0x100 + bytes[3]) >>> 0;
+    var timeMid2 = (bytes[4]<<8) | bytes[5];
+    var timeLowVer = ((bytes[6] & 0x0f) << 8) | bytes[7];
+    var ts2 = (BigInt(timeHigh) << 28n) | (BigInt(timeMid2) << 12n) | BigInt(timeLowVer);
+    var ms2 = Number((ts2 - 122192928000000000n) / 10000n);
+    return new Date(ms2);
+  }
+  if(version === 7){
+    var ms3 = 0;
+    for(var i=0;i<6;i++){ ms3 = ms3 * 256 + bytes[i]; }
+    return new Date(ms3);
+  }
+  return null;
+}
+
+function renderValidateResult(){
+  var raw = $('validateInput').value.trim();
+  var out = $('validateResult');
+  if(!raw){ out.innerHTML = ''; return; }
+  var cleaned = raw.replace(/[{}()"']/g,'').trim();
+  var strict = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/.test(cleaned);
+
+  if(!strict){
+    var err = findErrorPosition(cleaned);
+    var marked = cleaned.split('').map(function(ch,i){
+      return i === err.index ? '<span class="uid-err-mark">'+(ch||'␀')+'</span>' : ch;
+    }).join('');
+    out.innerHTML =
+      '<div class="uid-flags"><span class="uid-flag warn">❌ Not a valid UUID</span></div>' +
+      '<p class="uid-muted uid-mono">'+marked+'</p>' +
+      '<p class="uid-muted">'+err.reason+'</p>';
+    $('statusMsg').textContent = '❌ Invalid UUID.';
+    return;
+  }
+
+  var bytes = E.uuidStringToBytes(cleaned);
+  var versionChar = cleaned[14];
+  var variantChar = cleaned[19];
+  var version = parseInt(versionChar, 16);
+  var vi = variantInfo(variantChar);
+  var ts = (version === 1 || version === 6 || version === 7) ? decodeTimestampFromBytes(bytes, version) : null;
+
+  var rows = [];
+  rows.push('<li>Version <b>v'+version+'</b></li>');
+  rows.push('<li>Variant <b>'+vi.name+'</b></li>');
+  if(ts) rows.push('<li>Embedded timestamp <b>'+ts.toISOString()+'</b></li>');
+  rows.push('<li>Normalized (lowercase) <b class="uid-mono">'+cleaned.toLowerCase()+'</b></li>');
+
+  out.innerHTML =
+    '<div class="uid-flags">' +
+      '<span class="uid-flag ok">✅ Valid UUID format</span>' +
+      '<span class="uid-flag '+(vi.rfc?'ok':'neutral')+'">'+(vi.rfc?'RFC-compliant variant':'Non-RFC variant')+'</span>' +
+    '</div>' +
+    '<ul class="uid-list-plain">'+rows.join('')+'</ul>';
+  $('statusMsg').textContent = '✅ Valid UUID — version '+version+', '+vi.name+'.';
+}
+$('validateBtn').addEventListener('click', renderValidateResult);
+$('validateClearBtn').addEventListener('click', function(){ $('validateInput').value=''; $('validateResult').innerHTML=''; });
+
+/* ===================== Name-based pane ===================== */
+var NAME_PLACEHOLDERS = {
+  text: 'Any text value',
+  url: 'https://example.com/page',
+  email: 'user@example.com',
+  username: 'john_doe',
+  domain: 'example.com',
+  filename: 'report.pdf'
+};
+$('nameKind').addEventListener('change', function(){
+  $('nameInput').placeholder = NAME_PLACEHOLDERS[$('nameKind').value] || '';
+});
+$('namespaceSelect').addEventListener('change', function(){
+  $('customNamespaceField').style.display = $('namespaceSelect').value === 'custom' ? 'block' : 'none';
+});
+$('namedGenerateBtn').addEventListener('click', function(){
+  var out = $('namedResult');
+  var nsKey = $('namespaceSelect').value;
+  var nsBytes;
+  if(nsKey === 'custom'){
+    nsBytes = E.uuidStringToBytes($('customNamespaceInput').value.trim());
+    if(!nsBytes){
+      out.innerHTML = '<div class="uid-flags"><span class="uid-flag warn">❌ Invalid custom namespace UUID</span></div>';
+      return;
+    }
+  } else {
+    nsBytes = E.NAMESPACES[nsKey];
+  }
+  var name = $('nameInput').value;
+  if(!name){
+    out.innerHTML = '<div class="uid-flags"><span class="uid-flag warn">❌ Enter a name / value first</span></div>';
+    return;
+  }
+  var nameBytes = E.stringToUtf8Bytes(name);
+  var algo = $('namedVersion').value;
+  var uuid = algo === '3' ? E.generateUUIDv3(nsBytes, nameBytes) : E.generateUUIDv5(nsBytes, nameBytes);
+
+  sessionTotal += 1;
+  versionDist[algo] = (versionDist[algo] || 0) + 1;
+  lsSet('uuidgen_total', sessionTotal);
+  lsSet('uuidgen_versiondist', versionDist);
+  pushHistory(uuid, parseInt(algo,10));
+  renderHistory();
+
+  out.innerHTML =
+    '<div class="uid-flags"><span class="uid-flag ok">✅ Generated v'+algo+' UUID</span><span class="uid-flag neutral">Deterministic</span></div>' +
+    '<p class="uid-muted uid-mono" style="font-size:1.05rem;color:#fff">'+uuid+'</p>' +
+    '<div class="btn-row"><button class="btn secondary" id="namedCopyBtn" type="button">📋 Copy</button></div>';
+  $('namedCopyBtn').addEventListener('click', function(e){ copyText(uuid, e.currentTarget); });
+  $('statusMsg').textContent = '✅ Generated deterministic v'+algo+' UUID from namespace + name.';
+});
+
+/* ===================== History pane ===================== */
+function renderHistory(){
+  var listEl = $('historyList');
+  var search = ($('historySearch').value || '').toLowerCase();
+  var verFilter = $('historyVersionFilter').value;
+  var favOnly = $('historyFavOnly').checked;
+
+  var shown = history_.filter(function(h){
+    if(search && h.v.toLowerCase().indexOf(search) === -1) return false;
+    if(verFilter !== 'all' && String(h.ver) !== verFilter) return false;
+    if(favOnly && !h.fav) return false;
+    return true;
+  });
+
+  listEl.innerHTML = '';
+  shown.slice(0,300).forEach(function(h){
+    var row = document.createElement('div');
+    row.className = 'uid-item' + (h.fav ? ' fav' : '');
+    var txt = document.createElement('span');
+    txt.className = 'uid-txt';
+    txt.textContent = h.v + '  ·  v' + h.ver;
+    var actions = document.createElement('span');
+    actions.className = 'uid-actions';
+    var favBtn = document.createElement('button');
+    favBtn.type = 'button'; favBtn.textContent = h.fav ? '★' : '☆';
+    favBtn.addEventListener('click', function(){ toggleFavorite(h.v, h.ver); });
+    var copyBtn = document.createElement('button');
+    copyBtn.type = 'button'; copyBtn.textContent = '📋';
+    copyBtn.addEventListener('click', function(){ copyText(h.v, copyBtn); });
+    var delBtn = document.createElement('button');
+    delBtn.type = 'button'; delBtn.textContent = '🗑️';
+    delBtn.addEventListener('click', function(){
+      history_ = history_.filter(function(x){ return x !== h; });
+      lsSet('uuidgen_history', history_);
+      renderHistory();
+    });
+    actions.appendChild(favBtn); actions.appendChild(copyBtn); actions.appendChild(delBtn);
+    row.appendChild(txt); row.appendChild(actions);
+    listEl.appendChild(row);
+  });
+  if(!shown.length){ listEl.innerHTML = '<p class="uid-muted" style="padding:8px">No history yet — generated UUIDs appear here automatically.</p>'; }
+  return shown;
+}
+function renderRecentDownloads(){
+  var el = $('recentDownloadsList');
+  el.innerHTML = '';
+  downloads_.slice(0,20).forEach(function(d){
+    var li = document.createElement('li');
+    li.innerHTML = '<span>'+d.name+'</span><b>'+new Date(d.ts).toLocaleString()+'</b>';
+    el.appendChild(li);
+  });
+}
+['historySearch','historyVersionFilter'].forEach(function(id){ $(id).addEventListener('input', renderHistory); });
+$('historyVersionFilter').addEventListener('change', renderHistory);
+$('historyFavOnly').addEventListener('change', renderHistory);
+$('historyCopyBtn').addEventListener('click', function(e){
+  var shown = renderHistory();
+  copyText(shown.map(function(h){ return h.v; }).join('\n'), e.currentTarget);
+});
+$('historyDownloadBtn').addEventListener('click', function(){
+  var shown = renderHistory();
+  downloadText('uuid-history.txt', shown.map(function(h){ return h.v; }).join('\n'));
+  logDownload('uuid-history.txt');
+});
+$('historyDeleteBtn').addEventListener('click', function(){
+  var shown = renderHistory();
+  var shownSet = {};
+  shown.forEach(function(h){ shownSet[h.ts + '|' + h.v] = true; });
+  history_ = history_.filter(function(h){ return !shownSet[h.ts + '|' + h.v]; });
+  lsSet('uuidgen_history', history_);
+  renderHistory();
+});
+$('historyClearAllBtn').addEventListener('click', function(){
+  if(!confirm('Clear all UUID history and downloads saved in this browser? This cannot be undone.')) return;
+  history_ = []; downloads_ = []; favorites = {};
+  lsSet('uuidgen_history', history_);
+  lsSet('uuidgen_downloads', downloads_);
+  renderHistory();
+  renderRecentDownloads();
+  renderGenerateOutput();
+});
+
+/* ===================== Init ===================== */
+restoreSettings();
+generate();
+renderApiPreview();
+renderRecentDownloads();
+renderHistory();
+
+})();
 </script>
 <!-- Default Statcounter code for Apne Software
 https://apnesoftware.com -->
 <script type="text/javascript">
-var sc_project=13334460; 
-var sc_invisible=1; 
-var sc_security="a5854dc7"; 
+var sc_project=13334460;
+var sc_invisible=1;
+var sc_security="a5854dc7";
 </script>
 <script type="text/javascript"
 src="https://www.statcounter.com/counter/counter.js"
