@@ -4,13 +4,47 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Validate JSON-LD structured data
+        run: node scripts/seo/validate-jsonld.js
+
+      - name: Validate meta tags
+        run: node scripts/seo/validate-meta-tags.js
+
+      - name: Check for broken internal links
+        run: node scripts/seo/check-broken-links.js
+
   deploy:
+    needs: validate
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so sitemap lastmod dates are accurate
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Regenerate sitemap.xml and llms.txt
+        run: |
+          node scripts/seo/generate-sitemap.js
+          node scripts/seo/generate-llms-txt.js
 
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -21,3 +55,23 @@ jobs:
           local-dir: ./
           server-dir: ${{ secrets.FTP_DIR }}
           timeout: 60000
+
+      - name: Notify search engines (IndexNow)
+        run: node scripts/seo/ping-indexnow.js
+        continue-on-error: true # best-effort — must never fail a successful deploy
+
+      - name: Lighthouse check (homepage, informational only)
+        uses: treosh/lighthouse-ci-action@v11
+        continue-on-error: true
+        with:
+          urls: https://apnesoftware.com/
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+      - name: Post-deploy reminders
+        if: always()
+        run: |
+          echo "### Post-deploy checklist" >> "$GITHUB_STEP_SUMMARY"
+          echo "- [ ] Purge the LiteSpeed cache: hPanel → Speed → Caching → Purge All (not automated — no Hostinger API credentials configured)." >> "$GITHUB_STEP_SUMMARY"
+          echo "- sitemap.xml / llms.txt were regenerated fresh for this deploy." >> "$GITHUB_STEP_SUMMARY"
+          echo "- IndexNow ping result is in the step above (best-effort, non-blocking)." >> "$GITHUB_STEP_SUMMARY"
