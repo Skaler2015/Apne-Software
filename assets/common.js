@@ -636,7 +636,7 @@ function injectStepperAndReviews(toolsData, slug, prefix) {
     const comment = reviewEl.querySelector('#reviewComment').value.trim();
     const name = reviewEl.querySelector('#reviewName').value.trim();
 
-    if (!selectedRating) { msg.textContent = '⚠️ Please select a star rating.'; msg.style.color='#F87171'; return; }
+    if (!selectedRating) { msg.textContent = '⚠️ Please select a star rating.'; msg.style.color='#E2615D'; return; }
     // Name and comment are optional — no validation required
 
     const btn = reviewEl.querySelector('#reviewSubmitBtn');
@@ -651,18 +651,18 @@ function injectStepperAndReviews(toolsData, slug, prefix) {
       const data = await res.json();
       if (data.ok) {
         msg.textContent = '✅ ' + (data.message || 'Thank you for your review!');
-        msg.style.color = '#34D399';
+        msg.style.color = '#1FAE7D';
         reviewEl.querySelector('#reviewComment').value = '';
         reviewEl.querySelector('#reviewName').value = '';
         selectedRating = 0; setStars(0, false);
         loadReviews();
       } else {
         msg.textContent = '❌ ' + data.error;
-        msg.style.color = '#F87171';
+        msg.style.color = '#E2615D';
       }
     } catch(e) {
       msg.textContent = '❌ Could not submit. Please try again.';
-      msg.style.color = '#F87171';
+      msg.style.color = '#E2615D';
     }
     btn.disabled = false; btn.textContent = 'Submit Review';
   });
