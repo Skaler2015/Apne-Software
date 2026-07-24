@@ -773,7 +773,6 @@ function injectStepperAndReviews(toolsData, slug, prefix) {
     const overlay = document.createElement('div');
     overlay.className = 'prem-progress-overlay';
     overlay.id = 'premProgressOverlay';
-    overlay.style.display = 'none';
     overlay.innerHTML = `
       <div class="prem-progress-box">
         <span class="prem-prog-icon" id="premProgIcon">⏳</span>
@@ -810,7 +809,7 @@ function premShowProgress(icon, title, sub, pct){
   document.getElementById('premProgTitle').textContent = title || 'Processing...';
   document.getElementById('premProgSub').textContent = sub || 'Please wait';
   premSetProgress(pct || 0);
-  el.style.display = 'flex';
+  el.classList.add('show');
 }
 function premSetProgress(pct){
   const bar = document.getElementById('premProgBar');
@@ -820,13 +819,16 @@ function premSetProgress(pct){
 }
 function premHideProgress(){
   const el = document.getElementById('premProgressOverlay');
-  if(el) el.style.display = 'none';
+  if(el) el.classList.remove('show');
 }
 function premToast(msg, duration){
   const t = document.createElement('div');
   t.className = 'prem-toast';
   t.textContent = msg;
   document.body.appendChild(t);
-  setTimeout(() => t.remove(), duration || 3000);
+  setTimeout(() => {
+    t.classList.add('hide');
+    setTimeout(() => t.remove(), 250);
+  }, duration || 3000);
 }
 

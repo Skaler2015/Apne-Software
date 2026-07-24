@@ -464,6 +464,19 @@ label{font-size:.8rem;color:var(--text-dim);display:block;margin-bottom:6px;font
 
 canvas{max-width:100%}
 
+/* Mobile/touch tap-target sizing — coarse pointer only, desktop untouched */
+@media(pointer:coarse){
+  .btn{min-height:44px}
+  .mega-hamburger{width:44px;height:44px}
+  .drawer-close{width:44px;height:44px;font-size:1.05rem}
+  .drawer-cat-head{padding-top:15px;padding-bottom:15px}
+  .drawer-cat-body a,.drawer-results a{padding-top:11px;padding-bottom:11px}
+  .lsb-cat-head{padding-top:13px;padding-bottom:13px}
+  input[type=checkbox],input[type=radio]{width:20px!important;height:20px!important}
+  .star-btn{font-size:2.3rem;padding:4px}
+  .prem-tab,.search-cat-pill,.filter-tab,.trending-tag{padding-top:9px;padding-bottom:9px}
+}
+
 
 /* ═══ SOFT EMBOSS GLOBAL FIXES ═══ */
 
@@ -719,9 +732,15 @@ input[type=checkbox], input[type=radio]{
   transition:.3s!important;
   position:relative;overflow:hidden;
 }
-.dropzone:hover,.dropzone.drag-over{
+.dropzone:hover{
   color:var(--accent);
 }
+.dropzone.drag,.dropzone.drag-over{
+  color:var(--accent);
+  box-shadow:var(--shadow-inset),0 0 0 3px rgba(var(--accent-rgb),.35)!important;
+  animation:dzPulse 1s ease-in-out infinite;
+}
+@keyframes dzPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.015)}}
 .dropzone p{color:var(--text-dim)!important;font-size:.88rem!important;margin:0!important}
 .dropzone input[type=file]{display:none!important}
 
@@ -861,7 +880,12 @@ label{
 .prem-upload-wrap:hover,.prem-upload-wrap.drag-over{
   color:var(--accent);
 }
-.prem-upload-icon{font-size:2.8rem;margin-bottom:10px;display:block;animation:uFloat 3s ease-in-out infinite}
+.prem-upload-icon{
+  font-size:2rem;width:64px;height:64px;border-radius:50%;
+  background:var(--bg);box-shadow:var(--shadow-inset);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 14px;
+  animation:uFloat 3s ease-in-out infinite;
+}
 @keyframes uFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
 .prem-upload-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:5px}
 .prem-upload-sub{font-size:.82rem;color:var(--text-dim);margin-bottom:14px}
@@ -882,19 +906,24 @@ label{
   position:fixed;inset:0;background:rgba(232,235,242,.9);
   display:flex;align-items:center;justify-content:center;
   z-index:9999;
+  opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease;
 }
+.prem-progress-overlay.show{opacity:1;visibility:visible}
 .prem-progress-box{
   background:var(--bg);border:none;
   border-radius:20px;padding:36px;text-align:center;
   min-width:300px;max-width:88vw;
   box-shadow:var(--shadow-raised);
+  transform:scale(.9);transition:transform .25s ease;
 }
-.prem-prog-icon{font-size:2.5rem;margin-bottom:12px;display:block}
+.prem-progress-overlay.show .prem-progress-box{transform:scale(1)}
+.prem-prog-icon{font-size:2.5rem;margin-bottom:12px;display:block;animation:progIconFloat 1.6s ease-in-out infinite}
+@keyframes progIconFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 .prem-prog-title{font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:4px}
 .prem-prog-sub{font-size:.82rem;color:var(--text-dim);margin-bottom:18px}
 .prem-prog-bar-wrap{background:var(--surface-2);box-shadow:var(--shadow-inset);border-radius:999px;height:7px;overflow:hidden;margin-bottom:6px}
-.prem-prog-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:999px;width:0%;transition:.4s}
-.prem-prog-pct{font-size:.74rem;color:var(--text-dim);text-align:right}
+.prem-prog-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:999px;width:0%;transition:width .4s ease}
+.prem-prog-pct{font-size:.74rem;color:var(--text-dim);text-align:right;font-variant-numeric:tabular-nums}
 
 /* ── SUCCESS TOAST ── */
 .prem-toast{
@@ -904,7 +933,9 @@ label{
   border:none;box-shadow:var(--shadow-raised);
   white-space:nowrap;pointer-events:none;
   animation:toastIn .25s ease;
+  transition:opacity .25s ease,transform .25s ease;
 }
+.prem-toast.hide{opacity:0;transform:translateX(-50%) translateY(10px)}
 @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
 /* ── SECTION SEPARATOR ── */
