@@ -535,6 +535,13 @@ mark{background:rgba(var(--accent-rgb),.22);color:var(--text);border-radius:3px;
   </div>
   <div class="featured-grid" id="favGrid" style="display:none"></div>
 
+  <!-- RECENTLY VIEWED (only shown once the user has opened a tool — stored locally, never fabricated) -->
+  <div class="section-title" id="recentViewedSection" style="display:none">
+    <h2>🕓 Recently Viewed</h2>
+    <p>Tools you've opened recently — stored only in this browser</p>
+  </div>
+  <div class="featured-grid" id="recentViewedGrid" style="display:none"></div>
+
   <!-- FEATURED -->
   <div class="section-title">
     <h2>✨ Popular Tools</h2>
@@ -699,6 +706,29 @@ function renderFavoritesSection(){
     </a>`).join('');
 }
 
+/* ── RECENTLY VIEWED (stored locally only, never sent anywhere) ── */
+const RV_KEY = 'as_recently_viewed';
+function renderRecentlyViewedSection(){
+  if(!toolsData) return;
+  let rvIds = [];
+  try{ rvIds = JSON.parse(localStorage.getItem(RV_KEY)) || []; }catch(e){}
+  const section = document.getElementById('recentViewedSection');
+  const grid = document.getElementById('recentViewedGrid');
+  const rvTools = rvIds.map(id => toolsData.tools.find(t => t.id === id)).filter(Boolean).slice(0, 6);
+  if(!rvTools.length){
+    section.style.display = 'none';
+    grid.style.display = 'none';
+    return;
+  }
+  section.style.display = '';
+  grid.style.display = '';
+  grid.innerHTML = rvTools.map(t => `
+    <a class="featured-card" href="${t.url}">
+      <div class="ficon">${t.icon}</div><h3>${t.name}</h3><p>${t.description}</p>
+      <div class="try-link">Open again →</div>
+    </a>`).join('');
+}
+
 /* ── ROTATING HERO WORD ── */
 const ROTATE_WORDS = ['Work','Studies','Business','Daily Tasks','Life'];
 let rotateIdx = 0;
@@ -751,6 +781,7 @@ async function loadData(){
     setupSearch();
     render();
     renderFavoritesSection();
+    renderRecentlyViewedSection();
     loadPopularIds();
   }catch(err){
     document.getElementById('toolsContainer').innerHTML='<p class="loading-msg">⚠️ Could not load tools. Please refresh.</p>';

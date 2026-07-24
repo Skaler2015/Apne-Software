@@ -481,6 +481,14 @@ function injectStepperAndReviews(toolsData, slug, prefix) {
   const tool = toolsData.tools.find(t => t.id === slug);
   if (!tool) return;
 
+  // ── RECENTLY VIEWED (stored locally only, never sent anywhere) ──
+  try {
+    const RV_KEY = 'as_recently_viewed';
+    let rv = JSON.parse(localStorage.getItem(RV_KEY)) || [];
+    rv = [slug, ...rv.filter(x => x !== slug)].slice(0, 12);
+    localStorage.setItem(RV_KEY, JSON.stringify(rv));
+  } catch(e) {}
+
   // ── STEP DATA per category ─────────────────────────────────
   const STEPS = {
     pdf: [
@@ -561,7 +569,14 @@ function injectStepperAndReviews(toolsData, slug, prefix) {
       favBtn.classList.toggle('active', on);
     }
     renderFavBtn();
-    favBtn.addEventListener('click', () => { toggleFav(slug); renderFavBtn(); });
+    favBtn.addEventListener('click', () => {
+      const on = toggleFav(slug);
+      renderFavBtn();
+      if (on && typeof premCelebrate === 'function') {
+        const r = favBtn.getBoundingClientRect();
+        premCelebrate(r.left + r.width / 2, r.top + r.height / 2);
+      }
+    });
     actionsRow.appendChild(favBtn);
 
     const shareBtn = document.createElement('button');
@@ -580,6 +595,35 @@ function injectStepperAndReviews(toolsData, slug, prefix) {
       }
     });
     actionsRow.appendChild(shareBtn);
+
+    const reportBtn = document.createElement('a');
+    reportBtn.className = 'fav-toggle-btn';
+    reportBtn.href = 'mailto:bugs@apnesoftware.com?subject=' +
+      encodeURIComponent('Issue with ' + tool.name) + '&body=' +
+      encodeURIComponent('Tool: ' + tool.name + '\nURL: ' + window.location.href + '\n\nDescribe the issue:\n');
+    reportBtn.innerHTML = '🚩 Report Issue';
+    actionsRow.appendChild(reportBtn);
+
+    // Visible "last updated" date, read from this page's own JSON-LD (same
+    // git-derived date already injected by scripts/seo/add-schema-dates.js)
+    const dateModified = (function findDateModified(){
+      const blocks = document.querySelectorAll('script[type="application/ld+json"]');
+      for (const b of blocks) {
+        try {
+          const data = JSON.parse(b.textContent);
+          const nodes = Array.isArray(data['@graph']) ? data['@graph'] : [data];
+          for (const n of nodes) { if (n && n.dateModified) return n.dateModified; }
+        } catch(e) {}
+      }
+      return null;
+    })();
+    if (dateModified) {
+      const dateEl = document.createElement('span');
+      dateEl.className = 'tool-updated-note';
+      const d = new Date(dateModified);
+      dateEl.textContent = '🕓 Updated ' + (isNaN(d) ? dateModified : d.toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' }));
+      actionsRow.appendChild(dateEl);
+    }
 
     toolHeader.appendChild(actionsRow);
   }
@@ -697,6 +741,10 @@ function injectStepperAndReviews(toolsData, slug, prefix) {
         reviewEl.querySelector('#reviewName').value = '';
         selectedRating = 0; setStars(0, false);
         loadReviews();
+        if (typeof premCelebrate === 'function') {
+          const r = btn.getBoundingClientRect();
+          premCelebrate(r.left + r.width / 2, r.top);
+        }
       } else {
         msg.textContent = '❌ ' + data.error;
         msg.style.color = '#E2615D';
@@ -872,4 +920,45 @@ function premToast(msg, duration){
     setTimeout(() => t.remove(), 250);
   }, duration || 3000);
 }
+
+/* Small celebratory burst for positive actions (favorite saved, review submitted).
+   Respects prefers-reduced-motion. Purely decorative — never gates functionality. */
+function premCelebrate(x, y){
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const colors = ['#6C63E0', '#1FAE7D', '#E0933A', '#3E7FC9'];
+  for (let i = 0; i < 10; i++) {
+    const p = document.createElement('span');
+    p.className = 'confetti-piece';
+    p.style.background = colors[i % colors.length];
+    p.style.left = x + 'px';
+    p.style.top = y + 'px';
+    const angle = (Math.PI * 2 * i) / 10;
+    const dist = 36 + Math.random() * 26;
+    p.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+    p.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 700);
+  }
+}
+
+/* Global ripple effect for primary clickable controls — no per-tool markup needed */
+(function setupRipple(){
+  document.addEventListener('click', function(e){
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const btn = e.target.closest('.btn, .fav-toggle-btn, .filter-tab, .search-cat-pill, .prem-tab');
+    if (!btn) return;
+    const rect = btn.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple-effect';
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+    ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+    const prevPosition = getComputedStyle(btn).position;
+    if (prevPosition === 'static') btn.style.position = 'relative';
+    btn.style.overflow = 'hidden';
+    btn.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  });
+})();
 
