@@ -838,6 +838,21 @@ textarea:focus,input[type=text]:focus,input[type=number]:focus,input[type=date]:
 .fav-toggle-btn:hover{color:var(--accent)}
 .fav-toggle-btn.active{color:#C97323;box-shadow:var(--shadow-inset)}
 .fav-toggle-btn:active{transform:scale(.96)}
+.tool-updated-note{font-size:.78rem;color:var(--text-dim);display:inline-flex;align-items:center;padding:0 4px}
+
+/* Ripple effect on primary controls */
+.ripple-effect{
+  position:absolute;border-radius:50%;background:rgba(255,255,255,.5);
+  transform:scale(0);animation:rippleAnim .6s ease-out;pointer-events:none;
+}
+@keyframes rippleAnim{to{transform:scale(2.5);opacity:0}}
+
+/* Celebration confetti burst */
+.confetti-piece{
+  position:fixed;width:6px;height:6px;border-radius:2px;pointer-events:none;z-index:9999;
+  animation:confettiBurst .7s ease-out forwards;
+}
+@keyframes confettiBurst{to{transform:translate(var(--dx),var(--dy)) rotate(180deg);opacity:0}}
 
 /* ── FIELD LABEL ── */
 label{
