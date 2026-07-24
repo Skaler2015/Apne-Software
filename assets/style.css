@@ -47,6 +47,18 @@ body::after{
   pointer-events:none;z-index:0;
 }
 a{color:inherit;text-decoration:none}
+
+/* Accessibility: visible keyboard focus + respect reduced-motion preference */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible,
+select:focus-visible, [tabindex]:focus-visible{
+  outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;
+}
+@media(prefers-reduced-motion:reduce){
+  *, *::before, *::after{
+    animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important;
+  }
+}
 .container{max-width:1040px;margin:0 auto;padding:24px 22px 60px;position:relative;z-index:1}
 .container-wide{max-width:100%;margin:0;padding:0}
 

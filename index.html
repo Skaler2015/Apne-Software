@@ -308,7 +308,13 @@ body{
   padding:18px;text-decoration:none;color:var(--text);
   box-shadow:var(--shadow-raised-sm);
   transition:.25s cubic-bezier(.34,1.56,.64,1);display:block;
+  position:relative;
 }
+/* Card badges (real data only — no fabricated ratings/counts) */
+.tc-badge{position:absolute;top:10px;right:10px;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:999px;color:#fff;letter-spacing:.02em;z-index:2;white-space:nowrap}
+.tc-badge-new{background:linear-gradient(135deg,var(--accent-2),#178f66)}
+.tc-badge-popular{background:linear-gradient(135deg,#E0933A,#C97323)}
+.tc-badge-featured{background:linear-gradient(135deg,var(--accent),var(--accent-dark))}
 .tool-card:hover{
   transform:translateY(-3px);
   box-shadow:var(--shadow-raised);
@@ -599,6 +605,7 @@ body{
 <script>
 let toolsData = null;
 let currentCategory = 'all';
+let popularIds = new Set(); // real usage data only — never fabricated
 
 /* ── ROTATING HERO WORD ── */
 const ROTATE_WORDS = ['Work','Studies','Business','Daily Tasks','Life'];
@@ -633,9 +640,23 @@ async function loadData(){
     document.getElementById('statTools').textContent = toolsData.tools.filter(t=>t.published).length + '+';
     setupSearch();
     render();
+    loadPopularIds();
   }catch(err){
     document.getElementById('toolsContainer').innerHTML='<p class="loading-msg">⚠️ Could not load tools. Please refresh.</p>';
   }
+}
+
+/* Real "Popular" badge data — same source as the sidebar's Most Used Tools.
+   Fails silently and simply shows no badges if the backend isn't reachable. */
+async function loadPopularIds(){
+  try{
+    const r = await fetch('backend/popular_tools.php',{cache:'no-store'});
+    const d = await r.json();
+    if(d.has_data && Array.isArray(d.top_tools) && d.top_tools.length){
+      popularIds = new Set(d.top_tools.map(t=>t.tool_slug));
+      render();
+    }
+  }catch(e){}
 }
 
 /* ── CATEGORY CARDS ── */
@@ -680,7 +701,7 @@ function renderFeatured(){
     const a = document.createElement('a');
     a.className='featured-card';
     a.href=tool.url;
-    a.innerHTML=`<div class="ficon">${tool.icon}</div><h3>${tool.name}</h3><p>${tool.description}</p><div class="try-link">Try it free →</div>`;
+    a.innerHTML=`<span class="tc-badge tc-badge-featured">⭐ Featured</span><div class="ficon">${tool.icon}</div><h3>${tool.name}</h3><p>${tool.description}</p><div class="try-link">Try it free →</div>`;
     grid.appendChild(a);
   });
 }
@@ -722,7 +743,7 @@ function renderRecentTools(){
     a.className='featured-card';
     a.href=tool.url;
     a.innerHTML=`
-      <div style="position:absolute;top:12px;right:12px;background:linear-gradient(135deg,#16C079,#0EA562);color:#fff;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:999px">NEW</div>
+      <span class="tc-badge tc-badge-new">NEW</span>
       <div class="ficon">${tool.icon}</div>
       <h3>${tool.name}</h3>
       <p>${tool.description}</p>
@@ -799,7 +820,8 @@ function render(){
     const a=document.createElement('a');
     a.className='tool-card';
     a.href=tool.url;
-    a.innerHTML=`<div class="icon">${tool.icon}</div><h3>${tool.name}</h3><p>${tool.description}</p>`;
+    const badge = popularIds.has(tool.id) ? '<span class="tc-badge tc-badge-popular">🔥 Popular</span>' : '';
+    a.innerHTML=`${badge}<div class="icon">${tool.icon}</div><h3>${tool.name}</h3><p>${tool.description}</p>`;
     container.appendChild(a);
   });
   noResults.style.display=filtered.length?'none':'block';

@@ -10,20 +10,31 @@
 <link rel="stylesheet" href="/assets/style.css">
 <style>
 .notfound-wrap{min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;}
-.nf-code{font-size:6rem;font-weight:900;background:linear-gradient(135deg,#7c5cfc,#16c079);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;line-height:1;}
-.nf-title{font-size:1.5rem;font-weight:700;margin:16px 0 10px;}
-.nf-sub{color:rgba(255,255,255,.55);max-width:400px;margin-bottom:32px;font-size:.95rem;}
-.nf-btn{background:linear-gradient(135deg,#7c5cfc,#16c079);color:#fff;padding:14px 32px;border-radius:50px;text-decoration:none;font-weight:700;font-size:1rem;transition:.2s;}
-.nf-btn:hover{opacity:.9;transform:translateY(-2px);}
+.nf-icon{width:96px;height:96px;border-radius:50%;background:var(--bg);box-shadow:var(--shadow-inset);display:flex;align-items:center;justify-content:center;font-size:2.6rem;margin-bottom:20px;}
+.nf-code{font-size:3.2rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin:0;line-height:1;}
+.nf-title{font-size:1.3rem;font-weight:700;margin:14px 0 10px;color:var(--text);}
+.nf-sub{color:var(--text-dim);max-width:400px;margin-bottom:28px;font-size:.92rem;}
+.nf-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));color:#fff;padding:13px 30px;border-radius:999px;text-decoration:none;font-weight:700;font-size:.92rem;box-shadow:var(--shadow-raised-sm);transition:.2s;}
+.nf-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-raised);}
+.nf-btn:active{box-shadow:var(--shadow-inset);transform:none;}
+.nf-links{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;justify-content:center;}
+.nf-links a{font-size:.82rem;color:var(--text-dim);text-decoration:none;}
+.nf-links a:hover{color:var(--accent);}
 </style>
 </head>
 <body>
 <header class="site-header"><div class="inner"><a class="brand" href="/">Apne<span>Software</span></a></div></header>
 <div class="notfound-wrap">
+  <div class="nf-icon">🔍</div>
   <p class="nf-code">404</p>
   <h1 class="nf-title">Page Not Found</h1>
-  <p class="nf-sub">This page doesn't exist or has been moved. Go back to browse all free tools.</p>
+  <p class="nf-sub">This page doesn't exist or has been moved. Go back and browse all free tools instead.</p>
   <a class="nf-btn" href="/">← Browse All Tools</a>
+  <div class="nf-links">
+    <a href="/category/pdf-tools.html">PDF Tools</a>
+    <a href="/category/image-tools.html">Image Tools</a>
+    <a href="/category/calculator-tools.html">Calculators</a>
+  </div>
 </div>
 <script src="/assets/common.js"></script>
 <!-- Default Statcounter code for Apne Software
