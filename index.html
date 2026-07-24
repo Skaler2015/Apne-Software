@@ -164,6 +164,10 @@ body{
 .adv-dd-item .di-arrow{margin-left:auto;font-size:.75rem;color:var(--text-dim)}
 .adv-dd-item.highlighted{background:var(--surface-2)}
 .adv-dd-divider{height:1px;background:var(--border);margin:2px 0}
+.adv-dd-suggest{margin-top:8px;font-size:.82rem}
+.adv-dd-suggest a{color:var(--accent)}
+.adv-clear-recent:hover{text-decoration:underline}
+mark{background:rgba(var(--accent-rgb),.22);color:var(--text);border-radius:3px;padding:0 1px}
 
 /* Category quick filter pills */
 .search-cat-pills{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:0 auto 26px;max-width:680px}
@@ -868,6 +872,43 @@ const advClearBtn = document.getElementById('searchClearBtn');
 let searchDebounce = null;
 let selectedIdx = -1;
 
+// Recent searches — stored locally in the browser only, never sent anywhere
+const RECENT_KEY = 'as_recent_searches';
+function getRecentSearches(){ try{ return JSON.parse(localStorage.getItem(RECENT_KEY)) || []; }catch(e){ return []; } }
+function saveRecentSearch(q){
+  q = (q||'').trim();
+  if(!q) return;
+  try{
+    let list = getRecentSearches().filter(x => x.toLowerCase() !== q.toLowerCase());
+    list.unshift(q);
+    localStorage.setItem(RECENT_KEY, JSON.stringify(list.slice(0, 6)));
+  }catch(e){}
+}
+function clearRecentSearches(){ try{ localStorage.removeItem(RECENT_KEY); }catch(e){} closeDropdown(); }
+
+function escapeHtml(s){
+  return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function highlightMatch(text, q){
+  const t = escapeHtml(text||'');
+  if(!q) return t;
+  const idx = t.toLowerCase().indexOf(q.toLowerCase());
+  if(idx === -1) return t;
+  return t.slice(0, idx) + '<mark>' + t.slice(idx, idx+q.length) + '</mark>' + t.slice(idx+q.length);
+}
+function levenshtein(a, b){
+  const m = a.length, n = b.length;
+  const dp = [];
+  for(let i = 0; i <= m; i++) dp.push([i]);
+  for(let j = 1; j <= n; j++) dp[0][j] = j;
+  for(let i = 1; i <= m; i++){
+    for(let j = 1; j <= n; j++){
+      dp[i][j] = a[i-1] === b[j-1] ? dp[i-1][j-1] : 1 + Math.min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]);
+    }
+  }
+  return dp[m][n];
+}
+
 // Quick search from trending tags
 function quickSearch(q){
   advInput.value = q;
@@ -913,7 +954,9 @@ if(advInput){
   });
 
   advInput.addEventListener('focus', function(){
-    if(this.value.trim().length >= 1) renderAdvResults(this.value.trim());
+    const v = this.value.trim();
+    if(v.length >= 1) renderAdvResults(v);
+    else renderRecentSearches();
   });
 }
 
@@ -946,20 +989,60 @@ function closeDropdown(){
   selectedIdx = -1;
 }
 
+function renderRecentSearches(){
+  const recent = getRecentSearches();
+  if(!recent.length){ closeDropdown(); return; }
+  selectedIdx = -1;
+  let html = '<div class="adv-dd-section">';
+  html += '<div class="adv-dd-label" style="display:flex;justify-content:space-between;align-items:center">'
+    + '<span>🕘 Recent Searches</span><span class="adv-clear-recent" style="cursor:pointer;text-transform:none;letter-spacing:0;color:var(--accent)">Clear</span></div>';
+  recent.forEach(q => {
+    html += '<a class="adv-dd-item adv-recent-item" href="#" data-q="' + escapeHtml(q) + '">'
+      + '<div class="di-icon">🕘</div><div><div class="di-name">' + escapeHtml(q) + '</div></div>'
+      + '<span class="di-arrow">→</span></a>';
+  });
+  html += '</div>';
+  advDropdown.innerHTML = html;
+  advDropdown.classList.add('show');
+  advDropdown.querySelector('.adv-clear-recent')?.addEventListener('click', clearRecentSearches);
+  advDropdown.querySelectorAll('.adv-recent-item').forEach(el => {
+    el.addEventListener('click', e => { e.preventDefault(); advInput.value = el.dataset.q; renderAdvResults(el.dataset.q); });
+  });
+}
+
 function renderAdvResults(q){
   if(!toolsData) return;
   selectedIdx = -1;
   const ql = q.toLowerCase();
-  const results = toolsData.tools.filter(t => t.published && (
-    t.name.toLowerCase().includes(ql) ||
-    t.description?.toLowerCase().includes(ql) ||
-    toolCategories(t).some(c => c.toLowerCase().includes(ql))
-  )).slice(0, 8);
+
+  // Rank matches: exact name > name starts-with > name contains > description/category contains
+  const scored = [];
+  toolsData.tools.forEach(t => {
+    if(!t.published) return;
+    const nameL = t.name.toLowerCase();
+    let score = -1;
+    if(nameL === ql) score = 0;
+    else if(nameL.startsWith(ql)) score = 1;
+    else if(nameL.includes(ql)) score = 2;
+    else if(t.description?.toLowerCase().includes(ql) || toolCategories(t).some(c => c.toLowerCase().includes(ql))) score = 3;
+    if(score >= 0) scored.push({ t, score });
+  });
+  scored.sort((a, b) => a.score - b.score || a.t.name.localeCompare(b.t.name));
+  const results = scored.slice(0, 8).map(s => s.t);
 
   const catMap = {'pdf':'📄 PDF','image':'🖼️ Image','text':'📝 Text','calculator':'🧮 Calculator','developer':'⚙️ Developer'};
 
   if(!results.length){
-    advDropdown.innerHTML = '<div style="padding:18px;text-align:center;color:var(--text-dim);font-size:.84rem">🔍 No tools found for "' + q + '"</div>';
+    // Typo fallback — suggest the closest tool name if it's a plausible typo
+    let best = null, bestDist = Infinity;
+    toolsData.tools.forEach(t => {
+      if(!t.published) return;
+      const d = levenshtein(ql, t.name.toLowerCase());
+      if(d < bestDist){ bestDist = d; best = t; }
+    });
+    const suggestion = (best && bestDist <= Math.max(2, Math.floor(best.name.length * 0.35)))
+      ? '<div class="adv-dd-suggest">Did you mean <a href="' + best.url + '"><b>' + escapeHtml(best.name) + '</b></a>?</div>' : '';
+    advDropdown.innerHTML = '<div style="padding:18px;text-align:center;color:var(--text-dim);font-size:.84rem">🔍 No tools found for "' + escapeHtml(q) + '"' + suggestion + '</div>';
     advDropdown.classList.add('show');
     return;
   }
@@ -976,10 +1059,10 @@ function renderAdvResults(q){
     html += '<div class="adv-dd-section">';
     html += '<div class="adv-dd-label">' + (catMap[cat] || cat) + '</div>';
     tools.forEach(t => {
-      html += '<a class="adv-dd-item" href="' + t.url + '">'
+      html += '<a class="adv-dd-item" href="' + t.url + '" data-q="' + escapeHtml(q) + '">'
         + '<div class="di-icon">' + (t.icon||'🔧') + '</div>'
-        + '<div><div class="di-name">' + t.name + '</div>'
-        + '<div class="di-cat">' + (t.description||'').substring(0,50) + '</div></div>'
+        + '<div><div class="di-name">' + highlightMatch(t.name, q) + '</div>'
+        + '<div class="di-cat">' + highlightMatch((t.description||'').substring(0,50), q) + '</div></div>'
         + '<span class="di-arrow">→</span></a>';
     });
     html += '</div><div class="adv-dd-divider"></div>';
@@ -992,6 +1075,10 @@ function renderAdvResults(q){
     + '</div>';
   advDropdown.innerHTML = html;
   advDropdown.classList.add('show');
+  // Save to recent searches when a result is actually chosen
+  advDropdown.querySelectorAll('.adv-dd-item[data-q]').forEach(el => {
+    el.addEventListener('click', () => saveRecentSearch(el.dataset.q));
+  });
   // See-all click
   advDropdown.querySelector('.adv-see-all')?.addEventListener('click', () => performSearch(q));
 }
@@ -999,6 +1086,7 @@ function renderAdvResults(q){
 function performSearch(q){
   closeDropdown();
   if(!q.trim()) return;
+  saveRecentSearch(q);
   // Filter tool grid
   currentCategory = 'all';
   document.querySelectorAll('.search-cat-pill').forEach(p => p.classList.remove('active'));
