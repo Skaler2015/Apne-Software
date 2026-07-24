@@ -325,6 +325,18 @@ mark{background:rgba(var(--accent-rgb),.22);color:var(--text);border-radius:3px;
 .tc-badge-new{background:linear-gradient(135deg,var(--accent-2),#178f66)}
 .tc-badge-popular{background:linear-gradient(135deg,#E0933A,#C97323)}
 .tc-badge-featured{background:linear-gradient(135deg,var(--accent),var(--accent-dark))}
+
+/* Favorite/save toggle — real localStorage state, never fabricated */
+.fav-star-btn{
+  position:absolute;top:8px;left:8px;z-index:3;
+  background:var(--bg);box-shadow:var(--shadow-raised-sm);border:none;border-radius:50%;
+  width:28px;height:28px;display:flex;align-items:center;justify-content:center;
+  font-size:.95rem;color:var(--text-dim);cursor:pointer;transition:.15s;
+}
+.fav-star-btn:hover{color:#E0933A}
+.fav-star-btn.active{color:#C97323}
+.fav-star-btn:active{transform:scale(.88)}
+.featured-card .fav-star-btn{top:10px;left:10px}
 .tool-card:hover{
   transform:translateY(-3px);
   box-shadow:var(--shadow-raised);
@@ -381,8 +393,15 @@ mark{background:rgba(var(--accent-rgb),.22);color:var(--text);border-radius:3px;
 /* Search loading */
 .loading-msg{text-align:center;color:var(--text-dim);padding:40px}
 
-/* No results */
-#noResults{color:var(--text-dim)}
+/* No results — matches the 404 page's icon-frame treatment */
+.empty-state{text-align:center;padding:40px 20px}
+.empty-state-icon{
+  width:64px;height:64px;border-radius:50%;margin:0 auto 16px;
+  background:var(--bg);box-shadow:var(--shadow-inset);
+  display:flex;align-items:center;justify-content:center;font-size:1.8rem;
+}
+.empty-state-title{font-weight:700;color:var(--text);font-size:1rem;margin-bottom:4px}
+.empty-state-sub{color:var(--text-dim);font-size:.86rem}
 
 /* Responsive */
 @media(max-width:768px){
@@ -484,15 +503,15 @@ mark{background:rgba(var(--accent-rgb),.22);color:var(--text);border-radius:3px;
     <!-- Stats bar -->
     <div class="hero-stats">
       <div class="hero-stat">
-        <span class="hero-stat-num" id="statTools">154+</span>
+        <span class="hero-stat-num" id="statTools">0+</span>
         <span class="hero-stat-label">Free Tools</span>
       </div>
       <div class="hero-stat">
-        <span class="hero-stat-num">5</span>
+        <span class="hero-stat-num" id="statCategories">0</span>
         <span class="hero-stat-label">Categories</span>
       </div>
       <div class="hero-stat">
-        <span class="hero-stat-num">100%</span>
+        <span class="hero-stat-num" id="statFreePct">0%</span>
         <span class="hero-stat-label">Free Always</span>
       </div>
       <div class="hero-stat">
@@ -508,6 +527,13 @@ mark{background:rgba(var(--accent-rgb),.22);color:var(--text);border-radius:3px;
     <p>Pick a category or search above for any tool</p>
   </div>
   <div class="cat-cards" id="catCardsGrid"></div>
+
+  <!-- MY FAVORITES (only shown once the user has saved a tool — stored locally, never fabricated) -->
+  <div class="section-title" id="favSection" style="display:none">
+    <h2>⭐ My Favorites</h2>
+    <p>Tools you've saved for later — stored only in this browser</p>
+  </div>
+  <div class="featured-grid" id="favGrid" style="display:none"></div>
 
   <!-- FEATURED -->
   <div class="section-title">
@@ -532,7 +558,11 @@ mark{background:rgba(var(--accent-rgb),.22);color:var(--text);border-radius:3px;
   <div id="toolsContainer" class="tool-grid">
     <p class="loading-msg">Loading tools...</p>
   </div>
-  <p id="noResults" style="display:none;text-align:center;color:var(--text-dim);margin-top:30px">No tools found 🙁</p>
+  <div id="noResults" class="empty-state" style="display:none">
+    <div class="empty-state-icon">🔍</div>
+    <p class="empty-state-title">No tools found</p>
+    <p class="empty-state-sub">Try a different keyword, or browse by category above.</p>
+  </div>
   <div class="load-more-wrap" id="loadMoreWrap" style="display:none">
     <button class="load-more-btn" id="loadMoreBtn">Load More Tools</button>
     <p class="tools-count-label" id="toolsCountLabel"></p>
@@ -632,6 +662,43 @@ let toolsData = null;
 let currentCategory = 'all';
 let popularIds = new Set(); // real usage data only — never fabricated
 
+/* ── FAVORITES (stored locally only, never sent anywhere) ── */
+const FAV_KEY = 'as_favorites';
+function getFavorites(){ try{ return JSON.parse(localStorage.getItem(FAV_KEY)) || []; }catch(e){ return []; } }
+function isFavorite(id){ return getFavorites().includes(id); }
+function toggleFavoriteAndRerender(id, btnEl){
+  let favs = getFavorites();
+  const nowOn = !favs.includes(id);
+  favs = nowOn ? [id, ...favs.filter(x => x !== id)] : favs.filter(x => x !== id);
+  localStorage.setItem(FAV_KEY, JSON.stringify(favs.slice(0, 50)));
+  if(btnEl){
+    btnEl.textContent = nowOn ? '★' : '☆';
+    btnEl.classList.toggle('active', nowOn);
+    btnEl.setAttribute('aria-label', nowOn ? 'Remove from favorites' : 'Save to favorites');
+  }
+  renderFavoritesSection();
+}
+function renderFavoritesSection(){
+  if(!toolsData) return;
+  const favIds = getFavorites();
+  const section = document.getElementById('favSection');
+  const grid = document.getElementById('favGrid');
+  const favTools = favIds.map(id => toolsData.tools.find(t => t.id === id)).filter(Boolean);
+  if(!favTools.length){
+    section.style.display = 'none';
+    grid.style.display = 'none';
+    return;
+  }
+  section.style.display = '';
+  grid.style.display = '';
+  grid.innerHTML = favTools.map(t => `
+    <a class="featured-card" href="${t.url}">
+      <button class="fav-star-btn active" aria-label="Remove from favorites" onclick="event.preventDefault();event.stopPropagation();toggleFavoriteAndRerender('${t.id}', this)">★</button>
+      <div class="ficon">${t.icon}</div><h3>${t.name}</h3><p>${t.description}</p>
+      <div class="try-link">Try it free →</div>
+    </a>`).join('');
+}
+
 /* ── ROTATING HERO WORD ── */
 const ROTATE_WORDS = ['Work','Studies','Business','Daily Tasks','Life'];
 let rotateIdx = 0;
@@ -651,6 +718,22 @@ let rotateIdx = 0;
   el.style.transition = 'opacity .25s,transform .25s';
 })();
 
+/* ── ANIMATED STAT COUNTERS (real numbers, animated presentation only) ── */
+function animateCount(id, target, suffix){
+  const el = document.getElementById(id);
+  if(!el || el.dataset.animated) return;
+  el.dataset.animated = '1';
+  const duration = 900;
+  const start = performance.now();
+  function tick(now){
+    const p = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(target * eased) + suffix;
+    if(p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
 /* ── DATA LOAD ── */
 async function loadData(){
   try{
@@ -662,9 +745,12 @@ async function loadData(){
     renderFeatured();
     renderRecentTools();
     renderSidebars();
-    document.getElementById('statTools').textContent = toolsData.tools.filter(t=>t.published).length + '+';
+    animateCount('statTools', toolsData.tools.filter(t=>t.published).length, '+');
+    animateCount('statCategories', toolsData.categories.length, '');
+    animateCount('statFreePct', 100, '%');
     setupSearch();
     render();
+    renderFavoritesSection();
     loadPopularIds();
   }catch(err){
     document.getElementById('toolsContainer').innerHTML='<p class="loading-msg">⚠️ Could not load tools. Please refresh.</p>';
@@ -846,7 +932,9 @@ function render(){
     a.className='tool-card';
     a.href=tool.url;
     const badge = popularIds.has(tool.id) ? '<span class="tc-badge tc-badge-popular">🔥 Popular</span>' : '';
-    a.innerHTML=`${badge}<div class="icon">${tool.icon}</div><h3>${tool.name}</h3><p>${tool.description}</p>`;
+    const favOn = isFavorite(tool.id);
+    const favBtn = '<button class="fav-star-btn' + (favOn?' active':'') + '" aria-label="' + (favOn?'Remove from favorites':'Save to favorites') + '" onclick="event.preventDefault();event.stopPropagation();toggleFavoriteAndRerender(\'' + tool.id + '\', this)">' + (favOn?'★':'☆') + '</button>';
+    a.innerHTML=`${favBtn}${badge}<div class="icon">${tool.icon}</div><h3>${tool.name}</h3><p>${tool.description}</p>`;
     container.appendChild(a);
   });
   noResults.style.display=filtered.length?'none':'block';
