@@ -1,22 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 :root{
-  color-scheme:light;
-  --bg:#E8EBF2;
-  --surface:#E8EBF2;
-  --surface-2:#E1E5EE;
-  --border:rgba(51,56,74,.08);
-  --border-strong:rgba(51,56,74,.16);
-  --text:#33384A;
-  --text-dim:#6B7086;
-  --accent:#6C63E0;
-  --accent-rgb:108,99,224;
-  --accent-dark:#584FCB;
-  --accent-2:#1FAE7D;
-  --danger:#E2615D;
+  color-scheme:dark;
+  --bg:#262B3A;
+  --surface:#262B3A;
+  --surface-2:#1F2330;
+  --border:rgba(255,255,255,.06);
+  --border-strong:rgba(255,255,255,.14);
+  --text:#E7E9F2;
+  --text-dim:#9298AE;
+  --accent:#7B72E6;
+  --accent-rgb:123,114,230;
+  --accent-dark:#655CC9;
+  --accent-2:#2BC994;
+  --danger:#F0736D;
   --radius:20px;
-  --sl:#FFFFFF;
-  --sd:#B9BFD1;
+  --sl:#333849;
+  --sd:#14161D;
   --shadow-raised:7px 7px 15px var(--sd),-7px -7px 15px var(--sl);
   --shadow-raised-sm:4px 4px 9px var(--sd),-4px -4px 9px var(--sl);
   --shadow-inset:inset 5px 5px 10px var(--sd),inset -5px -5px 10px var(--sl);
@@ -26,7 +26,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{
   font-family:var(--font);
-  background:linear-gradient(160deg,#ECEFF6 0%,#E8EBF2 45%,#E2E6EF 100%);
+  background:linear-gradient(160deg,#282D3D 0%,#242835 45%,#1E212B 100%);
   background-attachment:fixed;
   color:var(--text);
   min-height:100vh;
@@ -66,7 +66,7 @@ select:focus-visible, [tabindex]:focus-visible{
 .site-header{
   border-bottom:none;
   background:var(--bg);
-  box-shadow:0 4px 18px rgba(51,56,74,.08);
+  box-shadow:0 4px 18px rgba(0,0,0,.35);
   position:sticky;top:0;z-index:50;
 }
 .site-header .inner{
@@ -109,7 +109,7 @@ select:focus-visible, [tabindex]:focus-visible{
   position:absolute;top:100%;left:0;right:0;margin-top:1px;
   background:var(--bg);
   border-top:none;
-  box-shadow:0 18px 40px rgba(51,56,74,.14);
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
   display:none;z-index:70;padding:22px 0;
 }
 .mega-nav-item.open .mega-panel{display:block}
@@ -158,14 +158,14 @@ select:focus-visible, [tabindex]:focus-visible{
 
 /* Mobile drawer */
 .drawer-overlay{
-  position:fixed;inset:0;background:rgba(51,56,74,.35);
+  position:fixed;inset:0;background:rgba(0,0,0,.55);
   opacity:0;pointer-events:none;transition:.25s;z-index:90;
 }
 .drawer-overlay.show{opacity:1;pointer-events:auto}
 .mobile-drawer{
   position:fixed;top:0;right:0;height:100%;width:86%;max-width:360px;
   background:var(--bg);
-  box-shadow:-14px 0 40px rgba(51,56,74,.2);
+  box-shadow:-14px 0 40px rgba(0,0,0,.5);
   transform:translateX(100%);transition:.28s ease;z-index:95;
   display:flex;flex-direction:column;padding:18px;overflow-y:auto;
 }
@@ -397,7 +397,7 @@ label{font-size:.8rem;color:var(--text-dim);display:block;margin-bottom:6px;font
     padding:16px 18px;
     background:var(--bg);
     border-right:none;
-    box-shadow:2px 0 12px rgba(51,56,74,.05);
+    box-shadow:2px 0 12px rgba(0,0,0,.3);
     order:-1;
   }
   .tool-right-sidebar{
@@ -408,7 +408,7 @@ label{font-size:.8rem;color:var(--text-dim);display:block;margin-bottom:6px;font
     padding:16px 18px;
     background:var(--bg);
     border-left:none;
-    box-shadow:-2px 0 12px rgba(51,56,74,.05);
+    box-shadow:-2px 0 12px rgba(0,0,0,.3);
     order:1;
   }
   .tool-left-sidebar::-webkit-scrollbar,.tool-right-sidebar::-webkit-scrollbar{width:4px}
@@ -447,7 +447,7 @@ label{font-size:.8rem;color:var(--text-dim);display:block;margin-bottom:6px;font
 .site-footer{
   text-align:center;color:var(--text-dim);font-size:.85rem;
   padding:30px 18px;border-top:none;margin-top:40px;
-  background:var(--bg);box-shadow:0 -4px 16px rgba(51,56,74,.05);
+  background:var(--bg);box-shadow:0 -4px 16px rgba(0,0,0,.3);
 }
 .site-footer a{color:var(--accent);font-weight:600}
 
@@ -509,7 +509,7 @@ table td{color:var(--text-dim);border-color:var(--border)}
 /* Select field arrow */
 select{
   -webkit-appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='rgba(51,56,74,0.55)' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='rgba(231,233,242,0.6)' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 14px center;
   padding-right:36px;
 }
@@ -836,7 +836,7 @@ textarea:focus,input[type=text]:focus,input[type=number]:focus,input[type=date]:
   transition:.2s;font-family:var(--font);
 }
 .fav-toggle-btn:hover{color:var(--accent)}
-.fav-toggle-btn.active{color:#C97323;box-shadow:var(--shadow-inset)}
+.fav-toggle-btn.active{color:#F0A857;box-shadow:var(--shadow-inset)}
 .fav-toggle-btn:active{transform:scale(.96)}
 .tool-updated-note{font-size:.78rem;color:var(--text-dim);display:inline-flex;align-items:center;padding:0 4px}
 
@@ -892,7 +892,7 @@ label{
   background:var(--bg)!important;
   border-top:none!important;
   color:var(--text-dim)!important;
-  box-shadow:0 -4px 16px rgba(51,56,74,.05)!important;
+  box-shadow:0 -4px 16px rgba(0,0,0,.3)!important;
 }
 
 /* ── ROW/GRID ── */
@@ -936,7 +936,7 @@ label{
 
 /* ── PROGRESS OVERLAY (globally available) ── */
 .prem-progress-overlay{
-  position:fixed;inset:0;background:rgba(232,235,242,.9);
+  position:fixed;inset:0;background:rgba(20,22,29,.92);
   display:flex;align-items:center;justify-content:center;
   z-index:9999;
   opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease;
@@ -1009,7 +1009,7 @@ label{
 .prem-file-item .fi-name{flex:1;font-size:.82rem;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .prem-file-item .fi-meta{font-size:.72rem;color:var(--text-dim)}
 .prem-file-item .fi-del{background:var(--bg);box-shadow:var(--shadow-inset);color:var(--danger);border:none;border-radius:8px;width:26px;height:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.8rem;transition:.15s}
-.prem-file-item .fi-del:hover{color:#C94540}
+.prem-file-item .fi-del:hover{color:#FF8F89}
 
 /* ── SELECTOR TABS ── */
 .prem-tab-row{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}

@@ -721,7 +721,7 @@ function injectStepperAndReviews(toolsData, slug, prefix) {
     const comment = reviewEl.querySelector('#reviewComment').value.trim();
     const name = reviewEl.querySelector('#reviewName').value.trim();
 
-    if (!selectedRating) { msg.textContent = '⚠️ Please select a star rating.'; msg.style.color='#E2615D'; return; }
+    if (!selectedRating) { msg.textContent = '⚠️ Please select a star rating.'; msg.style.color='#F0736D'; return; }
     // Name and comment are optional — no validation required
 
     const btn = reviewEl.querySelector('#reviewSubmitBtn');
@@ -736,7 +736,7 @@ function injectStepperAndReviews(toolsData, slug, prefix) {
       const data = await res.json();
       if (data.ok) {
         msg.textContent = '✅ ' + (data.message || 'Thank you for your review!');
-        msg.style.color = '#1FAE7D';
+        msg.style.color = '#2BC994';
         reviewEl.querySelector('#reviewComment').value = '';
         reviewEl.querySelector('#reviewName').value = '';
         selectedRating = 0; setStars(0, false);
@@ -747,11 +747,11 @@ function injectStepperAndReviews(toolsData, slug, prefix) {
         }
       } else {
         msg.textContent = '❌ ' + data.error;
-        msg.style.color = '#E2615D';
+        msg.style.color = '#F0736D';
       }
     } catch(e) {
       msg.textContent = '❌ Could not submit. Please try again.';
-      msg.style.color = '#E2615D';
+      msg.style.color = '#F0736D';
     }
     btn.disabled = false; btn.textContent = 'Submit Review';
   });
@@ -925,7 +925,7 @@ function premToast(msg, duration){
    Respects prefers-reduced-motion. Purely decorative — never gates functionality. */
 function premCelebrate(x, y){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const colors = ['#6C63E0', '#1FAE7D', '#E0933A', '#3E7FC9'];
+  const colors = ['#7B72E6', '#2BC994', '#E0933A', '#5B9AE0'];
   for (let i = 0; i < 10; i++) {
     const p = document.createElement('span');
     p.className = 'confetti-piece';
