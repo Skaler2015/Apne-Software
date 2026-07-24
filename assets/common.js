@@ -586,21 +586,15 @@ function injectStepperAndReviews(toolsData, slug, prefix) {
     }
     if(insertTarget && insertTarget !== infoWrap) {
       lastPanel.parentNode.insertBefore(reviewEl, insertTarget);
-    } else if(infoWrap) {
-      // Insert just before info-wrap — still inside container
-      const container = document.querySelector('.container');
-      if(container && container.contains(infoWrap)) {
-        container.insertBefore(reviewEl, infoWrap);
-      } else {
-        lastPanel.insertAdjacentElement('afterend', reviewEl);
-      }
+    } else if(infoWrap && infoWrap.parentNode) {
+      // Insert just before info-wrap, using its actual parent (insertBefore
+      // requires a direct child — infoWrap may be nested deeper than .container)
+      infoWrap.parentNode.insertBefore(reviewEl, infoWrap);
     } else {
       lastPanel.insertAdjacentElement('afterend', reviewEl);
     }
-  } else if (infoWrap) {
-    const container = document.querySelector('.container');
-    if(container) container.insertBefore(reviewEl, infoWrap);
-    else infoWrap.parentNode.insertBefore(reviewEl, infoWrap);
+  } else if (infoWrap && infoWrap.parentNode) {
+    infoWrap.parentNode.insertBefore(reviewEl, infoWrap);
   } else {
     document.body.appendChild(reviewEl);
   }
