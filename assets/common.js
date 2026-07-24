@@ -537,6 +537,31 @@ function injectStepperAndReviews(toolsData, slug, prefix) {
     toolHeader.parentNode.insertBefore(stepperEl, toolHeader);
   }
 
+  // ── FAVORITE / SAVE TOGGLE (stored locally only, never sent anywhere) ──
+  if (toolHeader && !document.getElementById('favToggleBtn')) {
+    const FAV_KEY = 'as_favorites';
+    function getFavs(){ try{ return JSON.parse(localStorage.getItem(FAV_KEY)) || []; }catch(e){ return []; } }
+    function toggleFav(id){
+      let favs = getFavs();
+      if (favs.includes(id)) favs = favs.filter(x => x !== id);
+      else favs.unshift(id);
+      localStorage.setItem(FAV_KEY, JSON.stringify(favs.slice(0, 50)));
+      return favs.includes(id);
+    }
+    const favBtn = document.createElement('button');
+    favBtn.type = 'button';
+    favBtn.id = 'favToggleBtn';
+    favBtn.className = 'fav-toggle-btn';
+    function renderFavBtn(){
+      const on = getFavs().includes(slug);
+      favBtn.innerHTML = on ? '★ Saved' : '☆ Save for later';
+      favBtn.classList.toggle('active', on);
+    }
+    renderFavBtn();
+    favBtn.addEventListener('click', () => { toggleFav(slug); renderFavBtn(); });
+    toolHeader.appendChild(favBtn);
+  }
+
   // ── BUILD REVIEW SECTION ───────────────────────────────────
   const reviewEl = document.createElement('div');
   reviewEl.className = 'tool-review-section glass-card';
