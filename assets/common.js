@@ -537,7 +537,7 @@ function injectStepperAndReviews(toolsData, slug, prefix) {
     toolHeader.parentNode.insertBefore(stepperEl, toolHeader);
   }
 
-  // ── FAVORITE / SAVE TOGGLE (stored locally only, never sent anywhere) ──
+  // ── FAVORITE / SAVE TOGGLE + SHARE (favorites stored locally only, never sent anywhere) ──
   if (toolHeader && !document.getElementById('favToggleBtn')) {
     const FAV_KEY = 'as_favorites';
     function getFavs(){ try{ return JSON.parse(localStorage.getItem(FAV_KEY)) || []; }catch(e){ return []; } }
@@ -548,6 +548,9 @@ function injectStepperAndReviews(toolsData, slug, prefix) {
       localStorage.setItem(FAV_KEY, JSON.stringify(favs.slice(0, 50)));
       return favs.includes(id);
     }
+    const actionsRow = document.createElement('div');
+    actionsRow.className = 'tool-actions-row';
+
     const favBtn = document.createElement('button');
     favBtn.type = 'button';
     favBtn.id = 'favToggleBtn';
@@ -559,7 +562,26 @@ function injectStepperAndReviews(toolsData, slug, prefix) {
     }
     renderFavBtn();
     favBtn.addEventListener('click', () => { toggleFav(slug); renderFavBtn(); });
-    toolHeader.appendChild(favBtn);
+    actionsRow.appendChild(favBtn);
+
+    const shareBtn = document.createElement('button');
+    shareBtn.type = 'button';
+    shareBtn.className = 'fav-toggle-btn';
+    shareBtn.innerHTML = '🔗 Share';
+    shareBtn.addEventListener('click', async () => {
+      const shareData = { title: tool.name + ' — ApneSoftware', text: tool.description || '', url: window.location.href };
+      if (navigator.share) {
+        try { await navigator.share(shareData); } catch(e) {}
+      } else {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          if (typeof premToast === 'function') premToast('🔗 Link copied to clipboard');
+        } catch(e) {}
+      }
+    });
+    actionsRow.appendChild(shareBtn);
+
+    toolHeader.appendChild(actionsRow);
   }
 
   // ── BUILD REVIEW SECTION ───────────────────────────────────
