@@ -518,7 +518,15 @@ select{
 input[type=checkbox], input[type=radio]{
   width:auto!important;
   accent-color:var(--accent);
+  cursor:pointer;transition:transform .12s ease;
 }
+input[type=checkbox]:active, input[type=radio]:active{transform:scale(.88)}
+
+/* Select dropdown — smoother open/hover feel */
+select{cursor:pointer;transition:box-shadow .2s ease}
+
+/* Tab-style controls (filter tabs, pills, prem-tab) — press feedback */
+.filter-tab:active,.search-cat-pill:active,.prem-tab:active,.trending-tag:active{transform:scale(.96)}
 
 /* Preview frame wrappers (html viewer etc) */
 .preview-frame-wrap .label{
